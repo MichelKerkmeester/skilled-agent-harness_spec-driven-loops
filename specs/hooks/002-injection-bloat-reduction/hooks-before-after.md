@@ -1,6 +1,6 @@
 ---
 title: "Injection-Bloat Epic — Hooks Before vs After"
-description: "Side-by-side of the runtime hooks before the injection-bloat-reduction epic and after it, showing that emitted output stays byte-identical (every candidate flag off) while a measured, receipt-gated shadow machine is now in place for safe future activation."
+description: "Side-by-side of the runtime hooks before the injection-bloat-reduction epic and after it, showing that emitted output stays byte-identical (every candidate flag off) while a measured, receipt-gated shadow machine is now in place for safe future activation — plus the follow-on alignment and playbook-results tooling that let the epic be validated per runtime."
 trigger_phrases:
   - "hooks before after injection bloat"
   - "injection bloat epic summary"
@@ -40,12 +40,27 @@ Read the rest as "what each surface did before" → "what it does now, still emi
 
 ---
 
-## 4. NET EFFECT
+## 4. FOLLOW-ON: ALIGNMENT & PLAYBOOK INFRASTRUCTURE (children 008–011)
+
+The hook work (phases 001–007) is the epic's core. Four follow-on children extended it — **none changed an emitted hook byte**; they aligned the surrounding docs to the new contract and built the tooling to *validate* the hooks per runtime.
+
+| Child | What it did | Emitted-byte impact |
+|---|---|---|
+| **008 sk-code-alignment** | Aligned code + READMEs to the epoch≥1 / observed-receipt confirmation contract. | None — docs + comments only. |
+| **009 testing-doc-alignment** | Dual-model sweep of the repo-wide manual-testing-playbooks and feature-catalogs against the changed behavior; corrected one stale test count. | None — no doc asserted the old contract; behavior frozen. |
+| **010 playbook-cheapest-model** | Standardized each runtime's manual-testing-playbook scenarios onto its cheapest model (codex→gpt-5.6-luna, cursor→composer-2.5, devin→SWE-1.7, opencode/pi→opencode-go/deepseek-v4-flash, claude→sonnet-5), preserving model-under-test scenarios — so a full per-runtime validation pass is cheap. | None — playbook markdown only. |
+| **011 playbook-results-automation** | Built + wired the wrapper that auto-persists every manual playbook run into the correctly-named `benchmark/reports/<date>--manual-testing-playbook--<runtime>/` 7-file record (extending `sk-doc/021`'s Lane C writer to the manual path); exercised end-to-end across all six runtimes. | None to the hooks — new benchmark tooling + result records only. |
+
+Together these turn "the hooks emit the same bytes" from an assertion into something **checkable per runtime**: run each runtime's playbook with its cheapest model, and the outcome lands in a dated, correctly-named results record automatically.
+
+---
+
+## 5. NET EFFECT
 
 | Dimension | Before | After |
 |---|---|---|
 | Emitted bytes | Full content every turn | **Identical** — byte-for-byte parity on every negative-control fixture |
 | Runtime behavior | Full delivery | **Unchanged** — `activated = 0`, fail-open everywhere |
-| What's new | — | A measured, receipt-gated, per-runtime framework that can *safely* suppress repeated injection when/if a candidate is turned on — with guardrails, rollback, and an epoch-floored confirmation contract |
+| What's new | — | A measured, receipt-gated, per-runtime framework that can *safely* suppress repeated injection when/if a candidate is turned on — with guardrails, rollback, and an epoch-floored confirmation contract — plus per-runtime playbook validation whose results auto-save to the correct location |
 
 The epic's value is **optionality with safety**: the program can now measure how much repeated per-prompt injection each runtime carries and turn reduction on one candidate-runtime cell at a time, each gated by evidence and reversible — without having changed a single emitted byte to get here.

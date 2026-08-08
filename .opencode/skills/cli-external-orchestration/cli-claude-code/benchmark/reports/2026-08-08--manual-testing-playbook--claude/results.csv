@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CC-001,cli-claude-code,,cli-invocation,manual,,claude-sonnet-5,claude,,SKIP,self-invocation guard: cli-claude-code scenarios must run from a non-Claude runtime; this session IS Claude Code

@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/011-playbook-results-automation",
+  "description": "Packet 021 established the dated run-label grammar, automatic `benchmark/reports/` destination, seven-file output, and drift-proof index for Lane C",
+  "keywords": [
+    "packet",
+    "established",
+    "dated",
+    "run-label",
+    "grammar",
+    "automatic",
+    "benchmark",
+    "reports",
+    "destination",
+    "seven-file",
+    "output",
+    "drift-proof",
+    "index",
+    "lane"
+  ],
+  "lastUpdated": "2026-08-08T12:28:02.298Z",
+  "specId": "011",
+  "folderSlug": "playbook-results-automation",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "cli-opencode",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-opencode"
+  },
+  "executor": "opencode",
+  "model": "opencode-go/deepseek-v4-flash",
+  "variant": "opencode",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "OC-001",
+      "verdict": "PASS",
+      "reason": "gateway dispatch returned the expected token",
+      "stage": "cli-invocation",
+      "classKind": "manual",
+      "providerModel": "opencode-go/deepseek-v4-flash",
+      "variant": "opencode",
+      "evidence": []
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "OC-001",
+    "stage": "cli-invocation",
+    "dispatch": "manual",
+    "executor": "opencode",
+    "model": "opencode-go/deepseek-v4-flash",
+    "variant": "opencode"
+  }
+}

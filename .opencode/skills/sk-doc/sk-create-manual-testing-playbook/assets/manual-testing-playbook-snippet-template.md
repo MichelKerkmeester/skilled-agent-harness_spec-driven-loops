@@ -17,6 +17,9 @@ Per-feature scenario files for split manual testing playbooks. Use this template
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked or stubbed. AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. The only acceptable classifications are PASS, FAIL, or SKIP with a specific sandbox or runtime blocker documented.
 
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **COMPLETION**: This feature run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `<skill>/benchmark/reports/<dated-run-label>/`; generated report Markdown is renderer-owned.
+
 ---
 
 ## 1. OVERVIEW

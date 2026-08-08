@@ -10,6 +10,8 @@ const EXIT_USAGE = 2;
 const ROOT_FILENAME = 'manual-testing-playbook.md';
 const SCENARIO_EXT = '.md';
 const CONTRACT = 'operator-scenario';
+const RESULT_PERSISTENCE_MARKER = 'MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT';
+const REQUIRED_OUTCOME_VOCABULARY = Object.freeze(['PASS', 'FAIL', 'SKIP']);
 const FORBIDDEN_VERDICTS = ['PARTIAL', 'READY', 'UNAUTOMATABLE', 'BLOCKED'];
 const REQUIRED_SECTIONS = [
   /^1\.\s+OVERVIEW$/i,
@@ -177,6 +179,30 @@ function sectionChecks(text, relPath) {
 
 function hasMarker(text, pattern) {
   return pattern.test(text);
+}
+
+function executionContractChecks(text, relPath) {
+  const warnings = [];
+  if (!text.includes(RESULT_PERSISTENCE_MARKER)) {
+    warnings.push(issue(
+      'RESULT_PERSISTENCE_MARKER_MISSING',
+      relPath,
+      `root playbook is missing the advisory ${RESULT_PERSISTENCE_MARKER} completion marker`,
+      'warning',
+    ));
+  }
+  const missingOutcomes = REQUIRED_OUTCOME_VOCABULARY.filter(
+    (outcome) => !new RegExp(`\\b${outcome}\\b`).test(text),
+  );
+  if (missingOutcomes.length > 0) {
+    warnings.push(issue(
+      'RESULT_OUTCOME_VOCABULARY_MISSING',
+      relPath,
+      `root playbook is missing advisory outcome vocabulary: ${missingOutcomes.join(', ')}`,
+      'warning',
+    ));
+  }
+  return warnings;
 }
 
 function scenarioTableState(text) {
@@ -464,6 +490,7 @@ function validatePackage({ playbookRoot, repoRoot, skillsRoot, manifest }) {
     routingGoldFilesExcluded: routingFiles.length,
   };
   const warnings = [];
+  warnings.push(...executionContractChecks(rootText, ROOT_FILENAME));
   const census = parseRootCensus(rootText);
   for (const statement of census) {
     warnings.push(issue('HAND_TYPED_CENSUS', ROOT_FILENAME, `root contains a hand-typed census (${statement.scenarios} scenarios${statement.categories === null ? '' : `, ${statement.categories} categories`}); derived census is ${derivedCensus.scenarioFiles} scenarios across ${derivedCensus.categoryDirs} categories`, 'warning'));
@@ -566,11 +593,14 @@ module.exports = {
   EXIT_VIOLATIONS,
   EXIT_USAGE,
   CONTRACT,
+  RESULT_PERSISTENCE_MARKER,
+  REQUIRED_OUTCOME_VOCABULARY,
   WARN_PACKAGE_IDS,
   REQUIRED_SECTIONS,
   parseArgs,
   extractFrontmatter,
   hasRoutingGoldSignature,
+  executionContractChecks,
   extractFeatureId,
   walkMarkdown,
   loadManifest,

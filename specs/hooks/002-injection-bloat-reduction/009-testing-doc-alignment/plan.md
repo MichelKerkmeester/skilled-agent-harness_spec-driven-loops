@@ -10,7 +10,7 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/009-testing-doc-alignment"
-    last_updated_at: "2026-08-07T06:30:00Z"
+    last_updated_at: "2026-08-08T09:29:48Z"
     last_updated_by: "claude"
     recent_action: "Ran the dual-lineage sweep and implemented the verified must-fix findings"
     next_safe_action: "Optionally add spec-gate env rows to the feature-flag-reference catalog/playbook layer"
@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md"
     session_dedup:
-      fingerprint: "sha256:d4bc1cb55ea54f1b692941e188b312b76bc6f31c0fea946d31ea6b48f87c6e58"
+      fingerprint: "sha256:8800102f9a4c6c28a152739c2bb1b01db8cb0fadd2d011fd871fe0f19fc3e333"
       session_id: "2026-08-07-hooks-002-009"
       parent_session_id: null
     completion_pct: 100

@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/010-playbook-cheapest-model",
+  "description": "Phase 009 established that the injection-bloat hooks were never exercised live inside their host runtimes and that the manual-testing-playbooks were",
+  "keywords": [
+    "phase",
+    "established",
+    "injection-bloat",
+    "hooks",
+    "never",
+    "exercised",
+    "live",
+    "inside",
+    "host",
+    "runtimes",
+    "manual-testing-playbooks"
+  ],
+  "lastUpdated": "2026-08-08T10:47:17.945Z",
+  "specId": "010",
+  "folderSlug": "playbook-cheapest-model",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The injection-bloat changes (delivery confirmation now requires an observed receipt with `lifecycleEpoch >= 1`, Gate-3 delivery observers fire strictly post-emission, and the shadow-delivery state machine keeps every candidate flag off) may have left manual-testing-playbook snippets and feature-catalog entries repo-wide describing or exercising the older behavior",
     "created_at": "2026-08-07T16:28:47.746Z",
-    "last_save_at": "2026-08-07T17:40:37.347Z",
+    "last_save_at": "2026-08-08T09:29:49.971Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79ffc42d88fd7f98ea63a3aaece85b1d01d188fd03d36a2559bf5bf5f0d8d7c8",
+    "source_fingerprint": "sha256:a05563cc00c50aaeecee09e5f30c9e09e854d3123a0fcd0c44c210d6fa68cea8",
     "source_doc_hashes": {
-      "spec.md": "e291b3be3316102d5cba56bf79a206c31da91742e4820573e0f8c3d5fcf23933",
-      "plan.md": "8ba02cf664c46dba1a5ff3c2cca948b0ecf4cbd07552d4d5bf29624ebf34fbd8",
-      "tasks.md": "f1c2978540da077b6fb33e667f4bb7ff5e0ace82a7fe08e6c0758635bb096ea4",
-      "checklist.md": "30f9dfcb17981a3c6a360d579b24a973d7f9248ed8556593a60ec4f4ce1b2cdc",
-      "implementation-summary.md": "8c1d417a872a8db6bf9f12d176ca493621e3a96271269bfe60071205b8085362"
+      "spec.md": "a6593c88fb50342e5d84e5d4c7b25ac676cfd0b8540bbd6f58b9b239f107d1c4",
+      "plan.md": "eddc06e17ff8de5246479722cb9b164404e037d9b155350d0d8a8e16077cf556",
+      "tasks.md": "6a67d520990de9aaf6c5e4be40c366e6a6d68477a5cc692ba7cca7a7eb7cbac7",
+      "checklist.md": "0d8354b12b32f4442db0f9ae5be76a3b5ef87a37ea9d46322e9b0fe08e0758f7",
+      "implementation-summary.md": "52ae6753f096b2ac0aaa92eaa6d24bbcc69cf5c81dc261f32880bddeb9c1ea2f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -34,7 +34,7 @@ Canonical package artifacts:
 
 This playbook provides 35 deterministic scenarios across 10 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID; 33 of the 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18).
 
-Coverage note (2026-04-26): Covers the canonical default invocation (`deepseek/deepseek-v4-pro` + `--variant high` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (deepseek direct API default with full variant range, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
+Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant high` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (deepseek direct API default with full variant range, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
 
 ### Realistic Test Model
 
@@ -58,7 +58,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`deepseek/d
 1. Working directory is project root and contains `.git/`.
 2. OpenCode CLI is installed and on PATH: `command -v opencode` returns a non-empty path. If absent, install via `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`.
 3. OpenCode CLI version is at or near the v1.3.17 baseline pinned in `references/cli-reference.md`. Drift handled per `references/cli-reference.md` §9.
-4. Direct DeepSeek API credentials are active: `DEEPSEEK_API_KEY` is set and `opencode providers login deepseek` has been run (the canonical default `deepseek/deepseek-v4-pro` resolves through it). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
+4. Direct DeepSeek API credentials are active: `DEEPSEEK_API_KEY` is set and `opencode providers login deepseek` has been run (the canonical default `opencode-go/deepseek-v4-flash` resolves through it). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
 5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
 6. The skill's reference and asset files exist at `.opencode/skills/cli-external-orchestration/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
 7. The project's MCP servers (Spec Kit Memory, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) and use case 3 (CO-021, CO-022) scenarios can call `memory_health`, Code Graph search and `memory_search`.
@@ -187,7 +187,7 @@ This category covers 5 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify the canonical `opencode run --model deepseek/deepseek-v4-pro --agent general --variant high --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime.
+Verify the canonical `opencode run --model opencode-go/deepseek-v4-flash --agent general --variant high --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime.
 
 #### Scenario Contract
 
@@ -323,17 +323,17 @@ Expected signals: Layer 1 (env var) detection trips. Refusal message in referenc
 
 This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented provider matrix (deepseek direct API as default, kimi-for-coding direct plan) plus the variant-level reasoning effort range.
 
-### CO-011 | deepseek direct API (deepseek-v4-pro)
+### CO-011 | deepseek direct API (deepseek-v4-flash)
 
 #### Description
 
-Verify `--model deepseek/deepseek-v4-pro --variant high` validates the deepseek direct API surface (the default provider), resolves correctly, and produces a coherent response.
+Verify `--model opencode-go/deepseek-v4-flash --variant high` validates the deepseek direct API surface (the default provider), resolves correctly, and produces a coherent response.
 
 #### Scenario Contract
 
-Prompt summary: As an external-AI conductor exercising the direct deepseek provider, dispatch --model deepseek/deepseek-v4-pro --variant high with a small implementation-planning prompt. Verify the dispatch exits 0 and the JSON event stream identifies the model as deepseek-v4-pro.
+Prompt summary: As an external-AI conductor exercising the direct deepseek provider, dispatch --model opencode-go/deepseek-v4-flash --variant high with a small implementation-planning prompt. Verify the dispatch exits 0 and the JSON event stream identifies the model as deepseek-v4-flash.
 
-Expected signals: Exit 0. Model id `deepseek-v4-pro` in session.completed. Response is a coherent paragraph (non-empty, not an error).
+Expected signals: Exit 0. Model id `deepseek-v4-flash` in session.completed. Response is a coherent paragraph (non-empty, not an error).
 
 #### Test Execution
 
@@ -624,13 +624,13 @@ Expected signals: Exit 0. Mtime unchanged. Zero Edit/Write tool.calls. Severity 
 
 #### Description
 
-Verify the small-model dispatch matrix surfaces both `sk-prompt/sk-prompt-models` and `cli-opencode` for a DeepSeek-v4-pro prompt, that `sk-prompt` composes the request with the right framework + `--variant high` recommendation, and that `cli-opencode` dispatches via the direct DeepSeek API (`deepseek/deepseek-v4-pro`). This is the production happy-path for DeepSeek work.
+Verify the small-model dispatch matrix surfaces both `sk-prompt/sk-prompt-models` and `cli-opencode` for a DeepSeek-v4-pro prompt, that `sk-prompt` composes the request with the right framework + `--variant high` recommendation, and that `cli-opencode` dispatches via the direct DeepSeek API (`opencode-go/deepseek-v4-flash`). This is the production happy-path for DeepSeek work.
 
 #### Scenario Contract
 
-Prompt: `Consult sk-prompt/sk-prompt-models for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode direct DeepSeek API path. Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model deepseek/deepseek-v4-pro --variant high and capture the output.`
+Prompt: `Consult sk-prompt/sk-prompt-models for the DeepSeek-v4-pro dispatch matrix and pick the cli-opencode direct DeepSeek API path. Compose the prompt through sk-prompt with the right framework and --variant high recommendation. Dispatch with --model opencode-go/deepseek-v4-flash --variant high and capture the output.`
 
-Expected signals: Advisor returns `sk-prompt/sk-prompt-models` (conf ≥ 0.85) AND `cli-opencode` (conf ≥ 0.80). Composed prompt declares `--variant high` choice. `opencode run --model deepseek/deepseek-v4-pro --variant high --dir <repo-root>` exits 0. Output addresses the pre-plan acceptance criteria.
+Expected signals: Advisor returns `sk-prompt/sk-prompt-models` (conf ≥ 0.85) AND `cli-opencode` (conf ≥ 0.80). Composed prompt declares `--variant high` choice. `opencode run --model opencode-go/deepseek-v4-flash --variant high --dir <repo-root>` exits 0. Output addresses the pre-plan acceptance criteria.
 
 Desired user-visible outcome: A working implementation plus the dispatch-matrix consultation evidence showing the direct DeepSeek API path was consciously picked.
 
@@ -838,7 +838,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### MULTI-PROVIDER
 
-- CO-011: [deepseek direct API (deepseek-v4-pro)](../manual-testing-playbook/multi-provider/deepseek-direct-api.md)
+- CO-011: [deepseek direct API (deepseek-v4-flash)](../manual-testing-playbook/multi-provider/deepseek-direct-api.md)
 - CO-012: [Variant levels (minimal/low/medium/high/max)](../manual-testing-playbook/multi-provider/variant-levels-comparison.md)
 
 ### AGENT ROUTING

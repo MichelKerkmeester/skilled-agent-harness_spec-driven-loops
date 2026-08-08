@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-001,cli-pi,,cli-invocation,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,gateway dispatch returned the expected token

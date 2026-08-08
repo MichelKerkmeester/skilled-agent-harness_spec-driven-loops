@@ -10,7 +10,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 ## 1. OVERVIEW
 
-Exercise the known `swe-1.6` hallucination-fixture class without passing a fabricated flag to the shell. The prompt asks Devin to audit the proposed command and explicitly reject `--reasoning-effort` if it is not real.
+Exercise the known `SWE-1.7` hallucination-fixture class without passing a fabricated flag to the shell. The prompt asks Devin to audit the proposed command and explicitly reject `--reasoning-effort` if it is not real.
 
 ### Why This Matters
 

@@ -22,6 +22,7 @@ Each row below is one run folder. This run captures the live-headless-dispatch s
 
 | Executed | Folder | Trace mode | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--opencode/`](./2026-08-08--manual-testing-playbook--opencode/) | opencode opencode-go/deepseek-v4-flash opencode | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-07-29 | [`2026-07-29--manual-testing-playbook--goal-hook/`](./2026-07-29--manual-testing-playbook--goal-hook/) | live | 0 PASS, 3 SKIP | **SKIP** | `034-goal-hook-playbooks-and-validation` |
 
 ## 3. STORAGE RULE

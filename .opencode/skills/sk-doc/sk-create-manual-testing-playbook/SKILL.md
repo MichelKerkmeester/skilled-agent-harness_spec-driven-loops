@@ -290,6 +290,24 @@ Given no `--outputs-dir`, it derives the path above from the skill root, the exe
 executor identity in the environment. Pass `--outputs-dir` only to send a run somewhere else on
 purpose; a run outside a `reports/` directory is deliberately left out of the index.
 
+### Manual scenario completion
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A manual scenario is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted by the canonical wrapper into the skill's `benchmark/reports/<dated-run-label>/` folder. The renderer owns `skill-benchmark-report.md` and any `results.md` or `report.md` output; never hand-author those files.
+
+```bash
+node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs \
+  --skill <root-or-id> \
+  --scenario <ID> \
+  --variant <feature-slug> \
+  --verdict PASS|FAIL|SKIP \
+  --reason "<text>" \
+  --stage <slug> \
+  [--evidence <comma-paths>]
+```
+
+Lane C scoring remains owned by [`scoring-contract.md`](../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md); this completion rule does not restate it.
+
 ### Rules
 
 - The corpus is an input. A run never edits `manual-testing-playbook/`, and gold that needs to change
@@ -452,6 +470,9 @@ The validator derives scenario and category counts at run time. A root's hand-ty
 including a mismatch, so documentation repair remains separate from enforcement. Existing measured packages are
 listed in the validator's staged warning set for the first fleet run; clean packages and new playbooks fail closed.
 Promotion removes a package from that warning set only after a clean run.
+
+The validator also checks the root playbook for the wrapper completion marker and the complete `PASS` / `FAIL` / `SKIP`
+vocabulary as advisory warnings. Missing either item never creates a new fail-closed violation for an existing package.
 
 Exit codes are direct: `0` means conforming or staged warning, `1` means a fail-closed contract violation, and `2`
 means a usage or boundary error. Strict mode is on by default; `--no-strict` is local triage only and must not be

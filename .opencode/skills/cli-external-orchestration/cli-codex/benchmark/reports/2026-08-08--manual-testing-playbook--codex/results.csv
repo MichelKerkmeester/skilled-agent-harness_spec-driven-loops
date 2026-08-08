@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-001,cli-codex,,cli-invocation,manual,,gpt-5.6-luna,codex,,PASS,"default invocation returned the expected token, exit 0"

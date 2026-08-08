@@ -736,6 +736,7 @@ function resolveOutputsDirForTest(args) {
 module.exports = {
   run, augmentWithD4R, resolveSkillRoot, loadFixtures, isHubTypeSkill,
   resolveRouteGold, resolveCompiledParity, resolveOutputsDirForTest,
+  runFolderName, slugField, MAX_OUTPUT_ORDINAL, defaultOutputsDir,
 };
 
 if (require.main === module) {

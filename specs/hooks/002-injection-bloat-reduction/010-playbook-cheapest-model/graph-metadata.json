@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/010-playbook-cheapest-model",
+  "spec_folder": "hooks/002-injection-bloat-reduction/010-playbook-cheapest-model",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "playbook cheapest model",
+      "per-runtime playbook model standardization",
+      "cli playbook model swap",
+      "injection-bloat live test prep",
+      "playbook cheapest model plan",
+      "cli playbook model swap plan",
+      "playbook cheapest model tasks",
+      "cli playbook model swap tasks",
+      "playbook cheapest model checklist",
+      "cli playbook model swap checklist",
+      "playbook cheapest model summary",
+      "cli playbook model swap result"
+    ],
+    "key_topics": [
+      "playbook",
+      "cheapest",
+      "model",
+      "per-runtime",
+      "standardization",
+      "cli",
+      "swap",
+      "injection-bloat",
+      "live",
+      "test",
+      "prep",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Cheapest",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Standardization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Testing Playbooks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-under-test",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Each",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Each",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 009 established that the injection-bloat hooks were never exercised live inside their host runtimes and that the manual-testing-playbooks were never run",
+    "created_at": "2026-08-08T09:29:49.504Z",
+    "last_save_at": "2026-08-08T10:47:18.378Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:202c2f6614f043341e73ecdf69e7e23e552d9662c5a8f0c7e586d9bd14b4bc25",
+    "source_doc_hashes": {
+      "spec.md": "8ed70b7424ff7f1fa1a483adc6947a08ca6a3bae4579c15da50b0719b9beff2d",
+      "plan.md": "9db9e73e0390e9f6c25defffc41ed2f7e8a84ccc8853e4867fb85567220573bd",
+      "tasks.md": "6038037dec682dc752234e588c1cf19d79e15e57d492e0f02054751fd4facdf2",
+      "checklist.md": "01a79ee389cfd83d9d5d132ec6adfac8d2b91501c114c25330aa776e3d595edb",
+      "implementation-summary.md": "6994a371ba8d2be585e2f24da3b992aee3c71679f25ece24edb9c48e339b3df3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

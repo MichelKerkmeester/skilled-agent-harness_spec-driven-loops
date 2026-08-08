@@ -75,7 +75,12 @@ A hub `benchmark/reports/` tree holds one folder per run:
 │   └── skill-benchmark-report.md
 ├── <run-label>/                  # a regular run-label folder (one Lane C run)
 │   ├── skill-benchmark-report.json
-│   └── skill-benchmark-report.md
+│   ├── skill-benchmark-report.md
+│   ├── results.csv
+│   ├── README.md
+│   ├── failed-runs.md
+│   ├── findings-and-recommendations.md
+│   └── source.md
 └── compiled-routing/             # fail-closed compiled-routing archive lane
 ```
 
@@ -137,19 +142,22 @@ this guide only fixes how the resulting folder is named and where it sits.
 
 ## 4. WHAT LANDS IN A RUN-LABEL DIR
 
-Every run writes a **matched report pair** and nothing else, unless a per-run
-`README.md` note was authored by hand. There is no separate `d4-ablation.json` or
+Every Lane C or manual playbook run writes the same **seven-file benchmark record**
+into its run-label directory. There is no separate `d4-ablation.json` or
 `d5-connectivity-detail.json` artifact: an opt-in `--d4` (D4-R task-outcome) run
-rewrites the SAME `skill-benchmark-report.json` / `.md` pair in place rather than
-writing a sibling file, and D5's structural-connectivity result is a field inside
-`skill-benchmark-report.json`, not a standalone detail file (verify against
-`run-skill-benchmark.cjs`).
+rewrites the same report JSON and renderer output, and D5's structural-connectivity
+result is a field inside `skill-benchmark-report.json`, not a standalone detail file
+(verify against `run-skill-benchmark.cjs`).
 
 | File | Required | Content |
 | --- | --- | --- |
 | `skill-benchmark-report.json` | Yes | The machine report: verdict, D1-D5 dimension scores, funnel, ranked bottlenecks, and per-scenario rows. The canonical artifact. An opt-in `--d4` D4-R run rewrites this same file in place. |
 | `skill-benchmark-report.md` | Yes | The same report rendered for reading, generated FROM the JSON. Renderer-owned — see section 5. |
-| `README.md` | Optional | A short per-run note (context for a one-off or model-stamped leg). |
+| `results.csv` | Yes | The machine-readable per-scenario result table rendered from the report record. |
+| `README.md` | Yes | The per-run entry point with the headline verdict and run snapshot. |
+| `failed-runs.md` | Yes | Renderer-owned failure details captured by the run. |
+| `findings-and-recommendations.md` | Yes | Renderer-owned cross-run findings and remediation guidance. |
+| `source.md` | Yes | Renderer-owned provenance pointer to the authoritative evidence packet. |
 
 Read order: open `skill-benchmark-report.md` for the verdict and the ranked
 bottlenecks; open `skill-benchmark-report.json` for per-scenario detail and for

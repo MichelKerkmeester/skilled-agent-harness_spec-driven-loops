@@ -32,7 +32,8 @@ function dimLine(name, d) {
   if (!d) return `| ${name} | — | — |`;
   const score = d.score == null ? `_${d.status || 'unscored'}_` : `${d.score}/100`;
   const gate = d.hardGate ? ' (hard gate)' : '';
-  return `| ${name}${gate} | ${d.points}pts | ${score} |`;
+  const points = d.points == null ? '—' : `${d.points}pts`;
+  return `| ${name}${gate} | ${points} | ${score} |`;
 }
 
 /**
@@ -275,9 +276,15 @@ function renderReport(report) {
     lines.push('| -------- | ----- | ----- | ----- | ------------------- |');
     for (const s of rows) {
       const score = s.routedOut ? '_routed-out_' : (typeof s.modeAScore === 'number' ? `${s.modeAScore}/100` : '—');
-      const failStage = s.routedOut ? (s.reason || 'browser harness') : (s.firstFailingStage || 'passed');
+      const explicitVerdict = s && s.verdict != null;
+      const normalized = explicitVerdict ? normalizeRow(s, r) : null;
+      const failStage = explicitVerdict
+        ? `${normalized.verdict}${normalized.reason ? `: ${normalized.reason}` : ''}`
+        : (s.routedOut ? (s.reason || 'browser harness') : (s.firstFailingStage || 'passed'));
       const benchStage = s.stage || 'routing';
-      lines.push(`| ${s.scenarioId} | ${s.classKind || s.tier || '—'} | ${benchStage} | ${score} | ${String(failStage).replace(/\|/g, '\\|')} |`);
+      const renderedFailStage = String(failStage).replace(/\|/g, '\\|');
+      const safeFailStage = explicitVerdict ? renderedFailStage.replace(/\r?\n/g, '<br>') : renderedFailStage;
+      lines.push(`| ${s.scenarioId} | ${s.classKind || s.tier || '—'} | ${benchStage} | ${score} | ${safeFailStage} |`);
     }
   }
   lines.push('');

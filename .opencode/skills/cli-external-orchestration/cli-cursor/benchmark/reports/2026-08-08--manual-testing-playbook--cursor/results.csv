@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-001,cli-cursor,,cli-invocation,manual,,composer-2.5,cursor,,PASS,composer-2.5 dispatch returned the expected token

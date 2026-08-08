@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/011-playbook-results-automation",
+  "spec_folder": "hooks/002-injection-bloat-reduction/011-playbook-results-automation",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "manual playbook results automation",
+      "playbook outcome persistence",
+      "run manual playbook scenario",
+      "benchmark report automation",
+      "manual playbook results plan",
+      "shared benchmark artifact writer",
+      "playbook persistence wrapper",
+      "manual playbook results tasks",
+      "playbook persistence tasks",
+      "shared artifact writer tasks",
+      "manual playbook results checklist",
+      "playbook persistence acceptance"
+    ],
+    "key_topics": [
+      "manual",
+      "playbook",
+      "results",
+      "automation",
+      "outcome",
+      "persistence",
+      "run",
+      "scenario",
+      "benchmark",
+      "report",
+      "plan",
+      "shared"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",
+      ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/manual-playbook-persist.test.cjs",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "run-manual-playbook-scenario.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-report.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-storage-guide.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-snippet-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "manual-playbook-persist.test.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/manual-playbook-persist.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Persisted Results",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Manual Playbook Scenario Runs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Extended Foundation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Class",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Lane",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 021 established the dated run-label grammar, automatic `benchmark/reports/` destination, seven-file output, and drift-proof index for Lane C `/deep:skill-benchmark` runs",
+    "created_at": "2026-08-08T10:42:21.646Z",
+    "last_save_at": "2026-08-08T12:28:02.718Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f2c4092a423e318bf67f77efce26cabf7556b275da856fea631014ba8fd5fb6e",
+    "source_doc_hashes": {
+      "spec.md": "848f926cc2e7ecde890833426126e59a574442c5474dc740493f66dbb7c817d9",
+      "plan.md": "1ecf12286c8a1f489cbfec5ac52d7b5f74972c302b322ced9ef1ae983a9872d7",
+      "tasks.md": "8c2d3fe7f0ef1fb0fce3e6a1b35508102a33c91c9b0623b0566049d07e90df31",
+      "checklist.md": "edeeee7179bb18bc09a52e087ee51befbbb13f6a6984df16ea221fe85b547cb1",
+      "implementation-summary.md": "1506a4ea90e8029e70e01e448e2c7d07851e014cd491b05d162c67a35062344a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
