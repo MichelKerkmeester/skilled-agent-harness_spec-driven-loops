@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
     "created_at": "2026-07-31T01:25:19.594Z",
-    "last_save_at": "2026-08-08T08:50:46.745Z",
+    "last_save_at": "2026-08-08T09:30:06.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75a3b60077f5a35dce43e7c36139178ec81d5f30a0d81a38e17f254bf655f728",
+    "source_fingerprint": "sha256:2dbfe6ee5dbc2e75674a418fa669f996f3bc12defe8da4b1666f9333ed863be6",
     "source_doc_hashes": {
       "spec.md": "cc8efc68fe97bb9f3f290c093ec9e8cd715411a58765ddc102e1c304477905bd",
       "plan.md": "dea3cde6029f01745e99170bfdb89d6a65209ee9915598d082d3da0fe634ba9a",
       "tasks.md": "b56b42a67860b1b449863e1254132decea4bcdbf81e60bf00de2ff570f7a3c53",
       "checklist.md": "84d4e46d162e588681739bf08b4a31ed7d59b3725de3ca4155b848efb607db08",
       "decision-record.md": "6108bf88d41302077e8776deabdcfdd9be46b9b32aaa9b7c15a02b7230d7a36e",
-      "implementation-summary.md": "747ff8e5a1b996cd82b8b6159a8488c9e166f9f2d8a6f438a490e668bf7f4d30"
+      "implementation-summary.md": "5ef4b322033c766cab5cb6f42ddadf8ab76314cf9c2fe32e7d8797368471271f"
     },
     "last_active_child_id": null,
     "last_active_at": null
