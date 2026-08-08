@@ -130,11 +130,12 @@ Reconciled honest this session: 029 (In Progress 10/13), 031 (Complete 22/23); 0
 The four named 014-cutover blockers are 021/022/023/024. Code-verified this session:
 - **021 (Blocker 4, evidence-reconcile): DISCHARGED** — suite sha256 digests recomputed, all match.
 - **023 (live-vocab): Complete** per ledger (not re-audited this pass).
-- **022 (Blocker 1, shadow-parity independent derivation): NOT DISCHARGED — ZERO code built.** Packet
-  is honestly Planned; the harness adapters are diff-identical to HEAD; `deep-ai-council-shadow-parity`
-  still has both projections calling the SAME `councilProjectionFromEvents` differing only by a
-  `'ledger'`/`'legacy'` string (the exact F-006-01 defect); no divergence-injection test exists. The
-  harness cannot fail, so it cannot prove parity.
+- **022 (Blocker 1, shadow-parity independent derivation): 5/6 modes BUILT + verified + landed; deep-review remains.**
+  Originally zero-built (harness adapters diff-identical to HEAD; both projections shared one derivation, so the
+  harness could not fail). Now council, agent-improvement, model-benchmark, skill-benchmark, and deep-alignment
+  each derive their ledger and legacy sides by genuinely different code paths, each with a red-before/green-after
+  divergence-injection test. deep-review (the last, worst-shaped mode) is in flight. Blocker 1 is NOT fully
+  discharged until deep-review lands.
 - **024 (Blocker 3, append-boundary fencing): NOT DISCHARGED + FABRICATED evidence.** The core fencing
   is ABSENT (`FenceCapability`=0, `#appendAuthorized`=0 matches in runtime/lib; `appendAuthorized` is
   still `public` and unfenced at `append-only-ledger.ts:349` — the F-002-01 defect). The docs cite SHA
@@ -160,17 +161,19 @@ The pre-014 verdict `010d145b9a` (and any "WS1 cleared the blockers" claim) is R
   red-before (superseded writer CAN append today) → green-after (it CANNOT); prove no cast-reachable
   `appendAuthorized`. NOTE 024's own LUNA review lists a DIFFERENT P0 triple (F001 gateway identity /
   F002 policy-closure-state / F005 loop-lock) — reconcile which finding set is authoritative before building.
-- **022 — 4/6 modes built + verified + LANDED; 2 harder remain.** council (`8b6b7b1f7e`), agent-improvement
+- **022 — 5/6 modes built + verified + LANDED; deep-review remains (in flight).** council (`8b6b7b1f7e`), agent-improvement
   (`16b13faecf`), model-benchmark + skill-benchmark (`f4a4cbe335`) all derive the ledger side independently
   with red-before/green-after divergence tests (39/39, 19/19 etc.). The model-benchmark/skill-benchmark
   reducer-lossiness design decision was RESOLVED by GPT-5.6-SOL: 4 model-benchmark service fields are
   incidental (scoped out of the comparator); skill-benchmark evidence digests are load-bearing (reducer
   fixed to persist them, `54ba83e7a3` — a real cutover-safety improvement, the reducer was dropping audit
   digests). Honest residual: skill-benchmark `certificateEvidenceDigests` still unrecoverable (reducer never
-  persists it; out of scope; not fixture-exercised). **REMAINING 2 modes (harder):** deep-alignment needs a
-  from-scratch legacy oracle (no reusable hand-scan — may hit its own reducer-lossiness); deep-review needs
-  its reducer-exception-laundering removed AND a converter (~150 lines of dead code use the wrong
-  deep-research schema).
+  persists it; out of scope; not fixture-exercised). **deep-alignment — DONE + landed (`11f3535212`):** built the
+  from-scratch legacy oracle `deepAlignmentLegacyOracleProjection` (switch-fold over all 40 event stems, never
+  imports the reducer fold); tsc rc0, 10/10; also fixed a real replay-fingerprint key-ordering bug. Honest limit:
+  only the 9 fixture-emitted stems are empirically diffed (REQ-005 surface-coverage gap, shared across all modes).
+  **REMAINING 1 mode (deep-review, IN FLIGHT via Sonnet build agent):** needs its reducer-exception-laundering
+  removed AND a converter (~150 lines of dead code use the wrong deep-research schema).
 RECOMMENDATION (honest): do NOT rush 024 at extreme session depth — it is the epic's biggest security-
 critical migration and was FABRICATED the last time it was rushed. Build it fresh, staged, with the
 verify-against-code discipline that caught all 5 fabrications this session. 022 can go first (bounded).
@@ -276,6 +279,9 @@ build+verify+land cycle and a mid-flight halt just leaves partial state.
   --fanout-config-json '<cfg>'` with `AI_SESSION_CHILD=1 MK_SPEC_GATE_ENFORCE=0`
   (`opencode run --command deep/review` does NOT execute headlessly). Config + cost-cap details in
   `033/handover.md`.
+- **`generate-description.js` drops the `level` field** that `DESCRIPTION_SHAPE` requires under `--strict`
+  (clean sibling packets carry `level: "3"` as a string). After regenerating a `description.json`, add
+  `"level": "<N>"` back manually or validate FAILS with a shape error. Hit + fixed on the 022 5/6 land.
 
 ## Confirmed vs inferred
 
