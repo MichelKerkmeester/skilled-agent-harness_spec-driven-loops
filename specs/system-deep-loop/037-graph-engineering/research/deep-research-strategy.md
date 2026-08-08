@@ -113,6 +113,16 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Allowing graph convergence to stop before legacy convergence and quality/parity gates agree. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:145-240 and the 036 cutover sequence]
 
+### Reopening the already-blocked big-bang/database-first migration directions; the additive-dark, shadow-parity, and rollback-window sequence remains the supported path. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_upsert_skipped events] -- BLOCKED (iteration 11, 1 attempts)
+- What was tried: Reopening the already-blocked big-bang/database-first migration directions; the additive-dark, shadow-parity, and rollback-window sequence remains the supported path. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_upsert_skipped events]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Reopening the already-blocked big-bang/database-first migration directions; the additive-dark, shadow-parity, and rollback-window sequence remains the supported path. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_upsert_skipped events]
+
+### Sharing mutable authoritative state across blinded/counterfactual branches before gateway-mediated adjudication. [INFERENCE: based on specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] -- BLOCKED (iteration 11, 1 attempts)
+- What was tried: Sharing mutable authoritative state across blinded/counterfactual branches before gateway-mediated adjudication. [INFERENCE: based on specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Sharing mutable authoritative state across blinded/counterfactual branches before gateway-mediated adjudication. [INFERENCE: based on specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103]
+
 ### Starting with AI council, alignment, or improvement as if they shared the research packet contract; the registry assigns them distinct artifact or backend boundaries. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:65-190] -- BLOCKED (iteration 6, 1 attempts)
 - What was tried: Starting with AI council, alignment, or improvement as if they shared the research packet contract; the registry assigns them distinct artifact or backend boundaries. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:65-190]
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -138,10 +148,20 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating `workflowMode` as the runtime convergence key was ruled out: the hub and registry require explicit `runtimeLoopType`, including load-bearing nulls for custom backends. [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:70-81; .opencode/skills/system-deep-loop/mode-registry.json:44-64]
 
+### Treating a LangGraph checkpointer, GraphARC state object, coverage graph, or OTel export as the 036 append-only authority ledger. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103; https://docs.langchain.com/oss/python/langgraph/persistence] -- BLOCKED (iteration 11, 1 attempts)
+- What was tried: Treating a LangGraph checkpointer, GraphARC state object, coverage graph, or OTel export as the 036 append-only authority ledger. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103; https://docs.langchain.com/oss/python/langgraph/persistence]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating a LangGraph checkpointer, GraphARC state object, coverage graph, or OTel export as the 036 append-only authority ledger. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103; https://docs.langchain.com/oss/python/langgraph/persistence]
+
 ### Treating admission as execution; the checker never calls node factories and only records a decision. -- BLOCKED (iteration 8, 1 attempts)
 - What was tried: Treating admission as execution; the checker never calls node factories and only records a decision.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating admission as execution; the checker never calls node factories and only records a decision.
+
+### Treating conditional routing or model-generated dynamic edges as permissionless transition authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-160] -- BLOCKED (iteration 11, 1 attempts)
+- What was tried: Treating conditional routing or model-generated dynamic edges as permissionless transition authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-160]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating conditional routing or model-generated dynamic edges as permissionless transition authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-160]
 
 ### Treating existing coverage-graph upsert as a workflow state-graph migration was ruled out; the inspected contract is node/edge persistence and validation, while control execution remains in convergence/fan-out entrypoints. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226; INFERENCE: compared with .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70 and fanout-run.cjs:1-38] -- BLOCKED (iteration 1, 1 attempts)
 - What was tried: Treating existing coverage-graph upsert as a workflow state-graph migration was ruled out; the inspected contract is node/edge persistence and validation, while control execution remains in convergence/fan-out entrypoints. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226; INFERENCE: compared with .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70 and fanout-run.cjs:1-38]
@@ -194,6 +214,10 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Treating `forward_args=True` as governed argument validation; materializer documentation explicitly leaves those args unchecked. (iteration 8)
 - Treating admission as execution; the checker never calls node factories and only records a decision. (iteration 8)
 - Treating GraphARC checkpoint/state APIs or trace replay as the append-only evidence-ledger authority. (iteration 8)
+- Reopening the already-blocked big-bang/database-first migration directions; the additive-dark, shadow-parity, and rollback-window sequence remains the supported path. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_upsert_skipped events] (iteration 11)
+- Sharing mutable authoritative state across blinded/counterfactual branches before gateway-mediated adjudication. [INFERENCE: based on specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] (iteration 11)
+- Treating a LangGraph checkpointer, GraphARC state object, coverage graph, or OTel export as the 036 append-only authority ledger. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103; https://docs.langchain.com/oss/python/langgraph/persistence] (iteration 11)
+- Treating conditional routing or model-generated dynamic edges as permissionless transition authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-160] (iteration 11)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -232,6 +256,16 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Direct fresh verification of `loop-lock.cjs`, `fanout-run.cjs`, and `upsert.cjs` should be run when the tool budget permits; prior evidence establishes their runtime role but not this pass's fresh line-level inspection. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5-8] (iteration 7)
 - Q5: an implementation follow-up still needs a deterministic adapter/replay fixture and measurable shadow-parity gates; this iteration intentionally made no code changes. (iteration 8)
 - Q1/Q2: canonical ownership/status for absent 034 and 036-046 phase packets and the fresh loop-lock/fan-out/upsert runtime census remain outside this focus. (iteration 8)
+- Does the lower portion of the live YAML invoke `verify-iteration.cjs` and `reduce-state.cjs` through explicit research artifact bindings, or only through generic post-dispatch/reducer orchestration? (iteration 9)
+- When can the coverage graph DB be rebuilt with a compatible native module so projection parity can be tested without conflating DB availability with control-plane correctness? (iteration 9)
+- What owner-approved manifest, deprecation record, or merge record canonically accounts for 036-046? (iteration 9)
+- Q5 still needs an implementation-owned adapter/replay fixture and measurable shadow-parity gates; this iteration did not modify code. (iteration 10)
+- Article-reported benchmark figures need independent source/experiment verification before use as acceptance thresholds. (iteration 10)
+- Canonical owner-approved status, deprecation, or merge evidence for 034 and 036–046 remains unresolved. (iteration 10)
+- A direct local LangChain article/source snapshot is still absent; prior official-source findings should remain the authority for LangGraph API details. (iteration 10)
+- The packet-local LangChain article body remains absent; official LangGraph documentation remains the source of truth for API claims. (iteration 11)
+- An implementation-owned first-mode adapter still needs a deterministic replay fixture, receipt/fingerprint contract, and measurable shadow-parity gates. (iteration 11)
+- The supplied GraphARC session path needs a corrected path or owner confirmation before session-lifecycle mapping is claimed. (iteration 11)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -239,7 +273,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Q1/Q2: canonical ownership/status for absent 034 and 036-046 phase packets and the fresh loop-lock/fan-out/upsert runtime census remain outside this focus.
+The supplied GraphARC session path needs a corrected path or owner confirmation before session-lifecycle mapping is claimed.
 
 <!-- /ANCHOR:next-focus -->
 

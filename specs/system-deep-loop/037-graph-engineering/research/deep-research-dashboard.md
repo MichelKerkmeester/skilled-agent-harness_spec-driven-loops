@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Current status of the system-deep-loop system and what the 036-deep-loop-innovation changes introduce; how to evolve deep-loop workflows into graph-engineering-based loops aligned with the GraphARC and graph-engineering-master repositories and the LangChain graph concepts
 - Started: 2026-08-08T12:02:10.087Z
 - Status: INITIALIZED
-- Iteration: 8 of 20
+- Iteration: 11 of 20
 - Session ID: 27ce8e25-71b5-4732-bbf1-f6acf6bbebb4
 - Parent Session: none
 - Lifecycle Mode: new
@@ -39,9 +39,12 @@ Reducer-generated observability surface for the active research packet.
 | 6 | Q5 part 2: first-mode graph adapter contract and shadow-parity gates | target-architecture | 0.86 | 7 | complete |
 | 7 | Q1/Q2 reconciliation: verify runtime status and 036 phase census | status-reconciliation | 0.90 | 5 | complete |
 | 8 | GraphARC internals deep verification: planner admission/materialization, state, traces, budgets, tests, and the governance-wrapper boundary over the graph runtime. | grapharc-internals | 0.86 | 7 | complete |
+| 9 | Runtime census + 036 phase ownership: live loop-lock/fanout/validator wiring, coverage-graph upsert and reducer boundaries, and canonical ownership/status for 034 and 036-046. | runtime-census | 0.83 | 6 | complete |
+| 10 | Corpus completion: graph-engineering-master delivery and article synthesis | corpus-completion | 0.74 | 7 | complete |
+| 11 | Deep alignment: map the 036 evidence-ledger spine onto graph-engineering semantics | deep-alignment | 0.74 | 7 | complete |
 
-- iterationsCompleted: 8
-- keyFindings: 55
+- iterationsCompleted: 11
+- keyFindings: 75
 - openQuestions: 5
 - resolvedQuestions: 0
 
@@ -68,13 +71,13 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: █▅▃▁▂▃▄▆▇▇▇▆▄▃▂▃▅▄▃▂
-- score sparkline: █▅▃▁▂▃▄▆▇▇▇▆▄▃▂▃▅▄▃▂
-- Last 3 ratios: 0.86 -> 0.90 -> 0.86
+- newInfoRatio sparkline: █▆▅▅▆▇█▇▇▆▆▆▆▅▅▄▃▁▁▁
+- score sparkline: █▆▅▅▆▇█▇▇▆▆▆▆▅▅▄▃▁▁▁
+- Last 3 ratios: 0.83 -> 0.74 -> 0.74
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.86
-- coverageBySources: {"code":76,"docs.langchain.com":2,"langchain-ai.github.io":1,"other":37,"raw.githubusercontent.com":1}
+- convergenceScore: 0.74
+- coverageBySources: {"code":102,"docs.langchain.com":4,"langchain-ai.github.io":1,"other":46,"raw.githubusercontent.com":1}
 - Advisory events: none
 
 <!-- /ANCHOR:trend -->
@@ -95,6 +98,10 @@ Reducer-generated observability surface for the active research packet.
 - Treating `forward_args=True` as governed argument validation; materializer documentation explicitly leaves those args unchecked. (iteration 8)
 - Treating admission as execution; the checker never calls node factories and only records a decision. (iteration 8)
 - Treating GraphARC checkpoint/state APIs or trace replay as the append-only evidence-ledger authority. (iteration 8)
+- Reopening the already-blocked big-bang/database-first migration directions; the additive-dark, shadow-parity, and rollback-window sequence remains the supported path. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_upsert_skipped events] (iteration 11)
+- Sharing mutable authoritative state across blinded/counterfactual branches before gateway-mediated adjudication. [INFERENCE: based on specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] (iteration 11)
+- Treating a LangGraph checkpointer, GraphARC state object, coverage graph, or OTel export as the 036 append-only authority ledger. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103; https://docs.langchain.com/oss/python/langgraph/persistence] (iteration 11)
+- Treating conditional routing or model-generated dynamic edges as permissionless transition authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-160] (iteration 11)
 
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:divergent-pivots -->
@@ -109,7 +116,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Q1/Q2: canonical ownership/status for absent 034 and 036-046 phase packets and the fresh loop-lock/fan-out/upsert runtime census remain outside this focus.
+The supplied GraphARC session path needs a corrected path or owner confirmation before session-lifecycle mapping is claimed.
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->
