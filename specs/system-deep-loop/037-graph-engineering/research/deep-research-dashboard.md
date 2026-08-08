@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Current status of the system-deep-loop system and what the 036-deep-loop-innovation changes introduce; how to evolve deep-loop workflows into graph-engineering-based loops aligned with the GraphARC and graph-engineering-master repositories and the LangChain graph concepts
 - Started: 2026-08-08T12:02:10.087Z
 - Status: INITIALIZED
-- Iteration: 15 of 20
+- Iteration: 17 of 20
 - Session ID: 27ce8e25-71b5-4732-bbf1-f6acf6bbebb4
 - Parent Session: none
 - Lifecycle Mode: new
@@ -46,9 +46,11 @@ Reducer-generated observability surface for the active research packet.
 | 13 | Convergence as graph analysis: compare coverage-graph convergence with the inline three-signal vote and define graph termination and replay conditions. | convergence-graph-analysis | 0.80 | 5 | complete |
 | 14 | Fan-out and lineage as graph branches | fanout-lineage | 0.80 | 5 | complete |
 | 15 | Fan-in verification + replay semantics: fanout-merge.cjs ordering, conflict/provenance behavior, registry/state boundaries, DB-independent branch-to-join replay | fan-in-replay | 0.90 | 5 | complete |
+| 16 | Cross-check and independent verification of the 014 cutover blockers, graph-engineering-master implementation boundary, and hybrid loop-plus-graph recommendation | independent-verification | 0.45 | 5 | timeout |
+| 17 | When-not-to-use validation + direct residual verification (identityResolver, F005 loop-lock window, graph-engineering-master inventory) | when-not-to-use-and-residual-verification | 0.90 | 6 | complete |
 
-- iterationsCompleted: 15
-- keyFindings: 95
+- iterationsCompleted: 17
+- keyFindings: 106
 - openQuestions: 5
 - resolvedQuestions: 0
 
@@ -75,13 +77,13 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: █▆▅▆█▇▆▅▆▆▅▄▁▁▂▃▃▃▄▇
-- score sparkline: █▆▅▆█▇▆▅▆▆▅▄▁▁▂▃▃▃▄▇
-- Last 3 ratios: 0.80 -> 0.80 -> 0.90
+- newInfoRatio sparkline: █▇▇███▇▇▇▇▆▅▅▆▆▆▇▅▂▇
+- score sparkline: █▇▇███▇▇▇▇▆▅▅▆▆▆▇▅▂▇
+- Last 3 ratios: 0.90 -> 0.45 -> 0.90
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
 - convergenceScore: 0.90
-- coverageBySources: {"code":127,"docs.langchain.com":4,"langchain-ai.github.io":1,"other":59,"raw.githubusercontent.com":1}
+- coverageBySources: {"code":142,"docs.langchain.com":4,"langchain-ai.github.io":1,"other":62,"raw.githubusercontent.com":1}
 - Advisory events: none
 
 <!-- /ANCHOR:trend -->
@@ -123,6 +125,8 @@ Reducer-generated observability surface for the active research packet.
 - None newly introduced. The prior iteration's direct-read gap for `fanout-merge.cjs` was resolved; the previously blocked database-first/live-graph path was not retried. (iteration 15)
 - Treating input/arrival order as the canonical merge order; the implementation sorts content, IDs, labels, and final output arrays. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:332-352,350-362`] (iteration 15)
 - Treating the merged registry as a rewriteable substitute for lineage state logs or append-only deltas. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1096-1127,1149-1169`; [INFERENCE: based on read-only state consumption and registry-only output writes]] (iteration 15)
+- Graphing every mode and every leaf file operation; the corpus and workflow branch explicitly support simpler loops for low-branching work. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:147-159] (iteration 17)
+- Treating `dist/graph-engineering.skill` as proof that `graph-engineering/` contains runnable implementation modules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [INFERENCE: based on the empty source-tree inventory] (iteration 17)
 
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:divergent-pivots -->
@@ -137,7 +141,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Canonical reducer snapshot serialization and production parity remain unexecuted; graph-database unavailability must be covered as a graph-off fixture case.
+Canonical owner-approved accounting for 034 and 036-046 remains unresolved.
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

@@ -79,6 +79,8 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - reading the workflow algorithm beside the runtime implementation made the graph veto boundary and the inline vote's independent semantics explicit; iteration 004 supplied the checkpoint-versus-trace distinction needed for replay design. (iteration 13)
 - narrow file-scoped searches plus contiguous source ranges exposed the branch contract, write boundary, executor matrix, and pivot frontier without rereading the already-saturated graph-database path. (iteration 14)
 - reading the merge implementation's pure helpers and main output path together with the synthesis YAML made the ordering, provenance, and non-rewrite guarantees directly verifiable instead of inferred from the fan-out runner. (iteration 15)
+- narrow corpus search exposed the exact F001/F002/F005 wording and the conflict between child landing labels and residual cutover gates. (iteration 16)
+- narrow file-scoped reads exposed the exact optional gateway branch, the unsafe fresh-lock write sequence, and the distinction between packaged and executable graph-engineering artifacts. (iteration 17)
 
 <!-- /ANCHOR:what-worked -->
 
@@ -97,6 +99,8 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - no live graph decision or parity run was possible because the packet records the native database module mismatch. (iteration 13)
 - a repository-wide recursive grep timed out before producing evidence; the broad search traversed unrelated phase material instead of the known runtime directory. (iteration 14)
 - no executable multi-lineage fixture was run in this bounded research iteration; source evidence established the contract but not runtime parity under shuffled or damaged inputs. (iteration 15)
+- broad runtime search consumed the bounded tool budget; direct implementation and `dist/` verification therefore did not run. (iteration 16)
+- the final combined grep exited 141 because `head` closed the pipe; it did not erase the required matches, but it prevents treating the command as a clean validation run. (iteration 17)
 
 <!-- /ANCHOR:what-failed -->
 
@@ -128,6 +132,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - What was tried: Exact `fanout-merge.cjs` conflict-order semantics were not freshly verified in this bounded pass; do not promote an implementation claim about merge ordering until that file is read directly.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Exact `fanout-merge.cjs` conflict-order semantics were not freshly verified in this bounded pass; do not promote an implementation claim about merge ordering until that file is read directly.
+
+### Graphing every mode and every leaf file operation; the corpus and workflow branch explicitly support simpler loops for low-branching work. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:147-159] -- BLOCKED (iteration 17, 1 attempts)
+- What was tried: Graphing every mode and every leaf file operation; the corpus and workflow branch explicitly support simpler loops for low-branching work. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:147-159]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Graphing every mode and every leaf file operation; the corpus and workflow branch explicitly support simpler loops for low-branching work. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:147-159]
 
 ### Live graph execution was not attempted after the packet's prior native-module failure; static runtime analysis was the productive fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] -- BLOCKED (iteration 13, 1 attempts)
 - What was tried: Live graph execution was not attempted after the packet's prior native-module failure; static runtime analysis was the productive fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
@@ -193,6 +202,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - What was tried: The legacy LangGraph documentation URL (`https://langchain-ai.github.io/langgraph/concepts/low_level/`) returned no usable body in this run. Current official docs and the official raw source provided a successful fallback, so the iteration remains complete.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: The legacy LangGraph documentation URL (`https://langchain-ai.github.io/langgraph/concepts/low_level/`) returned no usable body in this run. Current official docs and the official raw source provided a successful fallback, so the iteration remains complete.
+
+### Treating `dist/graph-engineering.skill` as proof that `graph-engineering/` contains runnable implementation modules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [INFERENCE: based on the empty source-tree inventory] -- BLOCKED (iteration 17, 1 attempts)
+- What was tried: Treating `dist/graph-engineering.skill` as proof that `graph-engineering/` contains runnable implementation modules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [INFERENCE: based on the empty source-tree inventory]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating `dist/graph-engineering.skill` as proof that `graph-engineering/` contains runnable implementation modules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [INFERENCE: based on the empty source-tree inventory]
 
 ### Treating `forward_args=True` as governed argument validation; materializer documentation explicitly leaves those args unchecked. -- BLOCKED (iteration 8, 1 attempts)
 - What was tried: Treating `forward_args=True` as governed argument validation; materializer documentation explicitly leaves those args unchecked.
@@ -326,6 +340,8 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - None newly introduced. The prior iteration's direct-read gap for `fanout-merge.cjs` was resolved; the previously blocked database-first/live-graph path was not retried. (iteration 15)
 - Treating input/arrival order as the canonical merge order; the implementation sorts content, IDs, labels, and final output arrays. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:332-352,350-362`] (iteration 15)
 - Treating the merged registry as a rewriteable substitute for lineage state logs or append-only deltas. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1096-1127,1149-1169`; [INFERENCE: based on read-only state consumption and registry-only output writes]] (iteration 15)
+- Graphing every mode and every leaf file operation; the corpus and workflow branch explicitly support simpler loops for low-branching work. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:147-159] (iteration 17)
+- Treating `dist/graph-engineering.skill` as proof that `graph-engineering/` contains runnable implementation modules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [INFERENCE: based on the empty source-tree inventory] (iteration 17)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -385,6 +401,15 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - The complete 024 caller-migration verification and owner-approved accounting for 034 and 036-046 remain outside this focus. (iteration 15)
 - An implementation owner still needs to execute a small deterministic replay fixture with two or more lineages, same-content duplicates, same-ID conflicts, missing registries, salvaged findings, and shuffled input order. (iteration 15)
 - Canonical reducer snapshot serialization and production parity remain unexecuted; graph-database unavailability must be covered as a graph-off fixture case. (iteration 15)
+- Determine and record explicit reducer-valid `CONTRADICTS` edges between iteration claims after those source checks. (iteration 16)
+- Read the actual runtime gateway, policy registry, loop-lock, append/fencing, and parity harness implementations at line level; reconcile child “landed” claims with live behavior. (iteration 16)
+- Directly inventory graph-engineering-master `dist/` and `graph-engineering/`, then read WORKFLOWS.md against that inventory. (iteration 16)
+- Search the supplied article corpus for a concrete full-graph-replacement argument and test whether it contradicts the authority-preserving hybrid recommendation. (iteration 16)
+- No prior finding was overturned in this pass, so no `CONTRADICTS` or `SUPERSEDES` graph edge is emitted; the `dist` result narrows the inventory-gap wording. (iteration 17)
+- Direct runtime fixture execution and shadow-parity evidence remain unrun; static source checks do not prove production behavior under malformed or concurrent inputs. (iteration 17)
+- F005 is not cleared until fresh acquisition no longer exposes a readable partial target (or readers fail closed with an owner-approved protocol and tests). (iteration 17)
+- F001 is not cleared until an owner-approved production construction path supplies a non-optional identity resolver and its negative tests. (iteration 17)
+- Canonical owner-approved accounting for 034 and 036-046 remains unresolved. (iteration 17)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -392,7 +417,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Canonical reducer snapshot serialization and production parity remain unexecuted; graph-database unavailability must be covered as a graph-off fixture case.
+Canonical owner-approved accounting for 034 and 036-046 remains unresolved.
 
 <!-- /ANCHOR:next-focus -->
 

@@ -320,6 +320,51 @@
       "text": "Canonical reducer snapshot serialization and production parity remain unexecuted; graph-database unavailability must be covered as a graph-off fixture case.",
       "addedAtIteration": 15,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Determine and record explicit reducer-valid `CONTRADICTS` edges between iteration claims after those source checks.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Read the actual runtime gateway, policy registry, loop-lock, append/fencing, and parity harness implementations at line level; reconcile child “landed” claims with live behavior.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Directly inventory graph-engineering-master `dist/` and `graph-engineering/`, then read WORKFLOWS.md against that inventory.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Search the supplied article corpus for a concrete full-graph-replacement argument and test whether it contradicts the authority-preserving hybrid recommendation.",
+      "addedAtIteration": 16,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "No prior finding was overturned in this pass, so no `CONTRADICTS` or `SUPERSEDES` graph edge is emitted; the `dist` result narrows the inventory-gap wording.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Direct runtime fixture execution and shadow-parity evidence remain unrun; static source checks do not prove production behavior under malformed or concurrent inputs.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "F005 is not cleared until fresh acquisition no longer exposes a readable partial target (or readers fail closed with an owner-approved protocol and tests).",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "F001 is not cleared until an owner-approved production construction path supplies a non-optional identity resolver and its negative tests.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Canonical owner-approved accounting for 034 and 036-046 remains unresolved.",
+      "addedAtIteration": 17,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -1884,6 +1929,187 @@
         "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-014.md`",
         "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior graph-convergence and graph-upsert skipped events`"
       ]
+    },
+    {
+      "id": "finding-16-5-no-new-contradicts-graph-edges-between-prior-iterations-could-be-verified-from-s",
+      "text": "**No new `CONTRADICTS` graph edges between prior iterations could be verified from source artifacts during the interrupted pass.** Existing state events contain graph node/edge records but the prior records shown in the packet use ANSWERS/CITES for these claims; the only material contradiction surfaced in this pass is documentary and is represented narratively above. [INFERENCE: based on specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: iteration 1-15 records and this iteration's bounded corpus search] **Falsifier:** a reducer-valid edge record linking a source-backed status claim to an incompatible claim should be added in a future iteration after direct source reads.",
+      "addedAtIteration": 16,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md:67-77,109-146",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/spec.md:38-42,134-145",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/tasks.md:62-70",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:234-238",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83,116-160",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: iteration 3 and iteration 4 records",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md: EXHAUSTED APPROACHES",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-003.md",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md"
+      ]
+    },
+    {
+      "id": "finding-16-2-the-022-024-blockers-remain-documentary-gates-but-current-runtime-parity-fencing",
+      "text": "**The 022/024 blockers remain documentary gates, but current runtime parity/fencing was not directly verified here.** The parent phase map identifies 022 as independent shadow parity and 024 as gateway-only mutation with append-boundary fencing; the 033 task record says preserving the 024 gateway-only append, hard-private mutator, replay short-circuit, and identity/fencing tests is required. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:234-238; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/tasks.md:62-70] The handover simultaneously reports 022 deep-review parity incomplete and 024 fencing evidence fabricated/absent in its code-verification section, so cutover cannot be called ready from the child “landed” label alone. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83,116-160] **Falsifier:** a fresh frozen-SHA run showing all required per-mode independent parity cases pass, the append path is gateway-only and fenced, and the 014 whole-system gate accepts the same SHA would falsify the blocked-cutover claim.",
+      "addedAtIteration": 16,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md:67-77,109-146",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/spec.md:38-42,134-145",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/tasks.md:62-70",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:234-238",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83,116-160",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: iteration 3 and iteration 4 records",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md: EXHAUSTED APPROACHES",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-003.md",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md"
+      ]
+    },
+    {
+      "id": "finding-16-1-the-documentary-claim-that-014-remains-blocked-is-not-safely-re-derived-from-the",
+      "text": "**The documentary claim that 014 remains blocked is not safely re-derived from the runtime in this iteration.** The 033 handover labels F001/F002 as confirmed identity/policy-state gaps and F005 as a fresh-acquisition partial-file window, while also describing remediation and shadow-parity harness behavior. It explicitly says the eight shadow-parity adapters construct the gateway with no `identityResolver` by design and that the F002 digest change can cascade through golden certificates; it preserves the 024 gateway-only append and fencing contract. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md:67-77,109-146] The same corpus contains a child spec claiming all five findings landed, while its acceptance text still classifies F005's fresh-acquisition window as open and its requirements retain gateway-only fencing. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/spec.md:38-42,134-145] This is a contradiction between landing/status prose and the residual-risk disposition, not proof that runtime cutover is safe. [INFERENCE: based on the two cited child documents]",
+      "addedAtIteration": 16,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md:67-77,109-146",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/spec.md:38-42,134-145",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/tasks.md:62-70",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:234-238",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83,116-160",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: iteration 3 and iteration 4 records",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md: EXHAUSTED APPROACHES",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-003.md",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md"
+      ]
+    },
+    {
+      "id": "finding-16-3-the-graph-engineering-master-executable-code-claim-remains-negative-by-prior-pac",
+      "text": "**The graph-engineering-master executable-code claim remains negative by prior packet evidence, but this run did not re-read `dist/` or the `graph-engineering/` directory.** Iterations 3–4 record that README/WORKFLOWS provide conceptual/workflow guidance and that the local `graph-engineering/` implementation inventory was empty; the strategy marks treating those docs as proof of an executable implementation blocked. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: iteration 3 and iteration 4 records; specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md: EXHAUSTED APPROACHES] **Falsifier:** a direct inventory showing non-empty runnable modules under `graph-engineering/` or a `dist/` build whose entrypoints execute graph workflows would falsify the negative implementation claim. The requested fresh `dist/`/WORKFLOWS check remains outstanding.",
+      "addedAtIteration": 16,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md:67-77,109-146",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/spec.md:38-42,134-145",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/tasks.md:62-70",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:234-238",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83,116-160",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: iteration 3 and iteration 4 records",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md: EXHAUSTED APPROACHES",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-003.md",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md"
+      ]
+    },
+    {
+      "id": "finding-16-4-the-hybrid-loop-plus-graph-recommendation-survives-the-available-corpus-but-no-i",
+      "text": "**The hybrid loop-plus-graph recommendation survives the available corpus, but no independent full-replacement article was freshly read in this iteration.** Prior packet findings report that the 036 migration is additive-dark, shadow-parity, staged per-mode authority cutover, and legacy retirement only after rollback/zero-use gates; they also rule out big-bang replacement. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md: EXHAUSTED APPROACHES] The graph corpus distinguishes stable organization graphs from ephemeral work graphs and treats graph topology as governed execution structure, while the deep-loop ledger remains a separate authority/audit plane. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-003.md; specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md] **Falsifier:** a corpus-level, executable, authority-preserving migration plan showing that replacing the existing loop/ledger with a graph runtime passes the documented parity, fencing, rollback, and audit gates without an additive-dark phase would falsify this recommendation. No such contradicting source was freshly established; full-replacement advocacy remains an unresolved search gap, not a contradiction.",
+      "addedAtIteration": 16,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md:67-77,109-146",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/spec.md:38-42,134-145",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/tasks.md:62-70",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:234-238",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83,116-160",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: iteration 3 and iteration 4 records",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md: EXHAUSTED APPROACHES",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-003.md",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md"
+      ]
+    },
+    {
+      "id": "finding-17-4-p0-cutover-residual-identityresolver-is-an-optional-gateway-check-not-an-uncondi",
+      "text": "**[P0 cutover residual] `identityResolver` is an optional gateway check, not an unconditional identity binding.** `TransitionAuthorizationGateway` invokes `#checkIdentity` only when `this.#options.identityResolver` is configured; the resolver may return no expectation, and only fields it pins are compared with the request. Therefore the gateway source alone does not prove deployment identity safety: production construction must provide a resolver that binds the expected identity, otherwise the F001 fail-closed precondition remains unresolved. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-531,718-773] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/implementation-summary.md:64-70]",
+      "addedAtIteration": 17,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:174-182",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:174-185,215-222",
+        ".opencode/skills/system-deep-loop/mode-registry.json:30-199",
+        ".opencode/commands/deep/assets/deep-research-auto.yaml:127-159,178-223",
+        ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-531,718-773",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-261",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/ (empty direct inventory)"
+      ]
+    },
+    {
+      "id": "finding-17-5-p0-cutover-residual-the-fresh-acquisition-partial-record-window-remains-visible-",
+      "text": "**[P0 cutover residual] The fresh-acquisition partial-record window remains visible in `loop-lock.ts`.** The atomic writer uses a temporary path, fsync, and rename, but `writeLoopLockExclusive` still calls `openSync(lockPath, 'wx')` and then writes the JSON through the descriptor. A concurrent reader can observe the newly created target between those operations; the reader converts malformed/partial JSON to `null`. This is the exact implementation seam behind the handover's F005 cutover blocker, so the presence of fsync/atomic refresh code must not be reported as proof that F005 is discharged. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-261] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-77,116-160]",
+      "addedAtIteration": 17,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:174-182",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:174-185,215-222",
+        ".opencode/skills/system-deep-loop/mode-registry.json:30-199",
+        ".opencode/commands/deep/assets/deep-research-auto.yaml:127-159,178-223",
+        ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-531,718-773",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-261",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/ (empty direct inventory)"
+      ]
+    },
+    {
+      "id": "finding-17-1-p1-graphs-are-not-the-default-for-simple-linear-low-concurrency-work-the-corpus-",
+      "text": "**[P1] Graphs are not the default for simple, linear, low-concurrency work.** The corpus decision matrix assigns simple/low-concurrency tasks to a single loop, simple/high-concurrency tasks to parallel loops, and complex/low-concurrency tasks to staged loops; it reserves graph engineering for complex/high-concurrency work with at least three independent verification steps and complex decision routing. The article set separately reports that graphs lose on simple lookups and cost, while graph harnesses add design, failure-propagation, context-routing, and distributed-runtime overhead. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:174-182] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:174-185,215-222]",
+      "addedAtIteration": 17,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:174-182",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:174-185,215-222",
+        ".opencode/skills/system-deep-loop/mode-registry.json:30-199",
+        ".opencode/commands/deep/assets/deep-research-auto.yaml:127-159,178-223",
+        ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-531,718-773",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-261",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/ (empty direct inventory)"
+      ]
+    },
+    {
+      "id": "finding-17-2-p1-in-our-seven-mode-system-graph-structure-is-highest-value-for-research-review",
+      "text": "**[P1] In our seven-mode system, graph structure is highest-value for research, review, and ai-council, but is not a blanket fit for the four custom-backend modes.** Research/review/council expose runtime-loop types and naturally contain evidence branching, fan-out, deliberation, and convergence. Agent-improvement, model-benchmark, and skill-benchmark share the improvement host, while alignment uses a separate read-only alignment-convergence backend; for a single candidate, benchmark, or conformance pass with no material branching, graph topology would add coordination and state overhead without changing the decision. This is a fit assessment, not a claim that those modes can never use a graph for batched or branching work. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:30-199] [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:127-159,178-223] [INFERENCE: applying the corpus decision matrix to the registered backend and concurrency boundaries]",
+      "addedAtIteration": 17,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:174-182",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:174-185,215-222",
+        ".opencode/skills/system-deep-loop/mode-registry.json:30-199",
+        ".opencode/commands/deep/assets/deep-research-auto.yaml:127-159,178-223",
+        ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-531,718-773",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-261",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/ (empty direct inventory)"
+      ]
+    },
+    {
+      "id": "finding-17-6-p1-the-graph-engineering-master-packet-contains-a-packaged-skill-artifact-but-no",
+      "text": "**[P1] The graph-engineering-master packet contains a packaged skill artifact but no executable local implementation directory.** Direct inventory found `dist/graph-engineering.skill`; `graph-engineering/` exists but is empty. This narrows, rather than reverses, the prior gap: README/WORKFLOWS guidance and a distributable skill are present, but they are not evidence of runnable modules under the expected `graph-engineering/` tree. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/ (direct inventory: empty)] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:1-60] [INFERENCE: distinguishing a packaged skill artifact from an executable source-tree implementation]",
+      "addedAtIteration": 17,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:174-182",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:174-185,215-222",
+        ".opencode/skills/system-deep-loop/mode-registry.json:30-199",
+        ".opencode/commands/deep/assets/deep-research-auto.yaml:127-159,178-223",
+        ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-531,718-773",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-261",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/ (empty direct inventory)"
+      ]
+    },
+    {
+      "id": "finding-17-3-p1-within-the-deep-research-workflow-graph-structure-earns-its-cost-at-fan-out-g",
+      "text": "**[P1] Within the deep-research workflow, graph structure earns its cost at fan-out, guarded routing, convergence, and multi-lineage synthesis—not at every sequential phase.** `step_fanout_spawn` is explicitly skipped for single-executor runs, while initialization, preflight, lock acquisition, state classification, one leaf iteration's read/research/write/verify sequence, and a no-fanout synthesis path are predominantly linear. A graph adapter should therefore wrap the fan-out/convergence seams and preserve the leaf artifact contract rather than turn every file operation into a graph node. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:147-159,178-223] [INFERENCE: applying the article's fake-edge and overhead tests to the workflow's explicit single-executor branch]",
+      "addedAtIteration": 17,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:174-182",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:174-185,215-222",
+        ".opencode/skills/system-deep-loop/mode-registry.json:30-199",
+        ".opencode/commands/deep/assets/deep-research-auto.yaml:127-159,178-223",
+        ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:523-531,718-773",
+        ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts:215-261",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/ (empty direct inventory)"
+      ]
     }
   ],
   "ruledOutDirections": [
@@ -2102,6 +2328,18 @@
       "text": "Treating the merged registry as a rewriteable substitute for lineage state logs or append-only deltas. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1096-1127,1149-1169`; [INFERENCE: based on read-only state consumption and registry-only output writes]]",
       "contentHash": "994af15714be",
       "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-9cfe852c4cd3",
+      "text": "Graphing every mode and every leaf file operation; the corpus and workflow branch explicitly support simpler loops for low-branching work. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:147-159]",
+      "contentHash": "9cfe852c4cd3",
+      "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-8c59c4c5528e",
+      "text": "Treating `dist/graph-engineering.skill` as proof that `graph-engineering/` contains runnable implementation modules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [INFERENCE: based on the empty source-tree inventory]",
+      "contentHash": "8c59c4c5528e",
+      "addedAtIteration": 17
     }
   ],
   "rejectedPatterns": [],
@@ -2132,11 +2370,11 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 15,
+    "iterationsCompleted": 17,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 39,
-    "keyFindings": 95,
+    "carriedForwardOpenQuestions": 48,
+    "keyFindings": 106,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
@@ -2144,10 +2382,10 @@
     "suppressedIdeas": 0,
     "convergenceScore": 0.9,
     "coverageBySources": {
-      "code": 127,
+      "code": 142,
       "docs.langchain.com": 4,
       "langchain-ai.github.io": 1,
-      "other": 59,
+      "other": 62,
       "raw.githubusercontent.com": 1
     },
     "completedPivots": 0,
