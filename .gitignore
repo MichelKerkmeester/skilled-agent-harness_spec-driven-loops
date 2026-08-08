@@ -309,3 +309,6 @@ AGENTS_Barter.md
 # Per-run temp workspaces created by the advisor's resident-service tests. The
 # suite names them with a pid and timestamp, so a committed one is always stale.
 **/tests/.tmp-*/
+
+# Local Barter framework export/scratch at the repo root; not part of this repo.
+/BARTER.md
