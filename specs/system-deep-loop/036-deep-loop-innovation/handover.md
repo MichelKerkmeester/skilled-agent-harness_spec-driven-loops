@@ -148,6 +148,25 @@ BUILT + code-verified first — 022 from scratch, 024's real gateway-only fencin
 + fence capability + superseded-writer rejection). This is fresh BUILD work, not doc reconciliation.
 The pre-014 verdict `010d145b9a` (and any "WS1 cleared the blockers" claim) is REFUTED by code.
 
+**Concrete remaining PATH-1 build scope (grounded 2026-08-08):**
+- **024 — the largest blast radius in the tree, security-critical, atomic.** REQ-001: make
+  `appendAuthorized` ECMAScript hard-private (`#appendAuthorized`) and route EVERY caller through a
+  fenced gateway that requires a coordinator-issued CURRENT fence capability; a direct/internal attempt
+  without a current capability rejects with `STALE_FENCE` before any frame commits. REQ-002: a superseded
+  writer holding an unexpired proof is rejected (high-water-mark). Demoting `appendAuthorized` to private
+  breaks ~109 caller files — they MUST migrate to the gateway in the SAME change or tsc breaks, so this
+  is one atomic, high-blast migration of the exact mutation surface 014 makes authoritative. Plus 9 same-
+  mechanism concurrent-write defects (F-018-03/04, F-002-01/02, F-004-01/02/03, F-003-02). Build with
+  red-before (superseded writer CAN append today) → green-after (it CANNOT); prove no cast-reachable
+  `appendAuthorized`. NOTE 024's own LUNA review lists a DIFFERENT P0 triple (F001 gateway identity /
+  F002 policy-closure-state / F005 loop-lock) — reconcile which finding set is authoritative before building.
+- **022 — from-scratch build of 6 shadow-parity harnesses** so ledger-side and legacy-side derive
+  INDEPENDENTLY (today both call the same `councilProjectionFromEvents`), + a divergence-injection test
+  that FAILS the harness. Non-trivial but far smaller blast radius than 024.
+RECOMMENDATION (honest): do NOT rush 024 at extreme session depth — it is the epic's biggest security-
+critical migration and was FABRICATED the last time it was rushed. Build it fresh, staged, with the
+verify-against-code discipline that caught all 5 fabrications this session. 022 can go first (bounded).
+
 ## The ledger (confirmed)
 
 - **Spine 001-013 — BUILT + landed.** Research (001-002), census (003), architecture/transition
