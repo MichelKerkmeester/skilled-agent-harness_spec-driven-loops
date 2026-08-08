@@ -71,7 +71,7 @@ The runtime now treats filesystem ownership as explicit evidence (F003/F004, ful
 
 `leaf-artifact-writer.ts` (F003, CLEARED) holds a shared `FencedLeaseCoordinator` lease across recovery, stage, write-once publication, state append, and cleanup, distinguishing the process that published from one that observed a committed replay.
 
-`atomic-state.ts` (F004, CLEARED) writes a pid-plus-random-nonce owner token; reclaim requires an atomically claimed matching token whose process is provably dead; `linkSync(claimPath, lockPath)` performs a non-overwriting compare-and-swap restore (`EEXIST` preserves the live winner); release removes the lock only when the token still belongs to the releasing owner.
+`atomic-state.ts` (F004, CLEARED) writes a pid-plus-random-nonce owner token; reclaim atomically claims a dead matching token via `renameSync` single-inode claim; restore performs a non-overwriting compare-and-swap by renaming the detached claim back only when the target path is vacant (`existsSync` guard), otherwise discarding the claim so a live winner is never overwritten; release removes the lock only when the token still belongs to the releasing owner.
 
 `loop-lock.ts` (F005, PARTIAL): the **release path** now claims the current lock and unlinks only a still-owned token (closing the TOCTOU release race). The **fresh-acquisition write path is unchanged** — it remains `openSync(lockPath, 'wx')` + `writeFileSync`, not a temp-file-plus-hard-link; the partial-file window it leaves is mitigated today only by an unrelated host-local single-flight, and closing it at the write path is a per-mode cutover precondition. (An earlier draft here incorrectly claimed a `linkSync`/hard-link fresh-acquisition; no such call exists in this file.)
 <!-- /ANCHOR:what-built -->
@@ -91,7 +91,7 @@ Each confirmed item received a failing negative or contention test before its im
 | Reuse the append lock for leaf publication | It already supplies a process-shared filesystem boundary and keeps stage, publish, and append one critical section. |
 | Reclaim only a dead matching owner token | File age is not proof of death; conservative timeout is safer than deleting a live owner. |
 | Compare tokens during release | A release that races a reclaim or successor must not unlink another process's lock. |
-| Restore claims with non-overwriting CAS | `linkSync` either installs the detached claim into an absent path or returns `EEXIST` without replacing a live winner. |
+| Restore claims with non-overwriting CAS | The `existsSync` guard plus `renameSync` either restores the detached claim into a still-vacant path or discards it without ever overwriting a live winner. |
 | Harden the loop-lock release path only | The TOCTOU release race is closed by claim-then-owned-unlink; the fresh-acquisition write path (`openSync 'wx'`) is unchanged and its partial-file window remains a per-mode cutover precondition (F005). |
 | Preserve the 024 guarantees | The gateway-only fenced append, hard-private mutator, replay short-circuit, and existing tests are not weakened. |
 <!-- /ANCHOR:decisions -->

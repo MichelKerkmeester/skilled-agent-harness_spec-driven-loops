@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The authorization gateway skipped identity comparisons when authority bindings and resolver output were absent, allowing caller-supplied identity fields to pass unvalidated",
     "created_at": "2026-08-05T18:42:31.847Z",
-    "last_save_at": "2026-08-08T00:06:43.283Z",
+    "last_save_at": "2026-08-08T00:39:36.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:26b9e85d78a2234c481be1b4f64b2a4690b87267199d1fba78efdd1ecb727884",
+    "source_fingerprint": "sha256:a7c850bf69eac8270c84cda64c334f3c5cda404d41bdad01ce957c61b8002788",
     "source_doc_hashes": {
-      "spec.md": "d75c1c370a14d218d014a1e5bb1d95aa6de6dcfcdcffea1706988752e0bbfcc8",
-      "plan.md": "0b9add57681d1092c9f62c838f124d59955623758b6c6723011b522139f32bbc",
-      "tasks.md": "1306a1e6205adbc0d1dbe2496893ec97f63d344f4ccca14a0d191972783a5b77",
-      "checklist.md": "efac6323c3b83a392772b760e0ddf9dfab935fa8f168e842d743fdda3b7686d5",
-      "decision-record.md": "8b3a8838d8348ee8668a3453129ba9723500b9a66694109c6fabe2da1a7e5064",
-      "implementation-summary.md": "d9ec09af40530c24537dd38c69815f864e60eacd63549bc1ae27ff7ad7143315",
+      "spec.md": "391d05da84fccff9b68d9d60f7e1eec7f6d9384dd583a7417ad65d1511a98ce1",
+      "plan.md": "09bbebad0e2340dbb339b53d3b9d3ab6c8d5af91bf162df82bdf25bc7845c022",
+      "tasks.md": "c17c8787f157f6cd61177ae408c9d97313edc6d659f8d0b1d5dee7064eb8a7f2",
+      "checklist.md": "f6b1e16582363cd0106df3a71a7fc4e3ed3adde0f14974ae6fbe5dc2b9bda255",
+      "decision-record.md": "73198d2a95b1ec1a7ef424ab96adc9f71dae5805254c214cf271fe3eb19a67c9",
+      "implementation-summary.md": "6e466e4d64e7527628c1fba0658ecb0e830fef795f77e5597970b31ce23e23f9",
       "handover.md": "44678685914936569131b627cd5c4e7fa0418d15ca920101145cb62d8f8a8317"
     },
     "last_active_child_id": null,
