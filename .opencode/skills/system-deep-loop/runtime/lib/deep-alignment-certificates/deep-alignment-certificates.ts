@@ -720,8 +720,7 @@ function artifactCorrespondsToEvent(
         && material.laneId === scope.laneId
       ) || stem === 'deep_alignment.run_initialized'
         || stem === 'deep_alignment.scope_resolved'
-        || stem === 'deep_alignment.dimension_ordered'
-        || stem === 'deep_alignment.lane_completed';
+        || stem === 'deep_alignment.dimension_ordered';
     case DeepAlignmentArtifactKinds.RULE_MANIFEST:
       return (
         stem === 'deep_alignment.lane_plan_recorded'

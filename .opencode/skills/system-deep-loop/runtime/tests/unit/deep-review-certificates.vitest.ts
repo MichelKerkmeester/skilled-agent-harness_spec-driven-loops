@@ -837,7 +837,7 @@ async function sealedArtifacts(options: ScenarioOptions = {}) {
     ],
     stateHistoryDigest: digest('state-history'),
     findingsRegistryInputDigest: digest('findings-registry'),
-    coverageDigest: digest('coverage'),
+    coverageDigest: digest('dimension-coverage'),
     gateResultDigests: Array.from(
       { length: 9 },
       () => adjudication.reference.content_digest,
@@ -863,7 +863,7 @@ async function sealedArtifacts(options: ScenarioOptions = {}) {
     eventId,
     authorityEpoch: 1,
     orderedInputDigests: [convergence.reference.content_digest],
-    findingsRegistryDigest: digest('findings-registry'),
+    findingsRegistryDigest: digest('finding-registry'),
     dashboardDigest: digest('dashboard'),
     resourceMapDigest: null,
     reportDigest: passCompleted.reference.content_digest,
@@ -1529,6 +1529,145 @@ describe('deep-review certificates and receipts', () => {
     expect(result.verdict).toBe('invalid');
     if (result.verdict === 'valid') return;
     expect(result.code).toBe(DeepReviewCertificateFailureCodes.AUTHORIZATION_INVALID);
+  });
+
+  it('rejects a CONVERGENCE_WITNESS artifact whose coverage digest does not match its convergence event', async () => {
+    const convergenceReceiptIndex = scenario.bundle.receipts.findIndex((receipt) => (
+      receipt.facts.transitionKind === DeepReviewTransitionKinds.CONVERGENCE
+    ));
+    if (convergenceReceiptIndex < 0) throw new Error('Missing convergence transition receipt fixture');
+    const convergenceReceipt = scenario.bundle.receipts[convergenceReceiptIndex]!;
+    const originalQualifiedDigest = convergenceReceipt.facts.outputArtifactQualifiedDigests[0];
+    if (!originalQualifiedDigest) throw new Error('Missing convergence output digest fixture');
+    const originalMaterial = structuredClone(
+      scenario.materialsByQualifiedDigest.get(originalQualifiedDigest),
+    ) as Record<string, unknown> | undefined;
+    if (!originalMaterial) throw new Error('Missing convergence output material fixture');
+    originalMaterial.coverageDigest = digest('decoy-coverage-does-not-match-event');
+    const decoyBinding = await sealDeepReviewArtifact(
+      scenario.artifactStore,
+      DeepReviewArtifactKinds.CONVERGENCE_WITNESS,
+      originalMaterial as never,
+    );
+    const claims = scenario.bundle.certificate.body.artifactClaims.map((claim) => (
+      claim.binding.reference.qualified_digest === originalQualifiedDigest
+        ? {
+            binding: decoyBinding,
+            descriptorDigest: decoyBinding.reference.descriptor_digest,
+            contentDigest: decoyBinding.reference.content_digest,
+            canonicalizationVersion: DEEP_REVIEW_ARTIFACT_CANONICALIZATION_VERSION,
+          }
+        : claim
+    ));
+    const receipts = scenario.bundle.receipts.map((receipt, index) => (
+      index === convergenceReceiptIndex
+        ? {
+            ...receipt,
+            facts: {
+              ...receipt.facts,
+              outputArtifactQualifiedDigests: receipt.facts.outputArtifactQualifiedDigests.map(
+                (reference) => reference === originalQualifiedDigest
+                  ? decoyBinding.reference.qualified_digest
+                  : reference,
+              ),
+            },
+          }
+        : receipt
+    ));
+    const bundle: DeepReviewCertificateBundle = {
+      ...replaceClaims(scenario.bundle, Object.freeze(claims)),
+      receipts,
+    };
+    const result = await verifyBundle(scenario, bundle);
+    // The decoy fails artifact-to-event provenance resolution before the transition-receipt
+    // loop is ever reached, since no ledger event both matches its declared identity and its
+    // content digest — the same tightened correspondence check catches it either way.
+    expect(result).toMatchObject({
+      verdict: 'invalid',
+      code: DeepReviewCertificateFailureCodes.AUTHORIZATION_INVALID,
+    });
+  });
+
+  it('accepts a CONVERGENCE_WITNESS artifact whose coverage digest matches its convergence event', async () => {
+    const convergenceEvent = scenario.verification.projectionEvents.find(
+      (event) => event.payload.stem === 'deep_review.convergence_evaluated',
+    );
+    if (convergenceEvent?.payload.stem !== 'deep_review.convergence_evaluated') {
+      throw new Error('Missing convergence_evaluated event fixture');
+    }
+    const convergenceReceipt = scenario.bundle.receipts.find((receipt) => (
+      receipt.facts.transitionKind === DeepReviewTransitionKinds.CONVERGENCE
+    ));
+    if (!convergenceReceipt) throw new Error('Missing convergence transition receipt fixture');
+    const qualifiedDigest = convergenceReceipt.facts.outputArtifactQualifiedDigests[0];
+    const material = qualifiedDigest
+      ? scenario.materialsByQualifiedDigest.get(qualifiedDigest) as Record<string, unknown> | undefined
+      : undefined;
+    if (!material || typeof material.coverageDigest !== 'string') {
+      throw new Error('Missing convergence witness material fixture');
+    }
+    // The valid-fixture CONVERGENCE_WITNESS genuinely carries the coverage digest its
+    // producing event reports, so binding that field must not break this legitimate flow.
+    expect(material.coverageDigest).toBe(convergenceEvent.payload.data.dimensionCoverageDigest);
+    const result = await verifyBundle(scenario, scenario.bundle);
+    expect(result.verdict).toBe('valid');
+  });
+
+  it('rejects a SYNTHESIS_REPORT artifact whose findings-registry digest does not match its report event', async () => {
+    const reportReceiptIndex = scenario.bundle.receipts.findIndex((receipt) => (
+      receipt.facts.transitionKind === DeepReviewTransitionKinds.REPORT
+    ));
+    if (reportReceiptIndex < 0) throw new Error('Missing report transition receipt fixture');
+    const reportReceipt = scenario.bundle.receipts[reportReceiptIndex]!;
+    const originalQualifiedDigest = reportReceipt.facts.outputArtifactQualifiedDigests[0];
+    if (!originalQualifiedDigest) throw new Error('Missing report output digest fixture');
+    const originalMaterial = structuredClone(
+      scenario.materialsByQualifiedDigest.get(originalQualifiedDigest),
+    ) as Record<string, unknown> | undefined;
+    if (!originalMaterial) throw new Error('Missing report output material fixture');
+    originalMaterial.findingsRegistryDigest = digest('decoy-findings-registry-does-not-match-event');
+    const decoyBinding = await sealDeepReviewArtifact(
+      scenario.artifactStore,
+      DeepReviewArtifactKinds.SYNTHESIS_REPORT,
+      originalMaterial as never,
+    );
+    const claims = scenario.bundle.certificate.body.artifactClaims.map((claim) => (
+      claim.binding.reference.qualified_digest === originalQualifiedDigest
+        ? {
+            binding: decoyBinding,
+            descriptorDigest: decoyBinding.reference.descriptor_digest,
+            contentDigest: decoyBinding.reference.content_digest,
+            canonicalizationVersion: DEEP_REVIEW_ARTIFACT_CANONICALIZATION_VERSION,
+          }
+        : claim
+    ));
+    const receipts = scenario.bundle.receipts.map((receipt, index) => (
+      index === reportReceiptIndex
+        ? {
+            ...receipt,
+            facts: {
+              ...receipt.facts,
+              outputArtifactQualifiedDigests: receipt.facts.outputArtifactQualifiedDigests.map(
+                (reference) => reference === originalQualifiedDigest
+                  ? decoyBinding.reference.qualified_digest
+                  : reference,
+              ),
+            },
+          }
+        : receipt
+    ));
+    const bundle: DeepReviewCertificateBundle = {
+      ...replaceClaims(scenario.bundle, Object.freeze(claims)),
+      receipts,
+    };
+    const result = await verifyBundle(scenario, bundle);
+    // The decoy fails artifact-to-event provenance resolution before the transition-receipt
+    // loop is ever reached, since no ledger event both matches its declared identity and its
+    // content digest — the same tightened correspondence check catches it either way.
+    expect(result).toMatchObject({
+      verdict: 'invalid',
+      code: DeepReviewCertificateFailureCodes.AUTHORIZATION_INVALID,
+    });
   });
 
   it('rejects a broken predecessor receipt chain', async () => {

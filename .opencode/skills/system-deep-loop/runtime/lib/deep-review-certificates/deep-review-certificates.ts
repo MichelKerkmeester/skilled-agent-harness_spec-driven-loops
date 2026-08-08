@@ -606,15 +606,43 @@ function artifactCorrespondsToEvent(
 ): boolean {
   const envelope = event.event.effective.envelope;
   const payload = recordValue(envelope.payload);
+  const data = recordValue(payload?.data);
   const material = evidence.material as unknown as Readonly<Record<string, unknown>>;
   const stem = payload?.stem;
-  return typeof stem === 'string'
+  const baseMatch = typeof stem === 'string'
     && stem in DeepReviewWireEventTypes
     && DeepReviewWireEventTypes[stem as keyof typeof DeepReviewWireEventTypes]
       === envelope.event_type
     && material.eventStem === stem
     && material.eventId === envelope.event_id
     && material.authorityEpoch === envelope.authority_epoch;
+  if (!baseMatch) return false;
+  // The base match above proves the artifact's self-declared {eventStem, eventId,
+  // authorityEpoch} names this exact event, but two artifacts with different content can
+  // both declare the same triple. Where the event's data exposes a digest the artifact
+  // material is supposed to carry forward, require them to agree so a content-swapped
+  // artifact cannot pass as evidence of what this event actually produced.
+  if (!data) return true;
+  switch (evidence.kind) {
+    case DeepReviewArtifactKinds.CONVERGENCE_WITNESS: {
+      if (stem !== 'deep_review.convergence_evaluated'
+        && stem !== 'deep_review.graph_convergence_evaluated') return true;
+      return typeof data.dimensionCoverageDigest === 'string'
+        && material.coverageDigest === data.dimensionCoverageDigest;
+    }
+    case DeepReviewArtifactKinds.SYNTHESIS_VIEW: {
+      if (stem !== 'deep_review.synthesis_started') return true;
+      return typeof data.findingRegistryInputDigest === 'string'
+        && material.findingsRegistryDigest === data.findingRegistryInputDigest;
+    }
+    case DeepReviewArtifactKinds.SYNTHESIS_REPORT: {
+      if (stem !== 'deep_review.review_report_committed') return true;
+      return typeof data.findingRegistryInputDigest === 'string'
+        && material.findingsRegistryDigest === data.findingRegistryInputDigest;
+    }
+    default:
+      return true;
+  }
 }
 
 function assertProjectionMatchesVerifiedLedger(

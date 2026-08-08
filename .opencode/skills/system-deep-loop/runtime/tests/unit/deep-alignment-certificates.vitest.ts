@@ -1750,6 +1750,64 @@ describe('deep alignment certificates and receipts', () => {
     });
   });
 
+  it('rejects a LANE_CONFIGURATION artifact whose lane does not match its lane_completed event scope', async () => {
+    const laneCompletedReceipt = validFixture.bundle.receipts.find((receipt) => (
+      receipt.facts.resultEventType === DeepAlignmentWireEventTypes['deep_alignment.lane_completed']
+    ));
+    if (!laneCompletedReceipt) throw new Error('Missing lane_completed transition receipt fixture');
+    const originalQualifiedDigest = laneCompletedReceipt.facts.outputArtifactQualifiedDigests[0];
+    const originalClaim = validFixture.bundle.certificate.body.artifactClaims.find(
+      (claim) => claim.binding.reference.qualified_digest === originalQualifiedDigest,
+    );
+    if (!originalClaim) throw new Error('Missing lane_completed output claim fixture');
+    const laneMaterial = validFixture.materials.get(DeepAlignmentArtifactKinds.LANE_CONFIGURATION);
+    if (!laneMaterial) throw new Error('Missing lane material fixture');
+    const crossLaneBinding = await seal(
+      validFixture.artifactStore,
+      DeepAlignmentArtifactKinds.LANE_CONFIGURATION,
+      {
+        ...laneMaterial,
+        ...baseMaterial(DeepAlignmentArtifactKinds.LANE_CONFIGURATION, 'cross-lane-decoy'),
+        laneId: 'lane-2',
+      } as DeepAlignmentArtifactMaterial,
+    );
+    const bundle = bundleWithBinding(validFixture, originalClaim.binding, crossLaneBinding);
+    const result = await verifyDeepAlignmentCertificateOffline(
+      verificationWithBundle(validFixture, bundle),
+    );
+    expect(result).toMatchObject({
+      verdict: 'invalid',
+      code: DeepAlignmentCertificateFailureCodes.ARTIFACT_INVALID,
+      evidenceLocation: 'transition:lane:outputs',
+    });
+  });
+
+  it('accepts a LANE_CONFIGURATION artifact whose lane matches its lane_completed event scope', async () => {
+    const laneCompletedEvent = validFixture.verification.projectionEvents.find(
+      (event) => event.payload.stem === 'deep_alignment.lane_completed',
+    );
+    if (laneCompletedEvent?.payload.stem !== 'deep_alignment.lane_completed') {
+      throw new Error('Missing lane_completed event fixture');
+    }
+    const laneCompletedReceipt = validFixture.bundle.receipts.find((receipt) => (
+      receipt.facts.resultEventType === DeepAlignmentWireEventTypes['deep_alignment.lane_completed']
+    ));
+    if (!laneCompletedReceipt) throw new Error('Missing lane_completed transition receipt fixture');
+    const outputQualifiedDigest = laneCompletedReceipt.facts.outputArtifactQualifiedDigests[0];
+    const outputClaim = validFixture.bundle.certificate.body.artifactClaims.find(
+      (claim) => claim.binding.reference.qualified_digest === outputQualifiedDigest,
+    );
+    if (!outputClaim || outputClaim.binding.artifactKind !== DeepAlignmentArtifactKinds.LANE_CONFIGURATION) {
+      throw new Error('Missing lane_completed LANE_CONFIGURATION output fixture');
+    }
+    // The valid-fixture lane_completed transition genuinely binds a LANE_CONFIGURATION
+    // output for the same lane the event's scope names, so tightening the correspondence
+    // check to require that binding must not break this already-legitimate flow.
+    expect(laneCompletedEvent.payload.scope.laneId).toBe('lane-1');
+    const result = await verifyDeepAlignmentCertificateOffline(validFixture.verification);
+    expect(result.verdict).toBe('valid');
+  });
+
   it('rejects ambiguous reducer ownership of the active authority capsule', async () => {
     const authorityMaterial = validFixture.materials.get(
       DeepAlignmentArtifactKinds.AUTHORITY_CAPSULE,

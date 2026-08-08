@@ -1425,4 +1425,87 @@ describe('deep AI council certificates', () => {
       code: DeepAiCouncilCertificateFailureCodes.ARTIFACT_INVALID,
     });
   });
+
+  it('rejects a sealed artifact whose scope round does not match its producing event round', async () => {
+    const current = await scenario();
+    const completionReceiptIndex = current.bundle.receipts.findIndex((receipt) => (
+      receipt.facts.transitionKind === DeepAiCouncilTransitionKinds.COMPLETE
+    ));
+    if (completionReceiptIndex < 0) throw new Error('Missing completion transition receipt fixture');
+    const completionReceipt = current.bundle.receipts[completionReceiptIndex]!;
+    const originalQualifiedDigest = completionReceipt.facts.outputArtifactQualifiedDigests[0];
+    if (!originalQualifiedDigest) throw new Error('Missing completion output digest fixture');
+    const claimIndex = current.bundle.certificate.body.artifactClaims.findIndex(
+      (claim) => claim.binding.reference.qualified_digest === originalQualifiedDigest,
+    );
+    if (claimIndex < 0) throw new Error('Missing completion output claim fixture');
+    const completeEvent = eventByStem(current.verification.projectionEvents, 'ai_council.council_complete');
+    const crossRoundBinding = await sealDeepAiCouncilArtifact(
+      current.artifactStore,
+      DeepAiCouncilArtifactKinds.CONVERGENCE_EVIDENCE,
+      {
+        ...materialFor(
+          DeepAiCouncilArtifactKinds.CONVERGENCE_EVIDENCE,
+          'convergence-evidence-complete-cross-round-decoy',
+          completeEvent,
+          digest('convergence-complete'),
+        ),
+        scope: {
+          runId: RUN_ID,
+          roundId: 'round-2',
+          artifactId: 'convergence-evidence-complete-cross-round-decoy',
+        },
+      },
+    );
+    const claims = [...current.bundle.certificate.body.artifactClaims];
+    const originalClaim = claims[claimIndex]!;
+    claims[claimIndex] = {
+      ...originalClaim,
+      binding: crossRoundBinding,
+      descriptorDigest: crossRoundBinding.reference.descriptor_digest,
+      contentDigest: crossRoundBinding.reference.content_digest,
+    };
+    const receipts = [...current.bundle.receipts];
+    receipts[completionReceiptIndex] = {
+      ...completionReceipt,
+      facts: {
+        ...completionReceipt.facts,
+        outputArtifactQualifiedDigests: completionReceipt.facts.outputArtifactQualifiedDigests.map(
+          (reference) => reference === originalQualifiedDigest
+            ? crossRoundBinding.reference.qualified_digest
+            : reference,
+        ),
+      },
+    };
+    const result = await verifyDeepAiCouncilCertificateOffline({
+      ...current.verification,
+      bundle: {
+        ...current.bundle,
+        certificate: {
+          ...current.bundle.certificate,
+          body: {
+            ...current.bundle.certificate.body,
+            artifactClaims: claims,
+          },
+        },
+        receipts,
+      },
+    });
+    expect(result).toMatchObject({
+      verdict: 'invalid',
+      code: DeepAiCouncilCertificateFailureCodes.ARTIFACT_INVALID,
+    });
+  });
+
+  it('accepts a sealed artifact whose scope round matches its producing event round', async () => {
+    const current = await scenario();
+    const completeEvent = eventByStem(current.verification.projectionEvents, 'ai_council.council_complete');
+    // Every sealed artifact in the valid fixture genuinely shares the run/round scope of the
+    // events that produced it, so binding material.scope against the event's scope must not
+    // break this already-legitimate flow.
+    expect(completeEvent.payload.scope.runId).toBe(RUN_ID);
+    expect(completeEvent.payload.scope.roundId).toBe(ROUND_ID);
+    const result = await verifyDeepAiCouncilCertificateOffline(current.verification);
+    expect(result.verdict).toBe('valid');
+  });
 });

@@ -457,10 +457,16 @@ function sourceRangeMatchesEvent(
 ): boolean {
   const sourceRange = recordValue(material.sourceEventRange);
   const stem = eventStem(event);
+  const materialScope = recordValue(material.scope);
+  const eventScope = recordValue(event.event.effective.envelope.payload.scope);
   return sourceRange !== null
     && sourceRange.lastEventId === event.event.effective.envelope.event_id
     && sourceRange.lastStem === stem
-    && material.authorityEpoch === event.event.effective.envelope.authority_epoch;
+    && material.authorityEpoch === event.event.effective.envelope.authority_epoch
+    && materialScope !== null
+    && eventScope !== null
+    && materialScope.runId === eventScope.runId
+    && materialScope.roundId === eventScope.roundId;
 }
 
 function artifactCorrespondsToEvent(
