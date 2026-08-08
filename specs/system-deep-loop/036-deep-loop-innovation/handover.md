@@ -12,19 +12,21 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
-    last_updated_at: "2026-08-07T03:18:09Z"
+    last_updated_at: "2026-08-08T01:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "landed WS1 019/020/023 + 033-manifest via autonomous loop"
-    next_safe_action: "resume WS1 at child 026 (build-verify-land loop)"
+    recent_action: "AUTONOMOUS RUNWAY COMPLETE — 016 pre-014 verdict landed 010d145b9a; 014 is operator-gated"
+    next_safe_action: "OPERATOR GO-AHEAD REQUIRED: 014 per-mode cutover (satisfy F001/F002/F005 preconditions first); then 015/017/merge"
     blockers:
-      - "014 authority cutover blocked pending WS1 remediation clearing review findings"
+      - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
+      - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
     key_files:
-      - "spec.md"
+      - "016-whole-system-gate/review/pre-014-clearance-verdict.md"
       - "033-identity-and-lock-ownership-hardening/handover.md"
       - "024-durable-write-boundaries/review/lineages/luna/review-report.md"
-    completion_pct: 60
+    completion_pct: 95
     open_questions:
-      - "Which of 026-032/019/020/023 are truly unbuilt vs stale-labeled — verify at resume"
+      - "033 impl-summary OVERCLAIMS F001/F002/F005 (opt-in/dormant, registry-unchanged, loop-lock wx-open — impl-summary claims a linkSync that doesn't exist; 22 vs actual 15 loop-lock tests). It is UNCOMMITTED (not on origin); correct it against the landed 010d145b9a verdict before landing the doc-batch."
+      - "Worktree quirk: .opencode/specs is a REAL DIR here but a SYMLINK on origin → land docs at the canonical top-level specs/ path (copy from .opencode/specs/ first), never .opencode/specs/. A fresh clone matching origin's layout avoids this."
     answered_questions:
       - "Spine 001-013 is built and landed; graph-metadata status labels are stale for landed children."
 ---
@@ -56,6 +58,18 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   **019** runtime-code-readmes (`44cc6cdfc2`, 56 READMEs + 14 repairs), **020** sk-code-opencode-alignment
   (`3372513722`, 13 comment-only MODULE headers), **023** legacy-compat-event-vocabulary
   (`aa66365e78`, 6 upcasters + real-capture fixtures, T001 all confirmed + 1 sub-claim refuted).
+  **026** alignment coverage/seal/lane (`ca64df3f55`+`ee8c4dd67a`+`c83c53d44c`+`1578d8533e`),
+  **027** mode-gate & contract binding (`c6957eac3c`, 9 findings), **028** fanout-dispatch-integrity
+  (`d0d8623ddf`, 10/12; F-016-01 yaml-argv + F-016-06 codex-env DEFERRED), **029** promotion/rollback/
+  council receipts (`0d1827eef5`, 10/11; persist-artifacts cwd-confinement DEFERRED).
+- **030 runtime-mirror/routing — DEFERRED (minimax build reverted):** mirror-sync-verify wrongly
+  added `codex` to the checked-runtime set (broke 4 tests incl. a landed 029 test); hub-router
+  mis-routed `/deep:command-benchmark` under alignment-aliases; sync-agents sandbox derivation
+  unverified. Re-building on codex+LUNA. Brief: `/tmp/ks/build-036-030.md` (carries the 4 lessons).
+- **TRANSPORT (operator directive):** the **deepseek provider is BANNED for this epic** — its API
+  key went invalid mid-run and it produced low-quality builds. Build transport = **cli-codex
+  GPT-5.6-LUNA max/fast** (contention cleared). NOT cli-opencode/deepseek, NOT minimax. Verify-then-land
+  per child stays mandatory (each codex/opencode build so far shipped ≥1 bad finding caught + deferred).
 - **033 identity/lock hardening — DEFERRED** (3 non-converged passes; the last hung on the full
   aggregate's shared-graph SQLite append-lock). Design docs + postmortem landed (`2c39edddd1`,
   status Blocked). Launch brief: `/tmp/ks/build-036-033-reattempt.md` (root-cause-first; the
