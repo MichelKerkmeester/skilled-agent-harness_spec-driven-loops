@@ -675,6 +675,8 @@ async function authorizedLedger(events: readonly DeepAiCouncilLedgerEvent[]) {
     policies,
     registry: evidenceRegistry,
     receiptSubstrate,
+    coordinator,
+    lease,
   };
 }
 
@@ -1076,6 +1078,8 @@ async function scenario(options: ScenarioOptions = {}): Promise<Scenario> {
     policies,
     registry,
     receiptSubstrate,
+    coordinator: certificateCoordinator,
+    lease: certificateLease,
   } = await authorizedLedger(events);
   const { artifactStore, bindings } = await sealedBindings(events, options);
   const providers = certificationProviders();
@@ -1138,6 +1142,10 @@ async function scenario(options: ScenarioOptions = {}): Promise<Scenario> {
     issuer: 'deep-ai-council-certificate-issuer',
     issuedAt: TIMESTAMP,
   });
+  // The certificate writer's lease is scoped to issuing this one bundle; the
+  // rest of the scenario (resume, in particular) needs the ledger resource
+  // free to fence its own append.
+  await certificateCoordinator.release(await certificateLease);
   return {
     bundle,
     artifactStore,
