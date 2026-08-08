@@ -76,6 +76,8 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - combining the prior mapping with the concrete convergence, fan-out, upsert, and 036 authority contracts made the proposed adapter testable without pretending that current graph metadata is workflow control. (iteration 6)
 - comparing the registry, graph metadata, runtime validator, and filesystem census against the dated handover separated authority, projection, and landing claims instead of treating one status source as canonical. (iteration 7)
 - reading admission and materialization together exposed the exact authority seam; line-indexing tests connected prose guarantees to executable checks. (iteration 8)
+- reading the workflow algorithm beside the runtime implementation made the graph veto boundary and the inline vote's independent semantics explicit; iteration 004 supplied the checkpoint-versus-trace distinction needed for replay design. (iteration 13)
+- narrow file-scoped searches plus contiguous source ranges exposed the branch contract, write boundary, executor matrix, and pivot frontier without rereading the already-saturated graph-database path. (iteration 14)
 
 <!-- /ANCHOR:what-worked -->
 
@@ -91,6 +93,8 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - the bounded tool budget prevented an additional read of the deep-research workflow asset; the contract is consequently grounded in the already-verified packet/state and runtime sources rather than that orchestration YAML. (iteration 6)
 - the per-iteration tool ceiling stopped direct rereads of loop-lock, fan-out, and upsert after the convergence/validator/reducer reads; those claims therefore retain partial-success status and prior citations. (iteration 7)
 - no fresh benchmark execution or web retrieval was necessary within the bounded pass, so production parity and an updated LangGraph source snapshot remain indirect. (iteration 8)
+- no live graph decision or parity run was possible because the packet records the native database module mismatch. (iteration 13)
+- a repository-wide recursive grep timed out before producing evidence; the broad search traversed unrelated phase material instead of the known runtime directory. (iteration 14)
 
 <!-- /ANCHOR:what-failed -->
 
@@ -108,15 +112,50 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: A database-first adapter is blocked by the recorded native-module mismatch and would conflate projection availability with adapter correctness. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph convergence/upsert skipped events]
 
+### Allowing a graph adapter to call a direct append mutator or to become authoritative before the gateway and rollback gates pass. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-80,153-158] -- BLOCKED (iteration 12, 1 attempts)
+- What was tried: Allowing a graph adapter to call a direct append mutator or to become authoritative before the gateway and rollback gates pass. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-80,153-158]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Allowing a graph adapter to call a direct append mutator or to become authoritative before the gateway and rollback gates pass. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-80,153-158]
+
 ### Allowing graph convergence to stop before legacy convergence and quality/parity gates agree. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:145-240 and the 036 cutover sequence] -- BLOCKED (iteration 6, 1 attempts)
 - What was tried: Allowing graph convergence to stop before legacy convergence and quality/parity gates agree. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:145-240 and the 036 cutover sequence]
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Allowing graph convergence to stop before legacy convergence and quality/parity gates agree. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:145-240 and the 036 cutover sequence]
 
+### Exact `fanout-merge.cjs` conflict-order semantics were not freshly verified in this bounded pass; do not promote an implementation claim about merge ordering until that file is read directly. -- BLOCKED (iteration 14, 1 attempts)
+- What was tried: Exact `fanout-merge.cjs` conflict-order semantics were not freshly verified in this bounded pass; do not promote an implementation claim about merge ordering until that file is read directly.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Exact `fanout-merge.cjs` conflict-order semantics were not freshly verified in this bounded pass; do not promote an implementation claim about merge ordering until that file is read directly.
+
+### Live graph execution was not attempted after the packet's prior native-module failure; static runtime analysis was the productive fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] -- BLOCKED (iteration 13, 1 attempts)
+- What was tried: Live graph execution was not attempted after the packet's prior native-module failure; static runtime analysis was the productive fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Live graph execution was not attempted after the packet's prior native-module failure; static runtime analysis was the productive fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
+
+### Making graph-database availability a prerequisite for adapter correctness or parity; prior state records already show graph convergence/upsert skipped on the native-module mismatch. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events] -- BLOCKED (iteration 12, 1 attempts)
+- What was tried: Making graph-database availability a prerequisite for adapter correctness or parity; prior state records already show graph convergence/upsert skipped on the native-module mismatch. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Making graph-database availability a prerequisite for adapter correctness or parity; prior state records already show graph convergence/upsert skipped on the native-module mismatch. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events]
+
+### Making graph-database availability a prerequisite for adapter correctness or shadow parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] -- BLOCKED (iteration 13, 1 attempts)
+- What was tried: Making graph-database availability a prerequisite for adapter correctness or shadow parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Making graph-database availability a prerequisite for adapter correctness or shadow parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
+
+### Reopening live graph-database execution or database-first migration; prior packet state records the native-module failure and strategy marks that direction blocked. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events] -- BLOCKED (iteration 14, 1 attempts)
+- What was tried: Reopening live graph-database execution or database-first migration; prior packet state records the native-module failure and strategy marks that direction blocked. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Reopening live graph-database execution or database-first migration; prior packet state records the native-module failure and strategy marks that direction blocked. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events]
+
 ### Reopening the already-blocked big-bang/database-first migration directions; the additive-dark, shadow-parity, and rollback-window sequence remains the supported path. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_upsert_skipped events] -- BLOCKED (iteration 11, 1 attempts)
 - What was tried: Reopening the already-blocked big-bang/database-first migration directions; the additive-dark, shadow-parity, and rollback-window sequence remains the supported path. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_upsert_skipped events]
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Reopening the already-blocked big-bang/database-first migration directions; the additive-dark, shadow-parity, and rollback-window sequence remains the supported path. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_upsert_skipped events]
+
+### Sharing mutable authoritative packet state across branches before a validated fan-in; this would weaken the existing lineage write boundary. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2331-2640 and specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] -- BLOCKED (iteration 14, 1 attempts)
+- What was tried: Sharing mutable authoritative packet state across branches before a validated fan-in; this would weaken the existing lineage write boundary. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2331-2640 and specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Sharing mutable authoritative packet state across branches before a validated fan-in; this would weaken the existing lineage write boundary. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2331-2640 and specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103]
 
 ### Sharing mutable authoritative state across blinded/counterfactual branches before gateway-mediated adjudication. [INFERENCE: based on specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] -- BLOCKED (iteration 11, 1 attempts)
 - What was tried: Sharing mutable authoritative state across blinded/counterfactual branches before gateway-mediated adjudication. [INFERENCE: based on specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103]
@@ -133,6 +172,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Starting with review while its named deep-review parity gap remains unresolved; this would make the first parity oracle weaker than research. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83]
 
+### The initial broad recursive search for the pivot symbol exceeded the command timeout. A direct `find` over `.opencode` and file-scoped `grep` recovered the canonical research adapter path without retrying the same broad search. -- BLOCKED (iteration 14, 1 attempts)
+- What was tried: The initial broad recursive search for the pivot symbol exceeded the command timeout. A direct `find` over `.opencode` and file-scoped `grep` recovered the canonical research adapter path without retrying the same broad search.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: The initial broad recursive search for the pivot symbol exceeded the command timeout. A direct `find` over `.opencode` and file-scoped `grep` recovered the canonical research adapter path without retrying the same broad search.
+
 ### The legacy LangGraph documentation URL (`https://langchain-ai.github.io/langgraph/concepts/low_level/`) returned no usable body in this run. Current official docs and the official raw source provided a successful fallback, so the iteration remains complete. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: The legacy LangGraph documentation URL (`https://langchain-ai.github.io/langgraph/concepts/low_level/`) returned no usable body in this run. Current official docs and the official raw source provided a successful fallback, so the iteration remains complete.
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -148,6 +192,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating `workflowMode` as the runtime convergence key was ruled out: the hub and registry require explicit `runtimeLoopType`, including load-bearing nulls for custom backends. [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:70-81; .opencode/skills/system-deep-loop/mode-registry.json:44-64]
 
+### Treating a LangGraph checkpointer as the append-only evidence ledger or complete why-audit. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md] -- BLOCKED (iteration 13, 1 attempts)
+- What was tried: Treating a LangGraph checkpointer as the append-only evidence ledger or complete why-audit. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating a LangGraph checkpointer as the append-only evidence ledger or complete why-audit. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md]
+
 ### Treating a LangGraph checkpointer, GraphARC state object, coverage graph, or OTel export as the 036 append-only authority ledger. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103; https://docs.langchain.com/oss/python/langgraph/persistence] -- BLOCKED (iteration 11, 1 attempts)
 - What was tried: Treating a LangGraph checkpointer, GraphARC state object, coverage graph, or OTel export as the 036 append-only authority ledger. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103; https://docs.langchain.com/oss/python/langgraph/persistence]
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -157,6 +206,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - What was tried: Treating admission as execution; the checker never calls node factories and only records a decision.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating admission as execution; the checker never calls node factories and only records a decision.
+
+### Treating candidate preparation or seat output as authoritative focus mutation; the adapter returns preparation input and imports the separate divergent-pivot mechanics contract. [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:322-442] -- BLOCKED (iteration 14, 1 attempts)
+- What was tried: Treating candidate preparation or seat output as authoritative focus mutation; the adapter returns preparation input and imports the separate divergent-pivot mechanics contract. [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:322-442]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating candidate preparation or seat output as authoritative focus mutation; the adapter returns preparation input and imports the separate divergent-pivot mechanics contract. [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:322-442]
 
 ### Treating conditional routing or model-generated dynamic edges as permissionless transition authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-160] -- BLOCKED (iteration 11, 1 attempts)
 - What was tried: Treating conditional routing or model-generated dynamic edges as permissionless transition authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-160]
@@ -183,10 +237,25 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating LangGraph's `compile()` plus checkpointer as equivalent to an append-only evidence ledger or replayable why-audit; the official docs describe state persistence, while traces carry execution rationale.
 
+### Treating rejected `wave`, `depends_on`, or `touches` metadata as if it already formed a graph scheduler; the runner explicitly falls back to `flat_pool`. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432] -- BLOCKED (iteration 14, 1 attempts)
+- What was tried: Treating rejected `wave`, `depends_on`, or `touches` metadata as if it already formed a graph scheduler; the runner explicitly falls back to `flat_pool`. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating rejected `wave`, `depends_on`, or `touches` metadata as if it already formed a graph scheduler; the runner explicitly falls back to `flat_pool`. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432]
+
+### Treating the 024 positive handover as proof of current runtime behavior; it is contradicted by the 036 code-verification section and the 024 decision-record correction. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” section] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408] -- BLOCKED (iteration 12, 1 attempts)
+- What was tried: Treating the 024 positive handover as proof of current runtime behavior; it is contradicted by the 036 code-verification section and the 024 decision-record correction. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” section] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating the 024 positive handover as proof of current runtime behavior; it is contradicted by the 036 code-verification section and the 024 decision-record correction. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” section] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408]
+
 ### Treating the coverage-graph database or a graph checkpointer as the authority ledger or as proof of control-plane migration. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] -- BLOCKED (iteration 6, 1 attempts)
 - What was tried: Treating the coverage-graph database or a graph checkpointer as the authority ledger or as proof of control-plane migration. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103]
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating the coverage-graph database or a graph checkpointer as the authority ledger or as proof of control-plane migration. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103]
+
+### Treating the graph score as a replacement for the inline vote or its `newInfoRatio` semantics. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:608-689] -- BLOCKED (iteration 13, 1 attempts)
+- What was tried: Treating the graph score as a replacement for the inline vote or its `newInfoRatio` semantics. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:608-689]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating the graph score as a replacement for the inline vote or its `newInfoRatio` semantics. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:608-689]
 
 ### Treating the graph-engineering-master README/WORKFLOWS as proof of an executable local implementation when the packet's `graph-engineering/` inventory is empty. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: Treating the graph-engineering-master README/WORKFLOWS as proof of an executable local implementation when the packet's `graph-engineering/` inventory is empty.
@@ -218,6 +287,19 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Sharing mutable authoritative state across blinded/counterfactual branches before gateway-mediated adjudication. [INFERENCE: based on specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] (iteration 11)
 - Treating a LangGraph checkpointer, GraphARC state object, coverage graph, or OTel export as the 036 append-only authority ledger. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103; https://docs.langchain.com/oss/python/langgraph/persistence] (iteration 11)
 - Treating conditional routing or model-generated dynamic edges as permissionless transition authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-160] (iteration 11)
+- Allowing a graph adapter to call a direct append mutator or to become authoritative before the gateway and rollback gates pass. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-80,153-158] (iteration 12)
+- Making graph-database availability a prerequisite for adapter correctness or parity; prior state records already show graph convergence/upsert skipped on the native-module mismatch. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events] (iteration 12)
+- Treating the 024 positive handover as proof of current runtime behavior; it is contradicted by the 036 code-verification section and the 024 decision-record correction. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” section] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408] (iteration 12)
+- Live graph execution was not attempted after the packet's prior native-module failure; static runtime analysis was the productive fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] (iteration 13)
+- Making graph-database availability a prerequisite for adapter correctness or shadow parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] (iteration 13)
+- Treating a LangGraph checkpointer as the append-only evidence ledger or complete why-audit. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md] (iteration 13)
+- Treating the graph score as a replacement for the inline vote or its `newInfoRatio` semantics. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:608-689] (iteration 13)
+- Exact `fanout-merge.cjs` conflict-order semantics were not freshly verified in this bounded pass; do not promote an implementation claim about merge ordering until that file is read directly. (iteration 14)
+- Reopening live graph-database execution or database-first migration; prior packet state records the native-module failure and strategy marks that direction blocked. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events] (iteration 14)
+- Sharing mutable authoritative packet state across branches before a validated fan-in; this would weaken the existing lineage write boundary. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2331-2640 and specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] (iteration 14)
+- The initial broad recursive search for the pivot symbol exceeded the command timeout. A direct `find` over `.opencode` and file-scoped `grep` recovered the canonical research adapter path without retrying the same broad search. (iteration 14)
+- Treating candidate preparation or seat output as authoritative focus mutation; the adapter returns preparation input and imports the separate divergent-pivot mechanics contract. [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:322-442] (iteration 14)
+- Treating rejected `wave`, `depends_on`, or `touches` metadata as if it already formed a graph scheduler; the runner explicitly falls back to `flat_pool`. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432] (iteration 14)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -266,6 +348,14 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - The packet-local LangChain article body remains absent; official LangGraph documentation remains the source of truth for API claims. (iteration 11)
 - An implementation-owned first-mode adapter still needs a deterministic replay fixture, receipt/fingerprint contract, and measurable shadow-parity gates. (iteration 11)
 - The supplied GraphARC session path needs a corrected path or owner confirmation before session-lifecycle mapping is claimed. (iteration 11)
+- Canonical ownership/status of 034 and 036-046 remains outside this focus. (iteration 12)
+- An implementation owner must build and execute the fixture, independent reducer oracle, gate dashboard, and negative fence tests; this iteration intentionally did not modify runtime code. (iteration 12)
+- Exact canonical reducer snapshot serialization and production convergence parity remain unexecuted; the graph database remains optional telemetry and must not gate the shadow result. (iteration 12)
+- The complete ~109-file 024 caller migration and current branch-level test evidence still require a fresh build/verification pass. (iteration 12)
+- The implementation owner still needs to build and execute the deterministic adapter/replay fixture, including graph-off and database-unavailable parity cases. (iteration 13)
+- The complete 024 caller migration evidence and owner-approved accounting for 034 and 036-046 remain outside this focus. (iteration 13)
+- Canonical reducer snapshot serialization and production convergence parity remain unexecuted. (iteration 13)
+- Branch-to-join replay and fanout-merge ordering remain to be verified (see state record). (iteration 14)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -273,7 +363,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-The supplied GraphARC session path needs a corrected path or owner confirmation before session-lifecycle mapping is claimed.
+Branch-to-join replay and fanout-merge ordering remain to be verified (see state record).
 
 <!-- /ANCHOR:next-focus -->
 

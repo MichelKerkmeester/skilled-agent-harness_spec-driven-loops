@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Current status of the system-deep-loop system and what the 036-deep-loop-innovation changes introduce; how to evolve deep-loop workflows into graph-engineering-based loops aligned with the GraphARC and graph-engineering-master repositories and the LangChain graph concepts
 - Started: 2026-08-08T12:02:10.087Z
 - Status: INITIALIZED
-- Iteration: 11 of 20
+- Iteration: 14 of 20
 - Session ID: 27ce8e25-71b5-4732-bbf1-f6acf6bbebb4
 - Parent Session: none
 - Lifecycle Mode: new
@@ -42,9 +42,12 @@ Reducer-generated observability surface for the active research packet.
 | 9 | Runtime census + 036 phase ownership: live loop-lock/fanout/validator wiring, coverage-graph upsert and reducer boundaries, and canonical ownership/status for 034 and 036-046. | runtime-census | 0.83 | 6 | complete |
 | 10 | Corpus completion: graph-engineering-master delivery and article synthesis | corpus-completion | 0.74 | 7 | complete |
 | 11 | Deep alignment: map the 036 evidence-ledger spine onto graph-engineering semantics | deep-alignment | 0.74 | 7 | complete |
+| 12 | Adapter/replay fixture + parity gates + 024 append-boundary fencing verification | adapter-replay-parity | 0.80 | 5 | complete |
+| 13 | Convergence as graph analysis: compare coverage-graph convergence with the inline three-signal vote and define graph termination and replay conditions. | convergence-graph-analysis | 0.80 | 5 | complete |
+| 14 | Fan-out and lineage as graph branches | fanout-lineage | 0.80 | 5 | complete |
 
-- iterationsCompleted: 11
-- keyFindings: 75
+- iterationsCompleted: 14
+- keyFindings: 90
 - openQuestions: 5
 - resolvedQuestions: 0
 
@@ -71,14 +74,15 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: █▆▅▅▆▇█▇▇▆▆▆▆▅▅▄▃▁▁▁
-- score sparkline: █▆▅▅▆▇█▇▇▆▆▆▆▅▅▄▃▁▁▁
-- Last 3 ratios: 0.83 -> 0.74 -> 0.74
+- newInfoRatio sparkline: █▆▅▆▇█▇▆▆▆▅▅▃▁▁▂▃▃▃▃
+- score sparkline: █▆▅▆▇█▇▆▆▆▅▅▃▁▁▂▃▃▃▃
+- Last 3 ratios: 0.80 -> 0.80 -> 0.80
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.74
-- coverageBySources: {"code":102,"docs.langchain.com":4,"langchain-ai.github.io":1,"other":46,"raw.githubusercontent.com":1}
-- Advisory events: none
+- convergenceScore: 0.80
+- coverageBySources: {"code":122,"docs.langchain.com":4,"langchain-ai.github.io":1,"other":57,"raw.githubusercontent.com":1}
+- Advisory event: trend_flatline metric=newInfoRatio run=14 window=3 sparkline=▄▄▄
+- Advisory event: trend_flatline metric=score run=14 window=3 sparkline=▄▄▄
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:dead-ends -->
@@ -102,6 +106,19 @@ Reducer-generated observability surface for the active research packet.
 - Sharing mutable authoritative state across blinded/counterfactual branches before gateway-mediated adjudication. [INFERENCE: based on specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] (iteration 11)
 - Treating a LangGraph checkpointer, GraphARC state object, coverage graph, or OTel export as the 036 append-only authority ledger. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103; https://docs.langchain.com/oss/python/langgraph/persistence] (iteration 11)
 - Treating conditional routing or model-generated dynamic edges as permissionless transition authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-160] (iteration 11)
+- Allowing a graph adapter to call a direct append mutator or to become authoritative before the gateway and rollback gates pass. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-80,153-158] (iteration 12)
+- Making graph-database availability a prerequisite for adapter correctness or parity; prior state records already show graph convergence/upsert skipped on the native-module mismatch. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events] (iteration 12)
+- Treating the 024 positive handover as proof of current runtime behavior; it is contradicted by the 036 code-verification section and the 024 decision-record correction. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” section] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408] (iteration 12)
+- Live graph execution was not attempted after the packet's prior native-module failure; static runtime analysis was the productive fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] (iteration 13)
+- Making graph-database availability a prerequisite for adapter correctness or shadow parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] (iteration 13)
+- Treating a LangGraph checkpointer as the append-only evidence ledger or complete why-audit. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md] (iteration 13)
+- Treating the graph score as a replacement for the inline vote or its `newInfoRatio` semantics. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:608-689] (iteration 13)
+- Exact `fanout-merge.cjs` conflict-order semantics were not freshly verified in this bounded pass; do not promote an implementation claim about merge ordering until that file is read directly. (iteration 14)
+- Reopening live graph-database execution or database-first migration; prior packet state records the native-module failure and strategy marks that direction blocked. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events] (iteration 14)
+- Sharing mutable authoritative packet state across branches before a validated fan-in; this would weaken the existing lineage write boundary. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2331-2640 and specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] (iteration 14)
+- The initial broad recursive search for the pivot symbol exceeded the command timeout. A direct `find` over `.opencode` and file-scoped `grep` recovered the canonical research adapter path without retrying the same broad search. (iteration 14)
+- Treating candidate preparation or seat output as authoritative focus mutation; the adapter returns preparation input and imports the separate divergent-pivot mechanics contract. [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:322-442] (iteration 14)
+- Treating rejected `wave`, `depends_on`, or `touches` metadata as if it already formed a graph scheduler; the runner explicitly falls back to `flat_pool`. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432] (iteration 14)
 
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:divergent-pivots -->
@@ -116,7 +133,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-The supplied GraphARC session path needs a corrected path or owner confirmation before session-lifecycle mapping is claimed.
+Branch-to-join replay and fanout-merge ordering remain to be verified (see state record).
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

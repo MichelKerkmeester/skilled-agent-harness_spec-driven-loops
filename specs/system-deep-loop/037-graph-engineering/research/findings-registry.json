@@ -265,6 +265,46 @@
       "text": "The supplied GraphARC session path needs a corrected path or owner confirmation before session-lifecycle mapping is claimed.",
       "addedAtIteration": 11,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Canonical ownership/status of 034 and 036-046 remains outside this focus.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "An implementation owner must build and execute the fixture, independent reducer oracle, gate dashboard, and negative fence tests; this iteration intentionally did not modify runtime code.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Exact canonical reducer snapshot serialization and production convergence parity remain unexecuted; the graph database remains optional telemetry and must not gate the shadow result.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The complete ~109-file 024 caller migration and current branch-level test evidence still require a fresh build/verification pass.",
+      "addedAtIteration": 12,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The implementation owner still needs to build and execute the deterministic adapter/replay fixture, including graph-off and database-unavailable parity cases.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The complete 024 caller migration evidence and owner-approved accounting for 034 and 036-046 remain outside this focus.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Canonical reducer snapshot serialization and production convergence parity remain unexecuted.",
+      "addedAtIteration": 13,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Branch-to-join replay and fanout-merge ordering remain to be verified (see state record).",
+      "addedAtIteration": 14,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -1559,6 +1599,221 @@
         "https://docs.langchain.com/oss/python/langgraph/persistence (prior iteration-004 evidence)",
         "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/session.py (attempted; unavailable)"
       ]
+    },
+    {
+      "id": "finding-12-1-p0-024-s-current-implementation-status-is-not-the-positive-status-claimed-by-its",
+      "text": "**[P0] 024's current implementation status is not the positive status claimed by its stale handover.** The 036 handover says the append-boundary fence is genuinely unbuilt: `FenceCapability` and `#appendAuthorized` are absent, `appendAuthorized` remains public at the ledger implementation, and the cited landing evidence is fabricated or unrelated. The 024 decision record independently carries a correction saying its “Accepted” opaque-capability ADR is design narrative, not shipped code, because the current runtime has no `FenceCapability`, `#appendAuthorized`, or `STALE_FENCE`. The 024 handover's “all 18 findings fixed” and “gateway-only fenced mutation” text therefore conflicts with newer code-verified evidence; the safe status for adapter planning is **not discharged / P0 blocked**, not “clean.” [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY — two of four named cutover blockers NOT discharged” and “Concrete remaining PATH-1 build scope” sections] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/handover.md:11-17]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:64-67,77-80,95-101,153-173,262-271",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” and “Concrete remaining PATH-1 build scope” sections",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-416",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/handover.md:11-17",
+        ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/events.ts:338",
+        ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/budget-authority.ts:1248",
+        ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/lock-lifecycle-evidence.ts:251",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
+      ]
+    },
+    {
+      "id": "finding-12-2-p0-the-required-gateway-is-a-capability-and-identity-boundary-at-the-primitive-n",
+      "text": "**[P0] The required gateway is a capability-and-identity boundary at the primitive, not a wrapper convention.** The target contract is: resolve identity and policy at the gateway; mint a coordinator-issued, current fence capability; validate the protected resource and current lease inside the ledger before event preparation, proof verification, idempotency handling, or frame commit; make the append primitive hard-private and unreachable through casts; reject a superseded writer even when its proof has not expired; and persist the fence token only as replay evidence, never serialize the capability. Every production caller must migrate atomically to this surface before authority cutover. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-416] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “Concrete remaining PATH-1 build scope (grounded 2026-08-08)”]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:64-67,77-80,95-101,153-173,262-271",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” and “Concrete remaining PATH-1 build scope” sections",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-416",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/handover.md:11-17",
+        ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/events.ts:338",
+        ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/budget-authority.ts:1248",
+        ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/lock-lifecycle-evidence.ts:251",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
+      ]
+    },
+    {
+      "id": "finding-12-5-p0-until-024-is-actually-rebuilt-and-verified-the-graph-adapter-must-remain-an-o",
+      "text": "**[P0] Until 024 is actually rebuilt and verified, the graph adapter must remain an observation/shadow layer behind the legacy authority and the gateway boundary.** It may materialize typed graph state, node traces, deltas, and parity projections, but it must not call the direct ledger mutator, mint or persist fence capabilities, decide authority, or let graph convergence stop the legacy loop. Any durable transition or artifact write must use the already-authorized production boundary; graph outputs remain non-authoritative until the 024 fence, per-mode parity, rollback, and 014 cutover certificates pass. This preserves the additive-dark, shadow-parity, one-mode-at-a-time migration order and prevents the graph layer from turning a projection or checkpointer into the evidence-ledger authority. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-80,99-101,153-158] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” and “Concrete remaining PATH-1 build scope” sections] [INFERENCE: the adapter must stay behind the only safe mutation boundary while that boundary is absent]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:64-67,77-80,95-101,153-173,262-271",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” and “Concrete remaining PATH-1 build scope” sections",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-416",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/handover.md:11-17",
+        ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/events.ts:338",
+        ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/budget-authority.ts:1248",
+        ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/lock-lifecycle-evidence.ts:251",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
+      ]
+    },
+    {
+      "id": "finding-12-3-p1-a-deterministic-first-mode-fixture-should-be-a-fixed-corpus-plus-a-recorded-n",
+      "text": "**[P1] A deterministic first-mode fixture should be a fixed corpus plus a recorded node trace, not a live-directory replay.** Define a versioned corpus with at least four cases: empty input, ordinary findings with graph events, partial-success (one failed/timeout node plus one successful node), and contradiction/idempotent-replay. Freeze canonical JSON key ordering, array ordering, source digests, run/iteration IDs, clock values, and path-independent artifact names. Record each adapter node's stable node ID, input-state digest, output-patch/artifact digest, route decision, status, and event ordinal; then compare the byte sequence of the iteration narrative, state JSONL line, delta JSONL stream, and the reducer bundle. A second run over the same corpus must produce identical bytes and hashes, including the reducer's strategy, registry, dashboard, and research projection snapshots. This design follows the 036 requirement for versioned replay fingerprints, dual-read/single-write adapters, shadow parity, and deterministic replay, while making the previously open fixture requirement executable. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:64-67,99-101,153-158,171] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “022 … Residual: REQ-005 full-surface fixture coverage”] [INFERENCE: based on the append-only JSONL and write-once artifact contract in the iteration prompt plus the 036 replay-fingerprint and adapter requirements]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:64-67,77-80,95-101,153-173,262-271",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” and “Concrete remaining PATH-1 build scope” sections",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-416",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/handover.md:11-17",
+        ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/events.ts:338",
+        ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/budget-authority.ts:1248",
+        ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/lock-lifecycle-evidence.ts:251",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
+      ]
+    },
+    {
+      "id": "finding-12-4-p1-shadow-parity-needs-an-explicit-pass-fail-dashboard-with-independent-derivati",
+      "text": "**[P1] Shadow parity needs an explicit pass/fail dashboard with independent derivation and no graph-database dependency.** The fixture gate should expose one row per case and gate: (G1) iteration narrative/delta/state artifact bytes and hashes; (G2) JSONL schema, field values, record order, and graph-event vocabulary; (G3) reducer outputs (registry, dashboard, strategy, and research projection) by canonical hash and semantic diff; (G4) convergence decision, new-info ratio, stop reason, and blockers from legacy and graph paths run with the graph DB disabled; and (G5) authority/safety checks proving no graph adapter append bypasses the gateway and no cutover flag changes. A row is PASS only when both independent paths match exactly; missing evidence, an unsupported graph DB, or an adapter exception is FAIL/BLOCKED rather than “not applicable.” The dashboard must show case ID, gate ID, expected hash, actual hash, diff reference, severity, and final aggregate status. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:99-101,157-173,262-271] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “022 … all 6 modes … genuinely different code paths” and “Residual: REQ-005 full-surface fixture coverage”] [INFERENCE: independent derivation is required to avoid a graph adapter and legacy path reproducing the same defect]",
+      "addedAtIteration": 12,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:64-67,77-80,95-101,153-173,262-271",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” and “Concrete remaining PATH-1 build scope” sections",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-416",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/handover.md:11-17",
+        ".opencode/skills/system-deep-loop/runtime/lib/voc-allocation/events.ts:338",
+        ".opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/budget-authority.ts:1248",
+        ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/lock-lifecycle-evidence.ts:251",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
+      ]
+    },
+    {
+      "id": "finding-13-1-p1-current-convergence-is-a-graph-assisted-veto-not-a-graph-replacement-the-work",
+      "text": "**[P1] Current convergence is a graph-assisted veto, not a graph replacement.** The workflow invokes coverage-graph convergence first, then still computes the inline three-signal candidate: rolling average of the last three `newInfoRatio` values, a MAD-derived noise floor over all evidence iterations, and question coverage/entropy. A stop is legal only when the inline candidate is true and graph convergence is `STOP_ALLOWED` or absent; `STOP_BLOCKED` becomes `blockedStop`. The graph runtime independently computes research question coverage, claim verification, contradiction density, source diversity, and evidence depth, then emits blockers, a weighted score, and optional snapshot data. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:608-689] [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs]",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:608-689`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:buildGraphConvergenceRollup`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events`"
+      ]
+    },
+    {
+      "id": "finding-13-4-p1-legacy-termination-semantics-must-remain-a-second-independent-guard-graph-con",
+      "text": "**[P1] Legacy termination semantics must remain a second, independent guard.** Graph conditions are better than the inline vote at exposing why a question is weakly covered or why evidence conflicts, but they lose when the graph is empty, stale, malformed, unavailable, or expensive to materialize. Therefore graph convergence should map to a guarded route: graph `CONTINUE` or `STOP_BLOCKED` forces more research; graph `STOP_ALLOWED` only permits the inline candidate to stop; `minIterations`, stuck recovery, and quality guards still override ordinary stopping, while the max-iteration cap remains terminal. This preserves the documented additive/shadow migration and avoids making a graph database or checkpointer authoritative. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:608-689] [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs] [INFERENCE: based on the workflow's explicit combined-stop algorithm and the prior LangGraph distinction between state persistence and causal trace.]",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:608-689`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:buildGraphConvergenceRollup`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events`"
+      ]
+    },
+    {
+      "id": "finding-13-2-p1-the-event-graph-adds-relationships-that-scalar-novelty-cannot-express-but-ing",
+      "text": "**[P1] The event graph adds relationships that scalar novelty cannot express, but ingestion is fail-closed and vocabulary-bound.** `upsert.cjs` converts node/edge events into loop-scoped records, validates node kinds and relations, rejects self-loops, and persists only accepted events. This makes `CONTRADICTS`, `COVERS`, and `CITES` useful for traversable claims such as unresolved contradiction pairs, per-question coverage, and independent source links; it also means an omitted or invalid edge silently reduces graph coverage rather than changing the inline ratio. Prior state records show graph convergence/upsert were skipped when the native database module was unavailable, so the graph must remain an optional veto/telemetry plane rather than a prerequisite for adapter correctness. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:608-689`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:buildGraphConvergenceRollup`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events`"
+      ]
+    },
+    {
+      "id": "finding-13-3-p1-the-strongest-graph-addition-is-a-structural-termination-predicate-not-anothe",
+      "text": "**[P1] The strongest graph addition is a structural termination predicate, not another blended score.** A research stop candidate should require every required question node to have meaningful `COVERS` paths to findings, sufficient `CITES` diversity and evidence depth, no unresolved high-confidence `CONTRADICTS` component, and saturation of declared hotspots; each failed predicate should carry the exact question/finding/source IDs for recovery. The current runtime already demonstrates pieces of this model for graph review (contradiction-derived finding stability, evidence density, and hotspot saturation) while research uses its own question/claim/source signal family, so a future research graph should normalize these relations without collapsing loop-specific semantics. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs] [INFERENCE: the proposed per-question and per-hotspot predicates follow the existing relation vocabulary and the workflow's blocker-oriented graph gate.]",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:608-689`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:buildGraphConvergenceRollup`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events`"
+      ]
+    },
+    {
+      "id": "finding-13-5-p2-replayable-convergence-needs-a-topology-fingerprint-alongside-the-existing-me",
+      "text": "**[P2] Replayable convergence needs a topology fingerprint alongside the existing metric snapshot.** The runtime persists score/metrics, node and edge counts, score delta, and momentum under a writer lock, while reducer rollup preserves raw graph signals, decision, and blockers. A deterministic replay snapshot should additionally record a canonical sorted node/edge projection (or content hash), relation counts, per-question coverage paths, contradiction set, source-diversity calculation, thresholds, blocker trace, and the exact inline inputs used for the decision. LangGraph's checkpoint model preserves state continuity, whereas iteration 004 records GraphARC's separate trace as the rationale layer; the same separation is needed here for a replayable why-audit rather than a mutable checkpoint pretending to be one. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs] [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:buildGraphConvergenceRollup] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md] [INFERENCE: because the current snapshot call supplies metrics and counts, a topology fingerprint and normalized projection are the smallest additions that make the decision reproducible.]",
+      "addedAtIteration": 13,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:608-689`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:buildGraphConvergenceRollup`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events`"
+      ]
+    },
+    {
+      "id": "finding-14-4-p1-divergent-pivot-preparation-is-a-governed-graph-branch-selector-with-deduplic",
+      "text": "**[P1] Divergent pivot preparation is a governed graph-branch selector with deduplication and backtracking inputs, not an executor.** The research adapter derives candidate seeds from open/carried questions, contradiction records, verification gaps, missing source classes, and alternate evidence methods; it renders three analytical/critical/pragmatic seat mandates; and it carries current focus, saturated directions, ruled-out directions, prior selections, and rejected candidates into a deduplicated frontier. The imported `PivotConfigInput`, seat, usage, and candidate types tie this preparation to the authoritative divergent-pivot mechanics, while the adapter itself only prepares input and must not be treated as the focus writer. In graph terms, it supplies a conditional-routing proposal plus a backtracking frontier; the transaction remains the authority boundary. [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:25-58] [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:198-285] [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:292-315] [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:322-442] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts: imported contract at lines 12-17]",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432,1085-1203,1352-1456,1555-1702,2331-2640`",
+        "`.opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:25-58,198-315,322-442`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:12-17` (imported mechanics contract)",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` (merge boundary named for follow-up verification)",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-013.md`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events`"
+      ]
+    },
+    {
+      "id": "finding-14-2-p1-each-lineage-is-a-detached-subgraph-with-a-concrete-artifact-boundary-stronge",
+      "text": "**[P1] Each lineage is a detached subgraph with a concrete artifact boundary, stronger than ordinary shared graph state.** `buildLoopPrompt` binds a lineage label, session ID, executor kind, and `lineageDir`; the prompt explicitly directs every output to that directory, and native invocation passes `--fanout-lineage-artifact-dir`. The execution/finalization path then records invocation metadata, installs a write guard, keeps logs under the lineage directory, runs salvage, and requires lineage-local artifacts and state records before completion. This is a filesystem-enforced branch boundary (with a prompt-only caveat for some CLI executors), not merely a logical state key. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1085-1165] [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1168-1203] [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2331-2640]",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432,1085-1203,1352-1456,1555-1702,2331-2640`",
+        "`.opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:25-58,198-315,322-442`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:12-17` (imported mechanics contract)",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` (merge boundary named for follow-up verification)",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-013.md`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events`"
+      ]
+    },
+    {
+      "id": "finding-14-1-p1-fan-out-is-an-explicit-branch-frontier-but-its-current-scheduler-is-deliberat",
+      "text": "**[P1] Fan-out is an explicit branch frontier, but its current scheduler is deliberately flat-pool rather than graph-native wave routing.** The runner admits only `research` and `review` fan-out loop types, iterates configured executor lineages, rejects `wave` assignment and dependency/touch metadata when the conflict-safety substrate is unavailable, and rewrites accepted execution to `flat_pool`. This maps cleanly to a graph `map`/`Send` frontier, but the current code does not establish graph edges for `depends_on` or a graph scheduler; those semantics are rejected rather than silently approximated. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432]",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432,1085-1203,1352-1456,1555-1702,2331-2640`",
+        "`.opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:25-58,198-315,322-442`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:12-17` (imported mechanics contract)",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` (merge boundary named for follow-up verification)",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-013.md`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events`"
+      ]
+    },
+    {
+      "id": "finding-14-3-p1-parallelism-and-executor-diversity-are-already-first-class-runtime-concerns-r",
+      "text": "**[P1] Parallelism and executor diversity are already first-class runtime concerns.** `runLineageProcess` uses asynchronous `spawn`, tracks active children, drains output, applies a timeout, and converts termination into a typed result so the pool can overlap lineages. Separate command builders fingerprint and launch Codex, Claude, native OpenCode, and CLI OpenCode styles with effective model, permission, sandbox, and web-search configuration. A graph adapter should therefore wrap this process boundary as a branch executor instead of replacing it with an unbounded model-generated node. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1352-1456] [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1555-1702]",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432,1085-1203,1352-1456,1555-1702,2331-2640`",
+        "`.opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:25-58,198-315,322-442`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:12-17` (imported mechanics contract)",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` (merge boundary named for follow-up verification)",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-013.md`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events`"
+      ]
+    },
+    {
+      "id": "finding-14-5-p1-the-graph-model-adds-visibility-and-join-semantics-but-fan-in-must-preserve-l",
+      "text": "**[P1] The graph model adds visibility and join semantics, but fan-in must preserve lineage isolation and evidence authority.** The natural mapping is fan-out executor entries → parallel graph branches, lineage-local state/artifacts → branch-local subgraph state, pivot seats → conditional branch selection, and `fanout-merge.cjs` → the join/reducer that admits only validated lineage outputs. Shared graph state can expose branch progress, support pruning on budget/error/saturation, and detect cycles before dispatch; it must not become a second append authority or allow one branch to write another branch's packet. Exact merge conflict ordering and reducer behavior remain a verification gap because this pass did not perform a fresh direct read of `fanout-merge.cjs`; the existing lineage artifact/state checks are the minimum precondition for a safe join. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:228-290,553-718,2331-2640; .opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs; specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md; specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-013.md]",
+      "addedAtIteration": 14,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432,1085-1203,1352-1456,1555-1702,2331-2640`",
+        "`.opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:25-58,198-315,322-442`",
+        "`.opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts:12-17` (imported mechanics contract)",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` (merge boundary named for follow-up verification)",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-013.md`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events`"
+      ]
     }
   ],
   "ruledOutDirections": [
@@ -1675,6 +1930,84 @@
       "text": "Treating conditional routing or model-generated dynamic edges as permissionless transition authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-160]",
       "contentHash": "fc071219741c",
       "addedAtIteration": 11
+    },
+    {
+      "id": "ruled-out-17c90cdbacaf",
+      "text": "Allowing a graph adapter to call a direct append mutator or to become authoritative before the gateway and rollback gates pass. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-80,153-158]",
+      "contentHash": "17c90cdbacaf",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-8cea897efedc",
+      "text": "Making graph-database availability a prerequisite for adapter correctness or parity; prior state records already show graph convergence/upsert skipped on the native-module mismatch. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events]",
+      "contentHash": "8cea897efedc",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-1302a6df2207",
+      "text": "Treating the 024 positive handover as proof of current runtime behavior; it is contradicted by the 036 code-verification section and the 024 decision-record correction. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md: “014 IS NOT READY” section] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries/decision-record.md:391-408]",
+      "contentHash": "1302a6df2207",
+      "addedAtIteration": 12
+    },
+    {
+      "id": "ruled-out-cfef4b0fc962",
+      "text": "Live graph execution was not attempted after the packet's prior native-module failure; static runtime analysis was the productive fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]",
+      "contentHash": "cfef4b0fc962",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-ab0bf7b5dd1d",
+      "text": "Making graph-database availability a prerequisite for adapter correctness or shadow parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]",
+      "contentHash": "ab0bf7b5dd1d",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-1b78f9d32853",
+      "text": "Treating a LangGraph checkpointer as the append-only evidence ledger or complete why-audit. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md]",
+      "contentHash": "1b78f9d32853",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-909c2fc89eda",
+      "text": "Treating the graph score as a replacement for the inline vote or its `newInfoRatio` semantics. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:608-689]",
+      "contentHash": "909c2fc89eda",
+      "addedAtIteration": 13
+    },
+    {
+      "id": "ruled-out-b00fbe14c2fb",
+      "text": "Exact `fanout-merge.cjs` conflict-order semantics were not freshly verified in this bounded pass; do not promote an implementation claim about merge ordering until that file is read directly.",
+      "contentHash": "b00fbe14c2fb",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-989371e5f4e5",
+      "text": "Reopening live graph-database execution or database-first migration; prior packet state records the native-module failure and strategy marks that direction blocked. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events]",
+      "contentHash": "989371e5f4e5",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-8fa612c4a2ca",
+      "text": "Sharing mutable authoritative packet state across branches before a validated fan-in; this would weaken the existing lineage write boundary. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2331-2640 and specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103]",
+      "contentHash": "8fa612c4a2ca",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-11af912833c6",
+      "text": "The initial broad recursive search for the pivot symbol exceeded the command timeout. A direct `find` over `.opencode` and file-scoped `grep` recovered the canonical research adapter path without retrying the same broad search.",
+      "contentHash": "11af912833c6",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-3c6de3198ef2",
+      "text": "Treating candidate preparation or seat output as authoritative focus mutation; the adapter returns preparation input and imports the separate divergent-pivot mechanics contract. [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:322-442]",
+      "contentHash": "3c6de3198ef2",
+      "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-1639ecbe6426",
+      "text": "Treating rejected `wave`, `depends_on`, or `touches` metadata as if it already formed a graph scheduler; the runner explicitly falls back to `flat_pool`. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432]",
+      "contentHash": "1639ecbe6426",
+      "addedAtIteration": 14
     }
   ],
   "rejectedPatterns": [],
@@ -1705,22 +2038,22 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 11,
+    "iterationsCompleted": 14,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 28,
-    "keyFindings": 75,
+    "carriedForwardOpenQuestions": 36,
+    "keyFindings": 90,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.74,
+    "convergenceScore": 0.8,
     "coverageBySources": {
-      "code": 102,
+      "code": 122,
       "docs.langchain.com": 4,
       "langchain-ai.github.io": 1,
-      "other": 46,
+      "other": 57,
       "raw.githubusercontent.com": 1
     },
     "completedPivots": 0,
@@ -1731,5 +2064,30 @@
   "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-deep-loop/037-graph-engineering/research/inbox.jsonl",
   "inboxWarnings": [],
   "status": "INITIALIZED",
-  "advisoryEvents": []
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "newInfoRatio",
+      "run": 14,
+      "window": 3,
+      "value": 0.8,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-08-08T13:45:58.000Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 14,
+      "window": 3,
+      "value": 0.8,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-08-08T13:45:58.000Z"
+    }
+  ]
 }
