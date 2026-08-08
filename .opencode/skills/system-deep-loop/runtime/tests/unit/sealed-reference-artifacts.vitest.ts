@@ -24,8 +24,10 @@ import {
   TypedReducerRegistry,
 } from '../../lib/authorized-ledger/index.js';
 import {
+  CURRENT_ENVELOPE_VERSION,
   EventTypeRegistry,
   canonicalBytes,
+  prepareEventWrite,
   sha256Bytes,
 } from '../../lib/event-envelope/index.js';
 import {
@@ -36,6 +38,7 @@ import {
 } from '../../lib/replay-fingerprint/index.js';
 import {
   ARTIFACT_LIFECYCLE_EVENT_TYPE,
+  ARTIFACT_SEALED_EVENT_TYPE,
   ArtifactDigestRegistry,
   ArtifactLifecycleActions,
   ArtifactRetentionRootTypes,
@@ -66,6 +69,7 @@ import type {
 import type { JsonObject, JsonValue } from '../../lib/event-envelope/index.js';
 import type {
   ArtifactAuthorizationContext,
+  ArtifactDeletionAuthorization,
   ArtifactEventMetadata,
   ArtifactEventRecorder,
   ArtifactLifecycleInput,
@@ -258,6 +262,11 @@ async function eligibleDecision(
 
 function overwrite(path: string, bytes: Uint8Array): void {
   chmodSync(path, 0o600);
+  writeFileSync(path, bytes);
+}
+
+function writeAtNewPath(path: string, bytes: Uint8Array): void {
+  mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, bytes);
 }
 
@@ -525,6 +534,43 @@ describe('sealed reference artifacts', () => {
     },
   );
 
+  it('rejects a self-consistent triple whose blob bytes are not the canonical form', async () => {
+    const store = new SealedArtifactStore({ rootDirectory: temporaryRoot('non-canonical-blob') });
+    const sealed = await store.seal(InitialArtifactKinds.FIXTURE, { value: 'a', extra: 1 });
+
+    // Same semantic content as the sealed artifact, re-encoded with non-canonical whitespace.
+    const semanticValue = JSON.parse(Buffer.from(sealed.artifact.bytes).toString('utf8')) as JsonValue;
+    const nonCanonicalBytes = Buffer.from(JSON.stringify(semanticValue, null, 2));
+    const forgedDigest = sha256Bytes(Uint8Array.from(nonCanonicalBytes));
+
+    const forgedDescriptor = {
+      ...sealed.artifact.descriptor,
+      byte_length: nonCanonicalBytes.byteLength,
+      content_digest: forgedDigest,
+    };
+    const forgedDescriptorBytes = Uint8Array.from(canonicalBytes(forgedDescriptor));
+    const forgedReference = {
+      ...sealed.artifact.reference,
+      content_digest: forgedDigest,
+      qualified_digest: `${sealed.artifact.reference.digest_algorithm}:${forgedDigest}`,
+      descriptor_digest: sha256Bytes(forgedDescriptorBytes),
+    };
+
+    // A hand-crafted triple: descriptor and reference are internally self-consistent with the
+    // forged digest, so only re-deriving the canonical form from the blob detects the tamper.
+    const forgedPaths = store.inspectPaths(forgedReference);
+    writeAtNewPath(forgedPaths.descriptorPath, forgedDescriptorBytes);
+    writeAtNewPath(forgedPaths.referencePath, Uint8Array.from(canonicalBytes(forgedReference)));
+    writeAtNewPath(forgedPaths.blobPath, Uint8Array.from(nonCanonicalBytes));
+
+    const error = await expectArtifactFailure(
+      store.readVerified(forgedReference),
+      SealedArtifactErrorCodes.ARTIFACT_CORRUPT,
+    );
+    expect(error.message).toContain('canonical');
+    expect(existsSync(forgedPaths.quarantineMarkerPath)).toBe(true);
+  });
+
   it('rejects wrong-kind consumption without quarantining valid bytes', async () => {
     const store = new SealedArtifactStore({ rootDirectory: temporaryRoot('wrong-kind') });
     const sealed = await store.seal(InitialArtifactKinds.FIXTURE, { value: 'fixture' });
@@ -604,6 +650,52 @@ describe('sealed reference artifacts', () => {
     );
     expect(() => bindVerifiedArtifactReferences([{} as VerifiedArtifactEvidence])).toThrowError(
       expect.objectContaining({ code: SealedArtifactErrorCodes.EVIDENCE_CONFLICT }),
+    );
+  });
+
+  it('rejects ledger creation evidence from a decoy sharing digests but not the artifact kind', async () => {
+    const harness = createHarness();
+    const real = await sealAndRecord(
+      harness,
+      InitialArtifactKinds.PROMPT_SET,
+      { prompts: ['legit'] },
+    );
+
+    // Copies the real reference's qualified and descriptor digests, but claims a different kind.
+    const decoyReference = { ...real.artifact.reference, artifact_kind: 'evil-kind' };
+    const decoyPayload = {
+      reference: decoyReference,
+      descriptor_digest: decoyReference.descriptor_digest,
+      sealed_at: FIXED_TIME,
+      retention_class: 'run-retained',
+    };
+    const metadata = harness.nextMetadata('decoy-sealed');
+    const decoyEvent = prepareEventWrite({
+      envelope_version: CURRENT_ENVELOPE_VERSION,
+      event_id: metadata.eventId,
+      event_type: ARTIFACT_SEALED_EVENT_TYPE,
+      event_version: 1,
+      stream_id: metadata.streamId,
+      stream_sequence: metadata.streamSequence,
+      occurred_at: metadata.occurredAt,
+      recorded_at: metadata.recordedAt,
+      producer: metadata.producer,
+      authority_epoch: metadata.authorityEpoch,
+      correlation_id: metadata.correlationId,
+      causation_id: metadata.causationId,
+      idempotency_key: metadata.idempotencyKey,
+      payload: decoyPayload,
+    }, harness.registry);
+    await recordArtifactEvent(harness.recorder, decoyEvent);
+
+    await expectArtifactFailure(
+      readVerifiedArtifactEvidence(
+        harness.ledger,
+        harness.store,
+        real.artifact.reference,
+        InitialArtifactKinds.PROMPT_SET,
+      ),
+      SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
     );
   });
 
@@ -907,6 +999,36 @@ describe('sealed reference artifacts', () => {
     );
   });
 
+  it('rejects a deletion authorization that does not resolve to a real ledger entry', async () => {
+    const harness = createHarness();
+    const evidence = await sealAndRecord(
+      harness,
+      InitialArtifactKinds.PRIOR_RUN_OUTPUT,
+      { output: 'undeletable' },
+    );
+    const paths = harness.store.inspectPaths(evidence.artifact.reference);
+    // Shape-valid, but no ledger frame anywhere carries this exact event/hash combination.
+    const forgedAuthorization: ArtifactDeletionAuthorization = {
+      eventId: 'fabricated-event-id',
+      ledgerId: harness.ledger.ledgerId,
+      ledgerSequence: 1,
+      ledgerRecordHash: 'a'.repeat(64),
+      authorizedAt: FIXED_TIME,
+    };
+    await expectArtifactFailure(
+      harness.store.deleteAuthorized(
+        evidence.artifact.reference,
+        harness.ledger,
+        forgedAuthorization,
+      ),
+      SealedArtifactErrorCodes.INVALID_INPUT,
+    );
+    expect(existsSync(paths.referencePath)).toBe(true);
+    expect(existsSync(paths.blobPath)).toBe(true);
+    expect(existsSync(paths.descriptorPath)).toBe(true);
+    expect(existsSync(paths.tombstonePath)).toBe(false);
+  });
+
   it('restores only byte-identical canonical content under the original digest', async () => {
     const harness = createHarness();
     const source = { output: 'restore-me', nested: { stable: true } };
@@ -950,5 +1072,45 @@ describe('sealed reference artifacts', () => {
     await expect(harness.store.readVerified(evidence.artifact.reference)).resolves.toMatchObject({
       reference: evidence.artifact.reference,
     });
+  });
+
+  it('rejects a restoration authorization that does not resolve to a real ledger entry', async () => {
+    const harness = createHarness();
+    const source = { output: 'restore-me-not' };
+    const evidence = await sealAndRecord(harness, InitialArtifactKinds.PRIOR_RUN_OUTPUT, source);
+    const decision = await eligibleDecision(harness, evidence);
+    await sweepArtifact(
+      harness.store,
+      harness.recorder,
+      harness.registry,
+      evidence,
+      decision,
+      harness.nextMetadata('deletion-authorized'),
+      REASON_DIGEST,
+    );
+    const paths = harness.store.inspectPaths(evidence.artifact.reference);
+    expect(existsSync(paths.tombstonePath)).toBe(true);
+
+    // Shape-valid, but no ledger frame anywhere carries this exact event/hash combination.
+    const forgedAuthorization: ArtifactDeletionAuthorization = {
+      eventId: 'fabricated-restore-event',
+      ledgerId: harness.ledger.ledgerId,
+      ledgerSequence: 1,
+      ledgerRecordHash: 'b'.repeat(64),
+      authorizedAt: FIXED_TIME,
+    };
+    await expectArtifactFailure(
+      harness.store.restoreAuthorized(
+        evidence.artifact.reference,
+        source,
+        harness.ledger,
+        forgedAuthorization,
+      ),
+      SealedArtifactErrorCodes.INVALID_INPUT,
+    );
+    expect(existsSync(paths.tombstonePath)).toBe(true);
+    expect(existsSync(paths.referencePath)).toBe(false);
+    expect(existsSync(paths.blobPath)).toBe(false);
+    expect(existsSync(paths.descriptorPath)).toBe(false);
   });
 });

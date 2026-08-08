@@ -2,6 +2,8 @@
 // MODULE: Sealed Reference Artifact Types
 // ───────────────────────────────────────────────────────────────────
 
+import { canonicalJson } from '../event-envelope/index.js';
+
 import type { JsonObject, JsonValue } from '../event-envelope/index.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -91,6 +93,15 @@ export interface SealedArtifactReference extends JsonObject {
   readonly descriptor_version: number;
   readonly canonicalization_version: string;
   readonly descriptor_digest: string;
+}
+
+/**
+ * Exact equality over the complete typed reference, field for field. Two references that
+ * share only some fields (for example matching digests but a different `artifact_kind`) are
+ * different identities and must never be treated as the same evidence, binding, or object.
+ */
+export function sameReference(left: SealedArtifactReference, right: SealedArtifactReference): boolean {
+  return canonicalJson(left) === canonicalJson(right);
 }
 
 /** Bytes are present only after reference, descriptor, length, and digest verification. */

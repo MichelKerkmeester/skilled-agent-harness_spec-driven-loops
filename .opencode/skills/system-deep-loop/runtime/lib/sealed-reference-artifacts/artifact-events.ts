@@ -14,6 +14,7 @@ import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   SealedArtifactError,
   SealedArtifactErrorCodes,
+  sameReference,
 } from './sealed-artifact-types.js';
 import { parseSealedArtifactReference } from './sealed-artifact-store.js';
 
@@ -483,10 +484,7 @@ export async function readVerifiedArtifactEvidence(
   }
   for (const match of matches) {
     const payload = parseArtifactSealedPayload(match.event.effective.envelope.payload);
-    if (
-      payload.descriptor_digest !== reference.descriptor_digest
-      || payload.reference.qualified_digest !== reference.qualified_digest
-    ) {
+    if (!sameReference(payload.reference, reference)) {
       throw new SealedArtifactError(
         SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
         'evidence',

@@ -49,6 +49,7 @@ export {
   InitialArtifactKinds,
   SealedArtifactError,
   SealedArtifactErrorCodes,
+  sameReference,
 } from './sealed-artifact-types.js';
 
 export type {

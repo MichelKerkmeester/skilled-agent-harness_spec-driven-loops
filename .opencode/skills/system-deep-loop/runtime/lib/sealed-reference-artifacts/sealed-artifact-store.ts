@@ -46,8 +46,10 @@ import {
   DEFAULT_ARTIFACT_DIGEST_ALGORITHM,
   SealedArtifactError,
   SealedArtifactErrorCodes,
+  sameReference,
 } from './sealed-artifact-types.js';
 
+import type { AppendOnlyLedger } from '../authorized-ledger/index.js';
 import type { JsonObject } from '../event-envelope/index.js';
 import type {
   ArtifactCanonicalizerRegistry,
@@ -77,6 +79,9 @@ const DEFAULT_LOCK_TIMEOUT_MS = 5_000;
 const LOCK_RETRY_MS = 10;
 const DIGEST_PATTERN = /^[a-f0-9]{64}$/;
 const ALGORITHM_PATTERN = /^[a-z][a-z0-9-]{0,63}$/;
+/** Durable append-only lifecycle action vocabulary a deletion/restoration authorization must resolve to. */
+const DELETION_AUTHORIZED_ACTION = 'deletion-authorized';
+const RESTORATION_AUTHORIZED_ACTION = 'restoration-authorized';
 const QUARANTINE_ERROR_CODES: ReadonlySet<SealedArtifactErrorCode> = new Set([
   SealedArtifactErrorCodes.ARTIFACT_CORRUPT,
   SealedArtifactErrorCodes.DESCRIPTOR_CONFLICT,
@@ -327,12 +332,76 @@ function parseTombstone(input: unknown): ArtifactTombstone {
   });
 }
 
-function sameReference(left: SealedArtifactReference, right: SealedArtifactReference): boolean {
-  return canonicalJson(left) === canonicalJson(right);
-}
-
 function isErrno(error: unknown, code: string): boolean {
   return error instanceof Error && 'code' in error && (error as NodeJS.ErrnoException).code === code;
+}
+
+function requireResolvableAuthorizationShape(
+  authorization: ArtifactDeletionAuthorization,
+  phase: 'retention' | 'restoration',
+  message: string,
+): void {
+  if (
+    !isBoundedString(authorization.eventId)
+    || !isBoundedString(authorization.ledgerId)
+    || !isPositiveInteger(authorization.ledgerSequence)
+    || typeof authorization.ledgerRecordHash !== 'string'
+    || !DIGEST_PATTERN.test(authorization.ledgerRecordHash)
+    || !isBoundedString(authorization.authorizedAt, 64)
+  ) {
+    throw new SealedArtifactError(SealedArtifactErrorCodes.INVALID_INPUT, phase, message);
+  }
+}
+
+/** Read the lifecycle action and bound reference off a raw verified payload without a domain import. */
+function lifecycleAuthorizationFields(
+  payload: unknown,
+): { readonly action: string | null; readonly qualifiedDigest: string | null } {
+  if (!isRecord(payload)) return { action: null, qualifiedDigest: null };
+  const action = typeof payload.action === 'string' ? payload.action : null;
+  const reference = payload.reference;
+  const qualifiedDigest = isRecord(reference) && typeof reference.qualified_digest === 'string'
+    ? reference.qualified_digest
+    : null;
+  return { action, qualifiedDigest };
+}
+
+/**
+ * Resolve a caller-supplied deletion/restoration authorization against the durable ledger it
+ * claims to come from, rather than trusting its shape. An authorization only unlocks a mutation
+ * once a verified ledger entry with the exact same event, ledger, sequence and record hash is
+ * found, and that entry is itself the matching lifecycle action for this exact reference.
+ */
+async function resolveLifecycleAuthorization(
+  ledger: AppendOnlyLedger,
+  reference: SealedArtifactReference,
+  expectedAction: string,
+  authorization: ArtifactDeletionAuthorization,
+): Promise<void> {
+  const events = await ledger.readVerifiedEvents();
+  const resolved = events.find((event) => (
+    event.frame.receipt.event_id === authorization.eventId
+    && event.frame.ledger_id === authorization.ledgerId
+    && event.frame.sequence === authorization.ledgerSequence
+    && event.frame.record_hash === authorization.ledgerRecordHash
+  ));
+  if (!resolved) {
+    throw new SealedArtifactError(
+      SealedArtifactErrorCodes.INVALID_INPUT,
+      'ledger',
+      'Authorization does not resolve to a verified ledger entry',
+      { qualifiedDigest: reference.qualified_digest },
+    );
+  }
+  const fields = lifecycleAuthorizationFields(resolved.event.effective.envelope.payload);
+  if (fields.action !== expectedAction || fields.qualifiedDigest !== reference.qualified_digest) {
+    throw new SealedArtifactError(
+      SealedArtifactErrorCodes.INVALID_INPUT,
+      'ledger',
+      'Authorization resolves to a ledger entry for a different artifact or lifecycle action',
+      { qualifiedDigest: reference.qualified_digest },
+    );
+  }
 }
 
 function assertSafeTarget(rootDirectory: string, target: string): void {
@@ -679,24 +748,23 @@ export class SealedArtifactStore {
   /** Create a receipt-bound tombstone, then remove the now-unreachable object files. */
   public async deleteAuthorized(
     input: unknown,
+    ledger: AppendOnlyLedger,
     authorization: ArtifactDeletionAuthorization,
   ): Promise<ArtifactTombstone> {
     const reference = parseSealedArtifactReference(input);
     return this.#withLock(async () => {
       const verified = this.#readVerifiedUnlocked(reference);
-      if (
-        !isBoundedString(authorization.eventId)
-        || !isBoundedString(authorization.ledgerId)
-        || !isPositiveInteger(authorization.ledgerSequence)
-        || !DIGEST_PATTERN.test(authorization.ledgerRecordHash)
-        || !isBoundedString(authorization.authorizedAt, 64)
-      ) {
-        throw new SealedArtifactError(
-          SealedArtifactErrorCodes.INVALID_INPUT,
-          'retention',
-          'Deletion requires a complete durable ledger authorization receipt',
-        );
-      }
+      requireResolvableAuthorizationShape(
+        authorization,
+        'retention',
+        'Deletion requires a complete durable ledger authorization receipt',
+      );
+      await resolveLifecycleAuthorization(
+        ledger,
+        reference,
+        DELETION_AUTHORIZED_ACTION,
+        authorization,
+      );
       const tombstone: ArtifactTombstone = Object.freeze({
         tombstone_version: ARTIFACT_TOMBSTONE_VERSION,
         reference,
@@ -721,19 +789,24 @@ export class SealedArtifactStore {
   public async restoreAuthorized(
     input: unknown,
     artifactSource: unknown,
+    ledger: AppendOnlyLedger,
     authorization: ArtifactDeletionAuthorization,
   ): Promise<VerifiedSealedArtifact> {
     const reference = parseSealedArtifactReference(input);
     return this.#withLock(async () => {
       const paths = this.inspectPaths(reference);
       const derived = this.#restorationCandidateUnlocked(reference, artifactSource);
-      if (!isBoundedString(authorization.eventId) || !DIGEST_PATTERN.test(authorization.ledgerRecordHash)) {
-        throw new SealedArtifactError(
-          SealedArtifactErrorCodes.INVALID_INPUT,
-          'restoration',
-          'Restoration requires durable ledger authorization evidence',
-        );
-      }
+      requireResolvableAuthorizationShape(
+        authorization,
+        'restoration',
+        'Restoration requires a complete durable ledger authorization receipt',
+      );
+      await resolveLifecycleAuthorization(
+        ledger,
+        reference,
+        RESTORATION_AUTHORIZED_ACTION,
+        authorization,
+      );
       await this.#publishUnlocked(derived, true);
       rmSync(paths.tombstonePath, { force: true });
       return this.#readVerifiedUnlocked(reference);
@@ -935,6 +1008,8 @@ export class SealedArtifactStore {
         { qualifiedDigest: reference.qualified_digest },
       );
     }
+    const contentValue = parseJson(bytes, 'Artifact content');
+    requireCanonicalEncoding(bytes, contentValue, 'Artifact content');
     return Object.freeze({ reference, descriptor, bytes: immutableBytes(bytes) });
   }
 

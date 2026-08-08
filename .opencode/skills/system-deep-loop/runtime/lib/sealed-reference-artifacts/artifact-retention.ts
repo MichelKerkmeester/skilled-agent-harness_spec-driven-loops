@@ -326,7 +326,7 @@ export async function sweepArtifact(
     },
   );
   const lifecycle = await recordArtifactEvent(recorder, event);
-  const tombstone = await store.deleteAuthorized(decision.reference, {
+  const tombstone = await store.deleteAuthorized(decision.reference, recorder.ledger, {
     eventId: lifecycle.receipt.event_id,
     ledgerId: lifecycle.receipt.ledger_id,
     ledgerSequence: lifecycle.receipt.sequence,
@@ -353,7 +353,7 @@ export async function restoreArtifact(
     reasonDigest,
   });
   const lifecycle = await recordArtifactEvent(recorder, event);
-  const artifact = await store.restoreAuthorized(reference, artifactSource, {
+  const artifact = await store.restoreAuthorized(reference, artifactSource, recorder.ledger, {
     eventId: lifecycle.receipt.event_id,
     ledgerId: lifecycle.receipt.ledger_id,
     ledgerSequence: lifecycle.receipt.sequence,
