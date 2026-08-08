@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
     last_updated_at: "2026-08-08T15:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "024 B1 fencing keystone LANDED 39015ed14c (adversary-hardened); B2/B3/B4/B7 remain"
-    next_safe_action: "Build B2/B3/B4/B7 in worktree 0134 (fresh session); note token-replay residual"
+    recent_action: "024 B1-B4 ALL LANDED (ff3a574014) + final adversarial pass CLEAN; B7 metadata reconciling"
+    next_safe_action: "Land 024 B7 metadata; then 025 (needs 024 primitives) -> 016 gate -> 014/015 (gated)"
     blockers:
       - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
@@ -91,11 +91,23 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   writers/files, not active attackers); REQ-002 (superseded-writer rejection) IS met; the gateway proof +
   prior-head CAS still bound it (no double-commit / content forgery). Full closure needs lease-possession
   proof (deeper design — operator decision).
-- **REMAINING 024 increments (build in the 0134 worktree; ledger surface is globally-serializing — nothing
-  ledger-adjacent runs beside them): B2** (gateway trusts caller identity — `transition-authorization-gateway.ts:726`),
-  **B3** (policy digest omits captured state — `transition-policy-registry.ts:97-103`), **B4** (loop-lock
-  two-winner — `loop-lock.ts:242-243`), **B7** (honest metadata reconciliation + a final full adversarial
-  pass). Then 025 (needs 024 receipt/proof primitives) → 016 gate → 014/015 (IRREVERSIBLE) → 017 → merge.
+- **024 fencing GO-set — ALL 4 INCREMENTS BUILT + VERIFIED + ADVERSARIALLY CLEAN + LANDED** (built in
+  worktree `.worktrees/0134-skilled-024-fencing`, node_modules symlinked from the main checkout; each
+  rebased onto fresh origin + pushed): B1 append-fence + F-018-03 fence_token `39015ed14c`, B2 gateway
+  identity fail-closed `27e6c2b5a9`, B3 policy-identity digest `5b6d9e86b9`, B4 loop-lock atomic publish
+  `ff3a574014`. A final independent Opus adversarial pass could NOT refute B1–B4 (132 tests green, tsc rc0,
+  caller-migration tsc-proven, no hollow/ghost tests). B7 metadata reconciliation in flight.
+  **Residual (elective): token-replay** — bounded by exclusive-lock + prior-head CAS + single-use dedup
+  (no double-commit / content-forgery; out of threat model; genuinely untested — not claimed closed).
+  **Operator caveat: B2 event_version** — the new required identity-verified booleans with `event_version`
+  still =1 reject pre-existing dark-ledger audit frames (availability, not integrity); confirm no such
+  durable data exists OR bump event_version with a v1 fallback. **B3 note:** bound/native evaluators
+  serialize to `[native code]` (pre-existing, out of scope). Clean up worktree 0134 (`git worktree remove`)
+  at closeout.
+- **NEXT after 024 closeout: 025** artifact-certificate-binding (SERIAL — needs 024's receipt/proof
+  primitives) → **016** whole-system gate (independently code-verify the ~166-finding register on a frozen
+  SHA) → **014/015** staged cutover + legacy retirement (IRREVERSIBLE, operator-gated) → **017** integrate +
+  parent rollup → **merge to main**.
 - **Leak-guard mechanics gap (NEW, important):** `land-wt0129.sh`'s 0-deletion guard only catches
   full-file `D` status, NOT content REMOVED from a still-present (modified) file. The
   partial-checkout `specs/` copies in this worktree are near-empty stubs — landing one directly
