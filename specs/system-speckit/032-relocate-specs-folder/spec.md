@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder"
-    last_updated_at: "2026-08-07T17:36:19Z"
+    last_updated_at: "2026-08-08T05:04:05Z"
     last_updated_by: "claude-code"
-    recent_action: "Phase 5 scoped (README migration audit); T015 operator review open"
-    next_safe_action: "Launch phase 5's deep-review dispatch"
+    recent_action: "Phase 5 complete; added relocation-before-after.md; T015 operator review still open"
+    next_safe_action: "Operator reviews the final migrated state (T015 in 003-migration-execution)"
     blockers: []
     key_files: []
     session_dedup:
@@ -101,8 +101,7 @@ None in phase 001 (research-only). Per-phase detail for any later implementation
 | 2 | 002-migration-plan/ | Design the topology-inversion migration: invert the 21-entry resolver registry, adapt the existing `spec-root-*` primitives, resolve the downstream-ownership policy decision | Complete — both ADRs Accepted |
 | 3 | 003-migration-execution/ | Execute the accepted plan: topology-flip function, 21-entry registry inversion, atomic symlink-flip + `.gitignore` rebase, Memory MCP reindex | Complete — all 11 steps executed and verified, T015 operator review open |
 | 4 | 004-code-graph-index-flag-deprecation/ | Remove the dead `SPECKIT_CODE_GRAPH_INDEX_*` maintainer-mode flag mechanism (git filter, config, doc, dead env-var fallback), discovered as a side effect of phase 3's `scripts/` cleanup | Complete |
-
-| 5 | 005-readme-migration-audit/ | 10-iter multi-executor `/deep:review` (deepseek-v4-flash + GLM-5.2-high) auditing every README (including the repo root) for content that's logically stale after the specs-root topology flip | Pending |
+| 5 | 005-readme-migration-audit/ | 10-iter multi-executor `/deep:review` (deepseek-v4-flash + GLM-5.2-high) auditing every README (including the repo root) for content that's logically stale after the specs-root topology flip | Complete — 20/20 findings fixed |
 
 ### Phase Transition Rules
 

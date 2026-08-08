@@ -91,15 +91,15 @@
     ],
     "causal_summary": "The canonical spec-kit tree currently lives at `.opencode/specs/`",
     "created_at": "2026-08-06T07:50:00.000Z",
-    "last_save_at": "2026-08-07T17:36:39.051Z",
+    "last_save_at": "2026-08-08T05:04:31.634Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6a990974e7d830ce1a1eae5b4c5053ef11da0f47ba2e4d2eeb11c88e86482eeb",
+    "source_fingerprint": "sha256:23af7545df967f761316652d44362cfd50a794dfcec2bb5345c070783ad51078",
     "source_doc_hashes": {
-      "spec.md": "39d726eb02525abd99c399dd3c951c9f44f780f58f242532148bf7257e9743e9"
+      "spec.md": "426642528f4d66e111f4b5f063d474e1edf4ab602ef4c73103fb012b3a3bfd8f"
     },
     "last_active_child_id": "system-speckit/032-relocate-specs-folder/003-migration-execution",
     "last_active_at": null
