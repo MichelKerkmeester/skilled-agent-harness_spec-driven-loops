@@ -78,6 +78,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - reading admission and materialization together exposed the exact authority seam; line-indexing tests connected prose guarantees to executable checks. (iteration 8)
 - reading the workflow algorithm beside the runtime implementation made the graph veto boundary and the inline vote's independent semantics explicit; iteration 004 supplied the checkpoint-versus-trace distinction needed for replay design. (iteration 13)
 - narrow file-scoped searches plus contiguous source ranges exposed the branch contract, write boundary, executor matrix, and pivot frontier without rereading the already-saturated graph-database path. (iteration 14)
+- reading the merge implementation's pure helpers and main output path together with the synthesis YAML made the ordering, provenance, and non-rewrite guarantees directly verifiable instead of inferred from the fan-out runner. (iteration 15)
 
 <!-- /ANCHOR:what-worked -->
 
@@ -95,6 +96,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - no fresh benchmark execution or web retrieval was necessary within the bounded pass, so production parity and an updated LangGraph source snapshot remain indirect. (iteration 8)
 - no live graph decision or parity run was possible because the packet records the native database module mismatch. (iteration 13)
 - a repository-wide recursive grep timed out before producing evidence; the broad search traversed unrelated phase material instead of the known runtime directory. (iteration 14)
+- no executable multi-lineage fixture was run in this bounded research iteration; source evidence established the contract but not runtime parity under shuffled or damaged inputs. (iteration 15)
 
 <!-- /ANCHOR:what-failed -->
 
@@ -132,6 +134,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Live graph execution was not attempted after the packet's prior native-module failure; static runtime analysis was the productive fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
 
+### Making coverage-graph DB availability a prerequisite for fan-in correctness or replay parity. [SOURCE: `.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1592`; [INFERENCE: based on separate graph-convergence and filesystem fan-in commands]] -- BLOCKED (iteration 15, 1 attempts)
+- What was tried: Making coverage-graph DB availability a prerequisite for fan-in correctness or replay parity. [SOURCE: `.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1592`; [INFERENCE: based on separate graph-convergence and filesystem fan-in commands]]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Making coverage-graph DB availability a prerequisite for fan-in correctness or replay parity. [SOURCE: `.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1592`; [INFERENCE: based on separate graph-convergence and filesystem fan-in commands]]
+
 ### Making graph-database availability a prerequisite for adapter correctness or parity; prior state records already show graph convergence/upsert skipped on the native-module mismatch. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events] -- BLOCKED (iteration 12, 1 attempts)
 - What was tried: Making graph-database availability a prerequisite for adapter correctness or parity; prior state records already show graph convergence/upsert skipped on the native-module mismatch. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events]
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -141,6 +148,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - What was tried: Making graph-database availability a prerequisite for adapter correctness or shadow parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Making graph-database availability a prerequisite for adapter correctness or shadow parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
+
+### None newly introduced. The prior iteration's direct-read gap for `fanout-merge.cjs` was resolved; the previously blocked database-first/live-graph path was not retried. -- BLOCKED (iteration 15, 1 attempts)
+- What was tried: None newly introduced. The prior iteration's direct-read gap for `fanout-merge.cjs` was resolved; the previously blocked database-first/live-graph path was not retried.
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: None newly introduced. The prior iteration's direct-read gap for `fanout-merge.cjs` was resolved; the previously blocked database-first/live-graph path was not retried.
 
 ### Reopening live graph-database execution or database-first migration; prior packet state records the native-module failure and strategy marks that direction blocked. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events] -- BLOCKED (iteration 14, 1 attempts)
 - What was tried: Reopening live graph-database execution or database-first migration; prior packet state records the native-module failure and strategy marks that direction blocked. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events]
@@ -232,6 +244,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating GraphARC's dynamic `Command`/`Send` capability as permissionless model branching; its admission gate is a required control boundary.
 
+### Treating input/arrival order as the canonical merge order; the implementation sorts content, IDs, labels, and final output arrays. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:332-352,350-362`] -- BLOCKED (iteration 15, 1 attempts)
+- What was tried: Treating input/arrival order as the canonical merge order; the implementation sorts content, IDs, labels, and final output arrays. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:332-352,350-362`]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating input/arrival order as the canonical merge order; the implementation sorts content, IDs, labels, and final output arrays. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:332-352,350-362`]
+
 ### Treating LangGraph's `compile()` plus checkpointer as equivalent to an append-only evidence ledger or replayable why-audit; the official docs describe state persistence, while traces carry execution rationale. -- BLOCKED (iteration 4, 1 attempts)
 - What was tried: Treating LangGraph's `compile()` plus checkpointer as equivalent to an append-only evidence ledger or replayable why-audit; the official docs describe state persistence, while traces carry execution rationale.
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -261,6 +278,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - What was tried: Treating the graph-engineering-master README/WORKFLOWS as proof of an executable local implementation when the packet's `graph-engineering/` inventory is empty.
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating the graph-engineering-master README/WORKFLOWS as proof of an executable local implementation when the packet's `graph-engineering/` inventory is empty.
+
+### Treating the merged registry as a rewriteable substitute for lineage state logs or append-only deltas. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1096-1127,1149-1169`; [INFERENCE: based on read-only state consumption and registry-only output writes]] -- BLOCKED (iteration 15, 1 attempts)
+- What was tried: Treating the merged registry as a rewriteable substitute for lineage state logs or append-only deltas. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1096-1127,1149-1169`; [INFERENCE: based on read-only state consumption and registry-only output writes]]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating the merged registry as a rewriteable substitute for lineage state logs or append-only deltas. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1096-1127,1149-1169`; [INFERENCE: based on read-only state consumption and registry-only output writes]]
 
 <!-- /ANCHOR:exhausted-approaches -->
 
@@ -300,6 +322,10 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - The initial broad recursive search for the pivot symbol exceeded the command timeout. A direct `find` over `.opencode` and file-scoped `grep` recovered the canonical research adapter path without retrying the same broad search. (iteration 14)
 - Treating candidate preparation or seat output as authoritative focus mutation; the adapter returns preparation input and imports the separate divergent-pivot mechanics contract. [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:322-442] (iteration 14)
 - Treating rejected `wave`, `depends_on`, or `touches` metadata as if it already formed a graph scheduler; the runner explicitly falls back to `flat_pool`. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432] (iteration 14)
+- Making coverage-graph DB availability a prerequisite for fan-in correctness or replay parity. [SOURCE: `.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1592`; [INFERENCE: based on separate graph-convergence and filesystem fan-in commands]] (iteration 15)
+- None newly introduced. The prior iteration's direct-read gap for `fanout-merge.cjs` was resolved; the previously blocked database-first/live-graph path was not retried. (iteration 15)
+- Treating input/arrival order as the canonical merge order; the implementation sorts content, IDs, labels, and final output arrays. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:332-352,350-362`] (iteration 15)
+- Treating the merged registry as a rewriteable substitute for lineage state logs or append-only deltas. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1096-1127,1149-1169`; [INFERENCE: based on read-only state consumption and registry-only output writes]] (iteration 15)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -356,6 +382,9 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - The complete 024 caller migration evidence and owner-approved accounting for 034 and 036-046 remain outside this focus. (iteration 13)
 - Canonical reducer snapshot serialization and production convergence parity remain unexecuted. (iteration 13)
 - Branch-to-join replay and fanout-merge ordering remain to be verified (see state record). (iteration 14)
+- The complete 024 caller-migration verification and owner-approved accounting for 034 and 036-046 remain outside this focus. (iteration 15)
+- An implementation owner still needs to execute a small deterministic replay fixture with two or more lineages, same-content duplicates, same-ID conflicts, missing registries, salvaged findings, and shuffled input order. (iteration 15)
+- Canonical reducer snapshot serialization and production parity remain unexecuted; graph-database unavailability must be covered as a graph-off fixture case. (iteration 15)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -363,7 +392,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Branch-to-join replay and fanout-merge ordering remain to be verified (see state record).
+Canonical reducer snapshot serialization and production parity remain unexecuted; graph-database unavailability must be covered as a graph-off fixture case.
 
 <!-- /ANCHOR:next-focus -->
 

@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Current status of the system-deep-loop system and what the 036-deep-loop-innovation changes introduce; how to evolve deep-loop workflows into graph-engineering-based loops aligned with the GraphARC and graph-engineering-master repositories and the LangChain graph concepts
 - Started: 2026-08-08T12:02:10.087Z
 - Status: INITIALIZED
-- Iteration: 14 of 20
+- Iteration: 15 of 20
 - Session ID: 27ce8e25-71b5-4732-bbf1-f6acf6bbebb4
 - Parent Session: none
 - Lifecycle Mode: new
@@ -45,9 +45,10 @@ Reducer-generated observability surface for the active research packet.
 | 12 | Adapter/replay fixture + parity gates + 024 append-boundary fencing verification | adapter-replay-parity | 0.80 | 5 | complete |
 | 13 | Convergence as graph analysis: compare coverage-graph convergence with the inline three-signal vote and define graph termination and replay conditions. | convergence-graph-analysis | 0.80 | 5 | complete |
 | 14 | Fan-out and lineage as graph branches | fanout-lineage | 0.80 | 5 | complete |
+| 15 | Fan-in verification + replay semantics: fanout-merge.cjs ordering, conflict/provenance behavior, registry/state boundaries, DB-independent branch-to-join replay | fan-in-replay | 0.90 | 5 | complete |
 
-- iterationsCompleted: 14
-- keyFindings: 90
+- iterationsCompleted: 15
+- keyFindings: 95
 - openQuestions: 5
 - resolvedQuestions: 0
 
@@ -74,15 +75,14 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: █▆▅▆▇█▇▆▆▆▅▅▃▁▁▂▃▃▃▃
-- score sparkline: █▆▅▆▇█▇▆▆▆▅▅▃▁▁▂▃▃▃▃
-- Last 3 ratios: 0.80 -> 0.80 -> 0.80
+- newInfoRatio sparkline: █▆▅▆█▇▆▅▆▆▅▄▁▁▂▃▃▃▄▇
+- score sparkline: █▆▅▆█▇▆▅▆▆▅▄▁▁▂▃▃▃▄▇
+- Last 3 ratios: 0.80 -> 0.80 -> 0.90
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.80
-- coverageBySources: {"code":122,"docs.langchain.com":4,"langchain-ai.github.io":1,"other":57,"raw.githubusercontent.com":1}
-- Advisory event: trend_flatline metric=newInfoRatio run=14 window=3 sparkline=▄▄▄
-- Advisory event: trend_flatline metric=score run=14 window=3 sparkline=▄▄▄
+- convergenceScore: 0.90
+- coverageBySources: {"code":127,"docs.langchain.com":4,"langchain-ai.github.io":1,"other":59,"raw.githubusercontent.com":1}
+- Advisory events: none
 
 <!-- /ANCHOR:trend -->
 <!-- ANCHOR:dead-ends -->
@@ -119,6 +119,10 @@ Reducer-generated observability surface for the active research packet.
 - The initial broad recursive search for the pivot symbol exceeded the command timeout. A direct `find` over `.opencode` and file-scoped `grep` recovered the canonical research adapter path without retrying the same broad search. (iteration 14)
 - Treating candidate preparation or seat output as authoritative focus mutation; the adapter returns preparation input and imports the separate divergent-pivot mechanics contract. [SOURCE: .opencode/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts:322-442] (iteration 14)
 - Treating rejected `wave`, `depends_on`, or `touches` metadata as if it already formed a graph scheduler; the runner explicitly falls back to `flat_pool`. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432] (iteration 14)
+- Making coverage-graph DB availability a prerequisite for fan-in correctness or replay parity. [SOURCE: `.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1592`; [INFERENCE: based on separate graph-convergence and filesystem fan-in commands]] (iteration 15)
+- None newly introduced. The prior iteration's direct-read gap for `fanout-merge.cjs` was resolved; the previously blocked database-first/live-graph path was not retried. (iteration 15)
+- Treating input/arrival order as the canonical merge order; the implementation sorts content, IDs, labels, and final output arrays. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:332-352,350-362`] (iteration 15)
+- Treating the merged registry as a rewriteable substitute for lineage state logs or append-only deltas. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1096-1127,1149-1169`; [INFERENCE: based on read-only state consumption and registry-only output writes]] (iteration 15)
 
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:divergent-pivots -->
@@ -133,7 +137,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Branch-to-join replay and fanout-merge ordering remain to be verified (see state record).
+Canonical reducer snapshot serialization and production parity remain unexecuted; graph-database unavailability must be covered as a graph-off fixture case.
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

@@ -305,6 +305,21 @@
       "text": "Branch-to-join replay and fanout-merge ordering remain to be verified (see state record).",
       "addedAtIteration": 14,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "The complete 024 caller-migration verification and owner-approved accounting for 034 and 036-046 remain outside this focus.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "An implementation owner still needs to execute a small deterministic replay fixture with two or more lineages, same-content duplicates, same-ID conflicts, missing registries, salvaged findings, and shuffled input order.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Canonical reducer snapshot serialization and production parity remain unexecuted; graph-database unavailability must be covered as a graph-off fixture case.",
+      "addedAtIteration": 15,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -1814,6 +1829,61 @@
         "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103`",
         "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events`"
       ]
+    },
+    {
+      "id": "finding-15-4-p1-a-deterministic-branch-to-join-replay-should-treat-the-merged-registry-as-a-p",
+      "text": "**[P1] A deterministic branch-to-join replay should treat the merged registry as a projection, not as the event ledger.** Replay should enumerate lineage labels in sorted order, read each lineage's state log and iteration files without renumbering or collapsing source paths, normalize/reconstruct the lineage registry, merge findings/questions/directions with the comparator and conflict rules above, and retain `_lineages` plus conflict peers as provenance. The graph join can represent `branch -> lineage delta -> normalized registry -> merged registry` edges and attach each finding to its source lineage; it must not infer missing execution events from a merged finding or replace the append-only lineage records. This follows the workflow's stable lineage-state counting and full-source-path preservation requirements. [SOURCE: `.opencode/commands/deep/assets/deep-research-auto.yaml:1594-1626`; SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:667-729,1096-1127`; [INFERENCE: based on the explicit read-only state inputs, sorted merge comparator, `_lineages`, and conflict markers]]",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:146-205,249-267,318-420,428-557,632-729,742-823,1057-1169`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1667,1818-1868`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-014.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior graph-convergence and graph-upsert skipped events`"
+      ]
+    },
+    {
+      "id": "finding-15-2-p1-duplicate-and-conflict-semantics-preserve-both-same-id-claims-when-content-di",
+      "text": "**[P1] Duplicate and conflict semantics preserve both same-ID claims when content differs.** In the default merge mode, findings are bucketed by `id` (or `findingId` for review); same-content duplicates collapse and union sorted lineage labels. Same-ID/different-content variants are content-sorted, receive deterministic synthetic IDs containing a short content digest, retain `_conflictOf`/`_conflict_id`, and receive reciprocal `_conflicts` entries with `relation: 'CONTRADICTS'`, peer IDs, peer lineages, and the `same-id-different-content` basis. Optional near-duplicate mode adds title-aware matching; review merge additionally chooses the strongest severity for an equivalent active finding and computes P0→`FAIL`, P1→`CONDITIONAL`, otherwise `PASS`. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:249-267,318-326,382-420,428-476,496-541,742-823`]",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:146-205,249-267,318-420,428-557,632-729,742-823,1057-1169`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1667,1818-1868`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-014.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior graph-convergence and graph-upsert skipped events`"
+      ]
+    },
+    {
+      "id": "finding-15-1-p1-fan-in-output-order-is-deterministic-and-is-not-arrival-order-dependent-fanou",
+      "text": "**[P1] Fan-in output order is deterministic and is not arrival-order dependent.** `fanout-merge.cjs` sorts lineage directory labels before loading them, sorts each merged record by normalized content and then the selected ID keys, and applies the same comparator to the final flattened finding arrays. Research `mergedFrom`, question collections, and ruled-out directions are therefore emitted in stable order; each `_lineages` array is also sorted. The ordering contract is content-first/ID-tiebreak, not “first branch wins.” [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:332-352,350-362,479-493,543-557,632-712,1080-1089`]",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:146-205,249-267,318-420,428-557,632-729,742-823,1057-1169`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1667,1818-1868`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-014.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior graph-convergence and graph-upsert skipped events`"
+      ]
+    },
+    {
+      "id": "finding-15-3-p1-the-merge-consolidates-registries-and-attribution-while-lineage-state-logs-re",
+      "text": "**[P1] The merge consolidates registries and attribution, while lineage state logs remain read-only evidence inputs.** The main path reads each lineage registry, compatibility registry, state log, and iteration markdown; if a leaf lineage lacks a usable registry, it reconstructs a minimal registry from its state/iteration evidence. It then writes only the base merged registry (plus the research compatibility registry) and `fanout-attribution.md` atomically. There is no state-log write in this script: `deep-research-state.jsonl` and lineage iteration files are consumed to reconstruct findings and metrics, not rewritten by fan-in. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:146-205,1057-1140,1142-1169`]",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:146-205,249-267,318-420,428-557,632-729,742-823,1057-1169`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1667,1818-1868`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-014.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior graph-convergence and graph-upsert skipped events`"
+      ]
+    },
+    {
+      "id": "finding-15-5-p2-the-fan-in-contract-is-db-independent-fanout-merge-cjs-depends-on-filesystem-",
+      "text": "**[P2] The fan-in contract is DB-independent.** `fanout-merge.cjs` depends on filesystem validation, JSON/JSONL parsing, hashing, and atomic state/text writers; it does not import or call the coverage-graph database or the graph-convergence command. The workflow invokes coverage-graph convergence separately before the inline vote, while synthesis invokes fan-in as its own completed command. Therefore registry merge, conflict preservation, lineage attribution, and replay-fixture parity can be tested with graph storage unavailable; DB availability remains optional telemetry rather than a correctness precondition. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:24-38,1057-1059,1149-1169`; SOURCE: `.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1592`; [INFERENCE: comparing the independent filesystem merge path with the separately invoked graph-convergence step]]",
+      "addedAtIteration": 15,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:146-205,249-267,318-420,428-557,632-729,742-823,1057-1169`",
+        "`.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1667,1818-1868`",
+        "`specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-014.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior graph-convergence and graph-upsert skipped events`"
+      ]
     }
   ],
   "ruledOutDirections": [
@@ -2008,6 +2078,30 @@
       "text": "Treating rejected `wave`, `depends_on`, or `touches` metadata as if it already formed a graph scheduler; the runner explicitly falls back to `flat_pool`. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:332-432]",
       "contentHash": "1639ecbe6426",
       "addedAtIteration": 14
+    },
+    {
+      "id": "ruled-out-556a276cc31c",
+      "text": "Making coverage-graph DB availability a prerequisite for fan-in correctness or replay parity. [SOURCE: `.opencode/commands/deep/assets/deep-research-auto.yaml:608-619,1584-1592`; [INFERENCE: based on separate graph-convergence and filesystem fan-in commands]]",
+      "contentHash": "556a276cc31c",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-3f93d4b2e22b",
+      "text": "None newly introduced. The prior iteration's direct-read gap for `fanout-merge.cjs` was resolved; the previously blocked database-first/live-graph path was not retried.",
+      "contentHash": "3f93d4b2e22b",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-0cb7dbb7dc6a",
+      "text": "Treating input/arrival order as the canonical merge order; the implementation sorts content, IDs, labels, and final output arrays. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:332-352,350-362`]",
+      "contentHash": "0cb7dbb7dc6a",
+      "addedAtIteration": 15
+    },
+    {
+      "id": "ruled-out-994af15714be",
+      "text": "Treating the merged registry as a rewriteable substitute for lineage state logs or append-only deltas. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1096-1127,1149-1169`; [INFERENCE: based on read-only state consumption and registry-only output writes]]",
+      "contentHash": "994af15714be",
+      "addedAtIteration": 15
     }
   ],
   "rejectedPatterns": [],
@@ -2038,22 +2132,22 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 14,
+    "iterationsCompleted": 15,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 36,
-    "keyFindings": 90,
+    "carriedForwardOpenQuestions": 39,
+    "keyFindings": 95,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
     "promotedIdeas": 0,
     "suppressedIdeas": 0,
-    "convergenceScore": 0.8,
+    "convergenceScore": 0.9,
     "coverageBySources": {
-      "code": 122,
+      "code": 127,
       "docs.langchain.com": 4,
       "langchain-ai.github.io": 1,
-      "other": 57,
+      "other": 59,
       "raw.githubusercontent.com": 1
     },
     "completedPivots": 0,
@@ -2064,30 +2158,5 @@
   "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-deep-loop/037-graph-engineering/research/inbox.jsonl",
   "inboxWarnings": [],
   "status": "INITIALIZED",
-  "advisoryEvents": [
-    {
-      "type": "event",
-      "event": "trend_flatline",
-      "mode": "research",
-      "severity": "advisory",
-      "metric": "newInfoRatio",
-      "run": 14,
-      "window": 3,
-      "value": 0.8,
-      "sparkline": "▄▄▄",
-      "timestamp": "2026-08-08T13:45:58.000Z"
-    },
-    {
-      "type": "event",
-      "event": "trend_flatline",
-      "mode": "research",
-      "severity": "advisory",
-      "metric": "score",
-      "run": 14,
-      "window": 3,
-      "value": 0.8,
-      "sparkline": "▄▄▄",
-      "timestamp": "2026-08-08T13:45:58.000Z"
-    }
-  ]
+  "advisoryEvents": []
 }
