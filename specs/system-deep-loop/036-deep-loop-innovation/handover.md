@@ -160,20 +160,17 @@ The pre-014 verdict `010d145b9a` (and any "WS1 cleared the blockers" claim) is R
   red-before (superseded writer CAN append today) → green-after (it CANNOT); prove no cast-reachable
   `appendAuthorized`. NOTE 024's own LUNA review lists a DIFFERENT P0 triple (F001 gateway identity /
   F002 policy-closure-state / F005 loop-lock) — reconcile which finding set is authoritative before building.
-- **022 — 2/6 modes built + LANDED, 4 blocked/harder.** deep-ai-council (`8b6b7b1f7e`) + agent-improvement
-  (`16b13faecf`) now derive the ledger side from the reducer's typed projection state (independent of the
-  legacy raw-event scan); each has a red-before/green-after divergence test that fails the rebuilt harness.
-  **model-benchmark + skill-benchmark: BLOCKED — reducer lossiness.** Making the ledger side genuinely
-  independent revealed the reducers do NOT persist fields the legacy derivation needs (`sharedServiceRefs`
-  — fires in EVERY model-benchmark fixture; `outcomeDigest` for skill-benchmark), so the ledger projection
-  can't match legacy on identical inputs and the parity test goes RED (verified: 2 failed / 37 passed). This
-  needs an OPERATOR DESIGN DECISION: (a) change the reducer to persist those fields (bigger blast radius,
-  touches production runtime), OR (b) scope the comparator to exclude them (a call about what the "protected
-  semantic surface" is), OR (c) accept the harness flags them as a real reducer-lossiness finding. Converter
-  work preserved at `/tmp/ks/022-mb-sb-converters.patch` (1003 lines) for the reducer-fix path; reverted from
-  the worktree (not landable RED). **deep-alignment + deep-review: not attempted** — deep-alignment needs a
-  from-scratch legacy oracle (no reusable hand-scan); deep-review needs its reducer-exception-laundering
-  removed AND a converter (its ~150 lines of dead code use the wrong deep-research schema).
+- **022 — 4/6 modes built + verified + LANDED; 2 harder remain.** council (`8b6b7b1f7e`), agent-improvement
+  (`16b13faecf`), model-benchmark + skill-benchmark (`f4a4cbe335`) all derive the ledger side independently
+  with red-before/green-after divergence tests (39/39, 19/19 etc.). The model-benchmark/skill-benchmark
+  reducer-lossiness design decision was RESOLVED by GPT-5.6-SOL: 4 model-benchmark service fields are
+  incidental (scoped out of the comparator); skill-benchmark evidence digests are load-bearing (reducer
+  fixed to persist them, `54ba83e7a3` — a real cutover-safety improvement, the reducer was dropping audit
+  digests). Honest residual: skill-benchmark `certificateEvidenceDigests` still unrecoverable (reducer never
+  persists it; out of scope; not fixture-exercised). **REMAINING 2 modes (harder):** deep-alignment needs a
+  from-scratch legacy oracle (no reusable hand-scan — may hit its own reducer-lossiness); deep-review needs
+  its reducer-exception-laundering removed AND a converter (~150 lines of dead code use the wrong
+  deep-research schema).
 RECOMMENDATION (honest): do NOT rush 024 at extreme session depth — it is the epic's biggest security-
 critical migration and was FABRICATED the last time it was rushed. Build it fresh, staged, with the
 verify-against-code discipline that caught all 5 fabrications this session. 022 can go first (bounded).
