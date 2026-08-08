@@ -35,7 +35,7 @@
       "test"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -160,13 +160,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Six",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
+        "name": "Problem Statement Six",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
     "created_at": "2026-07-31T01:25:19.594Z",
-    "last_save_at": "2026-08-08T06:44:47.198Z",
+    "last_save_at": "2026-08-08T08:24:13.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53db3f6c7beb87e13b76ee842852151805e0f4e88571d2a9137c696e6fecbff6",
+    "source_fingerprint": "sha256:f7acd74f273281484b2149553f79ad3da2dcb00cf5c6623191a251eabc18cf85",
     "source_doc_hashes": {
-      "spec.md": "9799e159844defb57d9b29387f957ab11932d62a283a605de911cc11561ec9e6",
+      "spec.md": "380709eee0fb6fd6bd9384b3c055eac4ca2883ae3dda56698eea98d1f6624b96",
       "plan.md": "dea3cde6029f01745e99170bfdb89d6a65209ee9915598d082d3da0fe634ba9a",
       "tasks.md": "b56b42a67860b1b449863e1254132decea4bcdbf81e60bf00de2ff570f7a3c53",
       "checklist.md": "84d4e46d162e588681739bf08b4a31ed7d59b3725de3ca4155b848efb607db08",
       "decision-record.md": "6108bf88d41302077e8776deabdcfdd9be46b9b32aaa9b7c15a02b7230d7a36e",
-      "implementation-summary.md": "42c2ebe6c2cf2cec5a3c0d28e9aa211083e55c449100c28912e014bf7c246671"
+      "implementation-summary.md": "9afb891d0d42d24a120d2edd33a0a6f5c57041233e66bbfb0351d0cf328f3fce"
     },
     "last_active_child_id": null,
     "last_active_at": null

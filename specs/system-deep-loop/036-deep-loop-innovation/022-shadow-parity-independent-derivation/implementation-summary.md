@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Shadow Parity Independent Derivation"
-description: "Verification against runtime HEAD confirms this packet is genuinely unbuilt: all six shadow-parity harness adapters still derive both comparison sides from the same code path, and no divergence-injection test exists."
+description: "1 of 6 shadow-parity modes built + verified: deep-ai-council now derives its ledger side from the reducer's typed state (councilProjectionFromReducerState), independent of the legacy raw-event scan; a divergence-injection test fails the rebuilt harness where a shared-derivation harness could not, identical inputs still pass (tsc rc0, 41/41). Five modes remain unbuilt, each needing its own from-scratch converter."
 trigger_phrases:
   - "shadow parity independent derivation implementation"
   - "blocker 1 parity harness not built"
@@ -13,17 +13,17 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/022-shadow-parity-independent-derivation"
     last_updated_at: "2026-08-08T03:30:00Z"
     last_updated_by: "claude"
-    recent_action: "Verified vs HEAD: zero adapter/test diffs; council adapter confirmed still same-derivation"
-    next_safe_action: "Run T001, enumerate surfaces, build the comparator, land the six adapters + divergence tests"
+    recent_action: "Built+verified deep-ai-council independent derivation; divergence test fails harness (1/6)"
+    next_safe_action: "Build 5 remaining modes' independent converters; deep-review needs exception-laundering fix"
     blockers:
-      - "No code work has started. This packet's own docs already say Planned/0%, and that is accurate."
+      - "Blocker 1 NOT fully discharged: 1/6 modes done, 5 remain (each needs its own independent oracle)"
     key_files:
       - "implementation-summary.md"
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts"
-    completion_pct: 0
+    completion_pct: 17
     open_questions: []
     answered_questions:
-      - "Is Blocker 1 discharged? No. All six adapters are diff-identical to HEAD except trivial unrelated one/two-line additions; zero divergence-injection tests exist anywhere in the test tree."
+      - "Is Blocker 1 discharged? Partially — 1 of 6 modes (deep-ai-council) built + verified with a real red-before/green-after divergence test; 5 modes remain unbuilt."
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -35,8 +35,8 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 022-shadow-parity-independent-derivation |
 | **Level** | 3 |
-| **Status** | Planned (unchanged — this packet's own docs already state this accurately) |
-| **Re-verified** | 2026-08-08 |
+| **Status** | In Progress (1/6 modes built + verified: deep-ai-council; 5 remain) |
+| **Updated** | 2026-08-08 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -44,25 +44,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing. This packet's `spec.md` (Status: Planned, `completion_pct: 0`), `checklist.md` (0/20 P0, 0/20 P1, "Verification Date: not yet run"), `tasks.md` (all 21 tasks unchecked), and `decision-record.md` (ADR-001 and ADR-002 both `Proposed`, never `Accepted`) all already report this accurately — that is why this packet has no `implementation-summary.md` to date, not because one was lost. This document confirms that self-report against the actual runtime code rather than assuming it.
+**1 of 6 shadow-parity modes — deep-ai-council (F-006-01) — built and verified.** The other five modes remain unbuilt (see Known Limitations).
 
-Verification method: `git diff --stat` against HEAD for all six harness adapters and all six corresponding vitest suites named in `spec.md` §3 "Files to Change," plus a direct read of the council adapter's implementation around the cited `F-006-01` anchor, plus one live test run.
+Before: `councilLedgerProjection` folded the reducer only to validate `outcome === 'projected'`, then discarded `folded.projection` and called the SAME `councilProjectionFromEvents(...)` raw-event hand-scan that `councilLegacyProjection` calls (differing only by a `'ledger'`/`'legacy'` string) — so the harness compared a projection to a near-copy of itself and could not detect a reducer-internal divergence (the F-006-01 defect).
 
-### Confirmed: all six adapters are functionally untouched
+After: a new independent converter `councilProjectionFromReducerState` (~200 lines) derives every field of the ledger-side projection from the reducer's own typed `DeepAiCouncilProjectionState` (`run`, `councilSeats`, `critique`, `blindedAdjudication`, `convergence`, `artifacts`, `testGate`, `status.provenance`, `seenEvents`) — with no path back into the raw event array. `councilLedgerProjection` now folds first, throws if the fold is not `'projected'`, and returns `councilProjectionFromReducerState(folded.projection, …)`. The legacy side keeps the independent raw-event hand-scan, so the two sides now derive by genuinely different code paths.
 
-| Adapter | `git diff --stat` vs HEAD |
-|---|---|
-| `deep-ai-council-shadow-parity/harness-adapter.ts` | 2 lines (adds a `capturedAuthorizationState` field to an unrelated policy-registry call, not parity logic) |
-| `deep-alignment-shadow-parity/harness-adapter.ts` | 2 lines, same unrelated pattern |
-| `agent-improvement-shadow-parity/harness-adapter.ts` | 1 line, same unrelated pattern |
-| `model-benchmark-shadow-parity/harness-adapter.ts` | 1 line, same unrelated pattern |
-| `skill-benchmark-shadow-parity/harness-adapter.ts` | 1 line, same unrelated pattern |
-| `deep-review-shadow-parity/harness-adapter.ts` | 2 lines, same unrelated pattern |
-| All six corresponding `tests/unit/*-shadow-parity.vitest.ts` files | Zero diff — no divergence-injection test was added to any of them |
-
-### Confirmed directly: the F-006-01 defect is unchanged
-
-Read `deep-ai-council-shadow-parity/harness-adapter.ts` at the cited anchor. `councilLedgerProjection` folds the reducer only to check `folded.outcome !== 'projected'` (a validity check), then discards `folded.projection` and calls `councilProjectionFromEvents(events, resumeEvidence, 'ledger')` — the exact same function `councilLegacyProjection` calls with `'legacy'` in place of `'ledger'`. Both paths run identical logic with a different literal string argument. This is precisely the mechanism `F-006-01` describes as CONFIRMED, and it is unchanged in the working tree.
+Red-before / green-after (verified against the real pre-fix code, not simulated): with the reducer fold's `testGate.verdict` mocked `pass`→`fail`, the PRE-fix harness reported `ok: true` (byte-identical digests — could not see the divergence); the REBUILT harness reports `ok: false`, `divergence.class === 'projection-semantic'`, `certificateStatus: 'refused'`. A paired test confirms identical (uncorrupted) inputs still report `ok: true` / `certificateStatus: 'issued'`. One real field-fidelity gap (`roundIds` before `round_started`) was found empirically by diffing intermediate projections across event-counts 0–13 and fixed (union in `state.run.roundId`); 0 differences remain on the identical-input path.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -70,7 +58,7 @@ Read `deep-ai-council-shadow-parity/harness-adapter.ts` at the cited anchor. `co
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. This is a verification-only pass: `git diff --stat` per file listed in `spec.md` §3, a direct read of the council adapter's source at the cited defect location, and one live `vitest` run of the council suite (the smallest, fastest of the six) to confirm the existing tests still pass — passing is expected and uninformative, since the packet's own thesis is that this harness cannot fail regardless of whether the underlying projections diverge.
+The deep-ai-council mode was delivered T001-confirm-first, red-before → green-after: the defect was reproduced against the real pre-fix code (a mocked reducer-internal divergence the old harness reported as parity-pass), the independent converter was built, and the same injection now fails the harness while identical inputs still pass. `tsc --noEmit` rc 0; `deep-ai-council-shadow-parity.vitest.ts` 41/41; `authorized-ledger.vitest.ts` 28/28 (no regression). The scoped diff touches only the council harness adapter and its test. The other five modes were surveyed but not built — see Known Limitations.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,11 +79,13 @@ Not delivered. This is a verification-only pass: `git diff --stat` per file list
 
 | Check | Result |
 |-------|--------|
-| `git diff --stat` for all 6 harness adapters named in `spec.md` §3 | 5 of 6 files: 1-2 line diffs, all unrelated to parity derivation (a `capturedAuthorizationState` field added to a policy-registry constructor call, consistent with unrelated work from packet 024). 0 of 6 show any restructuring of the ledger/legacy projection paths. |
-| `git diff --stat` for all 6 corresponding `*-shadow-parity.vitest.ts` files | Zero diff on all 6. No divergence-injection test exists anywhere. |
-| Direct read of `deep-ai-council-shadow-parity/harness-adapter.ts` at the `F-006-01` anchor | Confirms `councilLedgerProjection` and `councilLegacyProjection` both call `councilProjectionFromEvents`, differing only in a literal `'ledger'`/`'legacy'` path argument — the same-derivation defect is unchanged. |
-| `git checkout -- database/ && node_modules/.bin/vitest run --no-coverage tests/unit/deep-ai-council-shadow-parity.vitest.ts` | **39/39 passed** (128s). Expected and uninformative: the packet's own thesis is that this harness cannot fail, so a green run proves nothing about independent derivation. |
-| `rg` for a divergence-injection test name pattern across `runtime/tests` | No matches for any of the six modes. |
+| `tsc --noEmit -p tsconfig.json` from `runtime/` | rc 0 |
+| `deep-ai-council-shadow-parity.vitest.ts` (incl. the new divergence-injection test) | 41/41 passed (144s) |
+| `authorized-ledger.vitest.ts` (regression) | 28/28 passed |
+| Red-before (pre-fix harness restored from HEAD, reducer `testGate.verdict` mocked pass→fail) | reported `ok: true` (byte-identical digests) — could NOT detect the reducer-internal divergence |
+| Green-after (rebuilt harness, same injection) | `ok: false`, `divergence.class: 'projection-semantic'`, `certificateStatus: 'refused'`; identical inputs still `ok: true` / `issued` |
+| Independent-derivation check | ledger side derives from `folded.projection` via `councilProjectionFromReducerState`; legacy side keeps the raw-event hand-scan — two distinct code paths |
+| Other 5 modes (deep-alignment, agent-improvement, model-benchmark, skill-benchmark, deep-review) | Not built — still same-derivation (see Known Limitations) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -103,7 +93,9 @@ Not delivered. This is a verification-only pass: `git diff --stat` per file list
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Blocker 1 is not discharged.** All six shadow-parity harnesses still compare a projection to a near-copy of itself. A planted semantic divergence would not make any of the six harnesses fail, because the "legacy" and "ledger" sides are not independently derived.
-2. **This pass did not run the other five adapters' live test suites** (alignment, agent-improvement, model-benchmark, skill-benchmark, deep-review) — the `git diff --stat` zero-diff result on both the adapter and its test file is sufficient to conclude no divergence-injection test exists for any of them, without needing to also run the (slow, ~130s each) pre-existing suites.
-3. **No T001 confirm-before-build pass has been run.** All 6 findings remain in their original `spec.md` classification (2 CONFIRMED, 4 unverified). A future build pass should start there.
+1. **Blocker 1 is NOT fully discharged — 1 of 6 modes done.** deep-ai-council now derives independently and its harness fails on injected divergence. The other five modes still compare a projection to a near-copy of itself and would not fail on a planted divergence:
+   - **agent-improvement, model-benchmark, skill-benchmark** — same defect shape as council (fold, discard, call the shared hand-scan) and a reusable independent legacy oracle exists; each is fixable with a pilot-equivalent converter over its own large typed-projection schema (comparable effort to the pilot each).
+   - **deep-alignment** — both sides call the same `projectionView(foldProjection(events))`; there is no existing raw-event hand-scan to reuse as an independent oracle, so it needs a from-scratch legacy oracle (larger effort).
+   - **deep-review** — worst shape: `ledgerProjection` launders a reducer exception straight into legacy success, and on a successful fold only spot-checks 5 fields then returns the legacy projection anyway; ~150 lines of dead copy-paste code use the wrong (deep-research) schema and are unusable. Needs the exception-laundering removed AND a genuine from-scratch converter.
+2. **Full 022 discharge requires the 5 remaining converters**, each verified the same way (an injected divergence must fail the harness; identical inputs must still pass). The pilot showed even a careful field-by-field mapping can miss one real semantic gap that only surfaces by diffing actual computed output — so each remaining mode needs its own empirical intermediate-state diff, not just inspection.
 <!-- /ANCHOR:limitations -->

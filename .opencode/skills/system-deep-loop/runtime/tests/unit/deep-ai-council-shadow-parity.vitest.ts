@@ -42,6 +42,7 @@ import {
   runDeepAiCouncilParityCase,
   verifyDeepAiCouncilLifecycleEventMap,
 } from '../../lib/deep-ai-council-shadow-parity/index.js';
+import * as deepAiCouncilReducers from '../../lib/deep-ai-council-reducers/index.js';
 import {
   REPLAY_FINGERPRINT_ATTESTATION_EVENT_TYPE,
 } from '../../lib/replay-fingerprint/index.js';
@@ -1524,6 +1525,63 @@ describe('deep-ai-council shadow parity', () => {
     },
     30_000,
   );
+
+  it('fails on a reducer-internal divergence a shared-derivation harness could not see', async () => {
+    // Corrupt only the real reducer's own typed fold output (never the raw
+    // event stream both paths read). A harness whose ledger side re-derives
+    // from the same raw events as the legacy oracle — instead of from this
+    // fold result — cannot observe this at all, so it reports parity PASS
+    // despite the reducer having computed a wrong verdict. The rebuilt
+    // harness must FAIL here.
+    const realFold = deepAiCouncilReducers.foldDeepAiCouncilEvents;
+    const foldSpy = vi.spyOn(deepAiCouncilReducers, 'foldDeepAiCouncilEvents').mockImplementation(
+      (events, options) => {
+        const real = realFold(events, options);
+        if (real.outcome !== 'projected' || real.projection.testGate.verdict !== 'pass') {
+          return real;
+        }
+        return {
+          ...real,
+          projection: {
+            ...real.projection,
+            testGate: { ...real.projection.testGate, verdict: 'fail' },
+          },
+        };
+      },
+    );
+    try {
+      const fixture = parityFixture();
+      const sealed = await createParitySealedBoundary();
+      const manifest = targetedParityManifest(fixture);
+      const outcome = await runDeepAiCouncilParityCase({
+        manifest,
+        caseRun: await parityCaseRun(fixture, sealed),
+      });
+      expect(foldSpy).toHaveBeenCalled();
+      expect(outcome.result.ok, JSON.stringify(outcome.result)).toBe(false);
+      if (!outcome.result.ok) {
+        expect(outcome.result.divergence.class).toBe('projection-semantic');
+      }
+      expect(outcome.receipt).toMatchObject({
+        exitStatus: 'blocked',
+        certificateStatus: 'refused',
+      });
+    } finally {
+      foldSpy.mockRestore();
+    }
+  }, 30_000);
+
+  it('still reports parity PASS for identical inputs once the reducer fold is genuine again', async () => {
+    const fixture = parityFixture();
+    const sealed = await createParitySealedBoundary();
+    const manifest = targetedParityManifest(fixture);
+    const outcome = await runDeepAiCouncilParityCase({
+      manifest,
+      caseRun: await parityCaseRun(fixture, sealed),
+    });
+    expect(outcome.result, JSON.stringify(outcome.result)).toMatchObject({ ok: true });
+    expect(outcome.receipt).toMatchObject({ exitStatus: 'green', certificateStatus: 'issued' });
+  }, 30_000);
 
   it('rejects a fabricated certificate and a genuine certificate bound to another manifest', async () => {
     const fixture = parityFixture();

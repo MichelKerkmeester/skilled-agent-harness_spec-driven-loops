@@ -24,7 +24,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 0
+    completion_pct: 17
     open_questions:
       - "Does `assertLegacyProjectionMatchesCurrentState` become the shared comparator core, or does each mode keep its own oracle?"
       - "What is the complete protected semantic surface per mode that the comparator must cover?"
@@ -65,7 +65,7 @@ Blocker 1 is that shadow parity, the named precondition for every authority cuto
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | In Progress (1/6 modes built + verified: deep-ai-council independent-derivation; 5 remain) |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

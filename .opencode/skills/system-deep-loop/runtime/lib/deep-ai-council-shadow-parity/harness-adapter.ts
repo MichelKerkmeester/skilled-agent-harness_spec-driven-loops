@@ -86,6 +86,7 @@ import type {
 } from '../deep-ai-council-ledger-schema/index.js';
 import type {
   DeepAiCouncilProjectionState,
+  DeepAiCouncilSeenEvent,
 } from '../deep-ai-council-reducers/index.js';
 import type {
   EventEnvelope,
@@ -1250,17 +1251,223 @@ function councilLegacyProjection(
   return councilProjectionFromEvents(events, resumeEvidence, 'legacy');
 }
 
+/**
+ * Recover the artifact this seen event produced by reading the reducer's own
+ * typed record for it, never the raw event payload. A record that does not
+ * exist for a given seen event (a stem the reducer does not persist into a
+ * dedicated collection) yields no artifact row, mirroring the legacy scan.
+ */
+function reducerArtifactEntry(
+  seenEvent: DeepAiCouncilSeenEvent,
+  state: DeepAiCouncilProjectionState,
+): DeepAiCouncilProjectionArtifact | null {
+  switch (seenEvent.stem) {
+    case 'ai_council.proposal_observed': {
+      const record = state.councilSeats.proposals.find(
+        (proposal) => proposal.observedEventId === seenEvent.eventId,
+      );
+      return record === undefined ? null : Object.freeze({
+        artifactKind: 'proposal',
+        digest: record.artifactDigest,
+        validityState: record.responseStatus === 'returned' ? 'valid' as const : 'unknown' as const,
+        receiptRefs: Object.freeze([record.usage.receiptRef]),
+      });
+    }
+    case 'ai_council.seat_returned': {
+      const record = state.councilSeats.proposals.find(
+        (proposal) => proposal.returnedEventId === seenEvent.eventId,
+      );
+      return record === undefined ? null : Object.freeze({
+        artifactKind: 'proposal',
+        digest: record.artifactDigest,
+        validityState: record.responseStatus === 'returned' ? 'valid' as const : 'unknown' as const,
+        receiptRefs: Object.freeze([record.usage.receiptRef]),
+      });
+    }
+    case 'ai_council.critique_recorded': {
+      const record = state.critique.critiques.find(
+        (critique) => critique.producerEventId === seenEvent.eventId,
+      );
+      return record === undefined ? null : Object.freeze({
+        artifactKind: 'critique',
+        digest: record.critiqueArtifactDigest,
+        validityState: 'valid' as const,
+        receiptRefs: Object.freeze([]),
+      });
+    }
+    case 'ai_council.candidate_blinded': {
+      const record = state.blindedAdjudication.candidates.find(
+        (candidate) => candidate.producerEventId === seenEvent.eventId,
+      );
+      return record === undefined ? null : Object.freeze({
+        artifactKind: 'candidate',
+        digest: record.artifactDigest,
+        validityState: 'valid' as const,
+        receiptRefs: Object.freeze([]),
+      });
+    }
+    case 'ai_council.deliberation_synthesized': {
+      const record = state.convergence.deliberations.find(
+        (deliberation) => deliberation.producerEventId === seenEvent.eventId,
+      );
+      return record === undefined ? null : Object.freeze({
+        artifactKind: 'synthesis',
+        digest: record.selectedPlanDigest,
+        validityState: record.planDisposition === 'selected' ? 'valid' as const : 'unknown' as const,
+        receiptRefs: Object.freeze([record.synthesisReceiptRef]),
+      });
+    }
+    case 'ai_council.artifact_committed':
+    case 'ai_council.artifact_superseded': {
+      const record = state.artifacts.records.find(
+        (artifact) => artifact.producerEventId === seenEvent.eventId,
+      );
+      return record === undefined ? null : Object.freeze({
+        artifactKind: record.artifactKind,
+        digest: record.contentDigest,
+        validityState: 'valid' as const,
+        receiptRefs: Object.freeze([]),
+      });
+    }
+    default:
+      return null;
+  }
+}
+
+/** Accumulate minority/contradiction refs across every adjudication and convergence
+ *  record the reducer persisted, reading only the typed record content. */
+function reducerAdjudicationAndConvergenceRefs(
+  state: DeepAiCouncilProjectionState,
+): Readonly<{ minorityRefs: readonly string[]; contradictionRefs: readonly string[] }> {
+  const minorityRefs: string[] = [];
+  const contradictionRefs: string[] = [];
+  for (const seenEvent of state.seenEvents) {
+    if (seenEvent.stem === 'ai_council.adjudication_decision') {
+      const record = state.blindedAdjudication.decisions.find(
+        (decision) => decision.producerEventId === seenEvent.eventId,
+      );
+      if (record !== undefined) {
+        minorityRefs.push(...record.minorityRefs);
+        contradictionRefs.push(...record.contradictionRefs);
+      }
+    }
+    if (
+      seenEvent.stem === 'ai_council.convergence_evaluated'
+      || seenEvent.stem === 'ai_council.convergence_blocked'
+    ) {
+      const record = state.convergence.evaluations.find(
+        (evaluation) => evaluation.producerEventId === seenEvent.eventId,
+      );
+      if (record !== undefined) {
+        minorityRefs.push(...record.minorityRefs);
+        contradictionRefs.push(...record.contradictionRefs);
+      }
+    }
+  }
+  return Object.freeze({
+    minorityRefs: Object.freeze(sortedUnique(minorityRefs)),
+    contradictionRefs: Object.freeze(sortedUnique(contradictionRefs)),
+  });
+}
+
+/** The reducer's own terminal status transition when the run reached one, otherwise
+ *  the same convergence-decision fallback the legacy scan uses. */
+function reducerTerminalDecision(
+  state: DeepAiCouncilProjectionState,
+  convergenceDecision: DeepAiCouncilParityProjection['convergenceDecision'],
+): DeepAiCouncilTerminalDecision {
+  const lastTransition = state.status.provenance.at(-1);
+  if (state.status.terminal && lastTransition?.producerStem === 'ai_council.council_complete') {
+    return lastTransition.state === 'complete'
+      ? 'completed'
+      : lastTransition.state as 'incomplete' | 'non-converged';
+  }
+  return convergenceDecision === 'converged' ? 'converged'
+    : convergenceDecision === 'non-converged' ? 'non-converged'
+      : convergenceDecision === 'incomplete' ? 'incomplete'
+        : convergenceDecision === 'blocked' ? 'blocked'
+          : 'active';
+}
+
+/**
+ * Derive the parity projection from the reducer's own typed fold output only.
+ *
+ * This never reads the raw event stream: every field is read off the typed
+ * collections the real reducer (`foldDeepAiCouncilEvents`) persisted, so a
+ * defect in the reducer's own field computation is visible here rather than
+ * being silently re-derived away by a second scan of the same events.
+ */
+function councilProjectionFromReducerState(
+  state: DeepAiCouncilProjectionState,
+  resumeEvidence: DeepAiCouncilResumeParityEvidence | null,
+  path: 'ledger',
+): DeepAiCouncilParityProjection {
+  const latestEvaluation = state.convergence.evaluations.at(-1) ?? null;
+  const latestDeliberation = state.convergence.deliberations.at(-1) ?? null;
+  const convergenceDecision = latestEvaluation?.decision ?? null;
+  const { minorityRefs, contradictionRefs } = reducerAdjudicationAndConvergenceRefs(state);
+  const artifacts = state.seenEvents
+    .map((seenEvent) => reducerArtifactEntry(seenEvent, state))
+    .filter((entry): entry is DeepAiCouncilProjectionArtifact => entry !== null)
+    .sort((left, right) => (
+      left.artifactKind.localeCompare(right.artifactKind)
+      || left.digest.localeCompare(right.digest)
+    ));
+  const hasGenerationEvent = state.seenEvents.some(
+    (seenEvent) => seenEvent.stem === 'ai_council.run_resumed'
+      || seenEvent.stem === 'ai_council.run_restarted',
+  );
+  return Object.freeze({
+    runId: state.run.runId,
+    roundId: state.run.roundId,
+    generation: state.run.generation,
+    roundIds: Object.freeze(sortedUnique([
+      ...state.councilSeats.rounds.map((round) => round.roundId),
+      // The run's current round is referenced in event scope from the first
+      // event onward, before that round's own round_started record lands.
+      ...(state.run.roundId === null ? [] : [state.run.roundId]),
+    ])),
+    seatIds: Object.freeze(sortedUnique(state.councilSeats.seats.map((seat) => seat.seatId))),
+    proposalIds: Object.freeze(sortedUnique(
+      state.councilSeats.proposals.map((proposal) => proposal.proposalId),
+    )),
+    critiqueRoundIds: Object.freeze(sortedUnique(
+      state.critique.rounds.map((round) => round.critiqueRoundId),
+    )),
+    candidateIds: Object.freeze(sortedUnique(
+      state.blindedAdjudication.candidates.map((candidate) => candidate.candidateId),
+    )),
+    judgmentIds: Object.freeze(sortedUnique(
+      state.blindedAdjudication.judgments.map((judgment) => judgment.judgmentId),
+    )),
+    minorityRefs,
+    contradictionRefs,
+    convergenceDecision,
+    convergenceOutcome: convergenceDecision === null || convergenceDecision === 'continue'
+      ? 'active'
+      : convergenceDecision,
+    synthesisInputDigest: latestDeliberation === null
+      ? null
+      : digest(latestDeliberation.inputEventRange),
+    selectedPlanDigest: latestDeliberation?.selectedPlanDigest ?? null,
+    testGateVerdict: state.testGate.verdict,
+    artifacts: Object.freeze(artifacts),
+    terminalDecision: reducerTerminalDecision(state, convergenceDecision),
+    resumeDecisionDigest: hasGenerationEvent
+      ? resumeDecisionDigest(resumeEvidence, path)
+      : null,
+  });
+}
+
 function councilLedgerProjection(
   events: readonly DeepAiCouncilLedgerEvent[],
   resumeEvidence: DeepAiCouncilResumeParityEvidence | null,
 ): DeepAiCouncilParityProjection {
-  if (events.length > 0) {
-    const folded = foldDeepAiCouncilEvents(events);
-    if (folded.outcome !== 'projected') {
-      throw new TypeError(`Ledger projection requires rebuild: ${folded.reasonCodes.join(',')}`);
-    }
+  const folded = foldDeepAiCouncilEvents(events);
+  if (folded.outcome !== 'projected') {
+    throw new TypeError(`Ledger projection requires rebuild: ${folded.reasonCodes.join(',')}`);
   }
-  return councilProjectionFromEvents(events, resumeEvidence, 'ledger');
+  return councilProjectionFromReducerState(folded.projection, resumeEvidence, 'ledger');
 }
 
 function replayState(
