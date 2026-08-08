@@ -365,6 +365,26 @@
       "text": "Canonical owner-approved accounting for 034 and 036-046 remains unresolved.",
       "addedAtIteration": 17,
       "source": "iteration-markdown"
+    },
+    {
+      "text": "Build and execute the deterministic research-mode fixture, including graph-off, malformed-event, partial-success, contradiction, and replay cases; compare the independent reducer and convergence oracles.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Restore a compatible coverage-graph database only for later enrichment validation; do not make it a Phase A/B prerequisite.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Freshly build and verify 024's gateway-only fence and its broad caller migration, including negative tests for stale/superseded writers.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Obtain an owner-approved manifest, deprecation record, or merge record for 034 and 036-046.",
+      "addedAtIteration": 18,
+      "source": "iteration-markdown"
     }
   ],
   "uncoveredQuestions": [
@@ -2110,6 +2130,71 @@
         "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill",
         "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/ (empty direct inventory)"
       ]
+    },
+    {
+      "id": "finding-18-3-p0-024-fencing-and-the-whole-system-clearance-must-precede-014-authority-cutover",
+      "text": "**[P0] 024 fencing and the whole-system clearance must precede 014 authority cutover; adapter design can proceed in parallel.** The current 036 handover identifies gateway-only append fencing and the F001/F002/F005 identity, policy-state, and fresh-lock conditions as unresolved cutover safety work. Therefore the graph adapter can be designed and exercised in shadow while WS1 remediation and the fresh 024 caller migration proceed, but it cannot authorize a write or a transition. The operational order is: finish/verify remediation, reconcile stale metadata, run the pre-014 whole-system gate on a frozen SHA, land and verify 024 fencing, then obtain an explicit 014 per-mode cutover decision. The sequencing document's `013 -> 014 -> 015 -> 016 -> 017` DAG describes the closeout path; the handover's current plan also uses a whole-system 016 clearance before 014 and a final 016 gate after 015, so those are two gate roles rather than permission to skip either. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83,109-160,181-186] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-012.md:Findings 1-2,5]",
+      "addedAtIteration": 18,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,109-160,181-186",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26,Per-phase gate contract",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md:Findings 1-6",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 1-7",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-012.md:Findings 1-5,Questions Remaining,Dead Ends",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
+      ]
+    },
+    {
+      "id": "finding-18-5-p1-convergence-graph-enrichment-is-deliberately-later-while-residual-safety-and-",
+      "text": "**[P1] Convergence-graph enrichment is deliberately later, while residual safety and ownership gaps remain release risks.** Prior state records show the coverage-graph database unavailable because of the native-module mismatch, so Phase A/B correctness must remain file/JSONL-based and DB-independent; the graph database can be restored as an optional projection and later source-diversity/coverage/contradiction signal only. The current handover still calls 024 a fresh, security-critical build and retains residual fixture coverage plus owner-approved accounting for 034 and 036-046 as open work. Consequently, database restoration, live fixture execution, and phase-ownership reconciliation are follow-up evidence gates, not reasons to block adapter design or reasons to claim cutover readiness. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:109-160,181-186] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md:Findings 5-6] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-012.md:Questions Remaining, Dead Ends]",
+      "addedAtIteration": 18,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,109-160,181-186",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26,Per-phase gate contract",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md:Findings 1-6",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 1-7",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-012.md:Findings 1-5,Questions Remaining,Dead Ends",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
+      ]
+    },
+    {
+      "id": "finding-18-4-p1-each-phase-needs-an-explicit-operator-gate-and-a-reversible-action-for-phase-",
+      "text": "**[P1] Each phase needs an explicit operator gate and a reversible action.** For Phase A, the operator approves the typed state/schema, packet-local scope, shadow flag, and deterministic corpus; rollback is disabling the adapter or reverting its additive commit, leaving legacy authority unchanged. For Phase B, the operator approves a frozen-baseline parity report with all artifact, reducer, convergence, and negative-fence rows passing; rollback disables shadow emission and retains the legacy path. For Phase C, the operator issues a per-mode GO only after 024/identity/policy/lock/frozen-SHA gates pass; rollback is the documented one-commit revert inside the rollback window, with the ledger remaining additive-dark until the flip is re-approved. For Phase D, the operator separately enables graph enrichment only after compatible database health and signal-correlation evidence; rollback disables enrichment and falls back to the established loop-local decision. These gates keep topology changes distinct from authority and serialization boundaries. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,109-160] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26,Per-phase gate contract] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 4-6] [INFERENCE: phase-by-phase gate and rollback table derived from the documented additive-dark and rollback-window rules]",
+      "addedAtIteration": 18,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,109-160,181-186",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26,Per-phase gate contract",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md:Findings 1-6",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 1-7",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-012.md:Findings 1-5,Questions Remaining,Dead Ends",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
+      ]
+    },
+    {
+      "id": "finding-18-2-p1-shadow-parity-is-a-promotion-gate-not-an-observability-suggestion-a-cutover-c",
+      "text": "**[P1] Shadow parity is a promotion gate, not an observability suggestion.** A cutover candidate must produce exactly one narrative, one canonical state iteration record, and one delta stream; preserve valid graph vocabulary and citations; reconstruct the same findings/questions/sources/edges; and match normalized reducer outputs plus status, stop reason, blockers, and `newInfoRatio` from the legacy path. The fixture must include malformed, partial-success, contradiction, replay, and graph-database-disabled cases. Any mismatch is a blocked result, not a tolerated warning. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 3-7] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-012.md:Findings 3-5] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:Per-phase gate contract]",
+      "addedAtIteration": 18,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,109-160,181-186",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26,Per-phase gate contract",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md:Findings 1-6",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 1-7",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-012.md:Findings 1-5,Questions Remaining,Dead Ends",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
+      ]
+    },
+    {
+      "id": "finding-18-1-p1-the-supported-transformation-is-a-four-phase-authority-preserving-path-phase-",
+      "text": "**[P1] The supported transformation is a four-phase, authority-preserving path.** Phase A is a research-mode graph adapter in additive-dark shadow: typed execution state and `graphEvents` bridge into the existing JSONL narrative/state/delta artifacts, with the legacy loop and evidence ledger still authoritative and no coverage-graph database requirement. Phase B adds shadow parity over those artifacts, reducer projections, reconstructed graph topology, convergence decisions, and failure cases. Phase C is staged authority cutover one mode at a time behind the 036 gateway and rollback-window discipline; legacy writers are retired only after zero-use telemetry. Phase D adds contradiction, coverage, and source-diversity graph signals after the projection dependency is healthy, without replacing the ledger or loop-local convergence contract. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,181-186] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md:Findings 1-6]",
+      "addedAtIteration": 18,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,109-160,181-186",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26,Per-phase gate contract",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md:Findings 1-6",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 1-7",
+        "specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-012.md:Findings 1-5,Questions Remaining,Dead Ends",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph convergence/upsert skipped events"
+      ]
     }
   ],
   "ruledOutDirections": [
@@ -2340,6 +2425,24 @@
       "text": "Treating `dist/graph-engineering.skill` as proof that `graph-engineering/` contains runnable implementation modules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [INFERENCE: based on the empty source-tree inventory]",
       "contentHash": "8c59c4c5528e",
       "addedAtIteration": 17
+    },
+    {
+      "id": "ruled-out-e01a550d81e3",
+      "text": "Any graph adapter write or early stop that bypasses the gateway, legacy convergence, or the 014 cutover certificate. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-88,153-158] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 3,6]",
+      "contentHash": "e01a550d81e3",
+      "addedAtIteration": 18
+    },
+    {
+      "id": "ruled-out-0bcdb4ba90e6",
+      "text": "Big-bang graph replacement before additive-dark and rollback-window evidence. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26]",
+      "contentHash": "0bcdb4ba90e6",
+      "addedAtIteration": 18
+    },
+    {
+      "id": "ruled-out-eb084c17b973",
+      "text": "Database-first adapter or graph-database-gated parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]",
+      "contentHash": "eb084c17b973",
+      "addedAtIteration": 18
     }
   ],
   "rejectedPatterns": [],
@@ -2370,11 +2473,11 @@
     "activeSourceIteration": null
   },
   "metrics": {
-    "iterationsCompleted": 17,
+    "iterationsCompleted": 18,
     "openQuestions": 5,
     "resolvedQuestions": 0,
-    "carriedForwardOpenQuestions": 48,
-    "keyFindings": 106,
+    "carriedForwardOpenQuestions": 52,
+    "keyFindings": 111,
     "rejectedPatterns": 0,
     "suppressedCandidates": 0,
     "observedIdeas": 0,
@@ -2382,10 +2485,10 @@
     "suppressedIdeas": 0,
     "convergenceScore": 0.9,
     "coverageBySources": {
-      "code": 142,
+      "code": 147,
       "docs.langchain.com": 4,
       "langchain-ai.github.io": 1,
-      "other": 62,
+      "other": 64,
       "raw.githubusercontent.com": 1
     },
     "completedPivots": 0,

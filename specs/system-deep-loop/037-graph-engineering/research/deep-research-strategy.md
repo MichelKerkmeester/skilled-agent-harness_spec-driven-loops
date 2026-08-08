@@ -128,6 +128,21 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Allowing graph convergence to stop before legacy convergence and quality/parity gates agree. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:145-240 and the 036 cutover sequence]
 
+### Any graph adapter write or early stop that bypasses the gateway, legacy convergence, or the 014 cutover certificate. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-88,153-158] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 3,6] -- BLOCKED (iteration 18, 1 attempts)
+- What was tried: Any graph adapter write or early stop that bypasses the gateway, legacy convergence, or the 014 cutover certificate. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-88,153-158] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 3,6]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Any graph adapter write or early stop that bypasses the gateway, legacy convergence, or the 014 cutover certificate. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-88,153-158] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 3,6]
+
+### Big-bang graph replacement before additive-dark and rollback-window evidence. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] -- BLOCKED (iteration 18, 1 attempts)
+- What was tried: Big-bang graph replacement before additive-dark and rollback-window evidence. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Big-bang graph replacement before additive-dark and rollback-window evidence. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26]
+
+### Database-first adapter or graph-database-gated parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] -- BLOCKED (iteration 18, 1 attempts)
+- What was tried: Database-first adapter or graph-database-gated parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Database-first adapter or graph-database-gated parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
+
 ### Exact `fanout-merge.cjs` conflict-order semantics were not freshly verified in this bounded pass; do not promote an implementation claim about merge ordering until that file is read directly. -- BLOCKED (iteration 14, 1 attempts)
 - What was tried: Exact `fanout-merge.cjs` conflict-order semantics were not freshly verified in this bounded pass; do not promote an implementation claim about merge ordering until that file is read directly.
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -342,6 +357,9 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Treating the merged registry as a rewriteable substitute for lineage state logs or append-only deltas. [SOURCE: `.opencode/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:1096-1127,1149-1169`; [INFERENCE: based on read-only state consumption and registry-only output writes]] (iteration 15)
 - Graphing every mode and every leaf file operation; the corpus and workflow branch explicitly support simpler loops for low-branching work. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:147-159] (iteration 17)
 - Treating `dist/graph-engineering.skill` as proof that `graph-engineering/` contains runnable implementation modules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [INFERENCE: based on the empty source-tree inventory] (iteration 17)
+- Any graph adapter write or early stop that bypasses the gateway, legacy convergence, or the 014 cutover certificate. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-88,153-158] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 3,6] (iteration 18)
+- Big-bang graph replacement before additive-dark and rollback-window evidence. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] (iteration 18)
+- Database-first adapter or graph-database-gated parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] (iteration 18)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -410,6 +428,10 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - F005 is not cleared until fresh acquisition no longer exposes a readable partial target (or readers fail closed with an owner-approved protocol and tests). (iteration 17)
 - F001 is not cleared until an owner-approved production construction path supplies a non-optional identity resolver and its negative tests. (iteration 17)
 - Canonical owner-approved accounting for 034 and 036-046 remains unresolved. (iteration 17)
+- Build and execute the deterministic research-mode fixture, including graph-off, malformed-event, partial-success, contradiction, and replay cases; compare the independent reducer and convergence oracles. (iteration 18)
+- Restore a compatible coverage-graph database only for later enrichment validation; do not make it a Phase A/B prerequisite. (iteration 18)
+- Freshly build and verify 024's gateway-only fence and its broad caller migration, including negative tests for stale/superseded writers. (iteration 18)
+- Obtain an owner-approved manifest, deprecation record, or merge record for 034 and 036-046. (iteration 18)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -417,7 +439,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Canonical owner-approved accounting for 034 and 036-046 remains unresolved.
+Obtain an owner-approved manifest, deprecation record, or merge record for 034 and 036-046.
 
 <!-- /ANCHOR:next-focus -->
 
