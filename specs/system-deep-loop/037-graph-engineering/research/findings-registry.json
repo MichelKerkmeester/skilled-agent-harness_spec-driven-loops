@@ -1,0 +1,1348 @@
+{
+  "sessionId": "27ce8e25-71b5-4732-bbf1-f6acf6bbebb4",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-what-is-the-current-status-of-the-system-deep-loop-system-which-modes-runtime",
+      "inboxId": null,
+      "text": "Q1: What is the current status of the system-deep-loop system — which modes, runtime subsystems, convergence and state machinery are live and landed, and where is the authority cutover blocked?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-what-does-the-036-deep-loop-innovation-program-change-what-is-the-evidence-le",
+      "inboxId": null,
+      "text": "Q2: What does the 036-deep-loop-innovation program change — what is the evidence-ledger spine, what is the migration model, and what is the landing status of its phases?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-what-are-the-core-graph-engineering-concepts-and-patterns-in-the-reference-co",
+      "inboxId": null,
+      "text": "Q3: What are the core graph-engineering concepts and patterns in the reference corpus (GraphARC, graph-engineering-master, LangChain, and the article set) — state graphs, nodes/edges, conditional routing, subgraphs, checkpointing, when-to-use/when-not-to-use?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-q4-how-do-the-github-reference-implementations-structure-graph-based-agent-workf",
+      "inboxId": null,
+      "text": "Q4: How do the GitHub reference implementations structure graph-based agent workflows in practice (architecture, node contracts, state flow, tooling), and what is LangChain's graph model contribution?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-what-would-a-graph-engineering-based-deep-loop-architecture-look-like-aligned",
+      "inboxId": null,
+      "text": "Q5: What would a graph-engineering-based deep-loop architecture look like aligned with OUR system — mapping our modes, convergence, evidence-ledger concepts onto graph primitives, with a concrete transformation path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-what-is-the-current-status-of-the-system-deep-loop-system-which-modes-runtime",
+      "inboxId": null,
+      "text": "Q1: What is the current status of the system-deep-loop system — which modes, runtime subsystems, convergence and state machinery are live and landed, and where is the authority cutover blocked?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-what-does-the-036-deep-loop-innovation-program-change-what-is-the-evidence-le",
+      "inboxId": null,
+      "text": "Q2: What does the 036-deep-loop-innovation program change — what is the evidence-ledger spine, what is the migration model, and what is the landing status of its phases?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-what-are-the-core-graph-engineering-concepts-and-patterns-in-the-reference-co",
+      "inboxId": null,
+      "text": "Q3: What are the core graph-engineering concepts and patterns in the reference corpus (GraphARC, graph-engineering-master, LangChain, and the article set) — state graphs, nodes/edges, conditional routing, subgraphs, checkpointing, when-to-use/when-not-to-use?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-how-do-the-github-reference-implementations-structure-graph-based-agent-workf",
+      "inboxId": null,
+      "text": "Q4: How do the GitHub reference implementations structure graph-based agent workflows in practice (architecture, node contracts, state flow, tooling), and what is LangChain's graph model contribution?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-what-would-a-graph-engineering-based-deep-loop-architecture-look-like-aligned",
+      "inboxId": null,
+      "text": "Q5: What would a graph-engineering-based deep-loop architecture look like aligned with OUR system — mapping our modes, convergence, evidence-ledger concepts onto graph primitives, with a concrete transformation path?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q2: Verify the canonical status and ownership of 034 and 036-046 rather than inferring from the parent map.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: Complete the current runtime status inventory.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3-Q5: Analyze the graph-engineering corpus, practical graph workflow implementations, and the target architecture for this system.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Verify canonical status and ownership of 034 and 036-046.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Turn the target mapping into a concrete migration path and gate sequence for system-deep-loop.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Verify direct LangGraph/LangChain APIs and compare them with GraphARC's wrapper boundary.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: turn the comparison into a concrete graph-engineering migration and gate sequence for system-deep-loop.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: verify canonical ownership/status for the remaining 036 phases.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1: reconcile the complete current system-deep-loop runtime inventory and authority boundary.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 part 2: define the concrete graph adapter contract and gate-by-gate migration sequence for the first mode.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1/Q2: reconcile the complete current runtime inventory and canonical status/ownership of the remaining 036 phases.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Implement and exercise the adapter contract in a follow-up task; this iteration is research-only and contains no implementation change.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Determine the exact normalized reducer snapshot format and a deterministic replay harness once an implementation owner is assigned.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1/Q2: reconcile the complete current runtime inventory and canonical ownership/status of the remaining 036 phases.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Exact ownership/status documents for absent 034 and 036-046 remain unresolved; the smallest next evidence is an owner-approved phase manifest or explicit deprecation/merge record. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:PHASE DOCUMENTATION MAP]",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Direct fresh verification of `loop-lock.cjs`, `fanout-run.cjs`, and `upsert.cjs` should be run when the tool budget permits; prior evidence establishes their runtime role but not this pass's fresh line-level inspection. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5-8]",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: an implementation follow-up still needs a deterministic adapter/replay fixture and measurable shadow-parity gates; this iteration intentionally made no code changes.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1/Q2: canonical ownership/status for absent 034 and 036-046 phase packets and the fresh loop-lock/fan-out/upsert runtime census remain outside this focus.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: What is the current status of the system-deep-loop system — which modes, runtime subsystems, convergence and state machinery are live and landed, and where is the authority cutover blocked?",
+    "Q2: What does the 036-deep-loop-innovation program change — what is the evidence-ledger spine, what is the migration model, and what is the landing status of its phases?",
+    "Q3: What are the core graph-engineering concepts and patterns in the reference corpus (GraphARC, graph-engineering-master, LangChain, and the article set) — state graphs, nodes/edges, conditional routing, subgraphs, checkpointing, when-to-use/when-not-to-use?",
+    "Q4: How do the GitHub reference implementations structure graph-based agent workflows in practice (architecture, node contracts, state flow, tooling), and what is LangChain's graph model contribution?",
+    "Q5: What would a graph-engineering-based deep-loop architecture look like aligned with OUR system — mapping our modes, convergence, evidence-ledger concepts onto graph primitives, with a concrete transformation path?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-coverage-graph-storage-is-already-wired-as-a-graph-metadata-path-the-upsert-entr",
+      "text": "Coverage-graph storage is already wired as a graph metadata path: the upsert entrypoint accepts typed nodes and edges, validates loop namespaces, rejects self-loops, supports coverage graphs for research/review and a separate council graph, and dispatches to SQLite-backed graph modules. It also supports seed metadata for coverage graphs but explicitly rejects seed options for council. This is a graph telemetry/coverage substrate, not evidence that the workflow control plane has been migrated from imperative loops to a state graph. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:1-17, .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:95-152, .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:181-226]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/system-deep-loop/SKILL.md:1-29, 60-121",
+        ".opencode/skills/system-deep-loop/mode-registry.json:1-33, 65-190",
+        ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70, 145-240",
+        ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28, 86-186",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38, 146-244",
+        ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:1-17, 95-152, 181-226",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:28-45, 84-144",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32, 44-83, 116-160",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5"
+      ]
+    },
+    {
+      "id": "finding-1-5-fan-out-is-a-substantial-runtime-subsystem-rather-than-a-thin-dispatcher-the-ent",
+      "text": "Fan-out is a substantial runtime subsystem rather than a thin dispatcher: the entrypoint imports capped-pool execution, status ledgers, orphan/retry accounting, wave planning, orchestration summaries, salvage sweeps, observability, and budget/stop-policy helpers. This supports durable lineage-oriented orchestration, but the current implementation still has a large imperative CLI surface; the evidence does not establish graph-native node execution or graph-based conditional routing yet. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38, .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:146-244; INFERENCE: based on the imported pool/ledger/wave/salvage architecture and the absence of a graph-runtime node contract in the inspected entrypoint]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/system-deep-loop/SKILL.md:1-29, 60-121",
+        ".opencode/skills/system-deep-loop/mode-registry.json:1-33, 65-190",
+        ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70, 145-240",
+        ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28, 86-186",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38, 146-244",
+        ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:1-17, 95-152, 181-226",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:28-45, 84-144",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32, 44-83, 116-160",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5"
+      ]
+    },
+    {
+      "id": "finding-1-4-loop-locking-is-centralized-behind-a-cli-adapter-over-the-typescript-loop-lock-l",
+      "text": "Loop locking is centralized behind a CLI adapter over the TypeScript loop-lock library, with acquire/status/refresh/release operations, PID/TTL/heartbeat state, optional nonce handling, stale-lock classification, and a shared contract for the active research/review/council YAMLs. This is landed plumbing, but the 036 handover identifies the underlying `openSync(...,'wx')` create-then-write partial-record window as still open and names it as an 014 cutover precondition; therefore “loop-lock exists” and “cutover-safe locking” are distinct claims. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28, .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:86-186; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/system-deep-loop/SKILL.md:1-29, 60-121",
+        ".opencode/skills/system-deep-loop/mode-registry.json:1-33, 65-190",
+        ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70, 145-240",
+        ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28, 86-186",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38, 146-244",
+        ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:1-17, 95-152, 181-226",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:28-45, 84-144",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32, 44-83, 116-160",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-036-program-s-architecture-is-additive-dark-substrate-shadow-parity-staged-p",
+      "text": "The 036 program's architecture is additive-dark substrate→shadow parity→staged per-mode authority cutover→legacy retirement, not a big-bang rewrite. Its phase map places durable fan-in before novelty/claims and both before convergence activation; shared mode contracts precede per-mode migrations; authority cutover is phase 014 and legacy retirement phase 015. The handover says spine phases 001-013 are built/landed, but 014 remains blocked and operator-gated by unresolved identity, policy-state, and loop-lock preconditions; it also warns that many child graph-metadata status labels are stale and that docs/landing gaps make self-reported completion unreliable. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:28-45, specs/system-deep-loop/036-deep-loop-innovation/spec.md:84-144; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32, specs/system-deep-loop/036-deep-loop-innovation/handover.md:116-160]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/system-deep-loop/SKILL.md:1-29, 60-121",
+        ".opencode/skills/system-deep-loop/mode-registry.json:1-33, 65-190",
+        ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70, 145-240",
+        ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28, 86-186",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38, 146-244",
+        ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:1-17, 95-152, 181-226",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:28-45, 84-144",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32, 44-83, 116-160",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-mode-registry-is-the-declared-routing-authority-and-records-the-seven-modes-",
+      "text": "The mode registry is the declared routing authority and records the seven modes: research→runtime/research, review→runtime/review, ai-council→runtime/council; agent/model/skill improvement→explicit null runtimeLoopType plus improvement-host; alignment→explicit null plus alignment-convergence. The three improvement variants intentionally share the `deep-improvement` packet, so mode identity is not equivalent to packet identity. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:1-33, .opencode/skills/system-deep-loop/mode-registry.json:65-190]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/system-deep-loop/SKILL.md:1-29, 60-121",
+        ".opencode/skills/system-deep-loop/mode-registry.json:1-33, 65-190",
+        ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70, 145-240",
+        ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28, 86-186",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38, 146-244",
+        ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:1-17, 95-152, 181-226",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:28-45, 84-144",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32, 44-83, 116-160",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-public-hub-is-routing-only-and-registry-driven-it-exposes-seven-active-workf",
+      "text": "The public hub is routing-only and registry-driven: it exposes seven active workflow modes—research, review, ai-council, three improvement lanes, and alignment—and explicitly keeps per-mode convergence/state/artifact contracts in their packets. The hub's three-tier discriminator separates `workflowMode`, graph-backed `runtimeLoopType`, and `backendKind`; runtime convergence accepts research/review/council, while improvement uses a host backend and alignment uses its own convergence backend. [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:1-29, .opencode/skills/system-deep-loop/SKILL.md:60-96]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/system-deep-loop/SKILL.md:1-29, 60-121",
+        ".opencode/skills/system-deep-loop/mode-registry.json:1-33, 65-190",
+        ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70, 145-240",
+        ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28, 86-186",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38, 146-244",
+        ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:1-17, 95-152, 181-226",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:28-45, 84-144",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32, 44-83, 116-160",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-shipped-runtime-has-a-real-convergence-entrypoint-with-validated-convergence",
+      "text": "The shipped runtime has a real convergence entrypoint with validated convergence profiles, threshold/min-observation controls, default/off/sliding-window/divergent modes, observability events, and a graph novelty floor; the implementation is not merely a raw ratio despite the 036 problem statement describing the historical runtime as ad-hoc. However, the public convergence runtime still validates only `research|review|council` loop types, which confirms that improvement and alignment are intentionally outside this backend. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70, .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:145-240; .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-152]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/system-deep-loop/SKILL.md:1-29, 60-121",
+        ".opencode/skills/system-deep-loop/mode-registry.json:1-33, 65-190",
+        ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70, 145-240",
+        ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28, 86-186",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38, 146-244",
+        ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:1-17, 95-152, 181-226",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:28-45, 84-144",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32, 44-83, 116-160",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5"
+      ]
+    },
+    {
+      "id": "finding-1-8-the-strongest-current-status-is-therefore-routing-and-runtime-plumbing-are-lande",
+      "text": "The strongest current status is therefore: routing and runtime plumbing are landed; graph coverage metadata is partially landed as an auxiliary graph; the evidence-ledger architecture is landed additively/dark in the 036 program; but serving-authority cutover is not landed. In particular, the handover code-verifies blockers in 022 (deep-review parity still incomplete) and 024 (append-boundary fencing absent/fabricated evidence), so graph-engineering alignment must treat the ledger/control plane as migration target rather than assume it is authoritative. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83; INFERENCE: synthesis of hub, registry, runtime, and handover evidence]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".opencode/skills/system-deep-loop/SKILL.md:1-29, 60-121",
+        ".opencode/skills/system-deep-loop/mode-registry.json:1-33, 65-190",
+        ".opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70, 145-240",
+        ".opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28, 86-186",
+        ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38, 146-244",
+        ".opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:1-17, 95-152, 181-226",
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md:28-45, 84-144",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32, 44-83, 116-160",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5"
+      ]
+    },
+    {
+      "id": "finding-2-3-phases-001-013-are-reported-as-built-landed-at-the-code-substrate-level-but-the-",
+      "text": "**Phases 001-013 are reported as built/landed at the code/substrate level, but the parent status table is stale for several of them.** The direct child status census says 001-003 and 005 are Complete, 004 and 006-012 are still labeled Planned, and 013 is In Progress; the dated handover explicitly says the spine 001-013 is built + landed and warns that child graph metadata/status labels are stale. The supported interpretation is “substrate landed, documentation/status reconciliation incomplete,” not “014-ready.” [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:PHASE MAP & OUTCOMES; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-32,34-49]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/before-and-after.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/implementation-summary.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/*/spec.md (bounded status census)"
+      ]
+    },
+    {
+      "id": "finding-2-8-status-coverage-for-034-and-036-046-is-not-established-by-the-bounded-direct-chi",
+      "text": "**Status coverage for 034 and 036-046 is not established by the bounded direct-child census and must not be inferred.** The available status output exposes 035 and 047-050 but no direct canonical status rows for 036-046; 034 is described as an optional reorganization-last scaffold. This is a documentation/coverage gap, not evidence of completion or failure. [INFERENCE: compared the child-spec status census output with specs/system-deep-loop/036-deep-loop-innovation/spec.md:PHASE DOCUMENTATION MAP and handover.md:Completion path]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/before-and-after.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/implementation-summary.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/*/spec.md (bounded status census)"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-014-017-endgame-has-not-landed-phase-014-staged-state-migration-authority-cu",
+      "text": "**The 014-017 endgame has not landed.** Phase 014 staged state migration/authority cutover is blocked; 015 legacy-writer retirement, 016 whole-system gate, and 017 integrate-latest/closeout remain planned. The handover’s completion path preserves this ordering: finish remediation, rerun the whole-system gate on a frozen SHA, then execute 014, retire writers in 015, and close out through 016/017. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:PHASE MAP & OUTCOMES; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:181-186]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/before-and-after.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/implementation-summary.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/*/spec.md (bounded status census)"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-036-spine-is-a-shared-evidence-control-substrate-not-a-single-feature-it-com",
+      "text": "**The 036 spine is a shared evidence/control substrate, not a single feature.** It combines a versioned typed event envelope and append-only ledger with a fail-closed transition-authorization gateway, replay fingerprints, receipts/effect recovery, sealed reference artifacts, typed budgets, incremental gauges, locks/fencing, continuity identities, and blinded/counterfactual adjudication. Each of the eight workstreams receives a typed schema over that substrate. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/before-and-after.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/implementation-summary.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/*/spec.md (bounded status census)"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-audited-remediation-tree-is-mixed-not-uniformly-landed-018-is-in-progress-01",
+      "text": "**The audited remediation tree is mixed, not uniformly landed.** 018 is In Progress; 019 and 020 are Complete; 021’s evidence-reconcile blocker is discharged despite stale status metadata; 022 is In Progress with 5/6 shadow-parity modes built and deep-review remaining; 023 is Complete; 024 is In Progress and its named fencing acceptance bar is not discharged; 025 is Planned; 026-028 are landed/complete with residual QA caveats on 028; 029 is In Progress; 030-033 are landed with scoped deferrals or residuals. The later direct status census reports 035 Planned, 047-049 In Progress, and 050 Complete. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:22-32,50-83,181-186; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/*/spec.md:status census]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/before-and-after.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/implementation-summary.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/*/spec.md (bounded status census)"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-migration-model-is-intentionally-reversible-and-authority-preserving-the-seq",
+      "text": "**The migration model is intentionally reversible and authority-preserving.** The sequence is additive + dark, shadow parity, one-mode-at-a-time cutover behind a rollback window/certificate, and legacy-writer retirement only after zero-use telemetry; the legacy path remains authoritative until cutover. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-88; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/before-and-after.md:160-177]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/before-and-after.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/implementation-summary.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/*/spec.md (bounded status census)"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-named-validation-gate-blockers-independently-keep-014-closed-blocker-4-021-i",
+      "text": "**The named validation-gate blockers independently keep 014 closed.** Blocker 4/021 is discharged and Blocker 2/023 is complete, but Blocker 1/022 still lacks deep-review parity and Blocker 3/024 lacks the required gateway-only append fencing; the handover calls the 024 evidence fabricated and says the core fence is absent. Therefore neither “spine 001-013 landed” nor “F001/F002/F005 are the only remaining concerns” is sufficient to authorize cutover. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83,116-160]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/before-and-after.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/implementation-summary.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/*/spec.md (bounded status census)"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-per-mode-014-preconditions-f001-f002-f005-remain-distinct-unresolved-risks-f",
+      "text": "**The per-mode 014 preconditions F001/F002/F005 remain distinct unresolved risks.** F001 is a P0 identity fail-open gap when no binding/resolver validates caller-supplied identity; F002 is a P0 policy-identity gap because the implementation digest omits closure-captured authorization state; F005 is a P0-to-plausible lock-hardening issue involving the fresh-acquisition `openSync(...,'wx')` create-then-write partial-record window. The 033 implementation summary confirms that no production gateway construction site currently configures an identity resolver and that the registry still accepts null captured state. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md:59-77,109-146; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/implementation-summary.md:64-70]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-deep-loop/036-deep-loop-innovation/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/before-and-after.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/handover.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening/implementation-summary.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/*/spec.md (bounded status census)"
+      ]
+    },
+    {
+      "id": "finding-3-5-p1-a-practical-multi-agent-architecture-has-two-graph-layers-the-supplied-organi",
+      "text": "**[P1] A practical multi-agent architecture has two graph layers.** The supplied organization article distinguishes a stable org graph for durable roles, ownership, and preserved context from an ephemeral work graph whose task nodes and edges split, merge, reorder, or disappear as evidence changes. It also identifies graph-harness responsibilities beyond a loop harness: inter-agent routing, node failure isolation, work-graph state consistency, dynamic spawning, and observability. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:108-170; SOURCE: specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:216-235]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,162-181",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/ROADMAP.md:99-143",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:1-60",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:28-39,165-179",
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:11-13,50-58,160-195",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering explained: what it is, when to use it and when not to.md:30-69,151-229",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:108-170,216-235",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:102-142,163-187",
+        "specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5,8"
+      ]
+    },
+    {
+      "id": "finding-3-1-p1-a-usable-state-graph-is-a-contract-plus-execution-controls-not-merely-an-adja",
+      "text": "**[P1] A usable state graph is a contract plus execution controls, not merely an adjacency list.** GraphARC models typed state, per-node declared writes, checked destinations, bounded work, JSONL execution traces, and optional DAG enforcement; its base state forbids unknown fields and validates assignment. This makes node input/output shape, write ownership, and transition validity machine-checkable at boundaries. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,162-181",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/ROADMAP.md:99-143",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:1-60",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:28-39,165-179",
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:11-13,50-58,160-195",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering explained: what it is, when to use it and when not to.md:30-69,151-229",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:108-170,216-235",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:102-142,163-187",
+        "specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5,8"
+      ]
+    },
+    {
+      "id": "finding-3-2-p1-conditional-routing-is-governed-dynamic-topology-grapharc-allows-a-planner-to",
+      "text": "**[P1] Conditional routing is governed dynamic topology.** GraphARC allows a planner to propose a graph at runtime, but a deterministic admission gate checks registry, policy, budget, depth, and acyclicity before execution; rejected proposals produce structured feedback for replanning, and work discovered mid-run re-enters the same gate. This is a fail-closed node/edge contract rather than unconstrained model-generated branching. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-93; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:95-160]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,162-181",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/ROADMAP.md:99-143",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:1-60",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:28-39,165-179",
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:11-13,50-58,160-195",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering explained: what it is, when to use it and when not to.md:30-69,151-229",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:108-170,216-235",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:102-142,163-187",
+        "specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5,8"
+      ]
+    },
+    {
+      "id": "finding-3-3-p1-fan-out-and-convergence-are-first-class-graph-patterns-while-checkpoint-subgr",
+      "text": "**[P1] Fan-out and convergence are first-class graph patterns, while checkpoint/subgraph support remains bounded.** GraphARC converts worker exceptions, malformed returns, and timeouts into data, deduplicates evidence before synthesis, and exposes machine-readable stop reasons for target, no-progress, round cap, budget, human stop, and error. Its roadmap reports JSONL traces, checkpoint resume, convergence guards, cycle detection, and bounded fan-out as landed, but records interrupt resume as unsupported and retry/cache/durability/subgraphs as not yet passed through. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/ROADMAP.md:99-143]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,162-181",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/ROADMAP.md:99-143",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:1-60",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:28-39,165-179",
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:11-13,50-58,160-195",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering explained: what it is, when to use it and when not to.md:30-69,151-229",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:108-170,216-235",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:102-142,163-187",
+        "specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5,8"
+      ]
+    },
+    {
+      "id": "finding-3-7-p1-the-direct-architectural-implication-for-system-deep-loop-is-a-stable-control",
+      "text": "**[P1] The direct architectural implication for system-deep-loop is a stable control graph plus per-run work graphs.** The mode registry and shared policy/identity contracts are candidates for the stable graph layer; each run can materialize a work graph whose nodes are bounded mode phases, whose state is the typed evidence/ledger snapshot, whose conditional edges are authorized convergence and blocker transitions, and whose fan-in/fan-out is explicit. Checkpointed artifacts/receipts should serve resume, while replay traces should preserve why a transition was admitted; this is a target mapping, not evidence that the current control plane has already migrated. [INFERENCE: based on GraphARC's typed-state/write/routing/trace contracts in specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33, the two-layer model in specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:124-170, and prior system status evidence in specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5,8]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,162-181",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/ROADMAP.md:99-143",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:1-60",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:28-39,165-179",
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:11-13,50-58,160-195",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering explained: what it is, when to use it and when not to.md:30-69,151-229",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:108-170,216-235",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:102-142,163-187",
+        "specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5,8"
+      ]
+    },
+    {
+      "id": "finding-3-4-p1-the-graph-engineering-master-corpus-deliberately-separates-memory-graphs-from",
+      "text": "**[P1] The graph-engineering-master corpus deliberately separates memory graphs from work graphs.** Knowledge graphs model what agents remember, including relationships, time, and provenance; task graphs model jobs and execution dependencies. Its task rules are to remove fake edges, use a split-to-parallel-workers-to-separate-verifiers-to-owned-merge diamond, apply a stop rule, and place a human gate where mistakes become expensive; its workflow blocks also require ontology and quality verification before serving. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:1-13; SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:40-60; SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:28-39; SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:165-179]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,162-181",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/ROADMAP.md:99-143",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:1-60",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:28-39,165-179",
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:11-13,50-58,160-195",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering explained: what it is, when to use it and when not to.md:30-69,151-229",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:108-170,216-235",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:102-142,163-187",
+        "specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5,8"
+      ]
+    },
+    {
+      "id": "finding-3-8-p2-direct-langchain-evidence-is-missing-from-the-supplied-packet-so-langchain-sp",
+      "text": "**[P2] Direct LangChain evidence is missing from the supplied packet, so LangChain-specific claims remain provisional.** The local LangChain.md file yielded no readable content; the fallback corpus identifies orchestration graphs as the LangGraph/Temporal territory, while GraphARC explicitly describes itself as a LangGraph wrapper and its roadmap shows the remaining checkpoint/subgraph/durability boundary. The next iteration should verify the canonical LangGraph/LangChain state-graph, conditional-edge, subgraph, and checkpointer APIs directly. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1 (empty local corpus file); SOURCE: specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:102-142; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/ROADMAP.md:99-143]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,162-181",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/ROADMAP.md:99-143",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:1-60",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:28-39,165-179",
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:11-13,50-58,160-195",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering explained: what it is, when to use it and when not to.md:30-69,151-229",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:108-170,216-235",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:102-142,163-187",
+        "specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5,8"
+      ]
+    },
+    {
+      "id": "finding-3-6-p2-the-corpus-recommends-graph-selection-by-dependency-shape-not-fashion-the-loo",
+      "text": "**[P2] The corpus recommends graph selection by dependency shape, not fashion.** The loop-to-graph article recommends graph engineering for complex work with high concurrency, at least three independent verification steps, and complex decision routing; the explanatory article says to keep loops for tight human approval, genuinely sequential dependencies, or workflows with no pair of independent jobs. It also warns about hidden shared-resource edges, silent node failure, context/fan-in overload, and the fact that topology alone does not create truth. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173; SOURCE: specs/system-deep-loop/037-graph-engineering/context/Graph Engineering explained: what it is, when to use it and when not to.md:151-229]",
+      "addedAtIteration": 3,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,162-181",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/ROADMAP.md:99-143",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:1-60",
+        "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:28-39,165-179",
+        "specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:11-13,50-58,160-195",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering explained: what it is, when to use it and when not to.md:30-69,151-229",
+        "specs/system-deep-loop/037-graph-engineering/context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:108-170,216-235",
+        "specs/system-deep-loop/037-graph-engineering/context/What is Graph Engineering?.md:102-142,163-187",
+        "specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1",
+        "specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5,8"
+      ]
+    },
+    {
+      "id": "finding-4-5-p1-a-langgraph-checkpointer-is-state-persistence-not-a-complete-why-audit-offici",
+      "text": "**[P1] A LangGraph checkpointer is state persistence, not a complete why-audit.** Official Persistence docs distinguish thread-scoped checkpoints (continuity, human-in-the-loop, time travel, fault tolerance) from cross-thread stores; compilation wires a checkpointer/store and invocation uses a `thread_id`. GraphARC's separate trace records node start/end/error, admission fingerprints, topology, and machine-readable stop reasons, which supplies the causal execution record that a state checkpoint alone does not establish. **[SOURCE: https://docs.langchain.com/oss/python/langgraph/persistence; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:164-169; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:58-68,696-719; INFERENCE: checkpoint contents preserve state while GraphARC trace events preserve execution/admission/termination rationale]**",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,164-169`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,51-140,284-347,362-621,672-790`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:431-602,616-860`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:204-282,433-498`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:5-10,20-27,40-60`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:1-5,19-42,165-179`",
+        "`https://docs.langchain.com/oss/python/langgraph/graph-api`",
+        "`https://docs.langchain.com/oss/python/langgraph/persistence`",
+        "`https://raw.githubusercontent.com/langchain-ai/langgraph/main/libs/langgraph/langgraph/graph/state.py`",
+        "`https://langchain-ai.github.io/langgraph/concepts/low_level/` (no usable body returned)"
+      ]
+    },
+    {
+      "id": "finding-4-4-p1-conditional-routing-is-data-driven-fan-out-not-unconstrained-branching-the-of",
+      "text": "**[P1] Conditional routing is data-driven fan-out, not unconstrained branching.** The official Graph API describes `add_conditional_edges` as a routing function over current state whose return value selects one or more destination nodes; multiple destinations run in parallel in the next superstep. GraphARC narrows that dynamic capability with registry/policy/depth/acyclicity admission and explicit destination checks, while its fan-out helper converts exceptions, malformed returns, and timeouts into `WorkerResult(ok=False)` data and deduplicates evidence before synthesis. **[SOURCE: https://docs.langchain.com/oss/python/langgraph/graph-api; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:69-71; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:509-602; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79]**",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,164-169`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,51-140,284-347,362-621,672-790`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:431-602,616-860`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:204-282,433-498`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:5-10,20-27,40-60`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:1-5,19-42,165-179`",
+        "`https://docs.langchain.com/oss/python/langgraph/graph-api`",
+        "`https://docs.langchain.com/oss/python/langgraph/persistence`",
+        "`https://raw.githubusercontent.com/langchain-ai/langgraph/main/libs/langgraph/langgraph/graph/state.py`",
+        "`https://langchain-ai.github.io/langgraph/concepts/low_level/` (no usable body returned)"
+      ]
+    },
+    {
+      "id": "finding-4-1-p1-grapharc-is-a-governance-wrapper-around-langgraph-not-a-replacement-graph-ker",
+      "text": "**[P1] GraphARC is a governance wrapper around LangGraph, not a replacement graph kernel.** Its runtime imports `StateGraph`, `Command`, `Send`, and `StateSnapshot`, then adds Pydantic state contracts, declared write permissions, checked destinations, per-run budgets, and JSONL trace recording. `GraphARCState` forbids unknown fields and validates assignment; bypassing the wrapper through raw compiled entrypoints fails closed because the run context is required. **[SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,51-64,67-140; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18]**",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,164-169`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,51-140,284-347,362-621,672-790`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:431-602,616-860`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:204-282,433-498`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:5-10,20-27,40-60`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:1-5,19-42,165-179`",
+        "`https://docs.langchain.com/oss/python/langgraph/graph-api`",
+        "`https://docs.langchain.com/oss/python/langgraph/persistence`",
+        "`https://raw.githubusercontent.com/langchain-ai/langgraph/main/libs/langgraph/langgraph/graph/state.py`",
+        "`https://langchain-ai.github.io/langgraph/concepts/low_level/` (no usable body returned)"
+      ]
+    },
+    {
+      "id": "finding-4-3-p1-langgraph-s-core-contribution-is-a-compiled-state-graph-with-explicit-builder",
+      "text": "**[P1] LangGraph's core contribution is a compiled state graph with explicit builder primitives.** The official Graph API defines `StateGraph` over user state, builds it with `add_node` and `add_edge` (including `START`/`END`), and requires `compile()` before invocation. Official source exposes `StateGraph.add_node`, `add_edge`, `add_conditional_edges`, and `compile(checkpointer=...)`; compilation performs structural checks and accepts runtime controls such as checkpointers and breakpoints. **[SOURCE: https://docs.langchain.com/oss/python/langgraph/graph-api; SOURCE: https://raw.githubusercontent.com/langchain-ai/langgraph/main/libs/langgraph/langgraph/graph/state.py:130,375,915,969,1164-1191]**",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,164-169`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,51-140,284-347,362-621,672-790`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:431-602,616-860`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:204-282,433-498`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:5-10,20-27,40-60`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:1-5,19-42,165-179`",
+        "`https://docs.langchain.com/oss/python/langgraph/graph-api`",
+        "`https://docs.langchain.com/oss/python/langgraph/persistence`",
+        "`https://raw.githubusercontent.com/langchain-ai/langgraph/main/libs/langgraph/langgraph/graph/state.py`",
+        "`https://langchain-ai.github.io/langgraph/concepts/low_level/` (no usable body returned)"
+      ]
+    },
+    {
+      "id": "finding-4-2-p1-the-practical-grapharc-workflow-is-planner-admission-materialization-bounded-",
+      "text": "**[P1] The practical GraphARC workflow is planner → admission → materialization → bounded graph execution → recorded stop.** `GovernedLoop` accepts a planner, checker, and materializer; each round records the proposal, admission result, execution status, progress, spend, and errors. Admission evaluates registry membership, policy, remaining budget, nesting depth, and acyclicity; materialization resolves node bodies only from the frozen registry and passes an optional checkpointer to compilation. **[SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:284-347,362-621,672-790; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:431-602,616-860; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:204-282,433-498]**",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,164-169`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,51-140,284-347,362-621,672-790`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:431-602,616-860`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:204-282,433-498`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:5-10,20-27,40-60`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:1-5,19-42,165-179`",
+        "`https://docs.langchain.com/oss/python/langgraph/graph-api`",
+        "`https://docs.langchain.com/oss/python/langgraph/persistence`",
+        "`https://raw.githubusercontent.com/langchain-ai/langgraph/main/libs/langgraph/langgraph/graph/state.py`",
+        "`https://langchain-ai.github.io/langgraph/concepts/low_level/` (no usable body returned)"
+      ]
+    },
+    {
+      "id": "finding-4-6-p2-the-graph-engineering-master-practical-guidance-is-a-staged-design-discipline",
+      "text": "**[P2] The graph-engineering-master practical guidance is a staged design discipline, but its claimed executable skill is absent from this checkout.** The README separates knowledge graphs (memory/provenance) from task graphs (job dependencies), and its task rules require real edges, a split→parallel workers→separate verifiers→owned merge diamond, a stop rule, and a human gate. WORKFLOWS makes progress output-driven and gated (approve a route, do one module, critique before continuing), while the bounded inventory returned no files under `graph-engineering/` even though the README claims the skill and references live there. **[SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:5-10,20-27,40-60; SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:1-5,19-42,165-179; INFERENCE: bounded `find` inventory from this iteration returned no files below `graph-engineering/`, so implementation-level claims for that directory remain unverified]**",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/README.md:17-19,46-71,164-169`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,51-140,284-347,362-621,672-790`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:431-602,616-860`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:204-282,433-498`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/fanout.py:1-79`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:5-10,20-27,40-60`",
+        "`specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:1-5,19-42,165-179`",
+        "`https://docs.langchain.com/oss/python/langgraph/graph-api`",
+        "`https://docs.langchain.com/oss/python/langgraph/persistence`",
+        "`https://raw.githubusercontent.com/langchain-ai/langgraph/main/libs/langgraph/langgraph/graph/state.py`",
+        "`https://langchain-ai.github.io/langgraph/concepts/low_level/` (no usable body returned)"
+      ]
+    },
+    {
+      "id": "finding-5-5-p0-graph-checkpointing-cannot-replace-the-036-evidence-ledger-spine-a-graph-chec",
+      "text": "**P0 — Graph checkpointing cannot replace the 036 evidence-ledger spine.** A graph checkpointer can restore typed state for resume and traces can record node execution, but 036 requires an append-only typed event ledger, fail-closed transition authorization, sealed artifacts, replay fingerprints, receipts/effect recovery, identity/policy binding, and fencing. Those are authority and audit properties, not merely persisted graph state. The ledger should remain a sidecar/commit log consumed by graph transition gates until its per-mode authority cutover is verified. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,116-160; INFERENCE: comparing the 036 ledger requirements with GraphARC's state/checkpoint/trace boundary]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`"
+      ]
+    },
+    {
+      "id": "finding-5-2-p1-an-iteration-focus-is-a-typed-work-node-whose-output-is-a-reducer-update-not-",
+      "text": "**P1 — An iteration focus is a typed work node whose output is a reducer update, not an untyped text edge.** GraphARC's Pydantic state forbids unknown fields; nodes declare write permissions; node updates and fan-out payloads are validated at the boundary; and the compiled wrapper records topology and per-node state deltas. The deep-research focus node can therefore read the current question/state snapshot and emit typed findings, source references, blockers, and next-focus events, while the existing reducer remains the merge authority. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621; INFERENCE: mapping those contracts onto the packet-local deep-research reducer]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`"
+      ]
+    },
+    {
+      "id": "finding-5-3-p1-convergence-belongs-on-guarded-conditional-edges-the-existing-runtime-compute",
+      "text": "**P1 — Convergence belongs on guarded conditional edges.** The existing runtime computes loop-specific signals, blocking guards, graph novelty corroboration, minimum-observation checks, and explicit `STOP_ALLOWED`/`STOP_BLOCKED`/`CONTINUE` decisions; GraphARC's ProgressGuard independently models target, no-progress, and max-round stops with machine-readable reasons. A graph design should route `evaluate -> continue`, `evaluate -> blocked/recover`, or `evaluate -> stop`, retaining `newInfoRatio`, quality signals, and `minIterations` as separate state/guard fields rather than collapsing them into one universal score. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45; INFERENCE: combining the two explicit guard models]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`"
+      ]
+    },
+    {
+      "id": "finding-5-4-p1-fan-out-maps-to-explicit-send-map-branches-but-serialization-remains-a-separa",
+      "text": "**P1 — Fan-out maps to explicit Send/map branches, but serialization remains a separate graph boundary.** GraphARC treats fan-out as deliberate parallel dispatch, validates destinations and payload schemas, deep-copies inputs, and records node execution traces. The current deep-loop fan-out additionally owns capped pools, status ledgers, retries/orphans, wave-assignment rejection, budgets, salvage, and wait checkpoints; the loop lock centralizes acquire/status/refresh/release but the 036 handover still identifies a fresh-acquisition partial-record window. The graph adapter should call the existing operational fan-out behind an authorized boundary, and place lock/fencing around ledger/checkpoint writes rather than assume graph parallelism supplies serialization. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621; SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244; SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-77,116-160]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`"
+      ]
+    },
+    {
+      "id": "finding-5-1-p1-modes-map-to-stable-control-graph-subgraphs-not-one-undifferentiated-graph-th",
+      "text": "**P1 — Modes map to stable control-graph subgraphs, not one undifferentiated graph.** The three-tier discriminator (`workflowMode`, `runtimeLoopType`, `backendKind`) must remain explicit: research, review, and council can bind to runtime-loop subgraphs, while the improvement lanes share an improvement-host packet and alignment uses a separate convergence backend. A graph adapter keyed only by packet name would erase these distinctions and misroute custom backends. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`"
+      ]
+    },
+    {
+      "id": "finding-5-6-p1-the-safer-transformation-is-additive-graph-orchestration-with-per-mode-parity",
+      "text": "**P1 — The safer transformation is additive graph orchestration with per-mode parity gates.** First wrap one runtime-loop mode with a stable graph schema and emit graph topology/events in shadow mode; then compare graph outputs against the existing JSONL/reducer and 036 ledger; next introduce guarded fan-out and convergence edges; cut over one mode only after identity, policy-state, append-fencing, and whole-system gates pass; finally retire legacy writers after zero-use telemetry. This follows the 036 reversible additive-dark, shadow-parity, staged-cutover, then retirement sequence and avoids a big-bang replacement. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-88; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:181-186; INFERENCE: applying that migration sequence to the graph/control-plane boundary]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/convergence.py:1-45`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`"
+      ]
+    },
+    {
+      "id": "finding-6-6-p0-authority-cutover-must-remain-closed-until-the-036-fencing-and-parity-precond",
+      "text": "**P0 — Authority cutover must remain closed until the 036 fencing and parity preconditions pass.** A graph adapter can run in additive-dark shadow mode while the legacy loop and evidence ledger remain authoritative. It must not promote graph transitions or retire legacy writers while F001 identity binding, F002 policy-state binding, F005 lock hardening, the deep-review parity gap, or gateway-only append fencing remain unresolved. The cutover sequence remains shadow parity, whole-system gate on a frozen state, one-mode cutover behind rollback evidence, and legacy retirement only after zero-use telemetry. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-88,94-103; INFERENCE: applying the 036 authority-preserving migration model to graph control]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:60-96`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior iteration and graph backend events`",
+        "`specs/system-deep-loop/037-graph-engineering/research/prompts/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-6-1-p1-research-is-the-best-first-graph-adapter-mode-the-mode-registry-binds-researc",
+      "text": "**P1 — `research` is the best first graph-adapter mode.** The mode registry binds research to the shared research runtime and graph-backed convergence, while review still carries a named parity gap in the 036 handover, council has a separate artifact/graph contract, and alignment/improvement use distinct backends. Starting with research gives the adapter an existing iteration narrative, canonical state record, delta stream, and `graphEvents` surface without inventing a second packet identity. This is a reversible recommendation, not evidence that research has already become graph-native. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190; SOURCE: .opencode/skills/system-deep-loop/SKILL.md:60-96; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83; INFERENCE: comparing the registered backend and artifact contracts]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:60-96`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior iteration and graph backend events`",
+        "`specs/system-deep-loop/037-graph-engineering/research/prompts/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-6-4-p1-dispatch-verify-and-reduce-should-be-explicit-subgraphs-with-narrow-write-own",
+      "text": "**P1 — Dispatch, verify, and reduce should be explicit subgraphs with narrow write ownership.** The `dispatch` subgraph reads the packet state/strategy, validates namespace and focus, and emits a work envelope; the existing research worker executes bounded evidence gathering; the `verify` subgraph checks narrative headings, citations, state/delta identity, graph vocabulary, dangling references, and packet-local paths; the `reduce` subgraph appends the canonical iteration/delta records and invokes the workflow reducer, returning normalized strategy/registry/dashboard snapshots for comparison. The adapter must not write reducer-owned strategy, registry, or dashboard files directly. Lock/fencing and ledger receipt creation remain serialization/authority boundaries around artifact commits, not implicit consequences of graph parallelism. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244; SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186; SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-config.json; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:284-621; INFERENCE: decomposing the current command-owned loop and GraphARC execution boundary into graph subgraphs]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:60-96`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior iteration and graph backend events`",
+        "`specs/system-deep-loop/037-graph-engineering/research/prompts/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-6-3-p1-graph-transitions-must-mirror-the-existing-convergence-contract-instead-of-in",
+      "text": "**P1 — Graph transitions must mirror the existing convergence contract instead of introducing a second stopping score.** The adapter should carry the current `newInfoRatio`, threshold, minimum-iteration/observation guards, quality signals, blocker list, status, decision, and stop reason as separate state fields. `evaluate` routes to `continue` only when the legacy runtime says continue and all quality/parity gates pass; it routes to `stop` only when the legacy stop decision is allowed and minimum-iteration plus required quality gates pass; `STOP_BLOCKED`, schema mismatch, or authority/fencing failure routes to `blocked`; missing evidence with a productive fallback routes to `recover`; and no productive fallback routes to `stuck`. A graph novelty signal may corroborate the decision, but it must not authorize an earlier stop or replace loop-local semantics. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240; SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph convergence events and iterations 1-5; INFERENCE: preserving the current convergence output as the shadow adapter's decision oracle]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:60-96`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior iteration and graph backend events`",
+        "`specs/system-deep-loop/037-graph-engineering/research/prompts/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-6-5-p1-shadow-parity-must-prove-artifact-identity-not-only-graph-shape-the-first-mod",
+      "text": "**P1 — Shadow parity must prove artifact identity, not only graph shape.** The first-mode shadow run should enforce these measurable gates: **G0 scope** has zero writes outside the research packet and zero reducer-owned direct edits; **G1 artifacts** has exactly one new iteration narrative, one state-log iteration record, and one delta file, with all required headings and every finding cited; **G2 canonical state** has exactly one `type=iteration` record for the run and a delta first line byte-equivalent to the state-log record, with required route fields and valid node/edge vocabulary; **G3 graph reconstruction** has no dangling node references and reproduces finding, answered-question, source, and edge counts exactly; **G4 reducer parity** has zero normalized differences in reducer outputs produced from the legacy record stream versus the shadow event stream; **G5 convergence parity** has identical status, decision, stop reason, and `newInfoRatio` (tolerance no wider than 1e-9) for every shadowed iteration and no graph-triggered early stop; and **G6 replay/failure parity** deterministically reproduces the same decision and rejects malformed events, missing citations, and incomplete artifacts without converting them into completion. These are pass/fail gates, with 100% artifact/schema/convergence parity required for a cutover candidate. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/prompts/iteration-006.md; SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md; SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:145-240; INFERENCE: turning the existing file/JSONL/reducer contracts into objective shadow checks]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:60-96`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior iteration and graph backend events`",
+        "`specs/system-deep-loop/037-graph-engineering/research/prompts/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-6-2-p1-the-adapter-needs-a-typed-execution-state-distinct-from-the-knowledge-nodes-i",
+      "text": "**P1 — The adapter needs a typed execution state distinct from the knowledge nodes it emits.** A proposed `ResearchGraphState` has these fields: `schemaVersion`; `namespace {specFolder, sessionId, workflowMode, runtimeLoopType, backendKind}`; `iteration {number, run, focus, keyQuestions, remainingQuestions}`; `artifacts {iterationPath, stateLogPath, deltaPath, narrativeHash, stateRecordHash, deltaRecordHash}`; `knowledge {questionIds, findingIds, claimIds, sourceIds, edges}`; `signals {newInfoRatio, convergenceThreshold, minIterations, observations, qualityGate, blockers}`; `route {phase, decision, reason}`; `authority {legacyAuthoritative, shadow, ledgerReceiptRef, lockFenceRef}`; `parity {artifact, stateSchema, graph, reducer, convergence, mismatches}`; and `errors`. The node vocabulary maps `QUESTION` to a remaining key question, `FINDING` to a cited iteration finding, `CLAIM` to an answered/derived proposition, and `SOURCE` to a cited file or URL. The edge vocabulary maps `ANSWERS` from finding/claim to question, `SUPPORTS` or `CONTRADICTS` between claims/findings, `SUPERSEDES` from a newer result to an older result, `DERIVED_FROM` from claim to finding, `COVERS` from finding/claim to question, and `CITES` from finding/claim to source. This keeps graph topology typed while preserving the packet's JSONL artifacts as the durable boundary. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621; SOURCE: specs/system-deep-loop/037-graph-engineering/research/prompts/iteration-006.md; SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-005.md; INFERENCE: translating the existing graph-event and packet contracts into a typed adapter state]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:60-96`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior iteration and graph backend events`",
+        "`specs/system-deep-loop/037-graph-engineering/research/prompts/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-6-7-p1-the-graph-database-is-an-optional-acceleration-path-not-a-prerequisite-for-fi",
+      "text": "**P1 — The graph database is an optional acceleration path, not a prerequisite for first-mode correctness.** Prior iterations recorded a `better-sqlite3` native-module mismatch that made the coverage-graph database unavailable, causing graph convergence/upsert to be treated as absent. The adapter therefore needs JSONL event emission and file-based parity checks as the primary shadow proof; database upsert can be an additional projection. The existing upsert contract validates typed nodes/edges and namespaces, but that persistence path alone does not establish workflow control migration. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph_convergence and graph_upsert_skipped events; SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226; INFERENCE: separating an unavailable projection backend from the required packet and convergence proof]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json:1-19,65-190`",
+        "`.opencode/skills/system-deep-loop/SKILL.md:60-96`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70,145-240`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1-38,146-244`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/loop-lock.cjs:1-28,86-186`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18`",
+        "`specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,284-621`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,77-88,94-103`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md:44-83,59-77,116-160,181-186`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: prior iteration and graph backend events`",
+        "`specs/system-deep-loop/037-graph-engineering/research/prompts/iteration-006.md`"
+      ]
+    },
+    {
+      "id": "finding-7-5-p0-p1-the-phase-census-remains-mixed-after-017-and-does-not-clear-authority-cuto",
+      "text": "**P0/P1 — The phase census remains mixed after 017 and does not clear authority cutover.** The dated status evidence classifies 014 as blocked, 015-017 as planned, 018 as In Progress, 019-020 as Complete, 021 as discharged despite stale metadata, 022 as In Progress with deep-review parity outstanding, 023 as Complete, 024 as In Progress with append fencing absent, 025 as Planned, 026-028 as landed/complete with residual QA on 028, 029 as In Progress, 030-033 as landed with scoped residuals, 035 as Planned, 047-049 as In Progress, and 050 as Complete. Consequently 014 authority cutover and legacy retirement remain unlanded; F001/F002/F005 and the independent 022/024 gates remain residual risks. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:22-32, 50-83, 116-160, 181-186] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:PHASE MAP & OUTCOMES]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json`",
+        "`.opencode/skills/system-deep-loop/graph-metadata.json`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-7-1-p1-registry-authority-and-graph-metadata-projection-are-not-equivalent-mode-regi",
+      "text": "**P1 — Registry authority and graph-metadata projection are not equivalent.** `mode-registry.json` is version 2.0.0.1 and explicitly declares the three-tier discriminator: seven workflow modes, runtime loop types only for research/review/council, explicit `null` runtimeLoopType for improvement and alignment custom backends, and backend ownership. The hub `graph-metadata.json` is a single advisor identity with derived domains, trigger phrases, key files, and a causal summary; it records `last_updated_at` 2026-07-14 and does not carry the registry's per-mode discriminator fields. Therefore graph metadata is a discoverability projection and is stale/incomplete for runtime status, while the registry remains the routing authority. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:1-19, 44-64, 65-190] [SOURCE: .opencode/skills/system-deep-loop/graph-metadata.json:1-4, 30-154]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json`",
+        "`.opencode/skills/system-deep-loop/graph-metadata.json`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-7-4-p1-status-labels-for-the-substrate-are-stale-relative-to-the-dated-handover-the-",
+      "text": "**P1 — Status labels for the substrate are stale relative to the dated handover.** The direct child labels previously recorded 001-003 and 005 as Complete, 004 and 006-012 as Planned, and 013 as In Progress, while the handover says the 001-013 substrate is built/landed and warns that child graph metadata is stale. The defensible classification is “substrate landed; child status metadata stale/unreconciled,” not “014-ready.” [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:1-49] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/findings-registry.json: key finding 2-3]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json`",
+        "`.opencode/skills/system-deep-loop/graph-metadata.json`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-7-3-p1-the-036-filesystem-census-resolves-the-prior-coverage-gap-as-missing-canonica",
+      "text": "**P1 — The 036 filesystem census resolves the prior coverage gap as missing canonical child packets, not silent completion.** The available direct child paths include 001-033 (with nested sub-phases), 035, and 047-050; there is no canonical child `spec.md` path for 034 or 036-046 in the enumerated packet. The absence must remain a coverage/ownership gap: it is not evidence that those phases are complete, failed, or merged into another phase. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:PHASE DOCUMENTATION MAP] [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:181-186] [INFERENCE: filesystem child-spec enumeration compared with the parent phase map]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json`",
+        "`.opencode/skills/system-deep-loop/graph-metadata.json`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-7-2-p1-the-runtime-boundary-is-live-but-split-by-backend-the-convergence-entrypoint-",
+      "text": "**P1 — The runtime boundary is live but split by backend.** The convergence entrypoint is executable and validates `research|review|council|context`, loads the coverage/council graph backend, computes loop-specific signals, blockers, snapshots, novelty corroboration, and optional persistence under a writer lock. `verify-iteration.cjs` mechanically requires narrative, route proof, and a per-iteration delta; `reduce-state.cjs` parses state and delta streams and builds registry/dashboard state. Prior direct evidence confirms `loop-lock.cjs`, `fanout-run.cjs`, and `upsert.cjs` are also landed runtime entrypoints, but their direct reread was unavailable in this pass. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-15, 145-240, 480-690] [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs:1-18, 93-176] [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:1-18, 90-160, 520-620] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:5-8]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.opencode/skills/system-deep-loop/mode-registry.json`",
+        "`.opencode/skills/system-deep-loop/graph-metadata.json`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs`",
+        "`.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/spec.md`",
+        "`specs/system-deep-loop/036-deep-loop-innovation/handover.md`",
+        "`specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl`"
+      ]
+    },
+    {
+      "id": "finding-8-3-p1-admission-budgets-are-conservative-estimates-while-runtime-budgets-are-the-en",
+      "text": "**[P1] Admission budgets are conservative estimates, while runtime budgets are the enforcement plane.** `_worst_case()` walks proposal edges and multiplies each registry `NodeSpec.worst_case` by possible execution steps; `_check_budget()` compares tokens, iterations, and seconds with remaining headroom and marks estimates incomplete when kinds are unregistered. The runtime `BudgetMeter` charges iterations/tokens, checks ceilings at node/call boundaries, and `deadline_guard` enforces wall-clock limits with signal or thread fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:184-210,836-893; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/budget.py:48-57,129-317,363-510]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:101-1008",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:1-491",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:364-1299",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/budget.py:48-510",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/observe/trace.py:61-273",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_admission.py:82-1518",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_budget_enforcement.py:55-707",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_replay.py:108-1454",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/bench/run_bench.py:30-213",
+        "https://docs.langchain.com/oss/python/langgraph/graph-api",
+        "https://docs.langchain.com/oss/python/langgraph/persistence"
+      ]
+    },
+    {
+      "id": "finding-8-1-p1-admission-is-a-deterministic-fail-closed-gate-rather-than-an-executor-admissi",
+      "text": "**[P1] Admission is a deterministic, fail-closed gate rather than an executor.** `AdmissionChecker.check()` runs registry, node/edge policy, remaining-budget, depth, optional reachability, and acyclicity checks; the immutable `AdmissionResult` carries status, proposal fingerprint, rejections, checks run, cost estimate, remaining budget, depth, and node count. `_emit()` records both admitted and rejected decisions as `phase=\"admission\"` trace events. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:101-115,457-507,551-614,975-1008]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:101-1008",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:1-491",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:364-1299",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/budget.py:48-510",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/observe/trace.py:61-273",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_admission.py:82-1518",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_budget_enforcement.py:55-707",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_replay.py:108-1454",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/bench/run_bench.py:30-213",
+        "https://docs.langchain.com/oss/python/langgraph/graph-api",
+        "https://docs.langchain.com/oss/python/langgraph/persistence"
+      ]
+    },
+    {
+      "id": "finding-8-7-p1-grapharc-adds-governance-and-audit-boundaries-around-langgraph-like-graph-exe",
+      "text": "**[P1] GraphARC adds governance and audit boundaries around LangGraph-like graph execution rather than replacing the runtime model.** Its materializer documents static edge fan-out/join with LangGraph super-step semantics, while the kernel exposes conditional and fan-out edge builders and compiles a runnable graph; the materializer also accepts a checkpointer and the compiled wrapper exposes state/history APIs. The additional GraphARC contract is operator-owned admission, registry factories, declared writes, and trace-backed audit; this is an implementation-level wrapper boundary, not evidence that a deep-loop evidence ledger has become the graph runtime. [INFERENCE: based on specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:25-37,239-292,338-380; specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:364-465,466-493,1009-1299; prior LangGraph verification recorded in specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl iteration 4 and https://docs.langchain.com/oss/python/langgraph/graph-api]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:101-1008",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:1-491",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:364-1299",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/budget.py:48-510",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/observe/trace.py:61-273",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_admission.py:82-1518",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_budget_enforcement.py:55-707",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_replay.py:108-1454",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/bench/run_bench.py:30-213",
+        "https://docs.langchain.com/oss/python/langgraph/graph-api",
+        "https://docs.langchain.com/oss/python/langgraph/persistence"
+      ]
+    },
+    {
+      "id": "finding-8-4-p1-materializer-is-the-governance-wrapper-around-a-real-graph-runtime-it-accepts",
+      "text": "**[P1] Materializer is the governance wrapper around a real graph runtime.** It accepts only an admitted `AdmissionResult` matching the exact proposal fingerprint/type, performs standalone entry/reachability/write checks, obtains bodies only from operator-owned registry factories, then calls `GraphARC.add_node`, `add_edge`, and `compile`. The optional `forward_args` path is explicitly unchecked; `_confine()` restricts `Command`/`Send` destinations to edges the proposal declared. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:1-88,139-202,204-292,293-380,433-491; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:364-465,623-712]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:101-1008",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:1-491",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:364-1299",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/budget.py:48-510",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/observe/trace.py:61-273",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_admission.py:82-1518",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_budget_enforcement.py:55-707",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_replay.py:108-1454",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/bench/run_bench.py:30-213",
+        "https://docs.langchain.com/oss/python/langgraph/graph-api",
+        "https://docs.langchain.com/oss/python/langgraph/persistence"
+      ]
+    },
+    {
+      "id": "finding-8-2-p1-routing-authority-is-attached-to-registry-kinds-not-planner-chosen-instance-n",
+      "text": "**[P1] Routing authority is attached to registry kinds, not planner-chosen instance names.** Edge and node policies implement deny/ask/allow ordering; endpoint kinds are resolved from proposed nodes or an explicit `{name: kind}` live-node mapping, and unresolved endpoint kinds are refused rather than assumed safe. This prevents renaming an instance from laundering a denied transition, while `NEEDS_APPROVAL` remains a stop rather than an implicit allow. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:302-361,382-428,672-835]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:101-1008",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:1-491",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:364-1299",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/budget.py:48-510",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/observe/trace.py:61-273",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_admission.py:82-1518",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_budget_enforcement.py:55-707",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_replay.py:108-1454",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/bench/run_bench.py:30-213",
+        "https://docs.langchain.com/oss/python/langgraph/graph-api",
+        "https://docs.langchain.com/oss/python/langgraph/persistence"
+      ]
+    },
+    {
+      "id": "finding-8-5-p1-state-routing-checkpoint-and-trace-planes-are-distinct-grapharcstate-forbids-",
+      "text": "**[P1] State, routing, checkpoint, and trace planes are distinct.** `GraphARCState` forbids unknown fields and validates assignment; the kernel validates node updates and exposes static, conditional, and fan-out edge primitives plus compiled state/history operations. `TraceRecorder` appends JSONL `TraceEvent` records and strictly rejects malformed owned traces, while `TailRecorder` tolerates a torn final line for live reads; replay tests reconstruct node order, state deltas, failed executions, and fan-out from the file. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:364-465,495-757,1009-1299; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/observe/trace.py:61-220,223-273; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_replay.py:108-255,410-495]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:101-1008",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:1-491",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:364-1299",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/budget.py:48-510",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/observe/trace.py:61-273",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_admission.py:82-1518",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_budget_enforcement.py:55-707",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_replay.py:108-1454",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/bench/run_bench.py:30-213",
+        "https://docs.langchain.com/oss/python/langgraph/graph-api",
+        "https://docs.langchain.com/oss/python/langgraph/persistence"
+      ]
+    },
+    {
+      "id": "finding-8-6-p2-the-contract-is-executable-and-broad-but-benchmark-evidence-is-a-harness-rath",
+      "text": "**[P2] The contract is executable and broad, but benchmark evidence is a harness rather than proof of production parity.** Admission tests cover all failed checks, policy/name evasion, trace recording, planner non-execution, and reachability; budget tests cover token/time ceilings and fan-out interruption; replay tests cover deterministic reconstruction. `bench/run_bench.py` supplies hashing, external-agent invocation, task grading, and a CLI main, so it can compare runs but does not itself establish deep-loop authority parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_admission.py:82-918,1047-1108,1456-1518; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_budget_enforcement.py:55-120,377-457,508-591; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_replay.py:108-255,410-495; SOURCE: specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/bench/run_bench.py:30-52,76-165]",
+      "addedAtIteration": 8,
+      "sources": [
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/admission.py:101-1008",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/planner/materialize.py:1-491",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/state.py:1-18",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:364-1299",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/budget.py:48-510",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/observe/trace.py:61-273",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_admission.py:82-1518",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_budget_enforcement.py:55-707",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/tests/test_replay.py:108-1454",
+        "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/bench/run_bench.py:30-213",
+        "https://docs.langchain.com/oss/python/langgraph/graph-api",
+        "https://docs.langchain.com/oss/python/langgraph/persistence"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-97e71dfd86c6",
+      "text": "Treating `workflowMode` as the runtime convergence key was ruled out: the hub and registry require explicit `runtimeLoopType`, including load-bearing nulls for custom backends. [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:70-81; .opencode/skills/system-deep-loop/mode-registry.json:44-64]",
+      "contentHash": "97e71dfd86c6",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-d98ebbbb0323",
+      "text": "Treating existing coverage-graph upsert as a workflow state-graph migration was ruled out; the inspected contract is node/edge persistence and validation, while control execution remains in convergence/fan-out entrypoints. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226; INFERENCE: compared with .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:1-70 and fanout-run.cjs:1-38]",
+      "contentHash": "d98ebbbb0323",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f1c78e01d562",
+      "text": "The legacy LangGraph documentation URL (`https://langchain-ai.github.io/langgraph/concepts/low_level/`) returned no usable body in this run. Current official docs and the official raw source provided a successful fallback, so the iteration remains complete.",
+      "contentHash": "f1c78e01d562",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-bece5ee91a2e",
+      "text": "Treating GraphARC's dynamic `Command`/`Send` capability as permissionless model branching; its admission gate is a required control boundary.",
+      "contentHash": "bece5ee91a2e",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-e3bb3d4c72c4",
+      "text": "Treating LangGraph's `compile()` plus checkpointer as equivalent to an append-only evidence ledger or replayable why-audit; the official docs describe state persistence, while traces carry execution rationale.",
+      "contentHash": "e3bb3d4c72c4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-eb5783711bd6",
+      "text": "Treating the graph-engineering-master README/WORKFLOWS as proof of an executable local implementation when the packet's `graph-engineering/` inventory is empty.",
+      "contentHash": "eb5783711bd6",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-892274049b69",
+      "text": "A big-bang graph replacement is incompatible with the documented additive-dark and rollback-window migration sequence. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26]",
+      "contentHash": "892274049b69",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-c5995af7da9e",
+      "text": "A database-first adapter is blocked by the recorded native-module mismatch and would conflate projection availability with adapter correctness. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl: graph convergence/upsert skipped events]",
+      "contentHash": "c5995af7da9e",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-2d970c5d12a6",
+      "text": "Allowing graph convergence to stop before legacy convergence and quality/parity gates agree. [INFERENCE: based on .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs:145-240 and the 036 cutover sequence]",
+      "contentHash": "2d970c5d12a6",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f0c12e74e8b2",
+      "text": "Starting with AI council, alignment, or improvement as if they shared the research packet contract; the registry assigns them distinct artifact or backend boundaries. [SOURCE: .opencode/skills/system-deep-loop/mode-registry.json:65-190]",
+      "contentHash": "f0c12e74e8b2",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-7bfacc8406be",
+      "text": "Starting with review while its named deep-review parity gap remains unresolved; this would make the first parity oracle weaker than research. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83]",
+      "contentHash": "7bfacc8406be",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-f5bce5018631",
+      "text": "Treating the coverage-graph database or a graph checkpointer as the authority ledger or as proof of control-plane migration. [SOURCE: .opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs:134-226; SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103]",
+      "contentHash": "f5bce5018631",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-614b82ab52f2",
+      "text": "Treating `forward_args=True` as governed argument validation; materializer documentation explicitly leaves those args unchecked.",
+      "contentHash": "614b82ab52f2",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-6d0de1d6363f",
+      "text": "Treating admission as execution; the checker never calls node factories and only records a decision.",
+      "contentHash": "6d0de1d6363f",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-a1637be8496c",
+      "text": "Treating GraphARC checkpoint/state APIs or trace replay as the append-only evidence-ledger authority.",
+      "contentHash": "a1637be8496c",
+      "addedAtIteration": 8
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 18,
+    "keyFindings": 55,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.86,
+    "coverageBySources": {
+      "code": 76,
+      "docs.langchain.com": 2,
+      "langchain-ai.github.io": 1,
+      "other": 37,
+      "raw.githubusercontent.com": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-deep-loop/037-graph-engineering/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}
