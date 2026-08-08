@@ -1,23 +1,29 @@
-# Graph Primitives and Snippets
+# Graph Primitives and Snippets — Governed Graph-Backed Work
 
-A practical reference for graph-backed work in `system-deep-loop`.
+A practical reference for graph-backed work in `system-deep-loop`, covering typed state, node and edge vocabulary, admission, budgets, fan-out and fan-in, checkpointing, convergence guardrails, replay parity, and migration.
+
+---
+
+## 1. OVERVIEW
+
+**Core Principle**: Graph structure is a governed execution aid, not an authority or audit ledger.
 
 This document treats graph structure as a governed execution aid. It does not replace the append-only evidence ledger, legacy loop semantics, or transition-authorization boundary. The recommended migration is additive-dark shadowing, then parity, then one-mode cutover only after the authority prerequisites pass. [SOURCE: `specs/system-deep-loop/037-graph-engineering/research/research.md`; iteration-006; iteration-012]
 
-## 1. Working vocabulary
+### 1.1 Working vocabulary
 
-| Term | Meaning in this reference | Authority boundary |
+| **Term** | Meaning in this reference | Authority boundary |
 |---|---|---|
-| Control graph | Stable, registry-defined workflow shape and guarded transitions | Registry, policy, and authorization code |
-| Work graph | Per-run nodes and edges for dispatch, evidence, synthesis, convergence, and recovery | Typed state plus admission; not the ledger |
-| Knowledge graph | Typed questions, findings, claims, and sources connected by evidence relations | Derived coverage/provenance projection |
-| Checkpoint | Resumable execution state for a thread or wait period | Persistence aid; not an audit ledger |
-| Trace | Runtime observations such as node starts, ends, errors, deltas, and admission results | Observability; not a sealed receipt |
-| Admission | Deterministic decision that a proposed graph may execute | Fail-closed gate before materialization |
-| Fan-out | A bounded set of detached parallel lineages | Filesystem-enforced branch boundary |
-| Fan-in | Deterministic merge of validated lineage outputs | Registry/attribution projection; lineage logs remain evidence |
+| **Control graph** | Stable, registry-defined workflow shape and guarded transitions | Registry, policy, and authorization code |
+| **Work graph** | Per-run nodes and edges for dispatch, evidence, synthesis, convergence, and recovery | Typed state plus admission; not the ledger |
+| **Knowledge graph** | Typed questions, findings, claims, and sources connected by evidence relations | Derived coverage/provenance projection |
+| **Checkpoint** | Resumable execution state for a thread or wait period | Persistence aid; not an audit ledger |
+| **Trace** | Runtime observations such as node starts, ends, errors, deltas, and admission results | Observability; not a sealed receipt |
+| **Admission** | Deterministic decision that a proposed graph may execute | Fail-closed gate before materialization |
+| **Fan-out** | A bounded set of detached parallel lineages | Filesystem-enforced branch boundary |
+| **Fan-in** | Deterministic merge of validated lineage outputs | Registry/attribution projection; lineage logs remain evidence |
 
-### 1.1 Non-negotiable separation
+### 1.2 Non-negotiable separation
 
 1. A graph state snapshot may carry the current reducer input and resume position.
 2. A graph edge may describe a possible route.
@@ -47,7 +53,7 @@ ledger/gateway remains authoritative for durable transitions
 
 The diagram is a conceptual summary of the implementation boundary, not a claim that the live deep-loop runtime has already become graph-native. [INFERENCE]
 
-## 2. Typed state
+## 2. TYPED STATE
 
 ### 2.1 The GraphARC Pydantic base pattern
 
@@ -71,10 +77,10 @@ class GraphARCState(BaseModel):
 
 The durable point is the configuration:
 
-| Setting | Effect | Failure prevented |
+| **Setting** | Effect | Failure prevented |
 |---|---|---|
-| `extra="forbid"` | Unknown keys fail model validation | A misspelled update becoming plausible downstream state |
-| `validate_assignment=True` | Assignment is validated after model creation | A later mutation violating the declared state contract |
+| **`extra="forbid"`** | Unknown keys fail model validation | A misspelled update becoming plausible downstream state |
+| **`validate_assignment=True`** | Assignment is validated after model creation | A later mutation violating the declared state contract |
 
 GraphARC also validates node updates against declared field types and rejects undeclared writes. A node may return a dictionary or a `Command`, but both routes pass through the same write checks. [SOURCE: `specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/grapharc/runtime/graph.py:1-33,364-465,623-712`; iteration-008]
 
@@ -82,12 +88,12 @@ GraphARC also validates node updates against declared field types and rejects un
 
 Keep execution state and knowledge nodes separate.
 
-| State concern | Knowledge concern |
+| **State concern** | Knowledge concern |
 |---|---|
-| Current iteration, route, budget, blockers, and artifact locations | Questions, findings, claims, sources, and evidence relations |
-| Reducer inputs and control signals | Traversable evidence/provenance projection |
-| Mutable working snapshot | Append-oriented events and derived graph records |
-| Resume position | Why a finding supports or contradicts another finding |
+| **Current iteration, route, budget, blockers, and artifact locations** | Questions, findings, claims, sources, and evidence relations |
+| **Reducer inputs and control signals** | Traversable evidence/provenance projection |
+| **Mutable working snapshot** | Append-oriented events and derived graph records |
+| **Resume position** | Why a finding supports or contradicts another finding |
 
 A `ResearchGraphState` can reference knowledge IDs without embedding the entire graph as mutable nested state. This keeps a typed execution contract while allowing the graph projection to be rebuilt from events. [INFERENCE: based on iteration-006's proposed adapter state and iteration-011's separation of graph state from ledger authority]
 
@@ -147,14 +153,14 @@ The following is the proposed first-mode adapter shape. It is a design contract,
 
 #### State invariants
 
-| Invariant | Check |
+| **Invariant** | Check |
 |---|---|
-| `schemaVersion` is present | Reject missing or unsupported versions |
-| Namespace is complete | Require spec folder, session, and mode identity before dispatch |
-| Artifact identity is explicit | Require path plus content hash for each parity-relevant artifact |
-| IDs are references, not content dumps | Reconstruct graph records from the event/registry boundary |
-| Route is bounded | `phase`, `decision`, and `reason` must use the adapter's declared vocabulary |
-| Signals do not silently authorize stop | Legacy convergence and quality gates remain independent guards |
+| **`schemaVersion` is present** | Reject missing or unsupported versions |
+| **Namespace is complete** | Require spec folder, session, and mode identity before dispatch |
+| **Artifact identity is explicit** | Require path plus content hash for each parity-relevant artifact |
+| **IDs are references, not content dumps** | Reconstruct graph records from the event/registry boundary |
+| **Route is bounded** | `phase`, `decision`, and `reason` must use the adapter's declared vocabulary |
+| **Signals do not silently authorize stop** | Legacy convergence and quality gates remain independent guards |
 
 The state is a typed normalized snapshot. It is not a replacement for the state JSONL stream, reducer output, or evidence ledger. [SOURCE: iteration-006; iteration-012; iteration-013]
 
@@ -176,32 +182,32 @@ else:
 
 A graph adapter should follow the same discipline: node input is isolated, declared output is validated, and durable artifact writes happen through the existing owner boundary rather than by mutating shared state.
 
-## 3. Node and edge vocabulary
+## 3. NODE AND EDGE VOCABULARY
 
 ### 3.1 Knowledge node kinds
 
 The coverage graph uses four knowledge node kinds.
 
-| Kind | Use |
+| **Kind** | Use |
 |---|---|
-| `QUESTION` | A tracked research question or unresolved key question |
-| `FINDING` | A cited observation produced by research |
-| `CLAIM` | An asserted or derived proposition |
-| `SOURCE` | A file, document, URL, or other cited evidence source |
+| **`QUESTION`** | A tracked research question or unresolved key question |
+| **`FINDING`** | A cited observation produced by research |
+| **`CLAIM`** | An asserted or derived proposition |
+| **`SOURCE`** | A file, document, URL, or other cited evidence source |
 
-These kinds are the graph-events vocabulary used by the research coverage graph. Invalid kinds must be rejected rather than stored as an untyped node. [SOURCE: `specs/system-deep-loop/037-graph-engineering/research/research.md`, §6 and §10; iteration-006; iteration-013]
+These kinds are the graph-events vocabulary used by the research coverage graph. In the deep-loop runtime the iteration records emit them as `graphEvents` (one JSON object per node or edge), and `upsert.cjs` validates node kinds and edge relations, rejects self-loops, and persists only accepted events; an omitted or invalid edge silently reduces graph coverage rather than changing the inline ratio. Invalid kinds must be rejected rather than stored as an untyped node. [SOURCE: `specs/system-deep-loop/037-graph-engineering/research/research.md`, §6 and §10; iteration-006; iteration-013; `.opencode/skills/system-deep-loop/runtime/scripts/upsert.cjs`; `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md`]
 
 ### 3.2 Edge relations
 
-| Relation | Typical direction | Meaning |
+| **Relation** | Typical direction | Meaning |
 |---|---|---|
-| `ANSWERS` | `FINDING`/`CLAIM` → `QUESTION` | The source content answers a question |
-| `SUPPORTS` | `FINDING`/`CLAIM` → `CLAIM`/`FINDING` | Evidence supports another proposition |
-| `CONTRADICTS` | `FINDING`/`CLAIM` ↔ `FINDING`/`CLAIM` | Evidence or claims are in conflict |
-| `SUPERSEDES` | newer result → older result | A later result replaces an earlier one |
-| `DERIVED_FROM` | `CLAIM` → `FINDING` | Claim derivation provenance |
-| `COVERS` | `FINDING`/`CLAIM` → `QUESTION` | The result covers part of a question |
-| `CITES` | `FINDING`/`CLAIM` → `SOURCE` | The result cites its evidence source |
+| **`ANSWERS`** | `FINDING`/`CLAIM` → `QUESTION` | The source content answers a question |
+| **`SUPPORTS`** | `FINDING`/`CLAIM` → `CLAIM`/`FINDING` | Evidence supports another proposition |
+| **`CONTRADICTS`** | `FINDING`/`CLAIM` ↔ `FINDING`/`CLAIM` | Evidence or claims are in conflict |
+| **`SUPERSEDES`** | newer result → older result | A later result replaces an earlier one |
+| **`DERIVED_FROM`** | `CLAIM` → `FINDING` | Claim derivation provenance |
+| **`COVERS`** | `FINDING`/`CLAIM` → `QUESTION` | The result covers part of a question |
+| **`CITES`** | `FINDING`/`CLAIM` → `SOURCE` | The result cites its evidence source |
 
 The relation vocabulary adds structure that a scalar novelty score cannot express, especially contradiction, per-question coverage, and source diversity. [SOURCE: iteration-013]
 
@@ -262,7 +268,7 @@ An invalid or missing edge lowers graph coverage; it must not alter the independ
 
 The graph is useful for contradiction, coverage, diversity, and hotspot analysis. It is not the authoritative event ledger. The research runtime records graph convergence as an optional structural guard around the inline three-signal vote; `STOP_ALLOWED` can permit the inline candidate, but graph availability cannot authorize an earlier stop. [SOURCE: iteration-013; research.md §6 and §10]
 
-## 4. Admission and fail-closed routing
+## 4. ADMISSION AND FAIL-CLOSED ROUTING
 
 ### 4.1 Admission flow
 
@@ -290,14 +296,14 @@ if self.limits.require_acyclic:
 
 The checks mean:
 
-| Check | Question | Fail-closed result |
+| **Check** | Question | Fail-closed result |
 |---|---|---|
-| Registry | Are node kinds registered and endpoints present? | Reject unknown kinds or endpoints |
-| Policy | Are node kinds and edges permitted? | Reject deny; approval is not an implicit allow |
-| Budget | Does the worst case fit remaining headroom? | Reject before first node runs |
-| Depth | Is nesting within the operator limit? | Reject too-deep proposals |
-| Reachability | Does a standalone graph have an entry and reachable nodes? | Reject unrunnable topology when enabled |
-| Acyclicity | Does the proposal avoid cycles when DAG mode is required? | Reject cycles |
+| **Registry** | Are node kinds registered and endpoints present? | Reject unknown kinds or endpoints |
+| **Policy** | Are node kinds and edges permitted? | Reject deny; approval is not an implicit allow |
+| **Budget** | Does the worst case fit remaining headroom? | Reject before first node runs |
+| **Depth** | Is nesting within the operator limit? | Reject too-deep proposals |
+| **Reachability** | Does a standalone graph have an entry and reachable nodes? | Reject unrunnable topology when enabled |
+| **Acyclicity** | Does the proposal avoid cycles when DAG mode is required? | Reject cycles |
 
 GraphARC's `AdmissionResult` carries status, fingerprint, rejections, checks run, cost estimate, remaining budget, depth, and node count. This makes the decision usable for replanning and later inspection. [SOURCE: iteration-008]
 
@@ -343,7 +349,7 @@ class AdmissionStatus(StrEnum):
 
 Admission authorizes a shape; materialization turns only that admitted shape into executable work. GraphARC's materializer resolves node bodies from operator-owned registry factories and confines dynamic destinations to declared edges. Raw compiled entrypoints fail closed when the GraphARC run context is absent because budgets and traces are part of the execution contract. [SOURCE: iteration-004; iteration-008; `graph.py:51-140,364-465`]
 
-## 5. Budgets: estimate first, enforce at runtime
+## 5. BUDGETS: ESTIMATE FIRST, ENFORCE AT RUNTIME
 
 ### 5.1 Worst-case admission estimate
 
@@ -405,12 +411,12 @@ except BudgetExceeded as exc:
 
 Use both layers:
 
-| Layer | Input | Timing | Purpose |
+| **Layer** | Input | Timing | Purpose |
 |---|---|---|---|
-| Admission estimate | Registry `worst_case` plus proposal topology | Before materialization | Refuse obviously over-budget work |
-| Runtime meter | Actual iterations, tokens, and elapsed time | Before/inside node execution | Stop work that exceeds the live ceiling |
-| Fan-out cap | Iteration estimate × attempts × lineages | Before pool execution | Refuse an excessive branch submission |
-| Aggregate cap | Sum of per-lineage estimates | Before pool execution | Bound total run exposure |
+| **Admission estimate** | Registry `worst_case` plus proposal topology | Before materialization | Refuse obviously over-budget work |
+| **Runtime meter** | Actual iterations, tokens, and elapsed time | Before/inside node execution | Stop work that exceeds the live ceiling |
+| **Fan-out cap** | Iteration estimate × attempts × lineages | Before pool execution | Refuse an excessive branch submission |
+| **Aggregate cap** | Sum of per-lineage estimates | Before pool execution | Bound total run exposure |
 
 ### 5.3 Fan-out budget estimates
 
@@ -438,7 +444,7 @@ function computeLineageBudgetUpperBound(lineage, guardsInput = {}, maxRetries = 
 
 This is a worst-case admission guard. It is not proof of actual spend. Runtime status ledgers, process timeouts, stall watchdogs, and per-node meters remain necessary.
 
-## 6. Fan-out, lineage, and fan-in
+## 6. FAN-OUT, LINEAGE, AND FAN-IN
 
 ### 6.1 Flat-pool fan-out is the current contract
 
@@ -580,7 +586,7 @@ branch
 
 It must not infer missing execution events from a merged finding or replace append-only lineage evidence. [INFERENCE: based on the read-only lineage inputs and registry-only merge outputs]
 
-## 7. Checkpointing and resume
+## 7. CHECKPOINTING AND RESUME
 
 ### 7.1 GraphARC checkpoint access
 
@@ -683,19 +689,19 @@ receipt    -> authorized transition/effect evidence
 
 Collapsing these planes creates a false sense of replayability and can let mutable state masquerade as proof. [SOURCE: research.md §9 and §10]
 
-## 8. Route and convergence guardrails
+## 8. ROUTE AND CONVERGENCE GUARDRAILS
 
 ### 8.1 Route vocabulary
 
 The proposed adapter route should preserve the legacy convergence decision rather than introduce a second stop score.
 
-| Route | Meaning |
+| **Route** | Meaning |
 |---|---|
-| `continue` | Legacy loop requires more work and quality/parity gates allow dispatch |
-| `stop` | Legacy stop candidate is legal and minimum/quality gates pass |
-| `blocked` | Stop or transition is blocked by missing evidence, parity, schema, identity, or fencing |
-| `recover` | A productive fallback can repair missing or malformed evidence |
-| `stuck` | No productive fallback remains |
+| **`continue`** | Legacy loop requires more work and quality/parity gates allow dispatch |
+| **`stop`** | Legacy stop candidate is legal and minimum/quality gates pass |
+| **`blocked`** | Stop or transition is blocked by missing evidence, parity, schema, identity, or fencing |
+| **`recover`** | A productive fallback can repair missing or malformed evidence |
+| **`stuck`** | No productive fallback remains |
 
 [INFERENCE: route labels summarize iteration-006's adapter contract; they are not asserted as existing graph node names.]
 
@@ -719,20 +725,20 @@ return legacy_convergence_and_graph_veto(state)
 
 This pseudocode captures the ordering. It is not a replacement implementation. [INFERENCE: based on `admission.py` and iterations 008, 011, 013]
 
-## 9. Deterministic replay and parity checklist
+## 9. DETERMINISTIC REPLAY AND PARITY CHECKLIST
 
 A first research-mode adapter should be proven in shadow mode with a fixed corpus rather than a live-directory replay. [SOURCE: iteration-012]
 
 ### 9.1 Minimum fixture cases
 
-| Case | Expected coverage |
+| **Case** | Expected coverage |
 |---|---|
-| Empty input | Schema and no-evidence failure |
-| Ordinary finding | Node/edge vocabulary, hashes, reducer output |
-| Partial success | One failed or timed-out node plus one successful node |
-| Contradiction replay | Same-ID/different-content conflict variants and idempotence |
-| Permuted fan-in | Same output bytes under lineage/input order changes |
-| Graph unavailable | Legacy parity remains testable without graph storage |
+| **Empty input** | Schema and no-evidence failure |
+| **Ordinary finding** | Node/edge vocabulary, hashes, reducer output |
+| **Partial success** | One failed or timed-out node plus one successful node |
+| **Contradiction replay** | Same-ID/different-content conflict variants and idempotence |
+| **Permuted fan-in** | Same output bytes under lineage/input order changes |
+| **Graph unavailable** | Legacy parity remains testable without graph storage |
 
 ### 9.2 Required comparisons
 
@@ -760,7 +766,7 @@ Missing evidence, malformed events, unsupported graph storage, or adapter except
 - Do not let a `NEEDS_APPROVAL` result fall through as an allow.
 - Do not claim production cutover while the 036 fencing and gateway prerequisites remain blocked. [SOURCE: research.md §7, §10; iterations 012, 014, 015, 018]
 
-## 10. Implementation sequence
+## 10. IMPLEMENTATION SEQUENCE
 
 1. Define and validate the typed research state in additive-dark shadow mode.
 2. Emit graph events beside existing iteration/state/delta artifacts.
@@ -773,7 +779,7 @@ Missing evidence, malformed events, unsupported graph storage, or adapter except
 
 This sequence follows the research synthesis: hybrid loop-plus-graph, evidence ledger authoritative, additive-dark adapter first, shadow parity second, per-mode cutover third, and convergence-graph enrichment last. [SOURCE: research.md §1, §10; iteration-018]
 
-## Sources
+## 11. SOURCES
 
 - `specs/system-deep-loop/037-graph-engineering/research/research.md` — synthesis, status, vocabulary, migration, and authority conclusions.
 - `specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md` — GraphARC/LangGraph boundary, checkpoints versus trace, and implementation model.

@@ -1,16 +1,23 @@
 # Loops vs. Graphs: Decision Guide for `system-deep-loop`
 
-## Purpose
+Use this guide to decide whether a loop-based mode, phase, or adapter should become a graph.
 
-Use this guide before turning a loop-based mode, phase, or adapter into a graph.
+---
 
-The central recommendation is conservative:
+## 1. OVERVIEW
+
+**Core Principle**: Use a graph when the work is both complex and materially concurrent, with at least three independent verification steps and complex decision routing; keep a loop when the work is simple, sequential, exploratory, approval-heavy, or has no real independent branches.
+
+This document is a selection guide, not a graph-first architecture proposal. The current system remains a hybrid loop-plus-graph design. The evidence ledger remains authoritative; graph state, checkpoints, and topology do not replace transition authorization, sealed receipts, blinded adjudication, or replay fingerprints. [SOURCE: `research/research.md`, §§5, 9–11]
 
 > Use a graph when the work is both complex and materially concurrent, with at least three independent verification steps and complex decision routing. Keep a loop when the work is simple, sequential, exploratory, approval-heavy, or has no real independent branches.
 
-This is a selection guide, not a graph-first architecture proposal. The current system remains a hybrid loop-plus-graph design. The evidence ledger remains authoritative; graph state, checkpoints, and topology do not replace transition authorization, sealed receipts, blinded adjudication, or replay fingerprints. [SOURCE: `research/research.md`, §§5, 9–11]
+**Key points**
 
-## 1. The short rule
+- Use graph structure for real concurrency and complex routing, not for appearance.
+- Keep evidence, authority, receipts, and replay semantics outside convenience graph state.
+
+## 2. THE SHORT RULE
 
 Ask these questions in order:
 
@@ -31,9 +38,14 @@ Use the following rule:
 
 The matrix is drawn from the corpus's explicit loops-versus-graphs decision criteria. [SOURCE: `context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md`, “When to Use Loops vs Graphs: The Decision Matrix”]
 
-## 2. Definitions
+**Key points**
 
-### 2.1 Loop
+- Test complexity, real concurrency, independent verification, routing, and harness operability in that order.
+- High concurrency alone selects parallel loops, not necessarily graph engineering.
+
+## 3. DEFINITIONS
+
+### 3.1 Loop
 
 A loop is an autonomous cycle for one agent or one bounded executor:
 
@@ -45,20 +57,22 @@ The loop owns its context, iteration limit, token budget, retry behavior, output
 
 A loop is not a failure of architecture. It is the correct unit when the work is narrow or its steps genuinely depend on one another.
 
-### 2.2 Graph
+### 3.2 Graph
 
 A graph is an explicit organization of jobs or agents:
 
-- **Node:** one bounded job with a declared input and output.
-- **Edge:** a real dependency or data transfer between nodes.
-- **Conditional edge:** a route selected by a result or gate.
-- **Fan-out:** independent branches run at the same time.
-- **Fan-in:** branch results are reduced or synthesized.
-- **Checkpoint:** resumable execution state, not automatically an audit record.
+| **Term** | Meaning |
+|---|---|
+| **Node** | One bounded job with a declared input and output. |
+| **Edge** | A real dependency or data transfer between nodes. |
+| **Conditional edge** | A route selected by a result or gate. |
+| **Fan-out** | Independent branches run at the same time. |
+| **Fan-in** | Branch results are reduced or synthesized. |
+| **Checkpoint** | Resumable execution state, not automatically an audit record. |
 
 A graph exposes who exists, what each node owns, how work moves, and what happens when a branch fails. Each node may still run its own loop. [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §§2–3; `context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md`, “What a Graph Is”]
 
-### 2.3 Real edges and fake edges
+### 3.3 Real edges and fake edges
 
 An edge is real only when the downstream job consumes something produced upstream. If the downstream job does not need the upstream result, the wait is unnecessary and the jobs are candidates for parallel execution.
 
@@ -73,7 +87,7 @@ No  → remove the edge and consider parallel execution.
 
 This is the corpus's “fake-edge” test. It is the fastest way to find concurrency without changing the work itself. [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §3; `context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md`, “What a Loop Looks Like”]
 
-### 2.4 Node contracts
+### 3.4 Node contracts
 
 A graph is wire-able only when a node has a bounded job, defined input, and defined output. Free-form output forces a human or an implicit parser to guess what the next node should consume.
 
@@ -91,16 +105,24 @@ WHY:     a defined output is what lets the next node read this one
 
 [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §2]
 
-### 2.5 Control graph and work graph
+### 3.5 Control graph and work graph
 
 The research synthesis distinguishes two graph layers:
 
-- A **stable control or org graph** defines durable roles, ownership, and routing structure.
-- A **dynamic work graph** defines the tasks for one run. It can split, merge, reorder, or disappear as evidence changes.
+| **Graph layer** | Purpose |
+|---|---|
+| **Stable control or org graph** | Defines durable roles, ownership, and routing structure. |
+| **Dynamic work graph** | Defines the tasks for one run. It can split, merge, reorder, or disappear as evidence changes. |
 
 For `system-deep-loop`, this distinction supports a stable governed control graph with per-run work graphs. It does **not** authorize replacing the evidence ledger with graph state. [SOURCE: `research/research.md`, §§5, 9–11; `context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md`, “Two Graphs, Not One”]
 
-## 3. The decision matrix
+**Key points**
+
+- A graph is made of bounded contracts and real dependencies.
+- Checkpoints support resumption but are not automatically audit authority.
+- Stable control structure and dynamic per-run work structure are separate layers.
+
+## 4. THE DECISION MATRIX
 
 ### Matrix at a glance
 
@@ -316,11 +338,16 @@ The source prints `async def agent_graph`; the implementation shown above preser
 - [ ] Cost, latency, and branch failure are measurable.
 - [ ] The evidence and authority plane remains outside the graph's convenience state.
 
-## 4. The graph admission checklist
+**Key points**
+
+- Complex/high-concurrency work requires both independent verification and complex routing.
+- A graph node must have a bounded contract, and every join must account for branch completeness.
+
+## 5. THE GRAPH ADMISSION CHECKLIST
 
 Run this checklist before implementation. A “no” is a reason to stay with a loop or to gather missing evidence before designing a graph.
 
-### 4.1 Work-shape checks
+### 5.1 Work-shape checks
 
 - [ ] What is the bounded unit of work?
 - [ ] Which outputs are consumed by which later jobs?
@@ -329,7 +356,7 @@ Run this checklist before implementation. A “no” is a reason to stay with a 
 - [ ] Does the work shape change as evidence arrives?
 - [ ] Is the work one task, a batch of independent tasks, or a multi-stage organization?
 
-### 4.2 Verification checks
+### 5.2 Verification checks
 
 - [ ] What is the first verification step?
 - [ ] What are the second and third independent verification steps?
@@ -353,7 +380,7 @@ FAIL:     drop it before it ever reaches the final answer
 
 [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §6]
 
-### 4.3 Routing checks
+### 5.3 Routing checks
 
 - [ ] What starts the graph?
 - [ ] What data selects each conditional route?
@@ -365,7 +392,7 @@ FAIL:     drop it before it ever reaches the final answer
 - [ ] Is human approval required before an irreversible action?
 - [ ] Is the graph routing merely advisory, or does an authoritative gateway enforce the transition?
 
-### 4.4 Harness checks
+### 5.4 Harness checks
 
 A loop harness manages input, context, budget, retry, and capture. A graph harness additionally manages inter-agent routing, node failure isolation, state consistency, dynamic spawning, and graph observability. [SOURCE: `context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md`, “The Harness Connection”]
 
@@ -382,17 +409,22 @@ Confirm that the team can operate:
 
 If these capabilities are unavailable, a staged or parallel-loop design is safer than a graph-shaped promise. [INFERENCE: this applies the source's harness-cost description to the selection decision.]
 
-## 5. Cost arguments: what a graph adds
+**Key points**
+
+- A “no” in the admission checklist blocks graph design until the missing evidence or capability is addressed.
+- The harness must make routing, state, recovery, observability, and cost boundaries explicit.
+
+## 6. COST ARGUMENTS: WHAT A GRAPH ADDS
 
 A graph does not make the underlying model work free. It makes coordination and independent work possible, while adding a second class of costs.
 
-### 5.1 Design overhead
+### 6.1 Design overhead
 
 Graphs require explicit nodes, handoff protocols, output contracts, edge semantics, failure routes, and completion rules before execution. A loop can defer more of this structure to the agent's context; a graph must model it up front. [SOURCE: `context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md`, “Why Graphs Are Harder Than Loops”]
 
 **Operational consequence:** if the team cannot name the input, output, owner, and failure route for a node, the graph is not ready to build.
 
-### 5.2 Failure propagation
+### 6.2 Failure propagation
 
 A loop failure is local and obvious: one agent retries or stops. A graph failure can produce invalid downstream state, partial fan-in, or a report that appears complete while one branch silently died. [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §7; `context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md`, “Why Graphs Are Harder Than Loops”]
 
@@ -409,7 +441,7 @@ if (results.length < jobs.length) {
 
 [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §7]
 
-### 5.3 Context routing
+### 6.3 Context routing
 
 A graph does not automatically carry context between nodes. Every edge must carry the information the downstream node needs. Missing an edge can make a downstream decision with incomplete information; carrying every raw output can cause context collapse at synthesis. [SOURCE: `context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md`, “Why Graphs Are Harder Than Loops”; `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §7]
 
@@ -427,13 +459,13 @@ return agent({ task: "write the answer from the summaries", input: summaries });
 
 [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §7]
 
-### 5.4 Distributed-runtime overhead
+### 6.4 Distributed-runtime overhead
 
 The graph harness is closer to a distributed-systems runtime than to a shell loop. It must coordinate routing, state consistency, failure isolation, spawning, observability, and recovery. [SOURCE: `context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md`, “The Harness Connection”]
 
 **Selection consequence:** graphs lose when the coordination cost exceeds the removed waiting time or added independent judgment. The corpus explicitly says graphs lose on simple lookups and that design, failure propagation, context routing, and runtime overhead are real costs. [SOURCE: `research/iterations/iteration-017.md`, Finding 1]
 
-### 5.5 Why graphs lose on simple lookups
+### 6.5 Why graphs lose on simple lookups
 
 A graph is useful for width, typed relationships, and multi-hop coordination. It does not inherently improve judgment, and it adds coordination even when one lookup or one bounded change would be enough. [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §§8–9; `research/iterations/iteration-010.md`, Finding 6]
 
@@ -447,7 +479,12 @@ Use the simpler path when:
 
 [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §8]
 
-## 6. Applying the matrix to the seven modes
+**Key points**
+
+- Graph coordination is justified only when it removes waiting or adds independent judgment worth its cost.
+- Design overhead, failure propagation, context routing, and distributed-runtime overhead are selection costs.
+
+## 7. APPLYING THE MATRIX TO THE SEVEN MODES
 
 The seven registered modes are research, review, ai-council, alignment, agent-improvement, model-benchmark, and skill-benchmark. The first three expose the strongest graph-shaped work: evidence branching, review fan-out, deliberation, and convergence. The custom-backend lanes fit graphs least when they are a single candidate, benchmark, or conformance pass without material branching. [SOURCE: `research/research.md`, §§2, 8–11; `research/iterations/iteration-017.md`, Finding 2]
 
@@ -469,7 +506,12 @@ The seven registered modes are research, review, ai-council, alignment, agent-im
 - For review and council, independent verification and deliberation are the strongest reasons to test graph structure. [SOURCE: `research/research.md`, §8]
 - For custom backends, treat graph adoption as a measured exception. The fit assessment is not a claim that those modes can never use graphs. [SOURCE: `research/iterations/iteration-017.md`, Finding 2]
 
-## 7. A practical graph shape for the high-value cases
+**Key points**
+
+- Research, review, and AI-council are the strongest candidates because their branches can expose independent evidence or judgment.
+- Custom-backend modes require measured evidence before graph adoption.
+
+## 8. A PRACTICAL GRAPH SHAPE FOR THE HIGH-VALUE CASES
 
 The corpus's recurring governed pattern is:
 
@@ -528,7 +570,12 @@ return agent({ task: "one report, ranked by confidence, sources attached.",
 6. Synthesis sees a bounded representation, not an unbounded raw pile.
 7. The final route has explicit pass, retry, and failure behavior.
 
-## 8. `system-deep-loop` boundary: graph around loops, not instead of loops
+**Key points**
+
+- Use the diamond only where independent branches and governed convergence are real.
+- Reduce deterministically, verify in fresh context, and bound the final synthesis input.
+
+## 9. `system-deep-loop` BOUNDARY: GRAPH AROUND LOOPS, NOT INSTEAD OF LOOPS
 
 The research synthesis recommends a hybrid architecture:
 
@@ -558,41 +605,51 @@ The mapping is useful but bounded:
 
 The graph is therefore a coordination and structural-guard layer. It is not a substitute for the inline three-signal convergence vote, and it must not be treated as transition authorization. [SOURCE: `research/research.md`, §§5, 8–11]
 
-## 9. Gotchas and failure patterns
+**Key points**
 
-### 9.1 Context collapse
+- Graphs coordinate structure around loops; they do not replace sequential leaf execution.
+- The evidence ledger and authority plane remain authoritative.
+
+## 10. GOTCHAS AND FAILURE PATTERNS
+
+### 10.1 Context collapse
 
 Do not send every raw branch result to one synthesis node. Batch and summarize before final synthesis. [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §7]
 
-### 9.2 False independence
+### 10.2 False independence
 
 Audit shared files, workspaces, APIs, locks, and rate limits. Prompt independence is not resource independence. [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §7]
 
-### 9.3 Silent worker failure
+### 10.3 Silent worker failure
 
 A missing branch is not an empty answer. Count expected inputs, report missing outputs, and block “complete” synthesis on an incomplete set unless an explicit degraded route exists. [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §7]
 
-### 9.4 Self-review disguised as independent review
+### 10.4 Self-review disguised as independent review
 
 A worker and its verifier must not share the worker's context. A separate node with the same context is still too close to independent judgment. [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §6]
 
-### 9.5 Topology is not truth
+### 10.5 Topology is not truth
 
 A graph can be internally consistent and still verify one report against another report produced by the same ungrounded system. Use anchors such as tests that actually ran or external facts that cannot be optimized away. [SOURCE: `context/Graph Engineering explained: what it is, when to use it and when not to.md`, §9]
 
-### 9.6 Hidden scheduler semantics
+### 10.6 Hidden scheduler semantics
 
 Do not infer a graph from scheduler metadata that the runtime explicitly rejects. In the current workflow, wave/depends-on scheduling is rejected rather than approximated; flat-pool fallback is explicit. [SOURCE: `research/research.md`, §§6, 9–11]
 
-### 9.7 Checkpoints are not audit authority
+### 10.7 Checkpoints are not audit authority
 
 A checkpoint preserves resumable execution state. It does not by itself provide sealed receipts, replay fingerprints, or temporal authority. [SOURCE: `research/research.md`, “ELIMINATED ALTERNATIVES”]
 
-### 9.8 Dynamic graph enthusiasm
+### 10.8 Dynamic graph enthusiasm
 
 Dynamic spawning, branch collapse, and route rewrites are attractive only when the work shape genuinely changes. If the task is known and sequential, dynamic structure adds failure routes without adding value. [SOURCE: `context/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md`, “Dynamic Agent Orgs”; `research/iterations/iteration-017.md`, Findings 1–3]
 
-## 10. Measurement and rollout checklist
+**Key points**
+
+- Resource, context, and scheduler semantics can create dependencies that the prompt does not show.
+- Topology and checkpoints cannot substitute for truth, audit authority, or explicit failure handling.
+
+## 11. MEASUREMENT AND ROLLOUT CHECKLIST
 
 Measure before and after changing topology:
 
@@ -626,7 +683,12 @@ For the current system, use an additive-dark adapter and shadow parity before an
 
 Steps 7–10 are the research's migration direction, not a claim that cutover has already happened. [SOURCE: `research/research.md`, §§1, 7, 9, 11]
 
-## 11. Final selection card
+**Key points**
+
+- Establish baseline evidence before changing topology.
+- Shadow parity and authority gates precede any cutover.
+
+## 12. FINAL SELECTION CARD
 
 Choose **single loop** when the work is simple and narrow.
 
@@ -650,7 +712,12 @@ Before approving a graph, require:
 
 If those conditions are absent, the simpler loop is the more engineered choice.
 
-## Sources
+**Key points**
+
+- Choose the least complex structure that exposes real independent work.
+- If graph admission conditions are absent, retain the simpler loop.
+
+## 13. SOURCES
 
 - `specs/system-deep-loop/037-graph-engineering/research/research.md` — synthesis §§1–17, especially §§5, 8–11 and “ELIMINATED ALTERNATIVES”.
 - `specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-010.md` — Findings 1–7, especially the corpus definition, diamond pattern, failure model, and use/not-use criteria.

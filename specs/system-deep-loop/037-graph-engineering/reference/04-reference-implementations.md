@@ -1,6 +1,14 @@
-# Reference implementations for graph engineering
+# Reference Implementations for Graph Engineering — Runtime, Governance, and Workflow Comparisons
 
 This document is a practical reading guide to the three graph-engineering references in this packet and to the implications for `system-deep-loop`.
+
+---
+
+## 1. OVERVIEW
+
+**Core Principle**: Treat the graph as a governed projection and execution layer, not as the authority plane.
+
+This document organizes the three references, distinguishes executable evidence from documentary guidance, and records their implications for `system-deep-loop`.
 
 The references do not describe one interchangeable product.
 
@@ -10,9 +18,9 @@ The references do not describe one interchangeable product.
 
 The recommended lesson is a hybrid. Keep the evidence ledger and transition authority authoritative. Add a governed control graph and per-run work graphs only where topology earns its cost.
 
-## Reading conventions
+## 2. READING CONVENTIONS
 
-| Label | Meaning |
+| **Label** | Meaning |
 |---|---|
 | **Executable** | The cited checkout contains code or a runnable path for the behavior. |
 | **Documented** | The source describes a pattern or workflow, but the local checkout does not prove execution. |
@@ -22,9 +30,9 @@ The recommended lesson is a hybrid. Keep the evidence ledger and transition auth
 
 The iteration numbers below refer to the deep-research evidence pack. The synthesis is authoritative for the current `system-deep-loop` status and for the distinction between fact and inference.
 
-## At-a-glance comparison
+## 3. AT-A-GLANCE COMPARISON
 
-| Concern | GraphARC-main | Official LangGraph | graph-engineering-master | Lesson for `system-deep-loop` |
+| **Concern** | GraphARC-main | Official LangGraph | graph-engineering-master | Lesson for `system-deep-loop` |
 |---|---|---|---|---|
 | Primary purpose | Govern proposed agent graphs before execution | Provide graph construction and execution primitives | Teach graph and knowledge-graph design | Use a graph as a governed projection, not as the authority plane |
 | State | Typed state with declared node writes and runtime validation | User-defined state in `StateGraph`, reducers, and snapshots | Prompt guidance for schemas, provenance, and workflows | Preserve typed evidence state and explicit write ownership |
@@ -37,7 +45,7 @@ The iteration numbers below refer to the deep-research evidence pack. The synthe
 | Benchmarks | Harness for hashing, agent invocation, grading, and comparisons | No benchmark harness supplied by this packet | No executable benchmark path | Measure parity against the current loop before authority cutover |
 | Maturity | Executable with explicit limits | Primitive runtime, not governance | Documentary/package artifact | Migrate additively and per mode |
 
-## 1. GraphARC-main: the architecture map
+## 4. GRAPHARC-MAIN: THE ARCHITECTURE MAP
 
 ### 1.1 What GraphARC is
 
@@ -75,7 +83,7 @@ This separation is the primary GraphARC lesson for system design.
 
 The admission module states five core checks:
 
-| Check | Question | Authority |
+| **Check** | Question | Authority |
 |---|---|---|
 | Registry | Is every proposed node kind allowed, and does every endpoint resolve? | `NodeRegistry` |
 | Policy | May each node kind run, and may each edge be taken? | Node and edge policy |
@@ -125,7 +133,7 @@ By default, the materializer does not forward planner arguments. An explicit `fo
 
 This distinction matters for any deep-loop adapter:
 
-| Layer | What it can prove |
+| **Layer** | What it can prove |
 |---|---|
 | Registry admission | The proposed kind exists and is allowed |
 | Edge policy | The kind-to-kind transition is allowed |
@@ -296,7 +304,7 @@ For `system-deep-loop`, a graph adapter benchmark needs a current-loop baseline 
 
 The README and roadmap are unusually valuable because they distinguish code that exists from seams that remain.
 
-| GraphARC capability | Status supported by the sources | Practical interpretation |
+| **GraphARC capability** | Status supported by the sources | Practical interpretation |
 |---|---|---|
 | Typed state and declared writes | Executable | The runtime checks state shape and write ownership. |
 | Planner proposes data, not callables | Executable | Proposal parsing does not itself execute a body. |
@@ -317,7 +325,7 @@ The requested honest summary is therefore:
 
 > GraphARC is executable at the planner/admission/materialize/runtime/trace boundary. Checkpoint support is useful but partial at the interrupt-resume boundary. Durability pass-through is explicitly unimplemented in the roadmap. Do not promote roadmap items into current runtime guarantees.
 
-## 2. LangGraph: official runtime primitives
+## 5. LANGGRAPH: OFFICIAL RUNTIME PRIMITIVES
 
 ### 2.1 StateGraph is the builder contract
 
@@ -503,7 +511,7 @@ This is not a criticism of LangGraph. It is a scope distinction between state pe
 6. **Topology does not create truth.** A graph can be well-formed and still produce a wrong answer.
 7. **Shared resources create hidden edges.** Filesystem and registry mutations can make apparently parallel work unsafe.
 
-## 3. graph-engineering-master: documentary workflows
+## 6. GRAPH-ENGINEERING-MASTER: DOCUMENTARY WORKFLOWS
 
 ### 3.1 What the repository delivers
 
@@ -529,7 +537,7 @@ This distinction matters when borrowing ideas. The README’s task-graph rules a
 
 `WORKFLOWS.md` contains nine prompt blocks. They form a staged knowledge-graph design and evaluation discipline.
 
-| Block | Purpose | Useful graph-engineering habit |
+| **Block** | Purpose | Useful graph-engineering habit |
 |---|---|---|
 | `/kg-tutor` | Interactive course route | Ask for domain, level, and time; teach one module; require a build artifact before continuing |
 | `/kg-scope` | Domain scope and questions | Decide whether questions need traversal or aggregation before writing code |
@@ -554,7 +562,7 @@ The workflow blocks also insist on evidence spans and provenance for extracted g
 
 Do not collapse these two meanings of “graph.”
 
-| Knowledge graph | Task graph |
+| **Knowledge graph** | Task graph |
 |---|---|
 | Models entities, facts, relationships, time, and provenance | Models jobs, dependencies, branch execution, and joins |
 | Answers multi-hop domain questions | Coordinates work and control flow |
@@ -575,7 +583,7 @@ The documentary package contributes four practical tests:
 
 These tests are design guidance, not runtime enforcement. [INFERENCE] They can become review criteria for a graph adapter without pretending that the documentary package supplies executable scheduler code.
 
-## 4. Lessons for system-deep-loop
+## 7. LESSONS FOR SYSTEM-DEEP-LOOP
 
 ### 4.1 Preserve the current authority split
 
@@ -615,7 +623,7 @@ The research corpus and iteration findings support two coupled graph layers:
 
 For `system-deep-loop`, this means:
 
-| Stable control graph candidate | Per-run work graph candidate |
+| **Stable control graph candidate** | Per-run work graph candidate |
 |---|---|
 | `mode-registry.json` routing authority | One node per bounded iteration or phase |
 | Mode family and backend contracts | Focus-specific research/review/council work |
@@ -628,7 +636,7 @@ This is a target mapping, not a claim that the current runtime has already migra
 
 ### 4.3 Mapping current deep-loop concepts to graph concepts
 
-| Current deep-loop concept | Graph representation | What must not be lost |
+| **Current deep-loop concept** | Graph representation | What must not be lost |
 |---|---|---|
 | Mode registry | Stable control-graph routing and node-kind registry | Registry remains routing authority |
 | Mode phase | Bounded node or subgraph | Explicit input/output contract |
@@ -744,7 +752,7 @@ Compare the legacy and graph paths on deterministic fixtures.
 
 Required parity rows:
 
-| Row | Pass condition |
+| **Row** | Pass condition |
 |---|---|
 | Narrative | One equivalent narrative artifact is produced |
 | State | One equivalent state record is produced |
@@ -815,7 +823,7 @@ Do not graph every leaf operation. A graph node should represent a meaningful bo
 14. **Benchmark inflation:** A passing benchmark is not parity unless it compares the same fixture and reducer/convergence outputs.
 15. **Empty implementation directories:** README claims do not prove executable behavior.
 
-## 5. Recommended review checklist
+## 8. RECOMMENDED REVIEW CHECKLIST
 
 Use this checklist before approving a graph adapter or graph-shaped runtime change.
 
@@ -864,9 +872,9 @@ Use this checklist before approving a graph adapter or graph-shaped runtime chan
 - [ ] Legacy retirement waits for zero-use evidence.
 - [ ] 036 authority prerequisites are green before graph authority changes.
 
-## 6. Glossary
+## 9. GLOSSARY
 
-| Term | Definition in this reference |
+| **Term** | Definition in this reference |
 |---|---|
 | Admission | Deterministic decision that a proposed graph shape may execute |
 | Materialization | Turning one exact admitted proposal into a runnable graph |
@@ -884,7 +892,7 @@ Use this checklist before approving a graph adapter or graph-shaped runtime chan
 | Ledger plane | Authority, receipts, sealed artifacts, fingerprints, and adjudication evidence |
 | Projection | Derived graph, coverage, metrics, or OTel representation |
 
-## Sources
+## 10. SOURCES
 
 - `specs/system-deep-loop/037-graph-engineering/research/research.md` — authoritative 20-iteration synthesis; especially findings and recommendations in sections 8–11.
 - `specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-003.md` — GraphARC contracts, task-graph patterns, and stable-control/work-graph inference.

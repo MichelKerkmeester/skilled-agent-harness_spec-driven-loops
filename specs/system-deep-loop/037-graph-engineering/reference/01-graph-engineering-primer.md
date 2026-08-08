@@ -1,6 +1,14 @@
-# Graph Engineering Primer
+# Graph Engineering Primer — Typed graphs for governed agent workflows
 
-## Purpose
+Graph engineering structures agent workflows and durable knowledge as typed, stateful, observable graphs with explicit authority boundaries.
+
+---
+
+## 1. OVERVIEW
+
+**Core Principle**: Graph engineering is the design and operation of typed stateful workflows whose nodes have contracts, whose edges have governed meaning, whose subgraphs make reusable boundaries, whose checkpoints support resume, and whose traces make execution inspectable.
+
+This document is a primer on graph engineering: its purpose, the distinction between knowledge and task graphs, the contracts that govern state and transitions, and the operational criteria for using graphs in system-deep-loop.
 
 Graph engineering is the discipline of structuring agent workflows as typed graphs.
 
@@ -22,7 +30,7 @@ They share typed relationships, provenance, validation, and explicit topology.
 
 They are not the same data model and should not be collapsed into one undifferentiated graph.
 
-## Executive definition
+### Executive definition
 
 > Graph engineering is the design and operation of typed stateful workflows whose nodes have contracts, whose edges have governed meaning, whose subgraphs make reusable boundaries, whose checkpoints support resume, and whose traces make execution inspectable.
 
@@ -44,7 +52,13 @@ Admission is the fail-closed decision that a proposed graph or transition is all
 
 A subgraph is a named graph boundary that packages a coherent sequence or pattern behind an explicit input/output contract.
 
-## The shape of a graph-engineered workflow
+**Key points**
+
+- Graphs are executable contracts, not diagrams.
+- Knowledge graphs and task graphs are coupled interfaces with separate schemas and authority rules.
+- Nodes, edges, state, admission, checkpoints, and traces require explicit contracts.
+
+## 2. THE SHAPE OF A GRAPH-ENGINEERED WORKFLOW
 
 The smallest useful model is:
 
@@ -62,18 +76,24 @@ Typed input state
 
 The graph runtime should be able to answer these questions without asking the model to explain itself.
 
-| Question | Graph-engineering answer |
+| **Question** | Graph-engineering answer |
 |---|---|
-| What can run? | A node registered with a known kind and admitted under policy. |
-| What can it write? | The fields declared by its node contract. |
-| Where can it go? | To a declared and governed destination. |
-| How much work is allowed? | Within admitted and runtime-enforced budgets. |
-| How can it resume? | From a checkpointed state and position. |
-| What happened? | From a durable trace of node and transition events. |
-| Why was a route accepted? | From an admission decision and its evidence. |
-| What is authoritative? | The system's designated event and authorization plane, not a mutable snapshot by default. |
+| **What can run?** | A node registered with a known kind and admitted under policy. |
+| **What can it write?** | The fields declared by its node contract. |
+| **Where can it go?** | To a declared and governed destination. |
+| **How much work is allowed?** | Within admitted and runtime-enforced budgets. |
+| **How can it resume?** | From a checkpointed state and position. |
+| **What happened?** | From a durable trace of node and transition events. |
+| **Why was a route accepted?** | From an admission decision and its evidence. |
+| **What is authoritative?** | The system's designated event and authorization plane, not a mutable snapshot by default. |
 
-## Two coupled problems
+**Key points**
+
+- Runtime questions must be answerable from contracts and durable records.
+- A governed edge connects admitted nodes and carries declared state changes.
+- Authority belongs to the designated event and authorization plane, not a mutable snapshot by default.
+
+## 3. TWO COUPLED PROBLEMS
 
 Graph engineering has two coupled but distinct halves.
 
@@ -93,15 +113,15 @@ Its purpose is to preserve meaning that flat retrieval may not expose directly.
 
 A knowledge graph commonly contains:
 
-| Element | Definition | Example |
+| **Element** | Definition | Example |
 |---|---|---|
-| Entity | A distinguishable thing with identity. | A mode, incident, decision, service, or person. |
-| Fact | A statement attached to entities or events. | A mode uses a particular runtime contract. |
-| Event | A thing that happened at a time or interval. | A policy decision admitted a transition. |
-| Typed relation | A named relationship with constrained meaning. | `supersedes`, `caused`, `depends_on`, `CITES`. |
-| Ontology | The vocabulary and constraints for entity and relation types. | Which node kinds may `SUPPORT` which claim kinds. |
-| Provenance | The origin and support for a fact or relation. | Source path, span, author, timestamp, or receipt. |
-| Temporal semantics | The distinction between when a fact was true and when it was learned. | Validity interval versus observation time. |
+| **Entity** | A distinguishable thing with identity. | A mode, incident, decision, service, or person. |
+| **Fact** | A statement attached to entities or events. | A mode uses a particular runtime contract. |
+| **Event** | A thing that happened at a time or interval. | A policy decision admitted a transition. |
+| **Typed relation** | A named relationship with constrained meaning. | `supersedes`, `caused`, `depends_on`, `CITES`. |
+| **Ontology** | The vocabulary and constraints for entity and relation types. | Which node kinds may `SUPPORT` which claim kinds. |
+| **Provenance** | The origin and support for a fact or relation. | Source path, span, author, timestamp, or receipt. |
+| **Temporal semantics** | The distinction between when a fact was true and when it was learned. | Validity interval versus observation time. |
 
 The graph-engineering-master material gives the knowledge-graph pipeline as:
 
@@ -248,7 +268,14 @@ If it does, the edge may be a scheduling preference rather than a dependency.
 
 If it does not, document the consumed artifact or state field that makes the edge real.
 
-## Stable control graph and per-run work graph
+**Key points**
+
+- Knowledge graphs preserve meaning; task graphs govern bounded work.
+- Typed relations need ontology, evidence, provenance, and controlled vocabulary.
+- Extraction is candidate generation, fusion must preserve disagreement, and serving should route by question type.
+- Task-graph branches, joins, human gates, and stop rules must represent real dependencies and risks.
+
+## 4. STABLE CONTROL GRAPH AND PER-RUN WORK GRAPH
 
 A production workflow needs two graph layers.
 
@@ -260,7 +287,7 @@ The stable graph changes slowly and is reviewed as system structure.
 
 The work graph changes with the goal, evidence, budget, and failures of a particular run.
 
-| Stable control graph | Per-run work graph |
+| **Stable control graph** | **Per-run work graph** |
 |---|---|
 | Mode and node kinds. | Concrete node instances for one run. |
 | Registry factories. | Materialized work bodies. |
@@ -297,7 +324,13 @@ A stable control graph also gives operators a reviewable surface for registry ch
 
 The work graph gives operators a concrete surface for run inspection and replay.
 
-## Typed state and declared writes
+**Key points**
+
+- Stable governance and dynamic execution must remain separate graph layers.
+- The work graph may adapt, but it must not redefine authority or capability classes.
+- The evidence ledger remains the authoritative event and authorization plane. [INFERENCE]
+
+## 5. TYPED STATE AND DECLARED WRITES
 
 Typed state is the boundary between a node's contract and the rest of the graph.
 
@@ -340,13 +373,13 @@ A malformed result should become an explicit failure record or rejected transiti
 
 Do not treat every state-like artifact as the same thing.
 
-| Plane | Purpose | Mutability | Authority question |
+| **Plane** | Purpose | Mutability | Authority question |
 |---|---|---|---|
-| Working graph state | Current reducer input and node outputs. | Mutable through declared writes. | What does the next node need? |
-| Checkpoint | Resume position and serialized state. | Versioned snapshots. | How can execution continue safely? |
-| Trace | Node order, events, deltas, timing, failures. | Append-oriented record. | What happened during execution? |
-| Evidence ledger | Authorized effects, receipts, sealed references, and temporal events. | Append-only or otherwise governed. | What transition is authoritative and why? |
-| Knowledge graph | Durable entities, facts, relations, and provenance. | Governed fusion and updates. | What does the system know, and with what support? |
+| **Working graph state** | Current reducer input and node outputs. | Mutable through declared writes. | What does the next node need? |
+| **Checkpoint** | Resume position and serialized state. | Versioned snapshots. | How can execution continue safely? |
+| **Trace** | Node order, events, deltas, timing, failures. | Append-oriented record. | What happened during execution? |
+| **Evidence ledger** | Authorized effects, receipts, sealed references, and temporal events. | Append-only or otherwise governed. | What transition is authoritative and why? |
+| **Knowledge graph** | Durable entities, facts, relations, and provenance. | Governed fusion and updates. | What does the system know, and with what support? |
 
 A checkpoint is useful for resume.
 
@@ -384,7 +417,13 @@ The graph should either serialize the writes, partition the fields, or define a 
 
 This is why typed state is also topology discipline.
 
-## Admission and governance
+**Key points**
+
+- State schemas and node write sets are executable boundary contracts.
+- Checkpoints, traces, evidence ledgers, and knowledge graphs serve distinct state planes.
+- Reducers must be deterministic and conflict-aware; hidden shared writes are hidden edges.
+
+## 6. ADMISSION AND GOVERNANCE
 
 Graph admission is the gate between a proposed topology and executable work.
 
@@ -468,7 +507,13 @@ The graph may propose or calculate a route.
 
 The authorization gateway decides whether that route may become an authoritative transition.
 
-## Provenance and temporal semantics
+**Key points**
+
+- Admission is deterministic, fail-closed, registry-bound, and separate from execution.
+- Runtime budgets and failure records remain necessary after admission.
+- Graph routes may propose effects, but the authorization gateway and evidence ledger decide authoritative transitions.
+
+## 7. PROVENANCE AND TEMPORAL SEMANTICS
 
 Graph engineering is not complete when nodes and edges exist.
 
@@ -550,7 +595,13 @@ A contradiction may require a verifier, human gate, or adjudication branch.
 
 The graph should preserve the conflict and its resolution path.
 
-## Subgraphs and reusable boundaries
+**Key points**
+
+- Provenance must travel with facts, results, transitions, and fusion decisions.
+- Valid time, observation or transaction time, execution time, and ledger acceptance time are distinct.
+- Contradiction preserves unresolved incompatibility; supersession records ordered replacement.
+
+## 8. SUBGRAPHS AND REUSABLE BOUNDARIES
 
 A subgraph packages a coherent workflow behind a contract.
 
@@ -558,16 +609,16 @@ Examples include extraction, independent review, evidence fusion, or convergence
 
 A subgraph should declare:
 
-| Boundary item | Required question |
+| **Boundary item** | Required question |
 |---|---|
-| Inputs | Which typed fields or references are accepted? |
-| Outputs | Which fields, events, or artifacts are produced? |
-| Writes | Which state fields may change? |
-| Edges | Which internal routes are possible? |
-| Budgets | What work and time limits apply? |
-| Failure | Which errors are returned, retried, or terminal? |
-| Observability | What trace and provenance records are emitted? |
-| Authority | Which effects require an external gateway or ledger? |
+| **Inputs** | Which typed fields or references are accepted? |
+| **Outputs** | Which fields, events, or artifacts are produced? |
+| **Writes** | Which state fields may change? |
+| **Edges** | Which internal routes are possible? |
+| **Budgets** | What work and time limits apply? |
+| **Failure** | Which errors are returned, retried, or terminal? |
+| **Observability** | What trace and provenance records are emitted? |
+| **Authority** | Which effects require an external gateway or ledger? |
 
 A subgraph should not hide an unbounded loop or an ungoverned write.
 
@@ -577,7 +628,12 @@ A subgraph is especially useful when the same verification pattern appears in se
 
 [INFERENCE] In system-deep-loop, mode-specific graph adapters are natural subgraph boundaries, but authority changes should wait for the existing per-mode migration and parity gates.
 
-## Checkpointing, traces, and replay
+**Key points**
+
+- Reusable subgraphs expose typed inputs, outputs, writes, routes, budgets, failures, observability, and authority.
+- A stable subgraph boundary must not conceal unbounded work or ungoverned writes.
+
+## 9. CHECKPOINTING, TRACES, AND REPLAY
 
 Checkpointing preserves enough state and position to resume execution.
 
@@ -612,7 +668,12 @@ It should include a canonical node and edge projection or topology hash, relatio
 
 [INFERENCE] Those additions are the smallest useful bridge from “the system resumed” to “the system can reproduce why this route was admitted.”
 
-## Convergence as graph analysis
+**Key points**
+
+- Checkpoints resume, traces observe and reconstruct, receipts prove authorized effects, and ledgers preserve authoritative event history.
+- Replayable convergence decisions require topology, evidence, thresholds, blockers, and exact inputs rather than a scalar score alone.
+
+## 10. CONVERGENCE AS GRAPH ANALYSIS
 
 A graph can expose structure that scalar novelty does not.
 
@@ -642,7 +703,13 @@ Each failed predicate should identify the question, finding, and source IDs need
 
 This is a structural guard, not a blended score that obscures the reason for continuation.
 
-## Graph engineering versus adjacent disciplines
+**Key points**
+
+- Graph convergence is an auxiliary structural guard and a veto over stopping.
+- Inline novelty, noise, coverage, minimum iterations, recovery, quality, and maximum-iteration controls remain independent.
+- Empty, stale, malformed, unavailable, or expensive graph state must preserve documented fallback semantics.
+
+## 11. GRAPH ENGINEERING VERSUS ADJACENT DISCIPLINES
 
 ### Prompt engineering
 
@@ -714,7 +781,13 @@ The distinction is not whether the system draws a DAG.
 
 The distinction is whether topology and state are treated as enforceable semantics.
 
-## When to use a graph
+**Key points**
+
+- Prompt, loop, context, knowledge-graph, and ordinary orchestration disciplines solve adjacent problems.
+- Graph engineering governs composition, topology, state, provenance, and authorization across node boundaries.
+- The system-deep-loop verdict is hybrid loop plus graph, not a big-bang replacement.
+
+## 12. WHEN TO USE A GRAPH
 
 Use graph engineering when the work has several of these properties:
 
@@ -730,7 +803,7 @@ Use graph engineering when the work has several of these properties:
 
 The graph should earn its complexity through a measurable dependency or governance need.
 
-## When not to use a graph
+## 13. WHEN NOT TO USE A GRAPH
 
 Prefer a simple function or loop when:
 
@@ -753,7 +826,12 @@ The corpus and system research both reject graph fashion as an architecture crit
 
 Choose the simplest topology that makes the real dependencies and risks visible.
 
-## Practical design checklist
+**Key points**
+
+- Complexity must be justified by dependency, branching, verification, routing, or governance value.
+- Simple, sequential, approval-heavy, or non-durable work should remain a function or loop.
+
+## 14. PRACTICAL DESIGN CHECKLIST
 
 Before implementing a graph, write down:
 
@@ -780,7 +858,12 @@ A design is not ready when the happy path is drawn.
 
 It is ready when denied routes, malformed updates, stale state, conflicting branches, and partial execution have explicit behavior.
 
-## A small end-to-end illustrative pattern
+**Key points**
+
+- Design must specify the goal, control and work graphs, typed state, writes, reducers, routes, admission, budgets, checkpoints, traces, provenance, time, gates, failure behavior, retirement, and fallback.
+- Readiness requires explicit behavior for denied, malformed, stale, conflicting, and partial execution.
+
+## 15. A SMALL END-TO-END ILLUSTRATIVE PATTERN
 
 ```text
 [admit goal]
@@ -821,50 +904,56 @@ The trace supports inspection.
 
 The stop route must preserve independent quality guards.
 
-## Glossary
+**Key points**
 
-| Term | Meaning |
+- Plan, admission, materialization, execution, authorization, checkpointing, and tracing are separate stages.
+- The merge is deterministic and provenance-preserving.
+- A blocked stop and independent quality guards remain explicit routes.
+
+## 16. GLOSSARY
+
+| **Term** | Meaning |
 |---|---|
-| Admission | A deterministic decision that a proposed graph or transition may execute. |
-| Artifact | A durable output such as a report, evidence bundle, checkpoint, or receipt. |
-| Checkpoint | A resumable snapshot of graph state and execution position. |
-| Control graph | Stable, governed topology of roles, kinds, policies, and reusable contracts. |
-| Declared write | A field or artifact a node is explicitly permitted to mutate or produce. |
-| Edge | A typed dependency or route between node boundaries. |
-| Entity | A distinguishable object represented in a knowledge graph. |
-| Evidence ledger | The authoritative record of governed events, effects, receipts, and references. |
-| Fan-in | Joining results from multiple upstream branches. |
-| Fan-out | Splitting work into multiple downstream branches. |
-| Fake edge | An edge that does not represent consumed data or a real dependency. |
-| Fusion | Deduplication, alignment, conflict handling, and provenance-preserving combination. |
-| Graph state | Typed mutable data available to graph nodes under reducer and write rules. |
-| Human gate | An explicit approval point where a person decides before an expensive-to-reverse action. |
-| Knowledge graph | A provenance-bearing graph of entities, facts, events, and typed relations. |
-| Node | A bounded unit of work with input, output, write, budget, and failure contracts. |
-| Node kind | A registry-bound capability class that governs node behavior and policy. |
-| Ontology | The schema and vocabulary defining concepts and valid relations. |
-| Per-run work graph | The dynamic graph materialized for one goal, evidence set, and budget. |
-| Provenance | Information about the source, transformation, time, and support of an assertion. |
-| Receipt | Evidence that an authorized transition or effect was accepted and recorded. |
-| Reducer | A deterministic rule for combining state updates, especially at fan-in. |
-| Registry | The operator-owned catalog of admissible node kinds, factories, costs, and contracts. |
-| Replay | Reconstructing execution or a decision from recorded state, events, and topology. |
-| Route | A selected edge or destination under a condition and policy. |
-| Schema version | The version identifier for a state, event, or graph contract. |
-| Serving | Making a fused knowledge graph available to an agent or query path. |
-| Stop rule | A bounded condition that ends or blocks further graph work. |
-| Subgraph | A bounded reusable graph with an explicit boundary contract. |
-| Task graph | A graph of jobs and execution dependencies. |
-| Temporal validity | The interval during which a fact or relation applies in the world. |
-| Trace | A record of execution events, deltas, timing, outcomes, and routes. |
-| Transaction time | When the system recorded or accepted a fact or event. |
-| Typed edge | A relation whose name and allowed endpoints carry defined meaning. |
-| Typed state | State whose fields, values, versions, and writes are validated by contract. |
-| Valid time | When a fact was true or a decision applied. |
-| Verification branch | An independent task-graph path that checks an output or claim. |
-| Work frontier | The currently executable or awaiting nodes in a per-run graph. |
+| **Admission** | A deterministic decision that a proposed graph or transition may execute. |
+| **Artifact** | A durable output such as a report, evidence bundle, checkpoint, or receipt. |
+| **Checkpoint** | A resumable snapshot of graph state and execution position. |
+| **Control graph** | Stable, governed topology of roles, kinds, policies, and reusable contracts. |
+| **Declared write** | A field or artifact a node is explicitly permitted to mutate or produce. |
+| **Edge** | A typed dependency or route between node boundaries. |
+| **Entity** | A distinguishable object represented in a knowledge graph. |
+| **Evidence ledger** | The authoritative record of governed events, effects, receipts, and references. |
+| **Fan-in** | Joining results from multiple upstream branches. |
+| **Fan-out** | Splitting work into multiple downstream branches. |
+| **Fake edge** | An edge that does not represent consumed data or a real dependency. |
+| **Fusion** | Deduplication, alignment, conflict handling, and provenance-preserving combination. |
+| **Graph state** | Typed mutable data available to graph nodes under reducer and write rules. |
+| **Human gate** | An explicit approval point where a person decides before an expensive-to-reverse action. |
+| **Knowledge graph** | A provenance-bearing graph of entities, facts, events, and typed relations. |
+| **Node** | A bounded unit of work with input, output, write, budget, and failure contracts. |
+| **Node kind** | A registry-bound capability class that governs node behavior and policy. |
+| **Ontology** | The schema and vocabulary defining concepts and valid relations. |
+| **Per-run work graph** | The dynamic graph materialized for one goal, evidence set, and budget. |
+| **Provenance** | Information about the source, transformation, time, and support of an assertion. |
+| **Receipt** | Evidence that an authorized transition or effect was accepted and recorded. |
+| **Reducer** | A deterministic rule for combining state updates, especially at fan-in. |
+| **Registry** | The operator-owned catalog of admissible node kinds, factories, costs, and contracts. |
+| **Replay** | Reconstructing execution or a decision from recorded state, events, and topology. |
+| **Route** | A selected edge or destination under a condition and policy. |
+| **Schema version** | The version identifier for a state, event, or graph contract. |
+| **Serving** | Making a fused knowledge graph available to an agent or query path. |
+| **Stop rule** | A bounded condition that ends or blocks further graph work. |
+| **Subgraph** | A bounded reusable graph with an explicit boundary contract. |
+| **Task graph** | A graph of jobs and execution dependencies. |
+| **Temporal validity** | The interval during which a fact or relation applies in the world. |
+| **Trace** | A record of execution events, deltas, timing, outcomes, and routes. |
+| **Transaction time** | When the system recorded or accepted a fact or event. |
+| **Typed edge** | A relation whose name and allowed endpoints carry defined meaning. |
+| **Typed state** | State whose fields, values, versions, and writes are validated by contract. |
+| **Valid time** | When a fact was true or a decision applied. |
+| **Verification branch** | An independent task-graph path that checks an output or claim. |
+| **Work frontier** | The currently executable or awaiting nodes in a per-run graph. |
 
-## Operational takeaways
+## 17. OPERATIONAL TAKEAWAYS
 
 Graph engineering is topology plus contracts, not prompt fashion.
 
@@ -886,7 +975,12 @@ Keep a loop when the work is simple, sequential, approval-heavy, or cheaper to e
 
 For system-deep-loop, graph engineering should be additive and authority-preserving: graph topology can enrich execution and convergence, while the evidence ledger and transition gateway remain authoritative until measured parity and cutover gates pass.
 
-## Sources
+**Key points**
+
+- Graph engineering adds enforceable semantics to topology and state.
+- System-deep-loop should adopt graph topology additively while preserving ledger and gateway authority.
+
+## 18. SOURCES
 
 - `specs/system-deep-loop/037-graph-engineering/research/research.md` — synthesis of iterations 001–020; especially sections 8–10 and recommendations.
 - `specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-003.md` — core graph concepts, typed state, admission, fan-out, control/work separation, and use criteria.
