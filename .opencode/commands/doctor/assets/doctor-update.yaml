@@ -242,7 +242,7 @@ workflow:
           (.opencode/skill exists AND is a directory NOT a symlink),
           (.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js does NOT exist),
           (find . -path './.opencode' -prune -o -name 'memory' -type d -print | grep -q .),
-          (find .opencode/specs -mindepth 2 -name 'spec.md' | first-match dirname has no description.json)
+          (find specs -mindepth 2 -name 'spec.md' | first-match dirname has no description.json)
         ]
       )
       ELSE refuse to proceed when version detection ambiguous and neither --migrate nor --no-migrate flag was passed.
@@ -254,14 +254,14 @@ workflow:
         check: "[ ! -f .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js ]"
         meaning: "MCP server dist missing — fresh tarball install or post-clone state"
       signal_c:
-        check: "find .opencode/specs -name 'memory' -type d -print -quit 2>/dev/null | grep -q ."
+        check: "find specs -name 'memory' -type d -print -quit 2>/dev/null | grep -q ."
         meaning: "legacy memory/ folders inside any spec packet (v3.3 continuity surface)"
       signal_d:
         check: |
           if [ -d .opencode/specs ]; then
             # FIX-12: removed `head -1` (was limiting check to FIRST folder only).
             # Now iterates ALL spec.md until grep -q hits the first "missing" emission and short-circuits.
-            find .opencode/specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null \
+            find specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null \
               | while IFS= read -r f; do
                 dir=$(dirname "$f")
                 [ ! -f "$dir/description.json" ] && echo missing
@@ -324,7 +324,7 @@ workflow:
                 failed_count=$((failed_count + 1))
               fi
             fi
-          done < <(find .opencode/specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null)
+          done < <(find specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null)
           echo "{\"missing\":$missing_count,\"created\":$created_count,\"failed\":$failed_count}" \
             > .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.backfill-description.log
         timeout_seconds: 600
@@ -334,7 +334,7 @@ workflow:
       precondition: "always run when Phase 8 is triggered"
       rationale: "v3.3 used memory/*.md files inside spec folders for continuity. v3.4 moved continuity to _memory.continuity frontmatter blocks in implementation-summary.md. The migration is NOT fully automatable — content review required per migration-manifest M-3.3.0.0-001 fallback_operation. Phase 8 detects + reports, the user runs /memory:save manually after review."
       detection: |
-        find .opencode/specs -mindepth 2 -maxdepth 6 -path '*/memory/*.md' \
+        find specs -mindepth 2 -maxdepth 6 -path '*/memory/*.md' \
           -not -path '*/scratch/*' -not -path '*/z_archive/*' 2>/dev/null \
           | tee .opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.legacy-memory-files.log \
           | wc -l
@@ -404,7 +404,7 @@ workflow:
           # split it is the single context-index.sqlite; only vector shards are
           # per-profile). The node read is cwd-independent and read-only so it never
           # contends with the daemon's single-writer lock.
-          coverage=$(find .opencode/specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null \
+          coverage=$(find specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null \
             | sed 's#/spec.md$##' \
             | node -e "
                 const fs = require('fs'), path = require('path');

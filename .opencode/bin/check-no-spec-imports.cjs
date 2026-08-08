@@ -42,12 +42,18 @@ const EXCLUDED_DIRS = new Set(['node_modules', 'dist', 'compiled-routing', 'fixt
 // The build bridge legitimately reads the authored source from the spec tree to
 // copy it into the runtime location, and this guard itself names the spec path
 // as a detection pattern. Both reference spec paths as data, never as imports.
+// The freshness guard's own authored-drift check reads the same authored source
+// for the same reason (byte-comparing it against the promoted copy) — it is a
+// build/verification-time reader like the sync bridge, never on the live serving
+// path (compiled-route.cjs / compiled-route-status.cjs own that), so it gets the
+// same exemption for the same reason.
 // The compiled-routing foundation vitest deliberately requires the spec-tree
 // resolver twin to assert byte-identity with the promoted runtime copy; that
 // coupling is test-only (never on the serving path) and self-policing (the
 // require fails loudly if the twin path moves), so the durable guard excludes it.
 const ALLOWLIST_BASENAMES = new Set([
   'compiled-route-sync.cjs',
+  'compiled-route-guard.cjs',
   'check-no-spec-imports.cjs',
   'compiled-routing-foundation.vitest.ts',
 ]);

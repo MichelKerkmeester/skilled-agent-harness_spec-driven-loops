@@ -119,36 +119,36 @@ fs.renameSync = (source, destination, ...args) => {
 JS
 
 mkdir -p \
-  "$REPO_ROOT/.opencode/specs/demo/old" \
-  "$REPO_ROOT/.opencode/specs/demo/delete-a" \
-  "$REPO_ROOT/.opencode/specs/demo/rename-b" \
+  "$REPO_ROOT/specs/demo/old" \
+  "$REPO_ROOT/specs/demo/delete-a" \
+  "$REPO_ROOT/specs/demo/rename-b" \
   "$REPO_ROOT/.opencode/skills/system-spec-kit/scripts"
 ln -s "$DRIFT_MARKER_DIST" "$REPO_ROOT/.opencode/skills/system-spec-kit/scripts/dist"
-printf '# moved\n' > "$REPO_ROOT/.opencode/specs/demo/old/spec.md"
-printf '# deleted\n' > "$REPO_ROOT/.opencode/specs/demo/delete-a/spec.md"
-printf '# renamed\n' > "$REPO_ROOT/.opencode/specs/demo/rename-b/spec.md"
+printf '# moved\n' > "$REPO_ROOT/specs/demo/old/spec.md"
+printf '# deleted\n' > "$REPO_ROOT/specs/demo/delete-a/spec.md"
+printf '# renamed\n' > "$REPO_ROOT/specs/demo/rename-b/spec.md"
 git -C "$REPO_ROOT" init -q
 git -C "$REPO_ROOT" config user.email 'lock-harness@example.invalid'
 git -C "$REPO_ROOT" config user.name 'Lock Harness'
-git -C "$REPO_ROOT" add -f .opencode/specs
+git -C "$REPO_ROOT" add -f specs
 git -C "$REPO_ROOT" commit -qm 'initial marker fixture'
 
-mkdir -p "$REPO_ROOT/.opencode/specs/demo/new"
-mv "$REPO_ROOT/.opencode/specs/demo/old/spec.md" "$REPO_ROOT/.opencode/specs/demo/new/spec.md"
-rmdir "$REPO_ROOT/.opencode/specs/demo/old"
+mkdir -p "$REPO_ROOT/specs/demo/new"
+mv "$REPO_ROOT/specs/demo/old/spec.md" "$REPO_ROOT/specs/demo/new/spec.md"
+rmdir "$REPO_ROOT/specs/demo/old"
 git -C "$REPO_ROOT" add -f -A
 git -C "$REPO_ROOT" commit -qm 'rename marker fixture'
 RENAME_COMMIT="$(git -C "$REPO_ROOT" rev-parse HEAD)"
 
-rm "$REPO_ROOT/.opencode/specs/demo/delete-a/spec.md"
-rmdir "$REPO_ROOT/.opencode/specs/demo/delete-a"
+rm "$REPO_ROOT/specs/demo/delete-a/spec.md"
+rmdir "$REPO_ROOT/specs/demo/delete-a"
 git -C "$REPO_ROOT" add -f -A
 git -C "$REPO_ROOT" commit -qm 'delete marker fixture'
 DELETE_COMMIT="$(git -C "$REPO_ROOT" rev-parse HEAD)"
 
-mkdir -p "$REPO_ROOT/.opencode/specs/demo/renamed-b"
-mv "$REPO_ROOT/.opencode/specs/demo/rename-b/spec.md" "$REPO_ROOT/.opencode/specs/demo/renamed-b/spec.md"
-rmdir "$REPO_ROOT/.opencode/specs/demo/rename-b"
+mkdir -p "$REPO_ROOT/specs/demo/renamed-b"
+mv "$REPO_ROOT/specs/demo/rename-b/spec.md" "$REPO_ROOT/specs/demo/renamed-b/spec.md"
+rmdir "$REPO_ROOT/specs/demo/rename-b"
 git -C "$REPO_ROOT" add -f -A
 git -C "$REPO_ROOT" commit -qm 'second rename marker fixture'
 SECOND_RENAME_COMMIT="$(git -C "$REPO_ROOT" rev-parse HEAD)"
@@ -237,15 +237,15 @@ const keys = new Set(payload.entries.map((entry) => entry.kind === 'rename'
   ? `rename:${entry.oldPath}->${entry.newPath}`
   : `delete:${entry.oldPath}`));
 assert.deepEqual(keys, new Set([
-  'rename:.opencode/specs/demo/old/spec.md->.opencode/specs/demo/new/spec.md',
-  'delete:.opencode/specs/demo/delete-a/spec.md',
-  'rename:.opencode/specs/demo/rename-b/spec.md->.opencode/specs/demo/renamed-b/spec.md',
+  'rename:specs/demo/old/spec.md->specs/demo/new/spec.md',
+  'delete:specs/demo/delete-a/spec.md',
+  'rename:specs/demo/rename-b/spec.md->specs/demo/renamed-b/spec.md',
 ]));
 NODE
 printf 'PASS concurrent-writers: all three entries survived the merged marker\n'
 
 reset_default_marker
-printf '%s\n' '{"version":1,"entries":[{"kind":"delete","oldPath":".opencode/specs/demo/existing/spec.md"}]}' > "$MARKER_PATH"
+printf '%s\n' '{"version":1,"entries":[{"kind":"delete","oldPath":"specs/demo/existing/spec.md"}]}' > "$MARKER_PATH"
 marker_before="$(<"$MARKER_PATH")"
 NODE_OPTIONS="--require=$PRELOAD" DRIFT_LOCK_TEST_MODE=write-fail \
   run_hook "$RENAME_COMMIT^" "$RENAME_COMMIT" 2> "$TEMP_ROOT/write-fail.stderr"

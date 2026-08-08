@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
-    last_updated_at: "2026-08-08T04:49:33Z"
+    last_updated_at: "2026-08-08T10:03:46Z"
     last_updated_by: "claude-code"
     recent_action: "All findings dispositioned, fixes applied, verified against fixtures and real targets"
     next_safe_action: "Run validate.sh --recursive --strict, then commit and push to skilled/v4.0.0.0"
@@ -51,9 +51,9 @@ _memory:
 
 A dual-executor `/deep:review` loop audited every non-worktree `README.md` in the repo (root included) for content left logically stale by the specs-root topology flip (`003-migration-execution`: `specs/` canonical, `.opencode/specs` a compat symlink). `deepseek-flash` (cli-opencode) completed all 10 iterations; `glm-high` (cli-devin) never spawned a process despite fully-resolved config and confirmed auth — root-caused to a real, confirmed silent-failure gap in `fanout-run.cjs`'s spawn-error path, out of scope for this packet to fix. The single-lineage run converged (CONDITIONAL verdict, iterations 5-9 returned zero new findings, adversarial replay in iteration 10 confirmed no severity changes) with 20 findings (0 P0, 5 P1, 15 P2).
 
-18 of 20 findings were fixed in the first pass; the remaining 2 (F012: `.txt` command-help files outside strict `README.md` scope; F020: a closed historical packet under `specs/**`) were initially deferred exactly as the review itself recommended, then fixed in a follow-up round after the operator explicitly asked for them. All 20 findings are now fixed.
+18 of 20 findings were fixed in the first pass; the remaining 2 (F012: `.txt` command-help files outside strict `README.md` scope; F020: a closed historical packet under `specs/**`) were initially deferred exactly as the review itself recommended, then fixed in a follow-up round after the operator explicitly asked for them. All 20 findings are now fixed (F020's prefix fix is correct; its example commands remain unrunnable for an unrelated, disclosed reason -- see Known Limitations).
 
-### Findings fixed (20/20, 25 files)
+### Findings fixed (20/20, 26 files; F020's prefix fix is correct; its example commands remain unrunnable for an unrelated, disclosed reason -- see Known Limitations)
 
 | Finding(s) | File(s) | Fix |
 |---|---|---|

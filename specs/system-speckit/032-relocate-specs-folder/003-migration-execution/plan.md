@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Specs-Root Migration Execution"
-description: "Literal, ordered runbook for the specs-root topology flip: exact commands, exact verification, exact rollback triggers. Not run in this phase."
+description: "Literal, ordered runbook for the specs-root topology flip: exact commands, exact verification, exact rollback triggers. EXECUTED -- see implementation-summary.md for the real outcome."
 trigger_phrases:
   - "migration execution runbook"
   - "topology flip steps"
@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/003-migration-execution"
-    last_updated_at: "2026-08-07T05:26:00Z"
+    last_updated_at: "2026-08-08T10:03:46Z"
     last_updated_by: "claude-code"
     recent_action: "Runbook drafted from phase 002's accepted design"
     next_safe_action: "Operator reviews, then separately approves an actual run"
@@ -43,7 +43,7 @@ _memory:
 | **Testing** | Inverted `spec-root-validation-matrix.vitest.ts` + new Git-index/Memory MCP assertions |
 
 ### Overview
-This is the literal runbook phase 002 named but didn't write out. Eleven numbered steps, each with an exact command or code change and its own pass/fail check. Steps 1-3 are read-only or additive (safe to run and inspect). Step 4 is the one atomic, hard-to-reverse step (symlink flip + `.gitignore` rebase together). Steps 5-11 build on step 4. **None of these steps have been run.**
+This is the literal runbook phase 002 named but didn't write out. Eleven numbered steps, each with an exact command or code change and its own pass/fail check. Steps 1-3 are read-only or additive (safe to run and inspect). Step 4 is the one atomic, hard-to-reverse step (symlink flip + `.gitignore` rebase together). Steps 5-11 build on step 4. **EXECUTED -- see `implementation-summary.md` for the real outcome; this plan remains the historical AS-AUTHORED runbook.**
 <!-- /ANCHOR:summary -->
 
 ---
@@ -100,7 +100,7 @@ Required inventories: the 7+5 = 12 call sites are the complete list carried from
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-This is the runbook — not yet run.
+This is the historical AS-AUTHORED runbook; it was executed -- see `implementation-summary.md` for the real outcome.
 
 ### Phase A: Read-Only & Additive (Steps 1-3)
 
@@ -186,7 +186,7 @@ Run the Memory MCP server's reindex against the new physical root.
 **Check**: row counts and distinct `spec_folder` values match the pre-flip baseline (step 2's manifest); no duplicate physical-path rows; a `memory_search` for a known packet returns the same result as before the flip.
 **Rollback**: Memory MCP database is not touched by steps 1-8; restoring it means re-running the reindex against the pre-flip topology if step 4 gets reverted.
 
-#### Step 10 — Invert the 61-test validation matrix
+#### Step 10 — Invert the 15-test validation matrix
 `spec-root-validation-matrix.vitest.ts` and `spec-root-fault-injection.vitest.ts` — flip expected canonical direction, add Git-index and Memory MCP assertions the current suite lacks.
 **Check**: full suite green.
 **Rollback**: `git revert`.
@@ -209,7 +209,7 @@ git status --porcelain
 |-----------|-------|-------|
 | Baseline audit | Zero divergent-duplicates before step 4 | `buildMigrationManifest` (step 2) |
 | Fixture unit tests | New topology-flip function, in isolation | A throwaway fixture directory, never the real repo |
-| Fixture matrix | Inverted validation matrix (61+ cases) | `spec-root-validation-matrix.vitest.ts` post-inversion |
+| Fixture matrix | Inverted validation matrix (15 cases) | `spec-root-validation-matrix.vitest.ts` post-inversion |
 | Integration | Real repo, after step 4 | Steps 4-11's own checks, run in order |
 | Full sweep | Whole repo | `validate.sh --recursive --strict` (step 11) |
 <!-- /ANCHOR:testing -->

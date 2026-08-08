@@ -41,7 +41,7 @@ const CODE_GRAPH_DEFAULT_EXCLUDE_GLOBS = {
   skill: ['**/.opencode/skills/**'],
   agent: ['**/.opencode/agents/**'],
   command: ['**/.opencode/commands/**'],
-  specs: ['**/.opencode/specs/**'],
+  specs: ['**/.opencode/specs/**', '**/specs/**'],
   plugins: ['**/.opencode/plugins/**'],
 } as const;
 
@@ -201,7 +201,12 @@ function matchOpencodeSkillPath(filePath: string): string | null | undefined {
 
 function matchesOpencodeFolder(filePath: string, folder: string): boolean {
   const normalizedPath = normalizeIndexScopePath(filePath);
-  return new RegExp(`(?:^|/)\\.opencode/${folder}(?:/|$)`, 'i').test(normalizedPath);
+  const folderRoots = folder === 'specs'
+    ? ['\\.opencode/specs', 'specs']
+    : [`\\.opencode/${folder}`];
+  return folderRoots.some(root =>
+    new RegExp(`(?:^|/)${root}(?:/|$)`, 'i').test(normalizedPath),
+  );
 }
 
 export function shouldIndexForMemory(absolutePath: string): boolean {

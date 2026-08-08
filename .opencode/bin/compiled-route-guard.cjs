@@ -38,7 +38,7 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const RUNTIME_ROOT = path.join(REPO_ROOT, '.opencode', 'bin', 'lib', 'compiled-routing');
 const AUTHORED_ROOT = path.join(
   REPO_ROOT,
-  '.opencode/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program',
+  'specs/sk-doc/019-skill-routing-refactor/015-router-unification-program',
 );
 const SKILLS_ROOT = path.join(REPO_ROOT, '.opencode', 'skills');
 

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Phase 001's research recommended inverting and reusing the existing `spec-root-` migration subsystem (`spec-root-registry.ts`, `spec-root-migration.ts`, `spec-root-migration-manifest.ts`, `spec-root-write-guard.ts`) rather than hand-patching literals",
     "created_at": "2026-08-06T13:15:01Z",
-    "last_save_at": "2026-08-06T18:04:19.655Z",
+    "last_save_at": "2026-08-08T10:04:10.635Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4f557f8d7f070a906988dab25ef460f4a931dac52b2f3fc2d741b8535330d33",
+    "source_fingerprint": "sha256:6ea147dd6dc66a7fd4b72c97ae8c0787cbeca480087d06fb479c14b9281ef50d",
     "source_doc_hashes": {
       "spec.md": "2ea8a77fe5928ca18a3a7e984e99654a9673cb0de2893c99440f5b687f8e2d76",
       "plan.md": "c9e58ca545b54bb6ca4203c6d7c784f61a9f3a5bf439c6d9468542edd350fc1f",
       "tasks.md": "61dc88b0ace120da27fe2c9166ad89882c714d6d146a648a48730f19b46cff84",
       "checklist.md": "a04a62572f3f6b3c540662a24edc60c41d7e7e59ff2636ac9e4a351718a94f53",
       "decision-record.md": "dacbeda02b6efc585ae46f9cc9a8765829a1eaa282173eb32ecbe73a7b9b2478",
-      "implementation-summary.md": "428cffd31859211061c75dbc5d9e50255eede66a1ada021dc7c0c027535fe529"
+      "implementation-summary.md": "c08a1627914ba6eec88c5dc5aba5e5e690b3fee61b9354b24edfefdf43052043"
     },
     "last_active_child_id": null,
     "last_active_at": null

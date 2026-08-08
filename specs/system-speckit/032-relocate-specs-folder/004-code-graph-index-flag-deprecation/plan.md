@@ -8,7 +8,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation"
-    last_updated_at: "2026-08-07T17:37:51Z"
+    last_updated_at: "2026-08-08T10:03:46Z"
     last_updated_by: "claude-code"
     recent_action: "Planned the removal from the confirmed repo-wide grep results"
     next_safe_action: "Execute steps 1-4 in order"
@@ -56,12 +56,12 @@ Four files carry the maintainer-mode `SPECKIT_CODE_GRAPH_INDEX_*` flag mechanism
 - [x] Confirmed nothing else references `config-content-filters.md`
 
 ### Definition of Done
-- [ ] `.gitattributes` deleted
-- [ ] `index-scope.ts`'s 5 env-var reads removed, per-call overrides unchanged
-- [ ] `config-content-filters.md` deleted
-- [ ] Local git filter config unregistered
-- [ ] `tsc --noEmit` clean, any existing tests for this module pass
-- [ ] `git grep "SPECKIT_CODE_GRAPH_INDEX"` outside `specs/` returns empty
+- [x] `.gitattributes` deleted [evidence: `implementation-summary.md` §What Was Built, Dead-file removal]
+- [x] `index-scope.ts`'s 5 env-var reads removed, per-call overrides unchanged [evidence: `implementation-summary.md` §What Was Built, `index-scope.ts` simplification]
+- [x] `config-content-filters.md` deleted [evidence: `implementation-summary.md` §What Was Built, Dead-file removal]
+- [x] Local git filter config unregistered [evidence: `implementation-summary.md` §What Was Built, Files Changed]
+- [x] `tsc --noEmit` clean, any existing tests for this module pass [evidence: `implementation-summary.md` §Verification]
+- [x] `git grep "SPECKIT_CODE_GRAPH_INDEX"` outside `specs/` returns empty [evidence: `implementation-summary.md` §Verification]
 <!-- /ANCHOR:quality-gates -->
 
 ---

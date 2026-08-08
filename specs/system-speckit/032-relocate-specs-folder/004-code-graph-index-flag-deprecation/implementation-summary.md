@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation"
-    last_updated_at: "2026-08-07T17:37:51Z"
+    last_updated_at: "2026-08-08T10:03:46Z"
     last_updated_by: "claude-code"
     recent_action: "All 5 plan.md steps executed and verified"
     next_safe_action: "Commit and push"
@@ -106,6 +106,12 @@ Scoped by a repo-wide `git grep` for every `SPECKIT_CODE_GRAPH_INDEX_*` and `mai
 <!-- /ANCHOR:verification -->
 
 ---
+
+### Current Fleet-Check Addendum (2026-08-08)
+
+A fresh run of `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` reports `checked=11 passed=10 failed=1 fixed=0`. `system-skill-advisor` is the sole failure because `leaf-aliases.json` is stale against the projection of `leaf-manifest.json`; the other 10 skill roots pass. The original `11/11 OK` row above is retained as historical evidence. This staleness remains deliberately scope-locked. The phase task record states:
+
+> "That fleet-wide `--fix` run also touched `system-skill-advisor/leaf-aliases.json` for an unrelated pre-existing staleness (`hooks/skill-advisor-hook.md`, confirmed via `git diff` to have nothing to do with this change) — reverted via `git checkout --` to stay scope-locked."
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations

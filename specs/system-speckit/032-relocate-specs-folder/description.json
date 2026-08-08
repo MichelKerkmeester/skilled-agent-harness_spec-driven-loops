@@ -1,17 +1,18 @@
 {
   "level": "2",
   "specFolder": "system-speckit/032-relocate-specs-folder",
-  "description": "The canonical spec-kit tree currently lives at `.opencode/specs/`",
+  "description": "Before phase 3 executed, the canonical spec-kit tree lived at `.opencode/specs/`",
   "keywords": [
+    "phase",
+    "executed",
     "canonical",
     "spec-kit",
     "tree",
-    "currently",
-    "lives",
+    "lived",
     "opencode",
     "specs"
   ],
-  "lastUpdated": "2026-08-08T05:04:19.197Z",
+  "lastUpdated": "2026-08-08T09:46:20.880Z",
   "specId": "032",
   "folderSlug": "relocate-specs-folder",
   "parentChain": [

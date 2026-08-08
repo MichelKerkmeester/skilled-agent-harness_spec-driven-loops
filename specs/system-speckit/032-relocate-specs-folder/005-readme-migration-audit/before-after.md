@@ -190,4 +190,4 @@ The review's "research angle" mandate meant checking prose and diagrams beyond t
 
 ---
 
-*Source commits: `bbb156b7e7b` (F001-F019), `8cb906322c` (F012, F020). Full finding registry: `review/lineages/deepseek-flash/review-report.md`. Task-level evidence: `tasks.md`. Narrative summary: `implementation-summary.md`.*
+*Source commits: reachable `1e8606cef9` (the rebased/superseded `bbb156b7e7b`, F001-F019), `8cb906322c` (F012, F020). Full finding registry: `review/lineages/deepseek-flash/review-report.md`. Task-level evidence: `tasks.md`. Narrative summary: `implementation-summary.md`.*

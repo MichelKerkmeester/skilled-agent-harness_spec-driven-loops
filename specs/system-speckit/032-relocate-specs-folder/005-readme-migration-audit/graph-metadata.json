@@ -38,6 +38,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "review/review-report.md",
       "review/lineages/glm-high/invocation-metadata.json",
       "review/orchestration-summary.json",
       "review/lineages/deepseek-flash/review-report.md",
@@ -59,6 +60,12 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "invocation-metadata.json",
         "kind": "config",
         "path": "review/lineages/glm-high/invocation-metadata.json",
@@ -68,12 +75,6 @@
         "name": "orchestration-summary.json",
         "kind": "config",
         "path": "review/orchestration-summary.json",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/lineages/deepseek-flash/review-report.md",
         "source": "derived"
       },
       {
@@ -173,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The specs-root topology flip (`003-migration-execution`) changed the canonical location of every spec-kit document",
     "created_at": "2026-08-07T17:29:17Z",
-    "last_save_at": "2026-08-08T04:50:29.108Z",
+    "last_save_at": "2026-08-08T10:04:11.508Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b9b72c8560d7ca72d439e2b250c34e323f228702c67278f1b4985147c7fe631",
+    "source_fingerprint": "sha256:31849383e637af110d589679fd9ee545a75cd56491bae389e53dae3849f51b4d",
     "source_doc_hashes": {
       "spec.md": "ed028cbb386333846ca71d205166e2904ddd363d270b6ccf738f8a778e5d6c4c",
-      "plan.md": "d6ef1714cc7dafeb19d1c72b021facb3bbd1a138f8f381ad776f0937ffc0c140",
-      "tasks.md": "52ae0d18e8a16bebaae73726037e51d62f569c7f626395221a7b554548e89ef6",
-      "implementation-summary.md": "1a9e2f1b384cad5ba68c2205dd7dbfa89c241763307d8c3164406440da87db7a"
+      "plan.md": "b68f3d782a1fbe2d33a20372d4c691d1c774b377cc2735bd1e5c01c0d5d523ff",
+      "tasks.md": "2121b05f266e3f2ee9b356e27555de1f30a1173edb9154e91769f4713978b198",
+      "implementation-summary.md": "94283957c222955eeec859ea3a76c8d66307a097b597f3a563ee3c84ad86ba13"
     },
     "last_active_child_id": null,
     "last_active_at": null

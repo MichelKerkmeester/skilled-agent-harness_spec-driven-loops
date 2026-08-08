@@ -58,6 +58,8 @@ describe('index-scope helper', () => {
 
   it('rejects external plus existing default code-graph exclusions', () => {
     expect(shouldIndexForCodeGraph('/workspace/src/active.ts')).toBe(true);
+    expect(shouldIndexForCodeGraph('/workspace/.opencode/specs/system-spec-kit/001-active/spec.md')).toBe(false);
+    expect(shouldIndexForCodeGraph('/workspace/specs/system-spec-kit/001-active/spec.md')).toBe(false);
     expect(shouldIndexForCodeGraph('/workspace/external/vendor.ts')).toBe(false);
     expect(shouldIndexForCodeGraph('/workspace/node_modules/pkg/index.ts')).toBe(false);
     expect(shouldIndexForCodeGraph('/workspace/.git/hooks/pre-commit')).toBe(false);

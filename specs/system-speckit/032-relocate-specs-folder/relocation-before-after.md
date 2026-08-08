@@ -38,7 +38,7 @@ lrwxr-xr-x@  1 ... .opencode/specs -> ../specs
 
 **Before**: an open question. The repo already had a root `specs` symlink pointing *into* `.opencode/specs`, suggesting someone anticipated this move — but nobody had mapped the blast radius. Spec-kit tooling, five runtime mirrors (`.claude`, `.codex`, `.cursor`, `.devin`, `.pi`), a global `~/.gitignore_global` special-casing both paths for downstream repos, and thousands of files referencing `.opencode/specs/...` directly.
 
-**After**: **CONDITIONAL-GO**, reached via 4 independent research lineages across 2 rounds (`glm`/`grok` round 1, `sol`/`luna` round 2 after the operator asked for more depth). The decisive finding — missed by round 1, caught by round 2 — was that this repo **already had a substantial migration-safety subsystem** (`spec-root-registry.ts`, `spec-root-migration.ts`, `spec-root-migration-manifest.ts`, `spec-root-write-guard.ts`, a 61-test validation matrix) built for the *opposite* migration direction. That single discovery changed the plan from "hand-patch ~7 literals" to "invert and reuse the existing harness" — a materially safer path than anyone had scoped going in.
+**After**: **CONDITIONAL-GO**, reached via 4 independent research lineages across 2 rounds (`glm`/`grok` round 1, `sol`/`luna` round 2 after the operator asked for more depth). The decisive finding — missed by round 1, caught by round 2 — was that this repo **already had a substantial migration-safety subsystem** (`spec-root-registry.ts`, `spec-root-migration.ts`, `spec-root-migration-manifest.ts`, `spec-root-write-guard.ts`, a 15-test validation matrix) built for the *opposite* migration direction. That single discovery changed the plan from "hand-patch ~7 literals" to "invert and reuse the existing harness" — a materially safer path than anyone had scoped going in.
 
 **Also found**: an internal Memory MCP inconsistency (the indexer was dual-root-aware; the discovery/identity layer was canonical-locked to one root) that only surfaced from cross-reading multiple lineages' citations against each other.
 
@@ -87,7 +87,7 @@ Three pre-commit checks gated the commit: `git check-ignore -v` matched all four
 
 ### Steps 5-8, 10 — the wider fix, plus 6 bugs nobody had on the list
 
-Steps 5-8 flipped the 12 originally-named call sites (7 registry resolvers + 5 `SPEC_KIT_SPECS_DIR` override sites) plus CI and operator-facing docs. Step 10's inverted 61-test validation matrix then **surfaced 6 more production files** with the same hardcoded old-direction bug that were never on the original list — `spec-root-canonical-resolver.ts`, `spec-root-write-guard.ts`, `spec-root-migration.ts` (two functions), `spec-root-migration-manifest.ts`, and `config.ts` (whose registry label had also been wrong: `legacy-first` when the code was always canonical-first). All fixed in the same pass — a real correctness bug post-flip isn't optional just because it wasn't on the original list.
+Steps 5-8 flipped the 12 originally-named call sites (7 registry resolvers + 5 `SPEC_KIT_SPECS_DIR` override sites) plus CI and operator-facing docs. Step 10's inverted 15-test validation matrix then **surfaced 6 more production files** with the same hardcoded old-direction bug that were never on the original list — `spec-root-canonical-resolver.ts`, `spec-root-write-guard.ts`, `spec-root-migration.ts` (two functions), `spec-root-migration-manifest.ts`, and `config.ts` (whose registry label had also been wrong: `legacy-first` when the code was always canonical-first). All fixed in the same pass — a real correctness bug post-flip isn't optional just because it wasn't on the original list.
 
 ### Step 9 — the reindex that couldn't clean up after itself, so a human did
 
@@ -120,7 +120,7 @@ The flip changed the physical topology; nothing forced every README in the repo 
 - **`check-no-spec-imports.cjs`** only checked imports against `.opencode/specs` — a canonical-path `specs/...` import could bypass this durable security guard entirely. Fixed: both roots now checked.
 - **`memory-drift-marker.sh`** diffed `git diff-tree` against `-- .opencode/specs`, which after the flip matches only the symlink blob itself, never the real tree — every drift-marking hook was silently detecting **zero** changes no matter how much churn happened in `specs/`. Verified empirically: 0 lines detected with the old pathspec, 16 with the fixed one, same commit range.
 
-All 20 findings fixed (2 initially deferred exactly as the review recommended, then fixed on request), 25 files touched total. Full finding-by-finding before/after: `005-readme-migration-audit/before-after.md`.
+All 20 findings fixed (2 initially deferred exactly as the review recommended, then fixed on request), 26 non-packet files touched across the two cited fix commits. Full finding-by-finding before/after: `005-readme-migration-audit/before-after.md`.
 
 ---
 
@@ -137,7 +137,7 @@ All 20 findings fixed (2 initially deferred exactly as the review recommended, t
 | 3, step 11 | Spec folders swept with zero regressions | 1,911 |
 | 4 | Dead env-var reads removed | 5 |
 | 5 | README/doc findings fixed | 20 / 20 |
-| 5 | Files touched for documentation fixes | 25 |
+| 5 | Non-packet files touched across the two cited documentation-fix commits | 26 |
 | 5 | Real functional/security bugs found via doc audit | 2 |
 
 ---

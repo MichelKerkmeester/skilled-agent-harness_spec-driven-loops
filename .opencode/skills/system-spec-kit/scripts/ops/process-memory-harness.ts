@@ -87,10 +87,14 @@ export type Inventory = HarnessSnapshot;
 
 export const DEFAULT_PROCESS_RULES: ProcessRule[] = [
   {
+    id: 'code-graph-launcher',
+    pattern: /mk-code-index-launcher\.cjs/,
     role: 'project-daemon',
     reason: 'Code Graph launcher process',
   },
   {
+    id: 'code-graph-server',
+    pattern: /system-code-graph\/mcp-server\/dist\/index\.js/,
     role: 'project-daemon',
     reason: 'Code Graph MCP server process',
   },

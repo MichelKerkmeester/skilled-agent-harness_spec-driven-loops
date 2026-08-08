@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/032-relocate-specs-folder/002-migration-plan"
-    last_updated_at: "2026-08-06T18:04:13Z"
+    last_updated_at: "2026-08-08T10:03:46Z"
     last_updated_by: "claude-code"
-    recent_action: "Planning phase complete; decision-record.md records the one open policy decision"
-    next_safe_action: "Operator answers the downstream-ownership decision, then an execution phase can be scoped"
+    recent_action: "Planning phase complete; operator accepted ADR-002's downstream-ownership policy"
+    next_safe_action: "Execution phase proceeds under ADR-002's accepted shared-default and opt-in override policy"
     blockers: []
     key_files: []
     session_dedup:
@@ -55,7 +55,7 @@ The 21-entry resolver registry — the maintained inventory of every place in th
 
 ### Decision Record
 
-`decision-record.md` captures two things: the finding above as ADR-001 (with the evidence for why the existing function is currently a no-op), and the downstream specs-ownership policy question as ADR-002, explicitly left open. That decision — whether a downstream repo's project-local specs stays framework-shared or becomes repo-owned — belongs to the operator, not to this planning phase.
+`decision-record.md` captures two things: the finding above as ADR-001 (with the evidence for why the existing function is currently a no-op), and the downstream specs-ownership policy question as ADR-002. It was explicitly left open during this planning phase because the choice belonged to the operator; the operator has since accepted ADR-002's shared/framework-default baseline with an opt-in `SPEC_KIT_SPECS_DIR` override.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -97,5 +97,5 @@ Read all five `spec-root-*` TypeScript files end to end (not sampled), traced th
 
 1. **The topology-flip operation is designed, not written.** `plan.md` §4 is a task list for a future execution phase, not working code — it has not been tested.
 2. **The 61-test validation matrix was located and its scope confirmed, but not read test-by-test.** An execution phase should not assume every test translates cleanly to the topology-flip shape without a closer read.
-3. **The downstream-ownership decision is unresolved.** No execution phase should be scoped until the operator answers it — see `decision-record.md` ADR-002.
+3. **The downstream-ownership decision was originally unresolved during planning, but is now accepted.** ADR-002 records the shared/framework-default baseline with an opt-in `SPEC_KIT_SPECS_DIR` override; no further policy decision is open.
 <!-- /ANCHOR:limitations -->
