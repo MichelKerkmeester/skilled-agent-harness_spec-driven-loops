@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "identity and lock ownership hardening",
+      "deep-loop remediation 033",
+      "gateway identity fail closed",
+      "append lock owner token",
+      "leaf publication single winner",
+      "identity lock implementation plan",
+      "deep-loop remediation plan",
+      "cross-process ownership plan",
+      "identity hardening tasks",
+      "deep-loop remediation tasks",
+      "lock ownership task list",
+      "identity hardening verification"
+    ],
+    "key_topics": [
+      "identity",
+      "lock",
+      "ownership",
+      "hardening",
+      "deep-loop",
+      "remediation",
+      "gateway",
+      "fail",
+      "closed",
+      "append",
+      "owner",
+      "token"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+      "checklist.md",
+      "decision-record.md",
+      "handover.md",
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "transition-authorization-gateway.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts",
+        "source": "derived"
+      },
+      {
+        "name": "transition-policy-registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-artifact-writer.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lock Ownership Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The authorization gateway skipped identity comparisons when authority bindings and resolver output were absent, allowing caller-supplied identity fields to pass unvalidated",
+    "created_at": "2026-08-05T18:42:31.847Z",
+    "last_save_at": "2026-08-08T00:06:43.283Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:26b9e85d78a2234c481be1b4f64b2a4690b87267199d1fba78efdd1ecb727884",
+    "source_doc_hashes": {
+      "spec.md": "d75c1c370a14d218d014a1e5bb1d95aa6de6dcfcdcffea1706988752e0bbfcc8",
+      "plan.md": "0b9add57681d1092c9f62c838f124d59955623758b6c6723011b522139f32bbc",
+      "tasks.md": "1306a1e6205adbc0d1dbe2496893ec97f63d344f4ccca14a0d191972783a5b77",
+      "checklist.md": "efac6323c3b83a392772b760e0ddf9dfab935fa8f168e842d743fdda3b7686d5",
+      "decision-record.md": "8b3a8838d8348ee8668a3453129ba9723500b9a66694109c6fabe2da1a7e5064",
+      "implementation-summary.md": "d9ec09af40530c24537dd38c69815f864e60eacd63549bc1ae27ff7ad7143315",
+      "handover.md": "44678685914936569131b627cd5c4e7fa0418d15ca920101145cb62d8f8a8317"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
