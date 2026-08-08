@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch",
   "description": "The roster drift is one fact repeated in five places: three READMEs advertise a pre-alignment four-family roster and four improvement lanes against a",
   "keywords": [
@@ -19,7 +20,7 @@
     "lanes",
     "against"
   ],
-  "lastUpdated": "2026-07-31T01:23:30.198Z",
+  "lastUpdated": "2026-08-08T01:03:20.842Z",
   "specId": "032",
   "folderSlug": "docs-drift-and-p2-batch",
   "parentChain": [

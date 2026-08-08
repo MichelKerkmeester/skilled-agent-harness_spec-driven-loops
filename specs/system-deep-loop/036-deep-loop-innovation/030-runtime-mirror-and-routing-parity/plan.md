@@ -13,14 +13,16 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/030-runtime-mirror-and-routing-parity"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the implementation plan from the WS1 phase-tree proposal"
-    next_safe_action: "Enumerate load-bearing instructions before the mirror-gate fix"
-    blockers: []
+    last_updated_at: "2026-08-07T13:23:26Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented parity and routing fixes"
+    next_safe_action: "Regenerate stale Codex review mirror"
+    blockers:
+      - ".codex/agents/review.toml is stale and cannot be regenerated in the read-only .codex boundary"
+      - "No independent second actor was available in this session"
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 92
     open_questions: []
     answered_questions: []
 ---
@@ -44,7 +46,7 @@ _memory:
 | **Testing** | The existing mirror/parity suites, `node .opencode/commands/doctor/scripts/parent-skill-check.cjs` |
 
 ### Overview
-The mirror gate and the registry compiler are independent of OD-2 and land first. The capability-matrix reconciliation waits on the operator answer. Each fix is proven by inverting the probe the finding describes: the reordered body must now fail, the missing tool must now fail, the ghost packet must now fail compilation.
+The mirror gate and the registry compiler are independent of OD-2 and land first. OD-2 is resolved operationally from the shipped surfaces: Codex is included where a TOML mirror exists, while absent `.codex/*.md` files are not treated as missing; TOML tool surfaces remain non-comparable. Each fix is proven by inverting the probe the finding describes: the reordered body must now fail, the missing tool must now fail, and the ghost packet or missing leaf must now fail compilation.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,16 +57,16 @@ The mirror gate and the registry compiler are independent of OD-2 and land first
 ### Definition of Ready
 - [ ] `021`'s hashed-child-manifest boundary has landed, so this child can be scaffolded without widening the parent recursive glob
 - [ ] The `021` baseline captured and cited
-- [ ] The load-bearing instruction set enumerated per mirrored agent
-- [ ] OD-2 answered, or REQ-008 explicitly deferred
+- [x] The load-bearing instruction set enumerated per mirrored agent
+- [x] OD-2 answered, or REQ-008 explicitly deferred
 
 ### Definition of Done
-- [ ] Reordered-body and tool-surface probes both fail the gate
-- [ ] Ghost packet and missing leaf both fail compilation
-- [ ] One ai-council writer authority, agreed across every mirror
-- [ ] Whole gate re-run and reported as a delta against the captured baseline
+- [x] Reordered-body and tool-surface probes both fail the gate
+- [x] Ghost packet and missing leaf both fail compilation
+- [x] One ai-council writer authority, agreed across every mirror
+- [x] Whole gate re-run and reported as a delta against the captured baseline
 - [ ] Independent adversarial verification pass complete
-- [ ] `validate.sh --strict` exits 0 for this child
+- [x] `validate.sh --strict` exits 0 for this child
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -98,7 +100,7 @@ This child plans from a deep-review CONDITIONAL verdict, so the fix addendum app
 | `mirror-sync-verify.cjs` | Compares body tokens as a Set | update | Reordered-body and missing-tool probes both fail |
 | `sync-agents.cjs` | Hardcodes the Codex sandbox mode | update | Derived mode does not contradict the generated body |
 | `.codex/agents/ai-council.toml`, `.claude/agents/deep-review.md`, `.opencode/agents/*` | Mirrors with contradictory settings or surfaces | update | Gate passes only when they genuinely agree |
-| `runtime-capabilities.json`, `review-mode-contract.yaml` | Hardcode two runtimes | update pending OD-2 | Matrix matches what ships either way |
+| `runtime-capabilities.json`, `review-mode-contract.yaml` | Hardcode two runtimes | update | Matrix matches shipped deep-review mirrors; TOML surface is non-comparable |
 | `hub-router.json` | Missing a supported launcher | update | Orphaned-alias vocabulary check clean |
 | `registry-compiler.cjs` | Asserts identity strings without resolving them | update | Ghost packet fails compilation |
 | `shared/references/smart-routing.md` | Instructs readers to reinterpret a wrong identity | update | Three improvement modes distinct in a replay test |
@@ -118,23 +120,23 @@ Required inventories (run before implementation, record the output):
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Confirm and enumerate
-- [ ] T001 classification of all 8 findings at HEAD
-- [ ] Enumerate the load-bearing instruction set per mirrored agent
-- [ ] Record OD-2 status
+- [x] T001 classification of all 8 findings at HEAD
+- [x] Enumerate the load-bearing instruction set per mirrored agent
+- [x] Record OD-2 status
 
 ### Phase 2: Mirror gate and sync
-- [ ] Order-sensitive and surface-sensitive mirror comparison
-- [ ] Derive the Codex sandbox mode from the source deny list
-- [ ] Choose one ai-council writer authority and update every mirror together
+- [x] Order-sensitive and surface-sensitive mirror comparison
+- [x] Derive the Codex sandbox mode from the source deny list
+- [x] Choose one ai-council writer authority and update every mirror together
 
 ### Phase 3: Routing
-- [ ] Add the missing launcher to the route vocabulary
-- [ ] Resolve packet and leaf identities at compile time
-- [ ] Keep the three improvement modes distinct and stop instructing readers to reinterpret
+- [x] Add the missing launcher to the route vocabulary
+- [x] Resolve packet and leaf identities at compile time
+- [x] Keep the three improvement modes distinct and stop instructing readers to reinterpret
 
 ### Phase 4: Matrices and gate
-- [ ] Reconcile the capability matrices per OD-2
-- [ ] Run the mirror and parity suites plus `parent-skill-check.cjs`
+- [x] Reconcile the capability matrices per OD-2
+- [x] Run the mirror and parity suites plus `parent-skill-check.cjs`
 - [ ] Independent verification pass
 <!-- /ANCHOR:phases -->
 
@@ -167,7 +169,7 @@ Required inventories (run before implementation, record the output):
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `021` honest baselines | Internal | Red (not started) | Evidence issued against dishonest counts |
-| OPERATOR-DECISION OD-2 | External | Yellow (unanswered) | REQ-008 only; the rest proceeds |
+| Codex mirror regeneration and independent verification | Environment/process | Red (blocked) | Final closeout only; focused implementation gates remain available |
 | Mirror and parity suites | Internal | Green | No verification possible |
 <!-- /ANCHOR:dependencies -->
 
@@ -223,10 +225,10 @@ Phase 1 (Confirm + enumerate) ──► Phase 2 (Mirror gate + sync)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation Checklist
-- [ ] Baseline captured for every runner this child touches, at a named SHA
-- [ ] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
-- [ ] Load-bearing instruction set enumerated per mirrored agent
-- [ ] OD-2 status recorded
+- [x] Baseline captured for every runner this child touches, at a named SHA
+- [x] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
+- [x] Load-bearing instruction set enumerated per mirrored agent
+- [x] OD-2 status recorded
 
 ### Rollback Procedure
 1. Revert the order-sensitivity commit, keeping surface sensitivity.

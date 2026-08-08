@@ -13,18 +13,19 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/030-runtime-mirror-and-routing-parity"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the remediation child package from the WS1 phase-tree proposal"
-    next_safe_action: "Run T001 against the 8 scoped findings before any edit"
+    last_updated_at: "2026-08-07T13:23:26Z"
+    last_updated_by: "codex"
+    recent_action: "Landed 7/8 findings as 2f84f78bf7 on skilled/v4.0.0.0"
+    next_safe_action: "Regenerate stale Codex review mirror"
     blockers:
-      - "OPERATOR-DECISION OD-2: add Codex to both runtime-capability matrices and the parity sets, or declare Codex intentionally unsupported and classify the existing .codex/agents/* mirrors outside the parity claim"
+      - ".codex/agents/review.toml is stale and the environment denies writes under .codex"
+      - "No independent second actor was available in this session"
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-    completion_pct: 0
+    completion_pct: 92
     open_questions:
       - "OD-2: is Codex in the parity claim or explicitly outside it? Shipping a mirror no gate covers is the one option that is not viable."
       - "Which ai-council writer authority is the single one: the leaf, or the parent orchestrator?"
@@ -53,7 +54,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete (7/8 findings landed as `2f84f78bf7`; F-028-01 deferred) |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
@@ -99,7 +100,7 @@ Make each parity and routing gate fail on the difference it exists to detect, so
 ### In Scope
 - Mirror comparison that is order-sensitive for load-bearing instructions and surface-sensitive for the tool allowlist.
 - Codex sandbox mode derived from the source agent deny list rather than hardcoded in `sync-agents.cjs`.
-- Runtime-capability matrices and parity sets reconciled with what actually ships (pending OD-2).
+- Runtime-capability matrices and parity sets reconciled with what actually ships: Codex is covered for the shipped deep-review TOML mirror, while absent `.codex/*.md` files are not treated as missing; TOML tool surfaces remain non-comparable.
 - Exactly one ai-council writer authority, with every runtime mirror updated together.
 - `/deep:command-benchmark` present in the route vocabulary the compiler derives from.
 - Packet and leaf identities resolved at compile time; a nonexistent packet or missing leaf fails compilation.
@@ -133,7 +134,7 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 | `.opencode/agents/{ai-council.md,deep-review.md}` | Modify | Single writer authority; tool-surface consistency (`F-028-03`) |
 | ``sync-agents.cjs`` | Modify | Derive the sandbox mode from the source deny rather than hardcoding it (`F-028-01`) |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs` | Modify | Order-sensitive and surface-sensitive comparison (`F-028-04`) |
-| `.opencode/skills/system-deep-loop/deep-review/assets/runtime-capabilities.json` | Modify | Reconcile the runtime set with what ships (`F-040-02`, pending OD-2) |
+| `.opencode/skills/system-deep-loop/deep-review/assets/runtime-capabilities.json` | Modify | Reconcile the runtime set with what ships (`F-040-02`) |
 | `.opencode/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` | Modify | Same runtime-set reconciliation |
 | `.opencode/skills/system-deep-loop/hub-router.json` | Modify | Add the supported launcher missing from the route vocabulary (`F-027-01`) |
 | `.opencode/skills/system-deep-loop/mode-registry.json` | Modify | Keep the three improvement modes distinct |
@@ -198,10 +199,10 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Risk | An order-sensitive mirror gate fails on benign reordering | Medium | Order sensitivity applies to load-bearing instruction sequences, not to the whole body; the load-bearing set is enumerated |
-| Risk | OD-2 stays unanswered and the capability matrices cannot be reconciled | Medium | The mirror and compiler fixes are independent of OD-2 and land first |
+| Risk | A generated Codex mirror remains stale in a read-only environment | Medium | Preserve the source-derived mode and hand the exact regeneration command to the orchestrator |
 | Risk | Tightening the compiler blocks a legitimate probe | Low | Failures name the unresolved packet or leaf, so a legitimate probe is one edit away |
 | Dependency | `021` honest baselines | Blocks evidence issuance | Sequence after `021` |
-| Dependency | OPERATOR-DECISION OD-2 | Blocks REQ-008 only | Everything else proceeds |
+| Dependency | Codex mirror regeneration and independent verification | Blocks final closeout only | The implementation and focused gates proceed |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -242,7 +243,7 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- **OD-2 (OPERATOR-DECISION).** Add Codex to both runtime-capability matrices and the parity sets, or declare Codex intentionally unsupported and classify the existing `.codex/agents/*` mirrors outside the parity claim? Shipping a mirror that no gate covers is the one option that is not viable. This fork is the only one in the child, so no ADR is authored here; if OD-2 is answered in a way that needs a recorded rationale, scaffold `decision-record.md` from `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl`.
+- **OD-2 position recorded for this implementation.** Include Codex when its shipped `.toml` mirror exists; compare its body but do not compare its TOML tool surface against Markdown frontmatter. A missing `.codex/*.md` file is not a missing Codex agent. The deep-review matrix and parity contract therefore include Codex, while the ai-council capability matrix retains only runtimes that can execute supported council seats.
 - Which ai-council writer authority is the single one: the leaf calling the persistence library directly, or the parent orchestrator invoking the helper? Today both are documented and neither is executable by the leaf. Choose one and update every runtime mirror together.
 - Should order sensitivity apply to the whole mirror body or only to enumerated load-bearing sequences? Whole-body order sensitivity would fail on benign formatting changes; the enumerated form needs the enumeration to be maintained.
 <!-- /ANCHOR:questions -->

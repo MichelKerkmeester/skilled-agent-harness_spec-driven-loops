@@ -13,14 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/026-alignment-coverage-integrity"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the implementation plan from the WS1 phase-tree proposal"
-    next_safe_action: "Capture the 021 RED alignment baseline before any edit"
+    last_updated_at: "2026-08-07T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed all implementation phases and recorded the final gate delta"
+    next_safe_action: "Orchestrator verifies and lands the worktree changes"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,18 +53,18 @@ Build the shared normalizer and canonical lane identity first, because every oth
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `021`'s hashed-child-manifest boundary has landed, so this child can be scaffolded without widening the parent recursive glob
-- [ ] `024`'s closed record parser is available
-- [ ] The `021` RED alignment baseline is captured, with the 5 command-contract failures named
-- [ ] ADRs derived for `F-SOL-04`, `F-SOL-06` and `F-SOL-07`
+- [x] `021`'s hashed-child-manifest boundary has landed, so this child can be scaffolded without widening the parent recursive glob
+- [x] `024`'s closed record parser is available
+- [x] The `021` RED alignment baseline is captured, with the 5 command-contract failures named
+- [x] ADRs derived for `F-SOL-04`, `F-SOL-06` and `F-SOL-07`
 
 ### Definition of Done
-- [ ] Shared-normalizer differential test green across the adversarial fixture set
-- [ ] Four corpus states distinguishable; unearned credit earns zero
-- [ ] The `F-SOL-04` over-tightening regression fixed and covered
-- [ ] Whole gate re-run and reported as a delta against the captured baseline
-- [ ] Independent adversarial verification pass complete
-- [ ] `validate.sh --strict` exits 0 for this child
+- [x] Shared-normalizer differential test green across the adversarial fixture set
+- [x] Four corpus states distinguishable; unearned credit earns zero
+- [x] The `F-SOL-04` over-tightening regression fixed and covered
+- [x] Whole gate re-run and reported as a delta against the captured baseline
+- [x] Independent adversarial verification pass complete
+- [x] `validate.sh --strict` exits 0 for this child
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -120,34 +120,34 @@ Required inventories (run before implementation, record the output):
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Confirm, baseline and derive
-- [ ] T001 classification of all 20 findings at HEAD
-- [ ] Capture the `021` RED alignment baseline as the delta anchor; name the 5 command-contract failures as `031`'s scope
-- [ ] Derive ADRs for `F-SOL-04`, `F-SOL-06` and `F-SOL-07`, whose recommended actions the register did not supply
-- [ ] Confirm `024`'s closed record parser is available
+- [x] T001 classification of all 20 findings at HEAD
+- [x] Capture the `021` RED alignment baseline as the delta anchor; name the 5 command-contract failures as `031`'s scope
+- [x] Derive ADRs for `F-SOL-04`, `F-SOL-06` and `F-SOL-07`, whose recommended actions the register did not supply
+- [x] Confirm `024`'s closed record parser is available
 
 ### Phase 2: Shared normalizer and canonical identity
-- [ ] Build one normalizer both readers use
-- [ ] Define canonical lane identity including adapter and scope type, injective across separators and orderings
-- [ ] Fix the `F-SOL-04` over-tightening regression as an explicit acceptance case
-- [ ] Differential test across the adversarial fixture set
+- [x] Build one normalizer both readers use
+- [x] Define canonical lane identity including adapter and scope type, injective across separators and orderings
+- [x] Fix the `F-SOL-04` over-tightening regression as an explicit acceptance case
+- [x] Differential test across the adversarial fixture set
 
 ### Phase 3: Fail-closed coverage and seal
-- [ ] Four distinguishable corpus states
-- [ ] Intersect `artifactsChecked` against the canonical corpus
-- [ ] Exclude failed, stuck and timed-out iterations from coverage and the stability window
-- [ ] Seal predicate excludes pre-discovery state; the workflow checks `sealed===true`
-- [ ] Handle `DISCOVERY_INCOMPLETE` in the workflow consumers
+- [x] Four distinguishable corpus states
+- [x] Intersect `artifactsChecked` against the canonical corpus
+- [x] Exclude failed, stuck and timed-out iterations from coverage and the stability window
+- [x] Seal predicate excludes pre-discovery state; the workflow checks `sealed===true`
+- [x] Handle `DISCOVERY_INCOMPLETE` in the workflow consumers
 
 ### Phase 4: Evidence-bound credit
-- [ ] Bind coverage credit to per-artifact evidence, layered on `024`'s closed parser
-- [ ] Restrict credit to the dispatched slice
-- [ ] Live-render adapter returns a check receipt with measurements
-- [ ] Partition cursor advances from credited evidence only
+- [x] Bind coverage credit to per-artifact evidence, layered on `024`'s closed parser
+- [x] Restrict credit to the dispatched slice
+- [x] Live-render adapter returns a check receipt with measurements
+- [x] Partition cursor advances from credited evidence only
 
 ### Phase 5: Registry honesty and gate
-- [ ] Register alignment against its actual convergence backend
-- [ ] Re-run the alignment script suite and report a delta against the RED baseline, excluding the 5 pre-existing failures
-- [ ] Re-run `runtime` typecheck and tests; independent adversarial pass
+- [x] Register alignment against its actual convergence backend
+- [x] Re-run the alignment script suite and report a delta against the RED baseline, excluding the 5 pre-existing failures
+- [x] Re-run `runtime` typecheck and tests; independent adversarial pass
 <!-- /ANCHOR:phases -->
 
 ---
@@ -242,11 +242,16 @@ Phase 3 (Fail-closed coverage + seal) ──► Phase 4 (Evidence-bound credit)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation Checklist
-- [ ] Baseline captured for every runner this child touches, at a named SHA
-- [ ] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
-- [ ] The 5 pre-existing command-contract failures named and excluded from the delta
-- [ ] ADRs derived for the three findings whose recommended action the register did not supply
-- [ ] `024`'s closed record parser confirmed available
+- [x] Baseline captured for every runner this child touches, at a named SHA
+  - Evidence: RED receipts and the final per-file direct-suite receipts are recorded in `implementation-summary.md`; candidate SHA is `9229cb8f3e281c9291e6d631237528bc755e6f4b`.
+- [x] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
+  - Evidence: execution root is `.worktrees/0129-system-deep-loop-036-remediation-execution`.
+- [x] The 5 pre-existing command-contract failures named and excluded from the delta
+  - Evidence: the five `031` command-contract surfaces and their missing-fixture/marker causes are named in `implementation-summary.md`; `newFailures=0`.
+- [x] ADRs derived for the three findings whose recommended action the register did not supply
+  - Evidence: ADR-004, ADR-005, and ADR-006 are accepted in `decision-record.md`.
+- [x] `024`'s closed record parser confirmed available
+  - Evidence: the preserved `024` leaf-writer/publication boundary and its direct writer suite are recorded in `implementation-summary.md`.
 
 ### Rollback Procedure
 1. Identify which layer caused the false rejection: normalizer, coverage, or evidence binding.
@@ -330,9 +335,12 @@ Phase 3 (Fail-closed coverage + seal) ──► Phase 4 (Evidence-bound credit)
 
 | ADR | Decision | Status |
 |-----|----------|--------|
-| ADR-001 | One shared normalizer and one canonical lane identity, used by both readers | Proposed |
-| ADR-002 | Coverage fails closed with four distinguishable states | Proposed |
-| ADR-003 | Coverage credit is bound to per-artifact evidence within the dispatched slice | Proposed |
+| ADR-001 | One shared normalizer and one canonical lane identity, used by both readers | Accepted |
+| ADR-002 | Coverage fails closed with four distinguishable states | Accepted |
+| ADR-003 | Coverage credit is bound to per-artifact evidence within the dispatched slice | Accepted |
+| ADR-004 | Preserve valid scope bytes while sharing the lane normalizer | Accepted |
+| ADR-005 | Treat configured lanes in an empty corpus as an integrity mismatch | Accepted |
+| ADR-006 | Bare counts are activity signals, never coverage credit | Accepted |
 
 Full context, alternatives, and consequences: `decision-record.md`.
 <!-- /ANCHOR:l3-adr-summary -->

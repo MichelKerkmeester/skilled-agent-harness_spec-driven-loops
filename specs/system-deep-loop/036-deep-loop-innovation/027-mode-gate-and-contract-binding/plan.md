@@ -13,14 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/027-mode-gate-and-contract-binding"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the implementation plan from the WS1 phase-tree proposal"
-    next_safe_action: "Diff legacy gates against reference before validator design"
+    last_updated_at: "2026-08-07T07:33:38Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled the plan with the completed implementation and direct-suite verification"
+    next_safe_action: "No further packet-local action; orchestrator lands runtime and batch-reconciles packet docs"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,18 +53,18 @@ Diff the research and review gates against the model and skill reference impleme
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `021`'s hashed-child-manifest boundary has landed, so this child can be scaffolded without widening the parent recursive glob
-- [ ] `024` fence and proof primitives available; `025` certificate binding available
-- [ ] The `021` `runtime` baseline captured and cited
-- [ ] Research and review gates diffed against the model and skill reference implementation
+- [x] `021`'s hashed-child-manifest boundary has landed, so this child can be scaffolded without widening the parent recursive glob
+- [x] `024` fence and proof primitives available; `025` certificate binding available
+- [x] The `021` `runtime` baseline captured and cited
+- [x] Research and review gates diffed against the model and skill reference implementation
 
 ### Definition of Done
-- [ ] One shared validator adopted by all four gate families
-- [ ] Every gate returns a value for malformed input
-- [ ] Conformance rejects event-unbound reducers and evidence-unbound certificates
-- [ ] Whole gate re-run and reported as a delta against the captured baseline
-- [ ] Independent adversarial verification pass complete
-- [ ] `validate.sh --strict` exits 0 for this child
+- [x] One shared validator adopted by all four gate families
+- [x] Every gate returns a value for malformed input
+- [x] Conformance rejects event-unbound reducers and evidence-unbound certificates
+- [x] Direct per-file gate run completed and reported as a delta against the captured baseline; the user-mandated whole-process runner was not invoked because it hangs on append-lock
+- [x] Independent adversarial verification pass complete
+- [x] `validate.sh --strict` exits 0 for this child
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -119,33 +119,33 @@ Required inventories (run before implementation, record the output):
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Confirm and diff
-- [ ] T001 classification of all 9 findings at HEAD
-- [ ] Diff the research and review gates against the model and skill reference implementation
-- [ ] Choose the reference implementation for version-binding comparison
-- [ ] Cite the `021` baseline; confirm `024` and `025` availability
+- [x] T001 classification of all 9 findings at HEAD
+- [x] Diff the research and review gates against the model and skill reference implementation
+- [x] Choose the reference implementation for version-binding comparison
+- [x] Cite the `021` baseline; confirm `024` and `025` availability
 
 ### Phase 2: Shared strict validator
-- [ ] Build one validator covering prepared-request comparison, artifact-claim binding and version-binding comparison
-- [ ] Define blocked-disposition reason codes
-- [ ] Decide the validator's home module
+- [x] Build one validator covering prepared-request comparison, artifact-claim binding and version-binding comparison
+- [x] Define blocked-disposition reason codes
+- [x] Decide the validator's home module
 
 ### Phase 3: Gate family adoption
-- [ ] Research gate and rollback switch
-- [ ] Review gate, including authenticated window counting
-- [ ] Common gate version-binding comparison
-- [ ] Agent gate version-binding comparison
-- [ ] Council and alignment rollback switches
+- [x] Research gate and rollback switch
+- [x] Review gate, including authenticated window counting
+- [x] Common gate version-binding comparison
+- [x] Agent gate version-binding comparison
+- [x] Council and alignment rollback switches
 
 ### Phase 4: Conformance and boundaries
-- [ ] Reject event-unbound reducers (`appliedEventId`)
-- [ ] Reject evidence-unbound certificates
-- [ ] Store closure-context identity inputs by value
-- [ ] Refuse ledger authority for caller-supplied resume objects
+- [x] Reject event-unbound reducers (`appliedEventId`)
+- [x] Reject evidence-unbound certificates
+- [x] Store closure-context identity inputs by value
+- [x] Refuse ledger authority for caller-supplied resume objects
 
 ### Phase 5: Delta and gate
-- [ ] Re-run typecheck and tests; report the delta against the `021` baseline
-- [ ] Independent adversarial verification pass
-- [ ] Hand the shared validator to `032` for its P2 riders
+- [x] Re-run typecheck and affected tests; report the delta against the `021` baseline
+- [x] Independent adversarial verification pass
+- [x] Hand the shared validator to `032` for its P2 riders
 <!-- /ANCHOR:phases -->
 
 ---
@@ -177,9 +177,9 @@ Required inventories (run before implementation, record the output):
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `024` fence and proof primitives | Internal | Red (not started) | REQ-002 cannot reject before fence acquisition |
-| `025` certificate binding | Internal | Red (not started) | REQ-001 has nothing comparable to compare |
-| `021` honest baselines | Internal | Red (not started) | Evidence issued against dishonest counts |
+| `024` fence and proof primitives | Internal | Green | Existing gateway and fence contracts consumed without modification |
+| `025` certificate binding | Internal | Green | Existing certificate claims and artifact-set digest are compared |
+| `021` honest baselines | Internal | Green | Pre-edit receipts and post-edit per-file deltas recorded |
 | model and skill gates as reference | Internal | Green | No convergence target for common and agent |
 <!-- /ANCHOR:dependencies -->
 
@@ -238,10 +238,10 @@ Phase 1 (Confirm + diff) ──► Phase 2 (Shared validator)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation Checklist
-- [ ] Baseline captured for every runner this child touches, at a named SHA
-- [ ] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
-- [ ] Gate clone drift diffed and recorded before the validator is designed
-- [ ] The version-binding reference implementation chosen and recorded
+- [x] Baseline captured for every runner this child touches, at a named SHA
+- [x] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
+- [x] Gate clone drift diffed and recorded before the validator is designed
+- [x] The version-binding reference implementation chosen and recorded
 
 ### Rollback Procedure
 1. Identify the gate family that blocked the legitimate flip.
@@ -323,8 +323,35 @@ Phase 1 (Confirm + diff) ──► Phase 2 (Shared validator)
 
 | ADR | Decision | Status |
 |-----|----------|--------|
-| ADR-001 | One shared strict gate validator replaces legacy clone drift | Proposed |
-| ADR-002 | Gate outcomes are values, never rejected promises | Proposed |
+| ADR-001 | One shared strict gate validator replaces legacy clone drift | Accepted |
+| ADR-002 | Gate outcomes are values, never rejected promises | Accepted |
 
 Full context, alternatives, and consequences: `decision-record.md`.
 <!-- /ANCHOR:l3-adr-summary -->
+
+---
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+
+- [x] Read the authored spec, plan, tasks, checklist, and decision record.
+- [x] Confirmed every cited finding at HEAD before editing.
+- [x] Captured red-before and green-after receipts for each confirmed finding.
+- [x] Preserved the scope lock and did not modify the authorization gateway.
+
+### Execution Rules
+
+| Rule | Application |
+|------|-------------|
+| TASK-SEQ | Confirm first, write focused negative tests, implement, then run direct suites and packet validation. |
+| TASK-SCOPE | Only the authored runtime surfaces and packet docs are in scope; unrelated worktree changes are preserved. |
+| TASK-VERIFY | No completion claim without typecheck, direct suites, checklist reconciliation, and strict validation. |
+
+### Status Reporting Format
+
+Report `DONE`, `BLOCKED`, or `IN PROGRESS` with the affected task, evidence command, exit code, and next safe action. Distinguish confirmed results from inference and record environmental limitations explicitly.
+
+### Blocked Task Protocol
+
+Mark a task `BLOCKED` when the required safe action cannot run, record the exact command and blocker, preserve the clean rollback anchor, and do not substitute an unapproved workflow. The database checkout lock and whole-process test hang were recorded under this protocol; per-file verification was the user-authorized path.

@@ -15,7 +15,10 @@
       "readiness gate sealed digest binding",
       "rollback switch certificate binding",
       "conformance event unbound reducer",
-      "deep loop 027 gates"
+      "deep loop 027 gates",
+      "027 implementation summary",
+      "mode gate contract binding evidence",
+      "strict gate validator handoff"
     ],
     "key_topics": [
       "mode",
@@ -32,7 +35,7 @@
       "event"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -50,7 +53,8 @@
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-rollback-gate.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-rollback-gate.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-rollback-gate.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-rollback-gate.vitest.ts"
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-rollback-gate.vitest.ts",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -138,6 +142,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -190,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Standalone readiness gates verify sealed bindings and certificates on two independent paths and never compare the sealed digest set with the certificate's `artifactClaims`/`artifactSetDigest` (`F-013-01`)",
     "created_at": "2026-07-31T01:25:20.717Z",
-    "last_save_at": "2026-07-31T01:25:20.717Z",
+    "last_save_at": "2026-08-07T23:02:02.328Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,15 +212,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fad7036e37308a58fb6a0b6e597211eb384248d4e0eb2f620d11bfc63aa5add",
+    "source_fingerprint": "sha256:d5ef6ff73c3a13dd245ddfa095a60874f785ba99b97aa6927c3424f0faf622e8",
     "source_doc_hashes": {
-      "spec.md": "8b15533f44bdd02ae8cbfad430367d87143f86abc0615d3557589b62930d4d32",
-      "plan.md": "572db92b3ed7c5f643828113547e65bd06f109e091ba0f1c03faa934d3627d83",
-      "tasks.md": "e7a647c2cacb273a31312264a88cf485eb849ad853bd8d1779d58be90ee8436d",
-      "checklist.md": "5338d9ed63bbab37447d14fd200d04254b921f6091d1a5e68735d577e5bfb74a",
-      "decision-record.md": "28b31afabfbc85e2658128d899fe0be61d21d7dbc8289789eeea9312050ac3cb"
+      "spec.md": "11cea261223145203200313f4230386a51951277355b771a9d9cbbfcfd65913c",
+      "plan.md": "548593f495fa005cc71a610ac3e53d45a7b17d8c6e57563ac7f2318089f8a046",
+      "tasks.md": "19cde1a3fcb87117aa0477b8ee67dca18dde306d26420ec3b7d338ec5214eadf",
+      "checklist.md": "09bba36ca37b25407b045c548fc090520ccb227e00702a7e21468a02295c1bf2",
+      "decision-record.md": "61f5634ef3a869acae8055e609f180c008e0bac71aaf2c719010fdbcc3e9416e",
+      "implementation-summary.md": "dc0cfc301c4397a4a3b6a7cee74c0ff592944e9eb8c10c4e75a4c37aa93ac983"
     },
     "last_active_child_id": null,
     "last_active_at": null

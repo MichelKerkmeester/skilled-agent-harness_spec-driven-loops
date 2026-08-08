@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/026-alignment-coverage-integrity",
   "description": "Three mechanisms invalidate alignment coverage",
   "keywords": [
@@ -8,15 +9,13 @@
     "alignment",
     "coverage"
   ],
-  "lastUpdated": "2026-08-07T03:30:27.857Z",
+  "lastUpdated": "2026-08-07T23:00:55.225Z",
   "specId": "026",
   "folderSlug": "alignment-coverage-integrity",
   "parentChain": [
     "system-deep-loop",
     "036-deep-loop-innovation"
   ],
-  "memorySequence": 1,
-  "memoryNameHistory": [
-    "07-08-26_04-30__conceding-the-stop-hook-point-and-continuing-you.md"
-  ]
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

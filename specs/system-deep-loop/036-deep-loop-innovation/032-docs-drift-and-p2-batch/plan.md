@@ -15,12 +15,12 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored the implementation plan from the WS1 phase-tree proposal"
-    next_safe_action: "Run T001 and collapse the four merge groups before any edit"
+    recent_action: "Implemented both lanes and recorded verification evidence"
+    next_safe_action: "Orchestrator reviews the uncommitted change set"
     blockers: []
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,18 +53,18 @@ Collapse the four merge groups first so the same fix is not made twice. Then Lan
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `021`'s hashed-child-manifest boundary has landed, so this child can be scaffolded without widening the parent recursive glob
-- [ ] `027` has landed and its shared validator is available
-- [ ] `021`, `024`, `026`, `028`, `031` have landed on the shared files
-- [ ] The four merge groups collapsed into single work units
+- [x] `021`'s hashed-child-manifest boundary has landed, so this child can be scaffolded without widening the parent recursive glob
+- [x] `027` has landed and its shared validator is available
+- [x] `021`, `024`, `026`, `028`, `031` have landed on the shared files
+- [x] The four merge groups collapsed into single work units
 
 ### Definition of Done
-- [ ] Every duplicated fact stated once and linked elsewhere
-- [ ] Drift check fails on a deliberately mismatched roster
-- [ ] Lane B adopts the shared validator; digests are locale-independent
-- [ ] Whole gate re-run and reported as a delta against the captured baseline
-- [ ] Independent adversarial verification pass complete
-- [ ] `validate.sh --strict` exits 0 for this child
+- [x] Every duplicated fact stated once and linked elsewhere
+- [x] Drift check fails on a deliberately mismatched roster
+- [x] Lane B adopts the shared validator; digests are locale-independent
+- [x] Whole gate re-run and reported as a delta against the captured baseline
+- [x] Independent adversarial verification pass complete
+- [x] `validate.sh --strict` exits 0 for this child
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -118,30 +118,30 @@ Required inventories (run before implementation, record the output):
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Confirm and collapse
-- [ ] T001 classification of all 29 findings at HEAD
-- [ ] Collapse the four merge groups into single work units
-- [ ] Name the authoritative source for each duplicated fact
+- [x] T001 classification of all 29 findings at HEAD
+- [x] Collapse the four merge groups into single work units
+- [x] Name the authoritative source for each duplicated fact
 
 ### Phase 2: Lane A, single-source the documentation
-- [ ] Replace duplicated roster facts with links to one source
-- [ ] Correct the claims that contradict implementation
-- [ ] Backfill the benchmark report index
-- [ ] Generate help text from the real tables
+- [x] Replace duplicated roster facts with links to one source
+- [x] Correct the claims that contradict implementation
+- [x] Backfill the benchmark report index
+- [x] Generate help text from the real tables
 
 ### Phase 3: Lane A, drift checks
-- [ ] Derive family, lane, adapter and scenario counts from the registry and playbook indices
-- [ ] Add the folder-versus-index check for the report index
-- [ ] Run a local-link scan to zero
+- [x] Derive family, lane, adapter and scenario counts from the registry and playbook indices
+- [x] Add the folder-versus-index check for the report index
+- [x] Run a local-link scan to zero
 
 ### Phase 4: Lane B, code hygiene
-- [ ] Locale-independent policy digest ordering
-- [ ] Readonly wave collections
-- [ ] Adopt `027`'s shared strict validator in the legacy gates
-- [ ] Persist convergence snapshots
+- [x] Locale-independent policy digest ordering
+- [x] Readonly wave collections
+- [x] Adopt `027`'s shared strict validator in the legacy gates
+- [x] Persist convergence snapshots
 
 ### Phase 5: Delta and gate
-- [ ] Re-run typecheck and tests; report the delta against the `021` baseline
-- [ ] Verification pass; close the remediation tree
+- [x] Re-run typecheck and tests; report the delta against the `021` baseline
+- [x] Verification pass; close the remediation tree
 <!-- /ANCHOR:phases -->
 
 ---
@@ -233,10 +233,10 @@ Phase 1 (Confirm + collapse)
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-implementation Checklist
-- [ ] Baseline captured for every runner this child touches, at a named SHA
-- [ ] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
-- [ ] Four merge groups collapsed into single work units
-- [ ] Authoritative source named for each duplicated fact
+- [x] Baseline captured for every runner this child touches, at a named SHA
+- [x] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
+- [x] Four merge groups collapsed into single work units
+- [x] Authoritative source named for each duplicated fact
 
 ### Rollback Procedure
 1. Revert the drift-check commit while keeping the single-sourcing edits.

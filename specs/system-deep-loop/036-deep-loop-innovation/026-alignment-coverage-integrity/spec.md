@@ -13,10 +13,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/026-alignment-coverage-integrity"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the remediation child package from the WS1 phase-tree proposal"
-    next_safe_action: "Run T001 against the 20 scoped findings before any edit"
+    last_updated_at: "2026-08-07T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Landed as ca64df3f55+ee8c4dd67a+c83c53d44c+1578d8533e on skilled/v4.0.0.0"
+    next_safe_action: "None — all findings landed"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,10 +24,10 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
-      - "For F-SOL-04, F-SOL-06 and F-SOL-07 the register supplies no recommended action; the derivation is design work needing a decision-record."
-      - "Does the evidence-binding design generalize beyond alignment, given the same fabrication mode was seen live in a fan-out lineage?"
+      - "For F-SOL-04, F-SOL-06 and F-SOL-07 the register supplies no recommended action; ADR-004 through ADR-006 derive and accept the actions."
+      - "The evidence-binding design generalizes at the leaf-writer boundary; alignment adopts it without restructuring durable publication."
     answered_questions:
       - "All six F-RES-* residuals are scoped here; none is deferred"
       - "The slice-binding layer sits on top of the closed record parser that `024` owns structurally"
@@ -52,7 +52,7 @@ _memory:
 
 The alignment half's own `STOPPED-AFTER-SAMPLE.md` says every coverage figure the mode produces is invalid. Three mechanisms explain it. Coverage fails open: an absent or malformed corpus yields an empty map, every lane is skipped, and the ratio returns 1.0, so missing evidence reads as full coverage. Identity is neither injective nor agreed: `laneKey()` omits the adapter, lane identity omits scope type and joins arrays with a comma-space, and the two readers normalize differently, so identical bytes are accepted by one and rejected as an orphan by the other. And credit is self-attested: neither reducer nor leaf writer proves the claimed artifacts were audited, which is the same fabrication mode observed live when a fan-out lineage emitted formally valid iteration artifacts it had not earned.
 
-**Key Decisions**: One shared normalizer and canonical lane identity used by both readers (ADR-001); coverage fails closed with four distinguishable states (ADR-002); coverage credit is bound to per-artifact evidence and restricted to the dispatched slice (ADR-003)
+**Key Decisions**: One shared normalizer and canonical lane identity used by both readers (ADR-001); coverage fails closed with four distinguishable states (ADR-002); coverage credit is bound to per-artifact evidence and restricted to the dispatched slice (ADR-003); the three derived actions are accepted in ADR-004 through ADR-006.
 
 **Critical Dependencies**: `024` hard, at file level: the closed record parser in `leaf-artifact-writer.ts`. `021` for the RED alignment baseline. Sequence before `031` for `reduce-alignment-state.cjs`.
 <!-- /ANCHOR:executive-summary -->
@@ -66,7 +66,7 @@ The alignment half's own `STOPPED-AFTER-SAMPLE.md` says every coverage figure th
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Completed |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

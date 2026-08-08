@@ -13,10 +13,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/027-mode-gate-and-contract-binding"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the remediation child package from the WS1 phase-tree proposal"
-    next_safe_action: "Run T001 against the 9 scoped findings before any edit"
+    last_updated_at: "2026-08-07T07:33:38Z"
+    last_updated_by: "codex"
+    recent_action: "Landed as c6957eac3c on skilled/v4.0.0.0 (9/9 findings)"
+    next_safe_action: "None — all findings landed"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Does the shared strict validator live in mode-contracts or in a new module the four gate families import?"
       - "Which of the model/skill gates is the reference implementation for version-binding comparison?"
@@ -65,7 +65,7 @@ These are the gates `014` reads to decide a flip, and they accept unbound eviden
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
@@ -315,9 +315,7 @@ Every ID above is assigned to this child and to no other. Locations are the anch
 <!-- ANCHOR:open-questions -->
 ## 12. OPEN QUESTIONS
 
-- Does the shared strict validator live inside `mode-contracts` or in a new module the four gate families import? `mode-contracts` already owns conformance, which argues for placing it there; a separate module keeps conformance from becoming a grab bag. Decide before Phase 2.
-- Which of the model and skill gates is the reference implementation for version-binding comparison? Both are described as the existing green reference; pick one and record why, so common and agent converge on a single behavior rather than two.
-- Should the blocked-disposition reason codes be shared across gate families, or per family? Shared codes make workflow branching uniform; per-family codes carry more context. Recommended: shared codes with a per-family detail field.
+Resolved during implementation. The validator lives in `mode-contracts/strict-gate-validator.ts`; version checks use each mode's installed constants; and the gate families share stable reason codes with family-specific detail at their boundaries. The authorization gateway remains unchanged.
 <!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
 

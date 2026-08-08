@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
 | **Deciders** | Packet owner, independent verifier |
 
@@ -141,7 +141,7 @@ Two readers process the same corpus bytes and disagree. `check-convergence.cjs` 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
 | **Deciders** | Packet owner |
 
@@ -241,7 +241,7 @@ Two readers process the same corpus bytes and disagree. `check-convergence.cjs` 
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
 | **Deciders** | Packet owner, independent verifier |
 
@@ -338,8 +338,132 @@ Two readers process the same corpus bytes and disagree. `check-convergence.cjs` 
 
 ---
 
-## RESERVED DECISIONS
+## ADR-004: Preserve valid scope bytes while sharing the lane normalizer
 
-**Derived actions for `F-SOL-04`, `F-SOL-06` and `F-SOL-07`.**
+### Metadata
 
-These three findings ship with "Recommended action: Not supplied by the reporting iteration — derive one when triaging". ADR-001 and ADR-002 above cover the mechanisms they belong to, but each finding still needs its own derived action recorded before code targets it: `F-SOL-04` (normalization divergence plus the over-tightening regression the in-run fix introduced), `F-SOL-06` (present-but-empty corpus with configured lanes), and `F-SOL-07` (repeated bare artifact counts re-crediting coverage). Record each as ADR-004, ADR-005 and ADR-006 during Phase 1, scaffolded from `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl`. Do not infer them from the ADRs above.
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-07 |
+| **Deciders** | Packet owner, independent verifier |
+
+### Context
+
+The earlier normalization fix rejected an honest lane by collapsing whitespace that was part of a valid scope value. The two readers needed one implementation without changing valid scope bytes.
+
+### Decision
+
+**We chose**: Normalize only the schema shape and empty-value rules; preserve valid outer and internal scope bytes, then hash the canonical object shared by both readers.
+
+**How it works**: `normalizeLaneId`, `normalizeScope`, and the canonical serializer live in one CommonJS module. Both the reducer and convergence checker import that module, so the regression case reaches the same identity and conclusion in both paths.
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Preserve valid bytes and share the normalizer** | Fixes divergence without rejecting honest scopes | Identities remain sensitive to intentional whitespace | 9/10 |
+| Collapse all whitespace | Shorter identities | Repeats the over-tightening regression | 2/10 |
+
+**Why this one**: The corpus owns scope values. The reader must not rewrite valid values merely to make identifiers look tidy.
+
+### Consequences
+
+**What improves**:
+- The honest corpus lane remains accepted.
+- Identical bytes reach identical identity and validation logic.
+
+**What it costs**:
+- Existing state keyed by a differently normalized identity needs a fresh run. The rollback is to restore the prior reader behavior and re-open the identity findings.
+
+### Implementation
+
+The shared normalizer and the honest-whitespace differential test implement this decision. Rollback restores the previous identity construction in both readers and records the reopened identity findings.
+
+---
+
+## ADR-005: Treat configured lanes in an empty corpus as an integrity mismatch
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-07 |
+| **Deciders** | Packet owner, independent verifier |
+
+### Context
+
+An empty corpus is valid only when it describes zero applicable configured lanes. If configuration names a lane but the corpus has no corresponding lane, reporting `NOTHING_TO_CONVERGE` would hide a discovery mismatch.
+
+### Decision
+
+**We chose**: Keep `present-valid-zero-artifacts` distinct from `configured-lane-missing`. A configured lane missing from the corpus is an integrity fault, even when the corpus artifact total is zero.
+
+**How it works**: Corpus readers compare the canonical configured lane set with the corpus lane set before calculating coverage. The empty-valid state remains a genuine no-work result only when no configured lane is missing.
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Distinguish empty-valid from configured-lane-missing** | Preserves a real no-work result and exposes discovery mismatch | Requires explicit state handling | 9/10 |
+| Treat every empty corpus as no work | Minimal consumer logic | Silently accepts missing discovery output | 2/10 |
+
+**Why this one**: The operator needs to distinguish “there was nothing to inspect” from “the configured inspection lane never appeared.”
+
+### Consequences
+
+**What improves**:
+- Empty-valid runs can converge without a false fault.
+- Missing configured lanes fail closed rather than disappearing from coverage.
+
+**What it costs**:
+- Producers must publish a lane entry for each configured lane, including an explicit empty artifact list when appropriate.
+
+### Implementation
+
+The four-state corpus fixtures and the convergence/reducer readers implement this decision. Rollback restores the old empty-map behavior and re-opens the absent-versus-empty findings.
+
+---
+
+## ADR-006: Bare counts are activity signals, never coverage credit
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-07 |
+| **Deciders** | Packet owner, independent verifier |
+
+### Context
+
+A repeated numeric artifact count can reach the corpus size without naming or evidencing any artifact. Using that count as a cursor or credit source makes an unmeasured run look complete.
+
+### Decision
+
+**We chose**: Count-only records remain visible as reported activity but cannot earn coverage or advance the partition cursor.
+
+**How it works**: The reducer credits only canonical artifact identities that intersect the corpus and carry per-artifact evidence inside the dispatched slice. The partitioner uses that credited identity set; a raw count is never a substitute.
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Keep counts observational and require identity evidence** | Preserves diagnostics while closing false credit | Producers must emit identities and evidence | 9/10 |
+| Advance from the reported count | Backward-compatible shape | Re-credits unmeasured work and can strand the loop | 2/10 |
+
+**Why this one**: A count answers how much a producer claimed, not which artifacts it actually checked.
+
+### Consequences
+
+**What improves**:
+- Repeated bare counts cannot satisfy complete coverage.
+- The cursor advances only when evidence earns a real artifact identity.
+
+**What it costs**:
+- Legacy count-only leaves need a producer update before they can earn alignment credit.
+
+### Implementation
+
+The count-only regression and the partition identity-progress test implement this decision. Rollback would restore count-based cursor advancement and explicitly re-open the coverage-credit finding.

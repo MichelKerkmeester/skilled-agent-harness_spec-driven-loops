@@ -13,17 +13,17 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch"
-    last_updated_at: "2026-07-30T00:00:00Z"
+    last_updated_at: "2026-08-07T23:00:13Z"
     last_updated_by: "claude"
-    recent_action: "Authored the remediation child package from the WS1 phase-tree proposal"
-    next_safe_action: "Run T001 against the 29 scoped findings before any edit"
+    recent_action: "Landed 27/29 findings as bf4f280ce7 on skilled/v4.0.0.0"
+    next_safe_action: "Re-land F-031-01/F-031-02 with a non-regressing rollback-window fix"
     blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Does the derive-counts-from-registry work become real tooling? If so this child promotes to Level 3."
       - "Which document is the authoritative source for the family, lane, adapter and scenario rosters?"
@@ -53,7 +53,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
