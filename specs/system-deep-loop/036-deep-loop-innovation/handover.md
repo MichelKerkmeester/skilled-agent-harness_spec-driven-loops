@@ -12,10 +12,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
-    last_updated_at: "2026-08-08T01:30:00Z"
+    last_updated_at: "2026-08-08T02:45:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "AUTONOMOUS RUNWAY COMPLETE — 016 pre-014 verdict landed 010d145b9a; 014 is operator-gated"
-    next_safe_action: "OPERATOR GO-AHEAD REQUIRED: 014 per-mode cutover (satisfy F001/F002/F005 preconditions first); then 015/017/merge"
+    recent_action: "Containment safety fix + REQ-010 uniform + F-016-03 rejection LANDED 568aa17a40 (fixes 020's 3372513722 data-loss regression). Earlier this session: 033 corrected (1876f27e97), 026/027/030/032 completed docs (085baf6d29, 030 fabrication corrected). 028 docs reconciling to landed."
+    next_safe_action: "Land reconciled 028 docs (uncommitted→568aa17a40). 028 has RESIDUAL P0 open (unrecoverable pre-edit baseline, rollback rehearsal, per-finding negative tests, per-mode artifact contract) — surfaced to operator. Then HOLD — 014 per-mode cutover is IRREVERSIBLE + operator-gated (F001/F002/F005 preconditions first); then 015/017/merge"
     blockers:
       - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
@@ -25,7 +25,8 @@ _memory:
       - "024-durable-write-boundaries/review/lineages/luna/review-report.md"
     completion_pct: 95
     open_questions:
-      - "033 impl-summary OVERCLAIMS F001/F002/F005 (opt-in/dormant, registry-unchanged, loop-lock wx-open — impl-summary claims a linkSync that doesn't exist; 22 vs actual 15 loop-lock tests). It is UNCOMMITTED (not on origin); correct it against the landed 010d145b9a verdict before landing the doc-batch."
+      - "RESOLVED 2026-08-08: 033 corrected + landed (1876f27e97). The docs described a hard-link/linkSync lock design that NEVER shipped; real code is rename+O_EXCL — atomic-state.ts F004 = rename-aside claim + existsSync-guarded renameSync CAS (no linkSync); loop-lock.ts F005 = openSync(lockPath,'wx') create-then-write, partial-record window still OPEN (a 014 precondition). F001/F002/F005 framed as per-mode 014 preconditions; F003/F004 cleared."
+      - "SYSTEMATIC LANDING-GAP — fixed for 026/027/030/032 (@085baf6d29); 028 finalization in progress: the leak-guard lander lands ONLY named paths, so per-child CODE landed but the completed DOCS stayed in the worktree — origin showed 026/027/028/030/032 as stale 'Planned' scaffolds despite landed code. Fix = per un-landed child: validate + ground the cited landed commits + code cross-check the impl-summary, then land. 030 had a real fabrication (reverted F-028-01 sandbox-derivation described as landed) corrected before land. WHEN LANDING A CHILD, name ALL its docs, not just the code."
       - "Worktree quirk: .opencode/specs is a REAL DIR here but a SYMLINK on origin → land docs at the canonical top-level specs/ path (copy from .opencode/specs/ first), never .opencode/specs/. A fresh clone matching origin's layout avoids this."
     answered_questions:
       - "Spine 001-013 is built and landed; graph-metadata status labels are stale for landed children."
@@ -45,6 +46,52 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
 > **Metadata warning:** many landed children show `planned`/`in_progress` in their
 > `graph-metadata.json` — the labels are **stale**, not the truth. The phase map in `spec.md`
 > §PHASE MAP and the ledger below are authoritative. Reconciling this staleness is step 2 below.
+
+## Session update — 2026-08-08 (supersedes the stale "DEFERRED" ledger lines below for 030 & 033)
+
+A systematic **landing-gap** was found and largely closed. The leak-guard lander lands only
+**named** paths, so each child's CODE landed while its completed DOCS stayed in the worktree —
+origin showed **026/027/028/030/032 as stale "Planned" scaffolds** despite landed code, and **033**
+was under-landed (3 of 9 files) carrying hard-link/`linkSync` mechanism claims that never shipped.
+
+Fixed + verified on `origin/skilled/v4.0.0.0` this session:
+- **033 (`1876f27e97`)** — corrected every doc to the real code: `atomic-state.ts` F004 = rename-aside
+  claim + `existsSync`-guarded `renameSync` CAS (NO `linkSync`); `loop-lock.ts` F005 = `openSync(...,'wx')`
+  create-then-write, partial-record window **still OPEN** (a 014 precondition). F001/F002/F005 = per-mode
+  014 preconditions; F003/F004 cleared. Landed the full honest 9-file set; post-land verified clean.
+- **026/027/030/032 (`085baf6d29`)** — landed their completed docs; each validates --strict Errors 0.
+  **030's** impl-summary had a real fabrication (the REVERTED F-028-01 sandbox-derivation described as
+  landed) — corrected (sync-agents keeps `HISTORICAL_SETTINGS`, ai-council stays `workspace-write`,
+  F-028-01 deferred). ⇒ the **"030 DEFERRED (minimax)"** and **"033 DEFERRED"** lines below are OBSOLETE.
+- **028** — code landed (`d0d8623ddf`, 10/12; F-016-01/F-016-06 deferred) but spec was still "Planned"
+  and checklist 0/51 template; finalization (status flip + honest checklist run) is in progress —
+  the ONLY remaining WS1 doc-land item.
+
+Lesson: a subagent "clean" is a hypothesis — the first correction agent's own grep missed 7 overclaims
+(caught on my re-read), and the verification agent's `030` fabrication finding was re-confirmed against
+code before acting. When landing a child, name ALL its docs, not just the code. 014 stays operator-gated.
+
+### 028 P0 completion + a VERIFIED data-loss regression fixed (operator-directed, `568aa17a40`)
+
+Finalizing 028 uncovered that it was NOT honestly Complete (its own P0 bar unmet) AND a real safety
+regression in landed code. Escalated; operator chose "restore preserve + guard tests" and "build real
+uniform containment", "complete the P0 work". Landed `568aa17a40`:
+- **Data-loss fix:** `write-containment.ts` no longer `rmSync`-deletes unattributable untracked
+  out-of-scope files (preserved as non-fatal advisories). This restores `6d762f4393` — made after a
+  fan-out irreversibly deleted 12 untracked files (8 from unrelated work) — which `3372513722` (packet
+  020, mislabeled "behavior-preserving") silently reverted and `d0d8623ddf` (028) cemented by INVERTING
+  the guard tests. Guard tests restored (red-before/green-after).
+- **REQ-010:** post-dispatch containment now runs for ALL dispatch kinds (was cli-codex-only), safe
+  because unattributable writes are advisories not deletions; per-kind legit-write dirs excluded.
+- **F-016-03:** explicit unenforceable cli-opencode sandbox now fails dispatch; unspecified → danger-full-access.
+- Verified: tsc rc0 (authoritative runtime/ invocation — NOT a wrong-cwd tsc which false-reports TS5107/rc2);
+  write-containment 18/18, fanout-run 102/102, combo-matrix 2/2, executor-audit 27/27, dispatch-receipts 26/26.
+
+**028 RESIDUAL P0 still open** (this build did not touch; surfaced to operator): no pre-edit baseline was
+ever captured (UNRECOVERABLE — cannot fabricate), rollback unrehearsed, several of the 10 landed findings
+lack dedicated negative tests (incl. `findMissingLineageStateLog` dead code), per-mode artifact contract
+(T005/T006) never built. So 028's spec Status is honestly "Complete (10/12 … residual QA items open)",
+NOT a clean Complete. `016` gate (PATH step 2) should account for these residuals.
 
 ## The ledger (confirmed)
 

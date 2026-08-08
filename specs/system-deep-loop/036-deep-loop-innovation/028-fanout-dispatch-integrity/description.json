@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/028-fanout-dispatch-integrity",
   "description": "Fulfillment accepts a lineage when one non-empty top-level report exists, with no validation of state JSONL, iteration records, deltas, findings",
   "keywords": [
@@ -18,7 +19,7 @@
     "deltas",
     "findings"
   ],
-  "lastUpdated": "2026-07-31T01:23:30.166Z",
+  "lastUpdated": "2026-08-08T05:46:47.263Z",
   "specId": "028",
   "folderSlug": "fanout-dispatch-integrity",
   "parentChain": [

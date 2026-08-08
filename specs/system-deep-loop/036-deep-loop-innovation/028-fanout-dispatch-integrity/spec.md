@@ -13,24 +13,24 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/028-fanout-dispatch-integrity"
-    last_updated_at: "2026-07-30T00:00:00Z"
+    last_updated_at: "2026-08-08T02:30:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored the remediation child package from the WS1 phase-tree proposal"
-    next_safe_action: "Run T001 against the 12 scoped findings before any edit"
+    recent_action: "Verified REQ-010, F-016-03, and write-containment data-loss fix via code and tests"
+    next_safe_action: "Landed as 568aa17a40; QA gaps: baseline, rollback, tests, contract; F-016-01/F-016-06 deferred"
     blockers: []
     key_files:
       - "spec.md"
-      - "plan.md"
-      - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 0
+    completion_pct: 86
     open_questions:
-      - "Does the per-mode artifact contract live in the mode registry or beside each mode asset?"
-      - "What is the containment policy for a dispatch kind that cannot enforce a computed sandbox mode?"
+      - "Per-mode artifact contract location still open; T005/T006 never executed"
+      - "No per-dispatch-kind containment test exists even though containment now runs for every kind (REQ-010 code delivered, REQ-010 test-per-kind bar still open)"
     answered_questions:
-      - "CALIBRATION: `F-016-01` shell interpolation is a robustness fix, not a security incident. Values are operator-supplied; the realistic failure is a broken dispatch from ordinary punctuation. The fix is `execFile`/argv."
-      - "BLAST-RADIUS RULE: every dispatch test in this child runs in an isolated worktree. `cli-codex` containment was confirmed live reverting 15 untracked files belonging to a concurrent session."
+      - "CALIBRATION: F-016-01 is a robustness fix, not a security incident; fix is execFile/argv"
+      - "BLAST-RADIUS RULE: dispatch tests run in an isolated worktree per the cli-codex incident"
+      - "REQ-003 RESOLVED: cli-opencode now rejects an explicit unenforceable sandbox mode (throw) instead of labeling it advisory and dispatching; default (unspecified) resolves to danger-full-access"
+      - "REQ-010 RESOLVED (code): containmentEnabled is now true for every dispatch kind, made safe by the preserve-as-advisory data-loss fix"
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -65,7 +65,7 @@ Fulfillment is the load-bearing half: a lineage is accepted when one non-empty t
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete (10/12 findings landed as d0d8623ddf; REQ-010 uniform containment + F-016-03 rejection + a write-containment data-loss safety fix delivered, code- and test-verified, landed as 568aa17a40 on skilled/v4.0.0.0; F-016-01/F-016-06 deferred; residual QA items open — see checklist) |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

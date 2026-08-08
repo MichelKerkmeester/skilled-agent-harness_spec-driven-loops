@@ -32,38 +32,32 @@
       "audit"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
       "checklist.md",
       "decision-record.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/observability-events.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
       ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts"
+      ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+      "tasks.md",
+      "plan.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -85,9 +79,9 @@
         "source": "derived"
       },
       {
-        "name": "codex-dispatch.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
         "source": "derived"
       },
       {
@@ -97,15 +91,45 @@
         "source": "derived"
       },
       {
-        "name": "executor-audit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
-        "source": "derived"
-      },
-      {
         "name": "observability-events.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "observability-events.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/observability-events.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "combo-matrix.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "codex-dispatch.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
         "source": "derived"
       },
       {
@@ -118,6 +142,24 @@
         "name": "executor-audit-cli-branch-receipts.test.ts",
         "kind": "test",
         "path": ".opencode/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -155,47 +197,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Define",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Milestone Reference",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Fulfillment accepts a lineage when one non-empty top-level report exists, with no validation of state JSONL, iteration records, deltas, findings registry or terminal synthesis (`F-010-01`), and under the max-iterations policy trusts a single synthesis record's self-reported `totalIterations` and `stopReason` over the actual iteration files (`F-010-02`)",
     "created_at": "2026-07-31T01:25:20.924Z",
-    "last_save_at": "2026-07-31T01:25:20.924Z",
+    "last_save_at": "2026-08-08T05:47:07.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +209,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d173f106e32750ee75fbec76100e4210ab24c61533d99ece7c60ebcdd31fbc4",
+    "source_fingerprint": "sha256:502bbcf317494138088e2191a5462cee6ab8fda470abaa6594416d20f2ab8957",
     "source_doc_hashes": {
-      "spec.md": "9fe5b0a0a17cc0c8a030b97574c2ee484659fc40e578045d0524831404bb9ed6",
+      "spec.md": "7ec6d743e53c51f9ee30de327882965626faa96c1d675d63594216dc2163b96e",
       "plan.md": "c3403f79b8d3b68a0da2deefb22c5ae70246f6ce7f09b0fa04b956478b8e70be",
-      "tasks.md": "e11c72b9d00c901bc001d87462d2b283fe6a10002bb8bd973831b42b95532a2e",
-      "checklist.md": "793f6ea259935bce053527ab320120d8cb81737219a4baca5b8465939730d05c",
-      "decision-record.md": "6a565d9394d2b93942b2034fcc20071498d3ee38439da9a21e09156b7e6d5ee7"
+      "tasks.md": "0212149c85641cb4e1c25b474afcff81bebcde29030d9833ccd4c008edc3b5aa",
+      "checklist.md": "147b34234b7a07bd8f6ee607ead149c59d08d987fa313f6f17ae3cb97f04e9aa",
+      "decision-record.md": "d142cce8cc2785aa20ea177755edf3b7c9a8554aa5548576fdaae547eea5937d",
+      "implementation-summary.md": "85abb54d7d15fb4d584d70546a2740c34419cd221bd1d4a731ea01eaadb13431"
     },
     "last_active_child_id": null,
     "last_active_at": null
