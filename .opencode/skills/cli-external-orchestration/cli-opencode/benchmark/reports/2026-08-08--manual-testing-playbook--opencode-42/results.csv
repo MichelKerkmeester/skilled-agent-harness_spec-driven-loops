@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-025,cli-opencode,,prompt-templates,manual,,opencode-go/deepseek-v4-flash,opencode,,PASS,"exit0, mtime unchanged, 0 edit/write, severity+line refs present"

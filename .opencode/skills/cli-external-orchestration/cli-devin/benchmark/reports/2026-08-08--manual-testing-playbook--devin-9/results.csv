@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-008,cli-devin,,hooks,manual,,SWE-1.7,devin,,FAIL,PermissionRequest absent in BOTH auto and bypass traces; auto only shows PreToolUse then silent rejection warning

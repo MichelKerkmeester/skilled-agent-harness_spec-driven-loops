@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-029,cli-codex,,git-preflight-advisory,manual,,gpt-5.6-luna,codex,,PASS,"advisory fired with rule id, no denial, SKGIT_ADVISORY=0 silenced it"

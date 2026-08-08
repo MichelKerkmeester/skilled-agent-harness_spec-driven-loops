@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "cli-pi",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-pi"
+  },
+  "executor": "pi",
+  "model": "opencode-go/deepseek-v4-flash",
+  "variant": "pi",
+  "verdict": "FAIL",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "PI-020",
+      "verdict": "FAIL",
+      "reason": "preflight guard blocks echo dispatch shape now; audit line missing though session_start/input/shutdown fired",
+      "stage": "hook-extension-layer",
+      "classKind": "manual",
+      "providerModel": "opencode-go/deepseek-v4-flash",
+      "variant": "pi",
+      "evidence": []
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "PI-020",
+    "stage": "hook-extension-layer",
+    "dispatch": "manual",
+    "executor": "pi",
+    "model": "opencode-go/deepseek-v4-flash",
+    "variant": "pi"
+  }
+}

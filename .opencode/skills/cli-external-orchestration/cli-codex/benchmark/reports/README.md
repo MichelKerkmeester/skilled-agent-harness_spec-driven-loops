@@ -22,6 +22,34 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-29/`](./2026-08-08--manual-testing-playbook--codex-29/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-28/`](./2026-08-08--manual-testing-playbook--codex-28/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-27/`](./2026-08-08--manual-testing-playbook--codex-27/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-26/`](./2026-08-08--manual-testing-playbook--codex-26/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-25/`](./2026-08-08--manual-testing-playbook--codex-25/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-24/`](./2026-08-08--manual-testing-playbook--codex-24/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-23/`](./2026-08-08--manual-testing-playbook--codex-23/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-22/`](./2026-08-08--manual-testing-playbook--codex-22/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-21/`](./2026-08-08--manual-testing-playbook--codex-21/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-20/`](./2026-08-08--manual-testing-playbook--codex-20/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-19/`](./2026-08-08--manual-testing-playbook--codex-19/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-18/`](./2026-08-08--manual-testing-playbook--codex-18/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-17/`](./2026-08-08--manual-testing-playbook--codex-17/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-16/`](./2026-08-08--manual-testing-playbook--codex-16/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-15/`](./2026-08-08--manual-testing-playbook--codex-15/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-14/`](./2026-08-08--manual-testing-playbook--codex-14/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-13/`](./2026-08-08--manual-testing-playbook--codex-13/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-12/`](./2026-08-08--manual-testing-playbook--codex-12/) | codex gpt-5.6-luna codex | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-11/`](./2026-08-08--manual-testing-playbook--codex-11/) | codex gpt-5.6-luna codex | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-10/`](./2026-08-08--manual-testing-playbook--codex-10/) | codex gpt-5.6-luna codex | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-9/`](./2026-08-08--manual-testing-playbook--codex-9/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-8/`](./2026-08-08--manual-testing-playbook--codex-8/) | codex gpt-5.6-luna codex | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-7/`](./2026-08-08--manual-testing-playbook--codex-7/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-6/`](./2026-08-08--manual-testing-playbook--codex-6/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-5/`](./2026-08-08--manual-testing-playbook--codex-5/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-4/`](./2026-08-08--manual-testing-playbook--codex-4/) | codex gpt-5.6-luna codex | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-3/`](./2026-08-08--manual-testing-playbook--codex-3/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-2/`](./2026-08-08--manual-testing-playbook--codex-2/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex/`](./2026-08-08--manual-testing-playbook--codex/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
 
 ## 3. STORAGE RULE

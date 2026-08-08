@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-022,cli-cursor,,agents-skills-rules,manual,,composer-2.5,cursor,,PASS,"filesystem and live dispatch agree on all 13 agent names, no duplicates"

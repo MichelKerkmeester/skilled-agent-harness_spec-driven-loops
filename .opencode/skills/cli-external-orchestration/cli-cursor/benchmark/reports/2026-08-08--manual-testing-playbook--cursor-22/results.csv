@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-021,cli-cursor,,hooks,manual,,composer-2.5,cursor,,PASS,"both unmatched and matcher:Task preToolUse entries fired for the Task delegation call, repo hooks.json untouched"

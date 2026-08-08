@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-005,cli-devin,,permission-modes,manual,,SWE-1.7,devin,,PASS,"normal=BLOCKED(rejected confirm-required tool call), accept-edits=WROTE, bypass=WROTE; repo clean"

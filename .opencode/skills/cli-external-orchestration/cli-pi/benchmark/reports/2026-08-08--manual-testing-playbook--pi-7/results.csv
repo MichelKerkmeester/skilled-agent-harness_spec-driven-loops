@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-006,cli-pi,,skill-discovery,manual,,opencode-go/deepseek-v4-flash,pi,,SKIP,isolated PI_CODING_AGENT_DIR lacks opencode-go auth (tied to real home); No API key found for opencode-go

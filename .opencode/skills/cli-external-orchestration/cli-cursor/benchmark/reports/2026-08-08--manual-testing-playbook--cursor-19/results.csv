@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-018,cli-cursor,,prompt-templates,manual,,composer-2.5,cursor,,PASS,"RCAF-improved prompt dispatched exit0, auth.ts now has AuthError throw on null/empty"

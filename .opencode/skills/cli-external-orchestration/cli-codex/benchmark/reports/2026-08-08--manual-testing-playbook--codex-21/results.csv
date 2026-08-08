@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-020,cli-codex,,integration-patterns,manual,,gpt-5.6-luna,codex,,PASS,"exit 0, correctly named red and 200x200 dimensions"

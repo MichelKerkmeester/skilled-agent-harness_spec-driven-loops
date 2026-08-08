@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-004,cli-opencode,,cli-invocation,manual,,opencode-go/deepseek-v4-flash,opencode,,FAIL,"documented '-f <path> <prompt>' order: -f array flag swallows prompt, exit1 File not found"

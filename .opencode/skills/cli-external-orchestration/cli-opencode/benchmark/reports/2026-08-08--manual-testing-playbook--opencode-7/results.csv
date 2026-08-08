@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-034,cli-opencode,,agent-routing,manual,,opencode-go/deepseek-v4-flash,opencode,,PASS,"exit0, agent slugs+handoffs present, 0 nested runs, tree clean"

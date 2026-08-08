@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-017,cli-codex,,session-continuity,manual,,gpt-5.6-luna,codex,,FAIL,resume kept session id but hit Gate-3 again; exec resume --fork flag invalid

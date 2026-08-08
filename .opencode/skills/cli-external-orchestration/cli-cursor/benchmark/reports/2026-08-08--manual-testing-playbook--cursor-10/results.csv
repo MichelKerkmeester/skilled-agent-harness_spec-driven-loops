@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-009,cli-cursor,,worktree-isolation,manual,,composer-2.5,cursor,,PASS,"all 3 worktree flags in --help, worktrees.json absent (honest), no dir change"

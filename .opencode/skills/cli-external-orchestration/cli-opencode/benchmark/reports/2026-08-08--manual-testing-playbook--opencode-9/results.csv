@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-001,cli-opencode,,cli-invocation,manual,,opencode-go/deepseek-v4-flash,opencode,,PASS,"exit0, parseable JSON stream, coherent 2-sentence response"

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-015,cli-pi,,hook-extension-layer,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,"19 handlers/7 events registered (drift from 11/6 baseline via 2 new extensions); live startup exit 0 after transient provider 'Model unavailable' retry, no registration error"

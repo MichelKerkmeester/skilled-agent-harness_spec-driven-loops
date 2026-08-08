@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-012,cli-cursor,,mcp-integration,manual,,composer-2.5,cursor,,PASS,"both mcp.json scopes reported honestly (both present), --approve-mcps accepted exit0"

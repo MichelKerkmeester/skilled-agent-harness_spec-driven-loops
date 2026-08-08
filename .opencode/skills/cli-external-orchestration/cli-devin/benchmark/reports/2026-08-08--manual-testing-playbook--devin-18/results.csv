@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-017,cli-devin,,rules,manual,,SWE-1.7,devin,,PASS,"paths show .windsurf+.cursor; list+prompt show skill-routing[Cursor],CLAUDE[Claude],AGENTS[Standard],global_rules[Windsurf]"

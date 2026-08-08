@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-012,cli-opencode,,multi-provider,manual,,opencode-go/deepseek-v4-flash,opencode,,SKIP,"provider/model-under-test, preserved (multi-provider/)"

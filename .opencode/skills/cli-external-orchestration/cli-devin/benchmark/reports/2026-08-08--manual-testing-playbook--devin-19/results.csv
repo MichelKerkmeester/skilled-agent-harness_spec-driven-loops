@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-018,cli-devin,,mcp-integration,manual,,SWE-1.7,devin,,PASS,help lists all 8 verbs; mcp list returns 4 configured servers; no config mutation

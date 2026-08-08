@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "cli-devin",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0131-sk-code-injection-bloat-impl/.opencode/skills/cli-external-orchestration/cli-devin"
+  },
+  "executor": "devin",
+  "model": "SWE-1.7",
+  "variant": "devin",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "DV-021",
+      "verdict": "PASS",
+      "reason": "git-preflight-advisory probe: swe dispatch returned expected token",
+      "stage": "git-preflight-advisory",
+      "classKind": "manual",
+      "providerModel": "SWE-1.7",
+      "variant": "devin",
+      "evidence": []
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "DV-021",
+    "stage": "git-preflight-advisory",
+    "dispatch": "manual",
+    "executor": "devin",
+    "model": "SWE-1.7",
+    "variant": "devin"
+  }
+}

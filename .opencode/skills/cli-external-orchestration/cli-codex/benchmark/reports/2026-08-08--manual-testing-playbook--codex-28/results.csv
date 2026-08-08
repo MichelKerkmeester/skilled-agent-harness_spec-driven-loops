@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-028,cli-codex,,codex-cloud,manual,,gpt-5.6-luna,codex,,FAIL,cloud subcommand+dispatch flags present but no auth-flag mention in help

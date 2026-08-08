@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-018,cli-codex,,integration-patterns,manual,,gpt-5.6-luna,codex,,FAIL,step 1 blocked by Gate-3 doc-scope question; middleware.ts never created

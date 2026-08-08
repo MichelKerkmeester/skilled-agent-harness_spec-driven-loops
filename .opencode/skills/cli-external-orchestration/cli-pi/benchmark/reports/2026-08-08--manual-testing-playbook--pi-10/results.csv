@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-009,cli-pi,,agent-bridge,manual,,opencode-go/deepseek-v4-flash,pi,,FAIL,"sync-agents-pi.cjs reports drift on 9/13 agent mirrors (STALE), not the expected in-sync state; live tool listing itself is clean"

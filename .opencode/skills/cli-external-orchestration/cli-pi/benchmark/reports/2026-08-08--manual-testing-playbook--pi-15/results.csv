@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-014,cli-pi,,hook-extension-layer,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,"13 top-level extension symlinks now present (drift from 11, 2 new: git-preflight-advisory, goal-context); live startup exit 0, no factory error"

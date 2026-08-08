@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-006,cli-cursor,,execution-modes,manual,,composer-2.5,cursor,,PASS,"exit0, hello.ts written with working function, repo clean"

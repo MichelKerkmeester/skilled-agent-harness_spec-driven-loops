@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-027,cli-cursor,,goal-hook,manual,,composer-2.5,cursor,,PASS,"hook fired, turns_used 0->1, agent_message forwarded; live transcript grep 0 hits for canary+marker (documented recorded-evidence tier)"

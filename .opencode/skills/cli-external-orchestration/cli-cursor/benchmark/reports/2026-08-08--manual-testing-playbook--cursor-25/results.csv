@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-024,cli-cursor,,agents-skills-rules,manual,,composer-2.5,cursor,,FAIL,"roster count is 35, doc expects 36 (drift); /speckit-plan invocation itself worked, no mutation"

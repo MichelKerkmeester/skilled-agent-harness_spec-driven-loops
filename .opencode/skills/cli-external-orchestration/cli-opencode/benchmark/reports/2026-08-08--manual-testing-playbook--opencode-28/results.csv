@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-R07,cli-opencode,,intra-routing-recall,manual,,opencode-go/deepseek-v4-flash,opencode,,PASS,"exit0, intent=PATTERNS exact match, expected docs cited"

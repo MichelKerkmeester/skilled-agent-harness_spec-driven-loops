@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-015,cli-devin,,commands-and-skills,manual,,SWE-1.7,devin,,FAIL,".devin/skills/speckit-plan does not exist; devin -p /speckit-plan rejected tool call, no plan output"

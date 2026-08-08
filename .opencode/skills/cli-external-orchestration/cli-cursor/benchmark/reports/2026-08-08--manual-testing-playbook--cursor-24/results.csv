@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-023,cli-cursor,,agents-skills-rules,manual,,composer-2.5,cursor,,PASS,"prompt-improver delegation confirmed: CLEAR score, RCAF framework, constraints table; no file edits"

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-019,cli-cursor,,prompt-templates,manual,,composer-2.5,cursor,,PASS,"exit0, titleCase exported, matches Format contract and handles both input cases"

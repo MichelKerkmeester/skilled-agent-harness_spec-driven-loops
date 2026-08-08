@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-013,cli-pi,,mcp-host-integration,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,reference states project settings can override global settings; no global mutation attempted; note: pi-mcp-extension currently absent from settings.json

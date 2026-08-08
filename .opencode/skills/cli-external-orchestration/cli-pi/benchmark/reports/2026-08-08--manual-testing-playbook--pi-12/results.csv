@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-011,cli-pi,,mcp-host-integration,manual,,opencode-go/deepseek-v4-flash,pi,,FAIL,"npm:pi-mcp-extension absent from settings.json; live session has no MCP tools registered, mcp_sequential_thinking_sequentialthinking absent"

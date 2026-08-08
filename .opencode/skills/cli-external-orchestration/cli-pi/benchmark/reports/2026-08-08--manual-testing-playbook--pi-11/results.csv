@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-010,cli-pi,,agent-bridge,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,reference confirms 'Project files win when names collide'; 13 project agent files present; no global write attempted

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-021,cli-codex,,prompt-templates,manual,,gpt-5.6-luna,codex,,FAIL,Gate-3 doc-scope question blocked write; server.ts never created; no ANCHOR markers in asset

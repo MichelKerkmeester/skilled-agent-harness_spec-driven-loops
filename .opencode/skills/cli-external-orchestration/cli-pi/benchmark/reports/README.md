@@ -22,6 +22,28 @@ Each row below is one run folder. This run family validates the cross-runtime go
 
 | Executed | Folder | Trace mode | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-23/`](./2026-08-08--manual-testing-playbook--pi-23/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-22/`](./2026-08-08--manual-testing-playbook--pi-22/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-21/`](./2026-08-08--manual-testing-playbook--pi-21/) | pi opencode-go/deepseek-v4-flash pi | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-20/`](./2026-08-08--manual-testing-playbook--pi-20/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-19/`](./2026-08-08--manual-testing-playbook--pi-19/) | pi opencode-go/deepseek-v4-flash pi | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-18/`](./2026-08-08--manual-testing-playbook--pi-18/) | pi opencode-go/deepseek-v4-flash pi | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-17/`](./2026-08-08--manual-testing-playbook--pi-17/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-16/`](./2026-08-08--manual-testing-playbook--pi-16/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-15/`](./2026-08-08--manual-testing-playbook--pi-15/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-14/`](./2026-08-08--manual-testing-playbook--pi-14/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-13/`](./2026-08-08--manual-testing-playbook--pi-13/) | pi opencode-go/deepseek-v4-flash pi | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-12/`](./2026-08-08--manual-testing-playbook--pi-12/) | pi opencode-go/deepseek-v4-flash pi | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-11/`](./2026-08-08--manual-testing-playbook--pi-11/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-10/`](./2026-08-08--manual-testing-playbook--pi-10/) | pi opencode-go/deepseek-v4-flash pi | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-9/`](./2026-08-08--manual-testing-playbook--pi-9/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-8/`](./2026-08-08--manual-testing-playbook--pi-8/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-7/`](./2026-08-08--manual-testing-playbook--pi-7/) | pi opencode-go/deepseek-v4-flash pi | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-6/`](./2026-08-08--manual-testing-playbook--pi-6/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-5/`](./2026-08-08--manual-testing-playbook--pi-5/) | pi opencode-go/deepseek-v4-flash pi | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-4/`](./2026-08-08--manual-testing-playbook--pi-4/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-3/`](./2026-08-08--manual-testing-playbook--pi-3/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi-2/`](./2026-08-08--manual-testing-playbook--pi-2/) | pi opencode-go/deepseek-v4-flash pi | 1 FAIL | **FAIL** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--pi/`](./2026-08-08--manual-testing-playbook--pi/) | pi opencode-go/deepseek-v4-flash pi | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-07-29 | [`2026-07-29--manual-testing-playbook--goal-hook/`](./2026-07-29--manual-testing-playbook--goal-hook/) | live | 3 PASS, 1 SKIP | **PASS** | `034-goal-hook-playbooks-and-validation` |
 

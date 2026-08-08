@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-008,cli-pi,,command-dispatch,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,generated deep-research.md contains $ARGUMENTS token at lines 10 and 12 exactly as expected

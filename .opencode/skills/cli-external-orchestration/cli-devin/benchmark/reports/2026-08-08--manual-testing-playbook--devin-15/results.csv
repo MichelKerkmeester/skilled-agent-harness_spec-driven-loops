@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-014,cli-devin,,commands-and-skills,manual,,SWE-1.7,devin,,FAIL,.devin/skills/ dir does not exist (0 mirrored commands); devin skills list shows 10 native .opencode/skills hubs instead of 36 commands

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-016,cli-cursor,,session-continuity,manual,,composer-2.5,cursor,,PASS,"session_id captured from json, --resume correctly referenced turn1 items/total shape"

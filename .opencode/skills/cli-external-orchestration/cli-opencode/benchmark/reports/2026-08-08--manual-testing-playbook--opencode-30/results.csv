@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-H02,cli-opencode,,intra-routing-recall,manual,,opencode-go/deepseek-v4-flash,opencode,,PASS,"blind holdout: intent=PARALLEL_DETACHED correctly inferred, docs cited"

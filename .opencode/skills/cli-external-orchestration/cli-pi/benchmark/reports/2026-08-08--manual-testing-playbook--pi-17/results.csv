@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-016,cli-pi,,hook-extension-layer,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,all 13 extensions (incl 2 new) use fail-open catch comments; intentional block:true only in spec-gate-enforce.ts and dispatch-preflight-lint.ts

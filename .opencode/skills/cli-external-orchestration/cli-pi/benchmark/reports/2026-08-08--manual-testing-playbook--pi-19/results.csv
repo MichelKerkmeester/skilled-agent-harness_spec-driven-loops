@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-018,cli-pi,,model-dispatch,manual,,opencode-go/deepseek-v4-flash,pi,,SKIP,"model-under-test, preserved"

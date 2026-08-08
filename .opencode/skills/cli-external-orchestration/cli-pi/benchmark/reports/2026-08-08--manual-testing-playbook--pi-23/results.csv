@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-021,cli-pi,,goal-hook,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,injection+turn_end nudge+CLI errors+hardening all confirmed live; real state file untouched

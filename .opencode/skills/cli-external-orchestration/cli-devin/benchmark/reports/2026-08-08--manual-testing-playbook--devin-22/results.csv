@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-021,cli-devin,,git-preflight-advisory,manual,,SWE-1.7,devin,,PASS,git-preflight-advisory probe: swe dispatch returned expected token

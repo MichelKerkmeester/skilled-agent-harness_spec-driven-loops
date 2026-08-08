@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-021,cli-pi,,manual-testing-playbook,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,gateway dispatch returned expected token (session-lifecycle bridge probe)

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-015,cli-cursor,,session-continuity,manual,,composer-2.5,cursor,,PASS,turn2 --continue correctly referenced id/name/email from turn1 without restatement

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CU-020,cli-cursor,,hooks,manual,,composer-2.5,cursor,,PASS,"16/16 process tests pass, sessionStart wiring confirmed, symlink resolves"

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-012,cli-devin,,subagents,manual,,SWE-1.7,devin,,FAIL,"filesystem confirms 13/13 mirrored agents but devin -p roster prompt rejected tool call, no enumeration returned"

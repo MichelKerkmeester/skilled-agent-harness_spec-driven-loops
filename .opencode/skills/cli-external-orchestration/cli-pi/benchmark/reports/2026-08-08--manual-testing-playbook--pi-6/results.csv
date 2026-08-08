@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-005,cli-pi,,skill-discovery,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,live dispatch enumerated 11 hubs/standalone + 39 nested modes distinctly; no flattening observed

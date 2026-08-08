@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-032,cli-opencode,,agent-routing,manual,,opencode-go/deepseek-v4-flash,opencode,,SKIP,300s dispatch budget exceeded before iteration 1 completed (env constraint)

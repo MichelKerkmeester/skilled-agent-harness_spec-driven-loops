@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-019,cli-devin,,session-continuity,manual,,SWE-1.7,devin,,PASS,list returned session id; both -c and -r <id> retrieved ALPHA-TEST token correctly

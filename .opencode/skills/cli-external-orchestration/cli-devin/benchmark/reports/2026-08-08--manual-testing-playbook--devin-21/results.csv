@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-020,cli-devin,,cloud-handoff,manual,,SWE-1.7,devin,,PASS,"local doc inspection: /handoff explained (repo+conversation+diff transfer); no live cloud handoff invoked, no file mutation"

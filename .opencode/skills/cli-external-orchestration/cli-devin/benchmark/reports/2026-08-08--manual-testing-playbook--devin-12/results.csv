@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-011,cli-devin,,subagents,manual,,SWE-1.7,devin,,PASS,symlink resolves to .claude/agents/prompt-improver.md; output reflects agent's constraint-adding framework

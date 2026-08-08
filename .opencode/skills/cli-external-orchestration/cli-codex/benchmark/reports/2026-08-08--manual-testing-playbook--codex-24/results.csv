@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CX-023,cli-codex,,built-in-tools,manual,,gpt-5.6-luna,codex,,FAIL,TUI unavailable (stdin not a terminal); exec review fallback lacks category headings

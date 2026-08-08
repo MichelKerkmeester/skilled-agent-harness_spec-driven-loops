@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-020,cli-pi,,hook-extension-layer,manual,,opencode-go/deepseek-v4-flash,pi,,FAIL,preflight guard blocks echo dispatch shape now; audit line missing though session_start/input/shutdown fired

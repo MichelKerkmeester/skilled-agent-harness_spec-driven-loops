@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-N01,cli-opencode,,intra-routing-recall,manual,,opencode-go/deepseek-v4-flash,opencode,,PASS,"correctly classified NONE, no false-positive routing on out-of-domain prompt"

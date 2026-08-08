@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-004,cli-pi,,skill-discovery,manual,,opencode-go/deepseek-v4-flash,pi,,SKIP,skills pointer not configured (skills=null); live hub enumeration prerequisite unmet; hub count drifted 12->11

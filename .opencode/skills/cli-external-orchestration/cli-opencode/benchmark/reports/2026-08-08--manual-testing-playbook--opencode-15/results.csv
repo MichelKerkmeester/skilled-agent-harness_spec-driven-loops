@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-029,cli-opencode,,cross-repo-cross-server,manual,,opencode-go/deepseek-v4-flash,opencode,,PASS,"exit0, session reports cross-repo --dir path, no operator-repo leak"

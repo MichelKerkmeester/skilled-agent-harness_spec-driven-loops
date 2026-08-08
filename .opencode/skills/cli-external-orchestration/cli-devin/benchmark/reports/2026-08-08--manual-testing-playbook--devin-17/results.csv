@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-016,cli-devin,,commands-and-skills,manual,,SWE-1.7,devin,,PASS,bad-fixture (unquoted colon) excluded from devin skills list; good-fixture (quoted) visible

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-001,cli-pi,,cli-invocation,manual,,opencode-go/deepseek-v4-flash,pi,,FAIL,version drift 0.84.1 vs 0.82.1 baseline; required npm:pi-mcp-extension package absent from settings.json

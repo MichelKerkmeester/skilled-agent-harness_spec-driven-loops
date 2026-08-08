@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+PI-002,cli-pi,,cli-invocation,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,"live opencode-go dispatch returned real tool-list content at exit 0, content-verified not exit-code-only"

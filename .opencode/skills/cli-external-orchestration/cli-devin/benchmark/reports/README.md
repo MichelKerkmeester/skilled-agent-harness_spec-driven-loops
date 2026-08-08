@@ -22,6 +22,27 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-22/`](./2026-08-08--manual-testing-playbook--devin-22/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-21/`](./2026-08-08--manual-testing-playbook--devin-21/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-20/`](./2026-08-08--manual-testing-playbook--devin-20/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-19/`](./2026-08-08--manual-testing-playbook--devin-19/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-18/`](./2026-08-08--manual-testing-playbook--devin-18/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-17/`](./2026-08-08--manual-testing-playbook--devin-17/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-16/`](./2026-08-08--manual-testing-playbook--devin-16/) | devin SWE-1.7 devin | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-15/`](./2026-08-08--manual-testing-playbook--devin-15/) | devin SWE-1.7 devin | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-14/`](./2026-08-08--manual-testing-playbook--devin-14/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-13/`](./2026-08-08--manual-testing-playbook--devin-13/) | devin SWE-1.7 devin | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-12/`](./2026-08-08--manual-testing-playbook--devin-12/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-11/`](./2026-08-08--manual-testing-playbook--devin-11/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-10/`](./2026-08-08--manual-testing-playbook--devin-10/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-9/`](./2026-08-08--manual-testing-playbook--devin-9/) | devin SWE-1.7 devin | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-8/`](./2026-08-08--manual-testing-playbook--devin-8/) | devin SWE-1.7 devin | 1 FAIL | **FAIL** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-7/`](./2026-08-08--manual-testing-playbook--devin-7/) | devin SWE-1.7 devin | 1 SKIP | **SKIP** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-6/`](./2026-08-08--manual-testing-playbook--devin-6/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-5/`](./2026-08-08--manual-testing-playbook--devin-5/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-4/`](./2026-08-08--manual-testing-playbook--devin-4/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-3/`](./2026-08-08--manual-testing-playbook--devin-3/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
+| 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin-2/`](./2026-08-08--manual-testing-playbook--devin-2/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--devin/`](./2026-08-08--manual-testing-playbook--devin/) | devin SWE-1.7 devin | 1 PASS | **PASS** | `manual-testing-playbook` |
 
 ## 3. STORAGE RULE

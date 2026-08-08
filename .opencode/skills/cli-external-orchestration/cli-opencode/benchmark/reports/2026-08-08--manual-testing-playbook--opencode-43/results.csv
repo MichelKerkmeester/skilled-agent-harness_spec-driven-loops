@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+CO-018,cli-opencode,,session-continuity,manual,,opencode-go/deepseek-v4-flash,opencode,,PASS,"both turns exit0, -c resumed context, correct invariant recalled"
