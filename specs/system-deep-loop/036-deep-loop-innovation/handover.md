@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
     last_updated_at: "2026-08-08T02:45:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Containment safety fix + REQ-010 uniform + F-016-03 rejection LANDED 568aa17a40 (fixes 020's 3372513722 data-loss regression). Earlier this session: 033 corrected (1876f27e97), 026/027/030/032 completed docs (085baf6d29, 030 fabrication corrected). 028 docs reconciling to landed."
-    next_safe_action: "Land reconciled 028 docs (uncommitted→568aa17a40). 028 has RESIDUAL P0 open (unrecoverable pre-edit baseline, rollback rehearsal, per-finding negative tests, per-mode artifact contract) — surfaced to operator. Then HOLD — 014 per-mode cutover is IRREVERSIBLE + operator-gated (F001/F002/F005 preconditions first); then 015/017/merge"
+    recent_action: "022 Blocker 1 fully DISCHARGED — all 6 shadow-parity modes built+verified+landed (deep-review e168c1a1f4, deep-alignment 11f3535212). Docs reconciled to 6/6; validate Errors:0."
+    next_safe_action: "STOPPED per operator after deep-review. Next hard blocker = 024 (Blocker 3, genuinely unbuilt, ~109-file atomic gateway-fencing migration, flagged for a FRESH session — was fabricated when rushed). Then 016 code-verify, then 014/015 (IRREVERSIBLE, operator-gated), then 017/merge."
     blockers:
       - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
@@ -130,12 +130,13 @@ Reconciled honest this session: 029 (In Progress 10/13), 031 (Complete 22/23); 0
 The four named 014-cutover blockers are 021/022/023/024. Code-verified this session:
 - **021 (Blocker 4, evidence-reconcile): DISCHARGED** — suite sha256 digests recomputed, all match.
 - **023 (live-vocab): Complete** per ledger (not re-audited this pass).
-- **022 (Blocker 1, shadow-parity independent derivation): 5/6 modes BUILT + verified + landed; deep-review remains.**
+- **022 (Blocker 1, shadow-parity independent derivation): DISCHARGED — 6/6 modes built + verified + landed.**
   Originally zero-built (harness adapters diff-identical to HEAD; both projections shared one derivation, so the
-  harness could not fail). Now council, agent-improvement, model-benchmark, skill-benchmark, and deep-alignment
-  each derive their ledger and legacy sides by genuinely different code paths, each with a red-before/green-after
-  divergence-injection test. deep-review (the last, worst-shaped mode) is in flight. Blocker 1 is NOT fully
-  discharged until deep-review lands.
+  harness could not fail). Now all six modes (council, agent-improvement, model-benchmark, skill-benchmark,
+  deep-alignment, deep-review) derive their ledger and legacy sides by genuinely different code paths, each with a
+  red-before/green-after divergence-injection test. deep-review landed `e168c1a1f4` (removed exception-laundering,
+  built `deepReviewProjectionFromReducerState`, deleted ~230 lines wrong-schema dead code; 10/10). Residual:
+  REQ-005 full-surface fixture coverage across all modes (thoroughness, not divergence-detectability).
 - **024 (Blocker 3, append-boundary fencing): NOT DISCHARGED + FABRICATED evidence.** The core fencing
   is ABSENT (`FenceCapability`=0, `#appendAuthorized`=0 matches in runtime/lib; `appendAuthorized` is
   still `public` and unfenced at `append-only-ledger.ts:349` — the F-002-01 defect). The docs cite SHA
@@ -144,9 +145,10 @@ The four named 014-cutover blockers are 021/022/023/024. Code-verified this sess
   fence-token test FAILS live. 024's OWN LUNA review already reached FAIL (P0=3). Corrected 024 →
   "In Progress — Blocker 3 NOT discharged"; 022/025 given honest Planned impl-summaries.
 
-**CONCLUSION: 014 authority cutover CANNOT proceed.** Blockers 1 (022) and 3 (024) must be genuinely
-BUILT + code-verified first — 022 from scratch, 024's real gateway-only fencing (private appendAuthorized
-+ fence capability + superseded-writer rejection). This is fresh BUILD work, not doc reconciliation.
+**CONCLUSION: 014 authority cutover CANNOT proceed — now blocked on 024 only.** Blocker 1 (022) is
+DISCHARGED (6/6 modes, verified + landed `e168c1a1f4`). Blocker 3 (024) remains genuinely UNBUILT — real
+gateway-only fencing (private appendAuthorized + fence capability + superseded-writer rejection). This is fresh
+BUILD work, not doc reconciliation.
 The pre-014 verdict `010d145b9a` (and any "WS1 cleared the blockers" claim) is REFUTED by code.
 
 **Concrete remaining PATH-1 build scope (grounded 2026-08-08):**
@@ -161,7 +163,7 @@ The pre-014 verdict `010d145b9a` (and any "WS1 cleared the blockers" claim) is R
   red-before (superseded writer CAN append today) → green-after (it CANNOT); prove no cast-reachable
   `appendAuthorized`. NOTE 024's own LUNA review lists a DIFFERENT P0 triple (F001 gateway identity /
   F002 policy-closure-state / F005 loop-lock) — reconcile which finding set is authoritative before building.
-- **022 — 5/6 modes built + verified + LANDED; deep-review remains (in flight).** council (`8b6b7b1f7e`), agent-improvement
+- **022 — DISCHARGED: 6/6 modes built + verified + LANDED.** council (`8b6b7b1f7e`), agent-improvement
   (`16b13faecf`), model-benchmark + skill-benchmark (`f4a4cbe335`) all derive the ledger side independently
   with red-before/green-after divergence tests (39/39, 19/19 etc.). The model-benchmark/skill-benchmark
   reducer-lossiness design decision was RESOLVED by GPT-5.6-SOL: 4 model-benchmark service fields are
@@ -170,10 +172,12 @@ The pre-014 verdict `010d145b9a` (and any "WS1 cleared the blockers" claim) is R
   digests). Honest residual: skill-benchmark `certificateEvidenceDigests` still unrecoverable (reducer never
   persists it; out of scope; not fixture-exercised). **deep-alignment — DONE + landed (`11f3535212`):** built the
   from-scratch legacy oracle `deepAlignmentLegacyOracleProjection` (switch-fold over all 40 event stems, never
-  imports the reducer fold); tsc rc0, 10/10; also fixed a real replay-fingerprint key-ordering bug. Honest limit:
-  only the 9 fixture-emitted stems are empirically diffed (REQ-005 surface-coverage gap, shared across all modes).
-  **REMAINING 1 mode (deep-review, IN FLIGHT via Sonnet build agent):** needs its reducer-exception-laundering
-  removed AND a converter (~150 lines of dead code use the wrong deep-research schema).
+  imports the reducer fold); tsc rc0, 10/10; also fixed a real replay-fingerprint key-ordering bug. **deep-review —
+  DONE + landed (`e168c1a1f4`):** removed reducer-exception-laundering + success-path laundering; built
+  `deepReviewProjectionFromReducerState`; strengthened the legacy oracle to a complete independent impl; deleted
+  ~230 lines of wrong-schema dead code; red-before blind → green-after ok:false/projection-semantic/refused; 10/10.
+  Design fork resolved scope-out (receiptRefs/reportOrder incidental, normalized to [] on both paths). **All 6
+  modes done — Blocker 1 DISCHARGED.** Residual across all modes: REQ-005 full-surface fixture coverage.
 RECOMMENDATION (honest): do NOT rush 024 at extreme session depth — it is the epic's biggest security-
 critical migration and was FABRICATED the last time it was rushed. Build it fresh, staged, with the
 verify-against-code discipline that caught all 5 fabrications this session. 022 can go first (bounded).
