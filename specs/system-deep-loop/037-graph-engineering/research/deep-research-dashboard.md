@@ -18,7 +18,7 @@ Reducer-generated observability surface for the active research packet.
 - Topic: Current status of the system-deep-loop system and what the 036-deep-loop-innovation changes introduce; how to evolve deep-loop workflows into graph-engineering-based loops aligned with the GraphARC and graph-engineering-master repositories and the LangChain graph concepts
 - Started: 2026-08-08T12:02:10.087Z
 - Status: INITIALIZED
-- Iteration: 19 of 20
+- Iteration: 20 of 20
 - Session ID: 27ce8e25-71b5-4732-bbf1-f6acf6bbebb4
 - Parent Session: none
 - Lifecycle Mode: new
@@ -50,9 +50,10 @@ Reducer-generated observability surface for the active research packet.
 | 17 | When-not-to-use validation + direct residual verification (identityResolver, F005 loop-lock window, graph-engineering-master inventory) | when-not-to-use-and-residual-verification | 0.90 | 6 | complete |
 | 18 | Migration path and sequencing: staged research-mode graph adapter, shadow parity, per-mode cutover, rollback gates, and later convergence-graph enrichment | migration-sequencing | 0.90 | 5 | complete |
 | 19 | Gap analysis and recommendations: consolidate graph-loop blockers, rank blast radius and dependency order, define module-level closure evidence, and split 036-epic work from follow-up implementation work | gap-analysis-and-recommendations | 0.72 | 8 | complete |
+| 20 | Final verification sweep and answer consolidation | final-verification-and-consolidation | 0.77 | 6 | insight |
 
-- iterationsCompleted: 19
-- keyFindings: 119
+- iterationsCompleted: 20
+- keyFindings: 125
 - openQuestions: 5
 - resolvedQuestions: 0
 
@@ -79,13 +80,13 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:uncovered-questions -->
 <!-- ANCHOR:trend -->
 ## 5. TREND
-- newInfoRatio sparkline: █▇▇██▇▇▇▇▆▅▆▆▆▆▆▂▇▇▅
-- score sparkline: █▇▇██▇▇▇▇▆▅▆▆▆▆▆▂▇▇▅
-- Last 3 ratios: 0.90 -> 0.90 -> 0.72
+- newInfoRatio sparkline: █▇▇██▇▇▇▆▅▅▆▆▆▇▁▇▇▅▆
+- score sparkline: █▇▇██▇▇▇▆▅▅▆▆▆▇▁▇▇▅▆
+- Last 3 ratios: 0.90 -> 0.72 -> 0.77
 - Stuck count: 0
 - Guard violations: none recorded by the reducer pass
-- convergenceScore: 0.72
-- coverageBySources: {"code":165,"docs.langchain.com":4,"langchain-ai.github.io":1,"other":64,"raw.githubusercontent.com":1}
+- convergenceScore: 0.77
+- coverageBySources: {"code":165,"docs.langchain.com":4,"langchain-ai.github.io":1,"other":69,"raw.githubusercontent.com":1}
 - Advisory events: none
 
 <!-- /ANCHOR:trend -->
@@ -132,6 +133,10 @@ Reducer-generated observability surface for the active research packet.
 - Any graph adapter write or early stop that bypasses the gateway, legacy convergence, or the 014 cutover certificate. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-88,153-158] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 3,6] (iteration 18)
 - Big-bang graph replacement before additive-dark and rollback-window evidence. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] (iteration 18)
 - Database-first adapter or graph-database-gated parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] (iteration 18)
+- Big-bang graph replacement, database-first migration, graph-database-gated parity, graph authority before gateway/legacy convergence/cutover gates, and graphing every low-branching leaf operation remain ruled out. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md:EXHAUSTED APPROACHES] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] (iteration 20)
+- The local graph-engineering source inventory and packet-local LangChain article cannot support stronger implementation claims without new source material. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1] (iteration 20)
+- The native coverage-graph database path remains an optional projection path: prior state records repeatedly report `better-sqlite3` ABI failure and skipped graph upsert/convergence, so it was not retried. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] (iteration 20)
+- Treating a checkpointer, coverage graph, OTel trace, or GraphARC state object as the append-only authority ledger is ruled out. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] [SOURCE: https://docs.langchain.com/oss/python/langgraph/persistence] (iteration 20)
 
 <!-- /ANCHOR:dead-ends -->
 <!-- ANCHOR:divergent-pivots -->
@@ -146,7 +151,7 @@ Reducer-generated observability surface for the active research packet.
 <!-- /ANCHOR:divergent-pivots -->
 <!-- ANCHOR:next-focus -->
 ## 7. NEXT FOCUS
-Build and independently verify 024 fencing, production F001 resolver construction, and F005 fresh-lock publication.
+Supply or explicitly approve a reference-only graph-engineering dependency and capture a vetted LangGraph source snapshot; restore the graph database only for optional enrichment validation. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/findings-registry.json] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl]
 
 <!-- /ANCHOR:next-focus -->
 <!-- ANCHOR:active-risks -->

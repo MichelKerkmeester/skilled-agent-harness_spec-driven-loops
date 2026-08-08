@@ -81,6 +81,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - reading the merge implementation's pure helpers and main output path together with the synthesis YAML made the ordering, provenance, and non-rewrite guarantees directly verifiable instead of inferred from the fan-out runner. (iteration 15)
 - narrow corpus search exposed the exact F001/F002/F005 wording and the conflict between child landing labels and residual cutover gates. (iteration 16)
 - narrow file-scoped reads exposed the exact optional gateway branch, the unsafe fresh-lock write sequence, and the distinction between packaged and executable graph-engineering artifacts. (iteration 17)
+- a bounded filesystem/state inventory provided objective counts without reopening saturated implementation paths, while the accumulated source-backed findings supplied the Q1–Q5 consolidation. [INFERENCE: based on the inventory results and prior iteration records in specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl] (iteration 20)
 
 <!-- /ANCHOR:what-worked -->
 
@@ -101,6 +102,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - no executable multi-lineage fixture was run in this bounded research iteration; source evidence established the contract but not runtime parity under shuffled or damaged inputs. (iteration 15)
 - broad runtime search consumed the bounded tool budget; direct implementation and `dist/` verification therefore did not run. (iteration 16)
 - the final combined grep exited 141 because `head` closed the pipe; it did not erase the required matches, but it prevents treating the command as a clean validation run. (iteration 17)
+- the final pass could not establish production parity or cutover readiness because those require implementation-owned fixtures, fresh fencing tests, and operator evidence outside this research-only write scope. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83,116-160] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/findings-registry.json] (iteration 20)
 
 <!-- /ANCHOR:what-failed -->
 
@@ -137,6 +139,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - What was tried: Big-bang graph replacement before additive-dark and rollback-window evidence. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26]
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Big-bang graph replacement before additive-dark and rollback-window evidence. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26]
+
+### Big-bang graph replacement, database-first migration, graph-database-gated parity, graph authority before gateway/legacy convergence/cutover gates, and graphing every low-branching leaf operation remain ruled out. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md:EXHAUSTED APPROACHES] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] -- BLOCKED (iteration 20, 1 attempts)
+- What was tried: Big-bang graph replacement, database-first migration, graph-database-gated parity, graph authority before gateway/legacy convergence/cutover gates, and graphing every low-branching leaf operation remain ruled out. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md:EXHAUSTED APPROACHES] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Big-bang graph replacement, database-first migration, graph-database-gated parity, graph authority before gateway/legacy convergence/cutover gates, and graphing every low-branching leaf operation remain ruled out. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md:EXHAUSTED APPROACHES] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173]
 
 ### Database-first adapter or graph-database-gated parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] -- BLOCKED (iteration 18, 1 attempts)
 - What was tried: Database-first adapter or graph-database-gated parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
@@ -218,6 +225,16 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: The legacy LangGraph documentation URL (`https://langchain-ai.github.io/langgraph/concepts/low_level/`) returned no usable body in this run. Current official docs and the official raw source provided a successful fallback, so the iteration remains complete.
 
+### The local graph-engineering source inventory and packet-local LangChain article cannot support stronger implementation claims without new source material. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1] -- BLOCKED (iteration 20, 1 attempts)
+- What was tried: The local graph-engineering source inventory and packet-local LangChain article cannot support stronger implementation claims without new source material. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: The local graph-engineering source inventory and packet-local LangChain article cannot support stronger implementation claims without new source material. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1]
+
+### The native coverage-graph database path remains an optional projection path: prior state records repeatedly report `better-sqlite3` ABI failure and skipped graph upsert/convergence, so it was not retried. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] -- BLOCKED (iteration 20, 1 attempts)
+- What was tried: The native coverage-graph database path remains an optional projection path: prior state records repeatedly report `better-sqlite3` ABI failure and skipped graph upsert/convergence, so it was not retried. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: The native coverage-graph database path remains an optional projection path: prior state records repeatedly report `better-sqlite3` ABI failure and skipped graph upsert/convergence, so it was not retried. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events]
+
 ### Treating `dist/graph-engineering.skill` as proof that `graph-engineering/` contains runnable implementation modules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [INFERENCE: based on the empty source-tree inventory] -- BLOCKED (iteration 17, 1 attempts)
 - What was tried: Treating `dist/graph-engineering.skill` as proof that `graph-engineering/` contains runnable implementation modules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill (direct inventory)] [INFERENCE: based on the empty source-tree inventory]
 - Why blocked: Repeated iteration evidence ruled this direction out.
@@ -232,6 +249,11 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - What was tried: Treating `workflowMode` as the runtime convergence key was ruled out: the hub and registry require explicit `runtimeLoopType`, including load-bearing nulls for custom backends. [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:70-81; .opencode/skills/system-deep-loop/mode-registry.json:44-64]
 - Why blocked: Repeated iteration evidence ruled this direction out.
 - Do NOT retry: Treating `workflowMode` as the runtime convergence key was ruled out: the hub and registry require explicit `runtimeLoopType`, including load-bearing nulls for custom backends. [SOURCE: .opencode/skills/system-deep-loop/SKILL.md:70-81; .opencode/skills/system-deep-loop/mode-registry.json:44-64]
+
+### Treating a checkpointer, coverage graph, OTel trace, or GraphARC state object as the append-only authority ledger is ruled out. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] [SOURCE: https://docs.langchain.com/oss/python/langgraph/persistence] -- BLOCKED (iteration 20, 1 attempts)
+- What was tried: Treating a checkpointer, coverage graph, OTel trace, or GraphARC state object as the append-only authority ledger is ruled out. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] [SOURCE: https://docs.langchain.com/oss/python/langgraph/persistence]
+- Why blocked: Repeated iteration evidence ruled this direction out.
+- Do NOT retry: Treating a checkpointer, coverage graph, OTel trace, or GraphARC state object as the append-only authority ledger is ruled out. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] [SOURCE: https://docs.langchain.com/oss/python/langgraph/persistence]
 
 ### Treating a LangGraph checkpointer as the append-only evidence ledger or complete why-audit. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md] -- BLOCKED (iteration 13, 1 attempts)
 - What was tried: Treating a LangGraph checkpointer as the append-only evidence ledger or complete why-audit. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-004.md]
@@ -360,6 +382,10 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Any graph adapter write or early stop that bypasses the gateway, legacy convergence, or the 014 cutover certificate. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:77-88,153-158] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/iterations/iteration-006.md:Findings 3,6] (iteration 18)
 - Big-bang graph replacement before additive-dark and rollback-window evidence. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] (iteration 18)
 - Database-first adapter or graph-database-gated parity. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] (iteration 18)
+- Big-bang graph replacement, database-first migration, graph-database-gated parity, graph authority before gateway/legacy convergence/cutover gates, and graphing every low-branching leaf operation remain ruled out. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/execution-sequencing-strategy.md:1-26] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md:EXHAUSTED APPROACHES] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:160-173] (iteration 20)
+- The local graph-engineering source inventory and packet-local LangChain article cannot support stronger implementation claims without new source material. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/dist/graph-engineering.skill] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/LangChain.md:1] (iteration 20)
+- The native coverage-graph database path remains an optional projection path: prior state records repeatedly report `better-sqlite3` ABI failure and skipped graph upsert/convergence, so it was not retried. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl:graph_convergence and graph_upsert_skipped events] (iteration 20)
+- Treating a checkpointer, coverage graph, OTel trace, or GraphARC state object as the append-only authority ledger is ruled out. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/spec.md:60-67,94-103] [SOURCE: https://docs.langchain.com/oss/python/langgraph/persistence] (iteration 20)
 
 <!-- /ANCHOR:ruled-out-directions -->
 
@@ -437,6 +463,10 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 - Obtain the owner-approved manifest, merge, or deprecation record for 034 and 036-046. (iteration 19)
 - Restore a compatible coverage-graph database only for optional projection/enrichment validation. (iteration 19)
 - Build and independently verify 024 fencing, production F001 resolver construction, and F005 fresh-lock publication. (iteration 19)
+- The reducer still exposes five open key questions despite the prompt summary; formal question closure should be reconciled during synthesis. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/findings-registry.json] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-strategy.md] (iteration 20)
+- Build and execute the deterministic research-mode adapter/replay fixture, including graph-off, malformed-event, partial-success, contradiction, and shuffled-lineage cases; compare independent reducer and convergence oracles. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/findings-registry.json] (iteration 20)
+- Obtain owner-approved accounting for 034 and 036–046, and fresh evidence for 024 fencing plus production F001/F002/F005 closure. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/handover.md:59-83,116-160] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/findings-registry.json] (iteration 20)
+- Supply or explicitly approve a reference-only graph-engineering dependency and capture a vetted LangGraph source snapshot; restore the graph database only for optional enrichment validation. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/findings-registry.json] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl] (iteration 20)
 
 <!-- /ANCHOR:carried-forward-open-questions -->
 
@@ -444,7 +474,7 @@ Current status of the system-deep-loop system and what the 036-deep-loop-innovat
 
 <!-- ANCHOR:next-focus -->
 ## 11. NEXT FOCUS
-Build and independently verify 024 fencing, production F001 resolver construction, and F005 fresh-lock publication.
+Supply or explicitly approve a reference-only graph-engineering dependency and capture a vetted LangGraph source snapshot; restore the graph database only for optional enrichment validation. [SOURCE: specs/system-deep-loop/037-graph-engineering/research/findings-registry.json] [SOURCE: specs/system-deep-loop/037-graph-engineering/research/deep-research-state.jsonl]
 
 <!-- /ANCHOR:next-focus -->
 
