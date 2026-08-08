@@ -41,7 +41,7 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 Pi is a multi-provider passthrough with **no enforced allowlist** at this layer. Select a model with `--provider <name>` plus `--model <pattern>`, or a single `--model provider/id` form; `--model` also accepts an inline thinking suffix (`--model sonnet:high`). Reasoning effort stays independent of the model id (see §4).
 
-The table below is the machine-local authenticated roster confirmed on 2026-07-28 from `~/.pi/agent/auth.json` and `models-store.json` (four authenticated providers). The roster is machine state, not a contract — re-read `models-store.json` before relying on a specific id.
+The table below is the machine-local authenticated roster confirmed on 2026-07-28 from `~/.pi/agent/auth.json` and `models-store.json` (five authenticated providers; opencode-go added 2026-08-07). The roster is machine state, not a contract — re-read `models-store.json` before relying on a specific id.
 
 ### openai-codex
 
@@ -77,7 +77,16 @@ MiMo passthrough; `-ultraspeed` is the low-latency tier.
 | `mimo-v2.5-pro`            | —                |
 | `mimo-v2.5-pro-ultraspeed` | Low-latency tier |
 
-Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the four authenticated providers above have a confirmed installed catalog.
+### opencode-go
+
+OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--provider opencode-go --model <id>` — the enforced deep-loop fan-out route for both models below.
+
+| Model id | Notes |
+|----------|-------|
+| `deepseek-v4-flash` | Latency-optimized (2x usage); opencode-go is the fan-out provider for this model. A live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07. Also reachable directly via `--provider deepseek` (see above) |
+| `qwen3.8-max` | Qwen 3.8 Max; a live `pi --provider opencode-go --model qwen3.8-max -p` dispatch completed a real turn 2026-08-07 |
+
+Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the five authenticated providers above have a confirmed installed catalog.
 
 ---
 

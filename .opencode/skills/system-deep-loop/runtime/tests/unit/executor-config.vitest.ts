@@ -759,7 +759,7 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
 });
 
 describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
-  it('contains exactly the eight operator-confirmed picker ids', () => {
+  it('contains exactly the nine operator-confirmed picker ids', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
       'deepseek-v4-flash',
       'deepseek-v4-pro',
@@ -769,6 +769,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'mimo-v2.5-pro',
       'mimo-v2.5-pro-ultraspeed',
       'minimax-m3',
+      'qwen3.8-max',
     ]);
   });
 

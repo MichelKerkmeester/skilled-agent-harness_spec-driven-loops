@@ -1734,6 +1734,7 @@ const PI_ALLOWED_MODELS = new Set([
   'gpt-5.6-terra',
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
+  'qwen3.8-max',
 ]);
 const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
 
@@ -1910,13 +1911,14 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 // synchronous and unit-testable, matching this file's per-kind convention.
 const PI_MODEL_PROVIDERS = new Map([
   ['deepseek-v4-pro', 'deepseek'],
-  ['deepseek-v4-flash', 'deepseek'],
+  ['deepseek-v4-flash', 'opencode-go'],
   ['minimax-m3', 'minimax'],
   ['gpt-5.6-luna', 'openai-codex'],
   ['gpt-5.6-sol', 'openai-codex'],
   ['gpt-5.6-terra', 'openai-codex'],
   ['mimo-v2.5-pro', 'xiaomi'],
   ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
+  ['qwen3.8-max', 'opencode-go'],
 ]);
 // Map each shared reasoningEffort level to the name Pi's `--thinking` uses (from the
 // installed `pi --help`): the config's 'none' is Pi's 'off', and the config's 'ultra'

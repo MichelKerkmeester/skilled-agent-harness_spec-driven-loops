@@ -72,6 +72,15 @@ GPT-5.6 via the `openai` provider — three personas (sol/terra/luna) × three s
 | terra | `openai/gpt-5.6-terra` | `openai/gpt-5.6-terra-fast` | `openai/gpt-5.6-terra-pro` |
 | luna | `openai/gpt-5.6-luna` | `openai/gpt-5.6-luna-fast` | `openai/gpt-5.6-luna-pro` |
 
+### opencode-go
+
+OpenCode Go gateway (subsidized "2x usage" rate); fronts the DeepSeek and Qwen families. Confirm live slugs via `opencode models opencode-go`.
+
+| Model id | Default? | Notes |
+|----------|----------|-------|
+| `opencode-go/deepseek-v4-flash` | — | Latency-optimized DeepSeek V4 Flash via the Go gateway (2x usage); a live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07 |
+| `opencode-go/qwen3.8-max` | — | Qwen 3.8 Max via the Go gateway; a live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
+
 ---
 
 ## 3. DEFAULTS & QUICK INVOCATION

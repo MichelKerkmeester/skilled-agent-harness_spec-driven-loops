@@ -163,6 +163,7 @@ export const PI_SUPPORTED_MODELS = [
   'gpt-5.6-terra',
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
+  'qwen3.8-max',
 ] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 

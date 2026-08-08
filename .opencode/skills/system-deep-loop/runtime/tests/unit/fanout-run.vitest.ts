@@ -1333,13 +1333,14 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const providerByModel: Record<string, string> = {
       'deepseek-v4-pro': 'deepseek',
-      'deepseek-v4-flash': 'deepseek',
+      'deepseek-v4-flash': 'opencode-go',
       'minimax-m3': 'minimax',
       'gpt-5.6-luna': 'openai-codex',
       'gpt-5.6-sol': 'openai-codex',
       'gpt-5.6-terra': 'openai-codex',
       'mimo-v2.5-pro': 'xiaomi',
       'mimo-v2.5-pro-ultraspeed': 'xiaomi',
+      'qwen3.8-max': 'opencode-go',
     };
     for (const [model, provider] of Object.entries(providerByModel)) {
       const command = buildLineageCommand(
