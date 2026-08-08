@@ -94,6 +94,7 @@ Produce a ranked findings report of concrete removable/reducible candidates in `
 |----|-------------|---------------------|
 | REQ-001 | Research loop completes all iterations (maxIterations=5) and synthesizes `research/research.md` | `research/research.md` exists with ranked findings, baseline map, eliminated alternatives, preserve set, and convergence report |
 | REQ-002 | Findings are evidence-backed | Each candidate cites file:line spans and rough line-savings; arithmetic recounted via `nl -ba` |
+| REQ-003 | Preserve set protects every unique normative constraint | `research/research.md` lists a Preserve Set (Four Laws, gates, verification standards) that no candidate removes |
 
 <!-- DR-SEED:REQUIREMENTS -->
 <!-- /ANCHOR:requirements -->

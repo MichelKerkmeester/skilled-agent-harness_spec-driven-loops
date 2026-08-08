@@ -17,7 +17,12 @@
       "authoritative",
       "line savings",
       "boilerplate",
-      "audit"
+      "audit",
+      "agents.md bloat audit plan",
+      "deep research bloat",
+      "implementation",
+      "plan",
+      "tasks"
     ],
     "key_topics": [
       "agents",
@@ -29,15 +34,19 @@
       "savings",
       "boilerplate",
       "audit",
-      "root",
-      "lines",
-      "bytes"
+      "plan",
+      "deep",
+      "research"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "research/research.md",
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/deep-research-config.json"
     ],
     "entities": [
       {
@@ -50,6 +59,30 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
         "source": "derived"
       },
       {
@@ -89,48 +122,96 @@
         "source": "derived"
       },
       {
-        "name": "Deep Research",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Ranked Findings Report Lineage",
+        "name": "Technical Context",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Executive Summary Root",
+        "name": "Overview Run",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Four Laws",
+        "name": "Pattern Externalized",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Methodology Read",
+        "name": "Test Type",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tier",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The root `AGENTS.md` (555 lines, 47,110 bytes) carries internal redundancy (the same rule stated in 2–3 places), distilled duplication of authoritative files whose pointers are broken or verbose, over-long prose blocks, and low-value boilerplate (emoji decoration, inline mechanics)",
     "created_at": "2026-08-07T14:53:51.256Z",
-    "last_save_at": "2026-08-07T15:01:48.737Z",
+    "last_save_at": "2026-08-08T09:00:45.826Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8fd23778eb855ae26210c7c17d9b3914164a18db17619c3ef30951cba4c8a557",
+    "source_fingerprint": "sha256:92a35ff0bc3e63851fe79ef36c20b628e8413aa2bb34a1eddb62927f7cb4fc7b",
     "source_doc_hashes": {
-      "spec.md": "b74a23a6766daf5e9423056bc8d0206335929cd59a675611cef3292b65dd353c",
+      "spec.md": "b28857a85f16d435ba61efd2c592493a1d1724d5c04e3e320a8735164992ed94",
+      "plan.md": "12793e976465a04cb4e3b148e6ba68cc5a6560a55c390fbb5abec1c76d107320",
+      "tasks.md": "546bd17df724dd2daeff4bfdedfde7b207d3834fbdf19b74e66ff189b20175b3",
+      "implementation-summary.md": "9d056e3eb67b1f7786f9fc48258f28142e865ec71d91530f67c3220e32a14e0d",
       "research/research.md": "549d2767028d8a151cb29ec64c30c26d9fb26c09f5c4feac44665e640052c0bb"
     },
     "last_active_child_id": null,

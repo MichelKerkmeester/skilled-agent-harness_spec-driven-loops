@@ -1,5 +1,5 @@
 {
-  "level": 1,
+  "level": "1",
   "specFolder": "agents/004-agents-md-bloat-audit",
   "description": "The root `AGENTS.md` (555 lines, 47,110 bytes) carries internal redundancy (the same rule stated in 2–3 places), distilled duplication of",
   "keywords": [
@@ -17,7 +17,7 @@
     "distilled",
     "duplication"
   ],
-  "lastUpdated": "2026-08-07T19:42:22.803Z",
+  "lastUpdated": "2026-08-08T09:00:31.744Z",
   "specId": "004",
   "folderSlug": "agents-md-bloat-audit",
   "parentChain": [
