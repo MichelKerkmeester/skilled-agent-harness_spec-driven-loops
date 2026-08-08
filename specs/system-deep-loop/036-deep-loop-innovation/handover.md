@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
     last_updated_at: "2026-08-08T15:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "024 B1-B4 ALL LANDED (ff3a574014) + final adversarial pass CLEAN; B7 metadata reconciling"
-    next_safe_action: "Land 024 B7 metadata; then 025 (needs 024 primitives) -> 016 gate -> 014/015 (gated)"
+    recent_action: "024 fully DISCHARGED+closed; 025 T001 done (12/12 GO, disposition landed a5f89f1587)"
+    next_safe_action: "025 12-finding build (make 3 design decisions first) in worktree 0134 - fresh session"
     blockers:
       - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
@@ -108,6 +108,18 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   primitives) → **016** whole-system gate (independently code-verify the ~166-finding register on a frozen
   SHA) → **014/015** staged cutover + legacy retirement (IRREVERSIBLE, operator-gated) → **017** integrate +
   parent rollup → **merge to main**.
+- **025 artifact-certificate-binding — T001 CONFIRM-FIRST DONE** (`025/t001-disposition.md`, landed
+  `a5f89f1587`): **12/12 findings CONFIRMED-REAL, GO-to-build, NONE refuted** (unlike 024's B5/B6). The BUILD
+  is a fresh-session task — 12 certificate/sealed-artifact binding fixes, each with a decoy/forgery NEGATIVE
+  test. **Make 3 design decisions FIRST** (per the disposition): (a) a shared binding-validator core +
+  `sameReference` / re-derive-and-compare helper driven by per-emitter field lists as DATA (each emitter
+  keeps its local per-kind correspondence map); (b) F-011-01 ledger injection into the sealed store (it
+  holds no ledger handle); (c) F-007-01 issuer+verifier swap to the real `frame.sequence` (already exposed
+  — NO missing 024 primitive). Only F-011-01's fix needs 024's ledger. Threat model = cutover-readiness /
+  operator-or-stale-file, not remote-breach. Build in worktree 0134 (node_modules symlinked from main).
+- **021 (Blocker 4, evidence-reconcile) — spec.md label still "Planned"** but an earlier audit claimed it
+  discharged (suite sha256 digests recomputed, all match). UNVERIFIED this session — re-confirm before
+  asserting "all 4 cutover blockers discharged." (022/023/024 are confirmed discharged.)
 - **Leak-guard mechanics gap (NEW, important):** `land-wt0129.sh`'s 0-deletion guard only catches
   full-file `D` status, NOT content REMOVED from a still-present (modified) file. The
   partial-checkout `specs/` copies in this worktree are near-empty stubs — landing one directly
