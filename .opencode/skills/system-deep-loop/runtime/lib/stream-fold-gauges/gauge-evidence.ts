@@ -13,6 +13,7 @@ import {
   prepareEventWrite,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   StreamFoldGaugeError,
   StreamFoldGaugeErrorCodes,
@@ -316,7 +317,7 @@ export async function recordGaugeEvidence(
     );
   }
   try {
-    const receipt = await ledger.appendAuthorized(input.event, authorization.proof);
+    const receipt = await appendAuthorizedThroughFence(ledger, input.event, authorization.proof);
     return Object.freeze({ status: 'appended', receipt, event: input.event });
   } catch (error: unknown) {
     throw new StreamFoldGaugeError(

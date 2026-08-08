@@ -7,7 +7,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 export { FencedLeaseCoordinator } from './fenced-lease-coordinator.js';
-export { FencedLedgerWriter } from './fenced-ledger-writer.js';
+export {
+  FencedLedgerWriter,
+  appendAuthorizedThroughFence,
+  selectLedgerCapability,
+} from './fenced-ledger-writer.js';
 export { FencedShadowAdapter } from './fenced-shadow-adapter.js';
 export { FencedStateStore } from './fenced-state-store.js';
 export {
@@ -41,6 +45,7 @@ export { replayIdentityFromFingerprint } from './replay-identity.js';
 
 export type { CoordinatorStoragePaths } from './fenced-lease-coordinator.js';
 export type { FencedLedgerAppendRequest } from './fenced-ledger-writer.js';
+export type { FenceCapability } from './fence-capability.js';
 export type {
   FencedShadowAdapterOptions,
   FencedShadowStatus,

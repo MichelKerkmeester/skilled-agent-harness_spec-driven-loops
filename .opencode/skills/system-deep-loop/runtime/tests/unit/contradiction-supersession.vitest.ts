@@ -56,6 +56,7 @@ import type {
   RelationshipRecordInput,
   RelationshipReferenceSnapshot,
 } from '../../lib/contradiction-supersession/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. FIXTURES
@@ -230,7 +231,7 @@ async function appendWithoutDomainValidation(
   const authorization = await gateway.authorize(request);
   expect(authorization.verdict).toBe('allow');
   if (authorization.verdict !== 'allow') throw new Error(authorization.reasonCode);
-  await target.ledger.appendAuthorized(event, authorization.proof);
+  await appendAuthorizedForTest(target.ledger, event, authorization.proof);
 }
 
 function framePath(rootDirectory: string, sequence: number): string {

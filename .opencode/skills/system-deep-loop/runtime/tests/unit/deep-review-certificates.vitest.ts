@@ -102,6 +102,7 @@ import type {
 } from '../../lib/deep-review-sealed-artifacts/deep-review-sealed-artifact-types.js';
 import type { JsonObject } from '../../lib/event-envelope/index.js';
 import type { ReplayExecutionInput } from '../../lib/replay-fingerprint/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 type ReplayProjection = DeepReviewProjectionState & JsonObject;
 
@@ -547,7 +548,7 @@ async function authorizedLedger(events: readonly DeepReviewLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected fixture authorization');
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

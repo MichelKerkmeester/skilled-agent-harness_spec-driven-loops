@@ -10,6 +10,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 const certificateControl = vi.hoisted(() => ({
   calls: 0,
@@ -289,7 +290,7 @@ async function appendReviewEvent<TStem extends DeepAlignmentEventStem>(
     prepared,
     `review-request-${sequence}`,
   );
-  await scenario.ledger.appendAuthorized(prepared, proof);
+  await appendAuthorizedForTest(scenario.ledger, prepared, proof);
   const events = await scenario.ledger.readVerifiedEvents();
   return events.at(-1)!;
 }
@@ -637,7 +638,7 @@ async function appendEffect(
     prepared,
     `effect-request-${sequence}`,
   );
-  await scenario.effectLedger.appendAuthorized(prepared, proof);
+  await appendAuthorizedForTest(scenario.effectLedger, prepared, proof);
   return (await scenario.effectLedger.readVerifiedEvents()).at(-1)!;
 }
 

@@ -14,6 +14,7 @@ import {
   prepareEventWrite,
   sha256Bytes,
 } from '../../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../../locks-and-fencing/index.js';
 import {
   CONTINUITY_ALIAS_BOUND_EVENT,
   CONTINUITY_ATTEMPT_RECORDED_EVENT,
@@ -611,7 +612,7 @@ export class ContinuityIdentityService {
         { reasonCode: authorization.reasonCode },
       );
     }
-    return this.#ledger.appendAuthorized(prepared.event, authorization.proof);
+    return appendAuthorizedThroughFence(this.#ledger, prepared.event, authorization.proof);
   }
 }
 

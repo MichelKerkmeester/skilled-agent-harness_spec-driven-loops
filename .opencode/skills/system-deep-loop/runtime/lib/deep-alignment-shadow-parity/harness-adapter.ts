@@ -12,6 +12,7 @@ import {
   TransitionPolicyRegistry,
   TypedReducerRegistry,
 } from '../authorized-ledger/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   verifyDeepAlignmentCertificateOffline,
 } from '../deep-alignment-certificates/index.js';
@@ -2729,7 +2730,7 @@ function createPathExecutor(
           prepared,
           `${path}-event-${event.stream_sequence}`,
         );
-        await ledger.appendAuthorized(prepared, proof);
+        await appendAuthorizedThroughFence(ledger, prepared, proof);
       }
       ledgerTemplateRoot = resolve(context.executionRoot, '..', `${path}-ledger-template`);
       cpSync(ledgerRoot, ledgerTemplateRoot, { recursive: true, preserveTimestamps: true });

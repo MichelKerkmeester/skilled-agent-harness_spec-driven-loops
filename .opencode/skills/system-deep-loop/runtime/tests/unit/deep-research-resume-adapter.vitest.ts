@@ -97,6 +97,7 @@ import type {
   EffectRecoveryStartedPayload,
   RecoveryVerdict,
 } from '../../lib/receipts-and-effect-recovery/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. REAL SUBSTRATE HARNESS
@@ -347,7 +348,7 @@ async function appendEvent<TStem extends DeepResearchEventStem>(
   };
   const event = prepareDeepResearchEvent(input, harness.registry);
   const proof = await authorize(harness, event, `fixture-request-${sequence}`);
-  await harness.ledger.appendAuthorized(event, proof);
+  await appendAuthorizedForTest(harness.ledger, event, proof);
 }
 
 interface SeededEffect {

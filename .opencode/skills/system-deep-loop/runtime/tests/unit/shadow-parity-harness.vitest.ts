@@ -99,6 +99,7 @@ import type {
   ShadowParityCaseFailure,
   ShadowParityCasePass,
 } from '../../lib/shadow-parity/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. FIXTURE TYPES AND CONSTANTS
@@ -450,7 +451,7 @@ async function createLedgerTemplate(options: ExecutorOptions = {}): Promise<stri
       ? `stored-variant-request-${index}`
       : `parity-request-${index}`;
     const proof = await authorize(ledger, gateway, policies, event, requestId);
-    await ledger.appendAuthorized(event, proof);
+    await appendAuthorizedForTest(ledger, event, proof);
   }
   return rootDirectory;
 }

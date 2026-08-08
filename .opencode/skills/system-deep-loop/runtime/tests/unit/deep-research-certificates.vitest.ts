@@ -109,6 +109,7 @@ import type {
 } from '../../lib/deep-research-sealed-artifacts/index.js';
 import type { JsonObject } from '../../lib/event-envelope/index.js';
 import type { ReplayExecutionInput } from '../../lib/replay-fingerprint/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. FIXTURE CONTRACTS
@@ -433,7 +434,7 @@ async function authorizedLedger(events: readonly DeepResearchLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected fixture authorization');
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

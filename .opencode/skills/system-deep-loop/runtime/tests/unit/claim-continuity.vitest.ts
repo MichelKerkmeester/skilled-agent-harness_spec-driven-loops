@@ -63,6 +63,7 @@ import type {
   ContinuityWriteContext,
 } from '../../lib/deep-loop/continuity-identity/index.js';
 import type { JsonObject } from '../../lib/event-envelope/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 const FIXED_TIMESTAMP = '2026-07-21T10:00:00.000Z';
 const FIXED_AUTHORITY = Object.freeze({ state: 'shadowing' as const, epoch: 1 });
@@ -286,7 +287,7 @@ async function appendRelationship(
   };
   const authorization = await harness.claims.gateway.authorize(request);
   if (authorization.verdict !== 'allow') throw new Error(authorization.reasonCode);
-  await harness.claims.ledger.appendAuthorized(event, authorization.proof);
+  await appendAuthorizedForTest(harness.claims.ledger, event, authorization.proof);
 }
 
 function relationshipBase(relationshipId: string): JsonObject {

@@ -2,7 +2,8 @@
 // MODULE: Deep AI Council Resume Adapter
 // ───────────────────────────────────────────────────────────────────
 
-import { rebuildProjection } from '../authorized-ledger/index.js';
+import { durableReceipt, rebuildProjection } from '../authorized-ledger/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   parseDeepAiCouncilCertificateBundle,
   verifyDeepAiCouncilCertificateOffline,
@@ -1527,10 +1528,15 @@ export class DeepAiCouncilResumeAdapter {
         `Resume decision authorization was denied: ${authorization.reasonCode}`,
       );
     }
-    const appendReceipt = await this.#options.ledger.appendAuthorized(
-      prepared,
-      authorization.proof,
-    );
+    if (existing.length === 1 && existing[0].event.stored.digest !== prepared.canonicalDigest) {
+      throw new TypeError('Resume idempotency key is already bound to different semantic bytes');
+    }
+    // A committed match never re-enters the fenced writer: the receipt is
+    // rebuilt from the already-durable frame instead of racing a stale
+    // recorded prior head through the fence's expected-head check.
+    const appendReceipt = existing.length === 1
+      ? durableReceipt(existing[0].frame)
+      : await appendAuthorizedThroughFence(this.#options.ledger, prepared, authorization.proof);
     let dispatchedBranches = 0;
     if (
       existing.length === 0

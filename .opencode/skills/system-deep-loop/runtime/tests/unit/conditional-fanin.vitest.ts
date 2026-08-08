@@ -70,6 +70,7 @@ import type {
   BudgetVector,
 } from '../../lib/hierarchical-budgets/index.js';
 import type { LeafResultPayload } from '../../lib/result-envelopes/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 const roots: string[] = [];
 const DIGEST_A = 'a'.repeat(64);
@@ -941,7 +942,7 @@ async function appendTerminal(harness: FanInLedgerHarness): Promise<void> {
     evidenceDigest: DIGEST_B,
   });
   if (authorization.verdict !== 'allow') throw new Error('Fixture authorization failed');
-  await harness.ledger.appendAuthorized(event, authorization.proof);
+  await appendAuthorizedForTest(harness.ledger, event, authorization.proof);
 }
 
 function genesisDecision(harness: FanInLedgerHarness) {

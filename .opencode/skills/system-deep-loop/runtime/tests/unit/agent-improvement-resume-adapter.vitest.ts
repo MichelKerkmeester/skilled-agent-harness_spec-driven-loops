@@ -56,6 +56,7 @@ import type {
   AgentImprovementResumeFingerprint,
 } from '../../lib/agent-improvement-resume-adapter/index.js';
 import type { JsonObject } from '../../lib/event-envelope/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 // The mode adapter preserves the common decision and effect objects verbatim.
 // Running the owning contract suite keeps that delegated trust boundary live.
@@ -191,7 +192,7 @@ async function authorizedHistory(
   if (authorization.verdict !== 'allow') {
     throw new Error(`Fixture authorization failed: ${authorization.reasonCode}`);
   }
-  await ledger.appendAuthorized(prepared, authorization.proof);
+  await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   return {
     ledger,
     event: prepared.envelope as AgentImprovementLedgerEvent,

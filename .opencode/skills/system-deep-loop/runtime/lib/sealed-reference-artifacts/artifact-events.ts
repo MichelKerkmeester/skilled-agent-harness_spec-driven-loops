@@ -10,6 +10,7 @@ import {
   CURRENT_ENVELOPE_VERSION,
   prepareEventWrite,
 } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   SealedArtifactError,
   SealedArtifactErrorCodes,
@@ -437,7 +438,7 @@ export async function recordArtifactEvent(
       { reasonCode: authorization.reasonCode },
     );
   }
-  const receipt = await recorder.ledger.appendAuthorized(event, authorization.proof);
+  const receipt = await appendAuthorizedThroughFence(recorder.ledger, event, authorization.proof);
   return Object.freeze({ receipt, event, decision: authorization.decision });
 }
 

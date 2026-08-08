@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { JsonObject } from '../event-envelope/index.js';
+import type { FenceCapability } from './fence-capability.js';
 import type {
   DerivedReplayFingerprint,
   VerifiedReplayFingerprint,
@@ -92,8 +93,15 @@ export interface FencedMutationContext {
   readonly fenceTokens: readonly number[];
 }
 
-/** Side effect executed only after the coordinator revalidates the current fence. */
-export type FencedCommit<TResult> = () => TResult | Promise<TResult>;
+/**
+ * Side effect executed only after the coordinator revalidates the current
+ * fence. Receives one capability per lease, in the same order as the leases
+ * passed to `withFence`/`withFences`, for guarded primitives that require an
+ * unforgeable proof of that revalidation at their own boundary.
+ */
+export type FencedCommit<TResult> = (
+  capabilities: readonly FenceCapability[],
+) => TResult | Promise<TResult>;
 
 /** Side-effect-free preparation that returns the operation's fenced commit. */
 export type FencedMutationPreparation<TResult> = (

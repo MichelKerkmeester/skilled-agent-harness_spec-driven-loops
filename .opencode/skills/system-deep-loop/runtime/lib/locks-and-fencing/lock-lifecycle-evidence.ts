@@ -11,6 +11,7 @@ import {
   EventTypeRegistry,
   prepareEventWrite,
 } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from './fenced-ledger-writer.js';
 import {
   LocksAndFencingError,
   LocksAndFencingErrorCodes,
@@ -248,7 +249,7 @@ export async function recordLockLifecycleEvidence(
       { reasonCode: authorization.reasonCode },
     );
   }
-  const receipt = await ledger.appendAuthorized(event, authorization.proof);
+  const receipt = await appendAuthorizedThroughFence(ledger, event, authorization.proof);
   return Object.freeze({
     decisionId: authorization.decision.decision_id,
     receipt,

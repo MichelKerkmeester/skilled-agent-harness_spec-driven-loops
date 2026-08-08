@@ -179,6 +179,7 @@ import type {
   EffectConfirmationPayload,
   EffectIntentPayload,
 } from '../../lib/receipts-and-effect-recovery/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 type ReplayProjection = DeepImprovementCommonProjectionState & JsonObject;
 type SkillReplayProjection = SkillBenchmarkProjectionState & JsonObject;
@@ -529,7 +530,7 @@ async function authorizedLedger(events: readonly DeepImprovementCommonLedgerEven
     if (authorization.verdict !== 'allow') {
       throw new Error(`Expected fixture authorization at ${index}: ${JSON.stringify(authorization)}`);
     }
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,
@@ -1834,7 +1835,7 @@ async function authorizedSkillLedger(events: readonly SkillBenchmarkLedgerEvent[
     if (authorization.verdict !== 'allow') {
       throw new Error(`Expected Skill Benchmark fixture authorization at ${index}`);
     }
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

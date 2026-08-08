@@ -97,6 +97,7 @@ import type {
 import type { JsonObject } from '../../lib/event-envelope/index.js';
 import type { ReplayExecutionInput } from '../../lib/replay-fingerprint/index.js';
 import type { SealedArtifactReference } from '../../lib/sealed-reference-artifacts/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 type ReplayProjection = DeepAiCouncilProjectionState & JsonObject;
 
@@ -592,7 +593,7 @@ async function authorizedLedger(events: readonly DeepAiCouncilLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected fixture authorization');
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

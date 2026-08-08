@@ -17,6 +17,7 @@ import {
   sha256Bytes,
 } from '../event-envelope/index.js';
 import { immutableJsonClone } from '../event-envelope/canonical-json.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   assertCycleDetectorPolicy,
   resolveCycleDetectorPolicy,
@@ -523,7 +524,7 @@ export async function recordCycleHealthEvent(
     return Object.freeze({ status: 'idempotent', receipt: receiptFor(existing) });
   }
   try {
-    const receipt = await ledger.appendAuthorized(event, proof);
+    const receipt = await appendAuthorizedThroughFence(ledger, event, proof);
     return Object.freeze({ status: 'appended', receipt });
   } catch (error: unknown) {
     if (

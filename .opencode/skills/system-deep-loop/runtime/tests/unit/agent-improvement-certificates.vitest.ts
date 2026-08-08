@@ -146,6 +146,7 @@ import type {
 import type { JsonObject } from '../../lib/event-envelope/index.js';
 import type { ReplayExecutionInput } from '../../lib/replay-fingerprint/index.js';
 import type { SealedArtifactReference } from '../../lib/sealed-reference-artifacts/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 type ReplayProjection = DeepImprovementCommonProjectionState & JsonObject;
 type AgentReplayProjection = AgentImprovementProjectionState & JsonObject;
@@ -494,7 +495,7 @@ async function authorizedLedger(events: readonly DeepImprovementCommonLedgerEven
     if (authorization.verdict !== 'allow') {
       throw new Error(`Expected fixture authorization at ${index}: ${JSON.stringify(authorization)}`);
     }
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,
@@ -1559,7 +1560,7 @@ async function authorizedAgentLedger(events: readonly AgentImprovementLedgerEven
     if (authorization.verdict !== 'allow') {
       throw new Error(`Expected agent fixture authorization at ${index}: ${JSON.stringify(authorization)}`);
     }
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({ rootDirectory, operationTimeoutMs: 5_000 });
   const lease = coordinator.acquire({

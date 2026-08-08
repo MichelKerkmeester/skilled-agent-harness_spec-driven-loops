@@ -34,6 +34,12 @@ import {
 } from '../../lib/authorized-ledger/index.js';
 import { canonicalBytes, sha256Bytes } from '../../lib/event-envelope/index.js';
 import {
+  AtomicityDomains,
+  FencedLeaseCoordinator,
+  LocksAndFencingErrorCodes,
+  ProtectedResourceKinds,
+} from '../../lib/locks-and-fencing/index.js';
+import {
   FIXTURE_AUDIT_LEDGER_ID,
   FIXTURE_AUTHORITY,
   FIXTURE_EVENT_TYPE,
@@ -51,6 +57,11 @@ import type {
   TransitionAuthorizationRequest,
 } from '../../lib/authorized-ledger/index.js';
 import type { EventTypeRegistry, EventWritePreflight, JsonObject } from '../../lib/event-envelope/index.js';
+import {
+  appendAuthorizedForTest,
+  appendAuthorizedWithCapabilityForTest,
+  hasNoDirectAppendSurface,
+} from '../fixtures/authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
@@ -138,7 +149,7 @@ async function appendFixture(
 ): Promise<{ readonly event: EventWritePreflight; readonly proof: GatewayAllowProof }> {
   const event = createFixtureEvent(harness.registry, index);
   const proof = await authorize(harness, event, `request-${index}`);
-  await harness.ledger.appendAuthorized(event, proof);
+  await appendAuthorizedForTest(harness.ledger, event, proof);
   return { event, proof };
 }
 
@@ -240,18 +251,87 @@ describe('coupled authorization and append boundary', () => {
     const event = createFixtureEvent(harness.registry, 1);
 
     expect((harness.ledger as unknown as { append?: unknown }).append).toBeUndefined();
-    await expect(harness.ledger.appendAuthorized(event, undefined as never)).rejects.toMatchObject({
+    await expect(appendAuthorizedForTest(harness.ledger, event, undefined as never)).rejects.toMatchObject({
       code: AuthorizedLedgerErrorCodes.AUTHORIZATION_REQUIRED,
     });
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 0 });
+  });
+
+  it('has no cast-reachable direct append method on the exported class', () => {
+    const harness = createHarness();
+    expect(hasNoDirectAppendSurface(harness.ledger)).toBe(true);
+  });
+
+  it('rejects an append whose fence has been superseded, before any frame commits', async () => {
+    const rootDirectory = temporaryRoot('superseded-fence');
+    const registry = createFixtureEventRegistry();
+    const policies = createFixturePolicyRegistry();
+    const authorityProvider = (): typeof FIXTURE_AUTHORITY => FIXTURE_AUTHORITY;
+    const ledger = new AppendOnlyLedger({
+      rootDirectory,
+      ledgerId: FIXTURE_LEDGER_ID,
+      auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+      authorityProvider,
+    }, registry);
+    const gateway = new TransitionAuthorizationGateway({
+      rootDirectory,
+      auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
+      authorityProvider,
+    }, ledger, policies);
+    const event = createFixtureEvent(registry, 1);
+    const request = await createFixtureRequest(ledger, event, policies, 'superseded-fence-request');
+    const authorization = await gateway.authorize(request);
+    expect(authorization.verdict).toBe('allow');
+    if (authorization.verdict !== 'allow') throw new Error('Expected allow');
+
+    const resource = {
+      kind: ProtectedResourceKinds.LEDGER,
+      atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
+      components: { ledgerId: FIXTURE_LEDGER_ID },
+    } as const;
+    const coordinator = new FencedLeaseCoordinator({ rootDirectory, retryIntervalMs: 1 });
+    const staleLease = await coordinator.acquire({
+      resource,
+      ownerId: 'writer-a',
+      correlationId: 'writer-a-attempt',
+      ttlMs: 20,
+    });
+    // Let writer A's lease expire, then a second writer takes the resource
+    // over with a strictly higher fence token — this is the supersession.
+    await new Promise((resolveWait) => setTimeout(resolveWait, 40));
+    const currentLease = await coordinator.acquire({
+      resource,
+      ownerId: 'writer-b',
+      correlationId: 'writer-b-attempt',
+      ttlMs: 20_000,
+    });
+    expect(currentLease.fenceToken).toBeGreaterThan(staleLease.fenceToken);
+
+    // Writer A still holds its now-superseded lease and an unexpired allow
+    // proof. Reaching the append boundary at all requires going through the
+    // guarded writer, which re-validates the fence before any commit.
+    await expect(
+      appendAuthorizedWithCapabilityForTest(ledger, event, authorization.proof, staleLease),
+    ).rejects.toMatchObject({ code: LocksAndFencingErrorCodes.STALE_FENCE });
+    expect(await ledger.getVerifiedHead()).toMatchObject({ sequence: 0 });
+
+    // The current writer, holding the live fence, commits normally.
+    const receipt = await appendAuthorizedWithCapabilityForTest(
+      ledger,
+      event,
+      authorization.proof,
+      currentLease,
+    );
+    expect(receipt.sequence).toBe(1);
+    await coordinator.release(currentLease);
   });
 
   it('uses one exact allow once, returns the original receipt on retry, and rejects ID conflict', async () => {
     const harness = createHarness();
     const event = createFixtureEvent(harness.registry, 1);
     const proof = await authorize(harness, event, 'allow-once');
-    const first = await harness.ledger.appendAuthorized(event, proof);
-    const retry = await harness.ledger.appendAuthorized(event, proof);
+    const first = await appendAuthorizedForTest(harness.ledger, event, proof);
+    const retry = await appendAuthorizedForTest(harness.ledger, event, proof);
     expect(retry).toEqual(first);
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 1 });
 
@@ -261,7 +341,7 @@ describe('coupled authorization and append boundary', () => {
     });
     const conflictingProof = await authorize(harness, conflicting, 'conflicting-event-id');
     await expect(
-      harness.ledger.appendAuthorized(conflicting, conflictingProof),
+      appendAuthorizedForTest(harness.ledger, conflicting, conflictingProof),
     ).rejects.toMatchObject({ code: AuthorizedLedgerErrorCodes.EVENT_ID_CONFLICT });
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 1 });
   });
@@ -272,7 +352,7 @@ describe('coupled authorization and append boundary', () => {
     const differentEvent = createFixtureEvent(harness.registry, 2);
     const proof = await authorize(harness, event, 'bound-allow');
 
-    await expect(harness.ledger.appendAuthorized(differentEvent, proof)).rejects.toMatchObject({
+    await expect(appendAuthorizedForTest(harness.ledger, differentEvent, proof)).rejects.toMatchObject({
       code: AuthorizedLedgerErrorCodes.AUTHORIZATION_INVALID,
     });
 
@@ -282,7 +362,7 @@ describe('coupled authorization and append boundary', () => {
       auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
       authorityProvider: () => FIXTURE_AUTHORITY,
     }, harness.registry);
-    await expect(otherLedger.appendAuthorized(event, proof)).rejects.toMatchObject({
+    await expect(appendAuthorizedForTest(otherLedger, event, proof)).rejects.toMatchObject({
       code: AuthorizedLedgerErrorCodes.AUTHORIZATION_INVALID,
     });
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 0 });
@@ -687,7 +767,7 @@ describe('locked ordering and immutable integrity', () => {
     expect(sha256Bytes(readFileSync(join(quarantineDirectory, quarantined[0]))))
       .toBe(sha256Bytes(torn));
 
-    const receipt = await harness.ledger.appendAuthorized(appends[2].event, appends[2].proof);
+    const receipt = await appendAuthorizedForTest(harness.ledger, appends[2].event, appends[2].proof);
     expect(receipt.sequence).toBe(3);
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 3 });
   });
@@ -789,7 +869,7 @@ describe('verified replay and disposable projections', () => {
     });
     const event = createFixtureEvent(harness.registry, 1);
     const proof = await authorize(harness, event, 'crash-before-domain');
-    await expect(harness.ledger.appendAuthorized(event, proof)).rejects.toThrow(
+    await expect(appendAuthorizedForTest(harness.ledger, event, proof)).rejects.toThrow(
       'simulated crash before domain commit',
     );
     expect(await harness.ledger.getVerifiedHead()).toMatchObject({ sequence: 0 });
@@ -849,7 +929,7 @@ describe('verified replay and disposable projections', () => {
     const result = await gateway.authorize(request);
     expect(result.verdict).toBe('allow');
     if (result.verdict !== 'allow') throw new Error('Expected allow');
-    await ledger.appendAuthorized(event, result.proof);
+    await appendAuthorizedForTest(ledger, event, result.proof);
 
     // A freshly rebuilt registry (simulating a separate replay process) must
     // re-derive the exact same digest from the same captured state, so the

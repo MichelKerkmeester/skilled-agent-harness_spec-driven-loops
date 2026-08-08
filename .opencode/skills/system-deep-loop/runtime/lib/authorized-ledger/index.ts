@@ -2,7 +2,7 @@
 // MODULE: Authorized Ledger Public API
 // ───────────────────────────────────────────────────────────────────
 
-export { AppendOnlyLedger } from './append-only-ledger.js';
+export { AppendOnlyLedger, durableReceipt } from './append-only-ledger.js';
 export {
   AuthorizedLedgerError,
   AuthorizedLedgerErrorCodes,

@@ -7,6 +7,7 @@ import {
   AuthorizedLedgerError,
   TransitionAuthorizationGateway,
 } from '../../lib/authorized-ledger/index.js';
+import { LocksAndFencingError } from '../../lib/locks-and-fencing/index.js';
 import {
   FIXTURE_AUDIT_LEDGER_ID,
   FIXTURE_AUTHORITY,
@@ -16,6 +17,7 @@ import {
   createFixturePolicyRegistry,
   createFixtureRequest,
 } from './authorized-ledger-fixtures.js';
+import { appendAuthorizedForTest } from './authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. WORKER
@@ -54,10 +56,10 @@ for (let attempt = 1; attempt <= 40; attempt += 1) {
   const authorization = await gateway.authorize(request);
   if (authorization.verdict === 'deny') continue;
   try {
-    receipt = await ledger.appendAuthorized(event, authorization.proof);
+    receipt = await appendAuthorizedForTest(ledger, event, authorization.proof);
     break;
   } catch (error: unknown) {
-    if (!(error instanceof AuthorizedLedgerError)) throw error;
+    if (!(error instanceof AuthorizedLedgerError) && !(error instanceof LocksAndFencingError)) throw error;
     await new Promise((resolveWait) => setTimeout(resolveWait, 5));
   }
 }

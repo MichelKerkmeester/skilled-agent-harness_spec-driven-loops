@@ -6,6 +6,7 @@ import {
   AppendOnlyLedger,
   TransitionAuthorizationGateway,
   TransitionPolicyRegistry,
+  durableReceipt,
   readAuthorizationAudit,
 } from '../authorized-ledger/index.js';
 import {
@@ -14,6 +15,7 @@ import {
   prepareEventWrite,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   ClaimRelationshipError,
   ClaimRelationshipErrorCodes,
@@ -219,7 +221,7 @@ export class ContradictionSupersessionService {
         { reasonCode: authorization.reasonCode },
       );
     }
-    const receipt = await this.ledger.appendAuthorized(event, authorization.proof);
+    const receipt = await appendAuthorizedThroughFence(this.ledger, event, authorization.proof);
     return Object.freeze({ receipt, projection: await this.projection() });
   }
 
@@ -282,8 +284,11 @@ export class ContradictionSupersessionService {
         { eventId: input.eventId, sequence: existing.frame.sequence },
       );
     }
-    const proof = await this.#recoverOriginalProof(existing);
-    const receipt = await this.ledger.appendAuthorized(proposed, proof);
+    // The durable audit lookup below still verifies this is a genuine recorded
+    // allow before the committed frame is trusted; no new append is needed for
+    // an exact-bytes retry, so the fenced writer is never entered here.
+    await this.#recoverOriginalProof(existing);
+    const receipt = durableReceipt(existing.frame);
     return Object.freeze({ receipt, projection: await this.projection() });
   }
 

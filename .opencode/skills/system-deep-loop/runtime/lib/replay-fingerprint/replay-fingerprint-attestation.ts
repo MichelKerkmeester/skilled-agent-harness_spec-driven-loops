@@ -12,6 +12,7 @@ import {
   prepareEventWrite,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   parseReplayFingerprintDescriptor,
   replayFingerprintDescriptorJson,
@@ -420,7 +421,7 @@ export async function recordReplayFingerprintAttestation<TState extends JsonObje
       },
     );
   }
-  const receipt = await ledger.appendAuthorized(event, proof);
+  const receipt = await appendAuthorizedThroughFence(ledger, event, proof);
   if (receipt.sequence <= candidate.descriptor.range_end_sequence) {
     throw new ReplayFingerprintError(
       ReplayFingerprintErrorCodes.ATTESTATION_SELF_INCLUDED,

@@ -11,6 +11,7 @@ import {
   TransitionAuthorizationGateway,
   TransitionPolicyRegistry,
 } from '../authorized-ledger/index.js';
+import { invokeAppendAuthorized } from '../authorized-ledger/append-only-ledger.js';
 import {
   CURRENT_ENVELOPE_VERSION,
   canonicalBytes,
@@ -25,6 +26,7 @@ import {
   LocksAndFencingErrorCodes,
   ProtectedResourceKinds,
   canonicalizeProtectedResource,
+  selectLedgerCapability,
 } from '../locks-and-fencing/index.js';
 import {
   BranchOrchestrationError,
@@ -905,7 +907,7 @@ export class DurableBranchOrchestrator {
       const proof = await this.#authorize(event, fold.ledgerHead, fold.digest);
       await this.#coordinator.withFences(
         sortLeases(branchGrant ? [ledgerLease, branchGrant.lease] : [ledgerLease]),
-        () => async () => {
+        () => async (capabilities) => {
           const currentHead = await this.#ledger.getVerifiedHead();
           if (
             currentHead.sequence !== fold.ledgerHead.sequence
@@ -922,7 +924,8 @@ export class DurableBranchOrchestrator {
             );
           }
           previewBranchOrchestrationRecord(fold.state, record, occurredAt);
-          await this.#ledger.appendAuthorized(event, proof);
+          const ledgerCapability = selectLedgerCapability(capabilities, this.#ledger.ledgerId);
+          await invokeAppendAuthorized(this.#ledger, event, proof, ledgerCapability);
         },
       );
     } catch (error: unknown) {

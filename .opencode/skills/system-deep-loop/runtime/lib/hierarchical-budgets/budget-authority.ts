@@ -8,6 +8,7 @@ import {
   GENESIS_RECORD_HASH,
 } from '../authorized-ledger/index.js';
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   BudgetEventTypes,
   prepareBudgetLifecycleEvent,
@@ -1245,7 +1246,11 @@ export class HierarchicalBudgetAuthority {
       );
     }
     try {
-      const receipt = await this.#options.ledger.appendAuthorized(event, authorization.proof);
+      const receipt = await appendAuthorizedThroughFence(
+        this.#options.ledger,
+        event,
+        authorization.proof,
+      );
       return Object.freeze({ decision: result, receipt, isIdempotent: false });
     } catch (error: unknown) {
       const reason = error instanceof AuthorizedLedgerError

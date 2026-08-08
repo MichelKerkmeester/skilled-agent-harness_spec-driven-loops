@@ -12,6 +12,7 @@ import {
   prepareEventWrite,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 
 import type {
   AppendOnlyLedger,
@@ -228,5 +229,5 @@ export async function commitFanInDecision(
   if (authorization.verdict !== AuthorizationVerdicts.ALLOW) {
     throw new TypeError(`Fan-in decision authorization denied: ${authorization.reasonCode}`);
   }
-  return input.ledger.appendAuthorized(event, authorization.proof);
+  return appendAuthorizedThroughFence(input.ledger, event, authorization.proof);
 }

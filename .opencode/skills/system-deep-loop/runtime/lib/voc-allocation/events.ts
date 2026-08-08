@@ -18,6 +18,7 @@ import {
   prepareEventWrite,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import { VOC_ALLOCATION_DECISION_VERSION } from './decision.js';
 
 import type {
@@ -335,5 +336,5 @@ export async function commitVocAllocationDecision(
   if (authorization.verdict !== AuthorizationVerdicts.ALLOW) {
     throw new TypeError(`VOC allocation authorization denied: ${authorization.reasonCode}`);
   }
-  return input.ledger.appendAuthorized(event, authorization.proof);
+  return appendAuthorizedThroughFence(input.ledger, event, authorization.proof);
 }

@@ -12,6 +12,7 @@ import {
   prepareEventWrite,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   hashReplayFingerprintBytes,
   serializeReplayFingerprintDescriptor,
@@ -708,7 +709,7 @@ export class BlindedAdjudicationService {
         { reasonCode: authorization.reasonCode },
       );
     }
-    const receipt = await this.ledger.appendAuthorized(event, authorization.proof);
+    const receipt = await appendAuthorizedThroughFence(this.ledger, event, authorization.proof);
     this.#receipts.set(eventKey, receipt);
     return receipt;
   }

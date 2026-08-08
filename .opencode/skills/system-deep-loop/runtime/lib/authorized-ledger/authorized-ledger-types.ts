@@ -34,6 +34,7 @@ export interface AuthorizationReference {
   readonly request_digest: string;
   readonly policy_digest: string;
   readonly authority_epoch: number;
+  readonly fence_token: number;
 }
 
 /** Receipt fields persisted inside an immutable domain frame. */

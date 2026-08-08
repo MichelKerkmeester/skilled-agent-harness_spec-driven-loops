@@ -78,6 +78,7 @@ import type {
   ReplayFingerprintDescriptor,
   ReplayFingerprintVerificationResult,
 } from '../../lib/replay-fingerprint/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. FIXTURE TYPES
@@ -292,7 +293,7 @@ async function appendFixtures(harness: Harness, count = 3): Promise<void> {
   for (let index = 1; index <= count; index += 1) {
     const event = createFixtureEvent(harness.registry, index);
     const proof = await authorize(harness, event, 'fixture-request-' + String(index));
-    await harness.ledger.appendAuthorized(event, proof);
+    await appendAuthorizedForTest(harness.ledger, event, proof);
   }
 }
 
@@ -472,7 +473,7 @@ async function appendRawAttestation(
     payload,
   }, harness.registry);
   const proof = await authorize(harness, event, 'raw-fingerprint-attestation-request');
-  await harness.ledger.appendAuthorized(event, proof);
+  await appendAuthorizedForTest(harness.ledger, event, proof);
 }
 
 function verificationInput(
@@ -810,7 +811,7 @@ describe('replay contract and result drift', () => {
       attestationEnvelope(1),
     );
     const proof = await authorize(harness, event, 'authorized-false-effective-claim');
-    await harness.ledger.appendAuthorized(event, proof);
+    await appendAuthorizedForTest(harness.ledger, event, proof);
 
     const result = await verifyReplayFingerprint(verificationInput(harness));
     expectFailure(result, 'effective');
@@ -1027,7 +1028,7 @@ describe('fingerprint version and attestation rules', () => {
       payload,
     }, lax.registry);
     const proof = await authorize(lax, event, 'missing-fingerprint-version-request');
-    await lax.ledger.appendAuthorized(event, proof);
+    await appendAuthorizedForTest(lax.ledger, event, proof);
 
     const result = await verifyReplayFingerprint(verificationInput(lax));
     expectFailure(result, 'fingerprint_version');

@@ -145,6 +145,7 @@ import type {
   VerifiedArtifactEvidence,
 } from '../../lib/sealed-reference-artifacts/index.js';
 import type { ParityCaseCapsule, ParityCaseManifest } from '../../lib/shadow-parity/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 type ReplayProjection = DeepImprovementCommonProjectionState & JsonObject;
 
@@ -486,7 +487,7 @@ async function authorizedLedger(events: readonly DeepImprovementCommonLedgerEven
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected fixture authorization');
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

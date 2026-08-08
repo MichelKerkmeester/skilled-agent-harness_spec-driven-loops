@@ -96,6 +96,7 @@ import type {
 } from '../../lib/deep-alignment-sealed-artifacts/index.js';
 import type { JsonObject } from '../../lib/event-envelope/index.js';
 import type { ReplayExecutionInput } from '../../lib/replay-fingerprint/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 type ReplayProjection = DeepAlignmentProjectionState & JsonObject;
 
@@ -571,7 +572,7 @@ async function authorizedLedger(events: readonly DeepAlignmentLedgerEvent[]) {
     if (authorization.verdict !== 'allow') {
       throw new Error('Expected fixture authorization');
     }
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

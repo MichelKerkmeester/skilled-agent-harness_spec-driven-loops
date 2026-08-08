@@ -16,6 +16,7 @@ import {
   prepareEventWrite,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import { validateLoopTerminationDeclared } from './stopping-clock-arbiter.js';
 
 import type {
@@ -233,7 +234,7 @@ export async function recordLoopTerminationDeclaredEvent(
     return Object.freeze({ status: 'idempotent', receipt: receiptFor(existing) });
   }
   try {
-    const receipt = await ledger.appendAuthorized(event, proof);
+    const receipt = await appendAuthorizedThroughFence(ledger, event, proof);
     return Object.freeze({ status: 'appended', receipt });
   } catch (error: unknown) {
     if (

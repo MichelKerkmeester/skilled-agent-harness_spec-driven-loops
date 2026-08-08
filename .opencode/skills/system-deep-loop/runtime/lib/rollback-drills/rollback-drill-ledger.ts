@@ -14,6 +14,7 @@ import {
   canonicalBytes,
   sha256Bytes,
 } from '../event-envelope/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   REPLAY_FINGERPRINT_ATTESTATION_EVENT_TYPE,
   ReplayComponentRegistry,
@@ -293,7 +294,7 @@ export class RollbackDrillLedgerHarness {
         { reasonCode: result.reasonCode },
       );
     }
-    await this.ledger.appendAuthorized(event, result.proof);
+    await appendAuthorizedThroughFence(this.ledger, event, result.proof);
     const appended = (await this.ledger.readVerifiedEvents()).find((entry) =>
       entry.event.effective.envelope.event_id === event.identity.eventId);
     if (!appended) {
@@ -567,7 +568,7 @@ export class RollbackDrillLedgerHarness {
         { reasonCode: authorization.reasonCode },
       );
     }
-    const receipt = await this.ledger.appendAuthorized(event, authorization.proof);
+    const receipt = await appendAuthorizedThroughFence(this.ledger, event, authorization.proof);
     const verified = (await this.ledger.readVerifiedEvents()).find((entry) =>
       entry.event.effective.envelope.event_id === event.identity.eventId);
     if (!verified) {

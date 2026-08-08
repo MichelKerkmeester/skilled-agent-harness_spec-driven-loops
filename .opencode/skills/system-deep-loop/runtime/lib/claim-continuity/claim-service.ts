@@ -23,6 +23,7 @@ import {
   validateContinuityMode,
   validateIdentityRef,
 } from '../deep-loop/continuity-identity/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   CLAIM_ADJUDICATION_RECORDED_EVENT,
   CLAIM_CONTINUITY_REDUCER_VERSION,
@@ -740,7 +741,7 @@ export class ClaimContinuityService {
         { reasonCode: authorization.reasonCode },
       );
     }
-    return this.#ledger.appendAuthorized(event, authorization.proof);
+    return appendAuthorizedThroughFence(this.#ledger, event, authorization.proof);
   }
 }
 

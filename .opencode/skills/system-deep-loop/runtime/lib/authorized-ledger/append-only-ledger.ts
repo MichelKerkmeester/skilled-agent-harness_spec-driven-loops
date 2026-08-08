@@ -19,6 +19,8 @@ import {
   authorizationDecisionDigest,
   readAuthorizationAudit,
 } from './transition-authorization-gateway.js';
+import { resolveFenceCapability } from '../locks-and-fencing/fence-capability.js';
+import { ProtectedResourceKinds } from '../locks-and-fencing/locks-and-fencing-types.js';
 
 import type {
   AuthorizationDecisionRecord,
@@ -31,6 +33,7 @@ import type {
   VerifiedLedgerEvent,
 } from './authorized-ledger-types.js';
 import type { EventTypeRegistry, EventWritePreflight } from '../event-envelope/index.js';
+import type { FenceCapability, FenceCapabilityState } from '../locks-and-fencing/fence-capability.js';
 import type { StoredFrameFile, StoredRecoveryEvidence } from './immutable-frame-store.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -70,6 +73,7 @@ const AUTHORIZATION_REFERENCE_FIELDS = new Set([
   'request_digest',
   'policy_digest',
   'authority_epoch',
+  'fence_token',
 ]);
 const RECEIPT_FIELDS = new Set([
   'ledger_id',
@@ -183,6 +187,7 @@ function validateFrameScalars(frame: LedgerRecordFrame): void {
     || !isHash(frame.authorization_ref.request_digest)
     || !isHash(frame.authorization_ref.policy_digest)
     || !isPositiveInteger(frame.authorization_ref.authority_epoch)
+    || !isPositiveInteger(frame.authorization_ref.fence_token)
     || !isIsoTimestamp(frame.receipt.committed_at)
   ) {
     throw new AuthorizedLedgerError(
@@ -194,7 +199,8 @@ function validateFrameScalars(frame: LedgerRecordFrame): void {
   }
 }
 
-function durableReceipt(frame: LedgerRecordFrame): DurableAppendReceipt {
+/** Rebuild the durable receipt an already-committed frame would have returned. */
+export function durableReceipt(frame: LedgerRecordFrame): DurableAppendReceipt {
   return Object.freeze({
     ...frame.receipt,
     canonicalEventHash: frame.canonical_event_hash,
@@ -233,7 +239,10 @@ function assertEventPreflight(
   return prepared;
 }
 
-function authorizationReference(proof: GatewayAllowProof): AuthorizationReference {
+function authorizationReference(
+  proof: GatewayAllowProof,
+  fenceToken: number,
+): AuthorizationReference {
   return Object.freeze({
     audit_ledger_id: proof.auditReceipt.auditLedgerId,
     audit_sequence: proof.auditReceipt.sequence,
@@ -243,6 +252,7 @@ function authorizationReference(proof: GatewayAllowProof): AuthorizationReferenc
     request_digest: proof.decision.request_digest,
     policy_digest: proof.decision.policy_digest,
     authority_epoch: proof.decision.authority_epoch,
+    fence_token: fenceToken,
   });
 }
 
@@ -302,6 +312,21 @@ function assertStoredDecisionLink(
 // 4. LEDGER
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * Bound closures reaching the hard-private append primitive, keyed by
+ * instance. A class's `#private` methods are only callable from code
+ * lexically inside the class body, so this module-scoped map is the one
+ * seam a sibling module can use to invoke it — and only after supplying a
+ * capability that independently proves current fence ownership.
+ */
+type AppendBridge = (
+  event: EventWritePreflight,
+  proof: GatewayAllowProof,
+  capability: FenceCapability,
+) => Promise<DurableAppendReceipt>;
+
+const appendBridges = new WeakMap<AppendOnlyLedger, AppendBridge>();
+
 /** Typed immutable writer with no proof-free domain append operation. */
 export class AppendOnlyLedger {
   public readonly ledgerId: string;
@@ -333,6 +358,10 @@ export class AppendOnlyLedger {
         { ledgerId: this.ledgerId },
       );
     }
+    appendBridges.set(
+      this,
+      (event, proof, capability) => this.#appendAuthorized(event, proof, capability),
+    );
   }
 
   /** Return the fully verified current head without exposing unchecked records. */
@@ -345,11 +374,20 @@ export class AppendOnlyLedger {
     return this.#store.withExclusiveLock(async () => (await this.#scanUnlocked(false)).events);
   }
 
-  /** Append exactly one event after revalidating its durable single-use allow under lock. */
-  public async appendAuthorized(
+  /**
+   * Append exactly one event after revalidating its durable single-use
+   * allow under lock. Hard-private: reachable only through the module's
+   * capability-gated bridge, so a caller must first hold a fence minted by
+   * `FencedLeaseCoordinator.withFence`/`withFences` for this exact ledger
+   * resource. A stale, released, or forged capability is rejected before
+   * any preflight, proof verification, idempotency check, or commit runs.
+   */
+  async #appendAuthorized(
     event: EventWritePreflight,
     proof: GatewayAllowProof,
+    capability: FenceCapability,
   ): Promise<DurableAppendReceipt> {
+    const fence = this.#validateCapability(capability);
     const prepared = assertEventPreflight(event, this.#registry);
     if (!proof || proof.proofVersion !== ALLOW_PROOF_VERSION || !proof.decision || !proof.auditReceipt) {
       throw new AuthorizedLedgerError(
@@ -429,7 +467,7 @@ export class AppendOnlyLedger {
         sequence,
         prev_record_hash: scan.head.recordHash,
         canonical_event_hash: prepared.canonicalDigest,
-        authorization_ref: authorizationReference(proof),
+        authorization_ref: authorizationReference(proof, fence.fenceToken),
         receipt,
         canonical_event_bytes: Buffer.from(prepared.canonicalBytes).toString('base64'),
       };
@@ -444,6 +482,37 @@ export class AppendOnlyLedger {
       );
       return durableReceipt(frame);
     });
+  }
+
+  /** Reject a capability that is not currently, exactly held for this ledger. */
+  #validateCapability(capability: FenceCapability): FenceCapabilityState {
+    const fence = resolveFenceCapability(capability);
+    if (
+      !fence
+      || fence.resource.kind !== ProtectedResourceKinds.LEDGER
+      || fence.resource.components.ledgerId !== this.ledgerId
+    ) {
+      throw new AuthorizedLedgerError(
+        AuthorizedLedgerErrorCodes.STALE_FENCE,
+        'authorization',
+        'Domain append requires a capability minted for this exact ledger resource',
+        { ledgerId: this.ledgerId },
+      );
+    }
+    try {
+      fence.reassert();
+    } catch (error: unknown) {
+      throw new AuthorizedLedgerError(
+        AuthorizedLedgerErrorCodes.STALE_FENCE,
+        'authorization',
+        'Domain append fence capability is no longer the current lease',
+        {
+          ledgerId: this.ledgerId,
+          cause: error instanceof Error ? error.message : String(error),
+        },
+      );
+    }
+    return fence;
   }
 
   /** Preserve a torn final candidate and leave the verified committed prefix untouched. */
@@ -652,4 +721,32 @@ export class AppendOnlyLedger {
     }
   }
 
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CAPABILITY-GATED BRIDGE
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * Sole seam into the hard-private append primitive. Not part of this
+ * package's public entry (`index.ts`); only the fenced writer and the
+ * dedicated white-box test helper import it directly. Reaching this
+ * function proves nothing on its own — the supplied capability must still
+ * resolve to state minted by `FencedLeaseCoordinator` for this exact ledger.
+ */
+export function invokeAppendAuthorized(
+  ledger: AppendOnlyLedger,
+  event: EventWritePreflight,
+  proof: GatewayAllowProof,
+  capability: FenceCapability,
+): Promise<DurableAppendReceipt> {
+  const bridge = appendBridges.get(ledger);
+  if (!bridge) {
+    throw new AuthorizedLedgerError(
+      AuthorizedLedgerErrorCodes.INPUT_INVALID,
+      'input',
+      'Domain ledger instance was not constructed through this module',
+    );
+  }
+  return bridge(event, proof, capability);
 }

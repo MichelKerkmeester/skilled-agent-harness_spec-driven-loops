@@ -2,13 +2,17 @@
 // MODULE: Fenced Ledger Writer
 // ───────────────────────────────────────────────────────────────────
 
+import { randomUUID } from 'node:crypto';
+
 import { AppendOnlyLedger } from '../authorized-ledger/index.js';
+import { invokeAppendAuthorized } from '../authorized-ledger/append-only-ledger.js';
+import { resolveFenceCapability } from './fence-capability.js';
 import { FencedLeaseCoordinator } from './fenced-lease-coordinator.js';
 import {
   LocksAndFencingError,
   LocksAndFencingErrorCodes,
 } from './locks-and-fencing-errors.js';
-import { ProtectedResourceKinds } from './locks-and-fencing-types.js';
+import { AtomicityDomains, ProtectedResourceKinds } from './locks-and-fencing-types.js';
 
 import type {
   DurableAppendReceipt,
@@ -16,7 +20,8 @@ import type {
   LedgerHead,
 } from '../authorized-ledger/index.js';
 import type { EventWritePreflight } from '../event-envelope/index.js';
-import type { FencedLease } from './locks-and-fencing-types.js';
+import type { FenceCapability } from './fence-capability.js';
+import type { FencedLease, ProtectedResourceIdentity } from './locks-and-fencing-types.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. GUARDED APPEND
@@ -56,7 +61,7 @@ export class FencedLedgerWriter {
         },
       );
     }
-    return this.#coordinator.withFence(request.lease, () => async () => {
+    return this.#coordinator.withFence(request.lease, () => async (capabilities) => {
       const currentHead = await request.ledger.getVerifiedHead();
       if (
         currentHead.sequence !== request.expectedHead.sequence
@@ -73,7 +78,85 @@ export class FencedLedgerWriter {
           },
         );
       }
-      return request.ledger.appendAuthorized(request.event, request.proof);
+      const capability = selectLedgerCapability(capabilities, request.ledger.ledgerId);
+      return invokeAppendAuthorized(request.ledger, request.event, request.proof, capability);
     });
+  }
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CAPABILITY SELECTION
+// ───────────────────────────────────────────────────────────────────
+
+/** Pick the one minted capability bound to this ledger's resource, if any. */
+export function selectLedgerCapability(
+  capabilities: readonly FenceCapability[],
+  ledgerId: string,
+): FenceCapability {
+  for (const capability of capabilities) {
+    const fence = resolveFenceCapability(capability);
+    if (
+      fence
+      && fence.resource.kind === ProtectedResourceKinds.LEDGER
+      && fence.resource.components.ledgerId === ledgerId
+    ) {
+      return capability;
+    }
+  }
+  throw new LocksAndFencingError(
+    LocksAndFencingErrorCodes.INVALID_RESOURCE,
+    'mutation',
+    'No fenced capability was minted for this ledger resource',
+    { ledgerId },
+  );
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 3. ONE-SHOT PRODUCTION CONVENIENCE
+// ───────────────────────────────────────────────────────────────────
+
+const DEFAULT_APPEND_FENCE_TTL_MS = 30_000;
+const DEFAULT_APPEND_FENCE_OWNER_ID = 'authorized-ledger-append-fence';
+
+/**
+ * Acquire, use, and release one short-lived fence for a single authorized
+ * append. This is the mechanical replacement for the direct
+ * `ledger.appendAuthorized(event, proof)` call sites the gateway-only
+ * mutation ruling retired: it derives the expected head from the proof's
+ * own recorded prior head, matching how it was authorized, so this does not
+ * change ordinary single-writer append semantics.
+ */
+export async function appendAuthorizedThroughFence(
+  ledger: AppendOnlyLedger,
+  event: EventWritePreflight,
+  proof: GatewayAllowProof,
+): Promise<DurableAppendReceipt> {
+  const coordinator = new FencedLeaseCoordinator({ rootDirectory: ledger.rootDirectory });
+  const writer = new FencedLedgerWriter(coordinator);
+  const resource: ProtectedResourceIdentity = Object.freeze({
+    kind: ProtectedResourceKinds.LEDGER,
+    components: Object.freeze({ ledgerId: ledger.ledgerId }),
+    atomicityDomain: AtomicityDomains.SINGLE_HOST_FILESYSTEM,
+  });
+  const lease = await coordinator.acquire({
+    resource,
+    ownerId: DEFAULT_APPEND_FENCE_OWNER_ID,
+    correlationId: randomUUID(),
+    ttlMs: DEFAULT_APPEND_FENCE_TTL_MS,
+  });
+  try {
+    return await writer.append({
+      lease,
+      ledger,
+      event,
+      proof,
+      expectedHead: Object.freeze({
+        ledgerId: ledger.ledgerId,
+        sequence: proof.decision.prior_head_sequence,
+        recordHash: proof.decision.prior_head_hash,
+      }),
+    });
+  } finally {
+    await coordinator.release(lease).catch(() => undefined);
   }
 }

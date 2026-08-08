@@ -22,6 +22,7 @@ import { dirname, join, resolve } from 'node:path';
 
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
 import { appendUtf8Durable, readUtf8IfExists, writeCanonicalJsonAtomic } from './durable-file.js';
+import { mintFenceCapability } from './fence-capability.js';
 import {
   LocksAndFencingError,
   LocksAndFencingErrorCodes,
@@ -36,6 +37,7 @@ import {
 } from './protected-resource-registry.js';
 
 import type { JsonObject } from '../event-envelope/index.js';
+import type { FenceCapability } from './fence-capability.js';
 import type {
   AcquireLeaseRequest,
   CanonicalProtectedResource,
@@ -468,11 +470,19 @@ export class FencedLeaseCoordinator {
           throw new TypeError('Fenced mutation preparation must return a commit function');
         }
         return await this.#withLeaseMutexes(leases, 0, async () => {
+          const capabilities: FenceCapability[] = [];
           for (const lease of leases) {
             const state = this.#loadState(lease.resource);
             this.#assertCurrentLease(state, lease, 'guard');
+            capabilities.push(mintFenceCapability({
+              resource: lease.resource,
+              fenceToken: lease.fenceToken,
+              reassert: () => {
+                this.#assertCurrentLease(this.#loadState(lease.resource), lease, 'guard');
+              },
+            }));
           }
-          return commit();
+          return commit(Object.freeze(capabilities));
         });
       } catch (error: unknown) {
         this.#recordLeaseFailure(leases[0], error, startedAtMs);

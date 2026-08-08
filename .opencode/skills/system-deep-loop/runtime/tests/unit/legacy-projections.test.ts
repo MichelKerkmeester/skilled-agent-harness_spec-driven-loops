@@ -76,6 +76,7 @@ import type {
 } from '../../lib/legacy-projections/index.js';
 import type { DerivedReplayFingerprint } from '../../lib/replay-fingerprint/index.js';
 import type { TransitionPolicyRegistry } from '../../lib/authorized-ledger/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. FIXTURE TYPES AND CONSTANTS
@@ -193,7 +194,7 @@ async function appendFixture(
     payload === undefined ? {} : { payload },
   );
   const proof = await authorize(harness, event, `projection-request-${index}`);
-  await harness.ledger.appendAuthorized(event, proof);
+  await appendAuthorizedForTest(harness.ledger, event, proof);
 }
 
 function environment(label: string): TestEnvironment {

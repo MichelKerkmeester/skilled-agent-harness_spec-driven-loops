@@ -72,6 +72,7 @@ import type {
   ReplayFingerprintDescriptorCore,
   VerifiedReplayFingerprint,
 } from '../../lib/replay-fingerprint/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. FIXTURES
@@ -565,7 +566,10 @@ describe('request, registry, and blinding boundaries', () => {
       payload,
     }, harness.service.eventRegistry);
     expect((harness.service.ledger as unknown as { append?: unknown }).append).toBeUndefined();
-    await expect(harness.service.ledger.appendAuthorized(event, undefined as never))
+    expect(
+      (harness.service.ledger as unknown as { appendAuthorized?: unknown }).appendAuthorized,
+    ).toBeUndefined();
+    await expect(appendAuthorizedForTest(harness.service.ledger, event, undefined as never))
       .rejects.toMatchObject({ code: AuthorizedLedgerErrorCodes.AUTHORIZATION_REQUIRED });
     expect(await harness.service.ledger.getVerifiedHead()).toMatchObject({ sequence: 1 });
   });

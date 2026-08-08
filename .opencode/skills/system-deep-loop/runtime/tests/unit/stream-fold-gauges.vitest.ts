@@ -67,6 +67,7 @@ import type {
   GaugeReplayOutcome,
   LegacyGaugeSurface,
 } from '../../lib/stream-fold-gauges/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. FIXTURE CONTRACTS
@@ -413,7 +414,7 @@ async function authorizeAndAppend(
   const result = await harness.gateway.authorize(await requestFor(harness, event, requestId));
   expect(result.verdict).toBe('allow');
   if (result.verdict !== 'allow') throw new Error(`Expected allow, received ${result.reasonCode}`);
-  await harness.ledger.appendAuthorized(event, result.proof);
+  await appendAuthorizedForTest(harness.ledger, event, result.proof);
   return result.proof;
 }
 

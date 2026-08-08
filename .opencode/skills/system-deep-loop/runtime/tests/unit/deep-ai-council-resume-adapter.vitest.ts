@@ -123,6 +123,7 @@ import type {
 } from '../../lib/receipts-and-effect-recovery/index.js';
 import type { ReplayExecutionInput } from '../../lib/replay-fingerprint/index.js';
 import type { SealedArtifactReference } from '../../lib/sealed-reference-artifacts/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 type ReplayProjection = DeepAiCouncilProjectionState & JsonObject;
 
@@ -625,7 +626,7 @@ async function authorizedLedger(events: readonly DeepAiCouncilLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected fixture authorization');
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,
@@ -1404,7 +1405,7 @@ async function appendEffectEvent(
   );
   const authorization = await harness.effectGateway.authorize(request);
   if (authorization.verdict !== 'allow') throw new Error('Effect fixture denied');
-  await harness.effectLedger.appendAuthorized(
+  await appendAuthorizedForTest(harness.effectLedger, 
     prepared,
     authorization.proof,
   );
@@ -1460,7 +1461,7 @@ async function appendCouncilHistoryProbe(
   if (authorization.verdict !== 'allow') {
     throw new Error('Council history probe authorization was denied');
   }
-  await harness.scenario.ledger.appendAuthorized(prepared, authorization.proof);
+  await appendAuthorizedForTest(harness.scenario.ledger, prepared, authorization.proof);
 }
 
 async function appendForgedConfirmation(

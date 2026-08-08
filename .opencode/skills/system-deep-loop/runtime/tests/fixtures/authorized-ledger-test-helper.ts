@@ -58,13 +58,14 @@ export async function appendAuthorizedForTest(
   }
 }
 
-/** Exercise the raw ledger primitive with no fence at all, bypassing the guarded writer. */
-export function appendAuthorizedWithoutFenceForTest(
-  ledger: AppendOnlyLedger,
-  event: EventWritePreflight,
-  proof: GatewayAllowProof,
-): Promise<DurableAppendReceipt> {
-  return ledger.appendAuthorized(event, proof);
+/**
+ * Confirm the raw primitive carries no reachable, callable append surface:
+ * `#appendAuthorized` is a true private class field, so bracket access and a
+ * type-erasing cast both resolve to `undefined` rather than the method.
+ */
+export function hasNoDirectAppendSurface(ledger: AppendOnlyLedger): boolean {
+  const widened = ledger as unknown as Record<string, unknown>;
+  return widened.appendAuthorized === undefined && widened['appendAuthorized'] === undefined;
 }
 
 /** Append through the guarded writer using a previously acquired lease, for stale-fence tests. */

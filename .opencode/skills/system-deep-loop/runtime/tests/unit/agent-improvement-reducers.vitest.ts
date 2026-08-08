@@ -59,6 +59,7 @@ import type {
   EventWritePreflight,
   JsonObject,
 } from '../../lib/event-envelope/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. FIXTURE HELPERS
@@ -830,7 +831,7 @@ async function verifiedRunStarted(): Promise<{
     idempotencyKey: envelope.idempotency_key,
   }, harness.registry);
   const proof = await authorize(harness, prepared);
-  await harness.ledger.appendAuthorized(prepared, proof);
+  await appendAuthorizedForTest(harness.ledger, prepared, proof);
   const verified = await harness.ledger.readVerifiedEvents();
   const first = verified[0];
   if (first === undefined) throw new Error('Expected verified event');

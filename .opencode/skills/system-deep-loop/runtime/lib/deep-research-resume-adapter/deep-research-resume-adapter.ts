@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import {
+  durableReceipt,
   rebuildProjection,
 } from '../authorized-ledger/index.js';
 import {
@@ -10,6 +11,7 @@ import {
   isDeepResearchEventStem,
   prepareDeepResearchEvent,
 } from '../deep-research-ledger-schema/index.js';
+import { appendAuthorizedThroughFence } from '../locks-and-fencing/index.js';
 import {
   DEEP_RESEARCH_PROJECTION_CODEC_VERSION,
   DEEP_RESEARCH_PROJECTION_SCHEMA_VERSION,
@@ -1201,7 +1203,15 @@ export class DeepResearchResumeAdapter {
     if (authorization.verdict !== 'allow') {
       throw new TypeError(`Resume decision authorization was denied: ${authorization.reasonCode}`);
     }
-    const appendReceipt = await this.#options.ledger.appendAuthorized(prepared, authorization.proof);
+    if (existing.length === 1 && existing[0].event.stored.digest !== prepared.canonicalDigest) {
+      throw new TypeError('Resume idempotency key is already bound to different semantic bytes');
+    }
+    // A committed match never re-enters the fenced writer: the receipt is
+    // rebuilt from the already-durable frame instead of racing a stale
+    // recorded prior head through the fence's expected-head check.
+    const appendReceipt = existing.length === 1
+      ? durableReceipt(existing[0].frame)
+      : await appendAuthorizedThroughFence(this.#options.ledger, prepared, authorization.proof);
     let dispatchedBranches = 0;
     if (existing.length === 0
       && this.#options.enableDarkDispatch === true

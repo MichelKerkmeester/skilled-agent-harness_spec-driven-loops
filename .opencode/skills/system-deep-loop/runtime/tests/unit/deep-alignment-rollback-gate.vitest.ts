@@ -159,6 +159,7 @@ import type {
   RollbackLaneState,
 } from '../../lib/rollback-drills/index.js';
 import type { ParityCertificateBindings, ShadowParityCasePass } from '../../lib/shadow-parity/index.js';
+import { appendAuthorizedForTest } from '../fixtures/authorized-ledger-test-helper.js';
 
 type ReplayProjection = DeepAlignmentProjectionState & JsonObject;
 
@@ -504,7 +505,7 @@ async function authorizedLedger(events: readonly DeepAlignmentLedgerEvent[]) {
     );
     const authorization = await gateway.authorize(request);
     if (authorization.verdict !== 'allow') throw new Error('Expected certificate authorization');
-    await ledger.appendAuthorized(prepared, authorization.proof);
+    await appendAuthorizedForTest(ledger, prepared, authorization.proof);
   }
   const coordinator = new FencedLeaseCoordinator({ rootDirectory, operationTimeoutMs: 5_000 });
   const ledgerLease = coordinator.acquire({
