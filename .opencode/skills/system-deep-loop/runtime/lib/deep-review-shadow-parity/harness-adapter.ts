@@ -23,6 +23,7 @@ import {
 import {
   DEEP_REVIEW_PROJECTION_SCHEMA_VERSION,
   DEEP_REVIEW_REDUCER_VERSION,
+  DEEP_REVIEW_SHARED_REVIEW_LOOP_CONFIGURATION,
   deepReviewProjectionIntegrityDigest,
   foldDeepReviewEvents,
 } from '../deep-review-reducers/index.js';
@@ -82,6 +83,7 @@ import type {
   DeepReviewLedgerEvent,
 } from '../deep-review-ledger-schema/index.js';
 import type {
+  DeepReviewArtifactRecord,
   DeepReviewProjectionState,
 } from '../deep-review-reducers/index.js';
 import type {
@@ -131,11 +133,6 @@ import type {
   DeepReviewParitySuiteResult,
   DeepReviewPathEvidence,
   DeepReviewProjectionArtifact,
-  DeepReviewProjectionBranch,
-  DeepReviewProjectionClaim,
-  DeepReviewProjectionEvidence,
-  DeepReviewProjectionSource,
-  DeepReviewProjectionSupersession,
   DeepReviewResumeParityEvidence,
   DeepReviewTerminalDecision,
   DeepReviewVolatilityAllowance,
@@ -536,102 +533,6 @@ export async function verifyDeepReviewParityModeCertificate<
 // 3. INDEPENDENT LEGACY AND LEDGER PROJECTIONS
 // ───────────────────────────────────────────────────────────────────
 
-function projectionArtifactFromEvent(
-  event: DeepReviewLedgerEvent,
-): DeepReviewProjectionArtifact | null {
-  switch (event.payload.stem) {
-    case 'deep_review.source_captured':
-      return {
-        artifactKind: 'source-capture',
-        digest: event.payload.data.contentDigest,
-        validityState: event.payload.data.instructionScanResult === 'flagged'
-          ? 'invalid'
-          : 'valid',
-        receiptRefs: [event.payload.data.retrievalReceiptRef],
-      };
-    case 'deep_review.iteration_completed':
-      return {
-        artifactKind: 'iteration-output',
-        digest: event.payload.data.outputDigest,
-        validityState: 'pending',
-        receiptRefs: [],
-      };
-    case 'deep_review.synthesis_committed':
-      return {
-        artifactKind: 'research-report',
-        digest: event.payload.data.reportDigest,
-        validityState: 'valid',
-        receiptRefs: [event.payload.data.synthesisReceiptRef],
-      };
-    case 'deep_review.memory_save_requested':
-      return {
-        artifactKind: 'continuity-save',
-        digest: event.payload.data.continuityPayloadDigest,
-        validityState: 'pending',
-        receiptRefs: [],
-      };
-    case 'deep_review.memory_save_completed':
-      return {
-        artifactKind: 'continuity-save',
-        digest: event.payload.data.continuityFingerprint,
-        validityState: event.payload.data.persistenceReceiptRefs.length > 0
-          ? 'valid'
-          : 'unknown',
-        receiptRefs: sortedUnique(event.payload.data.persistenceReceiptRefs),
-      };
-    case 'deep_review.memory_save_failed':
-      return {
-        artifactKind: 'continuity-save',
-        digest: event.payload.data.continuityPayloadDigest,
-        validityState: 'invalid',
-        receiptRefs: [],
-      };
-    default:
-      return null;
-  }
-}
-
-function latestSynthesis(events: readonly DeepReviewLedgerEvent[]): Readonly<{
-  inputDigest: string | null;
-  reportDigest: string | null;
-}> {
-  let inputDigest: string | null = null;
-  let reportDigest: string | null = null;
-  for (const event of events) {
-    if (
-      event.payload.stem === 'deep_review.synthesis_started'
-      || event.payload.stem === 'deep_review.synthesis_committed'
-    ) {
-      inputDigest = event.payload.data.selectedClaimVersionSetDigest;
-      if (event.payload.stem === 'deep_review.synthesis_committed') {
-        reportDigest = event.payload.data.reportDigest;
-      }
-    }
-  }
-  return Object.freeze({ inputDigest, reportDigest });
-}
-
-function latestMemorySave(events: readonly DeepReviewLedgerEvent[]): Readonly<{
-  state: DeepReviewParityProjection['memorySaveState'];
-  digest: string | null;
-}> {
-  let state: DeepReviewParityProjection['memorySaveState'] = 'none';
-  let memoryDigest: string | null = null;
-  for (const event of events) {
-    if (event.payload.stem === 'deep_review.memory_save_requested') {
-      state = 'requested';
-      memoryDigest = event.payload.data.continuityPayloadDigest;
-    } else if (event.payload.stem === 'deep_review.memory_save_completed') {
-      state = 'completed';
-      memoryDigest = event.payload.data.continuityFingerprint;
-    } else if (event.payload.stem === 'deep_review.memory_save_failed') {
-      state = 'failed';
-      memoryDigest = event.payload.data.continuityPayloadDigest;
-    }
-  }
-  return Object.freeze({ state, digest: memoryDigest });
-}
-
 function resumeDecisionDigest(
   evidence: DeepReviewResumeParityEvidence | null,
   path: 'ledger' | 'legacy',
@@ -894,66 +795,6 @@ export async function driveDeepReviewResumeParity(input: Readonly<{
   });
 }
 
-function directConvergence(
-  events: readonly DeepReviewLedgerEvent[],
-  evidence: readonly DeepReviewProjectionEvidence[],
-  claims: readonly DeepReviewProjectionClaim[],
-  sources: readonly DeepReviewProjectionSource[],
-): Readonly<{
-  decision: DeepReviewParityProjection['convergenceDecision'];
-  outcome: DeepReviewParityProjection['convergenceOutcome'];
-}> {
-  const sourceIds = new Set(sources.map((source) => source.sourceVersionId));
-  const admitted = new Set(evidence.filter((entry) => (
-    entry.disposition === 'admit'
-    && entry.contaminationStatus === 'clean'
-    && sourceIds.has(entry.sourceVersionId)
-  )).map((entry) => entry.evidenceId));
-  const hasTrustedClaim = claims.some((claim) => (
-    claim.claimStatus === 'supported'
-    && claim.evidenceIds.some((evidenceId) => admitted.has(evidenceId))
-  ));
-  const quarantined = sources.some((source) => source.instructionScanResult === 'flagged')
-    || evidence.some((entry) => (
-      entry.disposition === 'quarantine'
-      || entry.contaminationStatus === 'contaminated'
-      || entry.contaminationStatus === 'suspected'
-    ));
-  const convergenceEvents = events.filter((event) => (
-    event.payload.stem === 'deep_review.convergence_evaluated'
-    || event.payload.stem === 'deep_review.convergence_blocked'
-  ));
-  const latest = convergenceEvents.at(-1);
-  if (!latest || (
-    latest.payload.stem !== 'deep_review.convergence_evaluated'
-    && latest.payload.stem !== 'deep_review.convergence_blocked'
-  )) {
-    return Object.freeze({
-      decision: null,
-      outcome: quarantined ? 'quarantined' : 'active',
-    });
-  }
-  const gates = latest.payload.data.qualityGateResults;
-  const canStop = hasTrustedClaim
-    && !quarantined
-    && gates.sourceDiversity === 'pass'
-    && gates.contradictionResolution === 'pass'
-    && gates.citationIntegrity === 'pass';
-  const decision = latest.payload.data.decision;
-  const outcome = quarantined
-    ? 'quarantined'
-    : decision === 'converged' && !canStop
-      ? 'blocked'
-      : decision === 'converged'
-        ? 'converged'
-        : decision === 'incomplete'
-          ? 'incomplete'
-          : decision === 'blocked'
-            ? 'blocked'
-            : 'active';
-  return Object.freeze({ decision, outcome });
-}
-
 function directTerminalDecision(
   events: readonly DeepReviewLedgerEvent[],
   convergenceOutcome: DeepReviewParityProjection['convergenceOutcome'],
@@ -970,6 +811,39 @@ function directTerminalDecision(
   return 'active';
 }
 
+const LEGACY_HARD_VETO_SEPARATORS = '-._:/@';
+
+/** Reimplements the published hard-veto classification independently: it never
+ *  calls the reducer's own `isHardVetoClass`, so a defect confined to that
+ *  helper stays visible instead of being replayed identically on both paths. */
+function legacyIsHardVetoClass(findingClass: string): boolean {
+  const normalized = findingClass.toLowerCase();
+  return DEEP_REVIEW_SHARED_REVIEW_LOOP_CONFIGURATION.hardVetoClasses.some((veto) => (
+    normalized === veto
+    || (normalized.startsWith(veto)
+      && LEGACY_HARD_VETO_SEPARATORS.includes(normalized.charAt(veto.length)))
+  ));
+}
+
+/** Reimplements the published presentation-severity rule independently: it never
+ *  calls the reducer's own `presentationSeverity` helper, and it never trusts a
+ *  self-reported severity field off the raw event. */
+function legacyPresentationSeverity(finding: Readonly<{
+  lifecycle: 'candidate' | 'adjudicated' | 'accepted' | 'dismissed' | 'fixed';
+  adjudicationOutcome: 'accepted' | 'deferred' | 'disproved' | 'rejected' | null;
+  hardVeto: boolean;
+  impact: number;
+  confidence: number;
+}>): 'none' | 'P0' | 'P1' | 'P2' {
+  if (finding.lifecycle === 'dismissed' || finding.lifecycle === 'fixed'
+    || finding.adjudicationOutcome === 'disproved'
+    || finding.adjudicationOutcome === 'rejected') return 'none';
+  if (finding.hardVeto && finding.lifecycle === 'accepted') return 'P0';
+  if (finding.lifecycle !== 'accepted') return 'none';
+  if (finding.impact >= 0.8 && finding.confidence >= 0.6) return 'P1';
+  return 'P2';
+}
+
 function legacyReviewProjection(
   events: readonly DeepReviewLedgerEvent[],
   resumeEvidence: DeepReviewResumeParityEvidence | null,
@@ -980,14 +854,19 @@ function legacyReviewProjection(
     orderedDimensionIds: [] as string[],
     passes: [] as DeepReviewParityProjection['passes'][number][],
     evidence: [] as DeepReviewParityProjection['evidence'][number][],
-    findings: [] as DeepReviewParityProjection['findings'][number][],
+    // Findings carry two working-only fields (hardVeto, adjudicationOutcome)
+    // during the scan; they are stripped before the projection is frozen.
+    findings: [] as (DeepReviewParityProjection['findings'][number] & {
+      hardVeto: boolean;
+      adjudicationOutcome: 'accepted' | 'deferred' | 'disproved' | 'rejected' | null;
+    })[],
     lineage: [] as DeepReviewParityProjection['lineage'][number][],
     activeFindingIds: [] as string[],
     hardVetoFindingIds: [] as string[],
     reportOrder: [] as string[],
     artifacts: [] as DeepReviewProjectionArtifact[],
   };
-  const candidates = new Map<string, DeepReviewParityProjection['findings'][number]>();
+  const candidates = new Map<string, (typeof projection.findings)[number]>();
   for (const event of events) {
     projection.runId = event.payload.scope.runId;
     projection.sessionId = event.payload.scope.sessionId;
@@ -1026,7 +905,7 @@ function legacyReviewProjection(
       }
       case 'deep_review.finding_candidate_emitted': {
         const entry = {
-          findingId: event.payload.scope.candidateId,
+          findingId: `candidate:${event.payload.scope.candidateId}`,
           candidateId: event.payload.scope.candidateId,
           dimensionId: event.payload.scope.dimensionId,
           claimDigest: event.payload.data.claimTextDigest,
@@ -1039,8 +918,23 @@ function legacyReviewProjection(
           evidenceScope: event.payload.data.evidenceScope,
           lifecycle: 'candidate' as const,
           presentationSeverity: 'none' as const,
+          hardVeto: legacyIsHardVetoClass(event.payload.data.findingClass),
+          adjudicationOutcome: null,
         };
         candidates.set(event.payload.scope.candidateId, entry);
+        // The reducer tracks a finding record from candidate emission onward,
+        // not only once it is adjudicated.
+        const existingCandidateIndex = projection.findings.findIndex(
+          (finding) => finding.candidateId === entry.candidateId,
+        );
+        if (existingCandidateIndex >= 0) projection.findings[existingCandidateIndex] = entry;
+        else projection.findings.push(entry);
+        projection.artifacts.push({
+          artifactKind: 'raw-finding',
+          digest: entry.claimDigest,
+          validityState: 'valid',
+          receiptRefs: [],
+        });
         break;
       }
       case 'deep_review.evidence_observed':
@@ -1058,7 +952,9 @@ function legacyReviewProjection(
         if (index >= 0) projection.evidence[index] = entry;
         else projection.evidence.push(entry);
         projection.artifacts.push({
-          artifactKind: 'evidence',
+          artifactKind: event.payload.data.observationKind === 'test-result'
+            ? 'verification-output'
+            : 'evidence',
           digest: entry.contentDigest,
           validityState: entry.relevanceStatus === 'irrelevant' ? 'invalid' : 'valid',
           receiptRefs: [],
@@ -1068,6 +964,12 @@ function legacyReviewProjection(
       case 'deep_review.claim_adjudication_recorded': {
         const candidate = candidates.get(event.payload.scope.candidateId);
         if (candidate === undefined) break;
+        const lifecycle = event.payload.data.adjudicationOutcome === 'accepted'
+          ? 'accepted' as const
+          : event.payload.data.adjudicationOutcome === 'disproved'
+            || event.payload.data.adjudicationOutcome === 'rejected'
+            ? 'dismissed' as const
+            : 'adjudicated' as const;
         const entry = {
           ...candidate,
           findingId: event.payload.scope.findingId,
@@ -1075,19 +977,22 @@ function legacyReviewProjection(
           impact: event.payload.data.impact,
           confidence: event.payload.data.confidence,
           evidenceRefs: sortedUnique(event.payload.data.evidenceRefs),
-          lifecycle: event.payload.data.adjudicationOutcome === 'accepted'
-            ? 'accepted' as const
-            : event.payload.data.adjudicationOutcome === 'disproved'
-              || event.payload.data.adjudicationOutcome === 'rejected'
-              ? 'dismissed' as const
-              : 'adjudicated' as const,
-          presentationSeverity: event.payload.data.finalSeverity,
+          lifecycle,
+          adjudicationOutcome: event.payload.data.adjudicationOutcome,
         };
+        entry.presentationSeverity = legacyPresentationSeverity(entry);
+        candidates.set(event.payload.scope.candidateId, entry);
         const index = projection.findings.findIndex(
-          (finding) => finding.findingId === entry.findingId,
+          (finding) => finding.candidateId === entry.candidateId,
         );
         if (index >= 0) projection.findings[index] = entry;
         else projection.findings.push(entry);
+        projection.artifacts.push({
+          artifactKind: 'adjudication',
+          digest: entry.claimDigest,
+          validityState: 'valid',
+          receiptRefs: [],
+        });
         break;
       }
       case 'deep_review.finding_lineage_recorded':
@@ -1102,11 +1007,12 @@ function legacyReviewProjection(
           (finding) => finding.findingId === event.payload.scope.findingId,
         );
         if (index >= 0) {
-          projection.findings[index] = {
+          const next = {
             ...projection.findings[index],
             lifecycle: event.payload.data.currentState,
-            presentationSeverity: event.payload.data.currentSeverity,
           };
+          next.presentationSeverity = legacyPresentationSeverity(next);
+          projection.findings[index] = next;
         }
         break;
       }
@@ -1123,12 +1029,14 @@ function legacyReviewProjection(
         break;
       case 'deep_review.review_report_committed':
         projection.reportDigest = event.payload.data.reportDigest;
-        projection.reportOrder = [...event.payload.data.sectionManifest.sectionIds];
+        // Section ordering is not part of this comparator: see the module-level
+        // note on fields the typed reducer projection cannot recover.
+        projection.reportOrder = [];
         projection.artifacts.push({
           artifactKind: 'review-report',
           digest: event.payload.data.reportDigest,
           validityState: 'valid',
-          receiptRefs: [event.payload.data.reportReceiptRef],
+          receiptRefs: [],
         });
         break;
       case 'deep_review.continuity_save_requested':
@@ -1142,7 +1050,7 @@ function legacyReviewProjection(
           artifactKind: 'continuity-save',
           digest: event.payload.data.continuityFingerprint,
           validityState: 'valid',
-          receiptRefs: sortedUnique(event.payload.data.persistenceReceiptRefs),
+          receiptRefs: [],
         });
         break;
       case 'deep_review.continuity_save_failed':
@@ -1164,7 +1072,9 @@ function legacyReviewProjection(
     (finding) => finding.lifecycle === 'accepted' || finding.lifecycle === 'adjudicated',
   ).map((finding) => finding.findingId));
   projection.hardVetoFindingIds = sortedUnique(projection.findings.filter(
-    (finding) => finding.presentationSeverity === 'P0',
+    (finding) => finding.hardVeto
+      && finding.lifecycle !== 'dismissed'
+      && finding.lifecycle !== 'fixed',
   ).map((finding) => finding.findingId));
   projection.artifacts.sort((left, right) => (
     left.artifactKind.localeCompare(right.artifactKind)
@@ -1175,187 +1085,23 @@ function legacyReviewProjection(
     event.payload.stem === 'deep_review.run_resumed'
     || event.payload.stem === 'deep_review.run_restarted'
   )) ? resumeDecisionDigest(resumeEvidence, 'legacy') : null;
-  return Object.freeze(projection);
+  return Object.freeze({
+    ...projection,
+    findings: Object.freeze(projection.findings.map(({
+      hardVeto, adjudicationOutcome, ...canonicalFinding
+    }) => Object.freeze(canonicalFinding))),
+  });
 }
 
+/** The independent legacy-side derivation: a from-scratch scan of the raw event
+ *  log that never imports the reducer fold, so a defect confined to the
+ *  reducer's own field computation stays visible to the ledger-side comparison
+ *  instead of being replayed identically on both paths. */
 function legacyProjection(
   events: readonly DeepReviewLedgerEvent[],
   resumeEvidence: DeepReviewResumeParityEvidence | null,
 ): DeepReviewParityProjection {
   return legacyReviewProjection(events, resumeEvidence);
-  /* c8 ignore start */
-  let runId: string | null = null;
-  let lineageId: string | null = null;
-  let generation = 0;
-  const questionIds: string[] = [];
-  const branches = new Map<string, DeepReviewProjectionBranch>();
-  const sources = new Map<string, DeepReviewProjectionSource>();
-  const evidence = new Map<string, DeepReviewProjectionEvidence>();
-  const claims = new Map<string, DeepReviewProjectionClaim>();
-  const supersessions: DeepReviewProjectionSupersession[] = [];
-  const activeClaims = new Set<string>();
-  const contradictions = new Set<string>();
-  let nextFocusId: string | null = null;
-  const artifacts: DeepReviewProjectionArtifact[] = [];
-
-  for (const event of events) {
-    runId = event.payload.scope.runId;
-    lineageId = event.payload.scope.lineageId;
-    switch (event.payload.stem) {
-      case 'deep_review.run_initialized':
-      case 'deep_review.run_resumed':
-      case 'deep_review.run_restarted':
-        generation = event.payload.data.generation;
-        break;
-      case 'deep_review.question_registered':
-        questionIds.push(event.payload.scope.questionId);
-        break;
-      case 'deep_review.branch_planned':
-      case 'deep_review.branch_selected':
-        branches.set(event.payload.scope.branchId, {
-          questionId: event.payload.scope.questionId,
-          branchId: event.payload.scope.branchId,
-          lifecycle: event.payload.stem === 'deep_review.branch_selected'
-            ? 'selected'
-            : 'planned',
-        });
-        break;
-      case 'deep_review.source_captured':
-        sources.set(event.payload.scope.sourceVersionId, {
-          sourceVersionId: event.payload.scope.sourceVersionId,
-          contentDigest: event.payload.data.contentDigest,
-          parentSourceVersionId: event.payload.data.parentSourceVersionId,
-          instructionScanResult: event.payload.data.instructionScanResult,
-        });
-        break;
-      case 'deep_review.evidence_admission_decided':
-        evidence.set(event.payload.scope.evidenceId, {
-          evidenceId: event.payload.scope.evidenceId,
-          sourceVersionId: event.payload.scope.sourceVersionId,
-          disposition: event.payload.data.disposition,
-          contaminationStatus: event.payload.data.contaminationStatus,
-        });
-        break;
-      case 'deep_review.claim_asserted':
-        claims.set(event.payload.scope.claimVersionId, {
-          claimId: event.payload.data.claimId,
-          claimVersionId: event.payload.scope.claimVersionId,
-          relation: 'asserts',
-          evidenceIds: sortedUnique(event.payload.data.evidenceIds),
-          claimStatus: event.payload.data.claimStatus,
-        });
-        activeClaims.add(event.payload.scope.claimVersionId);
-        break;
-      case 'deep_review.claim_relation_recorded':
-        claims.set(event.payload.scope.claimVersionId, {
-          claimId: event.payload.data.claimId,
-          claimVersionId: event.payload.scope.claimVersionId,
-          relation: event.payload.data.relation,
-          evidenceIds: sortedUnique(event.payload.data.evidenceIds),
-          claimStatus: event.payload.data.claimStatus,
-        });
-        activeClaims.add(event.payload.scope.claimVersionId);
-        if (event.payload.data.relation === 'contradicts') {
-          contradictions.add(event.payload.scope.claimVersionId);
-          contradictions.add(event.payload.data.relatedClaimVersionId);
-        }
-        break;
-      case 'deep_review.claim_superseded':
-        supersessions.push({
-          priorClaimVersionId: event.payload.data.priorClaimVersionId,
-          successorClaimVersionId: event.payload.data.successorClaimVersionId,
-        });
-        activeClaims.delete(event.payload.data.priorClaimVersionId);
-        activeClaims.add(event.payload.data.successorClaimVersionId);
-        break;
-      case 'deep_review.next_focus_selected':
-        nextFocusId = event.payload.data.chosenBranchId
-          ?? event.payload.data.chosenQuestionId;
-        break;
-      default:
-        break;
-    }
-    const artifact = projectionArtifactFromEvent(event);
-    if (artifact !== null) {
-      if (
-        event.payload.stem === 'deep_review.source_captured'
-        && event.payload.data.parentSourceVersionId !== null
-      ) {
-        const parent = sources.get(event.payload.data.parentSourceVersionId);
-        if (parent !== undefined) {
-          const parentIndex = artifacts.findIndex((entry) => (
-            entry.artifactKind === 'source-capture'
-            && entry.digest === parent.contentDigest
-          ));
-          if (parentIndex >= 0) {
-            artifacts[parentIndex] = {
-              ...artifacts[parentIndex],
-              validityState: 'invalid',
-            };
-          }
-        }
-      }
-      if (
-        artifact.artifactKind === 'continuity-save'
-        && event.payload.stem !== 'deep_review.memory_save_requested'
-      ) {
-        const priorIndex = artifacts.map((entry) => entry.artifactKind)
-          .lastIndexOf('continuity-save');
-        if (priorIndex >= 0) {
-          artifacts[priorIndex] = {
-            ...artifacts[priorIndex],
-            validityState: 'invalid',
-          };
-        }
-      }
-      artifacts.push(artifact);
-    }
-  }
-  const sourceList = [...sources.values()].sort(
-    (left, right) => left.sourceVersionId.localeCompare(right.sourceVersionId),
-  );
-  const evidenceList = [...evidence.values()].sort(
-    (left, right) => left.evidenceId.localeCompare(right.evidenceId),
-  );
-  const claimList = [...claims.values()].sort(
-    (left, right) => left.claimVersionId.localeCompare(right.claimVersionId),
-  );
-  const convergence = directConvergence(events, evidenceList, claimList, sourceList);
-  const synthesis = latestSynthesis(events);
-  const memory = latestMemorySave(events);
-  return Object.freeze({
-    runId,
-    lineageId,
-    generation,
-    questionIds: Object.freeze(sortedUnique(questionIds)),
-    branches: Object.freeze([...branches.values()].sort(
-      (left, right) => left.branchId.localeCompare(right.branchId),
-    )),
-    sources: Object.freeze(sourceList),
-    evidence: Object.freeze(evidenceList),
-    claims: Object.freeze(claimList),
-    supersessions: Object.freeze(supersessions.sort((left, right) => (
-      left.priorClaimVersionId.localeCompare(right.priorClaimVersionId)
-    ))),
-    activeClaimVersionIds: Object.freeze(sortedUnique([...activeClaims])),
-    contradictionClaimVersionIds: Object.freeze(sortedUnique([...contradictions])),
-    nextFocusId,
-    convergenceDecision: convergence.decision,
-    convergenceOutcome: convergence.outcome,
-    synthesisInputDigest: synthesis.inputDigest,
-    reportDigest: synthesis.reportDigest,
-    memorySaveState: memory.state,
-    memorySaveDigest: memory.digest,
-    artifacts: Object.freeze(artifacts.sort((left, right) => (
-      left.artifactKind.localeCompare(right.artifactKind)
-      || left.digest.localeCompare(right.digest)
-    ))),
-    terminalDecision: directTerminalDecision(events, convergence.outcome),
-    resumeDecisionDigest: events.some((event) => (
-      event.payload.stem === 'deep_review.run_resumed'
-      || event.payload.stem === 'deep_review.run_restarted'
-    )) ? resumeDecisionDigest(resumeEvidence, 'legacy') : null,
-  });
 }
 
 const LegacyResumeComponents = Object.freeze([
@@ -1617,124 +1363,206 @@ export function createDeepReviewLegacyResumeOracle(
   });
 }
 
-function artifactViewFromProjection(
-  projection: DeepReviewProjectionState,
-): DeepReviewProjectionArtifact[] {
-  return projection.artifactIndex.artifacts.map((artifact) => ({
+// The reducer's typed artifact record carries no receipt-reference field and no
+// review-report section ordering; both are therefore scoped out of this
+// comparator (normalized identically on the legacy and ledger sides below)
+// rather than silently faked from the raw event log on only one side.
+
+function reducerArtifactValidityState(
+  availability: DeepReviewArtifactRecord['availability'],
+): DeepReviewProjectionArtifact['validityState'] {
+  switch (availability) {
+    case 'available': return 'valid';
+    case 'pending': return 'pending';
+    case 'unavailable':
+    case 'superseded':
+      return 'invalid';
+  }
+}
+
+function reducerArtifactEntry(
+  artifact: DeepReviewArtifactRecord,
+): DeepReviewProjectionArtifact {
+  return Object.freeze({
     artifactKind: artifact.artifactKind,
-    digest: artifact.digest,
-    validityState: artifact.validityState === 'unavailable'
-      || artifact.validityState === 'superseded'
-      ? 'invalid'
-      : artifact.validityState,
-    receiptRefs: sortedUnique(artifact.receiptRefs),
+    digest: artifact.contentDigest,
+    validityState: reducerArtifactValidityState(artifact.availability),
+    receiptRefs: Object.freeze([]),
+  });
+}
+
+function reducerEventSequence(
+  state: DeepReviewProjectionState,
+  eventId: string,
+): number {
+  return state.seenEvents.find((entry) => entry.eventId === eventId)?.streamSequence ?? -1;
+}
+
+/** The most recently produced artifact of a kind, by the reducer's own applied order. */
+function reducerLatestArtifactOfKind(
+  state: DeepReviewProjectionState,
+  kind: DeepReviewArtifactRecord['artifactKind'],
+): DeepReviewArtifactRecord | null {
+  const matches = state.artifactIndex.artifacts.filter(
+    (artifact) => artifact.artifactKind === kind,
+  );
+  if (matches.length === 0) return null;
+  return [...matches].sort((left, right) => (
+    reducerEventSequence(state, left.producerEventId)
+      - reducerEventSequence(state, right.producerEventId)
+  )).at(-1) ?? null;
+}
+
+function reducerContinuitySaveState(
+  availability: DeepReviewArtifactRecord['availability'],
+): DeepReviewParityProjection['continuitySaveState'] {
+  switch (availability) {
+    case 'pending': return 'requested';
+    case 'available': return 'completed';
+    case 'unavailable': return 'failed';
+    case 'superseded':
+      throw new TypeError(
+        'The most recently produced continuity-save artifact cannot be superseded',
+      );
+  }
+}
+
+/** The reducer's own run-completion transition when the run reached one,
+ *  otherwise the same convergence-outcome fallback the legacy scan uses. */
+function reducerTerminalDecision(
+  state: DeepReviewProjectionState,
+  convergenceOutcome: DeepReviewParityProjection['convergenceOutcome'],
+): DeepReviewTerminalDecision {
+  const completedTransition = state.status.provenance.find(
+    (transition) => transition.producerStem === 'deep_review.run_completed',
+  );
+  if (completedTransition !== undefined) {
+    if (completedTransition.state === 'complete') return 'completed';
+    if (completedTransition.state === 'incomplete') return 'incomplete';
+    return 'blocked';
+  }
+  return convergenceOutcome === 'active' ? 'active' : convergenceOutcome;
+}
+
+/**
+ * Derive the parity projection from the reducer's own typed fold output only.
+ *
+ * Every field is read off the typed collections `foldDeepReviewEvents`
+ * persisted; nothing here re-reads the raw event stream, so a defect confined
+ * to the reducer's own field computation stays visible instead of being
+ * silently re-derived away by a second scan of the same events.
+ */
+function deepReviewProjectionFromReducerState(
+  state: DeepReviewProjectionState,
+  resumeEvidence: DeepReviewResumeParityEvidence | null,
+  path: 'ledger',
+): DeepReviewParityProjection {
+  // The reducer keeps one coverage-cell record per lifecycle event (started,
+  // then completed); the comparator projection tracks the latest status per
+  // (iteration, dimension, pass) triple, so only the most recently produced
+  // record for each triple survives here.
+  const latestPassByTriple = new Map<string, DeepReviewProjectionState['reviewLoop']['passes'][number]>();
+  for (const pass of state.reviewLoop.passes) {
+    const key = `${pass.iterationId}::${pass.dimensionId}::${pass.passNumber}`;
+    const existing = latestPassByTriple.get(key);
+    if (
+      existing === undefined
+      || reducerEventSequence(state, pass.producerEventId)
+        > reducerEventSequence(state, existing.producerEventId)
+    ) {
+      latestPassByTriple.set(key, pass);
+    }
+  }
+  const passes = [...latestPassByTriple.values()].map((pass) => ({
+    iterationId: pass.iterationId,
+    dimensionId: pass.dimensionId,
+    passNumber: pass.passNumber,
+    status: pass.status,
+    filesReviewed: Object.freeze(sortedUnique(pass.filesReviewed)),
+    searchCoverageDigest: pass.searchCoverageDigest,
   })).sort((left, right) => (
-    left.artifactKind.localeCompare(right.artifactKind)
-    || left.digest.localeCompare(right.digest)
+    left.passNumber - right.passNumber || left.dimensionId.localeCompare(right.dimensionId)
   ));
+  const evidence = state.findingLedger.evidence.map((entry) => ({
+    evidenceId: entry.evidenceId,
+    candidateId: entry.candidateId,
+    contentDigest: entry.contentDigest,
+    relevanceStatus: entry.relevanceStatus,
+    stabilityStatus: entry.stabilityStatus,
+  })).sort((left, right) => left.evidenceId.localeCompare(right.evidenceId));
+  const findings = state.findingLedger.findings.map((finding) => ({
+    findingId: finding.findingId,
+    candidateId: finding.candidateId,
+    dimensionId: finding.dimensionId,
+    claimDigest: finding.claimDigest,
+    findingClass: finding.findingClass,
+    impact: finding.impact,
+    confidence: finding.confidence,
+    reachability: finding.reachability,
+    exploitability: finding.exploitability,
+    evidenceRefs: Object.freeze(sortedUnique(finding.evidenceRefs)),
+    evidenceScope: finding.evidenceScope,
+    lifecycle: finding.lifecycle,
+    presentationSeverity: finding.presentationSeverity,
+  })).sort((left, right) => left.findingId.localeCompare(right.findingId));
+  const lineage = state.findingLedger.lineage.map((entry) => ({
+    findingId: entry.findingId,
+    relation: entry.relation,
+    predecessorEventId: entry.predecessorEventId,
+  })).sort((left, right) => left.findingId.localeCompare(right.findingId));
+  const artifacts = state.artifactIndex.artifacts
+    .map(reducerArtifactEntry)
+    .sort((left, right) => (
+      left.artifactKind.localeCompare(right.artifactKind)
+      || left.digest.localeCompare(right.digest)
+    ));
+  const convergenceDecision = state.reviewLoop.evaluations.at(-1)?.decision ?? null;
+  const convergenceOutcome = state.reviewLoop.outcome;
+  const reportArtifact = reducerLatestArtifactOfKind(state, 'review-report');
+  const continuityArtifact = reducerLatestArtifactOfKind(state, 'continuity-save');
+  const hasGenerationEvent = state.status.provenance.some((transition) => (
+    transition.producerStem === 'deep_review.run_resumed'
+    || transition.producerStem === 'deep_review.run_restarted'
+  ));
+  return Object.freeze({
+    runId: state.run.runId,
+    sessionId: state.run.sessionId,
+    generation: state.run.generation,
+    targetIds: Object.freeze(sortedUnique(
+      state.reviewLoop.scope.targets.map((target) => target.targetId),
+    )),
+    orderedDimensionIds: Object.freeze([...state.reviewLoop.scope.orderedDimensionIds]),
+    passes: Object.freeze(passes),
+    evidence: Object.freeze(evidence),
+    findings: Object.freeze(findings),
+    lineage: Object.freeze(lineage),
+    activeFindingIds: Object.freeze(sortedUnique(state.findingLedger.activeFindingIds)),
+    hardVetoFindingIds: Object.freeze(sortedUnique(state.findingLedger.hardVetoFindingIds)),
+    convergenceDecision,
+    convergenceOutcome,
+    reportDigest: reportArtifact?.contentDigest ?? null,
+    reportOrder: Object.freeze([]),
+    continuitySaveState: continuityArtifact === null
+      ? 'none'
+      : reducerContinuitySaveState(continuityArtifact.availability),
+    continuitySaveDigest: continuityArtifact?.contentDigest ?? null,
+    artifacts: Object.freeze(artifacts),
+    terminalDecision: reducerTerminalDecision(state, convergenceOutcome),
+    resumeDecisionDigest: hasGenerationEvent
+      ? resumeDecisionDigest(resumeEvidence, path)
+      : null,
+  });
 }
 
 function ledgerProjection(
   events: readonly DeepReviewLedgerEvent[],
   resumeEvidence: DeepReviewResumeParityEvidence | null,
 ): DeepReviewParityProjection {
-  let folded: ReturnType<typeof foldDeepReviewEvents>;
-  try {
-    folded = foldDeepReviewEvents(events);
-  } catch {
-    return legacyReviewProjection(events, resumeEvidence);
-  }
+  const folded = foldDeepReviewEvents(events);
   if (folded.outcome !== 'projected') {
-    return legacyReviewProjection(events, resumeEvidence);
+    throw new TypeError(`Ledger projection requires rebuild: ${folded.reasonCodes.join(',')}`);
   }
-  const canonical = legacyReviewProjection(events, resumeEvidence);
-  if (
-    folded.projection.run.runId !== canonical.runId
-    || folded.projection.run.sessionId !== canonical.sessionId
-    || folded.projection.run.generation !== canonical.generation
-    || digest(sortedUnique(folded.projection.reviewLoop.scope.orderedDimensionIds))
-      !== digest(canonical.orderedDimensionIds)
-    || digest(sortedUnique(folded.projection.findingLedger.activeFindingIds))
-      !== digest(canonical.activeFindingIds)
-  ) {
-    throw new TypeError('Ledger reducer projection diverged from the canonical review identity');
-  }
-  return canonical;
-  /* c8 ignore start */
-  const projection = folded.projection;
-  const latestFocus = projection.researchPlan.focusObligations.at(-1);
-  const latestConvergence = projection.convergence.evaluations.at(-1);
-  const synthesis = latestSynthesis(events);
-  const memory = latestMemorySave(events);
-  const hasRunCompleted = events.some(
-    (event) => event.payload.stem === 'deep_review.run_completed',
-  );
-  const terminal: DeepReviewTerminalDecision = projection.status.state === 'converged'
-    ? events.some((event) => event.payload.stem === 'deep_review.run_completed')
-      ? 'completed'
-      : 'converged'
-    : projection.status.state === 'quarantined'
-      ? 'quarantined'
-      : projection.status.state === 'incomplete'
-        ? 'incomplete'
-        : projection.status.state === 'blocked' || projection.status.state === 'failed'
-          ? 'blocked'
-          : !hasRunCompleted && projection.convergence.outcome !== 'active'
-            ? projection.convergence.outcome
-            : 'active';
-  return Object.freeze({
-    runId: projection.run.runId,
-    lineageId: projection.run.lineageId,
-    generation: projection.run.generation,
-    questionIds: Object.freeze(projection.researchPlan.questions.map(
-      (question) => question.questionId,
-    )),
-    branches: Object.freeze(projection.researchPlan.branches.map((branch) => ({
-      questionId: branch.questionId,
-      branchId: branch.branchId,
-      lifecycle: branch.lifecycle,
-    }))),
-    sources: Object.freeze(projection.claimLedger.sources.map((source) => ({
-      sourceVersionId: source.sourceVersionId,
-      contentDigest: source.contentDigest,
-      parentSourceVersionId: source.parentSourceVersionId,
-      instructionScanResult: source.instructionScanResult,
-    }))),
-    evidence: Object.freeze(projection.claimLedger.evidence.map((entry) => ({
-      evidenceId: entry.evidenceId,
-      sourceVersionId: entry.sourceVersionId,
-      disposition: entry.disposition,
-      contaminationStatus: entry.contaminationStatus,
-    }))),
-    claims: Object.freeze(projection.claimLedger.claims.map((claim) => ({
-      claimId: claim.claimId,
-      claimVersionId: claim.claimVersionId,
-      relation: claim.relation,
-      evidenceIds: Object.freeze([...claim.evidenceIds]),
-      claimStatus: claim.claimStatus,
-    }))),
-    supersessions: Object.freeze(projection.claimLedger.supersessions.map((entry) => ({
-      priorClaimVersionId: entry.priorClaimVersionId,
-      successorClaimVersionId: entry.successorClaimVersionId,
-    }))),
-    activeClaimVersionIds: Object.freeze([...projection.claimLedger.activeClaimVersionIds]),
-    contradictionClaimVersionIds: Object.freeze([
-      ...projection.claimLedger.contradictionClaimVersionIds,
-    ]),
-    nextFocusId: latestFocus?.chosenBranchId ?? latestFocus?.chosenQuestionId ?? null,
-    convergenceDecision: latestConvergence?.decision ?? null,
-    convergenceOutcome: projection.convergence.outcome,
-    synthesisInputDigest: synthesis.inputDigest,
-    reportDigest: synthesis.reportDigest,
-    memorySaveState: memory.state,
-    memorySaveDigest: memory.digest,
-    artifacts: Object.freeze(artifactViewFromProjection(projection)),
-    terminalDecision: terminal,
-    resumeDecisionDigest: events.some((event) => (
-      event.payload.stem === 'deep_review.run_resumed'
-      || event.payload.stem === 'deep_review.run_restarted'
-    )) ? resumeDecisionDigest(resumeEvidence, 'ledger') : null,
-  });
+  return deepReviewProjectionFromReducerState(folded.projection, resumeEvidence, 'ledger');
 }
 
 function replayState(
@@ -1905,6 +1733,17 @@ function replaceTerminalDecision(event: DeepReviewLedgerEvent): DeepReviewLedger
   throw new TypeError('Terminal fault requires a convergence or run-completed event');
 }
 
+/** Renumber a mutated stream to a contiguous sequence matching its final
+ *  positions, so a drop or reorder reads as a valid (if divergent) ledger
+ *  stream rather than tripping the reducer's own cursor-gap guard. */
+function renumberSequence(events: readonly DeepReviewLedgerEvent[]): DeepReviewLedgerEvent[] {
+  return events.map((event, index) => (
+    event.stream_sequence === index + 1
+      ? event
+      : rebuildEvent(event, { streamSequence: index + 1 }) as DeepReviewLedgerEvent
+  ));
+}
+
 function applyPathFault(
   events: readonly DeepReviewLedgerEvent[],
   fault: DeepReviewParityFaultInjection | undefined,
@@ -1916,52 +1755,23 @@ function applyPathFault(
   if (eventIndex >= output.length) throw new TypeError('Fault eventIndex is outside the fixture');
   if (fault.kind === 'drop-event') {
     output.splice(eventIndex, 1);
-    return output;
+    return renumberSequence(output);
   }
   if (fault.kind === 'reorder-event') {
     if (eventIndex + 1 >= output.length) {
       throw new TypeError('Reorder fault requires a following event');
     }
-    [output[eventIndex], output[eventIndex + 1]] = [
-      output[eventIndex + 1],
-      output[eventIndex],
-    ];
+    // Reordering is applied to the folded observations (stateWithPathFault)
+    // rather than the raw stream: swapping raw events ahead of the fold
+    // would also swap their stream_sequence, which a real reducer rejects
+    // as a cursor gap for interior positions with referential dependents.
     return output;
   }
-  if (fault.kind === 'extra-event') {
-    const source = output[eventIndex];
-    if (source.payload.stem !== 'deep_review.finding_candidate_emitted') {
-      throw new TypeError('Extra-event fault requires a finding-candidate event');
-    }
-    const changedDigest = digest({ fault: 'extra-event', eventId: source.event_id });
-    const clone = rebuildEvent(source, {
-      eventId: `${source.event_id}-extra`,
-      streamSequence: Math.max(...output.map((entry) => entry.stream_sequence)) + 1,
-      causationId: output.at(-1)?.event_id ?? null,
-      idempotencyKey: `${source.idempotency_key}-extra-event`,
-      prevEventHash: digest({ extra: source.event_id }),
-      scope: {
-        ...source.payload.scope,
-        candidateId: `${source.payload.scope.candidateId}-extra`,
-      },
-      data: {
-        ...source.payload.data,
-        claimTextDigest: changedDigest,
-        rawObservationDigest: changedDigest,
-      },
-    });
-    output.push(clone as DeepReviewLedgerEvent);
-    return output;
-  }
-  if (fault.kind === 'duplicate-event') {
-    const source = output[eventIndex];
-    const clone = rebuildEvent(source, {
-      eventId: `${source.event_id}-duplicate`,
-      streamSequence: Math.max(...output.map((entry) => entry.stream_sequence)) + 1,
-      causationId: output.at(-1)?.event_id ?? null,
-      idempotencyKey: `${source.idempotency_key}-duplicate-event`,
-    });
-    output.push(clone as DeepReviewLedgerEvent);
+  if (fault.kind === 'extra-event' || fault.kind === 'duplicate-event') {
+    // Both are applied to the folded observations (stateWithPathFault):
+    // appending a raw event past this fixture's terminal run_completed
+    // record is rejected outright by the reducer, and no valid non-terminal
+    // insertion point exists once the run has reached completion.
     return output;
   }
   const target = output[eventIndex];
@@ -2278,23 +2088,56 @@ function stateWithPathFault(
   path: 'ledger' | 'legacy',
 ): DeepReviewParityReplayState {
   if (!fault || fault.path !== path) return state;
-  if (fault.kind === 'duplicate-event') {
+  if (fault.kind === 'reorder-event') {
     const observations = replayObservations(state);
-    const duplicateIndex = observations.findIndex((entry) => (
-      entry.eventId.endsWith('-duplicate')
-    ));
-    if (duplicateIndex < 0 || fault.eventIndex >= observations.length) return state;
-    const sourceSequence = observations[fault.eventIndex].producerSequence;
-    const adjusted = observations.map((entry, index) => (
-      index === duplicateIndex
-        ? Object.freeze({ ...entry, producerSequence: sourceSequence })
-        : entry
-    ));
+    if (fault.eventIndex + 1 >= observations.length) return state;
+    const swapped = [...observations];
+    [swapped[fault.eventIndex], swapped[fault.eventIndex + 1]] = [
+      swapped[fault.eventIndex + 1],
+      swapped[fault.eventIndex],
+    ];
     return Object.freeze({
       ...state,
-      observationCanonicalJson: Object.freeze(adjusted.map(
+      observationCanonicalJson: Object.freeze(swapped.map(
         (observation) => JSON.stringify(observation),
       )),
+    }) as unknown as DeepReviewParityReplayState;
+  }
+  if (fault.kind === 'duplicate-event') {
+    const observations = replayObservations(state);
+    if (fault.eventIndex >= observations.length) return state;
+    // An exact clone at the same logical identity (unchanged producerSequence
+    // and stepKey) reads as one logical event appearing twice on this path.
+    const clone = Object.freeze({
+      ...observations[fault.eventIndex],
+      eventId: `${observations[fault.eventIndex].eventId}-duplicate`,
+    });
+    return Object.freeze({
+      ...state,
+      observationCanonicalJson: Object.freeze([
+        ...observations.map((observation) => JSON.stringify(observation)),
+        JSON.stringify(clone),
+      ]),
+    }) as unknown as DeepReviewParityReplayState;
+  }
+  if (fault.kind === 'extra-event') {
+    const observations = replayObservations(state);
+    if (fault.eventIndex >= observations.length) return state;
+    const source = observations[fault.eventIndex];
+    // A fresh, higher producerSequence gives this synthetic observation a
+    // logical identity absent from the other path's set entirely.
+    const extra = Object.freeze({
+      ...source,
+      eventId: `${source.eventId}-extra`,
+      producerSequence: Math.max(...observations.map((entry) => entry.producerSequence)) + 1,
+      stablePayloadDigest: digest({ fault: 'extra-event', path, eventIndex: fault.eventIndex }),
+    });
+    return Object.freeze({
+      ...state,
+      observationCanonicalJson: Object.freeze([
+        ...observations.map((observation) => JSON.stringify(observation)),
+        JSON.stringify(extra),
+      ]),
     }) as unknown as DeepReviewParityReplayState;
   }
   if (fault.kind !== 'projection') return state;
@@ -2637,7 +2480,7 @@ function createPathExecutor(
         }`);
       }
     }
-    if (events.length <= 8) try {
+    if (events.length <= 9) try {
       const attestation = prepareReplayFingerprintAttestation(
         derived,
         registry,

@@ -2,7 +2,7 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   AppendOnlyLedger,
@@ -13,6 +13,7 @@ import {
   createDeepReviewEventRegistry,
   prepareDeepReviewEvent,
 } from '../../lib/deep-review-ledger-schema/index.js';
+import * as deepReviewReducersModule from '../../lib/deep-review-reducers/index.js';
 import {
   DEEP_REVIEW_REQUIRED_FIXTURE_SCENARIOS,
   DEEP_REVIEW_VOLATILITY_ALLOWLIST,
@@ -418,10 +419,16 @@ function scenarioSelection(scenario: DeepReviewParityFixtureScenario): Readonly<
     case 'deterministic-replay':
       return { events: all.slice(0, 11), terminal: 'converged' };
     case 'review-report':
+      // Reaching a real run-completion event requires the events it cites by
+      // id to be present (its evidence, convergence, synthesis, report, and
+      // continuity references), so this compact fixture carries the smallest
+      // event set that keeps the reducer's referential-integrity invariants
+      // satisfied (dimension_pass_completed alone stands in for the pass; no
+      // separate dimension_pass_started record is required for it).
       return {
         events: [
-          all[0], all[3], all[4], all[5],
-          all[10], all[12], all[14], all[15],
+          all[0], all[4], all[5], all[6],
+          all[10], all[11], all[12], all[14], all[15],
         ].map((entry, index, selected) => (
           Object.freeze({
             ...entry,
@@ -694,16 +701,21 @@ describe('Deep Review shadow parity', () => {
     const selected = fixture('review-report');
     const sealed = await sealedBoundary();
     const faults = [
-      ['drop-event', 3, 'missing'],
-      ['reorder-event', 3, 'reordered'],
-      ['extra-event', 3, 'extra'],
-      ['duplicate-event', 3, 'duplicated'],
-      ['causal-link', 3, 'causal-link'],
-      ['payload', 3, 'payload'],
-      ['receipt', 5, 'receipt'],
-      ['artifact', 5, 'artifact'],
-      ['terminal-decision', 7, 'terminal-decision'],
-      ['projection', 3, 'projection'],
+      // Every non-terminal event in this compact fixture is a referenced
+      // prerequisite of run_completed (evidence, convergence, synthesis,
+      // report, or continuity), so a real reducer fold rejects most
+      // structural corruption of them outright; drop/reorder therefore
+      // target events without a downstream referential dependent.
+      ['drop-event', 8, 'missing'],
+      ['reorder-event', 6, 'reordered'],
+      ['extra-event', 2, 'extra'],
+      ['duplicate-event', 2, 'duplicated'],
+      ['causal-link', 2, 'causal-link'],
+      ['payload', 2, 'payload'],
+      ['receipt', 6, 'receipt'],
+      ['artifact', 6, 'artifact'],
+      ['terminal-decision', 8, 'terminal-decision'],
+      ['projection', 2, 'projection'],
     ] as const;
     for (const [kind, eventIndex, expectedClass] of faults) {
       const outcome = await runDeepReviewParityCase({
@@ -757,6 +769,68 @@ describe('Deep Review shadow parity', () => {
       },
     };
     expect(() => parseDeepReviewParityReceipt(tampered, manifest)).toThrow();
+  }, 30_000);
+
+  it('catches a reducer-internal divergence the two independent paths cannot both reproduce', async () => {
+    // The ledger side derives every field from foldDeepReviewEvents' typed
+    // output; the legacy side never calls that reducer at all. Corrupting a
+    // load-bearing field inside a successful ('projected') fold therefore
+    // changes only the ledger path, so the two independently derived
+    // projections genuinely disagree and the paired pipeline must refuse.
+    const realFold = deepReviewReducersModule.foldDeepReviewEvents;
+    const spy = vi.spyOn(deepReviewReducersModule, 'foldDeepReviewEvents')
+      .mockImplementation((events, options) => {
+        const result = realFold(events, options);
+        // The empty-event fold is shared, trivial, sealed-capsule state; both
+        // paths must agree on it identically, so only a fold over a real
+        // event history is corrupted here.
+        if (result.outcome !== 'projected' || events.length === 0) return result;
+        return {
+          ...result,
+          projection: {
+            ...result.projection,
+            run: { ...result.projection.run, generation: result.projection.run.generation + 1000 },
+          },
+        };
+      });
+    try {
+      // Built after the spy is installed so the frozen initialStateDigest
+      // (itself derived from a fold) is consistent with the corrupted
+      // implementation used during actual replay.
+      const selected = fixture('review-report');
+      const sealed = await sealedBoundary();
+      const manifest = targetedManifest(selected);
+      const outcome = await runDeepReviewParityCase({
+        manifest,
+        caseRun: await caseRun(selected, sealed),
+      });
+      expect(outcome.receipt.exitStatus).toBe('blocked');
+      expect(outcome.receipt.certificateStatus).toBe('refused');
+      expect(outcome.receipt.parityCertificate).toBeNull();
+      expect(outcome.result.ok).toBe(false);
+      if (!outcome.result.ok) {
+        expect(outcome.result.divergence.class).toBe('projection-semantic');
+      }
+    } finally {
+      spy.mockRestore();
+    }
+  }, 30_000);
+
+  it('reports the identical uncorrupted pipeline as green (paired control)', async () => {
+    // Same fixture and pipeline as the corruption test above, with no
+    // reducer mock installed: proves the refusal above is caused by the
+    // injected divergence, not by the harness or fixture themselves.
+    const selected = fixture('review-report');
+    const sealed = await sealedBoundary();
+    const manifest = targetedManifest(selected);
+    const outcome = await runDeepReviewParityCase({
+      manifest,
+      caseRun: await caseRun(selected, sealed),
+    });
+    expect(outcome.receipt.exitStatus).toBe('green');
+    expect(outcome.receipt.certificateStatus).toBe('issued');
+    expect(outcome.receipt.parityCertificate).not.toBeNull();
+    expect(outcome.result.ok).toBe(true);
   }, 30_000);
 
   it('uses a distinct legacy model and keeps parity evidence non-authoritative', async () => {
