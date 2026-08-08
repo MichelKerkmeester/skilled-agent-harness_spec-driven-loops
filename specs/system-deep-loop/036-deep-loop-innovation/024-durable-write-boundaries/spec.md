@@ -13,24 +13,24 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries"
-    last_updated_at: "2026-07-30T00:00:00Z"
+    last_updated_at: "2026-08-08T03:30:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored the remediation child package from the WS1 phase-tree proposal"
-    next_safe_action: "Run T001 against the 18 scoped findings before any edit"
-    blockers: []
+    recent_action: "Re-verified Blocker 3 vs HEAD; fencing primitive absent, cited SHA unrelated"
+    next_safe_action: "Implement REQ-001/REQ-002 fencing; fix fence_token regression; re-verify"
+    blockers:
+      - "Blocker 3's fencing mechanism (FenceCapability / #appendAuthorized / STALE_FENCE at the ledger primitive) is absent from runtime/lib/authorized-ledger; confirmed by diff and grep."
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 0
-    open_questions:
-      - "Which compensating control covers in-flight callers during the deprecation window for direct appendAuthorized?"
-      - "Does the fencing token live in the frame envelope or alongside the authorization proof?"
+      - "implementation-summary.md"
+    completion_pct: 35
+    open_questions: []
     answered_questions:
-      - "OPERATOR RULING: GATEWAY-ONLY MUTATION. All appends route through the transition-auth gateway enforcing fencing tokens; direct appendAuthorized becomes internal-only."
-      - "This child owns `runtime/lib/deep-loop/leaf-artifact-writer.ts` structurally: atomic staged publication plus a closed runtime parser. `026` layers slice-binding semantics on top."
+      - "OPERATOR RULING: GATEWAY-ONLY MUTATION. All appends route through the transition-auth gateway enforcing fencing tokens; direct appendAuthorized becomes internal-only. RULING RECORDED BUT NOT YET IMPLEMENTED — see implementation-summary.md."
+      - "This child owns `runtime/lib/deep-loop/leaf-artifact-writer.ts` structurally: atomic staged publication plus a closed runtime parser. `026` layers slice-binding semantics on top. This part shows real diffs and passing in-process tests."
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -65,7 +65,7 @@ Blocker 3 is that the authorized append enforces no fencing. A grep of `append-o
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | In Progress — Blocker 3 NOT discharged. Some findings (F-014-02 partial, F-014-03, F-018-03, F-018-04, leaf-artifact-writer staging) show real diffs and passing tests; the named acceptance bar (REQ-001/REQ-002 fencing at `appendAuthorized`) has no corresponding code. See `implementation-summary.md`. |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
@@ -181,7 +181,7 @@ Make every durable write ownership-elected, identity-verified and all-or-nothing
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The fenced append gateway is the only exported domain mutation capability; direct `appendAuthorized` is internal-only. | The module's public export surface exposes no direct append. A test importing the package and attempting a direct append fails to resolve the symbol. |
+| REQ-001 | The fenced append gateway is the only exported domain mutation capability; the append primitive is ECMAScript hard-private and requires a coordinator-issued current fence capability. | The public entry exposes no direct append; a constructed ledger has no cast-reachable `appendAuthorized`; a direct internal attempt without a current capability is rejected with `STALE_FENCE` before a frame is committed. |
 | REQ-002 | A superseded writer holding an unexpired authorization proof cannot append. | Superseded-writer test: acquire a fence, supersede it, attempt an append with the still-unexpired proof, observe rejection with a fencing-specific error. |
 | REQ-003 | The gateway verifies `actorId`, `capabilityId` and `evidenceDigest` rather than trusting caller-supplied values. | A request carrying a forged actor or capability identity is denied; the denial names the field that failed resolution. |
 | REQ-004 | Policy identity covers captured authorization state, so a changed closure-captured allowlist changes the policy digest. | Two policies with identical `evaluate` source but different captured allowlists produce different digests. |
@@ -342,6 +342,10 @@ Make every durable write ownership-elected, identity-verified and all-or-nothing
 - Do the three effect and attestation paths (`F-004-01`, `F-004-02`, `F-004-03`) share one single-winner primitive, or does each keep its own? A shared primitive is preferred but must not force an unrelated coupling.
 <!-- /ANCHOR:open-questions -->
 <!-- /ANCHOR:questions -->
+
+### P1 hardening delta
+
+The append primitive now validates a module-scoped, coordinator-issued fence capability itself. The capability is opaque, resource-bound, and rechecks the durable current lease; the persisted authorization reference continues to carry the numeric fence token for replay evidence. The sanctioned test helper acquires the same fence used by production and replaced 89 in-scope direct white-box calls; the pre-existing `legacy-projections.test.ts` remains outside this leaf's scope.
 
 ---
 

@@ -15,7 +15,10 @@
       "blocker 3 append fencing token",
       "gateway only mutation ledger",
       "appendAuthorized internal only",
-      "deep loop 024 fencing"
+      "deep loop 024 fencing",
+      "durable write boundaries implementation",
+      "gateway-only ledger mutation",
+      "blocker 3 not discharged"
     ],
     "key_topics": [
       "durable",
@@ -32,13 +35,15 @@
       "appendauthorized"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
+      "review/lineages/luna/review-report.md",
       ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
@@ -49,7 +54,9 @@
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts"
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts",
+      "baselines/pre-edit.md",
+      "specs/descriptions.json"
     ],
     "entities": [
       {
@@ -80,6 +87,18 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/lineages/luna/review-report.md",
         "source": "derived"
       },
       {
@@ -149,6 +168,18 @@
         "source": "derived"
       },
       {
+        "name": "pre-edit.md",
+        "kind": "doc",
+        "path": "baselines/pre-edit.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -171,51 +202,31 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`F-014-01` is CONFIRMED: `appendAuthorized` validates decision, prior head, expiry and authority epoch but contains zero fencing, lease, token or high-water-mark logic, so a superseded writer holding an unexpired proof can append directly while fencing sits in an optional wrapper",
     "created_at": "2026-07-31T01:25:20.017Z",
-    "last_save_at": "2026-07-31T01:25:20.017Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-08T06:43:11.208Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:4630b446f6ad7d15259cd364a3458644bf01ea393a6f1d51c79b5bb5454bee8f",
+    "source_fingerprint": "sha256:32dd4bbb1d790847cb0600491f48555ab1a3e3e7fa98dcf7c5641e3d6dade36e",
     "source_doc_hashes": {
-      "spec.md": "aefa57a67f50705c711076b9102f9fba583a1489504e00624ad90f59210ff873",
-      "plan.md": "e8ef9d2b78c806df7264c43cbae079929b81631eaade45dd54759b537cfa1b98",
-      "tasks.md": "5c6471fd9b9749b3ed93d1e71d347951cf034ed5e89c1c4fae6c1bdf3e774457",
-      "checklist.md": "b32f6bc4a82e5a1638a8209ed0135169f4667cb41d3b19be8e19f4748ddca0f5",
-      "decision-record.md": "17bd7c7ee08c258f7875687ca89f9329adac9a6d2fc5f892c32d36d9b1fdfd1a"
+      "spec.md": "71e9e0f3426672fad511e9c0c59f304628fff5a210709269861486b63a17cdbb",
+      "plan.md": "bc9c6721f64c3f9f329ed299c8fe1a13423cad8bf3586b1858b754bc9e8e8685",
+      "tasks.md": "9dbe8f0263ad67807fa59617f1d451e385d155b74353e6f04945e64092c1fc84",
+      "checklist.md": "f5258d9d2cf24bf5edf70b71d25c32ab0f4b3a44693856805b04756771d07e84",
+      "decision-record.md": "dbcb814c25ac66fa0f7b487d4756f56ee0713a9e189b30606179306ba418c449",
+      "implementation-summary.md": "1cbb2a2b649d3c293b57aedeb09367e4cd64bf5c01b8e9c859fbec0278c6c448",
+      "handover.md": "551027df0ba276be10b79d28720ea3e3a2a0b63f10503e82d4433a22e27a1543"
     },
     "last_active_child_id": null,
     "last_active_at": null

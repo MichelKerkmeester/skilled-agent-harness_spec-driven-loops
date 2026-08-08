@@ -15,7 +15,10 @@
       "blocker 1 parity harness",
       "harness adapter legacy oracle",
       "divergence injection test parity",
-      "deep loop 022 parity"
+      "deep loop 022 parity",
+      "shadow parity independent derivation implementation",
+      "blocker 1 parity harness not built",
+      "divergence injection test missing"
     ],
     "key_topics": [
       "shadow",
@@ -39,6 +42,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/harness-adapter.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-shadow-parity/harness-adapter.ts",
@@ -81,6 +85,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
     "created_at": "2026-07-31T01:25:19.594Z",
-    "last_save_at": "2026-07-31T01:25:19.594Z",
+    "last_save_at": "2026-08-08T06:44:47.198Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,15 +212,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6048790521284eabfee3a8cbe8dcfdf08aaca11748ba7e236ea319a67e63ac1",
+    "source_fingerprint": "sha256:53db3f6c7beb87e13b76ee842852151805e0f4e88571d2a9137c696e6fecbff6",
     "source_doc_hashes": {
       "spec.md": "9799e159844defb57d9b29387f957ab11932d62a283a605de911cc11561ec9e6",
       "plan.md": "dea3cde6029f01745e99170bfdb89d6a65209ee9915598d082d3da0fe634ba9a",
       "tasks.md": "b56b42a67860b1b449863e1254132decea4bcdbf81e60bf00de2ff570f7a3c53",
       "checklist.md": "84d4e46d162e588681739bf08b4a31ed7d59b3725de3ca4155b848efb607db08",
-      "decision-record.md": "6108bf88d41302077e8776deabdcfdd9be46b9b32aaa9b7c15a02b7230d7a36e"
+      "decision-record.md": "6108bf88d41302077e8776deabdcfdd9be46b9b32aaa9b7c15a02b7230d7a36e",
+      "implementation-summary.md": "42c2ebe6c2cf2cec5a3c0d28e9aa211083e55c449100c28912e014bf7c246671"
     },
     "last_active_child_id": null,
     "last_active_at": null

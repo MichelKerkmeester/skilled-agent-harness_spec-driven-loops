@@ -125,6 +125,29 @@ code-matches-claim), not accept child impl-summaries. This is the real gate befo
 Reconciled honest this session: 029 (In Progress 10/13), 031 (Complete 22/23); 021 (Complete,
 014-Blocker-4 evidence bar independently re-verified: suite sha256 digests recomputed, all match).
 
+### 🚫 014 IS NOT READY — two of four named cutover blockers NOT discharged (2026-08-08, code-verified)
+
+The four named 014-cutover blockers are 021/022/023/024. Code-verified this session:
+- **021 (Blocker 4, evidence-reconcile): DISCHARGED** — suite sha256 digests recomputed, all match.
+- **023 (live-vocab): Complete** per ledger (not re-audited this pass).
+- **022 (Blocker 1, shadow-parity independent derivation): NOT DISCHARGED — ZERO code built.** Packet
+  is honestly Planned; the harness adapters are diff-identical to HEAD; `deep-ai-council-shadow-parity`
+  still has both projections calling the SAME `councilProjectionFromEvents` differing only by a
+  `'ledger'`/`'legacy'` string (the exact F-006-01 defect); no divergence-injection test exists. The
+  harness cannot fail, so it cannot prove parity.
+- **024 (Blocker 3, append-boundary fencing): NOT DISCHARGED + FABRICATED evidence.** The core fencing
+  is ABSENT (`FenceCapability`=0, `#appendAuthorized`=0 matches in runtime/lib; `appendAuthorized` is
+  still `public` and unfenced at `append-only-ledger.ts:349` — the F-002-01 defect). The docs cite SHA
+  `9229cb8f` ~20× as evidence, but `9229cb8f` = `docs(spec-gate): refresh packet continuity` touching
+  only unrelated `037-spec-gate-question-noise/` files; cited test names don't exist; `branch-leases-waves`
+  fence-token test FAILS live. 024's OWN LUNA review already reached FAIL (P0=3). Corrected 024 →
+  "In Progress — Blocker 3 NOT discharged"; 022/025 given honest Planned impl-summaries.
+
+**CONCLUSION: 014 authority cutover CANNOT proceed.** Blockers 1 (022) and 3 (024) must be genuinely
+BUILT + code-verified first — 022 from scratch, 024's real gateway-only fencing (private appendAuthorized
++ fence capability + superseded-writer rejection). This is fresh BUILD work, not doc reconciliation.
+The pre-014 verdict `010d145b9a` (and any "WS1 cleared the blockers" claim) is REFUTED by code.
+
 ## The ledger (confirmed)
 
 - **Spine 001-013 — BUILT + landed.** Research (001-002), census (003), architecture/transition

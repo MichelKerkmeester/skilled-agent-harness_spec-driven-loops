@@ -15,7 +15,10 @@
       "sealed artifact identity binding",
       "certificate semantic binding",
       "decoy artifact negative test",
-      "deep loop 025 certificates"
+      "deep loop 025 certificates",
+      "artifact certificate binding implementation",
+      "sealed artifact identity binding not built",
+      "decoy artifact negative test missing"
     ],
     "key_topics": [
       "artifact",
@@ -39,6 +42,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/artifact-events.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-review-certificates/deep-review-certificates.ts",
@@ -82,6 +86,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Evidence",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Evidence is accepted on partial or metadata-only correspondence in twelve places",
     "created_at": "2026-07-31T01:25:20.255Z",
-    "last_save_at": "2026-07-31T01:25:20.255Z",
+    "last_save_at": "2026-08-08T06:45:53.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,15 +213,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a082e0a52fc201cc3b09ccb2a6241ba6f69d91e818062611ee80c378381a3e1",
+    "source_fingerprint": "sha256:ca2914d3abecec208d76d7fc56644c1d56e2490c17d612d412259fced2418090",
     "source_doc_hashes": {
       "spec.md": "149d15010af4b4d38a62666767b4787f5133825faa0c9a850b0f253ac7bfd27c",
       "plan.md": "6f76c7fd8d73ddf570ba2860f6a75762b59ce7623d80e6b53ee906ee8d70523a",
       "tasks.md": "bbf7807fc560dde1eeb625d9eeef37730c990974758f6bd4ae1cdeb72cc4f01c",
       "checklist.md": "2260fac1f21ddc57d4450ef45f4a5e6c5f858723f2f021ccfa7891f271ac0c09",
-      "decision-record.md": "4709db136c5fb62f4012aa84e213b34c5e6a87b27edadb62ce541e3da99bc883"
+      "decision-record.md": "4709db136c5fb62f4012aa84e213b34c5e6a87b27edadb62ce541e3da99bc883",
+      "implementation-summary.md": "0e047257218b41f5dbafbfdd99d1de5e42986c5497b9e204454ccdd6f561a01b"
     },
     "last_active_child_id": null,
     "last_active_at": null

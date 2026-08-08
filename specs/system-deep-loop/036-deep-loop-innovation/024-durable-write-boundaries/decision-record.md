@@ -13,14 +13,14 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored ADR-001 (Accepted), ADR-002 and ADR-003 from the WS1 phase-tree proposal"
-    next_safe_action: "Operator confirms ADR-001; owner accepts or rejects ADR-002/ADR-003"
+    last_updated_at: "2026-08-03T06:05:31Z"
+    last_updated_by: "codex"
+    recent_action: "Recorded the runtime-enforced fence capability and ECMAScript hard-private append boundary"
+    next_safe_action: "Run the final owned-suite gate and strict child validation"
     blockers: []
     key_files:
       - "decision-record.md"
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -62,9 +62,9 @@ Report §6 step 4 calls for a decision, not automatically a build: make the fenc
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: Gateway-only mutation. Every append routes through the transition-authorization gateway enforcing fencing tokens, and direct `appendAuthorized` becomes internal-only.
+**We chose**: Gateway-only mutation. Every append routes through the fenced writer and its coordinator-issued capability; direct `appendAuthorized` is an ECMAScript hard-private primitive reachable only through the module's capability-gated internal bridge.
 
-**How it works**: The gateway resolves identity, checks the fence and high-water mark, evaluates policy, and only then calls the internal `appendAuthorized`. The direct export is removed from the public surface in a commit separate from the one that adds the gateway path, so the migration window is visible and reversible.
+**How it works**: The gateway resolves identity and evaluates policy. `FencedLeaseCoordinator.withFence` mints an opaque capability whose state is held in a module-scoped `WeakMap`; using the capability rechecks the durable current lease. `#appendAuthorized` validates that capability before reading or committing any frame. The package entry exposes neither the hard-private method nor the bridge, and the fenced writer's public API remains unchanged.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -144,9 +144,9 @@ Report §6 step 4 calls for a decision, not automatically a build: make the fenc
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
-| **Deciders** | Packet owner |
+| **Deciders** | Packet owner, operator ruling |
 
 ---
 
@@ -242,9 +242,9 @@ Report §6 step 4 calls for a decision, not automatically a build: make the fenc
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-07-30 |
-| **Deciders** | Packet owner |
+| **Deciders** | Packet owner, operator ruling |
 
 ---
 
@@ -331,3 +331,110 @@ Five findings (`F-003-02`, `F-037-01`, `F-039-01`, `F-039-02`, `F-036-04`) descr
 **How to roll back**: Revert the staging commit; publication returns to the three-stage sequence. Record the revert as re-opening the five leaf-writer findings.
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
+
+<!-- ANCHOR:derived-adrs -->
+## Derived architectural decisions
+
+### ADR-004: Carry the fencing token with the authorization proof
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-02 |
+| **Deciders** | Packet owner |
+
+**Decision**: The fencing token belongs alongside the authorization proof and is bound into the persisted authorization reference, not added to the closed event envelope.
+
+The confirm inputs show that the event envelope is a closed 14-field structure and already carries `authority_epoch` but no fence token. The proof and persisted `AuthorizationReference` are the authority-bearing structures and can be extended without changing canonical event bytes. Proof placement keeps the envelope schema stable while making the token replay-verifiable through the durable authorization reference. Envelope placement would make fencing replay-visible earlier but would widen every envelope producer and its exact-field parser.
+
+**Consequence**: The fenced writer supplies the current lease token to the internal append boundary; the durable reference records it for high-water verification. A proof without a current fence is not a production append capability.
+
+### ADR-005: Use a zero-length deprecation window
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-02 |
+| **Deciders** | Packet owner |
+
+**Decision**: Do not add an internal compatibility shim. The gateway path is confirmed first, all 32 production callers are migrated in the same landing, and the package export is demoted in the immediately following ordered edit before verification. There is no released state in which a production caller has been removed from its old path without a new path.
+
+The alternative internal shim would preserve compatibility but create a second mutation seam whose lifetime would need separate fencing and removal evidence. The operator ruling requires the window to be zero-length or explicitly shimmed; the ordered same-landing migration is the smaller durable control. White-box tests remain on the internal module path by design and are not public consumers.
+
+### ADR-006: Share one durable single-winner primitive
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-02 |
+| **Deciders** | Packet owner |
+
+**Decision**: Reuse one `FencedLeaseCoordinator`-backed single-winner primitive for effect recovery, operator-decision commit, and exact replay-fingerprint attestation convergence.
+
+The confirm inputs identify `FencedLeaseCoordinator` as the existing cross-process primitive: it issues monotonic tokens, uses durable `O_EXCL` mutexes, and writes recovery markers. The alternative of three local locks repeats the same race surface and would only coordinate callers inside one process. The shared primitive is scoped to keyed durable writes, so it does not couple the unrelated business logic of the three paths.
+
+**Consequence**: Each path supplies a distinct protected resource key and performs its read/decide/append sequence under the same fencing guard. The primitive owns exclusivity; the path retains its own idempotency and conflict semantics.
+
+### ADR-007: Derive the effect single-winner root from the ledger context by default
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-02 |
+| **Deciders** | Packet owner |
+
+**Decision**: The effect-recovery gateway derives its cross-process coordination root from the authorized writer's ledger root when the caller does not provide an explicit root. A shared temporary coordination root is the fallback for custom writers that do not expose a ledger root.
+
+This makes single-winner semantics the default production behavior rather than an opt-in capability. The ledger-derived root keeps independent gateway instances for the same durable resource in one coordination domain; the explicit option remains available for deployments that intentionally partition storage. The fallback is shared across processes and is used only when no durable writer root is available.
+
+**Consequence**: `F-004-01` and `F-004-02` are enforced on the default construction path. The two-process tests exercise that unconfigured path; callers no longer need to remember `singleWinnerRootDirectory` to receive cross-process exclusion.
+### ADR-008: Enforce the fence with an opaque capability at the primitive boundary
+
+> **CORRECTION (2026-08-08, independent re-verification)**: This ADR's status line below still
+> reads "Accepted" as the historical record, but `git diff` against the current runtime HEAD shows
+> zero matches for `FenceCapability`, `#appendAuthorized`, or `STALE_FENCE` anywhere in
+> `runtime/lib/authorized-ledger/`. `appendAuthorized` remains a plain public method. Treat the
+> "Decision"/"How it works"/"Consequences" text below as unimplemented design narrative, not a
+> record of shipped code, until a build pass lands matching diffs. See `implementation-summary.md`.
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted (ruling) — NOT YET IMPLEMENTED in code, see correction above |
+| **Date** | 2026-08-03 |
+| **Deciders** | Operator ruling, packet owner |
+
+**Decision**: Use a coordinator-issued `FenceCapability` as a required internal append argument, backed by a module-scoped `WeakMap`. The coordinator mints the opaque object only while executing `withFence` or `withFences`; its validator checks the protected resource identity and re-runs the current-lease assertion, so an expired, released, or superseded capability fails at the ledger primitive with `STALE_FENCE`.
+
+The ledger computes the canonical protected-resource key for its own identity and validates the capability before event preparation, proof verification, idempotency handling, or frame commit. The append implementation is `#appendAuthorized`, so a constructed ledger has no cast-reachable method. The bridge closes over the instance and is not exported from the authorized-ledger package entry; the fenced writer and the dedicated white-box test helper are its sanctioned callers. Multi-resource branch writes select the capability matching the ledger lease.
+
+**Alternatives rejected**:
+
+- A proof-side token alone is forgeable and does not recheck the durable current lease.
+- A fence assertion only in `FencedLedgerWriter` leaves the original bypass intact.
+- A public numeric token or exported mutable registry would preserve a runtime-reachable forge path.
+
+**Consequences**: The persisted authorization reference still records the current fence token, preserving replay evidence, while the capability is process-local and never serialized. The writer's external API is unchanged. White-box tests acquire a real fence through one helper and no longer call the erased TypeScript-private method. Rollback is a code-only revert of ADR-008's capability, bridge, writer, and test-helper changes; no persisted-data migration is required.
+
+### ADR-009: Idempotent ledger replay short-circuits at the caller, not inside the fenced writer
+
+> **CORRECTION (2026-08-08)**: This ADR builds on ADR-008's fence-capability mechanism, which the
+> correction above shows is not present in code. Read this ADR's replay-short-circuit narrative
+> with the same caveat.
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted (ruling) — depends on ADR-008, see correction above |
+| **Date** | 2026-08-05 |
+| **Deciders** | Packet owner |
+
+**Decision**: When a caller has already matched the target event as durably committed, it returns the receipt rebuilt from the committed frame and never re-enters the fenced writer; the append boundary is entered only for a genuinely new event. The frame-to-receipt constructor already used inside the append primitive is exported so every caller builds the receipt one way.
+
+Routing every append through the fenced writer regressed idempotent replay. The writer derives its expected head from the proof's recorded prior head and rejects with `HEAD_CONFLICT` when the live head no longer matches, before delegating to the primitive. On a replay the target event is already committed, so the live head has advanced exactly past that recorded prior head, and the pre-check rejects a legitimate replay that the primitive would have absorbed by returning the existing receipt. The four resume adapters and the contradiction/supersession exact-retry path already compute the committed match and re-verify the event bytes and the original allow decision; they now return the committed frame's receipt on that branch and enter the fenced writer only for a new append.
+
+**Alternatives rejected**:
+
+- Make the fenced writer idempotency-aware by delegating an already-committed replay to the primitive: breaks `receipts-and-effect-recovery`, whose concurrent replay carries a different random decision id, so the primitive throws `AUTHORIZATION_ALREADY_USED` instead of the `HEAD_CONFLICT` that consumer converts to `idempotent`, and it changes that consumer's returned status. It also mutates a security-critical primitive shared by every fenced caller.
+- Return the receipt from the writer on any committed digest match: the same consumer breakage, with a result that depends on audit-append interleaving timing.
+
+**Consequences**: Replaying a committed resume or an exact relationship retry returns the original receipt instead of failing with `HEAD_CONFLICT`. The fenced writer is untouched, so the fence keeps rejecting a genuinely new event racing an advanced head and a stale, superseded, or forged writer, and the digest and original-decision guards at each caller still run. `durableReceipt` joins the authorized-ledger public surface. Known separate blocker: the deep-ai-council resume adapter suite is masked by an unrelated pre-existing failure — its test harness holds a never-released council-ledger fence lease, so the adapter's own fenced append times out on lease acquisition before any idempotency or security assertion runs; this reproduces with the fix reverted and is out of scope for the idempotency remediation. Rollback is a code-only revert.
+<!-- /ANCHOR:derived-adrs -->

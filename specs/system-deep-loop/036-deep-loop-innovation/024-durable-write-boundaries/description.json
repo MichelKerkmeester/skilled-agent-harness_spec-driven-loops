@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries",
   "description": "`F-014-01` is CONFIRMED: `appendAuthorized` validates decision, prior head, expiry and authority epoch but contains zero fencing, lease, token or",
   "keywords": [
@@ -18,16 +19,24 @@
     "lease",
     "token"
   ],
-  "lastUpdated": "2026-08-05T16:51:15.064Z",
+  "lastUpdated": "2026-08-08T06:43:06.257Z",
   "specId": "024",
   "folderSlug": "durable-write-boundaries",
   "parentChain": [
     "system-deep-loop",
     "036-deep-loop-innovation"
   ],
-  "memorySequence": 2,
+  "memorySequence": 10,
   "memoryNameHistory": [
-    "05-08-26_17-38__run6-fired-fanout-via-executors-a-4-min-check.md",
-    "05-08-26_17-51__re-invoked-banyhwfej-with-the-budget-raised.md"
+    "02-08-26_21-19__closed-deterministic-two-process-lease-revocation.md",
+    "02-08-26_21-21__completion-leaf-closed-deterministic-two-process.md",
+    "02-08-26_21-28__completion-leaf-closed-the-deferred-deterministic.md",
+    "02-08-26_21-31__completion-leaf-closed-the-deferred-deterministic.md",
+    "03-08-26_05-20__p1-hardening-complete-coordinator-issued-opaque.md",
+    "03-08-26_05-22__finalized-p1-hardening-evidence-primitive-fence.md",
+    "03-08-26_05-23__refresh-final-child-metadata-after-continuity.md",
+    "03-08-26_05-25__final-metadata-refresh-after-scoping-the-89-in.md",
+    "03-08-26_05-26__final-metadata-refresh-after-reconciling-the.md",
+    "03-08-26_07-05__024-built-hardened-verified-gateway-only-fenced.md"
   ]
 }
