@@ -22,10 +22,12 @@ import {
   deepAlignmentEventDefinitions,
 } from '../deep-alignment-ledger-schema/index.js';
 import {
+  DEEP_ALIGNMENT_ORDERING_POLICY_VERSION,
+  DEEP_ALIGNMENT_PROJECTION_CODEC_VERSION,
   DEEP_ALIGNMENT_PROJECTION_SCHEMA_VERSION,
   DEEP_ALIGNMENT_REDUCER_VERSION,
+  DEEP_ALIGNMENT_SHARED_REVIEW_LOOP_CONFIGURATION,
   foldDeepAlignmentEvents,
-  projectDeepAlignmentLegacyView,
 } from '../deep-alignment-reducers/index.js';
 import {
   DeepAlignmentResumeAdapter,
@@ -38,6 +40,7 @@ import {
 import {
   EventTypeRegistry,
   canonicalBytes,
+  canonicalJson,
   prepareEventWrite,
   sha256Bytes,
 } from '../event-envelope/index.js';
@@ -70,11 +73,14 @@ import type {
   VerifiedLedgerEvent,
 } from '../authorized-ledger/index.js';
 import type {
+  DeepAlignmentEventEnvelope,
   DeepAlignmentEventStem,
   DeepAlignmentLedgerEvent,
+  DeepAlignmentLedgerPayload,
+  DeepAlignmentScopeMap,
 } from '../deep-alignment-ledger-schema/index.js';
 import type {
-  DeepAlignmentLegacyProjection,
+  DeepAlignmentAdjudication,
   DeepAlignmentProjectionState,
 } from '../deep-alignment-reducers/index.js';
 import type {
@@ -790,14 +796,1159 @@ function foldProjection(events: readonly DeepAlignmentLedgerEvent[]): DeepAlignm
   return folded.projection;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3.5 INDEPENDENT LEGACY ORACLE (RAW-EVENT HAND-SCAN)
+// ───────────────────────────────────────────────────────────────────
+//
+// The ledger side above derives from the reducer's own typed fold. Until
+// this section, the legacy side derived from that identical fold too, so
+// comparing the two paths compared a projection to a near-copy of itself:
+// a defect confined to the reducer's own field computation was invisible.
+// Everything below reconstructs an equivalent projection straight from the
+// raw event log through its own per-stem switch. It never calls
+// `foldDeepAlignmentEvents`, `applyEvent`, or any reducer-internal helper,
+// so a corruption introduced inside the reducer's fold changes only the
+// ledger side and the two paths can genuinely disagree.
+//
+// Coverage note: every event stem is handled below by direct field mapping
+// off the same typed payload schema the reducer reads, but empirical
+// field-by-field verification against a real fixture only exercises the
+// nine stems the shipped lifecycle fixture emits (run-initialized through
+// applicability-evaluated). The remaining stems follow the identical
+// mapping method proven correct on that verified subset, not an
+// independent empirical diff of their own.
+
+type LegacyRunState = DeepAlignmentProjectionState['run'];
+type LegacyReviewLoopState = DeepAlignmentProjectionState['reviewLoop'];
+type LegacyLaneState = DeepAlignmentProjectionState['lanePlan']['lanes'][number];
+type LegacyFindingState = DeepAlignmentProjectionState['conformance']['findings'][number];
+type LegacyArtifactState = DeepAlignmentProjectionState['artifactIndex']['artifacts'][number];
+
+const LEGACY_HARD_VETO_SEPARATORS = '-._:/@';
+const LEGACY_EMPTY_SNAPSHOT_DIGEST = sha256Bytes(canonicalBytes([]));
+
+function legacyIsHardVetoClass(findingClass: string): boolean {
+  const normalized = findingClass.toLowerCase();
+  return DEEP_ALIGNMENT_SHARED_REVIEW_LOOP_CONFIGURATION.hardVetoClasses.some((veto) => (
+    normalized === veto
+    || (normalized.startsWith(veto)
+      && LEGACY_HARD_VETO_SEPARATORS.includes(normalized.charAt(veto.length)))
+  ));
+}
+
+function legacyDerivedSeverity(
+  findingClass: string,
+  outcome: DeepAlignmentAdjudication['outcome'],
+  impact: number,
+  confidence: number,
+): LegacyFindingState['derivedSeverity'] {
+  if (outcome !== 'accepted') return 'none';
+  if (legacyIsHardVetoClass(findingClass)) return 'P0';
+  if (impact >= 0.8 && confidence >= 0.6) return 'P1';
+  return 'P2';
+}
+
+interface LegacyBackboneInput {
+  readonly requiredDimensionIds: readonly string[];
+  readonly completedDimensionIds: readonly string[];
+  readonly unresolvedObligationIds: readonly string[];
+  readonly explicitBlockerIds: readonly string[];
+  readonly blockingFindingIds: readonly string[];
+  readonly hardVetoFindingIds: readonly string[];
+  readonly p0p1ResolutionState: string;
+  readonly findingStability: string;
+  readonly decision: string;
+  readonly stopCandidate: boolean;
+  readonly graphDecision: string | null;
+}
+
+/**
+ * Reimplements the published review-loop stop/continue/block rule set from
+ * scratch: it never imports the shared backbone reducer, so a bug confined
+ * to that reducer stays visible to this oracle instead of being replayed
+ * identically on both comparator paths.
+ */
+function legacyReviewLoopBackbone(input: LegacyBackboneInput): Readonly<{
+  eligibility: LegacyReviewLoopState['eligibility'];
+  outcome: LegacyReviewLoopState['outcome'];
+  blockerIds: readonly string[];
+}> {
+  const completed = new Set(input.completedDimensionIds);
+  const unresolvedCoverage = input.requiredDimensionIds.filter((id) => !completed.has(id));
+  const blockers = sortedUnique([
+    ...input.explicitBlockerIds,
+    ...unresolvedCoverage.map((id) => `coverage:${id}`),
+    ...input.unresolvedObligationIds,
+    ...input.blockingFindingIds.map((id) => `blocking-finding:${id}`),
+    ...input.hardVetoFindingIds.map((id) => `hard-veto:${id}`),
+    ...(input.p0p1ResolutionState === 'resolved' ? [] : ['p0p1-resolution']),
+    ...(input.findingStability === 'stable' ? [] : ['finding-stability']),
+    ...(input.graphDecision === 'blocked' ? ['graph-decision'] : []),
+  ]);
+  const canStop = input.stopCandidate && input.decision === 'converged' && blockers.length === 0;
+  return Object.freeze({
+    eligibility: canStop
+      ? 'STOP_ELIGIBLE'
+      : input.decision === 'continue' || input.decision === 'recover'
+        ? 'CONTINUE'
+        : 'INDETERMINATE',
+    outcome: canStop
+      ? 'converged'
+      : input.decision === 'incomplete' && blockers.length === 0
+        ? 'incomplete'
+        : blockers.length > 0 || input.decision === 'blocked'
+          ? 'blocked'
+          : 'active',
+    blockerIds: blockers,
+  });
+}
+
+/** Compute the lane verdict / overall verdict surface from scratch. */
+function legacyRefreshVerdicts(
+  plans: ReadonlyMap<string, { readonly laneId: string; readonly orderedRuleIds: readonly string[] }>,
+  coverageByLane: ReadonlyMap<string, {
+    readonly unresolvedRuleIds: readonly string[];
+    readonly untestedRuleIds: readonly string[];
+    readonly blockedRuleIds: readonly string[];
+    readonly notApplicableRuleIds: readonly string[];
+  }>,
+  findings: readonly LegacyFindingState[],
+  activeDeviationFindingIds: ReadonlySet<string>,
+): Readonly<{
+  laneVerdicts: DeepAlignmentProjectionState['conformance']['laneVerdicts'];
+  overallVerdict: DeepAlignmentProjectionState['conformance']['overallVerdict'];
+  activeFindingIds: DeepAlignmentProjectionState['conformance']['activeFindingIds'];
+  hardVetoFindingIds: DeepAlignmentProjectionState['conformance']['hardVetoFindingIds'];
+}> {
+  const verdictRank: Record<string, number> = {
+    PASS: 0, NOT_APPLICABLE: 1, SKIP: 2, EXEMPT: 2, WARN: 3, INCONCLUSIVE: 4, FAIL: 5,
+  };
+  const laneIds = [...plans.keys()].sort(compareStringLocal);
+  const laneVerdicts = laneIds.map((laneId) => {
+    const plan = plans.get(laneId);
+    const coverage = coverageByLane.get(laneId);
+    const laneFindings = findings.filter((finding) => (
+      finding.laneId === laneId && finding.lifecycle !== 'dismissed' && finding.lifecycle !== 'fixed'
+    ));
+    const unsuppressed = laneFindings.filter(
+      (finding) => !activeDeviationFindingIds.has(finding.findingId),
+    );
+    const blockerIds = sortedUnique([
+      ...(coverage === undefined ? ['coverage-missing'] : []),
+      ...(coverage?.unresolvedRuleIds ?? []).map((id) => `unresolved:${id}`),
+      ...(coverage?.untestedRuleIds ?? []).map((id) => `untested:${id}`),
+      ...(coverage?.blockedRuleIds ?? []).map((id) => `blocked:${id}`),
+      ...unsuppressed.filter(
+        (finding) => finding.derivedSeverity === 'P0' || finding.derivedSeverity === 'P1',
+      ).map((finding) => `finding:${finding.findingId}`),
+    ]);
+    let verdict = 'PASS';
+    const hasActiveDeviation = laneFindings.some((finding) => activeDeviationFindingIds.has(
+      finding.findingId,
+    ));
+    if (blockerIds.some((entry) => entry.startsWith('finding:'))) verdict = 'FAIL';
+    else if (blockerIds.length > 0) verdict = 'INCONCLUSIVE';
+    else if (hasActiveDeviation) verdict = 'EXEMPT';
+    else if (coverage !== undefined
+      && plan !== undefined
+      && coverage.notApplicableRuleIds.length === plan.orderedRuleIds.length) {
+      verdict = 'NOT_APPLICABLE';
+    } else if (unsuppressed.some((finding) => finding.derivedSeverity === 'P2')) verdict = 'WARN';
+    return {
+      laneId,
+      verdict: verdict as DeepAlignmentProjectionState['conformance']['laneVerdicts'][number]['verdict'],
+      blockerIds,
+      findingIds: sortedUnique(laneFindings.map((finding) => finding.findingId)),
+    };
+  });
+  const overallVerdict = laneVerdicts.length === 0
+    ? 'INCONCLUSIVE' as const
+    : [...laneVerdicts].sort(
+      (left, right) => verdictRank[right.verdict] - verdictRank[left.verdict],
+    )[0].verdict;
+  const activeFindingIds = sortedUnique(findings.filter(
+    (finding) => finding.lifecycle === 'accepted' || finding.lifecycle === 'adjudicated',
+  ).map((finding) => finding.findingId));
+  const hardVetoFindingIds = sortedUnique(findings.filter(
+    (finding) => finding.hardVeto && finding.lifecycle !== 'dismissed' && finding.lifecycle !== 'fixed',
+  ).map((finding) => finding.findingId));
+  return Object.freeze({ laneVerdicts, overallVerdict, activeFindingIds, hardVetoFindingIds });
+}
+
+function compareStringLocal(left: string, right: string): number {
+  return left < right ? -1 : left > right ? 1 : 0;
+}
+
+/** Group artifacts by logical identity and mark all but the latest superseded. */
+function legacyRefreshArtifacts(
+  artifactsInOrder: readonly LegacyArtifactState[],
+): DeepAlignmentProjectionState['artifactIndex']['artifacts'] {
+  const groups = new Map<string, LegacyArtifactState[]>();
+  for (const artifact of artifactsInOrder) {
+    const group = groups.get(artifact.logicalArtifactId) ?? [];
+    group.push(artifact);
+    groups.set(artifact.logicalArtifactId, group);
+  }
+  const linked: LegacyArtifactState[] = [];
+  for (const group of groups.values()) {
+    group.forEach((artifact, index) => linked.push({
+      ...artifact,
+      availability: index < group.length - 1 ? 'superseded' : artifact.availability,
+    }));
+  }
+  return linked;
+}
+
+function legacyPayloadOf<TStem extends DeepAlignmentEventStem>(
+  event: DeepAlignmentLedgerEvent,
+  stem: TStem,
+): DeepAlignmentLedgerPayload<TStem> {
+  return event.payload as unknown as DeepAlignmentLedgerPayload<TStem>;
+}
+
+/** Reconstruct an equivalent projection state from raw events only. */
+function deepAlignmentLegacyOracleProjection(
+  events: readonly DeepAlignmentLedgerEvent[],
+): DeepAlignmentProjectionState {
+  let run: LegacyRunState = {
+    runId: null,
+    sessionId: null,
+    authorityEpochId: null,
+    generation: 0,
+    target: null,
+    maxIterations: 0,
+    convergencePolicyVersion: null,
+    alignmentModeContractDigest: null,
+    initializationEventId: null,
+  };
+  let authorityStatus: DeepAlignmentProjectionState['authorityAlignment']['status'] = 'missing';
+  let activeValidationEventId: string | null = null;
+  const authorityReferences = new Map<
+    string, DeepAlignmentProjectionState['authorityAlignment']['references'][number]
+  >();
+  const authorityValidations = new Map<
+    string, DeepAlignmentProjectionState['authorityAlignment']['validations'][number]
+  >();
+  const authorityCompatibilities = new Map<
+    string, DeepAlignmentProjectionState['authorityAlignment']['compatibilities'][number]
+  >();
+  const authorityWitnessReplays = new Map<
+    string, DeepAlignmentProjectionState['authorityAlignment']['witnessReplays'][number]
+  >();
+  const lanePlans = new Map<
+    string, DeepAlignmentProjectionState['lanePlan']['plans'][number]
+  >();
+  const laneSubjects = new Map<
+    string, DeepAlignmentProjectionState['lanePlan']['subjects'][number]
+  >();
+  const lanes = new Map<string, LegacyLaneState>();
+  const applicabilityDecisions = new Map<
+    string, DeepAlignmentProjectionState['applicability']['decisions'][number]
+  >();
+  const applicabilityCoverage = new Map<
+    string, DeepAlignmentProjectionState['applicability']['coverage'][number]
+  >();
+  const observations = new Map<
+    string, DeepAlignmentProjectionState['conformance']['observations'][number]
+  >();
+  const reconciliations = new Map<
+    string, DeepAlignmentProjectionState['conformance']['reconciliations'][number]
+  >();
+  const candidates = new Map<
+    string, DeepAlignmentProjectionState['conformance']['candidates'][number]
+  >();
+  const verifications = new Map<
+    string, DeepAlignmentProjectionState['conformance']['verifications'][number]
+  >();
+  const adjudications = new Map<
+    string, DeepAlignmentProjectionState['conformance']['adjudications'][number]
+  >();
+  const findingsByCandidate = new Map<string, LegacyFindingState>();
+  const assessments = new Map<
+    string, DeepAlignmentProjectionState['conformance']['assessments'][number]
+  >();
+  const deviations = new Map<
+    string, DeepAlignmentProjectionState['conformance']['deviations'][number]
+  >();
+  const evidenceReceipts = new Map<
+    string, DeepAlignmentProjectionState['proofWitness']['evidenceReceipts'][number]
+  >();
+  const proofWitnesses = new Map<
+    string, DeepAlignmentProjectionState['proofWitness']['witnesses'][number]
+  >();
+  const artifactsInOrder: LegacyArtifactState[] = [];
+  const requiredDimensionIds: string[] = [];
+  const completedDimensionIdsByIteration = new Map<string, Set<string>>();
+  const obligations = new Map<string, boolean>();
+  let evaluation: {
+    decision: string;
+    blockerIds: readonly string[];
+    stopCandidate: boolean;
+    p0p1ResolutionState: string;
+    findingStability: string;
+    graphDecision: string | null;
+    iterationId: string;
+  } | null = null;
+  let reviewLoopEligibility: LegacyReviewLoopState['eligibility'] = 'INDETERMINATE';
+  let reviewLoopOutcome: LegacyReviewLoopState['outcome'] = 'active';
+  let statusState: DeepAlignmentProjectionState['status']['state'] = 'planned';
+  const seenEvents: DeepAlignmentProjectionState['seenEvents'] = [];
+
+  const addArtifact = (candidate: LegacyArtifactState | null): void => {
+    if (candidate !== null) artifactsInOrder.push(candidate);
+  };
+  const artifactBase = (event: DeepAlignmentLedgerEvent): Pick<
+    LegacyArtifactState,
+    'producerEventId' | 'availability' | 'freshness' | 'authorityEpochId' | 'verifierRevision'
+    | 'supersedesArtifactIds' | 'supersededByArtifactIds'
+  > => ({
+    producerEventId: event.event_id,
+    availability: 'available',
+    freshness: 'fresh',
+    authorityEpochId: event.payload.scope.authorityEpochId,
+    verifierRevision: null,
+    supersedesArtifactIds: [],
+    supersededByArtifactIds: [],
+  });
+
+  for (const event of events) {
+    const stem = event.payload.stem;
+    seenEvents.push({
+      eventId: event.event_id,
+      eventDigest: digest(event),
+      stem,
+      streamId: event.stream_id,
+      streamSequence: event.stream_sequence,
+    });
+    switch (stem) {
+      case 'deep_alignment.run_initialized': {
+        const payload = legacyPayloadOf(event, stem);
+        run = {
+          runId: payload.scope.runId,
+          sessionId: payload.scope.sessionId,
+          authorityEpochId: payload.scope.authorityEpochId,
+          generation: payload.scope.generation,
+          target: payload.data.target,
+          maxIterations: payload.data.maxIterations,
+          convergencePolicyVersion: payload.data.convergencePolicyVersion,
+          alignmentModeContractDigest: payload.data.reviewModeContractDigest,
+          initializationEventId: event.event_id,
+        };
+        statusState = 'planned';
+        break;
+      }
+      case 'deep_alignment.run_resumed':
+      case 'deep_alignment.run_restarted': {
+        const payload = legacyPayloadOf(event, stem);
+        run = { ...run, generation: payload.scope.generation };
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.authority_reference_bound': {
+        const payload = legacyPayloadOf(event, stem);
+        authorityReferences.set(payload.scope.authorityEpochId, {
+          authorityEpochId: payload.scope.authorityEpochId,
+          ...payload.data,
+          producerEventId: event.event_id,
+        });
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `authority:${payload.scope.authorityEpochId}:${payload.data.profileDigest}`,
+          logicalArtifactId: `authority:${payload.scope.authorityEpochId}`,
+          artifactKind: 'authority-reference',
+          ownerEntityId: payload.scope.authorityEpochId,
+          reviewedInputIdentity: payload.data.authorityCapsuleRef,
+          contentDigest: payload.data.profileDigest,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.authority_validation_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        authorityValidations.set(event.event_id, {
+          authorityEpochId: payload.scope.authorityEpochId,
+          ...payload.data,
+          validationReceiptRefs: sortedUnique(payload.data.validationReceiptRefs),
+          producerEventId: event.event_id,
+        });
+        activeValidationEventId = event.event_id;
+        authorityStatus = payload.data.authorityStatus === 'valid' ? 'valid' : 'invalid';
+        statusState = payload.data.authorityStatus === 'valid' ? 'active' : 'blocked';
+        break;
+      }
+      case 'deep_alignment.authority_epoch_compatibility_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        authorityCompatibilities.set(event.event_id, {
+          ...payload.data,
+          affectedRuleIds: sortedUnique(payload.data.affectedRuleIds),
+          orderedUpcastPath: [...payload.data.orderedUpcastPath],
+          producerEventId: event.event_id,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.authority_witness_replayed': {
+        const payload = legacyPayloadOf(event, stem);
+        authorityWitnessReplays.set(event.event_id, {
+          proofId: payload.scope.proofId,
+          laneId: payload.scope.laneId,
+          subjectId: payload.scope.subjectId,
+          sourceAuthorityEpochId: payload.data.sourceAuthorityEpochId,
+          targetAuthorityEpochId: payload.data.targetAuthorityEpochId,
+          witnessEventId: payload.data.witnessEventId,
+          compatibilityDecisionEventId: payload.data.compatibilityDecisionEventId,
+          replayOutcome: payload.data.replayOutcome,
+          replayDigest: payload.data.replayDigest,
+          producerEventId: event.event_id,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.scope_resolved': {
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.dimension_ordered': {
+        const payload = legacyPayloadOf(event, stem);
+        requiredDimensionIds.length = 0;
+        requiredDimensionIds.push(...payload.data.orderedDimensionIds);
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.protocol_plan_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        if (payload.data.gateClass !== 'informational'
+          && payload.data.applicability !== 'not-applicable') {
+          obligations.set(`protocol:${payload.scope.protocolId}`, false);
+        }
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.lane_plan_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        lanePlans.set(payload.scope.laneId, {
+          laneId: payload.scope.laneId,
+          iterationId: payload.scope.iterationId,
+          authorityEpochId: payload.scope.authorityEpochId,
+          ...payload.data,
+          orderedRuleIds: [...payload.data.orderedRuleIds],
+          requiredEvidenceClasses: sortedUnique(payload.data.requiredEvidenceClasses),
+          producerEventId: event.event_id,
+        });
+        if (!lanes.has(payload.scope.laneId)) {
+          lanes.set(payload.scope.laneId, {
+            laneId: payload.scope.laneId,
+            iterationId: payload.scope.iterationId,
+            lanePlanEventId: event.event_id,
+            authorityValidationEventId: '',
+            subjectSnapshotRef: '',
+            subjectSnapshotDigest: LEGACY_EMPTY_SNAPSHOT_DIGEST,
+            status: 'planned',
+            counts: null,
+            applicabilityDecisionRefs: [],
+            observationRefs: [],
+            verificationRefs: [],
+            completionDigest: null,
+            blockedReasonCode: null,
+            producerEventId: event.event_id,
+          });
+        }
+        obligations.set(`lane:${payload.scope.laneId}`, false);
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.lane_started': {
+        const payload = legacyPayloadOf(event, stem);
+        const prior = lanes.get(payload.scope.laneId);
+        if (prior !== undefined) {
+          lanes.set(payload.scope.laneId, {
+            ...prior,
+            authorityValidationEventId: payload.data.authorityValidationEventId,
+            subjectSnapshotRef: payload.data.subjectSnapshotRef,
+            subjectSnapshotDigest: payload.data.subjectSnapshotDigest,
+            status: 'started',
+            producerEventId: event.event_id,
+          });
+        }
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.subject_snapshot_bound': {
+        const payload = legacyPayloadOf(event, stem);
+        laneSubjects.set(payload.scope.subjectId, {
+          subjectId: payload.scope.subjectId,
+          laneId: payload.scope.laneId,
+          ...payload.data,
+          producerEventId: event.event_id,
+        });
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `snapshot:${payload.scope.laneId}:${payload.scope.subjectId}:${payload.data.subjectDigest}`,
+          logicalArtifactId: `snapshot:${payload.scope.laneId}:${payload.scope.subjectId}`,
+          artifactKind: 'subject-snapshot',
+          ownerEntityId: payload.scope.subjectId,
+          reviewedInputIdentity: payload.data.sourceVersionRef,
+          contentDigest: payload.data.subjectDigest,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.applicability_evaluated': {
+        const payload = legacyPayloadOf(event, stem);
+        const key = `${payload.scope.laneId}:${payload.scope.subjectId}:${payload.scope.ruleId}`;
+        applicabilityDecisions.set(key, {
+          decisionId: event.event_id,
+          laneId: payload.scope.laneId,
+          subjectId: payload.scope.subjectId,
+          ruleId: payload.scope.ruleId,
+          authorityValidationEventId: payload.data.authorityValidationEventId,
+          result: payload.data.result,
+          predicateRef: payload.data.predicateRef,
+          predicateDigest: payload.data.predicateDigest,
+          targetFactRefs: sortedUnique(payload.data.targetFactRefs),
+          targetFactDigest: payload.data.targetFactDigest,
+          evaluatorFingerprint: payload.data.evaluatorFingerprint,
+          decisionDigest: payload.data.decisionDigest,
+          reasonCode: payload.data.reasonCode,
+          producerEventId: event.event_id,
+        });
+        const obligationKey = `applicability:${payload.scope.laneId}:${payload.scope.ruleId}`;
+        obligations.set(obligationKey, payload.data.result === 'applicable'
+          || payload.data.result === 'not_applicable');
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.dimension_pass_started':
+      case 'deep_alignment.dimension_pass_completed': {
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.observation_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        observations.set(payload.scope.observationId, {
+          observationId: payload.scope.observationId,
+          laneId: payload.scope.laneId,
+          subjectId: payload.scope.subjectId,
+          ruleId: payload.scope.ruleId,
+          ...payload.data,
+          receiptRefs: sortedUnique(payload.data.receiptRefs),
+          producerEventId: event.event_id,
+        });
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `observation:${payload.scope.observationId}:${payload.data.contentDigest}`,
+          logicalArtifactId: `observation:${payload.scope.observationId}`,
+          artifactKind: 'observation',
+          ownerEntityId: payload.scope.observationId,
+          reviewedInputIdentity: payload.data.subjectSnapshotRef,
+          contentDigest: payload.data.contentDigest,
+          freshness: payload.data.freshness,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.evidence_receipt_bound': {
+        const payload = legacyPayloadOf(event, stem);
+        evidenceReceipts.set(payload.scope.evidenceId, {
+          evidenceId: payload.scope.evidenceId,
+          observationId: payload.scope.observationId,
+          laneId: payload.scope.laneId,
+          subjectId: payload.scope.subjectId,
+          ruleId: payload.scope.ruleId,
+          ...payload.data,
+          producerEventId: event.event_id,
+        });
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `receipt:${payload.scope.evidenceId}:${payload.data.receiptDigest}`,
+          logicalArtifactId: `receipt:${payload.scope.evidenceId}`,
+          artifactKind: 'evidence-receipt',
+          ownerEntityId: payload.scope.evidenceId,
+          reviewedInputIdentity: payload.data.observationEventId,
+          contentDigest: payload.data.receiptDigest,
+          freshness: payload.data.freshness,
+          verifierRevision: payload.data.toolFingerprint,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.observation_reconciled': {
+        const payload = legacyPayloadOf(event, stem);
+        reconciliations.set(event.event_id, {
+          observationId: payload.scope.observationId,
+          observationEventId: payload.data.observationEventId,
+          predecessorObservationEventId: payload.data.predecessorObservationEventId,
+          evidenceReceiptRefs: sortedUnique(payload.data.evidenceReceiptRefs),
+          outcome: payload.data.reconciliationOutcome,
+          evidenceSetDigest: payload.data.evidenceSetDigest,
+          reconcilerFingerprint: payload.data.reconcilerFingerprint,
+          reasonCode: payload.data.reasonCode,
+          producerEventId: event.event_id,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.finding_candidate_emitted': {
+        const payload = legacyPayloadOf(event, stem);
+        candidates.set(payload.scope.candidateId, {
+          candidateId: payload.scope.candidateId,
+          laneId: payload.scope.laneId,
+          subjectId: payload.scope.subjectId,
+          ruleId: payload.scope.ruleId,
+          observationId: payload.scope.observationId,
+          ...payload.data,
+          evidenceReceiptRefs: sortedUnique(payload.data.evidenceReceiptRefs),
+          producerEventId: event.event_id,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.finding_verification_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        verifications.set(payload.scope.verificationId, {
+          verificationId: payload.scope.verificationId,
+          findingId: payload.scope.findingId,
+          candidateId: payload.scope.candidateId,
+          observationId: payload.scope.observationId,
+          ...payload.data,
+          evidenceReceiptRefs: sortedUnique(payload.data.evidenceReceiptRefs),
+          proofWitnessRefs: sortedUnique(payload.data.proofWitnessRefs),
+          counterevidenceRefs: sortedUnique(payload.data.counterevidenceRefs),
+          producerEventId: event.event_id,
+        });
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `verification:${payload.scope.verificationId}:${payload.data.verificationDigest}`,
+          logicalArtifactId: `verification:${payload.scope.verificationId}`,
+          artifactKind: 'verification',
+          ownerEntityId: payload.scope.verificationId,
+          reviewedInputIdentity: payload.data.candidateEventId,
+          contentDigest: payload.data.verificationDigest,
+          verifierRevision: payload.data.verifierFingerprint,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.proof_witness_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        proofWitnesses.set(payload.scope.proofId, {
+          proofId: payload.scope.proofId,
+          findingId: payload.scope.findingId,
+          candidateId: payload.scope.candidateId,
+          verificationId: payload.scope.verificationId,
+          ...payload.data,
+          receiptRefs: sortedUnique(payload.data.receiptRefs),
+          producerEventId: event.event_id,
+        });
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `proof:${payload.scope.proofId}:${payload.data.witnessDigest}`,
+          logicalArtifactId: `proof:${payload.scope.proofId}`,
+          artifactKind: 'proof-witness',
+          ownerEntityId: payload.scope.proofId,
+          reviewedInputIdentity: payload.data.verificationEventId,
+          contentDigest: payload.data.witnessDigest,
+          verifierRevision: payload.data.minimizerFingerprint,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.claim_adjudication_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        const candidate = candidates.get(payload.scope.candidateId);
+        const findingClass = candidate?.findingClass ?? '';
+        const severity = legacyDerivedSeverity(
+          findingClass,
+          payload.data.outcome,
+          payload.data.impact,
+          payload.data.confidence,
+        );
+        const hardVeto = legacyIsHardVetoClass(findingClass);
+        adjudications.set(event.event_id, {
+          findingId: payload.scope.findingId,
+          candidateId: payload.scope.candidateId,
+          verificationId: payload.scope.verificationId,
+          observationId: payload.scope.observationId,
+          candidateEventId: payload.data.candidateEventId,
+          verificationEventId: payload.data.verificationEventId,
+          observationEventId: payload.data.observationEventId,
+          claimDigest: payload.data.claimDigest,
+          evidenceReceiptRefs: sortedUnique(payload.data.evidenceReceiptRefs),
+          proofWitnessRefs: sortedUnique(payload.data.proofWitnessRefs),
+          counterevidenceRefs: sortedUnique(payload.data.counterevidenceRefs),
+          verifierFingerprint: payload.data.verifierFingerprint,
+          assessorFingerprint: payload.data.assessorFingerprint,
+          authorityValidationEventId: payload.data.authorityValidationEventId,
+          applicabilityDecisionId: payload.data.applicabilityDecisionId,
+          subjectSnapshotDigest: payload.data.subjectSnapshotDigest,
+          impact: payload.data.impact,
+          confidence: payload.data.confidence,
+          outcome: payload.data.outcome,
+          transition: payload.data.transition,
+          adjudicationDigest: payload.data.adjudicationDigest,
+          predecessorAdjudicationEventId: payload.data.predecessorAdjudicationEventId,
+          derivedSeverity: severity,
+          hardVeto,
+          producerEventId: event.event_id,
+        });
+        const lifecycle: LegacyFindingState['lifecycle'] = payload.data.outcome === 'accepted'
+          ? 'accepted'
+          : payload.data.outcome === 'deferred' || payload.data.outcome === 'blocked'
+            ? 'adjudicated'
+            : 'dismissed';
+        findingsByCandidate.set(payload.scope.candidateId, {
+          findingId: payload.scope.findingId,
+          candidateId: payload.scope.candidateId,
+          laneId: payload.scope.laneId,
+          subjectId: payload.scope.subjectId,
+          ruleId: payload.scope.ruleId,
+          observationId: payload.scope.observationId,
+          findingClass,
+          lifecycle,
+          adjudicationOutcome: payload.data.outcome,
+          impact: payload.data.impact,
+          confidence: payload.data.confidence,
+          derivedSeverity: severity,
+          hardVeto,
+          candidateEventId: candidate?.producerEventId ?? payload.data.candidateEventId,
+          verificationEventId: payload.data.verificationEventId,
+          adjudicationEventId: event.event_id,
+          predecessorEventId: payload.data.predecessorAdjudicationEventId,
+        });
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `adjudication:${payload.scope.findingId}:${event.event_id}`,
+          logicalArtifactId: `adjudication:${payload.scope.findingId}`,
+          artifactKind: 'adjudication',
+          ownerEntityId: payload.scope.findingId,
+          reviewedInputIdentity: payload.data.verificationEventId,
+          contentDigest: payload.data.adjudicationDigest,
+          verifierRevision: payload.data.assessorFingerprint,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.conformance_assessment_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        assessments.set(payload.scope.findingId, {
+          findingId: payload.scope.findingId,
+          laneId: payload.scope.laneId,
+          subjectId: payload.scope.subjectId,
+          ruleId: payload.scope.ruleId,
+          adjudicationEventId: payload.data.adjudicationEventId,
+          verificationEventId: payload.data.verificationEventId,
+          authorityValidationEventId: payload.data.authorityValidationEventId,
+          applicabilityDecisionId: payload.data.applicabilityDecisionId,
+          conformanceStatus: payload.data.conformanceStatus,
+          rawImpact: payload.data.impact,
+          rawConfidence: payload.data.confidence,
+          verifierFingerprint: payload.data.verifierFingerprint,
+          proofWitnessRefs: sortedUnique(payload.data.proofWitnessRefs),
+          evidenceReceiptRefs: sortedUnique(payload.data.evidenceReceiptRefs),
+          assessmentPolicyVersion: payload.data.assessmentPolicyVersion,
+          assessmentDigest: payload.data.assessmentDigest,
+          producerEventId: event.event_id,
+        });
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `assessment:${payload.scope.findingId}:${payload.data.assessmentDigest}`,
+          logicalArtifactId: `assessment:${payload.scope.findingId}`,
+          artifactKind: 'conformance-assessment',
+          ownerEntityId: payload.scope.findingId,
+          reviewedInputIdentity: payload.data.adjudicationEventId,
+          contentDigest: payload.data.assessmentDigest,
+          verifierRevision: payload.data.verifierFingerprint,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.finding_lineage_recorded': {
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.finding_state_changed': {
+        const payload = legacyPayloadOf(event, stem);
+        for (const [candidateId, finding] of findingsByCandidate) {
+          if (finding.findingId !== payload.scope.findingId) continue;
+          findingsByCandidate.set(candidateId, {
+            ...finding,
+            lifecycle: payload.data.currentState,
+            predecessorEventId: payload.data.predecessorEventRef,
+            derivedSeverity: payload.data.currentState === 'fixed'
+              || payload.data.currentState === 'dismissed'
+              ? 'none'
+              : finding.derivedSeverity,
+          });
+        }
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.known_deviation_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        deviations.set(payload.scope.deviationId, {
+          deviationId: payload.scope.deviationId,
+          findingId: payload.scope.findingId,
+          originalFindingEventId: payload.data.originalFindingEventId,
+          conformanceAssessmentEventId: payload.data.conformanceAssessmentEventId,
+          authorityEpochRef: payload.data.authorityEpochRef,
+          verifierFingerprint: payload.data.verifierFingerprint,
+          issuerId: payload.data.issuerId,
+          rationale: payload.data.rationale,
+          scopePredicateRef: payload.data.scopePredicateRef,
+          scopePredicateDigest: payload.data.scopePredicateDigest,
+          subjectSnapshotDigest: payload.data.subjectSnapshotDigest,
+          expiresAt: payload.data.expiresAt,
+          invalidationConditionRefs: sortedUnique(payload.data.invalidationConditionRefs),
+          status: 'active',
+          invalidationEventId: null,
+          producerEventId: event.event_id,
+        });
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `deviation:${payload.scope.deviationId}:${payload.data.scopePredicateDigest}`,
+          logicalArtifactId: `deviation:${payload.scope.deviationId}`,
+          artifactKind: 'known-deviation',
+          ownerEntityId: payload.scope.deviationId,
+          reviewedInputIdentity: payload.data.originalFindingEventId,
+          contentDigest: payload.data.scopePredicateDigest,
+          verifierRevision: payload.data.verifierFingerprint,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.known_deviation_invalidated': {
+        const payload = legacyPayloadOf(event, stem);
+        const prior = deviations.get(payload.scope.deviationId);
+        if (prior !== undefined) {
+          deviations.set(payload.scope.deviationId, {
+            ...prior,
+            status: 'invalidated',
+            invalidationEventId: event.event_id,
+          });
+        }
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.applicability_coverage_recorded': {
+        const payload = legacyPayloadOf(event, stem);
+        applicabilityCoverage.set(payload.scope.laneId, {
+          laneId: payload.scope.laneId,
+          authorityValidationEventId: payload.data.authorityValidationEventId,
+          subjectSnapshotDigest: payload.data.subjectSnapshotDigest,
+          declaredApplicabilityEdgeRefs: sortedUnique(payload.data.declaredApplicabilityEdgeRefs),
+          applicableRuleIds: sortedUnique(payload.data.applicableRuleIds),
+          notApplicableRuleIds: sortedUnique(payload.data.notApplicableRuleIds),
+          unresolvedRuleIds: sortedUnique(payload.data.unresolvedRuleIds),
+          untestedRuleIds: sortedUnique(payload.data.untestedRuleIds),
+          blockedRuleIds: sortedUnique(payload.data.blockedRuleIds),
+          coverageDigest: payload.data.coverageDigest,
+          producerEventId: event.event_id,
+        });
+        for (const ruleId of [
+          ...payload.data.unresolvedRuleIds, ...payload.data.untestedRuleIds,
+        ]) obligations.set(`applicability:${payload.scope.laneId}:${ruleId}`, false);
+        for (const ruleId of payload.data.blockedRuleIds) {
+          obligations.set(`applicability:${payload.scope.laneId}:${ruleId}`, false);
+        }
+        for (const ruleId of [
+          ...payload.data.applicableRuleIds, ...payload.data.notApplicableRuleIds,
+        ]) {
+          if (!payload.data.unresolvedRuleIds.includes(ruleId)
+            && !payload.data.untestedRuleIds.includes(ruleId)
+            && !payload.data.blockedRuleIds.includes(ruleId)) {
+            obligations.set(`applicability:${payload.scope.laneId}:${ruleId}`, true);
+          }
+        }
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.lane_completed': {
+        const payload = legacyPayloadOf(event, stem);
+        const prior = lanes.get(payload.scope.laneId);
+        if (prior !== undefined) {
+          lanes.set(payload.scope.laneId, {
+            ...prior,
+            status: payload.data.status,
+            counts: payload.data.counts,
+            applicabilityDecisionRefs: sortedUnique(payload.data.applicabilityDecisionRefs),
+            observationRefs: sortedUnique(payload.data.observationRefs),
+            verificationRefs: sortedUnique(payload.data.verificationRefs),
+            completionDigest: payload.data.completionDigest,
+            blockedReasonCode: payload.data.blockedReasonCode,
+            producerEventId: event.event_id,
+          });
+        }
+        obligations.set(`lane:${payload.scope.laneId}`, payload.data.status === 'complete');
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.convergence_evaluated':
+      case 'deep_alignment.graph_convergence_evaluated': {
+        const payload = legacyPayloadOf(event, stem);
+        const iterationId = payload.scope.iterationId;
+        const completed = completedDimensionIdsByIteration.get(iterationId) ?? new Set<string>();
+        const graph = stem === 'deep_alignment.graph_convergence_evaluated'
+          ? legacyPayloadOf(event, 'deep_alignment.graph_convergence_evaluated')
+          : null;
+        evaluation = {
+          decision: payload.data.decision,
+          blockerIds: sortedUnique(payload.data.blockerIds),
+          stopCandidate: payload.data.stopCandidate,
+          p0p1ResolutionState: payload.data.p0p1ResolutionState,
+          findingStability: payload.data.findingStability,
+          graphDecision: graph?.data.graphDecision ?? null,
+          iterationId,
+        };
+        const findingsSnapshot = [...findingsByCandidate.values()];
+        const blockingFindingIds = findingsSnapshot.filter((finding) => (
+          finding.lifecycle === 'accepted'
+          && (finding.derivedSeverity === 'P0' || finding.derivedSeverity === 'P1')
+        )).map((finding) => finding.findingId);
+        const hardVetoFindingIds = findingsSnapshot.filter(
+          (finding) => finding.hardVeto && finding.lifecycle !== 'dismissed'
+            && finding.lifecycle !== 'fixed',
+        ).map((finding) => finding.findingId);
+        const unresolvedObligationIds = [...obligations.entries()]
+          .filter(([, resolved]) => !resolved)
+          .map(([id]) => id);
+        const specificBlockers = sortedUnique([
+          ...(authorityStatus === 'valid' ? [] : ['authority-validity']),
+          ...(lanePlans.size > 0 ? [] : ['lane-plan-missing']),
+          ...[...lanes.values()].filter((lane) => lane.status !== 'complete').map(
+            (lane) => `lane:${lane.laneId}:${lane.status}`,
+          ),
+        ]);
+        const backbone = legacyReviewLoopBackbone({
+          requiredDimensionIds,
+          completedDimensionIds: [...completed],
+          unresolvedObligationIds,
+          explicitBlockerIds: sortedUnique([...evaluation.blockerIds, ...specificBlockers]),
+          blockingFindingIds,
+          hardVetoFindingIds,
+          p0p1ResolutionState: evaluation.p0p1ResolutionState,
+          findingStability: evaluation.findingStability,
+          decision: evaluation.decision,
+          stopCandidate: evaluation.stopCandidate,
+          graphDecision: evaluation.graphDecision,
+        });
+        reviewLoopEligibility = backbone.eligibility;
+        reviewLoopOutcome = backbone.outcome;
+        statusState = reviewLoopOutcome === 'blocked' ? 'blocked' : 'active';
+        break;
+      }
+      case 'deep_alignment.blocked_stop_recorded': {
+        reviewLoopOutcome = 'blocked';
+        statusState = 'blocked';
+        break;
+      }
+      case 'deep_alignment.pause_recorded': {
+        statusState = 'paused';
+        break;
+      }
+      case 'deep_alignment.recovery_started': {
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.synthesis_started': {
+        statusState = 'converging';
+        break;
+      }
+      case 'deep_alignment.review_report_committed': {
+        const payload = legacyPayloadOf(event, stem);
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `report:${payload.scope.reportRevisionId}:${payload.data.reportDigest}`,
+          logicalArtifactId: `report:${run.runId ?? ''}`,
+          artifactKind: 'review-report',
+          ownerEntityId: String(run.runId),
+          reviewedInputIdentity: payload.data.findingRegistryInputDigest,
+          contentDigest: payload.data.reportDigest,
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.continuity_save_requested': {
+        const payload = legacyPayloadOf(event, stem);
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `continuity:${payload.data.targetPacket}:${event.event_id}`,
+          logicalArtifactId: `continuity:${payload.data.targetPacket}`,
+          artifactKind: 'continuity-save',
+          ownerEntityId: String(run.runId),
+          reviewedInputIdentity: payload.data.continuityPayloadDigest,
+          contentDigest: payload.data.continuityPayloadDigest,
+          availability: 'pending',
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.continuity_save_completed': {
+        const payload = legacyPayloadOf(event, stem);
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `continuity:${payload.data.targetPacket}:${event.event_id}`,
+          logicalArtifactId: `continuity:${payload.data.targetPacket}`,
+          artifactKind: 'continuity-save',
+          ownerEntityId: String(run.runId),
+          reviewedInputIdentity: payload.data.continuityPayloadDigest,
+          contentDigest: payload.data.continuityFingerprint,
+          availability: 'available',
+        });
+        statusState = 'active';
+        break;
+      }
+      case 'deep_alignment.continuity_save_failed': {
+        const payload = legacyPayloadOf(event, stem);
+        addArtifact({
+          ...artifactBase(event),
+          artifactId: `continuity:${payload.data.targetPacket}:${event.event_id}`,
+          logicalArtifactId: `continuity:${payload.data.targetPacket}`,
+          artifactKind: 'continuity-save',
+          ownerEntityId: String(run.runId),
+          reviewedInputIdentity: payload.data.continuityPayloadDigest,
+          contentDigest: payload.data.continuityPayloadDigest,
+          availability: 'unavailable',
+        });
+        statusState = 'blocked';
+        break;
+      }
+      case 'deep_alignment.run_completed': {
+        const payload = legacyPayloadOf(event, stem);
+        if (payload.data.terminalStatus === 'completed') statusState = 'complete';
+        else if (payload.data.terminalStatus === 'incomplete') statusState = 'incomplete';
+        else statusState = 'failed';
+        reviewLoopOutcome = payload.data.verdict === 'pass'
+          ? 'converged'
+          : payload.data.verdict === 'incomplete' ? 'incomplete' : 'blocked';
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
+  const activeDeviationFindingIds = new Set(
+    [...deviations.values()].filter((entry) => entry.status === 'active').map(
+      (entry) => entry.findingId,
+    ),
+  );
+  const coverageByLane = new Map([...applicabilityCoverage.entries()].map(
+    ([laneId, coverage]) => [laneId, coverage],
+  ));
+  const findings = [...findingsByCandidate.values()];
+  const verdicts = legacyRefreshVerdicts(
+    lanePlans,
+    coverageByLane,
+    findings,
+    activeDeviationFindingIds,
+  );
+
+  // The reducer's own state passes through a recursive canonical clone before
+  // any caller can observe it, so its JSON.stringify output always carries
+  // alphabetically-sorted keys. This oracle builds plain object literals with
+  // whatever insertion order the spreads produce, which is semantically equal
+  // but byte-different under plain (non-canonical) JSON.stringify -- and a
+  // shared replay-fingerprint check downstream hashes that exact string, not
+  // just the canonical digest. Round-tripping through the same canonical
+  // serializer here removes that spurious, non-semantic byte difference.
+  const rawState: DeepAlignmentProjectionState = {
+    schemaVersion: DEEP_ALIGNMENT_PROJECTION_SCHEMA_VERSION,
+    reducerVersion: DEEP_ALIGNMENT_REDUCER_VERSION,
+    codecVersion: DEEP_ALIGNMENT_PROJECTION_CODEC_VERSION,
+    orderingPolicyVersion: DEEP_ALIGNMENT_ORDERING_POLICY_VERSION,
+    run,
+    reviewLoop: {
+      configuration: DEEP_ALIGNMENT_SHARED_REVIEW_LOOP_CONFIGURATION,
+      scope: {
+        targetSetDigest: null,
+        scopeClass: null,
+        targets: [],
+        orderedDimensionIds: [...requiredDimensionIds],
+        scopeEvidenceRefs: [],
+        orderingPolicyVersion: null,
+      },
+      coverageCells: [],
+      passes: [],
+      obligations: [],
+      evaluations: [],
+      currentIterationId: evaluation?.iterationId ?? null,
+      eligibility: reviewLoopEligibility,
+      outcome: reviewLoopOutcome,
+      terminalDecision: null,
+      blockerIds: [],
+      lastAppliedSequence: seenEvents.length,
+    },
+    authorityAlignment: {
+      references: [...authorityReferences.values()],
+      validations: [...authorityValidations.values()],
+      compatibilities: [...authorityCompatibilities.values()],
+      witnessReplays: [...authorityWitnessReplays.values()],
+      activeValidationEventId,
+      status: authorityStatus,
+    },
+    lanePlan: {
+      plans: [...lanePlans.values()],
+      subjects: [...laneSubjects.values()],
+      lanes: [...lanes.values()],
+    },
+    applicability: {
+      decisions: [...applicabilityDecisions.values()],
+      coverage: [...applicabilityCoverage.values()],
+    },
+    conformance: {
+      observations: [...observations.values()],
+      reconciliations: [...reconciliations.values()],
+      candidates: [...candidates.values()],
+      verifications: [...verifications.values()],
+      adjudications: [...adjudications.values()],
+      findings,
+      assessments: [...assessments.values()],
+      deviations: [...deviations.values()],
+      laneVerdicts: verdicts.laneVerdicts,
+      overallVerdict: verdicts.overallVerdict,
+      activeFindingIds: verdicts.activeFindingIds,
+      hardVetoFindingIds: verdicts.hardVetoFindingIds,
+    },
+    proofWitness: {
+      evidenceReceipts: [...evidenceReceipts.values()],
+      witnesses: [...proofWitnesses.values()],
+    },
+    artifactIndex: { artifacts: legacyRefreshArtifacts(artifactsInOrder) },
+    status: {
+      state: statusState,
+      terminal: statusState === 'complete' || statusState === 'incomplete'
+        || statusState === 'failed',
+      health: statusState === 'blocked' || statusState === 'failed' ? 'blocked' : 'healthy',
+      activeContractVersions: [],
+      activeAuthorityEpochs: run.authorityEpochId === null ? [] : [run.authorityEpochId],
+      laneStatuses: [...lanes.values()].map((lane) => (
+        { laneId: lane.laneId, status: lane.status }
+      )).sort((left, right) => compareStringLocal(left.laneId, right.laneId)),
+      lastAppliedSequence: seenEvents.length,
+      blockingReason: null,
+      shadowParityState: 'not-run',
+      provenance: [],
+    },
+    cursors: {
+      reviewLoop: events.length,
+      authorityAlignment: events.length,
+      lanePlan: events.length,
+      applicability: events.length,
+      conformance: events.length,
+      proofWitness: events.length,
+      artifactIndex: events.length,
+      status: events.length,
+    },
+    seenEvents,
+  };
+  return JSON.parse(canonicalJson(rawState)) as DeepAlignmentProjectionState;
+}
+
 function legacyProjection(
   events: readonly DeepAlignmentLedgerEvent[],
   resumeEvidence: DeepAlignmentResumeParityEvidence | null,
 ): DeepAlignmentParityProjection {
-  const projection = foldProjection(events);
-  const legacy = projectDeepAlignmentLegacyView(projection);
-  assertLegacyProjectionMatchesCurrentState(legacy, projection);
-  return projectionView(projection, resumeEvidence, 'legacy');
+  return projectionView(deepAlignmentLegacyOracleProjection(events), resumeEvidence, 'legacy');
 }
 
 function ledgerProjection(
@@ -805,20 +1956,6 @@ function ledgerProjection(
   resumeEvidence: DeepAlignmentResumeParityEvidence | null,
 ): DeepAlignmentParityProjection {
   return projectionView(foldProjection(events), resumeEvidence, 'ledger');
-}
-
-function assertLegacyProjectionMatchesCurrentState(
-  legacy: DeepAlignmentLegacyProjection,
-  projection: DeepAlignmentProjectionState,
-): void {
-  if (
-    legacy.authority !== 'shadow-only'
-    || legacy.legacyAuthority !== 'unchanged'
-    || legacy.projectionHealth !== projection.status.health
-    || digest(legacy.lanes) !== digest(projection.lanePlan.lanes)
-    || digest(legacy.applicability) !== digest(projection.applicability.decisions)
-    || digest(legacy.verdicts) !== digest(projection.conformance.laneVerdicts)
-  ) throw new TypeError('Independent legacy projection disagrees with current mode state');
 }
 
 function replayState(

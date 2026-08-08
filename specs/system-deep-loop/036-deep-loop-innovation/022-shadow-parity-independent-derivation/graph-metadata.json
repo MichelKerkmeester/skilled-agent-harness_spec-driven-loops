@@ -42,7 +42,6 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/harness-adapter.ts",
       ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-shadow-parity/harness-adapter.ts",
@@ -54,7 +53,8 @@
       ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-shadow-parity.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/model-benchmark-shadow-parity.vitest.ts",
       ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-shadow-parity.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts"
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -85,12 +85,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -133,6 +127,12 @@
         "name": "deep-review-shadow-parity.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
     "created_at": "2026-07-31T01:25:19.594Z",
-    "last_save_at": "2026-08-08T10:22:29.999Z",
+    "last_save_at": "2026-08-08T11:16:17.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32ad3a9f656980930894b05754af190a0eb7e4bc93cdf718f1e19fda54d9583a",
+    "source_fingerprint": "sha256:8ec62bb48ea483063d48589a8c72bceb81618d877d0e1ae5b7b56edb8aea53c7",
     "source_doc_hashes": {
-      "spec.md": "9e47968c82666586485f793e32f31303bdaaa4521472272c28e6f311a0e36974",
+      "spec.md": "52fb6be5b08be6c1745e36dc70c897031068351a0f0587d81056e525876ffde7",
       "plan.md": "dea3cde6029f01745e99170bfdb89d6a65209ee9915598d082d3da0fe634ba9a",
       "tasks.md": "b56b42a67860b1b449863e1254132decea4bcdbf81e60bf00de2ff570f7a3c53",
       "checklist.md": "84d4e46d162e588681739bf08b4a31ed7d59b3725de3ca4155b848efb607db08",
       "decision-record.md": "6108bf88d41302077e8776deabdcfdd9be46b9b32aaa9b7c15a02b7230d7a36e",
-      "implementation-summary.md": "a15ab6244dc1242b99dacb2afd9d48580421913805060bd6b4413bb85c3c1ef4"
+      "implementation-summary.md": "e00448c3671023cf5164a1d81b122c1ecd0c4a960fcd1fa608a7d2ed7648b0df"
     },
     "last_active_child_id": null,
     "last_active_at": null

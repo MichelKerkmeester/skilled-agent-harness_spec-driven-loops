@@ -6,7 +6,7 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   AppendOnlyLedger,
@@ -17,6 +17,7 @@ import {
   createDeepAlignmentEventRegistry,
   prepareDeepAlignmentEvent,
 } from '../../lib/deep-alignment-ledger-schema/index.js';
+import * as deepAlignmentReducers from '../../lib/deep-alignment-reducers/index.js';
 import {
   DEEP_ALIGNMENT_REQUIRED_FIXTURE_SCENARIOS,
   DEEP_ALIGNMENT_VOLATILITY_ALLOWLIST,
@@ -640,6 +641,63 @@ describe('Deep Alignment shadow parity', () => {
       authorityMutation: false, rollbackReadinessAuthorized: false,
       cutoverAuthorized: false,
     });
+  }, 30_000);
+
+  it('fails on a reducer-internal divergence a shared-derivation harness could not see', async () => {
+    // Corrupt only the real reducer's own typed fold output (never the raw
+    // event stream both paths read). A harness whose legacy side re-derives
+    // from that same fold -- instead of independently from the raw events --
+    // cannot observe this at all, so it reports parity PASS despite the
+    // reducer having computed a wrong authority verdict. The rebuilt harness
+    // must FAIL here.
+    const realFold = deepAlignmentReducers.foldDeepAlignmentEvents;
+    const foldSpy = vi.spyOn(deepAlignmentReducers, 'foldDeepAlignmentEvents').mockImplementation(
+      (events, options) => {
+        const real = realFold(events, options);
+        if (real.outcome !== 'projected' || real.projection.authorityAlignment.status !== 'valid') {
+          return real;
+        }
+        return {
+          ...real,
+          projection: {
+            ...real.projection,
+            authorityAlignment: { ...real.projection.authorityAlignment, status: 'invalid' },
+          },
+        };
+      },
+    );
+    try {
+      const selected = fixture('report-handoff');
+      const sealed = await sealedBoundary();
+      const manifest = targetedManifest(selected);
+      const outcome = await runDeepAlignmentParityCase({
+        manifest,
+        caseRun: caseRun(selected, sealed),
+      });
+      expect(foldSpy).toHaveBeenCalled();
+      expect(outcome.result.ok, JSON.stringify(outcome.result)).toBe(false);
+      if (!outcome.result.ok) {
+        expect(outcome.result.divergence.class).toBe('projection-semantic');
+      }
+      expect(outcome.receipt).toMatchObject({
+        exitStatus: 'blocked',
+        certificateStatus: 'refused',
+      });
+    } finally {
+      foldSpy.mockRestore();
+    }
+  }, 30_000);
+
+  it('still reports parity PASS for identical inputs once the reducer fold is genuine again', async () => {
+    const selected = fixture('report-handoff');
+    const sealed = await sealedBoundary();
+    const manifest = targetedManifest(selected);
+    const outcome = await runDeepAlignmentParityCase({
+      manifest,
+      caseRun: caseRun(selected, sealed),
+    });
+    expect(outcome.result, JSON.stringify(outcome.result)).toMatchObject({ ok: true });
+    expect(outcome.receipt).toMatchObject({ exitStatus: 'green', certificateStatus: 'issued' });
   }, 30_000);
 
   it('compiles only the exact ten-scenario fixture closure', () => {
