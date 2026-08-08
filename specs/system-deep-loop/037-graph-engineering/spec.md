@@ -136,6 +136,18 @@ Produce the research foundation (research/research.md) that answers what the dee
 - What is the deepest alignment point between our evidence-ledger spine and graph state semantics?
 - Which of our seven modes (research/review/ai-council/alignment/improvement lanes) benefits most from graph structure first?
 - Does the corpus support partial (hybrid loop+graph) adoption, or full graph replacement?
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+## DEEP-RESEARCH FINDINGS (generated 2026-08-08)
+
+Research summary (20 iterations; canonical source: `research/research.md`):
+
+- **Status**: system-deep-loop is live; 014 authority cutover remains blocked (F001/F002/F005, 022/024 fencing unbuilt).
+- **Innovation (036)**: evidence-ledger spine landed additive/dark; per-mode cutover operator-gated; 034/036-046 ownership undocumented.
+- **Graph engineering**: typed state/edges, admission-checked routing, subgraphs, checkpointing, work/control graph separation; use for complex/high-concurrency, not simple/linear work.
+- **Target**: hybrid architecture — stable governed control graph + per-run work graphs; evidence ledger stays authoritative; four-phase path: additive-dark research adapter → shadow parity → per-mode cutover → convergence-graph enrichment.
+- **Open**: fixture/parity execution, 024 fencing verification, 034/036-046 accounting, coverage-graph DB restoration.
+
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---
