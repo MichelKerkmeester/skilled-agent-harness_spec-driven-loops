@@ -1390,7 +1390,7 @@ function ledgerProjection(
   events: readonly DeepResearchLedgerEvent[],
   resumeEvidence: DeepResearchResumeParityEvidence | null,
 ): DeepResearchParityProjection {
-  const folded = foldDeepResearchEvents(events);
+  const folded = foldDeepResearchEvents(events, { requireContiguousTail: false });
   if (folded.outcome !== 'projected') {
     throw new TypeError(`Ledger projection requires rebuild: ${folded.reasonCodes.join(',')}`);
   }
