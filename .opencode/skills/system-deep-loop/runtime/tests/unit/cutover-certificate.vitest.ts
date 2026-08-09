@@ -1323,6 +1323,27 @@ describe('closeRollbackWindow', () => {
     expect(verified).toBe(true);
   });
 
+  it('rejects a closure whose window record digest does not bind its own fields', async () => {
+    const record = fixtureWindowRecord();
+    // A caller could otherwise fabricate a self-consistent window: forge the
+    // record digest and bind executions to that same forged value, so every
+    // downstream binding check passes. The closer must recompute the record's
+    // own digest from its fields and reject the mismatch.
+    const forgedRecord = {
+      ...record,
+      recordDigest: sha256Bytes(canonicalBytes({ forgedWindow: true } as never)),
+    };
+    const result = await closeRollbackWindow({
+      windowRecord: forgedRecord,
+      executions: eligibleExecutions(forgedRecord),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+      signalReadings: allFamilyReadings(),
+      closureDecidedAt: '2026-07-20T00:05:00.000Z',
+    }, provider);
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'RECORD_MALFORMED' });
+  });
+
   it('refuses to close a window that is not yet eligible', async () => {
     const record = fixtureWindowRecord();
     const result = await closeRollbackWindow({
