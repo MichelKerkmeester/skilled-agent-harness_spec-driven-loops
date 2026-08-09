@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-08-09T12:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "SOL design-gate re-review of the fully-hardened 014 machinery = NOT_READY (matches goal.md §8 pre-flip P0 list, NOT a surprise). Landed dark this session: Cluster-B F3/F4/F8-builder (a37ab143d0), #6 handoff-disposition binding (75dbe65e09)."
-    next_safe_action: "Build the coordinator/certificate/registry hardening cluster FRESH (see 2026-08-09 close-plan block below): #2 WAL atomicity + #1 eight rollback-switch reverse-CAS wiring + #8 cert-boundary verify + reconcile→typed-denial + #4 recordDigest/receipt. Then RE-RUN the SOL design gate; only DESIGN_SOUND clears the first flip."
+    next_safe_action: "Build the coordinator/certificate/registry hardening cluster FRESH (see 2026-08-09 close-plan block below): #2 WAL atomicity + #1 eight rollback-switch reverse-CAS wiring + #8 cert-boundary verify + reconcile→typed-denial + #4 receipt-binding (recordDigest LANDED 08f5959cb5). Then RE-RUN the SOL design gate; only DESIGN_SOUND clears the first flip."
     blockers:
       - "014 FIRST FLIP IS BLOCKED by the design gate: the fresh SOL re-review (GPT-5.6-SOL high, read-only, against the fully-hardened machinery) returned NOT_READY. Do NOT execute any authority-flip CAS until the remaining coordinator/certificate/registry hardening cluster lands dark AND a re-run SOL gate returns DESIGN_SOUND (or …WITH_CONDITIONS the operator accepts). The 'AUTHORIZED (operator Go)' note below predates the gate and is SUPERSEDED for execution — the machinery-readiness gate must clear first. All hardening is dark/reversible; only the per-mode CAS is irreversible + per-mode operator-gated."
       - "014 is AUTHORIZED by operator (Go). DISCOVERY: 014 is a phase parent with 3 UNBUILT children — 003 cutover-cert+rollback (DONE, landed eaf0a79024), 001 in-flight migration (building), 002 per-mode authority flip. Build order 003->001->002, all DARK/additive/reversible. The ONLY irreversible act is 002's CAS moving a mode epoch legacy->new_authoritative, executed per-mode gated by cert + live rollback drill — that step still stops for a per-mode go/no-go. Build worktree: .worktrees/0135-skilled-014-cutover off origin tip. Per-mode preconditions from 016 verdict: (F001) identityResolver opt-in; (F002) captured auth-state; (F005) loop-lock wx window."
@@ -63,6 +63,9 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
 - **#6 migration handoff-disposition binding — `75dbe65e09`.** `verifyInflightMigrationHandoff` now binds each
   handoff row's disposition to the manifest's frozen disposition, closing a MIGRATE→BLOCK relabel that slipped past
   the successor preflight's vetoing-block denial. Red-before proven; migration 32/32; per-mode-flip 68/68; tsc rc0.
+- **#4 rollback-window recordDigest recompute — `08f5959cb5`.** `closeRollbackWindow` now recomputes the window
+  record's own digest and rejects a caller-forged record whose digest does not bind its fields (a fabricated window
+  with executions bound to that same forged digest). Red-before proven; cutover-certificate 63/63; tsc rc0.
 
 **SOL design-gate re-review (GPT-5.6-SOL high/fast, read-only, detached worktree at `a37ab143d0`) = NOT_READY.**
 It CONFIRMED #3 identity CLOSED with exact citations (not fabricated). Its verdict matches goal.md §8's own
@@ -93,10 +96,10 @@ Report: `scratch/sol-rereview-output.md` (session-scoped; re-dispatch to regener
     `*-rollback-gate/rollback-switch.ts` hardcode `authorityMutation:false` / `phase014RestorationRequired:true`. Wire
     each switch to the reverse-CAS through the authorized fenced seam per goal §4 rollback-drill ("do not duplicate
     switch mechanics in the certificate package"). 8 files + registry integration.
-  - **#4 rollback-window** (goal §8-P1-4, Phase-015-consumed): `closeRollbackWindow` trusts caller
-    `windowRecord.recordDigest` without recompute (`rollback-window.ts:462`); executions bound to bare hex not certified
-    receipts; "stale" = only before-open/after-eval (a 14-day-old opening-instant reading passes). recordDigest-recompute
-    is independent (rollback-window.ts); receipt-binding entangles with #8.
+  - **#4 rollback-window** (goal §8-P1-4, Phase-015-consumed): recordDigest-recompute **LANDED `08f5959cb5`**.
+    REMAINING: executions bound to bare hex not certified receipts (entangles with #8's receipt verification); "stale"
+    = only before-open/after-eval so a 14-day-old opening-instant reading passes (bounded to rollback-window.ts; fold
+    with the receipt-binding).
 - **DEFER (flip-time per goal §8, do NOT dark-build):** #1 live-drill semantics; lock-TTL renewal
   (`authority-registry.ts:173` reaps a live holder at 10 min, no renewal); rehash-of-evidence-immediately-before-commit.
 
