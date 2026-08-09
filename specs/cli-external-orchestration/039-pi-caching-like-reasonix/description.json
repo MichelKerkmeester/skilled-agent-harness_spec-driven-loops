@@ -1,5 +1,5 @@
 {
-  "level": "2",
+  "level": "phase",
   "specFolder": "cli-external-orchestration/039-pi-caching-like-reasonix",
   "description": "A captured external-AI conversation (`lumo.md`) claims that Reasonix — a DeepSeek-native CLI agent — is engineered around prefix caching (asserting a",
   "keywords": [
@@ -18,7 +18,7 @@
     "caching",
     "asserting"
   ],
-  "lastUpdated": "2026-08-08T07:06:09.031Z",
+  "lastUpdated": "2026-08-08T15:53:03.726Z",
   "specId": "039",
   "folderSlug": "pi-caching-like-reasonix",
   "parentChain": [

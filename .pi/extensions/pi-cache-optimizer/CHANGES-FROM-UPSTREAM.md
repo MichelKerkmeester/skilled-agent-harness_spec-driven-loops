@@ -32,6 +32,21 @@ This fork starts from `jiangge/pi-cache-optimizer` v2.8.0 and adds a narrow owne
 
 - In a later work session on 2026-08-08 (adding test coverage for the sibling `deep-pi` fork's ownership boundary, not a further change to this fork's guard logic), changed the `package.json` test script from targeting one test file to running every `tests/*.test.ts` file under `node:test`, and added two new test files: `tests/ownership-composition.test.ts` (a combined-host test proving `deep-pi` and this fork never both react to the same model) and `tests/hook-guards.test.ts` (six tests exercising the six guarded hooks directly). The guard predicate and its six call sites were not modified.
 
+### Non-DeepSeek Path Hardening (2026-08-09)
+
+A research and adjudication pass on the non-DeepSeek code path (the entire active surface after the guard patch above) surfaced concrete correctness gaps. This session's fixes:
+
+- `prompt_cache_key` injection now self-heals per model: an explicit unsupported-key signal (a response header or a `message_end` error message naming `prompt_cache_key`) disables injection for that model only. A generic, unrelated 400 no longer disables it, and a per-model config opt-out is available.
+- An unrecognized echoed model id in a provider response now falls back to the resolved-route or direct-context adapter instead of silently dropping cache statistics for that turn. The fallback explicitly refuses to adopt a virtual router's own shell identity, so an unrecognized response on a router never gets misattributed.
+- The Anthropic cache-breakpoint TTL-order repair now also covers OpenAI-compatible endpoints configured with `cacheControlFormat: "anthropic"`, not only native Anthropic endpoints. The repair downgrades only the late invalid 1-hour breakpoints when the conflict is visible in the outgoing payload, keeping the broader all-breakpoint downgrade as a fallback for conflicts only detectable from a provider error after the fact. Manual scenario testing after the initial implementation found the error-recording side of that fallback still gated on native Anthropic endpoints only, leaving the new endpoint type unable to ever reach the fallback; this was fixed to mirror the same endpoint-eligibility check on both sides.
+- Anthropic and Gemini raw-usage accounting now counts an input-only response (no cache fields present) as a full cache miss instead of dropping it from the denominator, matching how the OpenAI-shape normalizer already behaved.
+- The footer now displays tracked cache-write token volume for any adapter reporting a nonzero value, not only the Anthropic adapter.
+- Added exhaustive equality tests between this fork's DeepSeek allowlist and the sibling `deep-pi` fork's allowlist against their shared fixture, so a future drift between the two duplicated lists fails a test immediately instead of silently creating overlap or a gap.
+- Added regression tests asserting the ownership guard is structurally the first operation in every one of the six guarded hooks, with a negative control that breaks the guard and confirms the test catches it.
+- Test suite grew from 34 to 50 tests (8 to 13 suites) covering the above.
+
+Two related findings were deliberately left unimplemented, both with a stated reason rather than silently dropped: a per-model prefix-cache-support opt-out on the prompt-rewrite chain (no runtime evidence yet that any enabled provider needs it), and a Gemini-transport raw-normalizer fix (no Gemini model is currently enabled in this project).
+
 ### Rationale
 
 `pi-cache-optimizer` previously ran unconditionally for DeepSeek's direct API. The sibling `deep-pi` extension now owns `deepseek/deepseek-v4-flash` and `deepseek/deepseek-v4-pro` exclusively, so this fork is a no-op for those two exact models and remains active for every other provider and model, including DeepSeek-family IDs on other providers such as `opencode/deepseek-v4-flash-free`.
@@ -44,13 +59,20 @@ This fork starts from `jiangge/pi-cache-optimizer` v2.8.0 and adds a narrow owne
 - Ran `tsc --noEmit` against the vendored copy: clean.
 - A `diff -rq` comparison against the pinned fork commit reported zero differences before the later `package.json` test-runner configuration change.
 - Current state (after the later test-file additions): `npm test` passes 34 tests across 8 suites; `tsc --noEmit` remains clean.
+- Current state (after the 2026-08-09 non-DeepSeek hardening pass): `npm test` passes 51 tests across 13 suites; `tsc --noEmit` remains clean. Beyond the automated suite, a standalone manual scenario run drove the real registered `before_provider_request`/`after_provider_response`/`message_end` hooks through realistic multi-turn sequences for K1, K2, and K5 (not test-runner mocks) — all 9 scenarios passed after fixing the K5 error-recording asymmetry above.
 - Live Pi sessions confirmed that the guard fires only for the two exact DeepSeek-direct model IDs.
 - A non-DeepSeek session incremented statistics normally.
 - An `opencode/deepseek-v4-flash-free` session created a new statistics entry.
 - A real `deepseek/deepseek-v4-flash` session created zero statistics entries.
 
+## 4. FOLLOW-UP FINDING CLARIFICATIONS
+
+- For the historical `openai-codex` workload, this extension adds no provider-side cache-hit contribution because Pi's native server-side cache produced the measured hit rate. That does not mean the extension has no effect: it still requests `PI_CACHE_RETENTION=long` and supplies local footer statistics and diagnostics.
+- Provider-specific adapters exist for GLM, MiniMax, mimo, Kimi, and Qwen. They are thin classification wrappers over the generic OpenAI normalizer and proxy-compat warning path; the limitation is the absence of specialized per-provider optimization.
+- The footer's first ratio is labeled conceptually as `requests with any cache hit`; the token ratio beside it is the separate measure for cached-token coverage.
+
 ---
 
-## 4. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 - [pi-cache-optimizer README](./README.md)

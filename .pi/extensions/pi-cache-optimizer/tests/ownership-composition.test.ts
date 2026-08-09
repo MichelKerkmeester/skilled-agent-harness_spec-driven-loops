@@ -82,6 +82,23 @@ function runtimeModel(model: { provider: string; id: string }) {
 // ───────────────────────────────────────────────────────────────────
 
 describe('DeepSeek ownership contract', () => {
+  test('keeps both literal allowlists equal to the shared fixture', async () => {
+    const { eligibility } = await loadCrossForkModules();
+    const source = readFileSync(join(process.cwd(), 'index.ts'), 'utf8');
+    const ownerFunction = source.match(/function isDeepPiOwned\([\s\S]*?\n}\n/);
+    assert.ok(ownerFunction);
+    const optimizerIds = [...ownerFunction[0].matchAll(/model\.id === '([^']+)'/g)]
+      .map((match) => match[1])
+      .sort();
+    const fixtureIds = fixture.owned
+      .filter((model) => model.provider === 'deepseek')
+      .map((model) => model.id)
+      .sort();
+
+    assert.deepEqual([...eligibility.DEEPPI_MODEL_IDS].sort(), fixtureIds);
+    assert.deepEqual(optimizerIds, fixtureIds);
+  });
+
   test('keeps both real predicates aligned with the shared fixture', async () => {
     const { eligibility, optimizer } = await loadCrossForkModules();
     for (const model of fixture.owned) {

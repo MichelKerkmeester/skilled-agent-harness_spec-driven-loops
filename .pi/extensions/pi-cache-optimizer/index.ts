@@ -254,6 +254,7 @@ interface CacheCompat {
   sendSessionAffinityHeaders?: boolean;
   sessionAffinityFormat?: 'openai' | 'openai-nosession' | 'openrouter';
   supportsLongCacheRetention?: boolean;
+  supportsPromptCacheKey?: boolean;
   thinkingFormat?: string;
   requiresReasoningContentOnAssistantMessages?: boolean;
   cacheControlFormat?: string;
@@ -429,7 +430,6 @@ const MAX_RECENT_SAMPLES = 50;
 interface CacheProviderAdapter {
   id: CacheProviderId;
   label: string;
-  showCacheWrite?: boolean;
   matchesModel(model: PiModel | undefined): boolean;
   matchesAssistantMessage(message: unknown, model: PiModel | undefined): boolean;
   normalizeUsage(message: unknown): UsageSnapshot | undefined;
@@ -1502,7 +1502,9 @@ function isPiBuiltInLlamaCppModel(model: PiModel | undefined): boolean {
 }
 
 function shouldInjectOpenAIPromptCacheKeyForModel(model: PiModel | undefined): boolean {
-  return isOpenAICompatibleApi(model?.api);
+  if (!isOpenAICompatibleApi(model?.api)) return false;
+  if (getCompat(model).supportsPromptCacheKey === false) return false;
+  return !hasExplicitPromptCacheKeyOptOut(model);
 }
 
 function collectAnthropicCacheControlsInWireOrder(payload: unknown): UnknownRecord[] {
@@ -1536,13 +1538,16 @@ function collectAnthropicCacheControlsInWireOrder(payload: unknown): UnknownReco
 /**
  * Anthropic requires every 1h cache breakpoint to precede every 5m breakpoint.
  * An ephemeral cache_control without ttl uses Anthropic's default 5m retention.
- * If the final serialized payload contains a short → long transition, downgrade
- * all 1h breakpoints to the default 5m so the request remains valid.
+ * A visible conflict downgrades only the late 1h breakpoints; the hidden-conflict
+ * fallback calls this without the flag and downgrades every 1h breakpoint.
  */
-function downgradeAnthropicLongCacheControls(payload: unknown): boolean {
+function downgradeAnthropicLongCacheControls(payload: unknown, lateOnly = false): boolean {
   let changed = false;
+  let seenShort = false;
   for (const control of collectAnthropicCacheControlsInWireOrder(payload)) {
-    if (control.ttl === '1h') {
+    if (control.ttl === undefined || control.ttl === '5m') {
+      seenShort = true;
+    } else if (control.ttl === '1h' && (!lateOnly || seenShort)) {
       delete control.ttl;
       changed = true;
     }
@@ -1577,7 +1582,7 @@ function normalizeAnthropicCacheControlTtlOrder(payload: unknown): boolean {
   }
   if (!hasInvalidLongAfterShort) return false;
 
-  return downgradeAnthropicLongCacheControls(payload);
+  return downgradeAnthropicLongCacheControls(payload, true);
 }
 
 function isResponsesPromptRewriteBypassApi(api: unknown): boolean {
@@ -2538,14 +2543,18 @@ function getAnthropicRawUsage(message: unknown): UsageSnapshot | undefined {
     usage.cache_creation_input_tokens,
     usage.cacheCreationInputTokens,
   );
-  if (cacheRead === undefined && cacheWrite === undefined) return undefined;
+  const input = getFirstNonNegativeNumber(usage.input_tokens, usage.inputTokens);
+  if (cacheRead === undefined && cacheWrite === undefined) {
+    if (input === undefined) return undefined;
+    // Anthropic omits cache fields on a full miss, so retain input_tokens as the denominator.
+    return { cacheRead: 0, cacheWrite: 0, totalInput: input };
+  }
 
   // Anthropic input_tokens = tokens after the last cache breakpoint (neither read nor written).
-  const input = getFirstNonNegativeNumber(usage.input_tokens, usage.inputTokens) ?? 0;
   return {
     cacheRead: cacheRead ?? 0,
     cacheWrite: cacheWrite ?? 0,
-    totalInput: input + (cacheRead ?? 0) + (cacheWrite ?? 0),
+    totalInput: (input ?? 0) + (cacheRead ?? 0) + (cacheWrite ?? 0),
   };
 }
 
@@ -2568,8 +2577,6 @@ function getGeminiRawUsage(message: unknown): UsageSnapshot | undefined {
     metadata.cachedContentTokenCount,
     metadata.cached_content_token_count,
   );
-  if (cacheRead === undefined) return undefined;
-
   const totalInput = getFirstNonNegativeNumber(
     metadata.promptTokenCount,
     metadata.prompt_token_count,
@@ -2579,9 +2586,14 @@ function getGeminiRawUsage(message: unknown): UsageSnapshot | undefined {
     usage?.inputTokens,
     usage?.prompt_tokens,
     usage?.promptTokens,
-  ) ?? cacheRead;
+  );
+  if (cacheRead === undefined) {
+    if (totalInput === undefined) return undefined;
+    // Gemini omits cachedContentTokenCount on a full miss, so retain promptTokenCount.
+    return { cacheRead: 0, cacheWrite: 0, totalInput };
+  }
 
-  return { cacheRead, cacheWrite: 0, totalInput };
+  return { cacheRead, cacheWrite: 0, totalInput: totalInput ?? cacheRead };
 }
 
 // Try Pi-normalized usage first (always present for messages that went through Pi's
@@ -2731,6 +2743,30 @@ function hasPromptCacheRetentionUnsupportedSignal(
     'not permitted',
     'unrecognized',
     'bad request',
+  ].some((needle) => normalized.includes(needle));
+}
+
+function hasPromptCacheKeyUnsupportedSignal(value: unknown): boolean {
+  // Only explicit parameter rejection should disable injection; unrelated 400s remain recoverable.
+  const normalized = typeof value === 'string'
+    ? lower(value)
+    : Object.entries(asRecord(value) ?? {})
+      .map(([key, entry]) => `${lower(key)}: ${lower(entry)}`)
+      .join('\n');
+  if (!normalized.includes('prompt_cache_key')) return false;
+
+  return [
+    'unsupported parameter',
+    'unsupported_parameter',
+    'unknown parameter',
+    'unsupported field',
+    'extra inputs',
+    'not permitted',
+    'not allowed',
+    'not supported',
+    'unrecognized parameter',
+    'unrecognized field',
+    'does not support',
   ].some((needle) => normalized.includes(needle));
 }
 
@@ -3005,7 +3041,6 @@ const CACHE_PROVIDER_ADAPTERS: CacheProviderAdapter[] = [
   {
     id: 'claude',
     label: 'Claude cache',
-    showCacheWrite: true,
     matchesModel: isClaudeLikeModel,
     matchesAssistantMessage(message, model) {
       if (!isAssistantMessage(message)) return false;
@@ -3956,14 +3991,24 @@ function selectAdapterForModel(model: PiModel | undefined): CacheProviderAdapter
 function selectAdapterForAssistantMessage(
   message: unknown,
   model: PiModel | undefined,
+  resolvedModel: PiModel | undefined = model,
 ): CacheProviderAdapter | undefined {
   // Assistant message metadata is request-local and authoritative for virtual
   // routing providers. Use it first for every model; direct providers normally
   // echo the same provider/model and therefore remain unchanged.
   const responseModel = modelFromAssistantMessage(message, model);
-  return CACHE_PROVIDER_ADAPTERS.find((adapter) =>
+  const responseAdapter = CACHE_PROVIDER_ADAPTERS.find((adapter) =>
     adapter.matchesAssistantMessage(message, responseModel)
   );
+  if (responseAdapter) return responseAdapter;
+
+  // Direct providers can normalize the echoed model id without changing the
+  // provider contract. Reuse the resolved request model in that case, but
+  // never classify an unresolved virtual-router shell from its own identity.
+  if (!resolvedModel || (isVirtualRoutingModel(model) && isVirtualRoutingModel(resolvedModel))) {
+    return undefined;
+  }
+  return selectAdapterForModel(resolvedModel);
 }
 
 function notifyCacheCompatIfNeeded(
@@ -4051,7 +4096,7 @@ function formatCacheStats(adapter: CacheProviderAdapter, stats: CacheStats): str
   const percent = stats.totalInputTokens > 0
     ? ` (${Math.round((stats.cachedInputTokens / stats.totalInputTokens) * 100)}%)`
     : '';
-  const writeText = adapter.showCacheWrite && stats.cacheWriteInputTokens > 0
+  const writeText = stats.cacheWriteInputTokens > 0
     ? ` · write ${formatTokenCount(stats.cacheWriteInputTokens)} tok`
     : '';
 
@@ -5738,6 +5783,22 @@ function hasExplicitLongRetentionOptInFromConfig(
   )?.value === true;
 }
 
+function hasExplicitPromptCacheKeyOptOut(model: PiModel | undefined): boolean {
+  if (!model) return false;
+
+  try {
+    const parsed = parseJsonc(readFileSync(MODELS_JSON_PATH, 'utf8'));
+    return resolveExplicitCompatValue(
+      parsed,
+      model.provider,
+      model.id,
+      'supportsPromptCacheKey',
+    )?.value === false;
+  } catch {
+    return false;
+  }
+}
+
 /**
  * JSONC scanner: locate the provider block and model entry in models.json text.
  * Returns the byte offsets for surgical insertion, or undefined if ambiguous.
@@ -7059,6 +7120,7 @@ export const __internals_for_tests = {
   isNonEmptyString,
   shouldInjectOpenAIPromptCacheKey,
   shouldInjectOpenAIPromptCacheKeyForModel,
+  hasPromptCacheKeyUnsupportedSignal,
   isOpenAICompatibleApi,
   isAnthropicMessagesApi,
   isOpenAICompatibleProxyApi,
@@ -7089,6 +7151,8 @@ export const __internals_for_tests = {
   isSessionAffinity403Applicable,
   isOpenAISdkHeader403Applicable,
   hasPromptCacheRetentionUnsupportedSignal,
+  getAnthropicRawUsage,
+  getGeminiRawUsage,
   // Non-GPT OpenAI-compatible model detection
   isKimiLikeModel,
   isKimiLikeAssistantMessage,
@@ -7296,6 +7360,7 @@ export const __internals_for_tests = {
   parseJsonc,
   resolveExplicitCompatValue,
   hasExplicitLongRetentionOptInFromConfig,
+  hasExplicitPromptCacheKeyOptOut,
   locateModelInJsonc,
   locateModelOverrideInJsonc,
   composeFixInsertion,
@@ -7337,6 +7402,8 @@ export default function (pi: ExtensionAPI): void {
   const warnedModels = new Set<string>();
   const promptCacheRetention400Models = new Set<string>();
   const warnedPromptCacheRetention400Models = new Set<string>();
+  const promptCacheKeyUnsupportedModels = new Set<string>();
+  const warnedPromptCacheKeyUnsupportedModels = new Set<string>();
   const anthropicTtlFallbackState = getAnthropicTtlFallbackState();
   const anthropicTtlOrderErrorModels = anthropicTtlFallbackState.modelKeys;
   const warnedAnthropicTtlOrderErrorModels = anthropicTtlFallbackState.warnedModelKeys;
@@ -7362,6 +7429,18 @@ export default function (pi: ExtensionAPI): void {
   let lastActualRoutedModel: PersistedRoutedModelRef | undefined;
   let latestCacheHint: PiCacheHintSnapshot | undefined;
   const PERSIST_DEBOUNCE_MS = 2000;
+
+  function rememberPromptCacheKeyUnsupported(model: PiModel, ctx: ExtensionContext): void {
+    const key = modelKey(model);
+    promptCacheKeyUnsupportedModels.add(key);
+    if (warnedPromptCacheKeyUnsupportedModels.has(key)) return;
+    warnedPromptCacheKeyUnsupportedModels.add(key);
+    ctx.ui.notify(
+      `⚠️ ${LOG_PREFIX}: ${key} explicitly rejected prompt_cache_key. ` +
+        'Future requests will omit the injected key for this model.',
+      'warning',
+    );
+  }
 
   function buildObservedRuntimeFixSuggestion(model: PiModel): FixSuggestion | undefined {
     const key = modelKey(model);
@@ -8058,7 +8137,11 @@ export default function (pi: ExtensionAPI): void {
     // conflict visible in Pi's final payload immediately. Some proxies inject
     // hidden short breakpoints after this hook; only models that have actually
     // returned the explicit TTL-order error receive the process-local 5m fallback.
-    if (requestModel && isAnthropicMessagesApi(requestModel.api)) {
+    if (
+      requestModel &&
+      (isAnthropicMessagesApi(requestModel.api) ||
+        (isOpenAICompatibleApi(requestModel.api) && getCompat(requestModel).cacheControlFormat === 'anthropic'))
+    ) {
       const visibleConflictFixed = normalizeAnthropicCacheControlTtlOrder(event.payload);
       if (!visibleConflictFixed && anthropicTtlOrderErrorModels.has(modelKey(requestModel))) {
         downgradeAnthropicLongCacheControls(event.payload);
@@ -8101,6 +8184,9 @@ export default function (pi: ExtensionAPI): void {
 
     if (!shouldInjectOpenAIPromptCacheKey()) return undefined;
     if (!shouldInjectOpenAIPromptCacheKeyForModel(requestModel)) return undefined;
+    if (requestModel && promptCacheKeyUnsupportedModels.has(modelKey(requestModel))) {
+      return undefined;
+    }
 
     return addOpenAIPromptCacheKey(event.payload, getSessionPromptCacheKey(ctx));
   });
@@ -8110,8 +8196,14 @@ export default function (pi: ExtensionAPI): void {
     const model = resolveRouteModel(ctx.model, ctx) ?? ctx.model;
     if (!runtimeOptimizerEnabled || !model) return;
 
-    // ── 400: prompt_cache_retention unsupported ──
+    // ── 400: unsupported cache parameter ──
     if (event.status === 400) {
+      const promptCacheKeyUnsupported = isOpenAICompatibleApi(model.api) &&
+        hasPromptCacheKeyUnsupportedSignal(event.headers);
+      if (promptCacheKeyUnsupported) {
+        rememberPromptCacheKeyUnsupported(model, ctx);
+      }
+
       if (!isPromptCacheRetention400Applicable(model)) return;
       if (!hasPromptCacheRetentionUnsupportedSignal(event.headers)) return;
 
@@ -8171,14 +8263,31 @@ export default function (pi: ExtensionAPI): void {
     if (isDeepPiOwned(resolveRouteModel(ctx.model, ctx) ?? ctx.model)) return;
     syncSessionHash(ctx);
     const msgRecord = asRecord(event.message);
+    const requestModel = resolveRouteModel(ctx.model, ctx) ?? ctx.model;
+
+    if (
+      requestModel &&
+      isOpenAICompatibleApi(requestModel.api) &&
+      hasPromptCacheKeyUnsupportedSignal(msgRecord?.errorMessage)
+    ) {
+      rememberPromptCacheKeyUnsupported(requestModel, ctx);
+    }
 
     // Record only Anthropic's explicit mixed-TTL ordering error. This is a
     // non-retryable 400 in Pi 0.82.1, so the fallback applies to the next
     // subsequent request (and to a retry only if another layer initiates one).
+    // This eligibility check must mirror before_provider_request's repair
+    // gate: an Anthropic-formatted OpenAI-compatible proxy can surface the
+    // same explicit error text, and if it isn't recorded here it can never
+    // reach the hidden-conflict fallback that gate applies on the next request.
     if (hasAnthropicCacheTtlOrderError(event.message)) {
       const fallbackModel = resolveRouteModel(ctx.model, ctx) ?? ctx.model;
       const errorModel = modelFromAssistantMessage(event.message, fallbackModel) ?? fallbackModel;
-      if (errorModel && isAnthropicMessagesApi(errorModel.api)) {
+      if (
+        errorModel &&
+        (isAnthropicMessagesApi(errorModel.api) ||
+          (isOpenAICompatibleApi(errorModel.api) && getCompat(errorModel).cacheControlFormat === 'anthropic'))
+      ) {
         const key = modelKey(errorModel);
         anthropicTtlOrderErrorModels.add(key);
         if (!warnedAnthropicTtlOrderErrorModels.has(key)) {
@@ -8193,7 +8302,7 @@ export default function (pi: ExtensionAPI): void {
       }
     }
 
-    const adapter = selectAdapterForAssistantMessage(event.message, ctx.model);
+    const adapter = selectAdapterForAssistantMessage(event.message, ctx.model, requestModel);
     if (!adapter) return;
 
     // Skip stats for error/aborted messages (network retries, user aborts).

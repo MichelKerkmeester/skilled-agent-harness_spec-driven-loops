@@ -7,6 +7,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -104,9 +105,58 @@ function contextFor(
   };
 }
 
+const GUARDED_HOOK_FIRST_OPERATIONS = {
+  session_start: 'if (isDeepPiOwned(ctx.model)) return;',
+  model_select: 'if (isDeepPiOwned(resolveRouteModel(event.model, ctx) ?? event.model)) return;',
+  before_agent_start: 'if (isDeepPiOwned(resolveRouteModel(_ctx.model, _ctx) ?? _ctx.model)) return;',
+  before_provider_request: 'if (isDeepPiOwned(resolveRouteModel(ctx.model, ctx) ?? ctx.model)) return;',
+  after_provider_response: 'if (isDeepPiOwned(resolveRouteModel(ctx.model, ctx) ?? ctx.model)) return;',
+  message_end: 'if (isDeepPiOwned(resolveRouteModel(ctx.model, ctx) ?? ctx.model)) return;',
+} as const;
+
+function assertGuardedHookFirstOperations(source: string): void {
+  for (const [hookName, expectedFirstOperation] of Object.entries(
+    GUARDED_HOOK_FIRST_OPERATIONS,
+  )) {
+    const hookStart = source.indexOf(`pi.on('${hookName}',`);
+    assert.notEqual(hookStart, -1, `missing ${hookName} registration`);
+    const bodyStart = source.indexOf('{', hookStart);
+    const bodyEnd = source.indexOf('\n  });', bodyStart);
+    assert.ok(bodyStart > hookStart, `missing ${hookName} body`);
+    assert.ok(bodyEnd > bodyStart, `unterminated ${hookName} body`);
+
+    const firstExecutableLine = source
+      .slice(bodyStart + 1, bodyEnd)
+      .split('\n')
+      .map((line) => line.trim())
+      .find((line) => line.length > 0 && !line.startsWith('//'));
+
+    assert.equal(firstExecutableLine, expectedFirstOperation, `${hookName} guard moved`);
+  }
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. TESTS
 // ───────────────────────────────────────────────────────────────────
+
+test('ownership guard is the first operation in every guarded hook', () => {
+  const source = readFileSync(join(process.cwd(), 'index.ts'), 'utf8');
+  assertGuardedHookFirstOperations(source);
+});
+
+test('ownership boundary test rejects a side effect before the guard', () => {
+  const source = readFileSync(join(process.cwd(), 'index.ts'), 'utf8');
+  const brokenSource = source.replace(
+    "pi.on('session_start', async (event, ctx) => {\n    if (isDeepPiOwned(ctx.model)) return;",
+    "pi.on('session_start', async (event, ctx) => {\n    const sideEffect = true;\n    if (isDeepPiOwned(ctx.model)) return;",
+  );
+
+  assert.notEqual(brokenSource, source);
+  assert.throws(
+    () => assertGuardedHookFirstOperations(brokenSource),
+    /session_start guard moved/,
+  );
+});
 
 test('session_start guard suppresses restore and status effects', async () => {
   const { handlers } = await freshExtension();

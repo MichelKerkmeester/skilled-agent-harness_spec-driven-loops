@@ -99,7 +99,462 @@ describe('DeepSeek Pi-owned model detection', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────
-// 4. FOOTER STATS
+// 4. OPENAI PROMPT CACHE KEY
+// ───────────────────────────────────────────────────────────────────
+
+describe('OpenAI prompt cache key self-healing', () => {
+  type Hook = (event: any, context: any) => Promise<any> | any;
+
+  function openAIModel(id: string, compat: Record<string, unknown> = {}) {
+    return {
+      provider: 'proxy',
+      id,
+      name: `Proxy ${id}`,
+      api: 'openai-completions',
+      baseUrl: 'https://proxy.example/v1',
+      compat,
+      reasoning: false,
+      input: ['text'],
+      cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+      contextWindow: 128_000,
+      maxTokens: 4096,
+    };
+  }
+
+  function contextFor(model: ReturnType<typeof openAIModel>, notifications: string[] = []) {
+    return {
+      model,
+      sessionManager: { getSessionId: () => 'prompt-key-test-session' },
+      modelRegistry: { find: () => undefined, getAvailable: () => [], getAll: () => [] },
+      ui: {
+        notify: (message: string) => notifications.push(message),
+        setStatus() {},
+      },
+    };
+  }
+
+  async function withFreshHandlers(
+    modelsConfig: unknown | undefined,
+    callback: (
+      handlers: Map<string, Hook>,
+      notifications: string[],
+    ) => Promise<void>,
+  ): Promise<void> {
+    const tempAgentDir = await mkdtemp(join(tmpdir(), 'pi-cache-key-test-'));
+    const previousAgentDir = process.env.PI_CODING_AGENT_DIR;
+    const previousRetention = process.env.PI_CACHE_RETENTION;
+
+    try {
+      process.env.PI_CODING_AGENT_DIR = tempAgentDir;
+      if (modelsConfig !== undefined) {
+        await writeFile(join(tempAgentDir, 'models.json'), JSON.stringify(modelsConfig), 'utf8');
+      }
+
+      const jiti = createJiti(join(process.cwd(), 'tests', 'review-findings.test.ts'), {
+        interopDefault: false,
+        moduleCache: false,
+      });
+      const freshModule = await jiti.import<typeof import('../index.ts')>(
+        join(process.cwd(), 'index.ts'),
+      );
+      const handlers = new Map<string, Hook>();
+      freshModule.default({
+        on(name: string, handler: Hook) {
+          handlers.set(name, handler);
+        },
+        registerCommand() {},
+        registerTool() {},
+        getActiveTools: () => [],
+        setActiveTools() {},
+      } as any);
+
+      await callback(handlers, []);
+    } finally {
+      if (previousAgentDir === undefined) delete process.env.PI_CODING_AGENT_DIR;
+      else process.env.PI_CODING_AGENT_DIR = previousAgentDir;
+      if (previousRetention === undefined) delete process.env.PI_CACHE_RETENTION;
+      else process.env.PI_CACHE_RETENTION = previousRetention;
+      await rm(tempAgentDir, { recursive: true, force: true });
+    }
+  }
+
+  function injectedKey(result: unknown): unknown {
+    return (result as Record<string, unknown> | undefined)?.prompt_cache_key;
+  }
+
+  test('unrelated 400 leaves prompt_cache_key injection enabled', async () => {
+    await withFreshHandlers(undefined, async (handlers, notifications) => {
+      const model = openAIModel('model-a');
+      const context = contextFor(model, notifications);
+      const beforeRequest = handlers.get('before_provider_request');
+      const afterResponse = handlers.get('after_provider_response');
+      assert.ok(beforeRequest);
+      assert.ok(afterResponse);
+
+      assert.equal(
+        injectedKey(await beforeRequest({ payload: {} }, context)),
+        'prompt-key-test-session',
+      );
+      await afterResponse({ status: 400, headers: { error: 'bad request: malformed body' } }, context);
+      assert.equal(
+        injectedKey(await beforeRequest({ payload: {} }, context)),
+        'prompt-key-test-session',
+      );
+      assert.equal(notifications.length, 0);
+    });
+  });
+
+  test('explicit response rejection disables only the matching model', async () => {
+    await withFreshHandlers(undefined, async (handlers, notifications) => {
+      const modelA = openAIModel('model-a');
+      const modelB = openAIModel('model-b');
+      const contextA = contextFor(modelA, notifications);
+      const contextB = contextFor(modelB, notifications);
+      const beforeRequest = handlers.get('before_provider_request');
+      const afterResponse = handlers.get('after_provider_response');
+      assert.ok(beforeRequest);
+      assert.ok(afterResponse);
+
+      await afterResponse(
+        { status: 400, headers: { error: 'Unsupported parameter: prompt_cache_key' } },
+        contextA,
+      );
+      assert.equal(await beforeRequest({ payload: {} }, contextA), undefined);
+      assert.equal(
+        injectedKey(await beforeRequest({ payload: {} }, contextB)),
+        'prompt-key-test-session',
+      );
+      assert.equal(notifications.length, 1);
+    });
+  });
+
+  test('explicit message_end rejection disables only the matching model', async () => {
+    await withFreshHandlers(undefined, async (handlers, notifications) => {
+      const modelA = openAIModel('model-a');
+      const modelB = openAIModel('model-b');
+      const contextA = contextFor(modelA, notifications);
+      const contextB = contextFor(modelB, notifications);
+      const beforeRequest = handlers.get('before_provider_request');
+      const messageEnd = handlers.get('message_end');
+      assert.ok(beforeRequest);
+      assert.ok(messageEnd);
+
+      await messageEnd({
+        message: {
+          role: 'assistant',
+          stopReason: 'error',
+          errorMessage: 'Unknown parameter: prompt_cache_key',
+        },
+      }, contextA);
+      assert.equal(await beforeRequest({ payload: {} }, contextA), undefined);
+      assert.equal(
+        injectedKey(await beforeRequest({ payload: {} }, contextB)),
+        'prompt-key-test-session',
+      );
+      assert.equal(notifications.length, 1);
+    });
+  });
+
+  test('caller-provided prompt cache keys remain untouched', async () => {
+    await withFreshHandlers(undefined, async (handlers) => {
+      const model = openAIModel('model-a');
+      const beforeRequest = handlers.get('before_provider_request');
+      assert.ok(beforeRequest);
+
+      const payload = { prompt_cache_key: 'caller-key' };
+      assert.equal(await beforeRequest({ payload }, contextFor(model)), undefined);
+      assert.deepEqual(payload, { prompt_cache_key: 'caller-key' });
+    });
+  });
+
+  test('model-level config can opt out of prompt cache key injection', async () => {
+    const modelsConfig = {
+      providers: {
+        proxy: {
+          models: [{ id: 'model-a' }],
+          modelOverrides: {
+            'model-a': { compat: { supportsPromptCacheKey: false } },
+          },
+        },
+      },
+    };
+
+    await withFreshHandlers(modelsConfig, async (handlers) => {
+      const model = openAIModel('model-a');
+      const beforeRequest = handlers.get('before_provider_request');
+      assert.ok(beforeRequest);
+
+      assert.equal(await beforeRequest({ payload: {} }, contextFor(model)), undefined);
+    });
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// 5. RESPONSE MODEL FALLBACK
+// ───────────────────────────────────────────────────────────────────
+
+describe('assistant response adapter fallback', () => {
+  function directModel() {
+    return {
+      provider: 'proxy',
+      id: 'gpt-5.5',
+      name: 'GPT-5.5',
+      api: 'openai-completions',
+      baseUrl: 'https://proxy.example/v1',
+      compat: {},
+      reasoning: false,
+      input: ['text'],
+      cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+      contextWindow: 128_000,
+      maxTokens: 4096,
+    };
+  }
+
+  function assistantWithUnknownModel(provider: string) {
+    return {
+      role: 'assistant',
+      provider,
+      model: 'backend-shorthand',
+      usage: { input: 100, output: 10 },
+    };
+  }
+
+  test('falls back to the direct context adapter for an unrecognized echoed id', () => {
+    const adapter = internals.selectAdapterForAssistantMessage(
+      assistantWithUnknownModel('proxy'),
+      directModel(),
+    );
+    assert.equal(adapter?.label, 'OpenAI cache');
+  });
+
+  test('uses a resolved upstream adapter without trusting the virtual router shell', () => {
+    const routerModel = {
+      ...directModel(),
+      provider: 'router',
+      id: 'auto',
+      name: 'Auto router',
+    };
+    const response = assistantWithUnknownModel('router');
+
+    assert.equal(
+      internals.selectAdapterForAssistantMessage(response, routerModel)?.label,
+      undefined,
+    );
+    assert.equal(
+      internals.selectAdapterForAssistantMessage(response, routerModel, directModel())?.label,
+      'OpenAI cache',
+    );
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// 6. ANTHROPIC CACHE TTL ORDERING
+// ───────────────────────────────────────────────────────────────────
+
+describe('Anthropic cache TTL ordering repair', () => {
+  function model(compat: Record<string, unknown> = {}) {
+    return {
+      provider: 'proxy',
+      id: 'claude-test',
+      name: 'Claude test',
+      api: 'openai-completions',
+      baseUrl: 'https://proxy.example/v1',
+      compat,
+      reasoning: false,
+      input: ['text'],
+      cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+      contextWindow: 128_000,
+      maxTokens: 4096,
+    };
+  }
+
+  function mixedPayload() {
+    return {
+      system: [
+        { type: 'text', text: 'stable', cache_control: { type: 'ephemeral', ttl: '1h' } },
+        { type: 'text', text: 'dynamic', cache_control: { type: 'ephemeral', ttl: '5m' } },
+        { type: 'text', text: 'late', cache_control: { type: 'ephemeral', ttl: '1h' } },
+      ],
+    };
+  }
+
+  test('visible conflicts downgrade only late long-retention controls', () => {
+    const payload = mixedPayload();
+    assert.equal(internals.normalizeAnthropicCacheControlTtlOrder(payload), true);
+    assert.equal(payload.system[0].cache_control.ttl, '1h');
+    assert.equal(payload.system[2].cache_control.ttl, undefined);
+
+    const hiddenConflictFallback = mixedPayload();
+    assert.equal(internals.downgradeAnthropicLongCacheControls(hiddenConflictFallback), true);
+    assert.equal(hiddenConflictFallback.system[0].cache_control.ttl, undefined);
+    assert.equal(hiddenConflictFallback.system[2].cache_control.ttl, undefined);
+  });
+
+  test('repairs an OpenAI-compatible endpoint only with Anthropic cache format', async () => {
+    const tempAgentDir = await mkdtemp(join(tmpdir(), 'pi-anthropic-ttl-test-'));
+    const previousAgentDir = process.env.PI_CODING_AGENT_DIR;
+    try {
+      process.env.PI_CODING_AGENT_DIR = tempAgentDir;
+      const jiti = createJiti(join(process.cwd(), 'tests', 'review-findings.test.ts'), {
+        interopDefault: false,
+        moduleCache: false,
+      });
+      const freshModule = await jiti.import<typeof import('../index.ts')>(
+        join(process.cwd(), 'index.ts'),
+      );
+      const handlers = new Map<string, (event: any, context: any) => Promise<any> | any>();
+      freshModule.default({
+        on(name: string, handler: (event: any, context: any) => Promise<any> | any) {
+          handlers.set(name, handler);
+        },
+        registerCommand() {},
+        registerTool() {},
+        getActiveTools: () => [],
+        setActiveTools() {},
+      } as any);
+
+      const beforeRequest = handlers.get('before_provider_request');
+      assert.ok(beforeRequest);
+      const context = {
+        model: model({ cacheControlFormat: 'anthropic' }),
+        sessionManager: { getSessionId: () => 'anthropic-ttl-test-session' },
+        modelRegistry: { find: () => undefined, getAvailable: () => [], getAll: () => [] },
+        ui: { notify() {}, setStatus() {} },
+      };
+      const anthropicPayload = mixedPayload();
+      await beforeRequest({ payload: anthropicPayload }, context);
+      assert.equal(anthropicPayload.system[2].cache_control.ttl, undefined);
+
+      const plainPayload = mixedPayload();
+      await beforeRequest({ payload: plainPayload }, { ...context, model: model() });
+      assert.equal(plainPayload.system[2].cache_control.ttl, '1h');
+    } finally {
+      if (previousAgentDir === undefined) delete process.env.PI_CODING_AGENT_DIR;
+      else process.env.PI_CODING_AGENT_DIR = previousAgentDir;
+      await rm(tempAgentDir, { recursive: true, force: true });
+    }
+  });
+
+  test('records an Anthropic-format OpenAI-compatible endpoint\'s TTL-order error for the hidden-conflict fallback', async () => {
+    const tempAgentDir = await mkdtemp(join(tmpdir(), 'pi-anthropic-ttl-hidden-test-'));
+    const previousAgentDir = process.env.PI_CODING_AGENT_DIR;
+    try {
+      process.env.PI_CODING_AGENT_DIR = tempAgentDir;
+      const jiti = createJiti(join(process.cwd(), 'tests', 'review-findings.test.ts'), {
+        interopDefault: false,
+        moduleCache: false,
+      });
+      const freshModule = await jiti.import<typeof import('../index.ts')>(
+        join(process.cwd(), 'index.ts'),
+      );
+      const handlers = new Map<string, (event: any, context: any) => Promise<any> | any>();
+      freshModule.default({
+        on(name: string, handler: (event: any, context: any) => Promise<any> | any) {
+          handlers.set(name, handler);
+        },
+        registerCommand() {},
+        registerTool() {},
+        getActiveTools: () => [],
+        setActiveTools() {},
+      } as any);
+
+      const beforeRequest = handlers.get('before_provider_request');
+      const messageEnd = handlers.get('message_end');
+      assert.ok(beforeRequest);
+      assert.ok(messageEnd);
+      const context = {
+        model: model({ cacheControlFormat: 'anthropic' }),
+        sessionManager: { getSessionId: () => 'anthropic-ttl-hidden-test-session' },
+        modelRegistry: { find: () => undefined, getAvailable: () => [], getAll: () => [] },
+        ui: { notify() {}, setStatus() {} },
+      };
+
+      // The prior request returned Anthropic's explicit TTL-order error, but
+      // the outgoing payload it produced carries no visible conflict (a proxy
+      // injected a short breakpoint downstream, hidden from this hook).
+      await messageEnd(
+        {
+          message: {
+            role: 'assistant',
+            stopReason: 'error',
+            errorMessage: "cache_control block with ttl='1h' must not come after a block with ttl='5m'",
+          },
+        },
+        context,
+      );
+
+      const soleBreakpointPayload = {
+        system: [{ type: 'text', text: 'stable', cache_control: { type: 'ephemeral', ttl: '1h' } }],
+      };
+      await beforeRequest({ payload: soleBreakpointPayload }, context);
+      assert.equal(soleBreakpointPayload.system[0].cache_control.ttl, undefined);
+    } finally {
+      if (previousAgentDir === undefined) delete process.env.PI_CODING_AGENT_DIR;
+      else process.env.PI_CODING_AGENT_DIR = previousAgentDir;
+      await rm(tempAgentDir, { recursive: true, force: true });
+    }
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// 7. FOREIGN RAW USAGE
+// ───────────────────────────────────────────────────────────────────
+
+describe('foreign raw usage full-miss accounting', () => {
+  test('counts an Anthropic input-only response as a full miss', () => {
+    assert.deepEqual(
+      internals.getAnthropicRawUsage({
+        role: 'assistant',
+        usage: { input_tokens: 123, output_tokens: 8 },
+      }),
+      { cacheRead: 0, cacheWrite: 0, totalInput: 123 },
+    );
+  });
+
+  test('counts a Gemini prompt-only response as a full miss', () => {
+    assert.deepEqual(
+      internals.getGeminiRawUsage({
+        role: 'assistant',
+        usageMetadata: { promptTokenCount: 456, totalTokenCount: 470 },
+      }),
+      { cacheRead: 0, cacheWrite: 0, totalInput: 456 },
+    );
+  });
+
+  test('still returns undefined when a foreign response has no input count', () => {
+    assert.equal(internals.getAnthropicRawUsage({ role: 'assistant', usage: {} }), undefined);
+    assert.equal(internals.getGeminiRawUsage({ role: 'assistant', usageMetadata: {} }), undefined);
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// 8. CACHE-WRITE DISPLAY
+// ───────────────────────────────────────────────────────────────────
+
+describe('cache-write display', () => {
+  test('shows tracked cache writes for a non-Anthropic adapter', () => {
+    const adapter = internals.selectAdapterForModel({
+      provider: 'proxy',
+      id: 'gpt-5.5',
+      name: 'GPT-5.5',
+    });
+    assert.ok(adapter);
+    assert.match(
+      internals.formatCacheStats(adapter, {
+        day: '2026-08-09',
+        totalRequests: 2,
+        hitRequests: 1,
+        cachedInputTokens: 100,
+        cacheWriteInputTokens: 1_000_000,
+        totalInputTokens: 1_500_000,
+      }),
+      /write 1\.00M tok/,
+    );
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// 9. FOOTER STATS
 // ───────────────────────────────────────────────────────────────────
 
 describe('footer stats modes', () => {
@@ -467,7 +922,7 @@ describe('footer stats modes', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────
-// 5. ADAPTIVE THINKING COMPATIBILITY
+// 10. ADAPTIVE THINKING COMPATIBILITY
 // ───────────────────────────────────────────────────────────────────
 
 describe('Pi 0.83 adaptive-thinking compatibility', () => {
@@ -516,7 +971,7 @@ describe('Pi 0.83 adaptive-thinking compatibility', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────
-// 6. EXPLICIT COMPAT PRECEDENCE
+// 11. EXPLICIT COMPAT PRECEDENCE
 // ───────────────────────────────────────────────────────────────────
 
 describe('explicit compat precedence', () => {
@@ -661,7 +1116,7 @@ describe('explicit compat precedence', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────
-// 7. JSONC FIXES
+// 12. JSONC FIXES
 // ───────────────────────────────────────────────────────────────────
 
 describe('modelOverrides JSONC fixes', () => {
@@ -829,7 +1284,7 @@ describe('modelOverrides JSONC fixes', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────
-// 8. FIX COMMAND
+// 13. FIX COMMAND
 // ───────────────────────────────────────────────────────────────────
 
 describe('/cache-optimizer fix command', () => {
