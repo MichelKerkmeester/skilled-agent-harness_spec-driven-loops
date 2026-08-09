@@ -15,7 +15,10 @@
       "blocker 4 evidence drift",
       "migration program completion claims",
       "recursive validation child manifest",
-      "deep loop 021 reconcile"
+      "deep loop 021 reconcile",
+      "completion evidence reconcile implementation",
+      "021 reopen set",
+      "013 checklist evidence"
     ],
     "key_topics": [
       "completion",
@@ -32,7 +35,7 @@
       "manifest"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -49,8 +52,8 @@
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-deep-loop/shared/rollout/command-injection-rollout.json",
       ".opencode/skills/system-deep-loop/shared/rollout/promotion-rule.md",
-      "spec/validate.sh",
-      ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl"
+      "implementation-summary.md",
+      "spec/validate.sh"
     ],
     "entities": [
       {
@@ -114,9 +117,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,7 +203,7 @@
     ],
     "causal_summary": "Checked completion items across the 013 migration program cite evidence that cannot be reproduced",
     "created_at": "2026-07-30T19:43:41.044Z",
-    "last_save_at": "2026-07-30T19:52:08.170Z",
+    "last_save_at": "2026-07-31T03:17:05.851Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,15 +211,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43ee0c7d1e46503c96455bdced809e5cd08324e6fca9fcded154163a58dfff0c",
+    "source_fingerprint": "sha256:891178b83f4d34c6303c3c5f794d23547e22d141a3b73069bb3cea9d041fb644",
     "source_doc_hashes": {
-      "spec.md": "bb1e06a0e8ad6cbcf8f303f6cbca4ee9c669f332da00d643ea1b306d0ea7c04e",
-      "plan.md": "954cafa015ffd483a124460e3a5d11e3145d73a07145b4c3e84d38afb94beacd",
-      "tasks.md": "90b978c38c1337bc2fda0caed266a4e794bbe0fab8a8f2677712583020bfec35",
-      "checklist.md": "239607b1117a7c8558c14ca8c1a9a02ff0b16369d5397bfef86c84a7a9054d53",
-      "decision-record.md": "90f49502f1ad95f88b6770270a366948cfea26b3a3a4b62236f3c3a382993c3e"
+      "spec.md": "bec24198b7449bec9abb78008915e2aec9b7a2be27c3bbf2d036b8c6b8baff0b",
+      "plan.md": "78c271ef7d40a6227b0d574884052dfe6fbedbd3364cff5da8cc00deffac792d",
+      "tasks.md": "f8d178ccb0a7fd2c265c6680928a1f0573f56ab836696bc3365f6bc639c47679",
+      "checklist.md": "b89aec197e83decb487d6ca09ab185bc13166c202f66509ee9c8fc934f36d74b",
+      "decision-record.md": "4beb7bee47bfb68eadde3167bfb62d3b31152703c90804d5510276c65519228b",
+      "implementation-summary.md": "f56850f48d0f0114940632fd022753243db1ebbafa4c5c0ae52644c06bdff740"
     },
     "last_active_child_id": null,
     "last_active_at": null

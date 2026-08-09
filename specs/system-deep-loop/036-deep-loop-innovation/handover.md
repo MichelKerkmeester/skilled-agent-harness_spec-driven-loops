@@ -12,10 +12,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
-    last_updated_at: "2026-08-08T15:00:00Z"
+    last_updated_at: "2026-08-09T02:25:11Z"
     last_updated_by: "claude-opus"
-    recent_action: "025 all 12 findings BUILT+adversarially-CLEAN+landed (a232835611); metadata reconciling"
-    next_safe_action: "Land 025 metadata; then 016 whole-system gate -> 014/015 (IRREVERSIBLE, gated)"
+    recent_action: "016 pre-cutover verdict v2 CLEARED-FOR-014; 021 closeout landing-gap fixed"
+    next_safe_action: "014 staged cutover (IRREVERSIBLE, operator-gated); Stage-B 016 gated on 015"
     blockers:
       - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
@@ -46,6 +46,35 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
 > **Metadata warning:** many landed children show `planned`/`in_progress` in their
 > `graph-metadata.json` — the labels are **stale**, not the truth. The phase map in `spec.md`
 > §PHASE MAP and the ledger below are authoritative. Reconciling this staleness is step 2 below.
+
+## Session update — 2026-08-09 (LATEST): 016 pre-cutover gate CLEARED-FOR-014 + 021 landing-gap closed
+
+> This block is the CURRENT truth and supersedes the 2026-08-08 blocks below wherever they conflict.
+> The entire remaining BUILD of the epic is done + adversarially clean (022, 024, 025, 029). Only the
+> operator-gated cutover (014/015/017/merge) and the reorg-LAST 034 remain.
+
+- **016 pre-cutover gate — CLEARED-FOR-014.** A read-only Opus audit at origin tip `f44c5ad782`
+  independently code-verified the register: all 4 named blockers' mechanisms genuinely closed at the
+  code level (022/023/024 fully confirmed by reading the code; 021 mechanism done — see below); 025
+  certificate-binding present (spot-checked 3/12); a ~28-finding cross-child, cross-P0 sample turned
+  up **zero fabrications**; independent `tsc --noEmit` rc 0. Verdict artifact:
+  `016-whole-system-gate/review/pre-014-clearance-verdict-v2.md`. **Subject to operator go-ahead +
+  the Stage-B whole-system run, which is itself gated on the still-unmet `015`.**
+- **021 (Blocker 4) — LANDING GAP, now closed.** Its reconcile was done locally 2026-07-31 but never
+  landed, so origin still showed the pre-reconcile state (ADRs Proposed, OD-1 unrecorded, spec Planned,
+  checklist 0/47) — which is what the 016 audit + a closeout-verification agent both saw. The local
+  `.opencode/specs` copy was already fully reconciled: ADR-001/002 **Accepted**, **ADR-003** records the
+  operator's re-scope ruling (fixing the decision-record ↔ 016-spec contradiction), spec `Complete`,
+  checklist 32/47 (the 15 unchecked are validator-tolerated closeout ceremony), and it **passes
+  `validate.sh --strict` Errors 0 Warnings 0**. Landed the verified-good local folder as-is (no
+  fabricated tick-flips). Residual: `graph-metadata.derived.status` still reads `in_progress` (derived
+  from 32/47) — a known-tolerated stale label consistent with the epic's other landed children; --strict
+  passes regardless.
+- **Operator-gated boundary reached.** Pre-cutover work is complete. Next steps are IRREVERSIBLE and
+  require explicit operator go-ahead: 014 staged cutover (ONE MODE AT A TIME, cutover cert + rollback
+  drill each) → 015 legacy-writer-retirement (unmet: 0/29) → rerun 016 Stage-B → 017 integrate → merge
+  to main. Per-mode 014 preconditions from the verdict: wire an identityResolver (F001, opt-in today);
+  024 `event_version` backward-compat caveat (B2); 025 low-sev residuals accepted.
 
 ## Session update — 2026-08-08 (LATEST): state corrected to origin `3ae10c0111` + speed/parallelization plan
 

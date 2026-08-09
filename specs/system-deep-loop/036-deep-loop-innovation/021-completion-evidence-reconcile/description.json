@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/021-completion-evidence-reconcile",
   "description": "Checked completion items across the 013 migration program cite evidence that cannot be reproduced",
   "keywords": [
@@ -13,7 +14,7 @@
     "cannot",
     "reproduced"
   ],
-  "lastUpdated": "2026-07-30T19:52:02.108Z",
+  "lastUpdated": "2026-07-31T03:16:57.989Z",
   "specId": "021",
   "folderSlug": "completion-evidence-reconcile",
   "parentChain": [
