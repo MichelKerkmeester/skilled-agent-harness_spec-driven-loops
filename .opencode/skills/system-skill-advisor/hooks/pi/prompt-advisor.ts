@@ -144,6 +144,11 @@ interface PiCompactShadowStore {
   compactHash?: string;
   resetReasonsBySession?: Map<string, readonly string[]>;
   lastReceiptBySession?: Map<string, PiDispatchShadowReceipt>;
+  // Per-session record of the constant directive block last delivered in
+  // full, keyed by confirmed session id. Presence means "these directives
+  // were already shown this lifecycle epoch"; a later identical-content turn
+  // may drop them. Cleared on every lifecycle epoch advance (resume/compact).
+  directiveDedupBySession?: Map<string, string>;
 }
 
 function compactShadowStore(): PiCompactShadowStore {
@@ -160,6 +165,99 @@ function compactShadowStore(): PiCompactShadowStore {
 export function isPiCompactDirectivePrototypeEnabled(): boolean {
   const value = process.env[PI_COMPACT_DIRECTIVE_PROTOTYPE_FLAG]?.trim().toLowerCase();
   return value === "1" || value === "true" || value === "yes";
+}
+
+// ── Pi-local directive de-duplication ──────────────────────────────
+// The advisor brief Pi appends onto the visible prompt is a dynamic
+// "Advisor: …" route line plus three CONSTANT directives (comment-hygiene,
+// governor, proof-over-appearance). The route line changes per turn; the
+// directives do not. Unlike every other runtime — where the brief is
+// model-context-only — Pi renders it on-screen, so re-appending identical
+// directives onto every prompt is visible repetition. This drops the
+// directive block on a proven same-content repeat within one lifecycle
+// epoch while keeping the route line, and re-delivers the full block on the
+// first turn, any directive-text change, resume/compact (history may be
+// summarised away), an unknown session, or when the kill-switch is set — so
+// a guardrail is never silently dropped. The Pi dispatch directive is
+// appended separately and is never affected here.
+export const PI_DIRECTIVE_DEDUP_FLAG = "SPECKIT_PI_DIRECTIVE_DEDUP";
+
+// Mirrors render.ts DIRECTIVES_LABEL. If the brief format ever drifts past
+// this separator the split fails closed to full delivery.
+const PI_DIRECTIVE_SEPARATOR = "\nDirectives:";
+
+export function isPiDirectiveDedupEnabled(): boolean {
+  const value = process.env[PI_DIRECTIVE_DEDUP_FLAG]?.trim().toLowerCase();
+  return value !== "0" && value !== "false" && value !== "off" && value !== "no";
+}
+
+interface PiDirectiveBriefParts {
+  readonly head: string;
+  readonly directives: string;
+}
+
+function splitPiDirectiveBrief(context: string): PiDirectiveBriefParts | null {
+  const index = context.indexOf(PI_DIRECTIVE_SEPARATOR);
+  // index <= 0 means there is no directive block, or no advisor head before
+  // it (the advisor-failure fallback is directives-only): not reducible.
+  if (index <= 0) return null;
+  return { head: context.slice(0, index), directives: context.slice(index) };
+}
+
+export interface PiDirectiveDeliveryDecision {
+  readonly reducedContext: string | null;
+  readonly suppressed: boolean;
+}
+
+const FULL_PI_DIRECTIVE_DELIVERY: PiDirectiveDeliveryDecision = Object.freeze({
+  reducedContext: null,
+  suppressed: false,
+});
+
+/**
+ * Decide whether this turn's visible brief may drop the constant directive
+ * block. Suppresses only for a confirmed session's proven same-content repeat
+ * within the current lifecycle epoch; every uncertain case falls open to the
+ * full brief so a guardrail is never silently dropped. Records the delivered
+ * directive block on a full delivery so the next identical turn is eligible.
+ */
+export function decidePiDirectiveDelivery(
+  context: string,
+  sessionId: string | undefined,
+): PiDirectiveDeliveryDecision {
+  if (!isPiDirectiveDedupEnabled()) return FULL_PI_DIRECTIVE_DELIVERY;
+  const key = receiptSessionKey(sessionId);
+  if (!key) return FULL_PI_DIRECTIVE_DELIVERY;
+  const parts = splitPiDirectiveBrief(context);
+  if (!parts || !parts.head.trim()) return FULL_PI_DIRECTIVE_DELIVERY;
+
+  const store = compactShadowStore();
+  if (!store.directiveDedupBySession) {
+    store.directiveDedupBySession = new Map();
+  }
+  const map = store.directiveDedupBySession;
+  if (map.get(key) === parts.directives) {
+    return Object.freeze({ reducedContext: parts.head, suppressed: true });
+  }
+  if (!map.has(key)) {
+    while (map.size >= MAX_PI_RECEIPT_SESSIONS) {
+      const oldest = map.keys().next().value;
+      if (typeof oldest !== "string") break;
+      map.delete(oldest);
+    }
+  }
+  map.set(key, parts.directives);
+  return FULL_PI_DIRECTIVE_DELIVERY;
+}
+
+export function resetPiDirectiveDedupForSession(sessionId: string | undefined): void {
+  const key = receiptSessionKey(sessionId);
+  if (!key) return;
+  compactShadowStore().directiveDedupBySession?.delete(key);
+}
+
+export function resetPiDirectiveDedupState(): void {
+  compactShadowStore().directiveDedupBySession?.clear();
 }
 
 async function loadPolicyPlan(): Promise<PolicyPlanModule | null> {
@@ -262,6 +360,7 @@ export function resetPiDispatchShadowState(): void {
   store.compactHash = undefined;
   store.resetReasonsBySession?.clear();
   store.lastReceiptBySession?.clear();
+  store.directiveDedupBySession?.clear();
   store.policyPlan = undefined;
   store.policyPlanPromise = undefined;
 }
@@ -419,8 +518,10 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
     const sessionId = sessionIdFromContext(ctx);
     try {
       await resetPiDispatchLifecycle(sessionId, lifecycleEvent);
+      resetPiDirectiveDedupForSession(sessionId);
     } catch {
       forcePiDispatchUnknownReceipt(compactShadowStore(), sessionId);
+      resetPiDirectiveDedupForSession(sessionId);
     }
   });
 
@@ -428,8 +529,10 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
     const sessionId = sessionIdFromContext(ctx);
     try {
       await resetPiDispatchLifecycle(sessionId, "compact");
+      resetPiDirectiveDedupForSession(sessionId);
     } catch {
       forcePiDispatchUnknownReceipt(compactShadowStore(), sessionId);
+      resetPiDirectiveDedupForSession(sessionId);
     }
   });
 
@@ -483,8 +586,21 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
       }
     }
 
-    const text = context
-      ? `${event.text}\n\n${context}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
+    let effectiveContext = context;
+    if (!advisorFailed && context) {
+      try {
+        const decision = decidePiDirectiveDelivery(context, sessionIdFromContext(ctx));
+        if (decision.suppressed && decision.reducedContext) {
+          effectiveContext = decision.reducedContext;
+        }
+      } catch {
+        // Directive de-dup is advisory; on any failure keep the full brief.
+        effectiveContext = context;
+      }
+    }
+
+    const text = effectiveContext
+      ? `${event.text}\n\n${effectiveContext}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
       : `${event.text}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`;
     const output = { action: "transform" as const, text };
     await observeEmittedPiDispatch(sessionIdFromContext(ctx));

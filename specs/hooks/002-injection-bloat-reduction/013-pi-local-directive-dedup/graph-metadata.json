@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup",
+  "spec_folder": "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi directive dedup",
+      "pi visible directive repetition",
+      "pi local directive suppression",
+      "SPECKIT_PI_DIRECTIVE_DEDUP",
+      "pi directive dedup plan",
+      "pi local directive suppression plan",
+      "pi directive dedup tasks",
+      "pi directive dedup checklist",
+      "pi directive dedup verification",
+      "pi directive dedup implementation",
+      "pi directive dedup summary"
+    ],
+    "key_topics": [
+      "directive",
+      "dedup",
+      "visible",
+      "repetition",
+      "local",
+      "suppression",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Local Directive De",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stop Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-open",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Existing Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deliver",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Stop Pi from visibly re-appending the three constant advisor directives onto every prompt, by suppressing them on a confirmed session's proven same-content repeat within a lifecycle epoch, without touching the shadow program or the 007 activation gate.",
+    "created_at": "2026-08-09T07:25:29.261Z",
+    "last_save_at": "2026-08-09T07:30:34.432Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:16139a7d7e6cfae05d5eae7f6e750b974fd82b98c11013235a38626d9643827f",
+    "source_doc_hashes": {
+      "spec.md": "0e9f15b302c6af062670b54eceb0d2e047a7bc7eea6f3176a397b6cd7b521044",
+      "plan.md": "8289fbd945b395a768642a738942e685deb22f71b1199ee0ef0c7946854e7343",
+      "tasks.md": "4ce61764815369e6e71bde694edf8cfb44c9c55da0ac2945a0c43bad2fcae00e",
+      "checklist.md": "f9b83c265191396de196b3bab733f12d1ab4ba0aaac4f580b71dd6f91118b15e",
+      "implementation-summary.md": "a0900f6c8ab6807f9968a345157d6f0f1e3cf87948f9aecfa9cf485cbd62b1d1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

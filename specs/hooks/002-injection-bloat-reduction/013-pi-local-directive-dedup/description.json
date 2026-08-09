@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup",
+  "description": "Stop Pi from visibly re-appending the three constant advisor directives onto every prompt, by suppressing them on a confirmed session's proven",
+  "keywords": [
+    "stop",
+    "visibly",
+    "re-appending",
+    "three",
+    "constant",
+    "advisor",
+    "directives",
+    "onto",
+    "every",
+    "prompt",
+    "suppressing",
+    "them",
+    "confirmed",
+    "session",
+    "proven"
+  ],
+  "lastUpdated": "2026-08-09T07:30:34.047Z",
+  "specId": "013",
+  "folderSlug": "pi-local-directive-dedup",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
