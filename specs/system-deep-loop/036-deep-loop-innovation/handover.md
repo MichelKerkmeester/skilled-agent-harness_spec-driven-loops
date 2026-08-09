@@ -12,11 +12,12 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
-    last_updated_at: "2026-08-09T05:14:58Z"
+    last_updated_at: "2026-08-09T12:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "014 AUTHORIZED (operator Go); 014/003 cutover-cert built+verified+landed eaf0a79024"
-    next_safe_action: "Build 014/001 migration (running) then 002 flip; per-mode CAS execution = go/no-go"
+    recent_action: "SOL design-gate re-review of the fully-hardened 014 machinery = NOT_READY (matches goal.md §8 pre-flip P0 list, NOT a surprise). Landed dark this session: Cluster-B F3/F4/F8-builder (a37ab143d0), #6 handoff-disposition binding (75dbe65e09)."
+    next_safe_action: "Build the coordinator/certificate/registry hardening cluster FRESH (see 2026-08-09 close-plan block below): #2 WAL atomicity + #1 eight rollback-switch reverse-CAS wiring + #8 cert-boundary verify + reconcile→typed-denial + #4 recordDigest/receipt. Then RE-RUN the SOL design gate; only DESIGN_SOUND clears the first flip."
     blockers:
+      - "014 FIRST FLIP IS BLOCKED by the design gate: the fresh SOL re-review (GPT-5.6-SOL high, read-only, against the fully-hardened machinery) returned NOT_READY. Do NOT execute any authority-flip CAS until the remaining coordinator/certificate/registry hardening cluster lands dark AND a re-run SOL gate returns DESIGN_SOUND (or …WITH_CONDITIONS the operator accepts). The 'AUTHORIZED (operator Go)' note below predates the gate and is SUPERSEDED for execution — the machinery-readiness gate must clear first. All hardening is dark/reversible; only the per-mode CAS is irreversible + per-mode operator-gated."
       - "014 is AUTHORIZED by operator (Go). DISCOVERY: 014 is a phase parent with 3 UNBUILT children — 003 cutover-cert+rollback (DONE, landed eaf0a79024), 001 in-flight migration (building), 002 per-mode authority flip. Build order 003->001->002, all DARK/additive/reversible. The ONLY irreversible act is 002's CAS moving a mode epoch legacy->new_authoritative, executed per-mode gated by cert + live rollback drill — that step still stops for a per-mode go/no-go. Build worktree: .worktrees/0135-skilled-014-cutover off origin tip. Per-mode preconditions from 016 verdict: (F001) identityResolver opt-in; (F002) captured auth-state; (F005) loop-lock wx window."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
     key_files:
@@ -47,7 +48,82 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
 > `graph-metadata.json` — the labels are **stale**, not the truth. The phase map in `spec.md`
 > §PHASE MAP and the ledger below are authoritative. Reconciling this staleness is step 2 below.
 
-## Session update — 2026-08-09 (LATEST): 016 pre-cutover gate CLEARED-FOR-014 + 021 landing-gap closed
+## Session update — 2026-08-09 (LATEST-A): 014 machinery re-hardened; SOL design gate = NOT_READY; coordinator close-plan
+
+> CURRENT truth; supersedes every block below wherever they conflict, INCLUDING the "016 pre-cutover
+> CLEARED-FOR-014" block — an independent SOL re-review of the fully-hardened machinery returned
+> **NOT_READY**, so the first flip is blocked until the remaining hardening lands and the gate is re-run.
+> Ground every claim against the fresh origin tip (fetch before each land).
+
+**Landed dark this session (all reversible; verify-before-land each):**
+- **Cluster-B (F3/F4/F8 builder-level) — `a37ab143d0`.** Mandatory fail-closed operator-identity + policy-tuple
+  binding on the authority-flip coordinator (F3, CLOSED); rollback-window execution binding + empty/missing-family/
+  stale/dup/cross-mode signal denial (F4); cert BUILDER cryptographically verifies rollback-drill + migration-receipt
+  authorities (F8). tsc rc0; 62 + 68 unit tests; identity red-before proven then restored byte-exact.
+- **#6 migration handoff-disposition binding — `75dbe65e09`.** `verifyInflightMigrationHandoff` now binds each
+  handoff row's disposition to the manifest's frozen disposition, closing a MIGRATE→BLOCK relabel that slipped past
+  the successor preflight's vetoing-block denial. Red-before proven; migration 32/32; per-mode-flip 68/68; tsc rc0.
+
+**SOL design-gate re-review (GPT-5.6-SOL high/fast, read-only, detached worktree at `a37ab143d0`) = NOT_READY.**
+It CONFIRMED #3 identity CLOSED with exact citations (not fabricated). Its verdict matches goal.md §8's own
+"P0 — must close before the first live authority flip" list, so it is NOT a contradiction — the mission-prompt's
+"Cluster-A CLOSED / adversarially clean" was overstated; goal.md §8 already lists this as open pre-flip work.
+Report: `scratch/sol-rereview-output.md` (session-scoped; re-dispatch to regenerate — see mechanics below).
+
+**Verified per-finding classification (line-checked against real code at `a37ab143d0` + goal.md §8):**
+- **CLOSED:** #3 identity (Cluster-B, SOL-confirmed); #7 forward 8-mode order (`manifest-order.ts` enforces the full
+  `slice(0,index)` predecessor prefix from the durable registry).
+- **CLOSE-DARK, DONE:** #6 handoff-disposition binding.
+- **CLOSE-DARK, REMAINING = ONE COHERENT COORDINATOR/CERTIFICATE/REGISTRY CLUSTER — build fresh together (they all
+  entangle on `cutover-coordinator.ts` / `authority-registry.ts` / `certificate.ts`; fragmenting = rework):**
+  - **#2 atomicity** (goal §8-P0-2/7): commit appends the transition event (`cutover-coordinator.ts:263`) THEN CASes
+    the selector (`:276`); a split is repaired only on the *next* `requestCutover` (`:146`), so readers can observe
+    false dark authority in the gap. Operator-ratified fix = **WAL / intention-state**: append a NON-authoritative
+    intention fact → CAS → commit marker; deterministic startup/first-call recovery completes-or-aborts. Files:
+    `cutover-coordinator.ts` + `authority-registry.ts` + `ledger-event.ts` + `types.ts`.
+  - **#8 cert-boundary** (goal §8-P0-6/P1-4): the BUILDER verifies evidence authorities, but `verifyCutoverCertificate`
+    (the preflight boundary) checks only `digest(facts)===certificateDigest` + expectation — a forged self-consistent
+    cert passes. Fix: the coordinator must BUILD the cert itself (`buildCutoverCertificate` with providers+evidence) or
+    the verify path must re-run the evidence verifiers with the envelopes. Also bind migration-receipt scope/candidate.
+  - **P1 reconcile→typed-denial:** `#reconcilePendingTransition` (`cutover-coordinator.ts:394`) throws
+    `AuthorityFlipError('CAS_CONFLICT')` on a genuine durable split (DELIBERATE fail-loud); `requestCutover` has no
+    outer catch → unhandled rejection. Fold into #2's recovery rebuild (carries a design call: typed-denial vs fail-loud).
+  - **#1 rollback-switch → reverse-CAS** (goal §8-P1-1; operator chose to close now though it is flip-time-consumed):
+    `compareAndSwapRollback` (`authority-registry.ts:337`) has ZERO production callers; the 8
+    `*-rollback-gate/rollback-switch.ts` hardcode `authorityMutation:false` / `phase014RestorationRequired:true`. Wire
+    each switch to the reverse-CAS through the authorized fenced seam per goal §4 rollback-drill ("do not duplicate
+    switch mechanics in the certificate package"). 8 files + registry integration.
+  - **#4 rollback-window** (goal §8-P1-4, Phase-015-consumed): `closeRollbackWindow` trusts caller
+    `windowRecord.recordDigest` without recompute (`rollback-window.ts:462`); executions bound to bare hex not certified
+    receipts; "stale" = only before-open/after-eval (a 14-day-old opening-instant reading passes). recordDigest-recompute
+    is independent (rollback-window.ts); receipt-binding entangles with #8.
+- **DEFER (flip-time per goal §8, do NOT dark-build):** #1 live-drill semantics; lock-TTL renewal
+  (`authority-registry.ts:173` reaps a live holder at 10 min, no renewal); rehash-of-evidence-immediately-before-commit.
+
+**GATE:** after the coordinator cluster lands dark → RE-RUN the SOL design gate. Only DESIGN_SOUND (or
+…WITH_CONDITIONS the operator accepts) clears the first flip (deep-research), which is IRREVERSIBLE + operator-gated.
+
+**Build mechanics (this session, confirmed):**
+- Build SERIAL in-process (Sonnet / self) — cli-codex GPT-5.6-SOL is **review-only** (it fabricated 024 when rushed).
+- Build worktree `.worktrees/0135-skilled-014-cutover` recovered to fresh origin tip: `git -C <wt> fetch origin
+  skilled/v4.0.0.0 && git -C <wt> reset --hard FETCH_HEAD` (its landed cluster-B dirty files are safe to discard).
+- From `runtime/`: tsc = `../../system-spec-kit/node_modules/.bin/tsc --noEmit -p tsconfig.json`; tests PER-FILE =
+  `node_modules/.bin/vitest run <file>` (aggregates hang on shared SQLite; `git checkout -- database/` first).
+- Land dark via `zsh /tmp/ks/land-wt0135.sh <paths-file> <msg-file>` — a 0135-scoped copy of the 0129 leak-guard
+  (WT= points at 0135); guards 0 file-deletions + in-scope prefixes, commit-trees onto the fresh tip, pushes v4. If the
+  script is gone from /tmp, re-derive from `/tmp/ks/land-wt0129.sh` by swapping the WT path. `gh auth switch --user
+  MichelKerkmeester` before landing.
+- SOL re-review: detached worktree at the landed SHA (`git worktree add --detach <path> <sha>`), then
+  `codex exec -C <wt> --model gpt-5.6-sol -c model_reasoning_effort=high -c service_tier=fast -c approval_policy=never
+  --sandbox read-only -o <out> "<prompt>"` (prompt in `scratch/sol-rereview-prompt.txt`). The review worktree lacks
+  node_modules so its tsc fails 127 — expected; verify tsc in 0135 instead.
+- **Authorities:** goal.md §8 = the pre-flip P0 list; goal.md §4 = the per-flip runbook + rollback-drill + cert
+  lifecycle; goal-plan-review.md = the original 13-finding review. Kill codex by captured PID only (shared OAuth).
+
+## Session update — 2026-08-09 (LATEST-B): 016 pre-cutover gate CLEARED-FOR-014 + 021 landing-gap closed
+
+> SUPERSEDED FOR EXECUTION by the LATEST-A block above: the "CLEARED-FOR-014" verdict predates the fresh SOL
+> re-review, which returned NOT_READY. Kept for its reasoning trail.
 
 > This block is the CURRENT truth and supersedes the 2026-08-08 blocks below wherever they conflict.
 > The entire remaining BUILD of the epic is done + adversarially clean (022, 024, 025, 029). Only the
