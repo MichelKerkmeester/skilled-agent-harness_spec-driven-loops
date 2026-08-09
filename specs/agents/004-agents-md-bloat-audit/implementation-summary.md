@@ -9,9 +9,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "agents/004-agents-md-bloat-audit"
-    last_updated_at: "2026-08-08T08:58:31Z"
+    last_updated_at: "2026-08-09T07:26:53Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Closed the audit packet; recorded deliverable and ad-hoc follow-up"
+    recent_action: "§9 template→pointer + advisor-metadata fix; landed 1be805c0af"
     next_safe_action: "Packet complete; no further action pending"
     blockers: []
     key_files:
@@ -57,6 +57,29 @@ This packet was scoped read-only; implementation was flagged as a separate follo
 - **Applied 3 verified duplicate-removal trims** (memory_search note, §5 daemon-CLI subsection, §9 validate.sh block) — each removed fact preserved elsewhere; −9 net lines.
 - The remaining Tier 1/2/3 candidates were **held** after verification (unique content or preserve-set conflicts), not cut.
 These edits landed on `skilled/v4.0.0.0` (commit `c20561d5d0`), not in this packet.
+
+### Correction: obsolete Dispatch Rules rows removed
+
+The operator identified two Dispatch Rules table rows in `AGENTS.md` as obsolete/no-longer-applicable and asked for their removal, plus a table-drift fix found in the same pass:
+- Removed the **Fable subagent dispatch** row (Fable-model subagent-model-enforcement rule) from `AGENTS.md`'s Dispatch Rules table.
+- Removed the **Open Design dispatch** row (`design-mcp-open-design` co-load requirement) from the same table.
+- Removed the sibling **Open Design / interface-design dispatch** row from `BARTER.md`'s own Dispatch Rules table (BARTER.md has no Fable row to remove).
+- Fixed real drift in `AGENTS.md`'s §9 Runtime Agent Directory Resolution table: it was missing the **Cursor** (`.cursor/agents/`) and **Devin** (`.devin/agents/`) rows that BARTER.md's equivalent table already carried; added both, matching BARTER.md's row order (Opencode, Claude Code, Codex CLI, Cursor, Pi, Devin).
+- CLI dispatch, Small-model dispatch, and Agent I/O pointer rows in `AGENTS.md`, and CLI dispatch / Small-model dispatch in `BARTER.md`, were left untouched.
+- No dangling cross-reference to either deleted row was found in either file.
+
+This correction was applied twice in the same session: a concurrent background research dispatch running with `--dangerously-skip-permissions` snapshotted `AGENTS.md` and this packet's metadata as dirty mid-run and reverted them to HEAD as an out-of-scope write when it exited (a false-positive attribution — the actual edit came from an unrelated concurrent agent, not from that dispatch). The edit was reapplied immediately from the already-verified before/after state once the revert was discovered.
+
+### Second follow-up: §9 pointer-compression + advisor-metadata correction
+
+A three-model cross-review re-audited `AGENTS.md` for further pointer-izable bloat — GLM-5.2-max (via cli-devin), Grok-4.5-high (via cli-cursor), and DeepSeek-v4-flash (via cli-opencode / opencode-go provider) — each read-only, each verifying candidates against their authoritative docs before reporting. All three, plus a fresh Opus re-check, converged: `AGENTS.md` is at its pointer-ization floor, with exactly one safe cut remaining. Two edits landed:
+
+- **§9 Template & Validation Requirements → pointer.** The 8-line block was a distillation of the "Distributed Governance Rule" in `system-spec-kit/SKILL.md`, which owns the template mandate, the applicable-docs list, and the deep-research write exemptions more fully. Collapsed to a one-line pointer; the `validate.sh --strict` rule survives inline at §2 Completion Verification, so nothing is orphaned. Net −5 lines.
+- **§9 Advisor metadata placement → accuracy fix.** The prior wording claimed the "advisor pair" lives at either a parent-hub or a standalone root. Verified against `skill-root-metadata-contract.md`: only `graph-metadata.json` is required at both classes; `description.json`, `mode-registry.json`, and `hub-router.json` are hub-only (forbidden on a standalone root). Corrected. Surfaced as a bonus by the Grok review.
+
+Two baseline rationales from the first pass were also found factually wrong (the §3 Documentation Levels table *is* mirrored in `level-decision-matrix.md` / README; the §6 Daemon CLI Fallback *is* owned) — but their KEEP verdicts stand for the sounder reason that both are prompt-time gate/recovery inputs the AI must have inline. No further cut exists.
+
+Landed on `skilled/v4.0.0.0` as commit `1be805c0af`, not in this packet.
 
 ### Files Changed (this packet)
 
