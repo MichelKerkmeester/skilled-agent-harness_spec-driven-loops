@@ -2,7 +2,7 @@
 title: "Design Specification: Manual Testing Playbook FAIL Remediation"
 description: "Plan the three-track remediation of the 30 verified manual-testing-playbook FAILs, including repository fixes, machine-local operator actions, and justified SKIPs."
 status: "remediation complete; re-run zero FAIL"
-completion_pct: 95
+completion_pct: 100
 trigger_phrases:
   - "manual playbook FAIL remediation"
   - "zero unresolved playbook fails"
@@ -15,10 +15,10 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation"
-    last_updated_at: "2026-08-09T04:48:21Z"
+    last_updated_at: "2026-08-09T05:04:50Z"
     last_updated_by: "claude"
     recent_action: "Reconciled packet to remediation-complete; re-run zero FAIL across all runtimes"
-    next_safe_action: "Add DV-007 trusted-workspace config and re-confirm devin dispatches on service recovery"
+    next_safe_action: "None; packet complete — zero FAIL, all devin dispatches re-confirmed"
     blockers: []
     key_files:
       - ".opencode/specs/hooks/002-injection-bloat-reduction/011-playbook-results-automation/spec.md"
@@ -34,10 +34,10 @@ _memory:
       - ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md"
       - ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md"
     session_dedup:
-      fingerprint: "sha256:6017a19ca7234413859b2e51f268ec1032b3ecdf8da4bb166e1bb34f3cf575af"
+      fingerprint: "sha256:5a2f28e62f31d9d6dab6071f96eafff9c8b5b40b01d7de036fc1c84c71e5aa8a"
       session_id: "2026-08-08-hooks-002-012"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

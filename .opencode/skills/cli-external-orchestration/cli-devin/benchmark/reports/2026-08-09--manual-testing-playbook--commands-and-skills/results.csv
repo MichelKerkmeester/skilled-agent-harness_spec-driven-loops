@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-015,cli-devin,,commands-and-skills,manual,,swe-1.7,commands-and-skills,,PASS,"cloud-recovered re-run: native /sk-doc invocation returns section-order signals; exit 0, no cloud error"

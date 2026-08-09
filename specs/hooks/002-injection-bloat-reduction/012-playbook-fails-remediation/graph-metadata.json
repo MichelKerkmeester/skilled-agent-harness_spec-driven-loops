@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 011 wrapper run produced 30 manual-testing-playbook FAIL records across Codex, OpenCode, Pi, Cursor, and Devin",
     "created_at": "2026-08-08T16:09:42Z",
-    "last_save_at": "2026-08-09T04:49:43.705Z",
+    "last_save_at": "2026-08-09T05:04:50.750Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcb899553543e29323c4b7f3e05f503e64ef83c6eaaf09b55c897c47125466a1",
+    "source_fingerprint": "sha256:fec275fffcaf27b346afb3c370036e4a148a6af5378e3c9fcb4ab0e3350b4eb2",
     "source_doc_hashes": {
-      "spec.md": "5ca71e582c3eb4cd7f1b5fb1baf7280addcb96099d9715a766641b73235d2a8f",
-      "plan.md": "4b88931ebe58a05ee53a75669e797782211189fd4ecc5ed3a0b95f9f7c989283",
-      "tasks.md": "663162a23f21d7d31e189bfeaceef647da82075adf796c1480364009540258ba",
-      "checklist.md": "3f1510ca20cd62c9b06e00226705e7aed1102ad1d97bc6936009aedb10153679",
-      "implementation-summary.md": "af5072349ea2a599ddb2829e19a5a83e268696cd1b53fea1e6cc069acd06c293"
+      "spec.md": "04b8dc2e110f966c82dfb003a4765c445b77842a8d376ca7ccd9883ff1204782",
+      "plan.md": "1699d283157f4cdbdb0857cd3042435b7bfe6a68d13cdb0cdc33507992edaa96",
+      "tasks.md": "a70b059a9034b6fd2f34730f1e63f9ae1858f29345452a7ba4a9b54177ec9006",
+      "checklist.md": "2f30e269148e915ecfe048c910f4fdf1b0c8d6122737c64205310685982f4131",
+      "implementation-summary.md": "59bd44b9fa980afb6a0eddb776a9cc2121b8a85ceb7f13f127df0309d4a719e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

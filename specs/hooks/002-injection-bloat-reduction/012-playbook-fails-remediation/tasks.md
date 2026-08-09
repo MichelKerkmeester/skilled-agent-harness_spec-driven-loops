@@ -2,7 +2,7 @@
 title: "Tasks: Manual Testing Playbook FAIL Remediation"
 description: "Track the five runtime groups, shared-tool repairs, operator-only prerequisites, SKIP reclassifications, and the zero-FAIL wrapper rerun."
 status: "remediation complete; re-run zero FAIL"
-completion_pct: 95
+completion_pct: 100
 trigger_phrases:
   - "manual playbook remediation tasks"
   - "runtime fail remediation tasks"
@@ -14,10 +14,10 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation"
-    last_updated_at: "2026-08-09T04:48:21Z"
+    last_updated_at: "2026-08-09T05:04:50Z"
     last_updated_by: "claude"
     recent_action: "Reconciled packet to remediation-complete; re-run zero FAIL across all runtimes"
-    next_safe_action: "Add DV-007 trusted-workspace config and re-confirm devin dispatches on service recovery"
+    next_safe_action: "None; packet complete — zero FAIL, all devin dispatches re-confirmed"
     blockers: []
     key_files:
       - ".opencode/specs/hooks/002-injection-bloat-reduction/012-playbook-fails-remediation/plan.md"
@@ -30,10 +30,10 @@ _memory:
       - ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs"
       - ".opencode/skills/sk-git/scripts/hooks/pi/git-preflight-advisory.ts"
     session_dedup:
-      fingerprint: "sha256:a0755491ad5d4648dc2e9d350085177eebc39b4edfb0a4182d438cf7268506c1"
+      fingerprint: "sha256:6b6c64b1ae95059ec7f42cd797481dea4d6f51fa1de59c0f1ceb562bff1f5cca"
       session_id: "2026-08-08-hooks-002-012"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

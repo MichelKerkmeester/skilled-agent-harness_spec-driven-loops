@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-007,cli-devin,,hooks,manual,,swe-1.7,hooks,,PASS,"cloud-recovered re-run: trusted-workspace fixture + dangerous mode; exit 0, second-marker.txt created (hook-test), trust not refused, no cloud error"

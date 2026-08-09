@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+DV-012,cli-devin,,subagents,manual,,swe-1.7,subagents,,PASS,"cloud-recovered re-run: 13/13 AGENT.md filesystem parity + dangerous-mode read-only review dispatch (27 review signals, no mutation, no cloud error)"
