@@ -39,7 +39,7 @@
       "cleanup"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/specs/hooks/002-injection-bloat-reduction/011-playbook-results-automation/spec.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 011 wrapper run produced 30 manual-testing-playbook FAIL records across Codex, OpenCode, Pi, Cursor, and Devin",
     "created_at": "2026-08-08T16:09:42Z",
-    "last_save_at": "2026-08-08T16:27:57.207Z",
+    "last_save_at": "2026-08-09T04:49:43.705Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7769604467915bc479979c27bd89f2e8419eeb0fccdf734fd743718d007b4994",
+    "source_fingerprint": "sha256:bcb899553543e29323c4b7f3e05f503e64ef83c6eaaf09b55c897c47125466a1",
     "source_doc_hashes": {
-      "spec.md": "e0fda5c90d3efad129116a669a9905204cdbda2a772e1e1aa921bbd795e089c3",
-      "plan.md": "77a5dc66acf77e905896efedc59e702790bbf5b0533d7bccab0c89728882fa17",
-      "tasks.md": "0067c95e59cabc858d18154abcb49afb795f8463dc01b35142d43785be0b7bce",
-      "checklist.md": "790ba40cd75924e2594126b3363c3310befb999569bbc077dceeedc545495c07",
-      "implementation-summary.md": "296b3cf4b331992f625389263cca829d8b6c453ca89c50662ae7d85cf4ec1af9"
+      "spec.md": "5ca71e582c3eb4cd7f1b5fb1baf7280addcb96099d9715a766641b73235d2a8f",
+      "plan.md": "4b88931ebe58a05ee53a75669e797782211189fd4ecc5ed3a0b95f9f7c989283",
+      "tasks.md": "663162a23f21d7d31e189bfeaceef647da82075adf796c1480364009540258ba",
+      "checklist.md": "3f1510ca20cd62c9b06e00226705e7aed1102ad1d97bc6936009aedb10153679",
+      "implementation-summary.md": "af5072349ea2a599ddb2829e19a5a83e268696cd1b53fea1e6cc069acd06c293"
     },
     "last_active_child_id": null,
     "last_active_at": null

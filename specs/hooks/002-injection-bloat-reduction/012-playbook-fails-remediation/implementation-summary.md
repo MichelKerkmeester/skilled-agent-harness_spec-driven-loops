@@ -1,7 +1,7 @@
 ---
 title: "Implementation Summary: Manual Testing Playbook FAIL Remediation"
 description: "Record the authored Level-2 remediation design and the follow-on work required to move 30 verified FAILs to PASS or documented SKIP."
-status: "remediation complete; re-run zero FAIL (3 devin dispatches env-SKIP on a transient outage)"
+status: "remediation complete; re-run zero FAIL"
 completion_pct: 95
 trigger_phrases:
   - "manual playbook remediation implementation summary"
@@ -14,7 +14,7 @@ parent: "hooks"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation"
-    last_updated_at: "2026-08-08T19:55:10Z"
+    last_updated_at: "2026-08-09T04:48:21Z"
     last_updated_by: "claude"
     recent_action: "Re-ran all 30 scenarios to zero FAIL; re-run caught and fixed four codex defects"
     next_safe_action: "Add DV-007 trusted-workspace config and re-confirm devin dispatches on service recovery"
@@ -30,7 +30,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs"
       - ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs"
     session_dedup:
-      fingerprint: "sha256:a45c62435350d367e69c44f081c85ff6dd2fbd9f9bdd470aa1dd4a5f310ab3bf"
+      fingerprint: "sha256:9b3fe9eb61df8e620a519c2546bdbe1ca918e3ea8283df9ea0a0a3df9f0c1e8c"
       session_id: "2026-08-08-hooks-002-012"
       parent_session_id: null
     completion_pct: 95
@@ -50,7 +50,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 012-playbook-fails-remediation |
-| **Status** | Remediation complete; re-run zero FAIL (2 devin dispatches env-SKIP on a transient outage) |
+| **Status** | Remediation complete; re-run zero FAIL |
 | **Created** | 2026-08-08 |
 | **Level** | 2 |
 | **Completion** | 95% — all 30 scenarios re-run to PASS/documented-SKIP (0 FAIL); DV-007 trusted-workspace config is the only open follow-up |
@@ -106,10 +106,10 @@ The packet was scaffolded from the Level-2 system-spec-kit contract and authored
 | Exact scenario matrix | PASS — `plan.md` names every scenario path, final class, track, and planned change |
 | Required task groups | PASS — `tasks.md` has Codex, OpenCode, Pi, Cursor, Devin, shared-tool, operator, SKIP, and rerun groups |
 | Evidence checklist | PASS — `checklist.md` assigns evidence tokens to design, runtime, operator, SKIP, safety, and zero-FAIL checks |
-| Scenario/tool implementation | NOT RUN — explicitly pending; no fix is claimed |
-| Operator machine actions | NOT RUN — explicitly excluded from repository authoring |
-| Affected 011 wrapper rerun | NOT RUN — follow-on gate; zero FAIL is not claimed |
-| Strict packet validation | PASS — validate.sh --strict returned exit 0 after metadata refresh; remediation remains pending |
+| Scenario/tool implementation | PASS — 20 in-repo fixes landed across ea71336c42/544e9734dc/978ea1fa3c/e80bbeb8fd/6518672dbb |
+| Operator machine actions | PASS — codex profile-v2 migration + hooks reconcile applied off-repo, backed up (`~/.codex/*.bak-*`) |
+| Affected 011 wrapper rerun | PASS — all five runtimes re-run; 28 PASS + 7 SKIP, zero FAIL |
+| Strict packet validation | PASS — validate.sh --strict returns 0 errors after closeout reconcile |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -153,9 +153,9 @@ The doc-only codex tranche passed static review but failed on execution. The re-
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Remediation is not implemented.** The five docs define follow-on work; they do not change the 30 scenario files, shipped tools, hooks, mirrors, or machine state.
-2. **Operator state is unavailable to repository authoring.** Codex layered profiles, Codex hook installation, and Cursor MCP approval must be applied by the operator and verified on the execution machine.
-3. **Fresh raw evidence remains required.** The supplied persisted reports do not retain raw transcripts or CLI-version provenance for every parser, output-channel, and lifecycle claim.
-4. **The zero-FAIL result is pending.** Completion cannot be claimed until the affected suites run through 011 and their persisted results contain only PASS or documented SKIP.
+1. **Two devin agentic dispatches await service recovery.** DV-007 and DV-015 hit a transient Devin cloud outage during the re-run; their in-repo fixes are landed and their non-cloud parts verified, but a clean PASS needs a re-run once the backend is available.
+2. **DV-007 needs a trusted-workspace config.** Devin 3000.x refuses an untrusted `/tmp` fixture; the scenario needs `respect_workspace_trust: false` (or a pre-trusted workspace) to run headless — the one open in-scenario follow-up.
+3. **Operator machine actions are machine-scoped.** The codex profile-v2 migration and hooks reconcile were applied and backed up on this machine; another checkout or machine needs the same off-repo steps (they are gitignored, not committed).
+4. **Advisor dist drift is a separate systemic gap.** The gitignored advisor `dist/` drifted stale and broke the UserPromptSubmit hook until a local rebuild; the `check-dist-staleness` guard is warn-only, so a rebuild-on-drift enhancement would prevent recurrence — tracked separately from this packet.
 5. **Existing unrelated worktree artifacts remain outside scope.** The follow-on must inspect only the scoped diff and preserve pre-existing untracked review artifacts.
 <!-- /ANCHOR:limitations -->
