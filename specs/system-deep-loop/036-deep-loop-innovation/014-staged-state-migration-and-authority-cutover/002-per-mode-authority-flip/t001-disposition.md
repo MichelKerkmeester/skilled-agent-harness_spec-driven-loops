@@ -32,3 +32,50 @@ No file anywhere in `lib/` implements: a durable mode-keyed authority record dis
 ## Interpretation note (documented per Logic-Sync Protocol, not escalated — direction was already given)
 
 `spec.md`'s phase-adjacency line reads "predecessor `001`; successor `003`" and REQ-014 describes this child's output as feeding 003. Live evidence contradicts a literal reading of that ordering: `CutoverCertificateFacts.authorityMutation` is hard-typed `false`, and no CAS/selector exists anywhere upstream of 003. The dispatch brief explicitly instructs consuming 003's `verifyCutoverCertificate` as this child's preflight input. Built accordingly: 003's certificate is a precondition this child's coordinator checks before performing the real (dark, unwired) mutation; "successor" in spec.md is folder-navigation order, not build/data-flow order, as spec.md itself flags ("navigation order, not a hard runtime dependency").
+
+## Confirm-first grading: hardening pass over the built machinery
+
+An independent adversarial review of the built `lib/per-mode-authority-flip/`
+machinery raised four gaps against the code at HEAD. Each was graded
+against live behavior before any fix, per the same confirm-first method as
+above (a hypothesis is not acted on until reproduced). Full red/green
+evidence, fixes, and file:line citations are in `hardening-notes.md`
+alongside this file. Summary of the confirm-first grading itself:
+
+- **CONFIRMED-MISSING — reverse authority CAS.** The earlier finding above
+  ("Rollback (dark -> legacy) direction — already implements the
+  `rollback_pending -> legacy_authoritative` edge... REQ-012's 'rollback
+  remains available' is satisfied by this pre-existing machinery") is
+  correct only about the eight `*-rollback-gate/rollback-switch.ts`
+  files' own authorization/fencing/certificate contract — every one of
+  them explicitly returns `authorityMutation: false` and
+  `phase014RestorationRequired: true`. `AuthorityRegistry` (the durable
+  store this child built and the selector actually reads) had no reverse
+  edge at all; a completed rollback switch could not make the selector
+  stop returning dark. Confirmed real; built now (`compareAndSwapRollback`).
+- **CONFIRMED-MISSING — atomic cutover / stale-lock recovery.** The
+  forward CAS append-then-publish ordering had no durable prepare record,
+  so a crash between the two could only be resolved by replaying the
+  identical original request; the lock files carried no ownership
+  metadata, so a lock left by a dead process denied every future
+  transaction permanently. Confirmed real; built now (prepare/commit
+  marker + reconciliation, PID/TTL stale-lock reclaim).
+- **CONFIRMED-MISSING — deny illegitimately-blocked handoff rows.**
+  `evaluateCutoverPreflight` checked only `abortedRows`; a row that vetoed
+  to `BLOCKED` for missing/stale/invalid fresh evidence (as opposed to a
+  row whose disposition the census permanently freezes to `BLOCK`) still
+  read `ready`. Confirmed real; built now, narrowed to exclude the
+  frozen-BLOCK rows a literal `blockedRows === 0` gate would have made
+  `ready` unreachable for entirely (see "Deliberately out of scope" in
+  `hardening-notes.md`).
+- **CONFIRMED-MISSING — full frozen-prefix order from durable state.**
+  `checkManifestOrder` enforced only "a benchmark variant may not flip
+  before `004-deep-improvement-common`" and trusted a caller-supplied
+  `alreadyFlippedModes` set; a coordinator call naming the eighth manifest
+  mode with a forged predecessor claim and zero predecessors actually
+  flipped in the registry completed a full flip. Confirmed real, live
+  reproduction included in `hardening-notes.md`; built now
+  (`deriveFlippedModes` + coordinator-enforced exact prefix).
+
+All four gaps reproduced as genuine bugs against the code as it stood; none
+were refuted.

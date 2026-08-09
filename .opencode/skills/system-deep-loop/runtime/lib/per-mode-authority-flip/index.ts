@@ -12,7 +12,7 @@ export {
   createAuthorityTransitionEventRegistry,
   prepareAuthorityTransitionEventWrite,
 } from './ledger-event.js';
-export { checkManifestOrder } from './manifest-order.js';
+export { checkManifestOrder, deriveFlippedModes } from './manifest-order.js';
 export { evaluateCutoverPreflight, rollbackAssetSetDigest } from './preflight.js';
 export {
   AUTHORITY_FLIP_COMMON_MODE,
@@ -24,7 +24,11 @@ export {
   AuthorityFlipStates,
 } from './types.js';
 
-export type { AuthorityCompareAndSwapInput } from './authority-registry.js';
+export type {
+  AuthorityCompareAndSwapInput,
+  AuthorityCompareAndSwapRollbackInput,
+  AuthorityPendingTransition,
+} from './authority-registry.js';
 export type {
   AuthorityFlipCoordinatorFaultInjection,
   AuthorityFlipCoordinatorOptions,

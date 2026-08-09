@@ -12,7 +12,8 @@
 
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
 import { verifyCutoverCertificate } from '../cutover-certificate/index.js';
-import { verifyInflightMigrationHandoff } from '../inflight-state-migration/index.js';
+import { InflightDisposition } from '../inflight-state-classification/index.js';
+import { MigrationOperationStatuses, verifyInflightMigrationHandoff } from '../inflight-state-migration/index.js';
 import { checkManifestOrder } from './manifest-order.js';
 
 import type { JsonObject } from '../event-envelope/index.js';
@@ -73,11 +74,20 @@ export function evaluateCutoverPreflight(input: CutoverPreflightInput): CutoverP
     }
     // `verifyInflightMigrationHandoff` already proves every row reached a
     // terminal receipt (COMMITTED, BLOCKED, or ABORTED) bound to this exact
-    // manifest — a policy-frozen BLOCK disposition (e.g. a control row that
-    // stays legacy-owned forever, mirroring PIN) is a legitimate terminal
-    // outcome and does not gate the flip. An ABORTED row means an attempted
-    // operation itself failed at runtime and remains genuinely unresolved.
-    if (handoff.closure.abortedRows > 0) {
+    // manifest. An ABORTED row means an attempted operation itself failed at
+    // runtime and remains genuinely unresolved. A BLOCKED row is legitimate
+    // only when the census froze that row's disposition as BLOCK forever
+    // (a lock/writer-ownership resource that must drain before
+    // reclassification, mirroring PIN); a row whose frozen disposition was
+    // UPCAST, PIN, FORK, or MIGRATE but that vetoed to BLOCKED at migration
+    // time (stale, missing, or invalid fresh evidence) is exactly the
+    // unresolved/blocked state the flip must deny — it never actually
+    // reached its intended terminal outcome and would be silently stranded
+    // under the new writer's contract.
+    const illegitimatelyBlockedRows = handoff.rows.filter(
+      (row) => row.status === MigrationOperationStatuses.BLOCKED && row.disposition !== InflightDisposition.BLOCK,
+    ).length;
+    if (illegitimatelyBlockedRows > 0 || handoff.closure.abortedRows > 0) {
       return Object.freeze({ verdict: 'blocked', reasonCode: 'MIGRATION_HANDOFF_INVALID' });
     }
 

@@ -19,13 +19,14 @@ import {
   createAuthorityTransitionEventRegistry,
   prepareAuthorityTransitionEventWrite,
 } from './ledger-event.js';
-import { checkManifestOrder } from './manifest-order.js';
+import { checkManifestOrder, deriveFlippedModes } from './manifest-order.js';
 import { evaluateCutoverPreflight, rollbackAssetSetDigest } from './preflight.js';
-import { AUTHORITY_FLIP_EVENT_TYPE } from './types.js';
+import { AUTHORITY_FLIP_EVENT_TYPE, AuthorityFlipError } from './types.js';
 
+import type { AuthorityPendingTransition } from './authority-registry.js';
 import type { AppendOnlyLedger, TransitionAuthorizationGateway } from '../authorized-ledger/index.js';
 import type { EventTypeRegistry, JsonObject } from '../event-envelope/index.js';
-import type { AuthorityTransitionFacts, CutoverDecision, CutoverRequest } from './types.js';
+import type { AuthorityTransitionFacts, CutoverCertificateMode, CutoverDecision, CutoverRequest } from './types.js';
 
 function digest(value: unknown): string {
   return sha256Bytes(canonicalBytes(value as JsonObject));
@@ -67,17 +68,33 @@ export class AuthorityFlipCoordinator {
   }
 
   public async requestCutover(request: CutoverRequest): Promise<CutoverDecision> {
-    const orderCheck = checkManifestOrder(request.requestedModes, request.preflight.alreadyFlippedModes);
-    if (orderCheck.verdict === 'denied') {
-      return Object.freeze({ disposition: 'denied', reasonCode: orderCheck.reasonCode });
-    }
-    const [mode] = request.requestedModes;
-    if (mode !== request.preflight.mode) {
-      return Object.freeze({ disposition: 'denied', reasonCode: 'WRONG_MODE_BINDING' });
+    if (request.requestedModes.length !== 1) {
+      return Object.freeze({ disposition: 'denied', reasonCode: 'MULTI_MODE_REQUEST_REJECTED' });
     }
 
     return this.#registry.withTransactionLock(async () => {
-      const preflight = evaluateCutoverPreflight(request.preflight);
+      // The manifest-order predecessor set is derived fresh from the
+      // durable registry on every call, inside the same lock the CAS
+      // itself runs under — a caller-supplied `alreadyFlippedModes` claim
+      // is never trusted, so a forged predecessor set cannot admit an
+      // out-of-order flip.
+      const flippedModes = deriveFlippedModes(this.#registry);
+      const orderCheck = checkManifestOrder(request.requestedModes, flippedModes);
+      if (orderCheck.verdict === 'denied') {
+        return Object.freeze({ disposition: 'denied', reasonCode: orderCheck.reasonCode });
+      }
+      const [mode] = request.requestedModes;
+      if (mode !== request.preflight.mode) {
+        return Object.freeze({ disposition: 'denied', reasonCode: 'WRONG_MODE_BINDING' });
+      }
+
+      // Deterministically finish (or abort) any transition a previous
+      // attempt prepared but never confirmed — a crash between the ledger
+      // append and the registry publish never leaves those two facts split
+      // for longer than the next call to this coordinator.
+      await this.#reconcilePendingTransition(mode);
+
+      const preflight = evaluateCutoverPreflight({ ...request.preflight, alreadyFlippedModes: flippedModes });
       if (preflight.verdict !== 'ready') {
         return Object.freeze({ disposition: 'denied', reasonCode: preflight.reasonCode });
       }
@@ -129,6 +146,18 @@ export class AuthorityFlipCoordinator {
         return payload.transitionFacts.transitionDigest === facts.transitionDigest;
       });
 
+      const casInput = {
+        mode,
+        expectedState: 'cutover_ready' as const,
+        expectedEpoch,
+        nextSelectedWriter: 'dark' as const,
+        candidateSha: facts.candidateSha,
+        policyVersion: request.policyVersion,
+        cutoverCertificateDigest: facts.cutoverCertificateDigest,
+        lastTransitionDigest: facts.transitionDigest,
+        at: this.#now().toISOString(),
+      };
+
       if (!alreadyAppended) {
         const priorHead = await this.#ledger.getVerifiedHead();
         const transitionEvent = buildAuthorityTransitionEvent(facts);
@@ -173,9 +202,16 @@ export class AuthorityFlipCoordinator {
           });
         }
 
+        // Durably record the exact CAS this event authorizes before the
+        // event itself becomes durable, so a crash immediately after the
+        // append below can still be completed (or, if the append never
+        // actually lands, cleanly aborted) from disk alone.
+        this.#registry.preparePendingTransition(casInput, this.#now().toISOString());
+
         try {
           await appendAuthorityTransitionEvent(this.#ledger, preparedEvent, authorization.proof);
         } catch {
+          this.#registry.clearPendingTransition(mode);
           return Object.freeze({ disposition: 'denied', reasonCode: 'LEDGER_APPEND_FAILED' });
         }
 
@@ -186,20 +222,11 @@ export class AuthorityFlipCoordinator {
 
       let casResult;
       try {
-        casResult = this.#registry.compareAndSwap({
-          mode,
-          expectedState: 'cutover_ready',
-          expectedEpoch,
-          nextSelectedWriter: 'dark',
-          candidateSha: facts.candidateSha,
-          policyVersion: request.policyVersion,
-          cutoverCertificateDigest: facts.cutoverCertificateDigest,
-          lastTransitionDigest: facts.transitionDigest,
-          at: this.#now().toISOString(),
-        });
+        casResult = this.#registry.compareAndSwap(casInput);
       } catch {
         return Object.freeze({ disposition: 'denied', reasonCode: 'CAS_CONFLICT' });
       }
+      this.#registry.clearPendingTransition(mode);
 
       return Object.freeze({
         disposition: 'flipped',
@@ -208,6 +235,72 @@ export class AuthorityFlipCoordinator {
         resumed: casResult.resumed,
       });
     });
+  }
+
+  /**
+   * Deterministically complete or abort a transition a previous attempt
+   * prepared but never confirmed. Called at the start of every
+   * `requestCutover`, inside the transaction lock, so this is also the
+   * startup-reconciliation path for a freshly constructed coordinator that
+   * never saw the original request. The marker alone is never trusted as
+   * authority: completion only happens once the ledger is independently
+   * confirmed to already hold the exact prepared event.
+   */
+  async #reconcilePendingTransition(mode: CutoverCertificateMode): Promise<void> {
+    const pending: AuthorityPendingTransition | null = this.#registry.readPendingTransition(mode);
+    if (!pending) return;
+
+    const current = this.#registry.read(mode);
+    const targetEpoch = pending.expectedEpoch + 1;
+    if (
+      current.state === 'new_authoritative_reversible'
+      && current.epoch === targetEpoch
+      && current.lastTransitionDigest === pending.lastTransitionDigest
+    ) {
+      // The registry publish already completed; only the marker survived.
+      this.#registry.clearPendingTransition(mode);
+      return;
+    }
+
+    const existingEvents = await this.#ledger.readVerifiedEvents();
+    const ledgerHasEvent = existingEvents.some((entry) => {
+      const payload = entry.event.effective.envelope.payload;
+      if (
+        entry.event.effective.envelope.event_type !== AUTHORITY_FLIP_EVENT_TYPE
+        || !isRecord(payload)
+        || !isRecord(payload.transitionFacts)
+      ) return false;
+      return payload.transitionFacts.transitionDigest === pending.lastTransitionDigest;
+    });
+
+    if (!ledgerHasEvent) {
+      // Never became durable in the ledger — nothing to complete. The
+      // registry is still at its pre-transition state, so clearing the
+      // marker is a clean abort, not a lost transition.
+      this.#registry.clearPendingTransition(mode);
+      return;
+    }
+
+    if (current.state !== pending.expectedState || current.epoch !== pending.expectedEpoch) {
+      // The ledger durably recorded this transition, but the registry is in
+      // neither its expected pre-state nor its expected post-state. This is
+      // a genuine split between two durable facts that cannot be resolved
+      // by guessing — fail loud instead of silently forcing a CAS.
+      throw new AuthorityFlipError(
+        'CAS_CONFLICT',
+        'A ledger-committed authority transition could not be reconciled against durable registry state',
+        {
+          mode,
+          expectedState: pending.expectedState,
+          expectedEpoch: pending.expectedEpoch,
+          actualState: current.state,
+          actualEpoch: current.epoch,
+        },
+      );
+    }
+
+    this.#registry.compareAndSwap({ ...pending, at: this.#now().toISOString() });
+    this.#registry.clearPendingTransition(mode);
   }
 }
 
