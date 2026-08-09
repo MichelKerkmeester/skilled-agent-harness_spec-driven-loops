@@ -1,6 +1,6 @@
 ---
 title: "Skills Library"
-description: "Catalog and front door to 12 top-level skill identities across five catalog families, with routing guidance and creation workflow."
+description: "Catalog and front door to 11 top-level skill identities across four catalog families, with routing guidance and creation workflow."
 trigger_phrases:
   - "skills library"
   - "available skills"
@@ -21,62 +21,57 @@ trigger_phrases:
 |---|---|
 | **Use it for** | Finding the skill that matches your task and understanding how routing picks it |
 | **Invoke with** | Gate 2 auto-routing, a direct read of the skill's `SKILL.md`, or keyword triggers like "commit changes" |
-| **Families** | Five catalog families: `cli-*` (1), deep loops (1), `mcp-*` (2), `sk-*` (5), system foundations (3) |
+| **Families** | Four prefix families: `cli-*` (1), `mcp-*` (2), `sk-*` (5), `system-*` (3) |
 | **Catalog** | A family-by-family table below that links every skill's own README |
 
 ---
 
 ## 2. OVERVIEW
 
-### Why This Library Exists
+Eleven top-level skill identities live under `.opencode/skills/`, each a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. They stay out of context until needed: the advisor scores a request, returns a ranked list, and the agent loads only the match. This library catalogs every skill by family, links each one's README and explains how routing picks the match, so the right skill loads focused guidance instead of wasting context on the wrong one.
 
-Twelve top-level skill identities live under `.opencode/skills/`. A reader lands here and faces the same question every time: which one handles this task? The right skill loads focused guidance, a one-page reference and scripts that are proven to work. The wrong skill wastes context on irrelevant instructions. Worse, a reader might not know that a skill for the task exists at all. The library solves that. It catalogs every skill by family, links each one's README and explains how routing picks the match before you open a single file.
-
-### What It Is
-
-Each skill is a self-contained folder with runtime instructions (`SKILL.md`), a README, graph metadata and domain references. Skills load on demand through Gate 2 routing or a direct read. They do not sit in context waiting to be used. The advisor scores your request, returns a ranked list and the agent loads only the match it needs. New skills are discovered automatically through `graph-metadata.json` and a valid `SKILL.md` frontmatter.
+New skills are discovered automatically from a valid `SKILL.md` frontmatter plus `graph-metadata.json`; no manual registration step exists.
 
 ---
 
 ## 3. CATALOG
 
-Each skill name links to its own README. The one-line descriptions come from the skill's current behavior.
+Each skill name links to its own README. One-line descriptions reflect current behavior.
 
 ### cli-*: Cross-AI CLI Dispatch
 
 | Skill | What it does |
 |---|---|
-| [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch: routes to `cli-opencode` (OpenCode runtime dispatch), `cli-claude-code` (Claude Code CLI), `cli-codex` (Codex CLI), `cli-cursor` (Cursor CLI), `cli-devin` (Devin CLI), and `cli-pi` (Pi CLI) |
-
-### deep-*: Autonomous Loops and the Shared Runtime
-
-| Skill | What it does |
-|---|---|
-| [`system-deep-loop`](system-deep-loop/README.md) | Parent hub for deep research, deep review, AI council, and improvement modes over nested `runtime/` infrastructure |
+| [`cli-external-orchestration`](cli-external-orchestration/README.md) | Parent hub for external CLI dispatch, holding no per-mode logic: routes by `workflowMode` to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, and `cli-pi` |
 
 ### mcp-*: External Tool Surfaces
 
 | Skill | What it does |
 |---|---|
-| [`mcp-tooling`](mcp-tooling/README.md) | Parent hub for MCP tool bridges: browser debugging (`mcp-chrome-devtools`), ClickUp task management (`mcp-click-up`), and a read-only Figma Desktop transport (`mcp-figma`) |
-| [`mcp-code-mode`](mcp-code-mode/README.md) | Execute TypeScript with direct access to every external MCP tool registered in `.utcp_config.json` |
+| [`mcp-tooling`](mcp-tooling/README.md) | Parent hub of MCP bridges and transports: browser debugging (`mcp-chrome-devtools`), ClickUp tasks (`mcp-click-up`), Obsidian notes (`mcp-obsidian`), Figma design (`mcp-figma`), AI-browser orchestration (`mcp-aside-devtools`), plus read-only design references (`mcp-mobbin`, `mcp-refero`) |
+| [`mcp-code-mode`](mcp-code-mode/README.md) | MCP orchestration via TypeScript execution: use Code Mode for ALL external MCP tool calls — ~98% context reduction, type-safe |
 
 ### sk-*: Code, Docs, Git and Prompts
 
 | Skill | What it does |
 |---|---|
-| [`sk-code`](sk-code/README.md) | The single code-work skill that detects your surface, loads your standards and verifies before claiming done |
-| [`sk-doc`](sk-doc/README.md) | Document quality that starts with structure, with a deterministic script that extracts and scores |
-| [`sk-git`](sk-git/README.md) | Move from a clean workspace to a merged PR, with worktree setup, Conventional Commits and branch discipline |
-| [`sk-design`](sk-design/README.md) | Set distinctive visual direction (palette, typography, layout, motion) that avoids templated AI defaults, grounding against real design systems (`design-mcp-open-design`) and shipped-UI references (Mobbin/Refero via Code Mode), then hand the build to sk-code |
-| [`sk-prompt`](sk-prompt/README.md) | Parent hub for prompt improvement (`prompt-improve`) and per-model prompt-craft profiles (`prompt-models`) |
+| [`sk-code`](sk-code/README.md) | Unified two-axis code skill: two WORKFLOW modes (`sk-code-quality`, `sk-code-review`) plus read-only SURFACE evidence packets (`sk-code-webflow`, `sk-code-opencode`), each carrying implement/debug/verify workflow and verification gates |
+| [`sk-doc`](sk-doc/README.md) | Documentation and component-authoring parent hub: workflow packets for skills, hubs, READMEs/install-guides, agents, commands, catalogs and playbooks, plus deterministic validation and DQI scoring |
+| [`sk-git`](sk-git/README.md) | Git workflow in one skill: numbered worktrees, Conventional Commits, PRs, merge/rebase and finish |
+| [`sk-design`](sk-design/README.md) | Distinctive, intentional UI design across the full surface: visual direction, color, typography, layout, spacing, hierarchy, tokens, animation and accessibility — grounded against real design systems, then handed to sk-code to build |
+| [`sk-prompt`](sk-prompt/README.md) | Prompt engineering parent hub: routes by `workflowMode` to `prompt-improve` (7-framework, DEPTH-thinking, CLEAR-scored prompt enhancement) and `prompt-models` (read-only per-model prompt-craft profiles) — packets housed at `sk-prompt-improve/` and `sk-prompt-models/` |
 
-### system-*: The Runtime Foundation
+### system-*: Deep Loops and the Runtime Foundation
 
 | Skill | What it does |
 |---|---|
-| [`system-skill-advisor`](system-skill-advisor/README.md) | Pick the right skill for any prompt with a calibrated score, and refuse on a stale index — over MCP or the daemon-backed `skill-advisor` CLI |
-| [`system-spec-kit`](system-spec-kit/README.md) | Documentation and memory for AI-assisted development. Every file change gets a spec folder, and the memory daemon answers over MCP or the `spec-memory` CLI |
+| [`system-deep-loop`](system-deep-loop/README.md) | Routes research, review, AI Council, improvement, and named-standard alignment modes through registry-selected packets over nested `runtime/` infrastructure |
+| [`system-skill-advisor`](system-skill-advisor/README.md) | Routes non-trivial requests to matching skills through standalone MCP metadata and stable advisor tool ids, with the daemon-backed `skill-advisor` CLI as fallback |
+| [`system-spec-kit`](system-spec-kit/README.md) | Unified spec-folder workflow plus context preservation: Levels 1-3+, strict validation, and Spec Kit Memory — required for file modifications |
+
+### Runtime Plugin Skills
+
+Outside this tree, runtimes may contribute their own skills. Pi, for example, loads `pi-intercom` (cross-session coordination) and `pi-subagents` (subagent delegation) from its plugin packages under `.pi/npm/node_modules/`.
 
 ---
 
@@ -180,7 +175,7 @@ The cap leaves room for judgment on edge cases. A 0.95 score means high confiden
 
 **Q: How do I know which family a skill belongs to?**
 
-The family is the prefix before the first hyphen: `cli-*`, `deep-*`, `mcp-*`, `sk-*` or `system-*`. Each family has its own subsection in the catalog above, and every skill's README states its purpose in its first sentence.
+The family is the prefix before the first hyphen: `cli-*`, `mcp-*`, `sk-*` or `system-*`. Each family has its own subsection in the catalog above, and every skill's README states its purpose in its first sentence.
 
 ---
 

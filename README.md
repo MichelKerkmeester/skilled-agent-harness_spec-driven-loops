@@ -1268,7 +1268,7 @@ A: Yes. The Spec Kit documentation workflow (Gate 3, spec folders, templates) wo
 &nbsp;
 **Q: How do I add a new skill to the framework?**
 
-A: Use `/create:sk-skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Then register the skill in `.opencode/skills/README.md`.
+A: Use `/create:sk-skill` to scaffold the skill structure. The command creates the `SKILL.md`, references and assets directories following the `sk-doc` template. Then register the skill in `.opencode/skills/README.txt`.
 &nbsp;
 **Q: What does "local-first" mean for the memory system?**
 
@@ -1306,7 +1306,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 - **[→ Deployment Notes](DEPLOYMENT.md)** - Docker anti-patterns, Copilot notes and session-resume auth flag
 - **[→ Architecture](.opencode/skills/system-spec-kit/ARCHITECTURE.md)** - API boundary contract
 - **[→ sk-doc Skill](.opencode/skills/sk-doc/SKILL.md)** - Documentation standards, DQI scoring
-- **[→ Skills Index](.opencode/skills/README.md)** - Skills library and invocation patterns
+- **[→ Skills Index](.opencode/skills/README.txt)** - Skills library and invocation patterns
 - **[→ Feature Catalog](.opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md)** - Current technical reference
 - **[→ Manual Testing Playbook](.opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md)** - Operator validation scenarios, including runtime lifecycle checks
 - **[→ Latest System Spec-Kit Release Notes](.opencode/skills/system-spec-kit/changelog/v3.6.0.0.md)** - Most recent shipped release notes

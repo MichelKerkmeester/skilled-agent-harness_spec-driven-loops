@@ -5,7 +5,7 @@ description: "How .pi derives from .opencode: two generators for agents and prom
 
 # Pi CLI Sync Manifest
 
-> Like Codex, Pi is a **generated** runtime, not a symlinked one. `.pi/agents/` and `.pi/prompts/` are compiler output — never hand-edit them; edit the canonical source and re-run the generator.
+> Like Codex, `.pi/agents/` and `.pi/prompts/` are **generated** trees, not symlinked ones — compiler output, never hand-edit them; edit the canonical source and re-run the generator. (Other surfaces below are symlinks or hand-authored; see the inventory.)
 
 ---
 
@@ -30,6 +30,7 @@ Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `
 | `settings.json` | **hand-authored** | — | Pi package configuration |
 | `settings.json`, `modes.json`, `statusline.sh`, `pi-blackhole-config.json` (global) | **symlinked canonicals** | repo `.pi/*` is the source of truth; `~/.pi/agent/*` and `~/.pi/agent/pi-blackhole/pi-blackhole-config.json` are relative symlinks back into the repo | Users pull the latest configs from this repo; the local Mac consumes them via symlink |
 | `npm/` | operator-local package output | — | not synced |
+| `skills/` | whole-dir symlink | `.opencode/skills` (same mirror as `.claude/skills`) | No |
 | `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook` | No |
 
 Prompt names are the flattened command path (`create/agent.md` → `create-agent.md`), the same rule as Codex and Cursor, with the same `assets|scripts|fixtures` exclusion.
