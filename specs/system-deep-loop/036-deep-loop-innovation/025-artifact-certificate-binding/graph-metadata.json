@@ -17,8 +17,9 @@
       "decoy artifact negative test",
       "deep loop 025 certificates",
       "artifact certificate binding implementation",
-      "sealed artifact identity binding not built",
-      "decoy artifact negative test missing"
+      "sealed artifact identity binding built",
+      "decoy artifact negative test landed",
+      "025 artifact certificate binding complete"
     ],
     "key_topics": [
       "artifact",
@@ -35,7 +36,7 @@
       "certificates"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -205,7 +206,7 @@
     ],
     "causal_summary": "Evidence is accepted on partial or metadata-only correspondence in twelve places",
     "created_at": "2026-07-31T01:25:20.255Z",
-    "last_save_at": "2026-08-08T06:45:53.225Z",
+    "last_save_at": "2026-08-09T01:50:16.890Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +217,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca2914d3abecec208d76d7fc56644c1d56e2490c17d612d412259fced2418090",
+    "source_fingerprint": "sha256:d1eb027300d01c9351b84d96fafc80e2e9a487e13d8d0c09947423b63915bca6",
     "source_doc_hashes": {
-      "spec.md": "149d15010af4b4d38a62666767b4787f5133825faa0c9a850b0f253ac7bfd27c",
+      "spec.md": "37d897a0900c27dba48b393129018e01cf0e27d87281b0901f4457ff46732729",
       "plan.md": "6f76c7fd8d73ddf570ba2860f6a75762b59ce7623d80e6b53ee906ee8d70523a",
-      "tasks.md": "bbf7807fc560dde1eeb625d9eeef37730c990974758f6bd4ae1cdeb72cc4f01c",
-      "checklist.md": "2260fac1f21ddc57d4450ef45f4a5e6c5f858723f2f021ccfa7891f271ac0c09",
+      "tasks.md": "5f889cab618dea1b1e2f605760ecccd95f5d1f30aa76ed05aac89453658b8562",
+      "checklist.md": "71dcf9a920f522020305cfc77f002dcc8b35eb4ae809d2a692246ba86333bc84",
       "decision-record.md": "4709db136c5fb62f4012aa84e213b34c5e6a87b27edadb62ce541e3da99bc883",
-      "implementation-summary.md": "0e047257218b41f5dbafbfdd99d1de5e42986c5497b9e204454ccdd6f561a01b"
+      "implementation-summary.md": "808023e3088c27b7300435f94647a14b8ef01e8724af7efb592769f6c8638852"
     },
     "last_active_child_id": null,
     "last_active_at": null

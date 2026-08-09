@@ -65,7 +65,7 @@ Twelve findings across the sealed-artifact store and four certificate emitters s
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | 12/12 findings BUILT + verified + adversarially clean + landed on `origin/skilled/v4.0.0.0`, across 4 fix commits (`8b2e49931f8` sealed store, `d30321b98e` common certs, `59e0040d33` per-mode emitters, `89067fe46e` reducers) plus a required companion fix (`a232835611`, shadow-parity harness escape-hatch). Final adversarial verdict: 11/12 fully clean; 1 low-sev residual (`F-011-01` restore-authorization under-binds to `qualified_digest` only) + 2 documented scope residuals (`F-015-02` content-digest binds 3 of the relevant kinds; `F-007-02` external-authorship caveat). See `implementation-summary.md`. |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

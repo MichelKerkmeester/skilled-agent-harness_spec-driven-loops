@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
     last_updated_at: "2026-08-08T15:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "024 fully DISCHARGED+closed; 025 T001 done (12/12 GO, disposition landed a5f89f1587)"
-    next_safe_action: "025 12-finding build (make 3 design decisions first) in worktree 0134 - fresh session"
+    recent_action: "025 all 12 findings BUILT+adversarially-CLEAN+landed (a232835611); metadata reconciling"
+    next_safe_action: "Land 025 metadata; then 016 whole-system gate -> 014/015 (IRREVERSIBLE, gated)"
     blockers:
       - "014 authority cutover is IRREVERSIBLE + operator-gated (safety clause) — needs explicit go-ahead. Per-mode preconditions from the 016 verdict: (F001) wire an identityResolver at the gateway (dormant today); (F002) bind captured auth-state at the policy-registry level (harness-only today); (F005) close the loop-lock fresh-acquisition wx-open window. Rollback: each cutover is one git revert; ledger stays additive-dark until flipped."
       - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
@@ -109,9 +109,13 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   SHA) → **014/015** staged cutover + legacy retirement (IRREVERSIBLE, operator-gated) → **017** integrate +
   parent rollup → **merge to main**.
 - **025 artifact-certificate-binding — T001 CONFIRM-FIRST DONE** (`025/t001-disposition.md`, landed
-  `a5f89f1587`): **12/12 findings CONFIRMED-REAL, GO-to-build, NONE refuted** (unlike 024's B5/B6). The BUILD
-  is a fresh-session task — 12 certificate/sealed-artifact binding fixes, each with a decoy/forgery NEGATIVE
-  test. **Make 3 design decisions FIRST** (per the disposition): (a) a shared binding-validator core +
+  `a5f89f1587`): **12/12 findings CONFIRMED-REAL** (none refuted). **BUILD DONE + adversarially CLEAN + LANDED** in 4
+  groups (`8b2e49931f` sealed-store · `d30321b98e` deep-improvement certs · `59e0040d33` per-mode emitters ·
+  `a232835611` reducers + shadow-parity ripple-fix), each finding with a decoy/forgery negative test; the
+  final independent adversarial pass returned CLEAN (11/12; residuals: F-011-01/restore compares
+  `qualified_digest` not full `sameReference` — low-sev hardening, near-zero exposure; F-015-02 binds 3/14
+  deep-review kinds — the load-bearing ledger-anchored outputs; F-007-02 origin authored externally so
+  one-per-artifact unprovable but design+fixtures hold). Metadata reconciling. **Make 3 design decisions FIRST** (per the disposition): (a) a shared binding-validator core +
   `sameReference` / re-derive-and-compare helper driven by per-emitter field lists as DATA (each emitter
   keeps its local per-kind correspondence map); (b) F-011-01 ledger injection into the sealed store (it
   holds no ledger handle); (c) F-007-01 issuer+verifier swap to the real `frame.sequence` (already exposed
