@@ -63,9 +63,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 |------|-------------|
 | **CLI dispatch** | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first. See `.opencode/skills/system-spec-kit/constitutional/cli-dispatch-skill-preload.md`. |
 | **Small-model dispatch** | Before dispatching to small models (MiniMax, Kimi, Qwen, etc.), MUST consult `sk-prompt/sk-prompt-models`. |
-| **Fable subagent dispatch** | When the main loop runs on a Fable model, every subagent MUST be dispatched with an explicit `model: "opus"` or `model: "sonnet"`. Forks and model-less dispatches inherit Fable and are forbidden (enforced by the `fable-subagent-guard` PreToolUse hook in `.claude/settings.json`). See `.opencode/skills/system-spec-kit/constitutional/fable-subagent-model-policy.md`. |
 | **Agent I/O pointer** | Optional dispatch headers documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`. |
-| **Open Design dispatch** | UI or design work through `design-mcp-open-design` (a nested transport packet of `sk-design`) MUST co-load `sk-design`'s own workflow modes first (the transport never decides taste). Pure transport is exempt. `mcp-figma` is the external sibling Figma transport (a transport mode of the `mcp-tooling` hub, as are the `mcp-refero`/`mcp-mobbin` design-research transports). |
 
 ---
 
@@ -495,24 +493,21 @@ Use the agent directory that matches the active runtime/provider profile:
 | **Opencode**      | `.opencode/agents/` |
 | **Claude Code**   | `.claude/agents/`   |
 | **Codex CLI**     | `.codex/agents/`    |
+| **Cursor**        | `.cursor/agents/`   |
 | **Pi**            | `.pi/agents/`       |
+| **Devin**         | `.devin/agents/`    |
 
 **Resolution rule:** Pick one directory by runtime and stay consistent for that workflow phase.
 
 #### Template & Validation Requirements
 
-Any agent writing authored spec-folder docs MUST:
-
-1. **Use templates** from `.opencode/skills/system-spec-kit/templates/`
-2. **Run strict validation** before any completion claim: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict`
-
-**Applicable docs:** `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `review-report.md`, `debug-delegation.md`, `resource-map.md`
+Any agent writing authored spec-folder docs MUST use contract-backed templates and pass `validate.sh <spec-folder> --strict` before any completion claim. Full contract — template mechanics, the applicable-docs list, and the deep-research write exemptions: system-spec-kit SKILL.md "Distributed Governance Rule".
 
 ### Skill Routing Reference
 
 Skills are on-demand domain expertise invoked through Gate 2 (§2): when the advisor confidence is ≥ 0.8, you MUST invoke the recommended skill. Invoking a skill means reading `.opencode/skills/<skill-name>/SKILL.md` plus its bundled `references/`, `scripts/`, and `assets/` resources, then following its instructions to completion. A skill already in context is not re-invoked.
 
-**Advisor metadata placement.** `description.json` and `graph-metadata.json` exist in two unrelated schemas that share those filenames and are never the same file: spec-folder continuity metadata (§3) and skill-advisor hub-identity metadata under `.opencode/skills/<hub>/`. Don't conflate them. The advisor pair lives ONLY at a parent-hub or standalone-skill root — never in a mode/packet or `shared/` — with mode routing through `mode-registry.json` + `hub-router.json`. Full contract (per-class required/forbidden files, key schemas, hub doctrine, and the `ci-skill-root-metadata.cjs` fleet audit): `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
+**Advisor metadata placement.** These filenames also name spec-folder continuity metadata (§3) under a completely separate schema — never the same file, never interchangeable. At a skill root, `graph-metadata.json` is the advisor identity file and is required at BOTH parent-hub and standalone roots; `description.json`, `mode-registry.json`, and `hub-router.json` are **hub-only** (forbidden on a standalone root). None of them live at a mode/packet or `shared/` sublevel. Full contract (per-class required/forbidden matrix, key schemas, hub doctrine, and the `ci-skill-root-metadata.cjs` fleet audit): `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
 
 ---
 
