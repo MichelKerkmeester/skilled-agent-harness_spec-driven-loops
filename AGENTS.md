@@ -239,7 +239,7 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 | **3+**           | Complexity 80+ | Level 3 + AI protocols, extended checklist, sign-offs                  | Multi-agent, enterprise governance             |
 | **Phase Parent** | n/a            | spec.md, description.json, graph-metadata.json                         | Folder contains phase children with spec files |
 
-### Phase Parent Mode
+#### Phase Parent Mode
 
 A folder is a phase parent when it has ≥1 direct child matching `^[0-9]{3}-[a-z0-9-]+$` with `spec.md` OR `description.json`. The parent then needs ONLY the lean trio `{spec.md, description.json, graph-metadata.json}`; heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live in the phase children. The parent `spec.md` documents root purpose only — no consolidation/merge/migration narration (use `context-index.md` for that). Resume follows `derived.last_active_child_id` from `graph-metadata.json`; when missing/null/stale it lists child phases with statuses for selection.
 
@@ -518,27 +518,27 @@ Skills are on-demand domain expertise invoked through Gate 2 (§2): when the adv
 
 ### Quick Reference: Common Workflows
 
-| Task                              | Flow                                                                                                                                             |                          |
-| -----------------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------| --------------------------|
-| **Resume prior work**             | `/speckit:resume` → rebuild via the continuity ladder (`handover.md` → `_memory.continuity` → canonical spec docs)                               |                          |
-| **New spec folder**               | Gate 3 Option B → research (Task tool) → evidence-based plan → approval → implement                                                              |                          |
-| **Code work**                     | `sk-code` → smart router auto-detects the stack → implement → quality gate → debug → verify                                                      |                          |
-| **UI / design work**              | `sk-design` (judgment, required) → `design-mcp-open-design` or `mcp-figma` transport; `mcp-refero`/`mcp-mobbin` references → build via `sk-code` |                          |
-| **Research / exploration**        | `memory_match_triggers()` → `memory_context()` (unified) or `memory_search()` (targeted)                                                         |                          |
-| **Git workflow**                  | `sk-git` → worktree / commit / finish (PR); see §5 Git Workspace Safety                                                                          |                          |
-| **Prompt improvement**            | `sk-prompt`, dispatched by `/prompt`                                                                                                             |                          |
-| **Markdown writing**              | `@markdown` or `/create:*` → `sk-doc` template → write                                                                                           |                          |
-| **Documentation quality**         | `sk-doc` → classify → template → validate → DQI score                                                                                            |                          |
-| **Phase workflow**                | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → decompose → plan first child                                                  |                          |
-| **Context retrieval**             | `@context` (one-shot); `/deep:research` and `/deep:review` carry bounded snapshots                                                               |                          |
-| **Deep research**                 | `/deep:research` → loop → convergence → synthesize → memory save                                                                                 |                          |
-| **Deep review**                   | `/deep:review` → loop → convergence → `review-report.md` → memory save                                                                           |                          |
-| **Deep AI Council**               | `/deep:ai-council` → deliberate → critique → converge → artifacts → gate                                                                         |                          |
-| **Deep improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement`                                    |                          |
-| **Claim completion**              | Final-State Verification → `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata                                       |                          |
-| **Save context**                  | `/memory:save`, or compose JSON → `generate-context.js`                                                                                          |                          |
-| **End session**                   | `/memory:save` → `handover.md` update → continuation prompt                                                                                      |                          |
-| **Memory DB admin**               | `/memory:manage` → stats, health, cleanup, retention, validate, ingest                                                                           |                          |
-| **Analysis / evaluation**         | `/memory:search` → preflight, causal graph, ablation, dashboard, history                                                                         |                          |
-| **Constitutional memory**         | `/memory:learn` → create, list, edit, remove, budget                                                                                             |                          |
-| **Doctor surface**                | `/doctor <target>` diagnostics/repairs; `/doctor:mcp install\                                                                                    | debug`; `/doctor:update` |
+| Task | Flow |
+| ---- | ---- |
+| **Resume prior work** | `/speckit:resume` → rebuild via the continuity ladder (`handover.md` → `_memory.continuity` → canonical spec docs) |
+| **New spec folder** | Gate 3 Option B → research (Task tool) → evidence-based plan → approval → implement |
+| **Code work** | `sk-code` → smart router auto-detects the stack → implement → quality gate → debug → verify |
+| **UI / design work** | `sk-design` (judgment, required) → `design-mcp-open-design` or `mcp-figma` transport; `mcp-refero`/`mcp-mobbin` references → build via `sk-code` |
+| **Research / exploration** | `memory_match_triggers()` → `memory_context()` (unified) or `memory_search()` (targeted) |
+| **Git workflow** | `sk-git` → worktree / commit / finish (PR); see §5 Git Workspace Safety |
+| **Prompt improvement** | `sk-prompt`, dispatched by `/prompt` |
+| **Markdown writing** | `@markdown` or `/create:*` → `sk-doc` template → write |
+| **Documentation quality** | `sk-doc` → classify → template → validate → DQI score |
+| **Phase workflow** | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → decompose → plan first child |
+| **Context retrieval** | `@context` (one-shot); `/deep:research` and `/deep:review` carry bounded snapshots |
+| **Deep research** | `/deep:research` → loop → convergence → synthesize → memory save |
+| **Deep review** | `/deep:review` → loop → convergence → `review-report.md` → memory save |
+| **Deep AI Council** | `/deep:ai-council` → deliberate → critique → converge → artifacts → gate |
+| **Deep improvement / benchmarks** | `/deep:agent-improvement` · `/deep:model-benchmark` · `/deep:skill-benchmark` · `/deep:ai-system-improvement` |
+| **Claim completion** | Final-State Verification → `validate.sh <spec-folder> --strict` → checklist all items → reconcile metadata |
+| **Save context** | `/memory:save`, or compose JSON → `generate-context.js` |
+| **End session** | `/memory:save` → `handover.md` update → continuation prompt |
+| **Memory DB admin** | `/memory:manage` → stats, health, cleanup, retention, validate, ingest |
+| **Analysis / evaluation** | `/memory:search` → preflight, causal graph, ablation, dashboard, history |
+| **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget |
+| **Doctor surface** | `/doctor <target>` diagnostics/repairs; `/doctor:mcp install\|debug`; `/doctor:update` |
