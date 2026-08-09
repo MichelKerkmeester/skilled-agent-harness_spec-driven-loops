@@ -39,25 +39,15 @@
       "monitoring"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/spec.md",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/001-receipts-and-effect-recovery/spec.md",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover/spec.md",
       "spec.md",
       "plan.md",
       "checklist.md",
+      "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "phase-tree.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,6 +64,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -167,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,29 +187,31 @@
         "source": "derived"
       },
       {
-        "name": "File Organization",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Plan the signed evidence bundle that authorizes a per-mode authority flip and the monitored rollback window that keeps the flip reversible until clean closure. The certificate is a ledger event binding parity, rollback, migration, and policy evidence.",
     "created_at": "2026-07-16T03:43:57.641Z",
-    "last_save_at": "2026-07-19T18:01:15.852Z",
+    "last_save_at": "2026-08-09T05:08:58.163Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae3e9cef61e2809f8823373bb3c96bb1ad7fbb1e8bdca3bf53089f976d3c684f",
+    "source_fingerprint": "sha256:a93b5d532309bf51e3cc6ac64284964858040be13b1843823f152f437cdd2016",
     "source_doc_hashes": {
-      "spec.md": "06651e3949350e66333f3061fd0f82fc423ae893650f039b6fe4351a20790eda",
-      "plan.md": "42a592fc7c9078919c2cb6ddce9326c7095f125d01839a9d997e5c74fee2492d",
-      "tasks.md": "d939f4cc93cd0c47cd5b2408d16fcb750709aca63aa88276c4c307955ded51f8",
-      "checklist.md": "7914e6f61e37c1ad6e86aa3d1dafc578289e397bc1678c20cadd7069f5ae7dc9"
+      "spec.md": "3d560ea6d5748aecc4bcf2ba54de4576ebf1c17f709daaceb78680437ff9b76e",
+      "plan.md": "3fce06760375f5be8305b04f0504d5f65d8226747124c28ab06463dfb4a4cff5",
+      "tasks.md": "6c62effd10e4aacb81c2db6daa83765f7d5f243e3ed9f7016002f5a11f1d7356",
+      "checklist.md": "f71689b3ab35865a881dbbf79f3b7b6b9958c011a684173c26ac65e76c72e222",
+      "implementation-summary.md": "ecdbbd53d1c1140853ff413daf4c9fc535e956ced74b423e67165b291a48299a"
     },
     "last_active_child_id": null,
     "last_active_at": null

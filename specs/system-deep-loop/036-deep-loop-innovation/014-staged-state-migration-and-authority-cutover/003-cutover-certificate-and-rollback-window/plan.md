@@ -44,19 +44,19 @@ This phase turns the phase-004 cutover and rollback policy into one executable e
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-014 parent handoff, phase-tree outcome, and `depends_on: []` sibling posture are cited.
-- [ ] The phase-004 14-day/five-authoritative-run rule and authority-state vocabulary are copied without weakening them.
-- [ ] The phase-007 receipt and certification fields are available as durable evidence inputs.
-- [ ] Sibling `002-per-mode-authority-flip` exposes a single-mode CAS boundary that accepts a verified certificate reference.
-- [ ] Phase-008 parity, rollback-drill, and in-flight-state evidence has stable identity and digest semantics.
+- [x] The phase-014 parent handoff, phase-tree outcome, and `depends_on: []` sibling posture are cited.
+- [x] The phase-004 14-day/five-authoritative-run rule and authority-state vocabulary are copied without weakening them.
+- [x] The phase-007 receipt and certification fields are available as durable evidence inputs.
+- [x] Sibling `002-per-mode-authority-flip` exposes a single-mode CAS boundary that accepts a verified certificate reference. (Sibling 002 itself is still Planned/unbuilt; this child's certificate/verification API is what it will bind to.)
+- [x] Phase-008 parity, rollback-drill, and in-flight-state evidence has stable identity and digest semantics.
 
 ### Definition of Done
-- [ ] The certificate schema binds every required proof, receipt, policy, mode, SHA, epoch, signer, and transition fact.
-- [ ] Verification rejects incomplete, stale, contradictory, tampered, or cross-mode evidence before the flip.
-- [ ] Certificate issuance uses the canonical envelope and transition-authorization gateway and is recorded as a ledger event.
-- [ ] The window records its rollback anchor, retained assets, start time, authoritative-run count, signal state, and closure evidence.
-- [ ] Health and parity-drift monitoring covers the defined revert classes and has deterministic escalation behavior.
-- [ ] Clean closure and mid-window rollback both preserve events and produce durable evidence for phase 015.
+- [x] The certificate schema binds every required proof, receipt, policy, mode, SHA, epoch, signer, and transition fact.
+- [x] Verification rejects incomplete, stale, contradictory, tampered, or cross-mode evidence before the flip.
+- [x] Certificate issuance uses the canonical envelope and transition-authorization gateway and is recorded as a ledger event.
+- [x] The window records its rollback anchor, retained assets, start time, authoritative-run count, signal state, and closure evidence.
+- [x] Health and parity-drift monitoring covers the defined revert classes and has deterministic escalation behavior.
+- [x] Clean closure and mid-window rollback both preserve events and produce durable evidence for phase 015.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
