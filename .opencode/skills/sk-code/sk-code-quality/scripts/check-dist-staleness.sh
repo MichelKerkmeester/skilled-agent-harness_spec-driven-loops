@@ -72,8 +72,45 @@ def print_error(payload) -> None:
     print(f"DIST FRESHNESS CHECK ERROR: {package_name} -- {message}")
 
 
-def surface_result(payload) -> None:
+def auto_rebuild_enabled() -> bool:
+    # Session-start self-heal is on by default. A stale checked-out build otherwise
+    # survives every session and breaks every consumer that imports the compiled
+    # entry, so a warning alone -- easily lost in hook output -- does not close the
+    # gap. An operator who does not want a compile at session start sets the switch.
+    value = os.environ.get("SPECKIT_DIST_AUTO_REBUILD", "1").strip().lower()
+    return value not in ("0", "false", "off", "no")
+
+
+def try_rebuild(payload, repo_root) -> bool:
+    # The freshness checker hands back a self-contained command (it cd's into the
+    # package itself), so it runs from the repo root. Bounded and fail-open: a build
+    # that errors or overruns its timeout returns False and the caller falls back to
+    # the warning, so a broken or slow build never blocks the session.
+    rebuild_command = payload.get("rebuildCommand")
+    if not rebuild_command:
+        return False
+    package_name = payload.get("packageName") or payload.get("packageId") or "unknown package"
+    try:
+        result = subprocess.run(
+            rebuild_command,
+            shell=True,
+            capture_output=True,
+            text=True,
+            timeout=180,
+            cwd=repo_root,
+        )
+    except (OSError, subprocess.TimeoutExpired, Exception):
+        return False
+    if result.returncode == 0:
+        print(f"DIST REBUILT: {package_name} -- self-healed a stale build at session start")
+        return True
+    return False
+
+
+def surface_result(payload, repo_root, auto_rebuild=False) -> None:
     if payload.get("stale") is True:
+        if auto_rebuild and auto_rebuild_enabled() and try_rebuild(payload, repo_root):
+            return
         print_stale(payload)
     elif payload.get("status") == "error":
         print_error(payload)
@@ -96,7 +133,7 @@ def main() -> None:
         if isinstance(results, list):
             for item in results:
                 if isinstance(item, dict):
-                    surface_result(item)
+                    surface_result(item, repo_root, auto_rebuild=True)
         sys.exit(0)
 
     file_path = os.path.abspath(sys.argv[1])
@@ -107,7 +144,7 @@ def main() -> None:
     if not isinstance(payload, dict):
         sys.exit(0)
 
-    surface_result(payload)
+    surface_result(payload, repo_root)
     sys.exit(0)
 
 

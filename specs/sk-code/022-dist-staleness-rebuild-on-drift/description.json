@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/022-dist-staleness-rebuild-on-drift",
+  "description": "Make the dist-staleness guard self-heal a stale checked-out build at session start instead of only printing a warning that persists across sessions.",
+  "keywords": [
+    "dist-staleness",
+    "guard",
+    "self-heal",
+    "stale",
+    "checked-out",
+    "session",
+    "start",
+    "instead",
+    "only",
+    "printing",
+    "warning",
+    "persists",
+    "across",
+    "sessions"
+  ],
+  "lastUpdated": "2026-08-09T05:41:05.361Z",
+  "specId": "022",
+  "folderSlug": "dist-staleness-rebuild-on-drift",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

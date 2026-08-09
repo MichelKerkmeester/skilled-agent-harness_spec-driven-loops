@@ -141,24 +141,6 @@ const DIST_PACKAGES = Object.freeze([
     excludedSegments: ['tests', 'stress-test', 'bench', '__tests__'],
   },
   {
-    distEntries: {
-      default: 'mcp-server/dist/tsconfig.tsbuildinfo',
-      'code-index-cli': 'mcp-server/dist/code-index-cli.js',
-    },
-    sourceCandidates: ['package.json', 'tsconfig.json', 'mcp-server'],
-    entrySourceCandidates: {
-      'code-index-cli': [
-        'package.json',
-        'tsconfig.json',
-        'mcp-server/code-index-cli.ts',
-        'mcp-server/code-index-cli-manifest.ts',
-        'mcp-server/tool-schemas.ts',
-      ],
-    },
-    sourceExtensions: ['.ts', '.tsx', '.mts', '.cts'],
-    excludedSegments: ['tests', 'stress-test', '__tests__'],
-  },
-  {
     id: 'sk-design/sk-design-md-generator/backend',
     name: 'design-system-extractor',
     root: '.opencode/skills/sk-design/sk-design-md-generator/backend',
