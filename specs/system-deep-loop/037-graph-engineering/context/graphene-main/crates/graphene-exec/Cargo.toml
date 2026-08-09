@@ -1,0 +1,18 @@
+[package]
+name = "graphene-exec"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Graphene execution protocol: claims, leases, read-set assertion, human nodes, retry."
+
+[dependencies]
+graphene-core.workspace = true
+graphene-store.workspace = true
+graphene-check.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+
+[lints.rust]
+unsafe_code = "forbid"

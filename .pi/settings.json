@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.84.0",
+  "lastChangelogVersion": "0.84.1",
   "theme": "dark",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-luna",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "deepseek-v4-flash",
   "defaultThinkingLevel": "max",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
@@ -17,20 +17,26 @@
     "openai-codex/gpt-5.6-luna",
     "deepseek/deepseek-v4-pro",
     "deepseek/deepseek-v4-flash",
-    "opencode/deepseek-v4-flash-free",
+    "opencode-go/deepseek-v4-flash",
+    "opencode-go/qwen3.8-max",
     "xiaomi/mimo-v2.5-pro",
     "xiaomi/mimo-v2.5-pro-ultraspeed",
     "minimax/MiniMax-M3"
   ],
   "packages": [
-    "npm:pi-blackhole",
+    "extensions/deep-pi",
     "extensions/pi-cache-optimizer",
+    "npm:pi-blackhole",
     "npm:pi-gpt-fast-mode",
+    "npm:pi-intercom",
     "npm:pi-omplike-advisor",
     "npm:pi-plan",
     "npm:pi-statusline",
     "npm:pi-subagents",
-    "extensions/deep-pi"
+    "npm:pi-web-access",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@juicesharp/rpiv-todo",
+    "git:github.com/dbachelder/pi-btw"
   ],
   "hideThinkingBlock": false,
   "compaction": {

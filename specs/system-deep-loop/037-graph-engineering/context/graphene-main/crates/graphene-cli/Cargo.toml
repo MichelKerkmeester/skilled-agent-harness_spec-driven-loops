@@ -1,0 +1,31 @@
+[package]
+name = "graphene-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Graphene CLI: subcommand verbs, JSON payloads, over stdio."
+
+[lib]
+name = "graphene_cli"
+path = "src/lib.rs"
+
+[[bin]]
+name = "gr"
+path = "src/main.rs"
+
+[dependencies]
+graphene-core.workspace = true
+graphene-store.workspace = true
+graphene-check.workspace = true
+graphene-exec.workspace = true
+graphene-server.workspace = true
+clap.workspace = true
+rust-embed.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+
+[lints.rust]
+unsafe_code = "forbid"

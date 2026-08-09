@@ -1,0 +1,161 @@
+{
+  "graph": {
+    "id": "gg_g5nhgy3w4tyb2ku4ukmvfvp7ni",
+    "title": "cascade",
+    "description": "",
+    "task": "cascade",
+    "state": "draft",
+    "budget": {},
+    "spend": {
+      "tokens": 0,
+      "micros_usd": 0,
+      "wall_ms": 0
+    },
+    "limits": {
+      "max_nodes": 500,
+      "max_concurrency": 16,
+      "max_rounds": 3,
+      "max_depth": 20,
+      "max_for_each": 200,
+      "max_spawn": 64
+    },
+    "created_at": 1786211174787,
+    "updated_at": 1786211174787,
+    "requested_by": {
+      "kind": "session",
+      "id": "golden"
+    },
+    "created_seq": 1
+  },
+  "nodes": {},
+  "edges": [],
+  "beliefs": {
+    "gb_b2jkydyjbcb5uoe2vwbjok5jpu": {
+      "id": "gb_b2jkydyjbcb5uoe2vwbjok5jpu",
+      "graph": "gg_g5nhgy3w4tyb2ku4ukmvfvp7ni",
+      "provenance": "derived",
+      "fidelity": "claimed",
+      "state": "both",
+      "content": "first conclusion",
+      "summary": "first conclusion",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211174967,
+        "imputed": false
+      },
+      "recorded_at": 3,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "inference",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "8e56934295b800d8179c194be28b08269eb45f3ede83ac4a418cb4b0f812eb5f"
+    },
+    "gb_cphjnzp4pxw7qt2vg2vkyijjmu": {
+      "id": "gb_cphjnzp4pxw7qt2vg2vkyijjmu",
+      "graph": "gg_g5nhgy3w4tyb2ku4ukmvfvp7ni",
+      "provenance": "derived",
+      "fidelity": "claimed",
+      "state": "both",
+      "content": "second conclusion",
+      "summary": "second conclusion",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211175053,
+        "imputed": false
+      },
+      "recorded_at": 4,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "inference",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "06732300f96b06c47c56aa1539f32b01d5cc3493964e25efcdcc05479099d92d"
+    },
+    "gb_kgzzg26wktlg5sajcgdzj5yglm": {
+      "id": "gb_kgzzg26wktlg5sajcgdzj5yglm",
+      "graph": "gg_g5nhgy3w4tyb2ku4ukmvfvp7ni",
+      "provenance": "derived",
+      "fidelity": "claimed",
+      "state": "both",
+      "content": "third conclusion",
+      "summary": "third conclusion",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211175139,
+        "imputed": false
+      },
+      "recorded_at": 5,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "inference",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "42f64b29a258e8491db79cad08b8c47d296d172484f9d507516aa854271a0dc1"
+    },
+    "gb_psjmzoykssvgxne7ng2nak2iba": {
+      "id": "gb_psjmzoykssvgxne7ng2nak2iba",
+      "graph": "gg_g5nhgy3w4tyb2ku4ukmvfvp7ni",
+      "provenance": "tool-observation",
+      "fidelity": "claimed",
+      "state": "both",
+      "content": "root observation",
+      "summary": "root observation",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211174884,
+        "imputed": false
+      },
+      "recorded_at": 2,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "src",
+        "path": "a",
+        "shared": false
+      },
+      "contradiction": {
+        "reason": "refuted at the root",
+        "at": 6
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "e9d0eac1f768d76a1811344685cca20e6a14e451ec61d1248be0dcba74b15919"
+    }
+  },
+  "belief_edges": [
+    [
+      "gb_b2jkydyjbcb5uoe2vwbjok5jpu",
+      "derives-from",
+      "gb_psjmzoykssvgxne7ng2nak2iba"
+    ],
+    [
+      "gb_cphjnzp4pxw7qt2vg2vkyijjmu",
+      "derives-from",
+      "gb_b2jkydyjbcb5uoe2vwbjok5jpu"
+    ],
+    [
+      "gb_kgzzg26wktlg5sajcgdzj5yglm",
+      "derives-from",
+      "gb_cphjnzp4pxw7qt2vg2vkyijjmu"
+    ]
+  ],
+  "claims": {},
+  "active_claims": {},
+  "assumed_by": {},
+  "sessions": {},
+  "nogoods": {},
+  "findings": {},
+  "human_pending": {},
+  "check_passed": false,
+  "seq": 6
+}

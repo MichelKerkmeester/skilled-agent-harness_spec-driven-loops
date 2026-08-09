@@ -1,0 +1,119 @@
+{
+  "graph": {
+    "id": "gg_4seli6vitctqldnkw6tt4oxkly",
+    "title": "ooo",
+    "description": "",
+    "task": "out of order",
+    "state": "draft",
+    "budget": {},
+    "spend": {
+      "tokens": 0,
+      "micros_usd": 0,
+      "wall_ms": 0
+    },
+    "limits": {
+      "max_nodes": 500,
+      "max_concurrency": 16,
+      "max_rounds": 3,
+      "max_depth": 20,
+      "max_for_each": 200,
+      "max_spawn": 64
+    },
+    "created_at": 1786211175675,
+    "updated_at": 1786211175675,
+    "requested_by": {
+      "kind": "session",
+      "id": "golden"
+    },
+    "created_seq": 1
+  },
+  "nodes": {},
+  "edges": [],
+  "beliefs": {
+    "gb_a5wk2visvbft6d3cxpxepg7ncq": {
+      "id": "gb_a5wk2visvbft6d3cxpxepg7ncq",
+      "graph": "gg_4seli6vitctqldnkw6tt4oxkly",
+      "provenance": "tool-observation",
+      "fidelity": "claimed",
+      "state": "in",
+      "content": "reading at 13:00, delivered late",
+      "summary": "reading at 13:00, delivered late",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211175847,
+        "imputed": false
+      },
+      "recorded_at": 3,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "sensor",
+        "path": "a",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "feaec388b82c49554976a34c3781c2b65cd917775ccfcb3feaf1b60e50ea446c"
+    },
+    "gb_rircuoykd2tuorwgs2o3r2ii6e": {
+      "id": "gb_rircuoykd2tuorwgs2o3r2ii6e",
+      "graph": "gg_4seli6vitctqldnkw6tt4oxkly",
+      "provenance": "tool-observation",
+      "fidelity": "claimed",
+      "state": "in",
+      "content": "reading at 15:00",
+      "summary": "reading at 15:00",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211175940,
+        "imputed": false
+      },
+      "recorded_at": 4,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "sensor",
+        "path": "a",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "6298a8f4f451ec3c148a807a800330ec7647450a03f62d59db318653bf9b69e1"
+    },
+    "gb_uqgjskvlfxcbogmgkbe2jfb3la": {
+      "id": "gb_uqgjskvlfxcbogmgkbe2jfb3la",
+      "graph": "gg_4seli6vitctqldnkw6tt4oxkly",
+      "provenance": "tool-observation",
+      "fidelity": "claimed",
+      "state": "in",
+      "content": "reading at 14:00",
+      "summary": "reading at 14:00",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211175759,
+        "imputed": false
+      },
+      "recorded_at": 2,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "sensor",
+        "path": "a",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "20178fbec029cb750cd6dc98cb64935638652a1632a3536e8391330a22cf8765"
+    }
+  },
+  "belief_edges": [],
+  "claims": {},
+  "active_claims": {},
+  "assumed_by": {},
+  "sessions": {},
+  "nogoods": {},
+  "findings": {},
+  "human_pending": {},
+  "check_passed": false,
+  "seq": 4
+}

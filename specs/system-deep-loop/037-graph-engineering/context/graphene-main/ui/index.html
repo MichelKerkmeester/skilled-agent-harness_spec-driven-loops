@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" data-state="loading">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Graphene</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="mark">
+    <svg viewBox="0 0 28 28" aria-hidden="true" class="mark-glyph">
+      <path d="M14 3 L23.5 8.5 L23.5 19.5 L14 25 L4.5 19.5 L4.5 8.5 Z"/>
+      <circle cx="14" cy="3" r="1.9"/><circle cx="23.5" cy="8.5" r="1.9"/>
+      <circle cx="23.5" cy="19.5" r="1.9"/><circle cx="14" cy="25" r="1.9"/>
+      <circle cx="4.5" cy="19.5" r="1.9"/><circle cx="4.5" cy="8.5" r="1.9"/>
+    </svg>
+    <span class="wordmark">Graphene</span>
+  </div>
+
+  <div class="masthead-graph">
+    <h1 id="graph-title">—</h1>
+    <p id="graph-task"></p>
+  </div>
+
+  <div class="masthead-meta">
+    <div class="counts" id="counts"></div>
+    <div class="pulse" id="pulse" title="live">
+      <span class="pulse-dot"></span><span class="pulse-label">live</span>
+    </div>
+  </div>
+</header>
+
+<main class="stage">
+
+  <!-- The primary surface. An inbox first, a dashboard second. -->
+  <aside class="inbox" id="inbox">
+    <div class="rail-head">
+      <h2>Awaiting you</h2>
+      <span class="rail-count" id="awaiting-count">0</span>
+    </div>
+    <div class="inbox-scroll">
+      <div class="inbox-empty" id="inbox-empty">
+        <p>Nothing is waiting on a person.</p>
+      </div>
+      <div id="inbox-list"></div>
+    </div>
+  </aside>
+
+  <section class="canvas-wrap">
+    <div class="canvas-tools">
+      <div class="legend" id="legend">
+        <span class="key"><i class="sw sw-awaiting"></i>awaiting</span>
+        <span class="key"><i class="sw sw-live"></i>running</span>
+        <span class="key"><i class="sw sw-done"></i>done</span>
+        <span class="key"><i class="sw sw-contested"></i>contested</span>
+      </div>
+      <div class="tool-actions">
+        <button id="copy-selection" class="ghost" disabled>copy selection</button>
+        <button id="fit" class="ghost">fit</button>
+      </div>
+    </div>
+    <div class="canvas" id="canvas">
+      <svg id="graph" role="img" aria-label="work graph"></svg>
+    </div>
+    <div class="canvas-empty" id="canvas-empty"><p>No graph selected.</p></div>
+  </section>
+
+  <aside class="detail" id="detail" aria-live="polite">
+    <div class="detail-empty" id="detail-empty">
+      <p>Select a node.</p>
+    </div>
+    <div class="detail-body" id="detail-body" hidden></div>
+  </aside>
+
+</main>
+
+<footer class="baseline">
+  <span id="conn" class="conn">connecting…</span>
+  <span class="sep">/</span>
+  <span id="store-path" class="muted"></span>
+  <span class="grow"></span>
+  <span class="muted">read-only</span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>

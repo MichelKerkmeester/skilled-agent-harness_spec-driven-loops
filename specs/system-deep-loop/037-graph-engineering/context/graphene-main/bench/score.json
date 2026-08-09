@@ -1,0 +1,76 @@
+{
+  "harness": "mnemebrain-benchmark, unmodified, driven through bench/graphene_adapter.py",
+  "harness_repo": "git@github.com:mnemebrain/mnemebrain-benchmark.git",
+  "harness_commit": "c8bd56a809c3ac624817370dc8b9eb5cdf6a7342",
+  "note": "Graphene declares only the capabilities its belief layer implements. Categories it does not claim are SKIPPED by the benchmark, not scored zero \u2014 they belong to the knowledge-base component, which does not exist yet.",
+  "scenarios": 48,
+  "checks_run": 39,
+  "checks_passed": 38,
+  "declared_capabilities": [
+    "contradiction",
+    "explain",
+    "query",
+    "retract",
+    "revise",
+    "store"
+  ],
+  "categories": {
+    "belief_revision": {
+      "score": 1.0,
+      "skipped": false,
+      "scenarios": 6
+    },
+    "consolidation": {
+      "score": null,
+      "skipped": true,
+      "scenarios": 6
+    },
+    "contradiction": {
+      "score": 0.9167,
+      "skipped": false,
+      "scenarios": 6
+    },
+    "counterfactual": {
+      "score": null,
+      "skipped": true,
+      "scenarios": 6
+    },
+    "evidence_tracking": {
+      "score": 1.0,
+      "skipped": false,
+      "scenarios": 6
+    },
+    "multihop_retrieval": {
+      "score": null,
+      "skipped": true,
+      "scenarios": 6
+    },
+    "pattern_separation": {
+      "score": null,
+      "skipped": true,
+      "scenarios": 6
+    },
+    "temporal": {
+      "score": null,
+      "skipped": true,
+      "scenarios": 6
+    }
+  },
+  "skipped_categories": [
+    "consolidation",
+    "counterfactual",
+    "multihop_retrieval",
+    "pattern_separation",
+    "temporal"
+  ],
+  "known_divergences": [
+    {
+      "scenario": "bmb_contradiction_resolved_by_retraction",
+      "expected": "true",
+      "graphene": "both",
+      "why": "The scenario retracts an observation. I6 forbids that \u2014 an observation is withdrawn by contradicting it, never by deleting it \u2014 so the evidence ends BOTH rather than OUT, and an attacker that is itself disputed still disputes. Support and attack are treated symmetrically: a BOTH premise contests what rests on it, so a BOTH attacker contests what it attacks. Making this pass would mean either relaxing I6 or breaking that symmetry, and neither is worth one check."
+    }
+  ],
+  "score_over_claimed_categories": 0.9722,
+  "score_over_all_categories": 0.3646
+}

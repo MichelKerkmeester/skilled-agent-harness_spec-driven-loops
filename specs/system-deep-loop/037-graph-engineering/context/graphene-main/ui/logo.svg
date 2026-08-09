@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28" role="img" aria-label="Graphene">
+  <title>Graphene</title>
+  <!-- Explicit colours, not currentColor: a standalone <img> has no inherited
+       colour, so currentColor resolves to black and the mark disappears on a
+       dark README. -->
+  <rect width="28" height="28" rx="5" fill="#15171a"/>
+  <g fill="none" stroke="#cdc7bb" stroke-width="1.7" stroke-linejoin="round">
+    <path d="M14 4 L22.7 9 L22.7 19 L14 24 L5.3 19 L5.3 9 Z"/>
+  </g>
+  <g fill="#cdc7bb">
+    <circle cx="14" cy="4" r="1.8"/>
+    <circle cx="22.7" cy="9" r="1.8"/>
+    <circle cx="22.7" cy="19" r="1.8"/>
+    <circle cx="14" cy="24" r="1.8"/>
+    <circle cx="5.3" cy="19" r="1.8"/>
+    <circle cx="5.3" cy="9" r="1.8"/>
+  </g>
+</svg>

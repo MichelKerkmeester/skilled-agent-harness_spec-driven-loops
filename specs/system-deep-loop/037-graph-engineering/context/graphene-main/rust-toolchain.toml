@@ -1,0 +1,7 @@
+# Pinned so a clone builds the same everywhere, and so a new lint in a later
+# toolchain cannot redden a build that did not change. Bumping this is a
+# deliberate act: raise the version, run `cargo clippy --all-targets -- -D
+# warnings`, and fix what it finds in the same commit.
+[toolchain]
+channel = "1.97.1"
+components = ["rustfmt", "clippy"]

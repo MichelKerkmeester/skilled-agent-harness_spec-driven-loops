@@ -1,0 +1,41 @@
+# dependencies
+/node_modules
+
+# env
+.env
+.env.local
+.env.*.local
+
+# build output
+/dist
+/.output
+/.vinxi
+/.wrangler
+/.tanstack
+
+# supabase CLI local state
+/supabase/.temp
+/supabase/.branches
+
+# editor / OS
+.DS_Store
+*.log
+
+# internal notes, not meant for the repo
+CLAUDE.md
+
+# real connector credentials for scripts/verify-connectors.ts (never commit)
+connectors.json
+
+# Local Claude Code settings, launch config and worktrees — machine-specific,
+# not part of the project.
+.claude/
+
+# Scratch probes. A `probe-tmp.ts` has now been committed twice by accident
+# (d429442 removed one, 43c1668 added another), so this is a rule rather than a
+# reminder. Throwaway verification scripts belong outside the repo.
+probe-*.ts
+scratch-*.ts
+
+# Scratch file written by the eval-loadability test.
+evals/.import-probe.mts

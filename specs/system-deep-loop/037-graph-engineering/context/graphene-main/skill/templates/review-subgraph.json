@@ -1,0 +1,519 @@
+{
+  "graph": "task.v1",
+  "goal": "The review subgraph. Instantiate this into every plan you draft.",
+  "nodes": [
+    {
+      "id": "review-granularity",
+      "job": "review",
+      "lens": "granularity",
+      "prompt": "You see only this draft plan. Which nodes do more than one thing? A good node is boring: it does one thing, you can test it alone, and you can swap it out without touching anything else. For each offender, propose the split. Report nothing if the decomposition is sound.",
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      }
+    },
+    {
+      "id": "review-dependency",
+      "job": "review",
+      "lens": "dependency",
+      "prompt": "You see only this draft plan. For each edge, does the target actually read the source's OUTPUT, or does it merely come after it? Name the edges you would delete. Deleting them makes those nodes run in parallel.",
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      }
+    },
+    {
+      "id": "review-gate-placement",
+      "job": "review",
+      "lens": "gate-placement",
+      "prompt": "You see only this draft plan. Which nodes have irreversible effects \u2014 sending, publishing, writing, granting, deleting, spending? Is the human gate where a mistake is expensive to undo, or is it everywhere, or nowhere? Gating everything makes the human a rubber stamp, which is worse than no gate. Then check the answers: does every option declare what it unblocks, and does saying no actually stop the irreversible node?",
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      }
+    },
+    {
+      "id": "review-completeness",
+      "job": "review",
+      "lens": "completeness",
+      "prompt": "You see the original task and this draft plan. What did the planner not think of? Name what is missing, not what is present.",
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      }
+    },
+    {
+      "id": "review-stop-rule",
+      "job": "review",
+      "lens": "stop-rule",
+      "prompt": "You see only this draft plan. Which nodes share an implicit assumption that is not an explicit dependency? If two nodes both need to know the same fact, they are not independent and the fact should come from a node. This is where parallel sessions silently diverge.",
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      }
+    },
+    {
+      "id": "review-failure",
+      "job": "review",
+      "lens": "failure",
+      "prompt": "You see only this draft plan. For each node, what happens when it fails? Which descendants are skipped? Is that blast radius acceptable, or does the node need a bounded retry or an escalation to a person?",
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      }
+    },
+    {
+      "id": "review-findings",
+      "job": "merge",
+      "prompt": "One owner. Six lenses read the same plan in six fresh contexts; consolidate their findings, drop the duplicates, and rank by what would fail worst. Every finding is applied or rejected WITH A REASON \u2014 an unresolved finding holds the graph.",
+      "needs": [
+        "review-granularity",
+        "review-dependency",
+        "review-gate-placement",
+        "review-completeness",
+        "review-stop-rule",
+        "review-failure"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "granularity": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          },
+          "dependency": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          },
+          "gate_placement": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          },
+          "completeness": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          },
+          "stop_rule": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          },
+          "failure": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "granularity",
+          "dependency",
+          "gate_placement",
+          "completeness",
+          "stop_rule",
+          "failure"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "resolutions": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "resolutions"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "review-granularity",
+          "select": "$.findings",
+          "into": "granularity"
+        },
+        {
+          "from": "review-dependency",
+          "select": "$.findings",
+          "into": "dependency"
+        },
+        {
+          "from": "review-gate-placement",
+          "select": "$.findings",
+          "into": "gate_placement"
+        },
+        {
+          "from": "review-completeness",
+          "select": "$.findings",
+          "into": "completeness"
+        },
+        {
+          "from": "review-stop-rule",
+          "select": "$.findings",
+          "into": "stop_rule"
+        },
+        {
+          "from": "review-failure",
+          "select": "$.findings",
+          "into": "failure"
+        }
+      ]
+    }
+  ]
+}

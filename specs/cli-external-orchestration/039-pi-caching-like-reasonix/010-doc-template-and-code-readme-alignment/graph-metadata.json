@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Both `CHANGES-FROM-UPSTREAM.md` files were authored as free-form prose sections (Upstream / What Changed / Why / Verification) without following any `sk-doc` document template, so they read differently from every other authored doc in this repo",
     "created_at": "2026-08-08T12:24:19.875Z",
-    "last_save_at": "2026-08-08T15:44:09.691Z",
+    "last_save_at": "2026-08-09T06:00:25.726Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e99794b94fd5439f491c7fcd6f12a12667f46382118b4e47eac3f94b4bcc1cf7",
+    "source_fingerprint": "sha256:5b643e5b6ea3e6573c51c60e9e237eaf6db7f33cf04fe9966c2db1d2e7906adb",
     "source_doc_hashes": {
-      "spec.md": "6c8feaf1a4c6212f01a7855ae05c2a77328aed2f181f9b0bb90cf5607a04ff0b",
-      "plan.md": "b49bb39b5aef0b0201b4cbc3c570859db88f1841870f155616a2913ce4598794",
-      "tasks.md": "2a604990f20310b3bcd09de4ffb77e5723c1e0b1da717dea49e69b2c35f46019",
-      "checklist.md": "a0e680940fb0b04196bf1eb181b2610b2779919ff7ed2b054f28242695488e60",
-      "implementation-summary.md": "999696b5a8db3b29b0a3160059e0cbeea38a653578070ff8f5cd1ab17be6b3a3"
+      "spec.md": "b8a1e28f51f8bae1a41f8c4ef20e96208743afbc72e806b58e8731c62f6e397c",
+      "plan.md": "018a4fe1353c848ab6c137ed4ee894d3dbd9de9056289a9c51fe25ed2d6d6a84",
+      "tasks.md": "b9d7636dfe4fed2189571ab5b9c579b48babc77151833163ebfab3603506a4db",
+      "checklist.md": "6feec86cdcef48471002020f449b2cced5c8d12acc5c259f8e8623e84fac1236",
+      "implementation-summary.md": "e37f3b985b36fdc2d3c96d6d1bcade52e351a20cdaf68ca9a2006c9ad084e5dc"
     },
     "last_active_child_id": null,
     "last_active_at": null

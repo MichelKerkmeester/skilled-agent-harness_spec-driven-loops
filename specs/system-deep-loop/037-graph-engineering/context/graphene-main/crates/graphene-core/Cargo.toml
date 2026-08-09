@@ -1,0 +1,17 @@
+[package]
+name = "graphene-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Graphene core: the deterministic model, fold, and cascade. No I/O, no clock, no randomness, no async."
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+blake3.workspace = true
+data-encoding.workspace = true
+thiserror.workspace = true
+
+[lints.rust]
+unsafe_code = "forbid"

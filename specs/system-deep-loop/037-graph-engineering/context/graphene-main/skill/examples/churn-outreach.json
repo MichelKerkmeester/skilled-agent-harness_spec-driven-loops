@@ -1,0 +1,295 @@
+{
+  "graph": "task.v1",
+  "nodes": [
+    {
+      "id": "list-accounts",
+      "job": "agent",
+      "prompt": "list enterprise accounts",
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "accounts"
+        ]
+      }
+    },
+    {
+      "id": "usage-signal",
+      "job": "retrieval",
+      "run": "warehouse",
+      "needs": [
+        "list-accounts"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "accounts"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "trend": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "trend"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "list-accounts",
+          "select": "$.accounts",
+          "into": "accounts"
+        }
+      ]
+    },
+    {
+      "id": "ticket-signal",
+      "job": "retrieval",
+      "run": "zendesk",
+      "needs": [
+        "list-accounts"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "type": "array"
+          }
+        },
+        "required": [
+          "accounts"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "open": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "open"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "list-accounts",
+          "select": "$.accounts",
+          "into": "accounts"
+        }
+      ]
+    },
+    {
+      "id": "score-risk",
+      "job": "merge",
+      "prompt": "consolidate the churn signals",
+      "needs": [
+        "usage-signal",
+        "ticket-signal"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "trend": {
+            "type": "number"
+          },
+          "open": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "trend",
+          "open"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "risk": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "risk"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "usage-signal",
+          "select": "$.trend",
+          "into": "trend"
+        },
+        {
+          "from": "ticket-signal",
+          "select": "$.open",
+          "into": "open"
+        }
+      ]
+    },
+    {
+      "id": "draft-outreach",
+      "job": "agent",
+      "prompt": "draft outreach for the top account",
+      "needs": [
+        "score-risk"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "risk": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "risk"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "body"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "score-risk",
+          "select": "$.risk",
+          "into": "risk"
+        }
+      ]
+    },
+    {
+      "id": "approve-send",
+      "job": "human",
+      "needs": [
+        "draft-outreach"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "body"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "choice": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "choice"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "draft-outreach",
+          "select": "$.body",
+          "into": "body"
+        }
+      ],
+      "ask": {
+        "question": "Approve the outreach to Continuum Retail (c17)?",
+        "options": [
+          "approve",
+          "reject"
+        ],
+        "unblocks": {
+          "approve": [
+            "send"
+          ],
+          "reject": []
+        },
+        "on_timeout": "escalate:86400000"
+      }
+    },
+    {
+      "id": "send",
+      "job": "send_email",
+      "needs": [
+        "approve-send"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "choice": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "choice"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "approve-send",
+          "select": "$.choice",
+          "into": "choice"
+        }
+      ]
+    },
+    {
+      "id": "archive-run",
+      "job": "function",
+      "run": "archive.sh",
+      "needs": [
+        "score-risk"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "risk": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "risk"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "score-risk",
+          "select": "$.risk",
+          "into": "risk"
+        }
+      ]
+    },
+    {
+      "id": "review-granularity",
+      "job": "review",
+      "lens": "granularity",
+      "prompt": "which nodes do more than one thing?"
+    },
+    {
+      "id": "review-dependency",
+      "job": "review",
+      "lens": "dependency",
+      "prompt": "which edges would you delete?"
+    }
+  ]
+}

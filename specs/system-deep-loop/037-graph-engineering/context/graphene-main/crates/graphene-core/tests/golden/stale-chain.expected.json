@@ -1,0 +1,1063 @@
+{
+  "graph": {
+    "id": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+    "title": "stale chain",
+    "description": "",
+    "task": "a source rewritten under a pending approval",
+    "state": "running",
+    "budget": {},
+    "spend": {
+      "tokens": 0,
+      "micros_usd": 0,
+      "wall_ms": 0
+    },
+    "limits": {
+      "max_nodes": 500,
+      "max_concurrency": 16,
+      "max_rounds": 3,
+      "max_depth": 20,
+      "max_for_each": 200,
+      "max_spawn": 64
+    },
+    "created_at": 1786211267448,
+    "updated_at": 1786211268339,
+    "requested_by": {
+      "kind": "session",
+      "id": "golden"
+    },
+    "created_seq": 1
+  },
+  "nodes": {
+    "gn_6qe2xbp6sxfzb2vslb2rvvxfhq": {
+      "id": "gn_6qe2xbp6sxfzb2vslb2rvvxfhq",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "name": "review-granularity",
+      "spec": {
+        "kind": "review",
+        "lens": "granularity",
+        "prompt": "You see only this draft plan. Which nodes do more than one thing? A good node is boring: it does one thing, you can test it alone, and you can swap it out without touching anything else. For each offender, propose the split. Report nothing if the decomposition is sound."
+      },
+      "capability": "review",
+      "inputs": {
+        "type": "object"
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      },
+      "budget": {},
+      "retry": {
+        "policy": "none"
+      },
+      "state": "done",
+      "output": {
+        "findings": []
+      },
+      "attempts": 0,
+      "spend": {
+        "tokens": 0,
+        "micros_usd": 0,
+        "wall_ms": 0
+      }
+    },
+    "gn_7mwgkohcjqnbgl553ljooqo7ya": {
+      "id": "gn_7mwgkohcjqnbgl553ljooqo7ya",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "name": "review-dependency",
+      "spec": {
+        "kind": "review",
+        "lens": "dependency",
+        "prompt": "You see only this draft plan. For each edge, does the target actually read the source's OUTPUT, or does it merely come after it? Name the edges you would delete. Deleting them makes those nodes run in parallel."
+      },
+      "capability": "review",
+      "inputs": {
+        "type": "object"
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      },
+      "budget": {},
+      "retry": {
+        "policy": "none"
+      },
+      "state": "done",
+      "output": {
+        "findings": []
+      },
+      "attempts": 0,
+      "spend": {
+        "tokens": 0,
+        "micros_usd": 0,
+        "wall_ms": 0
+      }
+    },
+    "gn_mo6br27ftdo273hvvhuvbrnelm": {
+      "id": "gn_mo6br27ftdo273hvvhuvbrnelm",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "name": "review-completeness",
+      "spec": {
+        "kind": "review",
+        "lens": "completeness",
+        "prompt": "You see the original task and this draft plan. What did the planner not think of? Name what is missing, not what is present."
+      },
+      "capability": "review",
+      "inputs": {
+        "type": "object"
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      },
+      "budget": {},
+      "retry": {
+        "policy": "none"
+      },
+      "state": "done",
+      "output": {
+        "findings": []
+      },
+      "attempts": 0,
+      "spend": {
+        "tokens": 0,
+        "micros_usd": 0,
+        "wall_ms": 0
+      }
+    },
+    "gn_nqmtypm4ubmts7e4e2nypbqx5m": {
+      "id": "gn_nqmtypm4ubmts7e4e2nypbqx5m",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "name": "review-stop-rule",
+      "spec": {
+        "kind": "review",
+        "lens": "stop-rule",
+        "prompt": "You see only this draft plan. Which nodes share an implicit assumption that is not an explicit dependency? If two nodes both need to know the same fact, they are not independent and the fact should come from a node. This is where parallel sessions silently diverge."
+      },
+      "capability": "review",
+      "inputs": {
+        "type": "object"
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      },
+      "budget": {},
+      "retry": {
+        "policy": "none"
+      },
+      "state": "done",
+      "output": {
+        "findings": []
+      },
+      "attempts": 0,
+      "spend": {
+        "tokens": 0,
+        "micros_usd": 0,
+        "wall_ms": 0
+      }
+    },
+    "gn_okwsalulcgypsyky56qxb5kh7a": {
+      "id": "gn_okwsalulcgypsyky56qxb5kh7a",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "name": "review-failure",
+      "spec": {
+        "kind": "review",
+        "lens": "failure",
+        "prompt": "You see only this draft plan. For each node, what happens when it fails? Which descendants are skipped? Is that blast radius acceptable, or does the node need a bounded retry or an escalation to a person?"
+      },
+      "capability": "review",
+      "inputs": {
+        "type": "object"
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      },
+      "budget": {},
+      "retry": {
+        "policy": "none"
+      },
+      "state": "done",
+      "output": {
+        "findings": []
+      },
+      "attempts": 0,
+      "spend": {
+        "tokens": 0,
+        "micros_usd": 0,
+        "wall_ms": 0
+      }
+    },
+    "gn_q54urfa5mz5pe74ltpo22lrwsm": {
+      "id": "gn_q54urfa5mz5pe74ltpo22lrwsm",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "name": "review-findings",
+      "spec": {
+        "kind": "merge",
+        "prompt": "One owner. Six lenses read the same plan in six fresh contexts; consolidate their findings, drop the duplicates, and rank by what would fail worst. Every finding is applied or rejected WITH A REASON — an unresolved finding holds the graph."
+      },
+      "capability": "merge",
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "granularity": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          },
+          "dependency": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          },
+          "gate_placement": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          },
+          "completeness": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          },
+          "stop_rule": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          },
+          "failure": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "granularity",
+          "dependency",
+          "gate_placement",
+          "completeness",
+          "stop_rule",
+          "failure"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "resolutions": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "resolutions"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "gn_6qe2xbp6sxfzb2vslb2rvvxfhq",
+          "select": "$.findings",
+          "into": "granularity"
+        },
+        {
+          "from": "gn_7mwgkohcjqnbgl553ljooqo7ya",
+          "select": "$.findings",
+          "into": "dependency"
+        },
+        {
+          "from": "gn_se4fkesw2mlxbcvansunfvbp54",
+          "select": "$.findings",
+          "into": "gate_placement"
+        },
+        {
+          "from": "gn_mo6br27ftdo273hvvhuvbrnelm",
+          "select": "$.findings",
+          "into": "completeness"
+        },
+        {
+          "from": "gn_nqmtypm4ubmts7e4e2nypbqx5m",
+          "select": "$.findings",
+          "into": "stop_rule"
+        },
+        {
+          "from": "gn_okwsalulcgypsyky56qxb5kh7a",
+          "select": "$.findings",
+          "into": "failure"
+        }
+      ],
+      "needs": [
+        "gn_6qe2xbp6sxfzb2vslb2rvvxfhq",
+        "gn_7mwgkohcjqnbgl553ljooqo7ya",
+        "gn_se4fkesw2mlxbcvansunfvbp54",
+        "gn_mo6br27ftdo273hvvhuvbrnelm",
+        "gn_nqmtypm4ubmts7e4e2nypbqx5m",
+        "gn_okwsalulcgypsyky56qxb5kh7a"
+      ],
+      "budget": {},
+      "retry": {
+        "policy": "none"
+      },
+      "state": "done",
+      "output": {
+        "resolutions": "clean"
+      },
+      "attempts": 0,
+      "spend": {
+        "tokens": 0,
+        "micros_usd": 0,
+        "wall_ms": 0
+      }
+    },
+    "gn_q5v6anqojiwllixnwl4dibi5sa": {
+      "id": "gn_q5v6anqojiwllixnwl4dibi5sa",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "name": "draft",
+      "spec": {
+        "kind": "agent",
+        "prompt": "draft",
+        "system": null
+      },
+      "capability": "agent",
+      "inputs": {
+        "type": "object"
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "body"
+        ]
+      },
+      "budget": {},
+      "retry": {
+        "policy": "none"
+      },
+      "state": "done",
+      "output": {
+        "body": "Hi - we noticed you left us"
+      },
+      "attempts": 0,
+      "spend": {
+        "tokens": 0,
+        "micros_usd": 0,
+        "wall_ms": 0
+      }
+    },
+    "gn_se4fkesw2mlxbcvansunfvbp54": {
+      "id": "gn_se4fkesw2mlxbcvansunfvbp54",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "name": "review-gate-placement",
+      "spec": {
+        "kind": "review",
+        "lens": "gate-placement",
+        "prompt": "You see only this draft plan. Which nodes have irreversible effects — sending, publishing, writing, granting, deleting, spending? Is the human gate where a mistake is expensive to undo, or is it everywhere, or nowhere? Gating everything makes the human a rubber stamp, which is worse than no gate. Then check the answers: does every option declare what it unblocks, and does saying no actually stop the irreversible node?"
+      },
+      "capability": "review",
+      "inputs": {
+        "type": "object"
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "error",
+                    "warning",
+                    "note"
+                  ]
+                },
+                "body": {
+                  "type": "string"
+                },
+                "suggestion": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "severity",
+                "body"
+              ]
+            }
+          }
+        },
+        "required": [
+          "findings"
+        ]
+      },
+      "budget": {},
+      "retry": {
+        "policy": "none"
+      },
+      "state": "done",
+      "output": {
+        "findings": []
+      },
+      "attempts": 0,
+      "spend": {
+        "tokens": 0,
+        "micros_usd": 0,
+        "wall_ms": 0
+      }
+    },
+    "gn_wsi56jjk4k757qv6yyrnl5f6qu": {
+      "id": "gn_wsi56jjk4k757qv6yyrnl5f6qu",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "name": "send",
+      "spec": {
+        "kind": "agent",
+        "prompt": "send",
+        "system": null
+      },
+      "capability": "send_email",
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "choice": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "choice"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "sent": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "sent"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "gn_yh5mczpuctkrn2qlcqzyipftgu",
+          "select": "$.choice",
+          "into": "choice"
+        }
+      ],
+      "needs": [
+        "gn_yh5mczpuctkrn2qlcqzyipftgu"
+      ],
+      "budget": {},
+      "retry": {
+        "policy": "none"
+      },
+      "state": "blocked",
+      "attempts": 0,
+      "spend": {
+        "tokens": 0,
+        "micros_usd": 0,
+        "wall_ms": 0
+      }
+    },
+    "gn_yh5mczpuctkrn2qlcqzyipftgu": {
+      "id": "gn_yh5mczpuctkrn2qlcqzyipftgu",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "name": "approve",
+      "spec": {
+        "kind": "human",
+        "ask": "Send it?",
+        "options": [
+          "send",
+          "cancel"
+        ],
+        "consequence": [
+          [
+            "cancel",
+            []
+          ],
+          [
+            "send",
+            [
+              "gn_wsi56jjk4k757qv6yyrnl5f6qu"
+            ]
+          ]
+        ],
+        "on_timeout": {
+          "then": "wait"
+        }
+      },
+      "capability": "human",
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "body"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "choice": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "choice"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "gn_q5v6anqojiwllixnwl4dibi5sa",
+          "select": "$.body",
+          "into": "body"
+        }
+      ],
+      "needs": [
+        "gn_q5v6anqojiwllixnwl4dibi5sa"
+      ],
+      "budget": {},
+      "retry": {
+        "policy": "none"
+      },
+      "state": "awaiting",
+      "attempts": 0,
+      "spend": {
+        "tokens": 0,
+        "micros_usd": 0,
+        "wall_ms": 0
+      }
+    }
+  },
+  "edges": [
+    [
+      "gn_6qe2xbp6sxfzb2vslb2rvvxfhq",
+      "gn_q54urfa5mz5pe74ltpo22lrwsm",
+      "deterministic"
+    ],
+    [
+      "gn_7mwgkohcjqnbgl553ljooqo7ya",
+      "gn_q54urfa5mz5pe74ltpo22lrwsm",
+      "deterministic"
+    ],
+    [
+      "gn_mo6br27ftdo273hvvhuvbrnelm",
+      "gn_q54urfa5mz5pe74ltpo22lrwsm",
+      "deterministic"
+    ],
+    [
+      "gn_nqmtypm4ubmts7e4e2nypbqx5m",
+      "gn_q54urfa5mz5pe74ltpo22lrwsm",
+      "deterministic"
+    ],
+    [
+      "gn_okwsalulcgypsyky56qxb5kh7a",
+      "gn_q54urfa5mz5pe74ltpo22lrwsm",
+      "deterministic"
+    ],
+    [
+      "gn_q5v6anqojiwllixnwl4dibi5sa",
+      "gn_yh5mczpuctkrn2qlcqzyipftgu",
+      "deterministic"
+    ],
+    [
+      "gn_se4fkesw2mlxbcvansunfvbp54",
+      "gn_q54urfa5mz5pe74ltpo22lrwsm",
+      "deterministic"
+    ],
+    [
+      "gn_yh5mczpuctkrn2qlcqzyipftgu",
+      "gn_wsi56jjk4k757qv6yyrnl5f6qu",
+      "deterministic"
+    ]
+  ],
+  "beliefs": {
+    "gb_2s332eolg2qflmlsikvaicnfze": {
+      "id": "gb_2s332eolg2qflmlsikvaicnfze",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "provenance": "derived",
+      "fidelity": "claimed",
+      "state": "both",
+      "content": "the draft targets the 47 Q3-churned accounts",
+      "summary": "the draft targets the 47 Q3-churned accounts",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211268622,
+        "imputed": false
+      },
+      "recorded_at": 34,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "inference",
+        "shared": false
+      },
+      "contradiction": {
+        "reason": "a premise went stale — 47 accounts churned in Q3",
+        "evidence": [
+          "gb_eybsauf3riadrjo52wyttbd3ae"
+        ],
+        "at": 36
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "243187e5378e244267e877da5d55644d65f42b11b9bd75c38475d9e4a20b8e60"
+    },
+    "gb_eybsauf3riadrjo52wyttbd3ae": {
+      "id": "gb_eybsauf3riadrjo52wyttbd3ae",
+      "graph": "gg_m2wtkhkd4etoyy2t5h3eneykbu",
+      "provenance": "tool-observation",
+      "fidelity": "claimed",
+      "state": "in",
+      "content": "47 accounts churned in Q3",
+      "summary": "47 accounts churned in Q3",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211268344,
+        "imputed": false
+      },
+      "recorded_at": 31,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "salesforce",
+        "path": "report/churn-q3",
+        "shared": true
+      },
+      "stale": true,
+      "pinned": false,
+      "content_hash": "c8d2ceb96c757f82ed338bd24ed8dcb0d494ed1318180841637dafdf331503c6"
+    }
+  },
+  "belief_edges": [
+    [
+      "gb_2s332eolg2qflmlsikvaicnfze",
+      "derives-from",
+      "gb_eybsauf3riadrjo52wyttbd3ae"
+    ],
+    [
+      "gb_eybsauf3riadrjo52wyttbd3ae",
+      "assumed-by",
+      "gb_eybsauf3riadrjo52wyttbd3ae"
+    ]
+  ],
+  "claims": {
+    "gc_3r7rnwxvxaa5bwv47ube6piu44": {
+      "id": "gc_3r7rnwxvxaa5bwv47ube6piu44",
+      "session": "golden",
+      "leased_at": 1786211268024,
+      "expires_at": 1786211568024
+    },
+    "gc_b6bnvd6uyksopyy7qpbiclojaa": {
+      "id": "gc_b6bnvd6uyksopyy7qpbiclojaa",
+      "session": "golden",
+      "leased_at": 1786211267731,
+      "expires_at": 1786211567731
+    },
+    "gc_h75cvtztlbwyrb4vyecwvaahki": {
+      "id": "gc_h75cvtztlbwyrb4vyecwvaahki",
+      "session": "golden",
+      "leased_at": 1786211268121,
+      "expires_at": 1786211568121
+    },
+    "gc_ikkxh7pdclorgtzftu2cpa4aoy": {
+      "id": "gc_ikkxh7pdclorgtzftu2cpa4aoy",
+      "session": "golden",
+      "leased_at": 1786211267825,
+      "expires_at": 1786211567825
+    },
+    "gc_njrycald7pwcye4ti36jyftvce": {
+      "id": "gc_njrycald7pwcye4ti36jyftvce",
+      "session": "golden",
+      "leased_at": 1786211268324,
+      "expires_at": 1786211568324
+    },
+    "gc_ufxunl7ogwqyvqyl36zomtx53y": {
+      "id": "gc_ufxunl7ogwqyvqyl36zomtx53y",
+      "session": "golden",
+      "leased_at": 1786211268220,
+      "expires_at": 1786211568220
+    },
+    "gc_vzztaoz6lhpuxiv2oq6qcxdzqu": {
+      "id": "gc_vzztaoz6lhpuxiv2oq6qcxdzqu",
+      "session": "golden",
+      "read_set": [
+        "gb_eybsauf3riadrjo52wyttbd3ae"
+      ],
+      "leased_at": 1786211268522,
+      "expires_at": 1786211568522
+    },
+    "gc_xrfardhs6xtz7houpjzdjldify": {
+      "id": "gc_xrfardhs6xtz7houpjzdjldify",
+      "session": "golden",
+      "leased_at": 1786211267923,
+      "expires_at": 1786211567923
+    }
+  },
+  "active_claims": {},
+  "assumed_by": {},
+  "sessions": {},
+  "nogoods": {},
+  "findings": {},
+  "human_pending": {
+    "gn_yh5mczpuctkrn2qlcqzyipftgu": {
+      "node": "gn_yh5mczpuctkrn2qlcqzyipftgu",
+      "ask": "Send this to 47 churned customers?",
+      "options": [
+        "send",
+        "cancel"
+      ],
+      "context": [
+        "gb_eybsauf3riadrjo52wyttbd3ae",
+        "gb_2s332eolg2qflmlsikvaicnfze"
+      ],
+      "consequence": [
+        [
+          "cancel",
+          []
+        ],
+        [
+          "send",
+          [
+            "gn_wsi56jjk4k757qv6yyrnl5f6qu"
+          ]
+        ]
+      ],
+      "on_timeout": {
+        "then": "wait"
+      },
+      "asked_at": 35
+    }
+  },
+  "check_passed": true,
+  "seq": 36
+}

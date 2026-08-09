@@ -1,0 +1,692 @@
+{
+  "format": "graphene-manifest.v1",
+  "binary": "gr",
+  "note": "Mirrors the gr surface exactly. A test derives this same shape from the compiled clap tree and fails the build on any drift \u2014 a skill that names a command or flag the binary does not have is a defect.",
+  "output": {
+    "default": "JSON on stdout; the primary consumer is an agent.",
+    "exit_codes": {
+      "0": "success, or a structured refusal",
+      "1": "usage or I/O error",
+      "3": "check or validate failed",
+      "5": "a refusal, under --quiet only"
+    },
+    "refusals": "Exit 0 with {\"refused\":{code,suggestion,reason,detail}}. Every refusal names what to do instead. Under --quiet a refusal exits 5, because there is no other channel \u2014 never chain `gr <cmd> && \u2026` on a bare exit code without --quiet."
+  },
+  "globals": {
+    "--store": "Store to operate on. Defaults to the nearest .graphene/store.db. Env GRAPHENE_STORE.",
+    "--session": "Session identity for claims and presence. Env GRAPHENE_SESSION.",
+    "--human": "Render tables for a person instead of JSON.",
+    "--quiet": "Emit nothing; communicate only through the exit code."
+  },
+  "groups": {
+    "workspace": {
+      "about": "Set a repository up to work through Graphene.",
+      "commands": {
+        "init": {
+          "about": "Install the agent skill into a repository, and create the store",
+          "use_when": "Once per repository, before anything else. Writes .claude/skills/graphene/ and .graphene/store.db.",
+          "args": [
+            "path"
+          ],
+          "flags": [
+            "--force"
+          ]
+        }
+      }
+    },
+    "graphs": {
+      "about": "Create, validate, approve, and derive graphs.",
+      "commands": {
+        "new": {
+          "about": "Create a graph from a task",
+          "use_when": "Starting a plan. Pass the user's task in their own words.",
+          "flags": [
+            "--task",
+            "--title",
+            "--description",
+            "--tag",
+            "--tokens"
+          ],
+          "required": [
+            "--task"
+          ]
+        },
+        "plan": {
+          "about": "Replace a draft's nodes from a `task.v1` document on stdin",
+          "use_when": "You have drafted a task.v1 document. Replaces a draft graph's nodes.",
+          "args": [
+            "graph"
+          ],
+          "flags": [
+            "--file"
+          ]
+        },
+        "capabilities": {
+          "about": "The capability set this workspace plans against. Registering is additive; gating is one-way",
+          "use_when": "A node needs a capability Graphene does not ship knowing. Register it once, or gr check refuses the plan with unknown-capability.",
+          "flags": [
+            "--register",
+            "--gated"
+          ]
+        },
+        "check": {
+          "about": "Validate structurally. Exits 3 on failure",
+          "use_when": "After every edit to the plan. Exits 3 on failure, with a fix hint per error.",
+          "args": [
+            "graph"
+          ]
+        },
+        "approve": {
+          "about": "Record explicit approval",
+          "use_when": "The user said go. Carries a checked graph through review to approved.",
+          "args": [
+            "graph"
+          ]
+        },
+        "start": {
+          "about": "Begin the run",
+          "use_when": "Immediately after approve. Ordinary nodes become claimable.",
+          "args": [
+            "graph"
+          ]
+        },
+        "cancel": {
+          "about": "Stop a graph. Outstanding work is skipped and claims released",
+          "use_when": "The plan is wrong and nothing is worth keeping.",
+          "args": [
+            "graph"
+          ],
+          "flags": [
+            "--reason"
+          ],
+          "required": [
+            "--reason"
+          ]
+        },
+        "amend": {
+          "about": "Derive a new graph, carrying completed outputs forward",
+          "use_when": "The shape was wrong but completed work is still good. Carries outputs forward.",
+          "args": [
+            "graph"
+          ],
+          "flags": [
+            "--reason"
+          ],
+          "required": [
+            "--reason"
+          ]
+        },
+        "clone": {
+          "about": "Instantiate a completed graph as a template",
+          "use_when": "Running a finished graph again as a template.",
+          "args": [
+            "graph"
+          ]
+        },
+        "list": {
+          "about": "Graphs not yet terminal, most recent first",
+          "use_when": "Finding a graph you did not create in this session.",
+          "flags": [
+            "--all",
+            "--state",
+            "--tag",
+            "--limit"
+          ]
+        },
+        "show": {
+          "about": "A graph's full folded state",
+          "use_when": "The whole folded state, for a graph you are about to work on.",
+          "args": [
+            "graph"
+          ]
+        },
+        "export": {
+          "about": "The log as newline-delimited JSON, for git and diffing",
+          "use_when": "Diffing a graph in git, or handing the log to another tool.",
+          "args": [
+            "graph"
+          ]
+        }
+      }
+    },
+    "nodes": {
+      "about": "Take work, report it, and hand it back.",
+      "commands": {
+        "node": {
+          "about": "Everything about a node. The cold-context entry point for a pasted id",
+          "use_when": "THE COLD-CONTEXT ENTRY POINT. Run this first when the user pastes a gn_ id.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph"
+          ]
+        },
+        "nodes": {
+          "about": "Nodes in a graph, optionally filtered",
+          "use_when": "Listing a graph's nodes, optionally by state.",
+          "args": [
+            "graph"
+          ],
+          "flags": [
+            "--state"
+          ]
+        },
+        "next": {
+          "about": "What is claimable right now",
+          "use_when": "What is claimable right now.",
+          "args": [
+            "graph"
+          ]
+        },
+        "claim": {
+          "about": "Take a node, asserting the beliefs the work will rest on",
+          "use_when": "Taking a node. Pass --assumes with every belief the work will rest on.",
+          "args": [
+            "node"
+          ],
+          "flags": [
+            "--graph",
+            "--assumes",
+            "--lease-ms"
+          ],
+          "required": [
+            "--graph"
+          ]
+        },
+        "renew": {
+          "about": "Extend a lease",
+          "use_when": "A node is taking longer than its lease. Prefer checkpoint, which also renews.",
+          "args": [
+            "node"
+          ],
+          "flags": [
+            "--graph",
+            "--lease-ms"
+          ],
+          "required": [
+            "--graph"
+          ]
+        },
+        "release": {
+          "about": "Give a node back without finishing it",
+          "use_when": "You cannot finish what you claimed. Give it back rather than let the lease lapse.",
+          "args": [
+            "node"
+          ],
+          "flags": [
+            "--graph",
+            "--reason"
+          ],
+          "required": [
+            "--graph"
+          ]
+        },
+        "checkpoint": {
+          "about": "Record progress at an edge crossing. Renews the lease",
+          "use_when": "At every edge crossing inside a long node. Records progress and renews the lease.",
+          "args": [
+            "node"
+          ],
+          "flags": [
+            "--graph",
+            "--state"
+          ],
+          "required": [
+            "--graph",
+            "--state"
+          ]
+        },
+        "done": {
+          "about": "Report a result. Validated against the declared schema; fails closed",
+          "use_when": "Reporting a result. Validated against the declared output schema; fails closed.",
+          "args": [
+            "node"
+          ],
+          "flags": [
+            "--graph",
+            "--output",
+            "--tokens",
+            "--micros-usd"
+          ],
+          "required": [
+            "--graph",
+            "--output"
+          ]
+        },
+        "fail": {
+          "about": "Report a failure",
+          "use_when": "The node cannot complete. --retryable describes the cause, not your appetite.",
+          "args": [
+            "node"
+          ],
+          "flags": [
+            "--graph",
+            "--reason",
+            "--retryable"
+          ],
+          "required": [
+            "--graph",
+            "--reason"
+          ]
+        },
+        "expand": {
+          "about": "Materialize a `forEach` node's children",
+          "use_when": "A for_each node's collection now exists. Materializes the children.",
+          "args": [
+            "node"
+          ],
+          "flags": [
+            "--graph"
+          ],
+          "required": [
+            "--graph"
+          ]
+        }
+      }
+    },
+    "human": {
+      "about": "Put a question to a person without blocking the graph.",
+      "commands": {
+        "await": {
+          "about": "Put a question to a person. Blocks only this node's dependents",
+          "use_when": "Asking a person. --on-timeout has no default, deliberately. --unblocks says what each answer releases; an answer that names nothing skips its dependents, which is the only thing that makes the gate a gate.",
+          "args": [
+            "node"
+          ],
+          "flags": [
+            "--graph",
+            "--ask",
+            "--options",
+            "--context",
+            "--unblocks",
+            "--on-timeout"
+          ],
+          "required": [
+            "--graph",
+            "--ask",
+            "--on-timeout"
+          ]
+        },
+        "awaiting": {
+          "about": "Everything waiting on a person",
+          "use_when": "Before telling the user what they owe you.",
+          "args": [
+            "graph"
+          ]
+        },
+        "resolve": {
+          "about": "Record a person's answer",
+          "use_when": "Recording a person's answer. --choice must be one of the declared options.",
+          "args": [
+            "node"
+          ],
+          "flags": [
+            "--graph",
+            "--by",
+            "--choice",
+            "--input"
+          ],
+          "required": [
+            "--graph",
+            "--by",
+            "--choice"
+          ]
+        }
+      }
+    },
+    "review": {
+      "about": "Record and resolve the findings the review lenses raise.",
+      "commands": {
+        "findings": {
+          "about": "Review findings, unresolved first",
+          "use_when": "After the review lenses run, and before you present anything. An unresolved finding holds the graph.",
+          "args": [
+            "graph"
+          ],
+          "flags": [
+            "--open"
+          ]
+        },
+        "finding": {
+          "about": "Apply or reject a finding. A reason is required \u2014 an unexplained rejection is indistinguishable from not having read it",
+          "use_when": "Resolving each finding. --resolution is `applied` or `rejected`; rejecting is legitimate, rejecting silently is not.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph",
+            "--resolution",
+            "--reason"
+          ],
+          "required": [
+            "--graph",
+            "--resolution",
+            "--reason"
+          ]
+        }
+      }
+    },
+    "beliefs": {
+      "about": "Record facts, and change your mind about them honestly.",
+      "commands": {
+        "believe": {
+          "about": "Record a belief",
+          "use_when": "A later decision will rest on this fact. Declare --derives-from and --shared honestly.",
+          "flags": [
+            "--graph",
+            "--content",
+            "--provenance",
+            "--summary",
+            "--source",
+            "--shared",
+            "--derives-from"
+          ],
+          "required": [
+            "--graph",
+            "--content",
+            "--source"
+          ]
+        },
+        "retract": {
+          "about": "Stop believing something. Refused on observations \u2014 use `contradict`",
+          "use_when": "A conclusion no longer holds. Refused on observations \u2014 use contradict.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph",
+            "--reason",
+            "--evidence"
+          ],
+          "required": [
+            "--graph",
+            "--reason"
+          ]
+        },
+        "contradict": {
+          "about": "Record that evidence contradicts a belief, without deleting it",
+          "use_when": "Evidence disagrees with a belief. It stays, and becomes BOTH.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph",
+            "--reason",
+            "--evidence"
+          ],
+          "required": [
+            "--graph",
+            "--reason"
+          ]
+        },
+        "uncontradict": {
+          "about": "Withdraw a contradiction",
+          "use_when": "The disagreement resolved in the belief's favour.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph",
+            "--reason"
+          ],
+          "required": [
+            "--graph",
+            "--reason"
+          ]
+        },
+        "corroborate": {
+          "about": "Raise fidelity. The corroborating belief must come from a distinct source",
+          "use_when": "Another belief, from a different source, confirms this one. --by names that belief, not a source string.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph",
+            "--by"
+          ],
+          "required": [
+            "--graph",
+            "--by"
+          ]
+        },
+        "reinstate": {
+          "about": "Bring back something that went OUT",
+          "use_when": "Something that went OUT should be believed again.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph",
+            "--reason"
+          ],
+          "required": [
+            "--graph",
+            "--reason"
+          ]
+        },
+        "supersede": {
+          "about": "Replace a belief with a corrected one. On an observation, only immediately after re-observing",
+          "use_when": "A corrected version replaces it. On an observation, --observation-proof is a sentence saying how you re-observed.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph",
+            "--content",
+            "--reason",
+            "--observation-proof"
+          ],
+          "required": [
+            "--graph",
+            "--content",
+            "--reason"
+          ]
+        },
+        "nogood": {
+          "about": "Record a set that cannot all be true, so it stops being re-proposed",
+          "use_when": "A set that cannot all be true. Two or more members; stops it being re-proposed.",
+          "flags": [
+            "--graph",
+            "--members",
+            "--note"
+          ],
+          "required": [
+            "--graph",
+            "--note"
+          ]
+        },
+        "dependents": {
+          "about": "What would fall if this belief went",
+          "use_when": "What would fall if this belief went.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph"
+          ],
+          "required": [
+            "--graph"
+          ]
+        },
+        "stale": {
+          "about": "Mark a source's observations stale after a write",
+          "use_when": "You wrote to a source. Marks everything read from it, and contests what rests on it.",
+          "flags": [
+            "--graph",
+            "--source"
+          ],
+          "required": [
+            "--graph",
+            "--source"
+          ]
+        },
+        "belief": {
+          "about": "A belief's full record",
+          "use_when": "The full record of one belief.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph"
+          ],
+          "required": [
+            "--graph"
+          ]
+        },
+        "why": {
+          "about": "What this rests on, and what falls with it",
+          "use_when": "The derivation of a truth state \u2014 what it rests on, and what falls with it.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph",
+            "--depth"
+          ],
+          "required": [
+            "--graph"
+          ]
+        },
+        "contested": {
+          "about": "Everything currently contested",
+          "use_when": "Before presenting anything to a person. Run it every time.",
+          "args": [
+            "graph"
+          ]
+        },
+        "history": {
+          "about": "Every event touching an id, in order",
+          "use_when": "Every event touching an id, in order.",
+          "args": [
+            "id"
+          ],
+          "flags": [
+            "--graph"
+          ],
+          "required": [
+            "--graph"
+          ]
+        }
+      }
+    },
+    "sessions": {
+      "about": "Join a graph, see who else is on it, and receive push.",
+      "commands": {
+        "attach": {
+          "about": "Join a graph. Starts the server if none is running",
+          "use_when": "Joining a graph. Starts the server if none is running.",
+          "args": [
+            "graph"
+          ],
+          "flags": [
+            "--label"
+          ]
+        },
+        "detach": {
+          "about": "Leave, releasing anything held",
+          "use_when": "Leaving. Releases anything you hold.",
+          "args": [
+            "graph"
+          ]
+        },
+        "sessions": {
+          "about": "Who is attached, and what they hold",
+          "use_when": "Who else is on this graph, and what they hold.",
+          "args": [
+            "graph"
+          ]
+        },
+        "status": {
+          "about": "Where the graph is, and what to do next",
+          "use_when": "Constantly. It returns next_action; do what it says.",
+          "args": [
+            "graph"
+          ]
+        },
+        "wait": {
+          "about": "Block until something relevant happens. How push reaches an agent",
+          "use_when": "You have nothing runnable but the graph is not finished. Blocks until something happens.",
+          "flags": [
+            "--graph",
+            "--timeout",
+            "--on"
+          ],
+          "required": [
+            "--graph"
+          ]
+        }
+      }
+    },
+    "integrity": {
+      "about": "Re-derive, replay, and prove the store.",
+      "commands": {
+        "validate": {
+          "about": "Run every gate. Exits 3 on failure",
+          "use_when": "Proving the store. Runs every gate; exits 3 on failure.",
+          "args": [
+            "graph"
+          ]
+        },
+        "bench": {
+          "about": "Score the belief layer against the MnemeBrain belief benchmark",
+          "use_when": "Checking the belief layer against an external benchmark. Writes bench/score.json; the number is only meaningful because the harness is committed.",
+          "flags": [
+            "--bmb"
+          ]
+        },
+        "rebuild": {
+          "about": "Discard every cache and re-derive from the log",
+          "use_when": "Discarding every cache and re-deriving from the log."
+        },
+        "fold": {
+          "about": "State at a point in time \u2014 what we believed when a node ran",
+          "use_when": "What we believed at a point in time \u2014 the state a node actually ran against.",
+          "args": [
+            "graph"
+          ],
+          "flags": [
+            "--up-to"
+          ],
+          "required": [
+            "--up-to"
+          ]
+        },
+        "compact": {
+          "about": "Collapse records that provably cannot change the fold. Self-verifying",
+          "use_when": "Collapsing records that provably cannot change the fold. Self-verifying."
+        },
+        "apply": {
+          "about": "Import a JSONL log",
+          "use_when": "Importing a JSONL log.",
+          "flags": [
+            "--file"
+          ]
+        },
+        "evidence": {
+          "about": "What the accumulated graphs say about the guidance (spec 09 \u00a77)",
+          "use_when": "Reviewing whether the decomposition advice is working: gates nobody declines, capabilities that fail most, plans that keep needing amendment."
+        }
+      }
+    },
+    "ui": {
+      "about": "The read-only viewer.",
+      "commands": {
+        "serve": {
+          "about": "Run the server in the foreground. `attach` starts it normally",
+          "use_when": "Running the server in the foreground. attach starts it normally.",
+          "flags": [
+            "--port"
+          ]
+        },
+        "ui": {
+          "about": "Open the browser at the running server",
+          "use_when": "Opening the browser at the running server.",
+          "args": [
+            "graph"
+          ]
+        }
+      }
+    }
+  }
+}

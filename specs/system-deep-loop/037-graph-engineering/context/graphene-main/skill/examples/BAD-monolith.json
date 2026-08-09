@@ -1,0 +1,9 @@
+{
+  "graph": "task.v1",
+  "goal": "WRONG ON PURPOSE. One fat node reaching an irreversible capability with no gate.",
+  "nodes": [
+    { "id": "do-everything", "job": "send_email",
+      "prompt": "Fetch the accounts and score them and draft the outreach and send it.",
+      "outputs": { "type": "object", "properties": { "sent": { "type": "number" } }, "required": ["sent"] } }
+  ]
+}

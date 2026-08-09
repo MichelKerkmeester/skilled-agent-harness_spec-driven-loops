@@ -1,0 +1,108 @@
+{
+  "graph": {
+    "id": "gg_si37eq3a5whlddhqyvcayggfxu",
+    "title": "nogood",
+    "description": "",
+    "task": "nogood",
+    "state": "draft",
+    "budget": {},
+    "spend": {
+      "tokens": 0,
+      "micros_usd": 0,
+      "wall_ms": 0
+    },
+    "limits": {
+      "max_nodes": 500,
+      "max_concurrency": 16,
+      "max_rounds": 3,
+      "max_depth": 20,
+      "max_for_each": 200,
+      "max_spawn": 64
+    },
+    "created_at": 1786211175323,
+    "updated_at": 1786211175323,
+    "requested_by": {
+      "kind": "session",
+      "id": "golden"
+    },
+    "created_seq": 1
+  },
+  "nodes": {},
+  "edges": [],
+  "beliefs": {
+    "gb_vak4663wptirfn2vtzb57pljm4": {
+      "id": "gb_vak4663wptirfn2vtzb57pljm4",
+      "graph": "gg_si37eq3a5whlddhqyvcayggfxu",
+      "provenance": "tool-observation",
+      "fidelity": "claimed",
+      "state": "in",
+      "content": "the migration never ran",
+      "summary": "the migration never ran",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211175490,
+        "imputed": false
+      },
+      "recorded_at": 3,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "ci",
+        "path": "log",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "e670c732db32eb4bd26ce2e64016e55eca774c9d4fb39bd5cfbe228d47680f50"
+    },
+    "gb_w53ggszy5s6vijs5rp5cnvp3va": {
+      "id": "gb_w53ggszy5s6vijs5rp5cnvp3va",
+      "graph": "gg_si37eq3a5whlddhqyvcayggfxu",
+      "provenance": "tool-observation",
+      "fidelity": "claimed",
+      "state": "in",
+      "content": "the migration ran",
+      "summary": "the migration ran",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211175406,
+        "imputed": false
+      },
+      "recorded_at": 2,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "db",
+        "path": "schema",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "92a234363ad97ac1e622870045fe31a045cb2aa256dc6a3422497e6dc38469e0"
+    }
+  },
+  "belief_edges": [],
+  "claims": {},
+  "active_claims": {},
+  "assumed_by": {},
+  "sessions": {},
+  "nogoods": {
+    "gx_7vkswmlyyxayewelshqlkxad4a": {
+      "id": "gx_7vkswmlyyxayewelshqlkxad4a",
+      "members": [
+        "gb_vak4663wptirfn2vtzb57pljm4",
+        "gb_w53ggszy5s6vijs5rp5cnvp3va"
+      ],
+      "note": "these cannot both hold",
+      "discovered_at": 4,
+      "by": {
+        "kind": "session",
+        "id": "golden"
+      }
+    }
+  },
+  "findings": {},
+  "human_pending": {},
+  "check_passed": false,
+  "seq": 4
+}

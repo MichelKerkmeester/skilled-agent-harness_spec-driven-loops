@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "forks": {
+    "deep-pi": {
+      "identity": {
+        "repository": "https://github.com/christopherarter/deep-pi.git",
+        "commit": "0f1cbd8124b4fb35df97f85aa943d730f4aae549"
+      },
+      "files": [
+        "LICENSE",
+        "README.md",
+        "extensions/deeppi.ts",
+        "extensions/deeppi/eligibility.ts",
+        "extensions/deeppi/hashlines.ts",
+        "extensions/deeppi/stability.ts",
+        "extensions/deeppi/stats.ts",
+        "extensions/deeppi/stormbreaker.ts",
+        "extensions/deeppi/telemetry.ts",
+        "extensions/deeppi/utils.ts",
+        "package.json",
+        "scripts/live-benchmark.mjs",
+        "tsconfig.json"
+      ],
+      "filesHash": "sha256:330c9ca984558cf16774679d94a3061eea18e594842b2bfb52f168165c58a8d2"
+    },
+    "pi-cache-optimizer": {
+      "identity": {
+        "repository": "https://github.com/MichelKerkmeester/pi-cache-optimizer.git",
+        "commit": "5132d137ce28cb91ec12a5475832df4d5154085a"
+      },
+      "files": [
+        "index.ts",
+        "package.json"
+      ],
+      "filesHash": "sha256:477ba012c7a297f8f49d9dcd30e26d80846c113530f9799c65b630eebb56dc1b"
+    }
+  }
+}

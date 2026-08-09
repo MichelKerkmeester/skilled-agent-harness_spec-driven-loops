@@ -1,0 +1,160 @@
+{
+  "graph": {
+    "id": "gg_43oy67spgaaa7araswzex4vqsu",
+    "title": "truth",
+    "description": "",
+    "task": "truth states",
+    "state": "draft",
+    "budget": {},
+    "spend": {
+      "tokens": 0,
+      "micros_usd": 0,
+      "wall_ms": 0
+    },
+    "limits": {
+      "max_nodes": 500,
+      "max_concurrency": 16,
+      "max_rounds": 3,
+      "max_depth": 20,
+      "max_for_each": 200,
+      "max_spawn": 64
+    },
+    "created_at": 1786211152294,
+    "updated_at": 1786211152294,
+    "requested_by": {
+      "kind": "session",
+      "id": "golden"
+    },
+    "created_seq": 1
+  },
+  "nodes": {},
+  "edges": [],
+  "beliefs": {
+    "gb_3g4jlggp5uwwsgkkb74rmknhaa": {
+      "id": "gb_3g4jlggp5uwwsgkkb74rmknhaa",
+      "graph": "gg_43oy67spgaaa7araswzex4vqsu",
+      "provenance": "tool-observation",
+      "fidelity": "confirmed",
+      "state": "in",
+      "content": "the migration ran",
+      "summary": "the migration ran",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211152304,
+        "imputed": false
+      },
+      "recorded_at": 2,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "db",
+        "path": "schema",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "corroborated_by": [
+        {
+          "system": "ci",
+          "path": "log",
+          "shared": false
+        }
+      ],
+      "content_hash": "92a234363ad97ac1e622870045fe31a045cb2aa256dc6a3422497e6dc38469e0"
+    },
+    "gb_6nypy6kdep7ewhpqxcbadotini": {
+      "id": "gb_6nypy6kdep7ewhpqxcbadotini",
+      "graph": "gg_43oy67spgaaa7araswzex4vqsu",
+      "provenance": "hypothesis",
+      "fidelity": "claimed",
+      "state": "in",
+      "content": "probably the index",
+      "summary": "probably the index",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211152397,
+        "imputed": false
+      },
+      "recorded_at": 3,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "guess",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "8eb9099628518afcc37702e03acbacf57949c27c7fbcbf15efc2009dac05e545"
+    },
+    "gb_owynpwjrcb64boabp22td3o4ue": {
+      "id": "gb_owynpwjrcb64boabp22td3o4ue",
+      "graph": "gg_43oy67spgaaa7araswzex4vqsu",
+      "provenance": "derived",
+      "fidelity": "claimed",
+      "state": "in",
+      "content": "queries are safe",
+      "summary": "queries are safe",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211152480,
+        "imputed": false
+      },
+      "recorded_at": 4,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "inference",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "019ecb4348636206ad8eafee125c2e25985647cbabaf5c6971f08928e52e384d"
+    },
+    "gb_ydouehslbivwzvq4c77sg6remy": {
+      "id": "gb_ydouehslbivwzvq4c77sg6remy",
+      "graph": "gg_43oy67spgaaa7araswzex4vqsu",
+      "provenance": "tool-observation",
+      "fidelity": "claimed",
+      "state": "in",
+      "content": "CI confirms the migration",
+      "summary": "CI confirms the migration",
+      "support_mode": "all",
+      "observed_at": {
+        "at": 1786211152581,
+        "imputed": false
+      },
+      "recorded_at": 9,
+      "validity": {},
+      "sensitivity": [],
+      "source": {
+        "system": "ci",
+        "path": "log",
+        "shared": false
+      },
+      "stale": false,
+      "pinned": false,
+      "content_hash": "e465b36c98a1c6382da274ab748a47e09fe94cecb5b17ee024b24062145b6d6c"
+    }
+  },
+  "belief_edges": [
+    [
+      "gb_owynpwjrcb64boabp22td3o4ue",
+      "derives-from",
+      "gb_3g4jlggp5uwwsgkkb74rmknhaa"
+    ],
+    [
+      "gb_ydouehslbivwzvq4c77sg6remy",
+      "corroborates",
+      "gb_3g4jlggp5uwwsgkkb74rmknhaa"
+    ]
+  ],
+  "claims": {},
+  "active_claims": {},
+  "assumed_by": {},
+  "sessions": {},
+  "nogoods": {},
+  "findings": {},
+  "human_pending": {},
+  "check_passed": false,
+  "seq": 10
+}

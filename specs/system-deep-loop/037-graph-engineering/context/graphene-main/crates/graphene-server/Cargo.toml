@@ -1,0 +1,28 @@
+[package]
+name = "graphene-server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Graphene server: presence and push over WebSocket, plus a read-only HTTP surface."
+
+[dependencies]
+graphene-core.workspace = true
+graphene-store.workspace = true
+graphene-exec.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+axum.workspace = true
+futures-util.workspace = true
+notify.workspace = true
+rust-embed.workspace = true
+mime_guess.workspace = true
+rustix.workspace = true
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["test-util"] }
+
+[lints.rust]
+unsafe_code = "forbid"

@@ -1,0 +1,45 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/graphene-core",
+    "crates/graphene-store",
+    "crates/graphene-check",
+    "crates/graphene-exec",
+    "crates/graphene-server",
+    "crates/graphene-cli",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.97"
+license = "Apache-2.0"
+repository = "https://github.com/4tyone/graphene"
+homepage = "https://github.com/4tyone/graphene"
+authors = ["4tyone"]
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+blake3 = "1"
+data-encoding = "2"
+thiserror = "2"
+rusqlite = { version = "0.32", features = ["bundled"] }
+graphene-core = { path = "crates/graphene-core" }
+graphene-store = { path = "crates/graphene-store" }
+graphene-check = { path = "crates/graphene-check" }
+graphene-exec = { path = "crates/graphene-exec" }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time", "net", "signal", "process"] }
+axum = { version = "0.8", features = ["ws"] }
+futures-util = "0.3"
+notify = "7"
+rust-embed = { version = "8", features = ["debug-embed", "interpolate-folder-path"] }
+mime_guess = "2"
+tracing = "0.1"
+clap = { version = "4", features = ["derive", "env"] }
+graphene-server = { path = "crates/graphene-server" }
+rustix = { version = "1", features = ["process"] }
+
+[profile.release]
+lto = true
+codegen-units = 1

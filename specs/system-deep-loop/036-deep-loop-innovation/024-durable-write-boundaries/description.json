@@ -19,14 +19,14 @@
     "lease",
     "token"
   ],
-  "lastUpdated": "2026-08-08T06:43:06.257Z",
+  "lastUpdated": "2026-08-08T18:02:53.834Z",
   "specId": "024",
   "folderSlug": "durable-write-boundaries",
   "parentChain": [
     "system-deep-loop",
     "036-deep-loop-innovation"
   ],
-  "memorySequence": 10,
+  "memorySequence": 13,
   "memoryNameHistory": [
     "02-08-26_21-19__closed-deterministic-two-process-lease-revocation.md",
     "02-08-26_21-21__completion-leaf-closed-deterministic-two-process.md",
@@ -37,6 +37,9 @@
     "03-08-26_05-23__refresh-final-child-metadata-after-continuity.md",
     "03-08-26_05-25__final-metadata-refresh-after-scoping-the-89-in.md",
     "03-08-26_05-26__final-metadata-refresh-after-reconciling-the.md",
-    "03-08-26_07-05__024-built-hardened-verified-gateway-only-fenced.md"
+    "03-08-26_07-05__024-built-hardened-verified-gateway-only-fenced.md",
+    "08-08-26_15-04__t001-confirm-agent-running-read-only-grounding.md",
+    "08-08-26_15-37__the-024-b1-fencing-keystone-build-is-running-in.md",
+    "08-08-26_19-02__b2-build-running-in-0134-sonnet-background.md"
   ]
 }

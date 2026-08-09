@@ -1,0 +1,17 @@
+{
+  "graph": "task.v1",
+  "goal": "WRONG ON PURPOSE. `gr check` must reject this with `fake-edge`.",
+  "nodes": [
+    { "id": "summarize-doc", "job": "agent", "prompt": "Summarize the document.",
+      "outputs": { "type": "object", "properties": { "summary": { "type": "string" } }, "required": ["summary"] } },
+
+    { "id": "check-calendar", "job": "retrieval", "run": "calendar",
+      "prompt": "Read this week's calendar.",
+      "outputs": { "type": "object", "properties": { "events": { "type": "array", "items": { "type": "string" } } }, "required": ["events"] } },
+
+    { "id": "report", "job": "agent", "prompt": "Write the report.",
+      "needs": ["summarize-doc", "check-calendar"],
+      "inputs": { "type": "object", "properties": { "summary": { "type": "string" } }, "required": ["summary"] },
+      "bindings": [{ "from": "summarize-doc", "select": "$.summary", "into": "summary" }] }
+  ]
+}

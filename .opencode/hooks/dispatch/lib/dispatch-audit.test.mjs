@@ -75,6 +75,14 @@ describe('inspectDispatch', () => {
     ['quote-safe executor', '"devin" -p "task"', { kind: 'direct', executor: 'cli-devin' }],
     ['quote-safe path executor', '"/usr/local/bin/cursor-agent" -p task', { kind: 'direct', executor: 'cli-cursor' }],
     ['quoted executor without print flag', '"devin" auth status', { kind: 'none' }],
+    ['bare executor without print flag', 'devin auth status', { kind: 'none' }],
+    // A bare pi CLI subcommand (list/auth/doctor/...) is not a dispatch: no print flag, no
+    // payload. The preflight lint must not treat it as ambiguous dispatch evidence.
+    ['bare pi subcommand', 'pi list', { kind: 'none' }],
+    ['bare pi flagless run', 'pi --offline --approve', { kind: 'none' }],
+    // A print flag in an unrelated segment must not turn a bare executor token elsewhere
+    // into dispatch evidence (echo -p prints a literal flag).
+    ['stray print flag in unrelated segment', 'git status && echo -p && devin auth status', { kind: 'none' }],
     ['quoted executor as an argument stays prose', 'echo "devin" -p "hi"', { kind: 'none' }],
     ['variable executor', '$CLI -p task', { kind: 'ambiguous' }],
     ['alias-shaped command', 'alias d=devin; d -p task', { kind: 'ambiguous' }],

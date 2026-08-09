@@ -1,0 +1,158 @@
+{
+  "graph": "task.v1",
+  "goal": "Find why checkout latency spiked, when the shape of the work is unknown up front.",
+  "nodes": [
+    {
+      "id": "gather-symptoms",
+      "job": "retrieval",
+      "run": "observability",
+      "prompt": "Pull the latency series and the error rates around the spike.",
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "suspects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "suspects"
+        ]
+      }
+    },
+    {
+      "id": "triage",
+      "job": "agent",
+      "prompt": "Decide which subsystem to dig into. This edge is model-decided: the answer determines the path.",
+      "needs": [
+        "gather-symptoms"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "suspects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "suspects"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "subsystem": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "subsystem"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "gather-symptoms",
+          "select": "$.suspects",
+          "into": "suspects"
+        }
+      ]
+    },
+    {
+      "id": "dig-per-suspect",
+      "job": "agent",
+      "prompt": "Investigate one suspect. Bounded fan-out \u2014 the count is discovered, the shape is not.",
+      "needs": [
+        "gather-symptoms"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "suspect": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "suspect"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "finding": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "finding"
+        ]
+      },
+      "for_each": {
+        "from": "gather-symptoms",
+        "select": "$.suspects",
+        "as_field": "suspect",
+        "max": 12
+      }
+    },
+    {
+      "id": "merge-findings",
+      "job": "merge",
+      "prompt": "One owner. What actually caused it?",
+      "needs": [
+        "triage",
+        "dig-per-suspect"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "subsystem": {
+            "type": "string"
+          },
+          "finding": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "subsystem",
+          "finding"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "cause": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "cause"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "triage",
+          "select": "$.subsystem",
+          "into": "subsystem"
+        },
+        {
+          "from": "dig-per-suspect",
+          "select": "$[*].finding",
+          "into": "finding"
+        }
+      ]
+    },
+    {
+      "id": "review-stop-rule",
+      "job": "review",
+      "lens": "stop-rule",
+      "prompt": "Which nodes share an implicit assumption that is not an explicit dependency?"
+    }
+  ]
+}

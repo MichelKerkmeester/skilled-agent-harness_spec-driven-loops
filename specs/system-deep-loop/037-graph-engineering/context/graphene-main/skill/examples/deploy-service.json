@@ -1,0 +1,271 @@
+{
+  "graph": "task.v1",
+  "goal": "Deploy the payments service, with three independent verifiers and a gate on the irreversible step.",
+  "nodes": [
+    {
+      "id": "build",
+      "job": "function",
+      "run": "make release",
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "artifact": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "artifact"
+        ]
+      }
+    },
+    {
+      "id": "verify-tests",
+      "job": "agent",
+      "prompt": "Is it correct? Run the suite and read the failures.",
+      "needs": [
+        "build"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "artifact": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "artifact"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "verdict": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "verdict"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "build",
+          "select": "$.artifact",
+          "into": "artifact"
+        }
+      ]
+    },
+    {
+      "id": "verify-migrations",
+      "job": "agent",
+      "prompt": "Is it current? Does the artifact match the migrations actually applied?",
+      "needs": [
+        "build"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "artifact": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "artifact"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "verdict": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "verdict"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "build",
+          "select": "$.artifact",
+          "into": "artifact"
+        }
+      ]
+    },
+    {
+      "id": "verify-rollback",
+      "job": "agent",
+      "prompt": "Is the escape real? Prove the previous version can be restored.",
+      "needs": [
+        "build"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "artifact": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "artifact"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "verdict": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "verdict"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "build",
+          "select": "$.artifact",
+          "into": "artifact"
+        }
+      ]
+    },
+    {
+      "id": "merge-verdicts",
+      "job": "merge",
+      "prompt": "One owner of the merge. Do all three verifiers clear it?",
+      "needs": [
+        "verify-tests",
+        "verify-migrations",
+        "verify-rollback"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "tests": {
+            "type": "string"
+          },
+          "migrations": {
+            "type": "string"
+          },
+          "rollback": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "tests",
+          "migrations",
+          "rollback"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "cleared": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "cleared"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "verify-tests",
+          "select": "$.verdict",
+          "into": "tests"
+        },
+        {
+          "from": "verify-migrations",
+          "select": "$.verdict",
+          "into": "migrations"
+        },
+        {
+          "from": "verify-rollback",
+          "select": "$.verdict",
+          "into": "rollback"
+        }
+      ]
+    },
+    {
+      "id": "approve-deploy",
+      "job": "human",
+      "needs": [
+        "merge-verdicts"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "cleared": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "cleared"
+        ]
+      },
+      "outputs": {
+        "type": "object",
+        "properties": {
+          "choice": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "choice"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "merge-verdicts",
+          "select": "$.cleared",
+          "into": "cleared"
+        }
+      ],
+      "ask": {
+        "question": "Deploy payments to production?",
+        "options": [
+          "approve",
+          "reject"
+        ],
+        "unblocks": {
+          "approve": [
+            "deploy"
+          ],
+          "reject": []
+        },
+        "on_timeout": "escalate:3600000"
+      }
+    },
+    {
+      "id": "deploy",
+      "job": "write_database",
+      "needs": [
+        "approve-deploy"
+      ],
+      "inputs": {
+        "type": "object",
+        "properties": {
+          "choice": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "choice"
+        ]
+      },
+      "bindings": [
+        {
+          "from": "approve-deploy",
+          "select": "$.choice",
+          "into": "choice"
+        }
+      ]
+    },
+    {
+      "id": "review-gate",
+      "job": "review",
+      "lens": "gate-placement",
+      "prompt": "Which nodes have irreversible effects? Is the gate where a mistake is expensive to undo?"
+    }
+  ]
+}

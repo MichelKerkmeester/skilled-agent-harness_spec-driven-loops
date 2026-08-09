@@ -1,0 +1,93 @@
+# Spec 10 §9. Everything here runs on every commit, because every defect this
+# suite has caught so far lived in code that had passing tests around it.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  build:
+    name: fmt, clippy, test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # rust-toolchain.toml pins the version; this action reads it, so CI and a
+      # local clone see the same lints.
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.97.1"
+          components: rustfmt, clippy
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Formatting
+        run: cargo fmt --all --check
+
+      # A warning that does not fail the build is a warning nobody reads.
+      - name: Clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      # Unit, property, golden logs, gates, examples, skill-consistency,
+      # concurrency against real SQLite, and the server suite — one command,
+      # because splitting them invites running only some.
+      - name: Test
+        run: cargo test --workspace --all-features
+
+      # The suite races real threads against a real file. Passing once is not
+      # the same as passing, so the concurrency tests run again on their own.
+      - name: Concurrency, repeated
+        run: |
+          for i in 1 2 3 4 5; do
+            cargo test -p graphene-exec --test concurrency || exit 1
+          done
+
+      - name: The skill installs into a fresh repository
+        run: |
+          cargo build
+          mkdir -p /tmp/fresh && cd /tmp/fresh && git init -q .
+          "$GITHUB_WORKSPACE/target/debug/gr" init .
+          test -f .claude/skills/graphene/SKILL.md
+          test -f .graphene/store.db
+
+  benchmark:
+    name: belief benchmark
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.97.1"
+      - uses: Swatinem/rust-cache@v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Pinned, not vendored. The SHA lives in bench/score.json so the number
+      # anyone reproduces is the number this measured.
+      - name: Fetch the pinned harness
+        run: |
+          SHA=$(python3 -c "import json;print(json.load(open('bench/score.json'))['harness_commit'])")
+          git clone --quiet https://github.com/mnemebrain/mnemebrain-benchmark
+          git -C mnemebrain-benchmark checkout --quiet "$SHA"
+          python3 -m pip install --quiet numpy
+
+      - name: Build gr
+        run: cargo build --release
+
+      # A regression in the score is a build failure, not a changed badge.
+      - name: Score, and refuse a regression
+        run: GRAPHENE_BIN="$PWD/target/release/gr" python3 bench/run_bmb.py --check
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bmb-score
+          path: bench/score.json

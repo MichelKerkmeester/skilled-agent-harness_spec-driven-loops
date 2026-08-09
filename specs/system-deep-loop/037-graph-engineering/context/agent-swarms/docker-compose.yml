@@ -1,0 +1,233 @@
+# AgentSwarms — self-hosted via Docker.
+#
+#   1. cp .env.example .env   (fill in your Supabase project + keys)
+#   2. Apply the database migrations once:  supabase link && supabase db push
+#   3. docker compose up --build
+#   4. Open http://localhost:8080
+#
+# Optional — the Developer-workspace SERVER RUNTIME (real Python kernels that can
+# pip install and run LangChain/LlamaIndex/LangGraph):
+#
+#   docker compose --profile notebooks up -d --build
+#
+# then turn it on in the app under Admin → Developer runtime. No env wiring is
+# needed: the app defaults to the service names below and generates its own
+# signing secret. See docs/DEVELOPER_WORKSPACE_RUNTIME.md.
+#
+# MCP Builder (Build → MCP Builder) runs on this same runtime — no extra service,
+# but it does need this profile up. Optional capacity knobs, if the defaults of 3
+# per user / 20 per instance don't suit: MCP_MAX_SERVERS_PER_USER,
+# MCP_MAX_SERVERS_TOTAL.
+#
+# Optional — the JS SANDBOX, so Function and custom-component nodes also run in
+# DEPLOYED (API-key) and SCHEDULED swarm runs rather than canvas-only:
+#
+#   docker compose --profile sandbox up -d --build
+#
+# See docs/DEPLOYMENT.md § "JS sandbox".
+#
+# Compose reads .env automatically: the VITE_* values are passed as build args
+# (inlined into the client bundle), everything else is runtime environment.
+services:
+  agentswarms:
+    build:
+      context: .
+      args:
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
+        VITE_SUPABASE_PUBLISHABLE_KEY: ${VITE_SUPABASE_PUBLISHABLE_KEY}
+        VITE_ADMIN_EMAIL: ${VITE_ADMIN_EMAIL}
+        VITE_BI_SNAPSHOT_ROWS_CAP: ${VITE_BI_SNAPSHOT_ROWS_CAP:-}
+        VITE_GA_ID: ${VITE_GA_ID:-}
+        VITE_GTM_ID: ${VITE_GTM_ID:-}
+        VITE_NOTEBOOK_GATEWAY_PORT: ${VITE_NOTEBOOK_GATEWAY_PORT:-}
+    env_file: .env
+    ports:
+      - "8080:8080"
+    # The egress allow-list edited in Admin -> Developer runtime is written
+    # here; the squid service mounts the same directory read-only. Without this
+    # the setting saves but never reaches the proxy.
+    volumes:
+      - ./deploy/notebooks/egress:/etc/agentswarms/egress
+    # nb-internal lets notebook kernels call back for governed model/KB access;
+    # js-internal lets the app reach the (optional) JS sandbox by service name.
+    networks: [default, nb-internal, js-internal]
+    restart: unless-stopped
+
+  # ── Developer-workspace server runtime (opt-in: --profile notebooks) ─────────
+
+  # Build-only helper so `--build` produces the kernel image the orchestrator
+  # launches. It never really runs (entrypoint exits immediately).
+  notebook-runtime-image:
+    build:
+      context: ./docker/notebook-runtime
+    image: agentswarms/notebook-runtime:latest
+    profiles: [notebooks]
+    entrypoint: ["/bin/true"]
+    restart: "no"
+
+  # Authenticated websocket bridge (browser ⇄ per-session kernel).
+  notebook-gateway:
+    build:
+      context: ./services/notebook-gateway
+    image: agentswarms/notebook-gateway:latest
+    profiles: [notebooks]
+    environment:
+      PORT: "8090"
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+      # Optional: only if you manage the signing secret yourself. Otherwise the
+      # gateway reads the server-generated one from the database.
+      NOTEBOOK_RUNTIME_SECRET: ${NOTEBOOK_RUNTIME_SECRET:-}
+      NOTEBOOK_CELL_TIMEOUT_SECONDS: ${NOTEBOOK_CELL_TIMEOUT_SECONDS:-120}
+    ports:
+      - "8090:8090"
+    networks: [default, nb-internal, nb-dev]
+    restart: unless-stopped
+
+  # Least-privilege Docker API: only container create/inspect/logs + write verbs
+  # are exposed to the app (never the raw /var/run/docker.sock).
+  notebook-docker-proxy:
+    image: tecnativa/docker-socket-proxy:latest # pin a digest in production
+    profiles: [notebooks]
+    environment:
+      # Only the API sections the orchestrator needs: create/inspect/stop/remove
+      # containers, plus read access to images and networks (preflight verifies
+      # the kernel image and network exist). Everything else — exec, volumes,
+      # swarm, secrets, system — stays denied by default.
+      #
+      # Note this proxy is reachable ONLY by the app (loopback + the compose
+      # network); notebook kernels never touch it, which is the boundary that
+      # actually matters.
+      CONTAINERS: "1"
+      IMAGES: "1"
+      NETWORKS: "1"
+      POST: "1"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    # Bound to LOOPBACK ONLY (never 0.0.0.0) so an app running on the host with
+    # `npm run dev` can reach it, without exposing container control to the
+    # network. Inside compose the app uses the service name instead.
+    ports:
+      - "127.0.0.1:2375:2375"
+    networks: [default]
+    restart: unless-stopped
+
+  # Default-deny egress proxy — the kernels' only route to the internet.
+  notebook-egress:
+    image: ubuntu/squid:latest # pin a digest in production
+    profiles: [notebooks]
+    # Fixed name so the app can locate and restart it when an administrator
+    # saves a new egress allow-list (squid re-reads ACL files only on start,
+    # and the docker socket proxy deliberately denies `exec`).
+    container_name: agentswarms-notebook-egress
+    volumes:
+      - ./deploy/notebooks/egress/squid.conf:/etc/squid/squid.conf:ro
+      - ./deploy/notebooks/egress/allowed_domains:/etc/squid/allowed_domains:ro
+    networks: [default, nb-internal, nb-dev]
+    restart: unless-stopped
+
+  # ── Server-side Office renderer (opt-in: --profile docgen) ───────────────────
+  # python-pptx (native editable charts/tables + LibreOffice render-verify),
+  # python-docx (multi-page Word) and openpyxl (Excel with LibreOffice formula
+  # recalc). No env wiring needed — the app probes `docgen:8099` (in-network) and
+  # `localhost:8099` (published below) and uses whichever answers, falling back
+  # to the in-browser generators when neither does.
+  docgen:
+    build:
+      context: ./docgen-service
+    image: agentswarms/docgen:latest
+    profiles: [docgen]
+    environment:
+      # Used only for the optional render-verify vision loop; falls back to no
+      # verification if unset.
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_DEFAULT_MODEL: ${OPENROUTER_DEFAULT_MODEL:-openai/gpt-4o-mini}
+      # Optional shared secret; if set, also put it in the app's DOCGEN_TOKEN.
+      DOCGEN_TOKEN: ${DOCGEN_TOKEN:-}
+    expose:
+      - "8099"
+    # Also published on the LOOPBACK interface only, so `npm run dev` on the
+    # host can reach it at http://localhost:8099. Without this the renderer is
+    # only addressable from inside the compose network, and Deep mode silently
+    # falls back to the browser build during local development. Bound to
+    # 127.0.0.1 rather than 0.0.0.0 because the service has no auth unless
+    # DOCGEN_TOKEN is set.
+    ports:
+      - "127.0.0.1:8099:8099"
+    restart: unless-stopped
+
+  # ── JS sandbox for headless custom code (opt-in: --profile sandbox) ─────────
+  # Runs Function and custom-component snippets for DEPLOYED (API-key) and
+  # SCHEDULED swarm runs. The canvas keeps using the in-browser Worker sandbox;
+  # this exists so the same node also works unattended.
+  #
+  # It is a separate container because the app process holds the service-role
+  # key and provider credentials — user JavaScript must never share a realm
+  # with those. Everything below is the isolation, and it is deliberately
+  # stricter than the notebook runtime because a snippet needs nothing:
+  #   js-internal  no route to the internet AND none back to the app
+  #   read_only    nothing on disk can be modified
+  #   cap_drop ALL no privileged syscalls
+  #   no-new-privileges  a setuid binary cannot escalate
+  #   pids/mem/cpu limits  a runaway snippet cannot starve the host
+  # Inside the process each request additionally gets a fresh V8 realm in a
+  # worker thread that is terminated afterwards (services/js-sandbox).
+  #
+  # Enable with:
+  #   docker compose --profile sandbox up -d --build
+  #   JS_SANDBOX_URL=http://js-sandbox:8091   (in .env; already the default
+  #   the app tries, so this line is only needed if you rename/move it)
+  js-sandbox:
+    build:
+      context: ./services/js-sandbox
+    image: agentswarms/js-sandbox:latest
+    profiles: [sandbox]
+    environment:
+      PORT: "8091"
+      # Shared secret with the app. Defaults to the service-role key, which the
+      # app also falls back to, so no extra wiring is needed.
+      INTERNAL_RUN_SECRET: ${INTERNAL_RUN_SECRET:-${SUPABASE_SERVICE_ROLE_KEY}}
+      JS_SANDBOX_MAX_TIMEOUT_MS: ${JS_SANDBOX_MAX_TIMEOUT_MS:-5000}
+      JS_SANDBOX_MAX_CONCURRENT: ${JS_SANDBOX_MAX_CONCURRENT:-4}
+      JS_SANDBOX_MEM_MB: ${JS_SANDBOX_MEM_MB:-128}
+    expose:
+      - "8091"
+    # Published on LOOPBACK only, so `npm run dev` on the host can reach it at
+    # http://localhost:8091. Never 0.0.0.0: this endpoint executes code, and its
+    # only guard is the shared secret.
+    ports:
+      - "127.0.0.1:8091:8091"
+    networks: [js-internal]
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    pids_limit: 128
+    mem_limit: 512m
+    cpus: 1.0
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    restart: unless-stopped
+
+# Network topology for the runtime (egress control):
+#   nb-internal — internal:true, so kernels have NO direct internet. Members:
+#                 app, gateway, egress proxy, and the per-session kernels.
+#   default     — has internet. Members: app, gateway, egress, docker-proxy.
+# Kernels sit on nb-internal ONLY: they can reach the app (callbacks) and the
+# egress proxy, but the only route off-box is the allowlisted proxy.
+networks:
+  default: {}
+  # The JS sandbox sits here alone: internal:true means no internet, and the
+  # app reaches it because the app joins this network too (see below). The
+  # sandbox itself can initiate nothing — it only answers.
+  js-internal:
+    name: agentswarms_js-internal
+    internal: true
+  nb-internal:
+    name: agentswarms_nb-internal
+    internal: true
+  # Used only when the app runs on the HOST (npm run dev): kernels need a route
+  # back to the host, which an `internal` network cannot provide. Same DNS and
+  # gateway reachability, weaker egress isolation — dev only.
+  nb-dev:
+    name: agentswarms_nb-dev

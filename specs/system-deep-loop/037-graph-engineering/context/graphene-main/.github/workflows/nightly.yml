@@ -1,0 +1,45 @@
+# Spec 10 §9: extended property generation with a larger seed space.
+#
+# The commit-time suite runs 24 fixed seeds in a few seconds. This reaches
+# further into the state space than a commit can afford to wait for. A failure
+# names its seed, and the seed is the whole reproduction.
+name: nightly
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+    inputs:
+      seeds:
+        description: How many seeds
+        default: "400"
+      steps:
+        description: How many events per generated log
+        default: "400"
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  properties:
+    name: extended property generation
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.97.1"
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Properties over a wider seed space
+        env:
+          GRAPHENE_SEEDS: ${{ inputs.seeds || '400' }}
+          GRAPHENE_STEPS: ${{ inputs.steps || '400' }}
+        run: cargo test --release -p graphene-core --test properties -- --nocapture
+
+      - name: Golden logs and gates, against the same build
+        run: |
+          cargo test --release -p graphene-core --test golden
+          cargo test --release -p graphene-check --test gates

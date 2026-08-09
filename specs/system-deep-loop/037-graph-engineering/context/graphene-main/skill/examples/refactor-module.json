@@ -1,0 +1,33 @@
+{
+  "graph": "task.v1",
+  "goal": "Extract the auth middleware into its own module without changing behaviour.",
+  "nodes": [
+    { "id": "read-current", "job": "retrieval", "run": "repo",
+      "prompt": "Read the current auth middleware and everything that imports it.",
+      "outputs": { "type": "object", "properties": { "sites": { "type": "array", "items": { "type": "string" } } }, "required": ["sites"] } },
+
+    { "id": "extract", "job": "agent",
+      "prompt": "Move the middleware into its own module. One writer for this file.",
+      "needs": ["read-current"],
+      "inputs": { "type": "object", "properties": { "sites": { "type": "array", "items": { "type": "string" } } }, "required": ["sites"] },
+      "outputs": { "type": "object", "properties": { "changed": { "type": "array", "items": { "type": "string" } } }, "required": ["changed"] },
+      "bindings": [{ "from": "read-current", "select": "$.sites", "into": "sites" }],
+      "writes": ["src/auth/middleware.ts"] },
+
+    { "id": "update-callers", "job": "agent",
+      "prompt": "Update every import site to the new path.",
+      "needs": ["extract"],
+      "inputs": { "type": "object", "properties": { "changed": { "type": "array", "items": { "type": "string" } } }, "required": ["changed"] },
+      "outputs": { "type": "object", "properties": { "updated": { "type": "number" } }, "required": ["updated"] },
+      "bindings": [{ "from": "extract", "select": "$.changed", "into": "changed" }],
+      "writes": ["src/auth/callers.ts"] },
+
+    { "id": "tests", "job": "function", "run": "npm test",
+      "needs": ["update-callers"],
+      "inputs": { "type": "object", "properties": { "updated": { "type": "number" } }, "required": ["updated"] },
+      "outputs": { "type": "object", "properties": { "passed": { "type": "boolean" } }, "required": ["passed"] },
+      "bindings": [{ "from": "update-callers", "select": "$.updated", "into": "updated" }],
+      "retry": { "bounded": { "attempts": 2 } },
+      "idempotency": "npm-test" }
+  ]
+}

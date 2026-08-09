@@ -216,10 +216,15 @@ function hasDispatchText(value) {
   return /\bopencode\s+run\b|\b(?:claude|devin|cursor-agent|pi)\b[^\n;&|]*\s(?:-p|--print)\b|\bcodex\s+exec\b[^\n;&|]*\s(?:-p|--print)\b/.test(value);
 }
 
-function hasDispatchEvidence(tokens) {
+function hasDispatchEvidence(tokens, commandHasPrintFlag) {
   const hasPrintFlag = tokens.some((token) => PRINT_FLAGS.has(token.value));
   const knownExecutor = hasKnownExecutorToken(tokens);
-  const embeddedExecutor = tokens.some((token) => !token.quoted && /(?:^|=|\/)(?:opencode|claude|codex|devin|cursor-agent|pi)$/.test(token.value));
+  // An executor token only signals dispatch intent when it is embedded (alias value, env
+  // assignment, path — `d=devin`, `x/pi`) AND a print flag is present: a bare `pi list` or
+  // `devin auth status` is a plain CLI subcommand, not a dispatch. The flag is read
+  // command-wide because the embedded signal can sit in a different segment than the flag
+  // it belongs to (e.g. `alias d=devin; d -p task`).
+  const embeddedExecutor = commandHasPrintFlag && tokens.some((token) => !token.quoted && /(?:=|\/)(?:opencode|claude|codex|devin|cursor-agent|pi)$/.test(token.value));
   const variableExecutor = tokens.some((token) => token.expanded) && hasPrintFlag;
   const expandedDispatch = tokens.some((token) => token.expanded && hasDispatchText(token.value));
   return (knownExecutor && hasPrintFlag) || embeddedExecutor || variableExecutor || expandedDispatch;
@@ -239,10 +244,11 @@ export function inspectDispatch(command) {
     const parsed = tokenizeShell(command);
     const direct = [];
     let candidate = false;
+    const commandHasPrintFlag = parsed.segments.some((tokens) => tokens.some((token) => PRINT_FLAGS.has(token.value)));
     for (const tokens of parsed.segments) {
       const executor = directExecutor(tokens);
       if (executor) direct.push(executor);
-      else if (hasDispatchEvidence(tokens)) candidate = true;
+      else if (hasDispatchEvidence(tokens, commandHasPrintFlag)) candidate = true;
     }
 
     if (!parsed.malformed && !parsed.unsupported && direct.length === 1 && !candidate) {

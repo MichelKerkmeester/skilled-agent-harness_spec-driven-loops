@@ -1,0 +1,59 @@
+{
+  "graph": "task.v1",
+  "goal": "Compare three competitors on pricing and positioning.",
+  "nodes": [
+    { "id": "scope", "job": "agent",
+      "prompt": "Name the three competitors worth comparing and the dimensions that matter.",
+      "outputs": { "type": "object",
+        "properties": { "competitors": { "type": "array", "items": { "type": "string" } } },
+        "required": ["competitors"] } },
+
+    { "id": "research-a", "job": "agent", "prompt": "Research competitor A on the agreed dimensions.",
+      "needs": ["scope"],
+      "inputs": { "type": "object", "properties": { "competitors": { "type": "array", "items": { "type": "string" } } }, "required": ["competitors"] },
+      "outputs": { "type": "object", "properties": { "findings": { "type": "string" } }, "required": ["findings"] },
+      "bindings": [{ "from": "scope", "select": "$.competitors", "into": "competitors" }] },
+
+    { "id": "research-b", "job": "agent", "prompt": "Research competitor B on the agreed dimensions.",
+      "needs": ["scope"],
+      "inputs": { "type": "object", "properties": { "competitors": { "type": "array", "items": { "type": "string" } } }, "required": ["competitors"] },
+      "outputs": { "type": "object", "properties": { "findings": { "type": "string" } }, "required": ["findings"] },
+      "bindings": [{ "from": "scope", "select": "$.competitors", "into": "competitors" }] },
+
+    { "id": "research-c", "job": "agent", "prompt": "Research competitor C on the agreed dimensions.",
+      "needs": ["scope"],
+      "inputs": { "type": "object", "properties": { "competitors": { "type": "array", "items": { "type": "string" } } }, "required": ["competitors"] },
+      "outputs": { "type": "object", "properties": { "findings": { "type": "string" } }, "required": ["findings"] },
+      "bindings": [{ "from": "scope", "select": "$.competitors", "into": "competitors" }] },
+
+    { "id": "verify-sources", "job": "agent",
+      "prompt": "A separate context. For each finding, does the cited source exist and say this? Do not trust the researcher.",
+      "needs": ["research-a", "research-b", "research-c"],
+      "inputs": { "type": "object", "properties": { "a": { "type": "string" }, "b": { "type": "string" }, "c": { "type": "string" } }, "required": ["a", "b", "c"] },
+      "outputs": { "type": "object", "properties": { "verdicts": { "type": "string" } }, "required": ["verdicts"] },
+      "bindings": [
+        { "from": "research-a", "select": "$.findings", "into": "a" },
+        { "from": "research-b", "select": "$.findings", "into": "b" },
+        { "from": "research-c", "select": "$.findings", "into": "c" }
+      ] },
+
+    { "id": "merge-comparison", "job": "merge",
+      "prompt": "One owner. Consolidate the surviving findings into a comparison.",
+      "needs": ["research-a", "research-b", "research-c", "verify-sources"],
+      "inputs": { "type": "object",
+        "properties": { "a": { "type": "string" }, "b": { "type": "string" }, "c": { "type": "string" }, "verdicts": { "type": "string" } },
+        "required": ["a", "b", "c", "verdicts"] },
+      "outputs": { "type": "object", "properties": { "comparison": { "type": "string" } }, "required": ["comparison"] },
+      "bindings": [
+        { "from": "research-a", "select": "$.findings", "into": "a" },
+        { "from": "research-b", "select": "$.findings", "into": "b" },
+        { "from": "research-c", "select": "$.findings", "into": "c" },
+        { "from": "verify-sources", "select": "$.verdicts", "into": "verdicts" }
+      ] },
+
+    { "id": "review-granularity", "job": "review", "lens": "granularity",
+      "prompt": "Which nodes do more than one thing? For each, propose the split." },
+    { "id": "review-dependency", "job": "review", "lens": "dependency",
+      "prompt": "For each edge — does the target actually read the source's output? Name the edges you would delete." }
+  ]
+}
