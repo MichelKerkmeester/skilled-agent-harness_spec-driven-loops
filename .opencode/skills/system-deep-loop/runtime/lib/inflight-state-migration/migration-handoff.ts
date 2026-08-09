@@ -199,6 +199,19 @@ export function verifyInflightMigrationHandoff(
     const manifestRowIds = new Set(manifest.rows.map((row) => row.rowId));
     if (!rowIds.every((rowId) => manifestRowIds.has(rowId))) return false;
 
+    // Every handoff row must carry the exact disposition the classification
+    // manifest froze for that row. Without this bind a row the manifest froze
+    // as a non-BLOCK class (e.g. MIGRATE) that vetoed to a terminal BLOCKED
+    // receipt could be relabeled `BLOCK` and re-digested, masquerading as a
+    // legitimate permanent-legacy pin and slipping past the successor's
+    // vetoing-block denial.
+    const manifestDispositionByRowId = new Map(
+      manifest.rows.map((row) => [row.rowId, row.disposition]),
+    );
+    if (core.rows.some((row) => row.disposition !== manifestDispositionByRowId.get(row.rowId))) {
+      return false;
+    }
+
     let committedRows = 0;
     let blockedRows = 0;
     let abortedRows = 0;

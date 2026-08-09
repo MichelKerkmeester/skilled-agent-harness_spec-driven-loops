@@ -753,4 +753,33 @@ describe('inflight migration handoff', () => {
     const tampered = { ...handoff, finalDigest: digest('tampered') };
     expect(verifyInflightMigrationHandoff(MANIFEST, tampered)).toBe(false);
   });
+
+  it('rejects a handoff row whose disposition was forged away from the manifest', async () => {
+    const receipts = await runAllRowsToTerminal(temporaryRoot('handoff-disposition-forge'));
+    const handoff = buildInflightMigrationHandoff(MANIFEST, receipts);
+    // A row the manifest froze as MIGRATE that vetoed to a terminal BLOCKED
+    // receipt is a genuine unresolved block. Relabeling only its handoff
+    // disposition to BLOCK (and recomputing the digest over the tampered core)
+    // must not let it masquerade as a legitimate permanent-legacy pin.
+    const migrateRowId = MANIFEST.rows.find(
+      (row) => row.disposition === InflightDisposition.MIGRATE,
+    )?.rowId;
+    expect(migrateRowId).toBeDefined();
+    const target = handoff.rows.find((row) => row.rowId === migrateRowId);
+    expect(target?.status).toBe(MigrationOperationStatuses.BLOCKED);
+    expect(target?.disposition).toBe(InflightDisposition.MIGRATE);
+    const forgedRows = handoff.rows.map((row) =>
+      row.rowId === migrateRowId ? { ...row, disposition: InflightDisposition.BLOCK } : row,
+    );
+    const forgedCore = {
+      handoffVersion: handoff.handoffVersion,
+      classificationManifestDigest: handoff.classificationManifestDigest,
+      rows: forgedRows,
+      blockedRowIds: handoff.blockedRowIds,
+      pinnedRowIds: handoff.pinnedRowIds,
+      closure: handoff.closure,
+    };
+    const forged = { ...forgedCore, finalDigest: sha256Bytes(canonicalBytes(forgedCore as never)) };
+    expect(verifyInflightMigrationHandoff(MANIFEST, forged)).toBe(false);
+  });
 });
