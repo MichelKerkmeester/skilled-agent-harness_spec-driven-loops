@@ -541,4 +541,4 @@ Skills are on-demand domain expertise invoked through Gate 2 (§2): when the adv
 | **Memory DB admin** | `/memory:manage` → stats, health, cleanup, retention, validate, ingest |
 | **Analysis / evaluation** | `/memory:search` → preflight, causal graph, ablation, dashboard, history |
 | **Constitutional memory** | `/memory:learn` → create, list, edit, remove, budget |
-| **Doctor surface** | `/doctor <target>` diagnostics/repairs; `/doctor:mcp install\|debug`; `/doctor:update` |
+| **Doctor surface** | `/doctor <target>` diagnostics/repairs; `/doctor:mcp install/debug`; `/doctor:update` |
