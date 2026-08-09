@@ -125,6 +125,8 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 
 ### 🔒 PRE-EXECUTION GATES (Pass before ANY tool use)
 
+> **Evaluation order:** Gate 3 (Spec Folder) is the PRIORITY gate — on any file-modification request it is asked and answered FIRST, before Gates 1, 2, and 4. The numbers are stable identities, not the execution sequence.
+
 #### GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT] BLOCK
 Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 1. Call `memory_match_triggers(prompt)` → Surface relevant context
@@ -175,20 +177,6 @@ Consolidate multiple questions into a SINGLE prompt before any analysis or tool 
 
 ### 🔒 POST-EXECUTION GATES
 
-#### MEMORY SAVE RULE [HARD] BLOCK
-Trigger: "save context", "save memory", `/memory:save`
-- If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
-- If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
-- **Metadata + index save:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
-  - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`.
-  - Refreshes `graph-metadata.json` and `description.json` and hands off DB/embedding indexing; it writes NO canonical doc content — canonical spec-doc content is owned by the MCP `memory_save` content-router path.
-- **Quick continuity update:** AI may directly edit `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md` without running generate-context.js (per ADR-004). The resume ladder only reads continuity from `implementation-summary.md`.
-- **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
-- **Post-Save Review:** After `generate-context.js` completes, check the POST-SAVE QUALITY REVIEW output.
-  - **HIGH** issues: MUST manually patch via Edit tool (fix title, trigger_phrases, importance_tier)
-  - **MEDIUM** issues: patch when practical
-  - **PASSED/SKIPPED**: no action needed
-
 #### FINAL-STATE VERIFICATION [HARD] BLOCK
 Trigger: Before claiming a machine-state task is done or that its output works.
 1. Confirm every required artifact exists at the exact path and matches the required format.
@@ -209,6 +197,20 @@ Trigger: Claiming "done", "complete", "finished", "works"
    - `implementation-summary.md` final state, validation evidence, and continuation notes.
 4. When `SPECKIT_COMPLETION_FRESHNESS=true`, completion claims must also pass `CONTINUITY_FRESHNESS`: the stored `session_dedup.fingerprint` matches recomputed content and packet-scoped paths are clean. Under `--strict` a stale result blocks completion (exit 2) for non-grandfathered packets regardless of `SPECKIT_COMPLETION_FRESHNESS_ENFORCE`; that flag only reclassifies the inner result label `warn`→`error`, it does not make the warn tier non-blocking under `--strict`.
 - Skip: Level 1 tasks (no checklist.md required).
+
+#### MEMORY SAVE RULE [HARD] BLOCK
+Trigger: "save context", "save memory", `/memory:save`
+- If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
+- If NO folder and Gate 3 never answered → HARD BLOCK → Ask user
+- **Metadata + index save:** `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js`
+  - AI composes structured JSON with session context, writes to `/tmp/save-context-data.json`, passes as first arg. Alternatively use `--json '<inline-json>'` or `--stdin`.
+  - Refreshes `graph-metadata.json` and `description.json` and hands off DB/embedding indexing; it writes NO canonical doc content — canonical spec-doc content is owned by the MCP `memory_save` content-router path.
+- **Quick continuity update:** AI may directly edit `_memory.continuity` YAML frontmatter blocks in `implementation-summary.md` without running generate-context.js (per ADR-004). The resume ladder only reads continuity from `implementation-summary.md`.
+- **Indexing:** For immediate MCP visibility after save: `memory_index_scan({ specFolder })` or `memory_save()`
+- **Post-Save Review:** After `generate-context.js` completes, check the POST-SAVE QUALITY REVIEW output.
+  - **HIGH** issues: MUST manually patch via Edit tool (fix title, trigger_phrases, importance_tier)
+  - **MEDIUM** issues: patch when practical
+  - **PASSED/SKIPPED**: no action needed
 
 #### VIOLATION RECOVERY [SELF-CORRECTION]
 Trigger: About to skip gates, or realized gates were skipped → STOP → STATE: "Before I proceed, I need to ask about documentation:" → ASK Gate 3 (A/B/C/D/E) → WAIT
