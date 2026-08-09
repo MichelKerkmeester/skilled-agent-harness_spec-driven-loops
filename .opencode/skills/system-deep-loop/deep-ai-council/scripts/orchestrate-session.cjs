@@ -83,8 +83,16 @@ function loadCouncilConfig(configPath = COUNCIL_CONFIG_PATH) {
   return fs.existsSync(configPath) ? JSON.parse(fs.readFileSync(configPath, 'utf8')) : {};
 }
 
+function stripFrontmatter(content) {
+  return String(content || '').replace(/^---[\s\S]*?---\n/, '');
+}
+
 function loadPromptTemplate(promptPath = PROMPT_PACK_PATH) {
-  return fs.readFileSync(promptPath, 'utf8');
+  // A rendered seat prompt is passed to the executor CLI as one positional
+  // argument; a raw leading `---` from this template's own authoring
+  // frontmatter reads as a CLI option to some parsers (e.g. Pi), so the
+  // frontmatter must not survive into the seat prompt text.
+  return stripFrontmatter(fs.readFileSync(promptPath, 'utf8'));
 }
 
 function stringifyForPrompt(value) {
