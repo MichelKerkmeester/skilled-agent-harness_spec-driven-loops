@@ -163,6 +163,34 @@ function packageRoot(workspaceRoot, pkg) {
   return path.resolve(workspaceRoot, pkg.root);
 }
 
+// A package is buildable in THIS checkout only when its own manifest and its
+// installed dependencies are both present. Each package's dist/ and node_modules
+// are gitignored and populated per-checkout — by a local build, or by the
+// launch-wrapper symlinking them from the main tree. A bare worktree that ran
+// neither has neither, so its rebuildCommand (`npm run build`) cannot succeed
+// here. That is a provisioning gap, not source drift: reporting it as "stale"
+// makes the guard warn (or attempt a doomed rebuild) about work it is powerless
+// to do in this checkout. Distinguishing the two keeps the guard silent where
+// it cannot help and fully active where it can.
+function isPackageProvisioned(root) {
+  return fs.existsSync(path.join(root, 'package.json'))
+    && fs.existsSync(path.join(root, 'node_modules'));
+}
+
+function unprovisionedResult(pkg, root, distEntry, entry) {
+  return {
+    packageId: pkg.id,
+    packageName: pkg.name,
+    status: 'unprovisioned',
+    stale: false,
+    packageRoot: root,
+    distEntry: distEntry || null,
+    entry,
+    rebuildCommand: pkg.rebuildCommand,
+    message: `${pkg.name} is not provisioned in this checkout (missing package.json or node_modules); dist freshness cannot be assessed or rebuilt here`,
+  };
+}
+
 function normalizeEntryName(pkg, entryName = 'default') {
   if (pkg.distEntries[entryName]) return entryName;
   if (entryName === 'default') return 'default';
@@ -606,8 +634,11 @@ function checkPackageFreshness(packageId, options = {}) {
     return freshnessError(pkg, `Unknown dist entry "${entryName}" for ${pkg.id}`, { packageRoot: root });
   }
 
+  const provisioned = isPackageProvisioned(root);
+
   const distEntry = distEntryFor(pkg, root, normalizedEntry);
   if (!distEntry || !fs.existsSync(distEntry)) {
+    if (!provisioned) return unprovisionedResult(pkg, root, distEntry, normalizedEntry);
     return {
       packageId: pkg.id,
       packageName: pkg.name,
@@ -658,6 +689,7 @@ function checkPackageFreshness(packageId, options = {}) {
     const stored = readStoredBuildRecord(cachePath);
     if (stored?.version === CACHE_VERSION && stored.origin === 'build') {
       if (stored.sourceHash !== sourceHash) {
+        if (!provisioned) return unprovisionedResult(pkg, root, distEntry, normalizedEntry);
         return {
           packageId: pkg.id,
           packageName: pkg.name,
@@ -672,6 +704,7 @@ function checkPackageFreshness(packageId, options = {}) {
         };
       }
       if (typeof stored.distHash !== 'string' || stored.distHash !== distHash) {
+        if (!provisioned) return unprovisionedResult(pkg, root, distEntry, normalizedEntry);
         return {
           packageId: pkg.id,
           packageName: pkg.name,
@@ -726,6 +759,7 @@ function checkPackageFreshness(packageId, options = {}) {
     }
     const distMtime = fs.statSync(distEntry).mtimeMs;
     if (newestSourceMtime > distMtime) {
+      if (!provisioned) return unprovisionedResult(pkg, root, distEntry, normalizedEntry);
       return {
         packageId: pkg.id,
         packageName: pkg.name,

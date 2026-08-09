@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/023-dist-guard-skip-unprovisioned",
+  "spec_folder": "sk-code/023-dist-guard-skip-unprovisioned",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dist guard skip unprovisioned",
+      "dist freshness unprovisioned package",
+      "bare worktree dist warning",
+      "check-dist-staleness worktree noise",
+      "dist guard skip unprovisioned plan",
+      "dist freshness provisioning check plan",
+      "dist guard skip unprovisioned tasks",
+      "dist freshness provisioning tasks",
+      "dist guard skip unprovisioned implementation",
+      "dist freshness unprovisioned summary"
+    ],
+    "key_topics": [
+      "dist",
+      "guard",
+      "skip",
+      "unprovisioned",
+      "freshness",
+      "package",
+      "bare",
+      "worktree",
+      "warning",
+      "check-dist-staleness",
+      "noise",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dist Guard Skip Unprovisioned Packages",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Classify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built One",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Traced",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Teach the dist-staleness checker to report a package as unprovisioned (skip) instead of stale when it is not buildable in this checkout, so bare worktrees stop warning about work the guard cannot do.",
+    "created_at": "2026-08-09T06:16:27.735Z",
+    "last_save_at": "2026-08-09T06:16:27.735Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e7424aa18e7163f764730c3ac7d668727efed5e0c576d602f1fb9e6a0272a91a",
+    "source_doc_hashes": {
+      "spec.md": "21bf587c3e4f07a6c6ebb1ed564cc0a7296055df32b330f7ce503d9e9e1a6921",
+      "plan.md": "5b3dcfcba3d2e319babc3e168d07a62714f334b5882640daf7386cc532d6bd92",
+      "tasks.md": "f4a2bbddd56296d8c15ab185e3fc2e29b4d52eef5d3de8a2671fd04b71a11f8e",
+      "implementation-summary.md": "9c557ed0962be7229aa474b9f0e1d4ff0906c7e7a25398b6f9a601f48d659217"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
