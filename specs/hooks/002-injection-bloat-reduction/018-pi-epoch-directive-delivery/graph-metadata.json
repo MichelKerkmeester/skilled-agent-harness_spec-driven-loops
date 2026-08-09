@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/018-pi-epoch-directive-delivery",
+  "spec_folder": "hooks/002-injection-bloat-reduction/018-pi-epoch-directive-delivery",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi epoch directive delivery",
+      "pi headed headless directive dedup",
+      "pi full first route only repeats",
+      "Pi compact directive semantics",
+      "pi epoch directive delivery plan",
+      "pi headed headless epoch plan",
+      "pi route only lifecycle replay",
+      "pi epoch directive delivery tasks",
+      "pi epoch directive delivery checklist",
+      "pi headed headless epoch verification",
+      "pi epoch directive delivery implementation",
+      "pi epoch directive delivery summary"
+    ],
+    "key_topics": [
+      "epoch",
+      "directive",
+      "delivery",
+      "headed",
+      "headless",
+      "dedup",
+      "full",
+      "first",
+      "route",
+      "only",
+      "repeats",
+      "compact"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".opencode/hooks/dispatch/pi/directive-dedup.test.ts",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+      ".opencode/hooks/dispatch/pi/compact-dispatch-semantics.test.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "directive-dedup.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/directive-dedup.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "policy-plan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-dispatch-semantics.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/compact-dispatch-semantics.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Epoch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Directive Delivery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Verified full and compact Pi dispatch directive semantics, confirmed existing lifecycle epoch resets, and kept compact activation disabled.",
+    "created_at": "2026-08-09T09:35:48.321Z",
+    "last_save_at": "2026-08-09T14:53:00.537Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:70693fae7f58b6d0946e82e46ef30344e3db8c80f8055a367a2478cbf65a8313",
+    "source_doc_hashes": {
+      "spec.md": "3917dd557002a10b1ec988deeea71a29486f2f2a29ed6324be6b86012d9f8ec8",
+      "plan.md": "fad3bd93f7f7379436914f010336613f99852375d3b7926bdad938a01ae2082c",
+      "tasks.md": "13b547a45975986388e4ddad506debec503281ffccdf96d78c4dc57e37f04a6c",
+      "checklist.md": "7b8ac476e5db9159a39bb3ee94ea5879526fc44af73b2ead43a5e65d042c6981",
+      "implementation-summary.md": "276cc966035163c336367c87b484022a75abaee8cf4b0c5ffe7914c808d58b9e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

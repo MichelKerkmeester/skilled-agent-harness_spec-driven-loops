@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/019-injection-measurement-and-rollback",
+  "spec_folder": "hooks/002-injection-bloat-reduction/019-injection-measurement-and-rollback",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "injection measurement and rollback",
+      "fallback emission rate",
+      "migration byte receipts",
+      "Gate-3 suppression verification",
+      "injection measurement and rollback plan",
+      "migration measurement receipts",
+      "fallback counter plan",
+      "injection measurement and rollback tasks",
+      "migration receipt tasks",
+      "injection measurement and rollback checklist",
+      "migration receipt verification",
+      "fallback emission rate verification"
+    ],
+    "key_topics": [
+      "injection",
+      "measurement",
+      "rollback",
+      "fallback",
+      "emission",
+      "rate",
+      "migration",
+      "byte",
+      "receipts",
+      "gate-3",
+      "suppression",
+      "verification"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "specs/hooks/001-per-prompt-injection-audit/research/research.md",
+      "specs/hooks/002-injection-bloat-reduction/014-injection-surface-deprecation-research/research/research.md",
+      "specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/rollback-procedure.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
+      "scripts/measure-injection-footprint.cjs",
+      "scripts/verify-037-live.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "rollback-procedure.md",
+        "kind": "doc",
+        "path": "specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/rollback-procedure.md",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "policy-plan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "measure-injection-footprint.cjs",
+        "kind": "file",
+        "path": "scripts/measure-injection-footprint.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-037-live.cjs",
+        "kind": "file",
+        "path": "scripts/verify-037-live.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Injection Measurement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Harness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Four Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "packet-local",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Completed source-executed injection measurement, Gate-3 wiring verification, and per-phase rollback documentation without changing runtime emission.",
+    "created_at": "2026-08-09T09:35:54.780Z",
+    "last_save_at": "2026-08-09T14:53:04.389Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e5bf0a34a16980c0d87f73c8bb4d51d2287439bf7e929ac54d302c49112fab82",
+    "source_doc_hashes": {
+      "spec.md": "9ee6c35397782481b9c19f7416fac69f9fc71b69efb2a168c9aea7ad802498b7",
+      "plan.md": "ca4b3b4fd7252123ad56ae25e52348f28d0467ede96a210d4542a6b805eb2d4c",
+      "tasks.md": "fe923f6bc57900f5fc883b656e931086a4ad06eefda4fa80f21ddd2754d31375",
+      "checklist.md": "80217b7e6cf9a3db6306f1db894153729196898d19f6c46e2891a0fe65745e46",
+      "implementation-summary.md": "d224d7d8335c1b127aa6b5c0d9846d43b9c531251b2ecb84833d69376f8a4d62"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

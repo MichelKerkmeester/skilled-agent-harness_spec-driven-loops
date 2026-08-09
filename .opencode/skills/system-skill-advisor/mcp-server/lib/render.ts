@@ -6,6 +6,7 @@ import { canonicalFold } from './shared/unicode-normalization.js';
 import { resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
 import {
   buildAdvisorRenderPlan,
+  buildObservedReceiptMatch,
   evaluateDeliveryState,
   isObservedDeliveryReceipt,
   observeRenderedAdvisorPolicy,
@@ -15,7 +16,8 @@ import {
   recordObservedPolicyDelivery,
   ROUTE_ADVISOR_ID,
   SHADOW_DELIVERY_STATE_MACHINE,
-  type DeliveryStateMachine,
+  shouldForceFullAdvisorPolicy,
+  DeliveryStateMachine,
   type DeliveryStateReceipt,
   type DeliveryStateName,
   type DeliveryStateSignals,
@@ -41,6 +43,7 @@ export interface AdvisorBriefRenderOptions {
 export interface ShadowDeliveryRenderOptions extends DeliveryStateSignals {
   readonly runtime?: string;
   readonly candidate?: string | null;
+  readonly forceFull?: boolean;
   readonly stateMachine?: DeliveryStateMachine;
   readonly deliveryConfirmed?: boolean;
   readonly receipt?: DeliveryStateReceipt;
@@ -88,7 +91,14 @@ const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 const ROUTE_ONLY_SHADOW_ID = 'shadow.route-only.advisor.v1';
 const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
 export const ROUTE_ONLY_ESTIMATED_BYTES = 43;
+export const ROUTE_ONLY_DELIVERY_KILL_SWITCH_ENV = 'SPECKIT_ROUTE_ONLY_ADVISOR_DISABLED';
 const MAX_SHADOW_ROUTE_ONLY_LOG = 256;
+const ROUTE_ONLY_ACTIVATED_RUNTIMES = new Set([
+  'Claude Code',
+  'Codex',
+  'Devin',
+  'OpenCode',
+]);
 
 function directiveBlockIds(): readonly string[] {
   return Object.freeze([
@@ -253,6 +263,57 @@ function directiveBlocksSuppressed(
   return true;
 }
 
+function activatedRouteOnlyRuntime(runtime: string | undefined): boolean {
+  return process.env[ROUTE_ONLY_DELIVERY_KILL_SWITCH_ENV] !== '1'
+    && typeof runtime === 'string'
+    && ROUTE_ONLY_ACTIVATED_RUNTIMES.has(runtime);
+}
+
+/**
+ * Consume the delivery-state decision at a runtime boundary.
+ * Any missing proof returns the original full policy bytes.
+ */
+export function selectAdvisorDelivery(
+  rendered: string | null,
+  deliveryState: ShadowDeliveryRenderOptions = {},
+): string | null {
+  if (rendered === null
+    || deliveryState.forceFull === true
+    || !activatedRouteOnlyRuntime(deliveryState.runtime)) {
+    return rendered;
+  }
+
+  try {
+    const plan = buildAdvisorRenderPlan(rendered);
+    const machine = deliveryState.stateMachine ?? SHADOW_DELIVERY_STATE_MACHINE;
+    let epochSnapshot = machine.advanceForSignals(deliveryState);
+    if (epochSnapshot.sessionKnown && epochSnapshot.epoch === 0) {
+      epochSnapshot = machine.advanceEpoch({
+        ...stateSignalsForBlock(deliveryState),
+        lifecycleEvent: 'startup',
+      });
+    }
+    if (!epochSnapshot.sessionKnown || epochSnapshot.epoch < 1) {
+      return rendered;
+    }
+
+    const blockOptions = stateSignalsForBlock(deliveryState);
+    const decisions = plan.blocks.map((block) => evaluateDeliveryState({
+      ...blockOptions,
+      blockId: block.id,
+      contentHash: block.contentHash,
+    }, machine));
+    const routeIndex = plan.blocks.findIndex((block) => block.id === ROUTE_ADVISOR_ID);
+    const routeDecision = routeIndex === -1 ? null : decisions[routeIndex] ?? null;
+    if (!routeDecision?.routeOnlyEligible || !directiveBlocksSuppressed(plan, decisions)) {
+      return rendered;
+    }
+    return renderRouteOnlyAdvisorBrief(rendered) ?? rendered;
+  } catch {
+    return rendered;
+  }
+}
+
 function recordObservedBlockDeliveries(
   plan: ReturnType<typeof buildAdvisorRenderPlan>,
   shadowOptions: ShadowDeliveryRenderOptions,
@@ -365,6 +426,13 @@ export function observeEmittedAdvisorPolicy(
     const epoch = machine.currentEpoch(deliveryState);
     const plan = buildAdvisorRenderPlan(rendered);
     for (const block of plan.blocks) {
+      const receipt = buildObservedReceiptMatch(block.contentHash, epoch);
+      machine.recordDelivery({
+        ...stateSignalsForBlock(deliveryState),
+        blockId: block.id,
+        contentHash: block.contentHash,
+        receipt,
+      });
       recordObservedPolicyDelivery({
         runtime,
         candidate: deliveryState.candidate ?? OBSERVED_ADVISOR_POLICY_CANDIDATE,
@@ -477,3 +545,5 @@ export function renderAdvisorTimeoutFallback(options: AdvisorBriefRenderOptions 
 }
 
 export { sanitizeSkillLabel };
+export { DeliveryStateMachine };
+export { shouldForceFullAdvisorPolicy };

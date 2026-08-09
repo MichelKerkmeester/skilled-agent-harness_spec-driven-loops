@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/015-pi-headless-fallback-dedup",
+  "spec_folder": "hooks/002-injection-bloat-reduction/015-pi-headless-fallback-dedup",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi headless fallback dedup",
+      "pi directives-only fallback suppression",
+      "pi fallback directive repetition",
+      "Pi fallback repeat reduction",
+      "pi headless fallback dedup plan",
+      "pi directives-only fallback plan",
+      "pi headless fallback dedup tasks",
+      "pi headless fallback dedup checklist",
+      "pi headless fallback verification",
+      "pi headless fallback dedup implementation",
+      "pi headless fallback dedup summary"
+    ],
+    "key_topics": [
+      "headless",
+      "fallback",
+      "dedup",
+      "directives-only",
+      "suppression",
+      "directive",
+      "repetition",
+      "repeat",
+      "reduction",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+      ".opencode/hooks/dispatch/pi/directive-dedup.test.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "directive-dedup.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/directive-dedup.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Headless Fallback Directive De",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "assembly-level",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Predecessor Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Planned extension of the Pi-local directive de-duplication so the directives-only fallback is recorded and suppressed on confirmed same-session byte-identical repeats while all fail-open and lifecycle guardrails remain.",
+    "created_at": "2026-08-09T09:23:29.341Z",
+    "last_save_at": "2026-08-09T14:52:48.753Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:15c1e78480dfd158db57d0e04266e1575020b3dcf9489d5e5652d4f20a9f111a",
+    "source_doc_hashes": {
+      "spec.md": "06e43bd25f188f3a6c8e151f68b7d0714a228333ab19fec83bdb915b72af012e",
+      "plan.md": "fb1b7b8752187a0fbdbe4f6dcc28b39d4dcebe49e1f83eec32693c1d87ae1ac3",
+      "tasks.md": "b82af6aab1f9d5933e3e1f4b7c8706f25e866035220f222b3f143f272566dc85",
+      "checklist.md": "31cfc35503a6660e2cf423a66e99b45b5157656862a3cb6be24ee45185c37e5c",
+      "implementation-summary.md": "d2af84bea3f921a84ba771d77b0c2375a45068afff62b03d0163c75f40afa809"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

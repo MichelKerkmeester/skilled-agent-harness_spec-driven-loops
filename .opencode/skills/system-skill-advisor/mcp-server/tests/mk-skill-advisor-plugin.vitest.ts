@@ -13,7 +13,9 @@ import MkSkillAdvisorPlugin from '../../../../plugins/mk-skill-advisor.js';
 
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
 const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
-const HYGIENE_CONTEXT = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+const ADVISOR_ROUTE_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.\n';
+const FALLBACK_CONTEXT = 'Directives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.\n- Proof over appearance: only real command output counts. Encode every requirement as an objective pass-or-fail check (exit code, grep, diff), watch it fail before fixing, fix the root cause once, and close with a clean re-run and a no-stray-files sweep.';
+const FULL_ADVISOR_CONTEXT = `${ADVISOR_ROUTE_CONTEXT}${FALLBACK_CONTEXT}`;
 const CANONICAL_OPENCODE_PLUGIN_SURFACE = [
   'event',
   'experimental.chat.system.transform',
@@ -25,7 +27,7 @@ const LEGACY_OPENCODE_LIFECYCLE_KEYS = [
   'onSessionEnd',
 ] as const;
 
-function bridgeResponse(brief = 'Advisor: live; use sk-code 0.91/0.23 pass.') {
+function bridgeResponse(brief = FULL_ADVISOR_CONTEXT) {
   return JSON.stringify({
     brief,
     status: brief ? 'ok' : 'skipped',
@@ -124,6 +126,7 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     vi.clearAllMocks();
     delete process.env.SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED;
     delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
+    delete process.env.SPECKIT_ROUTE_ONLY_ADVISOR_DISABLED;
     const resetHooks = await MkSkillAdvisorPlugin({ directory: process.cwd() }, {});
     await resetHooks.event?.({
       event: {
@@ -161,8 +164,8 @@ describe('mk-skill-advisor OpenCode plugin', () => {
 
     const result = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(result.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(result.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(result.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(result.output.system).toEqual([FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
   });
 
@@ -202,8 +205,9 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     const third = await thirdPromise;
 
     expect(first.additionalContext).toContain('sk-code');
-    expect(second.additionalContext).toBe(first.additionalContext);
-    expect(third.additionalContext).toBe(first.additionalContext);
+    expect(first.additionalContext).toBe(FULL_ADVISOR_CONTEXT);
+    expect(second.additionalContext).toBe(ADVISOR_ROUTE_CONTEXT);
+    expect(third.additionalContext).toBe(ADVISOR_ROUTE_CONTEXT);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(2);
 
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
@@ -297,6 +301,35 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     expect(status).toContain('disabled_reason=SPECKIT_SKILL_ADVISOR_HOOK_DISABLED');
   });
 
+  it('route-only kill switch restores full delivery for confirmed repeats', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+
+    const first = await runPrompt(hooks, { sessionID: 's-kill', prompt: 'implement feature X' });
+    process.env.SPECKIT_ROUTE_ONLY_ADVISOR_DISABLED = '1';
+    const repeated = await runPrompt(hooks, { sessionID: 's-kill', prompt: 'implement feature X' });
+
+    expect(first.additionalContext).toBe(FULL_ADVISOR_CONTEXT);
+    expect(repeated.additionalContext).toBe(FULL_ADVISOR_CONTEXT);
+    const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
+    expect(status).toContain('route_only_delivery_enabled=false');
+    expect(status).toContain('route_only_kill_switch=SPECKIT_ROUTE_ONLY_ADVISOR_DISABLED');
+  });
+
+  it('child-session repeats retain the full guardrail capsule', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+    const input = {
+      sessionID: 's-child',
+      prompt: 'implement feature X',
+      child_session: true,
+    };
+
+    const first = await runPrompt(hooks, input);
+    const repeated = await runPrompt(hooks, input);
+
+    expect(first.additionalContext).toBe(FULL_ADVISOR_CONTEXT);
+    expect(repeated.additionalContext).toBe(FULL_ADVISOR_CONTEXT);
+  });
+
   it('config opt-out disables bridge invocation', async () => {
     const hooks = await makePlugin({ enabled: false });
 
@@ -319,8 +352,8 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     await vi.advanceTimersByTimeAsync(1011);
     const output = await outputPromise;
 
-    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
     const child = mockedBridge.spawn.mock.results[0]?.value;
     expect(child.kill).toHaveBeenCalledWith('SIGTERM');
@@ -332,11 +365,11 @@ describe('mk-skill-advisor OpenCode plugin', () => {
 
   it('default bridge timeout allows a slow bridge response to return', async () => {
     vi.useFakeTimers();
-    mockedBridge.spawn.mockImplementation(() => makeChild(bridgeResponse(), 5000));
+    mockedBridge.spawn.mockImplementation(() => makeChild(bridgeResponse(), 2000));
     const hooks = await makePlugin();
 
     const outputPromise = runPrompt(hooks, { prompt: 'implement feature X' });
-    await vi.advanceTimersByTimeAsync(5000);
+    await vi.advanceTimersByTimeAsync(2000);
     const output = await outputPromise;
 
     expect(output.additionalContext).toContain('sk-code');
@@ -344,7 +377,7 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     const child = mockedBridge.spawn.mock.results[0]?.value;
     expect(child.kill).not.toHaveBeenCalled();
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
-    expect(status).toContain('bridge_timeout_ms=10000');
+    expect(status).toContain('bridge_timeout_ms=2500');
     expect(status).toContain('last_bridge_status=ok');
   });
 
@@ -358,8 +391,8 @@ describe('mk-skill-advisor OpenCode plugin', () => {
 
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_bridge_status=fail_open');
@@ -373,10 +406,10 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
     const repeat = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
-    expect(repeat.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(repeat.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
+    expect(repeat.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(repeat.output.system).toEqual([FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(2);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_error_code=PARSE_FAIL');
@@ -388,8 +421,8 @@ describe('mk-skill-advisor OpenCode plugin', () => {
 
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_error_code=NONZERO_EXIT');
   });
@@ -656,8 +689,8 @@ describe('mk-skill-advisor OpenCode plugin', () => {
 
     expect(firstA.additionalContext).toContain('sk-code');
     expect(firstB.additionalContext).toContain('sk-code');
-    expect(secondA.additionalContext).toBe(firstA.additionalContext);
-    expect(secondB.additionalContext).toBe(firstB.additionalContext);
+    expect(secondA.additionalContext).toBe(ADVISOR_ROUTE_CONTEXT);
+    expect(secondB.additionalContext).toBe(ADVISOR_ROUTE_CONTEXT);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(2);
 
     const bridgePayloads = mockedBridge.spawn.mock.results.map((result) =>

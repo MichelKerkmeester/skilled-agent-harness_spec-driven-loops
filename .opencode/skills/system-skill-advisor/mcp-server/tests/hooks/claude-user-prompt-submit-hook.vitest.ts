@@ -15,6 +15,7 @@ import {
 } from '../../../hooks/claude/user-prompt-submit.js';
 import { normalizeRuntimeOutput } from '../../lib/normalize-adapter-output.js';
 import { renderAdvisorBrief } from '../../lib/render.js';
+import { resetShadowDeliveryState } from '../../lib/policy-plan.js';
 import { validateAdvisorHookDiagnosticRecord } from '../../lib/metrics.js';
 import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
@@ -55,6 +56,8 @@ async function runHook(input: ClaudeUserPromptSubmitInput, result: AdvisorHookRe
 
 afterEach(() => {
   delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
+  delete process.env.SPECKIT_ROUTE_ONLY_ADVISOR_DISABLED;
+  resetShadowDeliveryState();
 });
 
 describe('Claude UserPromptSubmit advisor hook', () => {
@@ -83,6 +86,43 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(diagnostic.runtime).toBe('claude');
     expect(diagnostic.status).toBe('ok');
     expect(diagnostics.records[0]).not.toMatch(/prompt|stdout|stderr|promptFingerprint|promptExcerpt/);
+  });
+
+  it('emits route-only only for a confirmed same-session repeat', async () => {
+    const input = {
+      session_id: 'route-only-repeat',
+      session_identity_confirmed: true,
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+    } as const;
+
+    const first = await runHook(input, fixture('livePassingSkill.json'));
+    const repeated = await runHook(input, fixture('livePassingSkill.json'));
+    const unknown = await runHook({
+      ...input,
+      session_id: undefined,
+      session_identity_confirmed: false,
+    }, fixture('livePassingSkill.json'));
+
+    expect(first.output).toEqual({
+      hookSpecificOutput: {
+        hookEventName: 'UserPromptSubmit',
+        additionalContext: EXPECTED_ADVISOR_CONTEXT,
+      },
+    });
+    expect(repeated.output).toEqual({
+      hookSpecificOutput: {
+        hookEventName: 'UserPromptSubmit',
+        additionalContext: 'Advisor: live; use sk-code 0.91/0.23 pass.\n',
+      },
+    });
+    expect(unknown.output).toEqual({
+      hookSpecificOutput: {
+        hookEventName: 'UserPromptSubmit',
+        additionalContext: EXPECTED_ADVISOR_CONTEXT,
+      },
+    });
   });
 
   it('AS2 emits the fallback directive block for an empty prompt skipped by the producer', async () => {

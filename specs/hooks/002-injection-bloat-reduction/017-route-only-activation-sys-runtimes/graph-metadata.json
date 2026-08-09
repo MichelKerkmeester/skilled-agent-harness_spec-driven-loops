@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/017-route-only-activation-sys-runtimes",
+  "spec_folder": "hooks/002-injection-bloat-reduction/017-route-only-activation-sys-runtimes",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "route-only activation sys runtimes",
+      "candidate 004 sys activation",
+      "full-first route-only repeats activation",
+      "four runtime route-only gate",
+      "route-only activation sys runtimes plan",
+      "candidate 004 activation plan",
+      "four runtime suppression gate",
+      "route-only activation sys runtimes tasks",
+      "candidate 004 sys tasks",
+      "route-only activation sys runtimes checklist",
+      "route-only activation verification",
+      "route-only activation sys runtimes implementation"
+    ],
+    "key_topics": [
+      "route-only",
+      "activation",
+      "sys",
+      "runtimes",
+      "candidate",
+      "full-first",
+      "repeats",
+      "four",
+      "runtime",
+      "gate",
+      "plan",
+      "suppression"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".opencode/plugins/mk-skill-advisor.js",
+      "specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.json",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/route-only-activation-negative-controls.vitest.ts",
+      "specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs",
+      "spec.md",
+      "plan.md",
+      "specs/hooks/002-injection-bloat-reduction/014-injection-surface-deprecation-research/research/research.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "policy-plan.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "activation-matrix.json",
+        "kind": "config",
+        "path": "specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.json",
+        "source": "derived"
+      },
+      {
+        "name": "route-only-activation-negative-controls.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/route-only-activation-negative-controls.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "activation-matrix.test.mjs",
+        "kind": "file",
+        "path": "specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/activation-matrix.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Activation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Later Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-open",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "behavioral",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Candidate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delivery Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Activated evidence-gated candidate 004 route-only delivery for Claude Code, Codex, Devin, and OpenCode with fail-open negative controls.",
+    "created_at": "2026-08-09T09:35:44.593Z",
+    "last_save_at": "2026-08-09T14:52:56.533Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:00e66fdd6d443cd0c716499dcc97e754e87bb001f23f734d9de942d34131c886",
+    "source_doc_hashes": {
+      "spec.md": "6cd2f13b6f21ba518f88a94b634e804747ea124b6121cb74fe8de5edcbf2ec90",
+      "plan.md": "ed6a7ec13f4a8faceecc8e22f82a34f94c94be50bb48930a211824e22e9a52dd",
+      "tasks.md": "7870874e9b980f892c7703df1f193c2939c8e717b248e0f224e1f207a60446cd",
+      "checklist.md": "cf141adbc87733f62a8b3f5d0b5e261492d5342a3cc82aaa8c36ec3179b66a6a",
+      "implementation-summary.md": "c86837de398bfc566fd08fa3babd9e209b1e81f8f58b04ff6e7ed510cdc031f0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

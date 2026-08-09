@@ -1,0 +1,33 @@
+{
+  "specFolder": "hooks/002-injection-bloat-reduction/014-injection-surface-deprecation-research",
+  "description": "Research packet: inventory every injection surface appended into sessions, weigh behavioral evidence against cost and bloat, and recommend keep /",
+  "keywords": [
+    "research",
+    "packet",
+    "inventory",
+    "every",
+    "injection",
+    "surface",
+    "appended",
+    "sessions",
+    "weigh",
+    "behavioral",
+    "evidence",
+    "against",
+    "cost",
+    "bloat",
+    "recommend",
+    "keep"
+  ],
+  "lastUpdated": "2026-08-09T08:47:42.440Z",
+  "specId": "014",
+  "folderSlug": "injection-surface-deprecation-research",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "09-08-26_09-47__deep-research-completed-on-injection-surface.md"
+  ]
+}

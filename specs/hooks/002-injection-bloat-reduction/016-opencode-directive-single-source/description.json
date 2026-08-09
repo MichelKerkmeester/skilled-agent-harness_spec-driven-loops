@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/016-opencode-directive-single-source",
+  "description": "Completed OpenCode bridge correction for canonical three-directive composition and a complete local fail-open fallback.",
+  "keywords": [
+    "completed",
+    "opencode",
+    "bridge",
+    "correction",
+    "canonical",
+    "three-directive",
+    "composition",
+    "complete",
+    "local",
+    "fail-open",
+    "fallback"
+  ],
+  "lastUpdated": "2026-08-09T14:52:52.339Z",
+  "specId": "016",
+  "folderSlug": "opencode-directive-single-source",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

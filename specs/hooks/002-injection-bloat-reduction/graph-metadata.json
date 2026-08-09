@@ -15,7 +15,8 @@
     "hooks/002-injection-bloat-reduction/009-testing-doc-alignment",
     "hooks/002-injection-bloat-reduction/010-playbook-cheapest-model",
     "hooks/002-injection-bloat-reduction/011-playbook-results-automation",
-    "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation"
+    "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation",
+    "hooks/002-injection-bloat-reduction/014-injection-surface-deprecation-research"
   ],
   "manual": {
     "depends_on": [],
@@ -101,7 +102,7 @@
     ],
     "causal_summary": "The `hooks/001` research measured that the three always-on directives (comment-hygiene, governor, proof-over-appearance) are ~763 bytes / ~190 estimated tokens and constitute ~94.7% of the per-turn advisor payload, delivered on nearly every valid turn across Claude Code, Codex, Devin, and OpenCode; Pi adds its own ~554-byte dispatch directive",
     "created_at": "2026-08-06T11:15:01.299Z",
-    "last_save_at": "2026-08-08T16:27:56.458Z",
+    "last_save_at": "2026-08-09T08:47:44.347Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -111,7 +112,7 @@
     "source_doc_hashes": {
       "spec.md": "a769191b43ede5a00986100bed1101801c7edf5cdb811ed73f0a96dd93836f3e"
     },
-    "last_active_child_id": "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation",
-    "last_active_at": null
+    "last_active_child_id": "hooks/002-injection-bloat-reduction/014-injection-surface-deprecation-research",
+    "last_active_at": "2026-08-09T08:47:44.347Z"
   }
 }

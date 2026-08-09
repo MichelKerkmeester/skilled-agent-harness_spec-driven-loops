@@ -1,0 +1,47 @@
+{
+  "specFolder": "specs/hooks/002-injection-bloat-reduction/014-injection-surface-deprecation-research",
+  "researchTopic": "Should the repo deprecate its unproven prompt-injection surfaces (the three always-on directives \u2014 comment-hygiene, governor, proof-over-appearance; the Pi subagent-dispatch directive; active-goal briefs; continuity and dist-warning briefs) and keep only the two proven smart injections (the Gate-3 spec-folder question and the skill-advisor recommendation line)? Inventory every injection point currently appended into sessions, weigh evidence of behavioral value against cost and bloat (especially Pi visible per-turn repetition), and recommend keep, deprecate, or redesign per injection with a concrete migration path. Context: hooks/002 built a full-first/route-only-repeats dedup machine that is shadow-only and never activated (0 of 30 activation-matrix cells live); the Pi-local 002/013 dedup only partly helped because the advisor frequently emits a directives-only fallback with no advisor line that the dedup skips.",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "resource_map_present": false,
+  "createdAt": "2026-08-09T08:27:40.000Z",
+  "status": "complete",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4-flash",
+        "label": "pi",
+        "count": 1,
+        "iterations": 10
+      }
+    ],
+    "concurrency": 1
+  },
+  "lineage": {
+    "artifact_dir": "specs/hooks/002-injection-bloat-reduction/014-injection-surface-deprecation-research/research/lineages/pi",
+    "session_id": "fanout-pi-1786264236566-r99u1v",
+    "generation": 1,
+    "lineage_label": "pi"
+  },
+  "completedAt": "2026-08-09T09:05:00Z",
+  "stopReason": "converged",
+  "totalIterations": 9
+}
