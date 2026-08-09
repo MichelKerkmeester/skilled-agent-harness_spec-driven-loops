@@ -480,6 +480,16 @@ function assertEventReferences(
       assertSource(state, typed.observationEventId,
         ['model_benchmark.trial_observation_recorded'],
         typed.observationPayloadDigest, 'data.observationEventId');
+      const ownCell = state.modelBenchmark.iterationConvergence.cells.find(
+        (cell) => cell.cellKey === matrixKey(typed.trialMatrixKey),
+      );
+      if (ownCell === undefined || ownCell.rawObservationEventId !== typed.observationEventId) {
+        throw new ModelBenchmarkReducerError(
+          'referential-integrity',
+          'A score must cite the observation recorded for its own trial cell',
+          'data.observationEventId',
+        );
+      }
       if (typed.scoreWriteBackendRef
         !== MODEL_BENCHMARK_SCORE_WRITE_BACKEND_REF) {
         throw new ModelBenchmarkReducerError(

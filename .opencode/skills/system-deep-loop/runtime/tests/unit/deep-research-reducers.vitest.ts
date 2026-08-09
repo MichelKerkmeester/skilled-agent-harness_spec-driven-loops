@@ -374,12 +374,25 @@ function verifiedEvent(event: DeepResearchLedgerEvent): VerifiedLedgerEvent {
   return Object.freeze({ frame: Object.freeze(frame), event: read });
 }
 
-function projected(events: readonly DeepResearchLedgerEvent[]) {
-  const result = foldDeepResearchEvents(events);
+function projected(
+  events: readonly DeepResearchLedgerEvent[],
+  options?: Parameters<typeof foldDeepResearchEvents>[1],
+) {
+  const result = foldDeepResearchEvents(events, options);
   expect(result.outcome).toBe('projected');
   if (result.outcome !== 'projected') throw new Error('Expected projected fixture result');
   return result;
 }
+
+/**
+ * Many fixtures in this suite deliberately include only the antecedent events a
+ * specific assertion needs, skipping unrelated sequence numbers in between. That
+ * is a sparse *test* replay, not a gapped *production* replay, so those calls opt
+ * out of the cursor-gap contiguity check explicitly rather than tripping it.
+ */
+const NON_CONTIGUOUS: Parameters<typeof foldDeepResearchEvents>[1] = {
+  requireContiguousTail: false,
+};
 
 function quarantinedPrefix(): DeepResearchLedgerEvent[] {
   const events = mainEvents();
@@ -485,10 +498,10 @@ describe('deep-research reducers and projections', () => {
     );
     const evaluated = projected([
       events[0], events[4], events[5], events[6], incompleteEvaluation,
-    ]);
+    ], NON_CONTIGUOUS);
     const afterClaim = projected([
       events[0], events[4], events[5], events[6], incompleteEvaluation, laterClaim,
-    ]);
+    ], NON_CONTIGUOUS);
 
     expect(evaluated.projection.convergence).toMatchObject({
       eligibility: 'INDETERMINATE',
@@ -515,7 +528,7 @@ describe('deep-research reducers and projections', () => {
     const refreshed = projected([
       events[0], events[4], events[5], events[6], incompleteEvaluation, laterClaim,
       freshEvaluation,
-    ]);
+    ], NON_CONTIGUOUS);
 
     expect(refreshed.projection.convergence).toMatchObject({
       eligibility: 'STOP_ELIGIBLE',
@@ -561,7 +574,7 @@ describe('deep-research reducers and projections', () => {
       incompleteReason: null,
       recoveryReason: null,
     });
-    const result = projected([mainEvents()[0], mainEvents()[4], blocked]);
+    const result = projected([mainEvents()[0], mainEvents()[4], blocked], NON_CONTIGUOUS);
 
     expect(result.projection.convergence.blockerIds).toEqual([
       'citation-drift-1',
@@ -611,7 +624,10 @@ describe('deep-research reducers and projections', () => {
       recoveryReason: 'Continue with an independent source class.',
     });
 
-    const result = projected([mainEvents()[0], mainEvents()[4], blocked, recovered]);
+    const result = projected(
+      [mainEvents()[0], mainEvents()[4], blocked, recovered],
+      NON_CONTIGUOUS,
+    );
 
     expect(result.projection.status).toMatchObject({ state: 'active', terminal: false });
   });
@@ -692,7 +708,7 @@ describe('deep-research reducers and projections', () => {
     const checkpointEvents = events.filter(
       (_, index) => index !== 9 && index !== 15 && index !== 17,
     );
-    const checkpoint = projected(checkpointEvents);
+    const checkpoint = projected(checkpointEvents, NON_CONTIGUOUS);
     const incremental = foldDeepResearchEvents([...late, events[17]], {
       checkpoint: checkpoint.checkpoint,
     });
@@ -747,6 +763,26 @@ describe('deep-research reducers and projections', () => {
         'source-truncated',
       ],
     });
+  });
+
+  it('rejects a stream-sequence gap on an initial replay that carries no checkpoint', () => {
+    const events = mainEvents();
+    const gapped = foldDeepResearchEvents([events[0], events[2]]);
+
+    expect(gapped).toEqual({ outcome: 'rebuild_required', reasonCodes: ['cursor-gap'] });
+
+    const explicitlyNonContiguous = foldDeepResearchEvents(
+      [events[0], events[2]],
+      { requireContiguousTail: false },
+    );
+    expect(explicitlyNonContiguous.outcome).toBe('projected');
+  });
+
+  it('accepts a gap-free initial replay that carries no checkpoint', () => {
+    const events = mainEvents();
+    const result = foldDeepResearchEvents(events.slice(0, 3));
+
+    expect(result.outcome).toBe('projected');
   });
 
   it('indexes only digests, locators, receipts, and immutable provenance references', () => {
@@ -805,7 +841,7 @@ describe('deep-research reducers and projections', () => {
         retrievalReceiptRef: 'retrieval-b',
       },
     );
-    const result = projected([events[0], events[4], sourceA, sourceB]);
+    const result = projected([events[0], events[4], sourceA, sourceB], NON_CONTIGUOUS);
     const sources = result.projection.artifactIndex.artifacts.filter(
       (artifact) => artifact.artifactKind === 'source-capture',
     );
@@ -885,7 +921,7 @@ describe('deep-research reducers and projections', () => {
   it('rejects convergence that launders raw novelty without admitted trusted claims', () => {
     const events = mainEvents();
     const untrusted = [events[0], events[4], events[11], events[12]];
-    expect(() => foldDeepResearchEvents(untrusted)).toThrowError(
+    expect(() => foldDeepResearchEvents(untrusted, NON_CONTIGUOUS)).toThrowError(
       expect.objectContaining({ code: 'impossible-status-transition' }),
     );
   });
@@ -909,7 +945,7 @@ describe('deep-research reducers and projections', () => {
       phantomEvidence,
       ...events.slice(7),
     ];
-    const beforeCompletion = projected(phantomRun.slice(0, -1));
+    const beforeCompletion = projected(phantomRun.slice(0, -1), NON_CONTIGUOUS);
 
     expect(beforeCompletion.projection.claimLedger.sources).toEqual([]);
     expect(beforeCompletion.projection.claimLedger.evidence).toEqual([
@@ -927,7 +963,7 @@ describe('deep-research reducers and projections', () => {
       state: 'blocked',
       terminal: false,
     });
-    expect(() => foldDeepResearchEvents(phantomRun)).toThrowError(
+    expect(() => foldDeepResearchEvents(phantomRun, NON_CONTIGUOUS)).toThrowError(
       expect.objectContaining({
         code: 'impossible-status-transition',
         field: 'status',
@@ -1006,7 +1042,7 @@ describe('deep-research reducers and projections', () => {
       ...events.slice(13, 17),
       blockedCompletion,
     ];
-    const beforeCompletion = projected(phantomClaimRun.slice(0, -1));
+    const beforeCompletion = projected(phantomClaimRun.slice(0, -1), NON_CONTIGUOUS);
 
     expect(beforeCompletion.projection.claimLedger.evidence).toEqual([]);
     expect(beforeCompletion.projection.claimLedger.activeClaimVersionIds).toEqual([
@@ -1016,7 +1052,7 @@ describe('deep-research reducers and projections', () => {
       state: 'blocked',
       terminal: false,
     });
-    expect(() => foldDeepResearchEvents(phantomClaimRun)).toThrowError(
+    expect(() => foldDeepResearchEvents(phantomClaimRun, NON_CONTIGUOUS)).toThrowError(
       expect.objectContaining({
         code: 'projection-field-invalid',
         field: 'claimLedger.claims.evidenceIds',
@@ -1189,7 +1225,7 @@ describe('deep-research reducers and projections', () => {
       ...events.slice(13),
     ];
 
-    expect(() => foldDeepResearchEvents(evidenceFreeRun)).toThrowError(
+    expect(() => foldDeepResearchEvents(evidenceFreeRun, NON_CONTIGUOUS)).toThrowError(
       expect.objectContaining({ code: 'impossible-status-transition' }),
     );
 
@@ -1207,8 +1243,8 @@ describe('deep-research reducers and projections', () => {
   it('keeps synthesis non-terminal until stop-eligible convergence is present', () => {
     const events = mainEvents();
     const activePrefix = [events[0], events[4]];
-    const synthesisStarted = projected([...activePrefix, events[13]]);
-    const synthesisCommitted = projected([...activePrefix, events[14]]);
+    const synthesisStarted = projected([...activePrefix, events[13]], NON_CONTIGUOUS);
+    const synthesisCommitted = projected([...activePrefix, events[14]], NON_CONTIGUOUS);
 
     for (const result of [synthesisStarted, synthesisCommitted]) {
       expect(result.projection.convergence.evaluations).toHaveLength(0);
@@ -1279,12 +1315,12 @@ describe('deep-research reducers and projections', () => {
       ...prefix,
       event(p, 'event-020-p', 'stream-a'),
       event(q, 'event-020-q', 'stream-b'),
-    ]);
+    ], NON_CONTIGUOUS);
     const relabeled = projected([
       ...prefix,
       event(p, 'event-020-p', 'stream-b'),
       event(q, 'event-020-q', 'stream-a'),
-    ]);
+    ], NON_CONTIGUOUS);
     const currentConvergence = (projection: DeepResearchProjectionState['convergence']) => ({
       observedRevision: projection.observedRevision,
       finalizedRevision: projection.finalizedRevision,
@@ -1346,8 +1382,11 @@ describe('deep-research reducers and projections', () => {
       { eventId: 'event-020-b', streamId: 'stream-a' },
     );
     const prefix = events.slice(0, 12);
-    const forward = projected([...prefix, continuing, converged]);
-    const relabeled = projected([...prefix, relabeledContinuing, relabeledConverged]);
+    const forward = projected([...prefix, continuing, converged], NON_CONTIGUOUS);
+    const relabeled = projected(
+      [...prefix, relabeledContinuing, relabeledConverged],
+      NON_CONTIGUOUS,
+    );
 
     expect({
       state: relabeled.projection.status.state,
@@ -1413,10 +1452,10 @@ describe('deep-research reducers and projections', () => {
         supersedesArtifactIds: artifact.supersedesArtifactIds,
         supersededByArtifactIds: artifact.supersededByArtifactIds,
       }));
-    const forward = projected([mainEvents()[0], requested, completed]);
+    const forward = projected([mainEvents()[0], requested, completed], NON_CONTIGUOUS);
     const relabeled = projected([
       mainEvents()[0], relabeledRequested, relabeledCompleted,
-    ]);
+    ], NON_CONTIGUOUS);
 
     expect(classify(relabeled.projection)).toEqual(classify(forward.projection));
     expect(classify(relabeled.projection).map((entry) => entry.validityState)).toEqual([
@@ -1517,7 +1556,10 @@ describe('deep-research reducers and projections', () => {
       incompleteReason: 'The run stopped before satisfying convergence requirements.',
     });
 
-    expect(() => foldDeepResearchEvents([events[0], events[4], incomplete])).toThrowError(
+    expect(() => foldDeepResearchEvents(
+      [events[0], events[4], incomplete],
+      NON_CONTIGUOUS,
+    )).toThrowError(
       expect.objectContaining({
         code: 'impossible-status-transition',
         field: 'status.convergenceEventId',
@@ -1538,7 +1580,10 @@ describe('deep-research reducers and projections', () => {
       incompleteReason: 'The run stopped before satisfying convergence requirements.',
     });
 
-    expect(() => foldDeepResearchEvents([events[0], events[4], incomplete])).toThrowError(
+    expect(() => foldDeepResearchEvents(
+      [events[0], events[4], incomplete],
+      NON_CONTIGUOUS,
+    )).toThrowError(
       expect.objectContaining({
         code: 'impossible-status-transition',
         field: 'status.convergenceEventId',

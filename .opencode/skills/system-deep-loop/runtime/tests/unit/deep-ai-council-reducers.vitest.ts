@@ -634,6 +634,174 @@ describe('deep-ai-council reducers and projections', () => {
     );
   });
 
+  it('rejects a critique round that cites a proposal captured in a different round', () => {
+    const builder = eventBuilder();
+    const roundOne = { runId: RUN_ID, roundId: 'round-1' };
+    builder.push('ai_council.run_initialized', roundOne, {
+      target: {
+        targetId: 'target-1',
+        targetType: 'repository',
+        artifactRef: 'target-1',
+        targetVersion: 'target@1',
+        contentDigest: digest('target'),
+      },
+      targetDigest: digest('target'),
+      taskClass: 'architecture',
+      configDigest: digest('config'),
+      strategyDigest: digest('strategy'),
+      convergencePolicyDigest: digest('convergence'),
+      testGatePolicyDigest: digest('gate'),
+      maxRounds: 2,
+      minSeatCount: 1,
+      maxSeatCount: 2,
+      planningOnly: true,
+      initialReplayFingerprint: digest('replay'),
+    });
+    builder.push('ai_council.round_started', roundOne, {
+      roundNumber: 1,
+      executorBoundaryRef: 'executor-1',
+      seatRosterDigest: digest('roster-1'),
+      protocolVersion: 'protocol@1',
+      promptPackDigest: digest('prompt-1'),
+      budgetRef: 'budget-1',
+      priorRoundRef: null,
+      exposurePolicyVersion: 'exposure@1',
+      informationSurface: informationSurface('orchestrator'),
+    });
+    builder.push('ai_council.seat_selected', { ...roundOne, seatId: 'seat-1' }, {
+      strategyLens: 'security',
+      mandateDigest: digest('mandate-1'),
+      vantageFingerprint: digest('vantage-1'),
+      modelFingerprint: digest('model-1'),
+      independenceGroup: 'independence-1',
+      capabilityDigest: digest('capability-1'),
+      promptDigest: digest('prompt-seat-1'),
+      selectionUtility: 0.8,
+      selectionPolicyVersion: 'seat-selection@1',
+    });
+    builder.push('ai_council.seat_dispatched', { ...roundOne, seatId: 'seat-1' }, {
+      dispatchReceiptRef: 'dispatch-1',
+      logicalBranchRef: 'branch-1',
+      attempt: 1,
+      budgetLeaseRef: 'lease-1',
+      capabilityDigest: digest('capability-1'),
+      promptDigest: digest('prompt-seat-1'),
+      informationSurface: informationSurface('generator'),
+    });
+    builder.push(
+      'ai_council.proposal_observed',
+      { ...roundOne, seatId: 'seat-1', proposalId: 'proposal-round-1' },
+      proposalData('cross-round', 'evidence-cross-round'),
+    );
+    const roundTwo = { runId: RUN_ID, roundId: 'round-2' };
+    builder.push('ai_council.round_started', roundTwo, {
+      roundNumber: 2,
+      executorBoundaryRef: 'executor-2',
+      seatRosterDigest: digest('roster-2'),
+      protocolVersion: 'protocol@1',
+      promptPackDigest: digest('prompt-2'),
+      budgetRef: 'budget-2',
+      priorRoundRef: 'round-1',
+      exposurePolicyVersion: 'exposure@1',
+      informationSurface: informationSurface('orchestrator'),
+    });
+    builder.push('ai_council.critique_round_started', {
+      ...roundTwo,
+      seatId: 'seat-1',
+      critiqueRoundId: 'critique-2',
+    }, {
+      sourceProposalIds: ['proposal-round-1'],
+      visibleInformationPolicyVersion: 'critique@1',
+      inputDigest: digest('critique-cross-round'),
+      informationSurface: informationSurface('detector'),
+    });
+
+    expect(() => foldDeepAiCouncilEvents(builder.events)).toThrowError(
+      expect.objectContaining({
+        code: 'phantom-source-reference',
+        field: 'critique.rounds.sourceProposalIds',
+      }),
+    );
+  });
+
+  it('accepts a critique round that cites a proposal captured in its own round', () => {
+    const builder = eventBuilder();
+    const base = { runId: RUN_ID, roundId: 'round-1' };
+    builder.push('ai_council.run_initialized', base, {
+      target: {
+        targetId: 'target-1',
+        targetType: 'repository',
+        artifactRef: 'target-1',
+        targetVersion: 'target@1',
+        contentDigest: digest('target'),
+      },
+      targetDigest: digest('target'),
+      taskClass: 'architecture',
+      configDigest: digest('config'),
+      strategyDigest: digest('strategy'),
+      convergencePolicyDigest: digest('convergence'),
+      testGatePolicyDigest: digest('gate'),
+      maxRounds: 1,
+      minSeatCount: 1,
+      maxSeatCount: 2,
+      planningOnly: true,
+      initialReplayFingerprint: digest('replay'),
+    });
+    builder.push('ai_council.round_started', base, {
+      roundNumber: 1,
+      executorBoundaryRef: 'executor-1',
+      seatRosterDigest: digest('roster-1'),
+      protocolVersion: 'protocol@1',
+      promptPackDigest: digest('prompt-1'),
+      budgetRef: 'budget-1',
+      priorRoundRef: null,
+      exposurePolicyVersion: 'exposure@1',
+      informationSurface: informationSurface('orchestrator'),
+    });
+    builder.push('ai_council.seat_selected', { ...base, seatId: 'seat-1' }, {
+      strategyLens: 'security',
+      mandateDigest: digest('mandate-1'),
+      vantageFingerprint: digest('vantage-1'),
+      modelFingerprint: digest('model-1'),
+      independenceGroup: 'independence-1',
+      capabilityDigest: digest('capability-1'),
+      promptDigest: digest('prompt-seat-1'),
+      selectionUtility: 0.8,
+      selectionPolicyVersion: 'seat-selection@1',
+    });
+    builder.push('ai_council.seat_dispatched', { ...base, seatId: 'seat-1' }, {
+      dispatchReceiptRef: 'dispatch-1',
+      logicalBranchRef: 'branch-1',
+      attempt: 1,
+      budgetLeaseRef: 'lease-1',
+      capabilityDigest: digest('capability-1'),
+      promptDigest: digest('prompt-seat-1'),
+      informationSurface: informationSurface('generator'),
+    });
+    builder.push(
+      'ai_council.proposal_observed',
+      { ...base, seatId: 'seat-1', proposalId: 'proposal-round-1' },
+      proposalData('own-round', 'evidence-own-round'),
+    );
+    builder.push('ai_council.critique_round_started', {
+      ...base,
+      seatId: 'seat-1',
+      critiqueRoundId: 'critique-1',
+    }, {
+      sourceProposalIds: ['proposal-round-1'],
+      visibleInformationPolicyVersion: 'critique@1',
+      inputDigest: digest('critique-own-round'),
+      informationSurface: informationSurface('detector'),
+    });
+
+    const result = projected(builder.events);
+
+    expect(result.projection.critique.rounds).toHaveLength(1);
+    expect(result.projection.critique.rounds[0].sourceProposalIds).toEqual([
+      'proposal-round-1',
+    ]);
+  });
+
   it('rejects a forged checkpoint tail bound to a different sequence', () => {
     const events = buildMainEvents();
     const checkpointed = projected(events.slice(0, 6));

@@ -1113,6 +1113,161 @@ describe('model-benchmark reducers', () => {
     ])).toThrowError(ModelBenchmarkReducerError);
   });
 
+  function otherTrialObservation(events: readonly ModelBenchmarkLedgerEvent[]) {
+    const otherMatrix: TrialMatrixKey = { ...matrix(), candidateId: 'candidate-2' };
+    const otherScope = {
+      ...trialScope(),
+      trialId: 'trial-2',
+      candidateId: otherMatrix.candidateId,
+    };
+    const admitted = makeEvent(
+      'model_benchmark.trial_case_admitted',
+      extensionPosition(events, 'trial-stream-2'),
+      otherScope,
+      {
+        trialMatrixKey: otherMatrix,
+        caseRef: 'case:2',
+        caseDigest: digest('fixture-2'),
+        taskLineage: lineage(),
+        admissionPolicyVersion: 'admission@1',
+        admissionReasonCode: 'eligible',
+      },
+    );
+    const dispatched = makeEvent(
+      'model_benchmark.trial_dispatched',
+      extensionPosition([...events, admitted], 'trial-stream-2'),
+      otherScope,
+      {
+        trialMatrixKey: otherMatrix,
+        inputRef: 'input:2',
+        inputDigest: digest('fixture-2'),
+        dispatchReceiptRef: 'receipt:dispatch-2',
+        dispatchReceiptDigest: digest('fixture-2'),
+        dispatchedAt: TIMESTAMP,
+      },
+    );
+    const completed = makeEvent(
+      'model_benchmark.trial_completed',
+      extensionPosition([...events, admitted, dispatched], 'trial-stream-2'),
+      otherScope,
+      {
+        trialMatrixKey: otherMatrix,
+        dispatchedEventId: dispatched.event_id,
+        dispatchedPayloadDigest: dispatched.payload.payloadDigest,
+        rawResultRef: 'raw-result:2',
+        rawResultDigest: digest('raw-result-2'),
+        inputDigest: digest('fixture-2'),
+        outputDigest: digest('raw-output-2'),
+        completionReceiptRef: 'receipt:complete-2',
+        completedAt: TIMESTAMP,
+      },
+    );
+    const observation = makeEvent(
+      'model_benchmark.trial_observation_recorded',
+      extensionPosition([...events, admitted, dispatched, completed], 'trial-stream-2'),
+      otherScope,
+      {
+        trialMatrixKey: otherMatrix,
+        completedEventId: completed.event_id,
+        completedPayloadDigest: completed.payload.payloadDigest,
+        inputDigest: digest('fixture-2'),
+        rawOutputRef: 'raw-output:2',
+        rawOutputDigest: digest('raw-output-2'),
+        evaluatorObservationRef: 'observation:2',
+        evaluatorObservationDigest: digest('observation-2'),
+        executionReceiptRef: 'receipt:observation-2',
+      },
+    );
+    return { admitted, dispatched, completed, observation };
+  }
+
+  it('rejects a score that cites another trial\'s recorded observation', () => {
+    const events = mainEvents();
+    const ownTrialPrefix = events.slice(0, 10);
+    const other = otherTrialObservation(events);
+    const crossTrialScore = makeEvent(
+      'model_benchmark.score_vector_observed',
+      extensionPosition(ownTrialPrefix, 'trial-stream'),
+      trialScope(),
+      {
+        trialMatrixKey: matrix(),
+        observationEventId: other.observation.event_id,
+        observationPayloadDigest: other.observation.payload.payloadDigest,
+        scorePolicyVersion: 'score@1',
+        scoreWriteBackendRef: MODEL_BENCHMARK_SCORE_WRITE_BACKEND_REF,
+        scoreVector: {
+          components: [{
+            dimensionCode: 'quality',
+            rawScore: 0.95,
+            hardFloorStatus: 'pass',
+            measurementStatus: 'observed',
+            uncertainty: 0.05,
+            observationRef: 'observation:quality',
+            observationDigest: digest('quality'),
+          }],
+          evaluatorContractHash: digest('evaluator-contract'),
+          evaluatorFingerprint: digest('evaluator'),
+        },
+        scoringReceiptRef: 'receipt:score',
+      },
+    );
+
+    expect(() => foldModelBenchmarkEvents([
+      ...ownTrialPrefix,
+      other.admitted, other.dispatched, other.completed, other.observation,
+      crossTrialScore,
+    ])).toThrowError(
+      expect.objectContaining({ code: 'referential-integrity' }),
+    );
+  });
+
+  it('accepts a score that cites its own trial\'s recorded observation', () => {
+    const events = mainEvents();
+    const ownTrialPrefix = events.slice(0, 10);
+    const other = otherTrialObservation(events);
+    const ownObservation = events[9] as ModelBenchmarkEventEnvelope<
+      'model_benchmark.trial_observation_recorded'
+    >;
+    const ownScore = makeEvent(
+      'model_benchmark.score_vector_observed',
+      extensionPosition(ownTrialPrefix, 'trial-stream'),
+      trialScope(),
+      {
+        trialMatrixKey: matrix(),
+        observationEventId: ownObservation.event_id,
+        observationPayloadDigest: ownObservation.payload.payloadDigest,
+        scorePolicyVersion: 'score@1',
+        scoreWriteBackendRef: MODEL_BENCHMARK_SCORE_WRITE_BACKEND_REF,
+        scoreVector: {
+          components: [{
+            dimensionCode: 'quality',
+            rawScore: 0.95,
+            hardFloorStatus: 'pass',
+            measurementStatus: 'observed',
+            uncertainty: 0.05,
+            observationRef: 'observation:quality',
+            observationDigest: digest('quality'),
+          }],
+          evaluatorContractHash: digest('evaluator-contract'),
+          evaluatorFingerprint: digest('evaluator'),
+        },
+        scoringReceiptRef: 'receipt:score',
+      },
+    );
+
+    const result = projected([
+      ...ownTrialPrefix,
+      other.admitted, other.dispatched, other.completed, other.observation,
+      ownScore,
+    ]);
+
+    const cell = result.projection.modelBenchmark.iterationConvergence.cells.find(
+      (candidate) => candidate.trialId === 'trial-1',
+    );
+    expect(cell?.disposition).toBe('scored');
+    expect(cell?.rawObservationEventId).toBe(ownObservation.event_id);
+  });
+
   it('accepts the expected producer kind for every event reference', () => {
     const histories = referenceHistories();
     expect(histories).toHaveLength(17);

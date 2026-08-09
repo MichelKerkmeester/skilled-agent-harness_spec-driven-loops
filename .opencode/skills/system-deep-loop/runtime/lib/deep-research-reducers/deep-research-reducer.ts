@@ -2103,15 +2103,19 @@ export function foldDeepResearchEvents(
   if (checkpoint !== undefined) {
     assertProjectionCrossFieldConsistency(checkpoint.projection);
   }
-  if (checkpoint !== undefined && options.requireContiguousTail !== false) {
-    const unseenSequences = validated
-      .filter((event) => !checkpoint.projection.seenEvents.some(
-        (seen) => seen.eventId === event.event_id,
-      ))
-      .map((event) => event.stream_sequence)
-      .filter((sequence) => sequence > checkpoint.sourceTailSequence);
-    const firstUnseen = unseenSequences.length === 0 ? null : Math.min(...unseenSequences);
-    if (firstUnseen !== null && firstUnseen > checkpoint.sourceTailSequence + 1) {
+  if (options.requireContiguousTail !== false) {
+    const tailBaseline = checkpoint?.sourceTailSequence ?? 0;
+    const seenBeforeFold = checkpoint?.projection.seenEvents ?? [];
+    const unseenSequences = [...new Set(
+      validated
+        .filter((event) => !seenBeforeFold.some((seen) => seen.eventId === event.event_id))
+        .map((event) => event.stream_sequence)
+        .filter((sequence) => sequence > tailBaseline),
+    )].sort((left, right) => left - right);
+    const hasGap = unseenSequences.some(
+      (sequence, index) => sequence !== tailBaseline + index + 1,
+    );
+    if (hasGap) {
       return Object.freeze({
         outcome: 'rebuild_required',
         reasonCodes: Object.freeze(['cursor-gap'] as const),

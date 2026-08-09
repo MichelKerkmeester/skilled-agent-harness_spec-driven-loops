@@ -646,13 +646,18 @@ function foldCouncilSeats(
 function assertProposalReferences(
   proposals: DeepAiCouncilSeatsProjection['proposals'],
   proposalIds: readonly string[],
+  roundId: string,
   field: string,
 ): void {
-  const captured = new Set(proposals.map((proposal) => proposal.proposalId));
+  const captured = new Set(
+    proposals
+      .filter((proposal) => proposal.roundId === roundId)
+      .map((proposal) => proposal.proposalId),
+  );
   if (proposalIds.some((proposalId) => !captured.has(proposalId))) {
     throw new DeepAiCouncilReducerError(
       'phantom-source-reference',
-      'Council evidence must cite a proposal captured earlier in the ledger',
+      'Council evidence must cite a proposal captured in the same round',
       field,
     );
   }
@@ -670,6 +675,7 @@ function foldCritique(
     assertProposalReferences(
       seats.proposals,
       payload.data.sourceProposalIds,
+      payload.scope.roundId,
       'critique.rounds.sourceProposalIds',
     );
     rounds = insertUnique(rounds, {
@@ -688,6 +694,7 @@ function foldCritique(
     assertProposalReferences(
       seats.proposals,
       payload.data.sourceProposalIds,
+      payload.scope.roundId,
       'critique.critiques.sourceProposalIds',
     );
     if (!rounds.some((round) => (
@@ -740,6 +747,7 @@ function foldBlindedAdjudication(
       assertProposalReferences(
         seats.proposals,
         payload.data.sourceProposalIds,
+        payload.scope.roundId,
         'blindedAdjudication.candidates.sourceProposalIds',
       );
       candidates = insertUnique(candidates, {
