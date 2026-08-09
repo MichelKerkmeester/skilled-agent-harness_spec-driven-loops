@@ -23,6 +23,7 @@ import {
   createCutoverCertificateEventRegistry,
   evaluateMonitoredSignals,
   evaluateRollbackWindow,
+  MonitoredSignalFamilies,
   openRollbackWindow,
   prepareCutoverCertificateEventWrite,
   verifyCutoverCertificate,
@@ -34,8 +35,14 @@ import {
   InflightDisposition,
 } from '../../lib/inflight-state-classification/index.js';
 import {
+  certifyBoundaryReceipt,
+  CertificationProviderRegistry,
   createHmacCertificationProvider,
 } from '../../lib/receipts-and-effect-recovery/index.js';
+import {
+  createRollbackDrillCertificate,
+  ROLLBACK_CERTIFICATE_SCHEMA_VERSION,
+} from '../../lib/rollback-drills/index.js';
 
 import type {
   AuthoritySnapshot,
@@ -47,8 +54,11 @@ import type {
   CutoverCertificateEvidenceSources,
   CutoverCertificateMode,
   CutoverCertificateRequest,
+  CutoverCertificateVerificationProviders,
+  MonitoredSignalFamily,
   MonitoredSignalReading,
   RollbackWindowExecution,
+  RollbackWindowOpenRequest,
   RollbackWindowRecord,
 } from '../../lib/cutover-certificate/index.js';
 import type {
@@ -58,7 +68,11 @@ import type {
   StateBackendCensus,
   StateBackendCensusRow,
 } from '../../lib/inflight-state-classification/index.js';
-import type { BoundaryReceiptPayload, CertificationEnvelope } from '../../lib/receipts-and-effect-recovery/index.js';
+import type {
+  BoundaryReceiptPayload,
+  CertificationEnvelope,
+  CertificationProfile,
+} from '../../lib/receipts-and-effect-recovery/index.js';
 import type { RollbackDrillCertificate } from '../../lib/rollback-drills/index.js';
 import type { MixedVersionOraclePass } from '../../lib/mixed-version-fixtures/index.js';
 
@@ -203,20 +217,58 @@ function buildManifest(): InflightClassificationManifest {
 
 const CLASSIFICATION_MANIFEST = buildManifest();
 
-function fixtureCertification(): CertificationEnvelope {
-  return Object.freeze({
-    scheme: 'hmac-sha256',
-    provider_id: 'cutover-certificate-tests',
-    key_id: 'k1',
-    verifier_version: '1',
-    trust_scope: 'process-local-advisory',
-    signed_digest: digest('signed'),
-    signature_base64: Buffer.from('fixture-signature').toString('base64'),
-  });
+// Two independently keyed trusted providers, mirroring the real deployment
+// shape where the rollback-drill authority and the migration-receipt
+// signer(s) are distinct issuers — a certificate built from evidence signed
+// under one identity must never verify against the other's key.
+const ROLLBACK_DRILL_CERTIFICATION_PROFILE: CertificationProfile = Object.freeze({
+  scheme: 'hmac-sha256',
+  provider_id: 'cutover-certificate-rollback-drill-tests',
+  key_id: 'rollback-drill-k1',
+  verifier_version: '1',
+  trust_scope: 'durable-cross-resume',
+});
+const ROLLBACK_DRILL_PROVIDER_SECRET = 'a'.repeat(32);
+
+function fixtureRollbackDrillProvider() {
+  return createHmacCertificationProvider(ROLLBACK_DRILL_CERTIFICATION_PROFILE, ROLLBACK_DRILL_PROVIDER_SECRET);
 }
 
-function fixtureBoundaryReceipt(label: string): BoundaryReceiptPayload {
-  return Object.freeze({
+const MIGRATION_RECEIPT_CERTIFICATION_PROFILE: CertificationProfile = Object.freeze({
+  scheme: 'hmac-sha256',
+  provider_id: 'cutover-certificate-migration-receipt-tests',
+  key_id: 'migration-receipt-k1',
+  verifier_version: '1',
+  trust_scope: 'durable-cross-resume',
+});
+const MIGRATION_RECEIPT_PROVIDER_SECRET = 'b'.repeat(32);
+
+function fixtureMigrationReceiptProviders(): CertificationProviderRegistry {
+  return new CertificationProviderRegistry([
+    createHmacCertificationProvider(MIGRATION_RECEIPT_CERTIFICATION_PROFILE, MIGRATION_RECEIPT_PROVIDER_SECRET),
+  ]);
+}
+
+function fixtureCertificateVerificationProviders(): CutoverCertificateVerificationProviders {
+  return {
+    rollbackDrillProvider: fixtureRollbackDrillProvider(),
+    migrationReceiptProviders: fixtureMigrationReceiptProviders(),
+  };
+}
+
+/** A forged trusted-looking provider under a different key — never registered with the real fixture registry. */
+function fixtureForeignMigrationReceiptProviders(): CertificationProviderRegistry {
+  return new CertificationProviderRegistry([
+    createHmacCertificationProvider(MIGRATION_RECEIPT_CERTIFICATION_PROFILE, 'c'.repeat(32)),
+  ]);
+}
+
+async function fixtureBoundaryReceipt(
+  label: string,
+  overrides: Readonly<Partial<Omit<BoundaryReceiptPayload, 'certification'>>> = {},
+  providers: CertificationProviderRegistry = fixtureMigrationReceiptProviders(),
+): Promise<BoundaryReceiptPayload> {
+  const facts: Omit<BoundaryReceiptPayload, 'certification'> = {
     receipt_id: `receipt-${label}`,
     boundary_id: `boundary-${label}`,
     boundary_kind: 'phase-handoff',
@@ -239,24 +291,28 @@ function fixtureBoundaryReceipt(label: string): BoundaryReceiptPayload {
     issuer: 'cutover-certificate-tests',
     issued_at: '2026-07-28T12:00:00Z',
     idempotency_key: `idempotency-${label}`,
-    certification: fixtureCertification(),
-  });
+    ...overrides,
+  };
+  const certification = await certifyBoundaryReceipt(facts, MIGRATION_RECEIPT_CERTIFICATION_PROFILE, providers);
+  return Object.freeze({ ...facts, certification });
 }
 
-function fixtureRollbackDrillCertificate(
-  overrides: Readonly<Partial<Record<'mode' | 'candidateSha' | 'passed' | 'classificationDigest', unknown>>> = {},
-): RollbackDrillCertificate {
-  return {
-    facts: {
-      mode: MODE,
-      candidateSha: CANDIDATE_SHA,
-      passed: true,
-      classificationDigest: CLASSIFICATION_MANIFEST.finalDigest,
-      ...overrides,
-    },
-    certification: fixtureCertification(),
-    certificateDigest: digest('rollback-drill-certificate'),
-  } as unknown as RollbackDrillCertificate;
+async function fixtureRollbackDrillCertificate(
+  overrides: Readonly<Partial<Record<
+    'mode' | 'candidateSha' | 'passed' | 'classificationDigest' | 'startingAuthorityEpoch', unknown
+  >>> = {},
+  provider = fixtureRollbackDrillProvider(),
+): Promise<RollbackDrillCertificate> {
+  const facts = {
+    schemaVersion: ROLLBACK_CERTIFICATE_SCHEMA_VERSION,
+    mode: MODE,
+    candidateSha: CANDIDATE_SHA,
+    passed: true,
+    classificationDigest: CLASSIFICATION_MANIFEST.finalDigest,
+    startingAuthorityEpoch: AUTHORITY_EPOCH,
+    ...overrides,
+  };
+  return createRollbackDrillCertificate(facts as never, provider, ROLLBACK_DRILL_CERTIFICATION_PROFILE);
 }
 
 function fixtureMixedVersionReplay(
@@ -286,9 +342,9 @@ function fixturePolicy() {
   }]).resolve('cutover-certificate-policy', 1);
 }
 
-function fixtureEvidence(
+async function fixtureEvidence(
   overrides: Readonly<Partial<CutoverCertificateEvidenceSources>> = {},
-): CutoverCertificateEvidenceSources {
+): Promise<CutoverCertificateEvidenceSources> {
   return {
     modeGateCertificate: {
       mode: MODE,
@@ -303,25 +359,25 @@ function fixtureEvidence(
       exitStatus: 'green',
       evidenceDigest: digest('shadow-parity-evidence'),
     },
-    rollbackDrillCertificate: fixtureRollbackDrillCertificate(),
+    rollbackDrillCertificate: await fixtureRollbackDrillCertificate(),
     mixedVersionReplay: fixtureMixedVersionReplay(),
     classificationManifest: CLASSIFICATION_MANIFEST,
-    migrationReceipts: [fixtureBoundaryReceipt('one'), fixtureBoundaryReceipt('two')],
+    migrationReceipts: [await fixtureBoundaryReceipt('one'), await fixtureBoundaryReceipt('two')],
     approvingPolicy: fixturePolicy(),
     ...overrides,
   };
 }
 
-function fixtureRequest(
+async function fixtureRequest(
   overrides: Readonly<Partial<CutoverCertificateRequest>> = {},
-): CutoverCertificateRequest {
+): Promise<CutoverCertificateRequest> {
   return {
     mode: MODE,
     candidateSha: CANDIDATE_SHA,
     fromAuthorityEpoch: AUTHORITY_EPOCH,
     issuer: 'cutover-certificate-tests',
     issuedAt: '2026-07-28T12:05:00Z',
-    evidence: fixtureEvidence(),
+    evidence: overrides.evidence ?? await fixtureEvidence(),
     ...overrides,
   };
 }
@@ -331,8 +387,8 @@ function fixtureRequest(
 // ───────────────────────────────────────────────────────────────────
 
 describe('buildCutoverCertificate', () => {
-  it('issues a certificate from complete, consistent evidence', () => {
-    const result = buildCutoverCertificate(fixtureRequest());
+  it('issues a certificate from complete, consistent evidence', async () => {
+    const result = await buildCutoverCertificate(await fixtureRequest(), fixtureCertificateVerificationProviders());
     expect(result.verdict).toBe('issued');
     if (result.verdict !== 'issued') throw new Error('expected issued');
     expect(result.certificate.facts.mode).toBe(MODE);
@@ -347,18 +403,24 @@ describe('buildCutoverCertificate', () => {
     expect(result.certificate.certificateDigest).toBe(recomputed);
   });
 
-  it('rejects a candidate SHA that is not 40-hex', () => {
-    const result = buildCutoverCertificate(fixtureRequest({ candidateSha: 'not-a-sha' }));
+  it('rejects a candidate SHA that is not 40-hex', async () => {
+    const result = await buildCutoverCertificate(
+      await fixtureRequest({ candidateSha: 'not-a-sha' }),
+      fixtureCertificateVerificationProviders(),
+    );
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'CANDIDATE_SHA_INVALID' });
   });
 
-  it('rejects a non-positive authority epoch', () => {
-    const result = buildCutoverCertificate(fixtureRequest({ fromAuthorityEpoch: 0 }));
+  it('rejects a non-positive authority epoch', async () => {
+    const result = await buildCutoverCertificate(
+      await fixtureRequest({ fromAuthorityEpoch: 0 }),
+      fixtureCertificateVerificationProviders(),
+    );
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'AUTHORITY_EPOCH_INVALID' });
   });
 
-  it('rejects a mode gate certificate bound to a different mode', () => {
-    const evidence = fixtureEvidence({
+  it('rejects a mode gate certificate bound to a different mode', async () => {
+    const evidence = await fixtureEvidence({
       modeGateCertificate: {
         mode: 'deep-review',
         candidateSha: CANDIDATE_SHA,
@@ -367,12 +429,12 @@ describe('buildCutoverCertificate', () => {
         certificateDigest: digest('mode-gate-certificate'),
       },
     });
-    const result = buildCutoverCertificate(fixtureRequest({ evidence }));
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'READINESS_NOT_READY' });
   });
 
-  it('rejects a mode gate certificate that is not readiness-ready', () => {
-    const evidence = fixtureEvidence({
+  it('rejects a mode gate certificate that is not readiness-ready', async () => {
+    const evidence = await fixtureEvidence({
       modeGateCertificate: {
         mode: MODE,
         candidateSha: CANDIDATE_SHA,
@@ -381,12 +443,12 @@ describe('buildCutoverCertificate', () => {
         certificateDigest: digest('mode-gate-certificate'),
       },
     });
-    const result = buildCutoverCertificate(fixtureRequest({ evidence }));
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'READINESS_NOT_READY' });
   });
 
-  it('rejects shadow parity that is not green', () => {
-    const evidence = fixtureEvidence({
+  it('rejects shadow parity that is not green', async () => {
+    const evidence = await fixtureEvidence({
       shadowParity: {
         mode: MODE,
         candidateSha: CANDIDATE_SHA,
@@ -394,28 +456,60 @@ describe('buildCutoverCertificate', () => {
         evidenceDigest: digest('shadow-parity-evidence'),
       },
     });
-    const result = buildCutoverCertificate(fixtureRequest({ evidence }));
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'PARITY_NOT_GREEN' });
   });
 
-  it('rejects a rollback drill certificate that did not pass', () => {
-    const evidence = fixtureEvidence({
-      rollbackDrillCertificate: fixtureRollbackDrillCertificate({ passed: false }),
+  it('rejects a rollback drill certificate that did not pass', async () => {
+    const evidence = await fixtureEvidence({
+      rollbackDrillCertificate: await fixtureRollbackDrillCertificate({ passed: false }),
     });
-    const result = buildCutoverCertificate(fixtureRequest({ evidence }));
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'ROLLBACK_DRILL_NOT_PASSED' });
   });
 
-  it('rejects a rollback drill certificate whose classification digest does not match the bound manifest', () => {
-    const evidence = fixtureEvidence({
-      rollbackDrillCertificate: fixtureRollbackDrillCertificate({ classificationDigest: digest('stale') }),
+  it('rejects a rollback drill certificate whose classification digest does not match the bound manifest', async () => {
+    const evidence = await fixtureEvidence({
+      rollbackDrillCertificate: await fixtureRollbackDrillCertificate({ classificationDigest: digest('stale') }),
     });
-    const result = buildCutoverCertificate(fixtureRequest({ evidence }));
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'ROLLBACK_DRILL_NOT_PASSED' });
   });
 
-  it('rejects a mixed-version replay result that is not a clean pass', () => {
-    const evidence = fixtureEvidence({
+  it('rejects a rollback drill certificate whose starting authority epoch does not match the request', async () => {
+    const evidence = await fixtureEvidence({
+      rollbackDrillCertificate: await fixtureRollbackDrillCertificate({ startingAuthorityEpoch: AUTHORITY_EPOCH + 5 }),
+    });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'ROLLBACK_DRILL_NOT_PASSED' });
+  });
+
+  it('rejects a rollback drill certificate whose signature does not verify against the trusted provider (tamper)', async () => {
+    const genuine = await fixtureRollbackDrillCertificate();
+    // Mutate a fact field this builder never explicitly binds — every
+    // explicitly-checked field (mode/candidateSha/passed/classificationDigest/
+    // startingAuthorityEpoch) still matches, so only signature verification
+    // over the complete facts object can catch this.
+    const tampered = {
+      ...genuine,
+      facts: { ...genuine.facts, drillId: 'tampered-drill-id' },
+    };
+    const evidence = await fixtureEvidence({ rollbackDrillCertificate: tampered as never });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'ROLLBACK_DRILL_NOT_PASSED' });
+  });
+
+  it('rejects a rollback drill certificate issued by an untrusted signer (issuer substitution)', async () => {
+    const forgedProvider = createHmacCertificationProvider(ROLLBACK_DRILL_CERTIFICATION_PROFILE, 'z'.repeat(32));
+    const evidence = await fixtureEvidence({
+      rollbackDrillCertificate: await fixtureRollbackDrillCertificate({}, forgedProvider),
+    });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'ROLLBACK_DRILL_NOT_PASSED' });
+  });
+
+  it('rejects a mixed-version replay result that is not a clean pass', async () => {
+    const evidence = await fixtureEvidence({
       mixedVersionReplay: {
         ok: false,
         caseId: 'mixed-version-case-1',
@@ -429,11 +523,11 @@ describe('buildCutoverCertificate', () => {
         authorityMutation: false,
       } as unknown as MixedVersionOraclePass,
     });
-    const result = buildCutoverCertificate(fixtureRequest({ evidence }));
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'MIXED_VERSION_REPLAY_FAILED' });
   });
 
-  it('rejects a tampered classification manifest', () => {
+  it('rejects a tampered classification manifest', async () => {
     // Mutate a core field while keeping finalDigest unchanged, so the
     // drill's classificationDigest binding still matches this manifest and
     // the rejection is attributable to manifest integrity, not the binding.
@@ -441,21 +535,51 @@ describe('buildCutoverCertificate', () => {
       ...CLASSIFICATION_MANIFEST,
       classificationId: `${CLASSIFICATION_MANIFEST.classificationId}-tampered`,
     };
-    const evidence = fixtureEvidence({ classificationManifest: tampered });
-    const result = buildCutoverCertificate(fixtureRequest({ evidence }));
+    const evidence = await fixtureEvidence({ classificationManifest: tampered });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'CLASSIFICATION_MANIFEST_INVALID' });
   });
 
-  it('rejects an empty migration receipt set', () => {
-    const evidence = fixtureEvidence({ migrationReceipts: [] });
-    const result = buildCutoverCertificate(fixtureRequest({ evidence }));
+  it('rejects an empty migration receipt set', async () => {
+    const evidence = await fixtureEvidence({ migrationReceipts: [] });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'MIGRATION_RECEIPT_INVALID' });
   });
 
-  it('rejects migration receipts with a duplicate evidence digest', () => {
-    const receipt = fixtureBoundaryReceipt('dup');
-    const evidence = fixtureEvidence({ migrationReceipts: [receipt, receipt] });
-    const result = buildCutoverCertificate(fixtureRequest({ evidence }));
+  it('rejects migration receipts with a duplicate evidence digest', async () => {
+    const receipt = await fixtureBoundaryReceipt('dup');
+    const evidence = await fixtureEvidence({ migrationReceipts: [receipt, receipt] });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'MIGRATION_RECEIPT_INVALID' });
+  });
+
+  it('rejects a migration receipt bound to a different authority epoch than the request', async () => {
+    const receipt = await fixtureBoundaryReceipt('wrong-epoch', { authority_epoch: AUTHORITY_EPOCH + 9 });
+    const evidence = await fixtureEvidence({ migrationReceipts: [receipt, await fixtureBoundaryReceipt('two')] });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'MIGRATION_RECEIPT_INVALID' });
+  });
+
+  it('rejects a migration receipt whose result was not successful (result_code substitution)', async () => {
+    const receipt = await fixtureBoundaryReceipt('failed', { result_code: 'failed' });
+    const evidence = await fixtureEvidence({ migrationReceipts: [receipt, await fixtureBoundaryReceipt('two')] });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'MIGRATION_RECEIPT_INVALID' });
+  });
+
+  it('rejects a migration receipt whose signature does not verify against the trusted provider (tamper)', async () => {
+    const genuine = await fixtureBoundaryReceipt('tampered');
+    const tampered = { ...genuine, evidence_digest: digest('substituted-evidence') };
+    const evidence = await fixtureEvidence({ migrationReceipts: [tampered, await fixtureBoundaryReceipt('two')] });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'MIGRATION_RECEIPT_INVALID' });
+  });
+
+  it('rejects a migration receipt issued by an untrusted signer the certificate builder never registered (issuer substitution)', async () => {
+    const foreignProviders = fixtureForeignMigrationReceiptProviders();
+    const receipt = await fixtureBoundaryReceipt('foreign-signer', {}, foreignProviders);
+    const evidence = await fixtureEvidence({ migrationReceipts: [receipt, await fixtureBoundaryReceipt('two')] });
+    const result = await buildCutoverCertificate(await fixtureRequest({ evidence }), fixtureCertificateVerificationProviders());
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'MIGRATION_RECEIPT_INVALID' });
   });
 });
@@ -465,14 +589,14 @@ describe('buildCutoverCertificate', () => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('verifyCutoverCertificate', () => {
-  function issuedCertificate() {
-    const result = buildCutoverCertificate(fixtureRequest());
+  async function issuedCertificate() {
+    const result = await buildCutoverCertificate(await fixtureRequest(), fixtureCertificateVerificationProviders());
     if (result.verdict !== 'issued') throw new Error('fixture certificate failed to issue');
     return result.certificate;
   }
 
-  it('accepts a certificate that exactly matches the expectation', () => {
-    const certificate = issuedCertificate();
+  it('accepts a certificate that exactly matches the expectation', async () => {
+    const certificate = await issuedCertificate();
     const outcome = verifyCutoverCertificate(certificate, {
       mode: MODE,
       candidateSha: CANDIDATE_SHA,
@@ -484,8 +608,8 @@ describe('verifyCutoverCertificate', () => {
     expect(outcome).toEqual({ verdict: 'valid' });
   });
 
-  it('rejects a certificate whose digest was tampered', () => {
-    const certificate = issuedCertificate();
+  it('rejects a certificate whose digest was tampered', async () => {
+    const certificate = await issuedCertificate();
     const tampered = { ...certificate, certificateDigest: digest('tampered') };
     const outcome = verifyCutoverCertificate(tampered, {
       mode: MODE,
@@ -498,8 +622,8 @@ describe('verifyCutoverCertificate', () => {
     expect(outcome).toEqual({ verdict: 'rejected', reasonCode: 'CERTIFICATE_MALFORMED' });
   });
 
-  it('rejects a candidate SHA that does not match the expectation', () => {
-    const certificate = issuedCertificate();
+  it('rejects a candidate SHA that does not match the expectation', async () => {
+    const certificate = await issuedCertificate();
     const outcome = verifyCutoverCertificate(certificate, {
       mode: MODE,
       candidateSha: 'b'.repeat(40),
@@ -511,8 +635,8 @@ describe('verifyCutoverCertificate', () => {
     expect(outcome).toEqual({ verdict: 'rejected', reasonCode: 'CANDIDATE_SHA_MISMATCH' });
   });
 
-  it('rejects an approving policy that does not match the expectation', () => {
-    const certificate = issuedCertificate();
+  it('rejects an approving policy that does not match the expectation', async () => {
+    const certificate = await issuedCertificate();
     const outcome = verifyCutoverCertificate(certificate, {
       mode: MODE,
       candidateSha: CANDIDATE_SHA,
@@ -570,7 +694,7 @@ describe('cutover certificate ledger event', () => {
       authorityProvider,
     }, ledger, policies);
 
-    const buildResult = buildCutoverCertificate(fixtureRequest());
+    const buildResult = await buildCutoverCertificate(await fixtureRequest(), fixtureCertificateVerificationProviders());
     if (buildResult.verdict !== 'issued') throw new Error('fixture certificate failed to issue');
     const event = prepareCutoverCertificateEventWrite(buildResult.certificate, {
       eventId: 'cutover-certificate-1',
@@ -636,7 +760,7 @@ describe('cutover certificate ledger event', () => {
       auditLedgerId: 'cutover-audit',
       authorityProvider: () => authority,
     }, ledger, policies);
-    const buildResult = buildCutoverCertificate(fixtureRequest());
+    const buildResult = await buildCutoverCertificate(await fixtureRequest(), fixtureCertificateVerificationProviders());
     if (buildResult.verdict !== 'issued') throw new Error('fixture certificate failed to issue');
     const event = prepareCutoverCertificateEventWrite(buildResult.certificate, {
       eventId: 'cutover-certificate-retry',
@@ -684,7 +808,7 @@ describe('cutover certificate ledger event', () => {
       auditLedgerId: 'cutover-audit',
       authorityProvider: () => authority,
     }, registry);
-    const buildResult = buildCutoverCertificate(fixtureRequest());
+    const buildResult = await buildCutoverCertificate(await fixtureRequest(), fixtureCertificateVerificationProviders());
     if (buildResult.verdict !== 'issued') throw new Error('fixture certificate failed to issue');
     const event = prepareCutoverCertificateEventWrite(buildResult.certificate, {
       eventId: 'cutover-certificate-2',
@@ -713,24 +837,35 @@ describe('cutover certificate ledger event', () => {
 // 5. ROLLBACK WINDOW: OPEN AND EVALUATE
 // ───────────────────────────────────────────────────────────────────
 
-function fixtureWindowRecord(): RollbackWindowRecord {
+const WINDOW_OPENED_AT = '2026-07-01T00:00:00.000Z';
+
+function fixtureWindowRecord(overrides: Readonly<Partial<RollbackWindowOpenRequest>> = {}): RollbackWindowRecord {
   return openRollbackWindow({
     mode: MODE,
     cutoverCertificateDigest: digest('cutover-certificate'),
+    candidateSha: CANDIDATE_SHA,
     rollbackAnchorDigest: digest('rollback-anchor'),
     retainedLegacyAssetDigests: [digest('legacy-adapter'), digest('legacy-state')],
-    openedAt: '2026-07-01T00:00:00.000Z',
+    openedAt: WINDOW_OPENED_AT,
     openingAuthorityEpoch: AUTHORITY_EPOCH,
+    ...overrides,
   });
 }
 
-function execution(overrides: Readonly<Partial<RollbackWindowExecution>> = {}): RollbackWindowExecution {
+function execution(
+  record: RollbackWindowRecord,
+  overrides: Readonly<Partial<RollbackWindowExecution>> = {},
+): RollbackWindowExecution {
   return {
     executionId: digest(`execution-${Math.random()}`),
+    mode: record.mode,
+    windowRecordDigest: record.recordDigest,
+    candidateSha: record.candidateSha,
     authorityState: 'new_authoritative_reversible',
-    authorityEpoch: AUTHORITY_EPOCH + 1,
+    authorityEpoch: record.openingAuthorityEpoch + 1,
     result: 'trusted-completion',
     certificateDigest: digest(`certificate-${Math.random()}`),
+    observedAt: '2026-07-10T00:00:00.000Z',
     ...overrides,
   };
 }
@@ -749,9 +884,22 @@ describe('openRollbackWindow', () => {
     expect(() => openRollbackWindow({
       mode: MODE,
       cutoverCertificateDigest: digest('cutover-certificate'),
+      candidateSha: CANDIDATE_SHA,
       rollbackAnchorDigest: 'not-a-digest',
       retainedLegacyAssetDigests: [],
-      openedAt: '2026-07-01T00:00:00.000Z',
+      openedAt: WINDOW_OPENED_AT,
+      openingAuthorityEpoch: AUTHORITY_EPOCH,
+    })).toThrow(TypeError);
+  });
+
+  it('throws on a malformed candidate SHA', () => {
+    expect(() => openRollbackWindow({
+      mode: MODE,
+      cutoverCertificateDigest: digest('cutover-certificate'),
+      candidateSha: 'not-a-sha',
+      rollbackAnchorDigest: digest('rollback-anchor'),
+      retainedLegacyAssetDigests: [],
+      openedAt: WINDOW_OPENED_AT,
       openingAuthorityEpoch: AUTHORITY_EPOCH,
     })).toThrow(TypeError);
   });
@@ -775,7 +923,7 @@ describe('evaluateRollbackWindow', () => {
     const record = fixtureWindowRecord();
     const evaluation = evaluateRollbackWindow(record, {
       evaluatedAt: '2026-07-20T00:00:00.000Z',
-      executions: [execution(), execution(), execution()],
+      executions: [execution(record), execution(record), execution(record)],
       unresolvedEvidenceCount: 0,
       lowTraffic: false,
     });
@@ -788,7 +936,7 @@ describe('evaluateRollbackWindow', () => {
     const record = fixtureWindowRecord();
     const evaluation = evaluateRollbackWindow(record, {
       evaluatedAt: '2026-07-20T00:00:00.000Z',
-      executions: [execution(), execution(), execution(), execution(), execution()],
+      executions: [execution(record), execution(record), execution(record), execution(record), execution(record)],
       unresolvedEvidenceCount: 0,
       lowTraffic: false,
     });
@@ -800,7 +948,7 @@ describe('evaluateRollbackWindow', () => {
     const record = fixtureWindowRecord();
     const evaluation = evaluateRollbackWindow(record, {
       evaluatedAt: '2026-07-20T00:00:00.000Z',
-      executions: [execution(), execution(), execution(), execution(), execution()],
+      executions: [execution(record), execution(record), execution(record), execution(record), execution(record)],
       unresolvedEvidenceCount: 0,
       lowTraffic: true,
     });
@@ -811,7 +959,7 @@ describe('evaluateRollbackWindow', () => {
     const record = fixtureWindowRecord();
     const evaluation = evaluateRollbackWindow(record, {
       evaluatedAt: '2026-07-20T00:00:00.000Z',
-      executions: [execution(), execution(), execution(), execution(), execution()],
+      executions: [execution(record), execution(record), execution(record), execution(record), execution(record)],
       unresolvedEvidenceCount: 2,
       lowTraffic: false,
     });
@@ -822,12 +970,12 @@ describe('evaluateRollbackWindow', () => {
     const record = fixtureWindowRecord();
     const sharedCertificate = digest('shared-certificate');
     const linked = [
-      execution({ executionId: 'run-1', certificateDigest: sharedCertificate }),
-      execution({ executionId: 'run-2', certificateDigest: sharedCertificate }),
+      execution(record, { executionId: 'run-1', certificateDigest: sharedCertificate }),
+      execution(record, { executionId: 'run-2', certificateDigest: sharedCertificate }),
     ];
     const evaluation = evaluateRollbackWindow(record, {
       evaluatedAt: '2026-07-20T00:00:00.000Z',
-      executions: [...linked, execution(), execution(), execution()],
+      executions: [...linked, execution(record), execution(record), execution(record)],
       unresolvedEvidenceCount: 0,
       lowTraffic: false,
     });
@@ -843,63 +991,198 @@ describe('evaluateRollbackWindow', () => {
       lowTraffic: false,
     })).toThrow(TypeError);
   });
+
+  it('does not count an execution bound to a different mode (cross-mode substitution)', () => {
+    const record = fixtureWindowRecord();
+    const foreign = execution(record, { mode: 'deep-review' });
+    const evaluation = evaluateRollbackWindow(record, {
+      evaluatedAt: '2026-07-20T00:00:00.000Z',
+      executions: [foreign, execution(record), execution(record), execution(record), execution(record)],
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(evaluation.successfulAuthoritativeExecutions).toBe(4);
+    expect(evaluation.state).toBe('open');
+  });
+
+  it('does not count an execution bound to a different window instance (cross-window substitution)', () => {
+    const record = fixtureWindowRecord();
+    const otherWindow = fixtureWindowRecord({ openedAt: '2026-06-01T00:00:00.000Z' });
+    const foreign = execution(otherWindow);
+    const evaluation = evaluateRollbackWindow(record, {
+      evaluatedAt: '2026-07-20T00:00:00.000Z',
+      executions: [foreign, execution(record), execution(record), execution(record), execution(record)],
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(evaluation.successfulAuthoritativeExecutions).toBe(4);
+    expect(evaluation.state).toBe('open');
+  });
+
+  it('does not count an execution bound to a different candidate SHA', () => {
+    const record = fixtureWindowRecord();
+    const foreign = execution(record, { candidateSha: 'b'.repeat(40) });
+    const evaluation = evaluateRollbackWindow(record, {
+      evaluatedAt: '2026-07-20T00:00:00.000Z',
+      executions: [foreign, execution(record), execution(record), execution(record), execution(record)],
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(evaluation.successfulAuthoritativeExecutions).toBe(4);
+  });
+
+  it('does not count an execution bound to a different (non-post-cutover) authority epoch', () => {
+    const record = fixtureWindowRecord();
+    const foreign = execution(record, { authorityEpoch: record.openingAuthorityEpoch });
+    const evaluation = evaluateRollbackWindow(record, {
+      evaluatedAt: '2026-07-20T00:00:00.000Z',
+      executions: [foreign, execution(record), execution(record), execution(record), execution(record)],
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(evaluation.successfulAuthoritativeExecutions).toBe(4);
+  });
+
+  it('does not count an execution observed before the window opened (stale)', () => {
+    const record = fixtureWindowRecord();
+    const stale = execution(record, { observedAt: '2026-06-15T00:00:00.000Z' });
+    const evaluation = evaluateRollbackWindow(record, {
+      evaluatedAt: '2026-07-20T00:00:00.000Z',
+      executions: [stale, execution(record), execution(record), execution(record), execution(record)],
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(evaluation.successfulAuthoritativeExecutions).toBe(4);
+  });
+
+  it('does not count an execution observed after the evaluation instant (premature)', () => {
+    const record = fixtureWindowRecord();
+    const premature = execution(record, { observedAt: '2026-08-01T00:00:00.000Z' });
+    const evaluation = evaluateRollbackWindow(record, {
+      evaluatedAt: '2026-07-20T00:00:00.000Z',
+      executions: [premature, execution(record), execution(record), execution(record), execution(record)],
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+    });
+    expect(evaluation.successfulAuthoritativeExecutions).toBe(4);
+  });
 });
 
 // ───────────────────────────────────────────────────────────────────
 // 6. MONITORED SIGNALS
 // ───────────────────────────────────────────────────────────────────
 
+const SIGNAL_EVALUATED_AT = '2026-07-20T00:00:00.000Z';
+const SIGNAL_CONTEXT = Object.freeze({ mode: MODE, windowOpenedAt: WINDOW_OPENED_AT, evaluatedAt: SIGNAL_EVALUATED_AT });
+
 function reading(overrides: Readonly<Partial<MonitoredSignalReading>> = {}): MonitoredSignalReading {
   return {
+    mode: MODE,
     family: 'health',
     severity: 'clear',
     observedAt: '2026-07-10T00:00:00.000Z',
-    evidenceDigest: digest('signal'),
+    evidenceDigest: digest(`signal-${Math.random()}`),
     reasonCode: null,
     ...overrides,
   };
 }
 
+/** One fresh, distinct, in-window reading per declared family — the minimum a clean batch requires. */
+function allFamilyReadings(
+  overrides: Readonly<Partial<Record<MonitoredSignalFamily, Partial<MonitoredSignalReading>>>> = {},
+): MonitoredSignalReading[] {
+  return MonitoredSignalFamilies.map((family) => reading({
+    family,
+    evidenceDigest: digest(`signal-${family}`),
+    ...(overrides[family] ?? {}),
+  }));
+}
+
 describe('evaluateMonitoredSignals', () => {
-  it('continues when every family is clear', () => {
-    const decision = evaluateMonitoredSignals([reading(), reading({ family: 'parity-drift' })]);
+  it('continues when every declared family reports a fresh, in-window, single-mode clear reading', () => {
+    const decision = evaluateMonitoredSignals(allFamilyReadings(), SIGNAL_CONTEXT);
     expect(decision.decision).toBe('continue');
   });
 
   it('extends when a family reports a warning', () => {
-    const decision = evaluateMonitoredSignals([reading({ family: 'receipt', severity: 'warning', reasonCode: 'RECEIPT_DELAYED' })]);
+    const decision = evaluateMonitoredSignals(
+      allFamilyReadings({ receipt: { severity: 'warning', reasonCode: 'RECEIPT_DELAYED' } }),
+      SIGNAL_CONTEXT,
+    );
     expect(decision.decision).toBe('extend');
     expect(decision.triggeredBy).toEqual(['receipt']);
     expect(decision.reasonCodes).toEqual(['RECEIPT_DELAYED']);
   });
 
   it('reverts when a family reports revert severity', () => {
-    const decision = evaluateMonitoredSignals([
-      reading({ family: 'parity-drift', severity: 'revert', reasonCode: 'PARITY_DRIFT_CRITICAL' }),
-      reading({ family: 'health', severity: 'warning' }),
-    ]);
+    const decision = evaluateMonitoredSignals(
+      allFamilyReadings({
+        'parity-drift': { severity: 'revert', reasonCode: 'PARITY_DRIFT_CRITICAL' },
+        health: { severity: 'warning' },
+      }),
+      SIGNAL_CONTEXT,
+    );
     expect(decision.decision).toBe('revert');
     expect(decision.triggeredBy).toEqual(['parity-drift']);
   });
 
   it('stops for an operator when one family reports contradictory severities', () => {
-    const decision = evaluateMonitoredSignals([
-      reading({ family: 'budget', severity: 'clear' }),
-      reading({ family: 'budget', severity: 'revert' }),
-    ]);
+    const decision = evaluateMonitoredSignals(
+      [...allFamilyReadings(), reading({ family: 'budget', severity: 'revert', evidenceDigest: digest('budget-second') })],
+      SIGNAL_CONTEXT,
+    );
     expect(decision.decision).toBe('operator_stop');
     expect(decision.reasonCodes).toEqual(['SIGNAL_CONTRADICTORY']);
   });
 
   it('stops for an operator on a malformed reading', () => {
-    const decision = evaluateMonitoredSignals([{ ...reading(), family: 'not-a-family' } as never]);
+    const decision = evaluateMonitoredSignals([{ ...reading(), family: 'not-a-family' } as never], SIGNAL_CONTEXT);
     expect(decision.decision).toBe('operator_stop');
     expect(decision.reasonCodes).toEqual(['SIGNAL_MALFORMED']);
   });
 
-  it('continues on an empty signal batch', () => {
-    const decision = evaluateMonitoredSignals([]);
-    expect(decision.decision).toBe('continue');
+  it('stops for an operator on an empty signal batch rather than treating no evidence as clean', () => {
+    const decision = evaluateMonitoredSignals([], SIGNAL_CONTEXT);
+    expect(decision.decision).toBe('operator_stop');
+    expect(decision.reasonCodes).toEqual(['SIGNAL_INCOMPLETE_FAMILIES']);
+  });
+
+  it('stops for an operator when a declared family has no reading at all', () => {
+    const missingOne = allFamilyReadings().filter((entry) => entry.family !== 'authorization');
+    const decision = evaluateMonitoredSignals(missingOne, SIGNAL_CONTEXT);
+    expect(decision.decision).toBe('operator_stop');
+    expect(decision.reasonCodes).toEqual(['SIGNAL_INCOMPLETE_FAMILIES']);
+  });
+
+  it('stops for an operator on a duplicate evidence digest reused across two families', () => {
+    const base = allFamilyReadings();
+    const withDuplicate = base.map((entry, index) => (
+      index === 1 ? { ...entry, evidenceDigest: base[0].evidenceDigest } : entry
+    ));
+    const decision = evaluateMonitoredSignals(withDuplicate, SIGNAL_CONTEXT);
+    expect(decision.decision).toBe('operator_stop');
+    expect(decision.reasonCodes).toEqual(['SIGNAL_DUPLICATE']);
+  });
+
+  it('stops for an operator on a reading bound to a different mode (cross-mode substitution)', () => {
+    const foreign = allFamilyReadings({ health: { mode: 'deep-review' } });
+    const decision = evaluateMonitoredSignals(foreign, SIGNAL_CONTEXT);
+    expect(decision.decision).toBe('operator_stop');
+    expect(decision.reasonCodes).toEqual(['SIGNAL_CROSS_MODE']);
+  });
+
+  it('stops for an operator on a reading dated before the window opened (stale)', () => {
+    const stale = allFamilyReadings({ health: { observedAt: '2026-06-01T00:00:00.000Z' } });
+    const decision = evaluateMonitoredSignals(stale, SIGNAL_CONTEXT);
+    expect(decision.decision).toBe('operator_stop');
+    expect(decision.reasonCodes).toEqual(['SIGNAL_STALE']);
+  });
+
+  it('stops for an operator on a reading dated after the evaluation instant (premature)', () => {
+    const premature = allFamilyReadings({ health: { observedAt: '2026-08-01T00:00:00.000Z' } });
+    const decision = evaluateMonitoredSignals(premature, SIGNAL_CONTEXT);
+    expect(decision.decision).toBe('operator_stop');
+    expect(decision.reasonCodes).toEqual(['SIGNAL_STALE']);
   });
 });
 
@@ -909,7 +1192,10 @@ describe('evaluateMonitoredSignals', () => {
 
 describe('buildRollbackRevertRecord', () => {
   function revertDecision() {
-    return evaluateMonitoredSignals([reading({ family: 'health', severity: 'revert', reasonCode: 'HEALTH_CRITICAL' })]);
+    return evaluateMonitoredSignals(
+      allFamilyReadings({ health: { severity: 'revert', reasonCode: 'HEALTH_CRITICAL' } }),
+      SIGNAL_CONTEXT,
+    );
   }
 
   it('records a well-formed, non-destructive revert', () => {
@@ -938,7 +1224,7 @@ describe('buildRollbackRevertRecord', () => {
     const record = fixtureWindowRecord();
     const result = buildRollbackRevertRecord({
       windowRecord: record,
-      triggerDecision: evaluateMonitoredSignals([reading()]),
+      triggerDecision: evaluateMonitoredSignals(allFamilyReadings(), SIGNAL_CONTEXT),
       admissionsFrozenAt: '2026-07-05T00:00:00.000Z',
       spineFencedAt: '2026-07-05T00:00:05.000Z',
       reconciliationDigest: digest('reconciliation'),
@@ -1002,31 +1288,25 @@ describe('closeRollbackWindow', () => {
     trust_scope: 'durable-cross-resume',
   }, 'a'.repeat(32));
 
-  function eligibleEvaluation() {
-    const record = fixtureWindowRecord();
-    return {
-      record,
-      evaluation: evaluateRollbackWindow(record, {
-        evaluatedAt: '2026-07-20T00:00:00.000Z',
-        executions: [execution(), execution(), execution(), execution(), execution()],
-        unresolvedEvidenceCount: 0,
-        lowTraffic: false,
-      }),
-    };
+  function eligibleExecutions(record: RollbackWindowRecord): RollbackWindowExecution[] {
+    return [execution(record), execution(record), execution(record), execution(record), execution(record)];
   }
 
-  it('closes and signs durable evidence once eligible with no unresolved signal', async () => {
-    const { record, evaluation } = eligibleEvaluation();
+  it('closes and signs durable evidence once eligible with no unresolved signal, recomputed from raw evidence', async () => {
+    const record = fixtureWindowRecord();
     const result = await closeRollbackWindow({
       windowRecord: record,
-      evaluation,
-      signalDecision: evaluateMonitoredSignals([reading()]),
+      executions: eligibleExecutions(record),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+      signalReadings: allFamilyReadings(),
       closureDecidedAt: '2026-07-20T00:05:00.000Z',
     }, provider);
     expect(result.verdict).toBe('closed');
     if (result.verdict !== 'closed') throw new Error('expected closed');
     expect(result.closure.facts.handoffReady).toBe(true);
     expect(result.closure.facts.successfulAuthoritativeExecutions).toBe(5);
+    expect(result.closure.facts.signalDecision.decision).toBe('continue');
     const verified = await provider.verify(
       Uint8Array.from(canonicalBytes({
         facts: result.closure.facts,
@@ -1045,29 +1325,54 @@ describe('closeRollbackWindow', () => {
 
   it('refuses to close a window that is not yet eligible', async () => {
     const record = fixtureWindowRecord();
-    const evaluation = evaluateRollbackWindow(record, {
-      evaluatedAt: '2026-07-02T00:00:00.000Z',
+    const result = await closeRollbackWindow({
+      windowRecord: record,
       executions: [],
       unresolvedEvidenceCount: 0,
       lowTraffic: false,
-    });
-    const result = await closeRollbackWindow({
-      windowRecord: record,
-      evaluation,
-      signalDecision: evaluateMonitoredSignals([reading()]),
+      signalReadings: allFamilyReadings(),
       closureDecidedAt: '2026-07-02T00:05:00.000Z',
     }, provider);
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'WINDOW_NOT_ELIGIBLE' });
   });
 
   it('refuses to close while a monitored signal is unresolved', async () => {
-    const { record, evaluation } = eligibleEvaluation();
+    const record = fixtureWindowRecord();
     const result = await closeRollbackWindow({
       windowRecord: record,
-      evaluation,
-      signalDecision: evaluateMonitoredSignals([reading({ severity: 'warning' })]),
+      executions: eligibleExecutions(record),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+      signalReadings: allFamilyReadings({ health: { severity: 'warning' } }),
       closureDecidedAt: '2026-07-20T00:05:00.000Z',
     }, provider);
     expect(result).toEqual({ verdict: 'rejected', reasonCode: 'UNRESOLVED_SIGNAL' });
+  });
+
+  it('refuses to close on an empty signal batch rather than treating no evidence as clean', async () => {
+    const record = fixtureWindowRecord();
+    const result = await closeRollbackWindow({
+      windowRecord: record,
+      executions: eligibleExecutions(record),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+      signalReadings: [],
+      closureDecidedAt: '2026-07-20T00:05:00.000Z',
+    }, provider);
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'UNRESOLVED_SIGNAL' });
+  });
+
+  it('refuses to close on executions submitted from a different window instance (cross-window substitution)', async () => {
+    const record = fixtureWindowRecord();
+    const otherWindow = fixtureWindowRecord({ openedAt: '2026-06-01T00:00:00.000Z' });
+    const result = await closeRollbackWindow({
+      windowRecord: record,
+      executions: eligibleExecutions(otherWindow),
+      unresolvedEvidenceCount: 0,
+      lowTraffic: false,
+      signalReadings: allFamilyReadings(),
+      closureDecidedAt: '2026-07-20T00:05:00.000Z',
+    }, provider);
+    expect(result).toEqual({ verdict: 'rejected', reasonCode: 'WINDOW_NOT_ELIGIBLE' });
   });
 });

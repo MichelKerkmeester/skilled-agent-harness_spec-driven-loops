@@ -11,6 +11,8 @@ import type { MixedVersionOraclePass } from '../mixed-version-fixtures/index.js'
 import type {
   BoundaryReceiptPayload,
   CertificationEnvelope,
+  CertificationProviderRegistry,
+  ReceiptCertificationProvider,
 } from '../receipts-and-effect-recovery/index.js';
 import type { RollbackDrillCertificate } from '../rollback-drills/index.js';
 
@@ -107,6 +109,19 @@ export interface CutoverCertificateRequest {
   readonly evidence: CutoverCertificateEvidenceSources;
 }
 
+/**
+ * The trusted verifiers the certificate builder checks each signed evidence
+ * family against — never the caller's own self-reported shape. A rollback
+ * drill certificate is checked against one specific provider (it is issued
+ * by a single trusted rollback-drill authority); migration receipts are
+ * checked against a registry because each receipt may carry its own
+ * registered signer identity.
+ */
+export interface CutoverCertificateVerificationProviders {
+  readonly rollbackDrillProvider: ReceiptCertificationProvider;
+  readonly migrationReceiptProviders: CertificationProviderRegistry;
+}
+
 export type CutoverCertificateRejectionReasonCode =
   | 'AUTHORITY_EPOCH_INVALID'
   | 'CANDIDATE_SHA_INVALID'
@@ -142,17 +157,29 @@ export type CutoverCertificateVerificationResult =
 // 3. ROLLBACK WINDOW
 // ───────────────────────────────────────────────────────────────────
 
+/**
+ * One admitted authoritative execution counted toward window closure. Every
+ * binding field is verified against the exact window it is submitted
+ * against — `evaluateRollbackWindow` never counts an execution belonging to
+ * a different mode, window instance, candidate, or authority epoch, and
+ * never counts one observed outside the window's own open interval.
+ */
 export interface RollbackWindowExecution {
   readonly executionId: string;
+  readonly mode: CutoverCertificateMode;
+  readonly windowRecordDigest: string;
+  readonly candidateSha: string;
   readonly authorityState: AuthorityState;
   readonly authorityEpoch: number;
   readonly result: 'trusted-completion' | 'blocked' | 'failed' | 'incomplete' | 'abstained';
   readonly certificateDigest: string;
+  readonly observedAt: string;
 }
 
 export interface RollbackWindowOpenRequest {
   readonly mode: CutoverCertificateMode;
   readonly cutoverCertificateDigest: string;
+  readonly candidateSha: string;
   readonly rollbackAnchorDigest: string;
   readonly retainedLegacyAssetDigests: readonly string[];
   readonly openedAt: string;
@@ -162,6 +189,7 @@ export interface RollbackWindowOpenRequest {
 export interface RollbackWindowRecord {
   readonly mode: CutoverCertificateMode;
   readonly cutoverCertificateDigest: string;
+  readonly candidateSha: string;
   readonly rollbackAnchorDigest: string;
   readonly retainedLegacyAssetDigests: readonly string[];
   readonly openedAt: string;
@@ -208,11 +236,19 @@ export type MonitoredSignalFamily = typeof MonitoredSignalFamilies[number];
 export type MonitoredSignalSeverity = 'clear' | 'warning' | 'revert';
 
 export interface MonitoredSignalReading {
+  readonly mode: CutoverCertificateMode;
   readonly family: MonitoredSignalFamily;
   readonly severity: MonitoredSignalSeverity;
   readonly observedAt: string;
   readonly evidenceDigest: string;
   readonly reasonCode: string | null;
+}
+
+/** Binding context `evaluateMonitoredSignals` verifies every reading against. */
+export interface MonitoredSignalEvaluationContext {
+  readonly mode: CutoverCertificateMode;
+  readonly windowOpenedAt: string;
+  readonly evaluatedAt: string;
 }
 
 export type RollbackWindowSignalDecisionKind = 'continue' | 'extend' | 'operator_stop' | 'revert';
@@ -261,10 +297,19 @@ export interface RollbackRevertSequenceRecord {
   readonly recordDigest: string;
 }
 
+/**
+ * Raw, not-yet-evaluated evidence for one closure attempt. `closeRollbackWindow`
+ * recomputes both the run-count/calendar evaluation and the monitored-signal
+ * decision from these inputs itself — it never accepts a caller-supplied
+ * `RollbackWindowEvaluation` or `RollbackWindowSignalDecision`, which would
+ * let a caller assert an eligibility the underlying evidence never earned.
+ */
 export interface RollbackWindowClosureRequest {
   readonly windowRecord: RollbackWindowRecord;
-  readonly evaluation: RollbackWindowEvaluation;
-  readonly signalDecision: RollbackWindowSignalDecision;
+  readonly executions: readonly RollbackWindowExecution[];
+  readonly unresolvedEvidenceCount: number;
+  readonly lowTraffic: boolean;
+  readonly signalReadings: readonly MonitoredSignalReading[];
   readonly closureDecidedAt: string;
 }
 
@@ -274,6 +319,7 @@ export interface RollbackWindowClosureFacts {
   readonly finalEvaluation: RollbackWindowEvaluation;
   readonly successfulAuthoritativeExecutions: number;
   readonly retainedAssetDigests: readonly string[];
+  readonly signalDecision: RollbackWindowSignalDecision;
   readonly closureDecidedAt: string;
   readonly handoffReady: true;
 }

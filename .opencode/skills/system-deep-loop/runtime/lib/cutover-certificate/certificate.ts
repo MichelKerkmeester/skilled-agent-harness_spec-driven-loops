@@ -10,6 +10,8 @@ import {
   sha256Bytes,
 } from '../event-envelope/index.js';
 import { verifyClassificationManifest } from '../inflight-state-classification/index.js';
+import { verifyBoundaryReceiptCertification } from '../receipts-and-effect-recovery/index.js';
+import { verifyRollbackDrillCertificate } from '../rollback-drills/index.js';
 import {
   CUTOVER_CERTIFICATE_EVENT_TYPE,
   CUTOVER_CERTIFICATE_SCHEMA_VERSION,
@@ -35,6 +37,7 @@ import type {
   CutoverCertificateRejectionReasonCode,
   CutoverCertificateRequest,
   CutoverCertificateVerificationExpectation,
+  CutoverCertificateVerificationProviders,
   CutoverCertificateVerificationResult,
 } from './types.js';
 
@@ -81,11 +84,16 @@ function uniqueSortedDigests(values: readonly string[]): string[] | null {
  * Bind one mode's already-independently-verified readiness, parity, drill,
  * replay, classification, receipt, and policy evidence into one certificate
  * fact set. Every check fails closed: a missing, mismatched, or
- * cross-mode-bound input rejects before a certificate is ever built.
+ * cross-mode-bound input rejects before a certificate is ever built. The
+ * rollback drill and migration receipt families additionally carry their own
+ * cryptographic certification — this verifies each one's signature and
+ * issuer identity against `providers`, and binds its mode/candidate/epoch
+ * facts, rather than trusting the caller's self-reported shape alone.
  */
-export function buildCutoverCertificate(
+export async function buildCutoverCertificate(
   request: Readonly<CutoverCertificateRequest>,
-): CutoverCertificateAssemblyResult {
+  providers: Readonly<CutoverCertificateVerificationProviders>,
+): Promise<CutoverCertificateAssemblyResult> {
   try {
     const { mode, candidateSha, fromAuthorityEpoch, issuer, issuedAt, evidence } = request;
     if (!CUTOVER_CERTIFICATE_MODE_SET.has(mode)) return rejected('MODE_MISMATCH');
@@ -122,7 +130,13 @@ export function buildCutoverCertificate(
       || drillFacts.candidateSha !== candidateSha
       || drillFacts.passed !== true
       || drillFacts.classificationDigest !== classificationManifest.finalDigest
+      || drillFacts.startingAuthorityEpoch !== fromAuthorityEpoch
     ) return rejected('ROLLBACK_DRILL_NOT_PASSED');
+    try {
+      await verifyRollbackDrillCertificate(rollbackDrillCertificate, providers.rollbackDrillProvider);
+    } catch {
+      return rejected('ROLLBACK_DRILL_NOT_PASSED');
+    }
 
     if (
       mixedVersionReplay.ok !== true
@@ -135,6 +149,19 @@ export function buildCutoverCertificate(
       return rejected('CLASSIFICATION_MANIFEST_INVALID');
     }
 
+    for (const receipt of migrationReceipts) {
+      if (
+        receipt.from_state !== 'cutover_ready'
+        || receipt.to_state !== 'new_authoritative_reversible'
+        || receipt.authority_epoch !== fromAuthorityEpoch
+        || receipt.result_code !== 'ok'
+      ) return rejected('MIGRATION_RECEIPT_INVALID');
+      try {
+        await verifyBoundaryReceiptCertification(receipt, providers.migrationReceiptProviders);
+      } catch {
+        return rejected('MIGRATION_RECEIPT_INVALID');
+      }
+    }
     const migrationReceiptDigests = uniqueSortedDigests(
       migrationReceipts.map((receipt) => receipt.evidence_digest),
     );

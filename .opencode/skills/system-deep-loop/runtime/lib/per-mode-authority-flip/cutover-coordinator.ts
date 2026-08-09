@@ -24,7 +24,11 @@ import { evaluateCutoverPreflight, rollbackAssetSetDigest } from './preflight.js
 import { AUTHORITY_FLIP_EVENT_TYPE, AuthorityFlipError } from './types.js';
 
 import type { AuthorityPendingTransition } from './authority-registry.js';
-import type { AppendOnlyLedger, TransitionAuthorizationGateway } from '../authorized-ledger/index.js';
+import type {
+  AppendOnlyLedger,
+  TransitionAuthorizationGateway,
+  TransitionPolicyRegistry,
+} from '../authorized-ledger/index.js';
 import type { EventTypeRegistry, JsonObject } from '../event-envelope/index.js';
 import type { AuthorityTransitionFacts, CutoverCertificateMode, CutoverDecision, CutoverRequest } from './types.js';
 
@@ -41,10 +45,40 @@ export interface AuthorityFlipCoordinatorFaultInjection {
   readonly afterLedgerAppendBeforeCas?: () => void;
 }
 
+/**
+ * Deployment-resolved identity a caller's request must match exactly. Unlike
+ * the generic gateway's `ExpectedTransitionIdentity`, both fields are
+ * mandatory here: this coordinator only ever authorizes the one irreversible
+ * authority-transition event type, so a resolver that cannot pin an actor and
+ * capability is treated the same as no resolver at all — deny, never proceed
+ * on an unverified claim.
+ */
+export interface AuthorityFlipExpectedIdentity {
+  readonly actorId: string;
+  readonly capabilityId: string;
+}
+
 export interface AuthorityFlipCoordinatorOptions {
   readonly registry: AuthorityRegistry;
   readonly ledger: AppendOnlyLedger;
   readonly gateway: TransitionAuthorizationGateway;
+  /** Resolves and verifies the exact set of transition policies this coordinator may authorize under. */
+  readonly policies: TransitionPolicyRegistry;
+  /**
+   * Mandatory, fail-closed identity binding for the authority-transition
+   * event this coordinator exclusively handles. A resolver that throws,
+   * resolves to `null`, or resolves to a value that does not exactly match
+   * the request's own `actorId`/`capabilityId` denies before any
+   * authorization or durable write is attempted. This is intentionally a
+   * required constructor dependency — the coordinator cannot be built
+   * without one — because leaving it optional (as the generic ledger
+   * gateway's `identityResolver` is, for its many other event types) let a
+   * live coordinator accept an arbitrary caller-asserted identity for this
+   * specific irreversible transition.
+   */
+  readonly identityResolver: (
+    context: Readonly<{ mode: CutoverCertificateMode; request: CutoverRequest }>,
+  ) => AuthorityFlipExpectedIdentity | null | Promise<AuthorityFlipExpectedIdentity | null>;
   readonly now?: () => Date;
   readonly faultInjection?: AuthorityFlipCoordinatorFaultInjection;
 }
@@ -54,6 +88,8 @@ export class AuthorityFlipCoordinator {
   readonly #registry: AuthorityRegistry;
   readonly #ledger: AppendOnlyLedger;
   readonly #gateway: TransitionAuthorizationGateway;
+  readonly #policies: TransitionPolicyRegistry;
+  readonly #identityResolver: AuthorityFlipCoordinatorOptions['identityResolver'];
   readonly #now: () => Date;
   readonly #faultInjection: AuthorityFlipCoordinatorFaultInjection;
   readonly #eventRegistry: EventTypeRegistry;
@@ -62,6 +98,8 @@ export class AuthorityFlipCoordinator {
     this.#registry = options.registry;
     this.#ledger = options.ledger;
     this.#gateway = options.gateway;
+    this.#policies = options.policies;
+    this.#identityResolver = options.identityResolver;
     this.#now = options.now ?? (() => new Date());
     this.#faultInjection = options.faultInjection ?? {};
     this.#eventRegistry = createAuthorityTransitionEventRegistry();
@@ -87,6 +125,19 @@ export class AuthorityFlipCoordinator {
       if (mode !== request.preflight.mode) {
         return Object.freeze({ disposition: 'denied', reasonCode: 'WRONG_MODE_BINDING' });
       }
+
+      // Mandatory, fail-closed identity binding for this event type only —
+      // never trust the request's own actorId/capabilityId claim without an
+      // independent deployment-resolved match.
+      const identityDenial = await this.#requireVerifiedIdentity(mode, request);
+      if (identityDenial) return identityDenial;
+
+      // The request's own policy tuple must be the exact tuple that
+      // approved the cutover certificate it is presenting — otherwise a
+      // certificate approved under one policy could authorize the actual
+      // ledger append under a different, more permissive one.
+      const policyDenial = this.#requireCertificateMatchingPolicy(request);
+      if (policyDenial) return policyDenial;
 
       // Deterministically finish (or abort) any transition a previous
       // attempt prepared but never confirmed — a crash between the ledger
@@ -235,6 +286,60 @@ export class AuthorityFlipCoordinator {
         resumed: casResult.resumed,
       });
     });
+  }
+
+  /**
+   * Resolve the deployment's expected identity for this exact request and
+   * deny unless it is present and matches both fields exactly. A throwing
+   * resolver, a `null` resolution, or a resolution missing either field is
+   * treated identically to no resolver at all: fail closed.
+   */
+  async #requireVerifiedIdentity(
+    mode: CutoverCertificateMode,
+    request: CutoverRequest,
+  ): Promise<CutoverDecision | null> {
+    let expected: AuthorityFlipExpectedIdentity | null;
+    try {
+      expected = await this.#identityResolver({ mode, request });
+    } catch {
+      return Object.freeze({ disposition: 'denied', reasonCode: 'IDENTITY_UNVERIFIED' });
+    }
+    if (
+      !isRecord(expected)
+      || typeof expected.actorId !== 'string' || expected.actorId.length === 0
+      || typeof expected.capabilityId !== 'string' || expected.capabilityId.length === 0
+      || expected.actorId !== request.actorId
+      || expected.capabilityId !== request.capabilityId
+    ) {
+      return Object.freeze({ disposition: 'denied', reasonCode: 'IDENTITY_UNVERIFIED' });
+    }
+    return null;
+  }
+
+  /**
+   * Require the request's own policy tuple to exactly equal the cutover
+   * certificate's approving-policy tuple, with both resolved through the
+   * same pinned policy registry — a raw string match alone would not prove
+   * either tuple is a genuinely registered policy.
+   */
+  #requireCertificateMatchingPolicy(request: CutoverRequest): CutoverDecision | null {
+    try {
+      const evidence = request.preflight.cutover.certificate.facts.evidence;
+      if (
+        request.policyId !== evidence.approvingPolicyId
+        || request.policyVersion !== evidence.approvingPolicyVersion
+        || request.policyDigest !== evidence.approvingPolicyDigest
+      ) {
+        return Object.freeze({ disposition: 'denied', reasonCode: 'POLICY_MISMATCH' });
+      }
+      const resolved = this.#policies.resolve(request.policyId, request.policyVersion);
+      if (resolved.digest !== request.policyDigest) {
+        return Object.freeze({ disposition: 'denied', reasonCode: 'POLICY_MISMATCH' });
+      }
+      return null;
+    } catch {
+      return Object.freeze({ disposition: 'denied', reasonCode: 'POLICY_MISMATCH' });
+    }
   }
 
   /**

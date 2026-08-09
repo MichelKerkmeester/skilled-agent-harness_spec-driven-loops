@@ -32,6 +32,7 @@ export type {
 export type {
   AuthorityFlipCoordinatorFaultInjection,
   AuthorityFlipCoordinatorOptions,
+  AuthorityFlipExpectedIdentity,
 } from './cutover-coordinator.js';
 export type {
   AuthorityTransitionEnvelopeFields,

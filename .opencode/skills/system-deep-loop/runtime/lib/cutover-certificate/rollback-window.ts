@@ -12,6 +12,7 @@ import {
 import type { JsonObject } from '../event-envelope/index.js';
 import type { CertificationEnvelope, ReceiptCertificationProvider } from '../receipts-and-effect-recovery/index.js';
 import type {
+  MonitoredSignalEvaluationContext,
   MonitoredSignalFamily,
   MonitoredSignalReading,
   RollbackRevertSequenceRecord,
@@ -33,6 +34,7 @@ import type {
 // 1. HELPERS
 // ───────────────────────────────────────────────────────────────────
 
+const HEX_40 = /^[a-f0-9]{40}$/u;
 const HEX_64 = /^[a-f0-9]{64}$/u;
 const MILLISECONDS_PER_CALENDAR_DAY = 86_400_000;
 
@@ -77,11 +79,12 @@ export function openRollbackWindow(
   request: Readonly<RollbackWindowOpenRequest>,
 ): RollbackWindowRecord {
   const {
-    mode, cutoverCertificateDigest, rollbackAnchorDigest,
+    mode, cutoverCertificateDigest, candidateSha, rollbackAnchorDigest,
     retainedLegacyAssetDigests, openedAt, openingAuthorityEpoch,
   } = request;
   if (
     !isNonEmptyString(cutoverCertificateDigest)
+    || !HEX_40.test(candidateSha)
     || !HEX_64.test(rollbackAnchorDigest)
     || !isIsoTimestamp(openedAt)
     || !isPositiveInteger(openingAuthorityEpoch)
@@ -94,6 +97,7 @@ export function openRollbackWindow(
   const core = Object.freeze({
     mode,
     cutoverCertificateDigest,
+    candidateSha,
     rollbackAnchorDigest,
     retainedLegacyAssetDigests: retained,
     openedAt,
@@ -130,13 +134,28 @@ export function evaluateRollbackWindow(
     throw new TypeError('Rollback window evaluation input is malformed');
   }
 
-  const validExecutions = input.executions.filter((entry) => (
-    isNonEmptyString(entry.executionId)
-    && entry.authorityState === 'new_authoritative_reversible'
-    && isPositiveInteger(entry.authorityEpoch)
-    && entry.result === 'trusted-completion'
-    && HEX_64.test(entry.certificateDigest)
-  ));
+  // Every execution must be verified as belonging to THIS exact window: its
+  // own mode, window record digest (which itself transitively binds the
+  // window's candidate SHA, cutover certificate, opening epoch, and open
+  // time), the exact post-cutover authority epoch, and an observation time
+  // that actually falls inside the monitored interval. A syntactically
+  // well-formed execution from a different mode, window, candidate, or
+  // authority epoch — or one dated before the window opened or after this
+  // evaluation's own instant — is never counted.
+  const validExecutions = input.executions.filter((entry) => {
+    const observedAt = Date.parse(entry.observedAt);
+    return isNonEmptyString(entry.executionId)
+      && entry.mode === record.mode
+      && entry.windowRecordDigest === record.recordDigest
+      && entry.candidateSha === record.candidateSha
+      && entry.authorityState === 'new_authoritative_reversible'
+      && entry.authorityEpoch === record.openingAuthorityEpoch + 1
+      && entry.result === 'trusted-completion'
+      && HEX_64.test(entry.certificateDigest)
+      && Number.isFinite(observedAt)
+      && observedAt >= openedAt
+      && observedAt <= evaluatedAt;
+  });
 
   const executionIdsByCertificate = new Map<string, Set<string>>();
   const certificateDigestsByExecution = new Map<string, Set<string>>();
@@ -205,30 +224,67 @@ export function evaluateRollbackWindow(
 const SIGNAL_FAMILY_SET: ReadonlySet<string> = new Set(MonitoredSignalFamilies);
 const SIGNAL_SEVERITIES = new Set(['clear', 'warning', 'revert']);
 
+function signalStop(
+  reasonCode: string,
+  readings: readonly MonitoredSignalReading[],
+  context: Readonly<MonitoredSignalEvaluationContext>,
+): RollbackWindowSignalDecision {
+  return Object.freeze({
+    decision: 'operator_stop',
+    triggeredBy: Object.freeze([]),
+    reasonCodes: Object.freeze([reasonCode]),
+    decisionDigest: digest({ readings, context }),
+  });
+}
+
 /**
  * Fold every monitored-signal reading into one deterministic decision. A
  * single family reporting `revert` reverts the window; a family reporting
  * contradictory severities in the same batch cannot be resolved
  * automatically and stops for an operator instead of guessing; otherwise a
- * `warning` extends and a fully clear batch continues.
+ * `warning` extends and a fully clear batch continues. Before any of that,
+ * this requires a fresh, in-window, single-mode reading for every one of the
+ * declared signal families: an empty batch, a missing family, a duplicate
+ * evidence submission, a reading dated outside the window's own open
+ * interval, or a reading bound to a different mode all stop for an operator
+ * rather than silently reading as clean.
  */
 export function evaluateMonitoredSignals(
   readings: readonly MonitoredSignalReading[],
+  context: Readonly<MonitoredSignalEvaluationContext>,
 ): RollbackWindowSignalDecision {
+  const windowOpenedAt = Date.parse(context.windowOpenedAt);
+  const evaluatedAt = Date.parse(context.evaluatedAt);
+  if (!Number.isFinite(windowOpenedAt) || !Number.isFinite(evaluatedAt) || evaluatedAt < windowOpenedAt) {
+    throw new TypeError('Monitored signal evaluation context is malformed');
+  }
+
   const wellFormed = readings.every((reading) => (
     SIGNAL_FAMILY_SET.has(reading.family)
     && SIGNAL_SEVERITIES.has(reading.severity)
     && isNonEmptyString(reading.evidenceDigest)
     && isIsoTimestamp(reading.observedAt)
   ));
-  if (!wellFormed) {
-    return Object.freeze({
-      decision: 'operator_stop',
-      triggeredBy: Object.freeze([]),
-      reasonCodes: Object.freeze(['SIGNAL_MALFORMED']),
-      decisionDigest: digest(readings),
-    });
+  if (!wellFormed) return signalStop('SIGNAL_MALFORMED', readings, context);
+
+  if (readings.some((reading) => reading.mode !== context.mode)) {
+    return signalStop('SIGNAL_CROSS_MODE', readings, context);
   }
+
+  const isStale = readings.some((reading) => {
+    const observedAt = Date.parse(reading.observedAt);
+    return observedAt < windowOpenedAt || observedAt > evaluatedAt;
+  });
+  if (isStale) return signalStop('SIGNAL_STALE', readings, context);
+
+  const evidenceDigests = readings.map((reading) => reading.evidenceDigest);
+  if (new Set(evidenceDigests).size !== evidenceDigests.length) {
+    return signalStop('SIGNAL_DUPLICATE', readings, context);
+  }
+
+  const presentFamilies = new Set(readings.map((reading) => reading.family));
+  const missingFamily = MonitoredSignalFamilies.some((family) => !presentFamilies.has(family));
+  if (missingFamily) return signalStop('SIGNAL_INCOMPLETE_FAMILIES', readings, context);
 
   const severitiesByFamily = new Map<MonitoredSignalFamily, Set<string>>();
   const reasonsByFamily = new Map<MonitoredSignalFamily, Set<string>>();
@@ -252,7 +308,7 @@ export function evaluateMonitoredSignals(
       decision: 'operator_stop',
       triggeredBy: Object.freeze(contradictory),
       reasonCodes: Object.freeze(['SIGNAL_CONTRADICTORY']),
-      decisionDigest: digest(readings),
+      decisionDigest: digest({ readings, context }),
     });
   }
 
@@ -272,7 +328,7 @@ export function evaluateMonitoredSignals(
       decision: 'revert',
       triggeredBy: revertFamilies,
       reasonCodes: reasonCodesFor(revertFamilies),
-      decisionDigest: digest(readings),
+      decisionDigest: digest({ readings, context }),
     });
   }
 
@@ -282,7 +338,7 @@ export function evaluateMonitoredSignals(
       decision: 'extend',
       triggeredBy: warningFamilies,
       reasonCodes: reasonCodesFor(warningFamilies),
-      decisionDigest: digest(readings),
+      decisionDigest: digest({ readings, context }),
     });
   }
 
@@ -290,7 +346,7 @@ export function evaluateMonitoredSignals(
     decision: 'continue',
     triggeredBy: Object.freeze([]),
     reasonCodes: Object.freeze([]),
-    decisionDigest: digest(readings),
+    decisionDigest: digest({ readings, context }),
   });
 }
 
@@ -362,17 +418,44 @@ export function buildRollbackRevertRecord(
 /**
  * Close a window only once it is eligible and no monitored signal is
  * unresolved, producing signed durable evidence a later retirement decision
- * can consume without inheriting a hidden shortcut.
+ * can consume without inheriting a hidden shortcut. The evaluation and the
+ * signal decision are always recomputed here from the raw executions and
+ * signal readings the caller supplies — this never accepts a pre-built
+ * `RollbackWindowEvaluation` or `RollbackWindowSignalDecision`, so a caller
+ * cannot assert an eligibility the underlying evidence never earned.
  */
 export async function closeRollbackWindow(
   request: Readonly<RollbackWindowClosureRequest>,
   provider: ReceiptCertificationProvider,
 ): Promise<RollbackWindowClosureResult> {
-  const { windowRecord, evaluation, signalDecision, closureDecidedAt } = request;
-  if (evaluation.state !== 'eligible_to_close') return windowRejected('WINDOW_NOT_ELIGIBLE');
-  if (signalDecision.decision !== 'continue') return windowRejected('UNRESOLVED_SIGNAL');
+  const { windowRecord, executions, unresolvedEvidenceCount, lowTraffic, signalReadings, closureDecidedAt } = request;
   if (!isIsoTimestamp(closureDecidedAt)) return windowRejected('RECORD_MALFORMED');
   if (provider.profile.trust_scope !== 'durable-cross-resume') return windowRejected('RECORD_MALFORMED');
+
+  let evaluation: RollbackWindowEvaluation;
+  try {
+    evaluation = evaluateRollbackWindow(windowRecord, {
+      evaluatedAt: closureDecidedAt,
+      executions,
+      unresolvedEvidenceCount,
+      lowTraffic,
+    });
+  } catch {
+    return windowRejected('RECORD_MALFORMED');
+  }
+  if (evaluation.state !== 'eligible_to_close') return windowRejected('WINDOW_NOT_ELIGIBLE');
+
+  let signalDecision: RollbackWindowSignalDecision;
+  try {
+    signalDecision = evaluateMonitoredSignals(signalReadings, {
+      mode: windowRecord.mode,
+      windowOpenedAt: windowRecord.openedAt,
+      evaluatedAt: closureDecidedAt,
+    });
+  } catch {
+    return windowRejected('RECORD_MALFORMED');
+  }
+  if (signalDecision.decision !== 'continue') return windowRejected('UNRESOLVED_SIGNAL');
 
   const facts: RollbackWindowClosureFacts = Object.freeze({
     mode: windowRecord.mode,
@@ -380,6 +463,7 @@ export async function closeRollbackWindow(
     finalEvaluation: evaluation,
     successfulAuthoritativeExecutions: evaluation.successfulAuthoritativeExecutions,
     retainedAssetDigests: windowRecord.retainedLegacyAssetDigests,
+    signalDecision,
     closureDecidedAt,
     handoffReady: true as const,
   });

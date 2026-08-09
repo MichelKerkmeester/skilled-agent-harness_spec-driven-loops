@@ -45,12 +45,24 @@ import {
   rollbackAssetSetDigest,
   selectAuthorityRoute,
 } from '../../lib/per-mode-authority-flip/index.js';
+import {
+  certifyBoundaryReceipt,
+  CertificationProviderRegistry,
+  createHmacCertificationProvider,
+} from '../../lib/receipts-and-effect-recovery/index.js';
+import {
+  createRollbackDrillCertificate,
+  ROLLBACK_CERTIFICATE_SCHEMA_VERSION,
+} from '../../lib/rollback-drills/index.js';
 
 import type {
   AuthoritySnapshot,
-  PolicyEvaluationResult,
 } from '../../lib/authorized-ledger/index.js';
-import type { CutoverCertificate, CutoverCertificateEvidenceSources } from '../../lib/cutover-certificate/index.js';
+import type {
+  CutoverCertificate,
+  CutoverCertificateEvidenceSources,
+  CutoverCertificateVerificationProviders,
+} from '../../lib/cutover-certificate/index.js';
 import type {
   ClassificationEvidence,
   DispositionProof,
@@ -65,6 +77,7 @@ import type {
   CutoverPreflightInput,
   CutoverRequest,
 } from '../../lib/per-mode-authority-flip/index.js';
+import type { CertificationProfile } from '../../lib/receipts-and-effect-recovery/index.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. SHARED FIXTURES (mirrors tests/unit/cutover-certificate.vitest.ts
@@ -304,35 +317,124 @@ async function buildCleanHandoffFixture(root: string): Promise<InflightMigration
   return buildInflightMigrationHandoff(CLASSIFICATION_MANIFEST, receipts);
 }
 
-function fixtureCertification() {
-  return Object.freeze({
-    scheme: 'hmac-sha256' as const,
-    provider_id: 'per-mode-authority-flip-tests',
-    key_id: 'k1',
-    verifier_version: '1',
-    trust_scope: 'process-local-advisory' as const,
-    signed_digest: digest('signed'),
-    signature_base64: Buffer.from('fixture-signature').toString('base64'),
-  });
+// Real cryptographic providers the certificate builder verifies evidence
+// against (see cutover-certificate.vitest.ts for the adversarial coverage of
+// these gates) — this file only needs one genuinely-signed certificate per
+// fixture, not the tamper/substitution matrix.
+const ROLLBACK_DRILL_CERTIFICATION_PROFILE: CertificationProfile = Object.freeze({
+  scheme: 'hmac-sha256',
+  provider_id: 'per-mode-authority-flip-rollback-drill-tests',
+  key_id: 'rollback-drill-k1',
+  verifier_version: '1',
+  trust_scope: 'durable-cross-resume',
+});
+const MIGRATION_RECEIPT_CERTIFICATION_PROFILE: CertificationProfile = Object.freeze({
+  scheme: 'hmac-sha256',
+  provider_id: 'per-mode-authority-flip-migration-receipt-tests',
+  key_id: 'migration-receipt-k1',
+  verifier_version: '1',
+  trust_scope: 'durable-cross-resume',
+});
+
+function fixtureRollbackDrillProvider() {
+  return createHmacCertificationProvider(ROLLBACK_DRILL_CERTIFICATION_PROFILE, 'a'.repeat(32));
+}
+
+function fixtureMigrationReceiptProviders(): CertificationProviderRegistry {
+  return new CertificationProviderRegistry([
+    createHmacCertificationProvider(MIGRATION_RECEIPT_CERTIFICATION_PROFILE, 'b'.repeat(32)),
+  ]);
+}
+
+function fixtureCertificateVerificationProviders(): CutoverCertificateVerificationProviders {
+  return {
+    rollbackDrillProvider: fixtureRollbackDrillProvider(),
+    migrationReceiptProviders: fixtureMigrationReceiptProviders(),
+  };
+}
+
+// The certificate's approving policy and the coordinator's own append-time
+// policy must be the exact same registered policy (see the
+// AuthorityFlipCoordinator "requires the request's policy tuple to equal
+// the certificate's approving policy" coverage below) — every fixture that
+// builds either a certificate or a coordinator's policy registry shares this
+// one definition so their digests are identical by construction, not by
+// coincidence.
+const AUTHORITY_FLIP_TEST_POLICY_DEFINITION = {
+  policyId: 'authority-flip-policy',
+  policyVersion: 1,
+  evaluatorVersion: '1',
+  ruleIds: ['authority-flip-authorized'],
+  evaluate: () => (
+    { verdict: 'allow' as const, reasonCode: 'allowed' as const, matchedRuleIds: ['authority-flip-authorized'] }
+  ),
+};
+
+const AUTHORITY_FLIP_TEST_IDENTITY = Object.freeze({
+  actorId: 'per-mode-authority-flip-tests',
+  capabilityId: 'write',
+});
+
+/** Default fixture resolver: confirms the identity every fixture request already claims. */
+async function defaultIdentityResolver() {
+  return AUTHORITY_FLIP_TEST_IDENTITY;
 }
 
 function fixturePolicy() {
-  return new TransitionPolicyRegistry([{
-    policyId: 'authority-flip-policy',
-    policyVersion: 1,
-    evaluatorVersion: '1',
-    ruleIds: ['authority-flip-authorized'],
-    evaluate: () => (
-      { verdict: 'allow' as const, reasonCode: 'allowed' as const, matchedRuleIds: ['authority-flip-authorized'] }
-    ),
-  }]).resolve('authority-flip-policy', 1);
+  return new TransitionPolicyRegistry([AUTHORITY_FLIP_TEST_POLICY_DEFINITION])
+    .resolve(AUTHORITY_FLIP_TEST_POLICY_DEFINITION.policyId, AUTHORITY_FLIP_TEST_POLICY_DEFINITION.policyVersion);
 }
 
-function fixtureCutoverCertificate(
+async function fixtureRollbackDrillCertificateForMode(mode: CutoverCertificateMode) {
+  const facts = {
+    schemaVersion: ROLLBACK_CERTIFICATE_SCHEMA_VERSION,
+    mode,
+    candidateSha: CANDIDATE_SHA,
+    passed: true,
+    classificationDigest: CLASSIFICATION_MANIFEST.finalDigest,
+    startingAuthorityEpoch: AUTHORITY_EPOCH,
+  };
+  return createRollbackDrillCertificate(facts as never, fixtureRollbackDrillProvider(), ROLLBACK_DRILL_CERTIFICATION_PROFILE);
+}
+
+async function fixtureMigrationReceiptForMode(mode: CutoverCertificateMode, label: string): Promise<MigrationReceipt> {
+  const facts = {
+    receipt_id: `receipt-${label}`,
+    boundary_id: `boundary-${label}`,
+    boundary_kind: 'phase-handoff' as const,
+    scope: 'phase' as const,
+    scope_id: 'phase-014',
+    from_state: 'cutover_ready',
+    to_state: 'new_authoritative_reversible',
+    from_head: { ledger_id: 'domain', sequence: 1, record_hash: digest(`${mode}:${label}:from`) },
+    result_head: { ledger_id: 'domain', sequence: 2, record_hash: digest(`${mode}:${label}:result`) },
+    result_event_id: `event-${label}`,
+    result_event_type: 'deep-loop-cutover.ledger.certificate-issued',
+    result_event_digest: digest(`${mode}:${label}:event`),
+    result_code: 'ok',
+    evidence_digest: digest(`${mode}:${label}:evidence`),
+    artifact_digests: [],
+    replay_fingerprint: digest(`${mode}:${label}:replay`),
+    authority_epoch: AUTHORITY_EPOCH,
+    correlation_id: `correlation-${label}`,
+    causation_id: `causation-${label}`,
+    issuer: 'per-mode-authority-flip-tests',
+    issued_at: '2026-08-09T00:00:00Z',
+    idempotency_key: `idempotency-${mode}-${label}`,
+  };
+  const certification = await certifyBoundaryReceipt(
+    facts as never,
+    MIGRATION_RECEIPT_CERTIFICATION_PROFILE,
+    fixtureMigrationReceiptProviders(),
+  );
+  return Object.freeze({ ...facts, certification }) as unknown as MigrationReceipt;
+}
+
+async function fixtureCutoverCertificate(
   overrides: Readonly<Partial<CutoverCertificateEvidenceSources>> = {},
-): CutoverCertificate {
+): Promise<CutoverCertificate> {
   const policy = fixturePolicy();
-  const result = buildCutoverCertificate({
+  const result = await buildCutoverCertificate({
     mode: MODE,
     candidateSha: CANDIDATE_SHA,
     fromAuthorityEpoch: AUTHORITY_EPOCH,
@@ -352,16 +454,7 @@ function fixtureCutoverCertificate(
         exitStatus: 'green',
         evidenceDigest: digest('shadow-parity-evidence'),
       },
-      rollbackDrillCertificate: {
-        facts: {
-          mode: MODE,
-          candidateSha: CANDIDATE_SHA,
-          passed: true,
-          classificationDigest: CLASSIFICATION_MANIFEST.finalDigest,
-        },
-        certification: fixtureCertification(),
-        certificateDigest: digest('rollback-drill-certificate'),
-      } as never,
+      rollbackDrillCertificate: await fixtureRollbackDrillCertificateForMode(MODE),
       mixedVersionReplay: Object.freeze({
         ok: true,
         caseId: 'mixed-version-case-1',
@@ -374,44 +467,20 @@ function fixtureCutoverCertificate(
         authorityMutation: false,
       }) as never,
       classificationManifest: CLASSIFICATION_MANIFEST,
-      migrationReceipts: [{
-        receipt_id: 'receipt-one',
-        boundary_id: 'boundary-one',
-        boundary_kind: 'phase-handoff',
-        scope: 'phase',
-        scope_id: 'phase-014',
-        from_state: 'cutover_ready',
-        to_state: 'new_authoritative_reversible',
-        from_head: { ledger_id: 'domain', sequence: 1, record_hash: digest('one:from') },
-        result_head: { ledger_id: 'domain', sequence: 2, record_hash: digest('one:result') },
-        result_event_id: 'event-one',
-        result_event_type: 'deep-loop-cutover.ledger.certificate-issued',
-        result_event_digest: digest('one:event'),
-        result_code: 'ok',
-        evidence_digest: digest('one:evidence'),
-        artifact_digests: [],
-        replay_fingerprint: digest('one:replay'),
-        authority_epoch: AUTHORITY_EPOCH,
-        correlation_id: 'correlation-one',
-        causation_id: 'causation-one',
-        issuer: 'per-mode-authority-flip-tests',
-        issued_at: '2026-08-09T00:00:00Z',
-        idempotency_key: 'idempotency-one',
-        certification: fixtureCertification(),
-      }] as never,
+      migrationReceipts: [await fixtureMigrationReceiptForMode(MODE, 'one')] as never,
       approvingPolicy: policy,
       ...overrides,
     },
-  });
+  }, fixtureCertificateVerificationProviders());
   if (result.verdict !== 'issued') throw new Error(`fixture cutover certificate failed to issue: ${result.reasonCode}`);
   return result.certificate;
 }
 
-function fixturePreflightInput(
+async function fixturePreflightInput(
   overrides: Readonly<Partial<CutoverPreflightInput>> = {},
   handoff: InflightMigrationHandoff,
-): CutoverPreflightInput {
-  const certificate = fixtureCutoverCertificate();
+): Promise<CutoverPreflightInput> {
+  const certificate = await fixtureCutoverCertificate();
   return {
     mode: MODE,
     expectedAuthorityEpoch: AUTHORITY_EPOCH,
@@ -1064,7 +1133,7 @@ describe('evaluateCutoverPreflight', () => {
 
   it('passes with a valid certificate, a genuinely clean migration handoff, and clean rollback assets', async () => {
     const handoff = await buildCleanHandoffFixture(temporaryRoot('ready'));
-    const input = fixturePreflightInput({}, handoff);
+    const input = await fixturePreflightInput({}, handoff);
     const result = evaluateCutoverPreflight(input);
     expect(result.verdict).toBe('ready');
     if (result.verdict !== 'ready') throw new Error('expected ready');
@@ -1082,15 +1151,15 @@ describe('evaluateCutoverPreflight', () => {
     );
     expect(illegitimatelyBlocked.length).toBeGreaterThan(0);
 
-    const input = fixturePreflightInput({}, handoff);
+    const input = await fixturePreflightInput({}, handoff);
     expect(evaluateCutoverPreflight(input)).toEqual({ verdict: 'blocked', reasonCode: 'MIGRATION_HANDOFF_INVALID' });
   });
 
   it('blocks on a cutover certificate whose digest was tampered', async () => {
     const handoff = await buildHandoffFixture(temporaryRoot('tampered-certificate'));
-    const certificate = fixtureCutoverCertificate();
+    const certificate = await fixtureCutoverCertificate();
     const tampered = { ...certificate, certificateDigest: digest('tampered') };
-    const input = fixturePreflightInput({
+    const input = await fixturePreflightInput({
       cutover: {
         certificate: tampered,
         expectation: {
@@ -1112,7 +1181,7 @@ describe('evaluateCutoverPreflight', () => {
     // overriding only the top-level requested mode to a later manifest
     // entry (with its predecessor prefix satisfied, so the order guard
     // itself does not intercept first) isolates the mode-binding check.
-    const input = fixturePreflightInput({
+    const input = await fixturePreflightInput({
       mode: 'deep-review',
       alreadyFlippedModes: predecessorsOf('deep-review'),
     }, handoff);
@@ -1122,14 +1191,14 @@ describe('evaluateCutoverPreflight', () => {
 
   it('blocks a stale expected authority epoch', async () => {
     const handoff = await buildHandoffFixture(temporaryRoot('stale-epoch'));
-    const input = fixturePreflightInput({ expectedAuthorityEpoch: AUTHORITY_EPOCH + 1 }, handoff);
+    const input = await fixturePreflightInput({ expectedAuthorityEpoch: AUTHORITY_EPOCH + 1 }, handoff);
     expect(evaluateCutoverPreflight(input)).toEqual({ verdict: 'blocked', reasonCode: 'STALE_AUTHORITY_EPOCH' });
   });
 
   it('blocks a migration handoff bound to a different classification manifest', async () => {
     const handoff = await buildHandoffFixture(temporaryRoot('unbound-handoff'));
     const otherManifest = { ...CLASSIFICATION_MANIFEST, finalDigest: digest('a-different-manifest') };
-    const input = fixturePreflightInput({
+    const input = await fixturePreflightInput({
       migration: { handoff, classificationManifest: otherManifest as never },
     }, handoff);
     expect(evaluateCutoverPreflight(input)).toEqual({ verdict: 'blocked', reasonCode: 'MIGRATION_HANDOFF_UNBOUND' });
@@ -1138,20 +1207,20 @@ describe('evaluateCutoverPreflight', () => {
   it('blocks a tampered migration handoff digest', async () => {
     const handoff = await buildHandoffFixture(temporaryRoot('tampered-handoff'));
     const tampered = { ...handoff, finalDigest: digest('tampered-handoff-digest') };
-    const input = fixturePreflightInput({ migration: { handoff: tampered, classificationManifest: CLASSIFICATION_MANIFEST } }, handoff);
+    const input = await fixturePreflightInput({ migration: { handoff: tampered, classificationManifest: CLASSIFICATION_MANIFEST } }, handoff);
     expect(evaluateCutoverPreflight(input)).toEqual({ verdict: 'blocked', reasonCode: 'MIGRATION_HANDOFF_INVALID' });
   });
 
   it('blocks an empty rollback-asset set', async () => {
     const handoff = await buildCleanHandoffFixture(temporaryRoot('empty-rollback-assets'));
-    const input = fixturePreflightInput({ rollbackAssetDigests: [] }, handoff);
+    const input = await fixturePreflightInput({ rollbackAssetDigests: [] }, handoff);
     expect(evaluateCutoverPreflight(input)).toEqual({ verdict: 'blocked', reasonCode: 'ROLLBACK_ASSETS_INVALID' });
   });
 
   it('blocks duplicate rollback-asset digests', async () => {
     const handoff = await buildCleanHandoffFixture(temporaryRoot('duplicate-rollback-assets'));
     const one = digest('rollback-anchor-one');
-    const input = fixturePreflightInput({ rollbackAssetDigests: [one, one] }, handoff);
+    const input = await fixturePreflightInput({ rollbackAssetDigests: [one, one] }, handoff);
     expect(evaluateCutoverPreflight(input)).toEqual({ verdict: 'blocked', reasonCode: 'ROLLBACK_ASSETS_INVALID' });
   });
 
@@ -1160,14 +1229,14 @@ describe('evaluateCutoverPreflight', () => {
     // check, so a variant request denies on ordering regardless of which
     // mode the supplied fixture certificate itself was issued for.
     const handoff = await buildHandoffFixture(temporaryRoot('order-violation'));
-    const input = fixturePreflightInput({ mode: 'model-benchmark' }, handoff);
+    const input = await fixturePreflightInput({ mode: 'model-benchmark' }, handoff);
     expect(evaluateCutoverPreflight(input)).toEqual({ verdict: 'blocked', reasonCode: 'MODE_ORDER_VIOLATION' });
   });
 
   it('allows a benchmark variant once its full manifest-order predecessor prefix has flipped', async () => {
     const handoff = await buildCleanHandoffFixture(temporaryRoot('order-satisfied'));
-    const variantCertificate = fixtureCutoverCertificateForMode('model-benchmark');
-    const input = fixturePreflightInput({
+    const variantCertificate = await fixtureCutoverCertificateForMode('model-benchmark');
+    const input = await fixturePreflightInput({
       mode: 'model-benchmark',
       alreadyFlippedModes: predecessorsOf('model-benchmark'),
       cutover: {
@@ -1186,9 +1255,9 @@ describe('evaluateCutoverPreflight', () => {
   });
 });
 
-function fixtureCutoverCertificateForMode(mode: CutoverCertificateMode): CutoverCertificate {
+async function fixtureCutoverCertificateForMode(mode: CutoverCertificateMode): Promise<CutoverCertificate> {
   const policy = fixturePolicy();
-  const result = buildCutoverCertificate({
+  const result = await buildCutoverCertificate({
     mode,
     candidateSha: CANDIDATE_SHA,
     fromAuthorityEpoch: AUTHORITY_EPOCH,
@@ -1208,16 +1277,7 @@ function fixtureCutoverCertificateForMode(mode: CutoverCertificateMode): Cutover
         exitStatus: 'green',
         evidenceDigest: digest('shadow-parity-evidence'),
       },
-      rollbackDrillCertificate: {
-        facts: {
-          mode,
-          candidateSha: CANDIDATE_SHA,
-          passed: true,
-          classificationDigest: CLASSIFICATION_MANIFEST.finalDigest,
-        },
-        certification: fixtureCertification(),
-        certificateDigest: digest('rollback-drill-certificate'),
-      } as never,
+      rollbackDrillCertificate: await fixtureRollbackDrillCertificateForMode(mode),
       mixedVersionReplay: Object.freeze({
         ok: true,
         caseId: 'mixed-version-case-1',
@@ -1230,34 +1290,10 @@ function fixtureCutoverCertificateForMode(mode: CutoverCertificateMode): Cutover
         authorityMutation: false,
       }) as never,
       classificationManifest: CLASSIFICATION_MANIFEST,
-      migrationReceipts: [{
-        receipt_id: 'receipt-one',
-        boundary_id: 'boundary-one',
-        boundary_kind: 'phase-handoff',
-        scope: 'phase',
-        scope_id: 'phase-014',
-        from_state: 'cutover_ready',
-        to_state: 'new_authoritative_reversible',
-        from_head: { ledger_id: 'domain', sequence: 1, record_hash: digest('one:from') },
-        result_head: { ledger_id: 'domain', sequence: 2, record_hash: digest('one:result') },
-        result_event_id: 'event-one',
-        result_event_type: 'deep-loop-cutover.ledger.certificate-issued',
-        result_event_digest: digest('one:event'),
-        result_code: 'ok',
-        evidence_digest: digest('one:evidence'),
-        artifact_digests: [],
-        replay_fingerprint: digest('one:replay'),
-        authority_epoch: AUTHORITY_EPOCH,
-        correlation_id: 'correlation-one',
-        causation_id: 'causation-one',
-        issuer: 'per-mode-authority-flip-tests',
-        issued_at: '2026-08-09T00:00:00Z',
-        idempotency_key: 'idempotency-one',
-        certification: fixtureCertification(),
-      }] as never,
+      migrationReceipts: [await fixtureMigrationReceiptForMode(mode, 'one')] as never,
       approvingPolicy: policy,
     },
-  });
+  }, fixtureCertificateVerificationProviders());
   if (result.verdict !== 'issued') throw new Error(`fixture cutover certificate failed to issue: ${result.reasonCode}`);
   return result.certificate;
 }
@@ -1291,15 +1327,10 @@ describe('AuthorityFlipCoordinator', () => {
   async function buildLedgerAndGateway(root: string, authorityEpoch: number) {
     const authority: AuthoritySnapshot = { state: 'cutover_ready', epoch: authorityEpoch };
     const eventRegistry = createAuthorityTransitionEventRegistry();
-    const policies = new TransitionPolicyRegistry([{
-      policyId: 'authority-flip-append-policy',
-      policyVersion: 1,
-      evaluatorVersion: '1',
-      ruleIds: ['always-allow'],
-      evaluate: (): PolicyEvaluationResult => (
-        { verdict: 'allow', reasonCode: 'allowed', matchedRuleIds: ['always-allow'] }
-      ),
-    }]);
+    // Same policy definition the certificate's approvingPolicy uses (see
+    // AUTHORITY_FLIP_TEST_POLICY_DEFINITION) so the two tuples the
+    // coordinator now requires to match are identical by construction.
+    const policies = new TransitionPolicyRegistry([AUTHORITY_FLIP_TEST_POLICY_DEFINITION]);
     const ledger = new AppendOnlyLedger({
       rootDirectory: root,
       ledgerId: 'authority-flip-domain',
@@ -1311,8 +1342,11 @@ describe('AuthorityFlipCoordinator', () => {
       auditLedgerId: 'authority-flip-audit',
       authorityProvider: () => authority,
     }, ledger, policies);
-    const policy = policies.resolve('authority-flip-append-policy', 1);
-    return { ledger, gateway, policy };
+    const policy = policies.resolve(
+      AUTHORITY_FLIP_TEST_POLICY_DEFINITION.policyId,
+      AUTHORITY_FLIP_TEST_POLICY_DEFINITION.policyVersion,
+    );
+    return { ledger, gateway, policies, policy };
   }
 
   function buildRequest(
@@ -1337,11 +1371,13 @@ describe('AuthorityFlipCoordinator', () => {
   it('flips one mode atomically: one ledger event, one epoch increment, dark canonical route', async () => {
     const root = temporaryRoot('flip');
     const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
-    const preflight = fixturePreflightInput({}, handoff);
+    const preflight = await fixturePreflightInput({}, handoff);
     seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
     const registry = new AuthorityRegistry(join(root, 'authority-registry'));
-    const { ledger, gateway, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
-    const coordinator = new AuthorityFlipCoordinator({ registry, ledger, gateway });
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
 
     const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
     expect(decision.disposition).toBe('flipped');
@@ -1362,11 +1398,13 @@ describe('AuthorityFlipCoordinator', () => {
   it('rejects a stale/wrong expected epoch with zero side effects', async () => {
     const root = temporaryRoot('stale-epoch');
     const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
-    const preflight = fixturePreflightInput({ expectedAuthorityEpoch: AUTHORITY_EPOCH }, handoff);
+    const preflight = await fixturePreflightInput({ expectedAuthorityEpoch: AUTHORITY_EPOCH }, handoff);
     seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH + 1));
     const registry = new AuthorityRegistry(join(root, 'authority-registry'));
-    const { ledger, gateway, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
-    const coordinator = new AuthorityFlipCoordinator({ registry, ledger, gateway });
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
 
     const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
     expect(decision).toEqual({ disposition: 'denied', reasonCode: 'STALE_AUTHORITY_EPOCH' });
@@ -1378,9 +1416,9 @@ describe('AuthorityFlipCoordinator', () => {
   it('requires a valid cutover certificate: a tampered certificate denies with zero side effects', async () => {
     const root = temporaryRoot('invalid-certificate');
     const handoff = await buildHandoffFixture(join(root, 'migration'));
-    const certificate = fixtureCutoverCertificate();
+    const certificate = await fixtureCutoverCertificate();
     const tampered = { ...certificate, certificateDigest: digest('tampered') };
-    const preflight = fixturePreflightInput({
+    const preflight = await fixturePreflightInput({
       cutover: {
         certificate: tampered,
         expectation: {
@@ -1395,8 +1433,10 @@ describe('AuthorityFlipCoordinator', () => {
     }, handoff);
     seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
     const registry = new AuthorityRegistry(join(root, 'authority-registry'));
-    const { ledger, gateway, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
-    const coordinator = new AuthorityFlipCoordinator({ registry, ledger, gateway });
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
 
     const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
     expect(decision).toEqual({ disposition: 'denied', reasonCode: 'CUTOVER_CERTIFICATE_INVALID' });
@@ -1407,11 +1447,13 @@ describe('AuthorityFlipCoordinator', () => {
   it('rejects a batch request naming more than one mode before touching the registry', async () => {
     const root = temporaryRoot('multi-mode');
     const handoff = await buildHandoffFixture(join(root, 'migration'));
-    const preflight = fixturePreflightInput({}, handoff);
+    const preflight = await fixturePreflightInput({}, handoff);
     seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
     const registry = new AuthorityRegistry(join(root, 'authority-registry'));
-    const { ledger, gateway, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
-    const coordinator = new AuthorityFlipCoordinator({ registry, ledger, gateway });
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
 
     const request = buildRequest(policy, preflight);
     const decision = await coordinator.requestCutover({ ...request, requestedModes: [MODE, 'deep-research'] });
@@ -1422,15 +1464,17 @@ describe('AuthorityFlipCoordinator', () => {
   it('resumes safely after a crash between the ledger append and the registry publish, with no duplicate ledger event', async () => {
     const root = temporaryRoot('crash-resume');
     const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
-    const preflight = fixturePreflightInput({}, handoff);
+    const preflight = await fixturePreflightInput({}, handoff);
     seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
     const registry = new AuthorityRegistry(join(root, 'authority-registry'));
-    const { ledger, gateway, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
 
     const crashing = new AuthorityFlipCoordinator({
       registry,
       ledger,
       gateway,
+      policies,
+      identityResolver: defaultIdentityResolver,
       faultInjection: {
         afterLedgerAppendBeforeCas: () => {
           throw new Error('simulated process crash');
@@ -1446,7 +1490,9 @@ describe('AuthorityFlipCoordinator', () => {
     // durable prepare marker records exactly what completes the split.
     expect(registry.readPendingTransition(MODE)).not.toBeNull();
 
-    const resumed = new AuthorityFlipCoordinator({ registry, ledger, gateway });
+    const resumed = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
     const decision = await resumed.requestCutover(request);
     expect(decision.disposition).toBe('flipped');
     if (decision.disposition !== 'flipped') throw new Error('expected flipped');
@@ -1464,10 +1510,10 @@ describe('AuthorityFlipCoordinator', () => {
   it('reconciles and cleanly aborts a prepared transition that never actually reached the ledger, then completes a fresh request normally', async () => {
     const root = temporaryRoot('reconcile-abort-never-appended');
     const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
-    const preflight = fixturePreflightInput({}, handoff);
+    const preflight = await fixturePreflightInput({}, handoff);
     seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
     const registry = new AuthorityRegistry(join(root, 'authority-registry'));
-    const { ledger, gateway, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
 
     // Simulate a hard death immediately after the durable prepare marker
     // was written but before the ledger append itself ever landed: the
@@ -1486,7 +1532,9 @@ describe('AuthorityFlipCoordinator', () => {
     expect(registry.readPendingTransition(MODE)).not.toBeNull();
     expect(await ledger.readVerifiedEvents()).toHaveLength(0);
 
-    const coordinator = new AuthorityFlipCoordinator({ registry, ledger, gateway });
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
     const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
 
     expect(decision.disposition).toBe('flipped');
@@ -1504,10 +1552,10 @@ describe('AuthorityFlipCoordinator', () => {
   it('fails loud rather than guessing when a ledger-committed transition cannot be reconciled against an incompatible durable registry state', async () => {
     const root = temporaryRoot('reconcile-anomaly');
     const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
-    const preflight = fixturePreflightInput({}, handoff);
+    const preflight = await fixturePreflightInput({}, handoff);
     seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
     const registry = new AuthorityRegistry(join(root, 'authority-registry'));
-    const { ledger, gateway, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
     const request = buildRequest(policy, preflight);
 
     // Drive one real crash-stranded prepare (ledger has the event, registry
@@ -1516,6 +1564,8 @@ describe('AuthorityFlipCoordinator', () => {
       registry,
       ledger,
       gateway,
+      policies,
+      identityResolver: defaultIdentityResolver,
       faultInjection: { afterLedgerAppendBeforeCas: () => { throw new Error('simulated process crash'); } },
     });
     await expect(crashing.requestCutover(request)).rejects.toThrow('simulated process crash');
@@ -1537,8 +1587,144 @@ describe('AuthorityFlipCoordinator', () => {
       updatedAt: '2026-08-09T00:16:00Z',
     });
 
-    const resumed = new AuthorityFlipCoordinator({ registry, ledger, gateway });
+    const resumed = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
     await expect(resumed.requestCutover(request)).rejects.toThrow(AuthorityFlipError);
+  });
+
+  // ─────────────────────────────────────────────────────────────────
+  // F3 — mandatory identity + policy binding, scoped to the
+  // authority-transition event this coordinator exclusively handles.
+  // ─────────────────────────────────────────────────────────────────
+
+  it('denies when the resolved identity is null — the resolver ran but confirmed nothing', async () => {
+    const root = temporaryRoot('identity-null');
+    const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff);
+    seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
+    const registry = new AuthorityRegistry(join(root, 'authority-registry'));
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: async () => null,
+    });
+
+    const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
+    expect(decision).toEqual({ disposition: 'denied', reasonCode: 'IDENTITY_UNVERIFIED' });
+    expect(await ledger.readVerifiedEvents()).toHaveLength(0);
+    expect(registry.read(MODE).state).toBe('cutover_ready');
+  });
+
+  it('denies when no identity resolver is configured at all (the coordinator cannot be built live without one, but a bypassed/untyped construction still fails closed)', async () => {
+    const root = temporaryRoot('identity-absent');
+    const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff);
+    seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
+    const registry = new AuthorityRegistry(join(root, 'authority-registry'));
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: undefined as never,
+    });
+
+    const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
+    expect(decision).toEqual({ disposition: 'denied', reasonCode: 'IDENTITY_UNVERIFIED' });
+    expect(await ledger.readVerifiedEvents()).toHaveLength(0);
+    expect(registry.read(MODE).state).toBe('cutover_ready');
+  });
+
+  it('denies a partial identity — the resolver pins actorId but leaves capabilityId unconfirmed', async () => {
+    const root = temporaryRoot('identity-partial');
+    const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff);
+    seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
+    const registry = new AuthorityRegistry(join(root, 'authority-registry'));
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry,
+      ledger,
+      gateway,
+      policies,
+      identityResolver: async () => ({ actorId: AUTHORITY_FLIP_TEST_IDENTITY.actorId } as never),
+    });
+
+    const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
+    expect(decision).toEqual({ disposition: 'denied', reasonCode: 'IDENTITY_UNVERIFIED' });
+    expect(await ledger.readVerifiedEvents()).toHaveLength(0);
+    expect(registry.read(MODE).state).toBe('cutover_ready');
+  });
+
+  it('denies an actorId the resolver does not confirm, even though the request itself claims a value', async () => {
+    const root = temporaryRoot('identity-mismatch');
+    const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff);
+    seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
+    const registry = new AuthorityRegistry(join(root, 'authority-registry'));
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry,
+      ledger,
+      gateway,
+      policies,
+      identityResolver: async () => ({ actorId: 'a-different-actor', capabilityId: 'write' }),
+    });
+
+    const decision = await coordinator.requestCutover(buildRequest(policy, preflight));
+    expect(decision).toEqual({ disposition: 'denied', reasonCode: 'IDENTITY_UNVERIFIED' });
+    expect(await ledger.readVerifiedEvents()).toHaveLength(0);
+  });
+
+  it('denies policy substitution: a certificate approved under one policy cannot authorize the request under a different registered policy', async () => {
+    const root = temporaryRoot('policy-substitution');
+    const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff);
+    seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
+    const registry = new AuthorityRegistry(join(root, 'authority-registry'));
+    const { ledger, gateway } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    // A second, independently registered policy the deployment also trusts —
+    // distinct from AUTHORITY_FLIP_TEST_POLICY_DEFINITION, which is what the
+    // fixture certificate was actually approved under.
+    const substitutePolicyDefinition = {
+      policyId: 'authority-flip-substitute-policy',
+      policyVersion: 1,
+      evaluatorVersion: '1',
+      ruleIds: ['always-allow'],
+      evaluate: () => (
+        { verdict: 'allow' as const, reasonCode: 'allowed' as const, matchedRuleIds: ['always-allow'] }
+      ),
+    };
+    const policies = new TransitionPolicyRegistry([
+      AUTHORITY_FLIP_TEST_POLICY_DEFINITION,
+      substitutePolicyDefinition,
+    ]);
+    const substitutePolicy = policies.resolve(substitutePolicyDefinition.policyId, substitutePolicyDefinition.policyVersion);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
+
+    // preflight.cutover.certificate was approved under AUTHORITY_FLIP_TEST_POLICY_DEFINITION
+    // (see fixturePreflightInput/fixtureCutoverCertificate); this request instead
+    // declares the substitute policy for the actual authorization call.
+    const decision = await coordinator.requestCutover(buildRequest(substitutePolicy, preflight));
+    expect(decision).toEqual({ disposition: 'denied', reasonCode: 'POLICY_MISMATCH' });
+    expect(await ledger.readVerifiedEvents()).toHaveLength(0);
+    expect(registry.read(MODE).state).toBe('cutover_ready');
+  });
+
+  it('denies a request whose policy digest does not match its own registered policy identity (forged digest claim)', async () => {
+    const root = temporaryRoot('policy-digest-forged');
+    const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
+    const preflight = await fixturePreflightInput({}, handoff);
+    seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(MODE, AUTHORITY_EPOCH));
+    const registry = new AuthorityRegistry(join(root, 'authority-registry'));
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
+
+    const request = buildRequest(policy, preflight);
+    const decision = await coordinator.requestCutover({ ...request, policyDigest: digest('forged-digest') });
+    expect(decision).toEqual({ disposition: 'denied', reasonCode: 'POLICY_MISMATCH' });
+    expect(await ledger.readVerifiedEvents()).toHaveLength(0);
   });
 });
 
@@ -1563,15 +1749,10 @@ describe('AuthorityFlipCoordinator manifest-order enforcement', () => {
   async function buildLedgerAndGateway(root: string, authorityEpoch: number) {
     const authority: AuthoritySnapshot = { state: 'cutover_ready', epoch: authorityEpoch };
     const eventRegistry = createAuthorityTransitionEventRegistry();
-    const policies = new TransitionPolicyRegistry([{
-      policyId: 'authority-flip-order-policy',
-      policyVersion: 1,
-      evaluatorVersion: '1',
-      ruleIds: ['always-allow'],
-      evaluate: (): PolicyEvaluationResult => (
-        { verdict: 'allow', reasonCode: 'allowed', matchedRuleIds: ['always-allow'] }
-      ),
-    }]);
+    // Same policy definition the certificate's approvingPolicy uses (see
+    // AUTHORITY_FLIP_TEST_POLICY_DEFINITION) so the two tuples the
+    // coordinator now requires to match are identical by construction.
+    const policies = new TransitionPolicyRegistry([AUTHORITY_FLIP_TEST_POLICY_DEFINITION]);
     const ledger = new AppendOnlyLedger({
       rootDirectory: root,
       ledgerId: 'authority-flip-order-domain',
@@ -1583,8 +1764,11 @@ describe('AuthorityFlipCoordinator manifest-order enforcement', () => {
       auditLedgerId: 'authority-flip-order-audit',
       authorityProvider: () => authority,
     }, ledger, policies);
-    const policy = policies.resolve('authority-flip-order-policy', 1);
-    return { ledger, gateway, policy };
+    const policy = policies.resolve(
+      AUTHORITY_FLIP_TEST_POLICY_DEFINITION.policyId,
+      AUTHORITY_FLIP_TEST_POLICY_DEFINITION.policyVersion,
+    );
+    return { ledger, gateway, policies, policy };
   }
 
   it('denies a later mode when the caller forges an alreadyFlippedModes set that durable state does not actually show', async () => {
@@ -1594,8 +1778,8 @@ describe('AuthorityFlipCoordinator manifest-order enforcement', () => {
     // the request's own (forged) claim says otherwise.
     const lastMode: CutoverCertificateMode = AUTHORITY_FLIP_MODE_ORDER[AUTHORITY_FLIP_MODE_ORDER.length - 1];
     const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
-    const certificate = fixtureCutoverCertificateForMode(lastMode);
-    const preflight = fixturePreflightInput({
+    const certificate = await fixtureCutoverCertificateForMode(lastMode);
+    const preflight = await fixturePreflightInput({
       mode: lastMode,
       alreadyFlippedModes: predecessorsOf(lastMode), // the forged claim
       cutover: {
@@ -1612,8 +1796,10 @@ describe('AuthorityFlipCoordinator manifest-order enforcement', () => {
     }, handoff);
     seedAuthorityRecord(join(root, 'authority-registry'), cutoverReadyRecord(lastMode, AUTHORITY_EPOCH));
     const registry = new AuthorityRegistry(join(root, 'authority-registry'));
-    const { ledger, gateway, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
-    const coordinator = new AuthorityFlipCoordinator({ registry, ledger, gateway });
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
 
     const request: CutoverRequest = {
       requestedModes: [lastMode],
@@ -1638,8 +1824,8 @@ describe('AuthorityFlipCoordinator manifest-order enforcement', () => {
     const root = temporaryRoot('true-next-mode');
     const lastMode: CutoverCertificateMode = AUTHORITY_FLIP_MODE_ORDER[AUTHORITY_FLIP_MODE_ORDER.length - 1];
     const handoff = await buildCleanHandoffFixture(join(root, 'migration'));
-    const certificate = fixtureCutoverCertificateForMode(lastMode);
-    const preflight = fixturePreflightInput({
+    const certificate = await fixtureCutoverCertificateForMode(lastMode);
+    const preflight = await fixturePreflightInput({
       mode: lastMode,
       alreadyFlippedModes: new Set(), // ignored either way — derived fresh from the registry
       cutover: {
@@ -1673,8 +1859,10 @@ describe('AuthorityFlipCoordinator manifest-order enforcement', () => {
       });
     }
     const registry = new AuthorityRegistry(registryRoot);
-    const { ledger, gateway, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
-    const coordinator = new AuthorityFlipCoordinator({ registry, ledger, gateway });
+    const { ledger, gateway, policies, policy } = await buildLedgerAndGateway(join(root, 'ledger'), AUTHORITY_EPOCH);
+    const coordinator = new AuthorityFlipCoordinator({
+      registry, ledger, gateway, policies, identityResolver: defaultIdentityResolver,
+    });
 
     const request: CutoverRequest = {
       requestedModes: [lastMode],
