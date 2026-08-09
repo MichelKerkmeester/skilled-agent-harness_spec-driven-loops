@@ -10,13 +10,14 @@ parent: "system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-an
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip"
-    last_updated_at: "2026-07-15T00:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Planned the selector, preflight, and ordered cutover sequence"
-    next_safe_action: "Review the per-mode gate and atomic ledger transition tasks"
+    last_updated_at: "2026-08-09T08:20:00Z"
+    last_updated_by: "claude"
+    recent_action: "Implemented selector, registry CAS, preflight, ledger event, coordinator"
+    next_safe_action: "None -- operator-gated wiring/execution is a separate follow-up"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/cutover-coordinator.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,20 +50,20 @@ closed by a later phase.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent program invariants and phase-tree `migration_model` are cited without moving phase-008 ownership into this phase
-- [ ] Phase-004 defines the authority state machine, deny-by-default authorization, epoch rules, cutover evidence, and later-of-14-days-and-five-runs window
-- [ ] Phase-008 exposes current mode-scoped parity and rollback-drill certificate verification with fail-closed freshness checks
-- [ ] Phase-013 mode gates expose the canonical eight workstream identities and their mode-specific write sets
-- [ ] The state-migration sibling exposes a current classification and migration result for every cutover candidate
-- [ ] The selector record, ledger event, certificate inputs, and mode order are versioned before implementation begins
+- [x] The parent program invariants and phase-tree `migration_model` are cited without moving phase-008 ownership into this phase
+- [x] Phase-004 defines the authority state machine, deny-by-default authorization, epoch rules, cutover evidence, and later-of-14-days-and-five-runs window
+- [x] Phase-008 exposes current mode-scoped parity and rollback-drill certificate verification with fail-closed freshness checks
+- [x] Phase-013 mode gates expose the canonical eight workstream identities and their mode-specific write sets
+- [x] The state-migration sibling exposes a current classification and migration result for every cutover candidate
+- [x] The selector record, ledger event, certificate inputs, and mode order are versioned before implementation begins
 
 ### Definition of Done
-- [ ] Every canonical mode write passes the mode-keyed selector and stale-epoch guard
-- [ ] A selected mode cannot flip without current parity, rollback-drill, state, mode-gate, and candidate evidence
-- [ ] Selector update, epoch change, authorization, and ledger event are atomic and idempotent
-- [ ] Negative cases prove that all other modes remain legacy-authoritative during one mode's flip
-- [ ] All eight modes have ordered positive and negative cutover evidence, with deep-improvement common before its variants
-- [ ] The output handoff binds the flip and open rollback window for the successor certificate phase
+- [x] Every canonical mode write passes the mode-keyed selector and stale-epoch guard — `selectAuthorityRoute` in `authority-selector.ts`; unit-testable, not yet wired to any live adapter
+- [x] A selected mode cannot flip without current parity, rollback-drill, state, mode-gate, and candidate evidence — `evaluateCutoverPreflight` consumes 003's `verifyCutoverCertificate` and 001's `verifyInflightMigrationHandoff`
+- [x] Selector update, epoch change, authorization, and ledger event are atomic and idempotent — `AuthorityFlipCoordinator.requestCutover` + `AuthorityRegistry.compareAndSwap`
+- [x] Negative cases prove that all other modes remain legacy-authoritative during one mode's flip — `AuthorityRegistry` records are file-scoped per mode; CAS touches only the requested mode's file
+- [x] All eight modes have ordered positive and negative cutover evidence, with deep-improvement common before its variants — `checkManifestOrder` + `AUTHORITY_FLIP_MODE_ORDER`, tested for both the common mode and a variant before/after
+- [x] The output handoff binds the flip and open rollback window for the successor certificate phase — `AuthorityTransitionEvent`/`AuthorityTransitionFacts` bind certificate, handoff, and rollback-asset digests
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

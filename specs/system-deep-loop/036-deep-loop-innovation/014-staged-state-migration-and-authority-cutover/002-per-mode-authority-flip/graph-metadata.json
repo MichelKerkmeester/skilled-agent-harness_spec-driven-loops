@@ -19,7 +19,10 @@
       "per-mode authority flip tasks",
       "deep-loop staged cutover tasks",
       "per-mode authority flip checklist",
-      "deep-loop cutover verification"
+      "deep-loop cutover verification",
+      "per-mode authority flip implementation",
+      "deep-loop authority selector coordinator",
+      "authority compare-and-swap ledger event"
     ],
     "key_topics": [
       "per-mode",
@@ -36,21 +39,15 @@
       "tasks"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/spec.md",
-      "spec.md",
       "plan.md",
+      "implementation-summary.md",
       "checklist.md",
+      "spec.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -58,9 +55,21 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -136,6 +145,12 @@
         "source": "derived"
       },
       {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -154,9 +169,9 @@
         "source": "derived"
       },
       {
-        "name": "expected",
-        "kind": "key_phrase",
-        "path": "tasks.md",
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -176,37 +191,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the fail-closed switch that makes the dark spine canonical for one mode at a time, after current shadow-parity and rollback-drill evidence pass, while all other modes remain legacy-authoritative.",
     "created_at": "2026-07-16T03:43:57.391Z",
-    "last_save_at": "2026-07-17T13:21:47.704Z",
+    "last_save_at": "2026-08-09T06:36:44.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80d31d1dc6dd7f307534e318d67e3bf66c7fa940b91dd7f7bba8ac890bd1356e",
+    "source_fingerprint": "sha256:da97b0f839a1c4ba91d026ede0660b3bf5925891923417554b207ceb2f73a863",
     "source_doc_hashes": {
-      "spec.md": "8ec825d02e5f00612edc68871bf113ec46ee517eaf2ae506f4055caaa0a6ca3c",
-      "plan.md": "f7260fc93d9ebf242cb71e14e6a5bd7a7b1ec89baf3fd917258b065e954d8e02",
-      "tasks.md": "dcf0c09105d37fe800f49aa432c2d59d2ba38eba1b9d9db44dd003083474e2df",
-      "checklist.md": "b80eb07470555a0d45521d8b83ffbad5ff4efaba4fcab65adc657c5fdace449e"
+      "spec.md": "743d1886abea8d3ed7eaaa4ce73e8193cf8d4455f46128213e0b7327b3e88e2a",
+      "plan.md": "0ba6f695243b2a801fa866bb813270ee5db2384a89d0c164b7e3560f126bb948",
+      "tasks.md": "6166aa06461b250f91cb281692786b1959e5ce7d37238c1a8bf3ab32d51c4963",
+      "checklist.md": "f552856dfaf7cae52be0802d1e9daebfed20171c9f518297469d5ff6505a7036",
+      "implementation-summary.md": "abb83c1aedfdbb8df6da4f69b8df39c7e81febc6a7bc899f5b89d08f55203592"
     },
     "last_active_child_id": null,
     "last_active_at": null
