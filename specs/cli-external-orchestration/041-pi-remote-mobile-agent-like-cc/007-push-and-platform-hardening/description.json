@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
+  "description": "Adds privacy-minimized Web Push hints and hardens installation, lifecycle, revocation, and stale-state behavior across supported mobile platforms.",
+  "keywords": [
+    "privacy-minimized",
+    "web",
+    "push",
+    "hints",
+    "hardens",
+    "installation",
+    "lifecycle",
+    "revocation",
+    "stale-state",
+    "behavior",
+    "across",
+    "supported",
+    "mobile",
+    "platforms"
+  ],
+  "lastUpdated": "2026-08-10T18:46:06.634Z",
+  "specId": "007",
+  "folderSlug": "push-and-platform-hardening",
+  "parentChain": [
+    "cli-external-orchestration",
+    "041-pi-remote-mobile-agent-like-cc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

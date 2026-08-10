@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+  "spec_folder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+  "parent_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi remote release verification and rollout",
+      "pi mobile phase 9",
+      "release verification and rollout"
+    ],
+    "key_topics": [
+      "remote",
+      "release",
+      "verification",
+      "rollout",
+      "mobile",
+      "phase",
+      "runs",
+      "independent",
+      "whole-system",
+      "security",
+      "performance",
+      "device"
+    ],
+    "importance_tier": "critical",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Runs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Runs the independent whole-system, security, performance, device, accessibility, rollback, and sign-off gates for staged release",
+    "created_at": "2026-08-10T18:28:44Z",
+    "last_save_at": "2026-08-10T18:46:14.267Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8a58f229ee17f2adb3b7138c6868b0e3902cd23056bc50f46172250f01f36f8e",
+    "source_doc_hashes": {
+      "spec.md": "c49db90ecdfcba69d21ccad81e1568e3e5bbcf2895e488d544a89e46bdf8e9e8",
+      "plan.md": "feea06929c55f1eda7e4e9dfe51008e7ceb68585fc7fac92793dd427f09807c1",
+      "tasks.md": "39d99e764a1486885e8c05e3fe43779318058af79284199ba62dfa7176606b09",
+      "checklist.md": "3fd130a2ed961a353542c784d7329e0d2e01d590904f67b093a5371a8b97f2df",
+      "decision-record.md": "218a7d9c101d35e0519ecf38d772d07bb6ce49c88e6575017519c8060e1baddd",
+      "implementation-summary.md": "cb5fb8d5ea09bd00a1c4ecbea661b10a310a059233c5729b4b7ae2787fc561f1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

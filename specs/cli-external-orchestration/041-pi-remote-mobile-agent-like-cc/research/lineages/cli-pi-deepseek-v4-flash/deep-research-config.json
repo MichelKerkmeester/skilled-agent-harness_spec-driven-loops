@@ -1,0 +1,76 @@
+{
+  "topic": "Design of a custom Claude-app-style mobile client for the pi coding agent driven by pi --mode rpc (JSONL protocol) exposed through a relay (Tailscale Serve or WebSocket bridge) to a mobile web app/PWA, with Claude-app UX parity: session list, chat bubbles, streaming, tool activity, approvals, push notifications.",
+  "maxIterations": 6,
+  "minIterations": 3,
+  "convergenceThreshold": 0.02,
+  "stuckThreshold": 3,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/cli-external-orchestration/041=pi-remote-mobile-agent-like-cc",
+  "artifactDir": "specs/cli-external-orchestration/041=pi-remote-mobile-agent-like-cc/research/lineages/cli-pi-deepseek-v4-flash",
+  "createdAt": "2026-08-10T08:04:06Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-cli-pi-deepseek-v4-flash-1786341668505-k2xc4h",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resource_map": {
+    "present": false,
+    "emit": true
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

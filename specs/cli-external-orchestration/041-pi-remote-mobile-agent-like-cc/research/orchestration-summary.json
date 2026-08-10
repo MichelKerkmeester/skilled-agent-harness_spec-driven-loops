@@ -1,0 +1,22 @@
+{
+  "run_id": "1786341668505-k2xc4h",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/041=pi-remote-mobile-agent-like-cc",
+  "base_artifact_dir": "specs/cli-external-orchestration/041=pi-remote-mobile-agent-like-cc/research",
+  "total_cli_lineages": 4,
+  "orphaned_lineages": [],
+  "total": 4,
+  "succeeded": 1,
+  "failed": 3,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 3
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 3,
+    "salvage_miss": 0
+  }
+}

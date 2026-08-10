@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
+  "spec_folder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
+  "parent_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi remote relay protocol and state",
+      "pi mobile phase 3",
+      "relay protocol and state"
+    ],
+    "key_topics": [
+      "remote",
+      "relay",
+      "protocol",
+      "state",
+      "mobile",
+      "phase",
+      "implements",
+      "host-local",
+      "rpc",
+      "supervisor",
+      "durable",
+      "replay"
+    ],
+    "importance_tier": "critical",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Relay Protocol",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Durable State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Installed Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implements",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implements the host-local Pi RPC supervisor, durable replay, session catalog, mutation ledger, and crash-safe reconciliation core",
+    "created_at": "2026-08-10T18:28:40Z",
+    "last_save_at": "2026-08-10T18:46:14.225Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c999318cb3bb9d13da5c7c28415ca26e1933717b77cf7ea7a71897be214bed05",
+    "source_doc_hashes": {
+      "spec.md": "0415d0ec3b66043b705b1e6c97104fc901d57736cb27051a552a4ca444f9449e",
+      "plan.md": "8e185e844ac6a26108fa7e44876576019444810498c8aadea1e514b0ff103222",
+      "tasks.md": "13f7b2c312dc0b1469a5cf398aa3682a683488ba523e7e837aa1f5345fc4cab4",
+      "checklist.md": "58bac659f7e7ab0214fd5284f17ea54adb9bdf676224ec75ad51f64742e6226c",
+      "decision-record.md": "8742773f1bfb11883082360c9002431d672bbade145aca42f16edddc9314444f",
+      "implementation-summary.md": "5cbb30cbf097ea8f21b95fdaeb33cadf876207feda72bfe7d1e27a4012a12ac2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
