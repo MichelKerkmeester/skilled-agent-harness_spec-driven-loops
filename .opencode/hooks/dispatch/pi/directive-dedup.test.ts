@@ -3,8 +3,6 @@ import { afterEach, describe, expect, it } from "vitest";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import promptAdvisor, {
   PI_DIRECTIVE_DEDUP_FLAG,
-  PI_SUBAGENT_DISPATCH_DIRECTIVE,
-  assemblePiPromptText,
   decidePiDirectiveDelivery,
   isPiDirectiveDedupEnabled,
   resetPiDirectiveDedupForSession,
@@ -21,7 +19,6 @@ const FULL = `${HEAD}${DIRECTIVES}`;
 const FULL_V2 = `${HEAD}${DIRECTIVES.replace("lead with the result", "lead with the verdict")}`;
 // Advisor-failure fallback: directives only, no advisor head to keep.
 const FALLBACK = "Directives:\n- comment-hygiene [HARD BLOCK]: never embed ids";
-const FALLBACK_V2 = FALLBACK.replace("never embed ids", "write the durable reason");
 
 type Handler = (event: any, ctx: any) => unknown;
 
@@ -84,47 +81,27 @@ describe("decidePiDirectiveDelivery", () => {
     expect(decidePiDirectiveDelivery(FULL, undefined).suppressed).toBe(false);
     expect(decidePiDirectiveDelivery(FULL, undefined).suppressed).toBe(false);
     expect(decidePiDirectiveDelivery(FULL, "").suppressed).toBe(false);
-    expect(decidePiDirectiveDelivery(FALLBACK, undefined).suppressed).toBe(false);
-    expect(decidePiDirectiveDelivery(FALLBACK, undefined).suppressed).toBe(false);
   });
 
-  it("suppresses an identical advisor-failure fallback without retaining a route line", () => {
+  it("never suppresses the advisor-failure fallback (directives-only, no route line)", () => {
     expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(false);
-    const repeated = decidePiDirectiveDelivery(FALLBACK, "s1");
-    expect(repeated.suppressed).toBe(true);
-    expect(repeated.reducedContext).toBe("");
+    expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(false);
   });
 
-  it("assembles a suppressed headless repeat as user text plus the dispatch directive only", () => {
-    decidePiDirectiveDelivery(FALLBACK, "s1");
-    const repeated = decidePiDirectiveDelivery(FALLBACK, "s1");
-    const text = assemblePiPromptText("run the task", repeated.reducedContext);
-    expect(text).toBe(`run the task\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`);
-    expect(text).not.toContain("Directives:");
-    expect(text).not.toContain("Advisor:");
-  });
-
-  it("re-delivers a changed advisor-failure fallback before suppressing its repeat", () => {
-    decidePiDirectiveDelivery(FALLBACK, "s1");
-    expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(true);
-    expect(decidePiDirectiveDelivery(FALLBACK_V2, "s1").suppressed).toBe(false);
-    expect(decidePiDirectiveDelivery(FALLBACK_V2, "s1").suppressed).toBe(true);
-  });
-
-  it.each(["0", "false", "off", "no"])("honours the %s kill-switch value", (value) => {
-    process.env[PI_DIRECTIVE_DEDUP_FLAG] = value;
+  it("honours the kill-switch flag (fail-open to full)", () => {
+    process.env[PI_DIRECTIVE_DEDUP_FLAG] = "0";
     expect(isPiDirectiveDedupEnabled()).toBe(false);
-    decidePiDirectiveDelivery(FALLBACK, "s1");
-    expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(false);
+    decidePiDirectiveDelivery(FULL, "s1");
+    expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(false);
   });
 
   it("defaults enabled and isolates sessions from each other", () => {
     expect(isPiDirectiveDedupEnabled()).toBe(true);
-    decidePiDirectiveDelivery(FALLBACK, "s1");
+    decidePiDirectiveDelivery(FULL, "s1");
     // s2's first turn is unaffected by s1's delivery.
-    expect(decidePiDirectiveDelivery(FALLBACK, "s2").suppressed).toBe(false);
+    expect(decidePiDirectiveDelivery(FULL, "s2").suppressed).toBe(false);
     // s1's own repeat still suppresses.
-    expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(true);
+    expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(true);
   });
 });
 
@@ -135,11 +112,11 @@ describe("lifecycle handlers reset the dedup state", () => {
     const compact = handlers.get("session_compact")?.[0];
     expect(typeof compact).toBe("function");
 
-    decidePiDirectiveDelivery(FALLBACK, "s1");
-    expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(true);
+    decidePiDirectiveDelivery(FULL, "s1");
+    expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(true);
     await compact!({}, ctxFor("s1"));
     // After a compaction the guardrail block is delivered in full again.
-    expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(false);
+    expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(false);
   });
 
   it("session_start (resume) re-arms full delivery for the session", async () => {
@@ -148,9 +125,9 @@ describe("lifecycle handlers reset the dedup state", () => {
     const start = handlers.get("session_start")?.[0];
     expect(typeof start).toBe("function");
 
-    decidePiDirectiveDelivery(FALLBACK, "s1");
-    expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(true);
+    decidePiDirectiveDelivery(FULL, "s1");
+    expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(true);
     await start!({ reason: "resume" }, ctxFor("s1"));
-    expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(false);
+    expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(false);
   });
 });

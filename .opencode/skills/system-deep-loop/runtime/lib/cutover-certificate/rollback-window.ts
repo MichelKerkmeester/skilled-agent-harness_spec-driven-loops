@@ -432,14 +432,6 @@ export async function closeRollbackWindow(
   if (!isIsoTimestamp(closureDecidedAt)) return windowRejected('RECORD_MALFORMED');
   if (provider.profile.trust_scope !== 'durable-cross-resume') return windowRejected('RECORD_MALFORMED');
 
-  // Recompute the window record's own digest from its fields and reject a
-  // caller-supplied record whose digest does not bind them. Without this a
-  // fabricated window — an arbitrary record digest with executions bound to
-  // that same arbitrary value — would satisfy every downstream self-consistency
-  // check and close on evidence never anchored to a genuinely opened window.
-  const { recordDigest: claimedRecordDigest, ...windowCore } = windowRecord;
-  if (digest(windowCore) !== claimedRecordDigest) return windowRejected('RECORD_MALFORMED');
-
   let evaluation: RollbackWindowEvaluation;
   try {
     evaluation = evaluateRollbackWindow(windowRecord, {

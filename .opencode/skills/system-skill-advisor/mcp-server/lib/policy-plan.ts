@@ -34,17 +34,6 @@ export interface PolicyPlanInput {
   readonly sessionId?: string;
 }
 
-export interface AdvisorPolicySafetyContext {
-  readonly prompt?: unknown;
-  readonly advisorStatus?: unknown;
-  readonly recommendationCount?: unknown;
-  readonly ambiguous?: unknown;
-  readonly longContext?: unknown;
-  readonly childSession?: unknown;
-  readonly advisoryGate?: unknown;
-  readonly gateAnswerValid?: unknown;
-}
-
 export interface PolicyBlock extends PolicyBlockInput {
   readonly order: number;
   readonly contentHash: string;
@@ -174,10 +163,6 @@ const HASH_ALGORITHM = 'sha256';
 const MAX_DELIVERY_SESSIONS = 64;
 const MAX_POLICY_OBSERVATION_RECEIPTS = 256;
 const MAX_SESSION_ID_LENGTH = 256;
-const LONG_PROMPT_BYTES = 32 * 1024;
-const COMMENT_WRITING_PATTERN = /\b(?:comment|comments|docstring|jsdoc|tsdoc)\b/iu;
-const COMPLETION_PROOF_PATTERN = /\b(?:complete|completion|finish|finished|done|works?|verify|verification|proof|tests?|testing)\b/iu;
-const GATE_SAFETY_PATTERN = /\b(?:gate|spec[ -]folder|invalid answer)\b/iu;
 
 export interface PolicyObservationBinding {
   readonly runtime: string;
@@ -292,22 +277,6 @@ export const POLICY_BLOCK_REGISTRY: readonly PolicyBlockDefinition[] = Object.fr
 
 function hashSerializedInput(serializedInput: string): string {
   return createHash(HASH_ALGORITHM).update(serializedInput, 'utf8').digest('hex');
-}
-
-/** Keep the full capsule whenever the current turn may exercise a guardrail. */
-export function shouldForceFullAdvisorPolicy(context: AdvisorPolicySafetyContext = {}): boolean {
-  const prompt = typeof context.prompt === 'string' ? context.prompt : '';
-  return context.advisorStatus !== undefined && context.advisorStatus !== 'ok'
-    || typeof context.recommendationCount === 'number' && context.recommendationCount <= 0
-    || context.ambiguous === true
-    || context.longContext === true
-    || context.childSession === true
-    || context.advisoryGate === true
-    || context.gateAnswerValid === false
-    || Buffer.byteLength(prompt, 'utf8') >= LONG_PROMPT_BYTES
-    || COMMENT_WRITING_PATTERN.test(prompt)
-    || COMPLETION_PROOF_PATTERN.test(prompt)
-    || GATE_SAFETY_PATTERN.test(prompt);
 }
 
 function normalizeBlocks(blocks: readonly PolicyBlockInput[]): readonly PolicyBlockInput[] {

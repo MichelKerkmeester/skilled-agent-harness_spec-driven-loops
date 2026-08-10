@@ -1,1 +1,0 @@
-{"type":"iteration","run":8,"status":"complete","focus":"Surface closure: session-stop, sk-code router, memory-context, OpenCode bridge fallback mirror","findingsCount":4,"newInfoRatio":0.25,"noveltyJustification":"Three closure confirmations and one drift finding (bridge mirror missing TERMINAL_PROOF_DIRECTIVE); inventory closed","keyQuestions":[],"answeredQuestions":[]}

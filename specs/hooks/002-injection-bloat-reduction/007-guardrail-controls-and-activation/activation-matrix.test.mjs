@@ -13,12 +13,6 @@ const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
 
 const runtimes = ['Claude Code', 'Codex', 'Cursor', 'Devin', 'OpenCode', 'Pi'];
 const candidates = ['002', '003', '004', '005', '006'];
-const expectedActivatedCells = [
-  'Claude Code/004',
-  'Codex/004',
-  'Devin/004',
-  'OpenCode/004',
-];
 
 function expectedApplicable(runtime, candidate) {
   if (candidate === '002' || candidate === '003') return runtime === 'OpenCode';
@@ -72,18 +66,15 @@ test('activation matrix enumerates all six runtimes by all five candidate cells'
   assert.equal(identities.size, 30);
 });
 
-test('fail-open gate activates only the four proven cells and emits for every other applicable cell', () => {
+test('fail-open gate emits for every applicable cell without two passing evidence records', () => {
   const applicableCells = matrix.cells.filter((cell) => cell.applicable);
   const inapplicableCells = matrix.cells.filter((cell) => !cell.applicable);
   const activatedCells = matrix.cells.filter((cell) => cell.verdict === 'activated');
 
   assert.equal(applicableCells.length, 13);
   assert.equal(inapplicableCells.length, 17);
-  assert.deepEqual(
-    activatedCells.map((cell) => `${cell.runtime}/${cell.candidate}`),
-    expectedActivatedCells,
-  );
-  assert.equal(matrix.activationState, 'evidence-gated');
+  assert.equal(activatedCells.length, 0);
+  assert.equal(matrix.activationState, 'all-candidate-flags-off');
 
   for (const cell of matrix.cells) {
     assert.equal(cell.verdict, gateVerdict(cell), `${cell.runtime}/${cell.candidate} bypassed the fail-open policy`);
@@ -143,7 +134,7 @@ test('fail-open gate activates only the four proven cells and emits for every ot
   };
   assert.equal(gateVerdict(wrongEpochCell), 'emit');
 
-  console.log(`MATRIX_FAIL_OPEN applicable=${applicableCells.length} unproven_emit=${applicableCells.filter((cell) => cell.verdict === 'emit').length} activated=${activatedCells.map((cell) => `${cell.runtime}/${cell.candidate}`).join(',')} ambiguous_statuses=fail,unknown,ambiguous->emit`);
+  console.log(`MATRIX_FAIL_OPEN applicable=${applicableCells.length} unproven_emit=${applicableCells.filter((cell) => cell.verdict === 'emit').length} activated=${activatedCells.length} ambiguous_statuses=fail,unknown,ambiguous->emit`);
 });
 
 test('activation schema exposes the evidence contract without candidate-phase changes', () => {

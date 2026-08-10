@@ -48,7 +48,6 @@ const DISABLED_ENV = 'MK_SKILL_ADVISOR_HOOK_DISABLED';
 const DISABLED_ENV_PLUGIN = 'MK_SKILL_ADVISOR_PLUGIN_DISABLED';
 const LEGACY_HOOK_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
 const LEGACY_PLUGIN_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
-const ROUTE_ONLY_DELIVERY_KILL_SWITCH_ENV = 'SPECKIT_ROUTE_ONLY_ADVISOR_DISABLED';
 const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 const GOVERNOR_DIRECTIVE = '\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 // Mirrors the renderer's proof-over-appearance capsule (one line, same shape as the governor).
@@ -615,13 +614,7 @@ function rawSessionValueFrom(input) {
     ?? input?.properties?.sessionId;
 }
 
-function shadowDeliveryStateFor(
-  input,
-  sessionID,
-  lifecycleEvent,
-  deliveryConfirmed,
-  stateMachine,
-) {
+function shadowDeliveryStateFor(input, sessionID, lifecycleEvent, deliveryConfirmed) {
   const rawSession = rawSessionValueFrom(input);
   const ambiguous = Boolean(
     input?.sessionIdentityAmbiguous
@@ -642,7 +635,6 @@ function shadowDeliveryStateFor(
     policySetChanged: input?.policySetChanged === true || input?.policy_set_changed === true,
     goalChanged: input?.goalChanged === true || input?.goal_changed === true,
     deliveryConfirmed,
-    ...(stateMachine ? { stateMachine } : {}),
   };
 }
 
@@ -652,51 +644,16 @@ async function observeShadowDeliveryForRuntime(
   sessionID,
   lifecycleEvent,
   deliveryConfirmed = false,
-  stateMachine = null,
 ) {
   try {
     const renderer = await loadShadowRenderer();
     if (typeof renderer?.observeShadowDelivery !== 'function') return;
     renderer.observeShadowDelivery(
       typeof rendered === 'string' ? rendered : null,
-      shadowDeliveryStateFor(input, sessionID, lifecycleEvent, deliveryConfirmed, stateMachine),
+      shadowDeliveryStateFor(input, sessionID, lifecycleEvent, deliveryConfirmed),
     );
   } catch {
     // Shadow planning must never alter the active OpenCode transform.
-  }
-}
-
-async function selectAdvisorDeliveryForRuntime(
-  rendered,
-  input,
-  sessionID,
-  lifecycleEvent,
-  safetyContext,
-  stateMachine,
-) {
-  try {
-    const renderer = await loadShadowRenderer();
-    if (typeof renderer?.selectAdvisorDelivery !== 'function'
-      || typeof renderer?.shouldForceFullAdvisorPolicy !== 'function') {
-      return rendered;
-    }
-    const forceFull = renderer.shouldForceFullAdvisorPolicy({
-      ...safetyContext,
-      longContext: input?.longContext === true || input?.long_context === true,
-      childSession: input?.childSession === true
-        || input?.child_session === true
-        || process.env.AI_SESSION_CHILD === '1',
-      advisoryGate: input?.advisoryGate === true || input?.advisory_gate === true,
-      gateAnswerValid: input?.gateAnswerValid ?? input?.gate_answer_valid,
-    });
-    return renderer.selectAdvisorDelivery(rendered, {
-      ...shadowDeliveryStateFor(input, sessionID, lifecycleEvent, false, stateMachine),
-      runtime: 'OpenCode',
-      candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
-      forceFull,
-    }) ?? rendered;
-  } catch {
-    return rendered;
   }
 }
 
@@ -705,7 +662,6 @@ async function observeEmittedAdvisorBlock(
   input,
   sessionID,
   lifecycleEvent,
-  stateMachine,
 ) {
   try {
     const renderer = await loadShadowRenderer();
@@ -713,7 +669,7 @@ async function observeEmittedAdvisorBlock(
     renderer.observeEmittedAdvisorPolicy(
       typeof rendered === 'string' ? rendered : null,
       {
-        ...shadowDeliveryStateFor(input, sessionID, lifecycleEvent, true, stateMachine),
+        ...shadowDeliveryStateFor(input, sessionID, lifecycleEvent, true),
         runtime: 'OpenCode',
         candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
       },
@@ -816,10 +772,6 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   const merged = { ...fileConfig.values, ...rawOptions };
   const options = normalizeOptions(merged);
   const projectDir = normalizeWorkspaceRoot(ctx?.directory);
-  const routeOnlyRenderer = await loadShadowRenderer();
-  const deliveryStateMachine = typeof routeOnlyRenderer?.DeliveryStateMachine === 'function'
-    ? new routeOnlyRenderer.DeliveryStateMachine()
-    : null;
 
   // Per-instance state so two plugin instances loaded in the same process maintain independent caches/metrics.
   const state = {
@@ -840,7 +792,6 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     disabledReason: !options.enabled
       ? (disabledEnvName() ?? 'config_enabled_false')
       : null,
-    deliveryStateMachine,
   };
 
   /**
@@ -1042,7 +993,6 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       ? (disabledEnvName() ?? 'config_enabled_false')
       : null;
     messageIdentity.clearTransformDedupState();
-    state.deliveryStateMachine?.clear?.();
   }
 
   function cacheHitRate() {
@@ -1073,26 +1023,20 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       let prompt = extractPrompt(input);
       const sessionID = sessionIdFrom(input);
       let pendingShadowLifecycle = lifecycleEventFrom(input);
-      const selectBlock = async (rendered, safetyContext) => {
+      const observeBlock = async (rendered) => {
         const lifecycleEvent = pendingShadowLifecycle;
         pendingShadowLifecycle = undefined;
-        const selected = await selectAdvisorDeliveryForRuntime(
+        await observeShadowDeliveryForRuntime(
           rendered,
           input,
           sessionID,
           lifecycleEvent,
-          safetyContext,
-          state.deliveryStateMachine,
         );
-        return { selected, lifecycleEvent };
-      };
-      const observeBlock = async (rendered, lifecycleEvent) => {
         await observeEmittedAdvisorBlock(
           rendered,
           input,
           sessionID,
           lifecycleEvent,
-          state.deliveryStateMachine,
         );
       };
       if (!prompt && sessionID !== '__global__') {
@@ -1146,9 +1090,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
           output.system.push(FALLBACK_DIRECTIVE);
         });
         if (fallbackDecision.shouldDeliver) {
-          const lifecycleEvent = pendingShadowLifecycle;
-          pendingShadowLifecycle = undefined;
-          await observeBlock(FALLBACK_DIRECTIVE, lifecycleEvent);
+          await observeBlock(FALLBACK_DIRECTIVE);
         }
         return;
       }
@@ -1159,18 +1101,9 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         sessionID,
         options,
       });
-      const fullAdvisorBlock = response.brief
+      const advisorBlock = response.brief
         ? clampBrief(response.brief, options.maxBriefChars)
         : FALLBACK_DIRECTIVE;
-      const { selected: advisorBlock, lifecycleEvent: advisorLifecycleEvent } = await selectBlock(
-        fullAdvisorBlock,
-        {
-          prompt,
-          advisorStatus: response.status,
-          recommendationCount: response.brief ? 1 : 0,
-          ambiguous: response.metadata?.ambiguous === true,
-        },
-      );
       const advisorBlockId = response.brief
         ? messageIdentity.POLICY_BLOCK_IDS.ADVISOR_ROUTE
         : messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE;
@@ -1186,7 +1119,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         output.system.push(advisorBlock);
       });
       if (advisorDecision.shouldDeliver) {
-        await observeBlock(advisorBlock, advisorLifecycleEvent);
+        await observeBlock(advisorBlock);
       }
       const compiledLine = renderCompiledRouteSummaryLine(response.metadata?.compiledRouteSummary, {
         bounded: options.boundedCompiledRouteSummary,
@@ -1202,6 +1135,9 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         deliverTransformContribution(compiledDecision, () => {
           output.system.push(compiledLine);
         });
+        if (compiledDecision.shouldDeliver) {
+          await observeBlock(compiledLine);
+        }
       }
     } catch {
       state.lastBridgeStatus = 'fail_open';
@@ -1221,9 +1157,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
             output.system.push(FALLBACK_DIRECTIVE);
           });
           if (errorFallbackDecision.shouldDeliver) {
-            const lifecycleEvent = pendingShadowLifecycle;
-            pendingShadowLifecycle = undefined;
-            await observeBlock(FALLBACK_DIRECTIVE, lifecycleEvent);
+            await observeBlock(FALLBACK_DIRECTIVE);
           }
         }
       } catch {
@@ -1247,7 +1181,6 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
             sessionIdFrom(eventPayload),
             'startup',
             false,
-            state.deliveryStateMachine,
           );
         }
         return;
@@ -1265,7 +1198,6 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
             sessionID,
             lifecycleEventFrom(eventPayload, eventType),
             false,
-            state.deliveryStateMachine,
           );
         }
         return;
@@ -1277,14 +1209,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
           || eventPayload?.properties?.info?.id
           || sessionIdFrom(eventPayload));
         if (options.enabled) {
-          await observeShadowDeliveryForRuntime(
-            null,
-            eventPayload,
-            sessionID,
-            'compact',
-            false,
-            state.deliveryStateMachine,
-          );
+          await observeShadowDeliveryForRuntime(null, eventPayload, sessionID, 'compact', false);
         }
         state.epoch += 1;
         for (const key of [...state.advisorCache.keys()]) {
@@ -1326,8 +1251,6 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
             `max_brief_chars=${options.maxBriefChars}`,
             `max_cache_entries=${options.maxCacheEntries}`,
             `bounded_compiled_route_summary=${options.boundedCompiledRouteSummary}`,
-            `route_only_delivery_enabled=${process.env[ROUTE_ONLY_DELIVERY_KILL_SWITCH_ENV] !== '1'}`,
-            `route_only_kill_switch=${ROUTE_ONLY_DELIVERY_KILL_SWITCH_ENV}`,
             `runtime_ready=${state.runtimeReady}`,
             `node_binary=${statusSafeBinary(options.nodeBinary)}`,
             `bridge_timeout_ms=${options.bridgeTimeoutMs}`,

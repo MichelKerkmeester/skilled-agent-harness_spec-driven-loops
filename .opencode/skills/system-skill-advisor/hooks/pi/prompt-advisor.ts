@@ -197,10 +197,9 @@ interface PiDirectiveBriefParts {
 }
 
 function splitPiDirectiveBrief(context: string): PiDirectiveBriefParts | null {
-  if (context.startsWith("Directives:")) {
-    return { head: "", directives: context };
-  }
   const index = context.indexOf(PI_DIRECTIVE_SEPARATOR);
+  // index <= 0 means there is no directive block, or no advisor head before
+  // it (the advisor-failure fallback is directives-only): not reducible.
   if (index <= 0) return null;
   return { head: context.slice(0, index), directives: context.slice(index) };
 }
@@ -230,7 +229,7 @@ export function decidePiDirectiveDelivery(
   const key = receiptSessionKey(sessionId);
   if (!key) return FULL_PI_DIRECTIVE_DELIVERY;
   const parts = splitPiDirectiveBrief(context);
-  if (!parts) return FULL_PI_DIRECTIVE_DELIVERY;
+  if (!parts || !parts.head.trim()) return FULL_PI_DIRECTIVE_DELIVERY;
 
   const store = compactShadowStore();
   if (!store.directiveDedupBySession) {
@@ -259,15 +258,6 @@ export function resetPiDirectiveDedupForSession(sessionId: string | undefined): 
 
 export function resetPiDirectiveDedupState(): void {
   compactShadowStore().directiveDedupBySession?.clear();
-}
-
-export function assemblePiPromptText(
-  userText: string,
-  effectiveContext: string | null | undefined,
-): string {
-  return effectiveContext
-    ? `${userText}\n\n${effectiveContext}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
-    : `${userText}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`;
 }
 
 async function loadPolicyPlan(): Promise<PolicyPlanModule | null> {
@@ -600,8 +590,8 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
     if (!advisorFailed && context) {
       try {
         const decision = decidePiDirectiveDelivery(context, sessionIdFromContext(ctx));
-        if (decision.suppressed) {
-          effectiveContext = decision.reducedContext ?? context;
+        if (decision.suppressed && decision.reducedContext) {
+          effectiveContext = decision.reducedContext;
         }
       } catch {
         // Directive de-dup is advisory; on any failure keep the full brief.
@@ -609,7 +599,9 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
       }
     }
 
-    const text = assemblePiPromptText(event.text, effectiveContext);
+    const text = effectiveContext
+      ? `${event.text}\n\n${effectiveContext}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
+      : `${event.text}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`;
     const output = { action: "transform" as const, text };
     await observeEmittedPiDispatch(sessionIdFromContext(ctx));
     return output;

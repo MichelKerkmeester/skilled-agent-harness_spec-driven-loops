@@ -18,8 +18,6 @@ import {
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
   observeEmittedAdvisorPolicy,
-  selectAdvisorDelivery,
-  shouldForceFullAdvisorPolicy,
 } from '../../mcp-server/lib/render.js';
 import type { ShadowDeliveryRenderOptions } from '../../mcp-server/lib/render.js';
 import {
@@ -48,12 +46,6 @@ export interface ClaudeUserPromptSubmitInput {
   readonly policy_set_changed?: boolean;
   readonly goal_changed?: boolean;
   readonly delivery_receipt_status?: 'configured' | 'observed' | 'unobserved' | 'unknown';
-  readonly runtime?: string;
-  readonly long_context?: boolean;
-  readonly child_session?: boolean;
-  readonly advisory_gate?: boolean;
-  readonly gate_answer_valid?: boolean;
-  readonly prompt_id?: string;
   readonly prompt?: string;
   readonly cwd?: string;
   readonly transcript_path?: string;
@@ -156,32 +148,12 @@ function lifecycleEventFor(input: ClaudeUserPromptSubmitInput): string | undefin
   return undefined;
 }
 
-function runtimeFor(input: ClaudeUserPromptSubmitInput): string | null {
-  if (input.runtime !== undefined) {
-    const normalized = input.runtime.trim().toLowerCase();
-    if (normalized === 'claude' || normalized === 'claude code') return 'Claude Code';
-    if (normalized === 'codex') return 'Codex';
-    if (normalized === 'devin') return 'Devin';
-    return null;
-  }
-  if (typeof input.prompt_id === 'string' && input.prompt_id.trim()) return 'Devin';
-  if (typeof process.env.CODEX_THREAD_ID === 'string' && process.env.CODEX_THREAD_ID.trim()) {
-    return 'Codex';
-  }
-  if (typeof process.env.DEVIN_SESSION_ID === 'string' && process.env.DEVIN_SESSION_ID.trim()) {
-    return 'Devin';
-  }
-  return 'Claude Code';
-}
-
 /** Convert runtime-owned identity and lifecycle fields into shadow-only signals. */
 export function deliveryStateOptionsFor(
   input: ClaudeUserPromptSubmitInput,
-  result?: AdvisorHookResult,
 ): ShadowDeliveryRenderOptions {
   const hasSessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0;
   return {
-    runtime: runtimeFor(input) ?? undefined,
     sessionId: input.session_id,
     sessionIdentityConfirmed: input.session_identity_confirmed ?? hasSessionId,
     sessionIdentityAmbiguous: input.session_identity_ambiguous === true,
@@ -190,16 +162,6 @@ export function deliveryStateOptionsFor(
     policySetChanged: input.policy_set_changed === true,
     goalChanged: input.goal_changed === true,
     deliveryConfirmed: false,
-    forceFull: shouldForceFullAdvisorPolicy({
-      prompt: input.prompt,
-      advisorStatus: result?.status,
-      recommendationCount: result?.recommendations.length,
-      ambiguous: (result as (AdvisorHookResult & { readonly ambiguous?: boolean }) | undefined)?.ambiguous,
-      longContext: input.long_context,
-      childSession: input.child_session === true || process.env.AI_SESSION_CHILD === '1',
-      advisoryGate: input.advisory_gate,
-      gateAnswerValid: input.gate_answer_valid,
-    }),
   };
 }
 
@@ -304,10 +266,10 @@ export async function handleClaudeUserPromptSubmit(
         durationMs: elapsed(),
       },
     };
-    const deliveryState = deliveryStateOptionsFor(input, result);
-    const brief = renderBrief(result);
-    const fullPolicy = brief ?? renderAdvisorFallbackDirective();
-    const emitted = selectAdvisorDelivery(fullPolicy, deliveryState) ?? fullPolicy;
+    const deliveryState = deliveryStateOptionsFor(input);
+    const renderOptions = { deliveryState };
+    const brief = renderBrief(result, renderOptions);
+    const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions);
     emitDiagnostic({
       workspaceRoot,
       status: result.status,
@@ -327,6 +289,7 @@ export async function handleClaudeUserPromptSubmit(
     };
     observeEmittedAdvisorPolicy(emitted, {
       ...deliveryState,
+      runtime: 'Claude Code',
       candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
     });
     return output;
