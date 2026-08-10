@@ -173,8 +173,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 - [ ] CHK-006 [P0] No evidence string cites a bare run count or raw line number
   - **Evidence**: Every evidence string this reconciliation pass added or corrected in `checklist.md` carries a test name and commit SHA (not a bare run count). Not independently re-verified across `plan.md`/`decision-record.md`, which are out of this reconciliation's edit scope. Left open pending a full document-wide sweep.
-- [ ] CHK-008 [P0] `validate.sh --strict` exits 0 for this child
-  - **Evidence**: To be filled after this reconciliation pass runs `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <child> --strict` — see the reconciliation's final report for the actual exit code and Errors/Warnings count.
+- [x] CHK-008 [P0] `validate.sh --strict` exits 0 for this child
+  - **Evidence**: RUN 2026-08-10 (final, unpiped): `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries --strict` → exit 0, Errors 0, Warnings 0, RESULT: PASSED (also re-verified after the metadata regeneration that followed the checklist/ADR edits).
 
 - [x] CHK-050 [P0] The gateway-only ruling is recorded as Accepted, not as an open fork
   - **Evidence**: `decision-record.md` ADR-001 is Accepted and names the operator gateway-only ruling (not re-verified line-by-line in this pass; unchanged by B1-B4 since it is a ruling record, not a code claim).
@@ -189,8 +189,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-090 [P1] Temp files confined to `scratch/`
-  - **Evidence**: Not re-verified in this reconciliation pass.
+- [x] CHK-090 [P1] Temp files confined to `scratch/`
+  - **Evidence**: Verified 2026-08-10: `find` for `*.tmp`/`*.bak` returns nothing; packet root contains only packet docs; no stray temp artifacts outside `scratch/`.
 - [x] CHK-091 [P1] Work ran in an isolated worktree, so no concurrent session's files were touched
   - **Evidence**: Worktree path confirmed current during this reconciliation (see CHK-012). This reconciliation pass only edited `implementation-summary.md`, `checklist.md`, and `tasks.md` inside `024-durable-write-boundaries/`; no other packet's files were touched.
 <!-- /ANCHOR:file-org -->
@@ -202,13 +202,13 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 - [x] CHK-100 [P0] Architecture decisions documented in `decision-record.md`
   - **Evidence**: ADR-001 through ADR-009 exist with context, alternatives, and consequences (not re-verified line-by-line in this reconciliation pass; `decision-record.md` is out of this reconciliation's edit scope).
-- [ ] CHK-101 [P1] Every ADR carries a terminal status
-  - **Evidence**: ADR-001 through ADR-007 read Accepted. ADR-008 and ADR-009 read `Accepted (ruling) — NOT YET IMPLEMENTED in code, see correction above`, confirmed directly during this reconciliation — that parenthetical is now stale, since B1 (`39015ed14c`) implements exactly the `FenceCapability`/hard-private mechanism ADR-008 describes. `decision-record.md` is out of this reconciliation's edit scope, so the stale wording was not corrected here; flagged as a genuinely open item for whoever next touches that file.
+- [x] CHK-101 [P1] Every ADR carries a terminal status
+  - **Evidence**: Verified 2026-08-10: all nine ADRs carry terminal statuses (ADR-001..007 Accepted; ADR-008/009 `Accepted (ruling)`). The `NOT YET IMPLEMENTED` parenthetical in ADR-008/009 is stale post-B1 (`39015ed14c`) and flagged for the next `decision-record.md` edit — the statuses themselves are terminal.
 - [x] CHK-102 [P1] Alternatives documented with rejection rationale
   - **Evidence**: `decision-record.md` ADR alternatives tables name rejected paths and their costs (not re-verified line-by-line in this reconciliation pass).
 
-- [ ] CHK-103 [P1] ADR-001 alternative (accept the gap with a compensating control) documented with rejection rationale
-  - **Evidence**: Not re-verified in this reconciliation pass.
+- [x] CHK-103 [P1] ADR-001 alternative (accept the gap with a compensating control) documented with rejection rationale
+  - **Evidence**: Verified 2026-08-10: `decision-record.md` documents it with rejection rationale — "Accept the gap with a compensating control | No breaking change; cheaper | The control is advisory; a caller can still bypass fencing; the gap becomes a corruption vector exactly at cutover | 4/10".
 - [x] CHK-104 [P1] ADR-003 staged-publication design documented with its crash-recovery argument
   - **Evidence**: ADR-003 documents staged promotion and retry recovery; leaf crash matrix (`recovers a crash injected after %s`) confirmed present at `origin/skilled/v4.0.0.0`. This is pre-existing B6 coverage, not new work from B1-B4.
 <!-- /ANCHOR:arch-verify -->
@@ -219,11 +219,11 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 ## L3: Behavior and Regression Verification
 
 - [ ] CHK-110 [P0] Whole `runtime` suite re-run and reported as a delta against the `021` baseline
-  - **Evidence**: Same gap as CHK-004 — the whole-runtime aggregate is not captured because the broad Vitest runner hangs past the load-bearing suites. Genuinely open.
+  - **Evidence**: Same gap as CHK-004 — the whole-runtime aggregate is not captured because the broad Vitest runner hangs past the load-bearing suites. Genuinely open. 2026-08-10 update: the four load-bearing suites were rerun green — `authorized-ledger` 34/34, `locks-and-fencing` 28/28, `loop-lock` 16/16, `branch-leases-waves` 16/16 (94/94) — exactly matching the recorded `021` baseline counts (delta 0); the whole-runtime aggregate remains uncaptured.
 - [ ] CHK-111 [P1] Fencing overhead on the append path measured and recorded
   - **Evidence**: Not measured. Genuinely open.
-- [ ] CHK-112 [P1] No concurrency test introduces a deadlock under repeated runs
-  - **Evidence**: Not re-verified with a repeated-run record in this reconciliation pass. Genuinely open.
+- [x] CHK-112 [P1] No concurrency test introduces a deadlock under repeated runs
+  - **Evidence**: Verified 2026-08-10 with a repeated-run record: `loop-lock` + `branch-leases-waves` rerun in the runtime — 32/32 green twice (initial pair) and again twice unpiped with captured exits 0/0 (`/tmp/chk112-1.log`, `/tmp/chk112-2.log`); no deadlock observed in any run.
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -236,9 +236,9 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 - [x] CHK-121 [P1] Completion metadata reconciled across spec/plan/tasks/implementation-summary
   - **Evidence**: This reconciliation pass (B7) brings `implementation-summary.md`, `checklist.md`, and `tasks.md` in line with the verified, landed truth and with `spec.md`'s already-updated Status field. `plan.md` and `decision-record.md` were not in this reconciliation's scope and may still carry stale narrative (see CHK-101, CHK-140, CHK-141) — reconciled for the four in-scope docs, not the whole packet.
 - [ ] CHK-122 [P0] Blocker 3 discharge recorded in the `014` unblock table with the fencing decision and the superseded-writer test
-  - **Evidence**: Not re-verified in this reconciliation pass — the `014` packet's own unblock table was not read. Genuinely open.
+  - **Evidence**: Verified 2026-08-10: `014-staged-state-migration-and-authority-cutover/` contains NO unblock table and no reference to the 024 Blocker 3 discharge (grep across all packet files: zero matches). Genuine sequencing gap — the discharge record must be added to 014 before the 024→014 hand-off.
 - [ ] CHK-123 [P0] Receipt, proof and parser primitives handed to `025`, `026` and `027`
-  - **Evidence**: Not re-verified in this reconciliation pass. Genuinely open.
+  - **Evidence**: Checked 2026-08-10: receipt/proof/parser terms appear in 025 (`checklist.md`, `decision-record.md`), 026 (`checklist.md`, `decision-record.md`), and 027 (`checklist.md`, `implementation-summary.md`) — but the concrete primitive hand-off content was not verified. Open.
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -246,10 +246,10 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 <!-- ANCHOR:compliance-verify -->
 ## L3: Compliance Verification
 
-- [ ] CHK-130 [P1] No exported test helper, fixture, or fencing-token value embeds a credential, token, or absolute machine-local path
-  - **Evidence**: Not re-verified in this reconciliation pass.
+- [x] CHK-130 [P1] No exported test helper, fixture, or fencing-token value embeds a credential, token, or absolute machine-local path
+  - **Evidence**: Verified 2026-08-10: scan of runtime lib + tests for real credentials and absolute local paths returns no match; the only `api_key` value is the synthetic redaction fixture `sk-should-not-persist` (non-credential by construction).
 - [ ] CHK-131 [P1] The two-process concurrency harness performs no network access and reads only repo-local fixtures
-  - **Evidence**: Not re-verified in this reconciliation pass.
+  - **Evidence**: PARTIAL, reopened 2026-08-10: zero network calls verified (no fetch/http/WebSocket/net.connect in either suite; only the reserved non-routable `https://example.test/design` fixture) and spawns use local node with repo-resolved scripts (`writerPath = join(dirname(barrierPath), 'race-writer.mjs')`; `vitestCli = <runtime>/node_modules/vitest/vitest.mjs`; `cwd` repo-local). Child helper `race-writer.mjs` (written by the test, then spawned) inspected: imports only `node:fs` plus a dynamic import of the repo-local `leaf-artifact-writer` module; waits on a local barrier file (`fs.existsSync` + `Atomics.wait`); writes leaf artifacts to the fixture paths — no network operations in the child either. BUT the data fixtures are created at runtime under the OS temp dir — `const root = mkdtempSync(join(tmpdir(), 'leaf-writer-'))` in `leaf-artifact-writer.vitest.ts` (line 28) — so the literal "reads only repo-local fixtures" clause is NOT confirmed as written. Genuinely open pending packet judgment on whether runtime-created temp fixtures satisfy the intent (machine-path-free, network-free).
 - [ ] CHK-132 [P2] The severity calibration block (`spec.md` §2) is carried verbatim into every child that cites it
   - **Evidence**: Not re-verified in this reconciliation pass.
 <!-- /ANCHOR:compliance-verify -->
@@ -260,11 +260,11 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 ## L3: Documentation Verification
 
 - [ ] CHK-140 [P1] `spec.md`, `plan.md`, `tasks.md`, and `checklist.md` are synchronized at close
-  - **Evidence**: `spec.md`, `tasks.md`, and `checklist.md` reconciled to the same verified truth in this pass. `plan.md` was not in this reconciliation's scope and was not re-checked for consistency — genuinely open until it is.
+  - **Evidence**: 2026-08-10: `spec.md` and `implementation-summary.md` both carry Status "Blocker 3 DISCHARGED" (consistent); `plan.md`/`tasks.md` use a different format and were not synchronized in this pass — open until the full four-doc sync.
 - [ ] CHK-141 [P1] `decision-record.md` records ADR-001 (Accepted) and ADR-002/ADR-003 in terms `025`, `026`, and `027` can cite without re-deriving them
-  - **Evidence**: Not re-verified in this reconciliation pass; `decision-record.md` is out of this reconciliation's edit scope. See CHK-101 for the known ADR-008/ADR-009 staleness.
+  - **Evidence**: 2026-08-10: ADR-001/002/003 carry terminal statuses (see CHK-101 evidence); whether 025/026/027 can cite them without re-deriving was not verified. Open.
 - [ ] CHK-142 [P2] The fencing-token placement decision (`spec.md` §11) is recorded once answered, with no dangling reference to the unresolved open question
-  - **Evidence**: Not re-verified in this reconciliation pass.
+  - **Evidence**: Verified 2026-08-10: FAILING — `spec.md` line 294 (research row) still lists "fencing-token placement … remain unresolved", while ADR-004 records the decision (proof-side placement) and `authorization_ref.fence_token` is implemented — dangling reference remains. Open.
 <!-- /ANCHOR:docs-verify -->
 
 ---
@@ -274,8 +274,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 31 | 22/31 |
-| P1 Items | 23 | 11/23 |
+| P0 Items | 31 | 23/31 |
+| P1 Items | 23 | 16/23 |
 | P2 Items | 2 | 0/2 |
 
 Note: the prior revision's totals (27/23/2) undercounted P0 by 4 — a stale summary that was never recalculated as items were added across iterations. This revision's totals were computed directly against the checklist's actual item count.

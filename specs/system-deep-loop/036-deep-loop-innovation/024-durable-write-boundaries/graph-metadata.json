@@ -44,20 +44,7 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/durable-orchestrator.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/effect-gateway.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/replay-fingerprint-attestation.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts",
-      "baselines/pre-edit.md",
-      "baselines/post-edit.md",
-      "specs/descriptions.json"
+      "handover.md"
     ],
     "entities": [
       {
@@ -97,87 +84,9 @@
         "source": "derived"
       },
       {
-        "name": "append-only-ledger.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts",
-        "source": "derived"
-      },
-      {
-        "name": "transition-authorization-gateway.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts",
-        "source": "derived"
-      },
-      {
-        "name": "transition-policy-registry.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "immutable-frame-store.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "durable-orchestrator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/durable-orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "effect-gateway.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/effect-gateway.ts",
-        "source": "derived"
-      },
-      {
-        "name": "replay-fingerprint-attestation.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/replay-fingerprint-attestation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "loop-lock.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
-        "source": "derived"
-      },
-      {
-        "name": "atomic-state.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-artifact-writer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "authorized-ledger.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pre-edit.md",
+        "name": "handover.md",
         "kind": "doc",
-        "path": "baselines/pre-edit.md",
-        "source": "derived"
-      },
-      {
-        "name": "post-edit.md",
-        "kind": "doc",
-        "path": "baselines/post-edit.md",
-        "source": "derived"
-      },
-      {
-        "name": "descriptions.json",
-        "kind": "config",
-        "path": "specs/descriptions.json",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -203,11 +112,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Enumerate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Report",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`F-014-01` is CONFIRMED: `appendAuthorized` validates decision, prior head, expiry and authority epoch but contains zero fencing, lease, token or high-water-mark logic, so a superseded writer holding an unexpired proof can append directly while fencing sits in an optional wrapper",
     "created_at": "2026-07-31T01:25:20.017Z",
-    "last_save_at": "2026-08-08T20:35:01.944Z",
+    "last_save_at": "2026-08-10T18:53:09.563Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +206,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:27e716d65b5063ee18fce2ca7e605aa11a9811886fe5716cedd45fd57e1f7794",
+    "source_fingerprint": "sha256:20c0a9881e7e79a3e1c7db6d1f9218a9dad985fb6b13dbc0e910a29d1556bfdf",
     "source_doc_hashes": {
-      "spec.md": "d9424dcd0fedb550d37ed9a3a107b0dd06a7ebcc2cffddde3f11cbb8a9a9edef",
-      "plan.md": "bc9c6721f64c3f9f329ed299c8fe1a13423cad8bf3586b1858b754bc9e8e8685",
-      "tasks.md": "d434117589fed701783afd7f6257a7c2b636fb2a6b3c85c02e9694f443de0740",
-      "checklist.md": "292b27603559ffba46e9848ff1cfe635ffd6f354a55c815d9bc3f34431f98013",
-      "decision-record.md": "dbcb814c25ac66fa0f7b487d4756f56ee0713a9e189b30606179306ba418c449",
-      "implementation-summary.md": "8e39ea723b5214c170282c2e902275b2244d3dd31bc52e69025a27ba2e4c3927",
+      "spec.md": "05c516b96b7b4da3e6374c76de0581b66cc72647408ebdd1c39f9c7f637534b0",
+      "plan.md": "9333bb4ba1b082cc377722bed50ba3d3f8826faee62b2dd0eb8c7db296211836",
+      "tasks.md": "a4bfeac071bcd12b68527a4bcbd97ba750382b983da3c6a579be9d181601e736",
+      "checklist.md": "d133014c3d3611b9d8a5a95506155bc9637149260a36697c539914fdd8f9872d",
+      "decision-record.md": "569316897c00d1ecd6ecfc4a4bb2dad0a37f95b9517059a0d1756902b6ed958b",
+      "implementation-summary.md": "935e92182f0ff3331de95c154e579fc7f5e91cf155ad846e9479713aa5b9474c",
       "handover.md": "551027df0ba276be10b79d28720ea3e3a2a0b63f10503e82d4433a22e27a1543"
     },
     "last_active_child_id": null,

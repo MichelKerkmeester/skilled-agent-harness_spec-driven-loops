@@ -13,7 +13,7 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries"
-    last_updated_at: "2026-08-08T03:30:00Z"
+    last_updated_at: "2026-08-10T10:26:55Z"
     last_updated_by: "claude"
     recent_action: "Re-verified Blocker 3 vs HEAD; fencing primitive absent, cited SHA unrelated"
     next_safe_action: "Implement REQ-001/REQ-002 fencing; fix fence_token regression; re-verify"
@@ -29,7 +29,7 @@ _memory:
     completion_pct: 35
     open_questions: []
     answered_questions:
-      - "OPERATOR RULING: GATEWAY-ONLY MUTATION. All appends route through the transition-auth gateway enforcing fencing tokens; direct appendAuthorized becomes internal-only. RULING RECORDED BUT NOT YET IMPLEMENTED — see implementation-summary.md."
+      - "OPERATOR RULING: GATEWAY-ONLY MUTATION. All appends route through the transition-auth gateway enforcing fencing tokens; direct appendAuthorized becomes internal-only. IMPLEMENTED — landed via `5c98e4654e4` + the 024 fencing fix set (`30a0089a3b`, `39015ed14c`, `27e6c2b5a9`, `5b6d9e86b9a`); gateway code present in `append-only-ledger.ts`, `authorized-ledger.vitest.ts` 34/34 green (2026-08-10)."
       - "This child owns `runtime/lib/deep-loop/leaf-artifact-writer.ts` structurally: atomic staged publication plus a closed runtime parser. `026` layers slice-binding semantics on top. This part shows real diffs and passing in-process tests."
 ---
 <!-- SPECKIT_LEVEL: 3 -->
@@ -291,7 +291,7 @@ Make every durable write ownership-elected, identity-verified and all-or-nothing
 |-----------|-------|----------|
 | Scope | 23/25 | 18 findings across 10 files spanning five subsystems (`authorized-ledger`, `deep-loop`, `receipts-and-effect-recovery`, `branch-leases-waves`, `replay-fingerprint`) plus a protected-surface manifest and a test file |
 | Risk | 24/25 | Changes the exported mutation surface of the ledger `014` is about to make authoritative; spec names this "the largest blast radius in the remediation tree" |
-| Research | 12/20 | `F-014-01` root cause already isolated by a confirmed grep, but three open questions (fencing-token placement, deprecation-window control, shared vs. per-path single-winner primitive) remain unresolved |
+| Research | 12/20 | `F-014-01` root cause already isolated by a confirmed grep; original open questions: fencing-token placement (RESOLVED — ADR-004, proof-side placement, implemented at `39015ed14c`), deprecation-window control (RESOLVED — ADR-005, zero-length window), shared vs. per-path single-winner primitive (see ADR-006/007) |
 | Multi-Agent | 8/15 | Single workstream, six sequential phases (surface inventory through delta+gate), one independent adversarial verification pass (REQ-U04) |
 | Coordination | 14/15 | Wave W2, hard gate on `014` Blocker 3; blocks `025`/`027` outright and gates `026`'s file-level dependency on `leaf-artifact-writer.ts`; itself gated on `021` landing first |
 | **Total** | **81/100** | **Level 3** |

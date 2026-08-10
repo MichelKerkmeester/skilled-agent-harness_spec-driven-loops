@@ -43,20 +43,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/artifact-events.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-certificates/deep-review-certificates.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/deep-improvement-common-certificates.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-certificates/deep-alignment-certificates.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-certificates/deep-ai-council-certificates.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-reducer.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-reducers/model-benchmark-reducer.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-certificates.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-certificates.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-certificates.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-certificates.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -96,84 +83,6 @@
         "source": "derived"
       },
       {
-        "name": "sealed-artifact-store.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/sealed-artifact-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "artifact-events.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/artifact-events.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-certificates.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-review-certificates/deep-review-certificates.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-improvement-common-certificates.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-certificates/deep-improvement-common-certificates.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-alignment-certificates.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-certificates/deep-alignment-certificates.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-ai-council-certificates.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-certificates/deep-ai-council-certificates.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-ai-council-reducer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-reducer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "model-benchmark-reducer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-reducers/model-benchmark-reducer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-reducer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-certificates.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-certificates.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-improvement-common-certificates.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-certificates.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-alignment-certificates.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-certificates.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-ai-council-certificates.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-certificates.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,11 +111,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Evidence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Enumerate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Evidence is accepted on partial or metadata-only correspondence in twelve places",
     "created_at": "2026-07-31T01:25:20.255Z",
-    "last_save_at": "2026-08-09T01:50:16.890Z",
+    "last_save_at": "2026-08-10T18:53:09.734Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +204,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1eb027300d01c9351b84d96fafc80e2e9a487e13d8d0c09947423b63915bca6",
+    "source_fingerprint": "sha256:b92d4e490b080cf9bee38b6f317c1ee559f9db1041af6e5d33e9a4e78473d63c",
     "source_doc_hashes": {
       "spec.md": "37d897a0900c27dba48b393129018e01cf0e27d87281b0901f4457ff46732729",
-      "plan.md": "6f76c7fd8d73ddf570ba2860f6a75762b59ce7623d80e6b53ee906ee8d70523a",
-      "tasks.md": "5f889cab618dea1b1e2f605760ecccd95f5d1f30aa76ed05aac89453658b8562",
-      "checklist.md": "71dcf9a920f522020305cfc77f002dcc8b35eb4ae809d2a692246ba86333bc84",
+      "plan.md": "c885011865b68a8e7fe68a6fb53476758eac06906c52f945570577d6589cc70e",
+      "tasks.md": "c9f41c2857e386f9e26f02864ab78e7a342f49f718e53c276ddce306b3ce060f",
+      "checklist.md": "f2f62b87c7fc2f8bf6190f09af0635b28af9ff7f48003c3a9a9cdc9ecb6553fe",
       "decision-record.md": "4709db136c5fb62f4012aa84e213b34c5e6a87b27edadb62ce541e3da99bc883",
-      "implementation-summary.md": "808023e3088c27b7300435f94647a14b8ef01e8724af7efb592769f6c8638852"
+      "implementation-summary.md": "060586b789345d368c27b28fd1cf467195fe9158345c7f4c7ac17aaf223e5ece"
     },
     "last_active_child_id": null,
     "last_active_at": null

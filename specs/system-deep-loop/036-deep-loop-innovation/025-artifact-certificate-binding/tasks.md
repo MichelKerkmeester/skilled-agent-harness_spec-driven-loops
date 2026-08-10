@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Bind Sealed Artifacts and Certificates to the Semantic Identity They Claim to Certify"
-description: "Task breakdown for 025-artifact-certificate-binding, reconciled against the landed build: T001-T018/T020 done across 4 commits + a companion fix; T003 (historical corpus), T019 (corpus re-verify), and the validate.sh --strict half of T021 left genuinely open."
+description: "Task breakdown for 025-artifact-certificate-binding, reconciled against the landed build: T001-T018/T020-T021 done across 4 commits + a companion fix; T003 (historical corpus) and T019 (corpus re-verify) remain genuinely open."
 trigger_phrases:
   - "artifact certificate binding"
   - "sealed artifact identity binding"
@@ -60,7 +60,7 @@ _memory:
 | M3 | T008-T010 | Sealed store and creation evidence bound | Done (`8b2e49931f8`); 1 low-sev residual on T008 (see note) |
 | M4 | T011-T015 | Four certificate emitters bound | Done (`59e0040d33`, `d30321b98e`) |
 | M5 | T016-T017 | Reducers bound | Done (`89067fe46e` + companion `a232835611`) |
-| M6 | T018-T021 | Twelve decoy tests; delta clean | T018/T020 done; T019 (corpus re-verify) open; T021 half-done (adversarial pass yes, `validate.sh --strict` not yet exit 0) |
+| M6 | T018-T021 | Twelve decoy tests; delta clean | T018/T020/T021 done; T019 (corpus re-verify) open |
 <!-- /ANCHOR:milestones -->
 
 ---
@@ -141,8 +141,8 @@ Acceptance per finding is the decoy contrast: the decoy satisfies today's predic
   - **Open**: depends on T003 (corpus was never enumerated), so nothing exists to re-verify against. Genuinely open.
 - [x] T020 Re-run `cd .opencode/skills/system-deep-loop/runtime && npm run typecheck && npm test`; report the delta against the `021` baseline [2h] {deps: T019}
   - **Done, transcribed**: per-file tallies in `implementation-summary.md` Verification (9 suites matching the task-provided figures, `authorized-ledger` 34/34 unchanged, `tsc --noEmit: 0 errors` stated in 2 of the 4 commit messages). This reconciliation pass did not re-execute the suites itself — see `implementation-summary.md` Known Limitations #5.
-- [ ] T021 Independent adversarial verification pass, then `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation/025-artifact-certificate-binding --strict` exits 0 [6h] {deps: T020}
-  - **Half done**: the adversarial pass ran and returned CLEAN (11/12 fully clean, 1 low-sev residual). `validate.sh --strict` does **not** exit 0 — it returns `Errors: 0, Warnings: 2, exit 2` both before and after this reconciliation pass, due to 2 pre-existing warnings (`AI_PROTOCOL` incomplete section, `DESCRIPTION_SHAPE` missing `level` field) unrelated to the 12-finding build. Left open.
+- [x] T021 Independent adversarial verification pass, then `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-deep-loop/036-deep-loop-innovation/025-artifact-certificate-binding --strict` exits 0 [6h] {deps: T020}
+  - **Done**: the adversarial pass returned CLEAN (11/12 fully clean, 1 low-sev residual). After adding the required AI execution protocol, strict validation exited 0 with zero errors and warnings on 2026-08-10.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -150,15 +150,15 @@ Acceptance per finding is the decoy contrast: the decoy satisfies today's predic
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` — T003, T019, and the `validate.sh --strict` half of T021 remain open
+- [ ] All tasks marked `[x]` — T003 and T019 remain open
 - [x] No `[B]` blocked tasks remaining
 - [x] Every scoped finding ID resolved to a fix, a `REFUTED` rationale, or an `ALREADY-FIXED` commit citation — 12/12 resolved to a fix
 - [x] Every confirmed finding carries a negative test that was red pre-fix
 - [ ] Whole gate re-run and reported as a delta against the captured baseline — no standalone pre-edit baseline artifact was found (see `checklist.md` CHK-002); the delta is tracked via the commits' own "unchanged" regression chain instead
 - [x] Independent adversarial verification pass recorded
-- [ ] `checklist.md` fully verified with test-name + suite-digest + SHA evidence — 32/45 items verified; 13 left genuinely open (see `checklist.md`)
+- [ ] `checklist.md` fully verified with test-name + suite-digest + SHA evidence — 33/45 items verified; 12 left genuinely open (see `checklist.md`)
 - [ ] All ADRs have a terminal status (Accepted or Superseded) — both remain `Proposed`; `decision-record.md` out of this pass's scope
-- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-child> --strict` exits 0 — currently `exit 2` (2 pre-existing warnings, see T021)
+- [x] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-child> --strict` exits 0 — verified 2026-08-10 with zero errors and warnings
 <!-- /ANCHOR:completion -->
 
 ---

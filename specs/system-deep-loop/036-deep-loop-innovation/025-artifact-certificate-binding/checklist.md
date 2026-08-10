@@ -16,7 +16,7 @@ _memory:
     last_updated_at: "2026-08-09T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Reconciled checklist against the landed 12-finding build"
-    next_safe_action: "Review remaining open items then rerun validate.sh strict"
+    next_safe_action: "Review the 12 remaining open checklist items; strict validation is green"
     blockers: []
     key_files:
       - "checklist.md"
@@ -138,8 +138,8 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 - [x] CHK-006 [P0] No evidence string cites a bare run count or raw line number
   - **Evidence**: Every evidence string above and in `implementation-summary.md` carries a test name and/or a commit SHA; `implementation-summary.md`'s Verification section adds a suite-content-digest table for the 8 new/modified test files, completing the test-name + suite-digest + candidate-SHA triple REQ-U05 requires.
-- [ ] CHK-008 [P0] `validate.sh --strict` exits 0 for this child
-  - **Evidence**: Not satisfied. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <child> --strict` returned `Errors: 0, Warnings: 2, RESULT: FAILED, exit 2` both before and after this reconciliation pass — the 2 warnings (`AI_PROTOCOL` incomplete section, `DESCRIPTION_SHAPE` "level must be a string or number" in `description.json`) are pre-existing and out of this docs-only reconciliation's scope (fixing them would mean either authoring a new AI Execution Protocol section or editing generated metadata, neither of which this pass's brief asked for). Left genuinely open.
+- [x] CHK-008 [P0] `validate.sh --strict` exits 0 for this child
+  - **Evidence**: RUN 2026-08-10 after adding the required AI execution protocol: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-deep-loop/036-deep-loop-innovation/025-artifact-certificate-binding --strict` → exit 0, Errors 0, Warnings 0, RESULT: PASSED.
 
 - [x] CHK-050 [P1] Per-emitter field lists documented so a later emitter can adopt them
   - **Evidence**: Documented in `implementation-summary.md` What Was Built (the F-011-03 ~15-field list; the per-kind digest fields for F-015-02/F-011-04/F-006-04).
@@ -231,13 +231,13 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 21 | 14/21 |
+| P0 Items | 21 | 15/21 |
 | P1 Items | 22 | 17/22 |
 | P2 Items | 2 | 1/2 |
 
 **Verification Date**: 2026-08-09 (this reconciliation pass)
 **Verified By**: claude (docs reconciliation pass); underlying build verified by a separate independent adversarial pass per REQ-U04 (see `implementation-summary.md`)
-**Status**: 12/12 findings landed and adversarially clean (11/12 fully clean, 1 low-sev residual). 13 checklist items remain genuinely open — none of them reopens a rejected decoy; they are process/documentation artifacts (pre-edit baseline record, historical-certificate-corpus enumeration, full ADR-001 shared-validator adoption across all 4 emitters, `decision-record.md` ADR terminal status, `014`/rollback cross-references, `validate.sh --strict` clean exit) that this docs-only pass did not fabricate evidence for. See `implementation-summary.md` Known Limitations for the full list.
+**Status**: 12/12 findings landed and adversarially clean (11/12 fully clean, 1 low-sev residual). 12 checklist items remain genuinely open — none of them reopens a rejected decoy; they are process/documentation artifacts (pre-edit baseline record, historical-certificate-corpus enumeration, full ADR-001 shared-validator adoption across all 4 emitters, `decision-record.md` ADR terminal status, and `014`/rollback cross-references) that this docs-only pass did not fabricate evidence for. See `implementation-summary.md` Known Limitations for the full list.
 <!-- /ANCHOR:summary -->
 
 ---

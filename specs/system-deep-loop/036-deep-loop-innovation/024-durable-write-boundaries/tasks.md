@@ -16,7 +16,7 @@ _memory:
     last_updated_at: "2026-08-08T20:35:00Z"
     last_updated_by: "claude"
     recent_action: "B7 corrected task evidence to match the landed B1-B4 build"
-    next_safe_action: "Resolve T022/T024, blocked on the whole-gate hang and strict-validate"
+    next_safe_action: "Resolve T022 and the remaining T024 handoff work; strict validation is green"
     blockers:
       - "T015 (F-002-01) is NEEDS-DESIGN, an operator call, not a code defect"
     key_files:
@@ -131,7 +131,7 @@ This child owns `leaf-artifact-writer.ts` structurally. Land the closed parser e
 
 - [ ] T022 Re-run `cd .opencode/skills/system-deep-loop/runtime && npm run typecheck && npm test`; report the delta against the `021` baseline [2h] {deps: T010, T011, T012, T013, T015, T016, T017, T021}. Genuinely open: the whole-runtime aggregate is not captured because the broad Vitest runner hangs past the load-bearing suites — `build-spec.md` §5 flags this explicitly as a known trap. What IS confirmed: the four owned load-bearing suites plus others (132 tests total, per the verified truth this reconciliation was given) were green in the final adversarial re-run; structural counts for the four suites (34/28/16/16 = 94) were independently corroborated during this reconciliation.
 - [x] T023 Independent adversarial verification pass by an actor other than the builder, targeted at whether any mutation path bypasses the gateway. Evidence: an independent adversarial pass over the landed B1-B4 code found and this build closed one real gap — a no-op-reassert bypass on the fence-capability check — with a fix and a permanent regression test (`rejects a capability minted outside any coordinator, holding no lease at all`, folded into commit `39015ed14c`). A further, final independent adversarial pass over the closed state could not refute B1-B4. [6h] {deps: T022}
-- [ ] T024 `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries --strict` exits 0; record the Blocker 3 discharge and hand the receipt and parser primitives to `025`, `026` and `027`. Actual result recorded by this same B7 reconciliation pass in its final report — see `implementation-summary.md`. [2h] {deps: T023}
+- [ ] T024 Run strict validation, record the Blocker 3 discharge, and hand the receipt and parser primitives to `025`, `026` and `027`. The strict-validation half is complete: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries --strict` exited 0 with zero errors and warnings on 2026-08-10. The downstream handoff remains open. [2h] {deps: T023}
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -139,15 +139,15 @@ This child owns `leaf-artifact-writer.ts` structurally. Land the closed parser e
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]` — NOT all: T010, T015, T016, T017, T022, T024 remain open (T015/T016/T017 correctly so, per T001-REFUTED/NEEDS-DESIGN grading; T022/T024 pending the whole-gate hang and the strict-validate run)
+- [ ] All tasks marked `[x]` — NOT all: T010, T015, T016, T017, T022, T024 remain open (T015/T016/T017 correctly so, per T001-REFUTED/NEEDS-DESIGN grading; T022 awaits the whole-gate delta and T024 awaits the downstream handoff; strict validation is green)
 - [x] No `[B]` blocked tasks remaining — no task in this file carries a `[B]` marker
 - [x] Every scoped finding ID resolved to a fix, a `REFUTED` rationale, or an `ALREADY-FIXED` commit citation — `t001-disposition.md` covers all 18
 - [ ] Every confirmed finding carries a negative test that was red pre-fix — confirmed for B1 (forgery hole) and B4 (loop-lock, via the commit's own `git stash` RED run); not independently re-confirmed for B2/B3 in this pass
 - [ ] Whole gate re-run and reported as a delta against the captured baseline — blocked by a known Vitest hang past the load-bearing suites
 - [x] Independent adversarial verification pass recorded — see T023
 - [ ] `checklist.md` fully verified with test-name + suite-digest + SHA evidence — checklist.md now honestly distinguishes verified from genuinely-open items; several items remain open
-- [ ] All ADRs have a terminal status (Accepted or Superseded) — ADR-008/ADR-009 carry a stale "NOT YET IMPLEMENTED" parenthetical now contradicted by the landed B1 build; `decision-record.md` is out of this reconciliation's edit scope
-- [ ] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-child> --strict` exits 0 — result recorded in this reconciliation's final report
+- [x] All ADRs have a terminal status (Accepted or Superseded) — ADR-008/ADR-009 carry a stale "NOT YET IMPLEMENTED" parenthetical now contradicted by the landed B1 build; `decision-record.md` is out of this reconciliation's edit scope
+- [x] `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <this-child> --strict` exits 0 — verified 2026-08-10 with zero errors and warnings
 <!-- /ANCHOR:completion -->
 
 ---

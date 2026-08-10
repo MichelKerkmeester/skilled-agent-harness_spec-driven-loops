@@ -16,7 +16,7 @@ _memory:
     last_updated_at: "2026-08-03T06:05:31Z"
     last_updated_by: "codex"
     recent_action: "Recorded the hard-private primitive and coordinator-issued fence capability hardening"
-    next_safe_action: "Run strict validation after metadata regeneration"
+    next_safe_action: "Resolve the whole-gate delta and downstream handoff items"
     blockers: []
     key_files:
       - "plan.md"
@@ -64,7 +64,7 @@ Enumerate every exported mutation entry point first, because the operator ruling
 - [ ] Crash injection at every leaf-publication stage boundary recoverable by a clean retry
 - [ ] Whole gate re-run and reported as a delta against the captured baseline
 - [ ] Independent adversarial verification pass complete
-- [ ] `validate.sh --strict` exits 0 for this child
+- [x] `validate.sh --strict` exits 0 for this child
 <!-- /ANCHOR:quality-gates -->
 
 ---

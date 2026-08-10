@@ -64,7 +64,7 @@ Enumerate the load-bearing identity fields per emitter first, then build one bin
 - [ ] No verifier re-derives an issuer-invented value
 - [ ] Whole gate re-run and reported as a delta against the captured baseline
 - [ ] Independent adversarial verification pass complete
-- [ ] `validate.sh --strict` exits 0 for this child
+- [x] `validate.sh --strict` exits 0 for this child
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -319,6 +319,28 @@ Phase 1 (Confirm + enumerate) ──► Phase 2 (Binding validator)
 | M5 | Reducers bound | Trial-bound scores; gap-rejecting replay | End of Phase 5 |
 | M6 | Decoys prove it | Twelve decoy or forgery tests on both sides of the fix | End of Phase 6 |
 <!-- /ANCHOR:milestones -->
+
+---
+
+<!-- ANCHOR:ai-execution-protocol -->
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+- Enumerate the historical certificate corpus (T003) and confirm the same-class producer and consumer inventories before tightening any emitter.
+- Capture the pre-edit baseline (validator behavior, corpus verification results) before changing the binding validator or any sealed-store path.
+
+### Execution Rules
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Build the one binding validator before touching any emitter; per-emitter differences are data, not forked code. |
+| TASK-SCOPE | Modify only the sealed-store, certificate-emitter, and binding-validator surfaces this child owns. |
+
+### Status Reporting Format
+Report validation results as exact exit codes and corpus counts (e.g., `validate.sh --strict` exit code, corpus size verified), never as bare pass claims.
+
+### Blocked Task Protocol
+Mark a task `BLOCKED` with the exact command or external dependency, preserve the last confirmed receipt, and do not claim a green closeout. Missing independent verification is reported as a blocker with an owner and next safe action.
+<!-- /ANCHOR:ai-execution-protocol -->
 
 ---
 

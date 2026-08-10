@@ -399,7 +399,7 @@ This makes single-winner semantics the default production behavior rather than a
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted (ruling) — NOT YET IMPLEMENTED in code, see correction above |
+| **Status** | Accepted (ruling) — IMPLEMENTED (B1 `39015ed14c`); see implementation-summary.md |
 | **Date** | 2026-08-03 |
 | **Deciders** | Operator ruling, packet owner |
 
@@ -423,7 +423,7 @@ The ledger computes the canonical protected-resource key for its own identity an
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted (ruling) — depends on ADR-008, see correction above |
+| **Status** | Accepted (ruling) — depends on ADR-008 (implemented); see implementation-summary.md |
 | **Date** | 2026-08-05 |
 | **Deciders** | Packet owner |
 
