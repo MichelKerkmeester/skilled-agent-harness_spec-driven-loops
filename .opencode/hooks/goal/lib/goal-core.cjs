@@ -1,16 +1,12 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
 // ║ COMPONENT: goal-core (runtime-neutral)                                   ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Persist a single cross-runtime session goal in a shared state   ║
-// ║          file and render the passive `[active_goal]` steering block     ║
-// ║          injected into a model's context. Ported from the OpenCode      ║
-// ║          `mk-goal` plugin's per-session state machine, template, and    ║
-// ║          prompt-injection hardening, generalized to a single shared     ║
-// ║          record any runtime adapter (Devin, Cursor, Pi, or the manage   ║
-// ║          CLI in this same folder) can read and write. This module never ║
-// ║          writes stdout/stderr and never throws past its own boundary:   ║
-// ║          every read/parse failure resolves to null/no-op so a state-    ║
-// ║          file bug can never block the runtime it steers.                ║
+// ║ PURPOSE: Persist isolated cross-runtime session goals and render the     ║
+// ║          passive `[active_goal]` steering block injected into a model's ║
+// ║          context. Ported from the OpenCode `mk-goal` plugin's session   ║
+// ║          state machine, template, and prompt-injection hardening. Reads ║
+// ║          fail open; management mutations raise stable GoalError codes. ║
+// ║          This module never writes stdout or stderr.                     ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -19,6 +15,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const {
+  chmodSync,
   closeSync,
   existsSync,
   fsyncSync,
@@ -32,7 +29,7 @@ const {
   writeSync,
 } = require('node:fs');
 const { dirname, join, resolve } = require('node:path');
-const { randomUUID } = require('node:crypto');
+const { createHash, randomUUID } = require('node:crypto');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -41,8 +38,13 @@ const { randomUUID } = require('node:crypto');
 const STATE_DIR_ENV = 'MK_GOAL_STATE_DIR';
 const DISABLED_ENV = 'MK_GOAL_PLUGIN_DISABLED';
 const STATE_SUBDIR = '.opencode/skills/.goal-state';
-const STATE_FILENAME = 'active-goal.json';
+const LEGACY_STATE_FILENAME = 'active-goal.json';
 const ARCHIVE_SUBDIR = '.archive';
+const LEGACY_ARCHIVE_SUBDIR = '.legacy';
+const MAX_SESSION_ID_CHARS = 4096;
+const RUNTIME_NAMESPACE_PATTERN = /^[a-z][a-z0-9-]{0,63}$/;
+const SCOPED_KEY_PATTERN = /^[a-z][a-z0-9-]{0,63}-[a-f0-9]{64}$/;
+const SCOPED_STATE_PATTERN = /^[a-z][a-z0-9-]{0,63}-[a-f0-9]{64}\.json$/;
 
 const DEFAULT_MAX_OBJECTIVE_CHARS = 4000;
 const DEFAULT_MAX_GOAL_PROMPT_CHARS = 4000;
@@ -57,7 +59,20 @@ const OBJECTIVE_PREVIEW_MIN_CHARS = 60;
 const OBJECTIVE_PREVIEW_MAX_CHARS = 600;
 
 const VALID_STATUSES = new Set(['active', 'paused', 'completed', 'cleared']);
-const ACTIONS = ['set', 'show', 'clear', 'complete', 'pause', 'resume', 'history', 'doctor', 'health'];
+const ACTIONS = [
+  'set',
+  'show',
+  'clear',
+  'complete',
+  'pause',
+  'resume',
+  'history',
+  'doctor',
+  'health',
+  'legacy-inspect',
+  'legacy-migrate',
+  'legacy-archive',
+];
 const USAGE_SOURCE = 'turn-count-estimate';
 
 // Ported from mk-goal: folds visually-confusable Cyrillic/Greek letters back to
@@ -112,7 +127,7 @@ function resolveRepoRoot(startDir = process.cwd()) {
 }
 
 /**
- * Resolve the shared state directory. Precedence: explicit `stateDir` option,
+ * Resolve the workspace state directory. Precedence: explicit `stateDir` option,
  * then `MK_GOAL_STATE_DIR` env override (tests use this to avoid touching the
  * real `.goal-state/` tree), then the default path under the resolved repo root.
  */
@@ -121,16 +136,70 @@ function resolveStateDir(rawOptions = {}) {
   if (explicit) return resolve(explicit.trim());
   const envDir = typeof process.env[STATE_DIR_ENV] === 'string' && process.env[STATE_DIR_ENV].trim();
   if (envDir) return resolve(envDir.trim());
-  const repoRoot = resolveRepoRoot(rawOptions.cwd || process.cwd());
+  const explicitWorkspace = rawOptions.scope?.workspace ?? rawOptions.workspace;
+  const repoRoot = typeof explicitWorkspace === 'string' && explicitWorkspace.trim()
+    ? resolve(explicitWorkspace.trim())
+    : resolveRepoRoot(rawOptions.cwd || process.cwd());
   return join(repoRoot, STATE_SUBDIR);
 }
 
-function statePath(stateDir) {
-  return join(stateDir, STATE_FILENAME);
+function normalizeRuntimeNamespace(value) {
+  const runtime = typeof value === 'string' ? value.trim().toLowerCase() : '';
+  if (!runtime) throw new GoalError('MISSING_RUNTIME', 'Runtime scope is required');
+  if (!RUNTIME_NAMESPACE_PATTERN.test(runtime)) {
+    throw new GoalError('INVALID_RUNTIME', 'Runtime scope must use lowercase letters, digits, or hyphens');
+  }
+  return runtime;
 }
 
-function archiveDir(stateDir) {
-  return join(stateDir, ARCHIVE_SUBDIR);
+/**
+ * Resolve validated workspace/runtime/session identity into opaque storage paths.
+ *
+ * @param {Object} [rawOptions={}] - Core options containing a composite scope.
+ * @returns {Readonly<Object>} Validated identity and per-session state paths.
+ * @throws {GoalError} When the runtime or native session identity is invalid.
+ */
+function resolveGoalScope(rawOptions = {}) {
+  const rawScope = rawOptions.scope && typeof rawOptions.scope === 'object' ? rawOptions.scope : {};
+  const sessionId = typeof rawScope.sessionId === 'string' ? rawScope.sessionId : '';
+  if (!sessionId.trim()) throw new GoalError('MISSING_SESSION_ID', 'Session identity is required');
+  if (sessionId.length > MAX_SESSION_ID_CHARS) {
+    throw new GoalError('INVALID_SESSION_ID', 'Session identity exceeds the supported length');
+  }
+
+  const runtime = normalizeRuntimeNamespace(rawScope.runtime);
+  const rawWorkspace = rawScope.workspace ?? rawOptions.workspace;
+  const workspace = typeof rawWorkspace === 'string' && rawWorkspace.trim()
+    ? resolve(rawWorkspace.trim())
+    : resolveRepoRoot(rawOptions.cwd || process.cwd());
+  const stateDir = resolveStateDir({ ...rawOptions, scope: { ...rawScope, workspace } });
+  const sessionDigest = createHash('sha256').update(sessionId, 'utf8').digest('hex');
+  const scopeKey = `${runtime}-${sessionDigest}`;
+  return Object.freeze({
+    workspace,
+    runtime,
+    sessionDigest,
+    scopeKey,
+    stateDir,
+    statePath: join(stateDir, `${scopeKey}.json`),
+    archiveDir: join(stateDir, ARCHIVE_SUBDIR, scopeKey),
+  });
+}
+
+function statePath(rawOptions = {}) {
+  return resolveGoalScope(rawOptions).statePath;
+}
+
+function archiveDir(rawOptions = {}) {
+  return resolveGoalScope(rawOptions).archiveDir;
+}
+
+function legacyStatePath(rawOptions = {}) {
+  return join(resolveStateDir(rawOptions), LEGACY_STATE_FILENAME);
+}
+
+function legacyArchiveDir(rawOptions = {}) {
+  return join(resolveStateDir(rawOptions), ARCHIVE_SUBDIR, LEGACY_ARCHIVE_SUBDIR);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -424,11 +493,10 @@ function writeJsonAtomic(targetPath, record) {
   }
 }
 
-/** Fail-open read: any missing file, parse error, or unreadable path returns null. */
-function readGoalRecord(rawOptions = {}) {
-  const stateDir = resolveStateDir(rawOptions);
+/** Fail-open read: any missing file, invalid scope, or parse error returns null. */
+function readGoalRecordForScope(goalScope) {
   try {
-    const raw = readFileSync(statePath(stateDir), 'utf8');
+    const raw = readFileSync(goalScope.statePath, 'utf8');
     const parsed = JSON.parse(raw);
     return parsed && typeof parsed === 'object' ? parsed : null;
   } catch {
@@ -436,23 +504,31 @@ function readGoalRecord(rawOptions = {}) {
   }
 }
 
-/** Archive a terminal record before it is cleared/replaced, fail-open. */
-function archiveGoalRecord(record, rawOptions = {}) {
-  if (!record || !record.goalId) return;
-  const stateDir = resolveStateDir(rawOptions);
-  const dir = archiveDir(stateDir);
+function readGoalRecord(rawOptions = {}) {
   try {
-    ensureDir(dir);
-    writeJsonAtomic(join(dir, `active-goal-${normalizeGoalID(record.goalId)}.json`), record);
+    return readGoalRecordForScope(resolveGoalScope(rawOptions));
   } catch {
-    // archiving is best-effort; never block the mutation it precedes
+    return null;
   }
 }
 
-function removeStateFile(rawOptions = {}) {
-  const stateDir = resolveStateDir(rawOptions);
+/** Archive a terminal record before it is cleared/replaced, fail-open. */
+function archiveGoalRecord(record, goalScope) {
+  if (!record || !record.goalId) return;
   try {
-    unlinkSync(statePath(stateDir));
+    ensureDir(goalScope.archiveDir);
+    writeJsonAtomic(
+      join(goalScope.archiveDir, `active-goal-${normalizeGoalID(record.goalId)}.json`),
+      record,
+    );
+  } catch {
+    // Archiving is best-effort; never block the mutation it precedes.
+  }
+}
+
+function removeStateFile(goalScope) {
+  try {
+    unlinkSync(goalScope.statePath);
   } catch (error) {
     if (error?.code !== 'ENOENT') {
       throw new GoalError('CLEAR_GOAL_FAILED', `Failed to clear goal state: ${error.message}`);
@@ -461,7 +537,192 @@ function removeStateFile(rawOptions = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9. GOAL LIFECYCLE
+// 9. LEGACY SINGLETON QUARANTINE
+// ─────────────────────────────────────────────────────────────────────────────
+
+function inspectLegacyGoal(rawOptions = {}) {
+  const path = legacyStatePath(rawOptions);
+  try {
+    const raw = readFileSync(path, 'utf8');
+    const sizeBytes = Buffer.byteLength(raw, 'utf8');
+    let parsed;
+    try {
+      parsed = JSON.parse(raw);
+    } catch {
+      return { present: true, status: 'malformed', path, goal: null, sizeBytes, raw };
+    }
+    const hasValidShape = parsed
+      && typeof parsed === 'object'
+      && !Array.isArray(parsed)
+      && typeof parsed.goalId === 'string'
+      && parsed.goalId.trim()
+      && typeof parsed.objective === 'string'
+      && parsed.objective.trim()
+      && VALID_STATUSES.has(parsed.status);
+    return hasValidShape
+      ? { present: true, status: 'valid', path, goal: parsed, sizeBytes, raw }
+      : { present: true, status: 'malformed', path, goal: null, sizeBytes, raw };
+  } catch (error) {
+    if (error?.code === 'ENOENT') {
+      return { present: false, status: 'absent', path, goal: null, sizeBytes: 0, raw: null };
+    }
+    return { present: true, status: 'unreadable', path, goal: null, sizeBytes: 0, raw: null };
+  }
+}
+
+function resolveLegacyArchiveTarget(snapshot, rawOptions = {}) {
+  const archiveRoot = legacyArchiveDir(rawOptions);
+  const digest = createHash('sha256').update(snapshot.raw || '', 'utf8').digest('hex');
+  const stem = snapshot.status === 'valid'
+    ? `active-goal-${normalizeGoalID(snapshot.goal.goalId)}`
+    : `active-goal-malformed-${digest}`;
+  const primaryPath = join(archiveRoot, `${stem}.json`);
+  if (!existsSync(primaryPath)) {
+    return { archiveRoot, archivePath: primaryPath, archiveFilename: `${stem}.json`, alreadyArchived: false };
+  }
+  try {
+    if (readFileSync(primaryPath, 'utf8') === snapshot.raw) {
+      return { archiveRoot, archivePath: primaryPath, archiveFilename: `${stem}.json`, alreadyArchived: true };
+    }
+  } catch {
+    // A distinct fallback filename keeps an existing archive untouched.
+  }
+  const fallbackFilename = `${stem}-${digest}.json`;
+  const fallbackPath = join(archiveRoot, fallbackFilename);
+  if (existsSync(fallbackPath)) {
+    try {
+      if (readFileSync(fallbackPath, 'utf8') === snapshot.raw) {
+        return {
+          archiveRoot,
+          archivePath: fallbackPath,
+          archiveFilename: fallbackFilename,
+          alreadyArchived: true,
+        };
+      }
+    } catch {
+      // The conflict below preserves both the source and existing archive.
+    }
+    throw new GoalError('LEGACY_ARCHIVE_CONFLICT', 'A different legacy archive already owns the content-derived path');
+  }
+  return {
+    archiveRoot,
+    archivePath: fallbackPath,
+    archiveFilename: fallbackFilename,
+    alreadyArchived: false,
+  };
+}
+
+function quarantineLegacySnapshot(snapshot, rawOptions = {}) {
+  const target = resolveLegacyArchiveTarget(snapshot, rawOptions);
+  ensureDir(target.archiveRoot);
+  if (target.alreadyArchived) {
+    try {
+      chmodSync(target.archivePath, 0o600);
+      unlinkSync(snapshot.path);
+    } catch (error) {
+      throw new GoalError('LEGACY_ARCHIVE_FAILED', `Failed to quarantine legacy goal state: ${error.message}`);
+    }
+    return target;
+  }
+
+  try {
+    renameSync(snapshot.path, target.archivePath);
+    try {
+      chmodSync(target.archivePath, 0o600);
+    } catch (error) {
+      try { renameSync(target.archivePath, snapshot.path); } catch { /* source remains preserved in quarantine */ }
+      throw error;
+    }
+    return target;
+  } catch (error) {
+    if (error instanceof GoalError) throw error;
+    throw new GoalError('LEGACY_ARCHIVE_FAILED', `Failed to quarantine legacy goal state: ${error.message}`);
+  }
+}
+
+function migrateLegacyGoal(rawOptions = {}) {
+  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
+  const goalScope = resolveGoalScope(rawOptions);
+  const snapshot = inspectLegacyGoal(rawOptions);
+  if (!snapshot.present) {
+    return {
+      migrated: false,
+      reason: 'no_legacy_state',
+      record: null,
+      archiveFilename: null,
+      archivePath: null,
+    };
+  }
+  if (snapshot.status !== 'valid') {
+    throw new GoalError('LEGACY_GOAL_MALFORMED', 'Legacy goal state is not a valid migratable record');
+  }
+  if (!['active', 'paused'].includes(snapshot.goal.status)) {
+    throw new GoalError('LEGACY_GOAL_NOT_ACTIVE', 'Only active or paused legacy goals can migrate to a live session');
+  }
+  if (existsSync(goalScope.statePath)) {
+    throw new GoalError('TARGET_SCOPE_OCCUPIED', 'The target session already has goal state');
+  }
+
+  const objective = sanitizeInlineText(snapshot.goal.objective, DEFAULT_MAX_OBJECTIVE_CHARS);
+  if (!objective) throw new GoalError('LEGACY_GOAL_MALFORMED', 'Legacy goal objective is invalid');
+  const nowMsValue = Date.now();
+  const promptRuntimeLabel = rawOptions.runtimeLabel || goalScope.runtime;
+  const baseRecord = buildNewRecord(
+    objective,
+    buildGoalPrompt(objective, { runtimeLabel: promptRuntimeLabel }),
+    snapshot.goal.tokenBudget ?? null,
+    goalScope.runtime,
+    nowMsValue,
+  );
+  const record = {
+    ...baseRecord,
+    ...snapshot.goal,
+    goalId: normalizeGoalID(snapshot.goal.goalId),
+    objective,
+    goalPrompt: buildGoalPrompt(objective, { runtimeLabel: promptRuntimeLabel }),
+    status: snapshot.goal.status,
+    runtime: goalScope.runtime,
+    usageSource: snapshot.goal.usageSource || USAGE_SOURCE,
+    updatedAt: isoFromMs(nowMsValue),
+    updatedAtMs: nowMsValue,
+    lastActivityAtMs: nowMsValue,
+    revision: (Number.isFinite(snapshot.goal.revision) ? snapshot.goal.revision : 0) + 1,
+    migrationSource: 'legacy-singleton',
+    migratedAt: isoFromMs(nowMsValue),
+    migratedAtMs: nowMsValue,
+  };
+
+  writeJsonAtomic(goalScope.statePath, record);
+  try {
+    const archive = quarantineLegacySnapshot(snapshot, rawOptions);
+    return { migrated: true, reason: null, record, ...archive };
+  } catch (error) {
+    try { removeStateFile(goalScope); } catch { /* source record remains authoritative */ }
+    throw error;
+  }
+}
+
+function archiveLegacyGoal(rawOptions = {}) {
+  if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
+  const snapshot = inspectLegacyGoal(rawOptions);
+  if (!snapshot.present) {
+    return {
+      archived: false,
+      reason: 'no_legacy_state',
+      status: 'absent',
+      archiveFilename: null,
+      archivePath: null,
+    };
+  }
+  if (snapshot.status === 'unreadable') {
+    throw new GoalError('LEGACY_GOAL_UNREADABLE', 'Legacy goal state cannot be read safely');
+  }
+  const archive = quarantineLegacySnapshot(snapshot, rawOptions);
+  return { archived: true, reason: null, status: snapshot.status, ...archive };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. GOAL LIFECYCLE
 // ─────────────────────────────────────────────────────────────────────────────
 
 function isoFromMs(ms) {
@@ -496,20 +757,21 @@ function buildNewRecord(objective, goalPrompt, tokenBudget, runtime, nowMsValue)
  * semantics: `refreshed` when the objective is unchanged on an
  * active/paused goal, `created` when no goal existed, `replaced` otherwise.
  */
-function setGoal({ objective, tokenBudget = null, runtime = 'unknown' } = {}, rawOptions = {}) {
+function setGoal({ objective, tokenBudget = null, runtimeLabel = null } = {}, rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
+  const goalScope = resolveGoalScope(rawOptions);
   const sanitizedObjective = sanitizeInlineText(objective, DEFAULT_MAX_OBJECTIVE_CHARS);
   if (!sanitizedObjective) throw new GoalError('INVALID_OBJECTIVE', 'Objective is required');
 
-  const stateDir = resolveStateDir(rawOptions);
-  const current = readGoalRecord(rawOptions);
+  const current = readGoalRecordForScope(goalScope);
   const nowMsValue = Date.now();
+  const promptRuntimeLabel = runtimeLabel || goalScope.runtime;
   let mutation = 'created';
   let record;
 
   if (current && current.objective === sanitizedObjective && (current.status === 'active' || current.status === 'paused')) {
     mutation = 'refreshed';
-    const goalPrompt = buildGoalPrompt(sanitizedObjective, { runtimeLabel: runtime });
+    const goalPrompt = buildGoalPrompt(sanitizedObjective, { runtimeLabel: promptRuntimeLabel });
     record = {
       ...current,
       status: 'active',
@@ -520,21 +782,27 @@ function setGoal({ objective, tokenBudget = null, runtime = 'unknown' } = {}, ra
       updatedAtMs: nowMsValue,
       lastActivityAtMs: nowMsValue,
       revision: (current.revision || 0) + 1,
-      runtime,
+      runtime: goalScope.runtime,
     };
   } else {
     mutation = current ? 'replaced' : 'created';
-    if (current) archiveGoalRecord(current, rawOptions);
-    const goalPrompt = buildGoalPrompt(sanitizedObjective, { runtimeLabel: runtime });
-    record = buildNewRecord(sanitizedObjective, goalPrompt, tokenBudget, runtime, nowMsValue);
+    if (current) archiveGoalRecord(current, goalScope);
+    const goalPrompt = buildGoalPrompt(sanitizedObjective, { runtimeLabel: promptRuntimeLabel });
+    record = buildNewRecord(
+      sanitizedObjective,
+      goalPrompt,
+      tokenBudget,
+      goalScope.runtime,
+      nowMsValue,
+    );
   }
 
-  writeJsonAtomic(statePath(stateDir), record);
+  writeJsonAtomic(goalScope.statePath, record);
   return { record, mutation };
 }
 
-function requireCurrentGoal(rawOptions) {
-  const current = readGoalRecord(rawOptions);
+function requireCurrentGoal(goalScope) {
+  const current = readGoalRecordForScope(goalScope);
   if (!current) throw new GoalError('GOAL_NOT_FOUND', 'No goal is set');
   return current;
 }
@@ -542,30 +810,33 @@ function requireCurrentGoal(rawOptions) {
 /** Mark the goal completed, archive it, then remove the active state file. */
 function completeGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  const current = requireCurrentGoal(rawOptions);
+  const goalScope = resolveGoalScope(rawOptions);
+  const current = requireCurrentGoal(goalScope);
   const nowMsValue = Date.now();
   const record = { ...current, status: 'completed', updatedAt: isoFromMs(nowMsValue), updatedAtMs: nowMsValue };
-  archiveGoalRecord(record, rawOptions);
-  removeStateFile(rawOptions);
+  archiveGoalRecord(record, goalScope);
+  removeStateFile(goalScope);
   return record;
 }
 
 /** Archive the goal as cleared, then remove the active state file. */
 function clearGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  const current = readGoalRecord(rawOptions);
+  const goalScope = resolveGoalScope(rawOptions);
+  const current = readGoalRecordForScope(goalScope);
   if (current) {
     const nowMsValue = Date.now();
     const record = { ...current, status: 'cleared', updatedAt: isoFromMs(nowMsValue), updatedAtMs: nowMsValue };
-    archiveGoalRecord(record, rawOptions);
+    archiveGoalRecord(record, goalScope);
   }
-  removeStateFile(rawOptions);
+  removeStateFile(goalScope);
   return null;
 }
 
 function pauseGoal({ reason = '' } = {}, rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  const current = requireCurrentGoal(rawOptions);
+  const goalScope = resolveGoalScope(rawOptions);
+  const current = requireCurrentGoal(goalScope);
   if (current.status !== 'active') throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot pause a goal in status ${current.status}`);
   const nowMsValue = Date.now();
   const record = {
@@ -575,13 +846,14 @@ function pauseGoal({ reason = '' } = {}, rawOptions = {}) {
     updatedAt: isoFromMs(nowMsValue),
     updatedAtMs: nowMsValue,
   };
-  writeJsonAtomic(statePath(resolveStateDir(rawOptions)), record);
+  writeJsonAtomic(goalScope.statePath, record);
   return record;
 }
 
 function resumeGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  const current = requireCurrentGoal(rawOptions);
+  const goalScope = resolveGoalScope(rawOptions);
+  const current = requireCurrentGoal(goalScope);
   if (current.status !== 'paused') throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot resume a goal in status ${current.status}`);
   const nowMsValue = Date.now();
   const record = {
@@ -591,7 +863,7 @@ function resumeGoal(rawOptions = {}) {
     updatedAt: isoFromMs(nowMsValue),
     updatedAtMs: nowMsValue,
   };
-  writeJsonAtomic(statePath(resolveStateDir(rawOptions)), record);
+  writeJsonAtomic(goalScope.statePath, record);
   return record;
 }
 
@@ -601,10 +873,11 @@ function showGoal(rawOptions = {}) {
 }
 
 /** Increment the turn counter and refresh activity time, fail-open. */
-function recordTurn({ runtime = 'unknown' } = {}, rawOptions = {}) {
+function recordTurn(_input = {}, rawOptions = {}) {
+  const goalScope = resolveGoalScope(rawOptions);
   try {
     if (isPluginDisabled()) return null;
-    const current = readGoalRecord(rawOptions);
+    const current = readGoalRecordForScope(goalScope);
     if (!current || current.status !== 'active') return null;
     const nowMsValue = Date.now();
     const record = {
@@ -613,9 +886,9 @@ function recordTurn({ runtime = 'unknown' } = {}, rawOptions = {}) {
       lastActivityAtMs: nowMsValue,
       updatedAt: isoFromMs(nowMsValue),
       updatedAtMs: nowMsValue,
-      runtime,
+      runtime: goalScope.runtime,
     };
-    writeJsonAtomic(statePath(resolveStateDir(rawOptions)), record);
+    writeJsonAtomic(goalScope.statePath, record);
     return record;
   } catch {
     return null;
@@ -623,13 +896,12 @@ function recordTurn({ runtime = 'unknown' } = {}, rawOptions = {}) {
 }
 
 function listArchivedGoals(rawOptions = {}) {
-  const stateDir = resolveStateDir(rawOptions);
-  const dir = archiveDir(stateDir);
   try {
-    return readdirSync(dir, { withFileTypes: true })
+    const goalScope = resolveGoalScope(rawOptions);
+    return readdirSync(goalScope.archiveDir, { withFileTypes: true })
       .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
       .map((entry) => {
-        const filePath = join(dir, entry.name);
+        const filePath = join(goalScope.archiveDir, entry.name);
         try {
           const parsed = JSON.parse(readFileSync(filePath, 'utf8'));
           const sizeBytes = statSync(filePath).size;
@@ -645,20 +917,52 @@ function listArchivedGoals(rawOptions = {}) {
   }
 }
 
+function countArchiveFiles(dir) {
+  try {
+    return readdirSync(dir, { withFileTypes: true }).reduce((count, entry) => {
+      const entryPath = join(dir, entry.name);
+      if (entry.isDirectory()) return count + countArchiveFiles(entryPath);
+      return count + Number(entry.isFile() && entry.name.endsWith('.json'));
+    }, 0);
+  } catch {
+    return 0;
+  }
+}
+
+function countScopedArchiveFiles(stateDir) {
+  const root = join(stateDir, ARCHIVE_SUBDIR);
+  try {
+    return readdirSync(root, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory() && SCOPED_KEY_PATTERN.test(entry.name))
+      .reduce((count, entry) => count + countArchiveFiles(join(root, entry.name)), 0);
+  } catch {
+    return 0;
+  }
+}
+
 function doctorStats(rawOptions = {}) {
   const stateDir = resolveStateDir(rawOptions);
-  const active = readGoalRecord(rawOptions);
-  const archived = listArchivedGoals(rawOptions);
+  const legacy = inspectLegacyGoal(rawOptions);
+  let activeStateFileCount = 0;
+  try {
+    activeStateFileCount = readdirSync(stateDir, { withFileTypes: true })
+      .filter((entry) => entry.isFile() && SCOPED_STATE_PATTERN.test(entry.name))
+      .length;
+  } catch {
+    activeStateFileCount = 0;
+  }
   return {
     stateDir,
-    activeStateFileCount: active ? 1 : 0,
-    archiveFileCount: archived.length,
+    activeStateFileCount,
+    archiveFileCount: countScopedArchiveFiles(stateDir),
+    legacyStatePresent: legacy.present,
+    legacyStateStatus: legacy.status,
     pluginDisabled: isPluginDisabled(),
   };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 10. EXPORTS
+// 11. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
@@ -669,8 +973,11 @@ module.exports = {
   isPluginDisabled,
   resolveRepoRoot,
   resolveStateDir,
+  resolveGoalScope,
   statePath,
   archiveDir,
+  legacyStatePath,
+  legacyArchiveDir,
   normalizeUserAuthoredText,
   sanitizeInlineText,
   sanitizePromptText,
@@ -688,6 +995,9 @@ module.exports = {
   resumeGoal,
   recordTurn,
   listArchivedGoals,
+  inspectLegacyGoal,
+  migrateLegacyGoal,
+  archiveLegacyGoal,
   doctorStats,
   writeJsonAtomic,
   readGoalRecord,

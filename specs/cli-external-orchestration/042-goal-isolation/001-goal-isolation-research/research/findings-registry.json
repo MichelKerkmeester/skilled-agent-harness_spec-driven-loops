@@ -1,0 +1,1106 @@
+{
+  "sessionId": "goal-isolation-research-5269ce853eba5bf3",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-which-files-own-the-current-active-goal-state-for-each-registered-runtime-pi-cur",
+      "inboxId": null,
+      "text": "Which files own the current active-goal state for each registered runtime (Pi, Cursor, OpenCode, Devin, Claude Code, Codex)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-native-session-identity-surfaces-does-each-runtime-expose-and-which-are-usa",
+      "inboxId": null,
+      "text": "What native session-identity surfaces does each runtime expose — and which are usable for automated goal scoping without a user-supplied id?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-how-does-the-current-pi-goal-plugin-store-inject-verify-pause-complete-and-clear",
+      "inboxId": null,
+      "text": "How does the current Pi goal plugin store, inject, verify, pause, complete, and clear goal state?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-4-does-the-current-devin-adapter-still-work-against-the-latest-runtime-if-not-shou",
+      "inboxId": null,
+      "text": "Does the current Devin adapter still work against the latest runtime; if not, should it be restored or removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-cross-session-collision-scenario-reproduces-the-leak-in-pi-and-what-is-the-",
+      "inboxId": null,
+      "text": "What cross-session collision scenario reproduces the leak in Pi, and what is the minimal structural fix?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-files-own-the-current-active-goal-state-for-each-registered-runtime-pi-cur",
+      "inboxId": null,
+      "text": "Which files own the current active-goal state for each registered runtime (Pi, Cursor, OpenCode, Devin, Claude Code, Codex)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-2-what-native-session-identity-surfaces-does-each-runtime-expose-and-which-are-usa",
+      "inboxId": null,
+      "text": "What native session-identity surfaces does each runtime expose — and which are usable for automated goal scoping without a user-supplied id?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-how-does-the-current-pi-goal-plugin-store-inject-verify-pause-complete-and-clear",
+      "inboxId": null,
+      "text": "How does the current Pi goal plugin store, inject, verify, pause, complete, and clear goal state?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-4-does-the-current-devin-adapter-still-work-against-the-latest-runtime-if-not-shou",
+      "inboxId": null,
+      "text": "Does the current Devin adapter still work against the latest runtime; if not, should it be restored or removed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-what-cross-session-collision-scenario-reproduces-the-leak-in-pi-and-what-is-the-",
+      "inboxId": null,
+      "text": "What cross-session collision scenario reproduces the leak in Pi, and what is the minimal structural fix?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-cross-runtime-port-one-shared-opencode-skills-goal-state-active-goal-json-manage",
+      "text": "**Cross-runtime port**: ONE shared `.opencode/skills/.goal-state/active-goal.json`, managed by `.opencode/hooks/goal/lib/goal-core.cjs`. All non-OpenCode runtimes (Pi, Cursor, and the `bin/goal.cjs` manage CLI) read/write this single file.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-1-opencode-mk-goal-plugin-per-session-files-at-opencode-skills-goal-state-hex-sess",
+      "text": "**OpenCode (mk-goal plugin)**: Per-session files at `.opencode/skills/.goal-state/<hex-session-id>.json`, one file per OpenCode session. Full inject/verify/auto-continue capability using OpenCode-native lifecycle events (`session.idle`, `message.updated`).",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-7-bin-goal-cjs-calls-goal-core-setgoal-objective-fix-the-widget-runtime-pi",
+      "text": "`bin/goal.cjs` calls `goal-core.setGoal({ objective: \"Fix the widget\", runtime: \"pi\" })`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-10-bin-goal-cjs-calls-goal-core-setgoal-objective-ship-the-feature-runtime-cursor",
+      "text": "`bin/goal.cjs` calls `goal-core.setGoal({ objective: \"Ship the feature\", runtime: \"cursor\" })`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-3-goal-inject-mjs-userpromptsubmit-injects-goal-brief-as-additionalcontext",
+      "text": "`goal-inject.mjs` (UserPromptSubmit) — injects goal brief as `additionalContext`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-4-goal-session-start-mjs-sessionstart-session-start-restore",
+      "text": "`goal-session-start.mjs` (SessionStart) — session-start restore",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-5-goal-verify-mjs-stop-heuristic-verify-with-decision-block-continuation-mechanism",
+      "text": "`goal-verify.mjs` (Stop) — heuristic verify with `decision:\"block\"` continuation mechanism",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-13-readgoalrecord-reads-the-overwritten-active-goal-json-returns-the-cursor-goal-no",
+      "text": "`readGoalRecord()` reads the overwritten `active-goal.json` — returns the Cursor goal, not Pi's [SOURCE: goal-core.cjs:428-437]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-11-setgoal-detects-current-exists-and-current-objective-sanitizedobjective-sets-mut",
+      "text": "`setGoal()` detects `current` exists and `current.objective !== sanitizedObjective`, sets `mutation = \"replaced\"`, archives the Pi goal, and **overwrites** `active-goal.json` with the Cursor goal [SOURCE: goal-core.cjs:526-530]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-8-setgoal-writes-active-goal-json-with-mutation-created-source-goal-core-cjs-529",
+      "text": "`setGoal()` writes `active-goal.json` with `mutation: \"created\"` [SOURCE: goal-core.cjs:529]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-9-cursor-session-starts-in-the-same-repo-operator-or-workflow-sets-a-different-goa",
+      "text": "Cursor session starts in the same repo. Operator or workflow sets a different goal: `/goal-cursor set \"Ship the feature\"`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-14-pi-injects-cursor-s-goal-brief-into-the-pi-turn-context-wrong-goal-wrong-runtime",
+      "text": "Pi injects Cursor's goal brief into the Pi turn context — wrong goal, wrong runtime label",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-6-pi-session-is-active-operator-or-autonomous-workflow-sets-a-goal-goal-pi-set-fix",
+      "text": "Pi session is active. Operator or autonomous workflow sets a goal: `/goal-pi set \"Fix the widget\"`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-12-pi-session-s-next-input-event-handler-calls-core-readgoalrecord-cwd-ctx-cwd-sour",
+      "text": "Pi session's next `input` event handler calls `core.readGoalRecord({ cwd: ctx.cwd })` [SOURCE: goal-context.ts:59]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-16-pi-s-recordturn-increments-turnsused-on-the-cursor-session-s-goal-source-goal-co",
+      "text": "Pi's `recordTurn()` increments `turnsUsed` on the Cursor session's goal [SOURCE: goal-context.ts:92, goal-core.cjs:604-623]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-1-15-pi-s-turn-end-handler-calls-core-verifygoalheuristic-goal-transcripttext-against",
+      "text": "Pi's `turn_end` handler calls `core.verifyGoalHeuristic({ goal, transcriptText })` against Cursor's objective [SOURCE: goal-context.ts:91]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/hooks/goal/goal-plugin.md` — Cross-runtime architecture contract",
+        "`.opencode/hooks/goal/README.md` — Concern README with directory tree and boundaries",
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — Shared goal core (694 lines, full read)",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — Core test suite (319 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — Pi adapter (106 lines, full read)",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — Pi adapter tests (187 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — Cursor adapter (88 lines, full read)",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — Cursor adapter tests (164 lines, full read)",
+        "`.opencode/hooks/goal/bin/goal.cjs` — Manage CLI (222 lines, full read)",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — Live capability probe results",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — Devin adapter build record and known limitations",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — Devin adapter spec with file paths",
+        "Glob searches: `.opencode/hooks/goal/**/*`, `.devin/**/*`, `.cursor/**/*`, `.pi/**/*`, `**/active-goal.json`, `**/hooks.json`"
+      ]
+    },
+    {
+      "id": "finding-2-1-recordturn-reads-writes-the-shared-active-goal-json-no-per-runtime-path-scoping-",
+      "text": "**`recordTurn` reads/writes the shared `active-goal.json` — no per-runtime path scoping exists.**",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-2-resolvestatedir-has-zero-per-runtime-or-per-session-isolation-this-is-by-design-",
+      "text": "**`resolveStateDir` has zero per-runtime or per-session isolation — this is by design, not a bug.**",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-12-claude-code-and-codex-have-zero-dedicated-goal-adapters-consistent-with-document",
+      "text": "**Claude Code and Codex have zero dedicated goal adapters — consistent with documented architecture.**",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-9-claude-code-reaches-mk-goal-plugin-via-claude-commands-opencode-commands-symlink",
+      "text": "**Claude Code**: Reaches `mk-goal` plugin via `.claude/commands` → `.opencode/commands` symlink (goal-plugin.md:140). Falls under OpenCode's per-session `mk-goal` state if the plugin loads in Claude Code context. No dedicated adapter.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-10-codex-no-goal-hook-no-goal-command-no-adapter",
+      "text": "**Codex**: No goal hook, no goal command, no adapter.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-6-cursor-cursor-agent-cli-receives-workspace-roots-in-stdin-goal-inject-mjs-68-rea",
+      "text": "**Cursor**: `cursor-agent` CLI receives `workspace_roots` in stdin; `goal-inject.mjs:68` reads only `workspace_roots[0]` for `cwd`. No session UUID, instance token, or distinguishable runtime label beyond the static `\"cursor\"` in code. A second Cursor session against the same repo is indistinguishable from the first.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-8-devin-stop-payload-carries-session-id-per-implementation-summary-md-116-but-adap",
+      "text": "**Devin**: `Stop` payload carries `session_id` (per `implementation-summary.md:116`), but adapter files are decommissioned.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-5-opencode-mk-goal-already-has-per-session-isolation-via-hex-session-id-json-files",
+      "text": "**OpenCode (mk-goal)**: Already has per-session isolation via `<hex-session-id>.json` files under `.goal-state/`. Session ID is internal to the plugin and derived from OpenCode's runtime.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-7-pi-extension-api-provides-ctx-cwd-and-lifecycle-events-session-start-input-turn-",
+      "text": "**Pi**: Extension API provides `ctx.cwd` and lifecycle events (`session_start`, `input`, `turn_end`). No session UUID or runtime-instance discriminator in the extension context. `goal-context.ts:59` passes only `ctx.cwd`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-4-session-identity-surfaces-no-runtime-provides-a-hook-accessible-session-id-usabl",
+      "text": "**Session-identity surfaces: no runtime provides a hook-accessible session ID usable for automated per-session goal file scoping without user input.**",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-11-the-runtime-field-in-active-goal-json-is-stored-but-never-used-for-isolation-rou",
+      "text": "**The `runtime` field in `active-goal.json` is stored but never used for isolation, routing, or file-path resolution.**",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-devin-goal-adapter-was-decommissioned-files-removed-registration-reverted",
+      "text": "**The Devin goal adapter was decommissioned — files removed, registration reverted.**",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), core collision arc and `resolveStateDir`",
+        "`.opencode/hooks/goal/pi/goal-context.ts` — full read (106 lines), Pi adapter lifecycle",
+        "`.opencode/hooks/goal/cursor/goal-inject.mjs` — full read (88 lines), Cursor adapter",
+        "`.opencode/hooks/goal/goal-plugin.md` — full read (148 lines), runtime capability matrix and architecture",
+        "`.opencode/hooks/goal/README.md` — full read (127 lines), directory tree and boundaries",
+        "`.devin/hooks.v1.json` — full read (178 lines), current registration state",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/spec.md` — full read (204 lines), Devin adapter spec",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/003-devin-goal-hooks/implementation-summary.md` — full read (120 lines), Devin adapter build record",
+        "`specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md` — full read (30 lines), live-verified capability tiers",
+        "`ls .opencode/hooks/goal/` — directory listing confirming absence of devin/claude/codex subdirectories",
+        "`git log --diff-filter=D -- .opencode/hooks/goal/devin/` — decommission commit trace"
+      ]
+    },
+    {
+      "id": "finding-3-7-goal-cursor-set-ship-the-feature-session-cursor-ship-cursor-sha256-cursor-ship-j",
+      "text": "`/goal-cursor set \"Ship the feature\" --session cursor-ship` → `cursor-<sha256(\"cursor-ship\")>.json`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-6-goal-pi-set-fix-the-widget-session-widget-work-pi-sha256-widget-work-json",
+      "text": "`/goal-pi set \"Fix the widget\" --session widget-work` → `pi-<sha256(\"widget-work\")>.json`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-5-goal-pi-set-fix-the-widget-pi-sha256-default-json",
+      "text": "`/goal-pi set \"Fix the widget\"` → `pi-<sha256(\"default\")>.json`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-22-goal-core-test-cjs-goal-pi-test-mjs-and-goal-cursor-test-mjs-all-pass-unchanged-",
+      "text": "`goal-core.test.cjs`, `goal-pi.test.mjs`, and `goal-cursor.test.mjs` all pass unchanged (regression suite).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-8-adapter-configuration-stored-in-adapter-specific-config-operator-managed",
+      "text": "Adapter configuration (stored in adapter-specific config, operator-managed).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-19-all-5-negative-control-tests-in-stage-2-pass",
+      "text": "All 5 negative-control tests in Stage 2 pass.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-18-all-6-positive-control-cells-in-stage-1-pass",
+      "text": "All 6 positive-control cells in Stage 1 pass.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-20-all-7-regression-control-tests-in-stage-3-pass",
+      "text": "All 7 regression-control tests in Stage 3 pass.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-10-cli-session-flag-passed-through-bin-goal-cjs-to-setgoal",
+      "text": "CLI `--session` flag (passed through `bin/goal.cjs` to `setGoal`).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-12-each-runtime-gets-exactly-one-runtime-sha256-default-json",
+      "text": "Each runtime gets exactly one `<runtime>-<sha256(\"default\")>.json`.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-16-each-session-gets-its-own-file",
+      "text": "Each session gets its own file.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-9-environment-variable-mk-goal-session-id-highest-precedence",
+      "text": "Environment variable `MK_GOAL_SESSION_ID` (highest precedence).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-4-log-to-continuation-log-migrated-legacy-singleton-goalid-id-runtime-runtime-at-t",
+      "text": "Log to `.continuation.log`: `\"migrated legacy singleton goalId=<id> runtime=<runtime> at <timestamp>\"`.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-17-no-cross-contamination",
+      "text": "No cross-contamination.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-21-no-test-touches-the-real-opencode-skills-goal-state-directory-env-isolated",
+      "text": "No test touches the real `.opencode/skills/.goal-state/` directory (env-isolated).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-1-read-the-legacy-file-if-it-has-a-goalid-archive-it-to-archive-legacy-active-goal",
+      "text": "Read the legacy file. If it has a `goalId`, archive it to `.archive/.legacy/active-goal-<goalId>.json`.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-2-rename-active-goal-json-legacy-active-goal-json-read-only-marker-exists-to-preve",
+      "text": "Rename `active-goal.json` → `.legacy-active-goal.json` (read-only marker — exists to prevent ambiguity, never written).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-15-supply-session-name-on-each-set-command",
+      "text": "Supply `--session <name>` on each `set` command.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-14-the-bin-goal-cjs-show-command-remains-unchanged-for-no-argument-calls-shows-the-",
+      "text": "The `bin/goal.cjs show` command remains unchanged for no-argument calls (shows the session-default goal).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-24-the-legacy-migration-is-idempotent-running-migration-twice-produces-no-errors-an",
+      "text": "The legacy migration is idempotent (running migration twice produces no errors and no data loss).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-13-this-is-semantically-identical-to-v1-behavior-one-file-per-runtime-just-named-di",
+      "text": "This is semantically identical to v1 behavior: one file per runtime (just named differently and scoped).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-23-two-new-test-files-exist-goal-core-isolation-test-cjs-core-isolation-coverage-an",
+      "text": "Two new test files exist: `goal-core-isolation.test.cjs` (core isolation coverage) and `goal-isolation-matrix.test.cjs` (cross-runtime matrix).",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-11-without-session-sessionid-defaults-to-default",
+      "text": "Without `--session`, `sessionId` defaults to `\"default\"`.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    },
+    {
+      "id": "finding-3-3-write-migration-complete-marker",
+      "text": "Write `.migration-complete` marker.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.opencode/hooks/goal/lib/goal-core.cjs` — full read (694 lines), function signatures, constants, and the complete exported interface for risk surface analysis",
+        "`.opencode/hooks/goal/lib/goal-core.test.cjs` — 319 lines, test coverage baseline",
+        "`.opencode/hooks/goal/pi/goal-pi.test.mjs` — 187 lines, Pi adapter test coverage",
+        "`.opencode/hooks/goal/cursor/goal-cursor.test.mjs` — 164 lines, Cursor adapter test coverage",
+        "`.opencode/skills/.goal-state/` — directory listing, confirms active mk-goal per-session file and archive structure",
+        "`spec.md` — requirements matrix (REQ-001 through REQ-006), success criteria, phase context",
+        "Iteration 1 findings (iteration-001.md) — collision reproduction trace, adapter inventory, two-tier architecture",
+        "Iteration 2 findings (iteration-002.md) — resolveStateDir isolation gap, session-identity mapping, Devin decommission confirmation"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-857aba517c29",
+      "text": "None this iteration — first pass was comprehensive mapping, not elimination.",
+      "contentHash": "857aba517c29",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-de0d04272f91",
+      "text": "The bounded context snapshot's hypothesized paths (`src/shared/goals/`, `src/cli/plugins/goal-*.ts`, `src/runtimes/*/goal-adapter.*`) do not exist — these are stale hypotheses from packets 032 and 034 that should not be reinvestigated.",
+      "contentHash": "de0d04272f91",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-8bab79782d2a",
+      "text": "Looking for per-session UUIDs in Cursor/Pi hook payloads — none exposed at the level the adapters can read.",
+      "contentHash": "8bab79782d2a",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-818578cbe94b",
+      "text": "Searching for a `runtime`-based path in `resolveStateDir` — confirmed absent. The function has no runtime parameter and no per-runtime path branching.",
+      "contentHash": "818578cbe94b",
+      "addedAtIteration": 2
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 52,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.9,
+    "coverageBySources": {
+      "code": 10,
+      "other": 45
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/cli-external-orchestration/042-goal-isolation/001-goal-isolation-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

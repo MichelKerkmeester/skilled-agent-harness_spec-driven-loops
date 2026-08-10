@@ -16,11 +16,33 @@ Source of truth for routing behavior: `.opencode/skills/cli-external-orchestrati
 
 ## 1. OVERVIEW
 
-The `cli-external-orchestration` hub routes any external-CLI-dispatch request to exactly one advisor identity, then resolves `workflowMode` to `cli-opencode` or `cli-claude-code` via `hub-router.json`. This playbook validates that resolution, not either packet's internal dispatch pipeline. It also carries a `plugins-and-hooks/` category of unscored, directly-run scenarios for infrastructure shared across the hub (e.g. the CLI dispatch audit trail plugin/hook pair) — see §2 Plugins And Hooks.
+The `cli-external-orchestration` hub routes external CLI dispatch requests through `hub-router.json`. This playbook validates the retained hub-routing corpus and carries a `plugins-and-hooks/` category of directly-run shared infrastructure scenarios — see §5 Plugins And Hooks.
 
 ---
 
-## 2. SCENARIOS
+## 2. GLOBAL PRECONDITIONS
+
+- Run from the repository root against the live mode registry and hub router.
+- Keep mutation-capable executor scenarios inside disposable workspaces or their approved spec scope.
+- Confirm the requested executor is not self-dispatching from inside the same runtime.
+
+---
+
+## 3. GLOBAL EVIDENCE REQUIREMENTS
+
+- Capture the exact request, resolved workflow mode, loaded packet, command, exit status, and relevant output.
+- Use PASS, PARTIAL, FAIL, or SKIP with a named blocker; never infer success from model prose alone.
+- Preserve source/config/test evidence for directly-run plugin and hook scenarios.
+
+---
+
+## 4. DETERMINISTIC COMMAND NOTATION
+
+Commands are shown from the repository root. Replace angle-bracket placeholders before execution, quote paths and prompts, and keep temporary state under a fresh `mktemp -d` directory.
+
+---
+
+## 5. SCENARIOS
 
 Scored scenarios live as per-file YAML-frontmatter gold under `hub-routing/` (the sk-doc shape the Lane-C skill-benchmark loader reads):
 
@@ -41,11 +63,11 @@ Unscored, directly-run manual scenarios validating shared `cli-external-orchestr
 | cli-dispatch-audit-trail | CLI Dispatch Audit Trail | [cli-dispatch-audit-trail.md](../manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md) |
 | cli-dispatch-preflight-authorization | CLI Dispatch Preflight Authorization | [cli-dispatch-preflight-authorization.md](../manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md) |
 | codex-hook-parity | Codex Hook/Plugin Parity | [codex-hook-parity.md](../manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md) |
-| goal-manage-cli | Goal Manage CLI (Runtime-Neutral) | [goal-manage-cli.md](../manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md) |
+| goal-manage-cli | Goal Manage CLI: Session Isolation And Legacy Cutover | [goal-manage-cli.md](../manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md) |
 
 ---
 
-## 3. SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 
 - All 3 scenarios resolve to their expected `workflowMode` (or `defer`) and load the expected packet `SKILL.md`.
 - No scenario silently loads the wrong packet or falls through to a stale flat-skill path.
@@ -53,8 +75,8 @@ Unscored, directly-run manual scenarios validating shared `cli-external-orchestr
 
 ---
 
-## 4. RELATED
+## 7. RELATED
 
 - Packet-level playbooks: `cli-opencode/manual-testing-playbook/manual-testing-playbook.md`, `cli-claude-code/manual-testing-playbook/manual-testing-playbook.md` (unchanged by the fold-in).
 - Lane-C automated benchmark: `benchmark/` (populated by a future benchmark pass — out of scope for the fold-in itself).
-- Plugins-and-hooks scenarios (§2): each carries its own PASS/FAIL verdict independent of the hub-routing success criteria in §3, which scopes to `workflowMode` resolution only.
+- Plugins-and-hooks scenarios (§5): each carries its own PASS/FAIL verdict independent of the hub-routing success criteria in §6, which scopes to `workflowMode` resolution only.

@@ -3,9 +3,9 @@
 // ║ COMPONENT: goal manage CLI (runtime-neutral)                             ║
 // ╠══════════════════════════════════════════════════════════════════════════╣
 // ║ PURPOSE: Thin router over goal-core.cjs for runtimes with no plugin      ║
-// ║          tool surface. Mirrors the `/goal-opencode` command         ║
-// ║          contract exactly: same action names, same STATUS=/ACTION=      ║
-// ║          envelope, same --budget parsing and error codes, so behavior   ║
+// ║          tool surface. Preserves `/goal-opencode`'s base actions,       ║
+// ║          STATUS=/ACTION= envelope, --budget parsing, and error codes,   ║
+// ║          while adding explicit legacy quarantine actions.               ║
 // ║          benchmarks can compare the manage CLI against the OpenCode      ║
 // ║          plugin router 1:1. Never writes goal state directly -- every    ║
 // ║          mutation goes through the shared core.                          ║
@@ -26,6 +26,57 @@ function parseArgv(argv) {
   const action = (argv[0] || 'show').toLowerCase();
   const rest = argv.slice(1);
   return { action, rest };
+}
+
+/**
+ * Remove explicit scope flags from CLI arguments and validate flag values.
+ *
+ * @param {string[]} argv - Raw command arguments.
+ * @returns {Object} Remaining arguments, parsed binding, and any stable parse error.
+ */
+function parseScopeArgs(argv) {
+  const rest = [];
+  const binding = { runtime: null, sessionId: null, workspace: null };
+  const bindings = new Map([
+    ['--runtime', 'runtime'],
+    ['--session', 'sessionId'],
+    ['--workspace', 'workspace'],
+  ]);
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index];
+    const bindingKey = bindings.get(token);
+    if (!bindingKey) {
+      rest.push(token);
+      continue;
+    }
+    const value = argv[index + 1];
+    if (typeof value !== 'string' || !value.trim() || value.startsWith('--')) {
+      const missingCodes = {
+        runtime: 'MISSING_RUNTIME',
+        sessionId: 'MISSING_SESSION_ID',
+        workspace: 'MISSING_WORKSPACE',
+      };
+      return {
+        argv: rest,
+        binding,
+        error: new core.GoalError(missingCodes[bindingKey], `${token.slice(2)} value is required`),
+      };
+    }
+    binding[bindingKey] = value;
+    index += 1;
+  }
+  return { argv: rest, binding, error: null };
+}
+
+function goalOptions(binding) {
+  return {
+    scope: {
+      runtime: binding.runtime,
+      sessionId: binding.sessionId,
+      workspace: binding.workspace || process.cwd(),
+    },
+  };
 }
 
 /**
@@ -91,62 +142,62 @@ function goalLines(goal, runtimeLabel = 'cli') {
 // 4. ACTION HANDLERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function runShow(runtimeLabel) {
-  const goal = core.showGoal();
+function runShow(runtimeLabel, options) {
+  const goal = core.showGoal(options);
   printOk('show', goalLines(goal, runtimeLabel));
 }
 
-function runSet(rest, runtimeLabel) {
+function runSet(rest, runtimeLabel, options) {
   const { objective, tokenBudget, error } = parseSetArgs(rest);
   if (error) return printFail('set', new core.GoalError(error.code, error.message));
   if (!objective) return printFail('set', new core.GoalError('INVALID_OBJECTIVE', 'Objective is required'));
   try {
-    const { record, mutation } = core.setGoal({ objective, tokenBudget, runtime: runtimeLabel });
+    const { record, mutation } = core.setGoal({ objective, tokenBudget, runtimeLabel }, options);
     printOk('set', goalLines(record, runtimeLabel), mutation);
   } catch (error_) {
     printFail('set', error_);
   }
 }
 
-function runClear() {
+function runClear(options) {
   try {
-    core.clearGoal();
+    core.clearGoal(options);
     printOk('clear', goalLines(null));
   } catch (error) {
     printFail('clear', error);
   }
 }
 
-function runComplete(runtimeLabel) {
+function runComplete(runtimeLabel, options) {
   try {
-    const record = core.completeGoal();
+    const record = core.completeGoal(options);
     printOk('complete', goalLines(record, runtimeLabel));
   } catch (error) {
     printFail('complete', error);
   }
 }
 
-function runPause(rest, runtimeLabel) {
+function runPause(rest, runtimeLabel, options) {
   try {
-    const record = core.pauseGoal({ reason: rest.join(' ').trim() });
+    const record = core.pauseGoal({ reason: rest.join(' ').trim() }, options);
     printOk('pause', goalLines(record, runtimeLabel));
   } catch (error) {
     printFail('pause', error);
   }
 }
 
-function runResume(runtimeLabel) {
+function runResume(runtimeLabel, options) {
   try {
-    const record = core.resumeGoal();
+    const record = core.resumeGoal(options);
     printOk('resume', goalLines(record, runtimeLabel));
   } catch (error) {
     printFail('resume', error);
   }
 }
 
-function runHistory() {
+function runHistory(options) {
   try {
-    const records = core.listArchivedGoals();
+    const records = core.listArchivedGoals(options);
     const lines = [`archive_count=${records.length}`];
     records.forEach((entry, index) => {
       lines.push(
@@ -164,22 +215,81 @@ function runHistory() {
   }
 }
 
-function runDoctor() {
+function runDoctor(action, options) {
   try {
-    const stats = core.doctorStats();
-    printOk('doctor', [
+    const stats = core.doctorStats(options);
+    printOk(action, [
       `state_dir=${core.quoteValue(stats.stateDir)}`,
       `active_state_file_count=${stats.activeStateFileCount}`,
       `archive_file_count=${stats.archiveFileCount}`,
+      `legacy_state_present=${stats.legacyStatePresent}`,
+      `legacy_state_status=${stats.legacyStateStatus}`,
       `plugin_disabled=${stats.pluginDisabled}`,
     ]);
   } catch (error) {
-    printFail('doctor', error);
+    printFail(action, error);
   }
 }
 
-function runHealth() {
-  runDoctor();
+function runLegacyInspect(options) {
+  try {
+    const inspection = core.inspectLegacyGoal(options);
+    const lines = [
+      `legacy_state_present=${inspection.present}`,
+      `legacy_state_status=${inspection.status}`,
+      `legacy_size_bytes=${inspection.sizeBytes}`,
+    ];
+    if (inspection.status === 'valid') {
+      lines.push(
+        `legacy_goal_id=${core.quoteValue(inspection.goal.goalId)}`,
+        `legacy_goal_status=${inspection.goal.status}`,
+        `legacy_objective=${core.quoteValue(inspection.goal.objective)}`,
+      );
+    }
+    printOk('legacy-inspect', lines);
+  } catch (error) {
+    printFail('legacy-inspect', error);
+  }
+}
+
+function runLegacyMigrate(runtimeLabel, options) {
+  try {
+    const result = core.migrateLegacyGoal({ ...options, runtimeLabel });
+    if (!result.migrated) {
+      return printOk('legacy-migrate', [
+        'legacy_migrated=false',
+        `reason=${result.reason}`,
+      ]);
+    }
+    printOk('legacy-migrate', [
+      'legacy_migrated=true',
+      `legacy_archive_file=${core.quoteValue(result.archiveFilename)}`,
+      `legacy_archive_path=${core.quoteValue(result.archivePath)}`,
+      ...goalLines(result.record, runtimeLabel),
+    ]);
+  } catch (error) {
+    printFail('legacy-migrate', error);
+  }
+}
+
+function runLegacyArchive(options) {
+  try {
+    const result = core.archiveLegacyGoal(options);
+    const lines = [
+      `legacy_archived=${result.archived}`,
+      `legacy_state_status=${result.status}`,
+    ];
+    if (result.reason) lines.push(`reason=${result.reason}`);
+    if (result.archiveFilename) {
+      lines.push(
+        `legacy_archive_file=${core.quoteValue(result.archiveFilename)}`,
+        `legacy_archive_path=${core.quoteValue(result.archivePath)}`,
+      );
+    }
+    printOk('legacy-archive', lines);
+  } catch (error) {
+    printFail('legacy-archive', error);
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -187,30 +297,45 @@ function runHealth() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function main(argv) {
-  const runtimeLabel = process.env.MK_GOAL_RUNTIME_LABEL || 'cli';
+  const parsedScope = parseScopeArgs(argv);
+  const { action, rest } = parseArgv(parsedScope.argv);
+  const normalizedAction = core.ACTIONS.includes(action) ? action : 'set';
+  if (parsedScope.error) return printFail(normalizedAction, parsedScope.error);
+
+  const runtimeLabel = process.env.MK_GOAL_RUNTIME_LABEL || parsedScope.binding.runtime || 'cli';
   if (core.isPluginDisabled()) {
-    const { action } = parseArgv(argv);
-    const normalizedAction = core.ACTIONS.includes(action) ? action : 'show';
     return printFail(normalizedAction, new core.GoalError('PLUGIN_DISABLED', `${core.DISABLED_ENV}=1 disables goal plugin execution`));
   }
 
-  const { action, rest } = parseArgv(argv);
+  const options = goalOptions(parsedScope.binding);
+  const actionsWithoutScope = new Set(['doctor', 'health', 'legacy-inspect', 'legacy-archive']);
+  if (!actionsWithoutScope.has(action)) {
+    try {
+      core.resolveGoalScope(options);
+    } catch (error) {
+      return printFail(normalizedAction, error);
+    }
+  }
+
   switch (action) {
-    case 'show': return runShow(runtimeLabel);
-    case 'set': return runSet(rest, runtimeLabel);
-    case 'history': return runHistory();
-    case 'doctor': return runDoctor();
-    case 'health': return runHealth();
-    case 'clear': return runClear();
-    case 'complete': return runComplete(runtimeLabel);
-    case 'pause': return runPause(rest, runtimeLabel);
-    case 'resume': return runResume(runtimeLabel);
+    case 'show': return runShow(runtimeLabel, options);
+    case 'set': return runSet(rest, runtimeLabel, options);
+    case 'history': return runHistory(options);
+    case 'doctor': return runDoctor('doctor', options);
+    case 'health': return runDoctor('health', options);
+    case 'legacy-inspect': return runLegacyInspect(options);
+    case 'legacy-migrate': return runLegacyMigrate(runtimeLabel, options);
+    case 'legacy-archive': return runLegacyArchive(options);
+    case 'clear': return runClear(options);
+    case 'complete': return runComplete(runtimeLabel, options);
+    case 'pause': return runPause(rest, runtimeLabel, options);
+    case 'resume': return runResume(runtimeLabel, options);
     default: {
       // Bare text (no recognized action token) falls through to `set`, mirroring
       // the /goal-opencode router's "any other non-empty QUERY" rule.
-      const objective = argv.join(' ').trim();
+      const objective = parsedScope.argv.join(' ').trim();
       if (!objective) return printFail('show', new core.GoalError('INVALID_OBJECTIVE', 'Objective is required'));
-      return runSet(argv, runtimeLabel);
+      return runSet(parsedScope.argv, runtimeLabel, options);
     }
   }
 }
@@ -219,4 +344,4 @@ if (require.main === module) {
   main(process.argv.slice(2));
 }
 
-module.exports = { main, parseSetArgs, parseArgv };
+module.exports = { main, parseSetArgs, parseArgv, parseScopeArgs };

@@ -1,6 +1,6 @@
 ---
 title: "cli-external-orchestration: Feature Catalog"
-description: "Current-state inventory for the cli-external-orchestration hub, covering four CLI executor workflows, default-on compiled routing, and cli-cursor's shared hook and spec-gate adapter surface."
+description: "Current-state inventory for CLI executor routing, compiled dispatch, Cursor hooks, authorization, and session-isolated goal bindings."
 trigger_phrases:
   - "cli-external-orchestration feature catalog"
   - "cli-external-orchestration hub capabilities"
@@ -8,13 +8,14 @@ trigger_phrases:
   - "cli-external-orchestration compiled routing"
   - "cli-cursor hooks"
   - "Cursor CLI spec-gate integration"
-last_updated: "2026-07-25"
-version: 1.5.0.0
+  - "cross-runtime goal isolation"
+last_updated: "2026-08-10"
+version: 1.6.0.0
 ---
 
 # cli-external-orchestration: Feature Catalog
 
-This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of four CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`), each independently classifying intent, choosing or confirming a provider, and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
+This catalog inventories the live `cli-external-orchestration` hub surface. The hub scores and dispatches one of six CLI-executor workflow packets (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`), each independently classifying intent, choosing or confirming a provider, and conducting the dispatched session. `cli-cursor` also exposes a Cursor hook and spec-gate adapter surface whose `.cursor/hooks.json` configuration is shared with the Cursor desktop editor. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of registry-driven routing without changing what it resolves to.
 
 ---
 
@@ -30,7 +31,7 @@ Use this catalog as the current-state inventory for the `cli-external-orchestrat
 
 #### Description
 
-`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's four packets.
+`mode-registry.json` and `hub-router.json` jointly resolve a request to a single executor, an ordered bundle, or a deferred disambiguation across the hub's six packets.
 
 #### Current Reality
 
@@ -93,3 +94,21 @@ A quoted command-position executor is normalized as a real dispatch: `"devin" -p
 #### Source Files
 
 See [`cli-dispatch-authorization/cli-dispatch-authorization.md`](cli-dispatch-authorization/cli-dispatch-authorization.md) for the classification model, the authorization mapping, and the durable test anchors.
+
+---
+
+## 6. SESSION-ISOLATED GOAL BINDINGS
+
+### Native Session Scope And Legacy Quarantine
+
+#### Description
+
+The runtime-neutral goal core stores one active goal per workspace, runtime, and native session id. Pi supplies identity through its extension session manager; Cursor supplies identity to its `sessionStart` hook. The OpenCode-native `mk-goal` plugin remains a separate per-session system.
+
+#### Current Reality
+
+Pi has a native registered `/goal-pi` management command plus session-bound injection and turn-end verification. Cursor has session-bound injection but no safe management bridge, so `/goal-cursor` fails with `UNSUPPORTED_SESSION_BINDING`. Claude Code uses its native feature where available; Codex has no adapter. Legacy `active-goal.json` is never injected automatically and can only be inspected, migrated to an explicit validated scope, or archived. Aggregate diagnostics expose counts and classification without raw session ids.
+
+#### Source Files
+
+See [`.opencode/hooks/goal/README.md`](../../../hooks/goal/README.md) for the support matrix, state layout, command examples, rollback, and automated verification. The operator scenario is [`goal-manage-cli.md`](../manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md).

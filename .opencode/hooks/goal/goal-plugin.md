@@ -9,14 +9,14 @@ trigger_phrases:
   - "session goal"
 importance_tier: "important"
 contextType: "implementation"
-version: 3.7.0.8
+version: 3.8.1.0
 ---
 
 # OpenCode Goal Plugin Contract
 
 Use this reference when changing, validating, or operating the local `/goal` OpenCode plugin. It names the plugin-owned state, injection hooks, command boundary, environment controls, and restart requirements.
 
-## 1. PURPOSE
+## 1. OVERVIEW
 
 `/goal` gives an OpenCode session a durable completion objective. The command is a thin router; the plugin owns state, injection, lifecycle tracking, status output, completion supervision, and guarded continuation.
 
@@ -28,7 +28,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 |---|---|---|
 | Plugin | `.opencode/plugins/mk-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `mk_goal`, and `mk_goal_status`. |
 | Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
-| State | `.opencode/skills/.goal-state/` | Runtime JSON state, keyed by session id, intentionally outside spec docs. |
+| State | `.opencode/skills/.goal-state/` | Runtime JSON state, keyed by a fixed SHA-256 digest of the session id, intentionally outside spec docs. |
 | Tests | `.opencode/plugins/tests/mk-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
 
 ## 3. BEHAVIOR CONTRACT
@@ -36,6 +36,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 - `/goal set <objective>` stores a sanitized raw `objective`, derives a deterministic `goalPrompt`, and records prompt metadata under `promptEnhancement`.
 - `/goal set <objective> --budget N` passes `tokenBudget: N` through the command router; invalid, zero, negative, or missing budget values fail before a tool call.
 - `/goal history` lists archived goal records from `.opencode/skills/.goal-state/.archive/` without creating or mutating active state.
+- Reads adopt valid legacy hex-keyed active and archived files into the fixed digest path without overwriting an occupied target. Malformed or mismatched sources remain untouched.
 - `/goal doctor` and `/goal health` are read-only inspections that report active state-file count, archive-file count, `.continuation.log` and `.goal-events.log` byte sizes, last sweep time, and orphan-candidate count.
 - `/goal resume` reactivates only `paused` or `usage_limited` goals, clears `continuationSuppressed`, clears `continuationSuppressedReason`, and rejects terminal resurrection.
 - `experimental.chat.system.transform` injects one `[active_goal:<goalId>]` block only for active goals.
@@ -117,27 +118,27 @@ For documentation-only changes, also run the relevant `sk-doc` structure check a
 
 This plugin is the OpenCode-native goal system. Cursor and Pi reach the same passive-goal behavior through a runtime-neutral sibling under `.opencode/hooks/goal/` — not this plugin.
 
-**State model — two distinct files in the same directory.** `mk-goal` (this plugin) keeps **per-OpenCode-session** state, one file per hex session id under `.opencode/skills/.goal-state/`, with native token accounting from OpenCode's `message.updated` feed. The cross-runtime port keeps **one shared** `.opencode/skills/.goal-state/active-goal.json`, read/written by the Cursor/Pi adapters and the `.opencode/hooks/goal/bin/goal.cjs` manage CLI; it sits beside — never touching — mk-goal's per-session files, and its `usage_source` is honestly `turn-count-estimate` (no native token feed outside OpenCode).
+**State model.** `mk-goal` keeps per-OpenCode-session state and native token accounting under `<full-sha256-of-session-id>.json`. Valid files from the earlier reversible hex-key format migrate lazily on active reads, injection, orphan sweeps, and history access; occupied digest targets remain authoritative. The sibling core keys every record by workspace, runtime, and native session id, then stores it as `<runtime>-<full-sha256>.json` with a matching archive namespace. Its legacy `active-goal.json` is diagnostic-only and never supplies prompt injection. Cross-runtime usage accounting remains `turn-count-estimate` because these adapters do not expose OpenCode's native token feed.
 
-**Capability tiers** (from the packet's phase 002 live probes):
+**Current support matrix:**
 
-| Runtime | Inject | Verify | Continue | Goal text visible to operator |
-|---------|--------|--------|----------|-------------------------------|
-| OpenCode (mk-goal) | yes | yes (heuristic/LLM) | yes (`session.idle`) | no (`[SYS]`) |
-| Cursor | yes (`sessionStart` only) | no | no | no |
-| Pi | yes (operator-visible) | yes (`turn_end`) | no | yes (`[MSG]`) |
+| Runtime | Injection | Management | Verify / continue |
+|---|---|---|---|
+| OpenCode | Native plugin | `/goal-opencode` | Native verifier and guarded continuation |
+| Pi | Native session-bound extension | Native registered `/goal-pi` | `turn_end` heuristic; no forced continuation |
+| Cursor | Session-bound `sessionStart` hook | Unsupported without native command identity | Turn touch only; no continuation |
+| Claude Code | No sibling-core adapter | Runtime-native feature where available | Outside this contract |
+| Codex | None | None | None |
 
-Canonical matrix: `.opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md`. Concern README: `.opencode/hooks/goal/README.md`.
-
-**Command surface — one trigger per runtime, named for the runtime.** Each goal-capable runtime carries its own goal command rather than a shared mirror:
+**Command surface.** Each retained goal-capable runtime uses its own command boundary:
 
 | Runtime | Command | Source | Drives |
 |---|---|---|---|
 | OpenCode | `/goal-opencode` | `.opencode/commands/goal-opencode.md` | `mk_goal` / `mk_goal_status` plugin tools |
-| Cursor | `/goal-cursor` | `.cursor/commands/goal-cursor.md` | `bin/goal.cjs` manage CLI |
-| Pi | `/goal-pi` | `.pi/prompts/goal-pi.md` | `bin/goal.cjs` manage CLI |
+| Cursor | `/goal-cursor` | `.cursor/commands/goal-cursor.md` | Fails with `UNSUPPORTED_SESSION_BINDING`; never calls the CLI |
+| Pi | `/goal-pi` | Registered by `.opencode/hooks/goal/pi/goal-context.ts` | Shared CLI with native runtime/session/workspace flags appended by the extension |
 
-Claude reaches `/goal-opencode` through its whole-directory `.claude/commands` → `.opencode/commands` symlink. Codex and Devin have no goal hook and therefore no goal command. These commands are deliberately not cross-mirrored: the runtime-mirror generators skip `goal-opencode` and preserve each runtime's hand-authored native command via `.opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs`. The non-OpenCode commands are thin routers over `bin/goal.cjs`, which mirrors the `/goal-opencode` action contract 1:1.
+The shared CLI keeps the base OpenCode action envelope and adds explicit `legacy-inspect`, `legacy-migrate`, and `legacy-archive` actions. All current-session actions require explicit native binding; only aggregate diagnostics and non-binding legacy inspection/archive work without it. See `.opencode/hooks/goal/README.md` for state layout, error behavior, rollback, and verification.
 
 ## 9. RELATED REFERENCES
 
@@ -145,4 +146,4 @@ Claude reaches `/goal-opencode` through its whole-directory `.claude/commands` �
 - [`injection-contract.md`](../injection-contract.md) - the active-goal block's per-runtime visibility.
 - [`goal-opencode-plugin.md`](../../skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md) - current feature catalog entry.
 - [`goal-opencode-plugin.md`](../../skills/system-spec-kit/manual-testing-playbook/ux-hooks/goal-opencode-plugin.md) - operator validation scenario.
-- `.opencode/specs/cli-external-orchestration/032-goal-hooks-cross-runtime/` - the cross-runtime goal-hook packet (the legacy `/goal` OpenCode packet is archived at `system-deep-loop/z_archive/026-goal-opencode-plugin/`).
+- [`README.md`](README.md) - current cross-runtime session-isolation and legacy-cutover contract.

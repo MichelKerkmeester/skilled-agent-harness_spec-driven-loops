@@ -187,7 +187,7 @@ function findOrphans(expectedLinks) {
     );
     for (const entry of fs.readdirSync(absoluteParent, { withFileTypes: true })) {
       if (!entry.isDirectory() || entry.name.startsWith('.')) continue;
-      // Devin's own hand-authored native skill (e.g. goal-devin) is not a mirror.
+      // A hand-authored native skill in this tree is not a mirror.
       if (isRuntimeNativeCommand(parent, entry.name)) continue;
       if (!wanted.has(entry.name)) orphans.push(`${parent}/${entry.name}/${leaf}`);
     }

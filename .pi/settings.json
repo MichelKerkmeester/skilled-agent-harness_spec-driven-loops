@@ -3,7 +3,7 @@
   "theme": "dark",
   "defaultProvider": "opencode-go",
   "defaultModel": "deepseek-v4-flash",
-  "defaultThinkingLevel": "max",
+  "defaultThinkingLevel": "high",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
   "steeringMode": "one-at-a-time",
@@ -29,7 +29,6 @@
     "npm:pi-blackhole",
     "npm:pi-gpt-fast-mode",
     "npm:pi-intercom",
-    "npm:pi-omplike-advisor",
     "npm:pi-plan",
     "npm:pi-statusline",
     "npm:pi-subagents",
@@ -38,6 +37,7 @@
     "npm:@juicesharp/rpiv-todo",
     "git:github.com/dbachelder/pi-btw"
   ],
+  "extensions": [],
   "hideThinkingBlock": false,
   "compaction": {
     "enabled": false

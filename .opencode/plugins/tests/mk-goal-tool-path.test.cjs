@@ -128,15 +128,14 @@ test('goal command documentation exposes the registered command contract', async
 
 test('goal plugin reference links the OpenCode command document', async () => {
   const referenceDoc = await readFile(
-    join(opencodeRoot, 'skills', 'system-spec-kit', 'references', 'hooks', 'goal-plugin.md'),
+    join(opencodeRoot, 'hooks', 'goal', 'goal-plugin.md'),
     'utf8',
   );
   assert.match(referenceDoc, /\.opencode\/commands\/goal-opencode\.md/);
 });
 
 test('regression graph key files exclude non-deliverable legacy basenames', async () => {
-  // The 032 goal packet was renumbered to 026 and archived under system-deep-loop/z_archive;
-  // this guard still pins that historical graph metadata against legacy key-file basenames.
+  // Historical graph metadata must not point at files absent from the deliverable runtime.
   const phaseRoot = join(opencodeRoot, 'specs', 'system-deep-loop', 'z_archive', '026-goal-opencode-plugin');
   const graph = JSON.parse(await readFile(
     join(phaseRoot, '012-regression-test-backfill', 'graph-metadata.json'),

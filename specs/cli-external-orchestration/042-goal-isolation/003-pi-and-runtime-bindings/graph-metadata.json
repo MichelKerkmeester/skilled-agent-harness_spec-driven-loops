@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/042-goal-isolation/003-pi-and-runtime-bindings",
+  "spec_folder": "cli-external-orchestration/042-goal-isolation/003-pi-and-runtime-bindings",
+  "parent_id": "cli-external-orchestration/042-goal-isolation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi goal session binding",
+      "runtime goal adapter isolation",
+      "goal management session identity",
+      "pi runtime binding plan",
+      "goal adapter isolation plan",
+      "pi goal binding tasks",
+      "runtime adapter goal tasks",
+      "pi goal binding status"
+    ],
+    "key_topics": [
+      "goal",
+      "session",
+      "binding",
+      "runtime",
+      "adapter",
+      "isolation",
+      "management",
+      "identity",
+      "plan",
+      "tasks",
+      "status",
+      "cursor"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Goal Bindings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bind Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconcile Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bind Cursor",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "focused",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Pi",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pi and Cursor now bind every supported lifecycle operation to native session identity",
+    "created_at": "2026-08-10T11:33:30Z",
+    "last_save_at": "2026-08-10T14:34:39.354Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a1274c6178871eb1ea688575f7d08479877be2f744100db49fed97c57e03e2e9",
+    "source_doc_hashes": {
+      "spec.md": "892b1397f0a8ebf41eab11ac995a6a157c4a9cbcfbeddb7e702ebcf0f7138b10",
+      "plan.md": "dc58c3541d001f173828f9c703cede60c2bd137f93264992be27c025be680a8d",
+      "tasks.md": "77d305fe62e0d33e9812858d83c4dbd347e9d2db154eae0eda417039905a6caa",
+      "implementation-summary.md": "899c2fca87fbf0f95915cd447f102ea7596410537ac9e38e1bfc387db79e4f0d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

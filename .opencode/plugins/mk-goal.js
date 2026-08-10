@@ -9,8 +9,8 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { randomUUID } from 'node:crypto';
-import { appendFile, mkdir, open, readFile, readdir, rename, stat, unlink } from 'node:fs/promises';
+import { createHash, randomUUID } from 'node:crypto';
+import { appendFile, link, mkdir, open, readFile, readdir, rename, stat, unlink } from 'node:fs/promises';
 import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -352,6 +352,10 @@ function sessionIdFromContext(context) {
 }
 
 function sessionKeyForSession(sessionID) {
+  return createHash('sha256').update(requireSessionID(sessionID), 'utf8').digest('hex');
+}
+
+function legacySessionKeyForSession(sessionID) {
   return Buffer.from(requireSessionID(sessionID), 'utf8').toString('hex');
 }
 
@@ -1125,9 +1129,15 @@ function goalPathForSession(sessionID, rawOptions = {}) {
   return join(options.stateDir, `${sessionKeyForSession(sessionID)}.json`);
 }
 
+function legacyGoalPathForSession(sessionID, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  return join(options.stateDir, `${legacySessionKeyForSession(sessionID)}.json`);
+}
+
 function invalidateGoalBriefCache(sessionID, rawOptions = {}) {
   try {
     goalBriefCache.delete(goalPathForSession(sessionID, rawOptions));
+    goalBriefCache.delete(legacyGoalPathForSession(sessionID, rawOptions));
   } catch {
     return;
   }
@@ -1240,6 +1250,53 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}, expect
   };
 }
 
+async function readStoredGoalFile(path, sessionID, rawOptions = {}) {
+  countMetric(rawOptions, 'readGoalReadFile');
+  const raw = await readFile(path, 'utf8');
+  return normalizeStoredGoal(JSON.parse(raw), sessionID, rawOptions, requireSessionID(sessionID));
+}
+
+async function adoptLegacyGoalFile(sessionID, directoryPath, rawOptions = {}) {
+  const options = normalizeOptions(rawOptions);
+  const normalizedSessionID = requireSessionID(sessionID);
+  const legacyPath = join(directoryPath, `${legacySessionKeyForSession(normalizedSessionID)}.json`);
+  const targetPath = join(directoryPath, `${sessionKeyForSession(normalizedSessionID)}.json`);
+  if (legacyPath === targetPath) return null;
+
+  let raw;
+  try {
+    countMetric(options, 'readGoalReadFile');
+    raw = await readFile(legacyPath, 'utf8');
+  } catch (error) {
+    if (error?.code === 'ENOENT' || error?.code === 'ENAMETOOLONG') return null;
+    throw error;
+  }
+  const goal = normalizeStoredGoal(
+    JSON.parse(raw),
+    normalizedSessionID,
+    options,
+    normalizedSessionID,
+  );
+
+  try {
+    await link(legacyPath, targetPath);
+  } catch (error) {
+    if (error?.code === 'EEXIST') return { adopted: false, goal: null, path: targetPath };
+    throw error;
+  }
+
+  try {
+    await unlink(legacyPath);
+  } catch (error) {
+    if (error?.code !== 'ENOENT') {
+      writeDebugStderr('adoptLegacyGoalFile.unlink', error);
+    }
+  }
+  await fsyncDirectory(directoryPath, options);
+  if (directoryPath === options.stateDir) invalidateGoalBriefCache(normalizedSessionID, options);
+  return { adopted: true, goal, path: targetPath };
+}
+
 /**
  * Read the current goal for a session.
  *
@@ -1248,13 +1305,23 @@ function normalizeStoredGoal(rawGoal, fallbackSessionID, rawOptions = {}, expect
  * @returns {Promise<Object|null>} Goal record, or null when none is set
  */
 async function readGoal(sessionID, rawOptions = {}) {
-  const path = goalPathForSession(sessionID, rawOptions);
+  const options = normalizeOptions(rawOptions);
+  const normalizedSessionID = requireSessionID(sessionID);
+  const path = goalPathForSession(normalizedSessionID, options);
   try {
-    countMetric(rawOptions, 'readGoalReadFile');
-    const raw = await readFile(path, 'utf8');
-    return normalizeStoredGoal(JSON.parse(raw), sessionID, rawOptions, requireSessionID(sessionID));
+    return await readStoredGoalFile(path, normalizedSessionID, options);
   } catch (error) {
-    if (error?.code === 'ENOENT') return null;
+    if (error?.code === 'ENOENT') {
+      try {
+        const migration = await adoptLegacyGoalFile(normalizedSessionID, options.stateDir, options);
+        if (!migration) return null;
+        if (migration.goal) return migration.goal;
+        return await readStoredGoalFile(path, normalizedSessionID, options);
+      } catch (migrationError) {
+        if (migrationError instanceof GoalError) throw migrationError;
+        throw new GoalError('READ_GOAL_FAILED', `Failed to read goal state: ${migrationError.message}`);
+      }
+    }
     if (error instanceof GoalError) throw error;
     throw new GoalError('READ_GOAL_FAILED', `Failed to read goal state: ${error.message}`);
   }
@@ -1315,12 +1382,17 @@ async function writeGoalAtomic(goal, rawOptions = {}) {
 }
 
 async function deleteGoalFile(sessionID, rawOptions = {}) {
-  const path = goalPathForSession(sessionID, rawOptions);
-  try {
-    await unlink(path);
-  } catch (error) {
-    if (error?.code !== 'ENOENT') {
-      throw new GoalError('CLEAR_GOAL_FAILED', `Failed to clear goal state: ${error.message}`);
+  const paths = new Set([
+    goalPathForSession(sessionID, rawOptions),
+    legacyGoalPathForSession(sessionID, rawOptions),
+  ]);
+  for (const path of paths) {
+    try {
+      await unlink(path);
+    } catch (error) {
+      if (error?.code !== 'ENOENT') {
+        throw new GoalError('CLEAR_GOAL_FAILED', `Failed to clear goal state: ${error.message}`);
+      }
     }
   }
   await fsyncDirectory(normalizeOptions(rawOptions).stateDir);
@@ -1370,15 +1442,13 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
     ? Math.trunc(rawOptions.sweepArchiveStaleBeforeMs)
     : null;
   return enqueueGoalMutation(sessionID, rawOptions, async (normalizedSessionID, options) => {
+    const currentGoal = await readGoal(normalizedSessionID, options);
+    if (!currentGoal) return null;
     const sourcePath = goalPathForSession(normalizedSessionID, options);
-    if (sweepArchiveStaleBeforeMs !== null) {
-      try {
-        const raw = await readFile(sourcePath, 'utf8');
-        const updatedAtMs = Number(JSON.parse(raw)?.updatedAtMs);
-        if (!Number.isFinite(updatedAtMs) || updatedAtMs >= sweepArchiveStaleBeforeMs) return null;
-      } catch {
-        return null;
-      }
+    if (sweepArchiveStaleBeforeMs !== null
+      && (!Number.isFinite(currentGoal.updatedAtMs)
+        || currentGoal.updatedAtMs >= sweepArchiveStaleBeforeMs)) {
+      return null;
     }
     const archiveDir = await ensureGoalArchiveDir(options);
     const archivePath = join(archiveDir, `${sessionKeyForSession(normalizedSessionID)}.json`);
@@ -1394,6 +1464,9 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
       }, options);
       return null;
     }
+    await unlink(legacyGoalPathForSession(normalizedSessionID, options)).catch((error) => {
+      if (error?.code !== 'ENOENT') writeDebugStderr('archiveGoalStateFile.unlinkLegacy', error);
+    });
     await fsyncDirectory(options.stateDir, options);
     await fsyncDirectory(archiveDir, options);
     invalidateGoalBriefCache(normalizedSessionID, options);
@@ -1408,13 +1481,6 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
     }, rawOptions);
     return null;
   });
-}
-
-function sessionIDFromStateFilename(filename) {
-  if (!filename.endsWith('.json')) return null;
-  const key = filename.slice(0, -'.json'.length);
-  if (!key || key.length % 2 !== 0 || !/^[0-9a-f]+$/i.test(key)) return null;
-  return normalizeSessionID(Buffer.from(key, 'hex').toString('utf8'));
 }
 
 async function sweepOrphanedActiveStates(rawOptions = {}, runtimeState = {}) {
@@ -1437,9 +1503,10 @@ async function sweepOrphanedActiveStates(rawOptions = {}, runtimeState = {}) {
         if (timestamp - fileStats.mtimeMs <= retentionMs) return;
         const raw = await readFile(path, 'utf8');
         countMetric(options, 'sweepJsonParse');
-        const updatedAtMs = Number(JSON.parse(raw)?.updatedAtMs);
+        const parsed = JSON.parse(raw);
+        const updatedAtMs = Number(parsed?.updatedAtMs);
         if (!Number.isFinite(updatedAtMs) || timestamp - updatedAtMs <= retentionMs) return;
-        const archivedSessionID = sessionIDFromStateFilename(entry.name);
+        const archivedSessionID = normalizeSessionID(parsed?.sessionId);
         if (archivedSessionID) {
           await archiveGoalStateFile(archivedSessionID, {
             ...options,
@@ -1470,20 +1537,56 @@ async function listArchivedGoalRecords(rawOptions = {}) {
   const options = normalizeOptions(rawOptions);
   const archiveDir = join(options.stateDir, '.archive');
   const entries = await readDirectoryEntries(archiveDir);
-  const records = [];
+  const candidates = [];
+  const entryNames = new Set(entries.filter((entry) => entry.isFile()).map((entry) => entry.name));
   for (const entry of entries) {
     if (!entry.isFile() || !entry.name.endsWith('.json')) continue;
     const path = join(archiveDir, entry.name);
     try {
       const [fileStats, raw] = await Promise.all([stat(path), readFile(path, 'utf8')]);
-      const fallbackSessionID = sessionIDFromStateFilename(entry.name) || 'archived-session';
-      const goal = normalizeStoredGoal(JSON.parse(raw), fallbackSessionID, options);
-      records.push({ filename: entry.name, sizeBytes: fileStats.size, mtimeMs: fileStats.mtimeMs, goal });
+      const goal = normalizeStoredGoal(JSON.parse(raw), 'archived-session', options);
+      const canonicalFilename = `${sessionKeyForSession(goal.sessionId)}.json`;
+      const legacyFilename = `${legacySessionKeyForSession(goal.sessionId)}.json`;
+      let filename = entry.name;
+
+      if (entry.name === legacyFilename && entry.name !== canonicalFilename) {
+        if (entryNames.has(canonicalFilename)) continue;
+        const targetPath = join(archiveDir, canonicalFilename);
+        try {
+          await link(path, targetPath);
+        } catch (error) {
+          if (error?.code === 'EEXIST') continue;
+          throw error;
+        }
+        await unlink(path).catch((error) => {
+          if (error?.code !== 'ENOENT') writeDebugStderr('listArchivedGoalRecords.unlinkLegacy', error);
+        });
+        await fsyncDirectory(archiveDir, options);
+        filename = canonicalFilename;
+        entryNames.add(canonicalFilename);
+      }
+      candidates.push({
+        canonical: filename === canonicalFilename,
+        filename,
+        sizeBytes: fileStats.size,
+        mtimeMs: fileStats.mtimeMs,
+        goal,
+      });
     } catch {
       continue;
     }
   }
-  return records.sort((a, b) => b.mtimeMs - a.mtimeMs);
+  const identities = new Set();
+  return candidates
+    .sort((a, b) => Number(b.canonical) - Number(a.canonical) || b.mtimeMs - a.mtimeMs)
+    .filter((record) => {
+      const identity = `${record.goal.sessionId}\u0000${record.goal.goalId}`;
+      if (identities.has(identity)) return false;
+      identities.add(identity);
+      return true;
+    })
+    .sort((a, b) => b.mtimeMs - a.mtimeMs)
+    .map(({ canonical: _canonical, ...record }) => record);
 }
 
 async function fileSizeBytes(path) {
@@ -2550,12 +2653,24 @@ async function readGoalForBrief(sessionID, rawOptions = {}) {
     fileStats = await stat(path);
   } catch (error) {
     if (error?.code !== 'ENOENT') throw error;
-    if (cached?.missing === true) {
-      touchGoalBriefCache(path, cached, options);
+    const legacyPath = legacyGoalPathForSession(sessionID, options);
+    try {
+      await stat(legacyPath);
+      const migratedGoal = await readGoal(sessionID, options);
+      if (!migratedGoal) return null;
+      fileStats = await stat(path);
+      const cacheKey = `${fileStats.mtimeMs}:${fileStats.size}`;
+      setGoalBriefCache(path, { cacheKey, goal: migratedGoal }, options);
+      return migratedGoal;
+    } catch (legacyError) {
+      if (legacyError?.code !== 'ENOENT' && legacyError?.code !== 'ENAMETOOLONG') throw legacyError;
+      if (cached?.missing === true) {
+        touchGoalBriefCache(path, cached, options);
+        return null;
+      }
+      setGoalBriefCache(path, { missing: true }, options);
       return null;
     }
-    setGoalBriefCache(path, { missing: true }, options);
-    return null;
   }
 
   const cacheKey = `${fileStats.mtimeMs}:${fileStats.size}`;

@@ -1,127 +1,134 @@
 ---
-title: "Goal Hooks: Cross-Runtime Session Goal Core + Manage CLI"
-description: "Runtime-neutral session-goal state, RICCE prompt building, prompt-injection hardening, and heuristic verification, shared by every runtime through one state file plus a manage CLI."
+title: "Goal Hooks: Session-Isolated Cross-Runtime Goals"
+description: "Session-scoped goal storage, native runtime bindings, explicit legacy quarantine, and verification for Pi and Cursor."
 trigger_phrases:
   - "cross-runtime goal core"
   - "goal manage cli"
-  - "active goal injection"
-  - "goal state file"
-  - "goal heuristic verifier"
+  - "session goal isolation"
+  - "legacy active goal migration"
 ---
 
-# Goal Hooks: Cross-Runtime Session Goal Core + Manage CLI
-
----
+# Goal Hooks: Session-Isolated Cross-Runtime Goals
 
 ## 1. OVERVIEW
 
-`goal/` is the runtime-neutral core for passive session-goal tracking outside OpenCode. OpenCode already has its own goal system — the `mk-goal` plugin (`.opencode/plugins/mk-goal.js`) with per-OpenCode-session state, native token accounting, and an auto-continue loop wired through OpenCode-only lifecycle events. This folder is a **sibling**, not a replacement: it ports mk-goal's template, prompt-injection hardening, and heuristic verifier into a single shared state file that any runtime adapter (Cursor, Pi hooks, or a plain terminal) can read and write through one manage CLI.
-
-The two systems coexist by design: mk-goal owns OpenCode's per-session goal; `goal/lib/goal-core.cjs` owns one shared cross-runtime goal. Neither reads nor writes the other's state file.
-
-**Status:** built. Phase 001 delivered the core, state, and manage CLI; phases 003/004/005 added the per-runtime injection adapters, now present under `cursor/` and `pi/`. Their honest parity tiers (probed live in phase 002): Cursor injects at `sessionStart` only (`beforeSubmitPrompt` never delivers, `stop` never fires); Pi injects on `input` (operator-visible transform) + restores on `session_start` + verifies on `turn_end` (no forced continuation). The `bin/goal.cjs` CLI remains available for any runtime without plugin tools, or a plain terminal.
-
----
-
-## 2. WHAT IT DOES AND INJECTS
-
-`renderGoalBrief()` builds the same passive steering block mk-goal's `renderGoalInjection` produces, with markers and field-line labels kept byte-compatible (`[active_goal:<id>]`, `status:`, `objective:`, `goal_prompt:`, `last_check:`, `usage:`, `directive:`, `[/active_goal]`) and the embedded `goalPrompt`'s Role line parameterized per runtime instead of hardcoded to OpenCode:
+`.opencode/hooks/goal/` provides passive goal steering for runtimes that can supply a verified native session identity. Each supported read or mutation resolves one composite scope:
 
 ```text
-[active_goal:<goalId>]
-status: active
-objective: <objective>
-goal_prompt:
-Role: Focused <runtimeLabel> execution agent operating under the active session goal.
-Objective: <objective summary>
-Context: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.
-Method:
-- Restate the concrete completion condition from available evidence before acting.
-- <goal-focus hints selected from the objective text>
-- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.
-Success Criteria:
-- The requested outcome is materially complete, not merely analyzed or partially prepared.
-- Required verification has run, or any inability to run it is reported with the exact blocker.
-- Status output distinguishes confirmed evidence from inference.
-Stop Conditions:
-- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.
-- If blocked, preserve state and name the next safe action.
-last_check: <verdict> ; reason: <reason>
-usage: tokens n/a/<tokenBudget>; time <seconds>s; iteration <turnsUsed> (source: turn-count-estimate)
-directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.
-[/active_goal]
+workspace + runtime + native session id -> one opaque state file and one archive namespace
 ```
 
-Falls back to mk-goal's compact shape (`[active_goal:<id>]` / `goal_prompt:` / `last_check:` / `directive:` / `[/active_goal]`, no `status:`/`objective:`/`usage:` lines) when the full block would exceed the char budget.
+There is no default session and no process-global current-goal pointer. Missing identity makes reads return no goal and makes management fail with a stable error. The legacy singleton `active-goal.json` is diagnostic input only and is never an injection fallback.
 
-**Deliberate deviation from mk-goal:** the `usage:` line's token count is honestly `n/a` — no runtime outside OpenCode exposes a native per-message token feed to this core, so turn count (`turnsUsed`, incremented by `recordTurn()`) is the accounting primitive instead of tokens. The record's `usageSource` field is always `"turn-count-estimate"`, never silently implying token-level accuracy.
+OpenCode's `.opencode/plugins/mk-goal.js` remains a separate native implementation. It has its own per-OpenCode-session files, fixed opaque SHA-256 state keys, token accounting, lifecycle events, and guarded continuation. Existing reversible hex-keyed files are adopted lazily after their embedded session id is validated.
 
-The `cursor/` and `pi/` adapters inject this block per their runtime's lifecycle (see §1 Status for each runtime's trigger and parity tier); the exact rendered text is `renderGoalBrief()`'s output, which an operator can also preview via `bin/goal.cjs show`'s `injection_preview` field.
+## 2. RUNTIME SUPPORT
 
----
+| Runtime | Injection | Current-session management | Verification / continuation | Status |
+|---|---|---|---|---|
+| Pi | `input`, restore on `session_start` | Native `/goal-pi` registered by the extension | Heuristic check on `turn_end`; no forced continuation | Supported |
+| Cursor | `sessionStart` using `session_id`, then `conversation_id` fallback | Unavailable because prompt commands do not receive the hook's native identity | Turn touch only; no continuation | Injection-only |
+| OpenCode | Native `mk-goal` plugin, outside this core | Native `/goal-opencode` tools | Native verifier and guarded continuation | Separate supported system |
+| Claude Code | No adapter in this core | Use the runtime's native goal feature where available | Outside this core | Not provided here |
+| Codex | No adapter | None | None | Unsupported |
 
-## 3. DIRECTORY TREE
+A runtime is not called fully supported unless injection and management bind the same native current-session identity. Cursor therefore remains injection-only, and its `/goal-cursor` prompt fails closed instead of invoking an unbound CLI.
+
+## 3. STATE LAYOUT
+
+The default state root is `.opencode/skills/.goal-state/`. Tests and isolated probes override it with `MK_GOAL_STATE_DIR`.
 
 ```text
-goal/
-+-- lib/
-|   +-- goal-core.cjs        # state I/O, render, hardening, heuristic verifier
-|   `-- goal-core.test.cjs   # node --test
-+-- bin/
-|   `-- goal.cjs             # manage CLI: set/show/history/doctor/health/clear/complete/pause/resume
-+-- cursor/   goal-inject.mjs (sessionStart-only injection)
-+-- pi/       goal-context.ts (input/session_start/turn_end factory; symlinked from .pi/extensions/)
-`-- opencode/ mk-goal.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
+.goal-state/
+├── pi-<full-sha256-of-native-session-id>.json
+├── cursor-<full-sha256-of-native-session-id>.json
+├── .archive/
+│   ├── pi-<digest>/
+│   │   └── active-goal-<goal-id>.json
+│   ├── cursor-<digest>/
+│   │   └── active-goal-<goal-id>.json
+│   └── .legacy/
+│       └── active-goal-<goal-id-or-content-digest>.json
+└── active-goal.json                    # legacy, diagnostic-only when present
 ```
 
----
+Raw session ids never appear in filenames or aggregate diagnostics. State files use mode `0600`; created directories use mode `0700`; writes use a temporary file, `fsync`, and atomic rename.
 
-## 4. KEY FILES
+## 4. MANAGE CLI
+
+The CLI requires native scope flags for all current-session actions:
+
+```bash
+node .opencode/hooks/goal/bin/goal.cjs \
+  --runtime pi \
+  --session '<native-session-id>' \
+  --workspace "$PWD" \
+  set 'Ship the isolated goal' --budget 500
+```
+
+Current-session actions are `set`, `show`, `history`, `clear`, `complete`, `pause`, and `resume`. `doctor` and `health` are aggregate-only and need no session binding. They report counts and legacy classification without enumerating raw identities.
+
+Legacy actions are explicit:
+
+```bash
+# Non-mutating classification; valid records include their operator-visible objective.
+node .opencode/hooks/goal/bin/goal.cjs legacy-inspect
+
+# Bind a valid active/paused legacy record to this exact native session.
+node .opencode/hooks/goal/bin/goal.cjs \
+  --runtime pi --session '<native-session-id>' --workspace "$PWD" \
+  legacy-migrate
+
+# Preserve valid or malformed legacy bytes without assigning an owner.
+node .opencode/hooks/goal/bin/goal.cjs legacy-archive
+```
+
+`legacy-migrate` refuses an occupied target, never replaces another session's goal, and moves the singleton into `.archive/.legacy/` only after the scoped record is written. Repeating migrate/archive after the source is gone is a successful no-op. Malformed legacy data cannot migrate; it can only be inspected and archived.
+
+## 5. INJECTION CONTRACT
+
+`renderGoalBrief()` produces a bounded `[active_goal:<goal-id>] ... [/active_goal]` block. Objective and role-like input is normalized before storage. Only `active` records inject; paused, completed, cleared, missing, malformed, unbound, or legacy-only state produces no block.
+
+Non-OpenCode runtimes use turn-count estimation because they do not expose the same native token feed as OpenCode. Stored and rendered `usageSource` is `turn-count-estimate`.
+
+## 6. FILES
 
 | File | Responsibility |
 |---|---|
-| `lib/goal-core.cjs` | Runtime-neutral core. Resolves the shared state directory (`MK_GOAL_STATE_DIR` override, else `.opencode/skills/.goal-state/` under the walked-up repo root), does atomic temp+rename writes at mode `0600`, archives terminal records to `.goal-state/.archive/active-goal-<goalId>.json` before clear/complete, ports mk-goal's `normalizeUserAuthoredText` prompt-injection hardening and `defaultHeuristicSupervisorVerifier` heuristic verifier, and renders the `[active_goal]` block. Every exported function fails open — no read/parse error, and no `PLUGIN_DISABLED`-style guard failure, ever throws past a caller boundary except the explicit `GoalError`s mutation actions raise for the CLI to translate into `code=`. |
-| `bin/goal.cjs` | Thin router over the core, mirroring `/goal-opencode`'s command contract: same action set (`set`/`show`/`history`/`doctor`/`health`/`clear`/`complete`/`pause`/`resume`), same `STATUS=<OK\|FAIL> ACTION=<...>` envelope, same `mutation=<created\|refreshed\|replaced>` line on `set`, same `--budget N` positive-base-10-integer parsing and `INVALID_TOKEN_BUDGET`/`INVALID_OBJECTIVE` error codes, same `MK_GOAL_PLUGIN_DISABLED=1` fail-closed behavior with `code=PLUGIN_DISABLED`. Bare text (no recognized action token) falls through to `set`, matching the router's "any other non-empty QUERY" rule. |
+| `lib/goal-core.cjs` | Scope validation, opaque paths, atomic state, lifecycle, rendering, verification, diagnostics, and legacy quarantine. |
+| `bin/goal.cjs` | Stable command envelope and explicit scope/legacy actions. |
+| `pi/goal-context.ts` | Pi native lifecycle binding and authoritative `/goal-pi` command. |
+| `cursor/goal-inject.mjs` | Cursor session-bound injection. |
+| `lib/goal-core.test.cjs` | Core, lifecycle, concurrency, legacy, hardening, and CLI contract coverage. |
+| `bin/goal.test.cjs` | CLI binding, privacy, concurrency, and legacy action coverage. |
 
-The shared state file lives at `.opencode/skills/.goal-state/active-goal.json`, beside — never touching — mk-goal's own per-session files and `.archive/` in that same directory.
+## 7. FAILURE AND ROLLBACK
 
-OpenCode discovers plugins only from `.opencode/plugins/`, so `mk-goal.js` must live there; the `opencode/` folder here holds a browsability-only symlink pointing back into it (nothing loads through the symlink — it keeps this concern's runtimes visible in one tree, the reverse of Pi's `.pi/extensions/` direction). The `cursor/` and `pi/` adapters are the per-runtime wiring that reads the shared state through the core; their honest parity tiers (injection everywhere, verify/continue only where a real lifecycle event supports it) are recorded in the capability matrix under the `032-goal-hooks-cross-runtime` packet.
+- `MK_GOAL_PLUGIN_DISABLED=1` disables goal behavior and management.
+- Reads fail open: missing identity, missing state, malformed scoped JSON, or adapter failure selects no goal.
+- Mutations fail closed with stable `GoalError` codes and do not guess identity.
+- To roll back runtime injection, disable the adapter while preserving both scoped state and legacy quarantine files. Do not merge scoped records back into a singleton.
+- Pi discovery can be disabled with `-extensions/goal-context.ts` in `.pi/settings.json`; re-enable only after the integrated two-session matrix is green.
 
----
-
-## 5. BOUNDARIES AND FLOW
-
-| Boundary | Rule |
-|---|---|
-| Imports | `lib/goal-core.cjs` imports Node builtins only. `bin/goal.cjs` imports only `../lib/goal-core.cjs`. Neither reaches into `.opencode/plugins/mk-goal.js` or vice versa. |
-| State ownership | This core owns exactly one record, `active-goal.json`, plus its own `.archive/` entries. It never reads or writes mk-goal's per-session `<hex-session-id>.json` files or `.continuation.log`/`.goal-events.log`. |
-| Failure | Reads fail open (missing/malformed state -> `null`). Mutations raise a `GoalError` with a `code` the CLI turns into `STATUS=FAIL ... code=<CODE>`; nothing here writes stdout/stderr directly except the CLI's own envelope output. |
-| Disabled state | `MK_GOAL_PLUGIN_DISABLED=1` fails every mutating and read action closed with `code=PLUGIN_DISABLED`, mirroring mk-goal's own kill switch. |
-| Test isolation | `MK_GOAL_STATE_DIR` (env) or an explicit `stateDir` option overrides the resolved state directory so tests, and any future adapter under active development, never touch the real `.goal-state/` tree. |
-
----
-
-## 6. VALIDATION
+## 8. VERIFICATION
 
 ```bash
-node --test .opencode/hooks/goal/lib/goal-core.test.cjs
+node --test \
+  .opencode/hooks/goal/lib/goal-core.test.cjs \
+  .opencode/hooks/goal/bin/goal.test.cjs \
+  .opencode/hooks/goal/pi/goal-pi.test.mjs \
+  .opencode/hooks/goal/cursor/goal-cursor.test.mjs
+
+node --test .opencode/plugins/tests/mk-goal-*.test.cjs
+
+python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py \
+  --root .opencode/hooks/goal
 ```
 
-Expected result: all tests pass.
+Use temporary `MK_GOAL_STATE_DIR` paths for manual probes. Never point migration fixtures at the operator's live state root.
 
-```bash
-MK_GOAL_STATE_DIR=/tmp/goal-smoke node .opencode/hooks/goal/bin/goal.cjs set "Ship the widget" --budget 500
-MK_GOAL_STATE_DIR=/tmp/goal-smoke node .opencode/hooks/goal/bin/goal.cjs show
-MK_GOAL_STATE_DIR=/tmp/goal-smoke node .opencode/hooks/goal/bin/goal.cjs clear
-```
+## 9. RELATED
 
-Expected result: `STATUS=OK ACTION=set` with `mutation=created`, then `STATUS=OK ACTION=show` with `goal_present=true`, then `STATUS=OK ACTION=clear`.
-
----
-
-## 7. RELATED
-
-- [`../../plugins/mk-goal.js`](../../plugins/mk-goal.js): the OpenCode goal plugin this core ports its template, hardening, and heuristic verifier from.
-- [`../../commands/goal-opencode.md`](../../commands/goal-opencode.md): the `/goal-opencode` router contract `bin/goal.cjs` mirrors action-for-action.
-- [`../README.md`](../README.md): the unified hooks tree this concern lives in.
-- [`../injection-contract.md`](../injection-contract.md): what each hook injects and its operator visibility (pending an entry for this concern once per-runtime adapters land).
+- [`goal-plugin.md`](goal-plugin.md): OpenCode-native plugin contract and its relationship to this core.
+- [`../injection-contract.md`](../injection-contract.md): runtime injection visibility contract.
+- [`../../commands/goal-opencode.md`](../../commands/goal-opencode.md): OpenCode-native command router.

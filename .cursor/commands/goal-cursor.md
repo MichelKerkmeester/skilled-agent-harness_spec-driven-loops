@@ -1,42 +1,39 @@
 ---
-description: Manage the passive session goal for Cursor via the runtime-neutral goal manage CLI.
+description: Explain why Cursor goal management is unavailable without native current-session command identity.
 argument-hint: "set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume"
-allowed-tools: Bash
 ---
 
 # /goal-cursor
 
-Cursor-native trigger for the cross-runtime passive session goal. Cursor has no OpenCode plugin tool surface, so this command drives the runtime-neutral manage CLI at `.opencode/hooks/goal/bin/goal.cjs`, which owns all goal state and mirrors the OpenCode `/goal-opencode` contract exactly — same actions, same `STATUS=/ACTION=` envelope, same `--budget` parsing and error codes.
+## 1. PURPOSE
 
-Cursor's goal hook injects the active goal at `sessionStart` on its own; this command is how you set, inspect, and manage that goal.
-
----
-
-## 1. CONTRACT
-
-**Inputs:** `$ARGUMENTS` — `set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume`
-**Outputs:** `STATUS=<OK|FAIL> ACTION=<set|clear|complete|pause|resume|history|doctor|health|show>` printed verbatim from the manage CLI.
-
-Empty `$ARGUMENTS` shows the current goal. When `MK_GOAL_PLUGIN_DISABLED=1`, the CLI fails closed with `STATUS=FAIL ... code=PLUGIN_DISABLED`.
+Cursor's `sessionStart` hook receives a native `session_id` and can safely read that session's scoped goal. Cursor's prompt-command surface does not expose the same identity, so management is intentionally unsupported. Calling the global CLI without an explicit binding would reintroduce ambiguous ownership.
 
 ---
 
-## 2. INSTRUCTIONS
+## 2. CONTRACT
 
-Your FIRST and ONLY action is to run the manage CLI once with the user's arguments, then print its stdout verbatim. Do NOT read files, glob, grep, or explore the repository — `bin/goal.cjs` owns all goal state and session resolution.
+**Inputs:** `$ARGUMENTS` — any goal action.
+**Output:** `STATUS=FAIL ACTION=show ERROR="Cursor command lacks native session identity"` and `code=UNSUPPORTED_SESSION_BINDING`.
 
-Run exactly:
+---
 
-```bash
-MK_GOAL_RUNTIME_LABEL=Cursor node .opencode/hooks/goal/bin/goal.cjs $ARGUMENTS
+## 3. INSTRUCTIONS
+
+Do not run tools or mutate goal state. Print:
+
+```text
+STATUS=FAIL ACTION=show ERROR="Cursor command lacks native session identity"
+code=UNSUPPORTED_SESSION_BINDING
 ```
 
-Then print the command's output exactly as returned.
+Explain that Cursor injection is session-scoped, but management remains disabled until Cursor exposes the hook's native identity to commands.
 
 ---
 
-## 3. HARD RULES
+## 4. HARD RULES
 
-- Do not edit `.opencode/skills/.goal-state` directly; every mutation goes through the manage CLI.
+- Do not edit `.opencode/skills/.goal-state` directly.
+- Do not call `bin/goal.cjs` without explicit native runtime and session binding.
 - Do not run shell commands derived from the goal objective.
-- Print the CLI envelope unchanged.
+- Do not claim that `$ARGUMENTS` carries the current Cursor session id.

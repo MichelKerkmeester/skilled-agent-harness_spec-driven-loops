@@ -2,8 +2,8 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Cursor SessionStart Goal Injection Hook
 // ───────────────────────────────────────────────────────────────────
-// STATUS: injection-only, sessionStart-once — the fixed parity tier for
-// this runtime (002-capability-probes/capability-matrix.md). preToolUse's
+// STATUS: injection-only, sessionStart-once — live capability probes found
+// no model-visible mid-session refresh surface for this runtime. preToolUse's
 // agent_message field is returned in Cursor's JSON response but confirmed
 // NOT spliced into the model-visible transcript (zero occurrences of a
 // live probe marker in the raw agent-transcript JSONL), so there is no
@@ -66,15 +66,21 @@ async function main() {
 
   const workspaceRoot = payload?.workspace_roots?.[0];
   const cwd = typeof workspaceRoot === 'string' && workspaceRoot.trim() ? workspaceRoot : process.cwd();
+  const rawSessionId = payload?.session_id ?? payload?.conversation_id;
+  const sessionId = typeof rawSessionId === 'string' ? rawSessionId : '';
+  const options = {
+    cwd,
+    scope: { workspace: cwd, runtime: 'cursor', sessionId },
+  };
 
   try {
-    const goal = readGoalRecord({ cwd });
+    const goal = readGoalRecord(options);
     if (!goal || goal.status !== 'active') return allow();
 
     const brief = renderGoalBrief({ goal, runtimeLabel: 'Cursor' });
     if (!brief) return allow();
 
-    recordTurn({ runtime: 'cursor' }, { cwd });
+    recordTurn({}, options);
     return allow({ agent_message: brief });
   } catch {
     return allow(); // any goal-core error -> fail open, no injection

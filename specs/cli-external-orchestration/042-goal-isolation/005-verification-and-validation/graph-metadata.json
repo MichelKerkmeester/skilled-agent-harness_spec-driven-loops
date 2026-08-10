@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/042-goal-isolation/005-verification-and-validation",
+  "spec_folder": "cli-external-orchestration/042-goal-isolation/005-verification-and-validation",
+  "parent_id": "cli-external-orchestration/042-goal-isolation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal isolation verification",
+      "concurrent goal validation",
+      "pi goal re-enable gate",
+      "goal isolation verification plan",
+      "pi goal rollout gate",
+      "goal isolation validation tasks",
+      "pi goal re-enable tasks",
+      "goal isolation verification status",
+      "goal isolation handover",
+      "resume goal isolation",
+      "goal plugin final state",
+      "pi goal session isolation"
+    ],
+    "key_topics": [
+      "goal",
+      "isolation",
+      "verification",
+      "concurrent",
+      "validation",
+      "re-enable",
+      "gate",
+      "plan",
+      "rollout",
+      "tasks",
+      "status",
+      "handover"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "handover.md",
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Isolation Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Goal Isolation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Two Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Start",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "command",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "baselines",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "distinct",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The final integrated checks now prove that native Pi management, scoped persistence, adapter injection, legacy cutover, registrations, and operator documentation use the same session-isolated contract",
+    "created_at": "2026-08-10T11:33:32Z",
+    "last_save_at": "2026-08-10T17:12:11.686Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:6798560d3d4d8f8ae4629a68dc0dae709609554777f7f5599a8ee10cdb6c2001",
+    "source_doc_hashes": {
+      "spec.md": "0c2c7ca5aba410c74d4be3a3a04ccdbfef111fff208119e3cfdf5750e5592a9d",
+      "plan.md": "8015cd0d77c844da503dc654722154840d613e67dbd67be016f7f9f6466a876e",
+      "tasks.md": "527f42a7699a5ff6598fc4bc6ad07e002dc0221fc6062937ce2553af5e76c5e7",
+      "implementation-summary.md": "013fcd1158695b76a51a0b34aa696d2eaaccb99683a958216a068971cfef7f76",
+      "handover.md": "5af3dffb3500cd302864c5c51abfe0264882d24e4442893372717896b5e0d445"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

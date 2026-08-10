@@ -7,7 +7,7 @@ trigger_phrases:
   - "/goal command"
   - "active_goal injection"
   - "goalPrompt"
-version: 3.7.0.1
+version: 3.8.0.0
 ---
 
 # Goal OpenCode plugin
@@ -35,6 +35,8 @@ This feature is cataloged under UX hooks because it is a runtime-injection and o
 `.opencode/commands/goal-opencode.md` is intentionally thin. It parses `$ARGUMENTS`, calls exactly one plugin tool, and never reads or writes `.opencode/skills/.goal-state` directly.
 
 Stored state keeps both the raw sanitized `objective` and the deterministic `goalPrompt`. The raw objective is audit data; `goalPrompt` is the model-facing execution brief. Idle verification uses an injected `supervisorVerifier` when present; otherwise `MK_GOAL_VERIFIER=heuristic` applies a deterministic fail-closed verifier over the latest assistant evidence and goal objective. `MK_GOAL_VERIFIER=llm` opts into `ctx.client.session.promptAsync` semantic verdicts. Status output includes verifier provenance as `verifier_source` with `injected`, `default-heuristic`, or `default-llm` when a verdict has run. Autonomy is disabled unless `MK_GOAL_AUTONOMY=active` or smoke-tested with `MK_GOAL_AUTONOMY=smoke`. `MK_GOAL_MAX_AUTO_TURNS` and `MK_GOAL_MAX_WALL_MS` tune the guarded continuation caps; status output includes `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`.
+
+Each OpenCode session resolves to a fixed 64-character SHA-256 state key, so long native ids cannot exceed the filesystem component limit and raw identity is not reversible from the filename. Valid active and archived files from the previous hex-key format migrate lazily after embedded-id validation; an occupied digest target wins without deleting the conflicting source.
 
 State does not grow unboundedly: on `session.deleted` the goal-state file is archived then pruned past a retention window, `/goal history` lists archived records read-only, and a throttled sweep on `session.created` archives orphaned active-state files past their own age threshold. `/goal doctor` and `/goal health` report active/archive counts, log sizes, last sweep time, and orphan candidates. `/goal resume` reactivates only `paused` or `usage_limited` goals. See `.opencode/hooks/goal/goal-plugin.md` for the retention/sweep env vars and the `store_health`/`mutation` output fields.
 

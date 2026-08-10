@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/042-goal-isolation/001-goal-isolation-research",
+  "spec_folder": "cli-external-orchestration/042-goal-isolation/001-goal-isolation-research",
+  "parent_id": "cli-external-orchestration/042-goal-isolation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal isolation research",
+      "multiple active goals",
+      "pi goal session identity",
+      "cross-runtime goal hooks",
+      "goal isolation research plan",
+      "three goal research iterations",
+      "goal isolation research tasks",
+      "goal deep loop iterations",
+      "goal isolation research status",
+      "goal research handoff"
+    ],
+    "key_topics": [
+      "goal",
+      "isolation",
+      "research",
+      "multiple",
+      "active",
+      "goals",
+      "session",
+      "identity",
+      "cross-runtime",
+      "hooks",
+      "plan",
+      "three"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-002.md",
+      "research/iterations/iteration-003.md",
+      "spec.md",
+      "plan.md",
+      "research/deltas/iter-001.jsonl",
+      "research/deltas/iter-002.jsonl",
+      "research/deltas/iter-003.jsonl",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-002.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-003.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-003.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iter-002.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-002.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iter-003.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-003.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Goal Isolation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pi and Cursor currently share one repository-level `active-goal.json`",
+    "created_at": "2026-08-10T11:33:28Z",
+    "last_save_at": "2026-08-10T12:33:18.789Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:2bf365160534edcebe449449882fd09b9d43943d33b124b25a776a5b7b4ad549",
+    "source_doc_hashes": {
+      "spec.md": "5fb0651a3fafbeaced8823408ea91b31f061c8233e7478731ad7fa74c1c74898",
+      "plan.md": "1bdb3c005dc03056ce7353745a0b88d251670d803d155a430b69eae1aa72d638",
+      "tasks.md": "aec99d60fb67cbff27c79639ada33a8e29e1bec2d5aee729d29fbb8aef054983",
+      "implementation-summary.md": "c63301dbc0299abba6bd3bce18a8273d7fba189f5d6da3061ae115b4c5538015",
+      "research/research.md": "02e8034f79cff1288ef87cfb6ad35ef23cf6ad1df0beccdbb82a97999644fcfb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

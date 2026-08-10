@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/042-goal-isolation",
+  "description": "Completed cross-runtime goal isolation with session-scoped state, native Pi management, Cursor injection boundaries, explicit legacy handling, and fin",
+  "keywords": [
+    "completed",
+    "cross-runtime",
+    "goal",
+    "isolation",
+    "session-scoped",
+    "state",
+    "native",
+    "management",
+    "cursor",
+    "injection",
+    "boundaries",
+    "explicit",
+    "legacy",
+    "handling",
+    "final",
+    "handover"
+  ],
+  "lastUpdated": "2026-08-10T17:13:16.768Z",
+  "specId": "042",
+  "folderSlug": "goal-isolation",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -35,7 +35,7 @@ Canonical package artifacts:
 
 This playbook provides 22 deterministic scenarios across 10 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier and links to one dedicated file with the complete execution contract.
 
-Coverage note (2026-07-27): the package covers Pi version/help and settings state, unreliable headless failure exit codes, a negative-control syntax hallucination probe, recursive skill discovery, prompt-template flattening and substitution, the community `pi-subagents` bridge, MCP stdio and streamable HTTP shapes, project/global precedence, native extension loading and lifecycle registration, guard error discipline, the enforced model roster, provider/settings interaction, CLEAR prompt-quality checks, and paired Pi tool-event delivery for the sk-git advisory. Successful provider-backed model turns remain an explicit execution boundary when credentials are absent; `PI-020` (2026-07-28) live-traces the session-lifecycle extension bridges on a machine with authenticated providers. `PI-021` (2026-07-29) live-validates the cross-runtime goal hook's input-transform injection and turn-end verify against the free offline model, needing no provider credential, and honestly records where a single-shot capture did not confirm the documented `session_start` restore.
+Coverage note (2026-08-10): the package covers Pi version/help, settings, extension lifecycle, dispatch controls, providers, prompt quality, and goal isolation. `PI-021` validates the native registered `/goal-pi` command, two-session scoped state, lifecycle identity binding, resume/new-session behavior, explicit legacy migration, and disabled fallback. Native commands short-circuit before a model turn, so the core isolation proof does not require provider credentials.
 
 ### Realistic Test Model
 
@@ -255,9 +255,9 @@ This category applies the canonical CLEAR card before a non-trivial Pi dispatch 
 
 ## 15. GOAL HOOK (`PI-021`)
 
-This category validates the runtime-neutral cross-runtime goal hook (`.opencode/hooks/goal/`) under Pi: the `input`-transform injection onto the operator-visible prompt, `turn_end` heuristic verify and turn recording, the shared `bin/goal.cjs` manage-CLI envelope, prompt-injection hardening, and `MK_GOAL_STATE_DIR` isolation. It needs no provider credential because the offline free model is sufficient, and it honestly records where a single-shot live capture did not confirm the documented `session_start` restore rather than assuming it passed.
+This category validates Pi's complete session-bound goal path: native `/goal-pi` management, input/session-start/turn-end identity binding, two-session isolation, resume/new-session behavior, explicit legacy ownership, fallback safety, and `MK_GOAL_STATE_DIR` isolation.
 
-- `PI-021`: [Cross-runtime goal hook: input injection, turn-end verify, manage CLI, hardening](goal-hook/goal-hook.md)
+- `PI-021`: [Session-isolated goal hook and native command](goal-hook/goal-hook.md)
 
 ---
 
@@ -269,7 +269,7 @@ This category validates that the Pi extension carries the shared sk-git advisory
 
 ## 17. CURRENT EXECUTION BOUNDARIES
 
-The current worktree has no provider credential, so a successful model turn cannot be claimed from the captured probes. Pi also attempted to create locks below the real `~/.pi/agent/` path when invoked without isolation; the sandbox denied those writes with `EPERM`. Future operators must use `PI_CODING_AGENT_DIR` pointed at a disposable directory and must not weaken the global-config safety boundary. Static discovery, schema, settings, extension-load, and allowlist checks remain independently executable. `PI-021`'s primary checks (input injection, turn-end verify, manage CLI, hardening, isolation) do not need a provider credential at all, since the goal hook's live probe uses Pi's free offline model; only its `session_start` restore sub-check remains an open boundary, tracked as a SKIP in that scenario file rather than an assumed PASS.
+Provider-backed model turns remain an explicit boundary when credentials are absent. Goal isolation does not depend on that boundary: `/goal-pi` is a registered extension command, and the A/B lifecycle matrix runs against fake native contexts plus explicit-load command canaries. Operators must still isolate `PI_CODING_AGENT_DIR`, session directories, and `MK_GOAL_STATE_DIR` for live probes.
 
 ---
 
@@ -285,11 +285,11 @@ The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community
 | `.opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs` | Project agent translation and sync checking | `PI-009`, `PI-010` |
 | `.pi/extensions/*.ts` and the installed Pi extension declarations | Extension factories, event registration, guard-core, session-lifecycle bridge behavior, and paired advisory delivery | `PI-014`, `PI-015`, `PI-016`, `PI-020`, `PI-022` |
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Pi model allowlist and default | `PI-017` |
-| `.opencode/hooks/goal/pi/goal-pi.test.mjs` | Render selection, heuristic verifier, factory registration shape, fail-open contracts for the Pi goal-hook adapter | `PI-021` |
-| `.opencode/hooks/goal/lib/goal-core.test.cjs` | Shared cross-runtime goal-core state I/O, rendering, and hardening | `PI-021` |
+| `.opencode/hooks/goal/pi/goal-pi.test.mjs` | Native command, A/B lifecycle, resume/new-id, turn-end isolation, and missing-identity contracts | `PI-021` |
+| `.opencode/hooks/goal/lib/goal-core.test.cjs` | Session-scoped state, legacy quarantine, rendering, and hardening | `PI-021` |
 | `.opencode/skills/sk-doc/shared/scripts/validate_document.py` | Root markdown structure validation | This root playbook |
 
-There is no substitute automated test for a provider-backed Pi model turn, recursive skill enumeration, trust persistence, a real global/project collision test, or a live `session_start` restore delivery through Pi's real extension loader. Those gaps are explicit in the relevant scenario files.
+There is no substitute automated test for a provider-backed Pi model turn, recursive skill enumeration, trust persistence, or a real global/project collision test. Goal binding separately requires an explicit-load native command canary and the automated lifecycle matrix.
 
 ---
 
@@ -345,4 +345,4 @@ There is no substitute automated test for a provider-backed Pi model turn, recur
 
 ### GOAL HOOK
 
-- PI-021: [Cross-runtime goal hook: input injection, turn-end verify, manage CLI, hardening](goal-hook/goal-hook.md)
+- PI-021: [Session-isolated goal hook and native command](goal-hook/goal-hook.md)

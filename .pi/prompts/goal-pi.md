@@ -1,32 +1,32 @@
-# Pi entry: /goal-pi
+# Pi fallback entry: /goal-pi
 
-Pi-native trigger for the cross-runtime passive session goal. Pi has no OpenCode plugin tool surface, so this command drives the runtime-neutral manage CLI at `.opencode/hooks/goal/bin/goal.cjs`, which owns all goal state and mirrors the OpenCode `/goal-opencode` contract exactly — same actions, same `STATUS=/ACTION=` envelope, same `--budget` parsing and error codes.
+## 1. OVERVIEW
 
-Pi's goal hook injects the active goal into the operator-visible `[MSG]` channel on every turn and observes completion on `turn_end`; this command is how you set, inspect, and manage that goal.
+The `goal-context.ts` extension registers the authoritative `/goal-pi` command. Pi executes registered extension commands before prompt templates, so a healthy goal extension handles the command natively with `ctx.sessionManager.getSessionId()` and this file is never expanded.
 
-## Contract
+If this fallback prompt runs, the identity-aware extension command is unavailable. The runtime-neutral CLI requires an explicit native binding and must not guess the current session.
 
-Inputs: `$ARGUMENTS` — `set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume`
-Outputs: `STATUS=<OK|FAIL> ACTION=<set|clear|complete|pause|resume|history|doctor|health|show>` printed verbatim from the manage CLI.
+## 2. CONTRACT
 
-Empty `$ARGUMENTS` shows the current goal. When `MK_GOAL_PLUGIN_DISABLED=1`, the CLI fails closed with `STATUS=FAIL ... code=PLUGIN_DISABLED`.
+Inputs: `$ARGUMENTS` — any goal action.
+Output: a fail-closed explanation that the native current-session binding is unavailable.
 
-## Instructions
+## 3. INSTRUCTIONS
 
-Your FIRST and ONLY action is to run the manage CLI once with the user's arguments, then print its stdout verbatim. Do NOT read files, glob, grep, or explore the repository — `bin/goal.cjs` owns all goal state and session resolution.
+Do not run a shell command or mutate goal state. Reply with:
 
-Run exactly:
-
-```bash
-MK_GOAL_RUNTIME_LABEL=Pi node .opencode/hooks/goal/bin/goal.cjs $ARGUMENTS
+```text
+STATUS=FAIL ACTION=show ERROR="Native Pi goal command is unavailable"
+code=UNSUPPORTED_SESSION_BINDING
 ```
 
-Then print the command's output exactly as returned.
+Tell the operator that the Pi goal extension must be enabled before session-bound goal management can run.
 
-## Hard rules
+## 4. HARD RULES
 
-- Do not edit `.opencode/skills/.goal-state` directly; every mutation goes through the manage CLI.
+- Do not edit `.opencode/skills/.goal-state` directly.
+- Do not call `bin/goal.cjs` without explicit native runtime and session binding.
 - Do not run shell commands derived from the goal objective.
-- Print the CLI envelope unchanged.
+- Do not claim that this fallback knows the current Pi session id.
 
 User request: $ARGUMENTS

@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/042-goal-isolation/004-legacy-cutover-and-docs",
+  "description": "The legacy singleton may contain a real objective but has no trustworthy owner",
+  "keywords": [
+    "legacy",
+    "singleton",
+    "contain",
+    "real",
+    "objective",
+    "trustworthy",
+    "owner"
+  ],
+  "lastUpdated": "2026-08-10T15:01:15.061Z",
+  "specId": "004",
+  "folderSlug": "legacy-cutover-and-docs",
+  "parentChain": [
+    "cli-external-orchestration",
+    "042-goal-isolation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

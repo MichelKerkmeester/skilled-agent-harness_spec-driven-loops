@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/042-goal-isolation/002-session-scoped-core",
+  "description": "Completed session-scoped goal persistence, explicit CLI binding, and isolation regression coverage.",
+  "keywords": [
+    "completed",
+    "session-scoped",
+    "goal",
+    "persistence",
+    "explicit",
+    "cli",
+    "binding",
+    "isolation",
+    "regression",
+    "coverage"
+  ],
+  "lastUpdated": "2026-08-10T14:14:05.707Z",
+  "specId": "002",
+  "folderSlug": "session-scoped-core",
+  "parentChain": [
+    "cli-external-orchestration",
+    "042-goal-isolation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

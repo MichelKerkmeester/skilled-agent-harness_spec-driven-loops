@@ -9,7 +9,7 @@
 // runtime carries only its own. OpenCode reads .opencode/commands/goal-opencode.md
 // natively (and Claude whole-dir-symlinks that tree, so it sees the same file),
 // while Cursor and Pi each own a hand-authored, runtime-native command that drives
-// the shared bin/goal.cjs manage CLI. Codex and Devin have no goal command.
+// the shared bin/goal.cjs manage CLI. Codex has no goal command.
 //
 // The mirror generators consult these two lists so they neither cross-copy the
 // OpenCode command outward nor prune a runtime's own native command as drift.

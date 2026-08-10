@@ -14,7 +14,7 @@ import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -24,6 +24,7 @@ const core = require('../lib/goal-core.cjs');
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const HOOK_PATH = join(__dirname, 'goal-inject.mjs');
+const COMMAND_PATH = join(__dirname, '..', '..', '..', '..', '.cursor', 'commands', 'goal-cursor.md');
 const STDIN_PAYLOAD = JSON.stringify({ session_id: 'test-session', workspace_roots: ['/tmp/does-not-matter'] });
 
 let stateDir;
@@ -36,8 +37,11 @@ afterEach(() => {
   rmSync(stateDir, { recursive: true, force: true });
 });
 
-function opts() {
-  return { stateDir };
+function opts(sessionId = 'test-session', runtime = 'cursor') {
+  return {
+    stateDir,
+    scope: { workspace: '/tmp/does-not-matter', runtime, sessionId },
+  };
 }
 
 function runHook(input, envOverrides = {}) {
@@ -84,6 +88,35 @@ test('records a turn touch when injecting an active goal', () => {
   assert.equal(record.runtime, 'cursor');
 });
 
+test('two Cursor sessions inject only their own active goal', () => {
+  core.setGoal({ objective: 'Cursor goal A' }, opts('session-a'));
+  core.setGoal({ objective: 'Cursor goal B' }, opts('session-b'));
+
+  const responseA = JSON.parse(runHook(JSON.stringify({
+    session_id: 'session-a',
+    workspace_roots: ['/tmp/does-not-matter'],
+  })).stdout);
+  const responseB = JSON.parse(runHook(JSON.stringify({
+    session_id: 'session-b',
+    workspace_roots: ['/tmp/does-not-matter'],
+  })).stdout);
+
+  assert.match(responseA.agent_message, /objective: Cursor goal A/);
+  assert.doesNotMatch(responseA.agent_message, /Cursor goal B/);
+  assert.match(responseB.agent_message, /objective: Cursor goal B/);
+  assert.doesNotMatch(responseB.agent_message, /Cursor goal A/);
+});
+
+test('conversation_id is the supported fallback when session_id is absent', () => {
+  core.setGoal({ objective: 'Conversation fallback goal' }, opts('conversation-a'));
+  const payload = JSON.stringify({
+    conversation_id: 'conversation-a',
+    workspace_roots: ['/tmp/does-not-matter'],
+  });
+  const response = JSON.parse(runHook(payload).stdout);
+  assert.match(response.agent_message, /objective: Conversation fallback goal/);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // NO-OP CASES: none / paused / disabled
 // ─────────────────────────────────────────────────────────────────────────────
@@ -93,6 +126,21 @@ test('no-op when no goal is set', () => {
   assert.equal(status, 0);
   const response = JSON.parse(stdout);
   assert.deepEqual(response, { permission: 'allow' });
+});
+
+test('legacy-only state never injects into a Cursor session', () => {
+  const legacyPath = join(stateDir, 'active-goal.json');
+  const legacyBytes = JSON.stringify({
+    goalId: 'goal-cursor-legacy',
+    objective: 'Legacy must stay quarantined',
+    status: 'active',
+  });
+  require('node:fs').writeFileSync(legacyPath, legacyBytes, { mode: 0o600 });
+
+  const { stdout, status } = runHook(STDIN_PAYLOAD);
+  assert.equal(status, 0);
+  assert.deepEqual(JSON.parse(stdout), { permission: 'allow' });
+  assert.equal(readFileSync(legacyPath, 'utf8'), legacyBytes);
 });
 
 test('no-op when the active goal is paused', () => {
@@ -142,23 +190,27 @@ test('fails open on empty stdin', () => {
   assert.deepEqual(response, { permission: 'allow' });
 });
 
-test('fails open on a JSON payload missing every expected field', () => {
+test('missing Cursor identity fails open without selecting a goal', () => {
   core.setGoal({ objective: 'Ship the widget', runtime: 'cursor' }, opts());
   const { stdout, status } = runHook('{}');
   assert.equal(status, 0);
   const response = JSON.parse(stdout);
-  assert.equal(response.permission, 'allow');
-  // workspace_roots absent -> falls back to process.cwd(); MK_GOAL_STATE_DIR
-  // still resolves the same isolated state dir, so this still injects.
-  assert.ok(typeof response.agent_message === 'string');
+  assert.deepEqual(response, { permission: 'allow' });
 });
 
 test('fails open (never throws) when the shared state file is corrupt JSON', () => {
   core.setGoal({ objective: 'Ship the widget', runtime: 'cursor' }, opts());
-  const statePath = core.statePath(core.resolveStateDir(opts()));
+  const statePath = core.resolveGoalScope(opts()).statePath;
   require('node:fs').writeFileSync(statePath, '{not valid json', 'utf8');
   const { stdout, status } = runHook(STDIN_PAYLOAD);
   assert.equal(status, 0);
   const response = JSON.parse(stdout);
   assert.deepEqual(response, { permission: 'allow' });
+});
+
+test('the Cursor command is fail-closed and never invokes the unbound manage CLI', () => {
+  const command = readFileSync(COMMAND_PATH, 'utf8');
+  assert.match(command, /code=UNSUPPORTED_SESSION_BINDING/);
+  assert.doesNotMatch(command, /MK_GOAL_RUNTIME_LABEL=/);
+  assert.doesNotMatch(command, /node\s+\.opencode\/hooks\/goal\/bin\/goal\.cjs/);
 });

@@ -115,7 +115,7 @@ directive: Continue toward this objective. Before ending, run the goal verifier 
 ```
 
 - **Trigger per runtime:** Cursor `sessionStart` only (its `beforeSubmitPrompt` never delivers, `stop` never fires); Pi `input` (every turn, operator-visible transform) + `session_start` (restore) + `turn_end` (verify + `recordTurn`).
-- **Owning modules:** the shared core `.opencode/hooks/goal/lib/goal-core.cjs` plus the per-runtime adapters under `.opencode/hooks/goal/{cursor,pi}/`, all reading one shared `.opencode/skills/.goal-state/active-goal.json`.
+- **Owning modules:** the shared core `.opencode/hooks/goal/lib/goal-core.cjs` plus the per-runtime adapters under `.opencode/hooks/goal/{cursor,pi}/`. Each read resolves workspace, runtime, and native session id to an opaque per-session state file. The legacy `active-goal.json` is never an injection fallback.
 - **Channel per runtime:** Cursor `[SYS]` (`sessionStart` `agent_message`). Pi `[MSG]` — its `input`-event transform appends the block onto the visible prompt, the one runtime where the operator sees the active-goal text themselves (same mechanism as the advisor brief and Gate-3 question, and they chain additively). The `usage:` token count is honestly `n/a` outside OpenCode (turn count is the accounting primitive; `usageSource` is always `turn-count-estimate`).
 
 ---

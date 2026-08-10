@@ -7,7 +7,7 @@
 
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
-const { mkdir, mkdtemp, readFile, readdir, rm, utimes, writeFile } = require('node:fs/promises');
+const { mkdir, mkdtemp, readFile, readdir, rename, rm, utimes, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
 const { dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
@@ -891,6 +891,35 @@ test('session.deleted archives an existing goal file exactly', async () => withS
   assert.deepEqual(JSON.parse(archiveTargetRaw), JSON.parse(archiveSourceRaw));
 }));
 
+test('history migrates a legacy archive and reports an occupied duplicate exactly once', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const sessionID = 'session-legacy-archive';
+  const archivePlugin = await pluginModule.default({}, { stateDir });
+  await helpers.setGoal(sessionID, 'Keep legacy archive history available', {
+    stateDir,
+    nowMs: 1200,
+    goalIdFactory: () => 'legacy-archive-goal',
+  });
+  await archivePlugin.event({ event: nativeSessionEvent('session.deleted', sessionID) });
+
+  const archiveDir = join(stateDir, '.archive');
+  const digestArchivePath = join(archiveDir, `${helpers.sessionKeyForSession(sessionID)}.json`);
+  const legacyArchivePath = join(archiveDir, `${Buffer.from(sessionID, 'utf8').toString('hex')}.json`);
+  await rename(digestArchivePath, legacyArchivePath);
+  const legacyRaw = await readFile(legacyArchivePath, 'utf8');
+
+  let history = await archivePlugin.tool.mk_goal.execute({ action: 'history' }, {});
+  assert.match(history, /archive_count=1/);
+  assert.match(history, /archive_0_goal_id="legacy-archive-goal"/);
+  assert.match(history, new RegExp(`archive_0_file="${helpers.sessionKeyForSession(sessionID)}\\.json"`));
+  assert.equal(await readFile(digestArchivePath, 'utf8'), legacyRaw);
+  assert.equal(await fileExists(legacyArchivePath), false);
+
+  await writeFile(legacyArchivePath, legacyRaw, 'utf8');
+  history = await archivePlugin.tool.mk_goal.execute({ action: 'history' }, {});
+  assert.match(history, /archive_count=1/);
+  assert.equal(await fileExists(legacyArchivePath), true);
+}));
+
 test('session deletion archive failures preserve active state and write an event error', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const plugin = await pluginModule.default({}, { stateDir, nowMs: 1000 });
   await helpers.setGoal('session-archive-failure', 'Preserve state when archive fails', {
@@ -1064,8 +1093,10 @@ test('orphan sweep archives stale active files and keeps recent files', async ()
     createdAtMs: staleUpdatedAtMs,
     updatedAtMs: staleUpdatedAtMs,
   }), 'utf8');
+  const staleLegacyPath = join(stateDir, `${Buffer.from(staleSessionID, 'utf8').toString('hex')}.json`);
+  await rename(staleActivePath, staleLegacyPath);
   const staleActiveDate = new Date(staleUpdatedAtMs);
-  await utimes(staleActivePath, staleActiveDate, staleActiveDate);
+  await utimes(staleLegacyPath, staleActiveDate, staleActiveDate);
   await writeFile(recentActivePath, JSON.stringify({
     sessionId: recentSessionID,
     goalId: 'orphan-recent-goal',
@@ -1082,6 +1113,7 @@ test('orphan sweep archives stale active files and keeps recent files', async ()
     },
   });
   assert.equal(await fileExists(staleActivePath), false);
+  assert.equal(await fileExists(staleLegacyPath), false);
   assert.equal(await fileExists(staleArchivePath), true);
   assert.equal(await fileExists(recentActivePath), true);
 }));

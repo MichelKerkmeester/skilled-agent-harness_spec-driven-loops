@@ -6,8 +6,9 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const { createHash } = require('node:crypto');
 const { test } = require('node:test');
-const { mkdtemp, readFile, readdir, rm, writeFile } = require('node:fs/promises');
+const { mkdtemp, readFile, readdir, rename, rm, writeFile } = require('node:fs/promises');
 const { tmpdir } = require('node:os');
 const { dirname, join } = require('node:path');
 const { pathToFileURL } = require('node:url');
@@ -46,6 +47,24 @@ async function readGoalEventEntries(directory) {
     if (error?.code === 'ENOENT') return [];
     throw error;
   }
+}
+
+async function fileExists(path) {
+  try {
+    await readFile(path, 'utf8');
+    return true;
+  } catch (error) {
+    if (error?.code === 'ENOENT') return false;
+    throw error;
+  }
+}
+
+function digestSessionKey(sessionID) {
+  return createHash('sha256').update(sessionID, 'utf8').digest('hex');
+}
+
+function legacySessionPath(stateDir, sessionID) {
+  return join(stateDir, `${Buffer.from(sessionID, 'utf8').toString('hex')}.json`);
 }
 
 async function createToolSession(plugin, stateDir) {
@@ -125,6 +144,93 @@ test('different sessions persist to isolated state paths', async () => withState
   );
 }));
 
+test('session keys are fixed-length opaque digests and long ids remain persistable', async () => withState(async ({ helpers, stateDir }) => {
+  const longSessionID = `session-${'s'.repeat(140)}`;
+  const sessionKey = helpers.sessionKeyForSession(longSessionID);
+  assert.equal(sessionKey, digestSessionKey(longSessionID));
+  assert.match(sessionKey, /^[0-9a-f]{64}$/);
+  assert.equal(sessionKey.length, 64);
+  assert.doesNotMatch(sessionKey, new RegExp(longSessionID.slice(0, 24)));
+  assert.notEqual(Buffer.from(sessionKey, 'hex').toString('utf8'), longSessionID);
+  assert.notEqual(helpers.sessionKeyForSession('session-é'), helpers.sessionKeyForSession('session-e'));
+  assert.equal(helpers.sessionKeyForSession('会話-session'), digestSessionKey('会話-session'));
+
+  const goal = await helpers.setGoal(longSessionID, 'Persist a goal for a long native session id', {
+    stateDir,
+    nowMs: 3200,
+    goalIdFactory: () => 'long-session-goal',
+  });
+  assert.equal(goal.goalId, 'long-session-goal');
+  assert.equal((await helpers.readGoal(longSessionID, { stateDir })).goalId, 'long-session-goal');
+  assert.equal(helpers.goalPathForSession(longSessionID, { stateDir }), join(stateDir, `${sessionKey}.json`));
+}));
+
+test('valid legacy active state migrates byte-for-byte to the digest path', async () => withState(async ({ helpers, stateDir }) => {
+  const sessionID = 'session-legacy-active';
+  await helpers.setGoal(sessionID, 'Migrate legacy active state', {
+    stateDir,
+    nowMs: 3300,
+    goalIdFactory: () => 'legacy-active-goal',
+  });
+  const digestPath = join(stateDir, `${digestSessionKey(sessionID)}.json`);
+  const legacyPath = legacySessionPath(stateDir, sessionID);
+  const currentPath = helpers.goalPathForSession(sessionID, { stateDir });
+  if (currentPath !== legacyPath) await rename(currentPath, legacyPath);
+  const legacyRaw = await readFile(legacyPath, 'utf8');
+
+  const migrated = await helpers.readGoal(sessionID, { stateDir });
+  assert.equal(migrated.goalId, 'legacy-active-goal');
+  assert.equal(await readFile(digestPath, 'utf8'), legacyRaw);
+  assert.equal(await fileExists(legacyPath), false);
+}));
+
+test('occupied digest targets win without deleting conflicting legacy state', async () => withState(async ({ helpers, stateDir }) => {
+  const sessionID = 'session-legacy-conflict';
+  const targetGoal = await helpers.setGoal(sessionID, 'Keep the digest target authoritative', {
+    stateDir,
+    nowMs: 3400,
+    goalIdFactory: () => 'digest-target-goal',
+  });
+  const legacyPath = legacySessionPath(stateDir, sessionID);
+  await writeFile(legacyPath, `${JSON.stringify({
+    ...targetGoal,
+    goalId: 'legacy-source-goal',
+    objective: 'Preserve this conflicting legacy source',
+  }, null, 2)}\n`, 'utf8');
+
+  const selected = await helpers.readGoal(sessionID, { stateDir });
+  assert.equal(selected.goalId, 'digest-target-goal');
+  assert.equal(await fileExists(legacyPath), true);
+  assert.match(await readFile(legacyPath, 'utf8'), /legacy-source-goal/);
+}));
+
+test('malformed and mismatched legacy state fail closed without deleting the source', async () => withState(async ({ helpers, stateDir }) => {
+  const malformedSessionID = 'session-legacy-malformed';
+  const malformedPath = legacySessionPath(stateDir, malformedSessionID);
+  await writeFile(malformedPath, '{ invalid json', 'utf8');
+  await assert.rejects(
+    helpers.readGoal(malformedSessionID, { stateDir }),
+    { code: 'READ_GOAL_FAILED' },
+  );
+  assert.equal(await readFile(malformedPath, 'utf8'), '{ invalid json');
+
+  const mismatchedSessionID = 'session-legacy-mismatch';
+  const mismatchedPath = legacySessionPath(stateDir, mismatchedSessionID);
+  await writeFile(mismatchedPath, `${JSON.stringify({
+    sessionId: 'another-session',
+    goalId: 'mismatched-legacy-goal',
+    objective: 'Do not adopt mismatched state',
+    status: 'active',
+    createdAtMs: 3500,
+    updatedAtMs: 3500,
+  })}\n`, 'utf8');
+  await assert.rejects(
+    helpers.readGoal(mismatchedSessionID, { stateDir }),
+    { code: 'INVALID_GOAL_STATE' },
+  );
+  assert.equal(await fileExists(mismatchedPath), true);
+}));
+
 test('stored goals drop unknown fields and reject non-numeric token budgets', async () => withState(async ({ helpers, stateDir }) => {
   const whitelistGoal = await helpers.setGoal('session-whitelist', 'Drop unknown stored fields', {
     stateDir,
@@ -197,9 +303,9 @@ test('tool calls without session id fail closed without writing new goals', asyn
   assert.match(missingSessionSet, /STATUS=FAIL/);
   assert.match(missingSessionSet, /code=MISSING_SESSION_ID/);
   assert.deepEqual((await readdir(stateDir)).filter((entry) => entry.endsWith('.json')).sort(), [
-    '73657373696f6e2d61.json',
-    '73657373696f6e2d62.json',
-  ]);
+    `${helpers.sessionKeyForSession('session-a')}.json`,
+    `${helpers.sessionKeyForSession('session-b')}.json`,
+  ].sort());
 
   const missingSessionShow = await plugin.tool.mk_goal_status.execute({}, {});
   assert.match(missingSessionShow, /STATUS=FAIL/);
@@ -254,6 +360,26 @@ test('appendGoalBrief caches present and missing goal lookups', async () => with
   cacheMetrics.briefReadFile = 0;
   await cachedPlugin['experimental.chat.system.transform']({ sessionID: 'missing-cache-session' }, { system: [] });
   assert.equal(cacheMetrics.briefReadFile || 0, 0);
+}));
+
+test('system transform adopts legacy active state before caching the goal brief', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const sessionID = 'session-legacy-transform';
+  await helpers.setGoal(sessionID, 'Inject a legacy goal after migration', {
+    stateDir,
+    nowMs: 4100,
+    goalIdFactory: () => 'legacy-transform-goal',
+  });
+  const digestPath = helpers.goalPathForSession(sessionID, { stateDir });
+  const legacyPath = legacySessionPath(stateDir, sessionID);
+  await rename(digestPath, legacyPath);
+
+  const plugin = await pluginModule.default({}, { stateDir });
+  const output = { system: [] };
+  await plugin['experimental.chat.system.transform']({ sessionID }, output);
+  assert.equal(output.system.length, 1);
+  assert.match(output.system[0], /\[active_goal:legacy-transform-goal\]/);
+  assert.equal(await fileExists(digestPath), true);
+  assert.equal(await fileExists(legacyPath), false);
 }));
 
 test('goal brief cache bounds missing sessions and clears on disposal', async () => {

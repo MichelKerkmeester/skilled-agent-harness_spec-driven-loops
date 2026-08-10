@@ -643,9 +643,9 @@ There is no automated coverage for default-invocation, execution-mode, approval/
 
 ## 17. GOAL HOOK (`CU-027`)
 
-This category covers the runtime-neutral cross-runtime goal core (`.opencode/hooks/goal/`, packet `032-goal-hooks-cross-runtime`) for Cursor's single `sessionStart` adapter (`cursor/goal-inject.mjs`), honestly scoped to the recorded-evidence tier this runtime actually supports: the hook fires and forwards `agent_message`, but delivery into the model-visible transcript is confirmed non-occurring, matching the non-delivery pattern already documented for `beforeSubmitPrompt`/`stop` in `CU-014`.
+This category covers Cursor's session-bound `sessionStart` adapter. It proves A/B identity isolation, `conversation_id` fallback, missing-id and legacy-only no-op behavior, registration truth, and the fail-closed management boundary. Adapter output is evidence of hook behavior, not a blanket model-visibility claim for every Cursor client build.
 
-- CU-027: [Cross-runtime goal hook (sessionStart injection, recorded-evidence tier)](goal-hook/goal-hook.md)
+- CU-027: [Session-bound Cursor goal injection](goal-hook/goal-hook.md)
 
 ---
 

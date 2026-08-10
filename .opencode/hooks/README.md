@@ -21,7 +21,7 @@ trigger_phrases:
 
 `.opencode/hooks/` is the single home for every "hook" concept in the repo. Four concern folders (`dispatch/`, `mcp-route-guard/`, `post-edit-quality/`, `task-dispatch/`, plus their shared helper in `shared/`) hold AI-runtime lifecycle hooks that have no real dependency on the skill they used to live inside — each was originally nested under a domain skill's own tree (`cli-opencode/scripts/`, `mcp-code-mode/runtime/`, `sk-code/sk-code-quality/scripts/`, `system-deep-loop/runtime/lib/deep-loop/`). Moving them out means a user can adopt or remove the enforcement layer independently of the skill's own knowledge and reference content.
 
-A further AI-runtime concern, [`goal/`](./goal/README.md), is not a relocation but a new cross-runtime sibling of the OpenCode `mk-goal` plugin: it ports passive session-goal tracking (per-turn goal-brief injection, prompt-injection hardening, a heuristic verifier) to Cursor and Pi through one shared active-goal state file plus a manage CLI, while OpenCode keeps using `mk-goal` directly.
+A further AI-runtime concern, [`goal/`](./goal/README.md), is a cross-runtime sibling of the OpenCode `mk-goal` plugin. It provides session-scoped passive goal tracking for Pi and Cursor through native session identity, opaque per-session state, prompt-injection hardening, a heuristic verifier, and an explicitly bound manage CLI. OpenCode keeps using `mk-goal` directly.
 
 A fifth folder, [`git/`](./git/README.md), holds the git commit-hooks installer (the pre-commit gate) — an unrelated concept from the four AI-runtime concerns above, nested here only because both are "hooks" in the everyday sense and the operator wanted one unified tree rather than two similarly-named sibling directories (`hooks/` and `runtime-hooks/`). **`git/pre-commit` is not standalone**: the repo's real, installed `.git/hooks/pre-commit` is `.opencode/scripts/git-hooks/pre-commit`, which chain-calls `git/pre-commit` by path as its comment-hygiene sub-gate. See [`git/README.md`](./git/README.md) for that installer's own contract, and [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
 
@@ -84,7 +84,7 @@ hooks/
 |   `-- opencode/ mk-deep-loop-guard.js (browsability symlink -> ../../../plugins/)
 `-- goal/                            # cross-runtime passive session-goal tracking (sibling of mk-goal)
     +-- lib/goal-core.cjs, goal-core.test.cjs
-    +-- bin/goal.cjs                 # manage CLI: set/show/history/doctor/clear/complete/pause/resume
+    +-- bin/goal.cjs                 # scoped management, diagnostics, and explicit legacy quarantine
     +-- cursor/   goal-inject.mjs
     +-- pi/       goal-context.ts (symlinked from .pi/extensions/)
     `-- opencode/ mk-goal.js (browsability symlink -> ../../../plugins/)
