@@ -99,7 +99,7 @@ Every authority is a plug-in that implements the same three methods, so the loop
 - `standardSource(authority)`: resolve that authority's own templates, validators, standards doc and known-deviation list.
 - `check(artifact, rules)`: check one artifact against the standard and return findings.
 
-The adapter inventory is authoritative in [`scripts/scoping.cjs`](./scripts/scoping.cjs): six variants currently ship, including `sk-doc-command` and `sk-design-live-render`. A new authority registers by adding one entry to `AUTHORITY_ARTIFACT_CLASSES` and `AUTHORITY_ADAPTERS` and shipping one adapter. No change to the loop, the scoping tree or the discover contract is required.
+The adapter inventory is authoritative in [`scripts/scoping.cjs`](./scripts/scoping.cjs): five variants currently ship, including the `sk-doc-command` peer adapter. A new authority registers by adding one entry to `AUTHORITY_ARTIFACT_CLASSES` and `AUTHORITY_ADAPTERS` and shipping one adapter. No change to the loop, the scoping tree or the discover contract is required.
 
 ### The Four Invariants
 
@@ -221,7 +221,7 @@ The skill ships two validation packages.
 
 ### Feature Catalog
 
-The `feature-catalog/` inventories 21 features across four categories: lane resolution (5), the adapter contract (8), loop lifecycle (4) and the alignment contract (4). Each entry documents a description, how it works and the source files that implement it.
+The `feature-catalog/` inventories 20 features across four categories: lane resolution (5), the adapter contract (7), loop lifecycle (4) and the alignment contract (4). Each entry documents a description, how it works and the source files that implement it.
 
 The state-machine wiring ships its own test that pins the state-to-script contract:
 
@@ -231,7 +231,7 @@ node .opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machin
 
 ### Manual Testing Playbook
 
-The `manual-testing-playbook/` runs 31 deterministic scenarios across 8 categories:
+The `manual-testing-playbook/` runs 30 deterministic scenarios across 8 categories:
 
 - Entry points and modes
 - Lane resolution and scoping
@@ -267,7 +267,6 @@ Expected output: zero blocking errors.
 | [`references/adapters/sk-git-adapter.md`](./references/adapters/sk-git-adapter.md) | The sk-git adapter specification |
 | [`references/adapters/sk-design-adapter.md`](./references/adapters/sk-design-adapter.md) | The sk-design adapter specification |
 | [`references/adapters/sk-code-adapter.md`](./references/adapters/sk-code-adapter.md) | The sk-code adapter specification |
-| [`references/adapters/sk-design-live-render-adapter.md`](./references/adapters/sk-design-live-render-adapter.md) | The sk-design live-render adapter specification |
 | [`references/adapters/sk-doc-known-deviations.md`](./references/adapters/sk-doc-known-deviations.md) | Per-authority known-deviation suppression lists (also sk_git, sk_design, sk_code variants) |
 | [`scripts/scoping.cjs`](./scripts/scoping.cjs) | Lane resolution: `AUTHORITY_ARTIFACT_CLASSES`, `validateLane`, `resolveLanesFromConfig`/`FromSelections` |
 | [`scripts/check-convergence.cjs`](./scripts/check-convergence.cjs) | The coverage-AND-stability-AND-max-iterations CONVERGE decision |

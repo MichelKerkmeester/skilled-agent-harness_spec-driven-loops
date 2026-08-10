@@ -45,7 +45,6 @@ The current `.utcp_config.json` contains these ten manual names:
 | `figma` | Figma MCP |
 | `github` | GitHub MCP |
 | `gitkraken` | GitKraken MCP |
-| `open_design` | Open Design transport |
 | `refero` | Refero design-research transport |
 | `mobbin` | Mobbin design-research transport |
 

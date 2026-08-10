@@ -55,7 +55,7 @@ Extract the design system from https://example.com into /tmp/skd-PB003/DESIGN.md
 
 **Expected advisor behavior**: win. `sk-design` should be top-1 at confidence `>= 0.80`.
 
-**Expected tool surface**: mutating allowed only for `sk-design-md-generator`. The response must not imply `sk-design-interface` or `sk-design-mcp-open-design` can write extraction artifacts.
+**Expected tool surface**: mutating allowed only for `sk-design-md-generator`. The response must not imply `sk-design-interface` can write extraction artifacts.
 
 ---
 

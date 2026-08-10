@@ -61,7 +61,7 @@ One or more of the currently registered authorities, presented as a **multi-sele
 |---|---|---|
 | `sk-doc` | `docs` | Reference, most deterministic |
 | `sk-git` | `git-history` | Deterministic |
-| `sk-design` | `designs` (static only, live-render is phase 010's own authority slot) | Audit-rubric |
+| `sk-design` | `designs` (static only) | Audit-rubric |
 | `sk-code` | `code` | Hybrid (ADR-008), hardest, least deterministic |
 
 The set is **extensible**: a fifth authority registers by adding one entry to the `AUTHORITY_ARTIFACT_CLASSES` map in `scripts/scoping.cjs`, plus the short adapter decision-record ADR-012 requires. No change to this tree's shape is needed, only to the options it offers. In v1 each authority maps to exactly one artifact-class. The map itself supports an authority covering more than one class, and an artifact-class being covered by more than one authority, once a later authority actually needs that (the multi-select exists in this tree for that future case, not because v1 needs it: v1's per-class authority lists are always singletons).

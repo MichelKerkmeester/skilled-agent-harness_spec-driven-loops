@@ -7,57 +7,57 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/alignment.md",
-      "sha256": "457bac97ab47c1fda8c80c7b73f6554e0912dc21452ec26e54303b52712542d0",
+      "sha256": "08ea23626666097ec5e2956a3104191ee6a040cd232859d1e825eed6dd058831",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-alignment-presentation.txt",
-      "sha256": "bc0d2dcd6c50ab3eb3236b023dc26f8dbcc20d772cca31bd0dd2746c368e21b6",
+      "sha256": "060ee1c439f8191db8024fc788d7ebe6fb1fe7d1614a927607e7e6e789c407de",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "a6ffef6ce5c74d99e2f60a15226aeed32948a201c378eacaaeec1b189814e5e6",
+      "sha256": "d5ca47fd46e04117e305e95b33ba3cf47ff6afb92131bfb1980f4fee2990c260",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-alignment-auto.yaml",
-      "sha256": "0e93da1561791a4c8fb916700725118af693d9cad3926057f217f54774585e42",
+      "sha256": "bc3d281f78528efd079af9561c3a83fbc2f7004cef4c794a44690d4064d7fb33",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-alignment-confirm.yaml",
-      "sha256": "486d3a6797f0f88c71df1b06a33b6edf1b0db855bcc6a2b1aa822de84fe37fbd",
+      "sha256": "884cf16ef83276de8f7ace7af329d44cf5dda67a9992be30f1a9c378e22a0b05",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "a26e9ebd5a3a10f29ff56833420cc484de53fdc074b35d943214788f627d3b8e",
+      "sha256": "8b6e6ae055b03a7c7c4da9c85a74e6564b04a5e40bcd03212079077b3365ac6d",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "d2699da29e2b2cff0bdee7a3bab88bbdd346ffe71730b72152de21e0201bb21e",
+      "sha256": "dc4a50f8b78bc24008b1676f4a4e47521d42194a5b418ebb9a1e57e8b0aa30d9",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-      "sha256": "e6e69bfe1f47ebb7bea2b3dc29e05741aa858a89bbf0ca5ed3441ec2e0bddeaa",
+      "sha256": "516b662afca3f9f525a95650d202dee729a15defa0219e72d60582adebf3441b",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md",
-      "sha256": "963bfbf751b99b7bd4d485d69a3113ace20add2672b16cbd8d88f54829602162",
+      "sha256": "bc8d748466cd64c3c8c1094cdc1abe0fb7b3032253494f091ddf80491e1fdb25",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/references/discover-contract.md",
-      "sha256": "b5144530eee268133f464ae0182df521709a06e16ba9cab5c7519cc175385b8e",
+      "sha256": "2e2137da1e174d0ae9d58dcaaff73a1e0685574f69ea00502e36c84a4df12d7c",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/references/lane-config-schema.md",
-      "sha256": "bdb213c275fa28f41c66b6c68a15604c12fe0b6d6d7204d652e2ed5f8b0e1e49",
+      "sha256": "987facf2518b846b6cb20e99524b4ba46bd9991b3cae71cec832808237939821",
       "section": "full"
     },
     {
@@ -72,16 +72,16 @@
     },
     {
       "path": ".opencode/agents/deep-alignment.md",
-      "sha256": "0553a931cf89346904d053fbdf65fd58d67f6d4615c7af6d44bd479e83b3360d",
+      "sha256": "1dac7f8e54f41356495b9b9ff56b9dc74688e9c7f46c22aef5583c4348f7f6c4",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
-      "sha256": "3c801fbecbc5bb01a99a7578243a823b791368cc229966b930418cfb468500df",
+      "sha256": "8bb0a8d7cd4c37218ea9ad246eb9675e59fba897d13df8230ea2c4383a4faa9e",
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "1cc26549fdb1b398244429504dc2078df1d1d104aba9d0161177bec66c50cbca"
+  "compiledBodyDigest": "53b0b4585374f1db4c1da1f7fa2156c31ff939b94bec3e5c109f0e2104a436a6"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:alignment
@@ -285,7 +285,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q-Lanes. Lanes (required unless --lane-config was supplied): resolve one or more lanes over the
      three axes authority x artifactClass x scope, per
      `.opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md`.
-       authority   -- one of: sk-doc | sk-git | sk-design | sk-design-live-render | sk-code
+       authority   -- one of: sk-doc | sk-git | sk-design | sk-code
        artifactClass -- the class of artifact this lane audits (per the authority's adapter)
        scope       -- paths / globs, or a branch range for sk-git
      A lane is never guessed. Supply `--lane-config <file.json>` to resolve lanes non-interactively.

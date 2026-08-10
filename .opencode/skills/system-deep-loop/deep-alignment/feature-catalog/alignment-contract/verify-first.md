@@ -22,9 +22,7 @@ Pattern-matching alone is never sufficient grounds for a finding. This is the si
 
 ## 2. HOW IT WORKS
 
-The invariant expresses itself two ways across the adapters. In the deterministic sub-checks, the real tool is re-run on every `check()` call and never cached across invocations — sk-doc spawns `validate_document.py`/`extract_structure.py` live, sk-code re-runs `verify_alignment_drift.py`/the Webflow verifiers live, and sk-git re-fetches commit and branch state at check-time because `discover()` only ever returned a SHA, never a cached message. In the reasoning-agent sub-checks, the function never invents a finding: `checkRealityAlignment()` (sk-doc), `checkAuditRubric()` (sk-design), `checkPatternConformance()` (sk-code), and `checkJudgmentFindings()` (live-render) each translate only already-verified, caller-supplied contradictions into findings, and each drops any entry missing its required cited evidence — a reprobe result, a rubric dimension plus citation, or a `path:line`. No evidence in means no finding out.
-
-The live-render adapter takes this furthest: when it cannot obtain real render evidence it returns an explicit `render-unavailable`/`unavailable`-labelled finding rather than a fabricated pass, encoding "honest gap over assumed clean" as a first-class outcome.
+The invariant expresses itself two ways across the adapters. In the deterministic sub-checks, the real tool is re-run on every `check()` call and never cached across invocations — sk-doc spawns `validate_document.py`/`extract_structure.py` live, sk-code re-runs `verify_alignment_drift.py`/the Webflow verifiers live, and sk-git re-fetches commit and branch state at check-time because `discover()` only ever returned a SHA, never a cached message. In the reasoning-agent sub-checks, the function never invents a finding: `checkRealityAlignment()` (sk-doc), `checkAuditRubric()` (sk-design), and `checkPatternConformance()` (sk-code) each translate only already-verified, caller-supplied contradictions into findings, and each drops any entry missing its required cited evidence — a reprobe result, a rubric dimension plus citation, or a `path:line`. No evidence in means no finding out.
 
 **Difference from deep-review:** deep-review has an adversarial self-check that re-reads P0 blocker evidence before a FAIL is finalized — a strong but review-scoped guard on high-severity findings. deep-alignment applies verify-first to *every* finding at every severity, as a contract invariant the adapters are built around, because a conformance claim ("this drifts from authority X's standard") is only worth asserting if it survives a live re-probe against that authority's own tooling.
 
@@ -40,7 +38,6 @@ The live-render adapter takes this furthest: when it cannot obtain real render e
 | `scripts/adapters/sk-git.cjs` | Adapter | `checkCommit`/`checkBranch` re-fetch live git state at check-time (the clearest verify-first re-probe). |
 | `scripts/adapters/sk-doc.cjs` | Adapter | `checkRealityAlignment()` requires `reprobeEvidence` before emitting a `reality-drift` finding. |
 | `scripts/adapters/sk-code.cjs` | Adapter | `checkPatternConformance()` requires cited `path:line` evidence; `buildReasoningLayerDispatch()` prepares the re-probe. |
-| `scripts/adapters/sk-design-live-render.cjs` | Adapter | Returns an honest `unavailable`-labelled finding when live evidence cannot be obtained. |
 
 ### Validation And Tests
 

@@ -18,7 +18,7 @@ version: 1.0.0.1
 
 The static-only hybrid authority adapter that checks DESIGN.md structural conformance and tokens.json parse-validity against sk-design's Style Reference schema.
 
-`sk-design.cjs` reads files; it never renders, never invokes design-md-generator's Playwright extraction pipeline, and never drives chrome-devtools (NFR-S01). Live-render audits are a separate authority adapter. Its own `standardSource` tags it `hybrid` and `static-only-v1` (ADR-004/ADR-009).
+`sk-design.cjs` reads files; it never renders, invokes design-md-generator's Playwright extraction pipeline, or drives chrome-devtools. Its own `standardSource` tags it `hybrid` and `static-only-v1` so it cannot overstate static evidence as rendered-surface proof.
 
 ## 2. HOW IT WORKS
 
@@ -26,7 +26,7 @@ The static-only hybrid authority adapter that checks DESIGN.md structural confor
 
 Several regexes carry documented calibration from the adapter's own dry-run against real DESIGN.md files: the frequency-dump pattern was narrowed after a broader version false-positived on legitimate CSS-value prose, and the section-slicer is index-based after a lookahead version silently returned empty sections.
 
-**Difference from deep-review:** deep-review audits general code/doc correctness with no notion of a Style Reference schema. sk-design-adapter audits a DESIGN.md against sk-design's *own* `design-md-format.md` structure and cardinal rules, and stays strictly static — it does not render or measure a live surface, which is exactly the boundary the separate live-render adapter exists to cross.
+**Difference from deep-review:** deep-review audits general code/doc correctness with no notion of a Style Reference schema. sk-design-adapter audits a DESIGN.md against sk-design's *own* `design-md-format.md` structure and cardinal rules, and stays strictly static — it does not render or measure a live surface.
 
 ---
 
@@ -57,5 +57,4 @@ Several regexes carry documented calibration from the adapter's own dry-run agai
 - Primary sources: `scripts/adapters/sk-design.cjs`, `references/adapters/sk-design-adapter.md`, `references/adapters/sk-design-known-deviations.md`
 Related references:
 - [adapter-sk-git.md](../adapter-contract/adapter-sk-git.md) — sk-git adapter
-- [adapter-sk-design-live-render.md](../adapter-contract/adapter-sk-design-live-render.md) — sk-design live-render adapter
 - [check.md](check.md) — check(artifact, rules)

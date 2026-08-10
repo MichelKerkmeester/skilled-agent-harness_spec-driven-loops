@@ -2219,12 +2219,13 @@ if (require.main === module) {
     process.exit(3);
   }
 
+  const emitResourceMapOutput = Boolean(parsedArgs.emitResourceMap);
   try {
     const result = reduceReviewState(specFolder, {
       write: true,
       lenient: Boolean(parsedArgs.lenient),
       createMissingAnchors: Boolean(parsedArgs.createMissingAnchors),
-      emitResourceMap: Boolean(parsedArgs.emitResourceMap),
+      emitResourceMap: emitResourceMapOutput,
       artifactDir: parsedArgs.artifactDir,
     });
     process.stdout.write(

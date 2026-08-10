@@ -28,7 +28,7 @@ Private procedure card for applying the existing design-md-generator measured ex
 
 ## 2. TOOL BOUNDARY
 
-`sk-design-md-generator` is the only mutating sk-design mode. It may use its existing extraction pipeline when the mode contract permits. The card does not grant Write, Edit, or Bash to the read-only `sk-design-interface` mode or the `sk-design-mcp-open-design` transport.
+`sk-design-md-generator` is the only mutating sk-design mode. It may use its existing extraction pipeline when the mode contract permits. The card does not grant Write, Edit, or Bash to the read-only `sk-design-interface` mode.
 
 ## 3. PROCEDURE
 

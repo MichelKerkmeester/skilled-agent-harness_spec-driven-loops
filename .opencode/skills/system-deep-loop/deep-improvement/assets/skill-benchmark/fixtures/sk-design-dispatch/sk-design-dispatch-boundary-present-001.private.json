@@ -4,12 +4,18 @@
     "skillId": "sk-design",
     "mode": "sk-design-interface",
     "advisorLane": "sk-design",
-    "intentKeys": ["interface"],
-    "resources": ["sk-design-interface/SKILL.md"],
+    "intentKeys": [
+      "interface"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md"
+    ],
     "negativeActivation": false,
     "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-md-generator"
+    ],
     "minimalPairGroup": "sk-design-dispatch-boundary-proof",
     "requiresDesignBoundaryProof": true,
     "boundaryProof": {
@@ -18,7 +24,13 @@
     }
   },
   "rubric": {
-    "usefulnessChecks": ["routes the design prompt to the expected workflow mode", "retains a valid design boundary proof"],
-    "harmChecks": ["does not weaken the boundary envelope", "does not select a sibling workflow mode"]
+    "usefulnessChecks": [
+      "routes the design prompt to the expected workflow mode",
+      "retains a valid design boundary proof"
+    ],
+    "harmChecks": [
+      "does not weaken the boundary envelope",
+      "does not select a sibling workflow mode"
+    ]
   }
 }

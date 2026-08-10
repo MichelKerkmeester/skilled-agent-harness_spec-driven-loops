@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/015-deprecate-open-design",
+  "spec_folder": "sk-design/015-deprecate-open-design",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deprecate open design",
+      "remove mcp-open-design references",
+      "sk-design-mcp-open-design deprecation",
+      "open design transport removal"
+    ],
+    "key_topics": [
+      "deprecate",
+      "open",
+      "design",
+      "remove",
+      "mcp-open-design",
+      "references",
+      "sk-design-mcp-open-design",
+      "deprecation",
+      "transport",
+      "removal",
+      "skill",
+      "opendesign"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "checklist.md",
+      "review/review-report.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "review/deep-review-config.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-config.json",
+        "kind": "config",
+        "path": "review/deep-review-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Open Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sweep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Remnant Audit Remediation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Open Design transport (`sk-design-mcp-open-design` skill + `opendesign` MCP server registration in `.utcpconfig.json` + `od` CLI wiring) is being retired by operator decision",
+    "created_at": "2026-08-10T08:15:00Z",
+    "last_save_at": "2026-08-10T14:10:19.771Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0ea39651295cda3ee1c57446c4d9a6e6434f790392d2e23d52f366818d8a0ef2",
+    "source_doc_hashes": {
+      "spec.md": "c6c4d91584336fae26488f6a9d121c63c4a7ef98d2fed7478edea1070e9a722b",
+      "plan.md": "b0cf21168ec4c14b1ea187ca79497c0d8d5622a2483004082bfc67bc74fb0cb3",
+      "tasks.md": "174fb5521ffaa49d8342a258e1075012ce15efa0c69dbd22acb6886e10686447",
+      "checklist.md": "6ed573a9de5f4ebd3f39ad72622541738c6274d3c273bf1e1afabb64e815c547",
+      "decision-record.md": "4eafc4d59f203a3875ae3a7b14f66a1c5eec992c6378fc7a21fb157acaed0e9c",
+      "implementation-summary.md": "6aa65c51f04129574bd5e0051f2c2b2b08be3f8b2ef53a419822b858dc069e64"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

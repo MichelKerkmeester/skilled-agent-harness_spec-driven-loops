@@ -1,0 +1,39 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/015-deprecate-open-design",
+  "description": "Deprecate sk-design mcp-open-design transport skill and remove all live references",
+  "keywords": [
+    "deprecate",
+    "sk-design",
+    "mcp-open-design",
+    "transport",
+    "skill",
+    "remove",
+    "live",
+    "references"
+  ],
+  "lastUpdated": "2026-08-10T14:10:19.771Z",
+  "specId": "015",
+  "folderSlug": "deprecate-open-design",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 15,
+  "memoryNameHistory": [
+    "10-08-26_09-24__level-3-packet-authored-deep-review-of-mcp-open.md",
+    "10-08-26_11-52__deprecation-implemented-skill-tree-removed-all.md",
+    "10-08-26_12-07__deprecation-implemented-skill-tree-removed-all.md",
+    "10-08-26_12-07__deprecation-implemented-and-verified-skill-tree.md",
+    "10-08-26_12-08__deprecation-complete-skill-removed-references.md",
+    "10-08-26_12-11__deprecation-complete-and-verified-reducer-cli.md",
+    "10-08-26_12-14__deprecation-complete-skill-removed-references.md",
+    "10-08-26_12-20__deprecation-complete-checklist-fully-evidenced.md",
+    "10-08-26_12-20__deprecation-complete-checklist-evidenced-final.md",
+    "10-08-26_12-22__deprecation-complete-checklist-fully-evidenced.md",
+    "10-08-26_13-34__expanded-remnant-audit-fixed-stale-transport-and.md",
+    "10-08-26_13-36__expanded-remnant-audit-fixed-stale-transport-and.md",
+    "10-08-26_13-37__expanded-remnant-audit-fixed-stale-transport-and.md",
+    "10-08-26_15-08__finalized-the-verified-open-design-transport.md",
+    "10-08-26_15-10__finalized-the-verified-open-design-transport.md"
+  ]
+}

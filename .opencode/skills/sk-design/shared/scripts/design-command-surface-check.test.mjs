@@ -64,11 +64,9 @@ test("current live metadata and choreography assets pass", () => {
     [...allowedSiblingTokens].sort(),
     [
       "/interface:design",
-      "/interface:design-reference",
-      "design-mcp-open-design"
+      "/interface:design-reference"
     ]
   );
-  assert.equal(allowedSiblingTokens.has("/interface:design-mcp-open-design"), false);
   assert.equal(invalid.length, 0, invalid.join("\n"));
   assert.equal(drift.length, 0, JSON.stringify(drift, null, 2));
 });
@@ -89,17 +87,7 @@ test("mistyped real-command sibling fails exact-token validation", () => {
   );
 });
 
-test("renamed transport token fails exact-token validation", () => {
-  const record = cloneRecord(findRecord("/interface:design-reference"));
-  const transport = record.discriminator.preferSiblingWhen.find((entry) =>
-    entry.sibling.startsWith("design-mcp-open-design")
-  );
-  transport.sibling = "design-mcp-opendesign (no standalone command)";
 
-  const errors = validateDiscriminator(record, record.command, workflowModes, registry);
-
-  assert.ok(errors.some((error) => error.includes("sibling token must be one of")), errors.join("\n"));
-});
 
 test("renamed YAML step_N key fails structural validation", () => {
   const record = findRecord("/interface:design-reference");

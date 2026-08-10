@@ -5,10 +5,9 @@
 // ║ Implements the three-method adapter contract for the sk-design           ║
 // ║ authority: discover(scope), standardSource(authority), check(artifact,   ║
 // ║ rules). Shape copied from the reference adapter (sk-doc.cjs).            ║
-// ║ STATIC-ONLY: reads DESIGN.md/tokens.json only. Never                     ║
-// ║ renders, never invokes sk-design-md-generator's Playwright pipeline, never  ║
-// ║ drives chrome-devtools. Live-render audits belong to a separate          ║
-// ║ live-render adapter, not this one.                                       ║
+// ║ STATIC-ONLY: reads DESIGN.md/tokens.json only. Never renders, invokes   ║
+// ║ sk-design-md-generator's Playwright pipeline, or drives chrome-devtools. ║
+// ║ Rendered-surface evidence remains outside this adapter's authority.       ║
 // ║                                                                          ║
 // ║ Full specification: ../../references/adapters/sk-design-adapter.md       ║
 // ║ Suppression list: ../../references/adapters/sk-design-known-deviations.md║
@@ -353,7 +352,7 @@ function standardSource(authority) {
   return {
     authority: 'sk-design',
     determinism: 'hybrid', // Section 4.3: structural checks are deterministic; audit-rubric judgment is reasoning-agent (mirrors sk-doc's two-layer shape)
-    scopeBoundary: 'static-only-v1', // live-render belongs to a separate live-render adapter, not this one — see sk_design_adapter.md Section 1
+    scopeBoundary: 'static-only-v1', // Rendered-surface evidence is outside this adapter's authority.
     rules: {
       structuralFormat: { doc: 'design-md-format.md', path: DESIGN_MD_FORMAT_MD },
       tokenVocabulary: { doc: 'design-token-vocabulary.md', path: DESIGN_TOKEN_VOCAB_MD },

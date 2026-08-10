@@ -40,7 +40,6 @@ The reasoning-agent sub-checks are structurally verify-first: they never invent 
 | `scripts/adapters/sk-git.cjs` | Adapter | Single deterministic layer (commit grammar + branch naming) against live git state. |
 | `scripts/adapters/sk-design.cjs` | Adapter | Structural conformance (deterministic) + audit-rubric (reasoning-agent). |
 | `scripts/adapters/sk-code.cjs` | Adapter | Surface-routed deterministic tooling + a reasoning-agent dispatch layer. |
-| `scripts/adapters/sk-design-live-render.cjs` | Adapter | Threshold checks + judgment findings over caller-supplied render evidence. |
 
 ### Validation And Tests
 

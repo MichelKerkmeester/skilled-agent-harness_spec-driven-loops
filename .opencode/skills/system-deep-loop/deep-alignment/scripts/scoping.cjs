@@ -56,15 +56,14 @@ const AUTHORITY_ARTIFACT_CLASSES = Object.freeze({
 // adapter module (adapters/<authority>.cjs) by default; a lane MAY carry an
 // optional `adapter` discriminator to select a peer adapter variant for the same
 // authority. sk-design ships two adapter shapes over the same `designs` class --
-// the static rubric adapter (sk-design) and the live-render adapter
-// (sk-design-live-render) -- so without an adapter selector a designs lane could
-// never reach sk-design-live-render.cjs. Discovery/check load
+// the static rubric adapter (sk-design) -- so without an adapter selector a designs lane could
+// never reach a peer adapter. Discovery/check load
 // adapters/<adapter-or-authority>.cjs; the loop still never branches on which
 // authority produced a finding, it only loads the module the lane names.
 const AUTHORITY_ADAPTERS = Object.freeze({
   'sk-doc': Object.freeze(['sk-doc', 'sk-doc-command']),
   'sk-git': Object.freeze(['sk-git']),
-  'sk-design': Object.freeze(['sk-design', 'sk-design-live-render']),
+  'sk-design': Object.freeze(['sk-design']),
   'sk-code': Object.freeze(['sk-code']),
 });
 
@@ -180,7 +179,7 @@ function validateLane(rawLane, label) {
   }
   // Optional adapter discriminator: defaults to the authority's own module, and
   // when supplied must be one of that authority's registered adapter variants so
-  // discovery/check can reach a peer adapter (e.g. sk-design-live-render) without
+  // discovery/check can reach a peer adapter without
   // the loop ever branching on authority.
   const allowedAdapters = AUTHORITY_ADAPTERS[authority] || [authority];
   let adapter = authority;

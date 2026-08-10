@@ -2,8 +2,12 @@
   "scenarioId": "sk_design_command_recipe_valid",
   "expected": {
     "skillId": "sk-design",
-    "intentKeys": ["interface"],
-    "resources": ["sk-design-interface/SKILL.md"],
+    "intentKeys": [
+      "interface"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md"
+    ],
     "negativeActivation": false,
     "commandRecipe": {
       "command": "/design:interface",
@@ -12,17 +16,39 @@
       "wrapperCommand": "/design:interface",
       "argumentGrammar": {
         "positional": [
-          { "name": "target", "required": true, "kind": "interface-target" }
+          {
+            "name": "target",
+            "required": true,
+            "kind": "interface-target"
+          }
         ],
         "flags": [
-          { "name": "--mode", "required": false, "takesValue": true, "valueName": "mode", "kind": "mode-selector" },
-          { "name": "--register", "required": false, "takesValue": true, "valueName": "register", "kind": "register-selector", "values": ["brand", "product"] }
+          {
+            "name": "--mode",
+            "required": false,
+            "takesValue": true,
+            "valueName": "mode",
+            "kind": "mode-selector"
+          },
+          {
+            "name": "--register",
+            "required": false,
+            "takesValue": true,
+            "valueName": "register",
+            "kind": "register-selector",
+            "values": [
+              "brand",
+              "product"
+            ]
+          }
         ],
         "render": "<target> [--mode] [--register brand|product] [:auto|:confirm]"
       },
       "workflowMode": "sk-design-interface",
       "routeOutcome": "single",
-      "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
+      "forbiddenWorkflowModes": [
+        "sk-design-md-generator"
+      ],
       "choreography": [
         {
           "order": 1,
@@ -58,7 +84,11 @@
     }
   },
   "rubric": {
-    "usefulnessChecks": ["valid command recipe remains uncapped"],
-    "harmChecks": ["does not create route-gold applicability"]
+    "usefulnessChecks": [
+      "valid command recipe remains uncapped"
+    ],
+    "harmChecks": [
+      "does not create route-gold applicability"
+    ]
   }
 }

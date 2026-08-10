@@ -4,12 +4,9 @@
 // ║ Deep-Alignment Scoping — adapter discriminator regression                ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 //
-// Proves a lane can carry an optional `adapter` discriminator so a designs lane
-// selects the live-render adapter (sk-design-live-render) instead of the default
-// static one, while an omitted adapter defaults to the authority's own module.
-// An unknown adapter for the authority fails closed. Before this, lane identity
-// carried no adapter discriminator, so every sk-design lane resolved to
-// sk-design.cjs and the live-render adapter was unreachable.
+// Proves a lane can carry an optional `adapter` discriminator, defaults an
+// omitted adapter to the authority's own module, and fails closed when an
+// adapter is not registered for that authority.
 
 'use strict';
 
@@ -43,12 +40,14 @@ function testAdapterDefaultsToAuthority() {
   assert.equal(lane.adapter, 'sk-design', 'omitted adapter defaults to the authority');
 }
 
-// 2. A designs lane can select the live-render adapter.
-function testLiveRenderSelectable() {
-  const [lane] = resolveLanesFromConfig([
-    { authority: 'sk-design', artifactClass: 'designs', adapter: 'sk-design-live-render', scope: { type: 'paths', values: ['DESIGN.md'] } },
-  ]);
-  assert.equal(lane.adapter, 'sk-design-live-render', 'the live-render adapter must be selectable via the adapter discriminator');
+// 2. An unknown design adapter is not selectable.
+function testUnknownDesignAdapterRejected() {
+  assert.throws(
+    () => resolveLanesFromConfig([
+      { authority: 'sk-design', artifactClass: 'designs', adapter: 'unknown-design-adapter', scope: { type: 'paths', values: ['DESIGN.md'] } },
+    ]),
+    /is not a registered adapter for authority "sk-design"/,
+  );
 }
 
 // 3. A docs lane can select the command-surface peer adapter.
@@ -57,18 +56,6 @@ function testCommandAdapterSelectable() {
     { authority: 'sk-doc', artifactClass: 'docs', adapter: 'sk-doc-command', scope: { type: 'paths', values: ['.opencode/commands'] } },
   ]);
   assert.equal(lane.adapter, 'sk-doc-command', 'the command adapter must be selectable via the adapter discriminator');
-}
-
-function testInteractiveSelectionRetainsAdapter() {
-  const [lane] = resolveLanesFromSelections([
-    {
-      artifactClass: 'designs',
-      authorities: ['sk-design'],
-      adapter: 'sk-design-live-render',
-      scope: { type: 'paths', values: ['DESIGN.md'] },
-    },
-  ]);
-  assert.equal(lane.adapter, 'sk-design-live-render');
 }
 
 // 4. The prompt pack follows the selected adapter and preserves the default.
@@ -97,18 +84,17 @@ function testPromptPackUsesSelectedAdapter() {
 function testUnknownAdapterRejected() {
   assert.throws(
     () => resolveLanesFromConfig([
-      { authority: 'sk-doc', artifactClass: 'docs', adapter: 'sk-design-live-render', scope: { type: 'paths', values: ['docs/'] } },
+      { authority: 'sk-doc', artifactClass: 'docs', adapter: 'unknown-doc-adapter', scope: { type: 'paths', values: ['docs/'] } },
     ]),
     /is not a registered adapter for authority "sk-doc"/,
   );
   assert.deepEqual(registeredAdapters('sk-doc'), ['sk-doc', 'sk-doc-command']);
-  assert.deepEqual(registeredAdapters('sk-design'), ['sk-design', 'sk-design-live-render']);
+  assert.deepEqual(registeredAdapters('sk-design'), ['sk-design']);
 }
 
 testAdapterDefaultsToAuthority();
-testLiveRenderSelectable();
+testUnknownDesignAdapterRejected();
 testCommandAdapterSelectable();
-testInteractiveSelectionRetainsAdapter();
 testPromptPackUsesSelectedAdapter();
 testUnknownAdapterRejected();
 console.log('[deep-alignment] scoping adapter-discriminator regression passed');

@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates alignment invariant 1 (verify-first) for `DAL-016`. The objective is to verify that no finding is ever asserted from pattern-matching alone: the reasoning-agent sub-checks across all adapters (`checkRealityAlignment` in sk-doc, `checkPatternConformance` in sk-code, `checkAuditRubric` in sk-design, `checkJudgmentFindings` in live-render) return zero findings without caller-supplied verified evidence and skip any entry missing its required citation, while the deterministic adapters re-read live ground truth (git, validators) inside `check()` rather than trusting `discover()`-time state.
+This scenario validates alignment invariant 1 (verify-first) for `DAL-016`. The objective is to verify that no finding is ever asserted from pattern-matching alone: the reasoning-agent sub-checks (`checkRealityAlignment` in sk-doc, `checkPatternConformance` in sk-code, and `checkAuditRubric` in sk-design) return zero findings without caller-supplied verified evidence and skip any entry missing its required citation, while the deterministic adapters re-read live ground truth (git, validators) inside `check()` rather than trusting `discover()`-time state.
 
 ### WHY THIS MATTERS
 
@@ -29,7 +29,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Prompt: `Validate the deep-alignment verify-first invariant: reasoning-agent sub-checks never invent a finding, and deterministic adapters re-probe live reality inside check().`
 - Expected execution process: Call each reasoning-agent sub-check with no verified evidence (expect empty findings) and with an entry missing its citation (expect it dropped); read sk-git's `check()` live re-reads; confirm SKILL.md ALWAYS-#2 / NEVER-#1 state the rule.
 - Desired user-facing outcome: The user is told every subjective finding requires cited, re-probed evidence, and every deterministic finding comes from a fresh live read — the mode cannot report a finding it did not verify.
-- Expected signals: `checkRealityAlignment` (sk-doc), `checkPatternConformance` (sk-code), `checkAuditRubric` (sk-design), and `checkJudgmentFindings` (live-render) each return zero findings with no caller-supplied verified evidence and skip any entry missing its required citation/evidence; sk-git's `check()` calls `commitExists`/`getCommitMessage`/`branchExists` live; SKILL.md ALWAYS-#2 and NEVER-#1 state the rule.
+- Expected signals: `checkRealityAlignment` (sk-doc), `checkPatternConformance` (sk-code), and `checkAuditRubric` (sk-design) each return zero findings with no caller-supplied verified evidence and skip any entry missing its required citation/evidence; sk-git's `check()` calls `commitExists`/`getCommitMessage`/`branchExists` live; SKILL.md ALWAYS-#2 and NEVER-#1 state the rule.
 - Pass/fail posture: PASS if every reasoning-agent sub-check is empty without evidence and drops uncited entries, and sk-git re-reads live git per finding. FAIL if any sub-check emits a finding from an uncited or unverified entry.
 
 ---
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the deep-alignment verify-first invariant: reasoning-agent sub-checks never invent a finding, and deterministic adapters re-probe live reality inside check().
 ### Commands
 1. `bash: node -e "const d=require('./.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs'); const c=require('./.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs'); console.log('sk-doc reality (no claims):', d.check('.opencode/skills/system-deep-loop/deep-alignment/references/discover-contract.md', {knownDeviations:[]}, {}).filter(f=>f.subcheck==='reality-alignment').length); console.log('sk-code reasoning (no findings):', c.check('.opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs', {knownDeviations:[]}, {verifiedFindings:[{dimension:'naming',matchesStandard:false}]}).filter(f=>f.layer==='reasoning-agent').length);"`
-2. `bash: rg -n 'only contradicted claims|never assert without|matchesStandard !== false|matchesLiveReality !== false|!jf.evidence|!vf.evidence|!vf.citation' .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs`
+2. `bash: rg -n 'only contradicted claims|never assert without|matchesStandard !== false|matchesLiveReality !== false|!vf.evidence|!vf.citation' .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs`
 3. `bash: rg -n 'VERIFY-FIRST|commitExists|branchExists|getCommitMessage' .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-git.cjs`
 4. `bash: rg -n 'Re-verify a finding against live ground truth|Assert a finding from pattern-matching alone|Verify-first' .opencode/skills/system-deep-loop/deep-alignment/SKILL.md`
 ### Expected
@@ -75,7 +75,6 @@ Any non-zero reasoning-agent count in command 1 is a direct verify-first violati
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs` | `checkRealityAlignment` verify-first gate |
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-code.cjs` | `checkPatternConformance` verify-first gate |
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs` | `checkAuditRubric` verify-first gate |
-| `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design-live-render.cjs` | `checkJudgmentFindings` verify-first gate |
 | `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-git.cjs` | Live git re-reads inside `check()` |
 | `.opencode/skills/system-deep-loop/deep-alignment/SKILL.md` | Alignment invariant 1; ALWAYS-#2 / NEVER-#1 |
 

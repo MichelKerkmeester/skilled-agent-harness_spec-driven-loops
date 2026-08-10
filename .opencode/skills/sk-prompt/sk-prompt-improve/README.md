@@ -150,7 +150,7 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
 
 ### When To Use This Skill
 
-Reach for `sk-prompt-improve` when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value. For design-generation work, the skill constructs the brief: a grounded anti-default prompt, a seed-of-thought variation technique, a discovery-form pre-answer and a handoff note to `sk-code`. It owns the prompt only. `sk-design` owns the design judgment and `mcp-open-design` owns the run transport.
+Reach for `sk-prompt-improve` when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value. For design-generation work, the skill constructs the brief: a grounded anti-default prompt, a seed-of-thought variation technique, a discovery-form pre-answer and a handoff note to `sk-code`. It owns the prompt only. `sk-design` owns the design judgment.
 
 ### Related Skills
 

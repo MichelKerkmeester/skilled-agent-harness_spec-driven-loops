@@ -4,16 +4,26 @@
     "skillId": "sk-design",
     "mode": "sk-design-interface",
     "advisorLane": "sk-design",
-    "intentKeys": ["foundations"],
-    "resources": ["sk-design-interface/SKILL.md"],
+    "intentKeys": [
+      "foundations"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md"
+    ],
     "negativeActivation": false,
     "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-md-generator"
+    ],
     "minimalPairGroup": "craft-dense-dashboard-holdout-derived"
   },
   "rubric": {
-    "usefulnessChecks": ["routes the derived dense dashboard prompt to the system and layout workflow"],
-    "harmChecks": ["does not mistake information density for a decorative visual redesign"]
+    "usefulnessChecks": [
+      "routes the derived dense dashboard prompt to the system and layout workflow"
+    ],
+    "harmChecks": [
+      "does not mistake information density for a decorative visual redesign"
+    ]
   }
 }

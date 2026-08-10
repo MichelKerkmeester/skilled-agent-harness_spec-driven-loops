@@ -60,11 +60,11 @@ See [`manager-shell/proof-gates-and-verifier-cadence.md`](manager-shell/proof-ga
 
 #### Description
 
-The hub treats Figma, Open Design, browser, and extraction transports as evidence sources or artifact movers, not design-judgment authorities.
+The hub treats Figma, browser, and extraction transports as evidence sources or artifact movers, not design-judgment authorities.
 
 #### Current Reality
 
-`mcp-figma` and `design-mcp-open-design` (nested inside `sk-design`) are loaded after design mode selection when needed. Their output must return to the selected mode for acceptance, and the hub keeps design proof in `sk-design`.
+`mcp-figma` is loaded after design mode selection when needed. Its output must return to the selected mode for acceptance, and the hub keeps design proof in `sk-design`.
 
 #### Source Files
 
@@ -176,7 +176,7 @@ See [`styles-library-utilization/shared-corpus-context-seam.md`](styles-library-
 
 #### Description
 
-`sk-design-interface` and the Open Design transport consume styles-library evidence through the surviving closed contracts.
+`sk-design-interface` and `sk-design-md-generator` consume styles-library evidence through the surviving closed contracts.
 
 #### Current Reality
 

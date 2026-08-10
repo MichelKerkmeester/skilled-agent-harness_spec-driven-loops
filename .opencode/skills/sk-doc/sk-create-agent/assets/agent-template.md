@@ -719,7 +719,7 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 | `@prompt-improver` | `prompt-improver.md` | LEAF read-only prompt specialist | Framework selection, CLEAR validation, dispatch-ready prompt packages |
 | `@ai-council` | `ai-council.md` | LEAF planning subagent, `mode: subagent` | Depth-aware dispatch, diverse strategy lenses, planning-only no-write boundary |
 | `@markdown` | `markdown.md` | LEAF write-capable documentation executor | Template-first `/create:*`, spec-doc, and scoped markdown authoring |
-| `@design` | `design.md` | LEAF write-capable design subagent | `sk-design` parent-hub routing (`sk-design-interface`, `sk-design-md-generator`, or `sk-design-mcp-open-design`), applies the mode, then verifies |
+| `@design` | `design.md` | LEAF write-capable design subagent | `sk-design` parent-hub routing (`sk-design-interface` or `sk-design-md-generator`), applies the mode, then verifies |
 | `@orchestrate` | `orchestrate.md` | Primary orchestrator | Task decomposition, specialist routing, integration synthesis, delegation governance |
 | `@review` | `review.md` | LEAF review subagent | Findings-first code review, quality rubric, read-only target discipline |
 

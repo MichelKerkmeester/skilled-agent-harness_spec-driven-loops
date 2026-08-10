@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 31 deterministic scenarios across 8 categories validating the current `deep-alignment` mode surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 30 deterministic scenarios across 8 categories validating the current `deep-alignment` mode surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 `deep-alignment` audits artifacts against a **named standard authority's own creation rules** (sk-doc, sk-git, sk-design, sk-code), not general code correctness (`deep-review`) and not hub structure (`parent-skill-check.cjs`). Every scenario keeps that boundary crisp: a lane is `(authority x artifact-class x scope)`, findings are re-verified against live ground truth before they are asserted, documented conventions are suppressed, and the audited target is read-only unless a separate gated remediation pass is explicitly opted into.
 
@@ -35,7 +35,7 @@ This playbook provides 31 deterministic scenarios across 8 categories validating
 
 The mode ships its **contract and its runnable scripts** but not yet its command layer. As of this packet's release:
 
-- The mode contract (`SKILL.md`), the mode `README.md`, the four convergence/partition/reducer/remediate scripts, the five authority adapters, the reference docs, and the config-template asset **exist** (the scripts and adapters are runnable today; `SKILL.md` and `README.md` are the shipped docs).
+- The mode contract (`SKILL.md`), the mode `README.md`, the four convergence/partition/reducer/remediate scripts, the five registered adapters, the reference docs, and the config-template asset **exist** (the scripts and adapters are runnable today; `SKILL.md` and `README.md` are the shipped docs).
 - The `/deep:alignment` command, the `deep-alignment-auto.yaml` / `deep-alignment-confirm.yaml` workflows, and the `@deep-alignment` LEAF agent are the phase-009 "last-mile" deliverable and **do NOT exist yet** — treat any `/deep:alignment` invocation shown in this playbook as the *planned* surface, never as an operational capability (confirmed by `changelog/v1.0.0.0.md`: "the mode is not runnable yet... the `/deep:alignment` command does not exist until then", and `references/state-machine-wiring.md` §2, which names the command YAML + LEAF agent as "phase 009's own deliverable, not built here"). The mode's `README.md` **does** now exist at `.opencode/skills/system-deep-loop/deep-alignment/README.md`.
 
 Scenarios therefore validate the **documented invocation contract in `SKILL.md` and the behavior of the runnable scripts**, never a live command/YAML/agent file. Any scenario that would require the phase-009 command layer to exist is out of this playbook's scope until that layer ships.
@@ -55,7 +55,7 @@ Scenarios therefore validate the **documented invocation contract in `SKILL.md` 
 - Mode contract exists at `.opencode/skills/system-deep-loop/deep-alignment/SKILL.md`.
 - Mode README exists at `.opencode/skills/system-deep-loop/deep-alignment/README.md`.
 - Loop scripts exist under `.opencode/skills/system-deep-loop/deep-alignment/scripts/`: `scoping.cjs`, `check-convergence.cjs`, `partition-corpus.cjs`, `remediate-hook.cjs`.
-- Five authority adapters exist under `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/`: `sk-doc.cjs`, `sk-git.cjs`, `sk-design.cjs`, `sk-code.cjs`, `sk-design-live-render.cjs`.
+- Five registered adapters exist under `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/`: `sk-doc.cjs`, `sk-doc-command.cjs`, `sk-git.cjs`, `sk-design.cjs`, `sk-code.cjs`.
 - The per-lane reducer exists at `.opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs`.
 - Reference docs exist under `.opencode/skills/system-deep-loop/deep-alignment/references/`: `scoping-protocol.md`, `discover-contract.md`, `lane-config-schema.md`, `state-machine-wiring.md`, plus `references/adapters/*.md` (adapter specs + per-authority known-deviation lists).
 - Config-template asset exists at `.opencode/skills/system-deep-loop/deep-alignment/assets/deep-alignment-config-template.json`.
@@ -325,19 +325,6 @@ Expected signals: `classifySurface` returns OPENCODE for `.opencode/...`, WEBFLO
 #### Test Execution
 > **Feature File:** [DAL-013](../manual-testing-playbook/discovery-and-adapters/sk-code-hybrid-adapter.md)
 
-### DAL-014 | sk-design-live-render adapter: render-evidence contract
-
-#### Description
-Verify the live-render adapter never renders anything itself: `check()` requires caller-supplied `options.renderResult` (obtained through `design-mcp-open-design`), returns a single honest `render-unavailable` finding when absent, rejects a wrong dispatch boundary with a P0, and runs threshold checks only over supplied measurements.
-
-#### Scenario Contract
-Prompt: `Validate the sk-design-live-render alignment adapter: it never renders standalone, requires renderResult, enforces the design-mcp-open-design dispatch boundary, and never fabricates a pass.`
-
-Expected signals: `discover()` classifies `url` vs `componentEntry` targets (branchRange->empty); `check()` with no `renderResult` returns exactly one `render-unavailable` P1 finding (`producedBy:'unavailable'`); a `renderResult.dispatchedThrough` other than `design-mcp-open-design` returns a `dispatch-boundary-violation` P0; supplied `measurements` drive contrast/touch-target/CWV threshold findings; `judgmentFindings` require `evidence` + `rubricSection`.
-
-#### Test Execution
-> **Feature File:** [DAL-014](../manual-testing-playbook/discovery-and-adapters/sk-design-live-render-adapter.md)
-
 ### DAL-015 | Authority-agnostic three-method adapter contract
 
 #### Description
@@ -365,7 +352,7 @@ Verify that no finding is asserted from pattern-matching alone: every adapter's 
 #### Scenario Contract
 Prompt: `Validate the deep-alignment verify-first invariant: reasoning-agent sub-checks never invent a finding, and deterministic adapters re-probe live reality inside check().`
 
-Expected signals: `checkRealityAlignment` (sk-doc), `checkPatternConformance` (sk-code), `checkAuditRubric` (sk-design), and `checkJudgmentFindings` (live-render) each return zero findings with no caller-supplied verified evidence and skip any entry missing its required citation/evidence; sk-git's `check()` calls `commitExists`/`getCommitMessage`/`branchExists` live; SKILL.md ALWAYS-#2 and NEVER-#1 state the rule.
+Expected signals: `checkRealityAlignment` (sk-doc), `checkPatternConformance` (sk-code), and `checkAuditRubric` (sk-design) each return zero findings with no caller-supplied verified evidence and skip any entry missing its required citation/evidence; sk-git's `check()` calls `commitExists`/`getCommitMessage`/`branchExists` live; SKILL.md ALWAYS-#2 and NEVER-#1 state the rule.
 
 #### Test Execution
 > **Feature File:** [DAL-016](../manual-testing-playbook/verify-first-and-known-deviations/verify-first-no-finding-without-reprobe.md)
@@ -602,7 +589,7 @@ Unlike `deep-review`, `deep-alignment` ships one real automated regression test 
 - `Partition`: `.opencode/skills/system-deep-loop/deep-alignment/scripts/partition-corpus.cjs`
 - `Remediate hook`: `.opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs`
 - `Reducer`: `.opencode/skills/system-deep-loop/runtime/scripts/reduce-alignment-state.cjs`
-- `Adapters`: `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/{sk-doc,sk-git,sk-design,sk-code,sk-design-live-render}.cjs`
+- `Adapters`: `.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/{sk-doc,sk-doc-command,sk-git,sk-design,sk-code}.cjs`
 - `Scoping Protocol`: `.opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md`
 - `Discover Contract`: `.opencode/skills/system-deep-loop/deep-alignment/references/discover-contract.md`
 - `Lane Config Schema`: `.opencode/skills/system-deep-loop/deep-alignment/references/lane-config-schema.md`
@@ -635,7 +622,6 @@ Unlike `deep-review`, `deep-alignment` ships one real automated regression test 
 - DAL-011: [sk-git adapter: commit-message grammar and branch naming](../manual-testing-playbook/discovery-and-adapters/sk-git-adapter.md)
 - DAL-012: [sk-design static adapter: DESIGN.md structural conformance](../manual-testing-playbook/discovery-and-adapters/sk-design-static-adapter.md)
 - DAL-013: [sk-code hybrid adapter: deterministic + reasoning-agent layers](../manual-testing-playbook/discovery-and-adapters/sk-code-hybrid-adapter.md)
-- DAL-014: [sk-design-live-render adapter: render-evidence contract](../manual-testing-playbook/discovery-and-adapters/sk-design-live-render-adapter.md)
 - DAL-015: [Authority-agnostic three-method adapter contract](../manual-testing-playbook/discovery-and-adapters/authority-agnostic-adapter-contract.md)
 
 ### VERIFY-FIRST AND KNOWN DEVIATIONS

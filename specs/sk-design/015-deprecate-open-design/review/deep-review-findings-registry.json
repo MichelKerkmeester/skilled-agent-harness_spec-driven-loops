@@ -1,0 +1,2347 @@
+{
+  "sessionId": "rvw-2026-08-10-deprecate-open-design",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "operator-directed early convergence",
+    "totalIterations": 9,
+    "timestamp": "2026-08-10T10:12:39.460748+00:00"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Residue gate misses camelCase transport identifiers",
+      "file": ".opencode/skills/sk-design/shared/design-proof-token.md",
+      "line": 40,
+      "description": "Expand the gate and classify/remove live variants.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Live openDesign/OPEN_DESIGN hits exist outside the deleted tree and are not matched by the acceptance regex.",
+      "affectedSurfaceHints": [
+        "REQ-003/REQ-004 residue gate",
+        "sk-design shared proof token",
+        "sk-design smart-routing",
+        "deep-improvement dispatch fixture"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Inventory omits live mcp-tooling discovery fixtures",
+      "file": ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json",
+      "line": 6,
+      "description": "Add the fixtures to the inventory or explicitly classify them historical and amend the gate.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Aside, Refero, and Mobbin discovery fixtures contain open_design tool names but are absent from the plan table/exclusions.",
+      "affectedSurfaceHints": [
+        "mcp-aside-devtools discovery fixture",
+        "mcp-refero discovery fixture",
+        "mcp-mobbin discovery fixture",
+        "live-surface allowlist",
+        "REQ-004 final gate"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "NFR-S01 lacks explicit env/path/token residue assertion",
+      "file": "specs/sk-design/015-deprecate-open-design/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Prior security sweep found no independent assertion for retired env/path/token identifiers.",
+      "affectedSurfaceHints": [
+        ".utcp_config.json env block",
+        "NFR-S01",
+        "REQ-006 gate"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Claimed checklist items have no pinned evidence",
+      "file": "specs/sk-design/015-deprecate-open-design/checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Prior traceability audit found checked rows without evidence links and later evidence rows unchecked.",
+      "affectedSurfaceHints": [
+        "checklist.md",
+        "REQ-007",
+        "review artifacts"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "T032 lacks an executable complete derived-manifest regeneration contract",
+      "file": "specs/sk-design/015-deprecate-open-design/tasks.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "T022 lists leaf-manifest, mode-registry, hub-router, and command-metadata while T032 provides no command, artifact classification, or parity assertion.",
+      "affectedSurfaceHints": [
+        "leaf-manifest.json",
+        "mode-registry.json",
+        "hub-router.json",
+        "command-metadata.json"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "Promised deprecation changelog entry is not task-mapped",
+      "file": "specs/sk-design/015-deprecate-open-design/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Spec requests an append-only deprecation entry, but Phase 2 tasks T022/T030 contain no changelog task/file; current changelog hits are historical.",
+      "affectedSurfaceHints": [
+        "spec.md changelog scope",
+        "tasks.md Phase 2",
+        "sk-design/changelog append-only entry",
+        "decision-record.md"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Live-surface exclusion allowlist is prose-only and not reproducible",
+      "file": "specs/sk-design/015-deprecate-open-design/plan.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Plan defines git ls-files minus prose categories and T010 says freeze in scratch, but no format, path, hash/count, or reuse command is specified.",
+      "affectedSurfaceHints": [
+        "plan.md residue gate",
+        "spec.md exclusions",
+        "tasks.md T010/T041",
+        "scratch live-surface allowlist"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-008",
+      "severity": "P1",
+      "title": "Live-render playbook and catalog use a dispatch token the executable adapter rejects",
+      "file": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/discovery-and-adapters/sk-design-live-render-adapter.md",
+      "line": null,
+      "description": "Documented payload uses design-mcp-open-design, while executable constant/rejection requires sk-design-mcp-open-design; live run returned dispatch-boundary-violation.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Exact token was checked in implementation, catalogs, playbook, and companion test; documented CLI payload was executed.",
+      "affectedSurfaceHints": [
+        "deep-alignment live-render playbook",
+        "deep-alignment feature catalogs",
+        "sk-design feature catalog",
+        "live-render adapter",
+        "coverage-integrity test"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-009",
+      "severity": "P1",
+      "title": "Dedicated design-generation reference is not classified for deletion",
+      "file": ".opencode/skills/sk-prompt/sk-prompt-improve/references/design-generation-patterns.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Full file review shows every substantive section is tied to the retired transport; no delete or generic rewrite contract exists.",
+      "affectedSurfaceHints": [
+        "sk-prompt-improve/SKILL.md",
+        "sk-prompt-improve/README.md",
+        "design-generation-patterns.md",
+        "tasks.md T028"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 6,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-010",
+      "severity": "P1",
+      "title": "Advisor retains retired transport-specific intent boosters and T029 has no entry-level corpus disposition",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct variant search found six live scorer entries and the transport comment; direct graph search found no sk-design-mcp-open-design entry, separating scorer residue from graph routing.",
+      "affectedSurfaceHints": [
+        "skill_advisor.py INTENT_BOOSTERS",
+        "skill-graph.json generated corpus",
+        "T029",
+        "advisor probe"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-011",
+      "severity": "P1",
+      "title": "Sk-doc frozen README and directory fixtures encode the deleted tree and are consumed as live test inputs",
+      "file": ".opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      "line": null,
+      "description": "",
+      "findingClass": "test-isolation",
+      "deltaStatus": "active",
+      "scopeProof": "The two test scripts explicitly read the two focus fixtures and compare/execute against their paths; deleted paths are present in both fixture families.",
+      "affectedSurfaceHints": [
+        "durable-directory-manifest.json",
+        "baseline-readme-verdicts.json",
+        "test_readme_manifest.py",
+        "test_readme_verdict_parity.py",
+        "T028"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-012",
+      "severity": "P1",
+      "title": "Sk-doc validator, agent template, and parent-skill reference hardcode the retired packet beyond T028 named fixture scope",
+      "file": ".opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The exact package ID occurs in executable validator data and the exact route occurs in two shipped documentation templates; these are distinct from the baseline/manifest snapshot paths in P1-011.",
+      "affectedSurfaceHints": [
+        "validate_catalog_package.py WARN_PACKAGE_IDS",
+        "agent-template.md",
+        "parent-skills-nested-packets.md",
+        "T028",
+        "zero-residue gate"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-013",
+      "severity": "P1",
+      "title": "System-spec-kit live workflow contract and link-integrity evidence are not fully in the deprecation inventory",
+      "file": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "One live workflow contract is outside the named system-spec paths and one active playbook evidence block contains the old transport path; the plan table was checked for the missing workflow path.",
+      "affectedSurfaceHints": [
+        "system-spec-kit/references/workflows/agent-io-contract.md",
+        "markdown-link-integrity-guard.md",
+        "T028",
+        "markdown-link self-test",
+        "residue gate"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-014",
+      "severity": "P1",
+      "title": "System-spec-kit ground-truth source and dist copies are live eval data but T028 lacks a paired regeneration/parity contract",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/eval/data/ground-truth.json",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Both tracked copies were parsed and compared; the source loader and build script were read; both copies contain the same retired query rows and live-eval notes.",
+      "affectedSurfaceHints": [
+        "lib/eval/data/ground-truth.json",
+        "dist/lib/eval/data/ground-truth.json",
+        "ground-truth-data.ts",
+        "package build/finalize",
+        "T028"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-015",
+      "severity": "P1",
+      "title": "Live Lane-C fixture gold is omitted from the deprecation inventory and retains retired transport identifiers",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill-benchmark/fixtures/sk-design-dispatch/sk-design-dispatch-boundary-present-001.public.json",
+      "line": null,
+      "description": "The live public/private fixture loader consumes explicit fixture directories; the central corpus loaded 43 sk_design rows with zero errors and 42 private-gold rows retain retired transport labels or payload fields.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "loadFixtures recursively discovers public/private pairs; the full central corpus was loaded and the variant sweep found retired labels in dispatch and alias gold rather than one isolated file.",
+      "affectedSurfaceHints": [
+        "deep-improvement Lane-C fixture loader",
+        "sk-design private gold",
+        "sk-design-dispatch public payloads",
+        "plan live-surface allowlist",
+        "post-removal benchmark rerun"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-016",
+      "severity": "P1",
+      "title": "Live .claude MCP configuration is omitted from the deprecation inventory",
+      "file": ".claude/.utcp_config.json",
+      "line": 143,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Corrected whole-workspace sweep found the exact config as an unmatched hit; direct reread confirmed open_design and retired OD_ env-name entries.",
+      "affectedSurfaceHints": [
+        ".claude/.utcp_config.json",
+        "open_design MCP registration",
+        "OD_DATA_DIR/OD_SIDECAR_IPC_PATH",
+        "T021",
+        "NFR-S01"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-017",
+      "severity": "P1",
+      "title": "Cursor and Devin runtime agents/commands are outside the cross-runtime removal inventory",
+      "file": ".cursor/agents/design.md:3,50,65,77-78",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Corrected sweep found five Cursor files and two Devin agent files outside every plan prefix; direct reads confirmed active design-agent mode maps and a Cursor command reference.",
+      "affectedSurfaceHints": [
+        ".cursor/agents/**",
+        ".cursor/commands/**",
+        ".devin/agents/**",
+        "runtime parity matrix",
+        "T025/REQ-004"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-018",
+      "severity": "P1",
+      "title": "Advisor manual-testing playbooks retain transport paths beyond T029's named corpus files",
+      "file": ".opencode/skills/system-skill-advisor/manual-testing-playbook/auto-indexing/corpus-df-idf.md",
+      "line": 118,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Three exact live advisor playbook files were found by corrected variant sweep outside T029's exact scorer/graph paths; auto-indexing corpus explicitly lists the transport packet path.",
+      "affectedSurfaceHints": [
+        "advisor manual-testing-playbook",
+        "auto-indexing corpus",
+        "lifecycle-routing fixtures",
+        "T029",
+        "graph/index rebuild"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-019",
+      "severity": "P1",
+      "title": "Root CLAUDE.md is omitted from root-document cleanup",
+      "file": "CLAUDE.md",
+      "line": 526,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Corrected whole-workspace sweep found CLAUDE.md:526 as an unmatched root hit; direct reread shows an active workflow reference table, not a historical record.",
+      "affectedSurfaceHints": [
+        "CLAUDE.md",
+        "root runtime guidance",
+        "T030",
+        "REQ-004",
+        "residue allowlist"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "traceability — feature_catalog_code and playbook_capability overlays",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-003",
+      "severity": "P1",
+      "title": "Summary P1 finding 3",
+      "file": null,
+      "line": null,
+      "description": "traceability — feature_catalog_code and playbook_capability overlays",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-004",
+      "severity": "P1",
+      "title": "Summary P1 finding 4",
+      "file": null,
+      "line": null,
+      "description": "traceability — feature_catalog_code and playbook_capability overlays",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-005",
+      "severity": "P1",
+      "title": "Summary P1 finding 5",
+      "file": null,
+      "line": null,
+      "description": "traceability — feature_catalog_code and playbook_capability overlays",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-006",
+      "severity": "P1",
+      "title": "Summary P1 finding 6",
+      "file": null,
+      "line": null,
+      "description": "traceability — feature_catalog_code and playbook_capability overlays",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-007",
+      "severity": "P1",
+      "title": "Summary P1 finding 7",
+      "file": null,
+      "line": null,
+      "description": "traceability — feature_catalog_code and playbook_capability overlays",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-008",
+      "severity": "P1",
+      "title": "Summary P1 finding 8",
+      "file": null,
+      "line": null,
+      "description": "traceability — feature_catalog_code and playbook_capability overlays",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-009",
+      "severity": "P1",
+      "title": "Summary P1 finding 9",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-010",
+      "severity": "P1",
+      "title": "Summary P1 finding 10",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-011",
+      "severity": "P1",
+      "title": "Summary P1 finding 11",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-012",
+      "severity": "P1",
+      "title": "Summary P1 finding 12",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-013",
+      "severity": "P1",
+      "title": "Summary P1 finding 13",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-014",
+      "severity": "P1",
+      "title": "Summary P1 finding 14",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-015",
+      "severity": "P1",
+      "title": "Summary P1 finding 15",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-016",
+      "severity": "P1",
+      "title": "Summary P1 finding 16",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-017",
+      "severity": "P1",
+      "title": "Summary P1 finding 17",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-018",
+      "severity": "P1",
+      "title": "Summary P1 finding 18",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-019",
+      "severity": "P1",
+      "title": "Summary P1 finding 19",
+      "file": null,
+      "line": null,
+      "description": "correctness/completeness — adversarial replay of the whole live-reference inventory",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Residue gate misses camelCase transport identifiers",
+      "file": ".opencode/skills/sk-design/shared/design-proof-token.md",
+      "line": 40,
+      "description": "Expand the gate and classify/remove live variants.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Live openDesign/OPEN_DESIGN hits exist outside the deleted tree and are not matched by the acceptance regex.",
+      "affectedSurfaceHints": [
+        "REQ-003/REQ-004 residue gate",
+        "sk-design shared proof token",
+        "sk-design smart-routing",
+        "deep-improvement dispatch fixture"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Inventory omits live mcp-tooling discovery fixtures",
+      "file": ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json",
+      "line": 6,
+      "description": "Add the fixtures to the inventory or explicitly classify them historical and amend the gate.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Aside, Refero, and Mobbin discovery fixtures contain open_design tool names but are absent from the plan table/exclusions.",
+      "affectedSurfaceHints": [
+        "mcp-aside-devtools discovery fixture",
+        "mcp-refero discovery fixture",
+        "mcp-mobbin discovery fixture",
+        "live-surface allowlist",
+        "REQ-004 final gate"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "NFR-S01 lacks explicit env/path/token residue assertion",
+      "file": "specs/sk-design/015-deprecate-open-design/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Prior security sweep found no independent assertion for retired env/path/token identifiers.",
+      "affectedSurfaceHints": [
+        ".utcp_config.json env block",
+        "NFR-S01",
+        "REQ-006 gate"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Claimed checklist items have no pinned evidence",
+      "file": "specs/sk-design/015-deprecate-open-design/checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Prior traceability audit found checked rows without evidence links and later evidence rows unchecked.",
+      "affectedSurfaceHints": [
+        "checklist.md",
+        "REQ-007",
+        "review artifacts"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "T032 lacks an executable complete derived-manifest regeneration contract",
+      "file": "specs/sk-design/015-deprecate-open-design/tasks.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "T022 lists leaf-manifest, mode-registry, hub-router, and command-metadata while T032 provides no command, artifact classification, or parity assertion.",
+      "affectedSurfaceHints": [
+        "leaf-manifest.json",
+        "mode-registry.json",
+        "hub-router.json",
+        "command-metadata.json"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "Promised deprecation changelog entry is not task-mapped",
+      "file": "specs/sk-design/015-deprecate-open-design/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Spec requests an append-only deprecation entry, but Phase 2 tasks T022/T030 contain no changelog task/file; current changelog hits are historical.",
+      "affectedSurfaceHints": [
+        "spec.md changelog scope",
+        "tasks.md Phase 2",
+        "sk-design/changelog append-only entry",
+        "decision-record.md"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Live-surface exclusion allowlist is prose-only and not reproducible",
+      "file": "specs/sk-design/015-deprecate-open-design/plan.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Plan defines git ls-files minus prose categories and T010 says freeze in scratch, but no format, path, hash/count, or reuse command is specified.",
+      "affectedSurfaceHints": [
+        "plan.md residue gate",
+        "spec.md exclusions",
+        "tasks.md T010/T041",
+        "scratch live-surface allowlist"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-008",
+      "severity": "P1",
+      "title": "Live-render playbook and catalog use a dispatch token the executable adapter rejects",
+      "file": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/discovery-and-adapters/sk-design-live-render-adapter.md",
+      "line": null,
+      "description": "Documented payload uses design-mcp-open-design, while executable constant/rejection requires sk-design-mcp-open-design; live run returned dispatch-boundary-violation.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Exact token was checked in implementation, catalogs, playbook, and companion test; documented CLI payload was executed.",
+      "affectedSurfaceHints": [
+        "deep-alignment live-render playbook",
+        "deep-alignment feature catalogs",
+        "sk-design feature catalog",
+        "live-render adapter",
+        "coverage-integrity test"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-009",
+      "severity": "P1",
+      "title": "Dedicated design-generation reference is not classified for deletion",
+      "file": ".opencode/skills/sk-prompt/sk-prompt-improve/references/design-generation-patterns.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Full file review shows every substantive section is tied to the retired transport; no delete or generic rewrite contract exists.",
+      "affectedSurfaceHints": [
+        "sk-prompt-improve/SKILL.md",
+        "sk-prompt-improve/README.md",
+        "design-generation-patterns.md",
+        "tasks.md T028"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 6,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-010",
+      "severity": "P1",
+      "title": "Advisor retains retired transport-specific intent boosters and T029 has no entry-level corpus disposition",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct variant search found six live scorer entries and the transport comment; direct graph search found no sk-design-mcp-open-design entry, separating scorer residue from graph routing.",
+      "affectedSurfaceHints": [
+        "skill_advisor.py INTENT_BOOSTERS",
+        "skill-graph.json generated corpus",
+        "T029",
+        "advisor probe"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-011",
+      "severity": "P1",
+      "title": "Sk-doc frozen README and directory fixtures encode the deleted tree and are consumed as live test inputs",
+      "file": ".opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      "line": null,
+      "description": "",
+      "findingClass": "test-isolation",
+      "deltaStatus": "active",
+      "scopeProof": "The two test scripts explicitly read the two focus fixtures and compare/execute against their paths; deleted paths are present in both fixture families.",
+      "affectedSurfaceHints": [
+        "durable-directory-manifest.json",
+        "baseline-readme-verdicts.json",
+        "test_readme_manifest.py",
+        "test_readme_verdict_parity.py",
+        "T028"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-012",
+      "severity": "P1",
+      "title": "Sk-doc validator, agent template, and parent-skill reference hardcode the retired packet beyond T028 named fixture scope",
+      "file": ".opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The exact package ID occurs in executable validator data and the exact route occurs in two shipped documentation templates; these are distinct from the baseline/manifest snapshot paths in P1-011.",
+      "affectedSurfaceHints": [
+        "validate_catalog_package.py WARN_PACKAGE_IDS",
+        "agent-template.md",
+        "parent-skills-nested-packets.md",
+        "T028",
+        "zero-residue gate"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-013",
+      "severity": "P1",
+      "title": "System-spec-kit live workflow contract and link-integrity evidence are not fully in the deprecation inventory",
+      "file": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "One live workflow contract is outside the named system-spec paths and one active playbook evidence block contains the old transport path; the plan table was checked for the missing workflow path.",
+      "affectedSurfaceHints": [
+        "system-spec-kit/references/workflows/agent-io-contract.md",
+        "markdown-link-integrity-guard.md",
+        "T028",
+        "markdown-link self-test",
+        "residue gate"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-014",
+      "severity": "P1",
+      "title": "System-spec-kit ground-truth source and dist copies are live eval data but T028 lacks a paired regeneration/parity contract",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/eval/data/ground-truth.json",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Both tracked copies were parsed and compared; the source loader and build script were read; both copies contain the same retired query rows and live-eval notes.",
+      "affectedSurfaceHints": [
+        "lib/eval/data/ground-truth.json",
+        "dist/lib/eval/data/ground-truth.json",
+        "ground-truth-data.ts",
+        "package build/finalize",
+        "T028"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-015",
+      "severity": "P1",
+      "title": "Live Lane-C fixture gold is omitted from the deprecation inventory and retains retired transport identifiers",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill-benchmark/fixtures/sk-design-dispatch/sk-design-dispatch-boundary-present-001.public.json",
+      "line": null,
+      "description": "The live public/private fixture loader consumes explicit fixture directories; the central corpus loaded 43 sk_design rows with zero errors and 42 private-gold rows retain retired transport labels or payload fields.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "loadFixtures recursively discovers public/private pairs; the full central corpus was loaded and the variant sweep found retired labels in dispatch and alias gold rather than one isolated file.",
+      "affectedSurfaceHints": [
+        "deep-improvement Lane-C fixture loader",
+        "sk-design private gold",
+        "sk-design-dispatch public payloads",
+        "plan live-surface allowlist",
+        "post-removal benchmark rerun"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-008",
+      "severity": "P1",
+      "title": "Summary P1 finding 8",
+      "file": null,
+      "line": null,
+      "description": "traceability — feature_catalog_code and playbook_capability overlays",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Residue gate misses camelCase transport identifiers",
+      "file": ".opencode/skills/sk-design/shared/design-proof-token.md",
+      "line": 40,
+      "description": "Expand the gate and classify/remove live variants.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Live openDesign/OPEN_DESIGN hits exist outside the deleted tree and are not matched by the acceptance regex.",
+      "affectedSurfaceHints": [
+        "REQ-003/REQ-004 residue gate",
+        "sk-design shared proof token",
+        "sk-design smart-routing",
+        "deep-improvement dispatch fixture"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Inventory omits live mcp-tooling discovery fixtures",
+      "file": ".opencode/skills/mcp-tooling/mcp-mobbin/references/discovery-fixture-2026-07-16.json",
+      "line": 6,
+      "description": "Add the fixtures to the inventory or explicitly classify them historical and amend the gate.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Aside, Refero, and Mobbin discovery fixtures contain open_design tool names but are absent from the plan table/exclusions.",
+      "affectedSurfaceHints": [
+        "mcp-aside-devtools discovery fixture",
+        "mcp-refero discovery fixture",
+        "mcp-mobbin discovery fixture",
+        "live-surface allowlist",
+        "REQ-004 final gate"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "NFR-S01 lacks explicit env/path/token residue assertion",
+      "file": "specs/sk-design/015-deprecate-open-design/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Prior security sweep found no independent assertion for retired env/path/token identifiers.",
+      "affectedSurfaceHints": [
+        ".utcp_config.json env block",
+        "NFR-S01",
+        "REQ-006 gate"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Claimed checklist items have no pinned evidence",
+      "file": "specs/sk-design/015-deprecate-open-design/checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Prior traceability audit found checked rows without evidence links and later evidence rows unchecked.",
+      "affectedSurfaceHints": [
+        "checklist.md",
+        "REQ-007",
+        "review artifacts"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "T032 lacks an executable complete derived-manifest regeneration contract",
+      "file": "specs/sk-design/015-deprecate-open-design/tasks.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "T022 lists leaf-manifest, mode-registry, hub-router, and command-metadata while T032 provides no command, artifact classification, or parity assertion.",
+      "affectedSurfaceHints": [
+        "leaf-manifest.json",
+        "mode-registry.json",
+        "hub-router.json",
+        "command-metadata.json"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "Promised deprecation changelog entry is not task-mapped",
+      "file": "specs/sk-design/015-deprecate-open-design/spec.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Spec requests an append-only deprecation entry, but Phase 2 tasks T022/T030 contain no changelog task/file; current changelog hits are historical.",
+      "affectedSurfaceHints": [
+        "spec.md changelog scope",
+        "tasks.md Phase 2",
+        "sk-design/changelog append-only entry",
+        "decision-record.md"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Live-surface exclusion allowlist is prose-only and not reproducible",
+      "file": "specs/sk-design/015-deprecate-open-design/plan.md",
+      "line": null,
+      "description": "",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Plan defines git ls-files minus prose categories and T010 says freeze in scratch, but no format, path, hash/count, or reuse command is specified.",
+      "affectedSurfaceHints": [
+        "plan.md residue gate",
+        "spec.md exclusions",
+        "tasks.md T010/T041",
+        "scratch live-surface allowlist"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-008",
+      "severity": "P1",
+      "title": "Live-render playbook and catalog use a dispatch token the executable adapter rejects",
+      "file": ".opencode/skills/system-deep-loop/deep-alignment/manual-testing-playbook/discovery-and-adapters/sk-design-live-render-adapter.md",
+      "line": null,
+      "description": "Documented payload uses design-mcp-open-design, while executable constant/rejection requires sk-design-mcp-open-design; live run returned dispatch-boundary-violation.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Exact token was checked in implementation, catalogs, playbook, and companion test; documented CLI payload was executed.",
+      "affectedSurfaceHints": [
+        "deep-alignment live-render playbook",
+        "deep-alignment feature catalogs",
+        "sk-design feature catalog",
+        "live-render adapter",
+        "coverage-integrity test"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-009",
+      "severity": "P1",
+      "title": "Dedicated design-generation reference is not classified for deletion",
+      "file": ".opencode/skills/sk-prompt/sk-prompt-improve/references/design-generation-patterns.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Full file review shows every substantive section is tied to the retired transport; no delete or generic rewrite contract exists.",
+      "affectedSurfaceHints": [
+        "sk-prompt-improve/SKILL.md",
+        "sk-prompt-improve/README.md",
+        "design-generation-patterns.md",
+        "tasks.md T028"
+      ],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 6,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-010",
+      "severity": "P1",
+      "title": "Advisor retains retired transport-specific intent boosters and T029 has no entry-level corpus disposition",
+      "file": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Direct variant search found six live scorer entries and the transport comment; direct graph search found no sk-design-mcp-open-design entry, separating scorer residue from graph routing.",
+      "affectedSurfaceHints": [
+        "skill_advisor.py INTENT_BOOSTERS",
+        "skill-graph.json generated corpus",
+        "T029",
+        "advisor probe"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-011",
+      "severity": "P1",
+      "title": "Sk-doc frozen README and directory fixtures encode the deleted tree and are consumed as live test inputs",
+      "file": ".opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      "line": null,
+      "description": "",
+      "findingClass": "test-isolation",
+      "deltaStatus": "active",
+      "scopeProof": "The two test scripts explicitly read the two focus fixtures and compare/execute against their paths; deleted paths are present in both fixture families.",
+      "affectedSurfaceHints": [
+        "durable-directory-manifest.json",
+        "baseline-readme-verdicts.json",
+        "test_readme_manifest.py",
+        "test_readme_verdict_parity.py",
+        "T028"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-012",
+      "severity": "P1",
+      "title": "Sk-doc validator, agent template, and parent-skill reference hardcode the retired packet beyond T028 named fixture scope",
+      "file": ".opencode/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The exact package ID occurs in executable validator data and the exact route occurs in two shipped documentation templates; these are distinct from the baseline/manifest snapshot paths in P1-011.",
+      "affectedSurfaceHints": [
+        "validate_catalog_package.py WARN_PACKAGE_IDS",
+        "agent-template.md",
+        "parent-skills-nested-packets.md",
+        "T028",
+        "zero-residue gate"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-013",
+      "severity": "P1",
+      "title": "System-spec-kit live workflow contract and link-integrity evidence are not fully in the deprecation inventory",
+      "file": ".opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "One live workflow contract is outside the named system-spec paths and one active playbook evidence block contains the old transport path; the plan table was checked for the missing workflow path.",
+      "affectedSurfaceHints": [
+        "system-spec-kit/references/workflows/agent-io-contract.md",
+        "markdown-link-integrity-guard.md",
+        "T028",
+        "markdown-link self-test",
+        "residue gate"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-014",
+      "severity": "P1",
+      "title": "System-spec-kit ground-truth source and dist copies are live eval data but T028 lacks a paired regeneration/parity contract",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/eval/data/ground-truth.json",
+      "line": null,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Both tracked copies were parsed and compared; the source loader and build script were read; both copies contain the same retired query rows and live-eval notes.",
+      "affectedSurfaceHints": [
+        "lib/eval/data/ground-truth.json",
+        "dist/lib/eval/data/ground-truth.json",
+        "ground-truth-data.ts",
+        "package build/finalize",
+        "T028"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-015",
+      "severity": "P1",
+      "title": "Live Lane-C fixture gold is omitted from the deprecation inventory and retains retired transport identifiers",
+      "file": ".opencode/skills/system-deep-loop/deep-improvement/assets/skill-benchmark/fixtures/sk-design-dispatch/sk-design-dispatch-boundary-present-001.public.json",
+      "line": null,
+      "description": "The live public/private fixture loader consumes explicit fixture directories; the central corpus loaded 43 sk_design rows with zero errors and 42 private-gold rows retain retired transport labels or payload fields.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "loadFixtures recursively discovers public/private pairs; the full central corpus was loaded and the variant sweep found retired labels in dispatch and alias gold rather than one isolated file.",
+      "affectedSurfaceHints": [
+        "deep-improvement Lane-C fixture loader",
+        "sk-design private gold",
+        "sk-design-dispatch public payloads",
+        "plan live-surface allowlist",
+        "post-removal benchmark rerun"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-008",
+      "severity": "P1",
+      "title": "Summary P1 finding 8",
+      "file": null,
+      "line": null,
+      "description": "traceability — feature_catalog_code and playbook_capability overlays",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 37,
+    "P2": 0
+  },
+  "openFindingsCount": 37,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.7105,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

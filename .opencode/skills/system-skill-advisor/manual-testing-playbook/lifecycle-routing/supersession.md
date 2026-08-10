@@ -122,8 +122,8 @@ Found 20 matches
   Line 3:   "skill_id": "cli-codex",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-open-design/graph-metadata.json:
-  Line 3:   "skill_id": "mcp-open-design",
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-interface/graph-metadata.json:
+  Line 3:   "skill_id": "sk-design-interface",
 
 
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-code-mode/graph-metadata.json:

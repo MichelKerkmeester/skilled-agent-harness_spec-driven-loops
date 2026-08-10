@@ -197,7 +197,6 @@ Skip it in these situations:
 
 - You are **inventing** a new design direction (palette, type scale, anti-default critique). That is `interface`. This skill captures what exists. That skill creates what does not.
 - The source is a Figma file (`mcp-figma`).
-- The source is an Open Design project (`design-mcp-open-design`, nested inside `sk-design`).
 - The need is a screenshot or a visual preview (`mcp-chrome-devtools`).
 - The URL is not publicly accessible or cannot render JavaScript.
 
@@ -208,7 +207,6 @@ Skip it in these situations:
 | `interface` | The design-judgment sibling. It invents new direction. This skill provides the measured ground truth it consumes. |
 | `sk-code` | Consumes `DESIGN.md` as the implementation contract. The hallucination-proof source of truth for colors, fonts, spacing, shadows and radii. |
 | `mcp-figma` | Extracts from Figma Desktop, not live URLs. Use when the source is a Figma file. |
-| `design-mcp-open-design` | Extracts from Open Design projects (nested inside `sk-design`). Use when the source is an Open Design project. |
 | `mcp-chrome-devtools` | Browser inspection and visual preview. Not a structured extraction tool. |
 
 ---

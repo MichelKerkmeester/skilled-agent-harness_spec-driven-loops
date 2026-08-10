@@ -4,7 +4,6 @@ description: "Current-state reference for keeping design judgment in sk-design w
 trigger_phrases:
   - "transport vs taste separation"
   - "figma transport design judgment"
-  - "open design transport"
   - "sk-design transport proof"
 version: 1.0.0.1
 ---
@@ -15,7 +14,7 @@ version: 1.0.0.1
 
 ## 1. OVERVIEW
 
-The hub keeps design judgment in `sk-design` and treats Figma, Open Design, browser, and extraction tools as transports or evidence sources.
+The hub keeps design judgment in `sk-design` and treats Figma, browser, and extraction tools as transports or evidence sources.
 
 Transport output can fetch, inspect, generate, extract, or apply artifacts. It does not decide whether the design is tasteful, accessible, responsive, or production-ready.
 

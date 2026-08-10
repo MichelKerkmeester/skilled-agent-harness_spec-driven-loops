@@ -121,24 +121,6 @@
       }
     },
     {
-      "id": "single-open-design-transport",
-      "prompt": "read open design project",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "sk-design-mcp-open-design"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "sk-design-mcp-open-design"
-        ],
-        "expectedResources": [
-          "sk-design-mcp-open-design/references/od-cli-reference.md",
-          "sk-design-mcp-open-design/references/tool-surface.md"
-        ]
-      }
-    },
-    {
       "id": "ui-build-authored-bundle",
       "prompt": "ui build design tokens",
       "expectedAction": "route",

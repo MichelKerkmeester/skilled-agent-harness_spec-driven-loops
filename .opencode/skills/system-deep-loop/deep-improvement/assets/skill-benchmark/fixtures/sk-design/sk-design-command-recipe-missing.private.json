@@ -2,8 +2,12 @@
   "scenarioId": "sk_design_command_recipe_missing",
   "expected": {
     "skillId": "sk-design",
-    "intentKeys": ["interface"],
-    "resources": ["sk-design-interface/SKILL.md"],
+    "intentKeys": [
+      "interface"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md"
+    ],
     "negativeActivation": false,
     "commandRecipe": {
       "command": "/design:missing",
@@ -12,16 +16,28 @@
       "wrapperCommand": "/design:missing",
       "argumentGrammar": {
         "positional": [
-          { "name": "target", "required": true, "kind": "interface-target" }
+          {
+            "name": "target",
+            "required": true,
+            "kind": "interface-target"
+          }
         ],
         "flags": [
-          { "name": "--mode", "required": false, "takesValue": true, "valueName": "mode", "kind": "mode-selector" }
+          {
+            "name": "--mode",
+            "required": false,
+            "takesValue": true,
+            "valueName": "mode",
+            "kind": "mode-selector"
+          }
         ],
         "render": "<target> [--mode]"
       },
       "workflowMode": "sk-design-interface",
       "routeOutcome": "single",
-      "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
+      "forbiddenWorkflowModes": [
+        "sk-design-md-generator"
+      ],
       "choreography": [
         {
           "order": 1,
@@ -33,7 +49,11 @@
     }
   },
   "rubric": {
-    "usefulnessChecks": ["missing command recipe is capped"],
-    "harmChecks": ["does not create route-gold applicability"]
+    "usefulnessChecks": [
+      "missing command recipe is capped"
+    ],
+    "harmChecks": [
+      "does not create route-gold applicability"
+    ]
   }
 }

@@ -4,16 +4,26 @@
     "skillId": "sk-design",
     "mode": "sk-design-interface",
     "advisorLane": "sk-design",
-    "intentKeys": ["interface"],
-    "resources": ["sk-design-interface/SKILL.md"],
+    "intentKeys": [
+      "interface"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md"
+    ],
     "negativeActivation": false,
     "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-md-generator"
+    ],
     "minimalPairGroup": "transform-bolder-audit-interface"
   },
   "rubric": {
-    "usefulnessChecks": ["routes the transform alias to the interface workflow mode"],
-    "harmChecks": ["does not select the audit workflow for an application-framed prompt"]
+    "usefulnessChecks": [
+      "routes the transform alias to the interface workflow mode"
+    ],
+    "harmChecks": [
+      "does not select the audit workflow for an application-framed prompt"
+    ]
   }
 }

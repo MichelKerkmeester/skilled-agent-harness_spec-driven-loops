@@ -24,7 +24,6 @@ Use the shared nine-stage contract for source-faithful extraction. The canonical
 - **Use the interface mode's mechanical preflight card at** `design-interface/assets/interface-preflight-card.md` when the request is quality review rather than extraction.
 - **The interface mode owns authored static-system direction directly.**
 - **Prefer `/interface:design` when** the request is a new direction, including temporal design.
-- **Prefer the `sk-design` hub's `sk-design-mcp-open-design` transport when** the request is Open Design transport operation rather than website extraction.
 - **Defer to the `sk-design` hub when** the request spans redesign, critique, or invention beyond source-faithful extraction.
 <!-- /ANCHOR:sibling-discriminator -->
 

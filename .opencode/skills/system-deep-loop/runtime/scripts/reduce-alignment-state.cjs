@@ -415,9 +415,8 @@ function resolveConfigLanesIntegrityFault(config, configPath) {
  * A finding's dedup key: content_hash when the adapter/loop supplied one,
  * else a fallback over the fields every adapter's finding shape carries in
  * common (severity + type + message) -- adapter shapes are heterogeneous
- * beyond that (sk-git's artifactRef vs sk-doc's artifactPath vs
- * sk-design-live-render's artifactTarget), so the fallback deliberately does
- * not reach for an adapter-specific field.
+ * beyond that (for example artifactRef, artifactPath, or artifactTarget), so
+ * the fallback deliberately does not reach for an adapter-specific field.
  * @param {Object} finding
  * @returns {string}
  */
@@ -441,10 +440,9 @@ function findingDedupKey(finding) {
  * never reshaped into a false-uniform schema, since the three-method adapter
  * contract makes adapters authority-agnostic to the loop but does not make
  * their finding shapes byte-identical to each other (confirmed by reading
- * all 5 adapters' makeFinding() helpers: sk-git adds artifactRef/artifactKind,
- * sk-design-live-render replaces layer's deterministic/reasoning-agent
- * vocabulary with producedBy + a literal 'live-render' layer tag). Only
- * severity is read structurally here; every other field passes through.
+ * the registered adapters' makeFinding() helpers and their authority-specific
+ * artifact identity and evidence fields). Only severity is read structurally
+ * here; every other field passes through.
  *
  * @param {{laneId:string, authority:string, artifactClass:string, scope:Object}} requiredLane
  * @param {Array<Object>} deltaRecords - Parsed deltas/iter-*.jsonl records (all lanes).

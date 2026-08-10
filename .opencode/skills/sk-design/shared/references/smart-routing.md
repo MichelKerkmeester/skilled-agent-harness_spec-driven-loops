@@ -21,7 +21,7 @@ Maps a request's design intent to the packet-local leaf resources the selected `
 
 This is sk-design's second-layer (surface) router. The hub selects a workflow
 mode in [`hub-router.json`](../../hub-router.json) (`interface` /
-`md-generator` / `design-mcp-open-design`); this doc maps a
+`md-generator`); this doc maps a
 request's design intent to the exact packet-local leaf resources that mode should
 load. Every path is packet-qualified (`design-<mode>/references|assets/…`) and
 converts to the canonical `(workflowMode, leafResourceId)` pair at the one
@@ -53,9 +53,6 @@ re-decides the mode.
   the format spec, extraction workflow, taxonomies, quality checklist, and the
   authoring cards. Fired by "extract the design system / DESIGN.md / validate
   design.md / design fidelity" requests.
-- **open-design leaves** — the transport packet's wiring and CLI reference. Fired
-  by "wire Open Design / od cli / od mcp" requests; the transport never decides
-  taste, so a design-bearing Open Design request pairs a judgment mode first.
 
 A single dominant design axis routes to one mode's leaf set; two clearly separate
 axes (e.g. an explicit interface + md-generator UI build grounded in measured
@@ -80,7 +77,6 @@ DEFAULT_RESOURCE = []
 INTENT_SIGNALS = {
     "INTERFACE":     {"weight": 4, "keywords": ["less generic", "distinctive visual", "visual direction", "make it look good", "looks templated", "redesign the ui", "redesign the hero", "hero section", "landing page direction", "interface design", "visual identity", "premium ui", "make it beautiful", "design variations", "distinct visual directions", "variation set", "make it", "bolder", "quieter", "distill", "delight", "clarify", "polished", "feel premium", "oklch", "color token", "color system", "color palette", "typography scale", "typography system", "font pairing", "spacing rhythm", "spacing system", "responsive grid", "layout rhythm", "design tokens", "token system", "theme tokens", "hierarchy and spacing", "spacing rhythm review", "design audit", "audit this", "wcag contrast", "wcag", "accessibility audit", "keyboard focus", "design slop", "anti-slop", "ui critique", "design review", "production hardening", "design quality score", "critique this", "polish gate", "micro-interactions", "micro interactions", "reduced-motion", "reduced motion", "hover micro", "hover state", "menu transition", "transition design", "interaction states", "loading state", "exit animation", "morphing", "motion budget", "choreography", "animate the", "feedback states"]},
     "MD_GENERATOR":  {"weight": 4, "keywords": ["extract the design system", "extract design system", "design.md", "design system from", "style reference", "capture website css", "tokens.json", "design tokens from url", "validate design.md", "design fidelity", "fidelity check", "extraction", "generate a design.md", "measured css"]},
-    "OPEN_DESIGN":   {"weight": 4, "keywords": ["wire open design", "open design", "open-design", "od cli", "od mcp", "connect open design", "drive od", "start_run", "open design generation", "open design run"]},
     "PREFLIGHT_OWNERSHIP": {"weight": 4, "keywords": ["pre-delivery quality pass", "pass/fail scoring logic"]},
     "VARIATION_DIVERSITY": {"weight": 4, "keywords": ["genuinely distinct visual directions", "three genuinely distinct visual directions"]},
 }
@@ -117,11 +113,7 @@ RESOURCE_MAP = {
         "sk-design-md-generator/assets/cardinal-rules-card.md",
         "sk-design-md-generator/assets/source-of-truth-router-card.md",
     ],
-    "OPEN_DESIGN": [
-        "sk-design-mcp-open-design/references/mcp-wiring.md",
-        "sk-design-mcp-open-design/references/od-cli-reference.md",
-        "sk-design-mcp-open-design/references/tool-surface.md",
-    ],
+
     "PREFLIGHT_OWNERSHIP": [
         "sk-design-interface/assets/interface-preflight-card.md",
     ],

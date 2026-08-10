@@ -125,7 +125,6 @@ clickup_official
 figma
 github
 gitkraken
-open_design
 refero
 ```
 

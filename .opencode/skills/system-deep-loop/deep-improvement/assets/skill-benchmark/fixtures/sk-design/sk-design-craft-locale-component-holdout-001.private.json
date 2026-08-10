@@ -4,16 +4,27 @@
     "skillId": "sk-design",
     "mode": "sk-design-interface",
     "advisorLane": "sk-design",
-    "intentKeys": ["interface", "foundations"],
-    "resources": ["sk-design-interface/SKILL.md"],
+    "intentKeys": [
+      "interface",
+      "foundations"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md"
+    ],
     "negativeActivation": false,
     "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-md-generator"
+    ],
     "minimalPairGroup": "craft-locale-component-holdout-derived"
   },
   "rubric": {
-    "usefulnessChecks": ["routes localized component craft to the expected ordered workflow bundle"],
-    "harmChecks": ["does not treat locale resilience as only a visual polish request"]
+    "usefulnessChecks": [
+      "routes localized component craft to the expected ordered workflow bundle"
+    ],
+    "harmChecks": [
+      "does not treat locale resilience as only a visual polish request"
+    ]
   }
 }

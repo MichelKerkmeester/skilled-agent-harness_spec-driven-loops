@@ -115,7 +115,7 @@ Active `SKILL.md` path check:
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-md-generator/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-open-design/SKILL.md
+/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-interface/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/sk-code-review/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/SKILL.md
 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/SKILL.md

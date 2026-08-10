@@ -4,17 +4,29 @@
     "skillId": "sk-design",
     "mode": "sk-design-interface",
     "advisorLane": "sk-design",
-    "rankBelowSkillIds": ["mcp-figma", "mcp-open-design"],
-    "intentKeys": ["foundations"],
-    "resources": ["sk-design-interface/SKILL.md"],
+    "rankBelowSkillIds": [
+      "mcp-figma"
+    ],
+    "intentKeys": [
+      "foundations"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md"
+    ],
     "negativeActivation": false,
     "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-md-generator"
+    ],
     "minimalPairGroup": "mp-tokens-single-vs-bundle"
   },
   "rubric": {
-    "usefulnessChecks": ["routes the token-only prompt to the expected single workflow mode"],
-    "harmChecks": ["does not add extraction routing without a source signal"]
+    "usefulnessChecks": [
+      "routes the token-only prompt to the expected single workflow mode"
+    ],
+    "harmChecks": [
+      "does not add extraction routing without a source signal"
+    ]
   }
 }

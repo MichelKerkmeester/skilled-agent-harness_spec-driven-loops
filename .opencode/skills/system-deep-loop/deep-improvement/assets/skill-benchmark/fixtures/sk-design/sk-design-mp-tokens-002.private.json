@@ -4,16 +4,29 @@
     "skillId": "sk-design",
     "mode": "sk-design-interface",
     "advisorLane": "sk-design",
-    "intentKeys": ["foundations", "md-generator"],
-    "resources": ["sk-design-interface/SKILL.md", "sk-design-md-generator/SKILL.md"],
+    "intentKeys": [
+      "foundations",
+      "md-generator"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md",
+      "sk-design-md-generator/SKILL.md"
+    ],
     "negativeActivation": false,
-    "workflowMode": ["sk-design-interface", "sk-design-md-generator"],
+    "workflowMode": [
+      "sk-design-interface",
+      "sk-design-md-generator"
+    ],
     "routeOutcome": "orderedBundle",
-    "forbiddenWorkflowModes": ["sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [],
     "minimalPairGroup": "mp-tokens-single-vs-bundle"
   },
   "rubric": {
-    "usefulnessChecks": ["routes the token-source prompt to the expected ordered workflow bundle"],
-    "harmChecks": ["does not select unrelated workflow modes"]
+    "usefulnessChecks": [
+      "routes the token-source prompt to the expected ordered workflow bundle"
+    ],
+    "harmChecks": [
+      "does not select unrelated workflow modes"
+    ]
   }
 }

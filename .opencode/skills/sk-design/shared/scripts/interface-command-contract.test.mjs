@@ -32,7 +32,7 @@ const [metadata, hubRouter, registry, creationContract, surfaces] = await Promis
 
 test("canonical commands resolve to stable internal modes", () => {
   const registryModes = registry.modes.map((entry) => entry.workflowMode).sort();
-  assert.deepEqual(registryModes, ["sk-design-interface", "sk-design-mcp-open-design", "sk-design-md-generator"]);
+  assert.deepEqual(registryModes, ["sk-design-interface", "sk-design-md-generator"]);
 
   for (const expected of EXPECTED) {
     const record = metadata.find((entry) => (

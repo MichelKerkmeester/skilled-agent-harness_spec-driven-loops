@@ -160,9 +160,8 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 - Choose and record one budget profile before analysis: `scan` 9-11 calls, `verify` 11-13 calls, or `adjudicate` 8-10 calls.
 - For each artifact in the resolved slice:
-  - **Deterministic layer**: invoke the lane's own adapter as a CLI via Bash (`node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/<adapter>.cjs check <artifact-path-or-ref>`, where `<adapter>` is the dispatch-supplied adapter and defaults to the lane's authority module — a `sk-design` designs lane may instead resolve to `sk-design-live-render`), reusing whatever it already wraps (`sk-doc`: `validate_document.py` + `extract_structure.py`; `sk-git`: commit/branch rule checks; `sk-design`: static rubric checks; `sk-code`: surface-detection).
+  - **Deterministic layer**: invoke the lane's own adapter as a CLI via Bash (`node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/<adapter>.cjs check <artifact-path-or-ref>`, where `<adapter>` is the dispatch-supplied adapter and defaults to the lane's authority module), reusing whatever it already wraps (`sk-doc`: `validate_document.py` + `extract_structure.py`; `sk-git`: commit/branch rule checks; `sk-design`: static rubric checks; `sk-code`: surface-detection).
   - **Reasoning-agent layer (verify-first)**: for any artifact where a pattern match suggests drift, extract the specific live-behavior claim and re-probe it directly against the real validator, CLI, registry, or source file — never assert a finding from pattern-matching alone (Alignment Invariant 1). When a contradiction is confirmed with cited evidence, construct a finding in the same shape the adapter's own `check()` would produce (`severity`, `type: 'reality-drift'`, `subcheck`, `layer: 'reasoning-agent'`, `message`, artifact identity, `sourceTool: 'live re-probe (agent-performed)'`, `detail: {claim, reprobeEvidence}`) and fold it into this iteration's findings alongside the deterministic-layer output.
-  - **`sk-design` live-render lane exception**: this agent never dispatches `design-mcp-open-design` or a chrome-devtools tool itself (neither is in this agent's permission set; LEAF-only). It consumes an already-captured `renderResult` the orchestrating workflow supplied via dispatch context or a fixture path (per ADR-009) and passes it through to the adapter as `options.renderResult` via a small Bash-invoked Node call — it never renders anything itself.
 - Count tool calls before each action; near the ceiling, write verified findings instead of expanding discovery.
 - Do not use shell output as a substitute for cited evidence.
 - Do not fabricate findings to satisfy an action minimum; record clean, blocked, partial, or stuck honestly — a lane that is genuinely conformant converges to zero findings, and that is a complete, reportable PASS, not a sign more digging is owed.
@@ -181,7 +180,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 #### Step 6: Classify Findings
 
 - Load `.opencode/skills/sk-code/sk-code-review/references/review-core.md` before assigning severity — the P0/P1/P2 severity scale and evidence-density discipline are the same shared vocabulary `reduce-alignment-state.cjs` uses (its `SEVERITY_WEIGHTS` mirror `reduce-state.cjs` exactly), reused as-is.
-- Do NOT tag findings by review dimension (correctness/security/traceability/maintainability) — that taxonomy does not apply in this mode. Tag each finding by its lane identity (`authority`, `artifactClass`, `scope`) plus the adapter's own `type` / `subcheck` / `layer` fields (for example `template-conformance`/`deterministic`, `reality-alignment`/`reasoning-agent`, `commit-message-grammar`/`deterministic`, `live-render-judgment`/`reasoning-agent`). Findings classification in this mode is per-lane, never per-dimension.
+- Do NOT tag findings by review dimension (correctness/security/traceability/maintainability) — that taxonomy does not apply in this mode. Tag each finding by its lane identity (`authority`, `artifactClass`, `scope`) plus the adapter's own `type` / `subcheck` / `layer` fields (for example `template-conformance`/`deterministic`, `reality-alignment`/`reasoning-agent`, `commit-message-grammar`/`deterministic`, `audit-rubric`/`reasoning-agent`). Findings classification in this mode is per-lane, never per-dimension.
 - P0/P1 findings require concrete evidence and counterevidence review — a completed live re-probe, not a second reviewer's opinion, is this mode's counterevidence mechanism (Invariant 1).
 - P2 findings require actionable evidence and may include documented inference.
 - Low confidence downgrades severity; vague cleanup claims are not active findings.
@@ -219,7 +218,7 @@ If any hard-block invariant fails before Step 7, do not write partial iteration 
 
 - Bash-create (never Write/Edit) `alignment/deltas/iter-NNN.jsonl` once.
 - Its first line MUST contain the same canonical iteration record as the state-log append, with `laneId` present.
-- Append structured `{type:'finding', laneId, finding}` records after it, one JSON object per line, `finding` in the adapter's own raw shape — never reshaped into false uniformity (adapter finding shapes are heterogeneous by design: `sk-git` carries `artifactRef`/`artifactKind`, `sk-design-live-render` carries `producedBy` plus a literal `'live-render'` layer tag).
+- Append structured `{type:'finding', laneId, finding}` records after it, one JSON object per line, `finding` in the adapter's own raw shape — never reshaped into false uniformity because authority adapters may carry different artifact identity and evidence fields.
 - Never overwrite an existing delta file.
 
 #### Step 10: Verify Outputs
@@ -432,8 +431,7 @@ Run both checks in the same iteration BEFORE writing to JSONL:
 14. File a finding that matches a documented known-deviation.
 15. Blanket-suppress an entire artifact's findings because ONE finding on it matched a known-deviation — suppression is per-finding, never per-artifact (Invariant 2).
 16. Assert a finding from pattern-matching alone without a live re-probe (Invariant 1).
-17. Dispatch `design-mcp-open-design` or a chrome-devtools tool directly — neither is in this agent's permission set; the live-render lane consumes an already-captured `renderResult` instead.
-18. Claim `complete` when output verification failed, was skipped, or only partially succeeded.
+17. Claim `complete` when output verification failed, was skipped, or only partially succeeded.
 
 ### ESCALATE
 
@@ -443,7 +441,6 @@ Run both checks in the same iteration BEFORE writing to JSONL:
 4. State files are missing or corrupted; report `error`.
 5. Tool failures prevent the check; report `timeout`.
 6. Dispatch context, config, and JSONL disagree on lineage, iteration number, or laneId.
-7. The `sk-design` live-render lane is dispatched without a `renderResult` already captured through `design-mcp-open-design` (ADR-009) — report the missing precondition rather than fabricating render evidence.
 
 ---
 
@@ -501,7 +498,6 @@ For non-`complete` statuses, replace the heading with `## Alignment Iteration [N
 | Skip reading state | Repeats prior work and ignores exhausted lanes | Read JSONL + corpus + registry first |
 | Hold findings in memory | Loses continuity | Write everything to iteration-NNN.md |
 | Silent ambiguity | Reducer and operator cannot tell what was actually checked | Record ambiguity and chosen fallback |
-| Dispatching design-mcp-open-design directly | Not in this agent's permission set; violates the LEAF boundary | Consume an already-captured renderResult instead |
 | Complete-on-partial | Misleads convergence and release decisions | Use timeout/error/stuck/insight/thought honestly |
 | Reducer overwrite | Corrupts canonical finding state | Let the orchestrator/reducer refresh the registry and report |
 

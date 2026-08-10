@@ -5,7 +5,6 @@ trigger_phrases:
   - "design proof token"
   - "content bound design token"
   - "sk design gate token"
-  - "open design proof token"
 importance_tier: important
 contextType: implementation
 version: 1.0.0.0
@@ -37,7 +36,7 @@ The token is run-scoped and transport-neutral. It proves that the request carrie
 | `subjectDigest` | string | yes | Digest of the canonical subject string for the design-affecting request. |
 | `briefDigest` | string | yes | Digest of the canonical brief object carried by the outgoing payload. |
 | `formAnswersDigest` | string | yes | Digest of the canonical form-answer object carried by the outgoing payload. |
-| `openDesignLineageDigest` | string | yes | Digest of the canonical lineage object carried by the outgoing payload. |
+| `lineageDigest` | string | yes | Digest of the canonical lineage object carried by the outgoing payload. |
 | `issuedAt` | string | yes | ISO-8601 UTC timestamp for token minting time. |
 | `expiresAt` | string | yes | ISO-8601 UTC timestamp after which the token is invalid. Default TTL is approximately 300 seconds. |
 | `singleUse` | boolean | yes | MUST be `true` for design-affecting operations. |
@@ -69,7 +68,7 @@ All digest fields use `sha256:<64 lowercase hex>`. Unknown top-level fields MAY 
   "subjectDigest": "sha256:97cf3e7d3f45a02f6500d8d44ab227772adf51e0d8c0fd22b25c7e13e13d9c6b",
   "briefDigest": "sha256:0d6b8ce8b3f5d372f3c86f4f06cf7f575d8c7fe0f68b3f245d2a9916c4d73301",
   "formAnswersDigest": "sha256:6d57c0f6a25d8ad0d2a88e6e65f379dfb6a5a4d0a7db6a5567a8747b2f04ad19",
-  "openDesignLineageDigest": "sha256:49889c3e468d55c2b68a1a69f34f03ecadce24383c41e861ec25d1a5571dc0e2",
+  "lineageDigest": "sha256:49889c3e468d55c2b68a1a69f34f03ecadce24383c41e861ec25d1a5571dc0e2",
   "issuedAt": "2026-06-28T12:00:00Z",
   "expiresAt": "2026-06-28T12:05:00Z",
   "singleUse": true,
@@ -109,7 +108,7 @@ The structured digest inputs are:
 |---|---|---|
 | `briefDigest` | The exact brief object sent to the design-affecting operation, after canonical JSON normalization. | `{}` |
 | `formAnswersDigest` | The exact form-answer object sent to the design-affecting operation, after canonical JSON normalization. | `{}` |
-| `openDesignLineageDigest` | The exact lineage object sent to the design-affecting operation, after canonical JSON normalization. | `{"lineage":[]}` |
+| `lineageDigest` | The exact lineage object sent to the design-affecting operation, after canonical JSON normalization. | `{"lineage":[]}` |
 
 A validator MUST reject any digest whose input cannot be reconstructed unambiguously.
 
@@ -126,7 +125,7 @@ It MUST:
 | Version | Set `version` to `1`. |
 | File proof | Record each loaded context file as `{path, sha256}` using repository-relative POSIX paths and raw-byte SHA-256. |
 | Workflow modes | Record the non-empty workflow-mode bundle used for the decision. |
-| Payload binding | Compute `subjectDigest`, `briefDigest`, `formAnswersDigest`, and `openDesignLineageDigest` from the actual outgoing subject, brief, form answers, and lineage. |
+| Payload binding | Compute `subjectDigest`, `briefDigest`, `formAnswersDigest`, and `lineageDigest` from the actual outgoing subject, brief, form answers, and lineage. |
 | Freshness | Set `issuedAt` to the minting instant and `expiresAt` to roughly five minutes later. |
 | Replay defense | Set `singleUse: true` and include both `nonce` and `runId`. |
 | Attribution | Set `mintedBy` and `boundSurface` to stable, validator-readable values. |

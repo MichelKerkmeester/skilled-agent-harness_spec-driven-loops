@@ -265,9 +265,8 @@ workflow:
         note: |
           Each adapter's discover CLI takes the lane's scope in its own authority-appropriate
           form (sk-doc/sk-design/sk-code: `discover [--glob] <scope-value...>` for paths/globs
-          scopes; sk-git: its own ref/range-shaped discover invocation for branchRange scopes;
-          sk-design-live-render: discover() enumerates render targets, never renders). Every
-          adapter returns the same `{artifacts, nodes}` shape (discover-contract.md §4)
+          scopes; sk-git: its own ref/range-shaped discover invocation for branchRange scopes).
+          Every adapter returns the same `{artifacts, nodes}` shape (discover-contract.md §4)
           regardless of authority -- the loop never branches on which authority produced it.
         outputs:
           - lane_artifacts: "artifacts array from this lane's discover() call"

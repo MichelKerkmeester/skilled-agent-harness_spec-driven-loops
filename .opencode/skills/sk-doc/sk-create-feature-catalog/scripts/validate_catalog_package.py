@@ -71,7 +71,6 @@ WARN_PACKAGE_IDS = frozenset({
     'sk-code',
     'sk-design',
     'sk-design/sk-design-interface',
-    'sk-design/sk-design-mcp-open-design',
     'sk-design/sk-design-md-generator',
     'sk-doc',
     'sk-doc/sk-create-diff',

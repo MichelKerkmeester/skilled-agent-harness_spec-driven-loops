@@ -60,7 +60,7 @@ Each array entry has three required keys, the same three ADR-011 names verbatim,
 | `authority` | string | Must be one of the registered authorities (`scripts/scoping.cjs`'s `AUTHORITY_ARTIFACT_CLASSES` keys: `sk-doc`, `sk-git`, `sk-design`, `sk-code` in v1, extensible per ADR-012) |
 | `artifactClass` | string | Must be one of `docs`, `code`, `designs`, `git-history`, AND must be one the named `authority` actually supports (see §4) |
 | `scope` | object | One of the three shapes in §5, validated against the repo root for `paths`/`globs` |
-| `adapter` | string | **Optional.** One of the authority's registered adapter modules (`scripts/scoping.cjs`'s `AUTHORITY_ADAPTERS[authority]`). Defaults to the authority's own module. Lets a `designs` lane select `sk-design-live-render` instead of the static `sk-design` adapter. It is a discovery/check module selector, not part of the lane's identity (laneId is authority×artifactClass×scope). |
+| `adapter` | string | **Optional.** One of the authority's registered adapter modules (`scripts/scoping.cjs`'s `AUTHORITY_ADAPTERS[authority]`). Defaults to the authority's own module. It is a discovery/check module selector, not part of the lane's identity (laneId is authority×artifactClass×scope). |
 
 This is not a schema-only rule. It is the literal object `scripts/scoping.cjs`'s `validateLane()` returns on success, unchanged, so a config-file lane and an interactively-resolved lane are indistinguishable once resolved (zero information loss, per ADR-011's own constraint).
 

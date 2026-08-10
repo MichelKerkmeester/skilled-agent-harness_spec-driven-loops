@@ -196,14 +196,6 @@ cli_skill_diagnostics:
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; no install/connect/patch
     install_guide: ".opencode/skills/mcp-tooling/mcp-figma/INSTALL-GUIDE.md"
-  mcp-open-design:
-    label: "Open Design (CLI)"
-    skill_dir: ".opencode/skills/sk-design/sk-design-mcp-open-design"
-    install_script: "scripts/install.sh"
-    install_script_mutation_class: mutating  # installer: verifies app, may write state
-    doctor_script: "scripts/doctor.sh"
-    doctor_script_mutation_class: read-only  # diagnostics only; no daemon/MCP wiring
-    install_guide: ".opencode/skills/sk-design/sk-design-mcp-open-design/INSTALL-GUIDE.md"
   mcp-chrome-devtools:
     label: "Chrome DevTools (CLI)"
     skill_dir: ".opencode/skills/mcp-tooling/mcp-chrome-devtools"

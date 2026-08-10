@@ -31,7 +31,7 @@ Use the shared design reference base as the workflow for this task.
 
 **Why**:
 - `SKILL.md` says the shared reference base itself is not a user workflow.
-- `mode-registry.json` lists only two workflow modes: `interface` and `md-generator` (plus the `design-mcp-open-design` transport).
+- `mode-registry.json` lists only two workflow modes: `interface` and `md-generator`.
 - `hub-router.json` `routerPolicy.outcomes.defer` says unclear or contradictory design intent asks for disambiguation.
 
 **Expected packet loaded**:

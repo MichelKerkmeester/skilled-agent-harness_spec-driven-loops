@@ -18,7 +18,8 @@
     "sk-design/004-sk-design-md-generator",
     "sk-design/006-sk-design-md-generator",
     "sk-design/008-sk-design-parent",
-    "sk-design/009-sk-design-claude-parity"
+    "sk-design/009-sk-design-claude-parity",
+    "sk-design/015-deprecate-open-design"
   ],
   "manual": {
     "depends_on": [],
@@ -41,13 +42,13 @@
     "entities": [],
     "causal_summary": "Packet metadata derived from canonical spec documents.",
     "created_at": "2026-06-30T13:20:00.000Z",
-    "last_save_at": "2026-07-09T10:02:44.431Z",
+    "last_save_at": "2026-08-10T14:10:19.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "design/008-sk-design-parent",
-    "last_active_at": "2026-06-30T13:20:00.000Z"
+    "last_active_child_id": "sk-design/015-deprecate-open-design",
+    "last_active_at": "2026-08-10T14:10:19.835Z"
   }
 }

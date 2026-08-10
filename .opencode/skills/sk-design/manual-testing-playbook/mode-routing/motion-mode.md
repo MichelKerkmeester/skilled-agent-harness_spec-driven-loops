@@ -29,7 +29,7 @@ Design the hover micro-interactions and reduced-motion fallback for this command
 **Expected mode resolution**: `interface`.
 
 **Why**:
-- `mode-registry.json` lists only `sk-design-interface`, `sk-design-md-generator`, and `sk-design-mcp-open-design` as modes; `motion` no longer exists as a mode, and its aliases (`motion design`, `animate this`, `micro-interactions`, `transitions`, `AnimatePresence`, `exit animation`, `reduced motion`, `motion performance`) were merged into `sk-design-interface`'s alias list.
+- `mode-registry.json` lists only `sk-design-interface` and `sk-design-md-generator` as modes; `motion` no longer exists as a mode, and its aliases (`motion design`, `animate this`, `micro-interactions`, `transitions`, `AnimatePresence`, `exit animation`, `reduced motion`, `motion performance`) were merged into `sk-design-interface`'s alias list.
 - `hub-router.json` routes the `motion-aliases`, `motion-temporal`, `motion-runtime`, and `motion-feel` vocabulary classes into `interface`'s `routerSignals`.
 
 **Expected packet loaded**:

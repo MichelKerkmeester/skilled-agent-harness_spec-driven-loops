@@ -18,7 +18,6 @@ const {
   laneKey,
   reduceAlignmentState,
 } = require('../../../runtime/scripts/reduce-alignment-state.cjs');
-const liveRenderAdapter = require('../adapters/sk-design-live-render.cjs');
 
 function makeSpecFolder(slug) {
   const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), `align-coverage-${slug}-`)));
@@ -491,7 +490,6 @@ test('lane identity separates adapter, scope type, and comma-containing values',
 function resolveLanesFromDescriptorsForIdentity() {
   return resolveLanesFromConfig([
     { authority: 'sk-design', artifactClass: 'designs', scope: { type: 'paths', values: ['docs/'] } },
-    { authority: 'sk-design', artifactClass: 'designs', adapter: 'sk-design-live-render', scope: { type: 'paths', values: ['docs/'] } },
     { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/a', 'docs/b'] } },
     { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'paths', values: ['docs/a, docs/b'] } },
     { authority: 'sk-doc', artifactClass: 'docs', scope: { type: 'globs', values: ['docs/'] } },
@@ -519,32 +517,9 @@ test('a full-corpus claim without per-artifact evidence earns zero coverage', ()
   }
 });
 
-test('live-render check without measured data is not a clean result', () => {
-  const findings = liveRenderAdapter.check(
-    { target: 'https://example.test/dashboard', targetType: 'url' },
-    { knownDeviations: [] },
-    { renderResult: { dispatchedThrough: 'sk-design-mcp-open-design' } },
-  );
-  assert.ok(findings.length > 0);
-});
 
-test('live-render check returns a measured receipt when structured measurements exist', () => {
-  const findings = liveRenderAdapter.check(
-    { target: 'https://example.test/dashboard', targetType: 'url' },
-    { knownDeviations: [] },
-    {
-      renderResult: {
-        dispatchedThrough: 'sk-design-mcp-open-design',
-        renderedAt: '2026-08-07T00:00:00.000Z',
-        measurements: { coreWebVitals: { lcpMs: 1000, inpMs: 50, cls: 0.01 } },
-      },
-    },
-  );
-  assert.equal(findings.length, 0);
-  assert.equal(findings.checkReceipt.measured, true);
-  assert.equal(findings.checkReceipt.adapter, 'sk-design-live-render');
-  assert.match(findings.checkReceipt.measurementDigest, /^sha256:[0-9a-f]{64}$/);
-});
+
+
 
 test('alignment registry names its actual convergence backend', () => {
   const registry = JSON.parse(fs.readFileSync(path.resolve(

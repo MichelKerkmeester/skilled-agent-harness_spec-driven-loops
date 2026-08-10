@@ -33,14 +33,14 @@ Canonical package artifacts:
 This playbook provides 35 deterministic scenarios across 9 categories validating the `sk-design` parent-skill hub. Each feature keeps its stable `{PREFIX}-NNN` ID and links to a dedicated feature file with the full execution contract.
 
 Coverage note: the playbook covers sk-design's parent-hub routing at the current skill files. It exercises:
-- Mode routing across the two `packetKind: "workflow"` registry modes: `interface` and `md-generator`; plus the one `packetKind: "transport"` mode, `design-mcp-open-design`.
+- Mode routing across the two `packetKind: "workflow"` registry modes: `interface` and `md-generator`.
 - Skill advisor integration: `sk-design` wins positive design controls at confidence `>= 0.80`; pure code, documentation, and code-correctness review requests (even with review/audit-adjacent wording) route elsewhere.
 - Transform-verb routing from `mode-registry.json`: interface-frame `make it`, `aliasOnly`, and excluded aliases.
 - The md-generator pipeline as the only mutating mode with `backendKind: playwright-extract` and Write/Edit/Bash access, including its authoring-boundary refusal to fabricate a token table from a brief-only request with no live site.
 - Shared reference base usage: the hub stays routing-only, modes cite shared references, and the shared base is not a user workflow.
 - Parity behavior proof: selected procedure card rationale, context/proof gates, md-generator preservation confirmation, the relocated motion procedure selection (now inside `interface`), and interface variation-set selection.
 - Fallback and resilience proof: exact no-card fallback lines and direct fallback behavior without subagents, including the md-generator backend-preserving distinction.
-- Hub manager-intake proof: context-first intake fields, visible plan before substantial work, verifier-cadence pause when required proof is missing, and design-mode pairing before a design-affecting Open Design run.
+- Hub manager-intake proof: context-first intake fields, visible plan before substantial work, and verifier-cadence pause when required proof is missing.
 - Styles-library proof: eligibility-first retrieval, generation-mismatch refusal, zero-hydration seam validation, corpus-verdict rejection and the generator's leak-gated retry without STUDY.
 
 ### Realistic Test Model
@@ -65,7 +65,7 @@ Coverage note: the playbook covers sk-design's parent-hub routing at the current
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is the repository root.
-2. The sk-design hub is present at `.opencode/skills/sk-design/` with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `shared/`, and both workflow mode folders plus the `design-mcp-open-design` transport packet intact.
+2. The sk-design hub is present at `.opencode/skills/sk-design/` with `SKILL.md`, `mode-registry.json`, `hub-router.json`, `shared/`, and both workflow mode folders intact.
 3. The skill advisor is callable either through the runtime hook or through `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 4. Operators capture evidence under `/tmp/skd-<SCENARIO-ID>/` or `/tmp/skd-<SCENARIO-ID>.txt`.
 5. Scenarios outside `md-generator-pipeline/` are read-only routing tests against skill assets.
@@ -185,7 +185,6 @@ This section records wave planning and capacity guidance for the manual testing 
 | `MDR-002` | Foundations-Flavored Token Routing | Static token-system request routes to `interface` now that `foundations` is retired | `Create an OKLCH color token system, typography scale, spacing rhythm, and responsive grid for this dashboard.` | `foundations-color`: `oklch`; `foundations-type`: `typography`; `foundations-layout`: `grid`; `foundations-tokens`: `design-tokens` (all route into `interface`) | `mode-routing/foundations-mode.md` |
 | `MDR-003` | Motion-Flavored Temporal Routing | Temporal interaction request still resolves to `interface` now that the standalone `motion` mode is retired | `Design the hover micro-interactions and reduced-motion fallback for this command menu.` | `motion-aliases`: `micro-interactions`, `reduced motion`; `motion-temporal`: `hover effect` (all route into `interface`) | `mode-routing/motion-mode.md` |
 | `MDR-005` | md-generator Mode | Live-site extraction request routes to `md-generator` | `Extract the design system from https://example.com into a DESIGN.md style reference.` | `md-generator-aliases`: `extract design system`; `md-generator-artifacts`: `design.md`; backend `playwright-extract` | `mode-routing/md-generator-mode.md` |
-| `MDR-007` | Open Design Transport Mode | Open Design wiring request routes to the nested transport packet `design-mcp-open-design`, not a design-judgment mode or the external `mcp-figma` sibling | `Wire Open Design's MCP server into opencode so I can drive od cli from the terminal.` | `design-mcp-open-design-aliases`: `wire open design`, `od cli`; `packetKind: "transport"` | `mode-routing/mcp-open-design-mode.md` |
 
 ---
 
@@ -259,7 +258,6 @@ This section records wave planning and capacity guidance for the manual testing 
 | `HM-001` | Context-First Intake | Hub gathers goal, surface, inputs, constraints, and proof expectations before routing when missing facts affect the route | `Make this product experience feel more premium and production-ready. I have some screenshots and a brand deck, but I am not sure whether this needs interface direction, a static token system, or motion work.` | intake fields appear before route or a focused question is asked | `hub-manager-intake/context-first-intake.md` |
 | `HM-002` | Visible Plan Before Build | Hub shows selected mode or bundle, context, design moves, proof, and handoff target before substantial work | `Design the visual direction for a dense operations dashboard and prepare the implementation handoff. Before any design recommendation, show the selected mode or bundle, context loaded, intended design moves, proof required, and handoff target.` | visible plan appears before design recommendations | `hub-manager-intake/visible-plan-before-build.md` |
 | `HM-003` | Verifier-Cadence Pause | Hub pauses ready claims when required proof is missing or transport-only | `I only have a Figma export and no rendered responsive checks. Tell me whether this design is ready to ship, and if any proof field is missing, pause the ready claim and name the missing proof.` | readiness is paused; missing proof fields are named | `hub-manager-intake/verifier-cadence-pause.md` |
-| `HM-004` | Design-Mode Pairing Before Run | Hub pairs a design-judgment mode with `design-mcp-open-design` and names it as a hard precondition before a RUN-direction Open Design generation request | `Commission an Open Design generation run for a new settings page, grounding it in one of Open Design's local design systems, and start the run now.` | ordered bundle pairs a design-judgment mode (default `interface`) with `design-mcp-open-design`; paired mode named as hard precondition before any `start_run` call | `hub-manager-intake/design-mode-pairing-before-run.md` |
 
 ---
 
@@ -296,7 +294,6 @@ Manual execution remains the validation source for advisor behavior, hub routing
 | Mode Routing | MDR-002 | `mode-routing/foundations-mode.md` |
 | Mode Routing | MDR-003 | `mode-routing/motion-mode.md` |
 | Mode Routing | MDR-005 | `mode-routing/md-generator-mode.md` |
-| Mode Routing | MDR-007 | `mode-routing/mcp-open-design-mode.md` |
 | Advisor Integration | AI-001 | `advisor-integration/positive-design-controls.md` |
 | Advisor Integration | AI-002 | `advisor-integration/pure-code-routes-skcode.md` |
 | Advisor Integration | AI-003 | `advisor-integration/doc-write-routes-elsewhere.md` |

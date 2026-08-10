@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/ai-council.md",
-      "sha256": "1d215d9872c40b91122234215e67bb373bd995af1a269d3965c27cc9a2f01aff",
+      "sha256": "38d362e26f6cb89a66b0f222bbda86da3d7c2a0b49dca89a4a9709a44165a9b2",
       "section": "full"
     },
     {
@@ -17,7 +17,7 @@
     },
     {
       "path": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "a6ffef6ce5c74d99e2f60a15226aeed32948a201c378eacaaeec1b189814e5e6",
+      "sha256": "d5ca47fd46e04117e305e95b33ba3cf47ff6afb92131bfb1980f4fee2990c260",
       "section": "full"
     },
     {
@@ -32,17 +32,17 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "a26e9ebd5a3a10f29ff56833420cc484de53fdc074b35d943214788f627d3b8e",
+      "sha256": "8b6e6ae055b03a7c7c4da9c85a74e6564b04a5e40bcd03212079077b3365ac6d",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "d2699da29e2b2cff0bdee7a3bab88bbdd346ffe71730b72152de21e0201bb21e",
+      "sha256": "dc4a50f8b78bc24008b1676f4a4e47521d42194a5b418ebb9a1e57e8b0aa30d9",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "68ac939b725626b1c32c4d26ab22d505c8f55273ca9844a8beebac4394361a7d",
+      "sha256": "d57a5c5d592a4ed545d4752745b207f8addd23677f0e344a184bf08be7990c91",
       "section": "full"
     },
     {
@@ -117,7 +117,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
-      "sha256": "1141ae53a47ae63cde0bca51080ec23f4a5758ff18950b484845bb469fa4b489",
+      "sha256": "f48b5468aa9dd16f46b9f971692ecafc14f829ccc3ab86faf439cd632ec51f15",
       "section": "full"
     },
     {
@@ -137,12 +137,12 @@
     },
     {
       "path": ".opencode/agents/ai-council.md",
-      "sha256": "a25715fe477afa42413dfe5032c7ecbf7d1b052748d0a2a9426a534b5b75c2f9",
+      "sha256": "26ea3a04f2c8221d0b7ee689d54c11e691d24663db500662d56f2f4953344440",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
-      "sha256": "3c801fbecbc5bb01a99a7578243a823b791368cc229966b930418cfb468500df",
+      "sha256": "8bb0a8d7cd4c37218ea9ad246eb9675e59fba897d13df8230ea2c4383a4faa9e",
       "section": "full"
     }
   ],

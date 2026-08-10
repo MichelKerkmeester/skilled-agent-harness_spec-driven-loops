@@ -326,10 +326,6 @@
         {
           "sibling": "/interface:design-reference",
           "when": "Prefer md-generator when the request is extracting a live site's measured CSS into DESIGN.md."
-        },
-        {
-          "sibling": "sk-design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
-          "when": "Prefer sk-design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than invent a new interface direction."
         }
       ],
       "pairWithHubWhen": "the request is primarily measured CSS extraction",
@@ -526,10 +522,6 @@
         {
           "sibling": "/interface:design",
           "when": "Prefer interface when the request is to invent a new design direction instead of capturing what already exists."
-        },
-        {
-          "sibling": "sk-design-mcp-open-design (no standalone command; reached via the sk-design hub paired with a design mode)",
-          "when": "Prefer sk-design-mcp-open-design when the request is to wire, read, or drive Open Design's MCP server rather than extract measured CSS from a live website."
         }
       ],
       "pairWithHubWhen": "the request spans more than measured CSS extraction, such as redesign, critique, or new visual-system invention",

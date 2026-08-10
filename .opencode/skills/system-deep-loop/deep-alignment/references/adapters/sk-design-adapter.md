@@ -1,6 +1,6 @@
 ---
 title: sk-design Adapter (Static v1) - standardSource, discover, check
-description: The concrete standardSource("sk-design")/discover(scope)/check(artifact,rules) specification for the v1 static-only DESIGN.md/tokens.json structural + audit-rubric adapter, built to the phase-005 reference adapter's shape. Live-render audits are explicitly OUT of this adapter's scope (phase 010).
+description: The concrete standardSource("sk-design")/discover(scope)/check(artifact,rules) specification for the v1 static-only DESIGN.md/tokens.json structural + audit-rubric adapter, built to the reference adapter's shape.
 trigger_phrases:
   - "sk-design alignment adapter"
   - "static DESIGN.md conformance"
@@ -25,9 +25,9 @@ ADR-003 (`.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architect
 
 ### Static-Only v1 Boundary: HARD SCOPE LIMIT (ADR-004, ADR-009)
 
-**Live-render and `chrome-devtools`-driven audits (accessibility, performance, responsive behavior against an actually-rendered surface) are explicitly OUT of this adapter's scope.** ADR-004 locks v1's sk-design adapter to "static DESIGN.md/token checks only," and ADR-009 (now LOCKED) splits the live-render dimension into its own peer phase, `010-adapter-sk-design-live-render`, which, per ADR-009's own Decision text, will route exclusively through the existing `design-mcp-open-design` dispatch boundary (`.opencode/skills/sk-design/shared/design-dispatch-boundary.md`, and `.opencode/skills/sk-design/SKILL.md:30`: "a read-only bridge, always paired with a design-judgment mode that owns the taste") rather than a parallel chrome-devtools path. This adapter never renders anything, never invokes `design-md-generator`'s Playwright extraction pipeline and never drives `chrome-devtools` (NFR-S01). It reads `DESIGN.md`/`tokens.json` files already present on disk in scope, nothing more.
+**Rendered-surface audits (accessibility, performance, responsive behavior against an actually-rendered surface) are explicitly OUT of this adapter's scope.** This adapter never renders anything, never invokes `design-md-generator`'s Playwright extraction pipeline and never drives `chrome-devtools` (NFR-S01). It reads `DESIGN.md`/`tokens.json` files already present on disk in scope, nothing more.
 
-This has a concrete, checkable consequence for which `audit-contract.md` dimensions this adapter can honestly claim to cover. Of the Five-Dimension Score's five dimensions (`audit-contract.md` Section 3: Accessibility, Performance, Responsive Design, Theming, Anti-Patterns), only **Theming** and **Anti-Patterns** are staticaly assessable from a `DESIGN.md`'s own text. A spec document has no keyboard to navigate, no Core Web Vitals to measure, no breakpoint to resize. Accessibility, Performance and Responsive Design genuinely require a rendered surface, which is exactly what phase 010 exists to add. This adapter does not attempt to fake coverage of those three dimensions from static text. `standardSource()`'s `accessibilityPerformance` rule entry carries this limitation as an explicit `note` field (Section 4.4).
+This has a concrete, checkable consequence for which `audit-contract.md` dimensions this adapter can honestly claim to cover. Of the Five-Dimension Score's five dimensions (`audit-contract.md` Section 3: Accessibility, Performance, Responsive Design, Theming, Anti-Patterns), only **Theming** and **Anti-Patterns** are staticaly assessable from a `DESIGN.md`'s own text. A spec document has no keyboard to navigate, no Core Web Vitals to measure, no breakpoint to resize. Accessibility, Performance and Responsive Design genuinely require a rendered surface and remain outside this static authority. This adapter does not attempt to fake coverage of those three dimensions from static text. `standardSource()`'s `accessibilityPerformance` rule entry carries this limitation as an explicit `note` field (Section 4.4).
 
 ### What This Adapter Wraps (Not Reimplements)
 
@@ -46,7 +46,7 @@ Explicitly **not wrapped**: `design-md-generator`'s own Playwright extraction ba
 
 ## 2. STANDARDSOURCE("SK-DESIGN")
 
-`standardSource('sk-design')` returns a single object naming every real source Section 1 lists, tagged with the static/live-render boundary and each source's determinism role. Live output (`node scripts/adapters/sk-design.cjs standard-source`, re-run 2026-07-11):
+`standardSource('sk-design')` returns a single object naming every real source Section 1 lists, tagged with the static boundary and each source's determinism role. Live output (`node scripts/adapters/sk-design.cjs standard-source`, re-run 2026-07-11):
 
 ```json
 {
@@ -180,6 +180,5 @@ See that file's own header comment for exact invocation examples.
 - [sk-doc-adapter.md](./sk-doc-adapter.md): the phase-005 reference adapter this document's shape was copied from.
 - `.opencode/skills/sk-design/sk-design-md-generator/references/design-md-format.md`: the live Style Reference format specification this adapter's structural checker implements.
 - `.opencode/skills/sk-design/shared/design-token-vocabulary.md`, `.opencode/skills/sk-design/design-audit/references/{audit-contract,accessibility-performance,anti-patterns-production,ai-fingerprint-tells}.md`: the full static rule-source set `standardSource()` names.
-- `.opencode/skills/sk-design/shared/design-dispatch-boundary.md`, `.opencode/skills/sk-design/SKILL.md:30`: the dispatch boundary phase 010's live-render adapter must route through (this adapter itself never touches it).
-- `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md` (ANCHORS `adr-003`, `adr-004`, `adr-005`, `adr-009`): the contract, static-v1 sequencing rationale, alignment invariants and live-render split this adapter satisfies.
+- `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md` (ANCHORS `adr-003`, `adr-004`, `adr-005`): the contract, static-v1 sequencing rationale and alignment invariants this adapter satisfies.
 - [../discover-contract.md](../discover-contract.md), [../lane-config-schema.md](../lane-config-schema.md), [../scoping-protocol.md](../scoping-protocol.md): the real, live `discover(scope)->artifacts` contract this adapter's `discover()` conforms to.

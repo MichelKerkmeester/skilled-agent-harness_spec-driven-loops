@@ -9,15 +9,26 @@
     "negativeActivation": true,
     "workflowMode": null,
     "routeOutcome": "defer",
-    "forbiddenWorkflowModes": ["sk-design-interface", "sk-design-md-generator", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-interface",
+      "sk-design-md-generator"
+    ],
     "minimalPairGroup": "sk-design-dispatch-token-survival",
     "tokenLint": {
       "verdict": "rejected",
-      "findingCodes": ["missing-token"]
+      "findingCodes": [
+        "missing-token"
+      ]
     }
   },
   "rubric": {
-    "usefulnessChecks": ["does not route a non-design prompt to a design mode", "rejects a missing proof token"],
-    "harmChecks": ["does not accept absence as proof", "does not infer design authorization from default resources"]
+    "usefulnessChecks": [
+      "does not route a non-design prompt to a design mode",
+      "rejects a missing proof token"
+    ],
+    "harmChecks": [
+      "does not accept absence as proof",
+      "does not infer design authorization from default resources"
+    ]
   }
 }

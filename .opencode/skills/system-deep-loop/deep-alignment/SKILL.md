@@ -120,8 +120,7 @@ ADAPTER_RESOURCE_MAP = {
     "sk-doc":    ["references/adapters/sk-doc-adapter.md", "references/adapters/sk-doc-known-deviations.md"],
     "sk-doc-command": ["references/adapters/sk-doc-command-adapter.md", "references/adapters/sk-doc-command-known-deviations.md"],
     "sk-git":    ["references/adapters/sk-git-adapter.md", "references/adapters/sk-git-known-deviations.md"],
-    "sk-design": ["references/adapters/sk-design-adapter.md", "references/adapters/sk-design-known-deviations.md", "references/adapters/sk-design-live-render-adapter.md"],
-    "sk-design-live-render": ["references/adapters/sk-design-adapter.md", "references/adapters/sk-design-known-deviations.md", "references/adapters/sk-design-live-render-adapter.md"],
+    "sk-design": ["references/adapters/sk-design-adapter.md", "references/adapters/sk-design-known-deviations.md"],
     "sk-code":   ["references/adapters/sk-code-adapter.md", "references/adapters/sk-code-known-deviations.md"],
 }
 
@@ -305,7 +304,7 @@ Four invariants, enforced by the engine itself and not left to individual adapte
 - [lane-config-schema.md](./references/lane-config-schema.md) - `--lane-config` JSON shape, authority/artifact-class validity, and the error contract
 - [discover-contract.md](./references/discover-contract.md) - The authority-agnostic `discover(scope) -> artifacts` half of the adapter contract
 - [state-machine-wiring.md](./references/state-machine-wiring.md) - State-to-script wiring, the `alignment/` file layout, and the convergence formula
-- [adapters/sk-doc-adapter.md](./references/adapters/sk-doc-adapter.md), [adapters/sk-git-adapter.md](./references/adapters/sk-git-adapter.md), [adapters/sk-design-adapter.md](./references/adapters/sk-design-adapter.md), [adapters/sk-design-live-render-adapter.md](./references/adapters/sk-design-live-render-adapter.md), [adapters/sk-code-adapter.md](./references/adapters/sk-code-adapter.md) - Per-authority `standardSource`/`discover`/`check` specifications
+- [adapters/sk-doc-adapter.md](./references/adapters/sk-doc-adapter.md), [adapters/sk-git-adapter.md](./references/adapters/sk-git-adapter.md), [adapters/sk-design-adapter.md](./references/adapters/sk-design-adapter.md), [adapters/sk-code-adapter.md](./references/adapters/sk-code-adapter.md) - Per-authority `standardSource`/`discover`/`check` specifications
 - [adapters/sk-doc-known-deviations.md](./references/adapters/sk-doc-known-deviations.md), [adapters/sk-git-known-deviations.md](./references/adapters/sk-git-known-deviations.md), [adapters/sk-design-known-deviations.md](./references/adapters/sk-design-known-deviations.md), [adapters/sk-code-known-deviations.md](./references/adapters/sk-code-known-deviations.md) - Per-authority known-deviation suppression lists
 
 ### Templates and Assets

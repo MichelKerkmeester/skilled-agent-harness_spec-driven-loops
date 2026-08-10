@@ -38,7 +38,7 @@ Transforms vague or basic inputs into highly effective, structured AI prompts. P
 Transform vague requests into structured prompts using RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, or CRAFT frameworks with CLEAR scoring (40+/50 threshold).
 
 #### Design-Generation Prompt
-Construct a grounded, anti-default generation brief for the design tool the framework drives (`mcp-open-design` `start_run`). Covers the brief shape, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to `sk-code`. See [design-generation-patterns.md](./references/design-generation-patterns.md). This skill owns the prompt only, never the design judgment (`sk-design`) or the run transport.
+Construct a grounded, anti-default generation brief for a design-generation run. Covers the brief shape, the String Seed of Thought anti-median variation technique, pre-answering a multi-turn discovery form, and the handoff to `sk-code`. This skill owns the prompt only, never the design judgment (`sk-design`) or the run transport.
 
 ### When NOT to Use
 
@@ -83,7 +83,6 @@ This skill uses a **simple intent router**, not a keyed resource-subdirectory ro
 ```text
 references/depth-framework.md            - DEPTH methodology, RICCE integration
 references/patterns-evaluation.md        - 7 frameworks, CLEAR scoring
-references/design-generation-patterns.md - Design-generation briefs (open-design start_run), seed-of-thought, discovery-form pre-answer
 assets/format-guide-markdown.md          - Markdown format deep-dive
 assets/format-guide-json.md              - JSON format deep-dive
 assets/format-guide-yaml.md              - YAML format deep-dive
@@ -121,7 +120,7 @@ COMMAND_INTENTS = {
 INTENT_MODEL = {
     "TEXT_ENHANCE": {"keywords": [("improve", 4), ("enhance", 4), ("prompt", 3), ("text", 3), ("refine", 4)]},
     "FRAMEWORK": {"keywords": [("framework", 4), ("rcaf", 5), ("costar", 5), ("tidd-ec", 5), ("scoring", 3)]},
-    "DESIGN_GEN": {"keywords": [("open design", 5), ("start_run", 5), ("design generation", 5), ("generate ui", 4), ("canvas", 3), ("design brief", 4), ("variations", 3)]},
+    "DESIGN_GEN": {"keywords": [("design generation", 5), ("generate ui", 4), ("canvas", 3), ("design brief", 4), ("variations", 3)]},
     "FORMAT_MARKDOWN": {"keywords": [("markdown", 4), ("md", 2), ("readme", 3)]},
     "FORMAT_JSON": {"keywords": [("json", 5), ("schema", 3), ("api-ready", 3)]},
     "FORMAT_YAML": {"keywords": [("yaml", 5), ("frontmatter", 3), ("config", 2)]},

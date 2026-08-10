@@ -19,7 +19,7 @@ Regression suite for `../` and `../adapters/`, using the built-in `node:test` ru
 | `reducer-fail-closed.test.cjs` | Proves the reducer never emits a clean PASS on an unaudited corpus and fails closed on a corrupted log or unknown severity |
 | `reducer-seal-state.test.cjs` | Pins `overall.sealed` semantics: seeded false, refreshed per iteration, only set true by terminal `--seal` |
 | `partition-identity-progress.test.cjs` | Proves the corpus partitioner advances by artifact identity, not a bare numeric cursor |
-| `scoping-adapter.test.cjs` | Proves the `adapter` discriminator selects `sk-design-live-render` over the default static adapter and fails closed on an unknown adapter |
+| `scoping-adapter.test.cjs` | Proves the `adapter` discriminator defaults to the authority and fails closed on unknown adapters |
 | `sk-doc-command-adapter.test.cjs` | Deterministic fixture regression for `../adapters/sk-doc-command.cjs` |
 | `command-behavior-matrix.test.cjs` | Exercises the command-benchmark scheduler's scheduling, fixture guards, sampling and reconciliation |
 | `command-scenario-rollout.test.cjs` | Reconciles authored command contracts against frozen v1 behavior |

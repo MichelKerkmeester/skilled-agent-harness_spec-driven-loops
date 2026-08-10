@@ -164,7 +164,7 @@ describe('writeLeafArtifacts — happy path', () => {
     expect(existsSync(p.stateLogPath)).toBe(false);
   });
 
-  it('accepts live-render target identities with measured adapter evidence', async () => {
+  it('accepts URL target identities with measured adapter evidence', async () => {
     const p = newPacket();
     const target = { target: 'https://example.test/design', targetType: 'url' };
     const res = await writeLeafArtifacts(JSON.stringify({
@@ -176,7 +176,7 @@ describe('writeLeafArtifacts — happy path', () => {
         kind: 'adapter-check',
         checkReceipt: {
           measured: true,
-          adapter: 'sk-design-live-render',
+          adapter: 'sk-design',
           measurements: { rendered: true, nodeCount: 12 },
         },
       }],

@@ -2,34 +2,43 @@
   "skill": "sk-design",
   "version": "1.4.3.0",
   "resourceContractVersion": 1,
-  "description": "Declarative registry for the three top-level sk-design modes. The advisor routes one sk-design identity and the hub resolves one registered mode from this three-mode registry.",
+  "description": "Declarative registry for the two top-level sk-design workflow modes. The advisor routes one sk-design identity and the hub resolves one registered mode from this two-mode registry.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
-    "packetKind": "The axis discriminator: 'workflow' for the two registered design-judgment modes (interface/md-generator); 'transport' for the Open Design bridge.",
-    "backendKind": "Which backend runs the mode: reference-base (cites the shared design reference base under references/), playwright-extract (runs the embedded Playwright CSS-extraction pipeline), or od-cli-transport (drives the external Open Design app's od CLI and stdio MCP server)."
+    "packetKind": "The axis discriminator; both registered design modes use 'workflow'.",
+    "backendKind": "Which backend runs the mode: reference-base for interface judgment or playwright-extract for the embedded CSS-extraction pipeline."
   },
   "advisorRoutingContract": {
     "routingClass": "How the advisor finds the mode. For sk-design every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity sk-design and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
     "packetSkillName": "The registered packet's SKILL.md name.",
-    "grandfatheredFolderMismatch": "true only when a registered packet folder differs from packetSkillName. All three registered modes use matching names.",
-    "command": "The bound slash command for a registered mode, or null for a no-command transport."
+    "grandfatheredFolderMismatch": "true only when a registered packet folder differs from packetSkillName. Both registered modes use matching names.",
+    "command": "The slash command bound to a registered mode."
   },
   "extensions": {
     "transform-verbs": {
       "description": "Declares the transform-verb routing extension: framing-split verb aliases (interface-frame 'make it' applies the move; audit-frame 'should it be' evaluates it), with aliasOnly carve-outs. Activates the in-place top-level transformVerbRouting block without relocating it — the hub router vocabulary, command projection parity, and playbook scenarios all read it at that location.",
       "declaredField": "transformVerbRouting"
-    },
-    "transport-axis": {
-      "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (backendKind:'od-cli-transport', routingClass:'metadata', mutatesWorkspace:false since writes land in the external tool, not this repo). They never perform design judgment themselves — every entry on this axis has its own mandatory-pairing contract requiring sk-design's own workflow modes before any design-affecting operation.",
-      "transports": ["sk-design-mcp-open-design"]
     }
   },
   "transformVerbRouting": {
     "note": "Transform verbs are applied by the interface mode under the 'make it' framing. command-metadata.json's taskProjections is a separate layer governing which mode owns the same verb under an explicit slash command. The two intentionally name the same verbs for different resolution paths -- this is not a collision.",
     "interfaceFrame": "make it",
-    "interfaceAliases": ["bolder", "quieter", "distill", "clarify", "delight"],
-    "aliasOnly": ["clarify"],
-    "commandProjectionParity": ["bolder", "quieter", "distill", "delight"]
+    "interfaceAliases": [
+      "bolder",
+      "quieter",
+      "distill",
+      "clarify",
+      "delight"
+    ],
+    "aliasOnly": [
+      "clarify"
+    ],
+    "commandProjectionParity": [
+      "bolder",
+      "quieter",
+      "distill",
+      "delight"
+    ]
   },
   "modes": [
     {
@@ -37,8 +46,16 @@
       "packetKind": "workflow",
       "backendKind": "reference-base",
       "toolSurface": {
-        "allowed": ["Read", "Glob", "Grep"],
-        "forbidden": ["Write", "Edit", "Bash"],
+        "allowed": [
+          "Read",
+          "Glob",
+          "Grep"
+        ],
+        "forbidden": [
+          "Write",
+          "Edit",
+          "Bash"
+        ],
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },
@@ -47,7 +64,63 @@
       "packetSkillName": "sk-design-interface",
       "grandfatheredFolderMismatch": false,
       "command": "/interface:design",
-      "aliases": ["interface design", "frontend design", "visual design", "visual identity", "make it look good", "looks templated", "redesign the ui", "hero section", "landing page direction", "hero redesign", "ui build", "design variations", "less generic", "custom not templated", "visual direction", "bolder", "quieter", "distill", "clarify", "delight", "design foundations", "color system", "oklch palette", "color token system", "dark mode palette", "typography scale", "font pairing", "spacing system", "layout rhythm", "information hierarchy", "responsive layout", "design tokens", "theme tokens", "grid", "container queries", "context adaptation", "data visualization", "chart type", "data tables", "token starter", "motion design", "animate this", "micro-interactions", "transitions", "interaction states", "hover state", "focus state", "loading state", "choreography", "motion budget", "animatepresence", "exit animation", "reduced motion", "morphing icons", "motion performance"],
+      "aliases": [
+        "interface design",
+        "frontend design",
+        "visual design",
+        "visual identity",
+        "make it look good",
+        "looks templated",
+        "redesign the ui",
+        "hero section",
+        "landing page direction",
+        "hero redesign",
+        "ui build",
+        "design variations",
+        "less generic",
+        "custom not templated",
+        "visual direction",
+        "bolder",
+        "quieter",
+        "distill",
+        "clarify",
+        "delight",
+        "design foundations",
+        "color system",
+        "oklch palette",
+        "color token system",
+        "dark mode palette",
+        "typography scale",
+        "font pairing",
+        "spacing system",
+        "layout rhythm",
+        "information hierarchy",
+        "responsive layout",
+        "design tokens",
+        "theme tokens",
+        "grid",
+        "container queries",
+        "context adaptation",
+        "data visualization",
+        "chart type",
+        "data tables",
+        "token starter",
+        "motion design",
+        "animate this",
+        "micro-interactions",
+        "transitions",
+        "interaction states",
+        "hover state",
+        "focus state",
+        "loading state",
+        "choreography",
+        "motion budget",
+        "animatepresence",
+        "exit animation",
+        "reduced motion",
+        "morphing icons",
+        "motion performance"
+      ],
       "advisorRouting": {
         "routingClass": "metadata"
       }
@@ -57,7 +130,14 @@
       "packetKind": "workflow",
       "backendKind": "playwright-extract",
       "toolSurface": {
-        "allowed": ["Read", "Glob", "Grep", "Write", "Edit", "Bash"],
+        "allowed": [
+          "Read",
+          "Glob",
+          "Grep",
+          "Write",
+          "Edit",
+          "Bash"
+        ],
         "forbidden": [],
         "mutatesWorkspace": true,
         "bashAllowlist": []
@@ -67,26 +147,24 @@
       "packetSkillName": "sk-design-md-generator",
       "grandfatheredFolderMismatch": false,
       "command": "/interface:design-reference",
-      "aliases": ["extract design system", "generate design.md", "capture website css", "design tokens from url", "create design reference", "style reference", "tokens.json", "design-to-markdown", "extract design tokens", "validate design.md", "design.md validation", "design fidelity check", "design.md report", "render design preview", "source of truth", "study design.md format"],
-      "advisorRouting": {
-        "routingClass": "metadata"
-      }
-    },
-    {
-      "workflowMode": "sk-design-mcp-open-design",
-      "packetKind": "transport",
-      "backendKind": "od-cli-transport",
-      "toolSurface": {
-        "allowed": ["Read", "Bash"],
-        "forbidden": ["Write", "Edit", "Task"],
-        "mutatesWorkspace": false,
-        "bashAllowlist": []
-      },
-      "packet": "sk-design-mcp-open-design",
-      "packetSkillName": "sk-design-mcp-open-design",
-      "grandfatheredFolderMismatch": false,
-      "command": null,
-      "aliases": ["open design", "open-design", "od mcp", "od cli", "wire open design", "connect open design", "drive open design from the terminal", "design system from open design"],
+      "aliases": [
+        "extract design system",
+        "generate design.md",
+        "capture website css",
+        "design tokens from url",
+        "create design reference",
+        "style reference",
+        "tokens.json",
+        "design-to-markdown",
+        "extract design tokens",
+        "validate design.md",
+        "design.md validation",
+        "design fidelity check",
+        "design.md report",
+        "render design preview",
+        "source of truth",
+        "study design.md format"
+      ],
       "advisorRouting": {
         "routingClass": "metadata"
       }

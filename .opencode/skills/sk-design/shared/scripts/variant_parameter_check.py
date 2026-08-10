@@ -38,7 +38,7 @@ REQUIRED_COLUMNS = [
     "transports",
     "caveat",
 ]
-CANONICAL_TRANSPORTS = ["figma", "open-design", "live"]
+CANONICAL_TRANSPORTS = ["figma"]
 KNOB_TABLE_HEADING = re.compile(r"^#{1,6}\s+(?:\d+\.\s+)?Knob Schema\s*$", re.I)
 MARKDOWN_HEADING = re.compile(r"^#{1,6}\s+")
 PLACEHOLDER = re.compile(r"^(?:_+|TBD|TODO|-|N/A)$", re.I)

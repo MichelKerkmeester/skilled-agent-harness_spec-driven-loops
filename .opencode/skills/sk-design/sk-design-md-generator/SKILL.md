@@ -11,7 +11,7 @@ version: 1.0.2.0
 
 Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a v3 **Style Reference**: a named, role-driven, ship-ready design-system handoff (named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start CSS + Tailwind) that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through an embedded Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`references/`](references/).
 
-> **Family boundary.** This skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `interface` invents **new** distinctive direction (palette, type, anti-default critique). The transports — `design-mcp-open-design` (nested inside `sk-design`) and `mcp-figma` — move design data; this skill produces the authoritative reference those transports and `interface` consume.
+> **Family boundary.** This skill is the **extraction and format-fidelity engine** of the `sk-design-*` family. It captures what already exists. Sibling `interface` invents **new** distinctive direction (palette, type, anti-default critique). The transport — `mcp-figma` — moves design data; this skill produces the authoritative reference that transport and `interface` consume.
 
 ---
 
@@ -45,7 +45,6 @@ Captures a live website's **real, measured CSS** into a publication-quality `DES
 - The task is **inventing a new design direction** (palette, type scale, the anti-default critique). That is `interface`. This skill captures; that skill creates.
 - The task is **authoring a Style Reference from a brief alone** with no live site to measure. That is forward-authoring, and it is OUT OF SCOPE for this mode. This mode reports what is measurably there. A brief-only request is a different contract routed to a separate design-spec decision, never satisfied by loosening fidelity here. The line between measured values and a brief's stated intent is drawn in `references/authoring-boundary.md`.
 - The target is a **Figma file**, not a live website. Use `mcp-figma` to extract from Figma Desktop.
-- The target is an **Open Design project**. Use `design-mcp-open-design` (nested inside `sk-design`).
 - The user only wants a **screenshot or visual preview** of a page. Use `mcp-chrome-devtools`.
 - The website cannot be reached (requires a live, renderable URL with JavaScript execution).
 
@@ -243,7 +242,7 @@ If the card does not match, state `Procedure applied: none - baseline md-generat
 
 Procedure support does not replace or generalize the extraction backend. `design-md-generator` remains the only mutating `sk-design` mode, with `backendKind: playwright-extract`, Write/Edit/Bash permission, and the embedded TypeScript pipeline under `backend/scripts/`. The protected entrypoints are `extract.ts`, `build-write-prompt.ts`, `validate.ts`, `report-gen.ts`, `preview-gen.ts`, and `proof.ts`; package-level verification remains `npm run typecheck`, `npm run build`, and `npm test` from `backend/` when operator policy allows those commands.
 
-The procedure card can shape planning and proof, but it must not flatten this mode into read-only guidance or grant Write, Edit, or Bash to the read-only `sk-design-interface` mode or the `sk-design-mcp-open-design` transport.
+The procedure card can shape planning and proof, but it must not flatten this mode into read-only guidance or grant Write, Edit, or Bash to the read-only `sk-design-interface` mode.
 
 ### Context, Proof, And Direct Fallback
 
@@ -410,7 +409,7 @@ Each token is classified L1 (Permanent/`infrastructure`) through L4 (Content/`co
 
 - `interface` owns new direction (palette, type, anti-default critique); this skill supplies the measured ground truth it builds on.
 - `sk-code` implements against `DESIGN.md` as the hallucination-proof source of truth for colors, fonts, spacing, shadows, and radii.
-- `mcp-figma` and `design-mcp-open-design` (nested inside `sk-design`) are the Figma-file and Open Design alternatives to a live-URL extraction.
+- `mcp-figma` is the Figma-file alternative to a live-URL extraction.
 - `system-spec-kit` applies when the extraction is part of a larger spec-tracked feature and packet documentation is required.
 - Requires Playwright (Apache 2.0, via `npx playwright install chromium`) and Node.js 20+ (`backend/package.json` does not pin an `engines` range — treat 20+ as the supported floor); `ts-node` executes the embedded TypeScript modules directly.
 

@@ -4,16 +4,26 @@
     "skillId": "sk-design",
     "mode": "sk-design-interface",
     "advisorLane": "sk-design",
-    "intentKeys": ["audit"],
-    "resources": ["sk-design-interface/SKILL.md"],
+    "intentKeys": [
+      "audit"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md"
+    ],
     "negativeActivation": false,
     "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-md-generator"
+    ],
     "minimalPairGroup": "mp-ui-build-vs-critique"
   },
   "rubric": {
-    "usefulnessChecks": ["routes this minimal-pair arm to the expected workflow mode"],
-    "harmChecks": ["does not collapse onto the paired build outcome"]
+    "usefulnessChecks": [
+      "routes this minimal-pair arm to the expected workflow mode"
+    ],
+    "harmChecks": [
+      "does not collapse onto the paired build outcome"
+    ]
   }
 }

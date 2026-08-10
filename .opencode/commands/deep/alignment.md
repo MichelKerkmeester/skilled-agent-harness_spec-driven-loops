@@ -1,6 +1,7 @@
 ---
 description: "Autonomous deep-alignment loop: conformance audit against named standard authorities across resolved lanes. Modes :auto, :confirm."
 argument-hint: "<target> [authority] [:auto|:confirm] [--lane-config <file.json>] [--max-iterations=N] [--coverage-threshold=N] [--stability-window=N] [--convergence-mode=default|off] [--spec-folder=PATH] [--restart|--lineage-mode=restart] [--executor-kind=native|cli-codex|cli-opencode] [--model=MODEL] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] (--model/--reasoning-effort apply to cli-codex and cli-opencode; --service-tier is cli-codex-only; :auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+allowed-tools: Read, Grep, Glob, Task, Bash, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search
 ---
 
 # Deep Start Alignment Loop

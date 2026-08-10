@@ -4,16 +4,26 @@
     "skillId": "sk-design",
     "mode": "sk-design-interface",
     "advisorLane": "sk-design",
-    "intentKeys": ["audit"],
-    "resources": ["sk-design-interface/SKILL.md"],
+    "intentKeys": [
+      "audit"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md"
+    ],
     "negativeActivation": false,
     "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-md-generator"
+    ],
     "minimalPairGroup": "transform-bolder-audit-interface"
   },
   "rubric": {
-    "usefulnessChecks": ["routes the audit-framed transform question to the audit workflow mode"],
-    "harmChecks": ["does not apply the transform before the audit decision"]
+    "usefulnessChecks": [
+      "routes the audit-framed transform question to the audit workflow mode"
+    ],
+    "harmChecks": [
+      "does not apply the transform before the audit decision"
+    ]
   }
 }

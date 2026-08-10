@@ -19,7 +19,6 @@ Adapters translate a deep-alignment lane into calls against one named authority 
 | `sk-git.cjs` | Wraps `git log`, `git show`, `git diff-tree`, `git branch`, `git worktree` plus commit-message grammar and branch-naming checks |
 | `sk-code.cjs` | Two-layer adapter: deterministic surface detection plus `verify_alignment_drift.py` and a reasoning-agent dispatch packet for pattern-conformance judgment |
 | `sk-design.cjs` | Static-only adapter. Reads `DESIGN.md` and `tokens.json`, never renders and never drives Playwright or chrome-devtools |
-| `sk-design-live-render.cjs` | Live-render peer of `sk-design.cjs`. Wraps no local renderer, checks caller-supplied render evidence only |
 | `sk-doc-command.cjs` | Checks cross-artifact integrity for canonical OpenCode command documents |
 
 ## 3. CONSUMERS

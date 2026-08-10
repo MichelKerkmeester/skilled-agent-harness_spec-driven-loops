@@ -29,7 +29,7 @@ Create an OKLCH color token system, typography scale, spacing rhythm, and respon
 **Expected mode resolution**: `interface`.
 
 **Why**:
-- `mode-registry.json` lists only `sk-design-interface`, `sk-design-md-generator`, and `sk-design-mcp-open-design` as modes; `foundations` no longer exists as a mode.
+- `mode-registry.json` lists only `sk-design-interface` and `sk-design-md-generator` as modes; `foundations` no longer exists as a mode.
 - `hub-router.json` routes the `foundations-color`, `foundations-type`, `foundations-layout`, and `foundations-tokens` vocabulary classes into `interface`'s `routerSignals`.
 
 **Expected packet loaded**:

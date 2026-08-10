@@ -27,7 +27,7 @@ The card adapts measured source design data into a faithful Style Reference work
 
 ### Tool Boundary
 
-The card grants no additional permission beyond the mode's existing extraction pipeline; it does not grant Write, Edit, or Bash to the read-only `sk-design-interface` mode or the `sk-design-mcp-open-design` transport. When no measurable source exists and the user wants a new direction from a brief instead, the card routes to `sk-design-interface/procedures/aesthetic-direction.md`.
+The card grants no additional permission beyond the mode's existing extraction pipeline; it does not grant Write, Edit, or Bash to the read-only `sk-design-interface` mode. When no measurable source exists and the user wants a new direction from a brief instead, the card routes to `sk-design-interface/procedures/aesthetic-direction.md`.
 
 ---
 

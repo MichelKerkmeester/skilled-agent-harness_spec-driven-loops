@@ -1,6 +1,6 @@
 {
   "name": "sk-design",
-  "description": "Design-family parent hub: the single advisor-routable home for distinctive, intentional UI design and the full design surface. Routes any design query to three modes via mode-registry.json — two packetKind:\"workflow\" modes (interface: visual direction, taste, and interface build judgment, plus the static visual system — color, typography, layout, spacing, hierarchy, design tokens, theming — the temporal/motion layer — animation, transitions, micro-interactions, reduced motion — and the anti-slop / accessibility / production-hardening pre-delivery gate; md-generator: extract a live site's real CSS into a v3 Style Reference DESIGN.md via an embedded Playwright pipeline) plus one packetKind:\"transport\" mode (design-mcp-open-design: drives the external Open Design app's od CLI and stdio MCP server, gated behind sk-design's own judgment for any design-affecting operation). The hub holds no per-mode logic; each mode keeps its own contract and cites the shared design reference base.",
+  "description": "Design-family parent hub: the single advisor-routable home for distinctive, intentional UI design and the full design surface. Routes any design query to two workflow modes via mode-registry.json (interface: visual direction, taste, and interface build judgment, plus the static visual system \u2014 color, typography, layout, spacing, hierarchy, design tokens, theming \u2014 the temporal/motion layer \u2014 animation, transitions, micro-interactions, reduced motion \u2014 and the anti-slop / accessibility / production-hardening pre-delivery gate; md-generator: extract a live site's real CSS into a v3 Style Reference DESIGN.md via an embedded Playwright pipeline). The hub holds no per-mode logic; each mode keeps its own contract and cites the shared design reference base.",
   "version": "1.7.0.0",
   "importance_tier": "high",
   "keywords": [
@@ -38,11 +38,6 @@
     "design.md",
     "css-extraction",
     "design-system-generator",
-    "open-design",
-    "od-cli",
-    "od-mcp",
-    "wire-open-design",
-    "connect-open-design",
     "bolder",
     "quieter",
     "distill",
@@ -56,8 +51,7 @@
     "confirmed-versus-inferred-design-evidence",
     "proof-before-design-ready",
     "sk-design-interface",
-    "sk-design-md-generator",
-    "sk-design-mcp-open-design"
+    "sk-design-md-generator"
   ],
   "lastUpdated": "2026-07-27T00:00:00Z"
 }

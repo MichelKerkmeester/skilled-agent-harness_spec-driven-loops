@@ -1,6 +1,6 @@
 ---
 name: sk-design
-description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and the anti-slop pre-delivery gate; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, or extract a real design system from a live site. The single advisor-routable design skill: it routes to sk-design-interface and sk-design-md-generator plus the nested sk-design-mcp-open-design transport packet via mode-registry.json, and each holds its own logic."
+description: "Distinctive, intentional UI design and the full design surface: visual direction, taste, and build for interfaces; color, typography, layout, spacing, hierarchy, and design tokens; animation, transitions, and micro-interactions; accessibility, performance, responsive, theming, and the anti-slop pre-delivery gate; and live-website CSS to Style Reference DESIGN.md extraction. Use to make a UI look custom and polished rather than templated, design a visual system, choreograph motion, or extract a real design system from a live site. The single advisor-routable design skill: it routes to sk-design-interface and sk-design-md-generator via mode-registry.json, and each holds its own logic."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.7.0.0
 metadata:
@@ -8,7 +8,7 @@ metadata:
   family: sk-hub
 ---
 
-<!-- Keywords: sk-design, design-family, mode-registry, workflowmode, backendkind, reference-base, anti-slop, design-tokens, cognitive-laws, interface-design, frontend-design, visual-design, visual-identity, make-it-look-good, looks-templated, redesign-the-ui, hero-section, ui-build, typography, palette, color-palette, font-pairing, ux-quality-checklist, design-variations, foundations, color-system, oklch, color-token-system, dark-mode, typography-scale, spacing-system, responsive-layout, layout, hierarchy, visual-hierarchy, information-hierarchy, grid, themes, motion-design, animation, animate-this, transitions, micro-interactions, framer-motion, animatepresence, exit-animation, reduced-motion, morphing-icons, motion-performance, design-audit, ui-critique, accessibility-audit, performance-audit, anti-slop-detection, production-hardening, polish, theming, design.md, design-md, style-reference, css-extraction, website-design-extraction, design-reference, tokens.json, playwright, design-to-markdown, design-system-generator, css-tokens, color-extraction, typography-extraction, hex-extraction, shadow-extraction, spacing-extraction, design-fidelity, anti-hallucination, extract-design-system, generate-design-md, capture-website-css, design-tokens-from-url, distinctive-interface, intentional-design, polished-ui, refined-ui, custom-not-templated, premium-ui, aesthetic, design-taste, visual-direction, craft, make-it-beautiful, less-generic, redesign-distinctive, smooth-animation, hover-effect, scroll-animation, choreography, interaction-feel, animate-the-menu, transition-design, design-audit, accessibility-audit, design-quality-audit, design-qa, audit-the-design, review-the-ui, wcag-contrast, ui-quality-review, bolder, quieter, distill, clarify, delight, gratuitous, transform-verb, open-design, od-cli, od-mcp, wire-open-design, connect-open-design, drive-open-design, terminal-design, design-mcp-open-design, validate-design-md, design-md-validation, hex-accuracy, section-completeness, tokens-json-fidelity -->
+<!-- Keywords: sk-design, design-family, mode-registry, workflowmode, backendkind, reference-base, anti-slop, design-tokens, cognitive-laws, interface-design, frontend-design, visual-design, visual-identity, make-it-look-good, looks-templated, redesign-the-ui, hero-section, ui-build, typography, palette, color-palette, font-pairing, ux-quality-checklist, design-variations, foundations, color-system, oklch, color-token-system, dark-mode, typography-scale, spacing-system, responsive-layout, layout, hierarchy, visual-hierarchy, information-hierarchy, grid, themes, motion-design, animation, animate-this, transitions, micro-interactions, framer-motion, animatepresence, exit-animation, reduced-motion, morphing-icons, motion-performance, design-audit, ui-critique, accessibility-audit, performance-audit, anti-slop-detection, production-hardening, polish, theming, design.md, design-md, style-reference, css-extraction, website-design-extraction, design-reference, tokens.json, playwright, design-to-markdown, design-system-generator, css-tokens, color-extraction, typography-extraction, hex-extraction, shadow-extraction, spacing-extraction, design-fidelity, anti-hallucination, extract-design-system, generate-design-md, capture-website-css, design-tokens-from-url, distinctive-interface, intentional-design, polished-ui, refined-ui, custom-not-templated, premium-ui, aesthetic, design-taste, visual-direction, craft, make-it-beautiful, less-generic, redesign-distinctive, smooth-animation, hover-effect, scroll-animation, choreography, interaction-feel, animate-the-menu, transition-design, design-audit, accessibility-audit, design-quality-audit, design-qa, audit-the-design, review-the-ui, wcag-contrast, ui-quality-review, bolder, quieter, distill, clarify, delight, gratuitous, transform-verb, validate-design-md, design-md-validation, hex-accuracy, section-completeness, tokens-json-fidelity -->
 
 # Design Family Hub (sk-design)
 
@@ -24,7 +24,6 @@ Use this skill (through the hub) for any design-family workflow. Invoke it as `s
 |------|-----------|--------|
 | **sk-design-interface** | Distinctive, intentional UI direction and build judgment, visual identity, redesign, generic "make it look good", interface writing, the static visual system (color, typography, layout, spacing, hierarchy, responsive adaptation, themes, design tokens), the temporal/motion layer (animation, transitions, micro-interactions, motion materials, `AnimatePresence`, reduced motion), and the pre-delivery anti-slop / accessibility / production-hardening gate | `sk-design/sk-design-interface/` |
 | **sk-design-md-generator** | Extract a live website's real CSS into a v3 Style Reference `DESIGN.md` via the embedded extract-write-validate pipeline | `sk-design/sk-design-md-generator/` |
-| **sk-design-mcp-open-design** _(transport)_ | Drive the external Open Design app's `od` CLI / stdio MCP from the terminal — a read-only bridge, always paired with a design-judgment mode that owns the taste | `sk-design/sk-design-mcp-open-design/` |
 
 ### Canonical Creation Commands
 
@@ -38,7 +37,7 @@ These commands share `shared/creation-contract.md` and are the sole public desig
 ### When NOT to Use
 - A single quick read/edit with no design judgment — use the relevant skill directly.
 - Pure implementation after design direction is settled — hand off to `sk-code`.
-- A design transport only (Figma, Open Design) — load the design judgment via this hub first, then use the transport. The transport is never the taste authority.
+- A design transport only (Figma) — load the design judgment via this hub first, then use the transport. The transport is never the taste authority.
 - The shared reference base itself — it is the vocabulary the modes cite, not a user workflow.
 
 ---
@@ -69,9 +68,9 @@ If a required fact is unknown and changes the route or acceptance bar, ask a foc
 **No hedge-everything bundling**: when the user names several candidate modes as uncertain (e.g. "not sure whether this needs interface direction/motion or a DESIGN.md extract") with no other disambiguating signal, that is not evidence for bundling all of them — it is exactly the missing-fact case that requires the ONE focused question first ("which of these is the primary concern: direction and system, or extraction?"), or an explicitly stated assumption narrowing to the smallest useful mode. Do not resolve an uncertain multi-mode prompt into a full bundle as a way to avoid asking; that produces the generic, unfocused output this section exists to prevent.
 
 ### The discriminator
-- **`workflowMode`** — the public mode key (every mode): `sk-design-interface`, `sk-design-md-generator`, and the `sk-design-mcp-open-design` transport.
-- **`packetKind`** — `workflow` for the two design-judgment modes; `transport` for `sk-design-mcp-open-design`, which bridges to an external tool's CLI/MCP surface and never performs design judgment itself.
-- **`backendKind`** — which backend runs the mode: `reference-base` (`sk-design-interface` cites the shared design reference base), `playwright-extract` (`sk-design-md-generator` runs its embedded Playwright CSS-extraction pipeline), or `od-cli-transport` (the `sk-design-mcp-open-design` transport drives the external Open Design `od` CLI / stdio MCP server). Style-library retrieval is a separate adapter concern and does not change these mode IDs or backend kinds.
+- **`workflowMode`** — the public mode key (every mode): `sk-design-interface` and `sk-design-md-generator`.
+- **`packetKind`** — `workflow` for the two design-judgment modes.
+- **`backendKind`** — which backend runs the mode: `reference-base` (`sk-design-interface` cites the shared design reference base) or `playwright-extract` (`sk-design-md-generator` runs its embedded Playwright CSS-extraction pipeline). Style-library retrieval is a separate adapter concern and does not change these mode IDs or backend kinds.
 
 ### Routing rule
 ```
@@ -184,7 +183,7 @@ The hub names proof requirements; the selected mode supplies the detailed eviden
 - **Taste proof**: cite the mode's design rationale and the concrete visual decisions made against the user's context.
 - **Accessibility proof**: route contrast, semantics, reduced-motion, and usability concerns to the relevant mode packet; do not let transport output stand in for critique.
 - **Responsive proof**: name the viewport/state coverage expected for the surface, or state why the current request is advisory-only.
-- **Transport proof**: when Figma, Open Design, browser, or extraction tools are involved, report only what the transport actually did and keep design acceptance in `sk-design`.
+- **Transport proof**: when Figma, browser, or extraction tools are involved, report only what the transport actually did and keep design acceptance in `sk-design`.
 
 If a required proof field is missing, contradictory, or only supplied by transport mechanics, pause the ready claim and route the gap back to the selected mode or to the interface pre-delivery gate. The hub names the missing proof; it does not invent a new verifier or bypass the mode packet's evidence contract.
 
@@ -204,7 +203,6 @@ sk-design/
   styles/lib/engine/     # legacy|shadow|persistent retrieval adapter (default: legacy)
   styles/lib/database/   # SQLite + FTS5 persistent index and rebuildable vectors
   sk-design-interface/  sk-design-md-generator/   # two design mode packets
-  sk-design-mcp-open-design/  # nested transport packet (packetKind: "transport")
 ```
 
 Each mode packet is self-contained (its own `SKILL.md`, `references/`, `assets/`, and `md-generator`'s extraction backend), with internal paths repointed and **no per-packet `graph-metadata.json`** — only this hub carries one, so the advisor discovers exactly one skill. The hub references those packet paths directly.
@@ -233,7 +231,7 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 - **NEVER** embed per-mode design instructions in this hub — that content lives in the packets.
 - **NEVER** add public micro-skill identities or a public mirror of another design skill family; preserve the single `sk-design` advisor identity.
 - **NEVER** require Write, Edit, or Bash for the read-only advisory `interface` mode; its tool surface is Read/Glob/Grep only.
-- **NEVER** treat `mcp-figma` or `design-mcp-open-design` as taste or critique authority; they are transports loaded after the design mode is chosen.
+- **NEVER** treat `mcp-figma` as taste or critique authority; it is a transport loaded after the design mode is chosen.
 - **NEVER** route pure code, backend, or data work through the design family.
 
 ### ⚠️ ESCALATE IF
@@ -250,7 +248,7 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 - Authored brand systems: use `shared/references/brand-first-lane.md` with the templates and boundary guard under `shared/authored-brand/`; authored exports never write measured `DESIGN.md`, `tokens.json`, or `styles/` paths, and only a signed `reviewed-conversion` checklist can authorize the existing measured owner to recreate an approved value from independent evidence.
 - Creation commands: `shared/creation-contract.md` (nine-stage contract shared by the canonical `/interface:*` commands).
 - Style retrieval: `styles/lib/engine/persistent-adapter.mjs` (mode switch, default `legacy`) and `styles/lib/database/README.md` (persistent index lifecycle).
-- Mode packets: `sk-design-interface/SKILL.md`, `sk-design-md-generator/SKILL.md` (per-mode detail); `sk-design-mcp-open-design/SKILL.md` (nested transport packet, `packetKind: "transport"`).
+- Mode packets: `sk-design-interface/SKILL.md`, `sk-design-md-generator/SKILL.md` (per-mode detail).
 - Registry: `mode-registry.json` (the routing contract).
 - Implementation handoff: `sk-code` consumes the design output; its code-review mode can audit it after build.
 
@@ -277,7 +275,7 @@ Style-library retrieval passes through the `legacy|shadow|persistent` adapter un
 - Commands resolve to unchanged `workflowMode` values; the command surface does not create or rename modes.
 
 ### Transports and Consumers
-- `mcp-figma` (external sibling skill) and `design-mcp-open-design` (nested transport packet, resolved through this hub's own `mode-registry.json`) are transports. Use them after the design mode is chosen, with the user-visible plan naming what the transport will do.
+- `mcp-figma` (external sibling skill) is a transport. Use it after the design mode is chosen, with the user-visible plan naming what the transport will do.
 - Transports can fetch, inspect, generate, extract, or apply artifacts; they do not decide whether the design is tasteful, accessible, responsive, or production-ready. Treat transport output as evidence to inspect, not as acceptance.
 - `sk-design` owns design judgment and proof expectations. When transport evidence is needed, bring it back into the selected design mode for acceptance.
 - If transport output conflicts with the visible proof plan, resolve acceptance through the selected design mode before implementation or ready claims.

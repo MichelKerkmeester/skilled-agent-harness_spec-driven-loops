@@ -64,7 +64,7 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be 
 ## 4. POST-CHECKS
 
 - [ ] Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh` against the owning spec folder when the MCP server change is part of a spec folder.
-- [ ] grep verification for Code Mode external tools: `rg -n "manual_call_templates|call_template_type|mcpServers|chrome_devtools_1|figma|github|open_design" .utcp_config.json`.
+- [ ] grep verification for Code Mode external tools: `rg -n "manual_call_templates|call_template_type|mcpServers|chrome_devtools_1|figma|github" .utcp_config.json`.
 - [ ] Run the targeted TypeScript or package test command used by the owning MCP server.
 - [ ] Cross-runtime advertisement check if an agent, command, or skill advertises the new MCP capability.
 

@@ -51,7 +51,6 @@ Drive **Figma Desktop from the terminal** through the silships **figma-cli** (pu
 - The work is generic app coding with no Figma input: use `sk-code`.
 - The work is the design judgment itself (palette, type, the anti-default critique). That is `sk-design`, and this skill is the transport.
 - The task is browser debugging or visual preview of a built page. That is `mcp-chrome-devtools`.
-- The task targets Open Design specifically: use `design-mcp-open-design` (nested inside `sk-design`).
 - Figma Desktop is not installed or not open. The CLI drives the live Desktop session and cannot work without it.
 
 ---
@@ -370,7 +369,7 @@ Scripts: `scripts/install.sh` (install + verify), `scripts/doctor.sh` (report-on
 
 Examples: [`examples/README.md`](examples/README.md) - safe worked walkthroughs mirroring the playbook scenarios (safe connect + daemon health, read-only inspect/export, optional MCP context pull). They live outside the `references/`/`assets/` discovery roots, so they are linked here rather than auto-loaded by the router.
 
-Related skills: `sk-design` (the design judgment, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `design-mcp-open-design` (Open Design's terminal-driven transport, nested inside `sk-design`), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies.
+Related skills: `sk-design` (the design judgment, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies.
 
 Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
 

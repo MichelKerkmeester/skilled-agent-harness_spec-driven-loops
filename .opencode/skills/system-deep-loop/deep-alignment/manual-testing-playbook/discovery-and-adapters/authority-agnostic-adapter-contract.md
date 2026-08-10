@@ -45,7 +45,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate the deep-alignment authority-agnostic adapter contract: all five adapters export discover/standardSource/check, discover(scope) takes one parameter, and discover emits FILE seed nodes.
 ### Commands
-1. `bash: node -e "for(const n of ['sk-doc','sk-git','sk-design','sk-code','sk-design-live-render']){const m=require('./.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/'+n+'.cjs'); console.log(n, ['discover','standardSource','check'].map(k=>typeof m[k]).join('/'), 'discover.arity='+m.discover.length);}"`
+1. `bash: node -e "for(const n of ['sk-doc','sk-doc-command','sk-git','sk-design','sk-code']){const m=require('./.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/'+n+'.cjs'); console.log(n, ['discover','standardSource','check'].map(k=>typeof m[k]).join('/'), 'discover.arity='+m.discover.length);}"`
 2. `bash: node -e "const m=require('./.opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs'); const {nodes}=m.discover({type:'paths',values:['.opencode/skills/system-deep-loop/deep-alignment/references/discover-contract.md']}); console.log(JSON.stringify(nodes[0]));"`
 3. `bash: rg -n 'One parameter|discover\(scope\) -> artifacts|kind: .FILE.|Authority-agnostic|no engine-side caller may special-case|needs no change' .opencode/skills/system-deep-loop/deep-alignment/references/discover-contract.md`
 ### Expected

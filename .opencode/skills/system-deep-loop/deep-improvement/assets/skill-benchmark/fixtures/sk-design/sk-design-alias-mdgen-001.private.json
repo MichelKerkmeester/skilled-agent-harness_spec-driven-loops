@@ -4,16 +4,26 @@
     "skillId": "sk-design",
     "mode": "sk-design-md-generator",
     "advisorLane": "sk-design",
-    "intentKeys": ["md-generator"],
-    "resources": ["sk-design-md-generator/SKILL.md"],
+    "intentKeys": [
+      "md-generator"
+    ],
+    "resources": [
+      "sk-design-md-generator/SKILL.md"
+    ],
     "negativeActivation": false,
     "workflowMode": "sk-design-md-generator",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["sk-design-interface", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-interface"
+    ],
     "minimalPairGroup": null
   },
   "rubric": {
-    "usefulnessChecks": ["routes the alias prompt to the expected workflow mode"],
-    "harmChecks": ["does not select a sibling workflow mode"]
+    "usefulnessChecks": [
+      "routes the alias prompt to the expected workflow mode"
+    ],
+    "harmChecks": [
+      "does not select a sibling workflow mode"
+    ]
   }
 }

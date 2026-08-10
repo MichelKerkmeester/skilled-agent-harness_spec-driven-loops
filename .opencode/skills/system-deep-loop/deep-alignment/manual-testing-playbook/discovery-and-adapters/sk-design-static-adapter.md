@@ -16,7 +16,7 @@ This scenario validates the static sk-design adapter for `DAL-012`. The objectiv
 
 ### WHY THIS MATTERS
 
-sk-design's static authority checks whether a DESIGN.md follows sk-design's own Style Reference format, not whether the rendered UI looks good (that is the live-render adapter, DAL-014). The static/live split (ADR-004/ADR-009) is a real boundary: this adapter must never render, and its subjective audit findings must be verify-first with a cited rubric dimension.
+sk-design's static authority checks whether a DESIGN.md follows sk-design's own Style Reference format, not whether a rendered UI looks good. That boundary is load-bearing: this adapter must never render, and its subjective audit findings must be verify-first with a cited rubric dimension.
 
 ---
 
@@ -48,7 +48,7 @@ Validate the sk-design static alignment adapter: DESIGN.md/tokens.json discover(
 1. `bash: node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs discover .opencode/skills/sk-design/sk-design-md-generator/references/examples | head -40`
 2. `bash: node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs check "$(node .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs discover .opencode/skills/sk-design/sk-design-md-generator/references/examples | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);const a=(j.artifacts||[]).find(x=>x.path.endsWith("DESIGN.md"));process.stdout.write(a?a.path:"")})')"`
 3. `bash: rg -n 'REQUIRED_HEADINGS|EXTRACTOR_INTERNAL_VAR_RE|PLACEHOLDER_VARIANT_RE|FREQUENCY_DUMP_RE|checkQuickStartConsistency|checkAuditRubric|never render|STATIC-ONLY|DESIGN_ARTIFACT_BASENAMES' .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs`
-4. `bash: rg -n 'chrome-devtools|playwright|renderResult|design-mcp' .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs || echo "NO RENDER PATH (expected)"`
+4. `bash: rg -n 'chrome-devtools|playwright' .opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-design.cjs || echo "NO RENDER PATH (expected)"`
 ### Expected
 `discover` returns only `DESIGN.md`/`tokens.json` artifacts with `artifactKind` of `design-doc`/`tokens`; `check` on a real DESIGN.md returns deterministic findings tagged `layer:'deterministic'` (missing-heading P0 / banned-pattern P1 / Quick-Start drift P1 as applicable); the source shows the 11 `REQUIRED_HEADINGS`, the three banned-pattern regexes, `checkQuickStartConsistency`, and `checkAuditRubric` requiring both `dimension` and `citation`; command 4 confirms no render/chrome/playwright path exists.
 ### Evidence
@@ -56,7 +56,7 @@ Capture the discover artifact list, one real check() finding array, the source l
 ### Pass/Fail
 PASS if discover targets only the two basenames, the deterministic checks fire on real violations, the audit layer is verify-first, and no render path exists. FAIL if the adapter renders, guesses an audit finding, or discovers arbitrary files.
 ### Failure Triage
-If `checkAuditRubric` emits a finding with no caller `verifiedFindings`, the verify-first gate is broken (cross-reference DAL-016). If any render/chrome path appears, the STATIC-ONLY boundary (ADR-009) is violated (cross-reference DAL-024).
+If `checkAuditRubric` emits a finding with no caller `verifiedFindings`, the verify-first gate is broken (cross-reference DAL-016). If any render/chrome path appears, the STATIC-ONLY boundary is violated (cross-reference DAL-024).
 ---
 
 ## 4. SOURCE FILES
@@ -84,4 +84,4 @@ If `checkAuditRubric` emits a finding with no caller `verifiedFindings`, the ver
 - Playbook ID: DAL-012
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `discovery-and-adapters/sk-design-static-adapter.md`
-- Note: The live-render dimension is a SEPARATE adapter (DAL-014); this scenario is the static, non-rendering authority only.
+- Note: This scenario covers only the static, non-rendering authority.

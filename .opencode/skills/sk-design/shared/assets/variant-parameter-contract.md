@@ -1,6 +1,6 @@
 ---
 title: Variant Parameter Contract
-description: Transport-facing schema for the shared design-variant knobs that Figma, Open Design, and live renders must all declare.
+description: Transport-facing schema for the shared design-variant knobs that Figma integrations must declare.
 trigger_phrases:
   - "variant parameter contract"
   - "design variant knobs"
@@ -22,7 +22,7 @@ The checker proves only that every knob row is present, complete, and declared f
 
 ### Purpose
 
-Give Figma, Open Design, and live-render transports one shared schema for the variant knobs a design direction may expose, so no transport silently drops or renames a knob.
+Give Figma integrations one shared schema for the variant knobs a design direction may expose, so no transport silently drops or renames a knob.
 
 ### Usage
 
@@ -34,11 +34,11 @@ Cite a knob by name when wiring a new transport or reviewing whether a variant d
 
 | Knob | Range/Values | Step | Owner Mode | Transports | Caveat |
 |---|---|---|---|---|---|
-| density | 0.6-1.4 | 0.1 | interface | figma, open-design, live | Internal density calibration; Brand/Product posture still decides whether the surface earns open space or compact packing. |
-| type-scale | 0.85-1.3 | n/a | foundations | figma, open-design, live | Scales role contrast; readable measure, zoom, and localization can override the ratio. |
-| color-amount | 0-1 | 0.05 | foundations | figma, open-design, live | Represents visual dosage, not palette quality; contrast and semantic role checks still win. |
-| structure | stack, split, grid, bento, scroll-pinned | n/a | interface | figma, open-design, live | Selects a layout family for transport parity; content count, mobile collapse, and anti-default checks still gate the result. |
-| pairing | single-family, display-plus-neutral-body, body-plus-utility, data-legibility | n/a | foundations | figma, open-design, live | Names type-role pairing shape, not a font preset; brand evidence, numeral quality, and legibility still decide the final pairing. |
+| density | 0.6-1.4 | 0.1 | interface | figma | Internal density calibration; Brand/Product posture still decides whether the surface earns open space or compact packing. |
+| type-scale | 0.85-1.3 | n/a | foundations | figma | Scales role contrast; readable measure, zoom, and localization can override the ratio. |
+| color-amount | 0-1 | 0.05 | foundations | figma | Represents visual dosage, not palette quality; contrast and semantic role checks still win. |
+| structure | stack, split, grid, bento, scroll-pinned | n/a | interface | figma | Selects a layout family for transport parity; content count, mobile collapse, and anti-default checks still gate the result. |
+| pairing | single-family, display-plus-neutral-body, body-plus-utility, data-legibility | n/a | foundations | figma | Names type-role pairing shape, not a font preset; brand evidence, numeral quality, and legibility still decide the final pairing. |
 
 ---
 
@@ -46,7 +46,7 @@ Cite a knob by name when wiring a new transport or reviewing whether a variant d
 
 - `interface` owns density and structure because the register and design read set posture, packing, and layout family before render work.
 - `foundations` owns type-scale, color-amount, and pairing because those knobs belong to the static token system, color dosage, and type roles.
-- `figma`, `open-design`, and `live` must all be declared on every row. Dropping one transport is a contract failure even if the prose otherwise looks complete.
+- `figma` must be declared on every row. Dropping the canonical transport is a contract failure even if the prose otherwise looks complete.
 - The value ranges are transport-facing bounds. They are not surfaced to the user as selectable dials and they do not replace grounded design judgment.
 
 Run the schema gate from this directory:

@@ -4,16 +4,26 @@
     "skillId": "sk-design",
     "mode": "sk-design-interface",
     "advisorLane": "sk-design",
-    "intentKeys": ["motion"],
-    "resources": ["sk-design-interface/SKILL.md"],
+    "intentKeys": [
+      "motion"
+    ],
+    "resources": [
+      "sk-design-interface/SKILL.md"
+    ],
     "negativeActivation": false,
     "workflowMode": "sk-design-interface",
     "routeOutcome": "single",
-    "forbiddenWorkflowModes": ["sk-design-md-generator", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-md-generator"
+    ],
     "minimalPairGroup": "mp-menu-animate-vs-redesign"
   },
   "rubric": {
-    "usefulnessChecks": ["routes this minimal-pair arm to the expected workflow mode"],
-    "harmChecks": ["does not collapse onto the paired redesign outcome"]
+    "usefulnessChecks": [
+      "routes this minimal-pair arm to the expected workflow mode"
+    ],
+    "harmChecks": [
+      "does not collapse onto the paired redesign outcome"
+    ]
   }
 }

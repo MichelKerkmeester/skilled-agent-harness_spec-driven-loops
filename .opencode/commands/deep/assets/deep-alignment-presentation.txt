@@ -140,7 +140,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    Q-Lanes. Lanes (required unless --lane-config was supplied): resolve one or more lanes over the
      three axes authority x artifactClass x scope, per
      `.opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md`.
-       authority   -- one of: sk-doc | sk-git | sk-design | sk-design-live-render | sk-code
+       authority   -- one of: sk-doc | sk-git | sk-design | sk-code
        artifactClass -- the class of artifact this lane audits (per the authority's adapter)
        scope       -- paths / globs, or a branch range for sk-git
      A lane is never guessed. Supply `--lane-config <file.json>` to resolve lanes non-interactively.
@@ -306,7 +306,7 @@ STATUS=FAIL ERROR="<message>"
 ### Key Features
 
 #### Lanes and Authorities
-- Each lane audits one artifact class against one named authority (`sk-doc`, `sk-git`, `sk-design`, `sk-design-live-render`, `sk-code`) over a resolved scope.
+- Each lane audits one artifact class against one named authority (`sk-doc`, `sk-git`, `sk-design`, `sk-code`) over a resolved scope.
 - Every adapter returns the same `{artifacts, nodes}` discover shape; the loop never branches on which authority produced it.
 - A lane that discovers zero artifacts is NOT_APPLICABLE, not an error.
 

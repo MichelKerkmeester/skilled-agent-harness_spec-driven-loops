@@ -523,7 +523,7 @@ Skills are on-demand domain expertise invoked through Gate 2 (§2): when the adv
 | **Resume prior work** | `/speckit:resume` → rebuild via the continuity ladder (`handover.md` → `_memory.continuity` → canonical spec docs) |
 | **New spec folder** | Gate 3 Option B → research (Task tool) → evidence-based plan → approval → implement |
 | **Code work** | `sk-code` → smart router auto-detects the stack → implement → quality gate → debug → verify |
-| **UI / design work** | `sk-design` (judgment, required) → `design-mcp-open-design` or `mcp-figma` transport; `mcp-refero`/`mcp-mobbin` references → build via `sk-code` |
+| **UI / design work** | `sk-design` (judgment, required) → `mcp-figma` transport; `mcp-refero`/`mcp-mobbin` references → build via `sk-code` |
 | **Research / exploration** | `memory_match_triggers()` → `memory_context()` (unified) or `memory_search()` (targeted) |
 | **Git workflow** | `sk-git` → worktree / commit / finish (PR); see §5 Git Workspace Safety |
 | **Prompt improvement** | `sk-prompt`, dispatched by `/prompt` |

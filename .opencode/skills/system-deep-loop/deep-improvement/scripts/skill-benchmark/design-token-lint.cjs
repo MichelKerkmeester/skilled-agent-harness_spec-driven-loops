@@ -32,7 +32,7 @@ const REQUIRED_FIELDS = [
   'subjectDigest',
   'briefDigest',
   'formAnswersDigest',
-  'openDesignLineageDigest',
+  'lineageDigest',
   'issuedAt',
   'expiresAt',
   'singleUse',
@@ -46,7 +46,7 @@ const REQUIRED_DIGEST_FIELDS = [
   'subjectDigest',
   'briefDigest',
   'formAnswersDigest',
-  'openDesignLineageDigest',
+  'lineageDigest',
 ];
 
 const REQUIRED_MANIFEST_PATHS = [

@@ -4,18 +4,28 @@
     "skillId": "sk-design",
     "mode": "sk-design-md-generator",
     "advisorLane": "sk-design",
-    "intentKeys": ["md-generator"],
-    "resources": ["sk-design-md-generator/SKILL.md"],
+    "intentKeys": [
+      "md-generator"
+    ],
+    "resources": [
+      "sk-design-md-generator/SKILL.md"
+    ],
     "negativeActivation": false,
     "workflowMode": "sk-design-md-generator",
     "routeOutcome": "single",
     "knownRouteGap": true,
-    "forbiddenWorkflowModes": ["sk-design-interface", "sk-design-mcp-open-design"],
+    "forbiddenWorkflowModes": [
+      "sk-design-interface"
+    ],
     "minimalPairGroup": null
   },
   "rubric": {
-    "usefulnessChecks": ["records the intended workflow mode for a known silent-default gap"],
-    "harmChecks": ["does not mislabel the current silent-default behavior as correct routing"]
+    "usefulnessChecks": [
+      "records the intended workflow mode for a known silent-default gap"
+    ],
+    "harmChecks": [
+      "does not mislabel the current silent-default behavior as correct routing"
+    ]
   },
   "notes": {
     "observedRoute": [],

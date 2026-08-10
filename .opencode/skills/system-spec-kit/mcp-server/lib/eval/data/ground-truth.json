@@ -2,12 +2,12 @@
   "queries": [
     {
       "id": 1,
-      "query": "how was Plan — Phase 001: Fan-out schema + config plumbing planned",
+      "query": "how was Plan \u2014 Phase 001: Fan-out schema + config plumbing planned",
       "intentType": "security_audit",
       "complexityTier": "simple",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 19455: Plan — Phase 001: Fan-out schema + config plumbing (../../../specs/skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/001-schema-config-plumbing/plan.md).",
+      "expectedResultDescription": "Known-item lookup for memory 19455: Plan \u2014 Phase 001: Fan-out schema + config plumbing (../../../specs/skilled-agent-orchestration/z_archive/123-deep-loop-parallel-fanout/001-schema-config-plumbing/plan.md).",
       "notes": "Generated from active parent memory 19455; content length 800; general / import / important."
     },
     {
@@ -22,22 +22,22 @@
     },
     {
       "id": 3,
-      "query": "how was Plan — Phase 001: Fan-out schema + config plumbing planned in general system memory",
+      "query": "how was Plan \u2014 Phase 001: Fan-out schema + config plumbing planned in general system memory",
       "intentType": "security_audit",
       "complexityTier": "simple",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 1091: Plan — Phase 001: Fan-out schema + config plumbing (../../../specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/plan.md).",
+      "expectedResultDescription": "Known-item lookup for memory 1091: Plan \u2014 Phase 001: Fan-out schema + config plumbing (../../../specs/skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing/plan.md).",
       "notes": "Generated from active parent memory 1091; content length 800; general / system / important."
     },
     {
       "id": 4,
-      "query": "what research explains Deep Research Report — Context-Server Memory Reduction",
+      "query": "what research explains Deep Research Report \u2014 Context-Server Memory Reduction",
       "intentType": "add_feature",
       "complexityTier": "simple",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 4564: Deep Research Report — Context-Server Memory Reduction (../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/005-context-server-memory-reduction-research/research/research.md).",
+      "expectedResultDescription": "Known-item lookup for memory 4564: Deep Research Report \u2014 Context-Server Memory Reduction (../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/005-context-server-memory-reduction-research/research/research.md).",
       "notes": "Generated from active parent memory 4564; content length 345; general / system / normal."
     },
     {
@@ -152,22 +152,22 @@
     },
     {
       "id": 16,
-      "query": "find the spec for LinkedIn Ghostwriters — Speed + Voice Refinement (Pieter Bertram, Nigel de Lange)",
+      "query": "find the spec for LinkedIn Ghostwriters \u2014 Speed + Voice Refinement (Pieter Bertram, Nigel de Lange)",
       "intentType": "find_spec",
       "complexityTier": "moderate",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 11966: LinkedIn Ghostwriters — Speed + Voice Refinement (Pieter Bertram, Nigel de Lange) (../../../specs/ai-systems/001-ai-system-architecture/007-linkedin-speed-voice-refinement/spec.md).",
+      "expectedResultDescription": "Known-item lookup for memory 11966: LinkedIn Ghostwriters \u2014 Speed + Voice Refinement (Pieter Bertram, Nigel de Lange) (../../../specs/ai-systems/001-ai-system-architecture/007-linkedin-speed-voice-refinement/spec.md).",
       "notes": "Generated from active parent memory 11966; content length 2757; general / import / deprecated."
     },
     {
       "id": 17,
-      "query": "find the spec for Copywriter — Build the Claude Projects Packaging",
+      "query": "find the spec for Copywriter \u2014 Build the Claude Projects Packaging",
       "intentType": "find_spec",
       "complexityTier": "moderate",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 16273: Copywriter — Build the Claude Projects Packaging (../../../specs/ai-systems/001-ai-system-architecture/002-copywriter-projects-build/spec.md).",
+      "expectedResultDescription": "Known-item lookup for memory 16273: Copywriter \u2014 Build the Claude Projects Packaging (../../../specs/ai-systems/001-ai-system-architecture/002-copywriter-projects-build/spec.md).",
       "notes": "Generated from active parent memory 16273; content length 1914; general / import / important."
     },
     {
@@ -232,12 +232,12 @@
     },
     {
       "id": 24,
-      "query": "what tasks implement Tasks: Design — 3-layer prompt-knowledge architecture + contracts",
+      "query": "what tasks implement Tasks: Design \u2014 3-layer prompt-knowledge architecture + contracts",
       "intentType": "find_decision",
       "complexityTier": "moderate",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 18527: Tasks: Design — 3-layer prompt-knowledge architecture + contracts (../../../specs/skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/001-design-architecture-and-data-contract/tasks.md).",
+      "expectedResultDescription": "Known-item lookup for memory 18527: Tasks: Design \u2014 3-layer prompt-knowledge architecture + contracts (../../../specs/skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/001-design-architecture-and-data-contract/tasks.md).",
       "notes": "Generated from active parent memory 18527; content length 2870; implementation / human / important."
     },
     {
@@ -282,22 +282,22 @@
     },
     {
       "id": 29,
-      "query": "how does MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) work",
+      "query": "how does MEMORY \u2014 Spec-Kit DB File Topology (index vs vectors are SEPARATE files) work",
       "intentType": "understand",
       "complexityTier": "moderate",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 9374: MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) (../constitutional/memory-db-file-topology.md).",
+      "expectedResultDescription": "Known-item lookup for memory 9374: MEMORY \u2014 Spec-Kit DB File Topology (index vs vectors are SEPARATE files) (../constitutional/memory-db-file-topology.md).",
       "notes": "Generated from active parent memory 9374; content length 5079; general / agent / constitutional."
     },
     {
       "id": 30,
-      "query": "how does MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) work in general human memory",
+      "query": "how does MEMORY \u2014 Spec-Kit DB File Topology (index vs vectors are SEPARATE files) work in general human memory",
       "intentType": "understand",
       "complexityTier": "moderate",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 11534: MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) (../constitutional/memory-db-file-topology.md).",
+      "expectedResultDescription": "Known-item lookup for memory 11534: MEMORY \u2014 Spec-Kit DB File Topology (index vs vectors are SEPARATE files) (../constitutional/memory-db-file-topology.md).",
       "notes": "Generated from active parent memory 11534; content length 5152; general / human / constitutional."
     },
     {
@@ -352,12 +352,12 @@
     },
     {
       "id": 36,
-      "query": "find the spec for Skill Consolidation — LinkedIn - Pieter Bertram",
+      "query": "find the spec for Skill Consolidation \u2014 LinkedIn - Pieter Bertram",
       "intentType": "find_spec",
       "complexityTier": "moderate",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 16324: Skill Consolidation — LinkedIn - Pieter Bertram (../../../specs/ai-systems/003-skill-consolidation/009-linkedin-pieter-bertram/spec.md).",
+      "expectedResultDescription": "Known-item lookup for memory 16324: Skill Consolidation \u2014 LinkedIn - Pieter Bertram (../../../specs/ai-systems/003-skill-consolidation/009-linkedin-pieter-bertram/spec.md).",
       "notes": "Generated from active parent memory 16324; content length 5611; general / import / important."
     },
     {
@@ -367,17 +367,17 @@
       "complexityTier": "complex",
       "category": "scope_filtered",
       "source": "trigger_derived",
-      "expectedResultDescription": "Known-item lookup for memory 12823: Resource Map — Phase 004 Memory Semantic Triggers (../../../specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/resource-map.md).",
+      "expectedResultDescription": "Known-item lookup for memory 12823: Resource Map \u2014 Phase 004 Memory Semantic Triggers (../../../specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/resource-map.md).",
       "notes": "Generated from active parent memory 12823; content length 7799; general / import / normal."
     },
     {
       "id": 38,
-      "query": "how does MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) work in general system memory",
+      "query": "how does MEMORY \u2014 Spec-Kit DB File Topology (index vs vectors are SEPARATE files) work in general system memory",
       "intentType": "understand",
       "complexityTier": "moderate",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 9248: MEMORY — Spec-Kit DB File Topology (index vs vectors are SEPARATE files) (../constitutional/memory-db-file-topology.md).",
+      "expectedResultDescription": "Known-item lookup for memory 9248: MEMORY \u2014 Spec-Kit DB File Topology (index vs vectors are SEPARATE files) (../constitutional/memory-db-file-topology.md).",
       "notes": "Generated from active parent memory 9248; content length 5079; general / system / constitutional."
     },
     {
@@ -397,7 +397,7 @@
       "complexityTier": "moderate",
       "category": "scope_filtered",
       "source": "trigger_derived",
-      "expectedResultDescription": "Known-item lookup for memory 7615: Tasks: Code Audit — [system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation/tasks] (../../../specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation/tasks.md).",
+      "expectedResultDescription": "Known-item lookup for memory 7615: Tasks: Code Audit \u2014 [system-spec-kit/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation/tasks] (../../../specs/system-spec-kit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/002-mutation/tasks.md).",
       "notes": "Generated from active parent memory 7615; content length 3113; general / system / deprecated."
     },
     {
@@ -432,12 +432,12 @@
     },
     {
       "id": 44,
-      "query": "what was completed for Design — 3-layer prompt-knowledge architecture + data contract",
+      "query": "what was completed for Design \u2014 3-layer prompt-knowledge architecture + data contract",
       "intentType": "find_decision",
       "complexityTier": "moderate",
       "category": "temporal",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 18913: Design — 3-layer prompt-knowledge architecture + data contract (../../../specs/skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/001-design-architecture-and-data-contract/implementation-summary.md).",
+      "expectedResultDescription": "Known-item lookup for memory 18913: Design \u2014 3-layer prompt-knowledge architecture + data contract (../../../specs/skilled-agent-orchestration/z_archive/130-prompt-knowledge-layering/001-design-architecture-and-data-contract/implementation-summary.md).",
       "notes": "Generated from active parent memory 18913; content length 6134; implementation / human / important."
     },
     {
@@ -512,12 +512,12 @@
     },
     {
       "id": 52,
-      "query": "what research explains Deep Research Synthesis — 50 Angles on the 026 Program",
+      "query": "what research explains Deep Research Synthesis \u2014 50 Angles on the 026 Program",
       "intentType": "fix_bug",
       "complexityTier": "complex",
       "category": "scope_filtered",
       "source": "pattern_derived",
-      "expectedResultDescription": "Known-item lookup for memory 16989: Deep Research Synthesis — 50 Angles on the 026 Program (../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation/research/research.md).",
+      "expectedResultDescription": "Known-item lookup for memory 16989: Deep Research Synthesis \u2014 50 Angles on the 026 Program (../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/018-program-research-and-remediation/research/research.md).",
       "notes": "Generated from active parent memory 16989; content length 10334; general / import / normal."
     },
     {
@@ -617,7 +617,7 @@
       "complexityTier": "complex",
       "category": "cross_document",
       "source": "manual",
-      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 6195: Deep Research: MCP daemon reliability — why the daemons keep dying/disconnecting and durab.",
+      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 6195: Deep Research: MCP daemon reliability \u2014 why the daemons keep dying/disconnecting and durab.",
       "notes": "Authored for class coverage (cross_document); gold ids grounded against the live DB at observed ranks 5502:2, 5509:7, 6195:1, 6230:6, 6320:3."
     },
     {
@@ -637,7 +637,7 @@
       "complexityTier": "moderate",
       "category": "cross_document",
       "source": "manual",
-      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 4657: Spec: 016/002/021 Hardcoded-Default Audit Deep-Research — broad sweep across spec-memory, .",
+      "expectedResultDescription": "Thematic/relational lookup spanning the program cluster; primary memory 4657: Spec: 016/002/021 Hardcoded-Default Audit Deep-Research \u2014 broad sweep across spec-memory, .",
       "notes": "Authored for class coverage (cross_document); gold ids grounded against the live DB at observed ranks 4657:1, 18806:3, 19172:4, 19481:2."
     },
     {
@@ -707,7 +707,7 @@
       "complexityTier": "moderate",
       "category": "graph_relationship",
       "source": "manual",
-      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 5002: Concurrent Daemon Corruption Fix — Implementation Summary.",
+      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 5002: Concurrent Daemon Corruption Fix \u2014 Implementation Summary.",
       "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 5000:3, 5002:1, 5008:2."
     },
     {
@@ -717,7 +717,7 @@
       "complexityTier": "moderate",
       "category": "graph_relationship",
       "source": "manual",
-      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 11507: CLI DISPATCH — Skill Preload Mandate.",
+      "expectedResultDescription": "Thematic/relational lookup spanning the relation cluster; primary memory 11507: CLI DISPATCH \u2014 Skill Preload Mandate.",
       "notes": "Authored for class coverage (graph_relationship); gold ids grounded against the live DB at observed ranks 11507:2, 11527:3."
     },
     {
@@ -811,16 +811,6 @@
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {
-      "id": 82,
-      "query": "what is every phase of the mcp-open-design skill program",
-      "intentType": "understand",
-      "complexityTier": "complex",
-      "category": "thematic_multi_target",
-      "source": "manual",
-      "expectedResultDescription": "The mcp-open-design phase specs (research through live design-playbook run).",
-      "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
-    },
-    {
       "id": 83,
       "query": "show me all the mcp daemon reliability packets in the 026 program",
       "intentType": "fix_bug",
@@ -857,7 +847,7 @@
       "complexityTier": "moderate",
       "category": "causal_chain",
       "source": "manual",
-      "expectedResultDescription": "magicpath deprecation (cause) plus the mcp-open-design skill build that superseded it.",
+      "expectedResultDescription": "magicpath deprecation (cause) plus the sk-design skill build that superseded it.",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {
@@ -917,7 +907,7 @@
       "complexityTier": "moderate",
       "category": "hard_negative",
       "source": "manual",
-      "expectedResultDescription": "BM25 indexing-fidelity lane (11913). Decoy EXCLUDED: 11863 codegraph BM25 fuzzy symbol resolver — same BM25 token, code-graph subsystem, not memory indexing.",
+      "expectedResultDescription": "BM25 indexing-fidelity lane (11913). Decoy EXCLUDED: 11863 codegraph BM25 fuzzy symbol resolver \u2014 same BM25 token, code-graph subsystem, not memory indexing.",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {
@@ -927,7 +917,7 @@
       "complexityTier": "moderate",
       "category": "hard_negative",
       "source": "manual",
-      "expectedResultDescription": "Causal reducer session-trace spec (10393). Decoy EXCLUDED: 12807 causal edge tombstones — shares 'causal edge', it is deletion-lifecycle not edge derivation.",
+      "expectedResultDescription": "Causal reducer session-trace spec (10393). Decoy EXCLUDED: 12807 causal edge tombstones \u2014 shares 'causal edge', it is deletion-lifecycle not edge derivation.",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {
@@ -937,7 +927,7 @@
       "complexityTier": "moderate",
       "category": "hard_negative",
       "source": "manual",
-      "expectedResultDescription": "Advisor import decoupling ADR (3670). Decoy EXCLUDED: 3676 spec-kit code-graph decoupling — same 'decoupling' word, code-graph not advisor.",
+      "expectedResultDescription": "Advisor import decoupling ADR (3670). Decoy EXCLUDED: 3676 spec-kit code-graph decoupling \u2014 same 'decoupling' word, code-graph not advisor.",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {
@@ -947,7 +937,7 @@
       "complexityTier": "moderate",
       "category": "hard_negative",
       "source": "manual",
-      "expectedResultDescription": "Embedder default drift-fix (4651). Decoy EXCLUDED: 4626 cascade-reorder Nomic default — both about the embedder 'default', the reorder is not the drift-fix.",
+      "expectedResultDescription": "Embedder default drift-fix (4651). Decoy EXCLUDED: 4626 cascade-reorder Nomic default \u2014 both about the embedder 'default', the reorder is not the drift-fix.",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {
@@ -957,7 +947,7 @@
       "complexityTier": "moderate",
       "category": "hard_negative",
       "source": "manual",
-      "expectedResultDescription": "Archived context loop foundation (9916). Decoy EXCLUDED: 19258 system-deep-loop parity baseline — 'deep' + 'loop' overlap, different program.",
+      "expectedResultDescription": "Archived context loop foundation (9916). Decoy EXCLUDED: 19258 system-deep-loop parity baseline \u2014 'deep' + 'loop' overlap, different program.",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {
@@ -967,7 +957,7 @@
       "complexityTier": "moderate",
       "category": "hard_negative",
       "source": "manual",
-      "expectedResultDescription": "Flap-guard spec (10762). Decoy EXCLUDED: 10813 RC-2 re-election foundation — same daemon-lifecycle cluster, re-election is a different later approach.",
+      "expectedResultDescription": "Flap-guard spec (10762). Decoy EXCLUDED: 10813 RC-2 re-election foundation \u2014 same daemon-lifecycle cluster, re-election is a different later approach.",
       "notes": "eval-v2 multi-target measurability fixture; hand-authored, gold ids live-DB verified."
     },
     {

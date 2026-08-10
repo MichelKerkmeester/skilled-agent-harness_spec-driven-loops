@@ -16,12 +16,12 @@ This document combines the current feature inventory for the `deep-alignment` sy
 
 Use this catalog as the canonical inventory for the `deep-alignment` feature surface. The numbered sections below group the system by lane resolution, adapter contract, loop lifecycle, and the alignment contract so readers can move from a top-level summary into per-feature reference files without losing the contract behind each phase.
 
-> **Availability.** The engine catalogued here — `scoping.cjs`, the five per-authority adapters, `check-convergence.cjs`, `partition-corpus.cjs`, the intentionally-unimplemented `remediate-hook.cjs` stub, and `runtime/scripts/reduce-alignment-state.cjs` — is shipped and independently runnable today, each through its own CLI. The `/deep:alignment` command and `@deep-alignment` LEAF agent are the invocation path for these scripts, built and verified in phase 009 with both cutover gates green. Every mention of a "command workflow," "invoking command," or "driving agent" below describes that built and verified orchestration surface.
+> **Availability.** The engine catalogued here — `scoping.cjs`, the registered authority adapters, `check-convergence.cjs`, `partition-corpus.cjs`, the intentionally-unimplemented `remediate-hook.cjs` stub, and `runtime/scripts/reduce-alignment-state.cjs` — is shipped and independently runnable today, each through its own CLI. The `/deep:alignment` command and `@deep-alignment` LEAF agent are the invocation path for these scripts, built and verified in phase 009 with both cutover gates green. Every mention of a "command workflow," "invoking command," or "driving agent" below describes that built and verified orchestration surface.
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
 | Lane resolution | 5 features | `scripts/scoping.cjs`, `references/scoping-protocol.md`, `references/lane-config-schema.md` |
-| Adapter contract | 8 features | `references/discover-contract.md`, `scripts/adapters/*.cjs`, `references/adapters/sk_*_adapter.md` |
+| Adapter contract | 7 features | `references/discover-contract.md`, `scripts/adapters/*.cjs`, `references/adapters/sk_*_adapter.md` |
 | Loop lifecycle | 4 features | `references/state-machine-wiring.md`, `scripts/{check-convergence,partition-corpus,remediate-hook}.cjs`, `runtime/scripts/reduce-alignment-state.cjs` |
 | Alignment contract | 4 features | `SKILL.md` §2 (four invariants), `references/adapters/sk_*_known_deviations.md`, `scripts/remediate-hook.cjs` |
 
@@ -113,7 +113,7 @@ See [`lane-resolution/lane-config.md`](../feature-catalog/lane-resolution/lane-c
 
 ## 3. ADAPTER CONTRACT
 
-These entries describe ADR-003's authority-agnostic three-method adapter contract and the five per-authority adapters that implement it, so the loop itself never branches on which authority it is running.
+These entries describe the authority-agnostic three-method adapter contract and the four primary authority adapters that implement it, so the loop itself never branches on which authority it is running.
 
 ### discover(scope)
 
@@ -203,7 +203,7 @@ The static-only hybrid authority adapter for the `designs` artifact-class (DESIG
 
 #### How It Works
 
-`sk-design.cjs` checks DESIGN.md structural conformance against `design-md-format.md`'s Style Reference schema (required headings, banned extractor-leak patterns, Quick-Start color consistency) and tokens.json parse-validity, plus a verify-first reasoning-agent audit-rubric layer. It never renders and never invokes the extraction pipeline; live-render is a separate authority adapter.
+`sk-design.cjs` checks DESIGN.md structural conformance against `design-md-format.md`'s Style Reference schema (required headings, banned extractor-leak patterns, Quick-Start color consistency) and tokens.json parse-validity, plus a verify-first reasoning-agent audit-rubric layer. It never renders and never invokes the extraction pipeline.
 
 #### Source Files
 
@@ -224,22 +224,6 @@ The hardest hybrid authority adapter for the `code` artifact-class, spanning the
 #### Source Files
 
 See [`adapter-contract/adapter-sk-code.md`](../feature-catalog/adapter-contract/adapter-sk-code.md) for full implementation and validation file listings.
-
----
-
-### sk-design live-render adapter
-
-#### Description
-
-The live-render authority adapter that wraps no local renderer and checks only caller-supplied render evidence.
-
-#### How It Works
-
-`sk-design-live-render.cjs` classifies a target as a URL or repo-relative component entry, then `check()` requires an `options.renderResult` that the ITERATE-state driving agent, built and verified in phase 009 with both cutover gates green, supplies by dispatching through `design-mcp-open-design`. Without it — or with the wrong dispatch boundary, a rejected dispatch, or an auth-blocked target — it returns a single honest `render-unavailable`-family finding, never a fabricated pass. When present, it runs deterministic threshold checks over the supplied measurements.
-
-#### Source Files
-
-See [`adapter-contract/adapter-sk-design-live-render.md`](../feature-catalog/adapter-contract/adapter-sk-design-live-render.md) for full implementation and validation file listings.
 
 ---
 

@@ -20,7 +20,7 @@ The authority-agnostic `discover(scope) -> artifacts` half of the pluggable adap
 
 ### Purpose
 
-ADR-003 (`002-architecture-decision/decision-record.md`) locks a three-method adapter contract: `discover(scope) -> artifacts`, `standardSource(authority) -> {templates, rules}`, and `check(artifact, rules) -> findings`. That split keeps the loop itself from ever branching on which authority it is running. This document specifies the **first** method only: its input shape, its output shape, and the authority-agnostic guarantee every adapter phase (005 sk-doc, 006 sk-git/sk-design, 007 sk-code, 010 sk-design live-render, and any future authority under ADR-012) must satisfy identically. `standardSource` and `check` belong to each adapter phase's own spec, not this one (`spec.md` §3 Out of Scope).
+ADR-003 (`002-architecture-decision/decision-record.md`) locks a three-method adapter contract: `discover(scope) -> artifacts`, `standardSource(authority) -> {templates, rules}`, and `check(artifact, rules) -> findings`. That split keeps the loop itself from ever branching on which authority it is running. This document specifies the **first** method only: its input shape, its output shape, and the authority-agnostic guarantee every adapter phase (005 sk-doc, 006 sk-git/sk-design, 007 sk-code, and any future authority under ADR-012) must satisfy identically. `standardSource` and `check` belong to each adapter phase's own spec, not this one (`spec.md` §3 Out of Scope).
 
 ### When to Use
 

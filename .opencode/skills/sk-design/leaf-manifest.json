@@ -45,21 +45,6 @@
     },
     {
       "leaves": [
-        "references/cli-child-pairing.md",
-        "references/design-parity-transport.md",
-        "references/freshness-invalidation.md",
-        "references/guarded-proxy.md",
-        "references/inner-generator-binding.md",
-        "references/mcp-wiring.md",
-        "references/od-cli-reference.md",
-        "references/smart-router-pseudocode.md",
-        "references/tool-surface.md"
-      ],
-      "packet": "sk-design-mcp-open-design",
-      "workflowMode": "sk-design-mcp-open-design"
-    },
-    {
-      "leaves": [
         "assets/cardinal-rules-card.md",
         "assets/design-md-prompt-template.md",
         "assets/source-of-truth-router-card.md",
@@ -92,5 +77,6 @@
       "workflowMode": "sk-design-md-generator"
     }
   ],
-  "resourceContractVersion": 1
+  "resourceContractVersion": 1,
+  "leaves": []
 }

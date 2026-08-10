@@ -127,7 +127,7 @@ function resolveNextSlice(corpusLanes, laneEntries, batchSize) {
       authority: lane.authority,
       artifactClass: lane.artifactClass,
       // Which adapter module this lane's discover/check runs against. Defaults to
-      // the authority's own module; a live-render (or other peer) lane carries an
+      // the authority's own module; a peer lane carries an
       // explicit adapter so dispatch loads adapters/<adapter>.cjs, not just
       // adapters/<authority>.cjs.
       adapter: lane.adapter || lane.authority,

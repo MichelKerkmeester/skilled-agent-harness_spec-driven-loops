@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/research.md",
-      "sha256": "4fea93551eb398f87b3453cd7e8ac610b8df936bc2da4342152f23e9e0866334",
+      "sha256": "4df5217e780d1c44c8ada4a2567af2ac86b5d5d6c1c5544db019fcfb890fd2e5",
       "section": "full"
     },
     {
@@ -17,12 +17,12 @@
     },
     {
       "path": ".opencode/skills/system-spec-kit/references/workflows/auto-mode-contract.md",
-      "sha256": "a6ffef6ce5c74d99e2f60a15226aeed32948a201c378eacaaeec1b189814e5e6",
+      "sha256": "d5ca47fd46e04117e305e95b33ba3cf47ff6afb92131bfb1980f4fee2990c260",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "f7a98fff671ccf4ccce85ee5cfb2229259aeec8b82e6c64f319aee977deab52c",
+      "sha256": "9f64298b79c1b9a05b78278b80dcfafb21668ac900dedda4f864e57837a4edc2",
       "section": "full"
     },
     {
@@ -32,17 +32,17 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-      "sha256": "a26e9ebd5a3a10f29ff56833420cc484de53fdc074b35d943214788f627d3b8e",
+      "sha256": "8b6e6ae055b03a7c7c4da9c85a74e6564b04a5e40bcd03212079077b3365ac6d",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "d2699da29e2b2cff0bdee7a3bab88bbdd346ffe71730b72152de21e0201bb21e",
+      "sha256": "dc4a50f8b78bc24008b1676f4a4e47521d42194a5b418ebb9a1e57e8b0aa30d9",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "3d9baf37ddec298662253197adcd1b6c64c49c12d29674016f68cdd3b0531967",
+      "sha256": "f1367563795e8991cf88f045573fbbdf8b613fde6c51b8326c2a025213baa907",
       "section": "full"
     },
     {
@@ -87,7 +87,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs",
-      "sha256": "3c801fbecbc5bb01a99a7578243a823b791368cc229966b930418cfb468500df",
+      "sha256": "8bb0a8d7cd4c37218ea9ad246eb9675e59fba897d13df8230ea2c4383a4faa9e",
       "section": "full"
     }
   ],

@@ -71,7 +71,7 @@ Unlike sk-doc's known-deviation list (three of five entries dormant because the 
 
 ## 5. SCOPE OF THIS LIST
 
-**In scope**: sk-design authority, STATIC v1 only. Live-render conventions (phase 010, ADR-009) are out of this list's scope entirely. That adapter owns its own known-deviation list once built. Each other authority adapter (sk-doc, sk-git, sk-code) owns its own list under its own `standardSource`, per ADR-005's per-authority requirement.
+**In scope**: sk-design authority, STATIC v1 only. Each other authority adapter (sk-doc, sk-git, sk-code) owns its own list under its own `standardSource`, preserving per-authority suppression boundaries.
 
 **Not a dumping ground**: every entry here traces to `design-md-format.md`'s own explicit, cited prose: the same document this authority's structural checker implements. It is not an invented convention. All three are labeled dormant-by-construction rather than presented as if they were actively firing and being suppressed.
 
@@ -125,4 +125,4 @@ Unlike sk-doc's known-deviation list (three of five entries dormant because the 
 - [sk-design-adapter.md](./sk-design-adapter.md): the full `standardSource`/`discover`/`check` specification this list is loaded by.
 - [sk-design.cjs](../../scripts/adapters/sk-design.cjs): the reference wiring script. `loadKnownDeviations()` parses Section 6's fenced block. `REQUIRED_HEADINGS`/`checkQuickStartConsistency()` are the deterministic-layer functions whose deliberate scope keeps all three entries dormant.
 - `.opencode/skills/sk-design/sk-design-md-generator/references/design-md-format.md`: the live Style Reference format specification every entry here cites.
-- `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md` (ANCHORS `adr-005`, `adr-009`): the alignment contract this list satisfies, and the static/live-render boundary this authority's v1 scope stays inside.
+- `.opencode/specs/system-deep-loop/059-deep-alignment-mode/002-architecture-decision/decision-record.md` (ANCHORS `adr-005`): the alignment contract this list satisfies, and the static boundary this authority's v1 scope stays inside.

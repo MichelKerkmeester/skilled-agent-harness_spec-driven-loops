@@ -1,7 +1,7 @@
 # Agent: design
 # Converted from: .opencode/agents/design.md
 name = "design"
-description = "Design specialist via the sk-design parent hub: routes to interface/foundations/motion/audit/md-generator modes plus the nested design-mcp-open-design transport, applies the mode, and verifies. LEAF."
+description = "Design specialist via the sk-design parent hub: routes to interface/foundations/motion/audit/md-generator modes, applies the mode, and verifies. LEAF."
 sandbox_mode = "workspace-write"
 model = "gpt-5.5"
 model_reasoning_effort = "high"
@@ -50,8 +50,7 @@ This agent is LEAF-only.
    it. If nothing matches, return the hub's disambiguation rather than guessing.
 3. **Load the mode.** Read the packet at `mode-registry.json`'s `packet` field for the
    resolved mode (`.opencode/skills/sk-design/<packet>/SKILL.md` -- the packet folder is not
-   always `design-<mode>`; the transport's own mode key and packet name are both
-   `design-mcp-open-design`) and the `references/` and assets the work needs.
+   always `design-<mode>`) and the `references/` and assets the work needs.
 4. **Apply the mode.** Follow that mode's workflow exactly (for example interface's
    brainstorm -> critique -> build, or audit's findings-first scoring).
 5. **Verify.** Run the mode's quality gates before reporting. Never claim completion
@@ -66,7 +65,6 @@ This agent is LEAF-only.
 | `motion` | Animation, micro-interactions, transitions, AnimatePresence, reduced motion |
 | `audit` | Accessibility, performance, responsive and theming QA, anti-slop detection, design scoring, hardening |
 | `md-generator` | Extracting a live website's real CSS into a Style Reference DESIGN.md |
-| `design-mcp-open-design` | Wiring, reading, or driving Open Design's MCP server/CLI from the terminal -- a transport, not design judgment; always pairs with one of the five modes above before any design-affecting operation |
 
 Cross-cutting requests load more than one mode (for example a build that needs `interface`
 + `foundations` + `motion`, then `audit` to verify).
@@ -78,8 +76,6 @@ This agent's static permission grant allows Read/Write/Edit/Bash, but `mode-regi
 the static grant is a ceiling, not a per-mode license:
 - `interface`, `foundations`, `motion`, `audit`: Read/Glob/Grep only. Never Write/Edit/Bash.
 - `md-generator`: full Read/Write/Edit/Bash -- the only design-judgment mode with mutating authority.
-- `design-mcp-open-design`: Read/Bash only. Never Write/Edit -- its Bash calls drive the
-  external Open Design CLI/MCP server, never this repo's workspace.
 
 ---
 
