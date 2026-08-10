@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/042-goal-isolation"
-    last_updated_at: "2026-08-10T15:26:51Z"
+    last_updated_at: "2026-08-10T19:20:00Z"
     last_updated_by: "codex"
-    recent_action: "All required verification gates completed"
-    next_safe_action: "Monitor session-isolated goals during normal runtime use"
+    recent_action: "All six phases and required verification gates completed"
+    next_safe_action: "Monitor session-isolated goals and compatibility migration during normal runtime use"
     blockers: []
     key_files:
       - "spec.md"
@@ -87,7 +87,7 @@ Unchecked implementation items are expected while this packet remains `Planned`.
 - [x] CHK-020 [P0] Pi input, session-start, and turn-end handlers use `getSessionId()` for every state operation. [Evidence: Pi adapter suite]
 - [x] CHK-021 [P0] Two live Pi command sessions retain distinct canaries; command-only runs create no model transcript body, and adapter tests cover injected payload separation. [Evidence: `PI_TWO_SESSION_CANARY=PASS` and `goal-pi.test.mjs`]
 - [x] CHK-022 [P0] Legacy-only and missing-id Pi contexts receive no goal block. [Evidence: `.opencode/hooks/goal/pi/goal-pi.test.mjs`]
-- [x] CHK-023 [P0] Full OpenCode `mk-goal` plugin suite passes as the per-session regression control. [Evidence: 119/119]
+- [x] CHK-023 [P0] Full OpenCode `mk-goal` plugin suite passes as the per-session regression control. [Evidence: Phase 5 baseline 119/119; Phase 6 final 125/125]
 - [x] CHK-024 [P1] Cursor session-id and conversation-id cases match the supported contract. [Evidence: `.opencode/hooks/goal/cursor/goal-cursor.test.mjs`]
 - [x] CHK-025 [P1] Devin tracked adapters, registration, docs, and tests agree with the decommission decision. [Evidence: `.devin/hooks.v1.json` has zero goal registrations]
 <!-- /ANCHOR:testing -->
@@ -168,7 +168,7 @@ Unchecked implementation items are expected while this packet remains `Planned`.
 <!-- ANCHOR:deploy-ready -->
 ## Deployment Readiness
 
-- [x] CHK-070 [P0] Strict validation passes for this packet from its final authored state. [Evidence: `validate.sh specs/cli-external-orchestration/042-goal-isolation --strict --recursive` passed the parent and all five phases]
+- [x] CHK-070 [P0] Strict validation passes for this packet from its final authored state. [Evidence: `validate.sh specs/cli-external-orchestration/042-goal-isolation --strict --recursive` passed the parent and all six phases]
 - [x] CHK-071 [P0] The authoritative implementation gate passes under the sk-code global-backlog contract. [Evidence: packet alignment 8 files/0 findings; stack folders passed; router-sync 10/10; global backlog recorded]
 - [x] CHK-072 [P1] `description.json`, `graph-metadata.json`, and continuity metadata reflect the final packet state.
   - Evidence: scoped metadata generators exited 0; final recursive strict validation checks integrity, drift, path, lineage, and shape.

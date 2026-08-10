@@ -35,7 +35,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The shared core hardcodes one `active-goal.json` and exposes operations that receive no session identity",
     "created_at": "2026-08-10T11:33:29Z",
-    "last_save_at": "2026-08-10T14:14:56.177Z",
+    "last_save_at": "2026-08-10T19:19:30.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed06a9544e6d0fece1de19c60a403dabb9e1eafac04b1fe2397e70a918552335",
+    "source_fingerprint": "sha256:0c222608c5aa272573e753dc083fffec687e9df2276acab00a03073c51929354",
     "source_doc_hashes": {
       "spec.md": "de6a8eb60cac6e696d315dd94f4f98719e480954dbda524614d0207e6a3f7904",
       "plan.md": "bde0f9a4000891edf748dd0fffd55e8623f4810a7978c74e45b2205cb35b74fb",
       "tasks.md": "af225a01521e7e7085fa9a9d133c18e94bf3b39a195129b0449a5caa7bbfeda0",
-      "implementation-summary.md": "62bf76f011c62dc03bb576bca436111ac42027020f8ed8233276f8f0ee7dd23a"
+      "implementation-summary.md": "5a8b229ae303f758fcccd5705237a306bb36a805ba556ab64aa0c21fe73edd97"
     },
     "last_active_child_id": null,
     "last_active_at": null

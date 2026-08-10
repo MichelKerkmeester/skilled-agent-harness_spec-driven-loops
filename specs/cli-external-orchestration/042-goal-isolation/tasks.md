@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/042-goal-isolation"
-    last_updated_at: "2026-08-10T15:26:51Z"
+    last_updated_at: "2026-08-10T19:20:00Z"
     last_updated_by: "codex"
-    recent_action: "All implementation and verification tasks completed"
-    next_safe_action: "Monitor session-isolated goals during normal runtime use"
+    recent_action: "All six phases and final publication completed"
+    next_safe_action: "Monitor session-isolated goals and compatibility migration during normal runtime use"
     blockers: []
     key_files:
       - "spec.md"
@@ -97,13 +97,14 @@ Task format: `T### [P?] Description (path)`
 ## Phase 3: Verification
 
 - [x] T017 Run focused core and adapter suites; repair all failures at the responsible producer (`.opencode/hooks/goal/**`) [Evidence: final 82/82]
-- [x] T018 Run the complete OpenCode `mk-goal` plugin suite as the per-session regression control (`.opencode/plugins/tests/`) [Evidence: final 119/119]
+- [x] T018 Run the complete OpenCode `mk-goal` plugin suite as the per-session regression control (`.opencode/plugins/tests/`) [Evidence: Phase 5 passed 119/119; Phase 6 passes 125/125]
 - [x] T019 Live-smoke two Pi sessions with distinct canaries (`.pi/extensions/goal-context.ts`) [Evidence: `PI_TWO_SESSION_CANARY=PASS`; commands create no model transcript body]
 - [x] T020 Validate runtime configs and compare registrations with tracked adapter files (`.pi/`, `.cursor/hooks.json`, `.devin/hooks.v1.json`) [Evidence: `FINAL_RUNTIME_CONFIG=PASS`]
 - [x] T021 Update goal contracts, state docs, commands, capability matrix, playbooks, and feature catalogs (`.opencode/hooks/goal/`, related docs) [Evidence: 16/16 documents validate]
 - [x] T022 Scan for unscoped core calls and stale singleton/session-resolution claims (repository-wide focused `rg` checks) [Evidence: `rg` across `.opencode/hooks/goal/` and runtime docs returned zero stale matches]
 - [x] T023 Run the authoritative workspace gate and strict packet validation from final state [Evidence: `run-all-drift-guards.sh` receipt plus packet alignment 8 files/0 findings and recursive strict validation]
 - [x] T024 Reconcile `checklist.md`, implementation evidence, metadata, and final scoped diff (`specs/cli-external-orchestration/042-goal-isolation/`) [Evidence: final metadata generators and scoped diff checks]
+- [x] T025 Harden OpenCode persistence, remove active Devin goal remnants, align all goal manual playbooks, and close Phase 6 (`006-opencode-goal-optimization-and-devin-removal/`) [Evidence: 125/125 OpenCode tests, 82/82 cross-runtime tests, zero active residue, clean goal documents, and strict recursive validation]
 <!-- /ANCHOR:verification -->
 
 ---

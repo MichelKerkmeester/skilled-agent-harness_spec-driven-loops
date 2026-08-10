@@ -39,7 +39,7 @@
       "handover"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "handover.md",
       "plan.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The final integrated checks now prove that native Pi management, scoped persistence, adapter injection, legacy cutover, registrations, and operator documentation use the same session-isolated contract",
     "created_at": "2026-08-10T11:33:32Z",
-    "last_save_at": "2026-08-10T17:12:11.686Z",
+    "last_save_at": "2026-08-10T19:19:31.431Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6798560d3d4d8f8ae4629a68dc0dae709609554777f7f5599a8ee10cdb6c2001",
+    "source_fingerprint": "sha256:784f6faf66c7384c3d09a58a4c326695e9047b61145c32db2f70e86d28935abb",
     "source_doc_hashes": {
-      "spec.md": "0c2c7ca5aba410c74d4be3a3a04ccdbfef111fff208119e3cfdf5750e5592a9d",
+      "spec.md": "6f02f86f069d800ea48b9fa8fc6fe3263011b0fc5cd648dccd71a68944712f12",
       "plan.md": "8015cd0d77c844da503dc654722154840d613e67dbd67be016f7f9f6466a876e",
       "tasks.md": "527f42a7699a5ff6598fc4bc6ad07e002dc0221fc6062937ce2553af5e76c5e7",
-      "implementation-summary.md": "013fcd1158695b76a51a0b34aa696d2eaaccb99683a958216a068971cfef7f76",
+      "implementation-summary.md": "d91049f49e22d034367ba34955e3d50e0f42454a0b44a28ba7d6eb6c71246ad7",
       "handover.md": "5af3dffb3500cd302864c5c51abfe0264882d24e4442893372717896b5e0d445"
     },
     "last_active_child_id": null,

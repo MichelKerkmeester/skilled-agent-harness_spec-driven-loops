@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/042-goal-isolation/006-opencode-goal-optimization-and-devin-removal"
-    last_updated_at: "2026-08-10T17:45:00Z"
+    last_updated_at: "2026-08-10T19:20:00Z"
     last_updated_by: "codex"
-    recent_action: "Implementation sequence and objective proof defined"
-    next_safe_action: "Write failing OpenCode storage tests"
+    recent_action: "Implementation and final-state proof completed"
+    next_safe_action: "Monitor digest-keyed state and compatibility migration during normal use"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
@@ -57,11 +57,11 @@ The implementation changes only the storage-address layer. SHA-256 replaces reve
 
 ### Definition of Done
 
-- [ ] All nine phase requirements and six success criteria are verified.
-- [ ] Fixed-key and migration tests pass with the full focused suite.
-- [ ] Active Devin goal-remnant scan returns zero matches.
-- [ ] Unrelated Devin hook surfaces have no Phase 6 diff.
-- [ ] Code-quality, document-quality, strict child, and recursive parent gates pass.
+- [x] All nine phase requirements and six success criteria are verified.
+- [x] Fixed-key and migration tests pass with the full focused suite at 125/125.
+- [x] Active Devin goal-remnant scan returns zero matches.
+- [x] Unrelated Devin hook surfaces have no Phase 6 diff.
+- [x] Code-quality, document-quality, strict child, and recursive parent gates pass.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -123,17 +123,17 @@ Compatibility migration at the persistence boundary.
 
 ### Phase 2: Implementation
 
-- [ ] Add path, long-id, migration, target-conflict, and archive tests.
-- [ ] Implement digest keys and compare-safe active/archive migration.
-- [ ] Remove active goal-specific Devin references and stale mirror prose.
-- [ ] Update operator docs without changing unrelated runtime claims.
+- [x] Add path, long-id, migration, target-conflict, and archive tests.
+- [x] Implement digest keys and compare-safe active/archive migration.
+- [x] Remove active goal-specific Devin references and stale mirror prose.
+- [x] Update operator docs and manual playbooks without changing unrelated runtime claims.
 
 ### Phase 3: Verification
 
-- [ ] Run focused tests, syntax, comment hygiene, and OpenCode drift guards.
-- [ ] Run zero-residue and unchanged-Devin-boundary scans.
-- [ ] Reconcile checklist, summaries, parent phase map, handover, and metadata.
-- [ ] Run strict Phase 6 and recursive packet validation from final state.
+- [x] Run focused tests, syntax, comment hygiene, and OpenCode drift guards.
+- [x] Run zero-residue and unchanged-Devin-boundary scans.
+- [x] Reconcile checklist, summaries, parent phase map, handover, and metadata.
+- [x] Run strict Phase 6 and recursive packet validation from final state.
 <!-- /ANCHOR:phases -->
 
 ---

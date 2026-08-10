@@ -1,6 +1,7 @@
 ---
 title: "Implementation Summary: Session-Scoped Goal Core"
 description: "Completed session-scoped goal persistence, explicit CLI binding, and isolation regression coverage."
+status: "complete"
 trigger_phrases:
   - "session scoped core status"
 importance_tier: "important"
@@ -8,10 +9,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/042-goal-isolation/002-session-scoped-core"
-    last_updated_at: "2026-08-10T14:12:18Z"
+    last_updated_at: "2026-08-10T19:18:00Z"
     last_updated_by: "codex"
     recent_action: "Verified the scoped core and CLI with focused and OpenCode regressions"
     next_safe_action: "Bind Pi and Cursor lifecycle adapters to this scope contract"
+    completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Session-Scoped Goal Core

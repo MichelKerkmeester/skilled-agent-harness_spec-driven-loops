@@ -13,10 +13,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/042-goal-isolation"
-    last_updated_at: "2026-08-10T15:26:51Z"
+    last_updated_at: "2026-08-10T19:20:00Z"
     last_updated_by: "codex"
-    recent_action: "Goal isolation implementation and rollout completed"
-    next_safe_action: "Monitor session-isolated goals during normal runtime use"
+    recent_action: "All six phases completed, including OpenCode hardening and playbook alignment"
+    next_safe_action: "Monitor session-isolated goals and compatibility migration during normal runtime use"
     blockers: []
     key_files:
       - ".opencode/hooks/goal/lib/goal-core.cjs"
@@ -31,7 +31,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The interference source is the runtime-neutral active-goal.json singleton, not OpenCode's per-session plugin store."
+      - "The original interference source was the runtime-neutral active-goal.json singleton; OpenCode was already session-scoped but needed bounded opaque filenames."
       - "Pi lifecycle and registered-command contexts expose getSessionId; Cursor hooks expose session_id."
       - "Cursor's current prompt command is not session-bound, and Devin goal support was deliberately decommissioned."
 ---
@@ -62,8 +62,8 @@ This packet defines one active goal per runtime session, allowing many sessions 
 | **Priority** | P0 |
 | **Status** | Complete |
 | **Created** | 2026-08-10 |
-| **Delivery shape** | Five-phase packet: research, three implementation phases, final verification |
-| **Implementation state** | All five phases complete; scoped core, native bindings, legacy cutover, documentation, final verification, and Pi rollout are verified |
+| **Delivery shape** | Six-phase packet: research, three implementation phases, final verification, and OpenCode persistence hardening |
+| **Implementation state** | All six phases complete; scoped core, native bindings, legacy cutover, OpenCode optimization, documentation, playbooks, and final verification are verified |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -291,7 +291,7 @@ Make goal ownership explicit and session-scoped so each AI session sees and muta
 | 3 | `003-pi-and-runtime-bindings/` | Bind Pi and supported sibling adapters and management surfaces to native session identity; reconcile Devin support truth | Complete |
 | 4 | `004-legacy-cutover-and-docs/` | Quarantine the singleton, complete explicit migration/diagnostics, update registrations, commands, docs, and runtime matrices | Complete |
 | 5 | `005-verification-and-validation/` | Run the two-session/cross-runtime matrix, live canaries, regression suites, configuration checks, recursive packet validation, and acceptance sign-off | Complete |
-| 6 | `006-opencode-goal-optimization-and-devin-removal/` | Replace OpenCode's reversible session filenames with fixed opaque keys, migrate existing state safely, and remove active Devin goal-version remnants | Active |
+| 6 | `006-opencode-goal-optimization-and-devin-removal/` | Replace OpenCode's reversible session filenames with fixed opaque keys, migrate existing state safely, remove active Devin goal-version remnants, and align manual playbooks | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

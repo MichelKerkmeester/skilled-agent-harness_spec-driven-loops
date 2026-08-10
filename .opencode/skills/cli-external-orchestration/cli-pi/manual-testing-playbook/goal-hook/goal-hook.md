@@ -19,8 +19,10 @@ The `.pi/prompts/goal-pi.md` file is a fail-closed fallback. If it runs, the nat
 - Prompt: `Use the native Pi goal command to set different goals in two isolated session ids, prove each id reads and injects only its own goal, then verify resume, missing identity, legacy migration, and disabled fallback behavior.`
 - Expected execution process: load the extension explicitly against temporary state -> set A and B through `/goal-pi` -> inspect scoped files and command output -> run the adapter matrix -> exercise legacy migration in temporary state -> disable discovery and confirm the fallback never calls the CLI.
 - Expected signals: two opaque `pi-<sha256>.json` files, distinct A/B objectives, same-id resume, new-id no goal, no raw session id in filenames, `MISSING_SESSION_ID` for unbound CLI mutation, and `UNSUPPORTED_SESSION_BINDING` from the prompt fallback.
+- Evidence requirements: Capture both native command envelopes, the two opaque state filenames, scoped JSON comparisons, migration result, negative-boundary error codes, and automated test summary.
 - Desired user-visible outcome: PASS/FAIL with the two objectives, state-file count, and exact error code for every negative boundary.
 - Pass/fail: PASS only if A/B stay isolated through set, read, turn mutation, resume, and completion; migration binds one explicit empty target; and no disabled or missing-id path selects a goal.
+- Failure triage: Verify extension registration first, then inspect appended CLI flags and the native `getSessionId()` value. Never bypass the command with a guessed shell binding or merge isolated state files.
 
 ## 3. TEST EXECUTION
 
@@ -32,6 +34,10 @@ The `.pi/prompts/goal-pi.md` file is a fail-closed fallback. If it runs, the nat
 4. Show each objective using the same native session id.
 5. Run the automated adapter matrix for injection, turn-end non-owner preservation, resume/new-id, migration bridge, and missing identity.
 6. Confirm `.pi/settings.json` can disable normal discovery without removing the extension source or state.
+
+### Exact Command Sequence
+
+Run `MK_GOAL_STATE_DIR=<temp> pi --no-extensions --extension .opencode/hooks/goal/pi/goal-context.ts --offline --session-dir <temp-sessions> --session-id session-a --print --no-tools "/goal-pi set Goal A"`, repeat for `session-b` and `Goal B`, then run `node --test .opencode/hooks/goal/pi/goal-pi.test.mjs`.
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|

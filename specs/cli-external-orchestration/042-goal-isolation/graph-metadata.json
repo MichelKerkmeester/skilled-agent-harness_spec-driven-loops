@@ -8,7 +8,8 @@
     "cli-external-orchestration/042-goal-isolation/002-session-scoped-core",
     "cli-external-orchestration/042-goal-isolation/003-pi-and-runtime-bindings",
     "cli-external-orchestration/042-goal-isolation/004-legacy-cutover-and-docs",
-    "cli-external-orchestration/042-goal-isolation/005-verification-and-validation"
+    "cli-external-orchestration/042-goal-isolation/005-verification-and-validation",
+    "cli-external-orchestration/042-goal-isolation/006-opencode-goal-optimization-and-devin-removal"
   ],
   "manual": {
     "depends_on": [],
@@ -60,7 +61,7 @@
       "migration"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -217,7 +218,7 @@
     ],
     "causal_summary": "The cross-runtime core resolves every Pi and Cursor goal operation to one fixed file, `active-goal.json`",
     "created_at": "2026-08-10T10:17:19Z",
-    "last_save_at": "2026-08-10T17:13:16.987Z",
+    "last_save_at": "2026-08-10T19:27:47.625Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,16 +229,16 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddeabb3e580ad78e43444273b9419b3c09c641b6e03e35b1d6c08e59bc95c151",
+    "source_fingerprint": "sha256:0d50953213bbb29d79b3d7aa944c1902b5e10fd1ffcda42d984eddccb805be88",
     "source_doc_hashes": {
-      "spec.md": "b43e2d1b254cbd51af212854499b744efe72bf720e90d7ccab0efc4dfec935c0",
-      "plan.md": "6867602957dac09d657de2a6f79dda560c52dbae2bb0bf9369c15ec6a984963d",
-      "tasks.md": "2dd4de930d47e6b5686036a049072f06dbe592279318f3d07bf8ca26fe0629de",
-      "checklist.md": "da8aa83c75b95d07b77d54fbaf9a9abba2aeb58d8ea42ff74a971861b71334a3",
+      "spec.md": "22bce67777a929eb789d18126a18963111e8956649301aa2d8856c4a18ce6b4d",
+      "plan.md": "39faf6cf80438f6bfa7295ea199dfafc4a7268735eb65a0f660b0b8dce5d8727",
+      "tasks.md": "d22170e0917fa8b6ab512338f83b7e612a0576083caef955a7b8f3710fe95f2e",
+      "checklist.md": "6a09bd75bc97c1a3b6f0f7f160efb86f86eb4ac102409d93614eeb36c88ff9ce",
       "decision-record.md": "1d5c6aad5f6a15bf3d10eab028dad8e6672bac6f52e918a7ac32f07224955090",
-      "implementation-summary.md": "ff3a49c4153a8969e3bc6c14683c60f0ed3e64e319d8f21e42cdc067fbef6736"
+      "implementation-summary.md": "b62298f6e20d6dc266644e839cf423f987938f0c5d071eda34c6b33f3cbca5c4"
     },
-    "last_active_child_id": "cli-external-orchestration/042-goal-isolation/005-verification-and-validation",
-    "last_active_at": "2026-08-10T17:10:41.794Z"
+    "last_active_child_id": "cli-external-orchestration/042-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
+    "last_active_at": "2026-08-10T19:27:47.625Z"
   }
 }

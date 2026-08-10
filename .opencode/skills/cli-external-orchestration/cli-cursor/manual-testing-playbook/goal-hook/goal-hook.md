@@ -19,8 +19,10 @@ Cursor management is intentionally unsupported. The prompt command does not rece
 - Prompt: `Invoke the Cursor goal adapter with two native session payloads, prove each response contains only its own objective, then verify missing identity, legacy-only state, registration, and unsupported management behavior.`
 - Expected execution process: set A/B with explicit CLI bindings in temporary state -> invoke the adapter once per native payload -> compare responses and state bytes -> invoke missing-id and legacy-only cases -> inspect `.cursor/hooks.json` and `/goal-cursor`.
 - Expected signals: A and B return distinct `agent_message` blocks; A's turn touch leaves B byte-equivalent; `{}` returns only `{"permission":"allow"}`; legacy-only state never injects; command output is `UNSUPPORTED_SESSION_BINDING` with no CLI call.
+- Evidence requirements: Capture the two adapter JSON responses, non-owner byte comparison, missing-identity and legacy-only no-op results, parsed registration, command text, and focused test summary.
 - Desired user-visible outcome: PASS/FAIL naming injection support and management non-support separately.
 - Pass/fail: PASS when scoped injection is isolated and every ambiguous management or identity path fails closed. A hook response alone is not a claim that a specific Cursor client build made the text model-visible.
+- Failure triage: Check the native payload identity first, then workspace and runtime scope. Treat a command-side CLI call as a fail-closed regression; never repair management by inventing a default session id.
 
 ## 3. TEST EXECUTION
 
@@ -32,6 +34,10 @@ Cursor management is intentionally unsupported. The prompt command does not rece
 4. Verify the response objectives and non-owner file bytes.
 5. Repeat with `conversation_id`, missing identity, disabled state, malformed scoped state, and legacy-only state.
 6. Parse `.cursor/hooks.json` and inspect the fail-closed command document.
+
+### Exact Command Sequence
+
+Set A and B with `node .opencode/hooks/goal/bin/goal.cjs --runtime cursor --session <id> --workspace "$PWD" set <goal>`, pipe each matching JSON payload to `node .opencode/hooks/goal/cursor/goal-inject.mjs`, then run `node --test .opencode/hooks/goal/cursor/goal-cursor.test.mjs`.
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|

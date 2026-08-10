@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/042-goal-isolation"
-    last_updated_at: "2026-08-10T15:26:51Z"
+    last_updated_at: "2026-08-10T19:20:00Z"
     last_updated_by: "codex"
-    recent_action: "All implementation and verification phases completed"
-    next_safe_action: "Monitor session-isolated goals during normal runtime use"
+    recent_action: "All six implementation and verification phases completed"
+    next_safe_action: "Monitor session-isolated goals and compatibility migration during normal runtime use"
     blockers: []
     key_files:
       - ".opencode/hooks/goal/lib/goal-core.cjs"
@@ -56,7 +56,7 @@ _memory:
 
 The implementation will introduce one scope resolver and make every runtime-neutral goal-core entry point require its output. State will move from the singleton `active-goal.json` to a cross-runtime namespace keyed by a collision-resistant digest of workspace, runtime, and native session id.
 
-Tests will lead the change. The first failing matrix will demonstrate two sessions replacing each other under the current core; the final matrix must prove that set, read, injection, turn recording, status changes, and archive actions remain isolated. OpenCode's separate per-session plugin is a compatibility control, not a migration target.
+Tests led the change. The first failing matrix demonstrated two sessions replacing each other under the former core; the final matrix proves that set, read, injection, turn recording, status changes, and archive actions remain isolated. OpenCode's separate per-session plugin began as the compatibility control, then Phase 6 hardened its reversible, unbounded filename scheme without merging it into the sibling core.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -78,7 +78,7 @@ Tests will lead the change. The first failing matrix will demonstrate two sessio
 - [x] Every requirement in `spec.md` has direct test or command evidence.
 - [x] Two-session, same-id/different-runtime, missing-id, and legacy-state negative controls pass.
 - [x] All goal-core, Pi, and retained Cursor-tier tests pass; Devin support-claim scans are clean.
-- [x] The OpenCode `mk-goal` plugin suite remains green at 119/119.
+- [x] The OpenCode `mk-goal` plugin suite remains green and expands from 119/119 to 125/125.
 - [x] Runtime registrations parse and match tracked adapter files.
 - [x] Goal docs, command text, runtime matrix, and state README describe the same final contract.
 - [x] The sk-code packet-scoped delta and strict recursive packet validation pass from final state; the unrelated global backlog is recorded.
@@ -138,7 +138,7 @@ native runtime event or goal command
 | `.opencode/hooks/goal/cursor/goal-inject.mjs` | Uses workspace root only. | Validate `session_id`, with `conversation_id` as documented fallback if live-confirmed. | Payload variants and no-identity no-op tests. |
 | `.cursor/commands/goal-cursor.md` | Runs the global manage CLI. | Bind to native session identity or remove unsupported management claims. | Current-session set/show canary or explicit supported-limit verdict. |
 | Devin goal docs/matrices | Historical packets claim adapters that the current tree deliberately removed. | Remove stale current-support claims; do not restore the decommissioned adapters. | `git ls-files`, JSON registration check, and stale-claim scan. |
-| `.opencode/plugins/mk-goal.js` | Correct per-OpenCode-session reference implementation. | No behavioral change expected. | Full existing plugin suite. |
+| `.opencode/plugins/mk-goal.js` | Separate per-OpenCode-session implementation. | Preserve native behavior while replacing reversible, unbounded filenames with digest keys and safe lazy migration. | Full plugin suite, long-id regression, and migration matrix. |
 | Goal docs and playbooks | Describe the singleton as deliberate and some absent adapters as shipped. | Update to current scoped contract and verified runtime truth. | Focused stale-term scan and doc validation. |
 
 Required pre-change inventories:
@@ -187,6 +187,13 @@ Required pre-change inventories:
 - [x] Run the complete matrix, repository wrapper, and packet-scoped alignment delta.
 - [x] Inspect final diff for unscoped calls, stale singleton claims, temporary files, and unrelated changes.
 - [x] Record implementation evidence in `implementation-summary.md` and complete `checklist.md`.
+
+### Phase 6: OpenCode Persistence Hardening and Playbook Alignment
+
+- [x] Replace reversible hex filenames with fixed 64-character SHA-256 session keys.
+- [x] Add validated lazy migration for active and archived legacy files without overwriting an occupied target.
+- [x] Remove active retired Devin goal remnants while preserving unrelated runtime support and historical evidence.
+- [x] Align all runtime goal manual playbooks and rerun final code, document, mirror, and strict packet gates.
 <!-- /ANCHOR:phases -->
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Implementation Phase: OpenCode Goal Optimization and Devin Goal Remnant Removal"
 description: "Replace OpenCode's reversible, length-expanding session filenames with fixed opaque keys while preserving existing goal state, then remove active goal-specific Devin references without altering unrelated Devin runtime support."
-status: "active"
+status: "complete"
 trigger_phrases:
   - "opencode goal optimization"
   - "opencode goal state migration"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/042-goal-isolation/006-opencode-goal-optimization-and-devin-removal"
-    last_updated_at: "2026-08-10T17:45:00Z"
+    last_updated_at: "2026-08-10T19:20:00Z"
     last_updated_by: "codex"
-    recent_action: "Phase 6 scope and proof plan established"
-    next_safe_action: "Add failing path and migration tests before changing mk-goal"
+    recent_action: "Phase 6 implementation, playbook alignment, and final proof completed"
+    next_safe_action: "Monitor digest-keyed OpenCode goals and explicit legacy migration during normal use"
     blockers: []
     key_files:
       - ".opencode/plugins/mk-goal.js"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "goal-isolation-phase-6-20260810"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Historical spec evidence remains; active runtime and operator surfaces lose goal-specific Devin remnants."
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Active |
+| **Status** | Complete |
 | **Created** | 2026-08-10 |
 | **Branch** | Current working branch |
 | **Parent Spec** | `../spec.md` |
@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This phase extends the completed goal-isolation packet after the OpenCode implementation was intentionally retained as a separate native system. The focused OpenCode suite starts at 119/119 passing, but the storage key is still the raw session id encoded as hexadecimal. A 140-character native id expands to a 285-character filename and fails with `ENAMETOOLONG` before a goal can be read or written.
+This phase extends the completed goal-isolation packet after the OpenCode implementation was intentionally retained as a separate native system. The focused OpenCode suite started at 119/119 passing, but its storage key was the raw session id encoded as hexadecimal. A 140-character native id expanded to a 285-character filename and failed with `ENAMETOOLONG`. The completed implementation now uses a fixed 64-character SHA-256 key, migrates valid earlier hex-keyed records lazily, and passes 125/125 focused tests.
 
 **Scope Boundary**: optimize the native OpenCode goal store and remove active Devin goal-version remnants. The runtime-neutral Pi/Cursor core, prompt content, verifier policy, continuation policy, native token-accounting algorithm, and unrelated Devin runtime infrastructure are unchanged.
 
