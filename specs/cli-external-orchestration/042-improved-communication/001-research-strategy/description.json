@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/042-improved-communication/001-research-strategy",
+  "description": "Research strategy combining native primary-source crawling with 7 DeepSeek V4 Flash and 3 GPT-5.6 SOL Fast forced-depth iterations for a portable CLI ",
+  "keywords": [
+    "research",
+    "strategy",
+    "combining",
+    "native",
+    "primary-source",
+    "crawling",
+    "deepseek",
+    "flash",
+    "gpt-5",
+    "sol",
+    "fast",
+    "forced-depth",
+    "iterations",
+    "portable",
+    "cli",
+    "communication",
+    "projection"
+  ],
+  "lastUpdated": "2026-08-11T06:37:38.488Z",
+  "specId": "001",
+  "folderSlug": "research-strategy",
+  "parentChain": [
+    "cli-external-orchestration",
+    "042-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

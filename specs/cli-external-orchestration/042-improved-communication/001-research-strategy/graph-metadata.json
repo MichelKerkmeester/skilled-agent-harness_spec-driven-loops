@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/042-improved-communication/001-research-strategy",
+  "spec_folder": "cli-external-orchestration/042-improved-communication/001-research-strategy",
+  "parent_id": "cli-external-orchestration/042-improved-communication",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "portable communication research",
+      "claudish reverse engineering",
+      "six CLI rewrite layer",
+      "portable CLI research plan",
+      "deep research 7 and 3",
+      "communication projection architecture",
+      "portable CLI research tasks",
+      "communication rewrite research status",
+      "portable CLI research checklist",
+      "7 plus 3 research verification",
+      "portable CLI research summary",
+      "improved communication current state"
+    ],
+    "key_topics": [
+      "portable",
+      "communication",
+      "research",
+      "claudish",
+      "reverse",
+      "engineering",
+      "six",
+      "cli",
+      "rewrite",
+      "layer",
+      "plan",
+      "deep"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Chat Completions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The reference proves that whole-message rewriting, user-question context, a narrow copy-editing prompt, low sampling, and fail-open display can make assistant output noticeably easier to read",
+    "created_at": "2026-08-11T06:21:48Z",
+    "last_save_at": "2026-08-11T06:41:29.625Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c2dbf22d448320d3272e23ecea813a096d4b885820587966e0f80eff445c5433",
+    "source_doc_hashes": {
+      "spec.md": "9c4b3bcd6a2eea94cc854f5eef2ba00bd1fbedf1948c81221a3263026ae700d3",
+      "plan.md": "0c0f0d13606131f559601cbbebed469992f9125ac99ea4bb2767ef471398be66",
+      "tasks.md": "a8fd142c58b124739f5ccb6eedbda6bea219ca8950b78643d0934f9e302ead1c",
+      "checklist.md": "e3de6b4101ca809b5588a7bff8894f3d10a12d4a2ebe4d4fa4a49dba774729df",
+      "implementation-summary.md": "e01cef9c01876b128181cb42b167edfa12dd86cb008c3e073c714ef038472ef9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

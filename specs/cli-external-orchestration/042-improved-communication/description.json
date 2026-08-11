@@ -1,0 +1,32 @@
+{
+  "level": "phase",
+  "specFolder": "cli-external-orchestration/042-improved-communication",
+  "description": "Provider-neutral display projection that gives Claude, Codex, Pi, OpenCode, Devin, and Cursor CLIs the claudish-to-english communication feel while pr",
+  "keywords": [
+    "provider-neutral",
+    "display",
+    "projection",
+    "gives",
+    "claude",
+    "codex",
+    "opencode",
+    "devin",
+    "cursor",
+    "clis",
+    "claudish-to-english",
+    "communication",
+    "feel",
+    "while",
+    "preserving",
+    "canonical",
+    "output"
+  ],
+  "lastUpdated": "2026-08-11T06:37:38.316Z",
+  "specId": "042",
+  "folderSlug": "improved-communication",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
