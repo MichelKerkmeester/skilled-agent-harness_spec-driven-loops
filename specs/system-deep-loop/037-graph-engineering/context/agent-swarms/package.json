@@ -11,7 +11,7 @@
   "sideEffects": false,
   "type": "module",
   "engines": {
-    "node": ">=20.19"
+    "node": ">=22.12"
   },
   "scripts": {
     "dev": "vite dev",
@@ -71,7 +71,7 @@
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/react-query": "^5.83.0",
     "@tanstack/react-router": "^1.168.0",
-    "@tanstack/react-start": "^1.167.14",
+    "@tanstack/react-start": "1.167.64",
     "@tanstack/router-plugin": "^1.167.10",
     "@types/d3-force": "^3.0.10",
     "@types/js-yaml": "^4.0.9",
@@ -91,15 +91,16 @@
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.38.0",
     "html2canvas-pro": "^2.2.4",
+    "image-size": "file:vendor/image-size",
     "input-otp": "^1.4.2",
-    "js-yaml": "^4.1.1",
+    "js-yaml": "^4.3.1",
     "langchain": "^1.4.4",
     "lucide-react": "^1.8.0",
-    "mammoth": "1.8.0",
+    "mammoth": "1.12.1",
     "mysql2": "^3.23.1",
     "nitro": "3.0.260603-beta",
     "node-sql-parser": "^5.4.0",
-    "nodemailer": "^6.10.0",
+    "nodemailer": "^9.0.5",
     "papaparse": "^5.5.3",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "4.7.76",
@@ -148,10 +149,25 @@
     "prettier": "^3.7.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
-    "vite": "^7.3.1",
+    "vite": "^7.3.5",
     "vitest": "^3.2.7"
   },
   "overrides": {
-    "entities": "4.5.0"
+    "@babel/core": "^7.29.6",
+    "@langchain/classic": {
+      "js-yaml": "^5.2.2"
+    },
+    "@xmldom/xmldom": "^0.8.13",
+    "esbuild": "^0.28.1",
+    "fast-uri": "^3.1.5",
+    "nanoid": "3.3.17",
+    "postcss": "^8.5.23",
+    "pptxgenjs": {
+      "image-size": "$image-size"
+    },
+    "seroval": "^1.5.3",
+    "socket.io-parser": "^4.2.7",
+    "tar": "^7.5.22",
+    "ws": "^8.21.0"
   }
 }

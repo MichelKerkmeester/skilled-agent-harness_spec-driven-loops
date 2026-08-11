@@ -1,0 +1,57 @@
+{
+  "name": "image-size",
+  "version": "2.0.3-patched.1",
+  "description": "Locally patched image-size 2.0.2 build with zero-length container guards.",
+  "private": true,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./fromFile": {
+      "import": {
+        "types": "./dist/fromFile.d.ts",
+        "default": "./dist/fromFile.mjs"
+      },
+      "require": {
+        "types": "./dist/fromFile.d.ts",
+        "default": "./dist/fromFile.cjs"
+      }
+    },
+    "./types/*": {
+      "import": {
+        "types": "./dist/types/*.d.ts",
+        "default": "./dist/types/*.mjs"
+      },
+      "require": {
+        "types": "./dist/types/*.d.ts",
+        "default": "./dist/types/*.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "bin/image-size.js"
+  ],
+  "engines": {
+    "node": ">=16.x"
+  },
+  "bin": "bin/image-size.js",
+  "scripts": {
+    "test": "node --test security.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/image-size/image-size.git"
+  },
+  "license": "MIT"
+}

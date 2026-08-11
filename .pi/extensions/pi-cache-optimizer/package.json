@@ -42,6 +42,9 @@
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*"
   },
+  "overrides": {
+    "undici": "^8.9.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jiangge/pi-cache-optimizer.git"
