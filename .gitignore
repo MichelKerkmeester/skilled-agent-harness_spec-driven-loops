@@ -42,6 +42,11 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 build/
 dist/
+
+# The patched image parser is installed with lifecycle scripts disabled, so its
+# prebuilt runtime output must remain versioned with the vendored package.
+!specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist/
+!specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist/**
 .opencode/output/
 
 # Command-contract render manifest (runtime render evidence, not source)
