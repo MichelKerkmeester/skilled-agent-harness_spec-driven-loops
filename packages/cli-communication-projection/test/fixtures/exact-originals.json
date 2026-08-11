@@ -1,0 +1,994 @@
+{
+  "fixtureSetVersion": "1.0.0",
+  "description": "Immutable synthetic source and human-authored reference bytes. No record is a captured model response.",
+  "cases": [
+    {
+      "fixtureId": "fixture-original-claude-normal",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "claude-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q2xhdWRlIENMSSBjb21wbGV0ZWQgdGhlIHJlcXVlc3RlZCBjaGFuZ2UuCg==",
+        "byteLength": 43,
+        "sha256": "sha256:fe67625530e9580117a722ee65781f25fddbab6274ae732f2eeb869091c6e528",
+        "provenance": {
+          "sourceFamily": "claude-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-claude-streaming",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "claude-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-streaming",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q2xhdWRlIENMSSBpcyBzdGlsbCBzdHJlYW1pbmcgYSBwYXJ0aWFsIHJlc3BvbnNl4oCmCg==",
+        "byteLength": 52,
+        "sha256": "sha256:f1f1276034c2d00d065e7b9b5a1694015d24cf7be477fc151b8775de5479cd4a",
+        "provenance": {
+          "sourceFamily": "claude-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-claude-error",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "claude-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-error",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q2xhdWRlIENMSSBjb3VsZCBub3QgY29tcGxldGUgdGhlIHJlcXVlc3Q7IHN0YXR1cz1mYWlsZWQuCg==",
+        "byteLength": 58,
+        "sha256": "sha256:4d51b6c866952b5a3ae8d94dc6fd3ec05a5c18472effe5c16bbe22d7fef2f09a",
+        "provenance": {
+          "sourceFamily": "claude-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-claude-cancellation",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "claude-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-cancellation",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q2xhdWRlIENMSSBzdG9wcGVkIGJlY2F1c2UgdGhlIG9wZXJhdGlvbiB3YXMgY2FuY2VsbGVkLg0K",
+        "byteLength": 57,
+        "sha256": "sha256:5543e0bbdcdc147f16ca34d17d27e9ae2720762bd242fc746126145e644acb5c",
+        "provenance": {
+          "sourceFamily": "claude-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-claude-extension",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "claude-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-extension",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q2xhdWRlIENMSSBlbWl0dGVkIGEgc3ludGhldGljIHJ1bnRpbWUtc3BlY2lmaWMgZXZlbnQuCg==",
+        "byteLength": 55,
+        "sha256": "sha256:7c220a560850dd2e1ab3dafe8e65300f50b67b23bb85cf46a657700857c3be6a",
+        "provenance": {
+          "sourceFamily": "claude-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-codex-normal",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "codex-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-codex-normal",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q29kZXggQ0xJIGNvbXBsZXRlZCB0aGUgcmVxdWVzdGVkIGNoYW5nZS4K",
+        "byteLength": 42,
+        "sha256": "sha256:8543f620531484c7a0cb7a650c29bc8b73f923b7410f97ea4f6227e922e023d6",
+        "provenance": {
+          "sourceFamily": "codex-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-codex-streaming",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "codex-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-codex-streaming",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q29kZXggQ0xJIGlzIHN0aWxsIHN0cmVhbWluZyBhIHBhcnRpYWwgcmVzcG9uc2XigKYK",
+        "byteLength": 51,
+        "sha256": "sha256:17f2b109bb4070230b6e996d12b73fc0d5b0444ee9b0215af829f616d4f0fa91",
+        "provenance": {
+          "sourceFamily": "codex-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-codex-error",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "codex-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-codex-error",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q29kZXggQ0xJIGNvdWxkIG5vdCBjb21wbGV0ZSB0aGUgcmVxdWVzdDsgc3RhdHVzPWZhaWxlZC4K",
+        "byteLength": 57,
+        "sha256": "sha256:9f53296b295636c1afbdc290c71e3444f3a0303db5d96153b8a0ef0b1035e028",
+        "provenance": {
+          "sourceFamily": "codex-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-codex-cancellation",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "codex-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-codex-cancellation",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q29kZXggQ0xJIHN0b3BwZWQgYmVjYXVzZSB0aGUgb3BlcmF0aW9uIHdhcyBjYW5jZWxsZWQuDQo=",
+        "byteLength": 56,
+        "sha256": "sha256:de7cdb6241b0df17d3385668a9bcf698a8b68536ae8c5ffb39ea6d206102d0ee",
+        "provenance": {
+          "sourceFamily": "codex-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-codex-extension",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "codex-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-codex-extension",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q29kZXggQ0xJIGVtaXR0ZWQgYSBzeW50aGV0aWMgcnVudGltZS1zcGVjaWZpYyBldmVudC4K",
+        "byteLength": 54,
+        "sha256": "sha256:86b7fe00c512546b8aec5304b6a2fe12825763a1d5593ede58e7cb386244584a",
+        "provenance": {
+          "sourceFamily": "codex-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-pi-normal",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "pi-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-pi-normal",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "UGkgQ0xJIGNvbXBsZXRlZCB0aGUgcmVxdWVzdGVkIGNoYW5nZS4K",
+        "byteLength": 39,
+        "sha256": "sha256:faa580307e0d77cd1d49ed24ff840bf9029592c32dd7635624351f98ac71fa7b",
+        "provenance": {
+          "sourceFamily": "pi-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-pi-streaming",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "pi-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-pi-streaming",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "UGkgQ0xJIGlzIHN0aWxsIHN0cmVhbWluZyBhIHBhcnRpYWwgcmVzcG9uc2XigKYK",
+        "byteLength": 48,
+        "sha256": "sha256:ad0951d0995526ecd1e3ca5670f0b0d38c56ad9adf4511b0d298c6b29877fb4d",
+        "provenance": {
+          "sourceFamily": "pi-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-pi-error",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "pi-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-pi-error",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "UGkgQ0xJIGNvdWxkIG5vdCBjb21wbGV0ZSB0aGUgcmVxdWVzdDsgc3RhdHVzPWZhaWxlZC4K",
+        "byteLength": 54,
+        "sha256": "sha256:6373c73db9778f669d4e2eb773e8d8120589dd7b9af6e0b533cbd62d37e4870a",
+        "provenance": {
+          "sourceFamily": "pi-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-pi-cancellation",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "pi-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-pi-cancellation",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "UGkgQ0xJIHN0b3BwZWQgYmVjYXVzZSB0aGUgb3BlcmF0aW9uIHdhcyBjYW5jZWxsZWQuDQo=",
+        "byteLength": 53,
+        "sha256": "sha256:f53c70790838f1fd50d31f16d8b99e66adbcd9598254144e47e6dafa14e442fc",
+        "provenance": {
+          "sourceFamily": "pi-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-pi-extension",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "pi-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-pi-extension",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "UGkgQ0xJIGVtaXR0ZWQgYSBzeW50aGV0aWMgcnVudGltZS1zcGVjaWZpYyBldmVudC4K",
+        "byteLength": 51,
+        "sha256": "sha256:1a2d29ef49de0334501b3cd8251804bd7c9912f9a5e12636ad8ede67f433d7e1",
+        "provenance": {
+          "sourceFamily": "pi-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-opencode-normal",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "opencode-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-opencode-normal",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "T3BlbkNvZGUgQ0xJIGNvbXBsZXRlZCB0aGUgcmVxdWVzdGVkIGNoYW5nZS4K",
+        "byteLength": 45,
+        "sha256": "sha256:6c123f7ceafd9ec67879ab2713f830cba40a6ac0195d9ad843f6bbddd354bebe",
+        "provenance": {
+          "sourceFamily": "opencode-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-opencode-streaming",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "opencode-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-opencode-streaming",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "T3BlbkNvZGUgQ0xJIGlzIHN0aWxsIHN0cmVhbWluZyBhIHBhcnRpYWwgcmVzcG9uc2XigKYK",
+        "byteLength": 54,
+        "sha256": "sha256:cf7cdf6c60b37979d8b6fc985e30399c3312d0e4da07472f87f98fe3227a8a16",
+        "provenance": {
+          "sourceFamily": "opencode-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-opencode-error",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "opencode-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-opencode-error",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "T3BlbkNvZGUgQ0xJIGNvdWxkIG5vdCBjb21wbGV0ZSB0aGUgcmVxdWVzdDsgc3RhdHVzPWZhaWxlZC4K",
+        "byteLength": 60,
+        "sha256": "sha256:d57e61ab071f1b8ea32b1efa99290fe1f25ed02a9b4ec4b12e4cfea7bd760c1c",
+        "provenance": {
+          "sourceFamily": "opencode-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-opencode-cancellation",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "opencode-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-opencode-cancellation",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "T3BlbkNvZGUgQ0xJIHN0b3BwZWQgYmVjYXVzZSB0aGUgb3BlcmF0aW9uIHdhcyBjYW5jZWxsZWQuDQo=",
+        "byteLength": 59,
+        "sha256": "sha256:a7f87f57e4a1b84ae4fa88a140a2876bf41231d1261218aea139e79500b68beb",
+        "provenance": {
+          "sourceFamily": "opencode-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-opencode-extension",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "opencode-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-opencode-extension",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "T3BlbkNvZGUgQ0xJIGVtaXR0ZWQgYSBzeW50aGV0aWMgcnVudGltZS1zcGVjaWZpYyBldmVudC4K",
+        "byteLength": 57,
+        "sha256": "sha256:533eeb6a1c2b64bb639739886a216cdfa59c76a5de1f6907234a1993ee9831d4",
+        "provenance": {
+          "sourceFamily": "opencode-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-devin-normal",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "devin-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-devin-normal",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "RGV2aW4gQ0xJIGNvbXBsZXRlZCB0aGUgcmVxdWVzdGVkIGNoYW5nZS4K",
+        "byteLength": 42,
+        "sha256": "sha256:a9bdeb7e70a5b1e7ef08a8ba265d14b017cd17ab78a95c0d08f210bf39eef4bc",
+        "provenance": {
+          "sourceFamily": "devin-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-devin-streaming",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "devin-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-devin-streaming",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "RGV2aW4gQ0xJIGlzIHN0aWxsIHN0cmVhbWluZyBhIHBhcnRpYWwgcmVzcG9uc2XigKYK",
+        "byteLength": 51,
+        "sha256": "sha256:02aa7ffc1b863126903beb22c0025379bbebdd4ff86750364b329a5116fd8282",
+        "provenance": {
+          "sourceFamily": "devin-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-devin-error",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "devin-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-devin-error",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "RGV2aW4gQ0xJIGNvdWxkIG5vdCBjb21wbGV0ZSB0aGUgcmVxdWVzdDsgc3RhdHVzPWZhaWxlZC4K",
+        "byteLength": 57,
+        "sha256": "sha256:8e843133b9c1775ff47d451cf96334846456d0889f1c5e1e50654a73dcd6fc9f",
+        "provenance": {
+          "sourceFamily": "devin-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-devin-cancellation",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "devin-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-devin-cancellation",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "RGV2aW4gQ0xJIHN0b3BwZWQgYmVjYXVzZSB0aGUgb3BlcmF0aW9uIHdhcyBjYW5jZWxsZWQuDQo=",
+        "byteLength": 56,
+        "sha256": "sha256:ca6ce2fc3da9aaf15071fc75639af4ead973bcafe93ff551fb4e1c25352688d6",
+        "provenance": {
+          "sourceFamily": "devin-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-devin-extension",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "devin-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-devin-extension",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "RGV2aW4gQ0xJIGVtaXR0ZWQgYSBzeW50aGV0aWMgcnVudGltZS1zcGVjaWZpYyBldmVudC4K",
+        "byteLength": 54,
+        "sha256": "sha256:b78f4501e800f1512aad5b45f4101828ac472d2fbd76225eecd9de9ab8f2de27",
+        "provenance": {
+          "sourceFamily": "devin-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-cursor-normal",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "cursor-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-cursor-normal",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q3Vyc29yIENMSSBjb21wbGV0ZWQgdGhlIHJlcXVlc3RlZCBjaGFuZ2UuCg==",
+        "byteLength": 43,
+        "sha256": "sha256:ce4618ee6624818b977a8a93d058073489b22a15c0d9dd71602b624b1c21671d",
+        "provenance": {
+          "sourceFamily": "cursor-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-cursor-streaming",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "cursor-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-cursor-streaming",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q3Vyc29yIENMSSBpcyBzdGlsbCBzdHJlYW1pbmcgYSBwYXJ0aWFsIHJlc3BvbnNl4oCmCg==",
+        "byteLength": 52,
+        "sha256": "sha256:6cf495453a3ff71570ff5e17403d6123985329f91dbfe1d863ca2065d1345d17",
+        "provenance": {
+          "sourceFamily": "cursor-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-cursor-error",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "cursor-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-cursor-error",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q3Vyc29yIENMSSBjb3VsZCBub3QgY29tcGxldGUgdGhlIHJlcXVlc3Q7IHN0YXR1cz1mYWlsZWQuCg==",
+        "byteLength": 58,
+        "sha256": "sha256:d1dcf0b27cba05f831ddbf61585060f833d9a7b38fafd301a3a82b07a7a3d2a0",
+        "provenance": {
+          "sourceFamily": "cursor-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-cursor-cancellation",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "cursor-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-cursor-cancellation",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q3Vyc29yIENMSSBzdG9wcGVkIGJlY2F1c2UgdGhlIG9wZXJhdGlvbiB3YXMgY2FuY2VsbGVkLg0K",
+        "byteLength": 57,
+        "sha256": "sha256:177f7354940c42e8f01e59ccd91c8f4d728b3c62881e86324cf1f1b243814066",
+        "provenance": {
+          "sourceFamily": "cursor-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-original-cursor-extension",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "cursor-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-cursor-extension",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q3Vyc29yIENMSSBlbWl0dGVkIGEgc3ludGhldGljIHJ1bnRpbWUtc3BlY2lmaWMgZXZlbnQuCg==",
+        "byteLength": 55,
+        "sha256": "sha256:c681b466ba55c928456dd771b9c8b6e9266e09be1a923f1fc2baad80f76d4f1b",
+        "provenance": {
+          "sourceFamily": "cursor-cli",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-reference-progress-source",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "human-authored-synthetic-reference",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "reference-progress-source",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "SSBoYXZlIGNvbXBsZXRlZCB0aGUgcmVxdWVzdGVkIGltcGxlbWVudGF0aW9uIGFuZCBhbGwgdmFsaWRhdGlvbiBjaGVja3MgcGFzc2VkIHN1Y2Nlc3NmdWxseS4K",
+        "byteLength": 93,
+        "sha256": "sha256:75982bedbf9569f9dd48eec839c3b9f3116c0212ecb22235a82cdab3b4433be6",
+        "provenance": {
+          "sourceFamily": "human-authored-synthetic-reference",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-reference-progress-output",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "human-authored-synthetic-reference",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "reference-progress-output",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "VGhlIGltcGxlbWVudGF0aW9uIGlzIGNvbXBsZXRlLiBBbGwgdmFsaWRhdGlvbiBjaGVja3MgcGFzc2VkLgo=",
+        "byteLength": 62,
+        "sha256": "sha256:25b9c560237810f975aa6e9854814b32e341fc71956937e78348d0e2a2321ffb",
+        "provenance": {
+          "sourceFamily": "human-authored-synthetic-reference",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-reference-final-summary-source",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "human-authored-synthetic-reference",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "reference-final-summary-source",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "VGhlIGNvbmZpZ3VyYXRpb24gZmlsZSBhdCAvd29ya3NwYWNlL2NvbmZpZy5qc29uIG5vdyBwcmVzZXJ2ZXMgdGltZW91dD00NSBhbmQgbW9kZT1hcHBlbmQuCg==",
+        "byteLength": 91,
+        "sha256": "sha256:8aee919bef8a6e0f19c6989adc6bf97cc62ab4d21f4c3522afd5d6cbec8b71fc",
+        "provenance": {
+          "sourceFamily": "human-authored-synthetic-reference",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-reference-final-summary-output",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "human-authored-synthetic-reference",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "reference-final-summary-output",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "L3dvcmtzcGFjZS9jb25maWcuanNvbiBub3cga2VlcHMgdGltZW91dD00NSBhbmQgbW9kZT1hcHBlbmQuCg==",
+        "byteLength": 61,
+        "sha256": "sha256:5cd2532c860e2466cde23cd1e4d30eaa32ef96877d557e12488bf847759edf14",
+        "provenance": {
+          "sourceFamily": "human-authored-synthetic-reference",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-reference-blocker-source",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "human-authored-synthetic-reference",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "reference-blocker-source",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "SSBjYW5ub3QgY29udGludWUgYmVjYXVzZSB0aGUgcHJvdmlkZXIgZG9lcyBub3QgZXhwb3NlIGEgc3VwcG9ydGVkIHRoaW5raW5nIGNvbnRyb2wgZm9yIHRoaXMgbW9kZWwuCg==",
+        "byteLength": 100,
+        "sha256": "sha256:ec2eae9a82d90d6e55b521d19bcd992059b14c9dd15fc600dcd7ef991fd21624",
+        "provenance": {
+          "sourceFamily": "human-authored-synthetic-reference",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-reference-blocker-output",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "human-authored-synthetic-reference",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "reference-blocker-output",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "SSBjYW5ub3QgY29udGludWUuIFRoaXMgbW9kZWwgZG9lcyBub3QgZXhwb3NlIGEgc3VwcG9ydGVkIHRoaW5raW5nIGNvbnRyb2wuCg==",
+        "byteLength": 76,
+        "sha256": "sha256:54322682c477e61956659c83def454df3e159cc1a570dd42117f1b3e54651c26",
+        "provenance": {
+          "sourceFamily": "human-authored-synthetic-reference",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-reference-correction-source",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "human-authored-synthetic-reference",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "reference-correction-source",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q29ycmVjdGlvbjogdGhlIGVhcmxpZXIgcmVzdWx0IHVzZWQgMzAgc2FtcGxlcywgbm90IDIwLCBhbmQgdGhlIHA5NSBsYXRlbmN5IHdhcyA4LjQgbXMuCg==",
+        "byteLength": 88,
+        "sha256": "sha256:ca8ea4e3bdc14981189cdb0425b22d583606d826c91a5f4a45669e57c4ac7b20",
+        "provenance": {
+          "sourceFamily": "human-authored-synthetic-reference",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    },
+    {
+      "fixtureId": "fixture-reference-correction-output",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "human-authored-synthetic-reference",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "byte-identical",
+      "record": {
+        "contractKind": "exact-original",
+        "schemaVersion": "1.0.0",
+        "originalId": "reference-correction-output",
+        "contentType": "text/plain; charset=utf-8",
+        "encoding": "base64",
+        "bytesBase64": "Q29ycmVjdGlvbjogaXQgdXNlZCAzMCBzYW1wbGVzLCBub3QgMjAuIFRoZSBwOTUgbGF0ZW5jeSB3YXMgOC40IG1zLgo=",
+        "byteLength": 68,
+        "sha256": "sha256:fabdb99628219b7be3bd71cddef75173d0805ffb4875b041c5f8edffb31a2c58",
+        "provenance": {
+          "sourceFamily": "human-authored-synthetic-reference",
+          "sourceVersion": "synthetic-contract-fixture-1",
+          "captureMethod": "synthetic",
+          "sanitizationStatus": "synthetic",
+          "capturedAt": "2026-08-11T12:00:00.000Z"
+        }
+      }
+    }
+  ]
+}

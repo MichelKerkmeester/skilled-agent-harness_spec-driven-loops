@@ -1,0 +1,250 @@
+{
+  "fixtureSetVersion": "1.0.0",
+  "description": "Synthetic bounded-context cases; raw user text is stored only by exact-original reference.",
+  "cases": [
+    {
+      "fixtureId": "context-present",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "accept",
+      "record": {
+        "contractKind": "bounded-context",
+        "schemaVersion": "1.0.0",
+        "contextId": "context-present",
+        "outcome": "present",
+        "selectedMessage": {
+          "messageId": "user-message-present",
+          "role": "user",
+          "isMeta": false,
+          "textOriginalId": "original-claude-normal"
+        },
+        "truncation": {
+          "unit": "codepoints",
+          "limit": 800,
+          "originalUnits": 42,
+          "selectedUnits": 42,
+          "wasTruncated": false
+        },
+        "privacy": {
+          "contractKind": "privacy-decision",
+          "schemaVersion": "1.0.0",
+          "privacyClass": "local-offline",
+          "route": "local",
+          "egressConsent": false,
+          "decision": "allow",
+          "reasonCode": "allowed-by-policy"
+        },
+        "absentReason": null,
+        "transcriptFreshness": {
+          "state": "fresh",
+          "observedAt": "2026-08-11T12:00:00.000Z",
+          "maximumAgeMs": 30000
+        },
+        "noContextFallback": "exact-original"
+      }
+    },
+    {
+      "fixtureId": "context-no-user",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "bounded-context",
+        "schemaVersion": "1.0.0",
+        "contextId": "context-no-user",
+        "outcome": "absent",
+        "selectedMessage": null,
+        "truncation": {
+          "unit": "codepoints",
+          "limit": 800,
+          "originalUnits": 0,
+          "selectedUnits": 0,
+          "wasTruncated": false
+        },
+        "privacy": {
+          "contractKind": "privacy-decision",
+          "schemaVersion": "1.0.0",
+          "privacyClass": "local-offline",
+          "route": "local",
+          "egressConsent": false,
+          "decision": "allow",
+          "reasonCode": "allowed-by-policy"
+        },
+        "absentReason": "no-user-message",
+        "transcriptFreshness": {
+          "state": "fresh",
+          "observedAt": "2026-08-11T12:00:00.000Z",
+          "maximumAgeMs": 30000
+        },
+        "noContextFallback": "exact-original"
+      }
+    },
+    {
+      "fixtureId": "context-stale",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "bounded-context",
+        "schemaVersion": "1.0.0",
+        "contextId": "context-stale",
+        "outcome": "absent",
+        "selectedMessage": null,
+        "truncation": {
+          "unit": "codepoints",
+          "limit": 800,
+          "originalUnits": 72,
+          "selectedUnits": 72,
+          "wasTruncated": false
+        },
+        "privacy": {
+          "contractKind": "privacy-decision",
+          "schemaVersion": "1.0.0",
+          "privacyClass": "local-offline",
+          "route": "local",
+          "egressConsent": false,
+          "decision": "allow",
+          "reasonCode": "allowed-by-policy"
+        },
+        "absentReason": "stale-transcript",
+        "transcriptFreshness": {
+          "state": "stale",
+          "observedAt": "2026-08-11T12:00:00.000Z",
+          "maximumAgeMs": 30000
+        },
+        "noContextFallback": "exact-original"
+      }
+    },
+    {
+      "fixtureId": "context-truncated",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "accept",
+      "record": {
+        "contractKind": "bounded-context",
+        "schemaVersion": "1.0.0",
+        "contextId": "context-truncated",
+        "outcome": "present",
+        "selectedMessage": {
+          "messageId": "user-message-truncated",
+          "role": "user",
+          "isMeta": false,
+          "textOriginalId": "original-opencode-normal"
+        },
+        "truncation": {
+          "unit": "codepoints",
+          "limit": 800,
+          "originalUnits": 1200,
+          "selectedUnits": 800,
+          "wasTruncated": true
+        },
+        "privacy": {
+          "contractKind": "privacy-decision",
+          "schemaVersion": "1.0.0",
+          "privacyClass": "hosted-zdr",
+          "route": "hosted",
+          "egressConsent": true,
+          "decision": "allow",
+          "reasonCode": "allowed-by-policy"
+        },
+        "absentReason": null,
+        "transcriptFreshness": {
+          "state": "fresh",
+          "observedAt": "2026-08-11T12:00:00.000Z",
+          "maximumAgeMs": 30000
+        },
+        "noContextFallback": "exact-original"
+      }
+    },
+    {
+      "fixtureId": "context-privacy-denied",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "bounded-context",
+        "schemaVersion": "1.0.0",
+        "contextId": "context-privacy-denied",
+        "outcome": "absent",
+        "selectedMessage": null,
+        "truncation": {
+          "unit": "codepoints",
+          "limit": 800,
+          "originalUnits": 54,
+          "selectedUnits": 54,
+          "wasTruncated": false
+        },
+        "privacy": {
+          "contractKind": "privacy-decision",
+          "schemaVersion": "1.0.0",
+          "privacyClass": "hosted-retained",
+          "route": "hosted",
+          "egressConsent": false,
+          "decision": "deny",
+          "reasonCode": "egress-not-consented"
+        },
+        "absentReason": "privacy-denied",
+        "transcriptFreshness": {
+          "state": "fresh",
+          "observedAt": "2026-08-11T12:00:00.000Z",
+          "maximumAgeMs": 30000
+        },
+        "noContextFallback": "exact-original"
+      }
+    },
+    {
+      "fixtureId": "context-meta-only",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "bounded-context",
+        "schemaVersion": "1.0.0",
+        "contextId": "context-meta-only",
+        "outcome": "absent",
+        "selectedMessage": null,
+        "truncation": {
+          "unit": "codepoints",
+          "limit": 800,
+          "originalUnits": 18,
+          "selectedUnits": 18,
+          "wasTruncated": false
+        },
+        "privacy": {
+          "contractKind": "privacy-decision",
+          "schemaVersion": "1.0.0",
+          "privacyClass": "local-offline",
+          "route": "local",
+          "egressConsent": false,
+          "decision": "allow",
+          "reasonCode": "allowed-by-policy"
+        },
+        "absentReason": "meta-only",
+        "transcriptFreshness": {
+          "state": "fresh",
+          "observedAt": "2026-08-11T12:00:00.000Z",
+          "maximumAgeMs": 30000
+        },
+        "noContextFallback": "exact-original"
+      }
+    }
+  ]
+}

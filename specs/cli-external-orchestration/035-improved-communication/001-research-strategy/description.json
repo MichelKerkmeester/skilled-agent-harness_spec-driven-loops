@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/035-improved-communication/001-research-strategy",
+  "description": "The reference proves that whole-message rewriting, user-question context, a narrow copy-editing prompt, low sampling, and fail-open display can make",
+  "keywords": [
+    "reference",
+    "proves",
+    "whole-message",
+    "rewriting",
+    "user-question",
+    "context",
+    "narrow",
+    "copy-editing",
+    "prompt",
+    "low",
+    "sampling",
+    "fail-open",
+    "display"
+  ],
+  "lastUpdated": "2026-08-11T12:42:09.932Z",
+  "specId": "001",
+  "folderSlug": "research-strategy",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

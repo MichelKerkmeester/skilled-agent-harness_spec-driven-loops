@@ -1,0 +1,15 @@
+{"type":"iteration","iteration":3,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.72,"status":"complete","focus":"Safest integration boundary in Pi CLI and OpenCode CLI","findingsCount":11,"timestamp":"2026-08-11T09:37:00Z"}
+{"type":"finding","id":"f-iter003-001","label":"Pi extension API is live-confirmed; renderCall/renderResult/registerMessageRenderer documented","iteration":3}
+{"type":"finding","id":"f-iter003-002","label":"Pi message_end can replace finalized assistant message keeping same role","iteration":3}
+{"type":"finding","id":"f-iter003-003","label":"Pi message_start/message_update/message_end + parallel tool event ordering semantics","iteration":3}
+{"type":"finding","id":"f-iter003-004","label":"Pi tool_call blocks and tool_result mutates; semantic-mutation surfaces not for projection","iteration":3}
+{"type":"finding","id":"f-iter003-005","label":"Pi --mode json, RPC mode, SDK, ctx.mode tui|rpc|json|print","iteration":3}
+{"type":"finding","id":"f-iter003-006","label":"Pi invalid extension fails closed at startup; guard extensions fail open internally","iteration":3}
+{"type":"finding","id":"f-iter003-007","label":"OpenCode serve exposes OpenAPI 3.1 /doc, /event SSE, session/message/abort/fork APIs","iteration":3}
+{"type":"finding","id":"f-iter003-008","label":"OpenCode messages are {info, parts}; TUI is a client of the server","iteration":3}
+{"type":"finding","id":"f-iter003-009","label":"OpenCode acp starts an ACP server; shared client pattern","iteration":3}
+{"type":"finding","id":"f-iter003-010","label":"OpenCode plugin events observe; no documented renderer replacement","iteration":3}
+{"type":"finding","id":"f-iter003-011","label":"Pi renderers are the only documented native generic renderer override across six CLIs","iteration":3}
+{"type":"observation","id":"obs-iter003-001","packet":"001-research-strategy","classification":"confirmed","iteration":3}
+{"type":"ruled_out","direction":"Pi tool_call/tool_result mutation for display projection","reason":"Changes model-visible tool inputs/results","iteration":3}
+{"type":"ruled_out","direction":"OpenCode plugin hooks as renderer replacement","reason":"No documented display-replacement output","iteration":3}

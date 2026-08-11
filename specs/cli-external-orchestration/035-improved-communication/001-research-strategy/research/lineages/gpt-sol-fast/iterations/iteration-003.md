@@ -1,0 +1,96 @@
+# Iteration 3: Privacy-Aware Providers, Evaluation, and Phase Boundaries
+
+## Focus
+
+This final iteration investigated privacy-aware routing across OpenCode Go DeepSeek V4 Flash, Ollama, and llama.cpp; redacted observability; perceptual 1:1 parity evaluation; and implementation phase boundaries. The explicit iteration prompt prevailed over the reducer's narrower fixture-only `Next Focus`. Exact runtime fields, Markdown dialects, provider builds, and model capabilities remain a version-pinned fixture handoff rather than inferred facts. Sources were accessed on 2026-08-11.
+
+## Actions Taken
+
+1. Read the prompt, config, append-only state, reducer strategy, findings registry, and iterations 1-2; verified that iteration 3 and delta targets did not exist and stayed inside the detached lineage.
+2. Checked OpenCode Go's official model, endpoint, price, discovery, and dated privacy claims for DeepSeek V4 Flash.
+3. Compared Ollama's model-discovery and OpenAI-compatibility documents with llama.cpp's server contract, capability controls, and monitoring surface.
+4. Checked the relocated OpenTelemetry GenAI semantic-conventions repository, then derived a content-free telemetry and evaluation contract linked to prior assembly and validation outcomes.
+
+## Findings
+
+1. **OpenCode Go DeepSeek V4 Flash is a model-specific hosted route, not a provider-wide protocol assumption.** The documented model ID is `deepseek-v4-flash`, its endpoint is `https://opencode.ai/zen/go/v1/chat/completions`, and its package is OpenAI-compatible; `/zen/go/v1/models` is the discovery route. The page currently lists $0.14/M input, $0.28/M output, $0.0028/M cached-read tokens, no model training, and zero-day retention, but separately says the ZDR agreement is renewed monthly and is valid only through 2026-08-31. Residency and support for non-thinking/reasoning controls are not documented on this page, so they remain `unknown` until terms review and a versioned request/stream probe succeed. [SOURCE: https://opencode.ai/docs/go/] [INFERENCE: unsupported controls and residency must remain unknown rather than inherit OpenAI-compatible semantics]
+
+2. **Ollama-native discovery is stronger than its compatibility label, while capability behavior remains model and version specific.** `/api/show` returns model parameters, template, modified time, format/family/quantization, capabilities, and model metadata including context length. Ollama's OpenAI-compatible `/v1/chat/completions` documents streaming, JSON mode, seeds, tools, and reasoning controls, but omits fields such as `tool_choice` and cannot set context size through that API; its Responses support is non-stateful and was added in Ollama 0.13.3. The two consulted pages do not establish native timing fields or keep-alive behavior, so those must be captured from a pinned native-chat fixture rather than claimed from compatibility. [SOURCE: https://docs.ollama.com/api-reference/show-model-details] [SOURCE: https://docs.ollama.com/api/openai-compatibility] [INFERENCE: discovery plus request probes are required because model capability and compatibility support differ]
+
+3. **llama.cpp exposes a broad but build-sensitive server contract that must be pinned and probed.** The server documents OpenAI-compatible chat, Responses, embeddings, Anthropic Messages, streaming, schema-constrained JSON, health/models/monitoring endpoints, optional Prometheus metrics, explicit context and timeout settings, reasoning parsing/control, offline mode, and build/version output. It also exposes model/server-dependent capability checks and marks some features experimental; therefore a provider record must pin commit/build, model hash, quantization, template, context, endpoint family, and probe results instead of treating `OpenAI-compatible` as stable parity. Binding to `127.0.0.1` or selecting `--offline` are deployment controls, not consequences of the protocol. [SOURCE: https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md] [INFERENCE: the documented switches and evolving changelog require build/model-specific capability confidence]
+
+4. **The provider record and router must separate protocol, deployment, and privacy.** A normalized record needs `{providerId, deploymentMode, protocol, baseUrl, modelId, credentialRef, credentialBoundary, discoveryMethod, providerVersion, modelArtifactHash, capabilities, capabilityConfidence, timeout, cost, privacyClass, egressConsent, trainingUse, retentionDays, residency, termsCheckedAt, termsExpiresAt, fallbackPolicy}`. Privacy classes should distinguish at least `local-offline`, `local-networked`, `hosted-zdr`, `hosted-retained`, and `unknown`. Routing first checks content privacy class and explicit egress consent, then credential boundary and dated retention/training/residency facts, then protocol/capability confidence, timeout, and cost. Any unknown or expired load-bearing field rejects the route. A fallback is eligible only when explicitly named and no weaker on privacy; local-to-hosted fallback is never implicit. [SOURCE: https://opencode.ai/docs/go/] [SOURCE: https://docs.ollama.com/api-reference/show-model-details] [SOURCE: https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md] [INFERENCE: protocol compatibility cannot establish deployment ownership, data path, retention, training, residency, or consent]
+
+5. **Observability can cover every lifecycle decision without retaining message content or protected literals.** Emit spans/events for assembly start/terminal, provider selection/start/terminal, validation-layer outcome, compare-and-swap commit or fallback, retry, cancellation, timeout, and concurrency/backpressure state. Record pseudonymous scoped IDs, runtime/provider/model versions, policy and capability hashes, privacy class, result enums, latency, byte/token counts, cost, retry count, and fallback reason. Never record prompts, outputs, canonical bytes, protected literals, credentials, raw file paths, or unredacted provider errors; use rotating keyed digests only where correlation is necessary. OpenTelemetry's GenAI conventions explicitly organize spans, metrics, and events, but the content-minimizing fields and redaction rules are this architecture's privacy boundary. [SOURCE: https://github.com/open-telemetry/semantic-conventions-genai] [INFERENCE: lifecycle telemetry derived from iterations 1-2 and minimized against the provider privacy record]
+
+6. **Perceptual 1:1 parity requires deterministic rejection before blind repeated human evaluation.** Freeze a versioned corpus containing plain prose, questions, requirements, caveats, Markdown dialect features, protected literals, tools, concurrency, cancellation, timeout, and malformed/provider-refusal cases. Run each pinned model/prompt/provider configuration at least three times with recorded seeds or an explicit nondeterminism marker. Deterministic protected-span, structure, completion, and exact-original gates remain release blockers. Only surviving projections enter blinded, randomized human scoring for meaning, directness/plainness, fluency, reference-likeness, and pairwise indistinguishability from the reference style. Predeclare per-dimension and fallback/latency/privacy thresholds; simplification, readability, embedding, and model-judge metrics are diagnostic only and cannot override a failed deterministic or human gate. [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136] [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24] [INFERENCE: repeated blind scoring separates perceptual parity from semantic safety and provider variance]
+
+7. **Six dependency-ordered phases give each uncertainty an observable acceptance gate.** Contracts/fixtures precede core assembly/validation; providers/privacy and runtime adapters then prove their independent boundaries; evaluation/observability integrates only after those contracts are executable; packaging/release hardening consumes all prior evidence. Each phase must reject unknown capabilities and preserve the exact-original invariant rather than deferring safety to a later package phase. [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/prompts/iteration-003.md:33] [INFERENCE: dependency order follows the fixture, assembly, provider, adapter, evaluation, and release acceptance boundaries below]
+
+8. **The architecture is answered, but implementation readiness still depends on version-pinned fixtures.** The handoff must include six runtime event/schema fixtures, runtime Markdown dialect/parser fixtures, OpenCode Go request/stream/error samples and dated terms, Ollama native plus compatibility samples, and llama.cpp build/model/capability samples. Every fixture records version, retrieval date, source/probe provenance, expected normalized event, terminal/fallback result, and protected-byte golden. Until those exist, exact field mappings, timing/keep-alive shapes, reasoning controls, and structured-output behavior remain confirmed only where the cited documents say so and inferred or unknown elsewhere. The fallback invariant remains exact: preserve the pre-parse canonical bytes or an immutable byte-addressed reference, and on any non-success emit that immutable payload directly. [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:28] [SOURCE: https://docs.ollama.com/api/openai-compatibility] [SOURCE: https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md] [INFERENCE: fixture handoff converts documented and unknown capability claims into executable evidence]
+
+## Ruled Out
+
+- Treating provider name or OpenAI compatibility as a privacy or capability class. [SOURCE: https://opencode.ai/docs/go/] [SOURCE: https://docs.ollama.com/api/openai-compatibility]
+- Automatic local-to-hosted fallback, even to a zero-retention route, because egress consent and residency remain separate decisions. [SOURCE: https://opencode.ai/docs/go/] [INFERENCE: privacy-class and consent boundary]
+- Content-bearing telemetry or raw provider errors; lifecycle enums and keyed correlation are sufficient for operations. [SOURCE: https://github.com/open-telemetry/semantic-conventions-genai] [INFERENCE: data-minimization consequence]
+- Automatic readability or model-judge scores as proof of semantic or perceptual parity. [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:26] [INFERENCE: diagnostic metrics cannot authorize a projection]
+
+## Dead Ends
+
+- A localhost-shaped URL cannot prove offline execution: Ollama compatibility documents a localhost example, while llama.cpp separately exposes host, offline, model-download, and remote-server controls. Deployment and egress must be recorded and enforced independently. [SOURCE: https://docs.ollama.com/api/openai-compatibility] [SOURCE: https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md]
+- Current mutable documentation cannot substitute for version-pinned provider/build/model fixtures. [SOURCE: https://opencode.ai/docs/go/] [SOURCE: https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md]
+
+## Edge Cases
+
+- Ambiguous input: reducer `Next Focus` requested exact runtime fixture fields, while the final prompt explicitly prioritized provider/privacy/evaluation/phase architecture. The prompt prevailed; fixture acquisition is preserved as the implementation handoff and remaining caveat.
+- Contradictory evidence: none. Broad compatibility claims and explicit unsupported/version-specific fields describe different levels; the router records capability confidence instead of smoothing them into parity.
+- Missing dependencies: no services, credentials, provider probes, pinned runtime captures, or installed-model fixtures were available or permitted. The iteration therefore distinguishes documented facts from probe requirements and does not claim implementation readiness.
+- Partial success: all five strategy questions are answered at architecture-selection level across iterations 1-3, but exact versioned field and capability fixtures remain outstanding. Status is `complete` because unknowns fail closed to the exact original and have a bounded first-phase verification path.
+
+## Sources Consulted
+
+- [OpenCode Go](https://opencode.ai/docs/go/), last updated 2026-08-09 and accessed 2026-08-11.
+- [Ollama: Show model details](https://docs.ollama.com/api-reference/show-model-details), accessed 2026-08-11.
+- [Ollama: OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility), accessed 2026-08-11.
+- [llama.cpp HTTP server README](https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md), accessed 2026-08-11; mutable `master` content, so implementation must pin a commit/build.
+- [OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai), accessed 2026-08-11 after the former OpenTelemetry page reported its relocation.
+- `specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136`.
+- `specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24`.
+
+## Assessment
+
+- New information ratio: 0.81 (5 fully new findings and 3 partially new findings across 8 total; `(5 + 0.5 × 3) / 8 = 0.8125`, rounded).
+- Questions addressed: all five exact strategy questions across the three-iteration lineage; final focus covered provider/privacy routing and observability/evaluation/downstream phases.
+- Questions answered: all five at architecture-selection level; implementation remains gated on version-pinned fixtures and probes.
+
+## Reflection
+
+- What worked and why: provider-native documents exposed where compatibility ends, while dated privacy terms made policy freshness an explicit routing input rather than prose.
+- What did not work and why: the former OpenTelemetry page had moved, and mutable provider/server pages cannot prove installed behavior. The maintained repository supplied the telemetry abstraction; mutable capabilities became pinned probes.
+- What I would do differently: begin implementation research from recorded provider responses and six runtime fixture bundles, each pinned to an installed version, model artifact, and terms snapshot.
+
+## Questions Answered
+
+1. **What is the safest primary-source-supported display integration boundary in each of the six CLIs, and how should their events normalize without mutating canonical context, tools, or transcripts?** Claude `MessageDisplay`, Codex App Server, Pi custom rendering/UI, OpenCode server/SSE client, Devin ACP client with schema probes, and Cursor ACP client feed an immutable typed event mirror; only a separate validated projection may change display output.
+2. **How should message assembly handle streaming, ordering, duplication, concurrency, cancellation, timeout, retry, and atomic render commitment?** Use versioned per-key generations, independent source/arrival/assembly order, conflict-aware deduplication, bounded buffers, terminal attempt tokens, and one compare-and-swap commit; every non-success emits the immutable exact original.
+3. **Which protected-span and semantic fidelity gates can reject every changed literal, structure, fact, polarity, requirement strength, caveat, or next step and return the exact original?** Apply source-range and conservative-literal protection, placeholder bijection, protected-byte and Markdown-structure checks, and veto-only semantic checks; any uncertainty returns the pre-parse canonical bytes or immutable byte-addressed reference directly.
+4. **How should privacy-aware routing normalize OpenCode Go DeepSeek V4 Flash, Ollama, llama.cpp, and other hosted or local providers without unapproved egress or capability assumptions?** Keep protocol, deployment, credentials, privacy metadata, dated terms, capability confidence, and fallback policy separate; route only with compatible privacy plus explicit egress consent, and never infer local/privacy/capability from wire compatibility.
+5. **Which observability, perceptual-parity evaluation, and downstream phase boundaries make the architecture testable and implementable?** Use content-free lifecycle telemetry, deterministic release blockers, repeated blind human parity scoring, diagnostic-only automatic metrics, and the six gated phases defined below.
+
+## Questions Remaining
+
+1. Which exact version-pinned runtime event fields, Markdown dialect/parser behaviors, provider request/stream/error shapes, Ollama native timing/keep-alive fields, and llama.cpp build/model capability outcomes appear in executable fixtures?
+
+## Recommended Next Focus
+
+Run synthesis/reducer reconciliation, then start the contracts/fixtures phase. Acquire version-pinned six-runtime and three-provider fixtures before any implementation chooses field mappings or enables projection replacement.
+
+## Downstream Phase Decomposition
+
+1. **Contracts and fixtures.** Dependency: none. Deliver normalized event/provider/privacy schemas; six runtime captures; Markdown dialect fixtures; provider request/stream/error fixtures; exact-original goldens. Gate: every fixture is versioned, provenance-tagged, and has deterministic expected normalization/fallback.
+2. **Core assembly and validation.** Dependency: phase 1. Implement the per-key state machine, immutable canonical store, protected spans, deterministic gates, veto-only semantic checks, and atomic commit. Gate: reorder/duplicate/concurrency/cancel/timeout/retry/corruption tests always preserve byte-identical original fallback.
+3. **Providers and privacy.** Dependencies: phases 1-2 contracts. Implement model-specific OpenCode Go, Ollama-native/compatible, llama.cpp, and generic adapters plus the policy router. Gate: capability probes pass; terms are fresh; credentials stay in boundary; no route or fallback crosses privacy/egress policy.
+4. **Runtime adapters and clients.** Dependencies: phases 1-2; provider interface from phase 3. Implement the six runtime boundaries without canonical-state mutation. Gate: each pinned runtime fixture maps losslessly, terminal/cancellation behavior conforms, and unsupported atomic replacement stays original-only.
+5. **Evaluation and observability.** Dependencies: phases 2-4. Add redacted traces/metrics, versioned corpus runner, deterministic reports, repeated blind rubric, pairwise tests, and latency/cost/privacy reporting. Gate: redaction canaries prove no content/protected literals leak; predeclared safety and parity thresholds pass.
+6. **Packaging and release hardening.** Dependencies: phases 1-5. Pin supported versions, package adapters/config migration, add rollback and compatibility checks, and revalidate mutable provider terms/capabilities. Gate: clean-install tests, six-runtime smoke fixtures, privacy review, exact-original negative controls, and release matrix all pass.

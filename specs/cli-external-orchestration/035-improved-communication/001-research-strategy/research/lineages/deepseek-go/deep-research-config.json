@@ -1,0 +1,79 @@
+{
+  "topic": "Reverse engineer the claudish-to-english communication architecture and design a substantially improved provider-neutral display-projection system that preserves its 1:1 communication feel across Claude CLI, Codex CLI, Pi CLI, OpenCode CLI, Devin CLI, and Cursor CLI, using hosted providers including OpenCode Go DeepSeek V4 Flash plus local LLMs.",
+  "researchTopic": "Reverse engineer the claudish-to-english communication architecture and design a substantially improved provider-neutral display-projection system that preserves its 1:1 communication feel across six CLIs, hosted providers, and local LLMs.",
+  "maxIterations": 7,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "divergent": {},
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 30,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/cli-external-orchestration/042-improved-communication/001-research-strategy",
+  "fanout_lineage_artifact_dir": "specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/deepseek-go",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "createdAt": "2026-08-11T09:30:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "type": "cli-opencode",
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4-flash",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "permissionMode": "acceptEdits",
+    "webSearch": "live",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-go-1786433150940-mdbr01",
+    "parentSessionId": "rsr-2026-08-11T07-24-21Z",
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "lineageLabel": "deepseek-go"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

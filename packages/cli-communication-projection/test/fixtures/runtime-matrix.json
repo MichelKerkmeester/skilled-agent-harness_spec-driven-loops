@@ -1,0 +1,1404 @@
+{
+  "fixtureSetVersion": "1.0.0",
+  "description": "Synthetic canonical event fixtures for all supported runtime and behavior-class combinations.",
+  "cases": [
+    {
+      "fixtureId": "fixture-claude-normal",
+      "schemaVersion": "1.0.0",
+      "runtime": "claude",
+      "fixtureClass": "normal",
+      "sourceFamily": "claude-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-claude-normal",
+      "expectedResult": "accept",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "claude",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-claude",
+        "turnId": "turn-claude",
+        "messageId": "message-claude-normal",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-claude-normal",
+        "kind": "assistant-message",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-claude-normal",
+        "payload": {
+          "textOriginalId": "original-claude-normal"
+        },
+        "extensions": {
+          "claude.fixture": {
+            "fixtureClass": "normal",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-claude-streaming",
+      "schemaVersion": "1.0.0",
+      "runtime": "claude",
+      "fixtureClass": "streaming",
+      "sourceFamily": "claude-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-claude-streaming",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "claude",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-claude",
+        "turnId": "turn-claude",
+        "messageId": "message-claude-streaming",
+        "itemId": null,
+        "partId": "part-0",
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-claude-streaming",
+        "kind": "assistant-message-delta",
+        "phase": "streaming",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": null
+        },
+        "canonicalPayloadRef": "original-claude-streaming",
+        "payload": {
+          "textOriginalId": "original-claude-streaming"
+        },
+        "extensions": {
+          "claude.fixture": {
+            "fixtureClass": "streaming",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "none",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-claude-error",
+      "schemaVersion": "1.0.0",
+      "runtime": "claude",
+      "fixtureClass": "error",
+      "sourceFamily": "claude-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-claude-error",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "claude",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-claude",
+        "turnId": "turn-claude",
+        "messageId": "message-claude-error",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-claude-error",
+        "kind": "error",
+        "phase": "failed",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-claude-error",
+        "payload": {
+          "reasonCode": "synthetic-provider-failure"
+        },
+        "extensions": {
+          "claude.fixture": {
+            "fixtureClass": "error",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "failed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-claude-cancellation",
+      "schemaVersion": "1.0.0",
+      "runtime": "claude",
+      "fixtureClass": "cancellation",
+      "sourceFamily": "claude-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-claude-cancellation",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "claude",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-claude",
+        "turnId": "turn-claude",
+        "messageId": "message-claude-cancellation",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-claude-cancellation",
+        "kind": "cancellation",
+        "phase": "cancelled",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-claude-cancellation",
+        "payload": {
+          "reasonCode": "synthetic-user-cancelled"
+        },
+        "extensions": {
+          "claude.fixture": {
+            "fixtureClass": "cancellation",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "cancelled",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-claude-extension",
+      "schemaVersion": "1.0.0",
+      "runtime": "claude",
+      "fixtureClass": "extension",
+      "sourceFamily": "claude-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-claude-extension",
+      "expectedResult": "preserve-extension",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "claude",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-claude",
+        "turnId": "turn-claude",
+        "messageId": "message-claude-extension",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-claude-extension",
+        "kind": "extension",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-claude-extension",
+        "payload": {},
+        "extensions": {
+          "claude.fixture": {
+            "fixtureClass": "extension",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-codex-normal",
+      "schemaVersion": "1.0.0",
+      "runtime": "codex",
+      "fixtureClass": "normal",
+      "sourceFamily": "codex-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-codex-normal",
+      "expectedResult": "accept",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "codex",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-codex",
+        "turnId": "turn-codex",
+        "messageId": "message-codex-normal",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-codex-normal",
+        "kind": "assistant-message",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-codex-normal",
+        "payload": {
+          "textOriginalId": "original-codex-normal"
+        },
+        "extensions": {
+          "codex.fixture": {
+            "fixtureClass": "normal",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-codex-streaming",
+      "schemaVersion": "1.0.0",
+      "runtime": "codex",
+      "fixtureClass": "streaming",
+      "sourceFamily": "codex-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-codex-streaming",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "codex",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-codex",
+        "turnId": "turn-codex",
+        "messageId": "message-codex-streaming",
+        "itemId": null,
+        "partId": "part-0",
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-codex-streaming",
+        "kind": "assistant-message-delta",
+        "phase": "streaming",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": null
+        },
+        "canonicalPayloadRef": "original-codex-streaming",
+        "payload": {
+          "textOriginalId": "original-codex-streaming"
+        },
+        "extensions": {
+          "codex.fixture": {
+            "fixtureClass": "streaming",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "none",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-codex-error",
+      "schemaVersion": "1.0.0",
+      "runtime": "codex",
+      "fixtureClass": "error",
+      "sourceFamily": "codex-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-codex-error",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "codex",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-codex",
+        "turnId": "turn-codex",
+        "messageId": "message-codex-error",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-codex-error",
+        "kind": "error",
+        "phase": "failed",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-codex-error",
+        "payload": {
+          "reasonCode": "synthetic-provider-failure"
+        },
+        "extensions": {
+          "codex.fixture": {
+            "fixtureClass": "error",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "failed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-codex-cancellation",
+      "schemaVersion": "1.0.0",
+      "runtime": "codex",
+      "fixtureClass": "cancellation",
+      "sourceFamily": "codex-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-codex-cancellation",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "codex",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-codex",
+        "turnId": "turn-codex",
+        "messageId": "message-codex-cancellation",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-codex-cancellation",
+        "kind": "cancellation",
+        "phase": "cancelled",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-codex-cancellation",
+        "payload": {
+          "reasonCode": "synthetic-user-cancelled"
+        },
+        "extensions": {
+          "codex.fixture": {
+            "fixtureClass": "cancellation",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "cancelled",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-codex-extension",
+      "schemaVersion": "1.0.0",
+      "runtime": "codex",
+      "fixtureClass": "extension",
+      "sourceFamily": "codex-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-codex-extension",
+      "expectedResult": "preserve-extension",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "codex",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-codex",
+        "turnId": "turn-codex",
+        "messageId": "message-codex-extension",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-codex-extension",
+        "kind": "extension",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-codex-extension",
+        "payload": {},
+        "extensions": {
+          "codex.fixture": {
+            "fixtureClass": "extension",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-pi-normal",
+      "schemaVersion": "1.0.0",
+      "runtime": "pi",
+      "fixtureClass": "normal",
+      "sourceFamily": "pi-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-pi-normal",
+      "expectedResult": "accept",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "pi",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-pi",
+        "turnId": "turn-pi",
+        "messageId": "message-pi-normal",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-pi-normal",
+        "kind": "assistant-message",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-pi-normal",
+        "payload": {
+          "textOriginalId": "original-pi-normal"
+        },
+        "extensions": {
+          "pi.fixture": {
+            "fixtureClass": "normal",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-pi-streaming",
+      "schemaVersion": "1.0.0",
+      "runtime": "pi",
+      "fixtureClass": "streaming",
+      "sourceFamily": "pi-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-pi-streaming",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "pi",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-pi",
+        "turnId": "turn-pi",
+        "messageId": "message-pi-streaming",
+        "itemId": null,
+        "partId": "part-0",
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-pi-streaming",
+        "kind": "assistant-message-delta",
+        "phase": "streaming",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": null
+        },
+        "canonicalPayloadRef": "original-pi-streaming",
+        "payload": {
+          "textOriginalId": "original-pi-streaming"
+        },
+        "extensions": {
+          "pi.fixture": {
+            "fixtureClass": "streaming",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "none",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-pi-error",
+      "schemaVersion": "1.0.0",
+      "runtime": "pi",
+      "fixtureClass": "error",
+      "sourceFamily": "pi-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-pi-error",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "pi",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-pi",
+        "turnId": "turn-pi",
+        "messageId": "message-pi-error",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-pi-error",
+        "kind": "error",
+        "phase": "failed",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-pi-error",
+        "payload": {
+          "reasonCode": "synthetic-provider-failure"
+        },
+        "extensions": {
+          "pi.fixture": {
+            "fixtureClass": "error",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "failed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-pi-cancellation",
+      "schemaVersion": "1.0.0",
+      "runtime": "pi",
+      "fixtureClass": "cancellation",
+      "sourceFamily": "pi-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-pi-cancellation",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "pi",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-pi",
+        "turnId": "turn-pi",
+        "messageId": "message-pi-cancellation",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-pi-cancellation",
+        "kind": "cancellation",
+        "phase": "cancelled",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-pi-cancellation",
+        "payload": {
+          "reasonCode": "synthetic-user-cancelled"
+        },
+        "extensions": {
+          "pi.fixture": {
+            "fixtureClass": "cancellation",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "cancelled",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-pi-extension",
+      "schemaVersion": "1.0.0",
+      "runtime": "pi",
+      "fixtureClass": "extension",
+      "sourceFamily": "pi-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-pi-extension",
+      "expectedResult": "preserve-extension",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "pi",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-pi",
+        "turnId": "turn-pi",
+        "messageId": "message-pi-extension",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-pi-extension",
+        "kind": "extension",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-pi-extension",
+        "payload": {},
+        "extensions": {
+          "pi.fixture": {
+            "fixtureClass": "extension",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-opencode-normal",
+      "schemaVersion": "1.0.0",
+      "runtime": "opencode",
+      "fixtureClass": "normal",
+      "sourceFamily": "opencode-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-opencode-normal",
+      "expectedResult": "accept",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "opencode",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-opencode",
+        "turnId": "turn-opencode",
+        "messageId": "message-opencode-normal",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-opencode-normal",
+        "kind": "assistant-message",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-opencode-normal",
+        "payload": {
+          "textOriginalId": "original-opencode-normal"
+        },
+        "extensions": {
+          "opencode.fixture": {
+            "fixtureClass": "normal",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-opencode-streaming",
+      "schemaVersion": "1.0.0",
+      "runtime": "opencode",
+      "fixtureClass": "streaming",
+      "sourceFamily": "opencode-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-opencode-streaming",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "opencode",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-opencode",
+        "turnId": "turn-opencode",
+        "messageId": "message-opencode-streaming",
+        "itemId": null,
+        "partId": "part-0",
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-opencode-streaming",
+        "kind": "assistant-message-delta",
+        "phase": "streaming",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": null
+        },
+        "canonicalPayloadRef": "original-opencode-streaming",
+        "payload": {
+          "textOriginalId": "original-opencode-streaming"
+        },
+        "extensions": {
+          "opencode.fixture": {
+            "fixtureClass": "streaming",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "none",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-opencode-error",
+      "schemaVersion": "1.0.0",
+      "runtime": "opencode",
+      "fixtureClass": "error",
+      "sourceFamily": "opencode-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-opencode-error",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "opencode",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-opencode",
+        "turnId": "turn-opencode",
+        "messageId": "message-opencode-error",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-opencode-error",
+        "kind": "error",
+        "phase": "failed",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-opencode-error",
+        "payload": {
+          "reasonCode": "synthetic-provider-failure"
+        },
+        "extensions": {
+          "opencode.fixture": {
+            "fixtureClass": "error",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "failed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-opencode-cancellation",
+      "schemaVersion": "1.0.0",
+      "runtime": "opencode",
+      "fixtureClass": "cancellation",
+      "sourceFamily": "opencode-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-opencode-cancellation",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "opencode",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-opencode",
+        "turnId": "turn-opencode",
+        "messageId": "message-opencode-cancellation",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-opencode-cancellation",
+        "kind": "cancellation",
+        "phase": "cancelled",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-opencode-cancellation",
+        "payload": {
+          "reasonCode": "synthetic-user-cancelled"
+        },
+        "extensions": {
+          "opencode.fixture": {
+            "fixtureClass": "cancellation",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "cancelled",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-opencode-extension",
+      "schemaVersion": "1.0.0",
+      "runtime": "opencode",
+      "fixtureClass": "extension",
+      "sourceFamily": "opencode-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-opencode-extension",
+      "expectedResult": "preserve-extension",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "opencode",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-opencode",
+        "turnId": "turn-opencode",
+        "messageId": "message-opencode-extension",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-opencode-extension",
+        "kind": "extension",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-opencode-extension",
+        "payload": {},
+        "extensions": {
+          "opencode.fixture": {
+            "fixtureClass": "extension",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-devin-normal",
+      "schemaVersion": "1.0.0",
+      "runtime": "devin",
+      "fixtureClass": "normal",
+      "sourceFamily": "devin-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-devin-normal",
+      "expectedResult": "accept",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "devin",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-devin",
+        "turnId": "turn-devin",
+        "messageId": "message-devin-normal",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-devin-normal",
+        "kind": "assistant-message",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-devin-normal",
+        "payload": {
+          "textOriginalId": "original-devin-normal"
+        },
+        "extensions": {
+          "devin.fixture": {
+            "fixtureClass": "normal",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-devin-streaming",
+      "schemaVersion": "1.0.0",
+      "runtime": "devin",
+      "fixtureClass": "streaming",
+      "sourceFamily": "devin-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-devin-streaming",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "devin",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-devin",
+        "turnId": "turn-devin",
+        "messageId": "message-devin-streaming",
+        "itemId": null,
+        "partId": "part-0",
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-devin-streaming",
+        "kind": "assistant-message-delta",
+        "phase": "streaming",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": null
+        },
+        "canonicalPayloadRef": "original-devin-streaming",
+        "payload": {
+          "textOriginalId": "original-devin-streaming"
+        },
+        "extensions": {
+          "devin.fixture": {
+            "fixtureClass": "streaming",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "none",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-devin-error",
+      "schemaVersion": "1.0.0",
+      "runtime": "devin",
+      "fixtureClass": "error",
+      "sourceFamily": "devin-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-devin-error",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "devin",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-devin",
+        "turnId": "turn-devin",
+        "messageId": "message-devin-error",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-devin-error",
+        "kind": "error",
+        "phase": "failed",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-devin-error",
+        "payload": {
+          "reasonCode": "synthetic-provider-failure"
+        },
+        "extensions": {
+          "devin.fixture": {
+            "fixtureClass": "error",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "failed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-devin-cancellation",
+      "schemaVersion": "1.0.0",
+      "runtime": "devin",
+      "fixtureClass": "cancellation",
+      "sourceFamily": "devin-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-devin-cancellation",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "devin",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-devin",
+        "turnId": "turn-devin",
+        "messageId": "message-devin-cancellation",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-devin-cancellation",
+        "kind": "cancellation",
+        "phase": "cancelled",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-devin-cancellation",
+        "payload": {
+          "reasonCode": "synthetic-user-cancelled"
+        },
+        "extensions": {
+          "devin.fixture": {
+            "fixtureClass": "cancellation",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "cancelled",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-devin-extension",
+      "schemaVersion": "1.0.0",
+      "runtime": "devin",
+      "fixtureClass": "extension",
+      "sourceFamily": "devin-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-devin-extension",
+      "expectedResult": "preserve-extension",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "devin",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-devin",
+        "turnId": "turn-devin",
+        "messageId": "message-devin-extension",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-devin-extension",
+        "kind": "extension",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-devin-extension",
+        "payload": {},
+        "extensions": {
+          "devin.fixture": {
+            "fixtureClass": "extension",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-cursor-normal",
+      "schemaVersion": "1.0.0",
+      "runtime": "cursor",
+      "fixtureClass": "normal",
+      "sourceFamily": "cursor-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-cursor-normal",
+      "expectedResult": "accept",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "cursor",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-cursor",
+        "turnId": "turn-cursor",
+        "messageId": "message-cursor-normal",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-cursor-normal",
+        "kind": "assistant-message",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-cursor-normal",
+        "payload": {
+          "textOriginalId": "original-cursor-normal"
+        },
+        "extensions": {
+          "cursor.fixture": {
+            "fixtureClass": "normal",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-cursor-streaming",
+      "schemaVersion": "1.0.0",
+      "runtime": "cursor",
+      "fixtureClass": "streaming",
+      "sourceFamily": "cursor-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-cursor-streaming",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "cursor",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-cursor",
+        "turnId": "turn-cursor",
+        "messageId": "message-cursor-streaming",
+        "itemId": null,
+        "partId": "part-0",
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-cursor-streaming",
+        "kind": "assistant-message-delta",
+        "phase": "streaming",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": null
+        },
+        "canonicalPayloadRef": "original-cursor-streaming",
+        "payload": {
+          "textOriginalId": "original-cursor-streaming"
+        },
+        "extensions": {
+          "cursor.fixture": {
+            "fixtureClass": "streaming",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "none",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-cursor-error",
+      "schemaVersion": "1.0.0",
+      "runtime": "cursor",
+      "fixtureClass": "error",
+      "sourceFamily": "cursor-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-cursor-error",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "cursor",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-cursor",
+        "turnId": "turn-cursor",
+        "messageId": "message-cursor-error",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-cursor-error",
+        "kind": "error",
+        "phase": "failed",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-cursor-error",
+        "payload": {
+          "reasonCode": "synthetic-provider-failure"
+        },
+        "extensions": {
+          "cursor.fixture": {
+            "fixtureClass": "error",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "failed",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-cursor-cancellation",
+      "schemaVersion": "1.0.0",
+      "runtime": "cursor",
+      "fixtureClass": "cancellation",
+      "sourceFamily": "cursor-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-cursor-cancellation",
+      "expectedResult": "exact-original",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "cursor",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-cursor",
+        "turnId": "turn-cursor",
+        "messageId": "message-cursor-cancellation",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-cursor-cancellation",
+        "kind": "cancellation",
+        "phase": "cancelled",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-cursor-cancellation",
+        "payload": {
+          "reasonCode": "synthetic-user-cancelled"
+        },
+        "extensions": {
+          "cursor.fixture": {
+            "fixtureClass": "cancellation",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "cancelled",
+        "capabilityConfidence": "inferred"
+      }
+    },
+    {
+      "fixtureId": "fixture-cursor-extension",
+      "schemaVersion": "1.0.0",
+      "runtime": "cursor",
+      "fixtureClass": "extension",
+      "sourceFamily": "cursor-cli",
+      "sourceVersion": "synthetic-contract-fixture-1",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "exactOriginalId": "original-cursor-extension",
+      "expectedResult": "preserve-extension",
+      "event": {
+        "contractKind": "event",
+        "schemaVersion": "1.0.0",
+        "runtime": "cursor",
+        "runtimeVersion": "synthetic-1.0.0",
+        "adapterSchemaVersion": "1.0.0",
+        "sessionId": "session-cursor",
+        "turnId": "turn-cursor",
+        "messageId": "message-cursor-extension",
+        "itemId": null,
+        "partId": null,
+        "toolCallId": null,
+        "parentId": null,
+        "eventId": "event-cursor-extension",
+        "kind": "extension",
+        "phase": "final",
+        "sourceTimestamp": "2026-08-11T12:00:00.000Z",
+        "order": {
+          "sourceSequence": 0,
+          "arrivalIndex": 0,
+          "assemblyIndex": 0
+        },
+        "canonicalPayloadRef": "original-cursor-extension",
+        "payload": {},
+        "extensions": {
+          "cursor.fixture": {
+            "fixtureClass": "extension",
+            "synthetic": true
+          }
+        },
+        "terminalStatus": "completed",
+        "capabilityConfidence": "inferred"
+      }
+    }
+  ]
+}

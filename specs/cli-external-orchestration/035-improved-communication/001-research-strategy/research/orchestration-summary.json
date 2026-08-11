@@ -1,0 +1,71 @@
+{
+  "run_id": "1786433150940-mdbr01",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/042-improved-communication/001-research-strategy",
+  "base_artifact_dir": "specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek-go",
+      "state_log": "specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/deepseek-go/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-11T07:25:50.944Z",
+        "end_at_iso": "2026-08-11T07:57:54.188Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 8,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 9
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-08-11T09:31:00Z",
+          "deltaMs": 5465812
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-08-11T09:34:00Z",
+          "deltaMs": 5645812
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-08-11T09:37:00Z",
+          "deltaMs": 5825812
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-08-11T09:40:00Z",
+          "deltaMs": 6005812
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-08-11T09:43:00Z",
+          "deltaMs": 6185812
+        }
+      ]
+    }
+  ]
+}
