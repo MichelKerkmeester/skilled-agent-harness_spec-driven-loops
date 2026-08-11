@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":1,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.95,"status":"complete","focus":"Ground-truth the claudish-to-english reference architecture","findingsCount":11,"timestamp":"2026-08-11T09:31:00Z"}
+{"type":"finding","id":"f-iter001-001","label":"MessageDisplay hook registered at hooks/hooks.json:3 with 60s timeout","iteration":1}
+{"type":"finding","id":"f-iter001-002","label":"Per-chunk delta buffering keyed by session/message/index in rewrite.sh:89-106","iteration":1}
+{"type":"finding","id":"f-iter001-003","label":"Ollama /api/chat think:false temperature 0.3 at rewrite.sh:162-163","iteration":1}
+{"type":"finding","id":"f-iter001-004","label":"Append vs replace display modes at rewrite.sh:113, 219, 223","iteration":1}
+{"type":"finding","id":"f-iter001-005","label":"Fail-open emits nothing on any failure at rewrite.sh:62-63, 174-212","iteration":1}
+{"type":"finding","id":"f-iter001-006","label":"Replace-mode blank-screen risk if process dies mid-message at rewrite.sh:113","iteration":1}
+{"type":"finding","id":"f-iter001-007","label":"Raw session/message IDs in paths and recursive deletion at rewrite.sh:99,102","iteration":1}
+{"type":"finding","id":"f-iter001-008","label":"rewrite-md.sh is opt-in semantic file mutation, atomic write at rewrite-md.sh:201-213","iteration":1}
+{"type":"observation","id":"obs-iter001-001","packet":"001-research-strategy","classification":"confirmed","iteration":1}
+{"type":"ruled_out","direction":"Carry raw session/message IDs into buffer paths","reason":"Path traversal / deletion risk","iteration":1}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/035-improved-communication/004-protected-spans-fidelity-render",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/004-protected-spans-fidelity-render",
+  "parent_id": "cli-external-orchestration/035-improved-communication",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "protected-spans-fidelity-render",
+      "protected spans, fidelity, and render",
+      "portable cli projection",
+      "implementation phase",
+      "implementation plan",
+      "tasks",
+      "implementation",
+      "verification checklist",
+      "quality gate",
+      "architecture decision",
+      "use deterministic-first validation with a reject-only model judge",
+      "implementation status"
+    ],
+    "key_topics": [
+      "protected-spans-fidelity-render",
+      "protected",
+      "spans",
+      "fidelity",
+      "render",
+      "portable",
+      "cli",
+      "projection",
+      "implementation",
+      "phase",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "handover.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Protected Spans",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pinned Markdown",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Protect",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Immutable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Protect non-negotiable content, validate rewritten candidates deterministically, and choose a safe presentation mode",
+    "created_at": "2026-08-11T10:04:29Z",
+    "last_save_at": "2026-08-11T19:31:50.870Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:dcda297e303dd2402e0b9200663004a5e32ae525d571eb497d1817cefeafce3b",
+    "source_doc_hashes": {
+      "spec.md": "ed1dcc43380c5dd1153f7fcea46609e1533dcd89ffee639e01778a342770628d",
+      "plan.md": "046e5ed2771fd3501a020d6fc7c08b8c3740c093c1148df5b84ffb7d3a14b096",
+      "tasks.md": "080dd22959aef1257a4ceb50eeed88e5b9bebbcd851cf91b7afe89dd7addfecd",
+      "checklist.md": "8de08e608bf820fe8be6b8e4ccf9f153dedd62eb3e06d4cefdd8ef5b431b42ec",
+      "decision-record.md": "db68b8612756d9fc543ea68a92ffca88eb86ce6f0e4ef48c3c6b28c8a5f04b08",
+      "implementation-summary.md": "c18605a71f92b1e2a9dfefb23320459758d23e449fbac28c38966627466b4d16",
+      "handover.md": "f95bab22049a40d439213c2b1e543e7d6d14f456910abe9f6db1cb8ef186eccd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients",
+  "parent_id": "cli-external-orchestration/035-improved-communication",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime-adapters-and-clients",
+      "runtime adapters and clients",
+      "portable cli projection",
+      "implementation phase",
+      "implementation plan",
+      "tasks",
+      "implementation",
+      "verification checklist",
+      "quality gate",
+      "architecture decision",
+      "use client-owned presentation whenever native interception is not explicitly safe",
+      "implementation status"
+    ],
+    "key_topics": [
+      "runtime-adapters-and-clients",
+      "runtime",
+      "adapters",
+      "clients",
+      "portable",
+      "cli",
+      "projection",
+      "implementation",
+      "phase",
+      "plan",
+      "tasks",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Adapters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scaffolded Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Integrate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "six",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Integrate the projection core with six CLIs through their safest supported event and presentation boundaries",
+    "created_at": "2026-08-11T10:04:31Z",
+    "last_save_at": "2026-08-11T13:46:04.064Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:412f24e3a1b3361ffbb93391b44de132aa3686be553eb2529ce4b658e19fd231",
+    "source_doc_hashes": {
+      "spec.md": "974234793003dd4255d5cb92e81e405b5318f677002f71a6f221b462d52355c6",
+      "plan.md": "af1b89b70c7a59ff5c8bd643f37b9d44a4541fe526841d0c56a31c8037fe0b6c",
+      "tasks.md": "098bca6870d3d12585816eba495a23e9ac8dc46e5c5ffc697653e42a02e0553c",
+      "checklist.md": "9c1970d60a53e58f9057f84341a34aa8263a104c3bb97bd71cab448bf982d314",
+      "decision-record.md": "d9ea182d31e80eaec82ea43cef0c2df88fe1e3937f020900b16ff43f236ced1f",
+      "implementation-summary.md": "149e19a2dedb04ddec1bec963531e20b00e1bb99e14ac1dab8602eed81391f2f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

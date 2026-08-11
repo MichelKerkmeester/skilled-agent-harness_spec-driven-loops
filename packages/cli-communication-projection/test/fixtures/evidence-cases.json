@@ -1,0 +1,48 @@
+{
+  "fixtureSetVersion": "1.0.0",
+  "description": "Content-free telemetry vector and reproducible benchmark policy; measured latency is produced by the test run.",
+  "telemetryCases": [
+    {
+      "fixtureId": "telemetry-projection-terminal",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "valid-content-free-event",
+      "record": {
+        "contractKind": "telemetry",
+        "schemaVersion": "1.0.0",
+        "eventName": "projection-terminal",
+        "runtime": "claude",
+        "providerId": "ollama-local",
+        "modelId": "synthetic-local-model",
+        "privacyClass": "local-offline",
+        "outcome": "accepted",
+        "reasonCode": "none",
+        "durations": {
+          "assemblyMs": 0.2,
+          "providerMs": 3.4,
+          "validationMs": 0.1,
+          "totalMs": 3.7
+        },
+        "byteCounts": {
+          "input": 128,
+          "output": 74
+        },
+        "attemptCount": 1,
+        "correlationDigest": "hmac-sha256:c4632f7c281792ebcdc5520eff57d30ed67f33a9d763f3ffdced010d94e26cf8",
+        "keyRotationId": "test-rotation-2026-08"
+      }
+    }
+  ],
+  "benchmarkPolicy": {
+    "schemaVersion": "1.0.0",
+    "scenario": "validate a 1 MiB exact-original record",
+    "provisionalP95BudgetMs": 10,
+    "warmupRuns": 5,
+    "measuredRuns": 30,
+    "percentileMethod": "nearest-rank",
+    "measurementSource": "generated-during-test"
+  }
+}

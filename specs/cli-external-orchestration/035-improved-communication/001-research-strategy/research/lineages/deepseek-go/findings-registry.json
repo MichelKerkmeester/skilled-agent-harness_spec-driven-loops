@@ -1,0 +1,539 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "What is the exact claudish-to-english architecture with file-and-line evidence?",
+      "answeredAtIteration": 1
+    },
+    {
+      "id": "q2",
+      "text": "Safest integration boundary in each of the six CLIs for display-only projection?",
+      "answeredAtIteration": 2
+    },
+    {
+      "id": "q3",
+      "text": "What normalized event and message model preserves canonical state across all six runtimes?",
+      "answeredAtIteration": 4
+    },
+    {
+      "id": "q6",
+      "text": "What provider-neutral configuration supports OpenCode Go DeepSeek V4 Flash and local Ollama/llama.cpp with privacy-aware routing?",
+      "answeredAtIteration": 5
+    },
+    {
+      "id": "q5",
+      "text": "How should protected spans be encoded and fidelity validated so the system can objectively reject bad rewrites and fall back to the exact original?",
+      "answeredAtIteration": 6
+    },
+    {
+      "id": "q4",
+      "text": "Streaming/buffering/ordering/concurrency/cancellation/retry semantics?",
+      "answeredAtIteration": 7
+    },
+    {
+      "id": "q7",
+      "text": "Observability and evaluation methods for perceptual 1:1 parity?",
+      "answeredAtIteration": 7
+    },
+    {
+      "id": "q8",
+      "text": "Downstream phase decomposition and handoff evidence?",
+      "answeredAtIteration": 7
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "label": "MessageDisplay hook registered at hooks/hooks.json:3 with 60s timeout; PostToolUse at hooks.json:14 with 180s",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-002",
+      "label": "Per-chunk delta buffering keyed by session/message/index at rewrite.sh:89-106; LLM call only on final chunk",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-003",
+      "label": "Ollama /api/chat stream:false think:false temperature 0.3 at rewrite.sh:162-163",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-004",
+      "label": "Append vs replace display modes at rewrite.sh:113, 219, 223",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-005",
+      "label": "Fail-open emits nothing on any failure at rewrite.sh:62-63, 174-212",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-006",
+      "label": "Replace-mode blank-screen risk if process dies mid-message at rewrite.sh:113",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-007",
+      "label": "Raw session/message IDs in paths and recursive deletion at rewrite.sh:99,102",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-008",
+      "label": "rewrite-md.sh is opt-in semantic file mutation with atomic write at rewrite-md.sh:201-213",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter002-001",
+      "label": "Claude MessageDisplay is display-only; displayContent replaces rendered text, transcript keeps original",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-002",
+      "label": "MessageDisplay fires once per message in claude -p mode with index 0, final true, full delta",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-003",
+      "label": "MessageDisplay default timeout lowered to 10s; reference uses 60s",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-004",
+      "label": "transcript_path may lag; docs recommend last_assistant_message on Stop/SubagentStop",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-005",
+      "label": "message_id is not the API msg id; cannot correlate with transcript",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-006",
+      "label": "suppressOutput hides hook stdout from transcript; not a renderer replacement",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-007",
+      "label": "claude -p --output-format stream-json is a second safe pipeline-owner surface",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-008",
+      "label": "Codex App Server JSON-RPC streams item/agentMessage/delta and turn/completed",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-009",
+      "label": "Codex turn/interrupt and turn/steer exist; thread/inject_items mutates model context",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-010",
+      "label": "Codex hooks have no display-replacement event; context injection only",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-011",
+      "label": "codex exec is plain-text one-shot; caller must own terminal pipeline",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter003-001",
+      "label": "Pi extension API live-confirmed; renderCall/renderResult/registerMessageRenderer documented",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-002",
+      "label": "Pi message_end can replace finalized assistant message keeping same role",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-003",
+      "label": "Pi message_start/update/end + parallel tool event ordering semantics",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-004",
+      "label": "Pi tool_call blocks and tool_result mutates; not for projection",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-005",
+      "label": "Pi --mode json, RPC mode, SDK, ctx.mode tui|rpc|json|print",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-006",
+      "label": "Pi invalid extension fails closed at startup; guards fail open internally",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-007",
+      "label": "OpenCode serve: OpenAPI 3.1 /doc, /event SSE, session/message/abort/fork APIs",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-008",
+      "label": "OpenCode messages are {info, parts}; TUI is a client of the server",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-009",
+      "label": "OpenCode acp starts an ACP server; shared client pattern",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-010",
+      "label": "OpenCode plugin events observe; no documented renderer replacement",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-011",
+      "label": "Pi renderers are the only documented native generic renderer override across six CLIs",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter004-001",
+      "label": "devin acp is a first-class ACP server over stdio JSON-RPC",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-002",
+      "label": "Devin --export provides ATIF conversation export after each turn",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-003",
+      "label": "Cursor agent acp streams session/update with agent_message_chunk text",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-004",
+      "label": "Cursor ACP flow: initialize, authenticate, session/new, session/prompt, session/cancel",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-005",
+      "label": "Cursor ACP extension methods: ask_question/create_plan blocking; update_todos/task/generate_image notify",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-006",
+      "label": "Cursor CLI hooks are editor hooks; envelope not renderer replacement",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-007",
+      "label": "Cursor CLI does not deliver beforeSubmitPrompt under tested build",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-008",
+      "label": "ACP shared adapter family across Devin, Cursor, OpenCode",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-009",
+      "label": "Six-CLI taxonomy: native-replacement (Claude, Pi) vs pipeline-owner (Codex, OpenCode, Devin, Cursor)",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-010",
+      "label": "Normalized envelope {runtime, sessionId, messageId, eventType, index, final, delta, parts, sequence}",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-011",
+      "label": "Canonical preservation: projection input only, never write-back",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter005-001",
+      "label": "Go DeepSeek V4 Flash: opencode-go/deepseek-v4-flash, /v1/chat/completions, @ai-sdk/openai-compatible",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-002",
+      "label": "DeepSeek V4 Flash Go pricing /bin/zsh.14//bin/zsh.28//bin/zsh.0028 per M; /month",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-003",
+      "label": "DeepSeek V4 Flash Go privacy: not used for training, 0-day retention, ZDR through 2026-08-31",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-004",
+      "label": "Go endpoints protocol-heterogeneous: chat/completions, responses, messages",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-005",
+      "label": "Go model list via GET https://opencode.ai/zen/go/v1/models",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-006",
+      "label": "Ollama /api/show returns parameters, license, details, capabilities, model_info",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-007",
+      "label": "Ollama-local distinct from Go; /api/chat stream:false think:false in reference",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-008",
+      "label": "Pi registerProvider record shape: baseUrl, apiKey, api, models with cost/contextWindow/maxTokens",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-009",
+      "label": "llama.cpp OpenAI-compatible is probe-gated, not primary-source-verified here",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-010",
+      "label": "Privacy routing: local vs local-adjacent-hosted vs hosted distinguishable; no auto-cascade",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-011",
+      "label": "thinkingControl capability enum needed; hosted non-thinking lever probe-gated",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter006-001",
+      "label": "Reference has no deterministic fidelity validator; prompt-only preservation",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter006-002",
+      "label": "Protected-span classes specified: code, paths, commands, flags, variables, URLs, hashes, identifiers, quotes, names, numbers",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter006-003",
+      "label": "Encoding strategy: opaque placeholder substitution before inference, decode+validate after",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter006-004",
+      "label": "Objective rejection gates required: zero changed/missing/duplicated/reordered protected spans",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter006-005",
+      "label": "Fallback contract: fail to exact original, at most one bounded notice per session",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter006-006",
+      "label": "Deterministic gates must be automatic machine gates (SC-003)",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter006-007",
+      "label": "Semantic gates need human adjudication; SARI/LENS regression-only",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter006-008",
+      "label": "Evaluation corpus: versioned secret-free corpus with 6-CLI event fixtures",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter006-009",
+      "label": "Blind rubric: meaning, plainness, fluency, indistinguishability; >=3 runs",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter006-010",
+      "label": "Operational metrics: p50/p95 latency, fallback rate, token use, cost, privacy class",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter006-011",
+      "label": "Pipeline-owner runtimes make display swap naturally atomic",
+      "iteration": 6
+    },
+    {
+      "id": "f-iter007-001",
+      "label": "Assembler reconciles ordering/completion explicitly; tolerates unknown events (NFR-R02)",
+      "iteration": 7
+    },
+    {
+      "id": "f-iter007-002",
+      "label": "Per-runtime stream events mapped for ordering across all six CLIs",
+      "iteration": 7
+    },
+    {
+      "id": "f-iter007-003",
+      "label": "Ordering strategy: index/final where provided, completion-event anchor, arrival sequence otherwise",
+      "iteration": 7
+    },
+    {
+      "id": "f-iter007-004",
+      "label": "Buffering per stable hashed identity; private, locked, bounded, expired on missing final",
+      "iteration": 7
+    },
+    {
+      "id": "f-iter007-005",
+      "label": "Concurrency isolation: separate buffers/locks/notices/cancellation/cleanup per identity",
+      "iteration": 7
+    },
+    {
+      "id": "f-iter007-006",
+      "label": "Cancellation surfaces: Codex turn/interrupt, Cursor session/cancel, OpenCode /abort, Pi session_shutdown",
+      "iteration": 7
+    },
+    {
+      "id": "f-iter007-007",
+      "label": "Retry policy: bounded backoff for transient failures; never retry semantic validation rejection",
+      "iteration": 7
+    },
+    {
+      "id": "f-iter007-008",
+      "label": "Failure classes all select original with redacted reason; unsupported interception uses append/sidecar/custom client",
+      "iteration": 7
+    },
+    {
+      "id": "f-iter007-009",
+      "label": "Downstream phase map A-E: adapters+envelope, assembler+concurrency, codec+validator, providers+privacy, render+eval",
+      "iteration": 7
+    },
+    {
+      "id": "f-iter007-010",
+      "label": "Handoffs A>B, B>C, A>D, C>E, D>E; gates per child; rollback confined to research artifacts",
+      "iteration": 7
+    },
+    {
+      "id": "f-iter007-011",
+      "label": "Architecture freeze: plan component set compatible with all findings; no redesign required",
+      "iteration": 7
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Carry raw session/message IDs into buffer paths",
+      "reason": "Path traversal / recursive-deletion risk",
+      "evidence": "file:../context/claudish-to-english-main/rewrite.sh:99,102",
+      "iteration": 1
+    },
+    {
+      "approach": "Rely on replace-mode fail-open across process death",
+      "reason": "Blank-screen window exists between suppression and final handler",
+      "evidence": "file:../context/claudish-to-english-main/rewrite.sh:113",
+      "iteration": 1
+    },
+    {
+      "approach": "Codex hooks as generic renderer",
+      "reason": "No display-replacement event exists",
+      "evidence": "https://learn.chatgpt.com/docs/app-server",
+      "iteration": 2
+    },
+    {
+      "approach": "thread/inject_items for display projection",
+      "reason": "Mutates model-visible history",
+      "evidence": "https://learn.chatgpt.com/docs/app-server",
+      "iteration": 2
+    },
+    {
+      "approach": "codex exec for arbitrary presentation",
+      "reason": "Plain-text, no renderer hook",
+      "evidence": "cli-codex integration-patterns.md:115",
+      "iteration": 2
+    },
+    {
+      "approach": "Pi tool_call/tool_result mutation for display projection",
+      "reason": "Changes model-visible tool inputs/results",
+      "evidence": "https://pi.dev/docs/latest/extensions",
+      "iteration": 3
+    },
+    {
+      "approach": "OpenCode plugin hooks as renderer replacement",
+      "reason": "No documented display-replacement output",
+      "evidence": "https://opencode.ai/docs/server/",
+      "iteration": 3
+    },
+    {
+      "approach": "Cursor hooks as renderer replacement",
+      "reason": "Decision/notice envelope only",
+      "evidence": "https://cursor.com/docs/cli/acp + hook-contract.md",
+      "iteration": 4
+    },
+    {
+      "approach": "Cursor beforeSubmitPrompt reliance for projection",
+      "reason": "Not delivered under tested build",
+      "evidence": "hook-contract.md:106",
+      "iteration": 4
+    },
+    {
+      "approach": "Assume one provider protocol for all models",
+      "reason": "Go protocol-heterogeneous",
+      "evidence": "https://opencode.ai/docs/go/",
+      "iteration": 5
+    },
+    {
+      "approach": "Trust privacy facts without dates",
+      "reason": "ZDR expiry 2026-08-31",
+      "evidence": "https://opencode.ai/docs/go/",
+      "iteration": 5
+    },
+    {
+      "approach": "Auto-cascade local to hosted",
+      "reason": "Explicit consent required",
+      "evidence": "spec.md:165",
+      "iteration": 5
+    },
+    {
+      "approach": "Trust prompt-only preservation",
+      "reason": "Reference proves insufficient",
+      "evidence": "rewrite.sh:117,168,215-224",
+      "iteration": 6
+    },
+    {
+      "approach": "Machine-only semantic proof",
+      "reason": "SARI/LENS cannot independently prove fidelity",
+      "evidence": "plan.md:254-255",
+      "iteration": 6
+    },
+    {
+      "approach": "Retry semantic validation failures",
+      "reason": "Validation rejection selects original immediately",
+      "evidence": "spec.md:187",
+      "iteration": 7
+    },
+    {
+      "approach": "Share mutable assembler state across concurrent identities",
+      "reason": "Isolation required per hashed identity",
+      "evidence": "spec.md:222",
+      "iteration": 7
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 7,
+    "openQuestions": 0,
+    "resolvedQuestions": 8,
+    "keyFindings": 74,
+    "convergenceScore": 0,
+    "coverageBySources": {
+      "file:../context/claudish-to-english-main/rewrite.sh": 8,
+      "file:../context/claudish-to-english-main/hooks/hooks.json": 2,
+      "file:../context/claudish-to-english-main/rewrite-md.sh": 2,
+      "file:../context/claudish-to-english-main/README.md": 3,
+      "https://code.claude.com/docs/en/hooks": 6,
+      "https://learn.chatgpt.com/docs/app-server": 4,
+      "https://pi.dev/docs/latest/extensions": 5,
+      "https://opencode.ai/docs/server/": 4,
+      "https://docs.devin.ai/cli/reference/commands": 2,
+      "https://cursor.com/docs/cli/acp": 5,
+      "https://opencode.ai/docs/go/": 5,
+      "https://docs.ollama.com/api-reference/show-model-details": 2,
+      "spec.md": 5,
+      "plan.md": 6
+    }
+  },
+  "lastUpdated": "2026-08-11T09:49:00Z"
+}

@@ -1,0 +1,15 @@
+{"type":"iteration","iteration":4,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.65,"status":"complete","focus":"Devin CLI + Cursor CLI boundaries and the normalized event/message model","findingsCount":11,"timestamp":"2026-08-11T09:40:00Z"}
+{"type":"finding","id":"f-iter004-001","label":"devin acp is a first-class ACP server over stdio JSON-RPC, non-interactive","iteration":4}
+{"type":"finding","id":"f-iter004-002","label":"Devin --export provides ATIF conversation export after each turn","iteration":4}
+{"type":"finding","id":"f-iter004-003","label":"Cursor agent acp streams session/update with agent_message_chunk text","iteration":4}
+{"type":"finding","id":"f-iter004-004","label":"Cursor ACP flow: initialize, authenticate, session/new, session/prompt, session/cancel, request_permission","iteration":4}
+{"type":"finding","id":"f-iter004-005","label":"Cursor ACP extension methods: ask_question, create_plan (blocking); update_todos, task, generate_image (notifications)","iteration":4}
+{"type":"finding","id":"f-iter004-006","label":"Cursor CLI hooks are editor hooks; envelope permission/user_message/agent_message only, not renderer","iteration":4}
+{"type":"finding","id":"f-iter004-007","label":"Cursor CLI does not deliver beforeSubmitPrompt under tested build","iteration":4}
+{"type":"finding","id":"f-iter004-008","label":"ACP is a shared client adapter family across Devin, Cursor, OpenCode","iteration":4}
+{"type":"finding","id":"f-iter004-009","label":"Six-CLI taxonomy: native-replacement (Claude MessageDisplay, Pi message_end/renderers) vs pipeline-owner (Codex, OpenCode, Devin, Cursor)","iteration":4}
+{"type":"finding","id":"f-iter004-010","label":"Normalized envelope: {runtime, sessionId, messageId, eventType, index, final, delta, parts, sequence}","iteration":4}
+{"type":"finding","id":"f-iter004-011","label":"Canonical-state preservation: normalized model is projection input, never write-back; only display-only channels mutate","iteration":4}
+{"type":"observation","id":"obs-iter004-001","packet":"001-research-strategy","classification":"confirmed","iteration":4}
+{"type":"ruled_out","direction":"Cursor hooks as renderer replacement","reason":"Decision/notice envelope only","iteration":4}
+{"type":"ruled_out","direction":"Cursor beforeSubmitPrompt reliance for projection","reason":"Not delivered under tested build","iteration":4}

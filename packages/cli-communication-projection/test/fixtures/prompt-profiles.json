@@ -1,0 +1,98 @@
+{
+  "fixtureSetVersion": "1.0.0",
+  "description": "Versioned synthetic prompt controls derived from the reference's narrow whole-message rewrite behavior.",
+  "cases": [
+    {
+      "fixtureId": "prompt-reference-like",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "accept-when-controls-supported",
+      "record": {
+        "contractKind": "prompt-profile",
+        "schemaVersion": "1.0.0",
+        "promptVersion": "reference-like-v1",
+        "systemInstruction": "You rewrite the assistant's message into much simpler, plain English. Keep every fact, name, number, and file path. Use short sentences and everyday words. Leave fenced code blocks unchanged. Output ONLY the rewritten message with no preamble, labels, or commentary.",
+        "copyEditingScope": "assistant-message-only",
+        "protectedValuePolicyVersion": "protected-values-v1",
+        "temperature": 0.3,
+        "thinkingMode": "disabled",
+        "providerControlMappings": [
+          {
+            "providerId": "opencode-go",
+            "modelPattern": "deepseek-v4-flash",
+            "control": "temperature",
+            "wireField": "temperature",
+            "support": "unknown",
+            "confidence": "unknown"
+          },
+          {
+            "providerId": "opencode-go",
+            "modelPattern": "deepseek-v4-flash",
+            "control": "thinking",
+            "wireField": null,
+            "support": "unknown",
+            "confidence": "unknown"
+          },
+          {
+            "providerId": "ollama-local",
+            "modelPattern": "*",
+            "control": "temperature",
+            "wireField": "options.temperature",
+            "support": "unknown",
+            "confidence": "inferred"
+          },
+          {
+            "providerId": "llama-cpp-local",
+            "modelPattern": "*",
+            "control": "temperature",
+            "wireField": "temperature",
+            "support": "unknown",
+            "confidence": "inferred"
+          }
+        ],
+        "unsupportedControlBehavior": "exact-original"
+      }
+    },
+    {
+      "fixtureId": "prompt-unsupported-controls",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "prompt-profile",
+        "schemaVersion": "1.0.0",
+        "promptVersion": "unsupported-controls-v1",
+        "systemInstruction": "You rewrite the assistant's message into much simpler, plain English. Keep every fact, name, number, and file path. Use short sentences and everyday words. Leave fenced code blocks unchanged. Output ONLY the rewritten message with no preamble, labels, or commentary.",
+        "copyEditingScope": "assistant-message-only",
+        "protectedValuePolicyVersion": "protected-values-v1",
+        "temperature": 0.3,
+        "thinkingMode": "disabled",
+        "providerControlMappings": [
+          {
+            "providerId": "synthetic-no-controls",
+            "modelPattern": "*",
+            "control": "temperature",
+            "wireField": null,
+            "support": "no",
+            "confidence": "confirmed"
+          },
+          {
+            "providerId": "synthetic-no-controls",
+            "modelPattern": "*",
+            "control": "thinking",
+            "wireField": null,
+            "support": "no",
+            "confidence": "confirmed"
+          }
+        ],
+        "unsupportedControlBehavior": "exact-original"
+      }
+    }
+  ]
+}
