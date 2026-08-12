@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "references/package-map.md",
+    "diskPath": "references/package-map.md"
+  }
+]

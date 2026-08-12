@@ -1,6 +1,6 @@
 ---
 name: sk-communication
-description: Portable CLI communication-projection layer that rewrites terse agent output into readable plain English while keeping canonical bytes unchanged, behind privacy-first provider routing and honest full-projection vs safe-native tiers.
+description: Portable CLI projection layer that rewrites terse agent output to plain English while keeping canonical bytes unchanged.
 allowed-tools: [Read, Bash, Grep, Glob]
 version: 1.0.0.0
 ---
@@ -66,6 +66,50 @@ The capability is one package split by responsibility. Route to the subsystem th
 - CONDITIONAL: read the matching `docs/*.md` when the task is install, privacy, support, or rollback.
 - ON_DEMAND: read the spec epic only for the "why" behind a frozen invariant.
 
+### Smart Router Pseudocode
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references",)
+UNKNOWN_FALLBACK = {
+    "load_level": "UNKNOWN_FALLBACK",
+    "needs_disambiguation": True,
+    "checklist": [
+        "Confirm which subsystem the task touches",
+        "Provide one concrete input or expected outcome",
+    ],
+}
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError("Only skill-local markdown resources are routable")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def route_resources(request):
+    inventory = discover_markdown_resources()
+    selected = ["references/package-map.md"] if inventory else []
+    if not selected:
+        return {**UNKNOWN_FALLBACK, "resources": []}
+    loaded = []
+    for relative_path in selected:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in loaded:
+            load(guarded)
+            loaded.append(guarded)
+    return {"resources": loaded}
+```
+
 ---
 
 ## 3. HOW IT WORKS
@@ -122,16 +166,23 @@ Run the package's authoritative gate from the package directory: `npm run check`
 
 ---
 
-## 5. REFERENCES
+## 5. REFERENCES AND RELATED RESOURCES
 
 ### Core
 
+- `references/package-map.md` — the subsystem-to-path map and the public entry points; the smart router loads it.
 - `packages/cli-communication-projection/` — the implementation; read `src/<subsystem>/index.ts` for the public surface.
 - `packages/cli-communication-projection/docs/` — install, configuration, privacy, support-matrix, rollback, and runbook.
 
 ### Deep Detail
 
 - `specs/cli-external-orchestration/035-improved-communication/` — the eight-phase design record and frozen invariants; load only for the reasoning behind a rule above.
+
+### Related Skills
+
+- `sk-code` — builds and verifies integration code against the package.
+- `sk-design` — owns a companion UI for a full-projection view.
+- `sk-git` — worktree, commits, and PR for the integration.
 
 ---
 

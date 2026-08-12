@@ -1,7 +1,9 @@
 {
   "modes": [
     {
-      "leaves": [],
+      "leaves": [
+        "references/package-map.md"
+      ],
       "packet": ".",
       "workflowMode": "sk-communication"
     }

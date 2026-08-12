@@ -6,6 +6,7 @@ trigger_phrases:
   - "sk-communication playbook"
 importance_tier: "important"
 contextType: "general"
+version: "1.0.0.0"
 ---
 
 # sk-communication Manual Testing Playbook
