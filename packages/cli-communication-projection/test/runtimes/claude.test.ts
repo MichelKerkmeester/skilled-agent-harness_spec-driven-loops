@@ -73,12 +73,37 @@ describe('Claude runtime adapter', () => {
 
     expect(result).toMatchObject({
       status: 'exact-original',
-      presentationTier: 'full-projection',
+      presentationTier: 'safe-native',
       mode: 'original-only',
       reasonCode: 'projection-rejected',
       projectionText: null,
       originalSuppressed: false,
+      telemetry: expect.objectContaining({ presentationTier: 'safe-native' }),
     });
+  });
+
+  it('redacts an undeclared path before unsupported-path telemetry is emitted', async () => {
+    const canary = 'CREDENTIAL_CANARY_hostile_path_91af';
+    const hostilePath = `Fake transcript text: ${canary}`;
+    const result = claudeRuntimeAdapter.present({
+      pathId: hostilePath,
+      runtimeVersion: TESTED_CLAUDE_VERSION,
+      protocolVersion: TESTED_PROTOCOL_VERSION,
+      renderDecision: await createAcceptedRenderDecision('Hostile path fallback.'),
+    });
+    const serialized = JSON.stringify(result.telemetry);
+
+    expect(result).toMatchObject({
+      status: 'exact-original',
+      presentationTier: 'safe-native',
+      reasonCode: 'unsupported-path',
+      telemetry: expect.objectContaining({
+        pathId: 'unknown-path',
+        presentationTier: 'safe-native',
+      }),
+    });
+    expect(serialized).not.toContain(hostilePath);
+    expect(serialized).not.toContain(canary);
   });
 
   it.each([
@@ -133,6 +158,45 @@ describe('Claude runtime adapter', () => {
       event: null,
     });
     expect(result.exactOriginal).toBe(input.canonical.exactOriginal);
+  });
+
+  it('fails closed when the envelope runtime does not match the adapter', () => {
+    const validInput = createClaudeInput(finalMessage());
+    const input = {
+      ...validInput,
+      envelope: {
+        ...validInput.envelope,
+        runtime: 'codex' as const,
+      },
+    };
+    const result = claudeRuntimeAdapter.adapt(input);
+
+    expect(result).toMatchObject({
+      status: 'exact-original',
+      reasonCode: 'invalid-event',
+      presentationTier: 'safe-native',
+      event: null,
+      telemetry: expect.objectContaining({ presentationTier: 'safe-native' }),
+    });
+    expect(result.exactOriginal).toBe(input.canonical.exactOriginal);
+  });
+
+  it('fails closed when no preferred degradation mode is available', async () => {
+    const result = claudeRuntimeAdapter.present({
+      pathId: ClaudeRuntimePaths.INTERACTIVE,
+      runtimeVersion: TESTED_CLAUDE_VERSION,
+      protocolVersion: TESTED_PROTOCOL_VERSION,
+      renderDecision: await createAcceptedRenderDecision('Unknown capability fallback.'),
+      preferredDegradationModes: [],
+    });
+
+    expect(result).toMatchObject({
+      status: 'exact-original',
+      mode: 'original-only',
+      reasonCode: 'unknown-capability',
+      presentationTier: 'safe-native',
+      telemetry: expect.objectContaining({ presentationTier: 'safe-native' }),
+    });
   });
 
   it.each([

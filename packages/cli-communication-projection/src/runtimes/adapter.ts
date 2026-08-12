@@ -16,6 +16,8 @@ import type {
   RuntimePresentationResult,
 } from './types.js';
 
+const UNKNOWN_TELEMETRY_PATH_ID = 'unknown-path';
+
 /** Runtime-neutral boundary implemented by every vendor adapter. */
 export interface RuntimeAdapter<TRuntimeEvent> {
   readonly adapterVersion: 'runtime-adapter/1.0.0';
@@ -50,6 +52,16 @@ export interface RuntimeConformanceReport {
   readonly extensionEvents: number;
   readonly cancellationEvents: number;
   readonly canonicalWrites: 0;
+}
+
+/** Keep envelope-controlled path content outside terminal telemetry. */
+export function sanitizeRuntimeTelemetryPathId(
+  pathId: string,
+  capabilities: readonly RuntimeCapabilityRecord[],
+): string {
+  return capabilities.some((record) => record.pathId === pathId)
+    ? pathId
+    : UNKNOWN_TELEMETRY_PATH_ID;
 }
 
 /** Derive the generation identity consumed by the shared message assembler. */

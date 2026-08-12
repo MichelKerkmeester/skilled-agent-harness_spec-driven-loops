@@ -127,7 +127,9 @@ async function exerciseTier(tier: PresentationTier): Promise<TierSmokeReport> {
       expect(accepted).toMatchObject({
         status: 'projection',
         mode: 'atomic-replace',
+        presentationTier: 'full-projection',
         originalSuppressed: true,
+        telemetry: expect.objectContaining({ presentationTier: 'full-projection' }),
       });
       expect(applied).toMatchObject({
         status: 'projection',
@@ -141,7 +143,9 @@ async function exerciseTier(tier: PresentationTier): Promise<TierSmokeReport> {
       expect(accepted).toMatchObject({
         status: 'degraded',
         mode: 'append',
+        presentationTier: 'safe-native',
         originalSuppressed: false,
+        telemetry: expect.objectContaining({ presentationTier: 'safe-native' }),
       });
       expect(applied).toMatchObject({
         status: 'degraded',
@@ -168,8 +172,10 @@ async function exerciseTier(tier: PresentationTier): Promise<TierSmokeReport> {
     });
     expect(rejected).toMatchObject({
       status: 'exact-original',
+      presentationTier: 'safe-native',
       reasonCode: 'projection-rejected',
       originalSuppressed: false,
+      telemetry: expect.objectContaining({ presentationTier: 'safe-native' }),
     });
     expect(rejectedApplication).toMatchObject({
       status: 'exact-original',
@@ -181,15 +187,21 @@ async function exerciseTier(tier: PresentationTier): Promise<TierSmokeReport> {
 
     expect(harness.adaptTerminal('timeout')).toMatchObject({
       status: 'exact-original',
+      presentationTier: 'safe-native',
       reasonCode: 'timeout',
+      telemetry: expect.objectContaining({ presentationTier: 'safe-native' }),
     });
     expect(harness.adaptTerminal('cancelled')).toMatchObject({
       status: 'exact-original',
+      presentationTier: 'safe-native',
       reasonCode: 'cancelled',
+      telemetry: expect.objectContaining({ presentationTier: 'safe-native' }),
     });
     expect(harness.adaptTerminal('disconnect')).toMatchObject({
       status: 'exact-original',
+      presentationTier: 'safe-native',
       reasonCode: 'disconnected',
+      telemetry: expect.objectContaining({ presentationTier: 'safe-native' }),
     });
 
     const degradation = harness.present(degradationDecision, {
@@ -207,8 +219,10 @@ async function exerciseTier(tier: PresentationTier): Promise<TierSmokeReport> {
       failClosedDegradationResults += 1;
       expect(degradation).toMatchObject({
         status: 'exact-original',
+        presentationTier: 'safe-native',
         reasonCode: 'unsupported-presentation',
         originalSuppressed: false,
+        telemetry: expect.objectContaining({ presentationTier: 'safe-native' }),
       });
     }
   }

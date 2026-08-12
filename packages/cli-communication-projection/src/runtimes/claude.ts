@@ -10,7 +10,10 @@ import {
 import { validateEventEnvelope } from '../contracts/validate-event.js';
 import { deepFreeze } from '../fidelity/freeze.js';
 import { RenderModes } from '../render/types.js';
-import { mapRuntimeGeneration } from './adapter.js';
+import {
+  mapRuntimeGeneration,
+  sanitizeRuntimeTelemetryPathId,
+} from './adapter.js';
 import {
   assessRuntimeCompatibility,
   mapRuntimeCapability,
@@ -165,10 +168,10 @@ function adaptClaudeEvent(
   const record = findCapability(capabilities, input.envelope.pathId);
   if (record === undefined) {
     return exactEvent(
+      capabilities,
       input,
       generation,
       null,
-      'safe-native',
       RuntimeAdapterReasonCodes.UNSUPPORTED_PATH,
     );
   }
@@ -177,10 +180,10 @@ function adaptClaudeEvent(
     || input.envelope.protocol !== record.protocol
   ) {
     return exactEvent(
+      capabilities,
       input,
       generation,
       null,
-      record.presentationTier,
       RuntimeAdapterReasonCodes.INVALID_EVENT,
     );
   }
@@ -191,10 +194,10 @@ function adaptClaudeEvent(
   );
   if (!compatibility.compatible) {
     return exactEvent(
+      capabilities,
       input,
       generation,
       null,
-      record.presentationTier,
       compatibility.reasonCode,
     );
   }
@@ -203,16 +206,16 @@ function adaptClaudeEvent(
   const validation = validateEventEnvelope(event);
   if (!validation.success) {
     return exactEvent(
+      capabilities,
       input,
       generation,
       null,
-      record.presentationTier,
       RuntimeAdapterReasonCodes.INVALID_EVENT,
     );
   }
   const reasonCode = terminalReason(input.envelope.event);
   if (reasonCode !== RuntimeAdapterReasonCodes.NONE) {
-    return exactEvent(input, generation, event, record.presentationTier, reasonCode);
+    return exactEvent(capabilities, input, generation, event, reasonCode);
   }
   return deepFreeze({
     status: 'mapped',
@@ -353,8 +356,8 @@ function presentClaudeDecision(
   const record = findCapability(capabilities, input.pathId);
   if (record === undefined) {
     return exactPresentation(
+      capabilities,
       input,
-      'safe-native',
       RuntimeAdapterReasonCodes.UNSUPPORTED_PATH,
     );
   }
@@ -364,12 +367,12 @@ function presentClaudeDecision(
     input.protocolVersion,
   );
   if (!compatibility.compatible) {
-    return exactPresentation(input, record.presentationTier, compatibility.reasonCode);
+    return exactPresentation(capabilities, input, compatibility.reasonCode);
   }
   if (input.renderDecision.status !== 'projection') {
     return exactPresentation(
+      capabilities,
       input,
-      record.presentationTier,
       RuntimeAdapterReasonCodes.PROJECTION_REJECTED,
     );
   }
@@ -377,8 +380,8 @@ function presentClaudeDecision(
   if (record.presentationTier === 'full-projection') {
     if (input.renderDecision.mode !== RenderModes.ATOMIC_REPLACE) {
       return exactPresentation(
+        capabilities,
         input,
-        record.presentationTier,
         RuntimeAdapterReasonCodes.UNSUPPORTED_PRESENTATION,
       );
     }
@@ -412,8 +415,8 @@ function presentClaudeDecision(
     });
   }
   return exactPresentation(
+    capabilities,
     input,
-    record.presentationTier,
     mode === 'original-only'
       ? RuntimeAdapterReasonCodes.ORIGINAL_SELECTED
       : RuntimeAdapterReasonCodes.UNKNOWN_CAPABILITY,
@@ -421,10 +424,10 @@ function presentClaudeDecision(
 }
 
 function exactEvent(
+  capabilities: readonly RuntimeCapabilityRecord[],
   input: RuntimeAdapterInput<ClaudeRuntimeEvent>,
   generation: ReturnType<typeof mapRuntimeGeneration>,
   event: EventEnvelope | null,
-  tier: PresentationTier,
   reasonCode: Exclude<RuntimeAdapterReasonCode, 'none'>,
 ): RuntimeAdapterResult {
   return deepFreeze({
@@ -433,25 +436,37 @@ function exactEvent(
     generation,
     event,
     exactOriginal: input.canonical.exactOriginal,
-    presentationTier: tier,
-    telemetry: telemetryFor(input.envelope.pathId, tier, 'exact-original', reasonCode),
+    presentationTier: 'safe-native',
+    telemetry: telemetryFor(
+      capabilities,
+      input.envelope.pathId,
+      'safe-native',
+      'exact-original',
+      reasonCode,
+    ),
   });
 }
 
 function exactPresentation(
+  capabilities: readonly RuntimeCapabilityRecord[],
   input: RuntimePresentationInput,
-  tier: PresentationTier,
   reasonCode: Exclude<RuntimeAdapterReasonCode, 'none'>,
 ): RuntimeExactOriginalPresentation {
   return deepFreeze({
     status: 'exact-original',
     mode: 'original-only',
     reasonCode,
-    presentationTier: tier,
+    presentationTier: 'safe-native',
     exactOriginal: input.renderDecision.exactOriginal,
     projectionText: null,
     originalSuppressed: false,
-    telemetry: telemetryFor(input.pathId, tier, 'exact-original', reasonCode),
+    telemetry: telemetryFor(
+      capabilities,
+      input.pathId,
+      'safe-native',
+      'exact-original',
+      reasonCode,
+    ),
   });
 }
 
@@ -475,10 +490,11 @@ function telemetry(
   status: RuntimeTelemetryRecord['status'],
   reasonCode: RuntimeAdapterReasonCode,
 ): RuntimeTelemetryRecord {
-  return telemetryFor(record.pathId, record.presentationTier, status, reasonCode);
+  return telemetryFor([record], record.pathId, record.presentationTier, status, reasonCode);
 }
 
 function telemetryFor(
+  capabilities: readonly RuntimeCapabilityRecord[],
   pathId: string,
   tier: PresentationTier,
   status: RuntimeTelemetryRecord['status'],
@@ -488,7 +504,7 @@ function telemetryFor(
     telemetryVersion: 'runtime-telemetry/1.0.0',
     eventName: 'runtime-adapter-terminal',
     runtime: 'claude',
-    pathId,
+    pathId: sanitizeRuntimeTelemetryPathId(pathId, capabilities),
     presentationTier: tier,
     status,
     reasonCode,

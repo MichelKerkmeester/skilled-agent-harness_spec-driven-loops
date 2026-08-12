@@ -134,8 +134,6 @@ describe('runtime adapter edge cases', () => {
 
   it('keeps earlier Claude interactive chunks visible during batch delivery', async () => {
     const harness = harnessFor(ClaudeRuntimePaths.INTERACTIVE);
-    const earlierChunks = ['Earlier chunk one.', 'Earlier chunk two.'];
-    const nativeOriginal = 'Native interactive message.';
     const appended: string[] = [];
     const first = harness.adaptEvent({
       type: 'message-display',
@@ -180,8 +178,11 @@ describe('runtime adapter edge cases', () => {
 
     expect([first.event?.phase, second.event?.phase, final.event?.phase])
       .toEqual(['streaming', 'streaming', 'final']);
-    expect(earlierChunks).toEqual(['Earlier chunk one.', 'Earlier chunk two.']);
-    expect(nativeOriginal).toBe('Native interactive message.');
+    expect(outcome).toMatchObject({
+      status: 'degraded',
+      mode: 'append',
+      originalSuppressed: false,
+    });
     expect(appended).toEqual(['Claude interactive batch projection.']);
     expect(application).toMatchObject({
       status: 'degraded',
