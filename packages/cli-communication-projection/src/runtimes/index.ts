@@ -53,6 +53,11 @@ export {
   piRuntimeAdapter,
   presentPiSynchronousTransform,
 } from './pi.js';
+export {
+  RuntimeCapabilityMatrix,
+  createRuntimeCapabilityMatrix,
+  resolveRuntimeCapability,
+} from './matrix.js';
 export { RuntimeAdapterReasonCodes } from './types.js';
 
 export type {
@@ -62,6 +67,10 @@ export type {
   RuntimeConformanceReport,
 } from './adapter.js';
 export type { RuntimeCompatibility } from './capability.js';
+export type {
+  RuntimeCapabilityMatrixEntry,
+  RuntimeCapabilityMatrixResolution,
+} from './matrix.js';
 export type {
   ClaudeExtensionEvent,
   ClaudeMessageDisplayEvent,
