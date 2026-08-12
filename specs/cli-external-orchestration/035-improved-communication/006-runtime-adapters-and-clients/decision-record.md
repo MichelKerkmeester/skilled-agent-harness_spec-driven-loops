@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-08-11T10:15:00Z"
     last_updated_by: "codex"
     recent_action: "Accepted the Phase 006 architecture decision under autonomous-goal delegation."
-    next_safe_action: "Implement the decision through tasks.md, starting with the runtime contract and Claude reference adapter."
+    next_safe_action: "Implement the accepted decision through tasks.md."
     blockers: []
     key_files:
       - "decision-record.md"

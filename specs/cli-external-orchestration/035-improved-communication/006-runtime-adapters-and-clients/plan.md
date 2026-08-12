@@ -70,9 +70,9 @@ Integrate the projection core with six CLIs through their safest supported event
 
 ### Definition of Done
 
-- [ ] All P0 and P1 requirements have observed evidence.
-- [ ] Focused tests and the authoritative workspace gate pass from final state.
-- [ ] The checklist, task status, current-state summary, and metadata agree.
+- [x] All P0 and P1 requirements have observed evidence.
+- [x] Focused tests and the authoritative workspace gate pass from final state.
+- [x] The checklist, task status, current-state summary, and metadata agree.
 <!-- /ANCHOR:quality-gates -->
 
 ---
