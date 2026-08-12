@@ -1,0 +1,676 @@
+{
+  "sessionId": "fanout-gpt-sol-fast-1786433150940-mdbr01",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-08-11T07:49:07Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-is-the-safest-primary-source-supported-display-integration-boundary-in-each",
+      "inboxId": null,
+      "text": "What is the safest primary-source-supported display integration boundary in each of the six CLIs, and how should their events normalize without mutating canonical context, tools, or transcripts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-how-should-message-assembly-handle-streaming-ordering-duplication-concurrency-ca",
+      "inboxId": null,
+      "text": "How should message assembly handle streaming, ordering, duplication, concurrency, cancellation, timeout, retry, and atomic render commitment?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-protected-span-and-semantic-fidelity-gates-can-reject-every-changed-litera",
+      "inboxId": null,
+      "text": "Which protected-span and semantic fidelity gates can reject every changed literal, structure, fact, polarity, requirement strength, caveat, or next step and return the exact original?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-should-privacy-aware-routing-normalize-opencode-go-deepseek-v4-flash-ollama-",
+      "inboxId": null,
+      "text": "How should privacy-aware routing normalize OpenCode Go DeepSeek V4 Flash, Ollama, llama.cpp, and other hosted or local providers without unapproved egress or capability assumptions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-observability-perceptual-parity-evaluation-and-downstream-phase-boundaries",
+      "inboxId": null,
+      "text": "Which observability, perceptual-parity evaluation, and downstream phase boundaries make the architecture testable and implementable?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-is-the-safest-primary-source-supported-display-integration-boundary-in-each",
+      "inboxId": null,
+      "text": "What is the safest primary-source-supported display integration boundary in each of the six CLIs, and how should their events normalize without mutating canonical context, tools, or transcripts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-how-should-message-assembly-handle-streaming-ordering-duplication-concurrency-ca",
+      "inboxId": null,
+      "text": "How should message assembly handle streaming, ordering, duplication, concurrency, cancellation, timeout, retry, and atomic render commitment?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-which-protected-span-and-semantic-fidelity-gates-can-reject-every-changed-litera",
+      "inboxId": null,
+      "text": "Which protected-span and semantic fidelity gates can reject every changed literal, structure, fact, polarity, requirement strength, caveat, or next step and return the exact original?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-how-should-privacy-aware-routing-normalize-opencode-go-deepseek-v4-flash-ollama-",
+      "inboxId": null,
+      "text": "How should privacy-aware routing normalize OpenCode Go DeepSeek V4 Flash, Ollama, llama.cpp, and other hosted or local providers without unapproved egress or capability assumptions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-which-observability-perceptual-parity-evaluation-and-downstream-phase-boundaries",
+      "inboxId": null,
+      "text": "Which observability, perceptual-parity evaluation, and downstream phase boundaries make the architecture testable and implementable?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "How should assembly implement streaming, ordering, duplication, concurrency, cancellation, timeout, retry, and atomic commit against version-pinned event fixtures?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which deterministic protected-span and semantic fidelity gates reject unsafe rewrites and return the exact original?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should privacy-aware provider routing cover OpenCode Go DeepSeek V4 Flash and local providers?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which observability and perceptual-parity evaluation gates make the architecture testable?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which exact Devin ACP and Claude MessageDisplay fields vary by installed version?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which observability, perceptual-parity evaluation, and downstream phase boundaries make the architecture testable and implementable?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "How should privacy-aware provider routing cover OpenCode Go DeepSeek V4 Flash, Ollama, llama.cpp, and other hosted/local providers without unapproved egress or capability assumptions?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which exact event fields and Markdown dialect capabilities appear in version-pinned fixtures for Claude, Devin, and the other four adapters?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which exact version-pinned runtime event fields, Markdown dialect/parser behaviors, provider request/stream/error shapes, Ollama native timing/keep-alive fields, and llama.cpp build/model capability outcomes appear in executable fixtures?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-8-atomic-commitment-requires-two-independent-orders-and-an-explicit-terminal-state",
+      "text": "**Atomic commitment requires two independent orders and an explicit terminal state.** `sourceSequence` records runtime arrival order; `assemblySequence` records projector assembly order. Deduplicate on stable runtime event identity when available and otherwise on an adapter-scoped event ID plus canonical payload hash. Only `completed` may replace the original; `cancelled`, `interrupted`, `error`, timeout, missing completion, duplicate conflict, or validation failure renders the exact canonical original. This corrects the reference’s replace mode, which suppresses non-final chunks before rewrite validation and buffers under raw session/message-derived paths. [SOURCE: specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:102] [SOURCE: specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:109] [INFERENCE: based on Codex terminal statuses, Cursor cancellation/stopReason, OpenCode abort, and the reference’s pre-final suppression]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[Claude Code hooks reference](https://code.claude.com/docs/en/hooks), accessed 2026-08-11.",
+        "[Codex App Server](https://learn.chatgpt.com/docs/app-server), accessed 2026-08-11.",
+        "[Pi extensions raw documentation](https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/docs/extensions.md), accessed 2026-08-11.",
+        "[OpenCode server documentation](https://opencode.ai/docs/server/), last-updated marker 2026-08-09 and accessed 2026-08-11.",
+        "[Devin CLI commands](https://docs.devin.ai/cli/reference/commands), accessed 2026-08-11.",
+        "[Cursor CLI ACP](https://cursor.com/docs/cli/acp), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/plan.md:264`.",
+        "`specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:89`."
+      ]
+    },
+    {
+      "id": "finding-1-1-claude-cli-has-the-narrowest-native-display-only-boundary-claude-code-documents-",
+      "text": "**Claude CLI has the narrowest native display-only boundary.** Claude Code documents `MessageDisplay` as firing while assistant text is displayed and explicitly places it outside the agentic lifecycle as display-only. The reference confirms a chunk contract containing `session_id`, `message_id`, `index`, `final`, `delta`, and `transcript_path`; therefore a Claude adapter can assemble projection text without changing canonical context, but it must commit only after the final chunk and retain the original for exact fallback. [SOURCE: https://code.claude.com/docs/en/hooks] [SOURCE: specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:89]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[Claude Code hooks reference](https://code.claude.com/docs/en/hooks), accessed 2026-08-11.",
+        "[Codex App Server](https://learn.chatgpt.com/docs/app-server), accessed 2026-08-11.",
+        "[Pi extensions raw documentation](https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/docs/extensions.md), accessed 2026-08-11.",
+        "[OpenCode server documentation](https://opencode.ai/docs/server/), last-updated marker 2026-08-09 and accessed 2026-08-11.",
+        "[Devin CLI commands](https://docs.devin.ai/cli/reference/commands), accessed 2026-08-11.",
+        "[Cursor CLI ACP](https://cursor.com/docs/cli/acp), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/plan.md:264`.",
+        "`specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:89`."
+      ]
+    },
+    {
+      "id": "finding-1-2-codex-s-safest-arbitrary-rendering-boundary-is-an-app-server-client-not-a-lifecy",
+      "text": "**Codex’s safest arbitrary-rendering boundary is an App Server client, not a lifecycle hook.** App Server is the documented rich-client interface and exposes version-generated schemas, thread/turn/item identity, `item/started`, `item/completed`, `item/agentMessage/delta`, a terminal `turn/completed`, and `turn/interrupt`. A projector can therefore maintain a read-only mirror keyed by thread, turn, and item while cancellation remains a runtime command rather than a synthetic display event. [SOURCE: https://learn.chatgpt.com/docs/app-server]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[Claude Code hooks reference](https://code.claude.com/docs/en/hooks), accessed 2026-08-11.",
+        "[Codex App Server](https://learn.chatgpt.com/docs/app-server), accessed 2026-08-11.",
+        "[Pi extensions raw documentation](https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/docs/extensions.md), accessed 2026-08-11.",
+        "[OpenCode server documentation](https://opencode.ai/docs/server/), last-updated marker 2026-08-09 and accessed 2026-08-11.",
+        "[Devin CLI commands](https://docs.devin.ai/cli/reference/commands), accessed 2026-08-11.",
+        "[Cursor CLI ACP](https://cursor.com/docs/cli/acp), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/plan.md:264`.",
+        "`specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:89`."
+      ]
+    },
+    {
+      "id": "finding-1-6-cursor-confirms-the-complete-acp-client-loop-needed-for-projection-cursor-docume",
+      "text": "**Cursor confirms the complete ACP client loop needed for projection.** Cursor documents newline-delimited JSON-RPC over stdio, `session/new` or `session/load`, streamed `session/update`, blocking `session/request_permission`, optional `session/cancel`, and a terminal prompt result with `stopReason`. Its extensions also expose task identity and cancellation-like todo states, so the adapter must preserve both ACP core and Cursor extension events rather than flattening everything into text. [SOURCE: https://cursor.com/docs/cli/acp]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[Claude Code hooks reference](https://code.claude.com/docs/en/hooks), accessed 2026-08-11.",
+        "[Codex App Server](https://learn.chatgpt.com/docs/app-server), accessed 2026-08-11.",
+        "[Pi extensions raw documentation](https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/docs/extensions.md), accessed 2026-08-11.",
+        "[OpenCode server documentation](https://opencode.ai/docs/server/), last-updated marker 2026-08-09 and accessed 2026-08-11.",
+        "[Devin CLI commands](https://docs.devin.ai/cli/reference/commands), accessed 2026-08-11.",
+        "[Cursor CLI ACP](https://cursor.com/docs/cli/acp), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/plan.md:264`.",
+        "`specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:89`."
+      ]
+    },
+    {
+      "id": "finding-1-5-devin-confirms-an-acp-process-boundary-but-not-a-devin-specific-update-schema-on",
+      "text": "**Devin confirms an ACP process boundary but not a Devin-specific update schema on the consulted command page.** `devin acp` is documented as a non-interactive stdio JSON-RPC server for ACP-aware hosts. This supports a separate renderer process, but field-level mapping, completion, ancestry, and cancellation must be capability-tested against the pinned Devin/ACP version rather than copied from Cursor. [SOURCE: https://docs.devin.ai/cli/reference/commands] [INFERENCE: based on Devin documenting only the ACP transport boundary while the attempted shared session-update page was unavailable]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[Claude Code hooks reference](https://code.claude.com/docs/en/hooks), accessed 2026-08-11.",
+        "[Codex App Server](https://learn.chatgpt.com/docs/app-server), accessed 2026-08-11.",
+        "[Pi extensions raw documentation](https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/docs/extensions.md), accessed 2026-08-11.",
+        "[OpenCode server documentation](https://opencode.ai/docs/server/), last-updated marker 2026-08-09 and accessed 2026-08-11.",
+        "[Devin CLI commands](https://docs.devin.ai/cli/reference/commands), accessed 2026-08-11.",
+        "[Cursor CLI ACP](https://cursor.com/docs/cli/acp), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/plan.md:264`.",
+        "`specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:89`."
+      ]
+    },
+    {
+      "id": "finding-1-4-opencode-s-server-sse-boundary-is-the-portable-choice-the-official-server-is-the",
+      "text": "**OpenCode’s server/SSE boundary is the portable choice.** The official server is the same client/server architecture used by the TUI, publishes OpenAPI 3.1, exposes canonical session messages and child sessions, streams bus events over `/event` or `/global/event`, and provides `/session/:id/abort`. A separate server/SDK client can project events without depending on undocumented TUI replacement behavior. [SOURCE: https://opencode.ai/docs/server/]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[Claude Code hooks reference](https://code.claude.com/docs/en/hooks), accessed 2026-08-11.",
+        "[Codex App Server](https://learn.chatgpt.com/docs/app-server), accessed 2026-08-11.",
+        "[Pi extensions raw documentation](https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/docs/extensions.md), accessed 2026-08-11.",
+        "[OpenCode server documentation](https://opencode.ai/docs/server/), last-updated marker 2026-08-09 and accessed 2026-08-11.",
+        "[Devin CLI commands](https://docs.devin.ai/cli/reference/commands), accessed 2026-08-11.",
+        "[Cursor CLI ACP](https://cursor.com/docs/cli/acp), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/plan.md:264`.",
+        "`specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:89`."
+      ]
+    },
+    {
+      "id": "finding-1-3-pi-offers-a-native-extension-rendering-boundary-but-extension-event-mutation-mus",
+      "text": "**Pi offers a native extension rendering boundary, but extension event mutation must be kept out of the canonical lane.** Pi documents custom rendering for tool calls, results, and messages, plus `message_start/update/end` and tool execution start/update/end events. It also permits a `message_end` handler to replace the finalized message; that capability is unsafe for a display-only projector because the replacement participates in Pi’s message lifecycle. Use custom rendering/UI for projection and treat message replacement as out of scope. [SOURCE: https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/docs/extensions.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[Claude Code hooks reference](https://code.claude.com/docs/en/hooks), accessed 2026-08-11.",
+        "[Codex App Server](https://learn.chatgpt.com/docs/app-server), accessed 2026-08-11.",
+        "[Pi extensions raw documentation](https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/docs/extensions.md), accessed 2026-08-11.",
+        "[OpenCode server documentation](https://opencode.ai/docs/server/), last-updated marker 2026-08-09 and accessed 2026-08-11.",
+        "[Devin CLI commands](https://docs.devin.ai/cli/reference/commands), accessed 2026-08-11.",
+        "[Cursor CLI ACP](https://cursor.com/docs/cli/acp), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/plan.md:264`.",
+        "`specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:89`."
+      ]
+    },
+    {
+      "id": "finding-1-7-the-common-architecture-is-an-immutable-event-mirror-plus-a-replaceable-projecti",
+      "text": "**The common architecture is an immutable event mirror plus a replaceable projection, not a universal hook.** Normalize every runtime event into `{runtime, runtimeVersion, sessionId, turnId, messageId, itemId, partId, toolCallId, parentId, kind, phase, sequence, sourceTimestamp, canonicalPayloadRef, terminalStatus, eventId}`. Keep text deltas, tool inputs/results, approvals, and extension payloads as typed canonical references; store rewritten prose only under a separate `projection` object with its provider, model, policy, validation result, and fallback reason. Missing native fields remain `null` with a capability-confidence tag; adapters must not invent ancestry or order. [INFERENCE: based on the identity/lifecycle fields documented by Codex App Server, OpenCode SSE/session APIs, Cursor ACP, Pi events, and Claude MessageDisplay]",
+      "addedAtIteration": 1,
+      "sources": [
+        "[Claude Code hooks reference](https://code.claude.com/docs/en/hooks), accessed 2026-08-11.",
+        "[Codex App Server](https://learn.chatgpt.com/docs/app-server), accessed 2026-08-11.",
+        "[Pi extensions raw documentation](https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/docs/extensions.md), accessed 2026-08-11.",
+        "[OpenCode server documentation](https://opencode.ai/docs/server/), last-updated marker 2026-08-09 and accessed 2026-08-11.",
+        "[Devin CLI commands](https://docs.devin.ai/cli/reference/commands), accessed 2026-08-11.",
+        "[Cursor CLI ACP](https://cursor.com/docs/cli/acp), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/plan.md:264`.",
+        "`specs/cli-external-orchestration/042-improved-communication/context/claudish-to-english-main/rewrite.sh:89`."
+      ]
+    },
+    {
+      "id": "finding-2-1-assembly-identity-must-include-runtime-schema-versions-and-separate-logical-mess",
+      "text": "**Assembly identity must include runtime/schema versions and separate logical-message identity from stream attempts.** Use `assemblyKey = (runtime, runtimeVersion, adapterSchemaVersion, sessionId, turnId, messageId|itemId, partId)` and a distinct `generation` for reconnects or runtime retries. Each accepted event also records `eventId`, `arrivalOrdinal`, optional runtime `sourceSequence`, canonical payload hash, and adapter capability evidence. JSON-RPC requires an exact `\"2.0\"` version and correlates responses by request `id`; SSE retains a last-event ID across reconnects. These are evidence for preserving native identity, not for inventing a universal sequence. [SOURCE: https://www.jsonrpc.org/specification] [SOURCE: https://html.spec.whatwg.org/multipage/server-sent-events.html] [INFERENCE: assembly key derived from the immutable event envelope in iteration 1 and the two standards' identity/version rules]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[WHATWG HTML Living Standard: Server-sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html), last updated 2026-07-20 and accessed 2026-08-11.",
+        "[JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification), accessed 2026-08-11.",
+        "[CommonMark Specification 0.31.2](https://spec.commonmark.org/0.31.2/), accessed 2026-08-11.",
+        "[OWASP LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-001.md:28`."
+      ]
+    },
+    {
+      "id": "finding-2-4-atomic-render-commitment-is-a-compare-and-swap-against-an-immutable-canonical-pa",
+      "text": "**Atomic render commitment is a compare-and-swap against an immutable canonical payload, never pre-final suppression.** The renderer may stream the canonical original immediately. A projection may replace it only once when the source terminal status is successful, the canonical hash still matches, all expected parts are complete, the provider attempt succeeded without truncation/refusal, and every validation layer passes. If the surface cannot atomically replace the already visible original, projection replacement is disabled for that surface. All cancellation, error, timeout, overflow, gap, duplicate conflict, missing-final, stale-attempt, or validator outcomes leave or restore the exact original reference. [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-001.md:30] [SOURCE: https://html.spec.whatwg.org/multipage/server-sent-events.html] [INFERENCE: compare-and-swap closes iteration 1's pre-final suppression failure mode]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[WHATWG HTML Living Standard: Server-sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html), last updated 2026-07-20 and accessed 2026-08-11.",
+        "[JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification), accessed 2026-08-11.",
+        "[CommonMark Specification 0.31.2](https://spec.commonmark.org/0.31.2/), accessed 2026-08-11.",
+        "[OWASP LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-001.md:28`."
+      ]
+    },
+    {
+      "id": "finding-2-3-deduplication-retry-late-event-and-backpressure-rules-must-be-generation-safe-ex",
+      "text": "**Deduplication, retry, late-event, and backpressure rules must be generation-safe.** Exact duplicate `(eventId, canonicalPayloadHash)` pairs are no-ops; a repeated ID with a different hash is a conflict and forces original fallback. Provider attempts use an idempotency key over `(assemblyKey, generation, canonicalPayloadHash, policyVersion, providerConfigHash)` and accept only the currently active attempt token. Cancellation or deadline expiry invalidates that token, and late responses/events cannot mutate a terminal commit. Per-key byte/event/deadline limits plus a global budget trigger immediate original pass-through and buffer release rather than dropping canonical content. SSE explicitly allows reconnection/backoff and distinguishes `CLOSED` from reconnecting; JSON-RPC notifications are unconfirmable and concurrent results may be unordered, which makes explicit generation and terminal guards necessary. [SOURCE: https://html.spec.whatwg.org/multipage/server-sent-events.html] [SOURCE: https://www.jsonrpc.org/specification] [INFERENCE: retry idempotency, bounds, and late-event quarantine are fail-closed architecture rules]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[WHATWG HTML Living Standard: Server-sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html), last updated 2026-07-20 and accessed 2026-08-11.",
+        "[JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification), accessed 2026-08-11.",
+        "[CommonMark Specification 0.31.2](https://spec.commonmark.org/0.31.2/), accessed 2026-08-11.",
+        "[OWASP LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-001.md:28`."
+      ]
+    },
+    {
+      "id": "finding-2-7-exact-original-fallback-must-preserve-the-pre-parse-canonical-bytes-or-an-immuta",
+      "text": "**Exact-original fallback must preserve the pre-parse canonical bytes or an immutable byte-addressed reference.** CommonMark operates on characters rather than bytes and permits parsers not to retain whether source text used literal characters or entity references; SSE decoding is UTF-8 and strips a leading BOM. Consequently, neither a Markdown AST nor decoded/transformed text can reconstruct the exact original in every case. Store `canonicalPayloadRef`, byte length, encoding metadata, and cryptographic hash before parsing or provider submission; fallback emits that immutable payload directly and records only the rejected projection and reason separately. [SOURCE: https://spec.commonmark.org/0.31.2/] [SOURCE: https://html.spec.whatwg.org/multipage/server-sent-events.html] [INFERENCE: byte-preserving fallback follows from the standards' lossy parse/decode transformations]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[WHATWG HTML Living Standard: Server-sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html), last updated 2026-07-20 and accessed 2026-08-11.",
+        "[JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification), accessed 2026-08-11.",
+        "[CommonMark Specification 0.31.2](https://spec.commonmark.org/0.31.2/), accessed 2026-08-11.",
+        "[OWASP LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-001.md:28`."
+      ]
+    },
+    {
+      "id": "finding-2-5-protected-span-validation-needs-a-source-range-parser-plus-a-conservative-litera",
+      "text": "**Protected-span validation needs a source-range parser plus a conservative literal lexer.** First parse the pinned Markdown dialect and protect raw source ranges for fenced/indented code, inline code, headings, links and destinations, HTML, lists, and dialect tables; CommonMark defines block-before-inline precedence and literal code contents, but does not standardize tables, so each runtime dialect must declare that extension. Then lex and protect paths, commands/flags, variables, URLs, hashes, identifiers, quoted literals, names, numbers, and number-unit pairs. Replace ranges with opaque placeholders and require exact placeholder set, count, order, and one-to-one source mapping before restoration. [SOURCE: https://spec.commonmark.org/0.31.2/] [INFERENCE: conservative lexer categories come from the iteration-2 protected-span requirement; false positives reduce rewriting but preserve fidelity]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[WHATWG HTML Living Standard: Server-sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html), last updated 2026-07-20 and accessed 2026-08-11.",
+        "[JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification), accessed 2026-08-11.",
+        "[CommonMark Specification 0.31.2](https://spec.commonmark.org/0.31.2/), accessed 2026-08-11.",
+        "[OWASP LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-001.md:28`."
+      ]
+    },
+    {
+      "id": "finding-2-2-the-assembler-is-a-per-key-state-machine-not-a-shared-text-buffer-the-states-are",
+      "text": "**The assembler is a per-key state machine, not a shared text buffer.** The states are `COLLECTING -> QUIESCING -> VALIDATING -> COMMITTED_ORIGINAL|COMMITTED_PROJECTION`, with terminal side paths `CANCELLED`, `TIMED_OUT`, `FAILED`, `OVERFLOWED`, and `INCOMPLETE`; every side path commits the original. Concurrent message, part, and tool streams receive independent keyed buffers. Runtime sequence gaps, conflicting duplicates, or a stream ending without its required final event enter bounded `QUIESCING`; expiry becomes `INCOMPLETE`. SSE processes lines in receipt order, discards a final incomplete event, and reconnects with `Last-Event-ID`, while JSON-RPC batches may execute concurrently and return responses in any order, so arrival order alone cannot prove message order. [SOURCE: https://html.spec.whatwg.org/multipage/server-sent-events.html] [SOURCE: https://www.jsonrpc.org/specification] [INFERENCE: state transitions and gap policy combine these transport guarantees with iteration 1's terminal-state model]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[WHATWG HTML Living Standard: Server-sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html), last updated 2026-07-20 and accessed 2026-08-11.",
+        "[JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification), accessed 2026-08-11.",
+        "[CommonMark Specification 0.31.2](https://spec.commonmark.org/0.31.2/), accessed 2026-08-11.",
+        "[OWASP LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-001.md:28`."
+      ]
+    },
+    {
+      "id": "finding-2-6-validation-must-be-layered-deterministic-first-and-fail-closed-because-semantic-",
+      "text": "**Validation must be layered, deterministic first, and fail closed because semantic equivalence is not perfectly decidable by another model.** Gate order is: provider success and complete response; output size/termination/refusal checks; placeholder bijection and order; protected-byte equality after restoration; Markdown AST shape and protected-node equality; then semantic comparisons for entities/facts, omissions, polarity/negation, uncertainty and caveats, requirement strength, priority, and next steps. Any mismatch, unavailable validator, low-confidence semantic result, or disagreement between validators rejects the projection. OWASP states that prompt injection lacks fool-proof prevention and recommends deterministic output-format validation, filtering, and segregation of untrusted content; therefore a semantic model may veto a rewrite but may never authorize one by itself. [SOURCE: https://genai.owasp.org/llmrisk/llm01-prompt-injection/] [SOURCE: https://spec.commonmark.org/0.31.2/] [INFERENCE: layered validator ordering minimizes probabilistic authority]",
+      "addedAtIteration": 2,
+      "sources": [
+        "[WHATWG HTML Living Standard: Server-sent events](https://html.spec.whatwg.org/multipage/server-sent-events.html), last updated 2026-07-20 and accessed 2026-08-11.",
+        "[JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification), accessed 2026-08-11.",
+        "[CommonMark Specification 0.31.2](https://spec.commonmark.org/0.31.2/), accessed 2026-08-11.",
+        "[OWASP LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/), accessed 2026-08-11.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-001.md:28`."
+      ]
+    },
+    {
+      "id": "finding-3-3-llama-cpp-exposes-a-broad-but-build-sensitive-server-contract-that-must-be-pinne",
+      "text": "**llama.cpp exposes a broad but build-sensitive server contract that must be pinned and probed.** The server documents OpenAI-compatible chat, Responses, embeddings, Anthropic Messages, streaming, schema-constrained JSON, health/models/monitoring endpoints, optional Prometheus metrics, explicit context and timeout settings, reasoning parsing/control, offline mode, and build/version output. It also exposes model/server-dependent capability checks and marks some features experimental; therefore a provider record must pin commit/build, model hash, quantization, template, context, endpoint family, and probe results instead of treating `OpenAI-compatible` as stable parity. Binding to `127.0.0.1` or selecting `--offline` are deployment controls, not consequences of the protocol. [SOURCE: https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md] [INFERENCE: the documented switches and evolving changelog require build/model-specific capability confidence]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[OpenCode Go](https://opencode.ai/docs/go/), last updated 2026-08-09 and accessed 2026-08-11.",
+        "[Ollama: Show model details](https://docs.ollama.com/api-reference/show-model-details), accessed 2026-08-11.",
+        "[Ollama: OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility), accessed 2026-08-11.",
+        "[llama.cpp HTTP server README](https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md), accessed 2026-08-11; mutable `master` content, so implementation must pin a commit/build.",
+        "[OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai), accessed 2026-08-11 after the former OpenTelemetry page reported its relocation.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136`.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24`."
+      ]
+    },
+    {
+      "id": "finding-3-5-observability-can-cover-every-lifecycle-decision-without-retaining-message-conte",
+      "text": "**Observability can cover every lifecycle decision without retaining message content or protected literals.** Emit spans/events for assembly start/terminal, provider selection/start/terminal, validation-layer outcome, compare-and-swap commit or fallback, retry, cancellation, timeout, and concurrency/backpressure state. Record pseudonymous scoped IDs, runtime/provider/model versions, policy and capability hashes, privacy class, result enums, latency, byte/token counts, cost, retry count, and fallback reason. Never record prompts, outputs, canonical bytes, protected literals, credentials, raw file paths, or unredacted provider errors; use rotating keyed digests only where correlation is necessary. OpenTelemetry's GenAI conventions explicitly organize spans, metrics, and events, but the content-minimizing fields and redaction rules are this architecture's privacy boundary. [SOURCE: https://github.com/open-telemetry/semantic-conventions-genai] [INFERENCE: lifecycle telemetry derived from iterations 1-2 and minimized against the provider privacy record]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[OpenCode Go](https://opencode.ai/docs/go/), last updated 2026-08-09 and accessed 2026-08-11.",
+        "[Ollama: Show model details](https://docs.ollama.com/api-reference/show-model-details), accessed 2026-08-11.",
+        "[Ollama: OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility), accessed 2026-08-11.",
+        "[llama.cpp HTTP server README](https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md), accessed 2026-08-11; mutable `master` content, so implementation must pin a commit/build.",
+        "[OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai), accessed 2026-08-11 after the former OpenTelemetry page reported its relocation.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136`.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24`."
+      ]
+    },
+    {
+      "id": "finding-3-2-ollama-native-discovery-is-stronger-than-its-compatibility-label-while-capabilit",
+      "text": "**Ollama-native discovery is stronger than its compatibility label, while capability behavior remains model and version specific.** `/api/show` returns model parameters, template, modified time, format/family/quantization, capabilities, and model metadata including context length. Ollama's OpenAI-compatible `/v1/chat/completions` documents streaming, JSON mode, seeds, tools, and reasoning controls, but omits fields such as `tool_choice` and cannot set context size through that API; its Responses support is non-stateful and was added in Ollama 0.13.3. The two consulted pages do not establish native timing fields or keep-alive behavior, so those must be captured from a pinned native-chat fixture rather than claimed from compatibility. [SOURCE: https://docs.ollama.com/api-reference/show-model-details] [SOURCE: https://docs.ollama.com/api/openai-compatibility] [INFERENCE: discovery plus request probes are required because model capability and compatibility support differ]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[OpenCode Go](https://opencode.ai/docs/go/), last updated 2026-08-09 and accessed 2026-08-11.",
+        "[Ollama: Show model details](https://docs.ollama.com/api-reference/show-model-details), accessed 2026-08-11.",
+        "[Ollama: OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility), accessed 2026-08-11.",
+        "[llama.cpp HTTP server README](https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md), accessed 2026-08-11; mutable `master` content, so implementation must pin a commit/build.",
+        "[OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai), accessed 2026-08-11 after the former OpenTelemetry page reported its relocation.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136`.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24`."
+      ]
+    },
+    {
+      "id": "finding-3-1-opencode-go-deepseek-v4-flash-is-a-model-specific-hosted-route-not-a-provider-wi",
+      "text": "**OpenCode Go DeepSeek V4 Flash is a model-specific hosted route, not a provider-wide protocol assumption.** The documented model ID is `deepseek-v4-flash`, its endpoint is `https://opencode.ai/zen/go/v1/chat/completions`, and its package is OpenAI-compatible; `/zen/go/v1/models` is the discovery route. The page currently lists $0.14/M input, $0.28/M output, $0.0028/M cached-read tokens, no model training, and zero-day retention, but separately says the ZDR agreement is renewed monthly and is valid only through 2026-08-31. Residency and support for non-thinking/reasoning controls are not documented on this page, so they remain `unknown` until terms review and a versioned request/stream probe succeed. [SOURCE: https://opencode.ai/docs/go/] [INFERENCE: unsupported controls and residency must remain unknown rather than inherit OpenAI-compatible semantics]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[OpenCode Go](https://opencode.ai/docs/go/), last updated 2026-08-09 and accessed 2026-08-11.",
+        "[Ollama: Show model details](https://docs.ollama.com/api-reference/show-model-details), accessed 2026-08-11.",
+        "[Ollama: OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility), accessed 2026-08-11.",
+        "[llama.cpp HTTP server README](https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md), accessed 2026-08-11; mutable `master` content, so implementation must pin a commit/build.",
+        "[OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai), accessed 2026-08-11 after the former OpenTelemetry page reported its relocation.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136`.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24`."
+      ]
+    },
+    {
+      "id": "finding-3-6-perceptual-1-1-parity-requires-deterministic-rejection-before-blind-repeated-hum",
+      "text": "**Perceptual 1:1 parity requires deterministic rejection before blind repeated human evaluation.** Freeze a versioned corpus containing plain prose, questions, requirements, caveats, Markdown dialect features, protected literals, tools, concurrency, cancellation, timeout, and malformed/provider-refusal cases. Run each pinned model/prompt/provider configuration at least three times with recorded seeds or an explicit nondeterminism marker. Deterministic protected-span, structure, completion, and exact-original gates remain release blockers. Only surviving projections enter blinded, randomized human scoring for meaning, directness/plainness, fluency, reference-likeness, and pairwise indistinguishability from the reference style. Predeclare per-dimension and fallback/latency/privacy thresholds; simplification, readability, embedding, and model-judge metrics are diagnostic only and cannot override a failed deterministic or human gate. [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136] [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24] [INFERENCE: repeated blind scoring separates perceptual parity from semantic safety and provider variance]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[OpenCode Go](https://opencode.ai/docs/go/), last updated 2026-08-09 and accessed 2026-08-11.",
+        "[Ollama: Show model details](https://docs.ollama.com/api-reference/show-model-details), accessed 2026-08-11.",
+        "[Ollama: OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility), accessed 2026-08-11.",
+        "[llama.cpp HTTP server README](https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md), accessed 2026-08-11; mutable `master` content, so implementation must pin a commit/build.",
+        "[OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai), accessed 2026-08-11 after the former OpenTelemetry page reported its relocation.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136`.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24`."
+      ]
+    },
+    {
+      "id": "finding-3-7-six-dependency-ordered-phases-give-each-uncertainty-an-observable-acceptance-gat",
+      "text": "**Six dependency-ordered phases give each uncertainty an observable acceptance gate.** Contracts/fixtures precede core assembly/validation; providers/privacy and runtime adapters then prove their independent boundaries; evaluation/observability integrates only after those contracts are executable; packaging/release hardening consumes all prior evidence. Each phase must reject unknown capabilities and preserve the exact-original invariant rather than deferring safety to a later package phase. [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/prompts/iteration-003.md:33] [INFERENCE: dependency order follows the fixture, assembly, provider, adapter, evaluation, and release acceptance boundaries below]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[OpenCode Go](https://opencode.ai/docs/go/), last updated 2026-08-09 and accessed 2026-08-11.",
+        "[Ollama: Show model details](https://docs.ollama.com/api-reference/show-model-details), accessed 2026-08-11.",
+        "[Ollama: OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility), accessed 2026-08-11.",
+        "[llama.cpp HTTP server README](https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md), accessed 2026-08-11; mutable `master` content, so implementation must pin a commit/build.",
+        "[OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai), accessed 2026-08-11 after the former OpenTelemetry page reported its relocation.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136`.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24`."
+      ]
+    },
+    {
+      "id": "finding-3-8-the-architecture-is-answered-but-implementation-readiness-still-depends-on-versi",
+      "text": "**The architecture is answered, but implementation readiness still depends on version-pinned fixtures.** The handoff must include six runtime event/schema fixtures, runtime Markdown dialect/parser fixtures, OpenCode Go request/stream/error samples and dated terms, Ollama native plus compatibility samples, and llama.cpp build/model/capability samples. Every fixture records version, retrieval date, source/probe provenance, expected normalized event, terminal/fallback result, and protected-byte golden. Until those exist, exact field mappings, timing/keep-alive shapes, reasoning controls, and structured-output behavior remain confirmed only where the cited documents say so and inferred or unknown elsewhere. The fallback invariant remains exact: preserve the pre-parse canonical bytes or an immutable byte-addressed reference, and on any non-success emit that immutable payload directly. [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:28] [SOURCE: https://docs.ollama.com/api/openai-compatibility] [SOURCE: https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md] [INFERENCE: fixture handoff converts documented and unknown capability claims into executable evidence]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[OpenCode Go](https://opencode.ai/docs/go/), last updated 2026-08-09 and accessed 2026-08-11.",
+        "[Ollama: Show model details](https://docs.ollama.com/api-reference/show-model-details), accessed 2026-08-11.",
+        "[Ollama: OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility), accessed 2026-08-11.",
+        "[llama.cpp HTTP server README](https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md), accessed 2026-08-11; mutable `master` content, so implementation must pin a commit/build.",
+        "[OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai), accessed 2026-08-11 after the former OpenTelemetry page reported its relocation.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136`.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24`."
+      ]
+    },
+    {
+      "id": "finding-3-4-the-provider-record-and-router-must-separate-protocol-deployment-and-privacy-a-n",
+      "text": "**The provider record and router must separate protocol, deployment, and privacy.** A normalized record needs `{providerId, deploymentMode, protocol, baseUrl, modelId, credentialRef, credentialBoundary, discoveryMethod, providerVersion, modelArtifactHash, capabilities, capabilityConfidence, timeout, cost, privacyClass, egressConsent, trainingUse, retentionDays, residency, termsCheckedAt, termsExpiresAt, fallbackPolicy}`. Privacy classes should distinguish at least `local-offline`, `local-networked`, `hosted-zdr`, `hosted-retained`, and `unknown`. Routing first checks content privacy class and explicit egress consent, then credential boundary and dated retention/training/residency facts, then protocol/capability confidence, timeout, and cost. Any unknown or expired load-bearing field rejects the route. A fallback is eligible only when explicitly named and no weaker on privacy; local-to-hosted fallback is never implicit. [SOURCE: https://opencode.ai/docs/go/] [SOURCE: https://docs.ollama.com/api-reference/show-model-details] [SOURCE: https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md] [INFERENCE: protocol compatibility cannot establish deployment ownership, data path, retention, training, residency, or consent]",
+      "addedAtIteration": 3,
+      "sources": [
+        "[OpenCode Go](https://opencode.ai/docs/go/), last updated 2026-08-09 and accessed 2026-08-11.",
+        "[Ollama: Show model details](https://docs.ollama.com/api-reference/show-model-details), accessed 2026-08-11.",
+        "[Ollama: OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility), accessed 2026-08-11.",
+        "[llama.cpp HTTP server README](https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md), accessed 2026-08-11; mutable `master` content, so implementation must pin a commit/build.",
+        "[OpenTelemetry GenAI semantic conventions repository](https://github.com/open-telemetry/semantic-conventions-genai), accessed 2026-08-11 after the former OpenTelemetry page reported its relocation.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/spec.md:136`.",
+        "`specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:24`."
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-ee869556052a",
+      "text": "`https://agentclientprotocol.com/protocol/session-updates` returned 404. No claims depend on that unavailable page; shared ACP semantics beyond the runtime-specific documentation remain unconfirmed.",
+      "contentHash": "ee869556052a",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-704e0f91773a",
+      "text": "A narrow grep over the captured Claude web response exceeded the tool record limit. The official page’s directly returned lifecycle table and the local reference supplied the used evidence.",
+      "contentHash": "704e0f91773a",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-469f9e98832b",
+      "text": "A single universal lifecycle hook: the six runtimes expose materially different boundaries; only Claude confirms a dedicated presentation-only hook. [SOURCE: https://code.claude.com/docs/en/hooks] [SOURCE: https://opencode.ai/docs/server/]",
+      "contentHash": "469f9e98832b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-ecd65819a40c",
+      "text": "Pi finalized-message replacement as the projector: the documented handler can replace the lifecycle message, violating the immutable-canonical-lane requirement. [SOURCE: https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/docs/extensions.md]",
+      "contentHash": "ecd65819a40c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f96bba6e43ef",
+      "text": "Reusing Cursor’s ACP field mapping unchanged for Devin: both expose ACP, but the consulted Devin source confirms transport rather than identical update payloads. [SOURCE: https://docs.devin.ai/cli/reference/commands] [SOURCE: https://cursor.com/docs/cli/acp]",
+      "contentHash": "f96bba6e43ef",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-5be8ba11465e",
+      "text": "The GitHub HTML view of Pi’s extension documentation failed to render content; the raw repository URL supplied the primary document instead.",
+      "contentHash": "5be8ba11465e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-6be275346006",
+      "text": "A deterministic gate cannot prove every semantic equivalence claim. The safe resolution is asymmetric: deterministic checks can approve literal/structural invariants, while semantic uncertainty can only reject and fall back. [SOURCE: https://genai.owasp.org/llmrisk/llm01-prompt-injection/] [INFERENCE: fail-closed consequence of non-fool-proof model behavior]",
+      "contentHash": "6be275346006",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-b5c96f32b680",
+      "text": "A universal table parser is not available from CommonMark because tables are a dialect extension. Version-pinned runtime fixtures must declare Markdown dialect and parser version before implementation. [SOURCE: https://spec.commonmark.org/0.31.2/]",
+      "contentHash": "b5c96f32b680",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9128ff957de9",
+      "text": "Arrival order as canonical assembly order: JSON-RPC permits concurrent batch responses in any order, and SSE reconnects can replay from `Last-Event-ID`. [SOURCE: https://www.jsonrpc.org/specification] [SOURCE: https://html.spec.whatwg.org/multipage/server-sent-events.html]",
+      "contentHash": "9128ff957de9",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-53b49458cb23",
+      "text": "Reconstructing the original from placeholders, a Markdown AST, or decoded text: parsing and decoding can erase byte-level distinctions. [SOURCE: https://spec.commonmark.org/0.31.2/] [SOURCE: https://html.spec.whatwg.org/multipage/server-sent-events.html]",
+      "contentHash": "53b49458cb23",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c322d79f2b18",
+      "text": "Suppressing original chunks until a rewrite succeeds: it turns missing-final, timeout, cancellation, and validator failure into blank or reconstructed output rather than exact fallback. [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-001.md:30]",
+      "contentHash": "c322d79f2b18",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3117ba5be8c8",
+      "text": "Treating an LLM judge as a deterministic semantic proof: OWASP describes prompt injection prevention as non-fool-proof and recommends deterministic validation boundaries. [SOURCE: https://genai.owasp.org/llmrisk/llm01-prompt-injection/]",
+      "contentHash": "3117ba5be8c8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-50f386a5da13",
+      "text": "A localhost-shaped URL cannot prove offline execution: Ollama compatibility documents a localhost example, while llama.cpp separately exposes host, offline, model-download, and remote-server controls. Deployment and egress must be recorded and enforced independently. [SOURCE: https://docs.ollama.com/api/openai-compatibility] [SOURCE: https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md]",
+      "contentHash": "50f386a5da13",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-bf10fc98f5c6",
+      "text": "Automatic local-to-hosted fallback, even to a zero-retention route, because egress consent and residency remain separate decisions. [SOURCE: https://opencode.ai/docs/go/] [INFERENCE: privacy-class and consent boundary]",
+      "contentHash": "bf10fc98f5c6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7c33f014f45e",
+      "text": "Automatic readability or model-judge scores as proof of semantic or perceptual parity. [SOURCE: specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/iterations/iteration-002.md:26] [INFERENCE: diagnostic metrics cannot authorize a projection]",
+      "contentHash": "7c33f014f45e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-232d376631f5",
+      "text": "Content-bearing telemetry or raw provider errors; lifecycle enums and keyed correlation are sufficient for operations. [SOURCE: https://github.com/open-telemetry/semantic-conventions-genai] [INFERENCE: data-minimization consequence]",
+      "contentHash": "232d376631f5",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-667b24a1c057",
+      "text": "Current mutable documentation cannot substitute for version-pinned provider/build/model fixtures. [SOURCE: https://opencode.ai/docs/go/] [SOURCE: https://raw.githubusercontent.com/ggml-org/llama.cpp/master/tools/server/README.md]",
+      "contentHash": "667b24a1c057",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-47a8d2d379ee",
+      "text": "Treating provider name or OpenAI compatibility as a privacy or capability class. [SOURCE: https://opencode.ai/docs/go/] [SOURCE: https://docs.ollama.com/api/openai-compatibility]",
+      "contentHash": "47a8d2d379ee",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 9,
+    "keyFindings": 23,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.81,
+    "coverageBySources": {
+      "agentclientprotocol.com": 1,
+      "code": 22,
+      "code.claude.com": 1,
+      "cursor.com": 1,
+      "docs.devin.ai": 1,
+      "docs.ollama.com": 2,
+      "genai.owasp.org": 1,
+      "github.com": 2,
+      "html.spec.whatwg.org": 1,
+      "learn.chatgpt.com": 1,
+      "opencode.ai": 2,
+      "opentelemetry.io": 1,
+      "other": 8,
+      "raw.githubusercontent.com": 2,
+      "spec.commonmark.org": 1,
+      "www.jsonrpc.org": 1
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0138-system-deep-loop-communication-research/specs/cli-external-orchestration/042-improved-communication/001-research-strategy/research/lineages/gpt-sol-fast/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}

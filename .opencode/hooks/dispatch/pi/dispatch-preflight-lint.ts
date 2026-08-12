@@ -4,6 +4,7 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { join } from "node:path";
+import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 const PI_RUNTIME = "pi";
 const DIRECTIVE_MARKER = "- Pi subagent dispatch [DEFAULT]:";
@@ -223,6 +224,7 @@ async function loadDispatchModules(): Promise<{
 
 /** Blocks or warns on a bash dispatch command that violates a target skill's hard rules. */
 export default function dispatchPreflightLint(pi: ExtensionAPI): void {
+  if (!isHookEnabled("dispatch")) return undefined;
   pi.on("input", (event, ctx) => {
     try {
       if (event.source === "interactive" || event.source === "rpc") {

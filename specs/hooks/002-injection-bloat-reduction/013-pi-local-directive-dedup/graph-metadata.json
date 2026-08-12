@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Stop Pi from visibly re-appending the three constant advisor directives onto every prompt, by suppressing them on a confirmed session's proven same-content repeat within a lifecycle epoch, without touching the shadow program or the 007 activation gate.",
     "created_at": "2026-08-09T07:25:29.261Z",
-    "last_save_at": "2026-08-09T07:30:34.432Z",
+    "last_save_at": "2026-08-11T09:55:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16139a7d7e6cfae05d5eae7f6e750b974fd82b98c11013235a38626d9643827f",
+    "source_fingerprint": "sha256:f3aa508a470514fd821ed43767f0f81bb2a2523b29b519935af61f6ac2c06ccf",
     "source_doc_hashes": {
       "spec.md": "0e9f15b302c6af062670b54eceb0d2e047a7bc7eea6f3176a397b6cd7b521044",
       "plan.md": "8289fbd945b395a768642a738942e685deb22f71b1199ee0ef0c7946854e7343",

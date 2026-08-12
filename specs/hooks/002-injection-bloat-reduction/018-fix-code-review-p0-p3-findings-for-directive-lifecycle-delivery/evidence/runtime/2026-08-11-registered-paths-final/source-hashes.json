@@ -1,0 +1,28 @@
+{
+  "harness": {
+    "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/run-registered-adapter-cadence.mjs",
+    "sha256": "957f6ba0cec4fef1858a2fb5871fbd8c0b43f3e388cb7e255aad70aa15933d2d"
+  },
+  "target": {
+    "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/deterministic-advisor-target.mjs",
+    "sha256": "a5768936d02d576be0e8cea7b9521fae830bb171df22fdf9e3e1480e362d6efc"
+  },
+  "adapters": {
+    "claude": {
+      "path": ".opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/user-prompt-submit.js",
+      "sha256": "173f2036bce78019fdb2dc212082aa30a852bc77651719f72eb0f8729e22fcb0"
+    },
+    "codex": {
+      "path": ".opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/user-prompt-submit.js",
+      "sha256": "dcd306329d15aefb3c82e4d4fc792c2a74c666d4a6ddd7f378e53ef93c756d18"
+    },
+    "cursor": {
+      "path": ".opencode/skills/system-spec-kit/mcp-server/dist/hooks/cursor/user-prompt-submit.js",
+      "sha256": "0ec32f6a7a6b15fabee9c37b75ae0d273c499a8ebcfa09adb313bb219de3436d"
+    },
+    "devin": {
+      "path": ".opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/user-prompt-submit.js",
+      "sha256": "2be6d4f2a894b502b9b70b2f5b99e46052419b1b81a1a2947372efd649635388"
+    }
+  }
+}

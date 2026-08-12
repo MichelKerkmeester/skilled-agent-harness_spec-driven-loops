@@ -1,0 +1,753 @@
+{
+  "sessionId": "2026-08-11T20:09:17.000Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 6,
+    "timestamp": "2026-08-11T20:20:00.000Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "graph-metadata.json derived.status is stale — 'planned' vs 'in_progress'",
+      "file": "graph-metadata.json",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "rg -n 'derived.status' specs/hooks/002-injection-bloat-reduction/018-*/graph-metadata.json shows only 018 is affected",
+      "affectedSurfaceHints": [
+        "graph-metadata regeneration",
+        "canonical save path",
+        "packet validation"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-2-P1-001",
+      "severity": "P1",
+      "title": "Devin post-compaction.cjs duplicates boundary bridge logic with hardcoded path — drift risk",
+      "file": "devin/post-compaction.cjs",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-004",
+      "severity": "P2",
+      "title": "Parent graph-metadata last_active_at timestamp predates implementation",
+      "file": "parent/graph-metadata.json",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Sole timestamp at parent level; all other parent fields correct",
+      "affectedSurfaceHints": [
+        "parent graph-metadata regeneration",
+        "canonical save path"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-005",
+      "severity": "P2",
+      "title": "CHK-124 rollback evidence fresh-context review not yet performed",
+      "file": "checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Single checklist item; no other rollback documentation gaps exist",
+      "affectedSurfaceHints": [
+        "checklist closeout",
+        "rollback verification"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-006",
+      "severity": "P2",
+      "title": "CHK-140 cannot close — blocked by graph-metadata regeneration",
+      "file": "checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "Single blocking item; dependent on P1-001 resolution",
+      "affectedSurfaceHints": [
+        "checklist closeout",
+        "packet validation"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-3-001",
+      "severity": "P2",
+      "title": "Full process environment passed to Python subprocess — least-privilege violation",
+      "file": "directive-lifecycle-file-store.ts",
+      "line": null,
+      "description": "Pass a minimal environment object with only PATH, HOME, and SPECKIT_DIRECTIVE_STORE_TEST_PAUSE_MS instead of process.env.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "rg -n \"process\\.env\" directive-lifecycle-file-store.ts shows only line 132 and line 46. The helper only reads SPECKIT_DIRECTIVE_STORE_TEST_PAUSE_MS from env (store.py:358).",
+      "affectedSurfaceHints": [
+        "subprocess boundary",
+        "Python helper",
+        "env isolation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-3-002",
+      "severity": "P2",
+      "title": "TOCTOU between spawn result and failsafe poison in advance()",
+      "file": "directive-lifecycle-file-store.ts",
+      "line": null,
+      "description": "Collapse the poison clear/mark into the same Python invocation as the advance operation to avoid the TOCTOU window.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "rg -n \"advance\\(\\)|mark-poison|clear-poison|failsafe_poisoned\" directive-lifecycle-file-store.ts directive-lifecycle-store.py shows only this code path.",
+      "affectedSurfaceHints": [
+        "advance() method",
+        "poison lifecycle",
+        "failsafe directory"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-3-003",
+      "severity": "P2",
+      "title": "helperPath() uses existsSync which follows symlinks — no integrity verification",
+      "file": "directive-lifecycle-file-store.ts",
+      "line": null,
+      "description": "Add a stat check to verify the resolved file is a regular file (not a symlink), or verify a hash/signature of the Python helper before spawning.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "rg -n \"existsSync|helperPath\" directive-lifecycle-file-store.ts shows this is the only path-resolution mechanism for the helper.",
+      "affectedSurfaceHints": [
+        "helper path",
+        "symlink following",
+        "integrity"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-3-004",
+      "severity": "P2",
+      "title": "Python store helper fails POSIX-only operations silently on non-POSIX platforms — no platform detection",
+      "file": "directive-lifecycle-store.py",
+      "line": null,
+      "description": "Add an explicit platform check at the top of main() that exits cleanly on non-POSIX platforms, or document in ENV-REFERENCE.md that durable suppression requires a POSIX platform.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "rg -n \"fcntl|O_NOFOLLOW|O_DIRECTORY|flock\" directive-lifecycle-store.py shows pervasive POSIX dependency. rg -n \"platform|posix|windows|darwin\" shows no matches.",
+      "affectedSurfaceHints": [
+        "Python helper",
+        "cross-platform",
+        "fail-open default"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-3-005",
+      "severity": "P2",
+      "title": "cwd-derived project hash partitions state silently across working directories",
+      "file": "directive-lifecycle-file-store.ts",
+      "line": null,
+      "description": "Derive the project hash from a stable, workspace-root-relative path rather than cwd.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "rg -n \"getcwd|cwd.*process\\.cwd\" directive-lifecycle-store.py directive-lifecycle-file-store.ts shows these are the only project-isolation mechanics.",
+      "affectedSurfaceHints": [
+        "project hash",
+        "working directory",
+        "state partitioning"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-1-P2-001",
+      "severity": "P2",
+      "title": "JS mirror duplicates canonical core logic — drift risk",
+      "file": "mk-skill-advisor.js",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-1-P2-002",
+      "severity": "P2",
+      "title": "Epoch-advancement bridge circuit not verified end-to-end",
+      "file": "directive-lifecycle-boundary.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-1-P2-003",
+      "severity": "P2",
+      "title": "Synchronous spawnSync with 500ms timeout in hook context",
+      "file": "directive-lifecycle-boundary.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-2-P2-002",
+      "severity": "P2",
+      "title": "RESOLVED: P2-002 — Epoch-advancement bridge circuit verified end-to-end",
+      "file": "directive-lifecycle-boundary.js",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-2-P2-003",
+      "severity": "P2",
+      "title": "No test coverage for the boundary bridge spawn itself",
+      "file": "directive-lifecycle.vitest.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-2-P2-004",
+      "severity": "P2",
+      "title": "Checklist CHK-012 marked [x] with thin evidence — dist not verified",
+      "file": "checklist.md",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-2-P2-005",
+      "severity": "P2",
+      "title": "Store hardening delegated entirely to Python helper — no pure-JS fallback",
+      "file": "directive-lifecycle-file-store.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-5-P2-001",
+      "severity": "P2",
+      "title": "description.json description field is a stale problem statement",
+      "file": "description.json",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-5-P2-002",
+      "severity": "P2",
+      "title": "graph-metadata.json timestamps predate final implementation state",
+      "file": "graph-metadata.json",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-6-P2-001",
+      "severity": "P2",
+      "title": "Test case descriptions embed CHK-XXX checklist IDs — drift-prone documentation coupling",
+      "file": "claude-user-prompt-submit-hook.vitest.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-6-P2-002",
+      "severity": "P2",
+      "title": "Cross-packet import from sibling phase 007 creates fragile dependency",
+      "file": "policy-observation-sink.vitest.ts",
+      "line": null,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 19
+  },
+  "openFindingsCount": 21,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9299999999999999,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [
+    {
+      "index": 1,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 2,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 3,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 4,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 5,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    },
+    {
+      "index": 6,
+      "rule": "findingsSummary-severity-keys",
+      "detail": "findingsSummary must contain P0, P1, P2 keys"
+    }
+  ],
+  "corruptionWarnings": []
+}

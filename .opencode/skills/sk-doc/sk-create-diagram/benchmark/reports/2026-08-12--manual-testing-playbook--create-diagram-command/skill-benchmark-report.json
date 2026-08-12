@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-create-diagram",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0145-sk-doc-sk-create-diagram/.opencode/skills/sk-doc/sk-create-diagram"
+  },
+  "executor": "deepseek-v4-flash",
+  "model": "deepseek/deepseek-v4-flash",
+  "variant": "create-diagram-command",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "CMD-001",
+      "verdict": "PASS",
+      "reason": "Router contract verified against real assets: diagram.md binds :auto to create-diagram-auto.yaml with the presentation contract loaded first; the YAML's 5-step workflow (resource loading -> phase gate -> draw -> taste gate) matches the documented boundary (workflow wording only in the presentation contract). Executed the bound workflow for real: loaded type-sequence.md, wrote docs/order-flow.html (14418 bytes, verified). Independently confirmed accessible-SVG contract present (role=img).",
+      "stage": "command-and-hub-integration",
+      "classKind": "manual",
+      "providerModel": "deepseek/deepseek-v4-flash",
+      "variant": "create-diagram-command",
+      "evidence": [
+        "docs/order-flow.html"
+      ]
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "CMD-001",
+    "stage": "command-and-hub-integration",
+    "dispatch": "manual",
+    "executor": "deepseek-v4-flash",
+    "model": "deepseek/deepseek-v4-flash",
+    "variant": "create-diagram-command"
+  }
+}

@@ -43,6 +43,7 @@
     "testing-playbook",
     "benchmark",
     "flowchart",
+    "diagram",
     "changelog",
     "document-diff",
     "create-quality-control"
@@ -58,6 +59,8 @@
     "create manual testing playbook",
     "promote benchmark folder",
     "create ascii flowchart",
+    "create diagram",
+    "html svg diagram",
     "create changelog",
     "create diff report",
     "document before after review",

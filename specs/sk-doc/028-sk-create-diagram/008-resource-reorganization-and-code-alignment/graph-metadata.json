@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
+  "spec_folder": "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-diagram resource reorganization",
+      "diagram references subfolders",
+      "diagram scripts readme"
+    ],
+    "key_topics": [
+      "references",
+      "assets",
+      "flat",
+      "scan",
+      "glance",
+      "file",
+      "tree",
+      "operator",
+      "flagged"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "`references/` (37 files) and `assets/` (39 files) are flat, making the folder hard to scan at a glance in a file tree \u2014 the operator flagged this directly after reviewing the merged packet",
+    "created_at": "2026-08-12T00:00:00.000Z",
+    "last_save_at": "2026-08-12T18:40:07.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7d74864c2f4272f17c8dace34ab86cc4cca61dd3eefb2199cc07a2ea7443d243",
+    "source_doc_hashes": {
+      "spec.md": "cbbdd9d6817d7724f9551e8830c8771801e1778fa4952b9243cae8e4f3178eed",
+      "plan.md": "c4fa37c81b815923ebaf3e70e7351065180d63f612d08a1097c40afe140fed00",
+      "tasks.md": "a5a881945f1109f2d246f00eef0328b2251214d85f694e0cf971d1478874caab",
+      "checklist.md": "0712a79c26035438fef4a79b1a43d4ba670be2f76f7af36479b1f884a89662ac",
+      "decision-record.md": "b91bcceb0ec5d44c3ac1d7b7535fd74268b80d7d6b36c058a917948ea4df06ab",
+      "implementation-summary.md": "a5aedcf953f3fd9d92078a9ec8eb0febc8a8ae3db784ed3b46f7a885d002ec27"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T18:40:07.000Z"
+  }
+}

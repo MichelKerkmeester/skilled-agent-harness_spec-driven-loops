@@ -1,0 +1,38 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/035-improved-communication/003-core-normalization-and-assembly",
+  "description": "Build the runtime-neutral core that normalizes events, assembles one deterministic message, and selects the bounded conversational context that made",
+  "keywords": [
+    "runtime-neutral",
+    "core",
+    "normalizes",
+    "events",
+    "assembles",
+    "one",
+    "deterministic",
+    "message",
+    "selects",
+    "bounded",
+    "conversational",
+    "context"
+  ],
+  "lastUpdated": "2026-08-11T17:08:48.404Z",
+  "specId": "003",
+  "folderSlug": "core-normalization-and-assembly",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 9,
+  "memoryNameHistory": [
+    "11-08-26_16-33__core-normalization-and-assembly-is-the-next-draft.md",
+    "11-08-26_16-36__core-normalization-and-assembly-remains-the-next.md",
+    "11-08-26_16-38__core-normalization-and-assembly-is-the-next-draft.md",
+    "11-08-26_16-39__core-normalization-and-assembly-remains-the-fresh.md",
+    "11-08-26_18-00__implemented-deterministic-runtime-neutral.md",
+    "11-08-26_18-03__phase-003-package-gates-pass.md",
+    "11-08-26_18-04__all-authored-evidence-checks-pass.md",
+    "11-08-26_18-06__phase-003-strict-validation-passes-with-zero.md",
+    "11-08-26_18-08__phase-003-and-parent-recursive-strict-validation.md"
+  ]
+}

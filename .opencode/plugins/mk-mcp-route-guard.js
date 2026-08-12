@@ -24,6 +24,7 @@ const require = createRequire(import.meta.url);
 // a thin, default-export-only OpenCode plugin while the Claude hook consumes
 // the identical policy.
 const guardCore = require('../hooks/mcp-route-guard/lib/mcp-route-guard.cjs');
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -69,7 +70,7 @@ export default async function MkMcpRouteGuardPlugin(ctx) {
   return {
     async 'tool.execute.before'(input, output) {
       try {
-        if (process.env.MK_MCP_ROUTE_GUARD_DISABLED === '1') return;
+        if (!isHookEnabled('mcp-route-guard')) return;
         const toolName = input && typeof input.tool === 'string' ? input.tool : null;
         if (!toolName) return;
 

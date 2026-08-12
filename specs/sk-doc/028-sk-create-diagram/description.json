@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/028-sk-create-diagram",
+  "description": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of",
+  "keywords": [
+    "context",
+    "holds",
+    "complete",
+    "already-working",
+    "third-party",
+    "claude",
+    "codex",
+    "plugin",
+    "diagram-design",
+    "cathryn",
+    "lavery",
+    "kinds"
+  ],
+  "lastUpdated": "2026-08-12T19:55:45.000Z",
+  "specId": "028",
+  "folderSlug": "sk-create-diagram",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

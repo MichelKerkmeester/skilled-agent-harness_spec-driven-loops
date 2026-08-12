@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+  "description": "This phase was created from a false diagnosis that treated `.codex/.cursor/.devin/hooks/user-prompt-submit.js` as stale regular-file copies with dead",
+  "keywords": [
+    "phase",
+    "false",
+    "diagnosis",
+    "treated",
+    "codex",
+    "cursor",
+    "devin",
+    "hooks",
+    "user-prompt-submit",
+    "stale",
+    "regular-file",
+    "copies",
+    "dead"
+  ],
+  "lastUpdated": "2026-08-11T13:55:24.694Z",
+  "specId": "017",
+  "folderSlug": "adapter-live-delivery-verification",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

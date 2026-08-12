@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/015-directive-docs-alignment",
+  "description": "Audit-driven documentation alignment for the live directive-lifecycle feature (013/014): register the three directive lifecycle envs in the canonical",
+  "keywords": [
+    "audit-driven",
+    "documentation",
+    "alignment",
+    "live",
+    "directive-lifecycle",
+    "feature",
+    "register",
+    "three",
+    "directive",
+    "lifecycle",
+    "envs",
+    "canonical"
+  ],
+  "lastUpdated": "2026-08-11T16:06:32.513Z",
+  "specId": "015",
+  "folderSlug": "directive-docs-alignment",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

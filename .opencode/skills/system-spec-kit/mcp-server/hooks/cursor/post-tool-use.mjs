@@ -29,6 +29,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
+import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -95,6 +96,9 @@ function parseShellToolOutput(rawToolOutput) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  // Proxies both dispatch-audit and post-edit-quality; skip only when BOTH are
+  // off (each Claude counterpart still honors its own switch when one is on).
+  if (!isHookEnabled('dispatch') && !isHookEnabled('post-edit-quality')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

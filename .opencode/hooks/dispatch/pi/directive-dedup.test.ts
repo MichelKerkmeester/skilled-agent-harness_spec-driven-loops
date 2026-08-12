@@ -2,8 +2,11 @@ import { afterEach, describe, expect, it } from "vitest";
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import promptAdvisor, {
+  PI_ADVISOR_DEBUG_FLAG,
   PI_DIRECTIVE_DEDUP_FLAG,
   decidePiDirectiveDelivery,
+  formatPiAdvisorDebug,
+  isPiAdvisorDebugEnabled,
   isPiDirectiveDedupEnabled,
   resetPiDirectiveDedupForSession,
   resetPiDirectiveDedupState,
@@ -41,22 +44,19 @@ function ctxFor(sessionId: string) {
 afterEach(() => {
   resetPiDirectiveDedupState();
   delete process.env[PI_DIRECTIVE_DEDUP_FLAG];
+  delete process.env[PI_ADVISOR_DEBUG_FLAG];
 });
 
 describe("decidePiDirectiveDelivery", () => {
   it("delivers the full brief on the first turn of a session", () => {
     const d = decidePiDirectiveDelivery(FULL, "s1");
-    expect(d.suppressed).toBe(false);
-    expect(d.reducedContext).toBeNull();
+    expect(d).toEqual({ suppressed: false });
   });
 
-  it("suppresses the directive block on an identical repeat, keeping the route line", () => {
+  it("suppresses the complete extension contribution on an identical repeat", () => {
     decidePiDirectiveDelivery(FULL, "s1");
     const d = decidePiDirectiveDelivery(FULL, "s1");
-    expect(d.suppressed).toBe(true);
-    expect(d.reducedContext).toBe(HEAD);
-    // The dropped part is exactly the constant directive block.
-    expect(d.reducedContext).not.toContain("Directives:");
+    expect(d).toEqual({ suppressed: true });
   });
 
   it("re-delivers full after a per-session lifecycle reset (resume/compact)", () => {
@@ -64,8 +64,7 @@ describe("decidePiDirectiveDelivery", () => {
     expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(true);
     resetPiDirectiveDedupForSession("s1");
     const d = decidePiDirectiveDelivery(FULL, "s1");
-    expect(d.suppressed).toBe(false);
-    expect(d.reducedContext).toBeNull();
+    expect(d).toEqual({ suppressed: false });
   });
 
   it("re-delivers full when the directive text changes (dirty content)", () => {
@@ -83,8 +82,15 @@ describe("decidePiDirectiveDelivery", () => {
     expect(decidePiDirectiveDelivery(FULL, "").suppressed).toBe(false);
   });
 
-  it("never suppresses the advisor-failure fallback (directives-only, no route line)", () => {
+  it("dedups the advisor-failure fallback (directives-only) to once per boundary", () => {
+    // The directives-only fallback has no advisor head, but its guardrail block
+    // is still deduped: shown once, suppressed on identical repeats, and
+    // re-armed by a lifecycle boundary. This keeps the operator-visible
+    // directives off every headless-brief turn (the reported symptom) while a
+    // compaction/resume still re-shows them.
     expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(false);
+    expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(true);
+    resetPiDirectiveDedupForSession("s1");
     expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(false);
   });
 
@@ -129,5 +135,29 @@ describe("lifecycle handlers reset the dedup state", () => {
     expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(true);
     await start!({ reason: "resume" }, ctxFor("s1"));
     expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(false);
+  });
+});
+
+describe("advisor-debug (opt-in cli-pi diagnostic)", () => {
+  it("is disabled by default and honours the flag", () => {
+    expect(isPiAdvisorDebugEnabled()).toBe(false);
+    process.env[PI_ADVISOR_DEBUG_FLAG] = "1";
+    expect(isPiAdvisorDebugEnabled()).toBe(true);
+  });
+
+  it("classifies the directives-only fallback as unavailable", () => {
+    const line = formatPiAdvisorDebug(FALLBACK, false, 2503);
+    expect(line).toContain("brief=fallback(unavailable)");
+    expect(line).toContain("durationMs=2503");
+  });
+
+  it("classifies a live advisor head and its freshness", () => {
+    // FULL begins with "Advisor: live; …" — the head case, advisor working.
+    expect(formatPiAdvisorDebug(FULL, false, 118)).toContain("brief=head(live)");
+  });
+
+  it("classifies an import/throw advisor failure and an empty brief", () => {
+    expect(formatPiAdvisorDebug(undefined, true, 5)).toContain("brief=failed");
+    expect(formatPiAdvisorDebug("", false, 5)).toContain("brief=empty");
   });
 });

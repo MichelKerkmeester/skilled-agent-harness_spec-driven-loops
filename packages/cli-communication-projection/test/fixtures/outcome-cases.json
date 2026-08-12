@@ -1,0 +1,365 @@
+{
+  "fixtureSetVersion": "1.0.0",
+  "description": "Typed projection and error outcomes for successful and fail-closed paths.",
+  "cases": [
+    {
+      "fixtureId": "projection-candidate",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "candidate",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-candidate",
+        "status": "candidate",
+        "projectedTextId": "projected-text-candidate",
+        "providerId": "ollama-local",
+        "modelId": "synthetic-local-model"
+      }
+    },
+    {
+      "fixtureId": "projection-accepted",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "accepted",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-accepted",
+        "status": "accepted",
+        "projectedTextId": "projected-text-accepted",
+        "validationProfileVersion": "validation-v1"
+      }
+    },
+    {
+      "fixtureId": "projection-exact-original-cancelled",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-exact-original-cancelled",
+        "status": "exact-original",
+        "reasonCode": "cancelled"
+      }
+    },
+    {
+      "fixtureId": "projection-exact-original-provider-error",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-exact-original-provider-error",
+        "status": "exact-original",
+        "reasonCode": "provider-error"
+      }
+    },
+    {
+      "fixtureId": "projection-exact-original-timeout",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-exact-original-timeout",
+        "status": "exact-original",
+        "reasonCode": "timeout"
+      }
+    },
+    {
+      "fixtureId": "projection-exact-original-unsupported-control",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-exact-original-unsupported-control",
+        "status": "exact-original",
+        "reasonCode": "unsupported-control"
+      }
+    },
+    {
+      "fixtureId": "projection-exact-original-privacy-denied",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-exact-original-privacy-denied",
+        "status": "exact-original",
+        "reasonCode": "privacy-denied"
+      }
+    },
+    {
+      "fixtureId": "projection-exact-original-unsupported-schema",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-exact-original-unsupported-schema",
+        "status": "exact-original",
+        "reasonCode": "unsupported-schema"
+      }
+    },
+    {
+      "fixtureId": "projection-exact-original-validation-rejected",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-exact-original-validation-rejected",
+        "status": "exact-original",
+        "reasonCode": "validation-rejected"
+      }
+    },
+    {
+      "fixtureId": "projection-exact-original-incomplete-source",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-exact-original-incomplete-source",
+        "status": "exact-original",
+        "reasonCode": "incomplete-source"
+      }
+    },
+    {
+      "fixtureId": "projection-exact-original-empty-output",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "projection",
+        "schemaVersion": "1.0.0",
+        "originalId": "original-claude-normal",
+        "runtime": "claude",
+        "promptVersion": "reference-like-v1",
+        "projectionId": "projection-exact-original-empty-output",
+        "status": "exact-original",
+        "reasonCode": "empty-output"
+      }
+    },
+    {
+      "fixtureId": "error-cancelled",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "error",
+        "schemaVersion": "1.0.0",
+        "errorId": "error-cancelled",
+        "code": "cancelled",
+        "message": "Synthetic content-free failure outcome.",
+        "retryable": false,
+        "fallback": "exact-original",
+        "details": {
+          "stage": "synthetic-contract-test"
+        }
+      }
+    },
+    {
+      "fixtureId": "error-provider",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "error",
+        "schemaVersion": "1.0.0",
+        "errorId": "error-provider",
+        "code": "provider-failed",
+        "message": "Synthetic content-free failure outcome.",
+        "retryable": true,
+        "fallback": "exact-original",
+        "details": {
+          "stage": "synthetic-contract-test"
+        }
+      }
+    },
+    {
+      "fixtureId": "error-timeout",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "error",
+        "schemaVersion": "1.0.0",
+        "errorId": "error-timeout",
+        "code": "timeout",
+        "message": "Synthetic content-free failure outcome.",
+        "retryable": true,
+        "fallback": "exact-original",
+        "details": {
+          "stage": "synthetic-contract-test"
+        }
+      }
+    },
+    {
+      "fixtureId": "error-unsupported-control",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "error",
+        "schemaVersion": "1.0.0",
+        "errorId": "error-unsupported-control",
+        "code": "unsupported-control",
+        "message": "Synthetic content-free failure outcome.",
+        "retryable": false,
+        "fallback": "exact-original",
+        "details": {
+          "stage": "synthetic-contract-test"
+        }
+      }
+    },
+    {
+      "fixtureId": "error-privacy-denied",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "error",
+        "schemaVersion": "1.0.0",
+        "errorId": "error-privacy-denied",
+        "code": "privacy-denied",
+        "message": "Synthetic content-free failure outcome.",
+        "retryable": false,
+        "fallback": "exact-original",
+        "details": {
+          "stage": "synthetic-contract-test"
+        }
+      }
+    },
+    {
+      "fixtureId": "error-unsupported-schema",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "error",
+        "schemaVersion": "1.0.0",
+        "errorId": "error-unsupported-schema",
+        "code": "unsupported-schema",
+        "message": "Synthetic content-free failure outcome.",
+        "retryable": false,
+        "fallback": "exact-original",
+        "details": {
+          "stage": "synthetic-contract-test"
+        }
+      }
+    },
+    {
+      "fixtureId": "error-validation",
+      "schemaVersion": "1.0.0",
+      "sourceFamily": "phase-002-synthetic-contract-corpus",
+      "sourceVersion": "1.0.0",
+      "captureMethod": "synthetic",
+      "sanitizationStatus": "synthetic",
+      "expectedResult": "exact-original",
+      "record": {
+        "contractKind": "error",
+        "schemaVersion": "1.0.0",
+        "errorId": "error-validation",
+        "code": "validation-failed",
+        "message": "Synthetic content-free failure outcome.",
+        "retryable": false,
+        "fallback": "exact-original",
+        "details": {
+          "stage": "synthetic-contract-test"
+        }
+      }
+    }
+  ]
+}

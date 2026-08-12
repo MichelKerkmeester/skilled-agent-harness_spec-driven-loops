@@ -20,6 +20,7 @@ import { fileURLToPath } from 'node:url';
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { evaluate, readHardRules } from '../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -149,6 +150,7 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('permission-policy')) return emitDecision('allow', 'Permission policy disabled by hook kill-switch.');
   let payload;
   try {
     payload = JSON.parse(await readStdin());
@@ -165,4 +167,3 @@ async function main() {
 }
 
 main().catch(() => emitDecision('deny', 'Permission denied: policy evaluation failed closed.'));
-

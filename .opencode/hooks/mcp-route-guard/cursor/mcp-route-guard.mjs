@@ -28,6 +28,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -73,6 +74,7 @@ function packServerAndTool(serverName, toolName) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('mcp-route-guard')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

@@ -1,0 +1,15 @@
+{
+  "opencode": {
+    "sessionID": "<confirmed-session>",
+    "prompt": "implement feature",
+    "properties": {
+      "source": "compact"
+    }
+  },
+  "pi": {
+    "event": "input",
+    "sessionId": "<confirmed-session>",
+    "prompt": "implement feature",
+    "lifecycleBoundary": "session_compact"
+  }
+}

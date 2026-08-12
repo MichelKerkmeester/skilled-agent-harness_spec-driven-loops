@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "sk-doc/028-sk-create-diagram/012-flowchart-capability-merge",
+  "description": "`sk-create-flowchart` (ASCII/markdown-only) and `sk-create-diagram` (HTML/SVG-only) are two separately-routed skills for overlapping request shapes",
+  "keywords": [
+    "sk-create-flowchart",
+    "ascii",
+    "markdown-only",
+    "sk-create-diagram",
+    "html",
+    "svg-only",
+    "two",
+    "separately-routed",
+    "skills",
+    "overlapping",
+    "request",
+    "shapes"
+  ],
+  "lastUpdated": "2026-08-12T20:16:58.000Z",
+  "specId": "012",
+  "folderSlug": "flowchart-capability-merge",
+  "parentChain": [
+    "sk-doc",
+    "028-sk-create-diagram"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

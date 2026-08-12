@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
+  "description": "Five phases have each been spot-verified individually, but the packet as a whole \u2014 and the spec-folder tree describing it \u2014 has never been run through",
+  "keywords": [
+    "validation",
+    "quality",
+    "gate",
+    "strict",
+    "closeout",
+    "residue",
+    "sweep",
+    "packet",
+    "028"
+  ],
+  "lastUpdated": "2026-08-12T18:40:07.000Z",
+  "specId": "006",
+  "folderSlug": "validation-and-quality-gate",
+  "parentChain": [
+    "sk-doc",
+    "028-sk-create-diagram"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

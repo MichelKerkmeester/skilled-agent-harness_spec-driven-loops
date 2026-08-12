@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
+  "spec_folder": "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-diagram validation",
+      "diagram packet strict gate",
+      "028 packet closeout"
+    ],
+    "key_topics": [
+      "validation",
+      "quality",
+      "gate",
+      "strict",
+      "closeout",
+      "residue",
+      "sweep",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Five phases have each been spot-verified individually, but the packet as a whole \u2014 and the spec-folder tree describing it \u2014 has never been run through the authoritative strict gates together",
+    "created_at": "2026-08-12T05:53:36.000Z",
+    "last_save_at": "2026-08-12T18:40:07.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:31a47e3e1afd6d735964128a925ee4ffe4ebd11ab5837952b3ebcf95189dbc1a",
+    "source_doc_hashes": {
+      "spec.md": "3cb7977814c225f4f6808dae8925083719428a18dea4cba141e7027e3209cd0d",
+      "plan.md": "a9a1988aa2fc1583957d004728fc6a9e2a7766f1d4d8c85b905ec2910e40150f",
+      "tasks.md": "3fc8ef7e18cc5ea157f023f9df927d688290d0054cad626ffd61001ecc40f872",
+      "checklist.md": "ff76e9a9d7aaac7d8fa68f908ded1b938d1fb9dd6462e57d8d04a70da594d4a6",
+      "implementation-summary.md": "5ec697f6118f18016eb0943186476953e05939325ca97205fa2aaf0701347fe6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T18:40:07.000Z"
+  }
+}

@@ -1,0 +1,775 @@
+{
+  "mergedFrom": [
+    "deepseek-go",
+    "grok"
+  ],
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "`leaf-manifest.json` is stale after the packet's resource reorganization",
+      "file": null,
+      "line": null,
+      "description": "75 of 87 declared leaves resolve to paths that do not exist. `.opencode/skills/sk-doc/leaf-manifest.json` (sk-create-diagram entry, 87 leaves) vs the shipped tree: examples live at `assets/examples/*.html` but the manifest lists `assets/example-*.html`; templates at `assets/templates/template*.html` but the manifest lists `assets/template*.html`; refs at `references/foundations/`, `references/types/`, `references/primitives/`, `references/import-export/` but the manifest lists flat `references/style-guide.md`, `references/type-*.md`, `references/primitive-*.md`, `references/export.md`, `references/import-*.md`. Verified with a filesystem existence check: 75 missing. (The 12 valid leaves are the six `assets/ascii-patterns/*.md`, `assets/icons.html`, and `scripts/validate-flowchart.sh`.)",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-go"
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "`manual-testing-playbook.md:21` states the feature-catalog package \"is authored as a sibling deliverable and is not yet present\" and links it as \"planned\", but the catalog ships in the packet today. `.opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook/manual-testing-playbook.md:21` vs `.opencode/skills/sk-doc/sk-create-diagram/feature-catalog/` (root + 8 feature files present).",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-go"
+      ]
+    },
+    {
+      "findingId": "F-T-002",
+      "severity": "P1",
+      "title": "command-metadata.json still describes /create:diagram as HTML/SVG-only",
+      "file": ".opencode/skills/sk-doc/command-metadata.json",
+      "line": 397,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "F-S-001",
+      "severity": "P2",
+      "title": "Extract --out writes to an arbitrary path with no confinement",
+      "file": ".opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py",
+      "line": 958,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "F-M-001",
+      "severity": "P2",
+      "title": "Extract scripts have no committed regression suite",
+      "file": ".opencode/skills/sk-doc/sk-create-diagram/scripts/README.md",
+      "line": 95,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Feature catalog undercounts the registered aliases",
+      "file": null,
+      "line": null,
+      "description": "`feature-catalog.md:168` and `feature-catalog/command-and-hub-integration/hub-registration.md:29` claim \"17 aliases\", but `mode-registry.json` lists 27 aliases for `sk-create-diagram`. `.opencode/skills/sk-doc/feature-catalog/feature-catalog.md:168`, `.opencode/skills/sk-doc/mode-registry.json` (sk-create-diagram entry).",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-go"
+      ]
+    },
+    {
+      "findingId": "F-T-003",
+      "severity": "P2",
+      "title": "hub-router create-diagram-aliases omits export diagram",
+      "file": ".opencode/skills/sk-doc/hub-router.json",
+      "line": 50,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Internal contract contradiction",
+      "file": null,
+      "line": null,
+      "description": "the mandatory 4px-grid rule forbids the font sizes the style-guide typography tokens prescribe, and shipped examples violate both. `SKILL.md:337`, `references/foundations/style-guide.md:92-99`, `assets/examples/*.html`",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-go"
+      ]
+    },
+    {
+      "findingId": "F-T-001",
+      "severity": "P1",
+      "title": "leaf-manifest.json lists pre-reorganization flat paths that do not exist",
+      "file": ".opencode/skills/sk-doc/leaf-manifest.json",
+      "line": 118,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "F-C-003",
+      "severity": "P2",
+      "title": "LOAD_LEVELS map is never consulted by route_diagram_resources",
+      "file": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+      "line": 204,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "PNG export rasterization executes any embedded JavaScript in the source HTML inside headless Chromium, inconsistent with the packet's own \"never execute untrusted source\" import doctrine. `references/import-export/export.md:96-112`",
+      "file": null,
+      "line": null,
+      "description": "the Playwright snippet does `page.goto(f\"file://{...}\")` on the *original HTML* and screenshots `svg.first`. The skill's templates ship no JS (verified: zero `<script>` in templates/examples), but export accepts any existing diagram file the user points at, and the packet elsewhere treats rendering/executing unknown source as an execution-boundary violation (import-mermaid.md:153 \"Rendering Mermaid to SVG first … crosses an unnecessary execution boundary\"). Export offers no warning that the source HTML is executed in a browser.",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-go"
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "Shipped example corpus predates the current style-guide skin and is acknowledged as such in-doc",
+      "file": null,
+      "line": null,
+      "description": "`style-guide.md:50` (\"The pre-baked example HTML files in `assets/` were built under an earlier skin. Regenerating them against the current `style-guide.md` is a v5.1 task.\") Combined with F001 (1,357 off-grid coordinates, off-grid font sizes), the 34-example corpus is simultaneously the *reference the skill tells agents to copy* and a *non-compliant artifact*. `.opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md:50`, `.opencode/skills/sk-doc/sk-create-diagram/assets/examples/example-*.html (34)`.",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-go"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-002",
+      "severity": "P2",
+      "title": "Summary P2 finding 2",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Systemic stale SKILL.md section-number cross-references",
+      "file": null,
+      "line": null,
+      "description": "the workflow and references point to sections that do not exist. `SKILL.md` has sections §1–§6 only (verified full read), yet `create-diagram-auto.yaml:268/305/337/390/423/504` cites \"SKILL.md §9 Pre-Output Checklist\" and \"SKILL.md §0 style-guide gate\"; `import-drawio.md:100/130/138/159` cites \"SKILL.md §6–§7\", \"SKILL.md §6 rules 1–5\", \"SKILL.md §9 taste gate\", \"standard §7 budget\"; `import-mermaid.md:92/100` cites \"SKILL.md §6 connector rules\" and \"SKILL.md §9 taste gate\"; `notation-and-validator.md:17` cites \"SKILL.md §8\" and `:93` cites \"SKILL.md §5 notation rules and §8 validator contract\". The taste gate actually lives in SKILL.md §6 SUCCESS CRITERIA; connector rules in §4 RULES (NEVER 11–15); the complexity budget in §3 HOW IT WORKS. Grep counts: §9 ×4, §7 ×1, §8 ×2, §0 ×1, §6 ×8 across the packet.",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-go"
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "The two IR extractors duplicate substantial logic",
+      "file": null,
+      "line": null,
+      "description": "`clean_label`, `_has_cycle`, `shape_family`, `analyze`, `digest`, `to_json`, and `main` all appear in both `scripts/drawio_extract.py` and `scripts/mermaid_extract.py`. `.opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py` (e.g. lines 217, 596, 640, 759, 859, 919) and `scripts/mermaid_extract.py` (e.g. lines 234, 1054, 1084, 1089, 1177, 1312, 1374).",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-go"
+      ]
+    },
+    {
+      "findingId": "F-C-001",
+      "severity": "P2",
+      "title": "UNKNOWN_FALLBACK checklist still asks only for an .html deliverable",
+      "file": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+      "line": 213,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "F-C-002",
+      "severity": "P2",
+      "title": "Validator nesting check treats box-drawing leading spaces as markdown indent",
+      "file": ".opencode/skills/sk-doc/sk-create-diagram/scripts/validate-flowchart.sh",
+      "line": 92,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "grok"
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "Validator-mechanics doc drifts from the actual validator regex for connector detection. `references/ascii-format/notation-and-validator.md:32`, `scripts/validate-flowchart.sh:60`",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "deepseek-go"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 18
+  },
+  "openFindingsCount": 25,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 7,
+  "activeP2": 18
+}

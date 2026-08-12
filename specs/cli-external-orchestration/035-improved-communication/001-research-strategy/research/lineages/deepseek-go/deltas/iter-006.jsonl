@@ -1,0 +1,15 @@
+{"type":"iteration","iteration":6,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.50,"status":"complete","focus":"Fidelity validation, protected spans, exact-original fallback, evaluation methods","findingsCount":11,"timestamp":"2026-08-11T09:46:00Z"}
+{"type":"finding","id":"f-iter006-001","label":"Reference has no deterministic fidelity validator; prompt-only preservation","iteration":6}
+{"type":"finding","id":"f-iter006-002","label":"Protected-span classes specified: code, paths, commands, flags, variables, URLs, hashes, identifiers, quotes, names, numbers","iteration":6}
+{"type":"finding","id":"f-iter006-003","label":"Encoding strategy: opaque placeholder substitution before inference, decode+validate after","iteration":6}
+{"type":"finding","id":"f-iter006-004","label":"Objective rejection gates required: zero changed/missing/duplicated/reordered protected spans; structure intact","iteration":6}
+{"type":"finding","id":"f-iter006-005","label":"Fallback contract: fail to exact original, at most one bounded notice per session","iteration":6}
+{"type":"finding","id":"f-iter006-006","label":"Deterministic gates must be automatic machine gates (SC-003)","iteration":6}
+{"type":"finding","id":"f-iter006-007","label":"Semantic gates (new fact/polarity/requirement strength) need human adjudication; SARI/LENS regression-only","iteration":6}
+{"type":"finding","id":"f-iter006-008","label":"Evaluation corpus: versioned secret-free corpus with 6-CLI event fixtures","iteration":6}
+{"type":"finding","id":"f-iter006-009","label":"Blind rubric: meaning, plainness, fluency, indistinguishability; >=3 runs per provider/model/prompt","iteration":6}
+{"type":"finding","id":"f-iter006-010","label":"Operational metrics: p50/p95 first-token/full latency, fallback rate, token use, cost, privacy class","iteration":6}
+{"type":"finding","id":"f-iter006-011","label":"Pipeline-owner runtimes make display swap naturally atomic; removes process-death blank-screen risk","iteration":6}
+{"type":"observation","id":"obs-iter006-001","packet":"001-research-strategy","classification":"inferred","iteration":6}
+{"type":"ruled_out","direction":"Trust prompt-only preservation","reason":"Reference proves insufficient","iteration":6}
+{"type":"ruled_out","direction":"Machine-only semantic proof","reason":"SARI/LENS cannot independently prove fidelity","iteration":6}

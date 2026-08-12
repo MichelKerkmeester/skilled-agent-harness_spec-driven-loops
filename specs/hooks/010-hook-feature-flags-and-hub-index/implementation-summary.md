@@ -1,0 +1,118 @@
+---
+title: "Implementation Summary: Hook Feature Flags + Full Hub Index"
+description: "Running log across six phases. Phases 1-4 shipped the shared guard and wired it through portable and skill-owned hook concerns. Phase 5 adds the full hub symlink index; Phase 6 remains the final cross-runtime sweep."
+status: "in-progress"
+completion_pct: 92
+trigger_phrases:
+  - "hook feature flags status"
+  - "hook-flags guard implementation"
+  - "packet 010 implementation summary"
+importance_tier: "high"
+contextType: "implementation"
+parent: "./spec.md"
+_memory:
+  continuity:
+    packet_pointer: "hooks/010-hook-feature-flags-and-hub-index"
+    last_updated_at: "2026-08-12T15:20:51Z"
+    last_updated_by: "claude"
+    recent_action: "Corrected false MEGA-eviction note; build verified clean (exit 0)"
+    next_safe_action: "Fast-forward runtime checkout, npm run build, then live sweep"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - ".opencode/hooks/shared/hook-flags.cjs"
+      - ".opencode/hooks/shared/hook-flags.test.cjs"
+    session_dedup:
+      fingerprint: "sha256:5a044941f7cbc61a9c4bfce113341239a8a0e992c03591394dcd821a1dae58eb"
+      session_id: "4654af88-ba88-466a-bd14-2fa43ea87923"
+      parent_session_id: null
+    completion_pct: 92
+    open_questions: []
+    answered_questions:
+      - "Full hub index (symlink skill hooks in) vs portable-only -> full index"
+      - "Per-concern-family flags vs per-adapter -> per-concern family + master switch"
+      - "Per-runtime guard import path -> settled in Phase 2 pilot (see body)"
+---
+# Implementation Summary: Hook Feature Flags + Full Hub Index
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+## PHASE 1 — Guard + master switch (shipped)
+
+`.opencode/hooks/shared/hook-flags.cjs` is the canonical kill-switch resolver: `isHookEnabled(concern, env?)` returns `false` when the master `MK_HOOKS_DISABLED` or the concern's canonical `MK_<CONCERN>_DISABLED` or a registered legacy alias is truthy, else `true` (default on). `concernFlag()` derives the canonical name; `isTruthy()` accepts `1|true|yes|on` case/space-insensitively.
+
+Legacy aliases absorbed (so existing operator config keeps working): `goal`←`MK_GOAL_PLUGIN_DISABLED`; `dispatch`←`MK_CLI_DISPATCH_AUDIT_DISABLED`; `skill-advisor`←the four `*_SKILL_ADVISOR_{HOOK,PLUGIN}_DISABLED`; `completion`←`MK_COMPLETION_SENTINEL_DISABLED`/`MK_SPECKIT_COMPLETION_DISABLED`; `spec-memory`←`MK_SPEC_MEMORY_PLUGIN_DISABLED`/`SPECKIT_…`; `spec-gate`←`SPECKIT_SPEC_GATE_DISABLED`.
+
+`hook-flags.mjs` and `hook-flags.ts` are thin `createRequire` facades over the `.cjs`, so the semantics cannot drift between module systems.
+
+### Validation
+
+`node --experimental-strip-types --test .opencode/hooks/shared/hook-flags.test.cjs` → **7 passed / 0 failed**, covering: default-on, master switch, canonical per-concern, legacy aliases (and cross-concern non-interference), truthy parsing, and `.mjs`/`.ts` facade parity.
+
+## PHASE 2 — Pilot: mcp-route-guard (shipped)
+
+All six `mcp-route-guard` adapters now short-circuit through `isHookEnabled("mcp-route-guard")` at entry (before any work), falling to each adapter's existing silent-approve path when disabled. The OpenCode plugin's ad-hoc `MK_MCP_ROUTE_GUARD_DISABLED === '1'` check was realigned to the shared helper.
+
+### Per-runtime guard import path (settled — the reusable pattern for Phases 3-4)
+
+| Adapter kind | File | Import |
+|---|---|---|
+| `.cjs` (claude/codex/devin) | `mcp-route-guard/<rt>/mcp-route-guard.cjs` | `require('../../shared/hook-flags.cjs')` |
+| `.mjs` (cursor) | `mcp-route-guard/cursor/mcp-route-guard.mjs` | `import … '../../shared/hook-flags.mjs'` |
+| `.ts` (pi) | `mcp-route-guard/pi/mcp-route-guard.ts` | `import … '../../.opencode/hooks/shared/hook-flags.mjs'` (relative to the `.pi/extensions/` symlink base) |
+| `.js` (opencode plugin) | `plugins/mk-mcp-route-guard.js` | `require('../hooks/shared/hook-flags.cjs')` |
+
+### Proof
+
+Fed `mcp__claude_ai_Figma__get_metadata` (an advisory-triggering call) to each stdin adapter under three env states:
+
+| Adapter | default | `MK_MCP_ROUTE_GUARD_DISABLED=1` | `MK_HOOKS_DISABLED=1` |
+|---|---|---|---|
+| claude / codex / devin (.cjs) | ADVISORY | silent | silent |
+| cursor (.mjs) | ADVISORY | silent | silent |
+
+Plugin (`.js`) imports and loads clean; Pi (`.ts`) loads clean under `--preserve-symlinks` (mirrors the live Pi loader), confirming the `../../.opencode/hooks/shared/hook-flags.mjs` path resolves and the guard runs.
+
+## PHASE 3 — Remaining hub concerns (shipped)
+
+Commit `5cf07cf7bd` guarded dispatch, post-edit-quality, task-dispatch, and goal adapters across their runtime surfaces. Existing plugin-local disable checks were replaced with the shared helper while each adapter retained its prior fail-open or no-op path.
+
+## PHASE 4 — Skill-owned concerns (shipped)
+
+The shared guard now covers 41 skill-local adapter files and 8 remaining OpenCode plugin adapters across `skill-advisor`, `spec-gate`, `spec-memory`, `completion`, `session-lifecycle`, `git-preflight`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`, and `permission-policy`. Every guard is at the adapter entry before normal work, and the default remains on.
+
+### Runtime and build boundary
+
+Source-direct `.mjs`/`.cjs` hooks and Pi `.ts` symlink targets take effect immediately. Claude, Codex, Cursor, and Devin lifecycle/prompt adapters are invoked from `system-spec-kit/mcp-server/dist/hooks/`, while canonical advisor hooks target `system-skill-advisor/mcp-server/dist/`; both packages need a rebuild before those compiled runtime paths carry the Phase 4 guards. The requested implementation pass did not rebuild dist.
+
+### Proof
+
+- All changed JavaScript and TypeScript files passed Node syntax checks; all 41 skill-local guard import/require edges resolved directly.
+- Eight Pi adapters loaded from `.pi/extensions/` with `--preserve-symlinks`, proving their symlink-relative guard imports.
+- `git-preflight` emitted its existing destructive-reset advisory by default and emitted nothing under either `MK_GIT_PREFLIGHT_DISABLED=1` or `MK_HOOKS_DISABLED=1`.
+- `dist-freshness` and `codex-watchdog` plugins registered their existing hooks by default and returned `{}` under their concern switch and the master switch.
+- Completion plugin tests passed 5/5; shared guard tests passed 7/7; comment-hygiene checks reported no violations in the Phase 4 code diff.
+
+The broader typecheck/plugin suite remains blocked by checkout provisioning: Spec Kit typecheck rejects the existing deprecated `baseUrl` setting, Skill Advisor typecheck cannot find its TypeScript binary, and runtime/plugin imports that reach `system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js` fail because that dist tree is absent.
+
+## PHASE 5 — Full hub index (shipped)
+
+The hub now includes 49 relative symlinks under the ten skill-owned concern folders. Every link resolves with `readlink -f` to the Phase 4 adapter that remains in its owning skill or `.opencode/plugins/`; no implementation file moved. Duplicate Claude basenames are disambiguated with `speckit-` for the Spec Kit shim/bridge while retaining the canonical Skill Advisor target. The shared Git preflight adapter is indexed once under `git-preflight/shared/` because the same physical file serves Claude, Codex, Cursor, and Devin.
+
+The packet plan also named edits to `.opencode/hooks/README.md` and `injection-contract.md`; the implementer left these to stay within its scope lock. They were completed in the final-review pass (full-index + kill-switch model).
+
+## FINAL REVIEW + ACTIVATION STATE (reviewer pass)
+
+Independent verification (not trusting the implementer reports): all 72 guarded code files' `hook-flags` imports resolve (base-aware for the 8 `.pi/extensions`-symlinked adapters), all 49 hub symlinks resolve, guard suite 7/7 + completion 5/5, and every guard is byte-identical in shape to the proven mcp-route-guard gating pattern. The one implementer-skipped entry point, `cursor/post-tool-use.mjs` (proxies dispatch + post-edit-quality), was guarded to short-circuit only when BOTH concerns are off — coverage is now complete.
+
+**Activation state — what a flag actually gates today:**
+- **Live on sync** (hooks run from source): `spec-gate-classify/enforce`, `completion-evidence-stop`, and every adapter under `.opencode/hooks/` (dispatch, mcp-route-guard, post-edit-quality, task-dispatch, goal) plus the OpenCode plugins. The guard takes effect as soon as the source is in the runtime tree.
+- **Dormant until `npm run build`** (hooks run from `mcp-server/dist/`): the compiled session-lifecycle and `user-prompt-submit` adapters (spec-kit) and the advisor's compiled hooks. Their guard is on the `.ts`/`.mjs` source but the runtime loads the stale `.js` dist; a rebuild activates them. Default-on makes this harmless until a flag is set.
+
+## PHASE 6 — deploy-side (not repo work)
+
+`dist` is gitignored, so the rebuild is a per-environment step — but it is **not** blocked. `npm run build` runs clean (exit 0) and `zod` resolves via `.opencode/node_modules`; the earlier "missing deps / dist absent" reading was an artifact of the implementer's isolated worktree symlinks, not the real environment (the mcp-server's own `node_modules` intentionally holds only a few packages, the rest resolving from the hoisted `.opencode/node_modules`). The only requirement is that the guarded source be present in the runtime checkout — fast-forward it to this branch, then `npm run build` compiles the guards into `mcp-server/dist/` and the live cross-runtime sweep follows.

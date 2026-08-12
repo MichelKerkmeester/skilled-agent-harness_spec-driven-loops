@@ -24,6 +24,7 @@
 
 const guardCore = require('../lib/mcp-route-guard.cjs');
 const { parseJsonFailOpen, readStdin } = require('../../shared/hook-adapter-shared.cjs');
+const { isHookEnabled } = require('../../shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -39,6 +40,7 @@ function approve() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('mcp-route-guard')) return approve();
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null) return approve(); // no/invalid payload -> fail open
 

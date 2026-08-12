@@ -1,0 +1,173 @@
+{
+  "runId": "dd20bd64",
+  "agent": "reviewer",
+  "task": "Fresh read-only source review for the phase 018 pre-change baseline. Inspect the current directive-lifecycle implementation and tests across the canonical TypeScript core/store, Claude shim, OpenCode plugin mirror, registered Claude/Codex/Cursor/Devin lifecycle adapters, scenario 457, and manual benchmark persistence. Confirm findings against code rather than prior prose. Produce a P0/P1/P2 registry with file:line evidence, finding class, affected producers/consumers, and an explicit active-P0 count. At minimum test the hypotheses: stale high-water after growth/shrink, unknown stat/path suppression, missing real host reset coupling, ambiguous/object/conflicting OpenCode identities, symlink/TOCTOU/owner/mode/link-count/type/size/temp-store weaknesses, adapter parity gaps, ephemeral or overclaimed evidence, model provenance, test teardown, and metadata contradictions. Do not modify files.",
+  "exitCode": 0,
+  "processSignal": "SIGTERM",
+  "usage": {
+    "input": 124434,
+    "output": 7772,
+    "cacheRead": 266240,
+    "cacheWrite": 0,
+    "cost": 0.9884499999999999,
+    "turns": 6
+  },
+  "model": "openai-codex/gpt-5.6-sol:high",
+  "attemptedModels": [
+    "openai-codex/gpt-5.6-sol:high"
+  ],
+  "modelAttempts": [
+    {
+      "model": "openai-codex/gpt-5.6-sol:high",
+      "success": true,
+      "exitCode": 0,
+      "usage": {
+        "input": 124434,
+        "output": 7772,
+        "cacheRead": 266240,
+        "cacheWrite": 0,
+        "cost": 0.9884499999999999,
+        "turns": 6
+      }
+    }
+  ],
+  "durationMs": 186096,
+  "toolCount": 40,
+  "launchContractDigest": "bad2c181b5ddbed254f0cbc680d86792a0c6c820e1b0f5cb9844df6314bb834f",
+  "launchResolvedExtensions": {
+    "version": 1,
+    "source": "launch-resolved",
+    "disableAmbientExtensions": false,
+    "runtime": [
+      "sha256:4297d230a84cc387"
+    ],
+    "configured": [],
+    "effective": [
+      "sha256:4297d230a84cc387"
+    ],
+    "omitted": {
+      "runtime": 0,
+      "configured": 0,
+      "effective": 0
+    }
+  },
+  "acceptance": {
+    "status": "attested",
+    "evidenceStatus": "attested",
+    "explicit": false,
+    "effectiveAcceptance": {
+      "level": "attested",
+      "explicit": false,
+      "inferredReason": [
+        "read-only/reviewer-style agent"
+      ],
+      "criteria": [
+        {
+          "id": "criterion-1",
+          "must": "Return concrete findings with file paths and severity when applicable",
+          "evidence": [
+            "review-findings",
+            "residual-risks"
+          ],
+          "severity": "required"
+        }
+      ],
+      "evidence": [
+        "review-findings",
+        "residual-risks"
+      ],
+      "verify": [],
+      "stopRules": []
+    },
+    "inferredReason": [
+      "read-only/reviewer-style agent"
+    ],
+    "criteria": [
+      {
+        "id": "criterion-1",
+        "must": "Return concrete findings with file paths and severity when applicable",
+        "evidence": [
+          "review-findings",
+          "residual-risks"
+        ],
+        "severity": "required"
+      }
+    ],
+    "runtimeChecks": [],
+    "verifyRuns": [],
+    "childReport": {
+      "criteriaSatisfied": [
+        {
+          "id": "criterion-1",
+          "status": "satisfied",
+          "evidence": "Source-attested registry contains 10 concrete P1/P2 findings with file:line evidence, affected producers/consumers, and active P0 count 0."
+        }
+      ],
+      "changedFiles": [],
+      "testsAddedOrUpdated": [],
+      "commandsRun": [
+        {
+          "command": "node .opencode/bin/compiled-route.cjs --hub sk-code --prompt '<review task>'",
+          "result": "passed",
+          "summary": "Resolved the findings-first sk-code-review workflow."
+        },
+        {
+          "command": "git status --short",
+          "result": "passed",
+          "summary": "Confirmed a dirty checkout, no staged entries in porcelain output, and an untracked benchmark directory."
+        },
+        {
+          "command": "grep/find/read inventory across directive core, Claude shim, OpenCode mirror, adapters, tests, scenario 457, reports, and metadata",
+          "result": "passed",
+          "summary": "Confirmed the reported findings directly against current source and test files."
+        },
+        {
+          "command": "stat discovery and dist user-prompt-submit paths",
+          "result": "passed",
+          "summary": "All Claude/Cursor/Codex/Devin discovery paths are symlinks resolving to existing regular dist files."
+        },
+        {
+          "command": "npx vitest run directive-lifecycle and adapter suites",
+          "result": "not-run",
+          "summary": "Not run because the read-only review reached its tool-budget boundary."
+        }
+      ],
+      "validationOutput": [
+        "Active P0 = 0; active P1 = 7; active P2 = 3.",
+        "Discovery symlink inventory passed for Claude, Cursor, Codex, and Devin.",
+        "Source inspection reproduced the stale high-water and null-stat suppression paths.",
+        "No files were modified by this review."
+      ],
+      "residualRisks": [
+        "Native host delivery was not live-exercised.",
+        "Tests were not executed in this review.",
+        "Cross-process races and latency remain uncharacterized.",
+        "The checkout contains extensive unrelated dirty state."
+      ],
+      "noStagedFiles": true,
+      "diffSummary": "Review-only; no task-created diff. Existing unrelated working-tree changes remain.",
+      "reviewFindings": [
+        "P1 correctness: directive-lifecycle.ts:139-211 - transcript high-water is not updated on suppressed growth, and null/missing stat or path can authorize suppression.",
+        "P1 lifecycle integration: hooks/claude/user-prompt-submit.ts:128-139,306-314 - prompt-supplied lifecycle fields are not coupled to registered host reset adapters.",
+        "P1 identity: plugins/mk-skill-advisor.js:407-417,666-690,1179-1184 - ambiguous, object-shaped, and conflicting OpenCode identities are not rejected by active dedup.",
+        "P1 security: directive-lifecycle.ts:272-357 - durable store lacks no-follow, containment, ownership, mode, link-count, size, and TOCTOU protections.",
+        "P1 parity: Codex/Cursor/Devin adapters have no reviewed contract matrix and Cursor native delivery remains unconfirmed.",
+        "P1 evidence: scenario 457 uses the Claude target and /tmp fragments to support an all-runtime PASS contract.",
+        "P1 provenance: benchmark reports are untracked and contain conflicting verdict/model metadata.",
+        "P2 cleanup: failed writes or renames can strand temp files and eviction work is unbounded.",
+        "P2 isolation: environment, singleton, timer, and failure-path teardown is incomplete.",
+        "P2 metadata: scenario, benchmark, and phase evidence states are not reconciled."
+      ],
+      "manualNotes": "This is a fresh source review. Prior phase prose was used only to identify scope; findings and active-P0 count were re-derived from current code, tests, registrations, and persisted report files."
+    }
+  },
+  "effects": {
+    "fileMutation": {
+      "status": "not-applicable",
+      "expected": false,
+      "attempted": false
+    }
+  },
+  "transcriptPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.pi-subagents/artifacts/dd20bd64_reviewer_0_transcript.jsonl",
+  "timestamp": 1786459627749
+}

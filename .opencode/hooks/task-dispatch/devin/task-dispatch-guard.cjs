@@ -22,6 +22,7 @@
 
 const guardCore = require('../lib/dispatch-guard.cjs');
 const { parseJsonFailOpen, readStdin } = require('../../shared/hook-adapter-shared.cjs');
+const { isHookEnabled } = require('../../shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -49,6 +50,7 @@ function firstNonBlankString(...candidates) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('task-dispatch')) return approve();
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null) return approve(); // no/invalid payload -> fail open
 

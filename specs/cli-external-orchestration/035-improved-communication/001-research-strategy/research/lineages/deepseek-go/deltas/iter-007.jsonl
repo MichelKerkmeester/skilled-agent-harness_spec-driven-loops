@@ -1,0 +1,15 @@
+{"type":"iteration","iteration":7,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.42,"status":"complete","focus":"Concurrency/failure boundaries and downstream phase decomposition","findingsCount":11,"timestamp":"2026-08-11T09:49:00Z"}
+{"type":"finding","id":"f-iter007-001","label":"Assembler reconciles ordering/completion explicitly; tolerates unknown events (NFR-R02)","iteration":7}
+{"type":"finding","id":"f-iter007-002","label":"Per-runtime stream events mapped for ordering: Claude index/final, Codex turn/completed, Pi message_end, OpenCode SSE, Cursor/Devin agent_message_chunk","iteration":7}
+{"type":"finding","id":"f-iter007-003","label":"Ordering strategy: index/final where provided, completion-event anchor, arrival sequence otherwise","iteration":7}
+{"type":"finding","id":"f-iter007-004","label":"Buffering per stable hashed identity; private, locked, bounded, expired on missing final","iteration":7}
+{"type":"finding","id":"f-iter007-005","label":"Concurrency isolation: separate buffers/locks/notices/cancellation/cleanup per identity","iteration":7}
+{"type":"finding","id":"f-iter007-006","label":"Cancellation surfaces: Codex turn/interrupt, Cursor session/cancel, OpenCode /abort, Pi session_shutdown","iteration":7}
+{"type":"finding","id":"f-iter007-007","label":"Retry policy: bounded backoff for transient provider failures; never retry semantic validation rejection","iteration":7}
+{"type":"finding","id":"f-iter007-008","label":"Failure classes all select original with redacted reason; unsupported interception uses append/sidecar/custom client","iteration":7}
+{"type":"finding","id":"f-iter007-009","label":"Downstream phase map A-E: adapters+envelope, assembler+concurrency, codec+validator, providers+privacy, render+eval","iteration":7}
+{"type":"finding","id":"f-iter007-010","label":"Handoffs A>B, B>C, A>D, C>E, D>E; gates per child; rollback confined to research artifacts","iteration":7}
+{"type":"finding","id":"f-iter007-011","label":"Architecture freeze: plan component set compatible with all findings; no redesign required","iteration":7}
+{"type":"observation","id":"obs-iter007-001","packet":"001-research-strategy","classification":"inferred","iteration":7}
+{"type":"ruled_out","direction":"Retry semantic validation failures","reason":"Validation rejection selects original immediately","iteration":7}
+{"type":"ruled_out","direction":"Share mutable assembler state across concurrent identities","reason":"Isolation required","iteration":7}

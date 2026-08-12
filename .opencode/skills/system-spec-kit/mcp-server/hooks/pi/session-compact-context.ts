@@ -14,6 +14,7 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
+import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 const MAX_CONTEXT_BYTES = 4_096;
 const MEMORY_CONTEXT_TIMEOUT_MS = 2_500;
@@ -61,6 +62,7 @@ function sanitizeForInjection(text: string): string {
 
 /** Rehydrates spec-folder continuity after a compaction, mirroring the devin PostCompaction recovery chain. */
 export default function sessionCompactContext(pi: ExtensionAPI): void {
+  if (!isHookEnabled("session-lifecycle")) return undefined;
   pi.on("session_compact", async (event, ctx) => {
     try {
       const sessionId = ctx.sessionManager.getSessionId();

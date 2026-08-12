@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 const RAW_INPUT_STORE_KEY = Symbol.for("mk.pi.dispatch.raw-input");
 const MAX_CAPTURED_USER_TEXT = 32_768;
@@ -46,6 +47,8 @@ function sessionIdFromContext(ctx: { sessionManager?: { getSessionId?: () => unk
 // cache work.
 const ADVISOR_HOOK_MODULE =
   "../../.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js";
+const ADVISOR_HOOK_FALLBACK_MODULE =
+  "../../mcp-server/dist/hooks/claude/user-prompt-submit.js";
 
 const POLICY_PLAN_MODULE =
   "../../.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js";
@@ -168,18 +171,13 @@ export function isPiCompactDirectivePrototypeEnabled(): boolean {
 }
 
 // ── Pi-local directive de-duplication ──────────────────────────────
-// The advisor brief Pi appends onto the visible prompt is a dynamic
-// "Advisor: …" route line plus three CONSTANT directives (comment-hygiene,
-// governor, proof-over-appearance). The route line changes per turn; the
-// directives do not. Unlike every other runtime — where the brief is
-// model-context-only — Pi renders it on-screen, so re-appending identical
-// directives onto every prompt is visible repetition. This drops the
-// directive block on a proven same-content repeat within one lifecycle
-// epoch while keeping the route line, and re-delivers the full block on the
-// first turn, any directive-text change, resume/compact (history may be
-// summarised away), an unknown session, or when the kill-switch is set — so
-// a guardrail is never silently dropped. The Pi dispatch directive is
-// appended separately and is never affected here.
+// The advisor brief Pi appends onto the visible prompt is a dynamic route line
+// plus constant directives. Pi renders the entire extension contribution on
+// screen, so a proven same-content repeat suppresses both that brief and the
+// visible dispatch reminder. The first turn, changed directive content,
+// resume/compact, unknown sessions, and the kill-switch all fail open to the
+// complete contribution. Dispatch authorization remains enforced separately
+// at the tool-call boundary on every turn.
 export const PI_DIRECTIVE_DEDUP_FLAG = "SPECKIT_PI_DIRECTIVE_DEDUP";
 
 // Mirrors render.ts DIRECTIVES_LABEL. If the brief format ever drifts past
@@ -198,28 +196,64 @@ interface PiDirectiveBriefParts {
 
 function splitPiDirectiveBrief(context: string): PiDirectiveBriefParts | null {
   const index = context.indexOf(PI_DIRECTIVE_SEPARATOR);
-  // index <= 0 means there is no directive block, or no advisor head before
-  // it (the advisor-failure fallback is directives-only): not reducible.
-  if (index <= 0) return null;
-  return { head: context.slice(0, index), directives: context.slice(index) };
+  if (index > 0) {
+    return { head: context.slice(0, index), directives: context.slice(index) };
+  }
+  // Advisor-failure / no-route fallback: the brief is the directive block with
+  // no advisor head. Normalize it to the separator-prefixed form so an
+  // identical directive block dedups to the same key whether or not a head was
+  // present; record an empty head. Without this the operator-visible directives
+  // repeat on every headless-brief turn.
+  const label = PI_DIRECTIVE_SEPARATOR.slice(1);
+  if (context.startsWith(label)) {
+    return { head: "", directives: PI_DIRECTIVE_SEPARATOR + context.slice(label.length) };
+  }
+  return null;
 }
 
 export interface PiDirectiveDeliveryDecision {
-  readonly reducedContext: string | null;
   readonly suppressed: boolean;
 }
 
 const FULL_PI_DIRECTIVE_DELIVERY: PiDirectiveDeliveryDecision = Object.freeze({
-  reducedContext: null,
   suppressed: false,
 });
 
+export const PI_ADVISOR_DEBUG_FLAG = "SPECKIT_PI_ADVISOR_DEBUG";
+
+export function isPiAdvisorDebugEnabled(): boolean {
+  const v = process.env[PI_ADVISOR_DEBUG_FLAG];
+  return v === "1" || v === "true";
+}
+
+// Operator-facing, opt-in only. Classifies what the advisor returned this turn
+// so a cli-pi operator can tell a live advisor route from the directives-only
+// failure fallback, and read how long the advisor call took against its timeout
+// budget — enough to distinguish a timeout (durationMs ≈ budgetMs) from an
+// unreachable daemon (fast fallback) without instrumenting the advisor itself.
+export function formatPiAdvisorDebug(
+  context: string | undefined,
+  advisorFailed: boolean,
+  durationMs: number,
+): string {
+  let brief: string;
+  if (advisorFailed) brief = "failed";
+  else if (!context || !context.trim()) brief = "empty";
+  else if (context.startsWith("Directives:")) brief = "fallback(unavailable)";
+  else {
+    const match = context.match(/^Advisor:\s*([A-Za-z]+)/);
+    brief = match ? `head(${match[1]})` : "other";
+  }
+  const budgetMs = Number(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS) || 2500;
+  return `[advisor-debug] brief=${brief} durationMs=${durationMs} budgetMs=${budgetMs}`;
+}
+
 /**
- * Decide whether this turn's visible brief may drop the constant directive
- * block. Suppresses only for a confirmed session's proven same-content repeat
- * within the current lifecycle epoch; every uncertain case falls open to the
- * full brief so a guardrail is never silently dropped. Records the delivered
- * directive block on a full delivery so the next identical turn is eligible.
+ * Decide whether this extension may omit its entire visible contribution.
+ * Suppresses only for a confirmed session's proven same-content repeat within
+ * the current lifecycle epoch; every uncertain case falls open to full
+ * delivery. Records the directive block on a full delivery so the next
+ * identical turn is eligible.
  */
 export function decidePiDirectiveDelivery(
   context: string,
@@ -229,7 +263,7 @@ export function decidePiDirectiveDelivery(
   const key = receiptSessionKey(sessionId);
   if (!key) return FULL_PI_DIRECTIVE_DELIVERY;
   const parts = splitPiDirectiveBrief(context);
-  if (!parts || !parts.head.trim()) return FULL_PI_DIRECTIVE_DELIVERY;
+  if (!parts) return FULL_PI_DIRECTIVE_DELIVERY;
 
   const store = compactShadowStore();
   if (!store.directiveDedupBySession) {
@@ -237,7 +271,7 @@ export function decidePiDirectiveDelivery(
   }
   const map = store.directiveDedupBySession;
   if (map.get(key) === parts.directives) {
-    return Object.freeze({ reducedContext: parts.head, suppressed: true });
+    return Object.freeze({ suppressed: true });
   }
   if (!map.has(key)) {
     while (map.size >= MAX_PI_RECEIPT_SESSIONS) {
@@ -512,6 +546,7 @@ interface AdvisorEnvelope {
 
 /** Bridges the skill-advisor's UserPromptSubmit recommendation into Pi's input event. Distinct from spec-gate-classify.ts, which only appends the Gate-3 documentation question. */
 export default function promptAdvisor(pi: ExtensionAPI): void {
+  if (!isHookEnabled("skill-advisor")) return undefined;
   pi.on("session_start", async (event, ctx) => {
     const lifecycleEvent = sessionStartLifecycleEvent(event.reason);
     if (!lifecycleEvent) return;
@@ -547,12 +582,15 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
 
     let context: string | undefined;
     let advisorFailed = false;
+    let advisorMs = 0;
+    const advisorStart = Date.now();
     try {
       if (!event.text.trim()) return;
 
-      const { handleClaudeUserPromptSubmit } = (await import(
-        ADVISOR_HOOK_MODULE
-      )) as {
+      const advisorModule = await import(ADVISOR_HOOK_MODULE).catch(
+        () => import(ADVISOR_HOOK_FALLBACK_MODULE),
+      );
+      const { handleClaudeUserPromptSubmit } = advisorModule as {
         handleClaudeUserPromptSubmit?: (
           input: {
             prompt?: string;
@@ -573,6 +611,29 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
     } catch {
       latchPiDispatchFailure(compactShadowStore(), sessionIdFromContext(ctx));
       advisorFailed = true;
+    } finally {
+      advisorMs = Date.now() - advisorStart;
+    }
+
+    const advisorDebug = isPiAdvisorDebugEnabled()
+      ? formatPiAdvisorDebug(context, advisorFailed, advisorMs)
+      : "";
+
+    if (!advisorFailed && context) {
+      try {
+        const decision = decidePiDirectiveDelivery(context, sessionIdFromContext(ctx));
+        if (decision.suppressed) {
+          // A suppressed turn normally emits no transform. When advisor-debug is
+          // opt-in enabled, still surface the debug line so the operator can read
+          // advisor freshness on every cli-pi turn, not only the delivered ones.
+          if (advisorDebug) {
+            return { action: "transform" as const, text: `${event.text}\n\n${advisorDebug}` };
+          }
+          return;
+        }
+      } catch {
+        // Directive de-dup is advisory; on any failure keep the full contribution.
+      }
     }
 
     if (!advisorFailed) {
@@ -586,21 +647,13 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
       }
     }
 
-    let effectiveContext = context;
-    if (!advisorFailed && context) {
-      try {
-        const decision = decidePiDirectiveDelivery(context, sessionIdFromContext(ctx));
-        if (decision.suppressed && decision.reducedContext) {
-          effectiveContext = decision.reducedContext;
-        }
-      } catch {
-        // Directive de-dup is advisory; on any failure keep the full brief.
-        effectiveContext = context;
-      }
-    }
-
-    const text = effectiveContext
-      ? `${event.text}\n\n${effectiveContext}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
+    const briefBlock = advisorDebug
+      ? context
+        ? `${advisorDebug}\n\n${context}`
+        : advisorDebug
+      : context;
+    const text = briefBlock
+      ? `${event.text}\n\n${briefBlock}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
       : `${event.text}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`;
     const output = { action: "transform" as const, text };
     await observeEmittedPiDispatch(sessionIdFromContext(ctx));

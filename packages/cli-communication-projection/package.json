@@ -1,0 +1,42 @@
+{
+  "name": "@portable-cli/communication-projection",
+  "version": "0.1.0",
+  "description": "Versioned contracts and deterministic fixtures for portable CLI display projections.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10"
+  },
+  "packageManager": "npm@11.9.0",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./contracts": {
+      "types": "./dist/contracts/index.d.ts",
+      "import": "./dist/contracts/index.js"
+    },
+    "./versioning": {
+      "types": "./dist/versioning/index.d.ts",
+      "import": "./dist/versioning/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --config vitest.config.ts",
+    "test:contracts": "vitest run --config vitest.config.ts test/contracts",
+    "test:import": "node --input-type=module -e \"const module = await import('./dist/index.js'); const required = ['validateContract', 'normalizeEventSequence', 'MessageAssembler', 'selectBoundedContext', 'createAssemblyTelemetryEvent', 'emitCoreTelemetry', 'protectMarkdown', 'restoreProtectedSpans', 'validateProjectionCandidate', 'decideRender', 'createFidelityTelemetryEvent', 'createRenderTelemetryEvent']; const missing = required.filter((name) => typeof module[name] === 'undefined'); if (missing.length > 0) throw new Error('public import smoke failed: ' + missing.join(', '))\"",
+    "check": "npm run typecheck && npm run build && npm run test && npm run test:import"
+  },
+  "devDependencies": {
+    "@types/node": "25.8.0",
+    "typescript": "6.0.3",
+    "vitest": "4.1.6"
+  }
+}

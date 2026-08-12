@@ -1,0 +1,12 @@
+All phases complete. Summary of the run:
+
+**phase_init** — Packet initialized in `research/lineages/pi-flash-a/`: config (cli-pi/deepseek-v4-flash, 3 iterations, stopPolicy max-iterations), strategy, findings registry, JSONL (config + init events).
+
+**phase_main_loop** — 3 iterations, each with write-once iteration file, JSONL delta, and strategy refresh:
+1. **Templates** (ratio 0.95): measured all 13 manifest templates via renderer CLI. `renderInlineGates` is the deterministic template reducer (spec 874→143 L1, ~84% cut) — already-exists. **Genuine gap: research.md.tmpl renders 944 lines at every level** (single always-true gate, absent from spec-kit-docs.json contract).
+2. **Doc-logic** (ratio 0.80): Default-FAIL (Iron Law + check-evidence), fresh evaluator (deep-review), handoff, complexity-match all already-exist. **Genuine gaps: AC_COVERAGE rule exists but is disabled-by-default/advisory (validation-rules.md:75-79); zero scope-adherence validator rules** — SCOPE LOCK is prose-only.
+3. **Context/memory** (ratio 0.70): token budget IS enforced in memory-context.ts:551 (charter hypothesis refuted); id-based dedup at 4+ stages; **minor gap: dynamic tier budget advisory-only** (split-brain). Confirmed contradiction-supersession + conditional-fanin + reduce-state.cjs already ship Reducer Engineering — porting `reduce_findings` is not-applicable.
+
+**phase_synthesis** — `research.md` (17 sections): ranked 6-item shortlist (top: promote AC_COVERAGE; gate research.md.tmpl; add scope-adherence rule; wire tier budget) + 9-row refutation list (REQ-005/006). Registry: 8 findings, 5/5 questions answered, 5 ruled-out. Config status `complete`, stopReason `max_iterations`, synthesis_complete event appended. Containment verified: all writes inside lineage dir; JSONL parses clean.
+
+FANOUT_LINEAGE_COMPLETE:pi-flash-a

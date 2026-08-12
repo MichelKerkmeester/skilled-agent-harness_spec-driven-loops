@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/001-inventory-and-skill-contract",
+  "spec_folder": "sk-doc/028-sk-create-diagram/001-inventory-and-skill-contract",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "diagram skill inventory",
+      "diagram-design content trim manifest",
+      "sk-create-diagram scope boundary",
+      "diagram inventory plan",
+      "diagram trim manifest plan",
+      "diagram inventory tasks",
+      "diagram inventory checklist",
+      "sk-create-diagram decision record",
+      "diagram skill target tree",
+      "diagram inventory summary",
+      "diagram-design resource map",
+      "diagram source inventory"
+    ],
+    "key_topics": [
+      "diagram",
+      "skill",
+      "inventory",
+      "diagram-design",
+      "content",
+      "trim",
+      "manifest",
+      "sk-create-diagram",
+      "scope",
+      "boundary",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      "resource-map.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Decide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The source plugin ships 282 files (references, 100 example HTML assets, two Python extractors, its own CI/lint tooling, marketplace/plugin manifests for three runtimes) using its own conventions",
+    "created_at": "2026-08-12T05:47:23.000Z",
+    "last_save_at": "2026-08-12T05:53:53.527Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:905ac33d92660c386aab87f37a915fdb338babcf6eb92c54918f581c5ef21998",
+    "source_doc_hashes": {
+      "spec.md": "caa6ec98ff64d918f590206630127849e54f228f2f7046a1433834c22e93350e",
+      "plan.md": "6d4dcaa4c0fdfba115131bf4330b24379a3059cbf644a693aabe42512f7cb08f",
+      "tasks.md": "1b6f91dece835ee52932253323417c99102c8a592c038b28e8a27db6843f8034",
+      "checklist.md": "e1970c8b0ea41394762b6b0ecb0c79d758e01ba8d1caa9906b35ef66e1175f38",
+      "decision-record.md": "fedc2c99dcc080213a41c955936db211abb172b87b6f1d9b6d048e0f86372cfd",
+      "implementation-summary.md": "a4a0720ad8961b382d234d7d0670c77c26c4e9f642ef23f75f21e5ce7a402d71",
+      "resource-map.md": "246f403d82744af28632848a5cbb8511ae6e800bdabd7e459fc51f9827c28b94"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T05:47:23.000Z"
+  }
+}

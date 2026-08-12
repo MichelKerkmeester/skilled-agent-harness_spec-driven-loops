@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/028-sk-create-diagram/011-reference-template-alignment",
+  "description": "The operator named 10 reference files that don't align with `sk-create-skill`'s literal reference template: missing `---` dividers between numbered",
+  "keywords": [
+    "reference",
+    "template",
+    "alignment",
+    "divider",
+    "casing",
+    "overview",
+    "section",
+    "structure",
+    "layout"
+  ],
+  "lastUpdated": "2026-08-12T18:40:07.000Z",
+  "specId": "011",
+  "folderSlug": "reference-template-alignment",
+  "parentChain": [
+    "sk-doc",
+    "028-sk-create-diagram"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

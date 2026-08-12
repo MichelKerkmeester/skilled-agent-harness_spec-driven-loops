@@ -24,6 +24,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import path from 'node:path';
+import { isHookEnabled } from '../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 import {
   evaluate,
@@ -78,6 +79,7 @@ function resolveSuppression() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('git-preflight')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

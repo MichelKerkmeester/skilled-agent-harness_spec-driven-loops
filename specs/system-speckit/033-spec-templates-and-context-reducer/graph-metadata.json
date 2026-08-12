@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-spec-templates-and-context-reducer",
+  "spec_folder": "system-speckit/033-spec-templates-and-context-reducer",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec templates context reducer",
+      "reducer engineering speckit",
+      "template weight reduction research",
+      "context reduction deep research",
+      "plan adherence optimization research",
+      "spec templates context reducer plan",
+      "deep research launch matrix speckit"
+    ],
+    "key_topics": [
+      "spec",
+      "templates",
+      "context",
+      "reducer",
+      "engineering",
+      "speckit",
+      "template",
+      "weight",
+      "reduction",
+      "research",
+      "deep",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "research/research.md",
+      "context/Reducer Engineering.md",
+      "context/The $1.2M Agent Engineering skill.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reducer Engineering.md",
+        "kind": "doc",
+        "path": "context/Reducer Engineering.md",
+        "source": "derived"
+      },
+      {
+        "name": "The $1.2M Agent Engineering skill.md",
+        "kind": "doc",
+        "path": "context/The $1.2M Agent Engineering skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Template",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Reducer Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reducer Engineering",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Engineering",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Stop Policy Flag",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Selection",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enforced Allowlist",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Updated",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two external agent-engineering write-ups landed as context material here (`context/Reducer Engineering.md`, `context/The $1.2M Agent Engineering skill.md`)",
+    "created_at": "2026-08-12T05:47:02.666Z",
+    "last_save_at": "2026-08-12T07:16:29.321Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:8de419fa7e9288d1723c6f9c4624f4889fbfb3e40a6b3b4b69b68af2a0230e70",
+    "source_doc_hashes": {
+      "spec.md": "4af8272a7c96308dfa2b27d023486507b097e5890e38d91971963f767ca88d82",
+      "plan.md": "50ed104467f47cb0705c34bdeab1b89e52bcfe4f067022892f0d8c2e94edbbed",
+      "tasks.md": "1be84bce56d1e26a4060e76668050b84fd3b17b2b8b5a60d6732d73c68257374",
+      "implementation-summary.md": "78fa72559c4a5bb326ef53a4bc549381a4c7c1ef1ce497ddf59701d51b1462ff",
+      "research/research.md": "39e1ae7e73d662b612acee0f90b771e77509094e759782a0e34253bd9c0a57e1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

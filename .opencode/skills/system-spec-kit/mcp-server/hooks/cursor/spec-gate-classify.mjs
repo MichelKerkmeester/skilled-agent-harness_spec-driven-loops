@@ -24,6 +24,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
+import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -45,6 +46,7 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('spec-gate')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

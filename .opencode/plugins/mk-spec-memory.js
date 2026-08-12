@@ -17,10 +17,14 @@ import { readFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 import { tool } from '@opencode-ai/plugin/tool';
 
 import * as messageIdentity from './lib/opencode-message-identity.js';
+
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -80,10 +84,6 @@ function normalizePositiveInt(value, fallback) {
   return Number.isFinite(value) && value > 0 ? Math.trunc(value) : fallback;
 }
 
-function envDisablesPlugin() {
-  return process.env[DISABLED_ENV] === '1' || process.env[LEGACY_DISABLED_ENV] === '1';
-}
-
 function disabledEnvName() {
   if (process.env[DISABLED_ENV] === '1') return DISABLED_ENV;
   if (process.env[LEGACY_DISABLED_ENV] === '1') return LEGACY_DISABLED_ENV;
@@ -102,7 +102,7 @@ function normalizeOptions(rawOptions) {
     : undefined;
 
   return {
-    enabled: options.enabled !== false && !envDisablesPlugin(),
+    enabled: options.enabled !== false && isHookEnabled('spec-memory'),
     cacheTtlMs: normalizePositiveInt(options.cacheTtlMs ?? options.cacheTTLMs, normalizePositiveInt(envCacheTtlMs, DEFAULT_CACHE_TTL_MS)),
     bridgeTimeoutMs: normalizePositiveInt(options.bridgeTimeoutMs, normalizePositiveInt(envBridgeTimeoutMs, DEFAULT_BRIDGE_TIMEOUT_MS)),
     cliTimeoutMs: normalizePositiveInt(options.cliTimeoutMs, normalizePositiveInt(envCliTimeoutMs, DEFAULT_CLI_TIMEOUT_MS)),

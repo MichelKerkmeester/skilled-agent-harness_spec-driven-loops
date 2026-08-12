@@ -20,6 +20,7 @@
 
 import { join } from 'node:path';
 import * as dispatchAuditCore from '../lib/dispatch-audit.mjs';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -41,6 +42,7 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('dispatch')) return done();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

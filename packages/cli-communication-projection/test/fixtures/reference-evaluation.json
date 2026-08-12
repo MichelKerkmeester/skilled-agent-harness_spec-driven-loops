@@ -1,0 +1,154 @@
+{
+  "fixtureSetVersion": "1.0.0",
+  "description": "Human-authored synthetic parity corpus and pre-candidate blinded evaluation policy.",
+  "case": {
+    "fixtureId": "evaluation-reference-parity-v1",
+    "schemaVersion": "1.0.0",
+    "sourceFamily": "phase-002-synthetic-contract-corpus",
+    "sourceVersion": "1.0.0",
+    "captureMethod": "synthetic",
+    "sanitizationStatus": "synthetic",
+    "expectedResult": "ready-for-baseline-measurement",
+    "record": {
+      "contractKind": "evaluation",
+      "schemaVersion": "1.0.0",
+      "evaluationId": "reference-parity-v1",
+      "corpusVersion": "1.0.0",
+      "cases": [
+        {
+          "caseId": "reference-progress",
+          "category": "progress",
+          "sourceOriginalId": "reference-progress-source",
+          "referenceOutputId": "reference-progress-output"
+        },
+        {
+          "caseId": "reference-final-summary",
+          "category": "final-summary",
+          "sourceOriginalId": "reference-final-summary-source",
+          "referenceOutputId": "reference-final-summary-output"
+        },
+        {
+          "caseId": "reference-blocker",
+          "category": "blocker",
+          "sourceOriginalId": "reference-blocker-source",
+          "referenceOutputId": "reference-blocker-output"
+        },
+        {
+          "caseId": "reference-correction",
+          "category": "correction",
+          "sourceOriginalId": "reference-correction-source",
+          "referenceOutputId": "reference-correction-output"
+        }
+      ],
+      "blindOrderManifestId": "blind-order-reference-parity-v1",
+      "reviewerCount": 3,
+      "rubric": [
+        {
+          "name": "directness",
+          "minimumScore": 1,
+          "maximumScore": 5,
+          "blocking": false
+        },
+        {
+          "name": "fluency",
+          "minimumScore": 1,
+          "maximumScore": 5,
+          "blocking": false
+        },
+        {
+          "name": "meaning-preservation",
+          "minimumScore": 1,
+          "maximumScore": 5,
+          "blocking": true
+        },
+        {
+          "name": "reference-likeness",
+          "minimumScore": 1,
+          "maximumScore": 5,
+          "blocking": true
+        }
+      ],
+      "baselineVarianceInputs": [
+        {
+          "dimension": "directness",
+          "status": "pending",
+          "referenceToReference": null,
+          "humanToHuman": null
+        },
+        {
+          "dimension": "fluency",
+          "status": "pending",
+          "referenceToReference": null,
+          "humanToHuman": null
+        },
+        {
+          "dimension": "meaning-preservation",
+          "status": "pending",
+          "referenceToReference": null,
+          "humanToHuman": null
+        },
+        {
+          "dimension": "reference-likeness",
+          "status": "pending",
+          "referenceToReference": null,
+          "humanToHuman": null
+        }
+      ],
+      "sampleSizeRule": {
+        "minimumRepetitions": 3,
+        "minimumPairs": 4,
+        "maximumPairs": 20,
+        "alpha": 0.05,
+        "power": 0.8
+      },
+      "marginStatus": "provisional-zero-tolerance",
+      "nonInferiorityMargins": {
+        "directness": 0,
+        "fluency": 0,
+        "meaning-preservation": 0,
+        "reference-likeness": 0
+      },
+      "confidenceRule": "Release requires every two-sided 95% confidence interval to remain at or above its frozen non-inferiority margin.",
+      "inconclusivePolicy": "block-release"
+    }
+  },
+  "blindOrderManifest": {
+    "manifestId": "blind-order-reference-parity-v1",
+    "manifestVersion": "1.0.0",
+    "assignmentDisclosure": "withheld-until-scoring-complete",
+    "pairOrder": [
+      {
+        "pairId": "pair-01",
+        "caseId": "reference-correction",
+        "labels": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "pairId": "pair-02",
+        "caseId": "reference-progress",
+        "labels": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "pairId": "pair-03",
+        "caseId": "reference-blocker",
+        "labels": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "pairId": "pair-04",
+        "caseId": "reference-final-summary",
+        "labels": [
+          "B",
+          "A"
+        ]
+      }
+    ]
+  }
+}

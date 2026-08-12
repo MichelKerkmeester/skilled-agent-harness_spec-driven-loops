@@ -21,6 +21,8 @@ This scenario validates comment hygiene enforcement for OpenCode sessions in `11
 
 OpenCode has no `tool:write`, `file:write`, or `PostToolUse` hook (ADR-001). Without the plugin injection, OpenCode sessions operate with no awareness of the hygiene rule. The pre-commit gate is the mandatory floor, but confirming the plugin injection is the only way to know whether the rule reaches the model before it writes. Run `119-A` first.
 
+> **Lifecycle note (directive-lifecycle dedup):** the comment-hygiene rule is injected at session start and re-delivered after lifecycle boundaries (`session.created`/`resumed`/`compacted`/`compact`). Repeat turns inside one epoch keep the rule via the turn-1 context retention plus the boundary re-delivery; the rule is never dropped on an uncertain path (fail-open). This cadence is compatible with — and covered by — scenario 457 (directive-lifecycle dedup).
+
 ---
 
 ## 2. SCENARIO CONTRACT

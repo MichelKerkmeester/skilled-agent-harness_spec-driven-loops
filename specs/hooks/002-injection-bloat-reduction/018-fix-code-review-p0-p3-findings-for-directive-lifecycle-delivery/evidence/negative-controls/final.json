@@ -1,0 +1,52 @@
+{
+  "expected": {
+    "growthThenShrink": [
+      "full",
+      "route-only",
+      "full"
+    ],
+    "unknownStats": [
+      "full",
+      "full"
+    ],
+    "knownThenMissingPath": [
+      "full",
+      "full"
+    ],
+    "generationReset": [
+      false,
+      true,
+      false
+    ],
+    "symlinkEscapeCreated": false
+  },
+  "observed": {
+    "growthThenShrink": [
+      "full",
+      "route-only",
+      "full"
+    ],
+    "unknownStats": [
+      "full",
+      "full"
+    ],
+    "knownThenMissingPath": [
+      "full",
+      "full"
+    ],
+    "generationReset": [
+      false,
+      true,
+      false
+    ],
+    "symlinkEscapeCreated": false
+  },
+  "checks": {
+    "growthThenShrink": true,
+    "unknownStats": true,
+    "knownThenMissingPath": true,
+    "generationReset": true,
+    "symlinkEscapeCreated": true
+  },
+  "passed": true
+}

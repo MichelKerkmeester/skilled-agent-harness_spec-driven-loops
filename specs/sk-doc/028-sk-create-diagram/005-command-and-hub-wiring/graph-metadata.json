@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/005-command-and-hub-wiring",
+  "spec_folder": "sk-doc/028-sk-create-diagram/005-command-and-hub-wiring",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "create:diagram command",
+      "sk-create-diagram hub registration",
+      "mode-registry hub-router wiring"
+    ],
+    "key_topics": [
+      "hub",
+      "wiring",
+      "mode-registry",
+      "hub-router",
+      "command-metadata",
+      "create-diagram",
+      "sk-doc",
+      "advisor",
+      "routing"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "The packet exists on disk but is invisible to the advisor and unreachable by any command — `sk-doc` doesn't know it exists",
+    "created_at": "2026-08-12T05:53:36.000Z",
+    "last_save_at": "2026-08-12T06:53:44.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a13c67a0fb365fd97bcaa4906c7ee9217f07938eea1f0121cdc96b28d5576bff",
+    "source_doc_hashes": {
+      "spec.md": "96cf3592a2601dd5afdee23f7d5b1f79d7b4f44306fa885c3e3389b0fe70169a",
+      "plan.md": "aa418a096bdf00744dd38aec6e7637f3cf444a8b2c9f8baa3a013dc4f7317ca7",
+      "tasks.md": "72f3f925b71793157161da7f2077c6bcca8305317b5463793423a2317403b186",
+      "checklist.md": "7b6b0a0faf2ce5bf2a6c5153d5d37b857a5e06348b97a0a0640defaf3e1aa7ed",
+      "implementation-summary.md": "1d8b043d3f5563313b79f1e014bc7e456452ffeecea851fba9c2874747738159"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T06:53:44.000Z"
+  }
+}

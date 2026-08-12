@@ -17,9 +17,11 @@ This packet owns flowchart authoring and `scripts/validate-flowchart.sh`. It use
 
 ## 1. WHEN TO USE
 
+This capability now lives in [`sk-create-diagram/SKILL.md`](../sk-create-diagram/SKILL.md) under the `ascii-markdown` output format. Use `/create:diagram` for new ASCII/markdown flowcharts; `/create:flowchart` is a compatibility pass-through that pre-selects that format. The source references, assets, and validator remain here unchanged in this phase.
+
 ### Activation Triggers
 
-Use this packet when the request asks to:
+This packet is retained as a redirect for requests that ask to:
 
 - Create an ASCII or box-drawing flowchart in markdown.
 - Turn a written process into a visual workflow diagram.
@@ -36,7 +38,7 @@ Keyword triggers: `create flowchart`, `/create:flowchart`, `flowchart`, `ASCII f
 Use another `sk-doc` packet when:
 
 - A short 2-3 step bullet list is clearer.
-- The requested output is Mermaid, Graphviz, SVG, HTML, screenshot, canvas, or interactive design work.
+- The requested output is Mermaid, Graphviz, SVG, HTML, screenshot, canvas, or interactive design work. Use `create-diagram` for self-contained HTML/SVG technical diagrams across 27 types.
 - The work audits, validates, scores, or optimizes an existing markdown document or existing flowchart without a flowchart-authoring deliverable. Use `create-quality-control`.
 - The requested artifact is a README, skill, command, agent, benchmark package, catalog, testing playbook, or changelog. Use `create-readme`, `create-skill`, `create-command`, `create-agent`, `create-benchmark`, `create-feature-catalog`, `create-manual-testing-playbook`, or `create-changelog`.
 

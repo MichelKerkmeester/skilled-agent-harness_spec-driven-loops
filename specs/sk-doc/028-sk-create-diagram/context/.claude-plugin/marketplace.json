@@ -1,0 +1,15 @@
+{
+  "name": "diagram-design",
+  "metadata": {
+    "description": "Editorial-quality technical and product diagrams — 27 types rendered as standalone HTML with inline SVG, skinnable to match your brand, plus draw.io and Mermaid import at a chosen format, size, and level of detail"
+  },
+  "owner": {
+    "name": "Cathryn Lavery"
+  },
+  "plugins": [
+    {
+      "name": "diagram-design",
+      "source": "./"
+    }
+  ]
+}

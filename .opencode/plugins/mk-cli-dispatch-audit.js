@@ -20,12 +20,16 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { join } from 'node:path';
+import { createRequire } from 'node:module';
 
 import { findRepoRoot } from '../skills/system-spec-kit/mcp-server/hooks/lib/workspace/repo-root.mjs';
+
+const require = createRequire(import.meta.url);
 
 // The audit core lives outside .opencode/plugins/ so this file can remain a thin,
 // default-export-only OpenCode plugin while the Claude hook consumes the same logic.
 import * as dispatchAuditCore from '../hooks/dispatch/lib/dispatch-audit.mjs';
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PLUGIN FACTORY
@@ -54,7 +58,7 @@ export default async function MkCliDispatchAuditPlugin(ctx) {
   return {
     async 'tool.execute.after'(input, output) {
       try {
-        if (dispatchAuditCore.isAuditDisabled(process.env)) return;
+        if (!isHookEnabled('dispatch')) return;
 
         // Normalize tool-name case at the transport boundary (OpenCode emits lowercase
         // 'bash'; the Claude adapter reads its own 'Bash' shape independently).

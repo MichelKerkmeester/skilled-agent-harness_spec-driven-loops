@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+  "spec_folder": "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "adapter live delivery verification",
+      "codex cursor devin hook wiring",
+      "false negative playbook verdict",
+      "adapter live delivery verification plan",
+      "017 plan",
+      "adapter live delivery verification tasks",
+      "017 tasks",
+      "adapter live delivery verification checklist",
+      "017 checklist",
+      "adapter live delivery verification implementation",
+      "017 implementation summary"
+    ],
+    "key_topics": [
+      "adapter",
+      "live",
+      "delivery",
+      "verification",
+      "codex",
+      "cursor",
+      "devin",
+      "hook",
+      "wiring",
+      "false",
+      "negative",
+      "playbook"
+    ],
+    "importance_tier": "high",
+    "status": "blocked",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Adapter Live",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Delivery Verification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Retain",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready Not",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Preserved Ground Truth",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria This",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This phase was created from a false diagnosis that treated `.codex/.cursor/.devin/hooks/user-prompt-submit.js` as stale regular-file copies with dead imports",
+    "created_at": "2026-08-11T13:51:46.895Z",
+    "last_save_at": "2026-08-11T13:55:39.327Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3ead491daf4d5f053e7047bde04b0d6cd019f9262f494328008f2728a72f4d67",
+    "source_doc_hashes": {
+      "spec.md": "31f274f9b04d773591553912122f0f96021e9986d4cbc017c6ba556f0d33bd8a",
+      "plan.md": "c0e74a0028cd087e3b878b23b4877cf08d90f16a7ddc764efeb9a21052ba846c",
+      "tasks.md": "b09fe6c4b7bb7fe8b412936b975fac0c81fbcd70e29773656b72cbca1e642eab",
+      "checklist.md": "d1fbcec1bfd4962f36983242e18c9cc7bb707656276449bbf7e966242368a4fe",
+      "implementation-summary.md": "fafc5eb6e6a1fad37855ad0a0dc17847221935b05bb9c5e6b8f12aa0603d3757"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

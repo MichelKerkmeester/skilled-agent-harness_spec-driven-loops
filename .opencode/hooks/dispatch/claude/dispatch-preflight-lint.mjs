@@ -19,6 +19,7 @@
 import { readHardRules, evaluate } from '../lib/dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES as DISPATCH_SKILLS } from '../lib/dispatch-audit.mjs';
 import path from 'node:path';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 // Dispatch-shape registry: command pattern → the skill whose SKILL.md declares its hard_rules.
 // `skill` is the short display name (used in advisory/block messages); `packetPath` is the
@@ -49,6 +50,7 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('dispatch')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

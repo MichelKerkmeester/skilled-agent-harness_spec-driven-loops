@@ -1,0 +1,16 @@
+{"type":"iteration","iteration":5,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.58,"status":"complete","focus":"Provider model — DeepSeek V4 Flash, Ollama, llama.cpp, privacy routing","findingsCount":11,"timestamp":"2026-08-11T09:43:00Z"}
+{"type":"finding","id":"f-iter005-001","label":"Go DeepSeek V4 Flash: opencode-go/deepseek-v4-flash, /v1/chat/completions, @ai-sdk/openai-compatible","iteration":5}
+{"type":"finding","id":"f-iter005-002","label":"DeepSeek V4 Flash Go pricing $0.14/$0.28/$0.0028 per M; $60/month; ~158k req/month","iteration":5}
+{"type":"finding","id":"f-iter005-003","label":"DeepSeek V4 Flash Go privacy: not used for training, 0-day retention, ZDR valid through 2026-08-31","iteration":5}
+{"type":"finding","id":"f-iter005-004","label":"Go endpoints protocol-heterogeneous: chat/completions, responses, messages","iteration":5}
+{"type":"finding","id":"f-iter005-005","label":"Go model list discoverable via GET https://opencode.ai/zen/go/v1/models","iteration":5}
+{"type":"finding","id":"f-iter005-006","label":"Ollama /api/show returns parameters, license, details, capabilities, model_info, template","iteration":5}
+{"type":"finding","id":"f-iter005-007","label":"Ollama-local protocol distinct from Go; /api/chat stream:false think:false in reference","iteration":5}
+{"type":"finding","id":"f-iter005-008","label":"Pi registerProvider record shape: baseUrl, apiKey, api, models with cost/contextWindow/maxTokens","iteration":5}
+{"type":"finding","id":"f-iter005-009","label":"llama.cpp OpenAI-compatible is probe-gated, not primary-source-verified in this lineage","iteration":5}
+{"type":"finding","id":"f-iter005-010","label":"Privacy routing: local vs local-adjacent-hosted vs hosted must be distinguishable; no auto-cascade","iteration":5}
+{"type":"finding","id":"f-iter005-011","label":"thinkingControl capability enum needed; hosted non-thinking lever is probe-gated","iteration":5}
+{"type":"observation","id":"obs-iter005-001","packet":"001-research-strategy","classification":"confirmed","iteration":5}
+{"type":"ruled_out","direction":"Assume one provider protocol for all models","reason":"Go protocol-heterogeneous","iteration":5}
+{"type":"ruled_out","direction":"Trust privacy facts without dates","reason":"ZDR expiry 2026-08-31","iteration":5}
+{"type":"ruled_out","direction":"Auto-cascade local to hosted","reason":"Explicit consent required","iteration":5}

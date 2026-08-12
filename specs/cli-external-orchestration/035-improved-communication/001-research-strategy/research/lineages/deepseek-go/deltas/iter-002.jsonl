@@ -1,0 +1,16 @@
+{"type":"iteration","iteration":2,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.80,"status":"complete","focus":"Safest integration boundary in Claude CLI and Codex CLI","findingsCount":11,"timestamp":"2026-08-11T09:34:00Z"}
+{"type":"finding","id":"f-iter002-001","label":"Claude MessageDisplay is display-only; displayContent replaces rendered text, transcript keeps original","iteration":2}
+{"type":"finding","id":"f-iter002-002","label":"MessageDisplay fires once per message in claude -p mode with index 0, final true, full delta","iteration":2}
+{"type":"finding","id":"f-iter002-003","label":"MessageDisplay default timeout lowered to 10s; reference uses 60s","iteration":2}
+{"type":"finding","id":"f-iter002-004","label":"transcript_path may lag; docs recommend last_assistant_message on Stop/SubagentStop","iteration":2}
+{"type":"finding","id":"f-iter002-005","label":"message_id is not the API msg id; cannot correlate with transcript","iteration":2}
+{"type":"finding","id":"f-iter002-006","label":"suppressOutput hides hook stdout from transcript; not a renderer replacement","iteration":2}
+{"type":"finding","id":"f-iter002-007","label":"claude -p --output-format stream-json is a second safe pipeline-owner surface","iteration":2}
+{"type":"finding","id":"f-iter002-008","label":"Codex App Server JSON-RPC streams item/agentMessage/delta and turn/completed","iteration":2}
+{"type":"finding","id":"f-iter002-009","label":"Codex turn/interrupt and turn/steer exist; thread/inject_items mutates model context","iteration":2}
+{"type":"finding","id":"f-iter002-010","label":"Codex hooks have no display-replacement event; context injection only","iteration":2}
+{"type":"finding","id":"f-iter002-011","label":"codex exec is plain-text one-shot; caller must own terminal pipeline","iteration":2}
+{"type":"observation","id":"obs-iter002-001","packet":"001-research-strategy","classification":"confirmed","iteration":2}
+{"type":"ruled_out","direction":"Codex hooks as generic renderer","reason":"No display-replacement event","iteration":2}
+{"type":"ruled_out","direction":"thread/inject_items for display projection","reason":"Mutates model-visible history","iteration":2}
+{"type":"ruled_out","direction":"codex exec for arbitrary presentation","reason":"Plain-text, no renderer hook","iteration":2}

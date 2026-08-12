@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/016-directive-playbook-alignment",
+  "description": "Close the playbook/catalog coverage gap left by the live directive-lifecycle feature (013/014): add manual scenario 457 validating first-message full,",
+  "keywords": [
+    "close",
+    "playbook",
+    "catalog",
+    "coverage",
+    "gap",
+    "left",
+    "live",
+    "directive-lifecycle",
+    "feature",
+    "manual",
+    "scenario",
+    "validating",
+    "first-message",
+    "full"
+  ],
+  "lastUpdated": "2026-08-11T16:06:40.287Z",
+  "specId": "016",
+  "folderSlug": "directive-playbook-alignment",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

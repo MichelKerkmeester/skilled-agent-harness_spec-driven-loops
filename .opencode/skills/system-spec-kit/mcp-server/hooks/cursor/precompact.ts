@@ -30,10 +30,16 @@ import {
   runCursorHook,
   toClaudeShape,
 } from './shared.js';
+import { notifyDirectiveLifecycleBoundary } from '../claude/directive-lifecycle-boundary.js';
+import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 async function main(): Promise<void> {
+  if (!isHookEnabled('session-lifecycle')) return emitCursorResponse(null);
   const input = await readCursorHookInput('preCompact', ['session_id']);
-  if (!input) return emitCursorResponse(null);
+  if (!input) {
+    notifyDirectiveLifecycleBoundary({ sessionId: null, boundary: 'compact' });
+    return emitCursorResponse(null);
+  }
 
   runClaudeHookAdapter('compact-inject.js', toClaudeShape(input), 3_000);
   emitCursorResponse({ permission: 'allow' });

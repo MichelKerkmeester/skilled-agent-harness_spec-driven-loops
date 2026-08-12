@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
+  "spec_folder": "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [
+      {
+        "packet_id": "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+        "reason": "Phase 018 replaces the incorrect discovery-symlink deletion plan with the complete review remediation scope",
+        "source": "spec.md",
+        "spec_folder": "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+        "title": "Adapter Live Delivery Verification"
+      }
+    ],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "directive lifecycle review findings",
+      "transcript high-water mark",
+      "directive lifecycle store hardening",
+      "scenario 457 evidence taxonomy",
+      "adapter parity",
+      "directive lifecycle remediation plan",
+      "host lifecycle epoch",
+      "file directive lifecycle store hardening",
+      "scenario 457 proof matrix",
+      "directive lifecycle remediation tasks",
+      "review findings implementation tasks",
+      "scenario 457 evidence repair"
+    ],
+    "key_topics": [
+      "directive",
+      "lifecycle",
+      "review",
+      "findings",
+      "transcript",
+      "high-water",
+      "mark",
+      "store",
+      "hardening",
+      "scenario",
+      "evidence",
+      "taxonomy"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "evidence/review/source-review-registry.json",
+      "evidence/negative-controls/final.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "evidence/whole-gate/manifest.json",
+      "spec.md",
+      "implementation-summary.md",
+      "evidence/inventory/dirty-checkout.txt",
+      "evidence/inventory/discovery-symlinks.txt",
+      "evidence/inventory/lifecycle-producers-consumers.txt",
+      "evidence/inventory/evidence-producers-consumers.txt",
+      "evidence/outcomes/directive-unit-verified.json",
+      "evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
+      "evidence/outcomes/opencode-test-seam.json",
+      "evidence/performance/result-final-5.json",
+      "evidence/tests/registered-adapters-verified.log",
+      "evidence/runtime/2026-08-11-registered-paths-final/source-hashes.json",
+      "evidence/outcomes/cursor-native-host-final.json"
+    ],
+    "entities": [
+      {
+        "name": "source-review-registry.json",
+        "kind": "config",
+        "path": "evidence/review/source-review-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "final.json",
+        "kind": "config",
+        "path": "evidence/negative-controls/final.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": "evidence/whole-gate/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dirty-checkout.txt",
+        "kind": "file",
+        "path": "evidence/inventory/dirty-checkout.txt",
+        "source": "derived"
+      },
+      {
+        "name": "discovery-symlinks.txt",
+        "kind": "file",
+        "path": "evidence/inventory/discovery-symlinks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-producers-consumers.txt",
+        "kind": "file",
+        "path": "evidence/inventory/lifecycle-producers-consumers.txt",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-producers-consumers.txt",
+        "kind": "file",
+        "path": "evidence/inventory/evidence-producers-consumers.txt",
+        "source": "derived"
+      },
+      {
+        "name": "directive-unit-verified.json",
+        "kind": "config",
+        "path": "evidence/outcomes/directive-unit-verified.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary.json",
+        "kind": "config",
+        "path": "evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-test-seam.json",
+        "kind": "config",
+        "path": "evidence/outcomes/opencode-test-seam.json",
+        "source": "derived"
+      },
+      {
+        "name": "result-final-5.json",
+        "kind": "config",
+        "path": "evidence/performance/result-final-5.json",
+        "source": "derived"
+      },
+      {
+        "name": "registered-adapters-verified.log",
+        "kind": "file",
+        "path": "evidence/tests/registered-adapters-verified.log",
+        "source": "derived"
+      },
+      {
+        "name": "source-hashes.json",
+        "kind": "config",
+        "path": "evidence/runtime/2026-08-11-registered-paths-final/source-hashes.json",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-native-host-final.json",
+        "kind": "config",
+        "path": "evidence/outcomes/cursor-native-host-final.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lifecycle Delivery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before this phase, the canonical decision recorded transcript size only when it delivered the full directive block",
+    "created_at": "2026-08-11T12:34:41Z",
+    "last_save_at": "2026-08-12T05:31:12.086Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:1abba5c3bd36fc8fb14dfe67c3a14739bb55487682aa1b5c570e470616904a84",
+    "source_doc_hashes": {
+      "spec.md": "f00ff69d5afb03e56acddf705b0c93fdad7ec5ae5d376b56ee7b582b5446843f",
+      "plan.md": "5f64ce29a7cf36d6581f55d4d9901d45751fc2652a99cdc7bdaad496ecbbca40",
+      "tasks.md": "6303746dff874430236cfcca5e14dab0a6f0c05867e58132e73d490595648c46",
+      "checklist.md": "10a94e6454c111cd181968fdcf49975f2c55319dc711e5e540b396cb355fdbce",
+      "decision-record.md": "a4b399f437316c3095dc9ee2be8ae4534502a45a67f88147867d9d48861ab6b6",
+      "implementation-summary.md": "7d9c8ee8ea7c9c26b3e61c78cfdf0686410dfdc8dca50e639ead2d6f77d551f8",
+      "handover.md": "644eeb93f78ee4ac67e653cfc33a1e82d770ad376798ee8af5ecb0b18102c92d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

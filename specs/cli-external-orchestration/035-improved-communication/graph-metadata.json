@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/035-improved-communication",
+  "spec_folder": "cli-external-orchestration/035-improved-communication",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/035-improved-communication/001-research-strategy",
+    "cli-external-orchestration/035-improved-communication/002-contracts-and-fixtures",
+    "cli-external-orchestration/035-improved-communication/003-core-normalization-and-assembly",
+    "cli-external-orchestration/035-improved-communication/004-protected-spans-fidelity-render",
+    "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy",
+    "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients",
+    "cli-external-orchestration/035-improved-communication/007-evaluation-and-observability",
+    "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "portable CLI communication",
+      "claudish to english across CLIs",
+      "improved communication"
+    ],
+    "key_topics": [
+      "portable",
+      "cli",
+      "communication",
+      "claudish",
+      "english",
+      "across",
+      "clis",
+      "improved",
+      "reference",
+      "implementation",
+      "claude",
+      "code"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-research-strategy/spec.md",
+      "001-research-strategy/plan.md",
+      "002-contracts-and-fixtures/spec.md",
+      "003-core-normalization-and-assembly/spec.md",
+      "003-core-normalization-and-assembly/handover.md",
+      "004-protected-spans-fidelity-render/spec.md",
+      "004-protected-spans-fidelity-render/handover.md",
+      "005-provider-adapters-and-privacy/spec.md",
+      "005-provider-adapters-and-privacy/handover.md",
+      "006-runtime-adapters-and-clients/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
+    "created_at": "2026-08-11T06:21:47Z",
+    "last_save_at": "2026-08-12T04:19:36.839Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:98b8417a2909426da959856cad29889479cc6d40a4c9d7bf701fbf7b699545b3",
+    "source_doc_hashes": {
+      "spec.md": "fd2a12304fc0f110a15e22c13a8e75dfecaff5c347c4e8b54f1c1d04f7511a32"
+    },
+    "last_active_child_id": "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients",
+    "last_active_at": "2026-08-12T04:19:36.839Z"
+  }
+}

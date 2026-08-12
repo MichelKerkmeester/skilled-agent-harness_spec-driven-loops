@@ -17,6 +17,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 const core = require('../lib/goal-core.cjs');
+const { isHookEnabled } = require('../../shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. ARGUMENT PARSING
@@ -303,7 +304,7 @@ function main(argv) {
   if (parsedScope.error) return printFail(normalizedAction, parsedScope.error);
 
   const runtimeLabel = process.env.MK_GOAL_RUNTIME_LABEL || parsedScope.binding.runtime || 'cli';
-  if (core.isPluginDisabled()) {
+  if (!isHookEnabled('goal')) {
     return printFail(normalizedAction, new core.GoalError('PLUGIN_DISABLED', `${core.DISABLED_ENV}=1 disables goal plugin execution`));
   }
 

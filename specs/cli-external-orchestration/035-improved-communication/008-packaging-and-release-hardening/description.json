@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening",
+  "description": "Package the system with explicit provider privacy choices, a tested compatibility matrix, diagnostics, rollback, and six-runtime release gates",
+  "keywords": [
+    "package",
+    "system",
+    "explicit",
+    "provider",
+    "privacy",
+    "choices",
+    "tested",
+    "compatibility",
+    "matrix",
+    "diagnostics",
+    "rollback",
+    "six-runtime",
+    "release",
+    "gates"
+  ],
+  "lastUpdated": "2026-08-11T13:35:59.660Z",
+  "specId": "008",
+  "folderSlug": "packaging-and-release-hardening",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

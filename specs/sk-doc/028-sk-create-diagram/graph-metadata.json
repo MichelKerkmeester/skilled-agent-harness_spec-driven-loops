@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram",
+  "spec_folder": "sk-doc/028-sk-create-diagram",
+  "parent_id": "sk-doc",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "sk-doc/028-sk-create-diagram/001-inventory-and-skill-contract",
+    "sk-doc/028-sk-create-diagram/002-skill-scaffold-and-design-system",
+    "sk-doc/028-sk-create-diagram/003-diagram-type-reference-library",
+    "sk-doc/028-sk-create-diagram/004-import-export-tooling",
+    "sk-doc/028-sk-create-diagram/005-command-and-hub-wiring",
+    "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
+    "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
+    "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
+    "sk-doc/028-sk-create-diagram/009-manual-playbook-execution",
+    "sk-doc/028-sk-create-diagram/010-benchmark-artifact-embedding",
+    "sk-doc/028-sk-create-diagram/011-reference-template-alignment",
+    "sk-doc/028-sk-create-diagram/012-flowchart-capability-merge",
+    "sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek",
+    "sk-doc/028-sk-create-diagram/014-review-remediation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-diagram",
+      "editorial HTML diagram skill",
+      "fork diagram-design plugin",
+      "27 diagram types skill"
+    ],
+    "key_topics": [
+      "sk-create-diagram",
+      "editorial",
+      "html",
+      "diagram",
+      "skill",
+      "fork",
+      "diagram-design",
+      "plugin",
+      "types",
+      "context",
+      "holds",
+      "complete"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "context/skills/diagram-design/SKILL.md",
+      "001-inventory-and-skill-contract/decision-record.md",
+      "context/README.md",
+      "001-inventory-and-skill-contract/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": "context/skills/diagram-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "context/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cathryn Lavery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fork",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of editorial technical diagrams as self-contained HTML files with inline SVG \u2014 architecture, flowcharts, sequence, ER, Gantt, and more \u2014 plus draw.io/Mermaid import and PNG/SVG export",
+    "created_at": "2026-08-12T05:43:11.000Z",
+    "last_save_at": "2026-08-12T19:55:45.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1eddea0f131e713af35ef460b5852cc1f24f073f6f56e37947c7ff956e20c548",
+    "source_doc_hashes": {
+      "spec.md": "c36ff1420500daf236302947e17ff42004d355697e30d40ab6a657b4db14f8b8"
+    },
+    "last_active_child_id": "sk-doc/028-sk-create-diagram/014-review-remediation",
+    "last_active_at": "2026-08-12T19:55:45.000Z"
+  }
+}

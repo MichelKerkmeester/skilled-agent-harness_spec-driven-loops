@@ -330,7 +330,7 @@ Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and
 
 ### Acceptance-Coverage Signal
 
-When the review target is a spec folder, deep review reflects the `AC_COVERAGE` validation signal in synthesis for Level 2+ folders, and only once `checklist.md` exists and `implementation-summary.md` is in-progress or later (Level 1 folders and fresh scaffolds are exempt). The signal is advisory while the validation rule stays INFO/default-off -- it can add traceability context and planning-seed work, but must not alter the iteration final-line contract below unless a later enforcement rollout explicitly changes severity.
+When the review target is a spec folder, deep review reflects the `AC_COVERAGE` validation signal in synthesis for Level 2+ folders, and only once `checklist.md` exists and `implementation-summary.md` is in-progress or later (Level 1 folders and fresh scaffolds are exempt). The signal is advisory while the validation rule stays INFO/default-on (non-blocking; `RULE_STATUS` stays `pass`) -- it can add traceability context and planning-seed work, but must not alter the iteration final-line contract below unless a later enforcement rollout explicitly changes severity.
 
 ### Iteration Final-Line Contract (MANDATORY)
 

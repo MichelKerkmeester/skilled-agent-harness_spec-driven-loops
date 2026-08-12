@@ -148,6 +148,18 @@
       "advisorRouting": { "routingClass": "metadata" }
     },
     {
+      "workflowMode": "sk-create-diagram",
+      "packetKind": "workflow",
+      "backendKind": "template-scaffold",
+      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
+      "packet": "sk-create-diagram",
+      "packetSkillName": "sk-create-diagram",
+      "grandfatheredFolderMismatch": false,
+      "command": "/create:diagram",
+      "aliases": ["create diagram", "diagram", "architecture diagram", "sequence diagram", "ER diagram", "state machine diagram", "data model diagram", "swimlane", "venn diagram", "org chart", "quadrant diagram", "gantt chart", "draw.io", "drawio", "mermaid diagram", "redraw diagram", "export diagram", "create flowchart", "flowchart", "ASCII flowchart", "workflow diagram", "text diagram", "text characters", "decision tree", "decision branch", "parallel execution diagram", "approval loop diagram"],
+      "advisorRouting": { "routingClass": "metadata" }
+    },
+    {
       "workflowMode": "sk-create-quality-control",
       "packetKind": "workflow",
       "backendKind": "create-quality-control",
