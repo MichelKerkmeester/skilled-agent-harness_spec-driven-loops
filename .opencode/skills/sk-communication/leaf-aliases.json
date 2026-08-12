@@ -1,6 +1,101 @@
 [
   {
     "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/assembly-and-context/bounded-context-selection.md",
+    "diskPath": "feature-catalog/assembly-and-context/bounded-context-selection.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/assembly-and-context/generation-keyed-message-assembly.md",
+    "diskPath": "feature-catalog/assembly-and-context/generation-keyed-message-assembly.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/evaluation-and-observability/blind-non-inferiority-evaluation.md",
+    "diskPath": "feature-catalog/evaluation-and-observability/blind-non-inferiority-evaluation.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/evaluation-and-observability/content-free-observability.md",
+    "diskPath": "feature-catalog/evaluation-and-observability/content-free-observability.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/fidelity-and-render/capability-aware-presentation.md",
+    "diskPath": "feature-catalog/fidelity-and-render/capability-aware-presentation.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/fidelity-and-render/protected-span-fidelity-validation.md",
+    "diskPath": "feature-catalog/fidelity-and-render/protected-span-fidelity-validation.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/packaging-and-release/compatibility-doctor.md",
+    "diskPath": "feature-catalog/packaging-and-release/compatibility-doctor.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/packaging-and-release/release-readiness-and-rollback.md",
+    "diskPath": "feature-catalog/packaging-and-release/release-readiness-and-rollback.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/provider-and-privacy/privacy-first-provider-routing.md",
+    "diskPath": "feature-catalog/provider-and-privacy/privacy-first-provider-routing.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/provider-and-privacy/provider-adapters-and-execution.md",
+    "diskPath": "feature-catalog/provider-and-privacy/provider-adapters-and-execution.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/runtime-adapters/six-runtime-adapter-matrix.md",
+    "diskPath": "feature-catalog/runtime-adapters/six-runtime-adapter-matrix.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/advisor-routing/advisor-routes-projection-request.md",
+    "diskPath": "manual-testing-playbook/advisor-routing/advisor-routes-projection-request.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md",
+    "diskPath": "manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/fidelity-and-privacy/privacy-precedes-provider-ranking.md",
+    "diskPath": "manual-testing-playbook/fidelity-and-privacy/privacy-precedes-provider-ranking.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/presentation-tiers/full-projection-requires-atomic-ownership.md",
+    "diskPath": "manual-testing-playbook/presentation-tiers/full-projection-requires-atomic-ownership.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/presentation-tiers/safe-native-preserves-original-visibility.md",
+    "diskPath": "manual-testing-playbook/presentation-tiers/safe-native-preserves-original-visibility.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/release-gating/compatibility-doctor-selects-original-only.md",
+    "diskPath": "manual-testing-playbook/release-gating/compatibility-doctor-selects-original-only.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md",
+    "diskPath": "manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/release-gating/provisional-evaluation-blocks-release.md",
+    "diskPath": "manual-testing-playbook/release-gating/provisional-evaluation-blocks-release.md"
+  },
+  {
+    "workflowMode": "sk-communication",
     "leafResourceId": "references/package-map.md",
     "diskPath": "references/package-map.md"
   }
