@@ -2,7 +2,7 @@
 title: "Tasks: Hook Feature Flags + Full Hub Index"
 description: "Per-phase task tracking for the shared kill-switch guard, the mcp-route-guard pilot, the hub and skill-owned concern fan-out, the hub symlink index, and the cross-runtime validation sweep."
 status: "in-progress"
-completion_pct: 67
+completion_pct: 83
 importance_tier: "high"
 contextType: "tasks"
 parent: "./spec.md"
@@ -42,8 +42,8 @@ parent: "./spec.md"
 
 ## PHASE 5 — Full hub index + docs
 
-- [ ] Symlink every skill-owned hook into `.opencode/hooks/<concern>/<runtime>/`
-- [ ] Rewrite hub `README.md` + `injection-contract.md` for the full-index model
+- [x] Symlink every Phase 4 adapter into `.opencode/hooks/<concern>/<runtime>/` — 49 relative links, all resolved with `readlink -f`
+- [ ] Rewrite hub `README.md` + `injection-contract.md` for the full-index model — skipped because this implementation's scope lock permits only new symlinks under `.opencode/hooks/`
 
 ## PHASE 6 — Cross-runtime validation
 

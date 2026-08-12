@@ -2,7 +2,7 @@
 title: "Implementation Summary: Hook Feature Flags + Full Hub Index"
 description: "Running log across six phases. Phases 1-4 shipped the shared guard and wired it through portable and skill-owned hook concerns. Phase 5 adds the full hub symlink index; Phase 6 remains the final cross-runtime sweep."
 status: "in-progress"
-completion_pct: 67
+completion_pct: 83
 trigger_phrases:
   - "hook feature flags status"
   - "hook-flags guard implementation"
@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "hooks/010-hook-feature-flags-and-hub-index"
     last_updated_at: "2026-08-12T15:20:51Z"
     last_updated_by: "claude"
-    recent_action: "Phase 4 shipped: 41 skill-local adapters and 8 remaining OpenCode plugins use the shared guard"
-    next_safe_action: "Phase 5: add relative hub-index symlinks for every Phase 4 adapter"
+    recent_action: "Phase 5 shipped: 49 relative hub-index symlinks resolve to every Phase 4 adapter"
+    next_safe_action: "Phase 6: rebuild required dist outputs, then run the final cross-runtime validation sweep"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:f77a9c65b2809c95f7477b2a1c8e4893c8c2f9ddecf375663660fd6c09ad8d2f"
       session_id: "4654af88-ba88-466a-bd14-2fa43ea87923"
       parent_session_id: null
-    completion_pct: 67
+    completion_pct: 83
     open_questions: []
     answered_questions:
       - "Full hub index (symlink skill hooks in) vs portable-only -> full index"
@@ -99,6 +99,12 @@ Source-direct `.mjs`/`.cjs` hooks and Pi `.ts` symlink targets take effect immed
 
 The broader typecheck/plugin suite remains blocked by checkout provisioning: Spec Kit typecheck rejects the existing deprecated `baseUrl` setting, Skill Advisor typecheck cannot find its TypeScript binary, and runtime/plugin imports that reach `system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js` fail because that dist tree is absent.
 
-## PHASES 5-6 — pending
+## PHASE 5 — Full hub index (shipped)
 
-Phase 5 completes the hub symlink index. Phase 6 remains the final cross-runtime validation sweep after required dist rebuilds.
+The hub now includes 49 relative symlinks under the ten skill-owned concern folders. Every link resolves with `readlink -f` to the Phase 4 adapter that remains in its owning skill or `.opencode/plugins/`; no implementation file moved. Duplicate Claude basenames are disambiguated with `speckit-` for the Spec Kit shim/bridge while retaining the canonical Skill Advisor target. The shared Git preflight adapter is indexed once under `git-preflight/shared/` because the same physical file serves Claude, Codex, Cursor, and Devin.
+
+The packet plan also named edits to `.opencode/hooks/README.md` and `injection-contract.md`, but this implementation's explicit scope lock permits only symlink creation under `.opencode/hooks/`. Those documentation edits were skipped rather than exceeding scope.
+
+## PHASE 6 — pending
+
+Phase 6 remains the final cross-runtime validation sweep after required dist rebuilds.

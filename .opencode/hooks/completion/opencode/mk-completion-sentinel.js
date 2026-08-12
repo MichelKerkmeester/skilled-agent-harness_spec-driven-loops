@@ -1,0 +1,1 @@
+../../../plugins/mk-completion-sentinel.js
