@@ -26,6 +26,10 @@
 // default export, exactly like mk-deep-loop-guard.js.
 import core from '../skills/system-spec-kit/scripts/lib/completion-state.cjs';
 import { tool } from '@opencode-ai/plugin/tool';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PLUGIN FACTORY
@@ -47,7 +51,7 @@ export default async function MkSpeckitCompletionPlugin(ctx) {
   // registered at all -- the same env var the core checks per-call, read
   // here too so setting it makes the surface a full no-op (no registration),
   // not just a registered tool that always answers `disabled`.
-  if (process.env[core.DISABLED_ENV] === '1') {
+  if (!isHookEnabled('completion')) {
     return {};
   }
 

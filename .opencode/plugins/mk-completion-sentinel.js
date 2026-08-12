@@ -25,6 +25,10 @@
 // consumes the identical core. A .cjs core is imported here as the ESM
 // default export, exactly like mk-deep-loop-guard.js.
 import sentinelCore from '../skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -118,7 +122,7 @@ export default async function MkCompletionSentinelPlugin(ctx) {
   return {
     async event(input = {}) {
       try {
-        if (process.env[sentinelCore.KILL_SWITCH_ENV] === '1') return;
+        if (!isHookEnabled('completion')) return;
 
         const event = input && typeof input.event === 'object' ? input.event : input;
         if (!event || typeof event.type !== 'string') return;

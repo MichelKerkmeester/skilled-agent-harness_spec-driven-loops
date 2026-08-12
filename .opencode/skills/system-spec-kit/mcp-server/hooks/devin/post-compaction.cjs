@@ -27,6 +27,7 @@ const { execFileSync } = require('node:child_process');
 const { existsSync, readFileSync } = require('node:fs');
 const { dirname, join } = require('node:path');
 const { tmpdir } = require('node:os');
+const { isHookEnabled } = require('../../../../../../.opencode/hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -159,6 +160,7 @@ function boundedMemoryContextResume(projectDir) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('session-lifecycle')) return emit(null);
   let payload;
   try {
     payload = JSON.parse(await readStdin());

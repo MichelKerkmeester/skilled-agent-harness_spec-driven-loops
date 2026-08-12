@@ -3,9 +3,11 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 /** Appends the spec-folder gate question to a user turn the shared classifier flags. */
 export default function specGateClassify(pi: ExtensionAPI): void {
+  if (!isHookEnabled("spec-gate")) return undefined;
   pi.on("input", async (event, ctx) => {
     try {
       const guard = await import("../../.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs");

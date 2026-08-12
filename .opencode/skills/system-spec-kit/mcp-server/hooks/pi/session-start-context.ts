@@ -4,6 +4,7 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { runClaudeHookAdapter } from "./lib/claude-hook-adapter.ts";
+import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 const TIMEOUT_MS = 2_800;
 
@@ -14,6 +15,7 @@ function claudeSourceFor(reason: string): "startup" | "resume" {
 
 /** Bridges Claude's session-prime SessionStart context (compact recovery, resume reminder) into a Pi session_start message. */
 export default function sessionStartContext(pi: ExtensionAPI): void {
+  if (!isHookEnabled("session-lifecycle")) return undefined;
   pi.on("session_start", async (event, ctx) => {
     try {
       const sessionId = ctx.sessionManager.getSessionId();

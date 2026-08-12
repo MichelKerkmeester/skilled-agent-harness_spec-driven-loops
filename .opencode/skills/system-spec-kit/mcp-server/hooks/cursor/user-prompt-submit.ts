@@ -41,8 +41,10 @@ import {
   runCursorHook,
   toClaudeShape,
 } from './shared.js';
+import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 async function main(): Promise<void> {
+  if (!isHookEnabled('skill-advisor')) return emitCursorResponse(null);
   const input = await readCursorHookInput('beforeSubmitPrompt', ['session_id']);
   if (!input) return emitCursorResponse(null);
 

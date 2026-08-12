@@ -1,8 +1,8 @@
 ---
 title: "Implementation Summary: Hook Feature Flags + Full Hub Index"
-description: "Running log across six phases. Phase 1 shipped: a shared kill-switch guard (master + per-concern + legacy aliases) in three module flavors with a passing test suite. Remaining phases wire it into every runtime adapter and complete the hub symlink index."
+description: "Running log across six phases. Phases 1-4 shipped the shared guard and wired it through portable and skill-owned hook concerns. Phase 5 adds the full hub symlink index; Phase 6 remains the final cross-runtime sweep."
 status: "in-progress"
-completion_pct: 30
+completion_pct: 67
 trigger_phrases:
   - "hook feature flags status"
   - "hook-flags guard implementation"
@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "hooks/010-hook-feature-flags-and-hub-index"
     last_updated_at: "2026-08-12T15:20:51Z"
     last_updated_by: "claude"
-    recent_action: "Phase 2 pilot shipped: mcp-route-guard gated on all 6 runtimes; proof clean"
-    next_safe_action: "Phase 3: fan out guard to dispatch, post-edit-quality, task-dispatch, goal"
+    recent_action: "Phase 4 shipped: 41 skill-local adapters and 8 remaining OpenCode plugins use the shared guard"
+    next_safe_action: "Phase 5: add relative hub-index symlinks for every Phase 4 adapter"
     blockers: []
     key_files:
       - "spec.md"
@@ -28,7 +28,7 @@ _memory:
       fingerprint: "sha256:f77a9c65b2809c95f7477b2a1c8e4893c8c2f9ddecf375663660fd6c09ad8d2f"
       session_id: "4654af88-ba88-466a-bd14-2fa43ea87923"
       parent_session_id: null
-    completion_pct: 30
+    completion_pct: 67
     open_questions: []
     answered_questions:
       - "Full hub index (symlink skill hooks in) vs portable-only -> full index"
@@ -77,6 +77,28 @@ Fed `mcp__claude_ai_Figma__get_metadata` (an advisory-triggering call) to each s
 
 Plugin (`.js`) imports and loads clean; Pi (`.ts`) loads clean under `--preserve-symlinks` (mirrors the live Pi loader), confirming the `../../.opencode/hooks/shared/hook-flags.mjs` path resolves and the guard runs.
 
-## PHASES 3-6 — pending
+## PHASE 3 — Remaining hub concerns (shipped)
 
-See `tasks.md`. Phase 3 fans the settled pattern out to the remaining hub concerns (dispatch, post-edit-quality, task-dispatch, goal); Phase 4 to the skill-owned concerns; Phase 5 completes the hub symlink index; Phase 6 is the cross-runtime validation sweep.
+Commit `5cf07cf7bd` guarded dispatch, post-edit-quality, task-dispatch, and goal adapters across their runtime surfaces. Existing plugin-local disable checks were replaced with the shared helper while each adapter retained its prior fail-open or no-op path.
+
+## PHASE 4 — Skill-owned concerns (shipped)
+
+The shared guard now covers 41 skill-local adapter files and 8 remaining OpenCode plugin adapters across `skill-advisor`, `spec-gate`, `spec-memory`, `completion`, `session-lifecycle`, `git-preflight`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`, and `permission-policy`. Every guard is at the adapter entry before normal work, and the default remains on.
+
+### Runtime and build boundary
+
+Source-direct `.mjs`/`.cjs` hooks and Pi `.ts` symlink targets take effect immediately. Claude, Codex, Cursor, and Devin lifecycle/prompt adapters are invoked from `system-spec-kit/mcp-server/dist/hooks/`, while canonical advisor hooks target `system-skill-advisor/mcp-server/dist/`; both packages need a rebuild before those compiled runtime paths carry the Phase 4 guards. The requested implementation pass did not rebuild dist.
+
+### Proof
+
+- All changed JavaScript and TypeScript files passed Node syntax checks; all 41 skill-local guard import/require edges resolved directly.
+- Eight Pi adapters loaded from `.pi/extensions/` with `--preserve-symlinks`, proving their symlink-relative guard imports.
+- `git-preflight` emitted its existing destructive-reset advisory by default and emitted nothing under either `MK_GIT_PREFLIGHT_DISABLED=1` or `MK_HOOKS_DISABLED=1`.
+- `dist-freshness` and `codex-watchdog` plugins registered their existing hooks by default and returned `{}` under their concern switch and the master switch.
+- Completion plugin tests passed 5/5; shared guard tests passed 7/7; comment-hygiene checks reported no violations in the Phase 4 code diff.
+
+The broader typecheck/plugin suite remains blocked by checkout provisioning: Spec Kit typecheck rejects the existing deprecated `baseUrl` setting, Skill Advisor typecheck cannot find its TypeScript binary, and runtime/plugin imports that reach `system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js` fail because that dist tree is absent.
+
+## PHASES 5-6 — pending
+
+Phase 5 completes the hub symlink index. Phase 6 remains the final cross-runtime validation sweep after required dist rebuilds.

@@ -11,6 +11,7 @@ import { createReadStream, openSync, fstatSync, readSync, closeSync, type Stats 
 import { dirname, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
 import { fileURLToPath } from 'node:url';
+import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 import {
   parseHookStdin, hookLog, withTimeout, HOOK_TIMEOUT_MS, getRequiredSessionId,
   type HookInput,
@@ -632,6 +633,7 @@ export async function processStopHook(
 // ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
+  if (!isHookEnabled('session-lifecycle')) return undefined;
   ensureStateDir();
 
   // --finalize mode: manual cleanup of stale session states

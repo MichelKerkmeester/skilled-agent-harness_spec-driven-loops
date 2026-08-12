@@ -67,6 +67,7 @@ const DIRECTIVE_LIFECYCLE_DEDUP_ENV = 'SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP';
 const DIRECTIVE_SEPARATOR = '\nDirectives:';
 const MAX_DIRECTIVE_DEDUP_SESSIONS = 64;
 const pluginRequire = createRequire(import.meta.url);
+const { isHookEnabled } = pluginRequire('../hooks/shared/hook-flags.cjs');
 
 // Compact, prompt-safe per-hub compiled-routing serving summary. Reads the
 // promoted runtime status (file-only, no engine load, no subprocess) and fails
@@ -236,13 +237,6 @@ function normalizeThreshold(value) {
   return Math.min(1, Math.max(0, Number(value)));
 }
 
-function envDisablesPlugin() {
-  return process.env[DISABLED_ENV] === '1'
-    || process.env[DISABLED_ENV_PLUGIN] === '1'
-    || process.env[LEGACY_HOOK_DISABLED_ENV] === '1'
-    || process.env[LEGACY_PLUGIN_DISABLED_ENV] === '1';
-}
-
 function isDirectiveLifecycleDedupEnabled() {
   const value = process.env[DIRECTIVE_LIFECYCLE_DEDUP_ENV]?.trim().toLowerCase();
   return value !== '0' && value !== 'false' && value !== 'off' && value !== 'no';
@@ -364,7 +358,7 @@ function advisorSourceSignature(workspaceRoot) {
 function normalizeOptions(rawOptions) {
   const options = rawOptions && typeof rawOptions === 'object' ? rawOptions : {};
   const configuredTtl = options.cacheTTLMs ?? options.cacheTtlMs;
-  const enabled = options.enabled !== false && !envDisablesPlugin();
+  const enabled = options.enabled !== false && isHookEnabled('skill-advisor');
   const configuredTransformDedup = typeof options.deduplicateTransforms === 'boolean'
     ? options.deduplicateTransforms
     : undefined;

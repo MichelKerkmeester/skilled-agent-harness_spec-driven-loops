@@ -31,6 +31,7 @@ import {
 } from '@spec-kit/shared/unicode-normalization';
 import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
+import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -572,6 +573,7 @@ function runAuthoredSnapshot(
 // ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
+  if (!isHookEnabled('session-lifecycle')) return undefined;
   const deadline = performance.now() + HOOK_TIMEOUT_MS;
   ensureStateDir();
 

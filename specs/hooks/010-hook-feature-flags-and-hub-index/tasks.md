@@ -2,7 +2,7 @@
 title: "Tasks: Hook Feature Flags + Full Hub Index"
 description: "Per-phase task tracking for the shared kill-switch guard, the mcp-route-guard pilot, the hub and skill-owned concern fan-out, the hub symlink index, and the cross-runtime validation sweep."
 status: "in-progress"
-completion_pct: 15
+completion_pct: 67
 importance_tier: "high"
 contextType: "tasks"
 parent: "./spec.md"
@@ -29,16 +29,16 @@ parent: "./spec.md"
 
 ## PHASE 3 — Remaining hub concerns
 
-- [ ] dispatch (claude/codex/devin/pi + plugin)
-- [ ] post-edit-quality (claude/codex/devin/pi + plugin)
-- [ ] task-dispatch (claude/cursor/devin + plugin)
-- [ ] goal (cursor/pi + bin + plugin)
+- [x] dispatch (claude/codex/devin/pi + plugin)
+- [x] post-edit-quality (claude/codex/devin/pi + plugin)
+- [x] task-dispatch (claude/cursor/devin + plugin)
+- [x] goal (cursor/pi + bin + plugin)
 
 ## PHASE 4 — Skill-owned concerns
 
-- [ ] skill-advisor · spec-gate · spec-memory · completion
-- [ ] session-lifecycle · git-preflight · directive-lifecycle
-- [ ] dist-freshness · codex-watchdog · permission-policy
+- [x] skill-advisor · spec-gate · spec-memory · completion
+- [x] session-lifecycle · git-preflight · directive-lifecycle
+- [x] dist-freshness · codex-watchdog · permission-policy
 
 ## PHASE 5 — Full hub index + docs
 

@@ -9,6 +9,7 @@ import { statSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isHookEnabled } from '../../../../../.opencode/hooks/shared/hook-flags.mjs';
 import {
   buildSkillAdvisorBrief,
   type AdvisorHookResult,
@@ -208,6 +209,7 @@ export async function handleClaudeUserPromptSubmit(
   input: ClaudeUserPromptSubmitInput | null,
   dependencies: UserPromptSubmitDependencies = {},
 ): Promise<ClaudeUserPromptSubmitOutput> {
+  if (!isHookEnabled('skill-advisor')) return {};
   const startedAt = dependencies.now?.() ?? performance.now();
   const elapsed = (): number => Number(((dependencies.now?.() ?? performance.now()) - startedAt).toFixed(3));
   const writeDiagnostic = dependencies.writeDiagnostic;

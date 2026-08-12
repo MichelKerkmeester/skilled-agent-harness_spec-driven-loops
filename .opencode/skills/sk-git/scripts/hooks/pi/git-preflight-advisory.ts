@@ -4,6 +4,7 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { join } from "node:path";
+import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 const MAX_ADVISORIES = 3;
 
@@ -34,6 +35,7 @@ function formatAdvisory(command: string, violations: Array<{ id: string; message
 
 /** Advises on bash git commands that violate the shared sk-git hard rules. */
 export default function gitPreflightAdvisory(pi: ExtensionAPI): void {
+  if (!isHookEnabled("git-preflight")) return undefined;
   // Advisory text is evaluated before execution but delivered on the tool RESULT, keyed by
   // call id. Pi's agent core reads a tool_call handler's return only for `.block` — a bare
   // `reason` without a block is discarded before the model ever sees it (confirmed against

@@ -7,6 +7,7 @@
 
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isHookEnabled } from '../../../../../.opencode/hooks/shared/hook-flags.mjs';
 import {
   advanceDirectiveLifecycleBoundary,
   defaultDirectiveLifecycleStore,
@@ -28,6 +29,7 @@ export function handleDirectiveLifecycleBoundary(
   input: DirectiveLifecycleBoundaryInput | null,
   state: DirectiveLifecycleState = defaultDirectiveLifecycleStore(),
 ): boolean {
+  if (!isHookEnabled('directive-lifecycle')) return false;
   return advanceDirectiveLifecycleBoundary(state, input?.session_id);
 }
 
