@@ -1,0 +1,22 @@
+{
+  "run_id": "1786561206858-teuyl2",
+  "loop_type": "review",
+  "spec_folder": "specs/sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek",
+  "base_artifact_dir": "specs/sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek/review",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

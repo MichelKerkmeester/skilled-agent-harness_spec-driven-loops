@@ -1,6 +1,6 @@
 {
   "specFolder": "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
-  "description": "`references/` (37 files) and `assets/` (39 files) are flat, making the folder hard to scan at a glance in a file tree — the operator flagged this",
+  "description": "`references/` (37 files) and `assets/` (39 files) are flat, making the folder hard to scan at a glance in a file tree \u2014 the operator flagged this",
   "keywords": [
     "references",
     "assets",
@@ -12,7 +12,7 @@
     "operator",
     "flagged"
   ],
-  "lastUpdated": "2026-08-12T13:21:22.000Z",
+  "lastUpdated": "2026-08-12T18:40:07.000Z",
   "specId": "008",
   "folderSlug": "resource-reorganization-and-code-alignment",
   "parentChain": [

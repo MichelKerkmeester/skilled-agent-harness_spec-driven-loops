@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment"
-    last_updated_at: "2026-08-12T13:21:22.000Z"
+    last_updated_at: "2026-08-12T18:40:07.000Z"
     last_updated_by: "claude"
     recent_action: "Authored phase spec; mapped every cross-reference before moving files"
     next_safe_action: "Run the reorg script, author scripts/README.md, fix the 11 missing type hints, verify"

@@ -37,9 +37,9 @@
       "implementation-summary.md"
     ],
     "entities": [],
-    "causal_summary": "`references/` (37 files) and `assets/` (39 files) are flat, making the folder hard to scan at a glance in a file tree — the operator flagged this directly after reviewing the merged packet",
+    "causal_summary": "`references/` (37 files) and `assets/` (39 files) are flat, making the folder hard to scan at a glance in a file tree \u2014 the operator flagged this directly after reviewing the merged packet",
     "created_at": "2026-08-12T00:00:00.000Z",
-    "last_save_at": "2026-08-12T13:21:22.000Z",
+    "last_save_at": "2026-08-12T18:40:07.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -52,14 +52,14 @@
     ],
     "source_fingerprint": "sha256:7d74864c2f4272f17c8dace34ab86cc4cca61dd3eefb2199cc07a2ea7443d243",
     "source_doc_hashes": {
-      "spec.md": "2eacb2163fa1d54e7aab109b19f9e0a31dd98b343a7dc41ecc1f0861c88e20a4",
-      "plan.md": "5648911d2fe904f87d70391e3c82e8b726082d0fee4f0a29c00573c5349bc2ee",
-      "tasks.md": "1ff85ee9c71df06ba2fed75df4a3c250877e5585586d339e6756dbbb393eabbe",
-      "checklist.md": "c3cda5a0916c8628d0e514a24e7f1ab8574bdb673633602b16daa06cbba9e495",
-      "decision-record.md": "7ce4ece59073c21017641a095a531160e3cf837b4c27fc4565c89b1c2df67b34",
-      "implementation-summary.md": "a5f02a6ed2823b633921c55711626656deedf03f057e9c4f75dcea575d478880"
+      "spec.md": "cbbdd9d6817d7724f9551e8830c8771801e1778fa4952b9243cae8e4f3178eed",
+      "plan.md": "c4fa37c81b815923ebaf3e70e7351065180d63f612d08a1097c40afe140fed00",
+      "tasks.md": "a5a881945f1109f2d246f00eef0328b2251214d85f694e0cf971d1478874caab",
+      "checklist.md": "0712a79c26035438fef4a79b1a43d4ba670be2f76f7af36479b1f884a89662ac",
+      "decision-record.md": "b91bcceb0ec5d44c3ac1d7b7535fd74268b80d7d6b36c058a917948ea4df06ab",
+      "implementation-summary.md": "a5aedcf953f3fd9d92078a9ec8eb0febc8a8ae3db784ed3b46f7a885d002ec27"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-08-12T13:21:22.000Z"
+    "last_active_at": "2026-08-12T18:40:07.000Z"
   }
 }

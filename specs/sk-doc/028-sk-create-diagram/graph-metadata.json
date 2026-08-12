@@ -13,7 +13,12 @@
     "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
     "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
     "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
-    "sk-doc/028-sk-create-diagram/009-manual-playbook-execution"
+    "sk-doc/028-sk-create-diagram/009-manual-playbook-execution",
+    "sk-doc/028-sk-create-diagram/010-benchmark-artifact-embedding",
+    "sk-doc/028-sk-create-diagram/011-reference-template-alignment",
+    "sk-doc/028-sk-create-diagram/012-flowchart-capability-merge",
+    "sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek",
+    "sk-doc/028-sk-create-diagram/014-review-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -106,19 +111,19 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of editorial technical diagrams as self-contained HTML files with inline SVG — architecture, flowcharts, sequence, ER, Gantt, and more — plus draw.io/Mermaid import and PNG/SVG export",
+    "causal_summary": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of editorial technical diagrams as self-contained HTML files with inline SVG \u2014 architecture, flowcharts, sequence, ER, Gantt, and more \u2014 plus draw.io/Mermaid import and PNG/SVG export",
     "created_at": "2026-08-12T05:43:11.000Z",
-    "last_save_at": "2026-08-12T13:21:22.000Z",
+    "last_save_at": "2026-08-12T19:55:45.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:3ec534269818d415d1673016f8f34f76aec47d41b6a5bc6baef43b9d9acd3e11",
+    "source_fingerprint": "sha256:1eddea0f131e713af35ef460b5852cc1f24f073f6f56e37947c7ff956e20c548",
     "source_doc_hashes": {
-      "spec.md": "c26d470990e6714693dfa07706731a7b881b30aaf18899296e1d8cbb3822437d"
+      "spec.md": "c36ff1420500daf236302947e17ff42004d355697e30d40ab6a657b4db14f8b8"
     },
-    "last_active_child_id": "sk-doc/028-sk-create-diagram/009-manual-playbook-execution",
-    "last_active_at": "2026-08-12T13:21:22.000Z"
+    "last_active_child_id": "sk-doc/028-sk-create-diagram/014-review-remediation",
+    "last_active_at": "2026-08-12T19:55:45.000Z"
   }
 }

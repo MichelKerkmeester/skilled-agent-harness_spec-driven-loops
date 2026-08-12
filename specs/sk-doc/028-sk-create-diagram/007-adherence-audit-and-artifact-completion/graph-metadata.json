@@ -37,9 +37,9 @@
       "implementation-summary.md"
     ],
     "entities": [],
-    "causal_summary": "Phase 006 ran `validate_skill_package.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-opencode`'s language standards",
+    "causal_summary": "Phase 006 ran `validate_skill_package.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` \u2014 all structural/metadata gates \u2014 but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-opencode`'s language standards",
     "created_at": "2026-08-12T00:00:00.000Z",
-    "last_save_at": "2026-08-12T13:21:22.000Z",
+    "last_save_at": "2026-08-12T18:40:07.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -52,14 +52,14 @@
     ],
     "source_fingerprint": "sha256:cdb088d94e840447c2f8147ca989bfbed45e124180e75194c4a9489e3739dd09",
     "source_doc_hashes": {
-      "spec.md": "768c9ec36363d801ff343cfc507216e1fcf083d28b17bc43e95cfda1c1bdd709",
-      "plan.md": "63791bdfd14feb1e90e3ed7abe920084bee0013591f44bb0eb3292c9d94076ce",
-      "tasks.md": "aeff388ace126e38e57d1a8fe544affee60991a9695432ed5390db1c0e39db97",
-      "checklist.md": "94aea8c6bf7a65c1c077607531b07aba607811a297d0f4d469b10ea3c89b8858",
-      "decision-record.md": "355b1935dd966483ddc095fd6bae164edc833e305edbc4e507bbdd5387f45cff",
-      "implementation-summary.md": "6b55f537449c61ba3246e422baaac583da6df73aab6fa8309c44621505df3a7f"
+      "spec.md": "c5a4fed850c2f75b23108f8e86ce3132c77febfc5cc319780f8d66fae9071cb6",
+      "plan.md": "d25ab2ed13cdd9e453e7fe7eee0d3313b47c949af21af099d4c3448121106691",
+      "tasks.md": "e02f9cb31d0185f26745ef576b206bce42d627f969e518884b3ed081443a6eb2",
+      "checklist.md": "7435ba815cd7393cc0e4d544278abc24818fbdcee601f54ce19c8c631bd2b59b",
+      "decision-record.md": "32882acbacab083bbfbe26c87e2f866b60cda1fd88a61df72cea4bac6a7b475f",
+      "implementation-summary.md": "af4f5958debb7d7fb903d7a6720b6a88e6c1bfeaa2af106a0b48ba6d8b5d4424"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-08-12T13:21:22.000Z"
+    "last_active_at": "2026-08-12T18:40:07.000Z"
   }
 }

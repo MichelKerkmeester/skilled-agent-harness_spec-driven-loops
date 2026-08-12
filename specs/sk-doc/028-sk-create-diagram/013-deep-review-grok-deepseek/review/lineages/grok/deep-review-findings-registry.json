@@ -1,0 +1,845 @@
+{
+  "sessionId": "fanout-grok-1786561206858-teuyl2",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 5,
+    "timestamp": "2026-08-12T19:11:43.148Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F-T-001",
+      "severity": "P1",
+      "title": "leaf-manifest.json lists pre-reorganization flat paths that do not exist",
+      "file": ".opencode/skills/sk-doc/leaf-manifest.json",
+      "line": 118,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F-T-002",
+      "severity": "P1",
+      "title": "command-metadata.json still describes /create:diagram as HTML/SVG-only",
+      "file": ".opencode/skills/sk-doc/command-metadata.json",
+      "line": 397,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F-C-001",
+      "severity": "P2",
+      "title": "UNKNOWN_FALLBACK checklist still asks only for an .html deliverable",
+      "file": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+      "line": 213,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F-C-002",
+      "severity": "P2",
+      "title": "Validator nesting check treats box-drawing leading spaces as markdown indent",
+      "file": ".opencode/skills/sk-doc/sk-create-diagram/scripts/validate-flowchart.sh",
+      "line": 92,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F-C-003",
+      "severity": "P2",
+      "title": "LOAD_LEVELS map is never consulted by route_diagram_resources",
+      "file": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+      "line": 204,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F-M-001",
+      "severity": "P2",
+      "title": "Extract scripts have no committed regression suite",
+      "file": ".opencode/skills/sk-doc/sk-create-diagram/scripts/README.md",
+      "line": 95,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F-S-001",
+      "severity": "P2",
+      "title": "Extract --out writes to an arbitrary path with no confinement",
+      "file": ".opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py",
+      "line": 958,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F-T-003",
+      "severity": "P2",
+      "title": "hub-router create-diagram-aliases omits export diagram",
+      "file": ".opencode/skills/sk-doc/hub-router.json",
+      "line": 50,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-002",
+      "severity": "P2",
+      "title": "Summary P2 finding 2",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "stabilization-traceability-replay",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [
+    {
+      "run": 4,
+      "blockedBy": [
+        "dimensionCoverageGate"
+      ],
+      "graphBlockerDetail": [],
+      "gateResults": {
+        "convergenceGate": {
+          "pass": false,
+          "score": 0.4,
+          "reason": "rolling average of 0.733 and 0.0625 is 0.398 above 0.08"
+        },
+        "dimensionCoverageGate": {
+          "pass": false,
+          "covered": [
+            "correctness",
+            "security",
+            "traceability",
+            "maintainability"
+          ],
+          "missing": [],
+          "coverageAge": 0,
+          "reason": "coverage just completed; minStabilizationPasses=1 not yet aged"
+        },
+        "p0ResolutionGate": {
+          "pass": true,
+          "activeP0": 0
+        },
+        "evidenceDensityGate": {
+          "pass": true,
+          "avgEvidencePerFinding": 1
+        },
+        "hotspotSaturationGate": {
+          "pass": true
+        },
+        "claimAdjudicationGate": {
+          "pass": true,
+          "activeP0P1": 2
+        },
+        "fixCompletenessReplayGate": {
+          "pass": true,
+          "securitySensitive": false,
+          "requiredRows": 0,
+          "passingRows": 0
+        },
+        "candidateCoverageGate": {
+          "pass": true,
+          "searchDebt": [],
+          "missing": []
+        },
+        "graphlessFallbackGate": {
+          "pass": true,
+          "mode": "graphless_fallback",
+          "missing": [],
+          "unavailabilityReason": "lineage write-boundary skipped coverage-graph upsert"
+        }
+      },
+      "recoveryStrategy": "Run one stabilization pass over active P1s F-T-001 and F-T-002; do not open a new dimension.",
+      "timestamp": "2026-08-12T19:08:26.096Z"
+    }
+  ],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 12
+  },
+  "openFindingsCount": 16,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.96,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "findingStability": 1,
+    "p0ResolutionRate": 1,
+    "evidenceDensity": 1,
+    "hotspotSaturation": 0.8
+  },
+  "candidateCoverage": {
+    "covered": [
+      "missing_tests",
+      "off_by_one",
+      "path_traversal",
+      "spec_mismatch"
+    ],
+    "ruledOut": [
+      "injection",
+      "state_transition"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "off_by_one": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "state_transition": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "path_traversal": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "spec_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "missing_tests": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "XXE path is closed before ElementTree parse",
+      "evidenceRefs": [
+        ".opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py:59"
+      ],
+      "reason": "explicit _reject_unsafe_xml guard"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "trust-boundary comment matches implementation",
+      "evidenceRefs": [
+        ".opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py:7"
+      ],
+      "reason": "parsers treat labels as inert text"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "XXE path is closed before ElementTree parse",
+      "evidenceRefs": [
+        ".opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py:59"
+      ],
+      "proof": "explicit _reject_unsafe_xml guard"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-202",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "trust-boundary comment matches implementation",
+      "evidenceRefs": [
+        ".opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py:7"
+      ],
+      "proof": "parsers treat labels as inert text"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "spec_mismatch"
+    ],
+    "covered": [
+      "spec_mismatch"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 3,
+      "executed": 3,
+      "pass": 3,
+      "partial": 3,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 2,
+          "partial": 2,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/sk-doc/leaf-manifest.json:118"
+        ],
+        "findingRefs": [
+          "F-T-001",
+          "F-T-002"
+        ],
+        "summary": "Stabilization replay confirmed both P1s still present."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "Skill packet has no checklist.md; protocol not applicable."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "No dedicated create-diagram agent."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "No per-runtime agent definitions."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/sk-doc/sk-create-diagram/feature-catalog/command-and-hub-integration/hub-registration.md:33"
+        ],
+        "findingRefs": [
+          "F-T-003"
+        ],
+        "summary": "Catalog overstates hub-router alias completeness."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook/command-and-hub-integration/hub-registration.md:46"
+        ],
+        "findingRefs": [
+          "F-T-001"
+        ],
+        "summary": "CMD-002 step 2 cannot confirm types/ paths in the current leaf-manifest."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

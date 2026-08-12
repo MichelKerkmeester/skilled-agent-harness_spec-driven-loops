@@ -35,9 +35,9 @@
       "implementation-summary.md"
     ],
     "entities": [],
-    "causal_summary": "Five phases have each been spot-verified individually, but the packet as a whole — and the spec-folder tree describing it — has never been run through the authoritative strict gates together",
+    "causal_summary": "Five phases have each been spot-verified individually, but the packet as a whole \u2014 and the spec-folder tree describing it \u2014 has never been run through the authoritative strict gates together",
     "created_at": "2026-08-12T05:53:36.000Z",
-    "last_save_at": "2026-08-12T13:21:22.000Z",
+    "last_save_at": "2026-08-12T18:40:07.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -49,13 +49,13 @@
     ],
     "source_fingerprint": "sha256:31a47e3e1afd6d735964128a925ee4ffe4ebd11ab5837952b3ebcf95189dbc1a",
     "source_doc_hashes": {
-      "spec.md": "ba069adbc1edb0f2f58c79d6b8bb4a03799c2c1bd444a6af9076756f7cf8c69b",
-      "plan.md": "d28712f69c9f166134ee91039aea8494808af9b2f68e65bcaa5fe604c875c5a8",
-      "tasks.md": "2afb210951ba6ae3e153687e57658d90899fa95774a25c2f97a8b8f4e1853236",
-      "checklist.md": "b0b58203c8d9407ec632e4e4262600fe373e079b36ee709a29d7195f7d5b52a2",
-      "implementation-summary.md": "1c34028bf7be517051c50e0b183b0c2f3227f95900855b1696f9d6da2c644198"
+      "spec.md": "3cb7977814c225f4f6808dae8925083719428a18dea4cba141e7027e3209cd0d",
+      "plan.md": "a9a1988aa2fc1583957d004728fc6a9e2a7766f1d4d8c85b905ec2910e40150f",
+      "tasks.md": "3fc8ef7e18cc5ea157f023f9df927d688290d0054cad626ffd61001ecc40f872",
+      "checklist.md": "ff76e9a9d7aaac7d8fa68f908ded1b938d1fb9dd6462e57d8d04a70da594d4a6",
+      "implementation-summary.md": "5ec697f6118f18016eb0943186476953e05939325ca97205fa2aaf0701347fe6"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-08-12T13:21:22.000Z"
+    "last_active_at": "2026-08-12T18:40:07.000Z"
   }
 }

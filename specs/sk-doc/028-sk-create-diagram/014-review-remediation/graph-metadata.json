@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/014-review-remediation",
+  "spec_folder": "sk-doc/028-sk-create-diagram/014-review-remediation",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "diagram review remediation",
+      "deep review findings fix"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "findings",
+      "leaf-manifest",
+      "registry",
+      "grid",
+      "typography",
+      "citation",
+      "condition"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "The 013 deep-review (5 iterations Grok 4.6 + 5 iterations deepseek-v4-flash, merged strongest-restriction) returned CONDITIONAL: 0 P0, 4 P1, 12 P2",
+    "created_at": "2026-08-12T19:55:45.000Z",
+    "last_save_at": "2026-08-12T20:16:58.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f586e7135a38872479ff500f9f5972b43cce32d46c6481dc77bc409d35ff4c72",
+    "source_doc_hashes": {
+      "spec.md": "e1b551841964b4b399ed9ccf3356e190eb9ea190122811ad8b6071d9ae25862c",
+      "plan.md": "b21ef5e6dc416de144f948ad13d4a7d5cad923c1d37b6c8c4e015925949c5019",
+      "tasks.md": "d1b4113e412d5d500d2bfb77c1385c854c8c7bce8c13654d74d31cc3efce3413",
+      "checklist.md": "88266316a8988edf76855a6e4a08bef3560adb9e5c132ac28b04a2663c444984",
+      "implementation-summary.md": "3c7ef4deff48f944892c14c9ab0fd08ed0dd80310c6979775170b37e098be4ef"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T20:16:58.000Z"
+  }
+}

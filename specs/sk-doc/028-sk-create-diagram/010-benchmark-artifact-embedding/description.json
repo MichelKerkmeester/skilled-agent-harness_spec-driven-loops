@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/028-sk-create-diagram/010-benchmark-artifact-embedding",
+  "description": "The operator reviewed the 9 benchmark report folders and found no copy of the actual HTML/SVG output each scenario produced \u2014 every `source.md`",
+  "keywords": [
+    "benchmark",
+    "reports",
+    "artifact",
+    "copy",
+    "html",
+    "svg",
+    "output",
+    "embedding",
+    "source"
+  ],
+  "lastUpdated": "2026-08-12T18:40:07.000Z",
+  "specId": "010",
+  "folderSlug": "benchmark-artifact-embedding",
+  "parentChain": [
+    "sk-doc",
+    "028-sk-create-diagram"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

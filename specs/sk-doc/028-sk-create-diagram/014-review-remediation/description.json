@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/028-sk-create-diagram/014-review-remediation",
+  "description": "The 013 deep-review (5 iterations Grok 4.6 + 5 iterations deepseek-v4-flash, merged strongest-restriction) returned CONDITIONAL: 0 P0, 4 P1, 12 P2",
+  "keywords": [
+    "review",
+    "remediation",
+    "findings",
+    "leaf-manifest",
+    "registry",
+    "grid",
+    "typography",
+    "citation",
+    "condition"
+  ],
+  "lastUpdated": "2026-08-12T20:16:58.000Z",
+  "specId": "014",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "sk-doc",
+    "028-sk-create-diagram"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

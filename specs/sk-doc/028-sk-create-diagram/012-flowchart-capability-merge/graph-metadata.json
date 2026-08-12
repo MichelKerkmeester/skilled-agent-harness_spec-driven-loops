@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/012-flowchart-capability-merge",
+  "spec_folder": "sk-doc/028-sk-create-diagram/012-flowchart-capability-merge",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "diagram flowchart capability merge",
+      "ascii markdown diagram format",
+      "diagram flowchart merge plan",
+      "diagram flowchart merge tasks",
+      "diagram flowchart capability merge checklist",
+      "ascii markdown diagram verification",
+      "diagram flowchart merge decisions",
+      "diagram flowchart capability merge summary",
+      "ascii markdown diagram implementation"
+    ],
+    "key_topics": [
+      "diagram",
+      "flowchart",
+      "capability",
+      "merge",
+      "ascii",
+      "markdown",
+      "format",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "decisions"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Upgrade",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "P0",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-create-flowchart` (ASCII/markdown-only) and `sk-create-diagram` (HTML/SVG-only) are two separately-routed skills for overlapping request shapes (decision trees, workflows, system interactions)",
+    "created_at": "2026-08-12T18:18:41.897Z",
+    "last_save_at": "2026-08-12T20:16:58.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:44dbdf73b9411f8daf264faf4bc4884db412f33055cdc66970b020a825ee32eb",
+    "source_doc_hashes": {
+      "spec.md": "ab2473174a7b9b882c120c90b627929eba7f656ccbb9040146c10a8f7ab1022f",
+      "plan.md": "42523949b23d8f09a760bdd2264c13e71b1b6896bda0a14ee625ef4734203191",
+      "tasks.md": "ffc8c6d5da0c644c556aa0610b3c4c66e38b3c59b815aa58bfe37a2b121beda9",
+      "checklist.md": "4403c8856defd5a728468333b2123d55569f4db86c5be4fbe1c9a401d50b320b",
+      "decision-record.md": "26501eb6ea57a25babe9711fe36a3717c98de39ddd51256b44cce3ee2205f7cf",
+      "implementation-summary.md": "391bca828072a09e705d1574cdcf1c80f37b46e3dbb2630766a899c80cdc2f4d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T20:16:58.000Z"
+  }
+}

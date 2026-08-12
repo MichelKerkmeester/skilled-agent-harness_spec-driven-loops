@@ -1,0 +1,393 @@
+{
+  "sessionId": "fanout-deepseek-go-1786561206858-teuyl2",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Internal contract contradiction",
+      "file": null,
+      "line": null,
+      "description": "the mandatory 4px-grid rule forbids the font sizes the style-guide typography tokens prescribe, and shipped examples violate both. `SKILL.md:337`, `references/foundations/style-guide.md:92-99`, `assets/examples/*.html`",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Systemic stale SKILL.md section-number cross-references",
+      "file": null,
+      "line": null,
+      "description": "the workflow and references point to sections that do not exist. `SKILL.md` has sections §1–§6 only (verified full read), yet `create-diagram-auto.yaml:268/305/337/390/423/504` cites \"SKILL.md §9 Pre-Output Checklist\" and \"SKILL.md §0 style-guide gate\"; `import-drawio.md:100/130/138/159` cites \"SKILL.md §6–§7\", \"SKILL.md §6 rules 1–5\", \"SKILL.md §9 taste gate\", \"standard §7 budget\"; `import-mermaid.md:92/100` cites \"SKILL.md §6 connector rules\" and \"SKILL.md §9 taste gate\"; `notation-and-validator.md:17` cites \"SKILL.md §8\" and `:93` cites \"SKILL.md §5 notation rules and §8 validator contract\". The taste gate actually lives in SKILL.md §6 SUCCESS CRITERIA; connector rules in §4 RULES (NEVER 11–15); the complexity budget in §3 HOW IT WORKS. Grep counts: §9 ×4, §7 ×1, §8 ×2, §0 ×1, §6 ×8 across the packet.",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "`leaf-manifest.json` is stale after the packet's resource reorganization",
+      "file": null,
+      "line": null,
+      "description": "75 of 87 declared leaves resolve to paths that do not exist. `.opencode/skills/sk-doc/leaf-manifest.json` (sk-create-diagram entry, 87 leaves) vs the shipped tree: examples live at `assets/examples/*.html` but the manifest lists `assets/example-*.html`; templates at `assets/templates/template*.html` but the manifest lists `assets/template*.html`; refs at `references/foundations/`, `references/types/`, `references/primitives/`, `references/import-export/` but the manifest lists flat `references/style-guide.md`, `references/type-*.md`, `references/primitive-*.md`, `references/export.md`, `references/import-*.md`. Verified with a filesystem existence check: 75 missing. (The 12 valid leaves are the six `assets/ascii-patterns/*.md`, `assets/icons.html`, and `scripts/validate-flowchart.sh`.)",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "Validator-mechanics doc drifts from the actual validator regex for connector detection. `references/ascii-format/notation-and-validator.md:32`, `scripts/validate-flowchart.sh:60`",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "PNG export rasterization executes any embedded JavaScript in the source HTML inside headless Chromium, inconsistent with the packet's own \"never execute untrusted source\" import doctrine. `references/import-export/export.md:96-112`",
+      "file": null,
+      "line": null,
+      "description": "the Playwright snippet does `page.goto(f\"file://{...}\")` on the *original HTML* and screenshots `svg.first`. The skill's templates ship no JS (verified: zero `<script>` in templates/examples), but export accepts any existing diagram file the user points at, and the packet elsewhere treats rendering/executing unknown source as an execution-boundary violation (import-mermaid.md:153 \"Rendering Mermaid to SVG first … crosses an unnecessary execution boundary\"). Export offers no warning that the source HTML is executed in a browser.",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Feature catalog undercounts the registered aliases",
+      "file": null,
+      "line": null,
+      "description": "`feature-catalog.md:168` and `feature-catalog/command-and-hub-integration/hub-registration.md:29` claim \"17 aliases\", but `mode-registry.json` lists 27 aliases for `sk-create-diagram`. `.opencode/skills/sk-doc/feature-catalog/feature-catalog.md:168`, `.opencode/skills/sk-doc/mode-registry.json` (sk-create-diagram entry).",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "`manual-testing-playbook.md:21` states the feature-catalog package \"is authored as a sibling deliverable and is not yet present\" and links it as \"planned\", but the catalog ships in the packet today. `.opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook/manual-testing-playbook.md:21` vs `.opencode/skills/sk-doc/sk-create-diagram/feature-catalog/` (root + 8 feature files present).",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "The two IR extractors duplicate substantial logic",
+      "file": null,
+      "line": null,
+      "description": "`clean_label`, `_has_cycle`, `shape_family`, `analyze`, `digest`, `to_json`, and `main` all appear in both `scripts/drawio_extract.py` and `scripts/mermaid_extract.py`. `.opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py` (e.g. lines 217, 596, 640, 759, 859, 919) and `scripts/mermaid_extract.py` (e.g. lines 234, 1054, 1084, 1089, 1177, 1312, 1374).",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "Shipped example corpus predates the current style-guide skin and is acknowledged as such in-doc",
+      "file": null,
+      "line": null,
+      "description": "`style-guide.md:50` (\"The pre-baked example HTML files in `assets/` were built under an earlier skin. Regenerating them against the current `style-guide.md` is a v5.1 task.\") Combined with F001 (1,357 off-grid coordinates, off-grid font sizes), the 34-example corpus is simultaneously the *reference the skill tells agents to copy* and a *non-compliant artifact*. `.opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md:50`, `.opencode/skills/sk-doc/sk-create-diagram/assets/examples/example-*.html (34)`.",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 6
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 5,
+      "executed": 5,
+      "pass": 1,
+      "partial": 3,
+      "fail": 1,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md:337",
+          ".opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md:92",
+          ".opencode/skills/sk-doc/leaf-manifest.json"
+        ],
+        "findingRefs": [
+          "F001",
+          "F003",
+          "F005"
+        ],
+        "summary": "P1 set stabilized"
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/sk-doc/sk-create-diagram/scripts/README.md"
+        ],
+        "findingRefs": [],
+        "summary": "Scripts README accurately discloses 0 regression suites"
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/commands/create/diagram.md:20",
+          ".opencode/commands/create/assets/create-diagram-auto.yaml:268"
+        ],
+        "findingRefs": [
+          "F003"
+        ],
+        "summary": "Router split correct, section refs drift"
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/sk-doc/leaf-manifest.json",
+          ".opencode/skills/sk-doc/feature-catalog/feature-catalog.md:168"
+        ],
+        "findingRefs": [
+          "F005",
+          "F006"
+        ],
+        "summary": "Catalog claims don't match tree/registry"
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook/manual-testing-playbook.md:21"
+        ],
+        "findingRefs": [
+          "F007"
+        ],
+        "summary": "Stale not-present claim; scenarios otherwise runnable"
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

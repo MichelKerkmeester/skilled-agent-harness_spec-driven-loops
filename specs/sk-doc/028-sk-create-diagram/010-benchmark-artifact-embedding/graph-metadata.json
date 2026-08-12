@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/010-benchmark-artifact-embedding",
+  "spec_folder": "sk-doc/028-sk-create-diagram/010-benchmark-artifact-embedding",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "benchmark report artifact embedding",
+      "diagram playbook artifact copy"
+    ],
+    "key_topics": [
+      "benchmark",
+      "reports",
+      "artifact",
+      "copy",
+      "html",
+      "svg",
+      "output",
+      "embedding",
+      "source"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "The operator reviewed the 9 benchmark report folders and found no copy of the actual HTML/SVG output each scenario produced \u2014 every `source.md` pointed only at `docs/.html`, a path outside the skill package",
+    "created_at": "2026-08-12T16:40:28.000Z",
+    "last_save_at": "2026-08-12T18:40:07.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:45923a37bf6b765669d12afcf2c358bf6f35978b808f2a4e7688317adc3df4c6",
+    "source_doc_hashes": {
+      "spec.md": "7013210a979339033a77187207cbfad04f0dc1f794ee57c7023c25fb90aa1c78",
+      "plan.md": "98c82411c9e8111f0a3accf2f7ae5120ef70c848d395ae7d529b41ff32f8a3ec",
+      "tasks.md": "f5a250e90ea6dbccc032406ae861ddbd8c55b28376f667b4e24b6db7aef14cae",
+      "checklist.md": "c484fcd177941cb19c5d32866af2141aae967c6f321c6b1f6141777e83da404d",
+      "implementation-summary.md": "7c092169d069ee71e3e7ddc4eff7d00317aff0cdbe4b08779b51792a224b6e2b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T18:40:07.000Z"
+  }
+}

@@ -11,15 +11,15 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-create-diagram"
-    last_updated_at: "2026-08-12T13:21:22.000Z"
+    last_updated_at: "2026-08-12T19:55:45.000Z"
     last_updated_by: "claude"
-    recent_action: "All 9 phases complete: registered, strict-validated, playbook run for real"
+    recent_action: "All 14 phases complete: reviewed, P1 findings resolved"
     next_safe_action: "Hand back to the user for review/merge decision on worktree branch sk-doc/0145-sk-create-diagram"
     blockers: []
     key_files:
       - "spec.md"
       - "001-inventory-and-skill-contract/decision-record.md"
-      - "007-adherence-audit-and-artifact-completion/implementation-summary.md"
+      - "014-review-remediation/implementation-summary.md"
       - "../../../.opencode/skills/sk-doc/sk-create-diagram/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -51,7 +51,7 @@ _memory:
 |-------|-------|
 | **Level** | Phase parent |
 | **Priority** | P2 |
-| **Status** | Complete — all 9 phases shipped; see phase 006 for the one documented deferral, phase 007 for the adherence audit + playbook/catalog completion, phase 008 for the domain-subfolder split, and phase 009 for the real playbook execution (8 PASS / 1 SKIP / 0 FAIL) |
+| **Status** | Complete — all 14 phases shipped; phase 013 ran a 10-iteration multi-model deep review (CONDITIONAL, 4 P1) and phase 014 resolved every P1 finding, independently verified |
 | **Created** | 2026-08-12 |
 | **Branch** | `sk-doc/0145-sk-create-diagram` (worktree `.worktrees/0145-sk-doc-sk-create-diagram`) |
 | **Track** | `sk-doc` |
@@ -110,6 +110,11 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | `007-adherence-audit-and-artifact-completion/` | Create | 007 | Literal template/code-standards audit + fix; manual-testing-playbook/ and feature-catalog/ packages |
 | `008-resource-reorganization-and-code-alignment/` | Create | 008 | references/ and assets/ split into domain subfolders; deeper Python alignment; scripts/README.md |
 | `009-manual-playbook-execution/` | Create | 009 | All 9 manual-testing-playbook scenarios run for real via deepseek/deepseek-v4-flash; results gathered |
+| `010-benchmark-artifact-embedding/` | Create | 010 | 7 real scenario outputs copied into their benchmark report folders; 2 no-artifact scenarios documented |
+| `011-reference-template-alignment/` | Create | 011 | 10 named reference files aligned with `sk-create-skill`'s literal template (dividers, casing, intro de-duplication) |
+| `012-flowchart-capability-merge/` | Create | 012 | `sk-create-flowchart`'s ASCII/markdown capability merged into `sk-create-diagram` as a second output format |
+| `013-deep-review-grok-deepseek/` | Create | 013 | 10-iteration fan-out deep review (Grok 4.6 + deepseek-v4-flash), merged CONDITIONAL verdict |
+| `014-review-remediation/` | Create | 014 | All 4 P1 findings from the 013 review resolved, verified clean |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -128,6 +133,11 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | 7 | `007-adherence-audit-and-artifact-completion/` | Literal template/code-standards adherence audit; author manual-testing-playbook/ and feature-catalog/ | Complete |
 | 8 | `008-resource-reorganization-and-code-alignment/` | Split references/ and assets/ into domain subfolders; deeper Python alignment; scripts/README.md | Complete |
 | 9 | `009-manual-playbook-execution/` | Run all 9 manual-testing-playbook scenarios for real via deepseek/deepseek-v4-flash; gather results | Complete |
+| 10 | `010-benchmark-artifact-embedding/` | Copy real scenario outputs into their benchmark report folders per `create-benchmark`'s copied-artifact contract | Complete |
+| 11 | `011-reference-template-alignment/` | Align 10 named reference files with `sk-create-skill`'s literal reference template | Complete |
+| 12 | `012-flowchart-capability-merge/` | Merge `sk-create-flowchart`'s ASCII/markdown capability into `sk-create-diagram`; advisor/hub integration | Complete |
+| 13 | `013-deep-review-grok-deepseek/` | 10-iteration fan-out deep review (Grok 4.6 + deepseek-v4-flash); merged CONDITIONAL verdict | Complete |
+| 14 | `014-review-remediation/` | Fix all 4 P1 findings from phase 013's review | Complete |
 
 ### Phase Transition Rules
 
@@ -148,7 +158,13 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | Phase 005 wiring | Phase 006 validation | `/create:diagram` command, `mode-registry.json`, `hub-router.json`, `command-metadata.json` entries exist and resolve | Phase 005 checklist evidence |
 | Phase 006 validation | Phase 007 audit | `validate.sh --strict` clean for the phase-parent and all 6 children | Phase 006 checklist evidence |
 | Phase 007 audit + artifacts | Phase 008 reorg | `validate.sh --strict` clean for the phase-parent and all 7 children | Phase 007 checklist evidence |
-| Phase 008 reorg + alignment | Closeout | `references/`/`assets/` subfoldered with 0 broken cross-references; both scripts AST-clean; `scripts/README.md` exists; `validate.sh --recursive --strict` clean for parent + all 8 children | Recorded command output in `008-resource-reorganization-and-code-alignment/implementation-summary.md` |
+| Phase 008 reorg + alignment | Phase 009 playbook execution | `references/`/`assets/` subfoldered with 0 broken cross-references; both scripts AST-clean; `scripts/README.md` exists; `validate.sh --recursive --strict` clean for parent + all 8 children | Recorded command output in `008-resource-reorganization-and-code-alignment/implementation-summary.md` |
+| Phase 009 playbook execution | Phase 010 artifact embedding | 9/9 scenarios executed and results gathered via the canonical wrapper | Phase 009 checklist evidence |
+| Phase 010 artifact embedding | Phase 011 reference alignment | 7/7 artifact copies byte-identical, 2/2 no-artifact scenarios documented | Phase 010 checklist evidence |
+| Phase 011 reference alignment | Phase 012 flowchart merge | 10/10 named files structurally aligned with the template | Phase 011 checklist evidence |
+| Phase 012 flowchart merge | Phase 013 deep review | `sk-create-diagram` routes both output formats; hub JSON + advisor index refreshed | Phase 012 checklist evidence |
+| Phase 013 deep review | Phase 014 remediation | Merged verdict recorded; headline finding independently confirmed real | Phase 013 checklist evidence |
+| Phase 014 remediation | Closeout | All 4 P1 findings resolved; `validate.sh --recursive --strict` clean for parent + all 14 children | Recorded command output in `014-review-remediation/implementation-summary.md` |
 <!-- /ANCHOR:phase-map -->
 
 ---
