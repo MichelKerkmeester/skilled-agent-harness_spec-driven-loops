@@ -127,3 +127,18 @@ Pi's directive de-dup remains represented by the existing `skill-advisor/pi/prom
 
 - `readlink -f .opencode/hooks/dispatch/cursor/post-tool-use.mjs` resolved to `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs`.
 - `readlink -f .opencode/hooks/post-edit-quality/cursor/post-tool-use.mjs` resolved to the same live proxy.
+
+## PHASE 8 — Fillable runtime adapters (shipped)
+
+Cursor completion evidence runs from source on the documented `afterAgentResponse` event, whose payload contains the final assistant `text`. The task brief called this event `onEnd`, but `.cursor/hooks.json` and Cursor's maintained runtime contract expose no such event. The adapter resolves a packet from the claim text first, then falls back to per-session hook state, delegates to the shared completion sentinel, and writes only the existing bounded advisory log.
+
+Pi completion evidence runs on native `turn_end`, reads only an assistant ending message, and delegates to the same core. A finding is appended to the bounded log and sent as a hidden, non-triggering custom message. Pi task dispatch runs on native `tool_call` for the installed `pi-subagents` package's `subagent` tool. It evaluates the shared dispatch core but intentionally converts both warn and reject verdicts to a non-blocking `reason`; it never returns `block: true`.
+
+Codex task-dispatch remains unfilled. Its checked-in hook contract exposes `exec`, `apply_patch`, `edit`, and MCP interception, but no Task/subagent event or tool. Treating `exec` as task dispatch would conflate external CLI execution with native subagent dispatch and would not intercept the behavior this concern governs.
+
+### Guard and load proof
+
+- Cursor completion: default/`MK_COMPLETION_DISABLED=1`/`MK_HOOKS_DISABLED=1` produced advisory-log counts `1/0/0` in a disposable fixture.
+- Pi completion: default registered `turn_end`, sent one hidden advisory, and wrote one log line; both disable switches registered no handler and produced no message or log.
+- Pi task dispatch: default registered `tool_call` and returned an advisory `reason` for a mode mismatch without `block`; both disable switches registered no handler.
+- All new symlinks resolved to source adapters. Cursor JSON parsed, the Cursor adapter passed `node --check`, and both Pi adapters loaded through `.pi/extensions/` with `node --experimental-strip-types --preserve-symlinks`.

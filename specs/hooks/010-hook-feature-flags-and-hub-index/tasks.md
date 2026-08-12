@@ -58,10 +58,11 @@ parent: "./spec.md"
 
 ## PHASE 8 — Fillable runtime adapters
 
-- [ ] Add guarded advisory-only completion coverage for Cursor `onEnd`
-- [ ] Add guarded advisory-only completion coverage for Pi's apt turn/session event
-- [ ] Determine whether Codex and Pi expose genuine task-dispatch interception events; implement only where real
-- [ ] Load-check every new adapter and prove default-on, concern-off, and master-off behavior
+- [x] Add guarded advisory-only completion coverage for Cursor `afterAgentResponse` [Evidence: current Cursor hook contract exposes final assistant text on this event; the requested `onEnd` event does not exist in `.cursor/hooks.json` or the runtime contract]
+- [x] Add guarded advisory-only completion coverage for Pi `turn_end` [Evidence: native `TurnEndEvent.message` supplies the ending assistant message]
+- [x] Add guarded advisory-only task-dispatch coverage for Pi `tool_call("subagent")` [Evidence: installed `pi-subagents` registers the native `subagent` tool and Pi exposes block-capable `tool_call` before execution; adapter deliberately returns only `reason`]
+- [x] Leave Codex task-dispatch unfilled [Evidence: `.codex/hooks.json` exposes tool hooks for `exec`, `apply_patch`, `edit`, and MCP calls but no Task/subagent event]
+- [x] Load-check every new adapter and prove default-on, concern-off, and master-off behavior [Evidence: Cursor default/concern-off/master-off advisory-log counts `1/0/0`; Pi completion handler/message/log counts `turn_end+1+1/none+0+0/none+0+0`; Pi task default returned advisory `reason` without `block`, both switches registered no handler]
 
 ## PHASE 9 — Coverage matrix
 

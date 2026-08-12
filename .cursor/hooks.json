@@ -101,6 +101,13 @@
         "type": "command",
         "timeout": 10
       }
+    ],
+    "afterAgentResponse": [
+      {
+        "command": "node .opencode/skills/system-spec-kit/mcp-server/hooks/cursor/completion-evidence-response.mjs",
+        "type": "command",
+        "timeout": 10
+      }
     ]
   }
 }

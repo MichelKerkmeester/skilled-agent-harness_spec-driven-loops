@@ -38,7 +38,7 @@ No other logic changes.
 | 5 | Symlink every skill-owned hook into `.opencode/hooks/<concern>/<runtime>/`; rewrite hub README + `injection-contract.md` for the full-index model | symlinks resolve; Pi/OpenCode loaders still clean |
 | 6 | Cross-runtime validation sweep | each runtime loads clean; master-off = all silent; toggles verified; no stray files |
 | 7 | Close remaining index gaps for Cursor dispatch/post-edit coverage; classify embedded Pi directive and OpenCode session lifecycle ownership | each new relative symlink resolves with `readlink -f`; embedded coverage is documented without duplicate aliases |
-| 8 | Add fillable Cursor/Pi completion adapters and assess Codex/Pi task-dispatch interception feasibility | adapters load, remain advisory/fail-open, and prove default-on plus concern/master-off behavior |
+| 8 | Add fillable Cursor/Pi completion adapters and assess Codex/Pi task-dispatch interception feasibility | adapters load, remain advisory/fail-open, and prove default-on plus concern/master-off behavior; unavailable runtime events are documented rather than invented |
 | 9 | Add a complete concern × runtime coverage matrix to the hook hub README | every concern has an explicit covered, by-design, or unavailable event verdict for all six runtimes |
 
 ## IMPORT-PATH NOTE (settled in Phase 2)
@@ -47,4 +47,4 @@ Adapter languages differ: `.cjs` require, `.mjs`/`.js` import, `.ts` (Pi/Claude)
 
 ## STATUS
 
-Phases 1-7 shipped. Phase 7 indexed Cursor's existing multiplexed post-tool proxy under both concerns. Pi directive lifecycle and OpenCode session lifecycle remain indexed only under their owning hook surfaces because neither is an independently gated adapter. Phase 8 adapter work is next.
+Phases 1-8 shipped. Phase 7 indexed Cursor's existing multiplexed post-tool proxy under both concerns. Phase 8 added completion evidence on Cursor's documented `afterAgentResponse` and Pi's native `turn_end`, plus advisory-only Pi task-dispatch coverage on native `subagent` tool calls. Codex has no Task/subagent hook event, so that gap remains a documented capability limit. Phase 9 coverage documentation is next.
