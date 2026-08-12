@@ -1,6 +1,6 @@
 ---
 title: "Implementation Status: Phase 005 Provider Adapters and Privacy"
-description: "Phase 005 is scaffolded as a Level 3 implementation packet; implementation has not started."
+description: "Phase 005 provider and privacy implementation is built and ready for strict packet validation."
 trigger_phrases:
   - "provider-adapters-and-privacy"
   - "implementation status"
@@ -10,12 +10,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy"
-    last_updated_at: "2026-08-11T19:25:48Z"
+    last_updated_at: "2026-08-12T04:11:59Z"
     last_updated_by: "codex"
-    recent_action: "Received the completed and verified Phase 004 handover."
-    next_safe_action: "Obtain project-owner approval, then start T001 against the 70-test baseline."
-    blockers:
-      - "Project-owner approval of the Proposed architecture decision is not yet recorded."
+    recent_action: "Passed focused, package, audit, and performance gates."
+    next_safe_action: "Run strict validation, reconcile metadata, and pin the final commit."
+    blockers: []
     key_files:
       - "implementation-summary.md"
       - "spec.md"
@@ -27,11 +26,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-005-scaffold-20260811"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions:
       - "Phase purpose, boundary, dependencies, and handoff are defined."
       - "Phase 004 is complete and its protected request, fidelity and render boundary is available."
+      - "The project owner approved the privacy-first provider architecture."
+      - "Five focused files with nineteen tests and all eighty-nine package tests pass."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Status: Phase 005 Provider Adapters and Privacy
@@ -47,8 +48,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-provider-adapters-and-privacy |
-| **Status** | Draft |
-| **Implementation** | Not started |
+| **Status** | Ready for validation |
+| **Implementation** | Code and focused verification complete |
 | **Level** | 3 |
 | **Scaffolded** | 2026-08-11 |
 <!-- /ANCHOR:metadata -->
@@ -58,9 +59,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No runtime or provider implementation has been built in this phase. The current artifact is an implementation-ready Level 3 packet covering add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent.
+Phase 005 adds a closed model-scoped provider registry, conservative capability snapshots, dated cost and privacy facts, a transport-free privacy router, four provider adapter families, bounded execution, exact-original failure outcomes, and content-free provider telemetry.
 
-The authored artifacts `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` define eight requirements, six acceptance scenarios, the architecture and rollback, an executable task sequence, and completion gates. All implementation and release checks remain pending unless the checklist records direct evidence.
+OpenCode Go selects `deepseek-v4-flash` at the documented Chat Completions endpoint using only a credential reference. Ollama and llama.cpp use their distinct native/OpenAI-style bodies. Generic hosted providers use the same model record without changing core contracts. Required temperature and thinking controls compile before transport or fail closed.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +69,7 @@ The authored artifacts `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `de
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The scaffold was derived from the completed Phase 001 synthesis and the parent phase map. Spec-kit Level 3 templates provide the document contract; phase-specific content replaces template placeholders. Implementation must proceed through the task and checklist gates.
+The implementation consumes Phase 004 `ProtectedDocument.encodedText`, retains the exact original locally, classifies privacy before ranking, and passes only an explicit approved attempt plan to the executor. The executor rechecks that plan at request time, bounds timeout and cancellation, and never invents a hosted fallback.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -79,7 +80,8 @@ The scaffold was derived from the completed Phase 001 synthesis and the parent p
 | Decision | Why |
 |----------|-----|
 | Use model-scoped adapters behind a privacy-first router | It preserves canonical state and gives every unsupported or failed case an explicit safe outcome. |
-| Keep implementation status Draft | No code, runtime integration, provider call, or implementation test has been completed in this phase. |
+| Treat capability and privacy claims as dated evidence | A shared protocol, local address, or provider label does not prove model controls, offline behavior, retention, or residency. |
+| Resolve credentials outside this package | Provider requests carry opaque references; no token value enters a record or telemetry event. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -89,10 +91,12 @@ The scaffold was derived from the completed Phase 001 synthesis and the parent p
 
 | Check | Result |
 |-------|--------|
-| Level 3 document inventory | Required as the scaffold handoff gate |
-| Phase-specific placeholder scan | Required as the scaffold handoff gate |
-| Strict packet validation | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy --strict` before handoff |
-| Implementation tests | Not run; implementation has not started |
+| Focused provider gate | PASS: 5 files and 19 tests |
+| Package gate | PASS: typecheck, build, 21 files and 89 tests, import smoke |
+| Dependency audit | PASS: 0 vulnerabilities; no dependency added |
+| Package dry run | PASS: 209 files, 118,135 packed bytes, no bundled dependency |
+| Privacy routing performance | PASS: warm 5/30 run, p50 0.033 ms, p95 0.094 ms, maximum 0.267 ms |
+| Strict packet validation | Pending final documentation reconciliation |
 | Phase 004 predecessor | PASS: 70-test package gate, 23 focused tests and exact-original handover are available |
 <!-- /ANCHOR:verification -->
 
@@ -101,7 +105,8 @@ The scaffold was derived from the completed Phase 001 synthesis and the parent p
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Implementation absent**: All code, tests, integrations, packaging, and runtime behavior described here remain to be built.
-2. **Proposed paths**: Package paths may be refined during boundary preflight, but the phase scope and contracts are frozen unless the parent map is explicitly revised.
-3. **External drift**: Runtime and provider capabilities must be revalidated against pinned versions before release.
+1. **No live provider call**: Verification uses deterministic injected transports. Phase 006/008 must perform credentialed smoke tests without persisting content or secrets.
+2. **Conservative OpenCode Go controls**: The preset leaves temperature and thinking controls unknown until fresh model-specific evidence is supplied; unsupported or stale controls fail before transport.
+3. **Dated hosted terms**: Revalidate OpenCode Go retention and training facts before 2026-08-31 and again during release hardening.
+4. **Runtime parity remains open**: Phase 006 owns six CLI clients, and Phase 007 owns blinded 1:1 communication-quality evaluation.
 <!-- /ANCHOR:limitations -->

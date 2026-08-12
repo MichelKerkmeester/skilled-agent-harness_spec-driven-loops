@@ -39,13 +39,14 @@
       "verification"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "handover.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -77,6 +78,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -152,12 +159,6 @@
         "source": "derived"
       },
       {
-        "name": "Scaffolded Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -182,13 +183,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -196,7 +197,7 @@
     ],
     "causal_summary": "Add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent",
     "created_at": "2026-08-11T10:04:30Z",
-    "last_save_at": "2026-08-11T19:30:41.815Z",
+    "last_save_at": "2026-08-12T04:13:18.091Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,16 +206,18 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:641dce056c423a475eca023e0ed50288879afa948425fd733c9af6900db2f47f",
+    "source_fingerprint": "sha256:8de2a4029daf180ccd4f5b118fb42c680d32c57e911b9108abb3868615a2b05b",
     "source_doc_hashes": {
-      "spec.md": "687059cc09fb44f76bd240670aee8a4db0143d5a7d74b1f5754e0da821207f66",
-      "plan.md": "53691a2bd4b3043d911a478556a9af7747d6a8ef1a4dc23b229d58d2d648d3b6",
-      "tasks.md": "94ff7420055f2cb875ed7169c215176437f75097a84e67c37e8564555cf23a96",
-      "checklist.md": "d1dc88f8d3aebf05ff2cd56d3bc92ae809779457d242c4d8d9ee4a97a41131c2",
-      "decision-record.md": "abe897dd3df9ea42f245a863620f6c79875beac55d90f406d8272da5b045069e",
-      "implementation-summary.md": "bf048947d286ed5aadef76dcd6186a4dc7a822c4db4d8332d28a5b33ebb10b68"
+      "spec.md": "8a39ab57b7ac5ddc7fdbd4a826f877a2d48996796df1127067413b7615402131",
+      "plan.md": "e5fe327b9e6e01b056e06ac24b4db111b2b06d42726fe692d5abd712bf154703",
+      "tasks.md": "f053648d1cab3d8779e68d1dde70a9cba585db108c76eb5abc5d503b5f5035aa",
+      "checklist.md": "c1c2ed65a27151bcb66d2d688d8248a4b78f3039f478bd426cf7a78ea1f17d91",
+      "decision-record.md": "5c5f0e1e5e144896ec263ee58b82c5dfeb922c606ecd1818c7c403e685ac6e96",
+      "implementation-summary.md": "1631d0ab11e21e7be0bb1f8bc98000853d9c415ee2a8ec1659eceaa2842adb28",
+      "handover.md": "499244d0d49554b4df68f1ddd147a88171b7b3b9a3b24877b0531636f4baaf49"
     },
     "last_active_child_id": null,
     "last_active_at": null

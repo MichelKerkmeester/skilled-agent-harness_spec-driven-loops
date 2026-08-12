@@ -10,12 +10,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy"
-    last_updated_at: "2026-08-11T10:15:00Z"
+    last_updated_at: "2026-08-12T04:11:59Z"
     last_updated_by: "codex"
-    recent_action: "Returned the Phase 005 planning decision to Proposed after review."
-    next_safe_action: "Obtain project-owner approval, then implement the decision through tasks.md."
-    blockers:
-      - "Project-owner approval is not yet recorded."
+    recent_action: "Recorded project-owner approval of the privacy-first provider architecture."
+    next_safe_action: "Implement the accepted decision through tasks.md."
+    blockers: []
     key_files:
       - "decision-record.md"
       - "spec.md"
@@ -28,6 +27,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Phase purpose, boundary, dependencies, and handoff are defined."
+      - "The project owner approved continuing with the privacy-first provider architecture."
 ---
 # Decision Record: Phase 005 Provider Adapters and Privacy
 
@@ -44,9 +44,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
+| **Status** | Accepted |
 | **Date** | 2026-08-11 |
-| **Deciders** | Proposed by planning review; project-owner approval pending |
+| **Deciders** | Project owner and implementation review |
 
 ---
 
@@ -67,7 +67,7 @@ Add model-scoped hosted and local provider adapters behind privacy-first routing
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We propose**: Use model-scoped adapters behind a privacy-first router.
+**We will**: Use model-scoped adapters behind a privacy-first router.
 
 **How it works**: Classify data and establish egress permission before ranking providers or invoking an adapter. Each provider-model pair declares its own protocol, prompt-control mapping, and dated capabilities. Fallback crosses privacy classes only with explicit user policy.
 <!-- /ANCHOR:adr-001-decision -->

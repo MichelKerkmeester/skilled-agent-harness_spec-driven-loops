@@ -10,12 +10,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy"
-    last_updated_at: "2026-08-11T19:25:48Z"
+    last_updated_at: "2026-08-12T04:11:59Z"
     last_updated_by: "codex"
-    recent_action: "Received the completed and verified Phase 004 handover."
-    next_safe_action: "Obtain owner approval, then execute T001 against the 70-test baseline."
-    blockers:
-      - "Project-owner approval of the Proposed architecture decision is not yet recorded."
+    recent_action: "Implemented all provider and privacy surfaces and passed the focused and package gates."
+    next_safe_action: "Run strict packet validation and publish the Phase 006 handover."
+    blockers: []
     key_files:
       - "plan.md"
       - "spec.md"
@@ -27,11 +26,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-005-scaffold-20260811"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions:
       - "Phase purpose, boundary, dependencies, and handoff are defined."
       - "Phase 004 is complete and its handover is available for T001."
+      - "The project owner approved continuing with the privacy-first provider architecture."
+      - "Nineteen focused provider tests and all eighty-nine package tests pass."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2 -->
 # Implementation Plan: Phase 005 Provider Adapters and Privacy
@@ -70,8 +71,8 @@ Add model-scoped hosted and local provider adapters behind privacy-first routing
 
 ### Definition of Done
 
-- [ ] All P0 and P1 requirements have observed evidence.
-- [ ] Focused tests and the authoritative workspace gate pass from final state.
+- [x] All P0 and P1 requirements have observed evidence.
+- [x] Focused tests and the authoritative workspace gate pass from final state.
 - [ ] The checklist, task status, current-state summary, and metadata agree.
 <!-- /ANCHOR:quality-gates -->
 
@@ -117,17 +118,17 @@ Protected request -> privacy classification -> egress consent -> eligible model 
 
 ### Phase 1: Contract and Boundary Preflight
 
-- [ ] Confirm predecessor artifacts and freeze the input/output boundary.
-- [ ] Inventory producers, consumers, independent matrix axes, and negative controls.
+- [x] Confirm predecessor artifacts and freeze the input/output boundary.
+- [x] Inventory producers, consumers, independent matrix axes, and negative controls.
 
 ### Phase 2: Core Implementation
 
-- [ ] Implement model records, credential references, conservative discovery, and privacy-first eligibility.
-- [ ] Implement prompt-control mappings plus OpenCode Go, Ollama, llama.cpp, and generic adapter contracts.
+- [x] Implement model records, credential references, conservative discovery, and privacy-first eligibility.
+- [x] Implement prompt-control mappings plus OpenCode Go, Ollama, llama.cpp, and generic adapter contracts.
 
 ### Phase 3: Verification and Handoff
 
-- [ ] Implement privacy-first selection, explicit fallback, and transport negative controls.
+- [x] Implement privacy-first selection, explicit fallback, and transport negative controls.
 - [ ] Reconcile checklist, summary, metadata, and successor handoff evidence.
 <!-- /ANCHOR:phases -->
 
@@ -150,8 +151,8 @@ Protected request -> privacy classification -> egress consent -> eligible model 
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 002 provider and privacy contracts | Internal | Required | Phase 005 implementation cannot close |
-| Phase 004 protected input and fidelity interface | Evidence | Complete; verified handover available | None; owner approval still gates Phase 005 |
+| Phase 002 provider and privacy contracts | Internal | Complete and consumed | None |
+| Phase 004 protected input and fidelity interface | Evidence | Complete and consumed | None |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -198,9 +199,9 @@ Protected request -> privacy classification -> egress consent -> eligible model 
 
 ### Pre-Change Checks
 
-- [ ] Capture the authoritative test baseline.
-- [ ] Confirm original-only mode remains available.
-- [ ] Confirm no canonical transcript or tool-data migration is planned.
+- [x] Capture the authoritative test baseline.
+- [x] Confirm original-only mode remains available.
+- [x] Confirm no canonical transcript or tool-data migration is planned.
 
 ### Procedure
 
@@ -274,7 +275,7 @@ Boundary contracts -> Core implementation -> Focused verification
 
 **Decision**: Use model-scoped adapters behind a privacy-first router
 
-**Status**: Proposed. Project-owner approval is required before implementation. Full rationale and alternatives are in `decision-record.md`.
+**Status**: Accepted. Project-owner approval was recorded on 2026-08-11. Full rationale and alternatives are in `decision-record.md`.
 
 ---
 

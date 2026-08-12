@@ -11,12 +11,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy"
-    last_updated_at: "2026-08-11T19:25:48Z"
+    last_updated_at: "2026-08-12T04:11:59Z"
     last_updated_by: "codex"
-    recent_action: "Received the completed and verified Phase 004 handover."
-    next_safe_action: "Obtain project-owner approval, then begin Phase 005 from T001."
-    blockers:
-      - "Project-owner approval of the Proposed architecture decision is not yet recorded."
+    recent_action: "Implemented the provider and privacy boundary and passed the 89-test package gate."
+    next_safe_action: "Run strict packet validation, reconcile final metadata, and publish the Phase 006 handover."
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -28,11 +27,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-005-scaffold-20260811"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 90
     open_questions: []
     answered_questions:
       - "Phase purpose, boundary, dependencies, and handoff are defined."
       - "Phase 004 provides the verified protected request, fidelity outcome and render boundary."
+      - "The project owner approved the privacy-first model-scoped provider architecture."
+      - "The implementation passes 19 focused provider tests and the 89-test package gate."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Phase 005 Provider Adapters and Privacy
@@ -58,7 +59,7 @@ Phase 005 turns the completed research into the provider adapters and privacy im
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Ready for validation |
 | **Created** | 2026-08-11 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -73,7 +74,7 @@ Phase 005 turns the completed research into the provider adapters and privacy im
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This phase converts the completed research into an implementation-ready workstream.
+This phase implements the provider and privacy workstream derived from the completed research.
 
 **Scope boundary**: Add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent.
 
@@ -87,6 +88,16 @@ This phase converts the completed research into an implementation-ready workstre
 - Model-specific provider registry and capability discovery
 - OpenCode Go DeepSeek V4 Flash, Ollama, llama.cpp, and generic hosted adapters
 - Privacy classification, egress consent, credential references, and explicit fallback policy
+
+**Observed evidence**:
+
+| Boundary | Evidence |
+|----------|----------|
+| Model registry | Closed validation, dated capability/privacy/cost evidence, unique IDs, and stale-to-unknown merge behavior |
+| Provider adapters | OpenCode Go, generic hosted, Ollama native, and llama.cpp request/response tests |
+| Privacy routing | Ranker spy proves denial and consent checks run before ranking; fallback plans contain only explicit policy-approved routes |
+| Safe execution | Missing/expired credentials, unsupported controls, timeout, cancellation, transport error, truncation, and malformed output return the immutable exact original |
+| Evidence | Shared telemetry allowlist rejects raw fields; secret and raw-content canaries remain absent |
 <!-- /ANCHOR:phase-context -->
 
 ---
