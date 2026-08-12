@@ -13,9 +13,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-template-context-optimizations"
-    last_updated_at: "2026-08-12T17:39:01Z"
+    last_updated_at: "2026-08-12T20:29:59Z"
     last_updated_by: "claude-code"
-    recent_action: "Completed deep-review remediation and QA checklist; packet complete"
+    recent_action: "Added before/after comparison and packet changelog; packet complete"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
@@ -184,6 +184,22 @@ Ship the six verified/multi-lineage improvements as four independently-shippable
 ## L2: COMPLEXITY ASSESSMENT
 
 Four surfaces (template renderer, template source, validation framework, MCP search handler), each with its own test suite and regression gate. Individually the recs are small-to-medium; collectively they touch enough architecture (renderer contract, validation rule-loader, MCP handler) to warrant a decision record. Planning-stage Level 2; the final level firms up as implementation LOC lands. Not phase-folder scale — the recs are loosely coupled and tracked as phases within this plan.
+
+---
+
+## L2: BEFORE VS AFTER
+
+Concrete impact of the shipped optimizations (all template renders proven byte-identical where output must not change):
+
+| Surface | Before | After |
+|---------|--------|-------|
+| `research.md.tmpl` | Single 944-line doc rendered in full at every level | Level-gated — L1 renders ~175 lines; L3/3+/phase render the full doc byte-identical |
+| `spec` / `plan` / `tasks` / `implementation-summary` templates | Four embedded full copies per template (~2,931 source lines) | One shared core + per-level gated addenda (~1,314 lines, −55%); every level renders byte-identical |
+| Template read path | Agents read the raw ungated `.md.tmpl` (the full wall) | `template-guide.md` directs agents to the rendered, level-appropriate view |
+| `AC_COVERAGE` rule | Implemented but disabled by default (dormant gate) | Default-on advisory (INFO, non-blocking; `RULE_STATUS` stays `pass`) |
+| Scope discipline | Prose-only convention (a 033 research lineage wandered out of scope) | `check-scope-adherence.sh` advisory rule — opt-in change-set, packet docs always in-scope |
+| `memory_search` response size | Unbounded — a large result set could flood the caller's context | Token budget enforced (lowest-score dropped first), mirroring `memory_context`; feedback telemetry counts only returned results |
+| Registry rule count / docs | AC_COVERAGE documented off; scope vars undocumented; counts 45/37/36 | Docs reconciled to the new behavior; registry count aligned to 46 across references |
 
 ---
 

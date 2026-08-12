@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
     "created_at": "2026-08-12T12:51:40.227Z",
-    "last_save_at": "2026-08-12T17:45:33.324Z",
+    "last_save_at": "2026-08-12T20:31:34.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f679dde6b9e3556771cbfa8329cef29db40a1d5fe776d97b0d75bdc85d09ea2",
+    "source_fingerprint": "sha256:c4407f510e1efea574bafdb3660811b4c07eeba25517465e2d25a8996ff5eda9",
     "source_doc_hashes": {
-      "spec.md": "0fe112deaeee9b15ce0fdc62afbe2a9732a45c397876124ee9312b3b38d5bb18",
+      "spec.md": "62a2ac717a6345a08e7b25b64a367fddb8dae32df715eb0de7dd71dca8eaa1f2",
       "plan.md": "bed9f988c3572ed2133e3313cf15466271244f0fa5d28655d2bd09db30beb2d3",
       "tasks.md": "664cd1a7a687f57001a8fc53b830d33aaa92fe05cb6218d09fc71822e3740e23",
-      "checklist.md": "baa9c5b356be481fcab032723719c2b10cff63dad36dfc159ccd85f8c6fcf9ba",
+      "checklist.md": "f40372b14bda23d705afac8faa0124b124a04d2b9bf84194115abd9396a3c2b9",
       "decision-record.md": "4561623f538dc208144a2c674eeec604042ba3e4c8bf5bfc20221119d9d42793",
-      "implementation-summary.md": "6d26fdd1e068b016dfae178521dc9b51a28f6ffbe684255ef69a9c162e0e047b"
+      "implementation-summary.md": "e95c4f27ec8fa6c3647e6a6904f6344e6c082b201e9c0e60b66ae3e3b119849b"
     },
     "last_active_child_id": null,
     "last_active_at": null

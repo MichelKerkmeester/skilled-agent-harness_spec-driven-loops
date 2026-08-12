@@ -6,9 +6,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-template-context-optimizations"
-    last_updated_at: "2026-08-12T17:39:01Z"
+    last_updated_at: "2026-08-12T20:29:59Z"
     last_updated_by: "claude-code"
-    recent_action: "Completed QA checklist with observed evidence"
+    recent_action: "Added before/after comparison and packet changelog"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
