@@ -10,12 +10,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication"
-    last_updated_at: "2026-08-11T19:25:48Z"
+    last_updated_at: "2026-08-12T04:14:38Z"
     last_updated_by: "codex"
-    recent_action: "Completed and verified Phase 004."
-    next_safe_action: "Approve the Phase 005 privacy-first decision, then execute its boundary preflight."
+    recent_action: "Completed and verified Phase 005 provider adapters and privacy."
+    next_safe_action: "Approve the Phase 006 architecture, then execute T001."
     blockers:
-      - "Phase 005 architecture decision remains Proposed until owner approval."
+      - "Phase 006 architecture decision remains Proposed until owner approval."
     key_files:
       - "spec.md"
       - "001-research-strategy/spec.md"
@@ -26,11 +26,13 @@ _memory:
       - "004-protected-spans-fidelity-render/spec.md"
       - "004-protected-spans-fidelity-render/handover.md"
       - "005-provider-adapters-and-privacy/spec.md"
+      - "005-provider-adapters-and-privacy/handover.md"
+      - "006-runtime-adapters-and-clients/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "035-improved-communication-20260811"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 63
     open_questions:
       - "Which runtimes prove atomic replacement under pinned fixtures?"
     answered_questions:
@@ -39,6 +41,7 @@ _memory:
       - "Phase 002 delivered the standalone v1 contract package and verified fixture corpus."
       - "Phase 003 delivered the verified normalization, assembly, context, and evidence core."
       - "Phase 004 delivered the verified protected-span, fidelity, render, and content-free evidence boundary."
+      - "Phase 005 delivered verified model-scoped providers, privacy-first routing, bounded execution, and exact-original fallback."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -59,7 +62,7 @@ _memory:
 | **Parent Spec** | None |
 | **Parent Packet** | `cli-external-orchestration/035-improved-communication` |
 | **Predecessor** | None |
-| **Successor** | `001-research-strategy/` through `004-protected-spans-fidelity-render/` complete. `005-provider-adapters-and-privacy/` is next. |
+| **Successor** | `001-research-strategy/` through `005-provider-adapters-and-privacy/` complete. `006-runtime-adapters-and-clients/` is next. |
 | **Handoff Criteria** | Each child passes its own implementation gates and strict validation before the next phase consumes its output |
 <!-- /ANCHOR:metadata -->
 
@@ -128,12 +131,12 @@ Detailed research, architecture, implementation, and verification belong to chil
 | 2 | `002-contracts-and-fixtures/` | Bootstrap the standalone package and version event, context, prompt, provider, privacy, projection, telemetry, evaluation, benchmark, error, and exact-original fixture contracts | Complete |
 | 3 | `003-core-normalization-and-assembly/` | Implement immutable normalization, canonical-byte storage, bounded context selection, ordering, deduplication, bounds, cancellation, retry generations, and content-free event emission | Complete |
 | 4 | `004-protected-spans-fidelity-render/` | Implement protected spans, deterministic validators, semantic vetoes, compare-and-swap, and render decisions | Complete |
-| 5 | `005-provider-adapters-and-privacy/` | Implement OpenCode Go, Ollama, llama.cpp, generic hosted adapters, discovery, and privacy-first routing | Draft, next; owner approval required |
-| 6 | `006-runtime-adapters-and-clients/` | Implement Claude, Codex, Pi, OpenCode, Devin, and Cursor adapters with explicit full-projection and safe-native presentation tiers | Draft |
+| 5 | `005-provider-adapters-and-privacy/` | Implement OpenCode Go, Ollama, llama.cpp, generic hosted adapters, discovery, and privacy-first routing | Complete |
+| 6 | `006-runtime-adapters-and-clients/` | Implement Claude, Codex, Pi, OpenCode, Devin, and Cursor adapters with explicit full-projection and safe-native presentation tiers | Draft, next; owner approval required |
 | 7 | `007-evaluation-and-observability/` | Execute the powered blind parity protocol, aggregate redacted telemetry, and produce operational reports | Draft |
 | 8 | `008-packaging-and-release-hardening/` | Package supported configurations, compatibility doctor, rollback, and release gates | Draft |
 
-All seven implementation children exist as Level 3 packets. Phases 002 through 004 have verified code, fixtures and tests. Phases 005 through 008 remain unimplemented.
+All seven implementation children exist as Level 3 packets. Phases 002 through 005 have verified code, fixtures and tests. Phases 006 through 008 remain unimplemented.
 ### Phase Transition Rules
 
 - Each phase must pass `validate.sh` independently before its handoff.
@@ -169,7 +172,7 @@ All seven implementation children exist as Level 3 packets. Phases 002 through 0
 
 ## RELATED DOCUMENTS
 
-- **Active child**: `005-provider-adapters-and-privacy/spec.md`
-- **Completed predecessor handover**: `004-protected-spans-fidelity-render/handover.md`
+- **Active child**: `006-runtime-adapters-and-clients/spec.md`
+- **Completed predecessor handover**: `005-provider-adapters-and-privacy/handover.md`
 - **Reference implementation**: `context/claudish-to-english-main/`
 - **Graph metadata**: `graph-metadata.json`

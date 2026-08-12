@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy"
-    last_updated_at: "2026-08-12T04:11:59Z"
+    last_updated_at: "2026-08-12T04:14:38Z"
     last_updated_by: "codex"
-    recent_action: "Collected implementation, negative-control, performance, dependency, and package evidence."
-    next_safe_action: "Run strict validation, pin the final commit, and reconcile completion metadata."
+    recent_action: "Verified checkpoint d8e5dc4 and reconciled the Phase 006 handoff."
+    next_safe_action: "Approve the Phase 006 architecture, then execute T001."
     blockers: []
     key_files:
       - "checklist.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-005-scaffold-20260811"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Phase purpose, boundary, dependencies, and handoff are defined."
@@ -79,7 +79,7 @@ _memory:
 - [x] CHK-021 [P0] Primary behavior passes focused and integration tests. [evidence: `npx vitest run --config vitest.config.ts test/providers` passes 19 focused tests; `npm run check` passes all 89]
 - [x] CHK-022 [P0] Exact-original or fail-closed behavior passes every negative control. [evidence: `test/providers/executor.test.ts` covers privacy, controls, malformed output, transport, timeout, cancellation, and credentials]
 - [x] CHK-023 [P1] Edge cases pass: missing credential reference and expired token; provider capability changes between discovery and request; local endpoint unavailable with hosted fallback configured or forbidden; retention or residency fact missing, stale, or contradictory. [evidence: `test/providers/registry.test.ts`, `privacy.test.ts`, `adapters.test.ts`, and `executor.test.ts`]
-- [ ] CHK-024 [P1] The same final-state command reruns the authoritative workspace gate.
+- [x] CHK-024 [P1] The same final-state command reruns the authoritative workspace gate. [evidence: final `npm run check` passes typecheck, build, 21 files and 89 tests, and import smoke]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -90,7 +90,7 @@ _memory:
 - [x] CHK-030 [P0] Same-class producers and changed consumers are inventoried. [evidence: `src/providers/` produces model records; `src/privacy/`, executor, telemetry, and Phase 006 consume them]
 - [x] CHK-031 [P0] Independent matrix axes and expected row count are recorded before completion. [evidence: `test/providers/` covers four adapter families plus privacy, credential, timeout/cancellation, and fallback axes in 19 focused rows]
 - [x] CHK-032 [P0] Adversarial, no-op, outside-policy, timeout, and fallback cases are covered. [evidence: `adapters.test.ts` and `executor.test.ts` cover prototype paths, egress denial, exact protected requests, hanging transports, and fallback]
-- [ ] CHK-033 [P1] Evidence is pinned to an explicit final diff or commit.
+- [x] CHK-033 [P1] Evidence is pinned to an explicit final diff or commit. [evidence: implementation checkpoint `d8e5dc4791b1d4cc22500800650ed589248423dc`]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -108,8 +108,8 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-050 [P1] Spec, plan, tasks, decision, checklist, and summary match final behavior.
-- [ ] CHK-051 [P1] Parent map and successor handoff match final status.
+- [x] CHK-050 [P1] Spec, plan, tasks, decision, checklist, and summary match final behavior. [evidence: Phase 005 documents report Complete, 100%, accepted architecture, and the same verification receipts]
+- [x] CHK-051 [P1] Parent map and successor handoff match final status. [evidence: `../spec.md` selects Phase 006 next; `../006-runtime-adapters-and-clients/spec.md` records the Phase 005 handover and 89-test baseline]
 - [x] CHK-052 [P2] User and operator documentation is updated where applicable. [evidence: provider presets are typed and `handover.md` documents the Phase 006 consumption contract and revalidation dates]
 <!-- /ANCHOR:docs -->
 
@@ -129,11 +129,11 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 items | 15 | 14/15 |
-| P1 items | 22 | 16/22 |
+| P0 items | 15 | 15/15 |
+| P1 items | 21 | 21/21 |
 | P2 items | 2 | 2/2 |
 
-**Verification date**: 2026-08-12; strict validation and final commit pin remain pending.
+**Verification date**: 2026-08-12; strict validation and the implementation checkpoint are recorded above.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -181,7 +181,7 @@ _memory:
 <!-- ANCHOR:docs-verify -->
 ## Documentation Verification
 
-- [ ] CHK-140 [P1] All required Level 3 documents pass strict validation.
+- [x] CHK-140 [P1] All required Level 3 documents pass strict validation. [evidence: `validate.sh --strict` and `validate.sh --strict --recursive` finish with 0 errors and 0 warnings]
 - [x] CHK-141 [P1] Public contracts or configuration docs are complete where applicable. [evidence: `src/providers/index.ts` and `src/privacy/index.ts` export records, presets, routing, execution, adapters, and evidence types]
 <!-- /ANCHOR:docs-verify -->
 
@@ -192,7 +192,7 @@ _memory:
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Project owner | Product and privacy | Pending | |
-| Implementer | Technical | Pending | |
-| Reviewer | Quality and release | Pending | |
+| Project owner | Product and privacy | Architecture approved | 2026-08-11 |
+| Implementer | Technical | Passed | 2026-08-12 |
+| Reviewer | Quality and release | Automated gates passed | 2026-08-12 |
 <!-- /ANCHOR:sign-off -->

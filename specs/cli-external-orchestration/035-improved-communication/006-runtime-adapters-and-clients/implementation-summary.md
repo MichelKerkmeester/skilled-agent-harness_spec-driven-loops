@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients"
-    last_updated_at: "2026-08-11T13:45:02Z"
+    last_updated_at: "2026-08-12T04:14:38Z"
     last_updated_by: "codex"
-    recent_action: "Created the Phase 006 planning scaffold."
-    next_safe_action: "Obtain project-owner approval, then start T001 after the Phase 005 handoff."
+    recent_action: "Received the verified Phase 005 provider and privacy handover."
+    next_safe_action: "Approve the Phase 006 architecture, then execute T001."
     blockers:
       - "Project-owner approval of the Proposed architecture decision is not yet recorded."
     key_files:
@@ -22,6 +22,7 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
+      - "specs/cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy/handover.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-006-scaffold-20260811"
@@ -30,6 +31,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Phase purpose, boundary, dependencies, and handoff are defined."
+      - "Phase 005 is complete with a verified 89-test provider/privacy baseline."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Status: Phase 006 Runtime Adapters and Clients
@@ -56,7 +58,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No runtime or provider implementation has been built in this phase. The current artifact is an implementation-ready Level 3 packet covering integrate the projection core with six clis through their safest supported event and presentation boundaries.
+No runtime or client implementation has been built in this phase. The current artifact is an implementation-ready Level 3 packet covering integration of the projection core with six CLIs through their safest supported event and presentation boundaries.
 
 The authored artifacts `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` define eight requirements, six acceptance scenarios, the architecture and rollback, an executable task sequence, and completion gates. All implementation and release checks remain pending unless the checklist records direct evidence.
 <!-- /ANCHOR:what-built -->
@@ -66,7 +68,7 @@ The authored artifacts `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `de
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The scaffold was derived from the completed Phase 001 synthesis and the parent phase map. Spec-kit Level 3 templates provide the document contract; phase-specific content replaces template placeholders. Implementation must proceed through the task and checklist gates.
+The scaffold was derived from the completed Phase 001 synthesis, the parent phase map, and the verified Phase 005 provider/privacy handover. Spec-kit Level 3 templates provide the document contract; phase-specific content replaces template placeholders. Implementation must proceed through the task and checklist gates.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -90,6 +92,7 @@ The scaffold was derived from the completed Phase 001 synthesis and the parent p
 | Level 3 document inventory | Required as the scaffold handoff gate |
 | Phase-specific placeholder scan | Required as the scaffold handoff gate |
 | Strict packet validation | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients --strict` before handoff |
+| Phase 005 predecessor | PASS: provider/privacy handover and 89-test package baseline are available |
 | Implementation tests | Not run; implementation has not started |
 <!-- /ANCHOR:verification -->
 

@@ -98,12 +98,6 @@
         "source": "derived"
       },
       {
-        "name": "Scaffolded Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -117,6 +111,12 @@
       },
       {
         "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phases",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -146,6 +146,12 @@
         "source": "derived"
       },
       {
+        "name": "Pattern Immutable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -159,6 +165,12 @@
       },
       {
         "name": "six",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -180,23 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Integrate the projection core with six CLIs through their safest supported event and presentation boundaries",
     "created_at": "2026-08-11T10:04:31Z",
-    "last_save_at": "2026-08-11T13:46:04.064Z",
+    "last_save_at": "2026-08-12T04:16:41.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:412f24e3a1b3361ffbb93391b44de132aa3686be553eb2529ce4b658e19fd231",
+    "source_fingerprint": "sha256:d12482c3b75e61c17e2636ce213f96b010f09f01787d397156752461de4908f0",
     "source_doc_hashes": {
-      "spec.md": "974234793003dd4255d5cb92e81e405b5318f677002f71a6f221b462d52355c6",
-      "plan.md": "af1b89b70c7a59ff5c8bd643f37b9d44a4541fe526841d0c56a31c8037fe0b6c",
-      "tasks.md": "098bca6870d3d12585816eba495a23e9ac8dc46e5c5ffc697653e42a02e0553c",
+      "spec.md": "03c7742fedc40e579ff9d8fc5ac153d211a65454f6cf1837c74312bec1e00165",
+      "plan.md": "c0c8e1f144aabffdb8188c799632f6f1432733214c42d49b048db8408ec7b973",
+      "tasks.md": "f0b53c1feae141862202b226b00b10b2de681e90b979f9a4f4bbca6f13d6c458",
       "checklist.md": "9c1970d60a53e58f9057f84341a34aa8263a104c3bb97bd71cab448bf982d314",
       "decision-record.md": "d9ea182d31e80eaec82ea43cef0c2df88fe1e3937f020900b16ff43f236ced1f",
-      "implementation-summary.md": "149e19a2dedb04ddec1bec963531e20b00e1bb99e14ac1dab8602eed81391f2f"
+      "implementation-summary.md": "607251b7bd18af90d73c4052faba4af92dcd641c6b1ce55efeb5cd4e424c3bcd"
     },
     "last_active_child_id": null,
     "last_active_at": null

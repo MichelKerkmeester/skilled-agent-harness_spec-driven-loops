@@ -39,7 +39,7 @@
       "verification"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -171,6 +171,12 @@
         "source": "derived"
       },
       {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -178,12 +184,6 @@
       },
       {
         "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "typed",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent",
     "created_at": "2026-08-11T10:04:30Z",
-    "last_save_at": "2026-08-12T04:13:18.091Z",
+    "last_save_at": "2026-08-12T04:19:46.085Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,15 +209,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:8de2a4029daf180ccd4f5b118fb42c680d32c57e911b9108abb3868615a2b05b",
+    "source_fingerprint": "sha256:fa321c27178eee57539f6cfd058d0b0083bdad058fd7fe64d78931695d3a55b8",
     "source_doc_hashes": {
-      "spec.md": "8a39ab57b7ac5ddc7fdbd4a826f877a2d48996796df1127067413b7615402131",
-      "plan.md": "e5fe327b9e6e01b056e06ac24b4db111b2b06d42726fe692d5abd712bf154703",
-      "tasks.md": "f053648d1cab3d8779e68d1dde70a9cba585db108c76eb5abc5d503b5f5035aa",
-      "checklist.md": "c1c2ed65a27151bcb66d2d688d8248a4b78f3039f478bd426cf7a78ea1f17d91",
-      "decision-record.md": "5c5f0e1e5e144896ec263ee58b82c5dfeb922c606ecd1818c7c403e685ac6e96",
-      "implementation-summary.md": "1631d0ab11e21e7be0bb1f8bc98000853d9c415ee2a8ec1659eceaa2842adb28",
-      "handover.md": "499244d0d49554b4df68f1ddd147a88171b7b3b9a3b24877b0531636f4baaf49"
+      "spec.md": "0b6ec4cbcde059fa3f3fca0c0e9b725656c8b98dcfeb5223ea3007a1355f0038",
+      "plan.md": "92c825ff23cf8146914f96b5cfe249dad99c1321aeaeb0b0282fd4722b1fa093",
+      "tasks.md": "084d522c166676cf104d7b5921cfc0dceb98a6da51f62afc6233941adaf7ce05",
+      "checklist.md": "307a33257761857d8ff3d5142b86780471f2c93b3a9ce37d6ee5f3c1f8683532",
+      "decision-record.md": "3834930960fb5bf1bc95c4425d95001c90d318e26e92b02f4d93cbb20490bb4e",
+      "implementation-summary.md": "5c39e8c0d7910a12cbe75f921251337f0e3eb7c5ae609d2d4e607ef97a9c8465",
+      "handover.md": "32d0020a5b6607b64c7adab5b6f7b57cf778be724ba44cc8e5bf25e2526fbb9f"
     },
     "last_active_child_id": null,
     "last_active_at": null

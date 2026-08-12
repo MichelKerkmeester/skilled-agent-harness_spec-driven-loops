@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients"
-    last_updated_at: "2026-08-11T10:15:00Z"
+    last_updated_at: "2026-08-12T04:14:38Z"
     last_updated_by: "codex"
-    recent_action: "Scaffolded Phase 006 specification."
-    next_safe_action: "Obtain project-owner approval, then begin Phase 006 from tasks.md after the Phase 005 handoff."
+    recent_action: "Received the verified Phase 005 provider and privacy handover."
+    next_safe_action: "Approve the Phase 006 architecture, then execute T001."
     blockers:
       - "Project-owner approval of the Proposed architecture decision is not yet recorded."
     key_files:
@@ -23,6 +23,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
+      - "specs/cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy/handover.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-006-scaffold-20260811"
@@ -31,6 +32,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Phase purpose, boundary, dependencies, and handoff are defined."
+      - "Phase 005 is complete with a verified 89-test provider/privacy baseline."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Phase 006 Runtime Adapters and Clients
@@ -71,14 +73,16 @@ Phase 006 turns the completed research into the runtime adapters and clients imp
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This phase converts the completed research into an implementation-ready workstream.
+This phase converts the completed research and verified Phase 005 provider/privacy handover into an implementation-ready workstream.
 
 **Scope boundary**: Integrate the projection core with six CLIs through their safest supported event and presentation boundaries.
 
 **Dependencies**:
 
-- Phases 002-005 shared contracts, core, fidelity, rendering, providers, and privacy policy
+- Completed Phases 002-005 shared contracts, core, fidelity, rendering, providers, and privacy policy
 - Pinned runtime protocol and version matrix from Phase 001
+
+**Predecessor handover**: `../005-provider-adapters-and-privacy/handover.md` records the provider/privacy consumption contract and the 89-test baseline.
 
 **Deliverables**:
 

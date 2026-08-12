@@ -1,6 +1,6 @@
 ---
 title: "Implementation Status: Phase 005 Provider Adapters and Privacy"
-description: "Phase 005 provider and privacy implementation is built and ready for strict packet validation."
+description: "Phase 005 provider and privacy implementation is complete and verified."
 trigger_phrases:
   - "provider-adapters-and-privacy"
   - "implementation status"
@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy"
-    last_updated_at: "2026-08-12T04:11:59Z"
+    last_updated_at: "2026-08-12T04:14:38Z"
     last_updated_by: "codex"
-    recent_action: "Passed focused, package, audit, and performance gates."
-    next_safe_action: "Run strict validation, reconcile metadata, and pin the final commit."
+    recent_action: "Completed Phase 005 and pinned checkpoint d8e5dc4."
+    next_safe_action: "Approve the Phase 006 architecture, then execute T001."
     blockers: []
     key_files:
       - "implementation-summary.md"
@@ -21,12 +21,14 @@ _memory:
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
+      - "handover.md"
       - "specs/cli-external-orchestration/035-improved-communication/004-protected-spans-fidelity-render/handover.md"
+      - "specs/cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-005-scaffold-20260811"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Phase purpose, boundary, dependencies, and handoff are defined."
@@ -48,8 +50,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-provider-adapters-and-privacy |
-| **Status** | Ready for validation |
-| **Implementation** | Code and focused verification complete |
+| **Status** | Complete |
+| **Implementation** | Implemented and validated |
 | **Level** | 3 |
 | **Scaffolded** | 2026-08-11 |
 <!-- /ANCHOR:metadata -->
@@ -96,7 +98,8 @@ The implementation consumes Phase 004 `ProtectedDocument.encodedText`, retains t
 | Dependency audit | PASS: 0 vulnerabilities; no dependency added |
 | Package dry run | PASS: 209 files, 118,135 packed bytes, no bundled dependency |
 | Privacy routing performance | PASS: warm 5/30 run, p50 0.033 ms, p95 0.094 ms, maximum 0.267 ms |
-| Strict packet validation | Pending final documentation reconciliation |
+| Strict packet validation | PASS: Phase 005 strict and parent recursive strict, zero errors and zero warnings |
+| Implementation checkpoint | `d8e5dc4791b1d4cc22500800650ed589248423dc` |
 | Phase 004 predecessor | PASS: 70-test package gate, 23 focused tests and exact-original handover are available |
 <!-- /ANCHOR:verification -->
 

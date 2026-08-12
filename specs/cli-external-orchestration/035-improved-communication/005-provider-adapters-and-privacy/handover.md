@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy"
-    last_updated_at: "2026-08-12T04:11:59Z"
+    last_updated_at: "2026-08-12T04:14:38Z"
     last_updated_by: "codex"
-    recent_action: "Implemented and verified the provider and privacy boundary."
-    next_safe_action: "Validate this packet; approve the Phase 006 architecture."
+    recent_action: "Completed Phase 005 and pinned checkpoint d8e5dc4."
+    next_safe_action: "Approve the Phase 006 architecture, then execute T001."
     blockers: []
     key_files:
       - "handover.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-005-implementation-20260811"
       parent_session_id: "phase-005-scaffold-20260811"
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Provider records, privacy order, explicit fallback, prompt controls, bounded execution, and content-free evidence are implemented and tested."
@@ -44,8 +44,9 @@ Phase 005 provides the privacy-approved provider attempt plan and bounded infere
 - **From session**: Phase 005 implementation completed on 2026-08-12
 - **To session**: Phase 006 runtime adapters and clients
 - **Phase completed**: Model records, conservative discovery, privacy-first routing, four provider families, bounded execution, and content-free evidence
-- **Handover time**: 2026-08-12T04:11:59Z
+- **Handover time**: 2026-08-12T04:14:38Z
 - **Recent action**: Passed the 89-test package gate, 19-test focused matrix, dependency audit, package dry run, and 30-run routing benchmark.
+- **Implementation checkpoint**: `d8e5dc4791b1d4cc22500800650ed589248423dc`
 <!-- /ANCHOR:handover-summary -->
 
 ---
@@ -137,7 +138,7 @@ ProtectedDocument
 - [x] Warm privacy routing passes at 0.033 ms p50 and 0.094 ms p95 against the provisional 20 ms p95 budget.
 - [x] Dependency audit reports 0 vulnerabilities and no dependency was added.
 - [x] Privacy, fallback, exact-original, secret-canary, comment-hygiene, and scoped-output scans pass.
-- [ ] Phase 005 and parent recursive strict validation pass after final metadata refresh.
+- [x] Phase 005 and parent recursive strict validation pass after final metadata refresh.
 <!-- /ANCHOR:validation-checklist -->
 
 ---
