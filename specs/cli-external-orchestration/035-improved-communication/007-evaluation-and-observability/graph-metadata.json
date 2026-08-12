@@ -39,14 +39,16 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "handover.md",
+      "implementation-summary.md",
+      "scratch/demo/DEMO-README.md"
     ],
     "entities": [
       {
@@ -80,9 +82,21 @@
         "source": "derived"
       },
       {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "DEMO-README.md",
+        "kind": "doc",
+        "path": "scratch/demo/DEMO-README.md",
         "source": "derived"
       },
       {
@@ -170,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -186,17 +194,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "rotating",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Measure whether output feels 1:1 with the reference while proving fidelity, latency, cost, privacy, and operational behavior",
     "created_at": "2026-08-11T10:04:32Z",
-    "last_save_at": "2026-08-11T13:46:04.320Z",
+    "last_save_at": "2026-08-12T09:43:15.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,16 +207,18 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:9626a28754a472f77bb0c7571c2b5930bc7d190a20d1cec656300f6c3401b488",
+    "source_fingerprint": "sha256:cde231150cc9ee9a64145aa2f2568a6568a243cece39c8e65fe9744f0a4651f6",
     "source_doc_hashes": {
-      "spec.md": "33cf398b01ec46b38e6cd726e11bb7dafd8ea0a57adaa2aa5de1842a65d3ab91",
+      "spec.md": "84907d44568318c8f860a15d1e5ae15303b9cbb0453ebb0a31ad3ef8480be4c3",
       "plan.md": "8ca40aac4a284877ce1f38ee4f7c2f4715b6aa889495824fc82bbb98e10f2060",
-      "tasks.md": "2340db2010dec19e711c21be41db49f7f922af0795ee951545144d978000204f",
-      "checklist.md": "d2b203b34951c65ac43e56fc918d75ba7e7b3684fad6f427112ef3a1e815fcaf",
-      "decision-record.md": "96ce9fe8b9eb14c01def3d5ae119004689bb7191a82704512d1237e67f1b1043",
-      "implementation-summary.md": "d9e7cdffc64c39d6a780fe3a7401621db98cada05b9a4c38f7d8c47cd3b8c46f"
+      "tasks.md": "420c9a419bf145af431147b3916b991c492af7d5550cb9c99a8737bec6309339",
+      "checklist.md": "702e2b22acaaf84c0ccd560f15d68927db280b6a18bbe43bf74d52527dbc2fb7",
+      "decision-record.md": "b4f4cad906093edfe8677da4e3c9d4b7ff9cd1dad49ca95c364829b3d23a56f3",
+      "implementation-summary.md": "929150a9d338c6596aaba4e59f0979c67651b76f7e91b31a9ac978bded9eabaf",
+      "handover.md": "9f43ac67d6aaef5e61d1e66cb0009f79fa735284b164134bd1fd75c6b901c24e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -46,7 +46,9 @@
       "005-provider-adapters-and-privacy/handover.md",
       "006-runtime-adapters-and-clients/spec.md",
       "006-runtime-adapters-and-clients/handover.md",
-      "007-evaluation-and-observability/spec.md"
+      "007-evaluation-and-observability/spec.md",
+      "008-packaging-and-release-hardening/spec.md",
+      "007-evaluation-and-observability/handover.md"
     ],
     "entities": [
       {
@@ -94,15 +96,15 @@
     ],
     "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
     "created_at": "2026-08-11T06:21:47Z",
-    "last_save_at": "2026-08-12T07:22:22.192Z",
+    "last_save_at": "2026-08-12T09:43:15.188Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:12acf8f1b167821d3e4ab8c965f5bed139d23bdf5f1790cbafef177e7c782fe6",
+    "source_fingerprint": "sha256:c090df9849f83fbd24d7519a523aaf1abd4d0cc91aff302eb479d52c980205ef",
     "source_doc_hashes": {
-      "spec.md": "a1b96840ab4ebf0781ad91d4aa28ee8aa40143bc7cd3b935b18566397c544942"
+      "spec.md": "c9b17112d9bbe9f3ac63d84f2940be0efd44c49a43f4546ff33fe06a40b36fbb"
     },
     "last_active_child_id": "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy",
     "last_active_at": "2026-08-12T05:25:21.635Z"
