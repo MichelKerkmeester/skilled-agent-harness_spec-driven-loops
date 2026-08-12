@@ -150,6 +150,7 @@ EXEMPT_SUBTREES = {
     'changelog',
     'dist',
     'node_modules',
+    'reports',
     'z_archive',
 }
 KEBAB_CASE_SLUG_RE = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
