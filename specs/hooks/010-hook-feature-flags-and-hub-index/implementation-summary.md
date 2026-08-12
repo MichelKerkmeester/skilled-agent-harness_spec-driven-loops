@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "hooks/010-hook-feature-flags-and-hub-index"
     last_updated_at: "2026-08-12T15:20:51Z"
     last_updated_by: "claude"
-    recent_action: "Reviewer pass: verified packet, closed cursor gap, wrote hub docs"
-    next_safe_action: "Deploy-side: restore node_modules, npm run build, then live sweep"
+    recent_action: "Corrected false MEGA-eviction note; build verified clean (exit 0)"
+    next_safe_action: "Fast-forward runtime checkout, npm run build, then live sweep"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       - ".opencode/hooks/shared/hook-flags.cjs"
       - ".opencode/hooks/shared/hook-flags.test.cjs"
     session_dedup:
-      fingerprint: "sha256:e561a4dd0ebe5988aa157bb8b5d7b6fd35eb2a0954939f71e1c7fed2e6bc37e4"
+      fingerprint: "sha256:5a044941f7cbc61a9c4bfce113341239a8a0e992c03591394dcd821a1dae58eb"
       session_id: "4654af88-ba88-466a-bd14-2fa43ea87923"
       parent_session_id: null
     completion_pct: 92
@@ -115,4 +115,4 @@ Independent verification (not trusting the implementer reports): all 72 guarded 
 
 ## PHASE 6 — deploy-side (not repo work)
 
-`dist` is gitignored, so the rebuild is a per-environment step. It is currently blocked because this workspace's `mcp-server/node_modules` is de-materialized (MEGA eviction — down to ~11 entries; `zod`/`better-sqlite3` gone). Restoring it needs a stable `npm install` outside MEGA's eviction window, then `npm run build`; the full live cross-runtime sweep follows on the deploy host.
+`dist` is gitignored, so the rebuild is a per-environment step — but it is **not** blocked. `npm run build` runs clean (exit 0) and `zod` resolves via `.opencode/node_modules`; the earlier "missing deps / dist absent" reading was an artifact of the implementer's isolated worktree symlinks, not the real environment (the mcp-server's own `node_modules` intentionally holds only a few packages, the rest resolving from the hoisted `.opencode/node_modules`). The only requirement is that the guarded source be present in the runtime checkout — fast-forward it to this branch, then `npm run build` compiles the guards into `mcp-server/dist/` and the live cross-runtime sweep follows.
