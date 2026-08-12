@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-create-diagram",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0145-sk-doc-sk-create-diagram/.opencode/skills/sk-doc/sk-create-diagram"
+  },
+  "executor": "deepseek-v4-flash",
+  "model": "deepseek/deepseek-v4-flash",
+  "variant": "onboarding-flow",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "DIA-003",
+      "verdict": "PASS",
+      "reason": "Gate-refusal test: style-guide.md still at shipped default accent (#eb6c36) so the gate must fire; no approval was given and no network-fetch tool exists in the packet, so the correct behavior is a hard halt (ask which onboarding path, explain the fetch boundary, propose a diff only, write nothing). Independently verified via git status that references/foundations/style-guide.md is untouched — 0 diff.",
+      "stage": "diagram-generation",
+      "classKind": "manual",
+      "providerModel": "deepseek/deepseek-v4-flash",
+      "variant": "onboarding-flow",
+      "evidence": [
+        "references/foundations/style-guide.md"
+      ]
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "DIA-003",
+    "stage": "diagram-generation",
+    "dispatch": "manual",
+    "executor": "deepseek-v4-flash",
+    "model": "deepseek/deepseek-v4-flash",
+    "variant": "onboarding-flow"
+  }
+}

@@ -39,7 +39,7 @@
     "entities": [],
     "causal_summary": "`references/` (37 files) and `assets/` (39 files) are flat, making the folder hard to scan at a glance in a file tree — the operator flagged this directly after reviewing the merged packet",
     "created_at": "2026-08-12T00:00:00.000Z",
-    "last_save_at": "2026-08-12T12:34:22.000Z",
+    "last_save_at": "2026-08-12T13:21:22.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -50,16 +50,16 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7cac14e3bee1b74cc5b152d0b82ce2608d3234f4e8a1367a4892804c6fb0faca",
+    "source_fingerprint": "sha256:7d74864c2f4272f17c8dace34ab86cc4cca61dd3eefb2199cc07a2ea7443d243",
     "source_doc_hashes": {
-      "spec.md": "e0ef348803e60e123daa3a9378572ce3137098fb57d8c007e016da7eaa0128d9",
-      "plan.md": "aa4fd2676463b4fea23c5da3e14318b4e94246ab1f709d386327e9340e55a69a",
-      "tasks.md": "dc1cb9992c5fbdcd0f97192a43c41afd19d111567af6fb1c21f4203656d2c69b",
-      "checklist.md": "c9d6bd274e7d5176ef8d9c1fe447b5ccdb947273cf74a5eafcafc04121adf79b",
-      "decision-record.md": "05bfcfc9b95f0d3e50e1903face24e94fcb9a57dfc834fe24760fa3875b015bb",
-      "implementation-summary.md": "bcbba67c28738b6a18bff85424d5790a2ae4c405e98f560590b4afced7acedec"
+      "spec.md": "2eacb2163fa1d54e7aab109b19f9e0a31dd98b343a7dc41ecc1f0861c88e20a4",
+      "plan.md": "5648911d2fe904f87d70391e3c82e8b726082d0fee4f0a29c00573c5349bc2ee",
+      "tasks.md": "1ff85ee9c71df06ba2fed75df4a3c250877e5585586d339e6756dbbb393eabbe",
+      "checklist.md": "c3cda5a0916c8628d0e514a24e7f1ab8574bdb673633602b16daa06cbba9e495",
+      "decision-record.md": "7ce4ece59073c21017641a095a531160e3cf837b4c27fc4565c89b1c2df67b34",
+      "implementation-summary.md": "a5f02a6ed2823b633921c55711626656deedf03f057e9c4f75dcea575d478880"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-08-12T12:34:22.000Z"
+    "last_active_at": "2026-08-12T13:21:22.000Z"
   }
 }

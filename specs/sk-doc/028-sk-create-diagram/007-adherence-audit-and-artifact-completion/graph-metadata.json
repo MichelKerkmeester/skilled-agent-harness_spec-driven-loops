@@ -39,7 +39,7 @@
     "entities": [],
     "causal_summary": "Phase 006 ran `validate_skill_package.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-opencode`'s language standards",
     "created_at": "2026-08-12T00:00:00.000Z",
-    "last_save_at": "2026-08-12T12:29:29.000Z",
+    "last_save_at": "2026-08-12T13:21:22.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -52,14 +52,14 @@
     ],
     "source_fingerprint": "sha256:cdb088d94e840447c2f8147ca989bfbed45e124180e75194c4a9489e3739dd09",
     "source_doc_hashes": {
-      "spec.md": "2790e4bbe43cc517cda1545862cfece77d852bee0b1691e13259d235e9296019",
-      "plan.md": "f41f400e502a21ab750c78a7cd5a80951d5cd8fe7a32c90b91d0add305b917dd",
-      "tasks.md": "bc4e8517e0a478e08b35ac6993ca34df676d11e7f6528c11aa11d4e2e27c6798",
-      "checklist.md": "daef2fa5cde17815af861753bedc1d43f4004803fd3eb4a4312ac939b21530a8",
-      "decision-record.md": "113ff0ff697214de809b1cdc2b34b81f741883a233f3c5275a55de265afa6707",
-      "implementation-summary.md": "e04879214d22f48fae99d670ea0e54aea43784385391221879ec1650bc8a9938"
+      "spec.md": "768c9ec36363d801ff343cfc507216e1fcf083d28b17bc43e95cfda1c1bdd709",
+      "plan.md": "63791bdfd14feb1e90e3ed7abe920084bee0013591f44bb0eb3292c9d94076ce",
+      "tasks.md": "aeff388ace126e38e57d1a8fe544affee60991a9695432ed5390db1c0e39db97",
+      "checklist.md": "94aea8c6bf7a65c1c077607531b07aba607811a297d0f4d469b10ea3c89b8858",
+      "decision-record.md": "355b1935dd966483ddc095fd6bae164edc833e305edbc4e507bbdd5387f45cff",
+      "implementation-summary.md": "6b55f537449c61ba3246e422baaac583da6df73aab6fa8309c44621505df3a7f"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-08-12T12:29:29.000Z"
+    "last_active_at": "2026-08-12T13:21:22.000Z"
   }
 }

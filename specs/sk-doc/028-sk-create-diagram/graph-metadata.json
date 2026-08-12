@@ -12,7 +12,8 @@
     "sk-doc/028-sk-create-diagram/005-command-and-hub-wiring",
     "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
     "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
-    "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment"
+    "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
+    "sk-doc/028-sk-create-diagram/009-manual-playbook-execution"
   ],
   "manual": {
     "depends_on": [],
@@ -41,7 +42,7 @@
       "complete"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "context/skills/diagram-design/SKILL.md",
@@ -107,17 +108,17 @@
     ],
     "causal_summary": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of editorial technical diagrams as self-contained HTML files with inline SVG — architecture, flowcharts, sequence, ER, Gantt, and more — plus draw.io/Mermaid import and PNG/SVG export",
     "created_at": "2026-08-12T05:43:11.000Z",
-    "last_save_at": "2026-08-12T12:33:52.000Z",
+    "last_save_at": "2026-08-12T13:21:22.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5ff70e46817834058b59a418447f46026e2ab44eaa97971153b15c1afd893dcb",
+    "source_fingerprint": "sha256:3ec534269818d415d1673016f8f34f76aec47d41b6a5bc6baef43b9d9acd3e11",
     "source_doc_hashes": {
-      "spec.md": "2aea57de4ac01d6abc9b1846daa9d993f8a8ebd6d702d225b083a5eb08785656"
+      "spec.md": "c26d470990e6714693dfa07706731a7b881b30aaf18899296e1d8cbb3822437d"
     },
-    "last_active_child_id": "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
-    "last_active_at": "2026-08-12T12:33:52.000Z"
+    "last_active_child_id": "sk-doc/028-sk-create-diagram/009-manual-playbook-execution",
+    "last_active_at": "2026-08-12T13:21:22.000Z"
   }
 }

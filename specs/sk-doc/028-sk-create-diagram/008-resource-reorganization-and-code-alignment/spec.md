@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment"
-    last_updated_at: "2026-08-12T12:29:29.000Z"
+    last_updated_at: "2026-08-12T13:21:22.000Z"
     last_updated_by: "claude"
     recent_action: "Authored phase spec; mapped every cross-reference before moving files"
     next_safe_action: "Run the reorg script, author scripts/README.md, fix the 11 missing type hints, verify"
@@ -46,9 +46,9 @@ _memory:
 | **Created** | 2026-08-12 |
 | **Branch** | `sk-doc/0145-sk-create-diagram` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 8 of 8 |
+| **Phase** | 8 of 9 |
 | **Predecessor** | `../007-adherence-audit-and-artifact-completion/spec.md` |
-| **Successor** | None — extends the packet post-merge |
+| **Successor** | `../009-manual-playbook-execution/spec.md` |
 | **Handoff Criteria** | Every moved file resolves at its new path, every cross-reference is updated, both scripts pass a deeper sk-code-opencode alignment check, `scripts/README.md` exists, and `validate.sh --recursive --strict` stays clean |
 <!-- /ANCHOR:metadata -->
 

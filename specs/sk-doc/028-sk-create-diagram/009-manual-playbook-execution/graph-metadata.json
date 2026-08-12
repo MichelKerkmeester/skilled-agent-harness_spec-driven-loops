@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/009-manual-playbook-execution",
+  "spec_folder": "sk-doc/028-sk-create-diagram/009-manual-playbook-execution",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-diagram manual playbook execution",
+      "diagram playbook results gathered",
+      "deepseek direct api playbook run"
+    ],
+    "key_topics": [
+      "manual-testing-playbook",
+      "phase",
+      "scenarios",
+      "documented",
+      "contracts",
+      "execution",
+      "evidence",
+      "coverage",
+      "runnable"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "The manual-testing-playbook shipped in phase 007 had never actually been run — its 9 scenarios existed as documented contracts with no execution evidence, and its own coverage note claimed every scenario was \"runnable today\" without that claim ever being tested",
+    "created_at": "2026-08-12T00:00:00.000Z",
+    "last_save_at": "2026-08-12T13:21:22.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3967851e239808796d1369d8313be120027430f13585f7bf86b82533cc03bef7",
+    "source_doc_hashes": {
+      "spec.md": "5d5ebda7f7b421928c2216db1253b90298232b54740ec73fa577979aa2875069",
+      "plan.md": "19a04707fe2f0876494b481ae2f2943d3f7d09538a8c12e7d828f0d5217c48aa",
+      "tasks.md": "c195e763478bd1608dd88c67c3f92d78b3c99a6677f1fb4a180b473f7b98b492",
+      "checklist.md": "82592432988cd053cdd362ebad74797492571b3412860c185545182e5218b505",
+      "implementation-summary.md": "f16d556ea5ffdde35ba1ab57d71f0b6a5dd1b39f9657334f21abf4bb63acd083"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T13:21:22.000Z"
+  }
+}

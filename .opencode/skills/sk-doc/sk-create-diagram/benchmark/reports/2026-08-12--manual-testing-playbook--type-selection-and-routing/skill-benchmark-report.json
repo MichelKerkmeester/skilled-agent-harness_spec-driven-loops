@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-create-diagram",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0145-sk-doc-sk-create-diagram/.opencode/skills/sk-doc/sk-create-diagram"
+  },
+  "executor": "deepseek-v4-flash",
+  "model": "deepseek/deepseek-v4-flash",
+  "variant": "type-selection-and-routing",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "DIA-001",
+      "verdict": "PASS",
+      "reason": "Loaded references/types/type-architecture.md + style-guide.md; wrote docs/checkout-architecture.html (3 nodes, 2 orthogonal edges, 1 accent, bottom legend). Verified: role=img + title/desc pair present as first children, self-contained per packet convention (inline CSS/SVG/no JS; the one external Google Fonts <link> matches the packet's own shipped template.html and every canonical example — not a scenario-specific defect).",
+      "stage": "diagram-generation",
+      "classKind": "manual",
+      "providerModel": "deepseek/deepseek-v4-flash",
+      "variant": "type-selection-and-routing",
+      "evidence": [
+        "docs/checkout-architecture.html"
+      ]
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "DIA-001",
+    "stage": "diagram-generation",
+    "dispatch": "manual",
+    "executor": "deepseek-v4-flash",
+    "model": "deepseek/deepseek-v4-flash",
+    "variant": "type-selection-and-routing"
+  }
+}

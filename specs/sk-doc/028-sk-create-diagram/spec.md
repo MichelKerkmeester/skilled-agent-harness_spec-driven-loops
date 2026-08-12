@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-create-diagram"
-    last_updated_at: "2026-08-12T12:33:52.000Z"
+    last_updated_at: "2026-08-12T13:21:22.000Z"
     last_updated_by: "claude"
-    recent_action: "Completed all 8 phases; sk-create-diagram is registered and strict-validated"
+    recent_action: "All 9 phases complete: registered, strict-validated, playbook run for real"
     next_safe_action: "Hand back to the user for review/merge decision on worktree branch sk-doc/0145-sk-create-diagram"
     blockers: []
     key_files:
@@ -51,7 +51,7 @@ _memory:
 |-------|-------|
 | **Level** | Phase parent |
 | **Priority** | P2 |
-| **Status** | Complete — all 8 phases shipped and strict-validated; see phase 006 for the one documented deferral, phase 007 for the adherence audit + playbook/catalog completion, and phase 008 for the domain-subfolder split |
+| **Status** | Complete — all 9 phases shipped; see phase 006 for the one documented deferral, phase 007 for the adherence audit + playbook/catalog completion, phase 008 for the domain-subfolder split, and phase 009 for the real playbook execution (8 PASS / 1 SKIP / 0 FAIL) |
 | **Created** | 2026-08-12 |
 | **Branch** | `sk-doc/0145-sk-create-diagram` (worktree `.worktrees/0145-sk-doc-sk-create-diagram`) |
 | **Track** | `sk-doc` |
@@ -109,6 +109,7 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | `006-validation-and-quality-gate/` | Create | 006 | Strict validation, advisor smoke test, implementation-summary, closeout |
 | `007-adherence-audit-and-artifact-completion/` | Create | 007 | Literal template/code-standards audit + fix; manual-testing-playbook/ and feature-catalog/ packages |
 | `008-resource-reorganization-and-code-alignment/` | Create | 008 | references/ and assets/ split into domain subfolders; deeper Python alignment; scripts/README.md |
+| `009-manual-playbook-execution/` | Create | 009 | All 9 manual-testing-playbook scenarios run for real via deepseek/deepseek-v4-flash; results gathered |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -126,6 +127,7 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | 6 | `006-validation-and-quality-gate/` | Strict validation, advisor smoke test, closeout | Complete — advisor smoke test deferred, see phase 006 |
 | 7 | `007-adherence-audit-and-artifact-completion/` | Literal template/code-standards adherence audit; author manual-testing-playbook/ and feature-catalog/ | Complete |
 | 8 | `008-resource-reorganization-and-code-alignment/` | Split references/ and assets/ into domain subfolders; deeper Python alignment; scripts/README.md | Complete |
+| 9 | `009-manual-playbook-execution/` | Run all 9 manual-testing-playbook scenarios for real via deepseek/deepseek-v4-flash; gather results | Complete |
 
 ### Phase Transition Rules
 

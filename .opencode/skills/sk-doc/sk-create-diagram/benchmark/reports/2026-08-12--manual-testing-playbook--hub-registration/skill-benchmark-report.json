@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "sk-create-diagram",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0145-sk-doc-sk-create-diagram/.opencode/skills/sk-doc/sk-create-diagram"
+  },
+  "executor": "deepseek-v4-flash",
+  "model": "deepseek/deepseek-v4-flash",
+  "variant": "hub-registration",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "CMD-002",
+      "verdict": "PASS",
+      "reason": "All 4 registration facts independently verified: (1) mode-registry.json has the sk-create-diagram entry with workflowMode/command//17 aliases incl. export diagram; (2) leaf-manifest.json carries the sk-create-diagram packet entry; (3) no packet-local graph-metadata.json exists (confirmed 'no such file'); (4) hub-router.json vocabularyClasses.create-diagram-aliases contains drawio, mermaid diagram, and redraw diagram (>=3 of the 4 named aliases route, satisfying the check) -- independently found export diagram is present in mode-registry.json's aliases but MISSING from hub-router.json's vocabularyClasses list, a real minor cross-file drift worth a small follow-up fix, not a failure of this scenario's stated pass criterion.",
+      "stage": "command-and-hub-integration",
+      "classKind": "manual",
+      "providerModel": "deepseek/deepseek-v4-flash",
+      "variant": "hub-registration",
+      "evidence": [
+        ".opencode/skills/sk-doc/mode-registry.json",
+        ".opencode/skills/sk-doc/hub-router.json",
+        ".opencode/skills/sk-doc/leaf-manifest.json"
+      ]
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "CMD-002",
+    "stage": "command-and-hub-integration",
+    "dispatch": "manual",
+    "executor": "deepseek-v4-flash",
+    "model": "deepseek/deepseek-v4-flash",
+    "variant": "hub-registration"
+  }
+}
