@@ -7,9 +7,9 @@ version: 1.0.0.0
 
 # Create Diagram
 
-`create-diagram` is the `sk-doc` workflow packet for producing technical and product diagrams — architecture, IT current-state, flowchart, sequence, state machine, ER/data model, timeline, swimlane, quadrant, radar, loop, nested, tree, org chart, layer stack, venn, pyramid/funnel, bar, line, Gantt, scatter, high-level, process, medallion, data flow, DP integration, and DP security matrix — as standalone `.html` files with inline SVG, drawn against one shared editorial design system with a complexity budget and a taste gate. It also redraws imported draw.io / Mermaid sources at a chosen format, size, detail level, and audience, and exports generated diagrams to PNG / SVG.
+`create-diagram` is the `sk-doc` workflow packet for technical/product diagrams in two formats: `html-svg` (default) for 27 diagram types, and `ascii-markdown` for flowcharts embedded in markdown. HTML/SVG output uses one editorial design system, complexity budget, and taste gate. The packet also redraws draw.io / Mermaid sources and exports generated diagrams to PNG / SVG.
 
-This packet owns the HTML/SVG diagram domain explicitly excluded by `sk-create-flowchart`. It must not add packet-local advisor metadata such as `graph-metadata.json`.
+This packet owns both formats. `type-flowchart.md` remains the HTML/SVG TYPE reference; `ascii-format/` and `ascii-patterns/` are the separate ASCII FORMAT path.
 
 ---
 
@@ -21,12 +21,13 @@ This packet owns the HTML/SVG diagram domain explicitly excluded by `sk-create-f
 
 - Components + connections in a system → architecture, IT current-state, high-level, data-platform diagrams.
 - Behavior and flow → flowchart, sequence, state machine, process, data flow, swimlane.
+- ASCII flowchart, workflow diagram, text diagram, decision tree, decision branch, approval loop, or parallel execution diagram in markdown.
 - Storage and data structure → ER / data model, medallion, DP integration, DP security matrix.
 - Structure, ranking, and time → timeline, Gantt, bar, line, scatter, radar, pyramid/funnel, venn, nested, tree, org chart, layer stack, quadrant, loop.
 - Redrawing an existing `.drawio`, `.drawio.png`, `.drawio.svg`, `.mmd`, `.mermaid`, or fenced-Mermaid source as a presentable editorial diagram.
 - Exporting a generated diagram as `.png` or `.svg` for a slide, social card, print, or further editing.
 
-Keyword triggers: `create:diagram`, `/create:diagram`, `diagram`, `architecture diagram`, `sequence diagram`, `ER diagram`, `data model`, `swimlane`, `state machine`, `venn`, `org chart`, `draw.io`, `drawio`, `mermaid`, `redraw diagram`, `export diagram`.
+Keyword triggers: `create:diagram`, `/create:diagram`, `diagram`, `architecture diagram`, `sequence diagram`, `ER diagram`, `data model`, `swimlane`, `state machine`, `venn`, `org chart`, `draw.io`, `drawio`, `mermaid`, `redraw diagram`, `export diagram`, `ASCII flowchart`, `workflow diagram`, `text diagram`, `text characters`, `decision tree`, `decision branch`, `parallel execution diagram`, `approval loop diagram`.
 
 ### Use Cases — selection guide
 
@@ -71,7 +72,7 @@ Rules of thumb:
 **Skip this packet when:**
 
 - A short 2–3 step bullet list is clearer than any diagram.
-- The deliverable is an ASCII or box-drawing flowchart directly inside a markdown document — no HTML file, no SVG, no design system. Use `sk-create-flowchart` instead.
+- The deliverable is a Mermaid, Graphviz, screenshot, canvas, or interactive design artifact rather than either supported `html-svg` or `ascii-markdown` format.
 - The work audits, validates, scores, or optimizes an existing markdown document without a diagram deliverable. Use `create-quality-control`.
 - The requested artifact is a README, skill, command, agent, benchmark package, catalog, testing playbook, or changelog. Use the matching `create-*` packet.
 
@@ -81,7 +82,20 @@ Before drawing, ask: *would the reader learn more from this than from a well-wri
 
 ## 2. SMART ROUTING
 
-This packet routes by the three request shapes the one command and natural-language routing both serve: **Generate** (draw a diagram of type X), **Import** (redraw an existing draw.io / Mermaid source), and **Export** (save a generated diagram as PNG / SVG). The generate shape additionally selects one of 27 `references/types/type-*.md` convention files.
+Resolve the output format before selecting resources: **`html-svg`** is the default for the existing Generate, Import, and Export paths; **`ascii-markdown`** is for plain-text or box-drawing flowcharts in markdown. Then `html-svg` selects a type/import/export reference, while `ascii-markdown` selects one pattern from `references/ascii-format/pattern-selection.md` and `assets/ascii-patterns/`. `references/types/type-flowchart.md` remains the HTML/SVG flowchart TYPE reference, not the ASCII/markdown format path.
+
+### Format Resolution
+
+Resolve `OUTPUT_FORMAT` before selecting a type or pattern:
+
+```bash
+# ASCII/markdown: explicit format or plain-text flowchart signals
+echo "$REQUEST" | grep -qiE 'ascii flowchart|workflow diagram|text diagram|text characters|decision tree|decision branch|approval loop diagram|parallel execution diagram|box.drawing|ascii-markdown' && OUTPUT_FORMAT="ascii-markdown"
+# HTML/SVG remains the default for diagram, HTML, SVG, import, and export requests
+[[ -z "${OUTPUT_FORMAT:-}" ]] && OUTPUT_FORMAT="html-svg"
+```
+
+Use `ascii-markdown` for explicit markdown/text or flowchart signals. If ambiguous, use `UNKNOWN_FALLBACK`, not a guess. Load the pattern-selection reference and one matching asset for `ascii-markdown`; continue to the existing type/import/export routing for `html-svg`.
 
 ### Primary Detection Signal
 
@@ -175,6 +189,7 @@ INTENT_MODEL = {
     "GENERATE": {"keywords": [("diagram", 4), ("architecture", 3), ("sequence", 3), ("swimlane", 3), ("er model", 3), ("venn", 3)]},
     "IMPORT": {"keywords": [("drawio", 4), ("draw.io", 4), ("mermaid", 4), ("mmd", 4), ("redraw", 3)]},
     "EXPORT": {"keywords": [("export", 4), ("png", 3), ("svg", 3), ("rasterize", 3)]},
+    "ASCII_MARKDOWN": {"keywords": [("ascii flowchart", 4), ("workflow diagram", 4), ("text diagram", 4), ("decision tree", 3), ("decision branch", 3), ("approval loop diagram", 3), ("parallel execution diagram", 3)]},
     "STYLE": {"keywords": [("customize", 3), ("onboard", 3), ("style guide", 2), ("palette", 2), ("brand", 2)]},
 }
 
@@ -182,6 +197,7 @@ RESOURCE_MAP = {
     "GENERATE": ["references/foundations/style-guide.md"],
     "IMPORT": ["references/import-export/import-drawio.md", "references/import-export/import-mermaid.md", "references/foundations/output-spec.md"],
     "EXPORT": ["references/import-export/export.md", "references/foundations/output-spec.md"],
+    "ASCII_MARKDOWN": ["references/ascii-format/pattern-selection.md", "references/ascii-format/notation-and-validator.md"],
     "STYLE": ["references/foundations/onboarding.md", "references/foundations/style-guide.md"],
 }
 
@@ -274,7 +290,7 @@ def route_diagram_resources(user_request, task=None):
     return {"routing_key": routing_key, "intents": intents, "intent_scores": scores, "resources": loaded}
 ```
 
-The router guards every path and loads only what exists; a missing reference simply does not load, and the route falls back to the nearest guidance already loaded.
+The router guards paths and loads only existing resources. Format resolution precedes type/pattern selection; ambiguity returns `UNKNOWN_FALLBACK`.
 
 ---
 
@@ -318,7 +334,7 @@ Optional primitives: annotation callouts → `references/primitives/primitive-an
 
 ### Layout and spacing
 
-- **4px grid (non-negotiable):** all values — font sizes (8/12/16/20/24/28/32/40), node dimensions (80…320), x/y coordinates, gaps (20/24/32/40/48), padding (8/12/16), radius (4/6/8) — divisible by 4. Exempt: stroke widths (0.8/1/1.2), opacity values, and the 22×22 dot pattern. Quick check: if a coordinate ends in 1, 2, 3, 5, 6, 7, or 9 — fix it.
+- **4px grid (non-negotiable):** layout values — node dimensions (80…320), x/y coordinates, gaps (20/24/32/40/48), padding (8/12/16), radius (4/6/8) — divisible by 4. Exempt: stroke widths, opacity, dot pattern, font sizes (`style-guide.md` §2's type scale, not the grid). Quick check: if a layout coordinate ends in 1/2/3/5/6/7/9 — fix it.
 - **Complexity budget:** max 9 nodes, 12 arrows/transitions, 2 coral elements, and 2 annotation callouts per diagram. Per-type ceilings (sequence lifelines, swimlane lanes, ER entities, tree depth, org-chart nodes, venn circles, radar axes, bar/line/series counts, Gantt tasks, scatter points, …) live in each `references/types/type-*.md`. If you exceed, split into two diagrams (overview + detail).
 - **Page layout:** header (eyebrow, title, optional subtitle) → diagram container (clean/borderless by default; framed `paper-2` variant opt-in) → summary cards (varied widths, no shadow) → footer (Geist Mono colophon, hairline top border).
 
@@ -355,7 +371,9 @@ An import is bounded by its source: never invent a component to fill a layout, a
 
 ### Output
 
-Always produce a single self-contained `.html` file: embedded CSS (no external except Google Fonts), inline SVG (no external images), no JavaScript required. Renders correctly in any modern browser.
+For `html-svg`, produce one self-contained `.html` file with embedded CSS, inline SVG, and no required JavaScript.
+
+For `ascii-markdown`, produce the requested markdown file or embedded fenced text flowchart. Keep raw markdown readable and do not add HTML/SVG wrappers.
 
 **Accessible SVG contract** (every diagram by default):
 
@@ -381,12 +399,13 @@ Always produce a single self-contained `.html` file: embedded CSS (no external e
    - Every connection carries information; if the relationship is obvious from layout, remove the line.
    - The diagram isn't done when everything is added; it's done when nothing can be removed.
 2. **ALWAYS keep density at target 4/10** — enough to be technically complete, not so dense it needs a guide. Above 9 nodes it's probably two diagrams.
-3. **ALWAYS load the matching `references/types/type-*.md` before drawing** — it contains the type's layout conventions, anti-patterns, and example files.
+3. **ALWAYS load the format-specific reference before creating output** — `html-svg` loads the matching `references/types/type-*.md` with its layout conventions, anti-patterns, and example files; `ascii-markdown` loads `references/ascii-format/pattern-selection.md` and one matching `assets/ascii-patterns/*.md` asset.
 4. **ALWAYS enforce the 4px grid** — every font size, coordinate, node dimension, and gap divisible by 4; stroke widths and opacity are exempt.
 5. **ALWAYS treat `references/foundations/style-guide.md` as the single source of truth for tokens** — refer to semantic roles and look up hex values there; never hardcode values that disagree with the guide.
 6. **ALWAYS keep `accent` on 1–2 focal elements per diagram.** If you're tempted to accent 4 things, you haven't decided what's focal yet.
-7. **ALWAYS ship a single self-contained `.html` file** — embedded CSS, inline SVG, no JS required — satisfying the accessible SVG contract (`role="img"`, resolving `aria-labelledby`, prefixed IDs, first-child `<title>`, non-empty `<title>` / `<desc>`).
-8. **ALWAYS run the style-guide gate before the first diagram in a project** — don't silently ship default-skinned diagrams into a branded project.
+7. **ALWAYS satisfy the resolved format's output contract** — `html-svg` ships one self-contained `.html` file with embedded CSS, inline SVG, no JS required, and the accessible SVG contract (`role="img"`, resolving `aria-labelledby`, prefixed IDs, first-child `<title>`, non-empty `<title>` / `<desc>`); `ascii-markdown` ships one readable markdown flowchart.
+8. **ALWAYS run `bash scripts/validate-flowchart.sh <target>` before delivering `ascii-markdown` output** — exit `0` is required, including warning-only runs; exit `1` blocks delivery until fixed.
+9. **ALWAYS run the style-guide gate before the first `html-svg` diagram in a project** — don't silently ship default-skinned diagrams into a branded project.
 
 ### NEVER
 
@@ -434,6 +453,7 @@ Always produce a single self-contained `.html` file: embedded CSS (no external e
 - [primitive-sketchy.md](./references/primitives/primitive-sketchy.md) — hand-drawn displacement filter; filter shapes, never text.
 - [primitive-terminal.md](./references/primitives/primitive-terminal.md) — fixed terminal-window skin, monospace throughout, one accent; not brand-tokenized.
 - [primitive-icons.md](./references/primitives/primitive-icons.md) — monochrome 24×24 icon library (compute, people, network, data, Kubernetes, action, DevOps, brand, data stack, language, statistical tools, file formats) with license attribution.
+- [ascii-format/pattern-selection.md](./references/ascii-format/pattern-selection.md) — workflow-shape pattern selection and split heuristics for `ascii-markdown` output.
 
 ### Templates and Assets
 
@@ -443,17 +463,11 @@ Always produce a single self-contained `.html` file: embedded CSS (no external e
 - [template-terminal.html](./assets/templates/template-terminal.html) — terminal-window variant.
 - [icons.html](./assets/icons.html) — icon gallery; specimen glyphs are decorative (`aria-hidden="true"`).
 
-### Reference Loading Notes
-
-- Load only the references the current intent requires — `style-guide.md` always; type/import/export/onboarding references conditionally; primitives and assets on demand.
-- Keep SMART ROUTING as the authority for loading rules; the router guards every path and loads only what exists.
-- All 27 `references/types/type-*.md` files, `references/import-export/import-drawio.md`, `references/import-export/import-mermaid.md`, `references/import-export/export.md`, and the `scripts/` extraction tools ship with this packet.
-
 ---
 
 ## 6. SUCCESS CRITERIA
 
-Run the taste gate before producing any diagram. The task is complete only when every applicable box is checked and a single self-contained `.html` exists at the requested path.
+Run the applicable validation gate before delivery. `html-svg` requires the taste gate and one self-contained `.html`; `ascii-markdown` requires readable markdown and validator exit `0`.
 
 ### Type fit
 
@@ -505,3 +519,11 @@ Run the taste gate before producing any diagram. The task is complete only when 
 
 - [ ] Single self-contained `.html` produced at the requested path — embedded CSS, inline SVG, no JS required?
 - [ ] Export files (`.png` / `.svg`) produced via `references/import-export/export.md` only when explicitly requested?
+
+### ASCII/Markdown deliverable
+
+- [ ] `ascii-markdown` was resolved before selecting a pattern?
+- [ ] The closest pattern from `references/ascii-format/pattern-selection.md` was selected and loaded?
+- [ ] The output is a markdown file or embedded markdown section with a fenced text flowchart?
+- [ ] Decision branches use `[YES]`/`[NO]` or `✓`/`✗` labels where decisions exist?
+- [ ] `bash scripts/validate-flowchart.sh <target>` exits `0` before handoff?

@@ -32,7 +32,7 @@ A generic AI-drawn diagram is easy to spot: dark mode with a cyan glow, identica
 
 ### What It Does
 
-`sk-create-diagram` picks the right one of 27 diagram types for what's being shown, loads that type's layout conventions and complexity budget, draws against the shared design system in `references/foundations/style-guide.md`, and runs the SKILL.md §9 Pre-Output Checklist before handoff. It also redraws an existing draw.io or Mermaid source — extracting the structural content only, never the source's coordinates, colors, or renderer layout — at a chosen format, size, detail level, and audience. It produces standalone `.html` diagrams. Ongoing ASCII flowcharts embedded directly in markdown are `sk-create-flowchart`'s job, not this one.
+`sk-create-diagram` picks the right one of 27 diagram types for what's being shown, loads that type's layout conventions and complexity budget, draws against the shared design system in `references/foundations/style-guide.md`, and runs the SKILL.md §6 Pre-Output Checklist before handoff. It also redraws an existing draw.io or Mermaid source — extracting the structural content only, never the source's coordinates, colors, or renderer layout — at a chosen format, size, detail level, and audience. It produces standalone `.html` diagrams for the `html-svg` format, or a plain markdown flowchart for the `ascii-markdown` format — `sk-create-flowchart` is now a redirect into this packet, not a separate destination.
 
 ### The 27 Diagram Types
 

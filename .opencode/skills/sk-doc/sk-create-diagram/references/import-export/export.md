@@ -17,7 +17,9 @@ version: 1.0.0.0
 
 Convert a generated diagram HTML file into a portable `.svg` and/or `.png` next to it. **Manual only — never run unprompted.**
 
-## 1. Trigger
+---
+
+## 1. TRIGGER
 
 Load this file when:
 
@@ -30,7 +32,9 @@ Load this file when:
 
 The SKILL.md export route (under HOW IT WORKS → Output) is a thin wrapper that delegates here — both paths run the same procedure below.
 
-## 2. Scope
+---
+
+## 2. SCOPE
 
 Both formats are **diagram-only** — just the `<svg>` node. Editorial wrappers (header, summary cards, footer in `-full` variants) are intentionally dropped: the export deliverable is the diagram itself, suitable for Figma, slides, social cards, or blog images.
 
@@ -38,7 +42,9 @@ The SVG-only export keeps the source `<title>` and `<desc>` with the diagram. Th
 
 If the user explicitly asks for "a screenshot of the whole page including the cards", that's a different request — fall back to a normal full-page screenshot via the user's OS or browser.
 
-## 3. SVG export procedure
+---
+
+## 3. SVG EXPORT PROCEDURE
 
 1. Read the source HTML file.
 2. Extract the **first** `<svg ...>...</svg>` block. Use a multiline regex anchored on `<svg` and `</svg>`. Most generated diagrams have only one SVG; if there are multiple, the first is the diagram (gallery files are an exception — see *Edge cases*).
@@ -60,7 +66,9 @@ If the user explicitly asks for "a screenshot of the whole page including the ca
 
 Tools that don't fetch remote fonts at import time (offline Illustrator, some Figma import paths, older SVG viewers) will substitute typography. The SVG renders correctly in any modern browser. For pixel-perfect portability, recommend the PNG export.
 
-## 4. PNG export procedure
+---
+
+## 4. PNG EXPORT PROCEDURE
 
 Render **the original HTML** (not the extracted SVG) and screenshot only the `<svg>` element's bounding box. This keeps font loading reliable (already wired in the source HTML) while satisfying the "diagram only" rule. The PNG always has a **transparent background** (`omit_background=True`) so it can be placed on any slide or doc colour without a white halo.
 
@@ -109,7 +117,9 @@ Default `device_scale_factor=2` for crisp output. Accept `1` for compact assets 
 
 `example-architecture.html` → `example-architecture.png`, written next to the source. Honour explicit user-provided paths.
 
-## 5. Sizing the export
+---
+
+## 5. SIZING THE EXPORT
 
 The PNG's pixel dimensions are the SVG's `viewBox` × `device_scale_factor`. So the size decision was already made when the diagram was drawn — see [`output-spec.md` §2](../foundations/output-spec.md) for the presets. Export only picks the multiplier.
 
@@ -135,14 +145,18 @@ A 960-wide `viewBox` at a 1200px target is `scale=1.25`. Two rules:
 
 If the target aspect ratio doesn't match the `viewBox` aspect ratio, say so and offer to redraw at the matching preset. Padding or cropping a finished diagram to fit a frame is not an export operation — it breaks the 40px safe margin.
 
-## 6. Edge cases
+---
+
+## 6. EDGE CASES
 
 - **Source is `assets/index.html`** (the gallery, multiple SVGs in one file): refuse the export and ask the user which specific diagram file they meant. Don't guess.
 - **No `<svg>` block found**: the source isn't a diagram file. Tell the user; don't write anything.
 - **Surrounding HTML matters to the user**: they want cards/header in the image. Tell them this skill exports diagrams only, and recommend a browser-based full-page screenshot (or a separate PDF print).
 - **Source is missing fonts at runtime**: Playwright will substitute, the screenshot will look off. Check that the source HTML has the `<link href="...fonts.googleapis.com...">` tag in `<head>`. If absent, the file isn't from a current template — fix the source rather than working around it in export.
 
-## 7. What this command never does
+---
+
+## 7. WHAT THIS COMMAND NEVER DOES
 
 - Modifies the source HTML.
 - Adds export buttons or `<script>` tags to generated diagrams (the "no JS in deliverables" rule in SKILL.md RULES still stands).

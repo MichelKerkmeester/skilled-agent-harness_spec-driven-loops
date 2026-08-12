@@ -18,7 +18,7 @@ Canonical package artifacts:
 - `import-export/`
 - `command-and-hub-integration/`
 
-The feature-catalog package for this packet is authored as a sibling deliverable and is not yet present. Every `**Catalog:**` reference in this package uses the planned `feature-catalog/<category>/<feature>.md` path so the links resolve as soon as that package lands.
+The feature-catalog package ships as a sibling deliverable at `feature-catalog/`. Every `**Catalog:**` reference in this package resolves against it.
 
 ### Result persistence
 

@@ -4,50 +4,398 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["sk-create-skill", "sk-create-skill-parent", "sk-create-readme", "sk-create-agent", "sk-create-command", "sk-create-feature-catalog", "sk-create-manual-testing-playbook", "sk-create-benchmark", "sk-create-flowchart", "sk-create-changelog", "sk-create-diff", "sk-create-diagram", "sk-create-quality-control"],
+    "tieBreak": [
+      "sk-create-skill",
+      "sk-create-skill-parent",
+      "sk-create-readme",
+      "sk-create-agent",
+      "sk-create-command",
+      "sk-create-feature-catalog",
+      "sk-create-manual-testing-playbook",
+      "sk-create-benchmark",
+      "sk-create-flowchart",
+      "sk-create-changelog",
+      "sk-create-diff",
+      "sk-create-diagram",
+      "sk-create-quality-control"
+    ],
     "outcomes": {
       "single": "one dominant authoring/quality intent routes to one workflow mode",
       "orderedBundle": "clearly separate authoring intents route to an ordered workflow mode list",
       "defer": "unclear or contradictory intent asks for disambiguation"
     },
-    "defaultResource": ["shared/references/quick-reference.md"],
+    "defaultResource": [
+      "shared/references/quick-reference.md"
+    ],
     "bundleRules": [
       {
         "name": "create-then-quality",
-        "whenAll": ["sk-create-skill", "sk-create-quality-control"],
+        "whenAll": [
+          "sk-create-skill",
+          "sk-create-quality-control"
+        ],
         "outcome": "orderedBundle"
       }
     ]
   },
   "routerSignals": {
-    "sk-create-skill": { "weight": 4, "classes": ["create-skill-aliases"], "resources": ["sk-create-skill/SKILL.md"] },
-    "sk-create-skill-parent": { "weight": 4, "classes": ["create-skill-parent-aliases"], "resources": ["sk-create-skill/SKILL.md"] },
-    "sk-create-readme": { "weight": 4, "classes": ["create-readme-aliases"], "resources": ["sk-create-readme/SKILL.md"] },
-    "sk-create-agent": { "weight": 4, "classes": ["create-agent-aliases"], "resources": ["sk-create-agent/SKILL.md"] },
-    "sk-create-command": { "weight": 3, "classes": ["create-command-aliases"], "resources": ["sk-create-command/SKILL.md"] },
-    "sk-create-feature-catalog": { "weight": 4, "classes": ["create-feature-catalog-aliases"], "resources": ["sk-create-feature-catalog/SKILL.md"] },
-    "sk-create-manual-testing-playbook": { "weight": 4, "classes": ["create-manual-testing-playbook-aliases"], "resources": ["sk-create-manual-testing-playbook/SKILL.md"] },
-    "sk-create-benchmark": { "weight": 3, "classes": ["create-benchmark-aliases"], "resources": ["sk-create-benchmark/SKILL.md"] },
-    "sk-create-flowchart": { "weight": 3, "classes": ["create-flowchart-aliases"], "resources": ["sk-create-flowchart/SKILL.md"] },
-    "sk-create-changelog": { "weight": 3, "classes": ["create-changelog-aliases"], "resources": ["sk-create-changelog/SKILL.md"] },
-    "sk-create-diff": { "weight": 3, "classes": ["create-diff-aliases"], "resources": ["sk-create-diff/SKILL.md"] },
-    "sk-create-diagram": { "weight": 3, "classes": ["create-diagram-aliases"], "resources": ["sk-create-diagram/SKILL.md"] },
-    "sk-create-quality-control": { "weight": 4, "classes": ["create-quality-control-aliases", "quality-actions"], "resources": ["sk-create-quality-control/SKILL.md"] }
+    "sk-create-skill": {
+      "weight": 4,
+      "classes": [
+        "create-skill-aliases"
+      ],
+      "resources": [
+        "sk-create-skill/SKILL.md"
+      ]
+    },
+    "sk-create-skill-parent": {
+      "weight": 4,
+      "classes": [
+        "create-skill-parent-aliases"
+      ],
+      "resources": [
+        "sk-create-skill/SKILL.md"
+      ]
+    },
+    "sk-create-readme": {
+      "weight": 4,
+      "classes": [
+        "create-readme-aliases"
+      ],
+      "resources": [
+        "sk-create-readme/SKILL.md"
+      ]
+    },
+    "sk-create-agent": {
+      "weight": 4,
+      "classes": [
+        "create-agent-aliases"
+      ],
+      "resources": [
+        "sk-create-agent/SKILL.md"
+      ]
+    },
+    "sk-create-command": {
+      "weight": 3,
+      "classes": [
+        "create-command-aliases"
+      ],
+      "resources": [
+        "sk-create-command/SKILL.md"
+      ]
+    },
+    "sk-create-feature-catalog": {
+      "weight": 4,
+      "classes": [
+        "create-feature-catalog-aliases"
+      ],
+      "resources": [
+        "sk-create-feature-catalog/SKILL.md"
+      ]
+    },
+    "sk-create-manual-testing-playbook": {
+      "weight": 4,
+      "classes": [
+        "create-manual-testing-playbook-aliases"
+      ],
+      "resources": [
+        "sk-create-manual-testing-playbook/SKILL.md"
+      ]
+    },
+    "sk-create-benchmark": {
+      "weight": 3,
+      "classes": [
+        "create-benchmark-aliases"
+      ],
+      "resources": [
+        "sk-create-benchmark/SKILL.md"
+      ]
+    },
+    "sk-create-flowchart": {
+      "weight": 3,
+      "classes": [
+        "create-flowchart-aliases"
+      ],
+      "resources": [
+        "sk-create-flowchart/SKILL.md"
+      ]
+    },
+    "sk-create-changelog": {
+      "weight": 3,
+      "classes": [
+        "create-changelog-aliases"
+      ],
+      "resources": [
+        "sk-create-changelog/SKILL.md"
+      ]
+    },
+    "sk-create-diff": {
+      "weight": 3,
+      "classes": [
+        "create-diff-aliases"
+      ],
+      "resources": [
+        "sk-create-diff/SKILL.md"
+      ]
+    },
+    "sk-create-diagram": {
+      "weight": 3,
+      "classes": [
+        "create-diagram-aliases"
+      ],
+      "resources": [
+        "sk-create-diagram/SKILL.md"
+      ]
+    },
+    "sk-create-quality-control": {
+      "weight": 4,
+      "classes": [
+        "create-quality-control-aliases",
+        "quality-actions"
+      ],
+      "resources": [
+        "sk-create-quality-control/SKILL.md"
+      ]
+    }
   },
   "vocabularyClasses": {
-    "quality-actions": { "keywords": ["validate", "score", "optimize", "check", "review", "harden", "audit"] },
-    "create-skill-aliases": { "keywords": ["create skill", "new skill", "skill scaffold", "SKILL.md scaffold", "OpenCode skill", "package skill", "sk-skill", "create sk-", "reusable capability", "reusable helper", "starter reference docs", "which json files does a skill need", "skill root metadata contract", "leaf-manifest config aliases required", "hub versus standalone skill class", "skill metadata drift gate"] },
-    "create-skill-parent-aliases": { "keywords": ["parent skill", "parent hub", "mode packet", "nested workflow packet"] },
-    "create-readme-aliases": { "keywords": ["create readme", "readme", "folder readme", "write readme", "README.md", "install guide", "installation guide", "setup guide", "code folder readme", "front-page overview", "getting our project running", "running from scratch"] },
-    "create-agent-aliases": { "keywords": ["create agent", "OpenCode agent", "Claude Code agent", "agent file", "new agent", "agent persona", "agent frontmatter", "permission object", "authority boundary", "agent template", "runtime agent directory", "agent and paired"] },
-    "create-command-aliases": { "keywords": ["create command", "slash command", "OpenCode command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract", "$ARGUMENTS", "paired /create"] },
-    "create-feature-catalog-aliases": { "keywords": ["feature catalog", "feature inventory", "catalog package", "per-feature files", "source anchors", "root catalog", "capability inventory", "capabilities"] },
-    "create-manual-testing-playbook-aliases": { "keywords": ["manual testing playbook", "testing playbook", "playbook system", "deterministic scenario", "evidence collection", "operator validation", "multi-agent execution", "release readiness"] },
-    "create-benchmark-aliases": { "keywords": ["benchmark-report.md", "SOURCE.md", "mcp-server/benchmarks", "MCP bake-off", "behavior benchmark", "behavior-benchmark.md", "scenario contract", "claude-baseline", "conformance benchmark", "conformance_benchmark", "peer adapter benchmark", "deep-alignment benchmark", "lane-config benchmark", "sk-doc-command", "skill-benchmark", "benchmark/README.md", "run-label folder", "benchmark package", "model-benchmark", "benchmark fixture", "benchmark profile", "reviewer-prompt fixture", "agent-improvement", "Lane A agent-improvement", "agent_improvement_authoring_guide", "agent quality dimensions"] },
-    "create-flowchart-aliases": { "keywords": ["create flowchart", "flowchart", "ASCII flowchart", "workflow diagram", "text diagram", "text characters", "decision tree", "decision branch", "swimlane", "parallel execution diagram", "approval loop diagram"] },
-    "create-changelog-aliases": { "keywords": ["create changelog", "changelog", "changelog entry", "release notes", "global changelog", "packet-local changelog", "nested changelog", "since the last version", "--bump", "--release", "vX.Y.Z.B"] },
-    "create-diff-aliases": { "keywords": ["create diff report", "document before after review", "before after document diff", "document change report"] },
-    "create-diagram-aliases": { "keywords": ["create diagram", "diagram", "architecture diagram", "sequence diagram", "ER diagram", "entity relationship diagram", "data model diagram", "state machine diagram", "swimlane diagram", "venn diagram", "org chart", "quadrant diagram", "gantt chart", "radar chart", "high-level diagram", "medallion diagram", "data flow diagram", "draw.io", "drawio", "mermaid diagram", "redraw diagram", "self-contained HTML diagram", "editorial diagram"] },
-    "create-quality-control-aliases": { "keywords": ["doc quality", "audit documentation quality", "document audit", "validate a document", "validate markdown", "validation rules", "score this document", "optimize this doc", "DQI", "HVR", "human voice", "AI-friendly documentation", "extract structure", "quality bar", "flag", "model's budget", "trim"] }
+    "quality-actions": {
+      "keywords": [
+        "validate",
+        "score",
+        "optimize",
+        "check",
+        "review",
+        "harden",
+        "audit"
+      ]
+    },
+    "create-skill-aliases": {
+      "keywords": [
+        "create skill",
+        "new skill",
+        "skill scaffold",
+        "SKILL.md scaffold",
+        "OpenCode skill",
+        "package skill",
+        "sk-skill",
+        "create sk-",
+        "reusable capability",
+        "reusable helper",
+        "starter reference docs",
+        "which json files does a skill need",
+        "skill root metadata contract",
+        "leaf-manifest config aliases required",
+        "hub versus standalone skill class",
+        "skill metadata drift gate"
+      ]
+    },
+    "create-skill-parent-aliases": {
+      "keywords": [
+        "parent skill",
+        "parent hub",
+        "mode packet",
+        "nested workflow packet"
+      ]
+    },
+    "create-readme-aliases": {
+      "keywords": [
+        "create readme",
+        "readme",
+        "folder readme",
+        "write readme",
+        "README.md",
+        "install guide",
+        "installation guide",
+        "setup guide",
+        "code folder readme",
+        "front-page overview",
+        "getting our project running",
+        "running from scratch"
+      ]
+    },
+    "create-agent-aliases": {
+      "keywords": [
+        "create agent",
+        "OpenCode agent",
+        "Claude Code agent",
+        "agent file",
+        "new agent",
+        "agent persona",
+        "agent frontmatter",
+        "permission object",
+        "authority boundary",
+        "agent template",
+        "runtime agent directory",
+        "agent and paired"
+      ]
+    },
+    "create-command-aliases": {
+      "keywords": [
+        "create command",
+        "slash command",
+        "OpenCode command",
+        "argument-hint",
+        "allowed-tools",
+        "command template",
+        "router presentation split",
+        "thin router",
+        "presentation contract",
+        "$ARGUMENTS",
+        "paired /create"
+      ]
+    },
+    "create-feature-catalog-aliases": {
+      "keywords": [
+        "feature catalog",
+        "feature inventory",
+        "catalog package",
+        "per-feature files",
+        "source anchors",
+        "root catalog",
+        "capability inventory",
+        "capabilities"
+      ]
+    },
+    "create-manual-testing-playbook-aliases": {
+      "keywords": [
+        "manual testing playbook",
+        "testing playbook",
+        "playbook system",
+        "deterministic scenario",
+        "evidence collection",
+        "operator validation",
+        "multi-agent execution",
+        "release readiness"
+      ]
+    },
+    "create-benchmark-aliases": {
+      "keywords": [
+        "benchmark-report.md",
+        "SOURCE.md",
+        "mcp-server/benchmarks",
+        "MCP bake-off",
+        "behavior benchmark",
+        "behavior-benchmark.md",
+        "scenario contract",
+        "claude-baseline",
+        "conformance benchmark",
+        "conformance_benchmark",
+        "peer adapter benchmark",
+        "deep-alignment benchmark",
+        "lane-config benchmark",
+        "sk-doc-command",
+        "skill-benchmark",
+        "benchmark/README.md",
+        "run-label folder",
+        "benchmark package",
+        "model-benchmark",
+        "benchmark fixture",
+        "benchmark profile",
+        "reviewer-prompt fixture",
+        "agent-improvement",
+        "Lane A agent-improvement",
+        "agent_improvement_authoring_guide",
+        "agent quality dimensions"
+      ]
+    },
+    "create-flowchart-aliases": {
+      "keywords": [
+        "create flowchart",
+        "flowchart",
+        "ASCII flowchart",
+        "workflow diagram",
+        "text diagram",
+        "text characters",
+        "decision tree",
+        "decision branch",
+        "swimlane",
+        "parallel execution diagram",
+        "approval loop diagram"
+      ]
+    },
+    "create-changelog-aliases": {
+      "keywords": [
+        "create changelog",
+        "changelog",
+        "changelog entry",
+        "release notes",
+        "global changelog",
+        "packet-local changelog",
+        "nested changelog",
+        "since the last version",
+        "--bump",
+        "--release",
+        "vX.Y.Z.B"
+      ]
+    },
+    "create-diff-aliases": {
+      "keywords": [
+        "create diff report",
+        "document before after review",
+        "before after document diff",
+        "document change report"
+      ]
+    },
+    "create-diagram-aliases": {
+      "keywords": [
+        "create diagram",
+        "diagram",
+        "architecture diagram",
+        "sequence diagram",
+        "ER diagram",
+        "entity relationship diagram",
+        "data model diagram",
+        "state machine diagram",
+        "swimlane diagram",
+        "swimlane",
+        "venn diagram",
+        "org chart",
+        "quadrant diagram",
+        "gantt chart",
+        "radar chart",
+        "high-level diagram",
+        "medallion diagram",
+        "data flow diagram",
+        "draw.io",
+        "drawio",
+        "mermaid diagram",
+        "redraw diagram",
+        "self-contained HTML diagram",
+        "editorial diagram",
+        "create flowchart",
+        "flowchart",
+        "ASCII flowchart",
+        "workflow diagram",
+        "text diagram",
+        "text characters",
+        "decision tree",
+        "decision branch",
+        "parallel execution diagram",
+        "approval loop diagram",
+        "export diagram"
+      ]
+    },
+    "create-quality-control-aliases": {
+      "keywords": [
+        "doc quality",
+        "audit documentation quality",
+        "document audit",
+        "validate a document",
+        "validate markdown",
+        "validation rules",
+        "score this document",
+        "optimize this doc",
+        "DQI",
+        "HVR",
+        "human voice",
+        "AI-friendly documentation",
+        "extract structure",
+        "quality bar",
+        "flag",
+        "model's budget",
+        "trim"
+      ]
+    }
   }
 }

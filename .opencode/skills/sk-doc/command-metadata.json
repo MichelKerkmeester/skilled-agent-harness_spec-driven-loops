@@ -394,14 +394,15 @@
   {
     "command": "/create:diagram",
     "ownerMode": "sk-create-diagram",
-    "description": "Create a self-contained HTML/SVG technical diagram across 27 types, or redraw an existing draw.io/Mermaid source. Modes :auto, :confirm.",
-    "argumentHint": "<target-diagram.html> [description | --import source-file] [--type <diagram-type>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "description": "Create an HTML/SVG technical diagram across 27 types, create an ASCII/markdown flowchart, or redraw an existing draw.io/Mermaid source. Modes :auto, :confirm.",
+    "argumentHint": "<target-diagram.html|target-flowchart.md> [description | --import source-file] [--output-format html-svg|ascii-markdown] [--type <diagram-type>] [--format png|svg|html+png for export] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
     "userIntent": {
       "job": "I want a self-contained HTML/SVG diagram of a system, process, or data model, or a redraw of an existing draw.io/Mermaid source.",
       "ownedSignals": [
         "draw an architecture or sequence diagram",
         "redraw a draw.io or Mermaid source",
-        "export a generated diagram to PNG or SVG"
+        "export a generated diagram to PNG or SVG",
+        "create an ASCII or box-drawing flowchart in markdown"
       ]
     },
     "choreography": [

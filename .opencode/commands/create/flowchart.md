@@ -1,57 +1,23 @@
 ---
-description: Create an ASCII flowchart markdown file with pattern selection and validation. Modes :auto, :confirm.
+description: Pass an ASCII/markdown flowchart request through /create:diagram with the ascii-markdown format pre-selected. Modes :auto, :confirm.
 argument-hint: "<target-flowchart.md> [source/process description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
-# /create:flowchart Router
+# /create:flowchart Pass-Through
 
-This command is a thin router. It separates execution routing from user-facing presentation.
+This command is a compatibility pass-through. The flowchart capability now lives in `/create:diagram` under the `ascii-markdown` output format.
 
-## 1. ROUTER CONTRACT
+## 1. PASS-THROUGH CONTRACT
 
-Route /create:flowchart to its presentation contract and workflow YAML for creating an ASCII flowchart markdown file with pattern selection and validation.
+Rewrite `/create:flowchart $ARGUMENTS` as `/create:diagram $ARGUMENTS --output-format ascii-markdown` and let the diagram command resolve its presentation contract, execution mode, pattern selection, and validator gate.
 
-- Do not dispatch workflow behavior from this router.
-- Do not edit workflow YAML while executing this command.
+- Preserve the target `.md` path, source/process description, and `:auto` or `:confirm` suffix.
+- Do not load or execute the retired flowchart-specific command assets from this pass-through.
+- Do not select an HTML/SVG diagram type; `ascii-markdown` is pre-selected before pattern selection.
 
-## 2. OWNED ASSETS
+## 2. TARGET
 
-| Purpose | Asset |
-|---------|-------|
-| Presentation contract | `.opencode/commands/create/assets/create-flowchart-presentation.txt` |
-| Auto workflow | `.opencode/commands/create/assets/create-flowchart-auto.yaml` |
-| Confirm workflow | `.opencode/commands/create/assets/create-flowchart-confirm.yaml` |
-
-## 3. MODE ROUTING
-
-- If any referenced asset is missing, stop and report the missing path.
-- The YAML owns workflow behavior; the presentation Markdown owns user-visible wording and layout.
-
-1. Read `.opencode/commands/create/assets/create-flowchart-presentation.txt`.
-2. Run the presentation contract's Phase 0 verification and setup resolution.
-3. Resolve execution mode from `$ARGUMENTS` or the setup answer: `:auto` or `:confirm`.
-4. Load the workflow YAML bound to the resolved mode from the EXECUTION TARGETS table below.
-5. Execute the selected YAML step by step.
-6. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
-
-## 4. EXECUTION TARGETS
-
-| Mode | Target |
-|------|--------|
-| `:auto` | `.opencode/commands/create/assets/create-flowchart-auto.yaml` |
-| `:confirm` or omitted mode | `.opencode/commands/create/assets/create-flowchart-confirm.yaml` |
-
-## 5. PRESENTATION BOUNDARY
-
-The following content lives only in `.opencode/commands/create/assets/create-flowchart-presentation.txt`:
-
-- Startup questions, Phase 0 verification, setup dashboard, confirmation prompts, status display, completion display, and next-step text.
-
-The router must not invent visible wording for those surfaces; it only selects the workflow YAML and execution mode.
-
-## 6. WORKFLOW SUMMARY
-
-The bound workflow YAML (`create-flowchart-auto.yaml` for `:auto`, `create-flowchart-confirm.yaml` for `:confirm` or an omitted mode) runs the flowchart workflow step by step after Phase 0 verification and setup resolution, producing an ASCII flowchart markdown file with pattern selection and validation. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
+The target command is `.opencode/commands/create/diagram.md` with `--output-format ascii-markdown` inserted before execution-mode resolution.
 
 User request: $ARGUMENTS

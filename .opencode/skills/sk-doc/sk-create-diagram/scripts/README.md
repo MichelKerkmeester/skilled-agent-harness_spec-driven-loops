@@ -1,21 +1,22 @@
 ---
 title: "sk-create-diagram scripts: Code README"
-description: "Code-facing README for the draw.io and Mermaid IR extractors that back the import redraw flow."
+description: "Code-facing README for the draw.io and Mermaid IR extractors plus the ASCII flowchart validator."
 trigger_phrases:
   - "sk-create-diagram scripts"
   - "drawio extractor"
   - "mermaid extractor"
+  - "flowchart validator"
 ---
 
 # sk-create-diagram scripts
 
-The two intermediate-representation (IR) extractors behind the import redraw flow.
+The two intermediate-representation (IR) extractors behind the import redraw flow and the validator behind the `ascii-markdown` flowchart format.
 
 ---
 
 ## 1. OVERVIEW
 
-This folder owns the deterministic half of `sk-create-diagram`'s import flow: two stdlib-only Python CLIs that decode a `.drawio` or Mermaid source into a normalized IR — nodes, edges, containers, hubs, cycles, budget flags — as a compact Markdown digest (or full JSON). Neither script makes a design decision; the agent reads the digest, picks a diagram type and detail level, and redraws from scratch in the packet's design system. Both run locally with no network access and never mutate the source file they read.
+This folder owns the deterministic half of `sk-create-diagram`'s import flow: two stdlib-only Python CLIs that decode a `.drawio` or Mermaid source into a normalized IR — nodes, edges, containers, hubs, cycles, budget flags — as a compact Markdown digest (or full JSON). It also owns the shell validator required before delivering an `ascii-markdown` flowchart. Neither extractor makes a design decision; the agent reads the digest, picks a diagram type and detail level, and redraws from scratch in the packet's design system. All scripts run locally with no network access and never mutate the source file they read.
 
 Behavior details (per-type routing rules, the four output dials) live in [`../references/import-export/`](../references/import-export/) and [`../references/foundations/output-spec.md`](../references/foundations/output-spec.md); this README stays navigational.
 
@@ -23,8 +24,8 @@ Behavior details (per-type routing rules, the four output dials) live in [`../re
 
 | Metric | Value |
 |---|---:|
-| Code files | 2 |
-| CLI entrypoints | 2 |
+| Code files | 3 |
+| CLI entrypoints | 3 |
 | Test suites | 0 (no committed regression suite yet) |
 
 ---
@@ -36,6 +37,7 @@ Run from the packet root:
 ```bash
 python3 scripts/drawio_extract.py diagram.drawio --page 1
 python3 scripts/mermaid_extract.py diagram.mmd --diagram 1
+bash scripts/validate-flowchart.sh path/to/flowchart.md
 ```
 
 Both print a Markdown digest to stdout by default. Add `--json` for the full IR, or `--out <path>` to write the digest to a file instead of stdout.
@@ -48,6 +50,7 @@ Both print a Markdown digest to stdout by default. Add `--json` for the full IR,
 |---|---|
 | `drawio_extract.py` | Decodes raw XML, deflate+base64, and PNG/SVG-embedded `mxfile` draw.io sources into the IR. |
 | `mermaid_extract.py` | Parses `flowchart`/`graph`, `sequenceDiagram`, `stateDiagram-v2`, and `erDiagram` Mermaid text into the IR. |
+| `validate-flowchart.sh` | Checks box-width consistency, connectors, decision labels, nesting depth, and markdown flowchart size. Exit `0` passes, including warning-only runs; exit `1` blocks delivery. |
 
 ---
 
@@ -62,12 +65,19 @@ Common flags on both: `--page`/`--diagram` (select which page/diagram when the s
 
 ## 5. EXIT CODES
 
-Both scripts share the same two-code contract:
+The two extractors share the following two-code contract:
 
 | Code | Meaning |
 |---:|---|
 | 0 | OK — digest or JSON written |
 | 2 | Unreadable file, unsupported/malformed input, a selector matching nothing, or a node/edge limit exceeded |
+
+The flowchart validator uses its own two-code delivery contract:
+
+| Code | Meaning |
+|---:|---|
+| 0 | Validation passed, including warning-only runs |
+| 1 | Validation failed and blocks delivery |
 
 ---
 
@@ -88,6 +98,7 @@ No committed regression suite exists for this folder yet. Verify a change compil
 python3 -m py_compile scripts/drawio_extract.py scripts/mermaid_extract.py
 python3 scripts/drawio_extract.py --help
 python3 scripts/mermaid_extract.py --help
+bash scripts/validate-flowchart.sh assets/ascii-patterns/simple-workflow.md
 ```
 
 ---

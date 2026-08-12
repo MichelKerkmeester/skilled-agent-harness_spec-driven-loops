@@ -19,13 +19,13 @@ Turn Mermaid source into an editorial-quality diagram at the format, size, and d
 
 ---
 
-## 1. Trigger
+## 1. TRIGGER
 
 Load this file for `.mmd`, `.mermaid`, or Markdown containing fenced `mermaid` blocks when the user asks to convert, redraw, simplify, or present the diagram, or the `create:diagram` command's import route.
 
 ---
 
-## 2. Step 1 — Extract the IR
+## 2. STEP 1 — EXTRACT THE IR
 
 Locate the installed skill directory, then run:
 
@@ -46,13 +46,17 @@ Supported grammars are `flowchart` / `graph`, `sequenceDiagram`, `stateDiagram-v
 
 If the extractor exits 2, report its message verbatim and stop. Do not render the source or paste it into an online editor as a fallback.
 
-## 3. Step 2 — Set the four dials
+---
+
+## 3. STEP 2 — SET THE FOUR DIALS
 
 Set `--format`, `--size`, `--detail`, and `--audience` from [`output-spec.md`](../foundations/output-spec.md) before drawing. Infer what the destination makes obvious, and ask once if a choice changes the result materially. The digest's `budget:` line determines whether the requested combination fits.
 
 Command-level flags are `--format`, `--size`, `--detail`, `--audience`, optional `--type`, `--diagram`, `--variant`, and `--output`.
 
-## 4. Step 3 — Pick the target type
+---
+
+## 4. STEP 3 — PICK THE TARGET TYPE
 
 Grammar is a strong content signal, but not an order to mimic Mermaid's renderer.
 
@@ -67,7 +71,9 @@ Grammar is a strong content signal, but not an order to mimic Mermaid's renderer
 
 Load the selected `type-*.md`. Override the grammar only when the content disagrees, and state the override in one line.
 
-## 5. Step 4 — Build the semantic model
+---
+
+## 5. STEP 4 — BUILD THE SEMANTIC MODEL
 
 1. Name the story in one sentence.
 2. Apply the requested detail level using `output-spec.md`'s degrade ladder. Start with unconnected nodes and the digest's collapsible groups.
@@ -76,24 +82,28 @@ Load the selected `type-*.md`. Override the grammar only when the content disagr
 5. Preserve meaningful edge labels, state guards, sequence order/fragments, ER cardinality/fields, and container membership.
 6. Treat direction (`TD`, `LR`, `RL`, `BT`) as a hint. A chosen type's layout conventions may override it.
 
-## 6. Step 5 — Redraw
+---
+
+## 6. STEP 5 — REDRAW
 
 - Start from a blank `viewBox` selected by the size preset. Mermaid positions do not exist in the source, and a renderer's positions must not be recreated.
 - Use semantic treatments from the chosen type. A Mermaid cylinder becomes Store/State; a rhombus stays a decision only in a flowchart; subgraphs become zones or collapsible groups.
 - Ignore init themes, `style`, `classDef`, `class`, inline `:::class` attachments, and `linkStyle`. One accent plus the ink ramp replaces the source theme. A leading `---` frontmatter block is title/config, so it is skipped with the same reasoning.
-- Reroute all connections with the SKILL.md §6 connector rules. Mermaid edge length markers are ranking hints, not content.
+- Reroute all connections with the SKILL.md §4 connector rules. Mermaid edge length markers are ranking hints, not content.
 - Do not add a component merely to fill space. Imports remain bounded by source meaning.
 
-## 7. Step 6 — Deliver
+---
+
+## 7. STEP 6 — DELIVER
 
 1. Write the self-contained HTML.
-2. Run the SKILL.md §9 taste gate and [`output-spec.md` §6](../foundations/output-spec.md) checklist.
+2. Run the SKILL.md §6 taste gate and [`output-spec.md` §6](../foundations/output-spec.md) checklist.
 3. Export SVG/PNG only when requested, following [`export.md`](export.md).
 4. Report the fidelity ledger: source count, drawn count, and every merge, collapse, or drop.
 
 ---
 
-## 8. Worked example
+## 8. WORKED EXAMPLE
 
 [`assets/examples/example-import-mermaid.html`](../../assets/examples/example-import-mermaid.html) redraws `scripts/fixtures/sample-flowchart.mmd` at `format=html`, `size=doc-inline`, `detail=balanced`, `audience=mixed`.
 
@@ -108,7 +118,9 @@ Load the selected `type-*.md`. Override the grammar only when the content disagr
 
 The extractor reports 9 IR nodes (7 drawable plus 2 containers) and 7 edges; the redraw shows 6 nodes and 7 transitions, within the balanced budget.
 
-## 9. Multi-block files
+---
+
+## 9. MULTI-BLOCK FILES
 
 Markdown is the Mermaid analogue of multi-page draw.io. The header lists every fenced block with grammar and node/edge counts.
 
@@ -116,7 +128,9 @@ Markdown is the Mermaid analogue of multi-page draw.io. The header lists every f
 - `--diagram all` creates one independently type-selected output per block, named `<base>-<index>.html`.
 - Do not merge blocks onto one canvas unless asked. Adjacent blocks frequently use different grammars.
 
-## 10. Edge cases
+---
+
+## 10. EDGE CASES
 
 | Situation | Do |
 |---|---|
@@ -129,7 +143,9 @@ Markdown is the Mermaid analogue of multi-page draw.io. The header lists every f
 | Markdown labels or HTML entities | Use the normalized plain-text label from the digest. |
 | CJK / non-Latin labels | Follow `output-spec.md` font fallback. Do not romanize. |
 
-## 11. Anti-patterns
+---
+
+## 11. ANTI-PATTERNS
 
 | Anti-pattern | Why it fails |
 |---|---|

@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 # Style Guide Onboarding
 
-Generate a diagram skin from a design source — a website, an installed skill, or a local folder — and rewrite `style-guide.md` so every future diagram inherits that skin.
+A guided path from a design source to a reusable diagram skin.
 
 ---
 

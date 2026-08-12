@@ -19,13 +19,13 @@ Turn a `.drawio` file into an editorial-quality diagram at the format, size, and
 
 ---
 
-## 1. Trigger
+## 1. TRIGGER
 
 Load this file when the user points at a `.drawio`, `.drawio.xml`, `.drawio.png`, or `.drawio.svg` file and wants a diagram out of it — "convert this drawio", "redraw this diagram", "make this presentable", "この drawio をきれいにして", or the `create:diagram` command's import route.
 
 ---
 
-## 2. Step 1 — Extract the IR
+## 2. STEP 1 — EXTRACT THE IR
 
 Never read a `.drawio` file with Read. Most are deflate+base64 payloads, and even the readable ones are 10× more XML than signal. Run the extractor:
 
@@ -47,7 +47,9 @@ Options worth knowing:
 
 Read the digest, not the file. If the digest is empty (`0 nodes`), the source is an image-only or encrypted file — see *Edge cases*.
 
-## 3. Step 2 — Set the four dials
+---
+
+## 3. STEP 2 — SET THE FOUR DIALS
 
 Before drawing, fix format, size, detail level, and audience per [`output-spec.md`](../foundations/output-spec.md). Infer what the destination makes obvious, then ask once for any material ambiguity and let the digest inform the options you offer:
 
@@ -55,7 +57,9 @@ Before drawing, fix format, size, detail level, and audience per [`output-spec.m
 
 The digest's `budget:` line tells you whether the ask is even possible: a source over the node budget cannot go to `slide-16x9` at `faithful` without splitting. Say so at this step rather than after drawing.
 
-## 4. Step 3 — Pick the target type
+---
+
+## 4. STEP 3 — PICK THE TARGET TYPE
 
 The source's shape vocabulary is a hint, not an instruction. draw.io users reach for rectangles because rectangles are what's on the toolbar.
 
@@ -77,7 +81,9 @@ The digest's `type candidates` field ranks these mechanically. Override it when 
 
 **Load the chosen `type-*.md` before drawing.** Its layout conventions win over anything the source did.
 
-## 5. Step 4 — Build the semantic model
+---
+
+## 5. STEP 4 — BUILD THE SEMANTIC MODEL
 
 Work from the digest, not from coordinates. In order:
 
@@ -87,9 +93,11 @@ Work from the digest, not from coordinates. In order:
 4. **Rewrite every label** at the audience level ([`output-spec.md` §4](../foundations/output-spec.md)). draw.io labels are written by the author for the author: `svc-auth-prod-v2` becomes `Auth Service`. Preserve proper nouns, expand acronyms once.
 5. **Prune edges.** Source graphs carry edges that layout already implies. If A sits above B in a stack and everything flows down, the arrow is noise. Keep edges that carry a label, cross a zone boundary, or run against the dominant direction.
 
-## 6. Step 5 — Redraw
+---
 
-Fresh layout on the 4px grid, per the type reference and SKILL.md §6–§7. Explicitly:
+## 6. STEP 5 — REDRAW
+
+Fresh layout on the 4px grid, per the type reference and SKILL.md §3 (layout/budget) + §4 (connector rules). Explicitly:
 
 - **Discard source coordinates.** draw.io positions are hand-dragged and land on odd pixels. Lay out from scratch: dominant flow left→right (or top→bottom), zones aligned, even gaps.
 - **Discard source colors.** Map them to semantic roles instead:
@@ -119,19 +127,21 @@ Fresh layout on the 4px grid, per the type reference and SKILL.md §6–§7. Exp
 | `image` (custom PNG/vendor logo) | Nearest icon, or a labeled box. Never re-embed the source image. |
 | `text` (floating label) | Drop, or fold into a zone label |
 
-- **Reroute every connector.** Source waypoints are dead weight — the digest reports a waypoint count so you know how tangled the original was, not so you can reproduce it. Rounded orthogonal elbows, fanned attach points, no overlaps: SKILL.md §6 rules 1–5, no exceptions for imported content.
+- **Reroute every connector.** Source waypoints are dead weight — the digest reports a waypoint count so you know how tangled the original was, not so you can reproduce it. Rounded orthogonal elbows, fanned attach points, no overlaps: SKILL.md §4 connector rules, no exceptions for imported content.
 - **Set the `viewBox` from the size preset**, then lay out inside it — don't draw first and crop after.
 
-## 7. Step 6 — Deliver
+---
+
+## 7. STEP 6 — DELIVER
 
 1. Write the `.html`.
-2. Run the SKILL.md §9 taste gate **and** the [`output-spec.md` §6](../foundations/output-spec.md) checklist.
+2. Run the SKILL.md §6 taste gate **and** the [`output-spec.md` §6](../foundations/output-spec.md) checklist.
 3. Produce `svg` / `png` if the format dial asked for them — via [`export.md`](export.md), from the HTML.
 4. Report the fidelity ledger ([`output-spec.md` §5](../foundations/output-spec.md)). Every import gets one; the user knows the source and will notice what's gone.
 
 ---
 
-## 8. Worked example
+## 8. WORKED EXAMPLE
 
 [`assets/examples/example-import-drawio.html`](../../assets/examples/example-import-drawio.html) is the output of this procedure run on `scripts/fixtures/sample-architecture.drawio` (12 nodes, 8 edges, 2 container groups) at `format=html`, `size=doc-inline`, `detail=balanced`, `audience=mixed`.
 
@@ -146,11 +156,11 @@ What the run decided, and why:
 | `#dae8fc` / `#d5e8d4` / `#e1d5e7` fills | White services, ink-tint stores, one accent | Source color signals role; roles map to the design system |
 | API Gateway (degree 4, the digest's top hub) | The one accent node | Highest-degree node was also the story's pivot |
 
-12 source nodes → 8 drawn, inside the standard §7 budget even at a level that allows 12.
+12 source nodes → 8 drawn, inside the standard §3 complexity budget even at a level that allows 12.
 
 ---
 
-## 9. Multi-page files
+## 9. MULTI-PAGE FILES
 
 Default is page 0. When the file has several pages:
 
@@ -158,7 +168,9 @@ Default is page 0. When the file has several pages:
 - `--page all` when they want everything: one HTML file per page, named `<base>-<page-name>.html`, each independently type-selected. Pages in one draw.io file are frequently different diagram types.
 - Don't merge pages into one canvas unless asked. A 3-page file merged is a 40-node fail.
 
-## 10. Edge cases
+---
+
+## 10. EDGE CASES
 
 | Situation | Do |
 |---|---|
@@ -171,7 +183,9 @@ Default is page 0. When the file has several pages:
 | Source is someone else's branded diagram | Redraw in the *project's* skin (`style-guide.md`), not the source's. Say so — it's a feature, not a bug. |
 | CJK / non-Latin labels | Font fallback per [`output-spec.md` §4](../foundations/output-spec.md). Don't romanize labels. |
 
-## 11. Anti-patterns
+---
+
+## 11. ANTI-PATTERNS
 
 | Anti-pattern | Why it fails |
 |---|---|

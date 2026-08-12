@@ -445,7 +445,7 @@ Before emitting SVG, verify **every** item. If any fails, fix it — don't ship.
 10. Each vertical chevron pairs **1:1** with exactly one `bar` or `cross-cutting` component (§5 pairing rule). `len(verticals) == len(bars) + len(crosscuts)`.
 11. `viewBox_h = max(540, strip_y_bot + 112)` — grow the canvas when multiple crosscuts are declared so the legend still fits.
 12. Custom component colors (§3.4) apply only to container + icon + name; connectors stay topology-driven. Cap at 2 custom-colored components in addition to the focal.
-11. The diagram passes SKILL.md §9 (4-px grid; ≤ 2 accent elements; mono only for technical content; hairlines; no shadows; no `rounded-2xl`).
+11. The diagram passes SKILL.md §6 (4-px grid; ≤ 2 accent elements; mono only for technical content; hairlines; no shadows; no `rounded-2xl`).
 
 ---
 

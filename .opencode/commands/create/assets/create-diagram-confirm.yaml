@@ -7,8 +7,8 @@
 #       All executions use interactive confirmation gates.
 # -----------------------------------------------------------------
 role: Expert Diagram Author using sk-doc create-diagram packet
-purpose: Produce a self-contained HTML/SVG technical diagram, or redraw an existing draw.io/Mermaid source, with a taste-gated 5-step workflow
-action: Detect the request shape (generate / import / export), load the matching design-system and type references, draw or redraw against the complexity budget, and verify the accessible-SVG contract before delivery — with an approval checkpoint after each step
+purpose: Produce an HTML/SVG technical diagram, an ASCII/markdown flowchart, or redraw an existing draw.io/Mermaid source with format-aware validation
+action: Resolve html-svg (default) versus ascii-markdown before selecting a type or pattern; then run the matching creation and validation workflow with an approval checkpoint after each step
 
 # -----------------------------------------------------------------
 # PREREQUISITE: CREATE-DIAGRAM PACKET VERIFICATION
@@ -17,7 +17,7 @@ action: Detect the request shape (generate / import / export), load the matching
 # BEFORE this YAML workflow loads. If you're executing this workflow,
 # create-diagram verification has already passed.
 #
-# To invoke correctly: /create:diagram <target-diagram.html> [description | --import source-file] [--type <diagram-type>] :confirm
+# To invoke correctly: /create:diagram <target-diagram.html|target-flowchart.md> [description | --import source-file] [--output-format html-svg|ascii-markdown] [--type <diagram-type>] [--format png|svg|html+png for export] :confirm
 # -----------------------------------------------------------------
 
 operating_mode:
@@ -27,19 +27,29 @@ operating_mode:
   approvals: step_by_step
   tracking: progressive_task_checklists
   validation: checkpoint_based_with_taste_gate
-  output_configuration: self_contained_html_file
+  output_configuration: "self-contained html-svg file or markdown flowchart"
   description: |
     Executes the 5-step diagram workflow with approval gates at each checkpoint.
     User confirms, reviews, or modifies at each step before the workflow advances.
 
 development_philosophy:
   principle: "The highest-quality move is usually deletion — earn every node, every accent, every connector"
-  approach: "Detect shape -> Load design system + type/import reference -> Draw or redraw -> Taste gate -> Deliver"
+  approach: "Resolve format -> Detect html-svg shape or ascii-markdown pattern -> Load references -> Create or redraw -> Validate -> Deliver"
   mandate: "Never invent a component to fill a layout; never silently drop one when redrawing an import source"
 
 diagram_path_resolution:
   default: none
-  required_extension: .html
+  required_extension: ".html for html-svg; .md for ascii-markdown"
+
+output_format_resolution:
+  default: html-svg
+  values: [html-svg, ascii-markdown]
+  before: diagram_type_or_pattern
+  signals:
+    explicit: "--output-format html-svg|ascii-markdown or pre-bound output_format"
+    ascii_markdown: "markdown target or ASCII flowchart, workflow diagram, text diagram, decision tree, decision branch, approval loop diagram, or parallel execution diagram request"
+    html_svg: "diagram, HTML, SVG, draw.io, Mermaid, import, export, or no ASCII/markdown signal"
+  ambiguous_action: "Use UNKNOWN_FALLBACK and ask for the target artifact format; never guess"
 
 # -----------------------------------------------------------------
 # CONFIDENCE & CLARIFICATION FRAMEWORK
@@ -82,19 +92,22 @@ checkpoint_options:
 request_analysis_framework:
   code_search_note: "Use Glob/Grep to locate the target path, any prior diagram at that path, and (for import) the source file. Read files before drawing."
   solution_flow:
-  - "Parse carefully: generate, import, or export — which shape is ACTUALLY requested?"
+  - "Resolve html-svg versus ascii-markdown before selecting a type or pattern"
+  - "Parse carefully: generate, import, export, or flowchart — which shape is ACTUALLY requested?"
   - "Gather Context: read the source content or import source file"
   - "Identify Approach: the SIMPLEST diagram type that represents the real content"
   - "Validate Choice: would a table or a sentence communicate this better?"
   - "Clarify If Needed: if <80% confidence, ask"
-  - "Scope Check: producing ONLY the requested self-contained HTML file?"
+  - "Scope Check: producing ONLY the requested artifact for the resolved format?"
   - "Execute: draw or redraw, checkpoint, run the taste gate, checkpoint, and report"
   pre_change_validation:
     items:
-    - "Target diagram path provided and ends in .html?"
-    - "For generate: source content and diagram type resolved?"
-    - "For import: source file exists and format recognized?"
-    - "For export: an existing generated diagram and a target format identified?"
+    - "Output format resolved before type or pattern selection?"
+    - "Target path matches the resolved format (.html for html-svg, .md for ascii-markdown)?"
+    - "For html-svg generate: source content and diagram type resolved?"
+    - "For html-svg import: source file exists and format recognized?"
+    - "For html-svg export: an existing generated diagram and a target format identified?"
+    - "For ascii-markdown: source process and pattern resolved?"
     - "Confidence >=80%? (if not: ask)"
     stop_conditions: [ "Any item unchecked", "No target diagram path (generate/import)" ]
     stop_action: "STOP and address before proceeding"
@@ -103,10 +116,12 @@ request_analysis_framework:
 # USER INPUTS (From gate outputs)
 # -----------------------------------------------------------------
 user_inputs:
-  request_shape: "[REQUEST_SHAPE] one of: generate, import, export. FROM UNIFIED SETUP PHASE."
-  target_diagram_path: "[TARGET_DIAGRAM_PATH] workspace-relative .html path. FROM UNIFIED SETUP PHASE."
-  source_content: "[SOURCE_CONTENT] what the diagram should show. Required for generate. FROM UNIFIED SETUP PHASE."
-  diagram_type: "[DIAGRAM_TYPE] one of the 27 supported types. Required for generate. FROM UNIFIED SETUP PHASE."
+  output_format: "[OUTPUT_FORMAT] one of: html-svg (default), ascii-markdown. FROM FORMAT RESOLUTION."
+  request_shape: "[REQUEST_SHAPE] one of: generate, import, export, flowchart. FROM UNIFIED SETUP PHASE."
+  target_diagram_path: "[TARGET_DIAGRAM_PATH] workspace-relative .html path for html-svg or .md path for ascii-markdown. FROM UNIFIED SETUP PHASE."
+  source_content: "[SOURCE_CONTENT] what the artifact should show. Required for html-svg generate or ascii-markdown. FROM UNIFIED SETUP PHASE."
+  diagram_type: "[DIAGRAM_TYPE] one of the 27 supported html-svg types. Required for html-svg generate. FROM UNIFIED SETUP PHASE."
+  ascii_pattern: "[ASCII_PATTERN] one of the six ascii-markdown workflow-shape patterns. Required for ascii-markdown. FROM FORMAT RESOLUTION."
   import_source_path: "[IMPORT_SOURCE_PATH] path to the drawio/Mermaid source. Required for import. FROM UNIFIED SETUP PHASE."
   export_format: "[EXPORT_FORMAT] png, svg, or html+png. Required for export. FROM UNIFIED SETUP PHASE."
 
@@ -115,34 +130,43 @@ user_inputs:
 # -----------------------------------------------------------------
 field_handling:
   request_shape:
-    validation: "must be one of: generate, import, export"
+    validation: "must be one of: generate, import, export, flowchart"
     default: "derive_from_arguments"
   target_diagram_path:
-    validation: "workspace-relative path ending in .html"
+    validation: "workspace-relative path ending in .html for html-svg or .md for ascii-markdown"
     required: true
+  output_format:
+    validation: "must be html-svg or ascii-markdown"
+    default: html-svg
+    resolution: "must be resolved before diagram_type or ascii_pattern"
   diagram_type:
     validation: "must be one of the 27 types listed in SKILL.md WHEN TO USE selection guide"
     default: "derive_from_source_content"
+  ascii_pattern:
+    validation: "must be one of the six patterns in references/ascii-format/pattern-selection.md"
+    required_when: "output_format=ascii-markdown"
   defaults:
-    output_format: "single self-contained HTML file (inlined CSS, inline SVG, no external images, no required JavaScript)"
+    output_format: "html-svg: single self-contained HTML file; ascii-markdown: markdown file with a fenced text flowchart"
     skill_contract: .opencode/skills/sk-doc/sk-create-diagram/SKILL.md
 
 input_contract:
   required:
     - create_diagram_verified
+    - output_format
     - request_shape
     - target_diagram_path
   conditional:
-    - source_content
-    - diagram_type
-    - import_source_path
-    - export_format
+    - source_content       # required for html-svg generate or ascii-markdown
+    - diagram_type         # required for html-svg generate
+    - ascii_pattern        # required for ascii-markdown
+    - import_source_path   # required for html-svg import
+    - export_format        # required for html-svg export
 
 # -----------------------------------------------------------------
 # DOCUMENTATION LEVEL
 # -----------------------------------------------------------------
 documentation_level:
-  default: "No separate spec packet for ordinary diagram creation"
+  default: "No separate spec packet for ordinary diagram or flowchart creation"
   required_files:
   - target_diagram_path
   note: "The command output is a single self-contained HTML file unless the user explicitly asks for surrounding documentation."
@@ -155,6 +179,7 @@ diagram_resources:
 diagram_scripts:
   drawio_extract: .opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py
   mermaid_extract: .opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py
+  validate_flowchart: .opencode/skills/sk-doc/sk-create-diagram/scripts/validate-flowchart.sh
 diagram_references:
   style_guide: .opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md
   onboarding: .opencode/skills/sk-doc/sk-create-diagram/references/foundations/onboarding.md
@@ -163,6 +188,17 @@ diagram_references:
   import_mermaid: .opencode/skills/sk-doc/sk-create-diagram/references/import-export/import-mermaid.md
   export: .opencode/skills/sk-doc/sk-create-diagram/references/import-export/export.md
   type_reference_pattern: .opencode/skills/sk-doc/sk-create-diagram/references/types/type-<name>.md
+  ascii_route_map: .opencode/skills/sk-doc/sk-create-diagram/references/ascii-format/README.md
+  ascii_pattern_selection: .opencode/skills/sk-doc/sk-create-diagram/references/ascii-format/pattern-selection.md
+  ascii_notation: .opencode/skills/sk-doc/sk-create-diagram/references/ascii-format/notation-and-validator.md
+
+ascii_patterns:
+  linear: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/simple-workflow.md
+  decision: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md
+  parallel: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/parallel-execution.md
+  approval: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/approval-workflow-loops.md
+  swimlane: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/system-architecture-swimlane.md
+  journey: .opencode/skills/sk-doc/sk-create-diagram/assets/ascii-patterns/user-onboarding.md
 diagram_templates:
   minimal_light: .opencode/skills/sk-doc/sk-create-diagram/assets/templates/template.html
   minimal_dark: .opencode/skills/sk-doc/sk-create-diagram/assets/templates/template-dark.html
@@ -178,21 +214,21 @@ workflow_enforcement:
   skip_allowed: false
   phase_gate:
     location: "Between Step 2 and Step 3"
-    purpose: "Verify the style guide, type/import reference, and complexity budget are loaded before drawing"
+    purpose: "Verify format-specific references and validation requirements are loaded before creating output"
     requirements:
-    - "Style guide checked for customization (style-guide gate, generate/import only)"
-    - "Matching type or import reference loaded"
-    - "Complexity budget for the selected type known"
+    - "For html-svg: style guide checked for customization (style-guide gate, generate/import only)"
+    - "For html-svg: matching type or import reference loaded and complexity budget known"
+    - "For ascii-markdown: pattern-selection and notation references plus one pattern asset loaded"
     action_if_failed: "STOP and return to the incomplete step"
   critical_steps:
     step_2_resource_loading:
-      enforcement: "MUST load style-guide.md always, plus the type-<name>.md or import-<format>.md reference the shape requires"
-      verification: "Cannot proceed without user confirmation of resources loaded"
+      enforcement: "MUST resolve output_format first; html-svg loads style-guide.md plus the type/import/export reference, while ascii-markdown loads the pattern-selection and notation references plus one pattern asset"
+      verification: "Cannot proceed without user confirmation that the format-specific resources are loaded"
     step_3_draw_or_redraw:
-      enforcement: "MUST produce a single self-contained HTML file with inline SVG; MUST NOT invent or silently drop components on import"
-      verification: "Fidelity ledger recorded for import; complexity budget respected for generate; user approves before the taste gate"
+      enforcement: "MUST produce a single self-contained HTML file with inline SVG for html-svg, or one markdown flowchart for ascii-markdown; MUST NOT invent or silently drop components on import"
+      verification: "Fidelity ledger recorded for import; complexity budget respected for html-svg generate; pattern/source fidelity respected for ascii-markdown; user approves before the validation gate"
     step_4_taste_gate:
-      enforcement: "MUST run the SKILL.md §9 Pre-Output Checklist before delivery"
+      enforcement: "MUST run the SKILL.md §6 Pre-Output Checklist (SUCCESS CRITERIA / taste gate) before delivery"
       verification: "Every checklist item explicitly checked and approved by the user"
 
 gate_logic:
@@ -201,13 +237,13 @@ gate_logic:
       description: "create-diagram packet resource verification must have passed in Phase 0"
       fail_action: "STOP and return to the command setup phase"
     H1_required_fields:
-      description: "Required setup fields for the resolved request_shape must be present before drawing"
+      description: "Required setup fields for the resolved output_format and request_shape must be present before creating output"
       fail_action: "STOP and collect missing inputs"
     H2_connector_rules:
-      description: "The five mandatory connector rules must hold in the delivered SVG"
+      description: "The five mandatory connector rules must hold in delivered html-svg output"
       fail_action: "Fix the diagram before delivery"
     H3_accessible_svg:
-      description: "The delivered <svg> must carry role=img, aria-labelledby, a first-child <title>, and a <desc>, with diagram/variant-prefixed IDs"
+      description: "Delivered html-svg output must carry the accessible SVG contract; ascii-markdown output must pass validate-flowchart.sh"
       fail_action: "Fix the accessibility contract before delivery"
   soft:
     S1_existing_diagram:
@@ -222,16 +258,18 @@ gate_logic:
 # -----------------------------------------------------------------
 workflow:
   step_1_request_analysis:
-    purpose: Parse inputs and resolve request_shape (from UNIFIED SETUP PHASE)
+    purpose: Parse inputs, resolve output_format before request_shape/type/pattern, and validate the target path
     activities:
-    - Confirm request_shape, target_diagram_path, and the shape-specific required fields
+    - "Resolve output_format first: explicit --output-format or pre-bound marker, .md target, or ASCII/markdown flowchart signals select ascii-markdown; otherwise default to html-svg"
+    - "If output_format is ambiguous, stop with UNKNOWN_FALLBACK and ask rather than guessing"
+    - Confirm request_shape, target_diagram_path, and the format-specific required fields
     - Check whether target_diagram_path already exists
     validation:
-      path_format: "workspace-relative .html path"
+      path_format: "workspace-relative .html path for html-svg or .md path for ascii-markdown"
       check_exists: true
       command: "test -e [target_diagram_path]"
     checkpoint:
-      question: "Shape=[request_shape], target=[target_diagram_path]. Proceed?"
+      question: "Format=[output_format], shape=[request_shape], target=[target_diagram_path]. Proceed?"
       options:
       - label: "A) Proceed"
         description: "Continue with these settings"
@@ -240,19 +278,21 @@ workflow:
       - label: "C) Change shape or source"
         description: "Re-resolve request_shape or source content"
     outputs:
+    - output_format_confirmed
     - request_shape_confirmed
     - target_path_validated
 
   step_2_resource_loading:
-    purpose: Load the style guide and the shape-specific reference (MANDATORY)
+    purpose: Load the format-specific reference set (MANDATORY)
     enforcement: MANDATORY
     activities:
-    - "Load references/foundations/style-guide.md — ALWAYS"
-    - "IF generate: run the style-guide gate on first use; load references/types/type-<diagram_type>.md"
-    - "IF import: route by extension to import-drawio.md or import-mermaid.md; run the extraction script (never render)"
-    - "IF export: load references/import-export/export.md"
+    - "IF output_format=html-svg: load references/foundations/style-guide.md — ALWAYS"
+    - "IF output_format=html-svg and generate: run the style-guide gate on first use; load references/types/type-<diagram_type>.md"
+    - "IF output_format=html-svg and import: route by extension to import-drawio.md or import-mermaid.md; run the extraction script (never render)"
+    - "IF output_format=html-svg and export: load references/import-export/export.md"
+    - "IF output_format=ascii-markdown: load references/ascii-format/pattern-selection.md and references/ascii-format/notation-and-validator.md; select and load exactly one assets/ascii-patterns/*.md pattern"
     checkpoint:
-      question: "Loaded style-guide.md plus [shape reference]. [Style-guide gate dialogue if applicable]. Proceed?"
+      question: "Loaded the format-specific resources for [output_format] plus [shape reference or ASCII pattern]. Proceed?"
       options: checkpoint_options.standard
     outputs:
     - style_guide_loaded
@@ -261,15 +301,16 @@ workflow:
     validation: resources_loaded
 
   step_3_draw_or_redraw:
-    purpose: Produce the diagram artifact for the resolved shape
+    purpose: Produce the artifact for the resolved output_format and shape
     enforcement: MANDATORY
     activities:
-    - "IF generate: copy the closest template, draw against the type reference's layout conventions and complexity budget, apply the five connector rules"
-    - "IF import: set the four output dials, redraw the extracted IR, report the fidelity ledger"
-    - "IF export: extract the <svg> node and emit the requested format(s)"
+    - "IF output_format=html-svg and generate: copy the closest template, draw against the type reference's layout conventions and complexity budget, apply the five connector rules"
+    - "IF output_format=html-svg and import: set the four output dials, redraw the extracted IR, report the fidelity ledger"
+    - "IF output_format=html-svg and export: extract the <svg> node and emit the requested format(s)"
+    - "IF output_format=ascii-markdown: draft one fenced text flowchart from the selected pattern using real source nodes, explicit branch labels, joins, loops, and terminal states where applicable"
     - Write the output to the resolved path
     checkpoint:
-      question: "Diagram drafted at [path]. [Fidelity ledger summary if import]. Review before the taste gate?"
+      question: "Artifact drafted at [path] in [output_format]. [Fidelity ledger summary if import]. Review before validation?"
       options:
       - label: "A) Proceed to taste gate"
         description: "Content looks correct"
@@ -283,13 +324,14 @@ workflow:
     validation: file_created
 
   step_4_taste_gate:
-    purpose: Run the SKILL.md §9 Pre-Output Checklist before delivery
+    purpose: Run the format-specific validation gate before delivery
     enforcement: HARD_BLOCK
     activities:
-    - "Type fit, remove test, signal, technical (accessible SVG + connector rules + 4px grid), typography — every item from SKILL.md §9"
+    - "IF output_format=html-svg: run the SKILL.md §6 taste gate (type fit, remove test, signal, technical accessibility and connector rules, typography)"
+    - "IF output_format=ascii-markdown: run bash scripts/validate-flowchart.sh [target_diagram_path], then review raw markdown readability and source fidelity"
     - If any item fails, fix the diagram and re-run this step
     checkpoint:
-      question: "Taste gate result: [PASS/FAIL with findings]. Proceed to delivery?"
+      question: "Validation result for [output_format]: [PASS/FAIL with findings]. Proceed to delivery?"
       options:
       - label: "A) Continue to delivery"
         description: "Taste gate passed"
@@ -306,8 +348,8 @@ workflow:
     purpose: Emit completion status with path and taste-gate evidence
     condition: "target_diagram_path or export artifact path is not null"
     activities:
-    - Ensure the output remains a single self-contained artifact
-    - Record request_shape, diagram_type or import source, fidelity ledger, and taste-gate result
+    - Ensure the output remains a single artifact for the resolved format
+    - Record output_format, request_shape, diagram_type or ascii_pattern or import source, fidelity ledger, and validation result
     - State any fidelity limitation honestly
     - Do not create packet-local advisor metadata or extra output files
     checkpoint:
@@ -321,8 +363,8 @@ workflow:
     - delivery_summary: "diagram path, design-system state, and taste-gate evidence"
     validation: delivery_ready
     validation_evidence:
-      validator: "SKILL.md §9 Pre-Output Checklist (self-applied, no external script)"
-      critical_note: "Run every checklist item directly against the delivered SVG before claiming delivery."
+      validator: "html-svg: SKILL.md §6 Pre-Output Checklist; ascii-markdown: scripts/validate-flowchart.sh"
+      critical_note: "Run every applicable format-specific validation item directly against the delivered artifact before claiming delivery."
       when: "Immediately after the diagram file is written"
     anchor_requirements:
       enforcement: NOT_APPLICABLE
@@ -391,15 +433,16 @@ completion_report:
   template: |
     Diagram Creation Complete
 
-    Shape: [generate | import | export]
-    Diagram Type: [diagram-type, generate only]
+    Output Format: [html-svg | ascii-markdown]
+    Shape: [generate | import | export | flowchart]
+    Diagram Type: [diagram-type, html-svg generate only] | Pattern: [ascii-pattern, ascii-markdown only]
     Location: [target-diagram-path]
 
     Validation:
-    - Taste gate (SKILL.md §9): PASSED
+    - [SKILL.md §6 taste gate for html-svg | scripts/validate-flowchart.sh for ascii-markdown]: PASSED
 
     Output:
-    - Single self-contained HTML file, inline SVG, no external images
+    - [Single self-contained HTML file, inline SVG, no external images | Single markdown flowchart with fenced text diagram]
 
     STATUS=OK PATH=[target-diagram-path]
 
@@ -420,12 +463,15 @@ termination:
 # -----------------------------------------------------------------
 rules:
   ALWAYS:
-    - "Load style-guide.md before drawing anything"
-    - "Load the matching type-<name>.md or import-<format>.md reference before drawing"
-    - "Run the full SKILL.md §9 taste gate before claiming delivery"
-    - "Respect the five mandatory connector rules exactly"
-    - "Deliver the accessible-SVG contract"
-    - "Report the fidelity ledger honestly for import redraws"
+    - "Resolve output_format before selecting a diagram type or ASCII pattern"
+    - "For html-svg, load style-guide.md before drawing anything"
+    - "For html-svg, load the matching type-<name>.md or import-<format>.md reference before drawing"
+    - "For ascii-markdown, load pattern-selection.md and one matching ascii-patterns/*.md asset before drafting"
+    - "Run the full html-svg taste gate or ascii-markdown flowchart validator before claiming delivery"
+    - "Respect the five mandatory connector rules exactly for html-svg"
+    - "Deliver the accessible-SVG contract for html-svg"
+    - "Report the fidelity ledger honestly for html-svg import redraws"
+    - "Label ascii-markdown decision branches with [YES]/[NO] or check/cross notation"
     - "Pause at checkpoints for user approval"
   NEVER:
     - "Skip the taste gate between drawing and delivery"

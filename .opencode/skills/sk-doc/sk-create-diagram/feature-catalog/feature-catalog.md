@@ -165,7 +165,7 @@ The packet's registration in the `sk-doc` hub: `workflowMode`, command, and alia
 
 #### Current Reality
 
-`sk-create-diagram` is registered with command `/create:diagram` and 17 aliases including `drawio`, `mermaid diagram`, `redraw diagram`, and `export diagram`; `hub-router.json` routes the `create-diagram-aliases` class at weight 3 to this packet's SKILL.md; the packet root carries no packet-local advisor metadata (advisor identity lives at the `sk-doc` hub root); `validate_skill_package.py` is the packaging gate.
+`sk-create-diagram` is registered with command `/create:diagram` and 27 aliases including `drawio`, `mermaid diagram`, `redraw diagram`, `export diagram`, and the merged `sk-create-flowchart` ASCII/markdown vocabulary (`flowchart`, `decision tree`, `swimlane`, etc.); `hub-router.json` routes the `create-diagram-aliases` class at weight 3 to this packet's SKILL.md; the packet root carries no packet-local advisor metadata (advisor identity lives at the `sk-doc` hub root); `validate_skill_package.py` is the packaging gate.
 
 #### Source Files
 

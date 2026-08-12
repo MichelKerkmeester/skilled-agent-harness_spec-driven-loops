@@ -156,7 +156,7 @@
       "packetSkillName": "sk-create-diagram",
       "grandfatheredFolderMismatch": false,
       "command": "/create:diagram",
-      "aliases": ["create diagram", "diagram", "architecture diagram", "sequence diagram", "ER diagram", "state machine diagram", "data model diagram", "swimlane", "venn diagram", "org chart", "quadrant diagram", "gantt chart", "draw.io", "drawio", "mermaid diagram", "redraw diagram", "export diagram"],
+      "aliases": ["create diagram", "diagram", "architecture diagram", "sequence diagram", "ER diagram", "state machine diagram", "data model diagram", "swimlane", "venn diagram", "org chart", "quadrant diagram", "gantt chart", "draw.io", "drawio", "mermaid diagram", "redraw diagram", "export diagram", "create flowchart", "flowchart", "ASCII flowchart", "workflow diagram", "text diagram", "text characters", "decision tree", "decision branch", "parallel execution diagram", "approval loop diagram"],
       "advisorRouting": { "routingClass": "metadata" }
     },
     {

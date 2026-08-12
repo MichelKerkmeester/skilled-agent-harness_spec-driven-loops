@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 # Diagram Style Guide
 
-The single source of truth for colors, typography, and tokens. Every diagram draws from this file — not from hex values inlined in other reference files.
+A semantic token reference for diagram colors, typography, strokes, radii, and spacing.
 
 ---
 

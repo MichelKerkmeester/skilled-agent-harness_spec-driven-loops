@@ -14,7 +14,7 @@ version: 1.0.0.0
 
 # Annotation Callout (italic-serif aside)
 
-Use for editorial asides — the "italic pointer" that marks a detail without competing with the primary diagram grammar.
+Editorial callouts pair italic Instrument Serif text with a dashed Bézier leader and landing dot.
 
 ---
 

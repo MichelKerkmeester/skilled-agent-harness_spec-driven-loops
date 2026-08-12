@@ -17,13 +17,17 @@ version: 1.0.0.0
 
 A monochrome 24×24 icon library for IT/cloud diagrams. Each icon uses `currentColor` so it inherits ink from its parent SVG and adapts to the editorial skin or any user-onboarded brand palette.
 
-## 1. Usage
+---
+
+## 1. USAGE
 
 Find the icon by name (the `### name` headings below). Copy the fenced `<svg>` snippet into your diagram. Default size is 24×24; wrap in `<g transform="translate(x,y) scale(s)">` to position and resize. Set `color`, `fill`, or `stroke` on the parent group/SVG to control color.
 
 Generic icons are stroked (1.5px, hairline, like the rest of the skill); brand silhouettes are filled. Don't mix the two styles in the same diagram unnecessarily.
 
-## 2. Compute
+---
+
+## 2. COMPUTE
 
 ### laptop
 User laptop or workstation.
@@ -79,7 +83,9 @@ Virtual machine.
 
 Source: Tabler Icons / `cube` (MIT)
 
-## 3. People
+---
+
+## 3. PEOPLE
 
 ### user
 End user or single actor.
@@ -117,7 +123,9 @@ Bot, agent, or automated process.
 
 Source: Tabler Icons / `robot` (MIT)
 
-## 4. Network
+---
+
+## 4. NETWORK
 
 ### cloud
 Cloud provider or boundary.
@@ -191,7 +199,9 @@ DNS / name resolution.
 
 Source: Tabler Icons / `tag` (MIT)
 
-## 5. Data
+---
+
+## 5. DATA
 
 ### database
 Relational or document database.
@@ -265,7 +275,9 @@ Search index / query.
 
 Source: Tabler Icons / `search` (MIT)
 
-## 6. Kubernetes
+---
+
+## 6. KUBERNETES
 
 ### pod
 Pod (smallest deployable unit).
@@ -321,7 +333,9 @@ Persistent volume.
 
 Source: Tabler Icons / `device-sd-card` (MIT)
 
-## 7. Action
+---
+
+## 7. ACTION
 
 ### api
 API surface / endpoint.
@@ -386,7 +400,9 @@ Warning / paged alert.
 
 Source: Tabler Icons / `alert-triangle` (MIT)
 
-## 8. DevOps
+---
+
+## 8. DEVOPS
 
 ### git-branch
 Branch / fork point.
@@ -442,7 +458,9 @@ Test / experiment.
 
 Source: Tabler Icons / `test-pipe` (MIT)
 
-## 9. Brand
+---
+
+## 9. BRAND
 
 ### docker
 Docker engine / image.
@@ -624,7 +642,9 @@ StarRocks MPP analytical DB.
 
 Source: log-z/logos / `starrocks` (MIT)
 
-## 10. Data stack
+---
+
+## 10. DATA STACK
 
 ### nifi
 Apache NiFi data flow.
@@ -725,7 +745,9 @@ Jupyter / JupyterLab notebooks.
 
 Source: Simple Icons / `jupyter` (CC0)
 
-## 11. Language
+---
+
+## 11. LANGUAGE
 
 ### python
 Python.
@@ -754,7 +776,9 @@ SQL / generic relational query.
 
 Source: Tabler Icons / `sql` (MIT)
 
-## 12. Statistical tools
+---
+
+## 12. STATISTICAL TOOLS
 
 ### spss
 IBM SPSS Statistics.
@@ -801,7 +825,9 @@ QGIS open-source GIS platform.
 
 Source: Simple Icons / `qgis` (CC0)
 
-## 13. File formats
+---
+
+## 13. FILE FORMATS
 
 ### excel
 Microsoft Excel spreadsheet.
@@ -832,7 +858,7 @@ Source: Tabler Icons / `file-type-txt` (MIT)
 
 ---
 
-## 14. License attribution
+## 14. LICENSE ATTRIBUTION
 
 - **Tabler Icons** — MIT — https://github.com/tabler/tabler-icons
 - **Simple Icons** — CC0 — https://github.com/simple-icons/simple-icons
