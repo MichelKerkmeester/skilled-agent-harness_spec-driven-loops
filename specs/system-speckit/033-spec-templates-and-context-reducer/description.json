@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-spec-templates-and-context-reducer",
+  "description": "Two external agent-engineering write-ups landed as context material here (`context/Reducer Engineering.md`, `context/The $1.2M Agent Engineering",
+  "keywords": [
+    "two",
+    "external",
+    "agent-engineering",
+    "write-ups",
+    "landed",
+    "context",
+    "material",
+    "reducer",
+    "engineering",
+    "agent"
+  ],
+  "lastUpdated": "2026-08-12T07:16:15.553Z",
+  "specId": "033",
+  "folderSlug": "spec-templates-and-context-reducer",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

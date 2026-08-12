@@ -1,0 +1,129 @@
+{
+  "openQuestions": [
+    {
+      "id": "q1",
+      "text": "Where do system-speckit templates carry reducible token weight, and which Reducer-Engineering techniques map to concrete cuts?",
+      "status": "resolved"
+    },
+    {
+      "id": "q2",
+      "text": "Which Agent-Engineering harness patterns already exist in the doc workflow / deep-loop, and which are genuine gaps for plan adherence?",
+      "status": "resolved"
+    },
+    {
+      "id": "q3",
+      "text": "What does the context/memory system already reduce, and what token-reduction gaps remain?",
+      "status": "resolved"
+    },
+    {
+      "id": "q4",
+      "text": "What is the ranked implementable shortlist and the refutation list?",
+      "status": "resolved"
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "Template token weight source + reducer-mapping",
+      "answer": "Cross-variant core duplication (~35-40% of manifest weight); dedupe -> ungated core restructure with zero renderer change",
+      "evidence": "templates/manifest/spec.md.tmpl:1,146,345,592; inline-gate-renderer.ts:182-233",
+      "iteration": 1
+    },
+    {
+      "id": "q2",
+      "text": "Which harness patterns exist vs gap?",
+      "answer": "All four exist: Default-FAIL=validate.sh --strict, fresh evaluator=deep-review+deterministic gates, handoff=_memory.continuity+handover.md, feature-at-a-time=plan phases",
+      "evidence": "validate.sh:106,1252,1282; implementation-summary.md.tmpl:13; handover.md.tmpl:96",
+      "iteration": 2
+    },
+    {
+      "id": "q3",
+      "text": "What does memory system reduce?",
+      "answer": "Already reduces: compact-merger pre-merge selection + envelope token budgets rendering overflow rows compact (never deleted, telemetried)",
+      "evidence": "context-server.ts:531-589; shared/compact-merger.ts",
+      "iteration": 2
+    },
+    {
+      "id": "q4",
+      "text": "Shortlist + refutation?",
+      "answer": "S1 ungated-core template restructure; S2 staleness+weight-budget extension; S3 core prose dedupe; S4 budget telemetry export. Refuted: LLM evaluator for docs (R1), new deep-loop reducer (R2), progress-file system (R3), checkpoint commits for docs (R4), more workers (R5)",
+      "evidence": "iteration-002.md",
+      "iteration": 2
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f1",
+      "axis": "token-reduction",
+      "surface": "templates/manifest",
+      "classification": "genuine-gap",
+      "summary": "4 gated variants each embed full L1 core; spec.md.tmpl L2/L3/L3+ = 72/60/53% exact dup; plan.md.tmpl = 73/58/49%; ungated-core restructure removes redundancy with zero renderer change",
+      "evidence": "spec.md.tmpl:1,146,345,592; plan.md.tmpl:202,341,625,1007; inline-gate-renderer.ts:182-233",
+      "iteration": 1
+    },
+    {
+      "id": "f2",
+      "axis": "token-reduction",
+      "surface": "templates/manifest",
+      "classification": "not-applicable",
+      "summary": "checklist/implementation-summary templates have lower per-level duplication; restructure only where measured high",
+      "evidence": "checklist.md.tmpl:29-178; implementation-summary.md.tmpl:29,166,303,440",
+      "iteration": 1
+    },
+    {
+      "id": "f3",
+      "axis": "plan-adherence",
+      "surface": "check-template-staleness.sh",
+      "classification": "genuine-gap",
+      "summary": "staleness checker guards scaffold-vs-template only, not intra-template variant agreement; variant edits can silently diverge",
+      "evidence": "scripts/spec/check-template-staleness.sh:1-30",
+      "iteration": 1
+    },
+    {
+      "id": "f4",
+      "axis": "general",
+      "surface": "template pipeline",
+      "classification": "already-exists",
+      "summary": "copy_template + inline-gate-renderer IS the deterministic reducer for scaffolding; do not reinvent",
+      "evidence": "scripts/lib/template-utils.sh:67-110; scripts/templates/inline-gate-renderer.ts",
+      "iteration": 1
+    },
+    {
+      "id": "f5",
+      "axis": "token-reduction",
+      "surface": "mcp-server/shared",
+      "classification": "already-exists",
+      "summary": "Memory system implements reducer playbook: compact-merger pre-merge selection + envelope token-budget compaction with compact:true stamping and telemetry",
+      "evidence": "mcp-server/context-server.ts:531-589; shared/compact-merger.ts",
+      "iteration": 2
+    },
+    {
+      "id": "f6",
+      "axis": "plan-adherence",
+      "surface": "doc workflow",
+      "classification": "already-exists",
+      "summary": "All four Agent-Engineering harness patterns have in-repo equivalents (Default-FAIL, fresh evaluator, handoff memory, feature-at-a-time)",
+      "evidence": "validate.sh:106,1252,1282; implementation-summary.md.tmpl:13; handover.md.tmpl:96",
+      "iteration": 2
+    },
+    {
+      "id": "f2corr",
+      "axis": "token-reduction",
+      "surface": "templates/manifest",
+      "classification": "genuine-gap",
+      "summary": "Duplication extends to all four templates: implementation-summary variants 95/95/99% dup, checklist 70/67% dup; ~40% of manifest lines are exact duplicates",
+      "evidence": "implementation-summary.md.tmpl:28,165,302,439; checklist.md.tmpl:28,178,400",
+      "iteration": 2
+    },
+    {
+      "id": "f7",
+      "axis": "general",
+      "surface": "governance",
+      "classification": "genuine-gap",
+      "summary": "No declared template weight budget and no intra-variant agreement check; staleness checker guards scaffold drift only",
+      "evidence": "scripts/spec/check-template-staleness.sh:1-30",
+      "iteration": 2
+    }
+  ],
+  "ruledOutDirections": []
+}

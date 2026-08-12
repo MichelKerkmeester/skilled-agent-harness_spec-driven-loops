@@ -1,0 +1,130 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Q1: How much template weight lands in agent context after renderInlineGates?",
+    "Q2: Where do Reducer Engineering ideas already exist vs gaps?",
+    "Q3: Where do Agent Engineering harness patterns already exist vs gaps?",
+    "Q4: Does memory_context/memory_search lack token-budget/dedup?",
+    "Q5: Ranked shortlist + refutation list?"
+  ],
+  "keyFindings": [
+    {
+      "id": "F001",
+      "text": "Fleet L1 render ~2,162 lines (~14.6k tokens) vs 5,541 raw LOC — IF gating is primary template reducer",
+      "classification": "already-exists",
+      "axis": "context-reduction",
+      "surface": "templates",
+      "evidence": "orchestrator.js:309-339; measured fleet render",
+      "iteration": 1
+    },
+    {
+      "id": "F002",
+      "text": "research.md.tmpl ungated across levels (~945 lines all levels) — primary remaining template token gap",
+      "classification": "genuine-gap",
+      "axis": "context-reduction",
+      "surface": "templates",
+      "evidence": "research.md.tmpl:1",
+      "iteration": 1,
+      "priority": "P1"
+    },
+    {
+      "id": "F003",
+      "text": "No machine guard against raw .tmpl reads — prompt-only via SKILL.md",
+      "classification": "genuine-gap",
+      "axis": "plan-adherence",
+      "surface": "templates",
+      "evidence": "SKILL.md:452,475",
+      "iteration": 1,
+      "priority": "P2"
+    },
+    {
+      "id": "F004",
+      "text": "Deep-loop reduce-state + contradiction-supersession already implement Reducer Engineering synthesis pipeline",
+      "classification": "already-exists",
+      "axis": "general-opt",
+      "surface": "deep-loop",
+      "evidence": "reduce-state.cjs:2902+; contradiction-supersession/index.ts:1-40",
+      "iteration": 1
+    },
+    {
+      "id": "F005",
+      "text": "Iron Law + validate.sh + checklist = Default-FAIL completion contract",
+      "classification": "already-exists",
+      "axis": "plan-adherence",
+      "surface": "doc-logic",
+      "evidence": "AGENTS.md:11,23; SKILL.md:462",
+      "iteration": 2
+    },
+    {
+      "id": "F006",
+      "text": "memory_context enforceTokenBudget with per-mode budgets 800-3500",
+      "classification": "already-exists",
+      "axis": "context-reduction",
+      "surface": "context-memory",
+      "evidence": "memory-context.ts:551+,1107-1144",
+      "iteration": 2
+    },
+    {
+      "id": "F007",
+      "text": "Claim-normalization dedup across memory hits not shipped (session dedup only)",
+      "classification": "genuine-gap",
+      "axis": "context-reduction",
+      "surface": "context-memory",
+      "evidence": "memory-search.ts:2115-2139 vs Reducer Engineering normalize(claim)",
+      "iteration": 2,
+      "priority": "P3"
+    },
+    {
+      "id": "F008",
+      "text": "Complexity-matches-task routing is charter judgment only — no automated simple-vs-agent selector",
+      "classification": "genuine-gap",
+      "axis": "general-opt",
+      "surface": "doc-logic",
+      "evidence": "spec.md:62-66",
+      "iteration": 2,
+      "priority": "P3"
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "text": "New speckit synthesis reducer duplicating deep-loop findings-registry",
+      "iteration": 1,
+      "evidence": "contradiction-supersession + reduce-state.cjs"
+    },
+    {
+      "text": "Separate progress.md replacing handover/continuity ladder",
+      "iteration": 2,
+      "evidence": "feature-catalog.md recovery chain"
+    },
+    {
+      "text": "Fleet-wide template deletion without level IF gates",
+      "iteration": 1,
+      "evidence": "inline-gate-renderer.ts"
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 8,
+    "convergenceScore": 0.825,
+    "coverageBySources": {
+      "templates": 4,
+      "doc-logic": 4,
+      "context-memory": 3,
+      "deep-loop": 1
+    }
+  },
+  "divergence": {
+    "saturatedDirections": ["deep-loop reducer reinvention", "memory has zero token control"],
+    "pivots": ["templates-weight", "harness-memory-doc-logic"],
+    "failures": [],
+    "overrides": [],
+    "remainingFrontier": ["optional template level gates", "raw-tmpl read guard", "claim-normalization for memory"]
+  },
+  "terminalStop": {
+    "reason": "max_iterations",
+    "iterationsCompleted": 2,
+    "averageNewInfoRatio": 0.825
+  }
+}

@@ -1,0 +1,5 @@
+Containment verified — zero modifications under `033-spec-templates` or any read surface (the other dirty paths belong to unrelated concurrent sessions). All lineage artifacts present: config (status `complete`), JSONL (config + 2 iterations + `synthesis_complete`), strategy, findings-registry, dashboard, iteration-001/002, research.md.
+
+**Loop summary:** 2/2 iterations (stopPolicy max-iterations), 4/4 questions answered, newInfoRatio 0.95→0.85. Headline result: harness patterns + memory reducer already exist in production code (F4/F5/F6); the genuine quantified gap is ~40% exact cross-variant duplication in the four multi-level manifest templates (spec 72/60/53%, plan 73/58/49%, implementation-summary 95/95/99%, checklist 70/67%), fixable via ungated-core restructure with zero renderer changes (S1) plus staleness/weight-budget enforcement (S2). Five concepts refuted (LLM doc evaluator, new deep-loop reducer, progress-file system, per-feature commits, more workers).
+
+FANOUT_LINEAGE_COMPLETE:pi-flash-b

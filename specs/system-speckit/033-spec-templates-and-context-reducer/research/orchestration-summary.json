@@ -1,0 +1,105 @@
+{
+  "run_id": "1786517927558-l9mbmd",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/033-spec-templates-and-context-reducer",
+  "base_artifact_dir": "specs/system-speckit/033-spec-templates-and-context-reducer/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [
+    {
+      "label": "swe",
+      "index": 1,
+      "started_at_iso": "2026-08-12T06:51:41.129Z"
+    },
+    {
+      "label": "glm",
+      "index": 0,
+      "started_at_iso": "2026-08-12T06:53:27.037Z"
+    }
+  ],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "pi-flash-a",
+      "state_log": "specs/system-speckit/033-spec-templates-and-context-reducer/research/lineages/pi-flash-a/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-12T06:58:47.562Z",
+        "end_at_iso": "2026-08-12T07:10:49.908Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T07:14:00Z",
+          "deltaMs": 70092
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T07:19:30Z",
+          "deltaMs": 400092
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T07:21:00Z",
+          "deltaMs": 490092
+        }
+      ]
+    },
+    {
+      "label": "pi-flash-b",
+      "state_log": "specs/system-speckit/033-spec-templates-and-context-reducer/research/lineages/pi-flash-b/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-12T06:59:24.596Z",
+        "end_at_iso": "2026-08-12T07:09:34.841Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 4
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T09:10:00Z",
+          "deltaMs": 7105159
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T09:20:00Z",
+          "deltaMs": 7705159
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T09:25:00Z",
+          "deltaMs": 8005159
+        }
+      ]
+    }
+  ]
+}

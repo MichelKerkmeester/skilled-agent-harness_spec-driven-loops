@@ -1,0 +1,5 @@
+Deep-research fan-out lineage `composer` completed: **phase_init**, **2 iterations** (`max-iterations` stop), and **phase_synthesis** — all artifacts under `specs/system-speckit/033-spec-templates-and-context-reducer/research/lineages/composer/`.
+
+**Headline:** Most Reducer Engineering + Agent Engineering patterns already exist (`renderInlineGates`, deep-loop reducers, Iron Law, `enforceTokenBudget`, handover continuity). Top gap: ungated `research.md.tmpl` (~945 lines at every level). Full ranked shortlist + refutations in `research.md`.
+
+FANOUT_LINEAGE_COMPLETE:composer

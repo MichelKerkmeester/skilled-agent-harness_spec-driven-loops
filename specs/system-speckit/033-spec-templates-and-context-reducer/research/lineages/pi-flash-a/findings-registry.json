@@ -1,0 +1,158 @@
+{
+  "openQuestions": [
+    {
+      "id": "oq-cross-lineage-synthesis-input",
+      "text": "Would a deterministic claim-collapse across independent fan-out lineages before the final convergence read add value?",
+      "classification": "genuine-gap-out-of-charter",
+      "axis": "context-reduction",
+      "surface": "context-system",
+      "source": "iteration-003.md",
+      "evidence": "deep-research/SKILL.md multi-lineage fan-out"
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1-template-weight",
+      "text": "Template weight after level-gated rendering",
+      "answer": "Core docs collapse ~84% at L1 (spec 874->143); research.md.tmpl renders 944 lines at every level (ungated)",
+      "iteration": 1,
+      "evidence": "inline-gate-renderer.ts:182; research.md.tmpl:1"
+    },
+    {
+      "id": "q2-reducer-engineering-templates",
+      "text": "Which Reducer Engineering ideas exist vs are genuine gaps on templates",
+      "answer": "Level-gate renderer + fail-closed pipeline already-exist; ungated utility templates are genuine gaps",
+      "iteration": 1,
+      "evidence": "template-utils.sh:52"
+    },
+    {
+      "id": "q3-harness-doc-logic",
+      "text": "Which harness patterns exist in doc-logic vs genuine plan-adherence gaps",
+      "answer": "Default-FAIL/fresh-eval/handoff/complexity-match already-exist; AC_COVERAGE dormant + no scope rule are genuine gaps",
+      "iteration": 2,
+      "evidence": "validation-rules.md:75-79"
+    },
+    {
+      "id": "q4-memory-reducer",
+      "text": "Does memory_context/memory_search have token-budget/dedup reducer pass",
+      "answer": "Token budget enforced (memory-context.ts:551); id-based dedup at multiple stages; dynamic tier budget advisory-only",
+      "iteration": 3,
+      "evidence": "memory-context.ts:551; dynamic-token-budget.ts:5-9"
+    },
+    {
+      "id": "q5-prior-art",
+      "text": "Deep-loop reducer prior art verification",
+      "answer": "contradiction-supersession + conditional-fanin + reduce-state dedup = Reducer Engineering core already shipped",
+      "iteration": 3,
+      "evidence": "conditional-fanin/reduction.ts:1"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f1-1",
+      "title": "renderInlineGates is the deterministic template reducer",
+      "classification": "already-exists",
+      "axis": "context-reduction",
+      "surface": "templates",
+      "evidence": "inline-gate-renderer.ts:182",
+      "iteration": 1
+    },
+    {
+      "id": "f1-2",
+      "title": "research.md.tmpl ungated: 944 lines at every level",
+      "classification": "genuine-gap",
+      "axis": "context-reduction",
+      "surface": "templates",
+      "evidence": "research.md.tmpl:1",
+      "iteration": 1
+    },
+    {
+      "id": "f1-3",
+      "title": "Ungated utility templates constant-weight",
+      "classification": "genuine-gap",
+      "axis": "context-reduction",
+      "surface": "templates",
+      "evidence": "debug-delegation.md.tmpl:1",
+      "iteration": 1
+    },
+    {
+      "id": "f2-2",
+      "title": "AC_COVERAGE rule exists but disabled by default",
+      "classification": "genuine-gap",
+      "axis": "plan-adherence",
+      "surface": "doc-logic",
+      "evidence": "validation-rules.md:75-79",
+      "iteration": 2
+    },
+    {
+      "id": "f2-3",
+      "title": "No scope-adherence validator rule",
+      "classification": "genuine-gap",
+      "axis": "plan-adherence",
+      "surface": "doc-logic",
+      "evidence": "validate.sh:742-839",
+      "iteration": 2
+    },
+    {
+      "id": "f3-3",
+      "title": "Dynamic token budget advisory-only (split-brain)",
+      "classification": "genuine-gap",
+      "axis": "context-reduction",
+      "surface": "context-system",
+      "evidence": "dynamic-token-budget.ts:5-9",
+      "iteration": 3
+    },
+    {
+      "id": "f3-1",
+      "title": "memory_context enforces per-layer token budget",
+      "classification": "already-exists",
+      "axis": "context-reduction",
+      "surface": "context-system",
+      "evidence": "memory-context.ts:551",
+      "iteration": 3
+    },
+    {
+      "id": "f3-4",
+      "title": "Deep-loop reducers ship Reducer Engineering core",
+      "classification": "already-exists",
+      "axis": "general-opt",
+      "surface": "context-system",
+      "evidence": "conditional-fanin/reduction.ts:1",
+      "iteration": 3
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Cut raw 5541 template LOC as goal",
+      "reason": "Rendered weight is what agents read; gating already cuts ~84% at L1",
+      "evidence": "inline-gate-renderer.ts:182",
+      "iteration": 1
+    },
+    {
+      "approach": "Port reduce_findings into speckit",
+      "reason": "contradiction-supersession + conditional-fanin + reduce-state.cjs already implement it",
+      "evidence": "conditional-fanin/reduction.ts:1",
+      "iteration": "1,3"
+    },
+    {
+      "approach": "Add new fresh-context evaluator to speckit",
+      "reason": "deep-review already is the LEAF read-only fresh evaluator",
+      "evidence": "deep-review/SKILL.md:298",
+      "iteration": 2
+    },
+    {
+      "approach": "Re-architect Gate 3 as token reducer",
+      "reason": "Gate 3 is a write-boundary classifier by contract",
+      "evidence": "gate-3-classifier.ts:838",
+      "iteration": 2
+    },
+    {
+      "approach": "Claim-level near-dedup in memory_search",
+      "reason": "id-based dedup exists at 4+ stages; content grouping lives in findings-registry",
+      "evidence": "stage1-candidate-gen.ts:528",
+      "iteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "promotedIdeas": []
+}

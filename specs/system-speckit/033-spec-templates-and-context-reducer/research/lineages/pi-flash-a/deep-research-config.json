@@ -1,0 +1,106 @@
+{
+  "topic": "Test the two context/*.md concepts (Reducer Engineering; the 1.2M Agent Engineering harness) against system-speckit templates (templates/manifest/*.tmpl), documentation logic (Gate 3 classifier, Levels 1-3+, validate.sh, the doc workflow), and the context/memory system (memory_context/memory_search). Find concrete in-repo optimizations for (a) context/token reduction, (b) AI plan adherence, (c) general optimization. For EVERY recommendation classify {already-exists / genuine-gap / not-applicable} with file:line evidence; do NOT reinvent the existing system-deep-loop reducers or findings-registry. Tag each finding to an axis and a target surface. Produce a ranked implementable shortlist plus a refutation list. Report-only - implement nothing.",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/033-spec-templates-and-context-reducer",
+  "artifactDir": "specs/system-speckit/033-spec-templates-and-context-reducer/research/lineages/pi-flash-a",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-08-12T07:00:45Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "type": "cli-pi",
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-pi-flash-a-1786517927558-l9mbmd",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004).",
+    "manifestPath": ".opencode/skills/system-spec-kit/scripts/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "stopReason": "max_iterations",
+  "completedAt": "2026-08-12T07:21:00Z"
+}

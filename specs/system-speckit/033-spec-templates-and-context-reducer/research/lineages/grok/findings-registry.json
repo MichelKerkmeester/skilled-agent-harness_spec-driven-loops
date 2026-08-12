@@ -1,0 +1,53 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "Q1: How much of the ~5,541 LOC templates/manifest/*.tmpl weight actually lands in agent context after renderInlineGates, and what concrete template-surface optimizations remain?",
+    "Q2: Where do Reducer Engineering ideas already exist vs genuine gaps on templates / doc-logic / memory surfaces?",
+    "Q3: Where do Agent Engineering harness patterns already exist vs gaps for plan adherence?",
+    "Q4: Does memory_context / memory_search lack a deterministic token-budget / claim-dedup pass?",
+    "Q5: What ranked implementable shortlist + refutation list survives prior-art classification?"
+  ],
+  "keyFindings": [
+    "renderInlineGates collapses core L1 templates to ~558 combined lines vs 5541 raw",
+    "research.md.tmpl ungated ~945 lines at all levels — genuine-gap",
+    "deep-loop reducers/findings-registry/contradiction-supersession already cover Reducer Engineering",
+    "Iron Law/deep-review/handover/Levels already cover Agent Engineering harness",
+    "validate.sh lacks machine scope/plan path allowlist — genuine-gap",
+    "memory_context has enforceTokenBudget; direct memory_search does not — genuine-gap",
+    "Ranked shortlist: (1) gate optional tmpls (2) budget memory_search (3) scope validate (4) rendered-view authoring discipline"
+  ],
+  "ruledOutDirections": [
+    "Port Twitter reduce_findings into speckit",
+    "New Default-FAIL framework",
+    "New fresh-context evaluator in templates",
+    "Cut 5541 LOC as primary template program",
+    "Add token budget to memory_context (already exists)",
+    "Gate 3 as synthesis token reducer",
+    "Memory claim-normalize ledger duplicating contradiction-supersession"
+  ],
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 7,
+    "convergenceScore": 0.55,
+    "coverageBySources": {
+      "templates": 1,
+      "doc-logic": 1,
+      "context-system": 1,
+      "deep-loop-prior-art": 1
+    }
+  },
+  "divergence": {
+    "saturatedDirections": ["templates-weight", "harness-vs-doc-logic", "memory-budget-dedup", "shortlist"],
+    "pivots": [],
+    "failures": [],
+    "overrides": [],
+    "remainingFrontier": []
+  },
+  "terminalStop": {
+    "stopReason": "max_iterations",
+    "reason": "max_iterations",
+    "iteration": 3
+  }
+}
