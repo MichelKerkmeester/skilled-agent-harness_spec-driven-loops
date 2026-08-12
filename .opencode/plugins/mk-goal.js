@@ -13,8 +13,12 @@ import { createHash, randomUUID } from 'node:crypto';
 import { appendFile, link, mkdir, open, readFile, readdir, rename, stat, unlink } from 'node:fs/promises';
 import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 import { tool } from '@opencode-ai/plugin/tool';
+
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -230,7 +234,7 @@ function normalizeOptions(rawOptions = {}) {
   const injectedSupervisorVerifier = typeof options.supervisorVerifier === 'function' ? options.supervisorVerifier : null;
 
   const normalized = {
-    enabled: options.enabled !== false && process.env[DISABLED_ENV] !== '1',
+    enabled: options.enabled !== false && isHookEnabled('goal'),
     stateDir: resolvePath(typeof options.stateDir === 'string' && options.stateDir.trim()
       ? options.stateDir.trim()
       : DEFAULT_STATE_DIR),

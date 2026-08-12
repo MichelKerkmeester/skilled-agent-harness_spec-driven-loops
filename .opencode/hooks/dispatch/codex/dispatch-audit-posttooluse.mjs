@@ -19,6 +19,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { join } from 'node:path';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
 import {
   DISPATCH_SHAPES,
   DEFAULT_LOG_RELATIVE_PATH,
@@ -48,6 +49,7 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('dispatch')) return done();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

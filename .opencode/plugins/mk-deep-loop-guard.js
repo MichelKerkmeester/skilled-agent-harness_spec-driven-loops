@@ -25,7 +25,11 @@
 // The guard policy lives outside .opencode/plugins/ so this file can remain a
 // thin, default-export-only OpenCode plugin while the Claude hook consumes the
 // same core. A .cjs core is imported here as the ESM default export.
+import { createRequire } from 'node:module';
 import guardCore from '../hooks/task-dispatch/lib/dispatch-guard.cjs';
+
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PLUGIN FACTORY
@@ -50,6 +54,7 @@ import guardCore from '../hooks/task-dispatch/lib/dispatch-guard.cjs';
  * @returns {Promise<object>} Hooks object for the OpenCode plugin loader.
  */
 export default async function MkDeepLoopGuardPlugin(ctx) {
+  if (!isHookEnabled('task-dispatch')) return {}; // kill-switch: full no-op
   const projectDir = ctx?.directory || process.cwd();
   const { stateDir: loopStateDir } = guardCore.resolveGuardPaths(projectDir);
   const runtimeState = { lastLoopGuardSweepAtMs: 0 };

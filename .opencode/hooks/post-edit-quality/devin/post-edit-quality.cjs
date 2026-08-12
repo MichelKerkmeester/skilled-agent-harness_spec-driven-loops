@@ -20,12 +20,12 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const router = require('../lib/post-edit-router.cjs');
+const { isHookEnabled } = require('../../shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const DISABLED_ENV = 'MK_POST_EDIT_QUALITY_DISABLED';
 // Devin file-write tool -- proposed name (research §10), unconfirmed live.
 const DEVIN_EDIT_TOOLS = new Set(['edit']);
 
@@ -85,7 +85,7 @@ function printFindings(findings, filePath) {
 
 async function main() {
   const startedAt = Date.now();
-  if (process.env[DISABLED_ENV] === '1') return; // kill-switch: full no-op
+  if (!isHookEnabled('post-edit-quality')) return; // kill-switch: full no-op
 
   let payload;
   try {

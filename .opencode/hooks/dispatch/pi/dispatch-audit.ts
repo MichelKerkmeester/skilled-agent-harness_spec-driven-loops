@@ -4,6 +4,7 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { join } from "node:path";
+import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 function textFromContent(content: unknown): string | undefined {
   if (!Array.isArray(content)) return undefined;
@@ -18,6 +19,7 @@ function textFromContent(content: unknown): string | undefined {
 
 /** Records a completed bash dispatch to the shared JSONL audit log. */
 export default function dispatchAudit(pi: ExtensionAPI): void {
+  if (!isHookEnabled("dispatch")) return undefined;
   pi.on("tool_result", async (event, ctx) => {
     try {
       if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
