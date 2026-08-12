@@ -2,7 +2,7 @@
 title: "Decision Record: Directive-Lifecycle Remediation Architecture"
 description: "Choose the correctness, security, evidence, and rollback architecture for resolving the directive-lifecycle review findings."
 status: "accepted"
-completion_pct: 95
+completion_pct: 100
 trigger_phrases:
   - "directive lifecycle remediation decision"
   - "lifecycle epoch high-water architecture"
@@ -13,21 +13,20 @@ parent: "../spec.md"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
-    last_updated_at: "2026-08-11T19:57:46Z"
+    last_updated_at: "2026-08-12T06:27:39Z"
     last_updated_by: "codex"
     recent_action: "Implemented Option A and verified its focused and whole-gate behavior"
-    next_safe_action: "Confirm the accepted decision through fresh deep review and final metadata validation"
-    blockers:
-      - "Fresh implementation review remains"
+    next_safe_action: "Await operator push and native-host rollout decision"
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
       - ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts"
     session_dedup:
-      fingerprint: "sha256:b4771c09877fcb80078b41ec21ba8c7bd7bef99c5e95dc803cf92c2642332d59"
+      fingerprint: "sha256:af9f6df2df8bb956e688961e21901316b5f4845274ef105f60f24c51db7cbb71"
       session_id: "2026-08-11-directive-lifecycle-review-planning"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Use Option A; retain Option C as immediate rollback"
@@ -46,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted and implemented; fresh review pending |
+| **Status** | Accepted and implemented; fresh review complete |
 | **Date** | 2026-08-11 |
 | **Deciders** | Operator and implementation owner |
 | **Rollback** | Always-full delivery through existing kill-switches |
@@ -137,7 +136,7 @@ The verification system also needs a truthful boundary. Unit, adapter, registere
 | 4 | **Fits Goal?** | PASS | It fixes every finding in the current P0-P3 review scope. |
 | 5 | **Open Horizons?** | PASS | Versioned records, evidence classes, and contract vectors allow future runtime migration without weakening fail-open behavior. |
 
-**Checks Summary**: 5/5 PASS against implementation evidence; fresh review remains the final acceptance gate.
+**Checks Summary**: 5/5 PASS against implementation evidence; fresh review complete with no confirmed P0 or unresolved P1.
 <!-- /ANCHOR:adr-001-five-checks -->
 
 ---

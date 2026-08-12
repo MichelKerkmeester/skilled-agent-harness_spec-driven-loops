@@ -13,10 +13,10 @@ parent: "../spec.md"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
-    last_updated_at: "2026-08-12T05:31:09Z"
+    last_updated_at: "2026-08-12T06:27:39Z"
     last_updated_by: "codex"
     recent_action: "Completed fresh review, metadata regen, and strict validation (PASSED, 0/0)"
-    next_safe_action: "Commit the packet closeout and land the feature delivery commit"
+    next_safe_action: "Await operator push and native-host rollout decision"
     blockers: []
     key_files:
       - "handover.md"
@@ -26,7 +26,7 @@ _memory:
       - "checklist.md"
       - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
     session_dedup:
-      fingerprint: "sha256:4b980e974deca4e82c97a4f6d0dfab9d3fee29223e9e69e7c92e847fda771e94"
+      fingerprint: "sha256:a828454c0d4717678ef045e5da39704665d63c71e4700ccb4d5ee3be8f61038a"
       session_id: "019fef75-b9e5-79f1-9889-be8dad41a4bf"
       parent_session_id: null
     completion_pct: 100
@@ -133,6 +133,6 @@ Focused gates were rerun after remediation. The frozen manifest then completed u
 2. **Native-host evidence is incomplete.** Current proof is unit, adapter-driven, or registered-path; Cursor is dormant/unconfirmed and no adapter result is promoted to native-host delivery.
 3. **Two implementations remain.** The TypeScript canonical core and OpenCode JavaScript mirror agree through contract vectors, but compiled-core unification remains RR-001.
 4. **The whole suites are not globally green.** The authoritative claim is zero regression against a frozen baseline, not that all repository tests pass. Advisor failures, spec-kit timeout/failures, and parent recursive errors are unchanged.
-5. **The working tree is broad and dirty.** The packet docs are committed as scoped baseline and completion commits using explicit task-owned paths; the broader unrelated dirty tree is untouched. The feature runtime code is implemented but not yet committed — a downstream delivery step.
+5. **The working tree is broad and dirty.** The packet docs are committed as scoped baseline and completion commits using explicit task-owned paths; the broader unrelated dirty tree is untouched. The feature runtime code is also committed in a scoped commit (4d34bbf7bf); the local commits await an operator push.
 6. **Final metadata is regenerated and current.** Description, graph, and continuity fingerprints are refreshed, checklist closeout is complete, and `validate.sh --strict` reports RESULT: PASSED (0 errors, 0 warnings).
 <!-- /ANCHOR:limitations -->

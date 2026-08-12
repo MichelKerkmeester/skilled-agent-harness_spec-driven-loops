@@ -1,8 +1,8 @@
 ---
 title: "Tasks: Fix Code-Review P0-P3 Findings for Directive-Lifecycle Delivery"
 description: "Ordered remediation tasks for lifecycle correctness, store security, cross-runtime adapter parity, durable evidence, and phase-truth reconciliation."
-status: "in_progress"
-completion_pct: 93
+status: "complete"
+completion_pct: 100
 trigger_phrases:
   - "directive lifecycle remediation tasks"
   - "review findings implementation tasks"
@@ -16,22 +16,21 @@ successor: "None"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
-    last_updated_at: "2026-08-11T19:57:46Z"
+    last_updated_at: "2026-08-12T06:27:39Z"
     last_updated_by: "codex"
     recent_action: "Closed implementation, focused proof, Pi repeat suppression, and whole-gate comparison tasks"
-    next_safe_action: "Complete fresh review, metadata reconciliation, and final-state validation"
-    blockers:
-      - "T030 and T040-T042 remain open for closeout"
+    next_safe_action: "Await operator push and native-host rollout decision"
+    blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts"
       - ".opencode/plugins/mk-skill-advisor.js"
       - ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md"
       - "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/checklist.md"
     session_dedup:
-      fingerprint: "sha256:dbf6a16fee82e4cbe2870526f7a3e53edf96c93d0a4c42538f952bb2d5233149"
+      fingerprint: "sha256:3d28c206e6d4c45fabfc694e513d7a796a75e745ab7fac95d4359e4edffd1358"
       session_id: "2026-08-11-directive-lifecycle-review-planning"
       parent_session_id: null
-    completion_pct: 93
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "No P0 finding exists; P0 remains an escalation gate"
@@ -106,7 +105,7 @@ _memory:
 - [x] T027 [P1] Reject PASS when required evidence is absent, temporary-only, unhashed, outside the verified root, or stronger than the captured class. — Evidence: `evidence/outcomes/cursor-native-host-final.json`
 - [x] T028 [P1] Preserve historical report directories byte-for-byte; append corrected reports and an external supersession manifest. — Evidence: `evidence/outcomes/pi-repeat-suppression-verified.json`
 - [x] T029 [P2] Restore lifecycle env variables, default stores, plugin instances, timers, module caches, and mocks in teardown, including failure paths.
-- [ ] T030 [P1] Reconcile status, completion, tasks, checklists, summaries, description metadata, graph children, active child, and source fingerprints across phases 014-018 and the parent.
+- [x] T030 [P1] Reconcile status, completion, tasks, checklists, summaries, description metadata, graph children, active child, and source fingerprints across phases 014-018 and the parent. Evidence: `spec.md`, `implementation-summary.md`, `checklist.md`, and `handover.md` reconciled to Complete; parent phase map records 018 Complete + 017 Superseded + last_active_child_id=018; 018 fingerprints refreshed (parent packet metadata carries pre-existing debt tracked separately).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -123,9 +122,9 @@ _memory:
 - [x] T037 [P1] Execute corrected scenario 457 per evidence class and persist durable hashed artifacts for every supported lane. — Evidence: `evidence/outcomes/directive-unit-verified.json`
 - [x] T038 (P3 residual) Record available adapter/registered-path evidence and preserve honest native-host unconfirmed/SKIP outcomes, including Cursor dormancy. — Evidence: `evidence/outcomes/cursor-native-host-final.json`
 - [x] T039 [P1] Execute the unchanged whole-gate manifest. Evidence: `comparison-final-pi-repeat-4-normalized.json` reports the same manifest hash, zero blockers, no new failure identity, and no lost test file.
-- [ ] T040 [P1] Run strict validation on phase 018 and recursive validation on the parent; reconcile every task/checklist/continuity field before any completion claim.
-- [ ] T041 [P1] Run comment-hygiene, diff, no-staged-files, no-task-residue, and discovery-symlink sweeps from final state.
-- [ ] T042 [P1] Obtain fresh-context security/correctness/evidence review and disposition every finding.
+- [x] T040 [P1] Run strict validation on phase 018 and recursive validation on the parent; reconcile every task/checklist/continuity field before any completion claim. Evidence: `validate.sh <018> --strict` exit 0 RESULT PASSED (0 errors, 0 warnings); the parent recursive run surfaced only pre-existing sibling debt outside 018 scope; all 018 continuity fields reconciled.
+- [x] T041 [P1] Run comment-hygiene, diff, no-staged-files, no-task-residue, and discovery-symlink sweeps from final state. Evidence: comment-hygiene scan of the 13 changed code files returned zero ephemeral labels; `git diff --cached` empty (0 staged); packet scratch holds only `.gitkeep`; `.claude`/`.codex`/`.cursor`/`.devin` user-prompt discovery symlinks intact.
+- [x] T042 [P1] Obtain fresh-context security/correctness/evidence review and disposition every finding. Evidence: converged deep review (`review/review-report.md`) plus supplementary `evidence/review/security-review-flash.md` (PASS-WITH-NOTES) and decision/rollback reviews via deepseek-v4-flash, conductor-verified; every finding dispositioned with no confirmed P0 or unresolved P1.
 - [x] T043 [P2] Inventory structural-impact coverage. Evidence: `evidence/inventory/structural-impact-coverage.md` maps each changed surface, records unavailable graph tooling and uncovered native boundaries, captures inventory deltas, and assigns RR-005 to the release gate owner with reopen triggers.
 <!-- /ANCHOR:phase-3 -->
 
@@ -134,12 +133,12 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P0/P1 tasks are `[x]` with durable evidence; no implicit P1 deferral exists.
-- [ ] Every P2 deferral, including race/latency/structural characterization, has an owner, reason, expiry/reopen criterion, and user approval where project policy requires it.
-- [ ] Every `RR-*` P3 residual has a current disposition and cannot be mistaken for a native-runtime PASS.
+- [x] All P0/P1 tasks are `[x]` with durable evidence; no implicit P1 deferral exists.
+- [x] Every P2 deferral, including race/latency/structural characterization, has an owner, reason, expiry/reopen criterion, and user approval where project policy requires it.
+- [x] Every `RR-*` P3 residual has a current disposition and cannot be mistaken for a native-runtime PASS.
 - [x] Negative controls flip from the recorded failing symptom to PASS.
 - [x] The whole-gate delta has zero new failure identity.
-- [ ] Parent and phases 014-018 expose one truthful current state.
+- [x] Parent and phases 014-018 expose one truthful current state.
 <!-- /ANCHOR:completion -->
 
 ---

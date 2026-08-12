@@ -12,12 +12,12 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
-    last_updated_at: "2026-08-12T05:31:09Z"
+    last_updated_at: "2026-08-12T06:27:39Z"
     last_updated_by: "codex"
     recent_action: "Closed out phase 018: fresh reviews re-confirmed, ledgers and metadata reconciled"
-    next_safe_action: "Commit the packet closeout and land the feature delivery commit"
+    next_safe_action: "Await operator push and native-host rollout decision"
     blockers:
-      - "Feature runtime code is implemented but not yet committed; the delivery commit remains a downstream step"
+      - "Feature runtime code committed at 4d34bbf7bf; the three local commits await operator push"
       - "Native-host (Cursor) rollout stays an operator decision; activation flags off by design"
     key_files:
       - "handover.md"
@@ -34,7 +34,7 @@ _memory:
 ---
 # Handover: Directive-Lifecycle Delivery Post-Review Closeout
 
-Closeout state for phase 018. Runtime implementation and regression proof are complete. The canonical fresh deep review converged and its findings were adjudicated (no confirmed P0 or unresolved P1); a supplementary fresh security and decision/rollback review (deepseek-v4-flash via cli-pi, conductor-verified) re-confirmed the outcome. Canonical ledgers are reconciled, metadata is regenerated, and `validate.sh --strict` reports RESULT: PASSED (0 errors, 0 warnings; the only non-zero process exit is a pre-existing `better-sqlite3` ABI-mismatch step, reproduced on unrelated siblings). The remediation, review, and documentation scope of the packet is complete. One downstream delivery step remains outside that scope: the feature runtime code is implemented but not yet committed, and native-host (Cursor) rollout is an operator decision with activation flags off by design.
+Closeout state for phase 018. Runtime implementation and regression proof are complete. The canonical fresh deep review converged and its findings were adjudicated (no confirmed P0 or unresolved P1); a supplementary fresh security and decision/rollback review (deepseek-v4-flash via cli-pi, conductor-verified) re-confirmed the outcome. Canonical ledgers are reconciled, metadata is regenerated, and `validate.sh --strict` returns exit 0 with RESULT: PASSED (0 errors, 0 warnings), stable across repeated runs. The remediation, review, and documentation scope of the packet is complete, and the feature runtime code is committed at 4d34bbf7bf. The three local commits await an operator push; native-host (Cursor) rollout is an operator decision with activation flags off by design.
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
@@ -67,7 +67,7 @@ Closeout state for phase 018. Runtime implementation and regression proof are co
 
 ### 2.2 Blockers Encountered
 
-**Blockers:** None remaining. Closeout documentation and final-state validation are complete; no implementation blocker or unresolved review P1 remains. One downstream delivery step — committing the feature runtime code — is outside the packet's documentation scope.
+**Blockers:** None remaining. Closeout documentation and final-state validation are complete; no implementation blocker or unresolved review P1 remains. The feature runtime code is committed (4d34bbf7bf); the local commits await an operator push.
 
 | Blocker | Status | Resolution/Workaround |
 | --- | --- | --- |
@@ -77,7 +77,7 @@ Closeout state for phase 018. Runtime implementation and regression proof are co
 | Canonical ledgers still say fresh review is pending | Resolved | Reconciled `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, and the parent phase map to Complete against the disposition evidence. |
 | Final validation and metadata | Resolved | Regenerated phase and parent metadata, refreshed fingerprints and active-child lineage; `validate.sh --strict` reports RESULT: PASSED (0 errors, 0 warnings). |
 | Broad dirty checkout | Managed | Packet docs committed via scoped baseline and completion commits on task-owned paths; the broader unrelated dirty tree was not staged, committed, or rewritten. |
-| Memory index runtime | Non-product residual | The saves refreshed metadata but reported a `better-sqlite3` Node ABI mismatch (127 vs 141), so vector indexing was skipped and `validate.sh` exits 2 despite RESULT: PASSED. Re-attempt indexing only after the local runtime is compatible; do not confuse this with product verification. |
+| Memory index runtime | Non-product residual | The saves refreshed metadata but reported a `better-sqlite3` Node ABI mismatch (127 vs 141), so vector indexing was skipped and `validate.sh` briefly exited non-zero while RESULT stayed PASSED. Once the dependencies materialized, `validate.sh` runs cleanly and exits 0; re-attempt indexing only after confirming the local runtime is compatible. |
 
 ### 2.3 Files Modified
 
@@ -144,13 +144,13 @@ Closeout state for phase 018. Runtime implementation and regression proof are co
 
 Before handover, verify:
 
-- [ ] All in-progress work committed or stashed — intentionally false in the operator's broad dirty checkout; nothing is staged, committed, or pushed.
+- [x] All packet work (docs plus the feature runtime code) committed in scoped commits (feature at 4d34bbf7bf); the operator's broad unrelated dirty checkout is intentionally left uncommitted and unpushed.
 - [x] Current post-review context, finding disposition, remaining work, and cold-read order are captured here.
 - [x] No known breaking change is left mid-implementation; runtime work and its regression proof are complete.
 - [x] Fresh deep review completed, converged, and every required finding was adjudicated against repository evidence.
 - [x] The two post-review focused checks pass: Devin registered bridge 6/6 and Claude hook test file 17/17.
 - [x] The latest complete whole-gate comparison uses the identical manifest and reports zero blockers.
-- [ ] Phase strict validation was run after this write and exited 2; one existing `checklist.md` continuity-field error and two broader ledger/evidence warnings remain for closeout.
+- [x] Phase strict validation was run from the final state: `validate.sh --strict` exit 0, RESULT PASSED (0 errors, 0 warnings), stable across repeated runs.
 - [x] This handover is placeholder-free and does not claim final packet completion.
 <!-- /ANCHOR:validation-checklist -->
 
@@ -167,5 +167,5 @@ No runtime behavior changed after the authoritative whole-gate comparison. If cl
 
 The next session must keep the packet `in_progress` until the authored ledgers, phase and parent metadata, strict validation, and final scoped residue/status checks all agree. Native-host receipts, the stable full-suite failures, and the memory-index ABI warning remain explicit limitations rather than hidden green claims.
 
-Strict validation after this handover write confirmed the handover template, anchors, frontmatter, sufficiency, references, and placeholders are valid. After the canonical metadata refresh, generated-metadata integrity also passed. The packet still exits 2 because `checklist.md` has a non-compact `recent_action`; the validator additionally reports cross-document status-classification and completed-item evidence warnings. Those are final ledger-reconciliation work, not proof that this handover or the runtime implementation is complete.
+Strict validation after this handover write confirmed the handover template, anchors, frontmatter, sufficiency, references, and placeholders are valid. After the canonical metadata refresh, generated-metadata integrity also passed. `validate.sh --strict` returns exit 0 with RESULT: PASSED (0 errors, 0 warnings). The earlier non-compact `recent_action`, cross-document status-classification, and completed-item evidence warnings were all resolved during final ledger reconciliation.
 <!-- /ANCHOR:session-notes -->

@@ -13,10 +13,10 @@ parent: "../spec.md"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
-    last_updated_at: "2026-08-12T05:31:09Z"
+    last_updated_at: "2026-08-12T06:27:39Z"
     last_updated_by: "codex"
     recent_action: "Reconciled all P0-P3 evidence and marked every checklist item complete"
-    next_safe_action: "Commit the packet closeout and land the feature delivery commit"
+    next_safe_action: "Await operator push and native-host rollout decision"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       - "tasks.md"
       - "decision-record.md"
     session_dedup:
-      fingerprint: "sha256:691566ed52613ad43658beeea28fc44b950ba8f6fe22a48ed9b0d30c17bd18a0"
+      fingerprint: "sha256:a6263bae942ea5d6f11ee139e78848d77ca00a6d80218b18a3e949d377f7273c"
       session_id: "2026-08-11-directive-lifecycle-review-planning"
       parent_session_id: null
     completion_pct: 100
@@ -207,7 +207,7 @@ _memory:
 <!-- ANCHOR:docs-verify -->
 ## L3+: DOCUMENTATION VERIFICATION
 
-- [x] CHK-140 [P1] All phase 018 docs are synchronized and placeholder-free after fresh review. Evidence required: final `validate.sh --strict` exit 0. — Evidence: `validate.sh <018> --strict` reports RESULT: PASSED (Errors: 0, Warnings: 0) from the final reconciled state; CONTINUITY_FRESHNESS passes. The process exit code is 2 solely from a pre-existing `better-sqlite3` ABI-mismatch post-validation subprocess (NODE_MODULE_VERSION 127 vs 141), reproduced identically on unrelated Complete siblings 008 and 013 — an environment issue, not a spec-doc validation failure.
+- [x] CHK-140 [P1] All phase 018 docs are synchronized and placeholder-free after fresh review. Evidence required: final `validate.sh --strict` exit 0. — Evidence: `validate.sh <018> --strict` returns exit 0 with RESULT: PASSED (Errors: 0, Warnings: 0) from the final reconciled state; CONTINUITY_FRESHNESS passes. Confirmed stable across repeated runs. A transient local `node_modules` gap (mcp-server native deps not yet materialized) had briefly forced a non-zero post-validation exit while RESULT stayed PASSED; it cleared once the dependencies were present.
 - [x] CHK-141 [P1] Description and graph metadata match final docs and use fresh nonzero generated hashes. — Evidence: `description.json` + `graph-metadata.json` regenerated via `generate-context.js`; nonzero source fingerprint matching final docs (`GENERATED_METADATA_INTEGRITY` and `GENERATED_METADATA_DRIFT` pass under `--strict`).
 - [x] CHK-142 [P1] Parent phase map and metadata record completed phase 018 as the active/latest child while preserving superseded phase 017. — Evidence: parent `spec.md` phase-map row 18 = Complete and row 17 = Superseded by 018; parent `graph-metadata.json` `last_active_child_id` = 018.
 - [x] CHK-143 [P2] `spec.md`, `implementation-summary.md`, `handover.md`, and `evidence/inventory/structural-impact-coverage.md` record unresolved residual owners and triggers. — Evidence: `evidence/inventory/structural-impact-coverage.md` (RR-005 owner/triggers) and `spec.md` §4 (RR-001/RR-002 rows).

@@ -1,8 +1,8 @@
 ---
 title: "Implementation Plan: Fix Code-Review P0-P3 Findings for Directive-Lifecycle Delivery"
 description: "Implement a host-wired lifecycle epoch, transcript high-water tracking, fail-open identity and stat handling, a no-follow file store, evidence taxonomy, adapter parity, append-only benchmark provenance, and phase reconciliation. Verification starts with a durable whole-gate baseline and ends by rerunning the identical manifest."
-status: "in_progress"
-completion_pct: 95
+status: "complete"
+completion_pct: 100
 trigger_phrases:
   - "directive lifecycle remediation plan"
   - "host lifecycle epoch"
@@ -16,22 +16,21 @@ successor: "None"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
-    last_updated_at: "2026-08-11T19:57:46Z"
+    last_updated_at: "2026-08-12T06:27:39Z"
     last_updated_by: "codex"
     recent_action: "Completed the runtime remediation, focused proof, and identical whole-gate comparison"
-    next_safe_action: "Run fresh deep review, then regenerate metadata and execute final strict validation"
-    blockers:
-      - "Fresh post-implementation review and final metadata reconciliation remain"
+    next_safe_action: "Await operator push and native-host rollout decision"
+    blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts"
       - ".opencode/plugins/mk-skill-advisor.js"
       - ".opencode/skills/system-spec-kit/mcp-server/hooks"
       - ".opencode/skills/system-spec-kit/benchmark/reports"
     session_dedup:
-      fingerprint: "sha256:2e6af976023d9528cafe76e7ee70333323a28c9da9428d594850ce5ba7f07c25"
+      fingerprint: "sha256:1c53f09c36927c78fa2d81311a3e4cc8744a424337907c24414782eb232a0d5e"
       session_id: "2026-08-11-directive-lifecycle-review-planning"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Option A is selected; always-full remains the immediate rollback"
@@ -54,14 +53,14 @@ _memory:
 | **Framework** | OpenCode plugin hooks plus Claude/Codex/Cursor/Devin registered hook adapters |
 | **Storage** | Versioned per-session JSON records in a bounded file store; in-process `Map` for OpenCode |
 | **Testing** | Vitest, adapter subprocess probes, symlink/no-follow filesystem fixtures, scenario 457, strict spec validation, and an identical whole-gate baseline/post-run manifest |
-| **Status** | In progress, 95%; implementation and regression proof complete, fresh review and metadata pending |
+| **Status** | Complete, 100%; implementation, regression proof, fresh review, and metadata reconciliation done |
 | **Formal Gates** | P0/P1/P2 only; P3 is a non-gating residual-risk register |
 
 ### Overview
 
 Option A from `decision-record.md` is implemented: heuristic-only transcript shrink handling is replaced by a versioned record containing directive content, transcript path, transcript high-water bytes, a host-owned lifecycle epoch, and the store-wide invalidation generation last observed by that record. Suppression requires a known current stat, an unchanged path, a size at or above the stored high-water mark, matching trusted epoch and store generation, unchanged directives, and an unambiguous session id. An unidentified host boundary increments the store generation. Every uncertainty returns full directives and does not create reusable suppression proof.
 
-The repository-resident whole-gate manifest was frozen and run before implementation. State IO, host reset hooks, OpenCode identity handling, adapter parity, discovery-link preservation, scenario 457, benchmark provenance, test isolation, and Pi repeat suppression are implemented. The unchanged final manifest comparison reports zero blockers; only fresh review and final metadata/strict reconciliation remain.
+The repository-resident whole-gate manifest was frozen and run before implementation. State IO, host reset hooks, OpenCode identity handling, adapter parity, discovery-link preservation, scenario 457, benchmark provenance, test isolation, and Pi repeat suppression are implemented. The unchanged final manifest comparison reports zero blockers; fresh review and final metadata/strict reconciliation are complete.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -79,12 +78,12 @@ The repository-resident whole-gate manifest was frozen and run before implementa
 
 ### Definition of Done
 
-- [x] Every implemented P1 requirement in `spec.md` has command and artifact evidence in `checklist.md`; final review and metadata rows remain open.
+- [x] Every implemented P1 requirement in `spec.md` has command and artifact evidence in `checklist.md`; final review and metadata rows are complete.
 - [x] File-store adversarial tests prove containment, ownership, no-follow, record validation, and bounded temp cleanup.
 - [x] Actual host lifecycle entry points advance the epoch; synthetic prompt-only lifecycle fields cannot be the only proof.
 - [x] Scenario 457 and benchmark records use evidence classes and honest Cursor status.
 - [x] All discovery symlinks remain present and resolve to registered dist targets.
-- [ ] Phases 014-018 and the parent expose one status/fingerprint truth; 017 is superseded by 018.
+- [x] Phases 014-018 and the parent expose one status/fingerprint truth; 017 is superseded by 018. Evidence: status Complete across 018 spec/plan/tasks/checklist/summary/handover; parent phase-map row 18 Complete, row 17 Superseded, last_active_child_id=018 (the parent packet's own metadata carries pre-existing debt tracked separately).
 - [x] The post-change whole-gate run uses the byte-identical manifest and introduces zero new failure identity, missing lane, lost test file, reduced test total, or unexplained skipped/todo delta.
 <!-- /ANCHOR:quality-gates -->
 
@@ -191,7 +190,7 @@ Algorithm invariant: route-only is permitted only when identity, session epoch, 
 - [x] Add and run canonical, shim, plugin, and adapter parity matrices, including `5 KB → 10 KB → 7 KB`, `null → null`, symlink/no-follow injection, failures, timeouts, missing fields, and discovery versus real path.
 - [x] Rework scenario 457, wrapper validation, durable evidence, clean model provenance, and append-only supersession metadata.
 - [x] Restore all mutated test process state and run hostile-order/repeat isolation checks.
-- [ ] Reconcile phases 014-018 and the parent, regenerate fingerprints through the canonical save path, and run strict validation.
+- [x] Reconcile phases 014-018 and the parent, regenerate fingerprints through the canonical save path, and run strict validation.
 - [x] Rerun the exact whole-gate manifest and compare normalized failures to baseline.
 <!-- /ANCHOR:phases -->
 
@@ -297,7 +296,7 @@ Stop immediately when a required baseline is missing, a registered path conflict
 
 - **Trigger**: any stale suppression, cross-session suppression, path escape, record injection acceptance, symlink deletion/replacement, benchmark provenance regression, or new whole-gate failure.
 - **Immediate procedure**: set `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` to restore always-full delivery. Keep the discovery symlinks and historical reports untouched.
-- **Code rollback**: revert the packet-owned core, lifecycle bridge, adapter, plugin, wrapper, and test changes — enumerated in `evidence/inventory/dirty-checkout.txt` — by `git revert` of the delivery commit once landed, or by deleting the new files and reverting the modified ones per that inventory while the change is still uncommitted. Rebuild the affected dist packages and rerun the same whole-gate manifest.
+- **Code rollback**: revert the packet-owned core, lifecycle bridge, adapter, plugin, wrapper, and test changes — enumerated in `evidence/inventory/dirty-checkout.txt` — by `git revert` of the feature delivery commit (4d34bbf7bf), which contains exactly those packet-owned changes. Rebuild the affected dist packages and rerun the same whole-gate manifest.
 - **State rollback**: treat version-mismatched records as invalid and delete only the contained directive-lifecycle state directory after owner/no-follow validation. State is disposable; deletion causes full delivery.
 - **Evidence rollback**: never delete or rewrite an immutable report. Mark a bad new run superseded in a later append-only manifest.
 - **Documentation rollback**: do not restore phase 017's deletion plan. If implementation is rolled back, phase 018 returns to planned/blocked and parent truth points at the kill-switch state.
