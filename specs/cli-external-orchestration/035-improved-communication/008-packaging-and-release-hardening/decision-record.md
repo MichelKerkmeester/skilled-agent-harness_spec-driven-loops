@@ -12,10 +12,9 @@ _memory:
     packet_pointer: "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening"
     last_updated_at: "2026-08-11T10:15:00Z"
     last_updated_by: "codex"
-    recent_action: "Returned the Phase 008 planning decision to Proposed after review."
-    next_safe_action: "Obtain project-owner approval, then implement the decision through tasks.md."
-    blockers:
-      - "Project-owner approval is not yet recorded."
+    recent_action: "Accepted the Phase 008 packaging and release-gate decision under autonomous-goal delegation."
+    next_safe_action: "Implement the packaging, doctor, and release-gate framework through tasks.md."
+    blockers: []
     key_files:
       - "decision-record.md"
       - "spec.md"
@@ -44,9 +43,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-08-11 |
-| **Deciders** | Proposed by planning review; project-owner approval pending |
+| **Status** | Accepted |
+| **Date** | 2026-08-12 |
+| **Deciders** | Framework accepted by the orchestrator under the operator's autonomous-goal delegation (2026-08-12); the release itself stays blocked until the human non-inferiority study, fresh provider facts, and the live credentialed smoke are supplied |
 
 ---
 
