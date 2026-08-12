@@ -16,7 +16,13 @@ Deep-dive routing for `packages/cli-communication-projection/`. Read `src/<subsy
 
 ---
 
-## 1. SUBSYSTEM MAP
+## 1. OVERVIEW
+
+This reference maps a communication-projection request to the correct subsystem of the `cli-communication-projection` package, names the public entry points, and states the invariant each subsystem upholds. Use it after the `SKILL.md` routing table when you need the exact module and path.
+
+---
+
+## 2. SUBSYSTEM MAP
 
 | Request | Subsystem | Public entry points |
 |---------|-----------|---------------------|
@@ -29,7 +35,7 @@ Deep-dive routing for `packages/cli-communication-projection/`. Read `src/<subsy
 
 ---
 
-## 2. THE PIPELINE
+## 3. THE PIPELINE
 
 ```text
 canonical event/transcript ──> unchanged persistence + model context
@@ -40,7 +46,7 @@ canonical event/transcript ──> unchanged persistence + model context
 
 ---
 
-## 3. INVARIANTS EACH SUBSYSTEM UPHOLDS
+## 4. INVARIANTS EACH SUBSYSTEM UPHOLDS
 
 - **core / fidelity / render**: the canonical original is never mutated; a rejected candidate returns exact-original bytes.
 - **privacy / providers**: classification and consent run before ranking; no silent local-to-hosted egress; credentials are references, never values.
@@ -50,6 +56,6 @@ canonical event/transcript ──> unchanged persistence + model context
 
 ---
 
-## 4. VERIFICATION
+## 5. VERIFICATION
 
 Run the package gate from `packages/cli-communication-projection/`: `npm run check` (typecheck, build, tests, import smoke). Test files run serially so latency benchmarks measure without contention.
