@@ -1,0 +1,27 @@
+{
+  "specFolder": "system-speckit/034-spec-template-context-optimizations",
+  "description": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and",
+  "keywords": [
+    "deep-research",
+    "packet",
+    "iterations",
+    "lineages",
+    "model",
+    "families",
+    "tested",
+    "two",
+    "external",
+    "agent-engineering",
+    "concepts",
+    "against",
+    "system-speckit"
+  ],
+  "lastUpdated": "2026-08-12T12:54:15.475Z",
+  "specId": "034",
+  "folderSlug": "spec-template-context-optimizations",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/034-spec-template-context-optimizations",
+  "spec_folder": "system-speckit/034-spec-template-context-optimizations",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec template context optimizations",
+      "implement 033 research recommendations",
+      "research template gating",
+      "ac coverage default on",
+      "scope adherence validator",
+      "memory search token budget",
+      "spec template optimizations plan",
+      "034 implementation phases"
+    ],
+    "key_topics": [
+      "spec",
+      "template",
+      "context",
+      "optimizations",
+      "implement",
+      "research",
+      "recommendations",
+      "gating",
+      "coverage",
+      "default",
+      "scope",
+      "adherence"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Template",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Optimizations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolve Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Question",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "focused",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolve Open Question",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Impl Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
+    "created_at": "2026-08-12T12:51:40.227Z",
+    "last_save_at": "2026-08-12T12:54:28.657Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:790658ff467c045382951921fa961d3b0437f630ac1b252c7d34cd31c32e0cb2",
+    "source_doc_hashes": {
+      "spec.md": "9a96afaed501c96b7868688a62e362f8389355233f6802b89832f09c149f636b",
+      "plan.md": "bed9f988c3572ed2133e3313cf15466271244f0fa5d28655d2bd09db30beb2d3",
+      "tasks.md": "ab22202dcdee52526d9f91ef2eca1998428f40aaba9a7e3947c412dc6578e23b",
+      "checklist.md": "73719cc20be8641330c64b5cdf8d1c8e9d0a7d5dd5b5a2fb0583fbd0b8d58f30",
+      "decision-record.md": "475e6dd065b76f390be015f713a005a9ff3927e3203f8f7a2695b470a17127dd",
+      "implementation-summary.md": "96280d9e0355284c04e2abd9911bea2c7ed4dc9fb0b9dc4caa98ce151862a979"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
