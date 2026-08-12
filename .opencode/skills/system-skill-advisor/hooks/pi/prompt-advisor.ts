@@ -46,6 +46,8 @@ function sessionIdFromContext(ctx: { sessionManager?: { getSessionId?: () => unk
 // cache work.
 const ADVISOR_HOOK_MODULE =
   "../../.opencode/skills/system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js";
+const ADVISOR_HOOK_FALLBACK_MODULE =
+  "../../mcp-server/dist/hooks/claude/user-prompt-submit.js";
 
 const POLICY_PLAN_MODULE =
   "../../.opencode/skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js";
@@ -168,18 +170,13 @@ export function isPiCompactDirectivePrototypeEnabled(): boolean {
 }
 
 // ── Pi-local directive de-duplication ──────────────────────────────
-// The advisor brief Pi appends onto the visible prompt is a dynamic
-// "Advisor: …" route line plus three CONSTANT directives (comment-hygiene,
-// governor, proof-over-appearance). The route line changes per turn; the
-// directives do not. Unlike every other runtime — where the brief is
-// model-context-only — Pi renders it on-screen, so re-appending identical
-// directives onto every prompt is visible repetition. This drops the
-// directive block on a proven same-content repeat within one lifecycle
-// epoch while keeping the route line, and re-delivers the full block on the
-// first turn, any directive-text change, resume/compact (history may be
-// summarised away), an unknown session, or when the kill-switch is set — so
-// a guardrail is never silently dropped. The Pi dispatch directive is
-// appended separately and is never affected here.
+// The advisor brief Pi appends onto the visible prompt is a dynamic route line
+// plus constant directives. Pi renders the entire extension contribution on
+// screen, so a proven same-content repeat suppresses both that brief and the
+// visible dispatch reminder. The first turn, changed directive content,
+// resume/compact, unknown sessions, and the kill-switch all fail open to the
+// complete contribution. Dispatch authorization remains enforced separately
+// at the tool-call boundary on every turn.
 export const PI_DIRECTIVE_DEDUP_FLAG = "SPECKIT_PI_DIRECTIVE_DEDUP";
 
 // Mirrors render.ts DIRECTIVES_LABEL. If the brief format ever drifts past
@@ -205,21 +202,19 @@ function splitPiDirectiveBrief(context: string): PiDirectiveBriefParts | null {
 }
 
 export interface PiDirectiveDeliveryDecision {
-  readonly reducedContext: string | null;
   readonly suppressed: boolean;
 }
 
 const FULL_PI_DIRECTIVE_DELIVERY: PiDirectiveDeliveryDecision = Object.freeze({
-  reducedContext: null,
   suppressed: false,
 });
 
 /**
- * Decide whether this turn's visible brief may drop the constant directive
- * block. Suppresses only for a confirmed session's proven same-content repeat
- * within the current lifecycle epoch; every uncertain case falls open to the
- * full brief so a guardrail is never silently dropped. Records the delivered
- * directive block on a full delivery so the next identical turn is eligible.
+ * Decide whether this extension may omit its entire visible contribution.
+ * Suppresses only for a confirmed session's proven same-content repeat within
+ * the current lifecycle epoch; every uncertain case falls open to full
+ * delivery. Records the directive block on a full delivery so the next
+ * identical turn is eligible.
  */
 export function decidePiDirectiveDelivery(
   context: string,
@@ -237,7 +232,7 @@ export function decidePiDirectiveDelivery(
   }
   const map = store.directiveDedupBySession;
   if (map.get(key) === parts.directives) {
-    return Object.freeze({ reducedContext: parts.head, suppressed: true });
+    return Object.freeze({ suppressed: true });
   }
   if (!map.has(key)) {
     while (map.size >= MAX_PI_RECEIPT_SESSIONS) {
@@ -550,9 +545,10 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
     try {
       if (!event.text.trim()) return;
 
-      const { handleClaudeUserPromptSubmit } = (await import(
-        ADVISOR_HOOK_MODULE
-      )) as {
+      const advisorModule = await import(ADVISOR_HOOK_MODULE).catch(
+        () => import(ADVISOR_HOOK_FALLBACK_MODULE),
+      );
+      const { handleClaudeUserPromptSubmit } = advisorModule as {
         handleClaudeUserPromptSubmit?: (
           input: {
             prompt?: string;
@@ -575,6 +571,15 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
       advisorFailed = true;
     }
 
+    if (!advisorFailed && context) {
+      try {
+        const decision = decidePiDirectiveDelivery(context, sessionIdFromContext(ctx));
+        if (decision.suppressed) return;
+      } catch {
+        // Directive de-dup is advisory; on any failure keep the full contribution.
+      }
+    }
+
     if (!advisorFailed) {
       try {
         await observePiCompactDirective(
@@ -586,21 +591,8 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
       }
     }
 
-    let effectiveContext = context;
-    if (!advisorFailed && context) {
-      try {
-        const decision = decidePiDirectiveDelivery(context, sessionIdFromContext(ctx));
-        if (decision.suppressed && decision.reducedContext) {
-          effectiveContext = decision.reducedContext;
-        }
-      } catch {
-        // Directive de-dup is advisory; on any failure keep the full brief.
-        effectiveContext = context;
-      }
-    }
-
-    const text = effectiveContext
-      ? `${event.text}\n\n${effectiveContext}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
+    const text = context
+      ? `${event.text}\n\n${context}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
       : `${event.text}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`;
     const output = { action: "transform" as const, text };
     await observeEmittedPiDispatch(sessionIdFromContext(ctx));

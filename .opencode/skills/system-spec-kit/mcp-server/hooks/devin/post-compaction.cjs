@@ -24,8 +24,8 @@
 
 const { createHash } = require('node:crypto');
 const { execFileSync } = require('node:child_process');
-const { readFileSync } = require('node:fs');
-const { join } = require('node:path');
+const { existsSync, readFileSync } = require('node:fs');
+const { dirname, join } = require('node:path');
 const { tmpdir } = require('node:os');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -34,6 +34,7 @@ const { tmpdir } = require('node:os');
 
 const MAX_CONTEXT_BYTES = 4096;
 const MEMORY_CONTEXT_TIMEOUT_MS = 2500;
+const BOUNDARY_TIMEOUT_MS = 750;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -89,6 +90,45 @@ function readLastSpecFolder(cwd, sessionId) {
 // Step 3: bounded CLI fallback to the Spec Memory daemon's resume-mode context,
 // used only when `summary` is null/empty. Never throws -- any failure (daemon
 // cold, timeout, malformed JSON) returns null and the chain continues without it.
+function findProjectRoot(startDir) {
+  let current = startDir;
+  for (let depth = 0; depth < 14; depth += 1) {
+    if (existsSync(join(current, '.opencode'))) return current;
+    const parent = dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+  return null;
+}
+
+function notifyLifecycleBoundary(startDir, sessionId) {
+  try {
+    const projectDir = findProjectRoot(startDir);
+    if (!projectDir) return false;
+    const boundaryPath = join(
+      projectDir,
+      '.opencode',
+      'skills',
+      'system-spec-kit',
+      'mcp-server',
+      'dist',
+      'hooks',
+      'claude',
+      'directive-lifecycle-boundary.js',
+    );
+    execFileSync(process.execPath, [boundaryPath], {
+      cwd: projectDir,
+      input: JSON.stringify({ sessionId, boundary: 'post-compact' }),
+      timeout: BOUNDARY_TIMEOUT_MS,
+      stdio: ['pipe', 'ignore', 'ignore'],
+    });
+    return true;
+  } catch (_) {
+    // Context recovery remains available when advisory state cannot advance.
+    return false;
+  }
+}
+
 function boundedMemoryContextResume(projectDir) {
   try {
     const binPath = join(projectDir, '.opencode', 'bin', 'spec-memory.cjs');
@@ -123,7 +163,8 @@ async function main() {
   try {
     payload = JSON.parse(await readStdin());
   } catch {
-    return emit(null); // no/invalid payload -> emit nothing
+    notifyLifecycleBoundary(process.env.DEVIN_PROJECT_DIR || process.cwd(), null);
+    return emit(null);
   }
 
   const sessionId = typeof payload?.session_id === 'string' ? payload.session_id : null;
@@ -133,6 +174,7 @@ async function main() {
   const projectDir = typeof workspaceCwd === 'string' && workspaceCwd.trim()
     ? workspaceCwd
     : (process.env.DEVIN_PROJECT_DIR || process.cwd());
+  notifyLifecycleBoundary(projectDir, sessionId);
 
   const sections = [];
 

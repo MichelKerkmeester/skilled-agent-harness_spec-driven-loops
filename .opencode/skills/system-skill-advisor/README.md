@@ -98,7 +98,7 @@ node .opencode/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
 
 ### OpenCode Plugin Note
 
-The Skill Advisor bridge plugin injects routing advice at prompt time. The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `mk_goal` and `mk_goal_status`. Its command router delegates all state reads and writes to `mk_goal` and `mk_goal_status`. Active continuation remains opt-in through `MK_GOAL_AUTONOMY`. Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `mk_goal` and `mk_goal_status` in the session tool set. A live model turn persists per-session state.
+The Skill Advisor bridge plugin injects routing advice at prompt time. Constant advisor policy is delivered in full on the first proven message and after registered lifecycle boundaries. Route-only repeats require confirmed primitive identity, valid transcript evidence, matching versioned state, stable generation/epoch clocks, and an atomically advanced high-water mark. Full-delivery receipts commit after stdout handoff; boundary failure poisons older receipts; unsafe or unavailable durable state stays full. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `mk_goal` and `mk_goal_status`. Its command router delegates all state reads and writes to `mk_goal` and `mk_goal_status`. Active continuation remains opt-in through `MK_GOAL_AUTONOMY`. Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `mk_goal` and `mk_goal_status` in the session tool set. A live model turn persists per-session state.
 
 ---
 

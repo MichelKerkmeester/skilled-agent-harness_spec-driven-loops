@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "brief": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene",
+  "vectors": [
+    {
+      "name": "confirmed-repeat",
+      "identity": { "sessionID": "vector-session" },
+      "steps": ["prompt", "prompt"],
+      "expected": ["full", "route-only"]
+    },
+    {
+      "name": "compact-boundary",
+      "identity": { "sessionID": "vector-session" },
+      "steps": ["prompt", "prompt", "compact", "prompt"],
+      "expected": ["full", "route-only", "full"]
+    },
+    {
+      "name": "object-identity",
+      "identity": { "sessionID": { "id": "vector-session" } },
+      "steps": ["prompt", "prompt"],
+      "expected": ["full", "full"]
+    },
+    {
+      "name": "conflicting-identity",
+      "identity": { "sessionID": "vector-session", "session": { "id": "other-session" } },
+      "steps": ["prompt", "prompt"],
+      "expected": ["full", "full"]
+    },
+    {
+      "name": "explicit-ambiguity",
+      "identity": { "sessionID": "vector-session", "sessionIdentityAmbiguous": true },
+      "steps": ["prompt", "prompt"],
+      "expected": ["full", "full"]
+    }
+  ]
+}

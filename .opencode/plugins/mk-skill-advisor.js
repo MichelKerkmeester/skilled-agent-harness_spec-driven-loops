@@ -56,6 +56,16 @@ const TERMINAL_PROOF_DIRECTIVE = '\n- Proof over appearance: only real command o
 // canonical copy); model names stay out so the capsule never churns with
 // model releases.
 const FALLBACK_DIRECTIVE = 'Directives:' + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
+// Directive-lifecycle dedup: this plugin is a plain-JS mirror of the canonical
+// rule in hooks/lib/directive-lifecycle.ts (same separator, same fail-open
+// semantics). Deliver the full brief on the first message of a session and
+// after every lifecycle boundary; on a same-content repeat keep the dynamic
+// Advisor: route line and drop the constant directive block. The canonical
+// copy stays in directive-lifecycle.ts; when that module gains a compiled
+// dist, prefer importing it over extending this mirror.
+const DIRECTIVE_LIFECYCLE_DEDUP_ENV = 'SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP';
+const DIRECTIVE_SEPARATOR = '\nDirectives:';
+const MAX_DIRECTIVE_DEDUP_SESSIONS = 64;
 const pluginRequire = createRequire(import.meta.url);
 
 // Compact, prompt-safe per-hub compiled-routing serving summary. Reads the
@@ -233,6 +243,54 @@ function envDisablesPlugin() {
     || process.env[LEGACY_PLUGIN_DISABLED_ENV] === '1';
 }
 
+function isDirectiveLifecycleDedupEnabled() {
+  const value = process.env[DIRECTIVE_LIFECYCLE_DEDUP_ENV]?.trim().toLowerCase();
+  return value !== '0' && value !== 'false' && value !== 'off' && value !== 'no';
+}
+
+function splitDirectiveBrief(context) {
+  const index = context.indexOf(DIRECTIVE_SEPARATOR);
+  // index <= 0 means no directive block, or no advisor head before it (the
+  // advisor-failure fallback is directives-only): not reducible.
+  if (index <= 0) return null;
+  return { head: context.slice(0, index), directives: context.slice(index) };
+}
+
+/** Reduce policy only for one primitive, non-conflicting session identity. */
+function decideOpenCodeDirectiveLifecycle(brief, identity, lifecycleEvent, state) {
+  if (!isDirectiveLifecycleDedupEnabled() || !identity.confirmed) {
+    return { suppressed: false, reduced: null };
+  }
+  const parts = splitDirectiveBrief(brief);
+  if (!parts?.head.trim()) return { suppressed: false, reduced: null };
+
+  const sessionID = identity.sessionID;
+  const generation = state.directiveGeneration;
+  const epoch = state.directiveEpochBySession.get(sessionID) ?? 0;
+  const boundary = lifecycleEvent === 'startup'
+    || lifecycleEvent === 'resume'
+    || lifecycleEvent === 'compact';
+  const last = state.directiveDedupBySession.get(sessionID);
+  if (boundary
+    || !last
+    || last.directives !== parts.directives
+    || last.generation !== generation
+    || last.epoch !== epoch) {
+    while (state.directiveDedupBySession.size >= MAX_DIRECTIVE_DEDUP_SESSIONS) {
+      const oldest = state.directiveDedupBySession.keys().next().value;
+      if (typeof oldest !== 'string') break;
+      state.directiveDedupBySession.delete(oldest);
+    }
+    state.directiveDedupBySession.set(sessionID, {
+      directives: parts.directives,
+      generation,
+      epoch,
+    });
+    return { suppressed: false, reduced: null };
+  }
+  return { suppressed: true, reduced: parts.head };
+}
+
 function disabledEnvName() {
   if (process.env[DISABLED_ENV] === '1') {
     return DISABLED_ENV;
@@ -358,6 +416,50 @@ function sessionIdFrom(input) {
     || input.properties?.info?.sessionID
     || input.properties?.info?.id
     || '__global__');
+}
+
+function directiveSessionIdentityFrom(input) {
+  if (!input || typeof input !== 'object') {
+    return { sessionID: '__global__', confirmed: false };
+  }
+  const candidates = [
+    input.sessionID,
+    input.sessionId,
+    input.session?.id,
+    input.properties?.sessionID,
+    input.properties?.sessionId,
+    input.properties?.info?.sessionID,
+    input.properties?.info?.id,
+  ].filter((value) => value !== undefined && value !== null && value !== '');
+  const primitive = candidates.filter((value) => typeof value === 'string' || typeof value === 'number');
+  const normalized = [...new Set(primitive.map((value) => String(value).trim()).filter(Boolean))];
+  const ambiguous = candidates.some((value) => typeof value === 'object')
+    || input.sessionIdentityAmbiguous === true
+    || input.session_identity_ambiguous === true;
+  const conflicting = normalized.length !== 1 || primitive.length !== candidates.length;
+  const explicitlyRejected = input.sessionIdentityConfirmed === false
+    || input.session_identity_confirmed === false;
+  return {
+    sessionID: normalized.length === 1 ? normalized[0] : '__global__',
+    confirmed: normalized[0] !== '__global__'
+      && !ambiguous
+      && !conflicting
+      && !explicitlyRejected,
+  };
+}
+
+function advanceOpenCodeDirectiveBoundary(state, input) {
+  const identity = directiveSessionIdentityFrom(input);
+  if (identity.confirmed) {
+    const epoch = state.directiveEpochBySession.get(identity.sessionID) ?? 0;
+    state.directiveEpochBySession.set(identity.sessionID, epoch + 1);
+    state.directiveDedupBySession.delete(identity.sessionID);
+  } else {
+    state.directiveGeneration += 1;
+    state.directiveDedupBySession.clear();
+    state.directiveEpochBySession.clear();
+  }
+  return identity;
 }
 
 function stableStringify(value) {
@@ -778,6 +880,13 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     advisorCache: new Map(),
     // In-flight promise dedup — concurrent identical-key requests share one bridge spawn.
     inFlight: new Map(),
+    // Per-session record of the constant directive block last delivered in
+    // full, keyed by normalized session id. Cleared on session lifecycle
+    // boundaries (created/resumed/compacted/deleted) so the full block is
+    // re-delivered on the first message after each boundary.
+    directiveDedupBySession: new Map(),
+    directiveEpochBySession: new Map(),
+    directiveGeneration: 0,
     epoch: 0,
     runtimeReady: false,
     lastBridgeStatus: 'uninitialized',
@@ -981,6 +1090,9 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     state.epoch += 1;
     state.advisorCache.clear();
     state.inFlight.clear();
+    state.directiveDedupBySession.clear();
+    state.directiveEpochBySession.clear();
+    state.directiveGeneration += 1;
     state.runtimeReady = false;
     state.lastBridgeStatus = 'uninitialized';
     state.lastErrorCode = null;
@@ -1022,6 +1134,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
 
       let prompt = extractPrompt(input);
       const sessionID = sessionIdFrom(input);
+      const directiveIdentity = directiveSessionIdentityFrom(input);
       let pendingShadowLifecycle = lifecycleEventFrom(input);
       const observeBlock = async (rendered) => {
         const lifecycleEvent = pendingShadowLifecycle;
@@ -1101,9 +1214,20 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         sessionID,
         options,
       });
-      const advisorBlock = response.brief
+      let advisorBlock = response.brief
         ? clampBrief(response.brief, options.maxBriefChars)
         : FALLBACK_DIRECTIVE;
+      // Only a primitive, non-conflicting host identity can authorize reduced
+      // delivery; ambiguous payloads retain the complete policy block.
+      const lifecycleDecision = decideOpenCodeDirectiveLifecycle(
+        advisorBlock,
+        directiveIdentity,
+        pendingShadowLifecycle,
+        state,
+      );
+      if (lifecycleDecision.suppressed && lifecycleDecision.reduced) {
+        advisorBlock = lifecycleDecision.reduced;
+      }
       const advisorBlockId = response.brief
         ? messageIdentity.POLICY_BLOCK_IDS.ADVISOR_ROUTE
         : messageIdentity.POLICY_BLOCK_IDS.COMMENT_HYGIENE;
@@ -1175,10 +1299,11 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
         if (options.enabled) {
           state.runtimeReady = true;
           state.lastBridgeStatus = 'ready';
+          const identity = advanceOpenCodeDirectiveBoundary(state, eventPayload);
           await observeShadowDeliveryForRuntime(
             null,
             eventPayload,
-            sessionIdFrom(eventPayload),
+            identity.sessionID,
             'startup',
             false,
           );
@@ -1189,9 +1314,10 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       if (eventType === 'session.resumed'
         || eventType === 'session.compacted'
         || eventType === 'session.compact') {
-        const sessionID = sessionIdFrom(eventPayload);
+        const identity = advanceOpenCodeDirectiveBoundary(state, eventPayload);
+        const sessionID = identity.sessionID;
         if (options.enabled) {
-          messageIdentity.clearTransformDedupSession(sessionID);
+          if (identity.confirmed) messageIdentity.clearTransformDedupSession(sessionID);
           await observeShadowDeliveryForRuntime(
             null,
             eventPayload,
@@ -1204,10 +1330,8 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
       }
 
       if (eventType === 'session.deleted') {
-        const sessionID = normalizeSessionID(eventPayload?.properties?.sessionID
-          || eventPayload?.properties?.info?.sessionID
-          || eventPayload?.properties?.info?.id
-          || sessionIdFrom(eventPayload));
+        const identity = advanceOpenCodeDirectiveBoundary(state, eventPayload);
+        const sessionID = identity.sessionID;
         if (options.enabled) {
           await observeShadowDeliveryForRuntime(null, eventPayload, sessionID, 'compact', false);
         }
@@ -1266,6 +1390,8 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
             `cache_hits=${state.cacheHits}`,
             `cache_misses=${state.cacheMisses}`,
             `cache_hit_rate=${cacheHitRate()}`,
+            `directive_lifecycle_dedup=${isDirectiveLifecycleDedupEnabled() ? 'on' : 'off'}`,
+            `directive_dedup_sessions=${state.directiveDedupBySession.size}`,
             ...compiledRoutingStatusLines(),
           ].join('\n');
         },

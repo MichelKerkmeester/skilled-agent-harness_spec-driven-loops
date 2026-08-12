@@ -29,12 +29,19 @@ type PromptInvocation = {
   readonly text: string;
 };
 
+type PolicyObservationModule = {
+  readonly clearPolicyObservationSink: () => void;
+  readonly getPolicyObservationRecords: () => readonly unknown[];
+};
+
 type FakeContext = {
   cwd: string;
   sessionManager: {
     getSessionId: () => string;
   };
 };
+
+const REPO_ROOT = new URL("../../../../", import.meta.url).pathname;
 
 function denied(command: string, userText: string, options: Record<string, unknown> = {}): boolean {
   const inspection = inspectDispatch(command);
@@ -66,7 +73,7 @@ function makeExtensionApi(): {
 
 function context(sessionId = "session-a"): FakeContext {
   return {
-    cwd: process.cwd(),
+    cwd: REPO_ROOT,
     sessionManager: { getSessionId: () => sessionId },
   };
 }
@@ -90,16 +97,30 @@ async function invokePromptAdvisorInput(
   sessionId = "session-a",
   inputContext: FakeContext = context(sessionId),
 ): Promise<PromptInvocation> {
-  const { api, handlers } = makeExtensionApi();
-  promptAdvisor(api);
-  const inputHandler = handlers.get("input")?.[0];
-  if (!inputHandler) throw new Error("prompt advisor input handler was not registered");
-  const output = await inputHandler({ type: "input", source: "interactive", text: rawText }, inputContext);
+  const output = await invokePromptAdvisorInputResult(rawText, sessionId, inputContext);
   const transformed = output as { action?: unknown; text?: unknown };
   if (transformed.action !== "transform" || typeof transformed.text !== "string") {
     throw new Error("prompt advisor did not return a transform");
   }
   return { text: transformed.text };
+}
+
+async function invokePromptAdvisorInputResult(
+  rawText: string,
+  sessionId = "session-a",
+  inputContext: FakeContext = context(sessionId),
+): Promise<unknown> {
+  const { api, handlers } = makeExtensionApi();
+  promptAdvisor(api);
+  const inputHandler = handlers.get("input")?.[0];
+  if (!inputHandler) throw new Error("prompt advisor input handler was not registered");
+  return inputHandler({ type: "input", source: "interactive", text: rawText }, inputContext);
+}
+
+async function policyObservationModule(): Promise<PolicyObservationModule> {
+  return import(
+    "../../../skills/system-skill-advisor/mcp-server/dist/mcp-server/lib/policy-plan.js"
+  ) as Promise<PolicyObservationModule>;
 }
 
 async function invokePromptAdvisorFailure(sessionId: string): Promise<PromptInvocation> {
@@ -336,6 +357,68 @@ describe("Pi compact directive shadow boundary", () => {
     expect(resetReceipt?.resetReasons).toContain("resume");
     expect(dispatchDirectiveSuffix(afterResume.text)).toBe(PI_SUBAGENT_DISPATCH_DIRECTIVE);
   });
+
+  it("contributes no prompt text or receipt on proven repeats, then re-delivers after boundaries", async () => {
+    setCompactPrototypeFlag(true);
+    const observations = await policyObservationModule();
+    observations.clearPolicyObservationSink();
+    const sessionId = "session-repeat-suppression";
+
+    try {
+      await invokePromptLifecycle("session_start", { reason: "startup" }, sessionId);
+      const first = await invokePromptAdvisorInput("run the first task", sessionId);
+      expect(first.text).toContain("Advisor:");
+      expect(first.text).toContain("Directives:");
+      expect(first.text).toContain("- Pi subagent dispatch [DEFAULT]:");
+
+      const receiptAfterFirst = getPiDispatchShadowReceipt(sessionId);
+      const observationCountAfterFirst = observations.getPolicyObservationRecords().length;
+      expect(receiptAfterFirst).not.toBeNull();
+      expect(observationCountAfterFirst).toBeGreaterThan(0);
+
+      const rawRepeat = "run the second task";
+      const repeatOutput = await invokePromptAdvisorInputResult(rawRepeat, sessionId);
+      const repeatText = (repeatOutput as { action?: unknown; text?: unknown } | undefined)?.action
+        === "transform"
+        ? (repeatOutput as { text: string }).text
+        : rawRepeat;
+      expect(repeatOutput).toBeUndefined();
+      expect(repeatText).toBe(rawRepeat);
+      expect(repeatText).not.toContain("Advisor:");
+      expect(repeatText).not.toContain("Directives:");
+      expect(repeatText).not.toContain("Pi subagent dispatch");
+      expect(getPiDispatchShadowReceipt(sessionId)).toEqual(receiptAfterFirst);
+      expect(observations.getPolicyObservationRecords()).toHaveLength(observationCountAfterFirst);
+
+      await invokePromptLifecycle("session_compact", { type: "session_compact" }, sessionId);
+      const afterCompact = await invokePromptAdvisorInput("run after compact", sessionId);
+      expect(afterCompact.text).toContain("Advisor:");
+      expect(afterCompact.text).toContain("Directives:");
+      expect(afterCompact.text).toContain("- Pi subagent dispatch [DEFAULT]:");
+      const observationCountAfterCompact = observations.getPolicyObservationRecords().length;
+      expect(observationCountAfterCompact).toBeGreaterThan(observationCountAfterFirst);
+
+      const postCompactRepeat = await invokePromptAdvisorInputResult(
+        "run the post-compact repeat",
+        sessionId,
+      );
+      expect(postCompactRepeat).toBeUndefined();
+      expect(observations.getPolicyObservationRecords()).toHaveLength(
+        observationCountAfterCompact,
+      );
+
+      await invokePromptLifecycle("session_start", { reason: "resume" }, sessionId);
+      const afterResume = await invokePromptAdvisorInput("run after resume", sessionId);
+      expect(afterResume.text).toContain("Advisor:");
+      expect(afterResume.text).toContain("Directives:");
+      expect(afterResume.text).toContain("- Pi subagent dispatch [DEFAULT]:");
+      expect(observations.getPolicyObservationRecords().length).toBeGreaterThan(
+        observationCountAfterCompact,
+      );
+    } finally {
+      observations.clearPolicyObservationSink();
+    }
+  }, 15_000);
 });
 
 describe("registered Pi extension boundary", () => {

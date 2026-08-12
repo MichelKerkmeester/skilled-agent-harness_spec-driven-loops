@@ -11,10 +11,14 @@ import {
   runCursorHook,
   toClaudeShape,
 } from './shared.js';
+import { notifyDirectiveLifecycleBoundary } from '../claude/directive-lifecycle-boundary.js';
 
 async function main(): Promise<void> {
   const input = await readCursorHookInput('sessionStart', ['session_id']);
-  if (!input) return emitCursorResponse(null);
+  if (!input) {
+    notifyDirectiveLifecycleBoundary({ sessionId: null, boundary: 'startup' });
+    return emitCursorResponse(null);
+  }
 
   const context = runClaudeHookAdapter('session-prime.js', toClaudeShape(input), 2_800);
   emitCursorResponse({

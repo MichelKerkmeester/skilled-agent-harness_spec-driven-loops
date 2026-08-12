@@ -30,6 +30,7 @@ import {
   getUnicodeRuntimeFingerprint,
 } from '@spec-kit/shared/unicode-normalization';
 import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
+import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -576,11 +577,14 @@ async function main(): Promise<void> {
 
   const input = await withTimeout(parseHookStdin(), remainingMs(deadline), null);
   if (!input) {
+    notifyDirectiveLifecycleBoundary({ sessionId: null, boundary: 'compact' });
     hookLog('warn', 'compact-inject', 'No stdin input received');
     return;
   }
 
-  const sessionId = getRequiredSessionId(input.session_id, 'compact-inject');
+  const rawSessionId = typeof input.session_id === 'string' ? input.session_id.trim() : '';
+  notifyDirectiveLifecycleBoundary({ sessionId: rawSessionId || null, boundary: 'compact' });
+  const sessionId = getRequiredSessionId(rawSessionId, 'compact-inject');
   hookLog('info', 'compact-inject', `PreCompact triggered for session ${sessionId} (trigger: ${input.trigger ?? 'unknown'})`);
 
   let transcriptLines: string[] = [];

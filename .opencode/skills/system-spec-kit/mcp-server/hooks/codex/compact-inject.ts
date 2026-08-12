@@ -10,10 +10,14 @@ import {
   runClaudeHookAdapter,
   runCodexHook,
 } from './shared.js';
+import { notifyDirectiveLifecycleBoundary } from '../claude/directive-lifecycle-boundary.js';
 
 async function main(): Promise<void> {
   const input = await readCodexHookInput('PreCompact', ['session_id']);
-  if (!input) return;
+  if (!input) {
+    notifyDirectiveLifecycleBoundary({ sessionId: null, boundary: 'compact' });
+    return;
+  }
 
   runClaudeHookAdapter('compact-inject.js', input, 2_800);
 }

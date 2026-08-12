@@ -24,6 +24,7 @@ import {
 } from './hook-state.js';
 import { buildWarmSessionResumeSection } from '../spec-memory-cli-fallback.js';
 import { getCachedSessionSummaryDecision, logCachedSummaryDecision } from '../../handlers/session-resume.js';
+import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS & TYPES
@@ -305,12 +306,18 @@ async function main(): Promise<void> {
 
   const input = await withTimeout(parseHookStdin(), HOOK_TIMEOUT_MS, null);
   if (!input) {
+    notifyDirectiveLifecycleBoundary({ sessionId: null, boundary: 'startup' });
     hookLog('warn', 'session-prime', 'No stdin input received');
     return;
   }
 
-  const sessionId = getRequiredSessionId(input.session_id, 'session-prime');
   const source = input.source ?? 'startup';
+  const rawSessionId = typeof input.session_id === 'string' ? input.session_id.trim() : '';
+  notifyDirectiveLifecycleBoundary({
+    sessionId: rawSessionId || null,
+    boundary: source,
+  });
+  const sessionId = getRequiredSessionId(rawSessionId, 'session-prime');
   hookLog('info', 'session-prime', `SessionStart triggered (source: ${source}, session: ${sessionId})`);
 
   let sections: OutputSection[];

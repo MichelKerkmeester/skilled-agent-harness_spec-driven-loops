@@ -197,6 +197,16 @@ the publication guard helpers used by the evaluation dashboard.
 - There is no environment variable that bypasses the row gate. Reporting toggles can add supporting evidence, but they cannot upgrade unsupported certainty values or fill in missing provenance.
 - The current dashboard reader remains aggregate-only. Future export or publication surfaces should import the shared gate helper instead of re-encoding eligibility logic in handler-local code.
 
+### Hook-level lifecycle flags
+
+Directive-capsule lifecycle dedup has runtime-specific output cadence. Model-context surfaces deliver the complete advisor brief on the first message and after lifecycle boundaries, then retain only the dynamic `Advisor:` route line on a proven repeat. Pi visibly transforms the user's prompt, so its proven repeat returns no transform and contributes neither the advisor brief nor the Pi dispatch reminder. Every uncertain path fails open to the surface's declared full behavior. These are hook/plugin-level toggles, not search-pipeline flags, so they live outside the search-flags table above.
+
+| flag name | default state (ON/OFF) | governing env var | which automation it gates | runtime read site |
+| --- | --- | --- | --- | --- |
+| Directive lifecycle dedup (model-context) | ON (graduated) | `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP` | Drops constant policy only for a confirmed same-epoch repeat with valid transcript evidence, matching versioned state, and an atomically advanced high-water mark. Registered host boundaries advance epoch/generation state; failed or unidentified resets invalidate older receipts. Set `0`/`false`/`off`/`no` to restore always-full delivery | `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`, `directive-lifecycle-file-store.ts`, `directive-lifecycle-store.py`, `.opencode/skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`, `.opencode/plugins/mk-skill-advisor.js` |
+| Directive lifecycle dedup (Pi) | ON (graduated) | `SPECKIT_PI_DIRECTIVE_DEDUP` | Full advisor-and-dispatch contribution on the first message and after `session_start`/`session_compact`; a proven repeat returns no transform, records no new delivery receipt, and leaves tool-call dispatch enforcement active. Set `0`/`false`/`off`/`no` to restore always-full | `.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts` (`decidePiDirectiveDelivery`) |
+| Directive lifecycle state dir | `os.tmpdir()/speckit-advisor/directive-lifecycle` | `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR` | Overrides the private state root used by the directory-descriptor-anchored subprocess store. Unsupported helper/platform, unsafe ownership/mode/type/link/size, contention, or IO failure disables suppression. A separate fail-safe poison root prevents recovered processes from reusing receipts after a failed boundary mutation | `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle-file-store.ts`, `directive-lifecycle-store.py` |
+
 ---
 
 ## 2. INFRASTRUCTURE

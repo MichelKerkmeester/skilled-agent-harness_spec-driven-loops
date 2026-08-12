@@ -46,17 +46,13 @@ afterEach(() => {
 describe("decidePiDirectiveDelivery", () => {
   it("delivers the full brief on the first turn of a session", () => {
     const d = decidePiDirectiveDelivery(FULL, "s1");
-    expect(d.suppressed).toBe(false);
-    expect(d.reducedContext).toBeNull();
+    expect(d).toEqual({ suppressed: false });
   });
 
-  it("suppresses the directive block on an identical repeat, keeping the route line", () => {
+  it("suppresses the complete extension contribution on an identical repeat", () => {
     decidePiDirectiveDelivery(FULL, "s1");
     const d = decidePiDirectiveDelivery(FULL, "s1");
-    expect(d.suppressed).toBe(true);
-    expect(d.reducedContext).toBe(HEAD);
-    // The dropped part is exactly the constant directive block.
-    expect(d.reducedContext).not.toContain("Directives:");
+    expect(d).toEqual({ suppressed: true });
   });
 
   it("re-delivers full after a per-session lifecycle reset (resume/compact)", () => {
@@ -64,8 +60,7 @@ describe("decidePiDirectiveDelivery", () => {
     expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(true);
     resetPiDirectiveDedupForSession("s1");
     const d = decidePiDirectiveDelivery(FULL, "s1");
-    expect(d.suppressed).toBe(false);
-    expect(d.reducedContext).toBeNull();
+    expect(d).toEqual({ suppressed: false });
   });
 
   it("re-delivers full when the directive text changes (dirty content)", () => {

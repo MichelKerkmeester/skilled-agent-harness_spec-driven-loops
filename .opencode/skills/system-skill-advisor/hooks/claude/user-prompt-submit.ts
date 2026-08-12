@@ -5,6 +5,7 @@
 // Runs on Claude Code UserPromptSubmit. Emits a JSON additionalContext
 // envelope for model-visible advisor guidance and fails open on all errors.
 
+import { statSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -14,6 +15,12 @@ import {
   type AdvisorHookStatus,
   type AdvisorHookFreshness,
 } from '../../mcp-server/lib/skill-advisor-brief.js';
+import {
+  decideDirectiveLifecycleDelivery,
+  defaultDirectiveLifecycleStore,
+  isDirectiveLifecycleDedupEnabled,
+  type DirectiveLifecycleState,
+} from '../lib/directive-lifecycle.js';
 import {
   renderAdvisorBrief,
   renderAdvisorFallbackDirective,
@@ -67,6 +74,10 @@ export interface UserPromptSubmitDependencies {
   readonly renderBrief?: typeof renderAdvisorBrief;
   readonly now?: () => number;
   readonly writeDiagnostic?: (line: string) => void;
+  /** Per-session directive-lifecycle dedup state; defaults to the durable file-backed store. */
+  readonly directiveLifecycleStore?: DirectiveLifecycleState;
+  /** Delay a full-delivery receipt until the process handoff acknowledges stdout. */
+  readonly deferDirectiveReceipt?: boolean;
 }
 
 interface HookDiagnosticInput {
@@ -84,6 +95,7 @@ interface HookDiagnosticInput {
 export const DEFAULT_CLAUDE_HOOK_TIMEOUT_MS = 2500;
 const MAX_PROMPT_BYTES = 64 * 1024;
 const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
+const DIRECTIVE_RECEIPT_COMMIT = Symbol('directiveReceiptCommit');
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -270,6 +282,49 @@ export async function handleClaudeUserPromptSubmit(
     const renderOptions = { deliveryState };
     const brief = renderBrief(result, renderOptions);
     const emitted = brief ?? renderAdvisorFallbackDirective(renderOptions);
+    // Directive-lifecycle dedup: deliver the full brief on the first message of
+    // a session and after every lifecycle boundary (startup/resume/compact or a
+    // transcript shrink), and on a proven same-content repeat keep the dynamic
+    // Advisor: route line while dropping the constant directive block. Every
+    // uncertain case (unknown session, fallback brief, kill-switch, any thrown
+    // error) falls open to the full brief so a guardrail is never dropped.
+    let effectiveEmitted = emitted;
+    let commitFullReceipt: (() => boolean) | undefined;
+    try {
+      const sessionId = typeof input.session_id === 'string' && input.session_id.trim().length > 0
+        ? input.session_id
+        : undefined;
+      const sessionConfirmed = input.session_identity_confirmed
+        ?? (Boolean(sessionId) && input.session_identity_ambiguous !== true);
+      const transcriptPath = typeof input.transcript_path === 'string' && input.transcript_path.length > 0
+        ? input.transcript_path
+        : null;
+      let transcriptBytes: number | null = null;
+      if (transcriptPath) {
+        try {
+          transcriptBytes = statSync(transcriptPath).size;
+        } catch {
+          transcriptBytes = null;
+        }
+      }
+      const decision = decideDirectiveLifecycleDelivery(emitted, {
+        state: dependencies.directiveLifecycleStore ?? defaultDirectiveLifecycleStore(),
+        sessionId,
+        sessionConfirmed,
+        lifecycleEvent: lifecycleEventFor(input),
+        transcriptPath,
+        transcriptBytes,
+        enabled: isDirectiveLifecycleDedupEnabled(),
+        deferFullReceipt: dependencies.deferDirectiveReceipt === true,
+      });
+      commitFullReceipt = decision.commitFullReceipt;
+      if (decision.suppressed && decision.reducedContext) {
+        effectiveEmitted = decision.reducedContext;
+      }
+    } catch {
+      // Directive dedup is advisory; on any failure keep the full brief.
+      effectiveEmitted = emitted;
+    }
     emitDiagnostic({
       workspaceRoot,
       status: result.status,
@@ -284,10 +339,17 @@ export async function handleClaudeUserPromptSubmit(
     const output: ClaudeUserPromptSubmitOutput = {
       hookSpecificOutput: {
         hookEventName: 'UserPromptSubmit',
-        additionalContext: emitted,
+        additionalContext: effectiveEmitted,
       },
     };
-    observeEmittedAdvisorPolicy(emitted, {
+    if (commitFullReceipt) {
+      Object.defineProperty(output, DIRECTIVE_RECEIPT_COMMIT, {
+        configurable: true,
+        enumerable: false,
+        value: commitFullReceipt,
+      });
+    }
+    observeEmittedAdvisorPolicy(effectiveEmitted, {
       ...deliveryState,
       runtime: 'Claude Code',
       candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
@@ -315,9 +377,22 @@ async function readStdin(): Promise<string> {
   return Buffer.concat(chunks).toString('utf-8').trim();
 }
 
+export function commitClaudeDirectiveDeliveryReceipt(
+  output: ClaudeUserPromptSubmitOutput,
+): boolean {
+  const record = output as ClaudeUserPromptSubmitOutput & {
+    [DIRECTIVE_RECEIPT_COMMIT]?: () => boolean;
+  };
+  const commit = record[DIRECTIVE_RECEIPT_COMMIT];
+  if (!commit) return true;
+  delete record[DIRECTIVE_RECEIPT_COMMIT];
+  return commit();
+}
+
 function writeHookOutput(output: ClaudeUserPromptSubmitOutput): Promise<void> {
   return new Promise<void>((resolvePromise) => {
     process.stdout.write(`${JSON.stringify(output)}\n`, () => {
+      commitClaudeDirectiveDeliveryReceipt(output);
       resolvePromise();
     });
   });
@@ -328,6 +403,7 @@ async function main(): Promise<void> {
   const input = rawInput ? parseClaudeUserPromptSubmitInput(rawInput) : null;
   const output = await handleClaudeUserPromptSubmit(input, {
     writeDiagnostic: (line) => process.stderr.write(`${line}\n`),
+    deferDirectiveReceipt: true,
   });
   await writeHookOutput(output);
 }

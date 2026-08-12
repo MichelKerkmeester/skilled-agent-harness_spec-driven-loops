@@ -1,5 +1,7 @@
 import { EventEmitter } from 'node:events';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mockedBridge = vi.hoisted(() => ({
   spawn: vi.fn(),
@@ -12,8 +14,34 @@ vi.mock('node:child_process', () => ({
 import MkSkillAdvisorPlugin from '../../../../plugins/mk-skill-advisor.js';
 
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
+const CONTRACT_VECTORS = JSON.parse(readFileSync(resolve(
+  import.meta.dirname,
+  '../../hooks/lib/directive-lifecycle-vectors.json',
+), 'utf8')) as {
+  vectors: Array<{
+    name: string;
+    identity: Record<string, unknown>;
+    steps: string[];
+    expected: string[];
+  }>;
+};
+const ORIGINAL_ENV = new Map([
+  ['SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED', process.env.SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED],
+  ['SPECKIT_SKILL_ADVISOR_HOOK_DISABLED', process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED],
+  ['SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP', process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP],
+]);
 const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
-const HYGIENE_CONTEXT = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+// The dynamic route line kept when the constant directive block is dropped on a
+// same-content repeat within one lifecycle epoch.
+const ROUTE_ONLY_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.';
+// Mirrors what the real bridge emits (renderAdvisorBrief appends the three
+// constant directives after the route line) so the lifecycle dedup exercises
+// the true production brief shape.
+const DIRECTIVES_BLOCK = '\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.\n- Proof over appearance: only real command output counts. Encode every requirement as an objective pass-or-fail check (exit code, grep, diff), watch it fail before fixing, fix the root cause once, and close with a clean re-run and a no-stray-files sweep.';
+// The plugin's directives-only fallback (FALLBACK_DIRECTIVE): the three constant
+// directives with the 'Directives:' label and no advisor route line. Asserted by
+// the advisor-failure tests below.
+const FALLBACK_CONTEXT = DIRECTIVES_BLOCK.slice(1);
 const CANONICAL_OPENCODE_PLUGIN_SURFACE = [
   'event',
   'experimental.chat.system.transform',
@@ -25,7 +53,7 @@ const LEGACY_OPENCODE_LIFECYCLE_KEYS = [
   'onSessionEnd',
 ] as const;
 
-function bridgeResponse(brief = 'Advisor: live; use sk-code 0.91/0.23 pass.') {
+function bridgeResponse(brief = ROUTE_ONLY_CONTEXT + DIRECTIVES_BLOCK) {
   return JSON.stringify({
     brief,
     status: brief ? 'ok' : 'skipped',
@@ -124,6 +152,7 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     vi.clearAllMocks();
     delete process.env.SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED;
     delete process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED;
+    delete process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP;
     const resetHooks = await MkSkillAdvisorPlugin({ directory: process.cwd() }, {});
     await resetHooks.event?.({
       event: {
@@ -132,6 +161,21 @@ describe('mk-skill-advisor OpenCode plugin', () => {
       } as never,
     });
     mockBridgeSuccess();
+  });
+
+  afterEach(async () => {
+    vi.useRealTimers();
+    const resetHooks = await MkSkillAdvisorPlugin({ directory: process.cwd() }, {});
+    await resetHooks.event?.({
+      event: {
+        type: 'server.instance.disposed',
+        properties: { directory: process.cwd() },
+      } as never,
+    });
+    for (const [key, value] of ORIGINAL_ENV) {
+      if (value === undefined) delete process.env[key];
+      else process.env[key] = value;
+    }
   });
 
   it('returns the canonical OpenCode hook surface and keeps status tool registration', async () => {
@@ -161,8 +205,8 @@ describe('mk-skill-advisor OpenCode plugin', () => {
 
     const result = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(result.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(result.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(result.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(result.output.system).toEqual([FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
   });
 
@@ -202,8 +246,10 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     const third = await thirdPromise;
 
     expect(first.additionalContext).toContain('sk-code');
-    expect(second.additionalContext).toBe(first.additionalContext);
-    expect(third.additionalContext).toBe(first.additionalContext);
+    // Directive-lifecycle dedup: repeat turns keep the dynamic route line and
+    // drop the constant directive block; the cache semantics are unchanged.
+    expect(second.additionalContext).toBe(ROUTE_ONLY_CONTEXT);
+    expect(third.additionalContext).toBe(ROUTE_ONLY_CONTEXT);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(2);
 
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
@@ -319,8 +365,8 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     await vi.advanceTimersByTimeAsync(1011);
     const output = await outputPromise;
 
-    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
     const child = mockedBridge.spawn.mock.results[0]?.value;
     expect(child.kill).toHaveBeenCalledWith('SIGTERM');
@@ -330,10 +376,13 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     expect(status).toContain('last_error_code=TIMEOUT');
   });
 
-  it('default bridge timeout allows a slow bridge response to return', async () => {
+  it('allows a slow bridge response to return within a 10s timeout', async () => {
     vi.useFakeTimers();
     mockedBridge.spawn.mockImplementation(() => makeChild(bridgeResponse(), 5000));
-    const hooks = await makePlugin();
+    // The plugin default bridge timeout is 2500ms (DEFAULT_BRIDGE_TIMEOUT_MS),
+    // which would kill a 5s response; this test pins an explicit 10s timeout so
+    // the slow response legitimately returns before the deadline.
+    const hooks = await makePlugin({ bridgeTimeoutMs: 10000 });
 
     const outputPromise = runPrompt(hooks, { prompt: 'implement feature X' });
     await vi.advanceTimersByTimeAsync(5000);
@@ -358,8 +407,8 @@ describe('mk-skill-advisor OpenCode plugin', () => {
 
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_bridge_status=fail_open');
@@ -373,10 +422,10 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
     const repeat = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
-    expect(repeat.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(repeat.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
+    expect(repeat.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(repeat.output.system).toEqual([FALLBACK_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(2);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_error_code=PARSE_FAIL');
@@ -388,8 +437,8 @@ describe('mk-skill-advisor OpenCode plugin', () => {
 
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
-    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(output.additionalContext).toBe(FALLBACK_CONTEXT);
+    expect(output.output.system).toEqual([FALLBACK_CONTEXT]);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_error_code=NONZERO_EXIT');
   });
@@ -656,8 +705,9 @@ describe('mk-skill-advisor OpenCode plugin', () => {
 
     expect(firstA.additionalContext).toContain('sk-code');
     expect(firstB.additionalContext).toContain('sk-code');
-    expect(secondA.additionalContext).toBe(firstA.additionalContext);
-    expect(secondB.additionalContext).toBe(firstB.additionalContext);
+    // Repeat turns keep the route line and drop the constant directive block.
+    expect(secondA.additionalContext).toBe(ROUTE_ONLY_CONTEXT);
+    expect(secondB.additionalContext).toBe(ROUTE_ONLY_CONTEXT);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(2);
 
     const bridgePayloads = mockedBridge.spawn.mock.results.map((result) =>
@@ -671,5 +721,141 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     const status = await hooksA.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('cache_hits=1');
     expect(status).toContain('cache_misses=1');
+  });
+
+  it('PL1 keeps the route line and drops the directive block on a same-content repeat', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+
+    const first = await runPrompt(hooks, { sessionID: 's-lifecycle', prompt: 'implement feature X' });
+    const second = await runPrompt(hooks, { sessionID: 's-lifecycle', prompt: 'implement feature X' });
+
+    expect(first.additionalContext).toContain('Directives:');
+    expect(first.additionalContext).toContain('Comment hygiene');
+    expect(second.additionalContext).toBe(ROUTE_ONLY_CONTEXT);
+    expect(second.additionalContext).not.toContain('Directives:');
+  });
+
+  it('PL2 re-delivers the full brief after a session.compacted lifecycle event', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+
+    await runPrompt(hooks, { sessionID: 's-compact', prompt: 'implement feature X' });
+    await hooks.event?.({
+      event: {
+        type: 'session.compacted',
+        properties: { sessionID: 's-compact', info: { id: 's-compact' } },
+      } as never,
+    });
+    const afterCompact = await runPrompt(hooks, { sessionID: 's-compact', prompt: 'implement feature X' });
+    const repeat = await runPrompt(hooks, { sessionID: 's-compact', prompt: 'implement feature X' });
+
+    expect(afterCompact.additionalContext).toContain('Comment hygiene');
+    // The boundary turn re-arms: the next identical turn is suppressible again.
+    expect(repeat.additionalContext).toBe(ROUTE_ONLY_CONTEXT);
+  });
+
+  it('PL3 re-delivers the full brief when the transform input carries a lifecycle event', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+
+    await runPrompt(hooks, { sessionID: 's-lifecycle-event', prompt: 'implement feature X' });
+    const boundary = await runPrompt(hooks, {
+      sessionID: 's-lifecycle-event',
+      lifecycleEvent: 'compact',
+      prompt: 'implement feature X',
+    });
+
+    expect(boundary.additionalContext).toContain('Comment hygiene');
+  });
+
+  it('PL4 never suppresses without a known session id', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+
+    const first = await runPrompt(hooks, { sessionID: '__global__', prompt: 'implement feature X' });
+    const second = await runPrompt(hooks, { sessionID: '__global__', prompt: 'implement feature X' });
+
+    expect(first.additionalContext).toContain('Comment hygiene');
+    expect(second.additionalContext).toContain('Comment hygiene');
+  });
+
+  it('keeps full delivery for object, conflicting, and explicitly ambiguous identities', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+    const cases = [
+      { sessionID: { id: 'object-session' } },
+      { sessionID: 'top-level', session: { id: 'nested-other' } },
+      { sessionID: 'ambiguous', sessionIdentityAmbiguous: true },
+      { sessionID: 'rejected', sessionIdentityConfirmed: false },
+    ];
+    for (const identity of cases) {
+      const first = await runPrompt(hooks, { ...identity, prompt: 'implement feature X' });
+      const repeat = await runPrompt(hooks, { ...identity, prompt: 'implement feature X' });
+      expect(first.additionalContext).toContain('Comment hygiene');
+      expect(repeat.additionalContext).toContain('Comment hygiene');
+    }
+  });
+
+  it('globally invalidates directive receipts when a boundary lacks identity', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+    await runPrompt(hooks, { sessionID: 'known-session', prompt: 'implement feature X' });
+    expect((await runPrompt(hooks, { sessionID: 'known-session', prompt: 'implement feature X' })).additionalContext)
+      .toBe(ROUTE_ONLY_CONTEXT);
+    await hooks.event?.({
+      event: { type: 'session.compacted', properties: {} } as never,
+    });
+    expect((await runPrompt(hooks, { sessionID: 'known-session', prompt: 'implement feature X' })).additionalContext)
+      .toContain('Comment hygiene');
+  });
+
+  it('matches the canonical shared contract vectors', async () => {
+    for (const vector of CONTRACT_VECTORS.vectors) {
+      const hooks = await makePlugin({ cacheTTLMs: 5000 });
+      const observed: string[] = [];
+      for (const step of vector.steps) {
+        if (step === 'compact') {
+          await hooks.event?.({
+            event: { type: 'session.compacted', properties: vector.identity } as never,
+          });
+          continue;
+        }
+        const output = await runPrompt(hooks, {
+          ...vector.identity,
+          prompt: 'implement feature X',
+        });
+        observed.push(output.additionalContext?.includes('Directives:') ? 'full' : 'route-only');
+      }
+      expect(observed, vector.name).toEqual(vector.expected);
+      await hooks.event?.({
+        event: { type: 'server.instance.disposed', properties: {} } as never,
+      });
+    }
+  });
+
+  it('PL5 kill-switch reverts to always-full delivery', async () => {
+    process.env.SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP = '0';
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+
+    await runPrompt(hooks, { sessionID: 's-kill', prompt: 'implement feature X' });
+    const second = await runPrompt(hooks, { sessionID: 's-kill', prompt: 'implement feature X' });
+
+    expect(second.additionalContext).toContain('Comment hygiene');
+  });
+
+  it('PL6 isolates dedup state across sessions', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+
+    await runPrompt(hooks, { sessionID: 's-isolated', prompt: 'implement feature X' });
+    const s2First = await runPrompt(hooks, { sessionID: 's-other', prompt: 'implement feature X' });
+    const s1Repeat = await runPrompt(hooks, { sessionID: 's-isolated', prompt: 'implement feature X' });
+
+    expect(s2First.additionalContext).toContain('Comment hygiene');
+    expect(s1Repeat.additionalContext).toBe(ROUTE_ONLY_CONTEXT);
+  });
+
+  it('PL7 status tool reports the directive-lifecycle dedup state', async () => {
+    const hooks = await makePlugin({ cacheTTLMs: 5000 });
+
+    await runPrompt(hooks, { sessionID: 's-status', prompt: 'implement feature X' });
+    const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
+
+    expect(status).toContain('directive_lifecycle_dedup=on');
+    expect(status).toContain('directive_dedup_sessions=1');
   });
 });

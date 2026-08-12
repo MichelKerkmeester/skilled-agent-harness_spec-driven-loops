@@ -40,6 +40,7 @@ Use this catalog as the canonical inventory for both current behavior and delive
 | Skill advisor | Durable JSONL diagnostics sinks + cross-process readback | `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md`, `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook-validation.md` (Step 3) |
 | Skill advisor | OpenCode plugin-helper bridge + `0.8 / 0.35` threshold contract | `references/config/hook-system.md` (Advisor Bridge and Threshold Contract section), `.opencode/skills/system-skill-advisor/hooks/skill-advisor-hook.md` |
 | Goal plugin | Local `/goal` OpenCode plugin state, injection, and tool contract | [`ux-hooks/goal-opencode-plugin.md`](../feature-catalog/ux-hooks/goal-opencode-plugin.md), `.opencode/hooks/goal/goal-plugin.md` |
+| Skill advisor | Cross-runtime directive-lifecycle dedup (first-full, boundary re-delivery, model-context route-only repeats, Pi no-transform repeats, fail-open) | [`ux-hooks/directive-lifecycle-dedup.md`](../feature-catalog/ux-hooks/directive-lifecycle-dedup.md), `.opencode/hooks/injection-contract.md` |
 
 ### Command-Surface Contract
 
