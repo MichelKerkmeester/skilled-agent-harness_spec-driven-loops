@@ -17,6 +17,42 @@ export {
   claudeRuntimeAdapter,
   createClaudeRuntimeAdapter,
 } from './claude.js';
+export {
+  CodexCapabilityRecords,
+  CodexEventTypes,
+  CodexRuntimePaths,
+  codexRuntimeAdapter,
+  createCodexRuntimeAdapter,
+} from './codex.js';
+export {
+  CursorCapabilityRecords,
+  CursorEventTypes,
+  CursorRuntimePaths,
+  createCursorRuntimeAdapter,
+  cursorRuntimeAdapter,
+} from './cursor.js';
+export {
+  DevinCapabilityRecords,
+  DevinEventTypes,
+  DevinRuntimePaths,
+  createDevinRuntimeAdapter,
+  devinRuntimeAdapter,
+} from './devin.js';
+export {
+  OpenCodeCapabilityRecords,
+  OpenCodeEventTypes,
+  OpenCodeRuntimePaths,
+  createOpenCodeRuntimeAdapter,
+  openCodeRuntimeAdapter,
+} from './opencode.js';
+export {
+  PiCapabilityRecords,
+  PiEventTypes,
+  PiRuntimePaths,
+  createPiRuntimeAdapter,
+  piRuntimeAdapter,
+  presentPiSynchronousTransform,
+} from './pi.js';
 export { RuntimeAdapterReasonCodes } from './types.js';
 
 export type {
@@ -32,6 +68,45 @@ export type {
   ClaudeRuntimeEvent,
   ClaudeTerminalEvent,
 } from './claude.js';
+export type {
+  CodexContentEvent,
+  CodexExtensionEvent,
+  CodexLifecycleEvent,
+  CodexRuntimeEvent,
+  CodexTerminalEvent,
+} from './codex.js';
+export type {
+  CursorAgentMessageChunkEvent,
+  CursorExtensionEvent,
+  CursorLifecycleEvent,
+  CursorRuntimeEvent,
+  CursorTerminalEvent,
+  CursorToolEvent,
+} from './cursor.js';
+export type {
+  DevinAgentMessageChunkEvent,
+  DevinExtensionEvent,
+  DevinLifecycleEvent,
+  DevinRuntimeEvent,
+  DevinTerminalEvent,
+  DevinToolEvent,
+} from './devin.js';
+export type {
+  OpenCodeExtensionEvent,
+  OpenCodeLifecycleEvent,
+  OpenCodeMessagePartEvent,
+  OpenCodeRuntimeEvent,
+  OpenCodeTerminalEvent,
+  OpenCodeToolEvent,
+} from './opencode.js';
+export type {
+  PiExtensionEvent,
+  PiMessageEvent,
+  PiRuntimeEvent,
+  PiSynchronousPresentationInput,
+  PiTerminalEvent,
+  PiToolEvent,
+} from './pi.js';
 export type {
   DegradationMode,
   PresentationTier,

@@ -17,6 +17,7 @@ import type {
   FixtureProvenance,
   RenderCapabilities,
   RenderDecision,
+  RuntimeId,
 } from '../../src/index.js';
 import type {
   ClaudeRuntimeEvent,
@@ -29,6 +30,16 @@ import type {
 export const TESTED_CLAUDE_VERSION = '2.1.228';
 export const TESTED_PROTOCOL_VERSION = '1.0.0';
 export const OBSERVED_AT = '2026-08-12T00:00:00.000Z';
+
+/** Required coordinates for one non-Claude runtime test input. */
+export interface RuntimeInputCoordinates {
+  readonly runtime: RuntimeId;
+  readonly runtimeVersion: string;
+  readonly protocol: string;
+  readonly protocolVersion: string;
+  readonly pathId: string;
+  readonly canonical?: RuntimeCanonicalState;
+}
 
 const provenance: FixtureProvenance = {
   sourceFamily: 'runtime-test',
@@ -86,6 +97,31 @@ export function createClaudeInput(
       event,
     },
     canonical: options.canonical ?? createCanonicalState(),
+  };
+}
+
+/** Wrap one vendor event in the shared runtime input envelope. */
+export function createRuntimeInput<TRuntimeEvent>(
+  event: TRuntimeEvent,
+  coordinates: RuntimeInputCoordinates,
+): RuntimeAdapterInput<TRuntimeEvent> {
+  return {
+    envelope: {
+      envelopeVersion: 'runtime-envelope/1.0.0',
+      runtime: coordinates.runtime,
+      runtimeVersion: coordinates.runtimeVersion,
+      protocol: coordinates.protocol,
+      protocolVersion: coordinates.protocolVersion,
+      pathId: coordinates.pathId,
+      sessionId: `${coordinates.runtime}-session`,
+      turnId: `${coordinates.runtime}-turn`,
+      messageId: `${coordinates.runtime}-message`,
+      generationId: `${coordinates.runtime}-generation`,
+      attempt: 1,
+      capturedAt: OBSERVED_AT,
+      event,
+    },
+    canonical: coordinates.canonical ?? createCanonicalState(),
   };
 }
 
