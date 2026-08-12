@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "spec_folder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/004-auth-and-tailnet-boundary",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi remote mobile",
+      "pi claude app style remote",
+      "pi rpc relay",
+      "mobile pi agent",
+      "pi remote phase map"
+    ],
+    "key_topics": [
+      "remote",
+      "mobile",
+      "claude",
+      "app",
+      "style",
+      "rpc",
+      "relay",
+      "agent",
+      "phase",
+      "map",
+      "cli",
+      "exposes"
+    ],
+    "importance_tier": "critical",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "001-contract-and-threat-baseline/spec.md",
+      "009-release-verification-and-rollout/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote Mobile Agent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pi CLI exposes a persistent local RPC subprocess, not a secure mobile product",
+    "created_at": "2026-08-10T17:46:19.156Z",
+    "last_save_at": "2026-08-10T18:46:14.446Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:7529af379ab8dd631a054725bc5b325b53df5f3561ebf08c49082e06b6568e08",
+    "source_doc_hashes": {
+      "spec.md": "6de5cf5c27b06da52a0a9af7c1ff25b80dec77276394b5b4025a7dbe48d8db26"
+    },
+    "last_active_child_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+    "last_active_at": null
+  }
+}

@@ -1,8 +1,8 @@
 ---
 title: "Handover: Directive-Lifecycle Delivery Post-Review Closeout"
 description: "Continuation state after the fresh deep review converged and its findings were adjudicated; packet ledger reconciliation, final metadata regeneration, and strict closeout remain."
-status: "in_progress"
-completion_pct: 95
+status: "complete"
+completion_pct: 100
 trigger_phrases:
   - "resume directive lifecycle phase 018"
   - "continue post-review closeout"
@@ -12,13 +12,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
-    last_updated_at: "2026-08-12T04:10:42Z"
+    last_updated_at: "2026-08-12T05:31:09Z"
     last_updated_by: "codex"
-    recent_action: "Adjudicated the converged six-iteration deep review"
-    next_safe_action: "Reconcile packet and parent ledgers, regenerate metadata, then run the strict final-state gates"
+    recent_action: "Closed out phase 018: fresh reviews re-confirmed, ledgers and metadata reconciled"
+    next_safe_action: "Commit the packet closeout and land the feature delivery commit"
     blockers:
-      - "Canonical packet and parent docs still describe the fresh review as pending"
-      - "Final metadata regeneration, strict validation, and final-state sweeps remain"
+      - "Feature runtime code is implemented but not yet committed; the delivery commit remains a downstream step"
+      - "Native-host (Cursor) rollout stays an operator decision; activation flags off by design"
     key_files:
       - "handover.md"
       - "evidence/review/fresh-deep-review-disposition.md"
@@ -27,14 +27,14 @@ _memory:
       - "implementation-summary.md"
       - "checklist.md"
       - "evidence/whole-gate/comparison-final-pi-repeat-4-normalized.json"
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The fresh review converged after six iterations; its metadata P1 is resolved and its Devin P1 was disproven against the registered executable boundary"
 ---
 # Handover: Directive-Lifecycle Delivery Post-Review Closeout
 
-Continuation state for phase 018. Runtime implementation and regression proof are complete. The canonical fresh deep review also completed and converged, and repository-backed adjudication found no confirmed P0 or unresolved P1. The packet remains in progress because its canonical ledgers still carry pre-review wording and final metadata, strict validation, and final-state sweeps have not been completed.
+Closeout state for phase 018. Runtime implementation and regression proof are complete. The canonical fresh deep review converged and its findings were adjudicated (no confirmed P0 or unresolved P1); a supplementary fresh security and decision/rollback review (deepseek-v4-flash via cli-pi, conductor-verified) re-confirmed the outcome. Canonical ledgers are reconciled, metadata is regenerated, and `validate.sh --strict` reports RESULT: PASSED (0 errors, 0 warnings; the only non-zero process exit is a pre-existing `better-sqlite3` ABI-mismatch step, reproduced on unrelated siblings). The remediation, review, and documentation scope of the packet is complete. One downstream delivery step remains outside that scope: the feature runtime code is implemented but not yet committed, and native-host (Cursor) rollout is an operator decision with activation flags off by design.
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 
@@ -67,17 +67,17 @@ Continuation state for phase 018. Runtime implementation and regression proof ar
 
 ### 2.2 Blockers Encountered
 
-**Blockers:** Closeout documentation and final-state validation remain; no known implementation blocker or unresolved review P1 remains.
+**Blockers:** None remaining. Closeout documentation and final-state validation are complete; no implementation blocker or unresolved review P1 remains. One downstream delivery step — committing the feature runtime code — is outside the packet's documentation scope.
 
 | Blocker | Status | Resolution/Workaround |
 | --- | --- | --- |
 | Fresh deep review | Resolved | Six iterations completed with convergence ratio `0.07`; correctness PASS, security PASS, traceability/maintainability CONDITIONAL. |
-| Raw report P1-001: stale graph status | Resolved, pending final refresh | Canonical regeneration changed `derived.status` to `in_progress`. Regenerate once more only after all closeout docs are synchronized. |
+| Raw report P1-001: stale graph status | Resolved | Canonical regeneration refreshed `derived` state and document hashes; the final regeneration ran after all closeout docs were synchronized. |
 | Raw report P1-002: Devin hardcoded bridge | Disproven | The real registered-host suite executes the existing CommonJS-to-compiled-bridge path and passed 6/6. The proposed relative source import is missing and would break the path. |
-| Canonical ledgers still say fresh review is pending | Open, highest priority | Reconcile `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, and the parent phase map against the disposition evidence. |
-| Final validation and metadata | Open | Complete the scoped final-state gates, then regenerate phase and parent metadata and verify hashes, fingerprints, and active-child lineage. |
-| Broad dirty checkout | Ongoing constraint | Use task-owned paths and explicit inventories. Nothing is staged, committed, or pushed; do not rewrite or absorb unrelated changes. |
-| Memory index runtime | Non-product residual | The prior save refreshed metadata but reported a `better-sqlite3` Node ABI mismatch, so vector indexing was skipped. Re-attempt indexing only after the local runtime is compatible; do not confuse this with product verification. |
+| Canonical ledgers still say fresh review is pending | Resolved | Reconciled `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, and the parent phase map to Complete against the disposition evidence. |
+| Final validation and metadata | Resolved | Regenerated phase and parent metadata, refreshed fingerprints and active-child lineage; `validate.sh --strict` reports RESULT: PASSED (0 errors, 0 warnings). |
+| Broad dirty checkout | Managed | Packet docs committed via scoped baseline and completion commits on task-owned paths; the broader unrelated dirty tree was not staged, committed, or rewritten. |
+| Memory index runtime | Non-product residual | The saves refreshed metadata but reported a `better-sqlite3` Node ABI mismatch (127 vs 141), so vector indexing was skipped and `validate.sh` exits 2 despite RESULT: PASSED. Re-attempt indexing only after the local runtime is compatible; do not confuse this with product verification. |
 
 ### 2.3 Files Modified
 
@@ -88,9 +88,9 @@ Continuation state for phase 018. Runtime implementation and regression proof ar
 | `review/` | Canonical six-iteration deep-review config, state, deltas, iterations, registry, dashboard, strategy, resource map, and report. | Complete; workflow-owned history |
 | `evidence/review/fresh-deep-review-disposition.md` | Confirms or disproves each required finding and groups the advisory dispositions. | Complete; authoritative adjudication |
 | `spec.md` | Corrects the implemented adapter-parity test path and adds RR-006 for the intentional Devin CommonJS/build bridge boundary. | Updated; broader closeout wording remains |
-| `checklist.md` | Expands CHK-012 evidence to the compiled bridge and real Devin registered-path suite. | Updated; closeout rows remain open |
+| `checklist.md` | Expands CHK-012 evidence and completes all closeout rows with cited evidence. | Complete; 64/64 items checked |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts` | Replaces two ephemeral checklist-ID test names with durable behavior descriptions. | Focused file passes 17/17 |
-| `graph-metadata.json` | Canonical save changed the derived state from `planned` to `in_progress` and refreshed document hashes. | Current intermediate state; regenerate after closeout |
+| `graph-metadata.json` | Canonical save refreshed the derived state and document hashes to the final closeout content. | Final; regenerated after closeout |
 | `handover.md` | Replaces the pre-review checkpoint with this post-review continuation state. | Current session output |
 
 ### 2.4 Traps & Scar Tissue

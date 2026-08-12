@@ -102,7 +102,7 @@ The seven candidate phase children below (001-007), each an independently shippa
 | 15 | 015-directive-docs-alignment/ | Docs alignment for the live lifecycle feature: registers the three directive envs in the canonical `ENV-REFERENCE.md` hook-level block and states the lifecycle rule in the skill-advisor README, `.pi` extensions README, and the cursor hooks catalog. Docs-only. | Complete |
 | 16 | 016-directive-playbook-alignment/ | Playbook/catalog coverage for the live lifecycle feature: manual scenario 457 (first-full, repeat route-only, boundary re-delivery, kill-switch revert, fail-open per runtime), root-index + catalog rows, 119-C lifecycle note. Docs-only. | Complete |
 | 17 | 017-adapter-live-delivery-verification/ | Historical adapter-delivery verification plan. Its incorrect discovery-symlink deletion diagnosis is superseded by phase 018; no phase-017 implementation is authorized. | Superseded by 018 |
-| 18 | 018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/ | Comprehensive P0-P3 review remediation: lifecycle high-water and host epochs, fail-open identity/stat handling, hardened state storage, adapter parity, durable evidence taxonomy, and phases 014-018 truth reconciliation. | In progress — implementation and whole-gate proof complete; fresh review and final metadata pending |
+| 18 | 018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/ | Comprehensive P0-P3 review remediation: lifecycle high-water and host epochs, fail-open identity/stat handling, hardened state storage, adapter parity, durable evidence taxonomy, and phases 014-018 truth reconciliation. | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins.

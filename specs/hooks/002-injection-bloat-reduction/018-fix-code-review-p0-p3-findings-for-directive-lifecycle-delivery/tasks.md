@@ -79,32 +79,32 @@ _memory:
 
 ### Lifecycle correctness and identity
 
-- [x] T009 [P1] Version the lifecycle record with transcript high-water bytes and a trusted lifecycle epoch.
-- [x] T010 [P1] Update high-water state atomically on known growth even when the emitted result is route-only.
+- [x] T009 [P1] Version the lifecycle record with transcript high-water bytes and a trusted lifecycle epoch. — Evidence: `evidence/outcomes/directive-unit-verified.json`
+- [x] T010 [P1] Update high-water state atomically on known growth even when the emitted result is route-only. — Evidence: `evidence/negative-controls/final.json`
 - [x] T011 [P1] Make missing/unknown transcript path or stat ineligible for suppression; `null → null` stays full.
-- [x] T012 [P1] Add one canonical epoch/reset entry point and connect actual Claude/Codex/Cursor/Devin session-start/resume/compact sources; identified events advance the session epoch and unidentified events increment a store-wide invalidation generation.
-- [x] T013 [P1] Ensure test-only prompt lifecycle fields cannot be the sole production boundary proof.
-- [x] T014 [P1] Make OpenCode identity resolution collect all candidates and fail open for missing, object-shaped, explicit-ambiguous, or conflicting values.
-- [x] T015 (P3 residual) Add shared contract vectors for the TypeScript core and OpenCode JavaScript mirror; compiled-core unification remains RR-001.
+- [x] T012 [P1] Add one canonical epoch/reset entry point and connect actual Claude/Codex/Cursor/Devin session-start/resume/compact sources; identified events advance the session epoch and unidentified events increment a store-wide invalidation generation. — Evidence: `evidence/outcomes/directive-unit-verified.json`
+- [x] T013 [P1] Ensure test-only prompt lifecycle fields cannot be the sole production boundary proof. — Evidence: `evidence/runtime/2026-08-11-registered-paths-final-2/summary.json`
+- [x] T014 [P1] Make OpenCode identity resolution collect all candidates and fail open for missing, object-shaped, explicit-ambiguous, or conflicting values. — Evidence: `evidence/outcomes/opencode-test-seam.json`
+- [x] T015 (P3 residual) Add shared contract vectors for the TypeScript core and OpenCode JavaScript mirror; compiled-core unification remains RR-001. — Evidence: `.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle-vectors.json`
 
 ### File-store security and cleanup
 
-- [x] T016 [P1] Establish a verified user-private state root and prove race-safe containment for every authoritative record IO.
-- [x] T017 [P1] Reject symlinked path components, records, temp targets, and intermediate-component replacement races; validate regular-file type, owner/mode/link-count where supported, and record size/schema.
-- [x] T018 [P1] Use a directory-descriptor-anchored helper with no-follow/exclusive operations; unsupported or unprovable execution disables durable suppression.
+- [x] T016 [P1] Establish a verified user-private state root and prove race-safe containment for every authoritative record IO. — Evidence: `evidence/performance/result-final-5.json`
+- [x] T017 [P1] Reject symlinked path components, records, temp targets, and intermediate-component replacement races; validate regular-file type, owner/mode/link-count where supported, and record size/schema. — Evidence: `evidence/negative-controls/final.json`
+- [x] T018 [P1] Use a directory-descriptor-anchored helper with no-follow/exclusive operations; unsupported or unprovable execution disables durable suppression. — Evidence: `evidence/outcomes/directive-unit-verified.json`
 - [x] T019 [P2] Remove owned `.tmp-*` files after failed write/rename and bound temp/eviction cleanup by prefix, count, age, and directory.
 - [x] T020 [P2] Run cross-process high-water/race and residue probes. Evidence: `evidence/performance/result-final-5.json` records 16/16 successful writes, final high-water 1600, and no residue.
 - [x] T021 [P2] Measure p50/p95/p99 latency. Evidence: file-store p99 65.706 ms under the declared 100 ms budget; RR-002 retains reopen thresholds.
 
 ### Evidence, adapters, and repository truth
 
-- [x] T022 [P1] Add Codex/Cursor/Devin adapter parity coverage for payloads, envelopes, missing fields, malformed child output, timeout, discovery path, and canonical real path.
-- [x] T023 [P1] Preserve all four runtime discovery symlinks and add integrity tests that fail on replacement, deletion, or wrong target.
+- [x] T022 [P1] Add Codex/Cursor/Devin adapter parity coverage for payloads, envelopes, missing fields, malformed child output, timeout, discovery path, and canonical real path. — Evidence: `evidence/tests/registered-adapters-verified.log`
+- [x] T023 [P1] Preserve all four runtime discovery symlinks and add integrity tests that fail on replacement, deletion, or wrong target. — Evidence: `evidence/inventory/discovery-symlinks.txt`
 - [x] T024 [P1] Rewrite scenario 457 around `unit`, `adapter-driven`, `registered-path`, and `native-host-delivered` evidence classes.
 - [x] T025 [P1] Keep Cursor native `beforeSubmitPrompt` unconfirmed/dormant; adapter success does not promote it.
-- [x] T026 [P1] Require repository-relative evidence, hashes, runtime/version, exact command, sanitized payload fixture, evidence class, executor, and valid model provenance.
-- [x] T027 [P1] Reject PASS when required evidence is absent, temporary-only, unhashed, outside the verified root, or stronger than the captured class.
-- [x] T028 [P1] Preserve historical report directories byte-for-byte; append corrected reports and an external supersession manifest.
+- [x] T026 [P1] Require repository-relative evidence, hashes, runtime/version, exact command, sanitized payload fixture, evidence class, executor, and valid model provenance. — Evidence: `evidence/runtime/2026-08-11-registered-paths-final/source-hashes.json`
+- [x] T027 [P1] Reject PASS when required evidence is absent, temporary-only, unhashed, outside the verified root, or stronger than the captured class. — Evidence: `evidence/outcomes/cursor-native-host-final.json`
+- [x] T028 [P1] Preserve historical report directories byte-for-byte; append corrected reports and an external supersession manifest. — Evidence: `evidence/outcomes/pi-repeat-suppression-verified.json`
 - [x] T029 [P2] Restore lifecycle env variables, default stores, plugin instances, timers, module caches, and mocks in teardown, including failure paths.
 - [ ] T030 [P1] Reconcile status, completion, tasks, checklists, summaries, description metadata, graph children, active child, and source fingerprints across phases 014-018 and the parent.
 <!-- /ANCHOR:phase-2 -->
@@ -115,13 +115,13 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T031 [P1] Prove `5 KB → 10 KB → 7 KB` produces FULL → ROUTE-ONLY with high-water update → FULL.
-- [x] T032 [P1] Prove repeated unknown stat/path and every unconfirmed identity stay full and never create reusable suppression proof.
-- [x] T033 [P1] Run the complete file-store hostile-topology matrix and verify no outside-root content changes.
-- [x] T034 [P1] Run OpenCode identity and lifecycle-event matrices, including conflict and object-id rows.
+- [x] T032 [P1] Prove repeated unknown stat/path and every unconfirmed identity stay full and never create reusable suppression proof. — Evidence: `evidence/negative-controls/final.json`
+- [x] T033 [P1] Run the complete file-store hostile-topology matrix and verify no outside-root content changes. — Evidence: `evidence/negative-controls/final.json`
+- [x] T034 [P1] Run OpenCode identity and lifecycle-event matrices, including conflict and object-id rows. — Evidence: `evidence/outcomes/opencode-test-seam.json`
 - [x] T035 [P1] Run focused canonical/shim/plugin/Pi suites plus adapter parity tests. Evidence: advisor 87/87, registered adapters 23/23, persistence 9/9, Pi 55/55, negative controls 5/5.
 - [x] T036 [P2] Run hostile-order and repeated-suite isolation checks and compare process state before/after.
-- [x] T037 [P1] Execute corrected scenario 457 per evidence class and persist durable hashed artifacts for every supported lane.
-- [x] T038 (P3 residual) Record available adapter/registered-path evidence and preserve honest native-host unconfirmed/SKIP outcomes, including Cursor dormancy.
+- [x] T037 [P1] Execute corrected scenario 457 per evidence class and persist durable hashed artifacts for every supported lane. — Evidence: `evidence/outcomes/directive-unit-verified.json`
+- [x] T038 (P3 residual) Record available adapter/registered-path evidence and preserve honest native-host unconfirmed/SKIP outcomes, including Cursor dormancy. — Evidence: `evidence/outcomes/cursor-native-host-final.json`
 - [x] T039 [P1] Execute the unchanged whole-gate manifest. Evidence: `comparison-final-pi-repeat-4-normalized.json` reports the same manifest hash, zero blockers, no new failure identity, and no lost test file.
 - [ ] T040 [P1] Run strict validation on phase 018 and recursive validation on the parent; reconcile every task/checklist/continuity field before any completion claim.
 - [ ] T041 [P1] Run comment-hygiene, diff, no-staged-files, no-task-residue, and discovery-symlink sweeps from final state.

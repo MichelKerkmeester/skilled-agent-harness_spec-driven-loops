@@ -1,8 +1,8 @@
 ---
 title: "Implementation Summary: Fix Code-Review P0-P3 Findings for Directive-Lifecycle Delivery"
-description: "Directive-lifecycle correctness, hardened storage, registered-boundary wiring, evidence provenance, adapter parity, and Pi repeat suppression are implemented and verified; fresh deep review and final metadata reconciliation remain."
-status: "in_progress"
-completion_pct: 95
+description: "Directive-lifecycle correctness, hardened storage, registered-boundary wiring, evidence provenance, adapter parity, and Pi repeat suppression are implemented and verified; fresh review and final metadata reconciliation are complete."
+status: "complete"
+completion_pct: 100
 trigger_phrases:
   - "directive lifecycle remediation status"
   - "phase 018 implementation summary"
@@ -13,13 +13,11 @@ parent: "../spec.md"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
-    last_updated_at: "2026-08-11T19:57:46Z"
+    last_updated_at: "2026-08-12T05:31:09Z"
     last_updated_by: "codex"
-    recent_action: "Closed the Pi repeat defect and completed the identical whole-gate comparison"
-    next_safe_action: "Run fresh deep review, then regenerate metadata and execute final strict validation"
-    blockers:
-      - "Fresh post-implementation deep review remains"
-      - "Final parent/phase metadata and strict validation remain"
+    recent_action: "Completed fresh review, metadata regen, and strict validation (PASSED, 0/0)"
+    next_safe_action: "Commit the packet closeout and land the feature delivery commit"
+    blockers: []
     key_files:
       - "handover.md"
       - "spec.md"
@@ -28,10 +26,10 @@ _memory:
       - "checklist.md"
       - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
     session_dedup:
-      fingerprint: "sha256:1d6f6f9c87a64187f4772ffb7594dc2dab82976dcda90cc08ff28eedb32b27ce"
+      fingerprint: "sha256:4b980e974deca4e82c97a4f6d0dfab9d3fee29223e9e69e7c92e847fda771e94"
       session_id: "019fef75-b9e5-79f1-9889-be8dad41a4bf"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Create phase 018 rather than expand phase 017"
@@ -50,9 +48,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery |
-| **Status** | In progress |
-| **Delivery State** | Runtime and evidence remediation implemented; fresh review and metadata closeout pending |
-| **Completion** | 95% |
+| **Status** | Complete |
+| **Delivery State** | Runtime and evidence remediation implemented; fresh review, metadata, and strict validation closeout complete |
+| **Completion** | 100% |
 | **Level** | 3 |
 | **Parent** | `../spec.md` |
 | **Predecessor** | `017-adapter-live-delivery-verification` |
@@ -122,8 +120,8 @@ Focused gates were rerun after remediation. The frozen manifest then completed u
 | Runtime evidence matrix | Claude/Codex/Cursor/Devin adapter and registered-path cadence PASS; Cursor native host remains SKIP/unconfirmed |
 | Whole-gate comparison | PASS; identical manifest hash, zero blockers, no new failure identity, no lost test file; Pi 54→55 and negative controls exit 1→0 |
 | Stable baseline limitations | Advisor retained the same 64 normalized failures; spec-kit retained the same timeout class and 154 normalized failures; parent recursive validation retained the same two failures |
-| Fresh deep review | PENDING; required before final acceptance |
-| Final phase metadata/strict validation | PENDING until fresh review is dispositioned |
+| Fresh deep review | PASS; converged 6-iteration review plus a supplementary security/decision/rollback review, no confirmed P0 or unresolved P1 |
+| Final phase metadata/strict validation | PASS; metadata regenerated, `validate.sh --strict` RESULT: PASSED (0 errors, 0 warnings) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -131,10 +129,10 @@ Focused gates were rerun after remediation. The frozen manifest then completed u
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Fresh review is pending.** The post-remediation state has not yet received the mandatory command-driven deep review; final acceptance remains blocked until that verdict is dispositioned.
+1. **Fresh review is complete.** The post-remediation state received the mandatory converged deep review plus a supplementary security/decision/rollback review; both were dispositioned with no confirmed P0 or unresolved P1.
 2. **Native-host evidence is incomplete.** Current proof is unit, adapter-driven, or registered-path; Cursor is dormant/unconfirmed and no adapter result is promoted to native-host delivery.
 3. **Two implementations remain.** The TypeScript canonical core and OpenCode JavaScript mirror agree through contract vectors, but compiled-core unification remains RR-001.
 4. **The whole suites are not globally green.** The authoritative claim is zero regression against a frozen baseline, not that all repository tests pass. Advisor failures, spec-kit timeout/failures, and parent recursive errors are unchanged.
-5. **The working tree is broad and dirty.** Evidence uses explicit task-owned paths and source hashes; nothing is staged, committed, or pushed by this task.
-6. **Final metadata is intentionally stale until review.** Description, graph, continuity fingerprints, checklist closeout, and strict validation will be regenerated only after the fresh review cannot invalidate them.
+5. **The working tree is broad and dirty.** The packet docs are committed as scoped baseline and completion commits using explicit task-owned paths; the broader unrelated dirty tree is untouched. The feature runtime code is implemented but not yet committed — a downstream delivery step.
+6. **Final metadata is regenerated and current.** Description, graph, and continuity fingerprints are refreshed, checklist closeout is complete, and `validate.sh --strict` reports RESULT: PASSED (0 errors, 0 warnings).
 <!-- /ANCHOR:limitations -->

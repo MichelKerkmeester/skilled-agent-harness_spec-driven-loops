@@ -1,0 +1,29 @@
+{
+  "level": "3+",
+  "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
+  "description": "Implements the host-local Pi RPC supervisor, durable replay, session catalog, mutation ledger, and crash-safe reconciliation core.",
+  "keywords": [
+    "implements",
+    "host-local",
+    "rpc",
+    "supervisor",
+    "durable",
+    "replay",
+    "session",
+    "catalog",
+    "mutation",
+    "ledger",
+    "crash-safe",
+    "reconciliation",
+    "core"
+  ],
+  "lastUpdated": "2026-08-10T18:46:06.609Z",
+  "specId": "003",
+  "folderSlug": "relay-protocol-and-state",
+  "parentChain": [
+    "cli-external-orchestration",
+    "041-pi-remote-mobile-agent-like-cc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

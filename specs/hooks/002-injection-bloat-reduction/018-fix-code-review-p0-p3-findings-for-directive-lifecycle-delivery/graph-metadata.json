@@ -47,7 +47,7 @@
       "taxonomy"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "evidence/review/source-review-registry.json",
       "evidence/negative-controls/final.json",
@@ -58,16 +58,17 @@
       "evidence/whole-gate/manifest.json",
       "spec.md",
       "implementation-summary.md",
+      "evidence/inventory/dirty-checkout.txt",
       "evidence/inventory/discovery-symlinks.txt",
       "evidence/inventory/lifecycle-producers-consumers.txt",
       "evidence/inventory/evidence-producers-consumers.txt",
-      "evidence/inventory/dirty-checkout.txt",
+      "evidence/outcomes/directive-unit-verified.json",
+      "evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
+      "evidence/outcomes/opencode-test-seam.json",
       "evidence/performance/result-final-5.json",
-      "evidence/inventory/structural-impact-coverage.md",
-      "handover.md",
-      "review/review-report.md",
-      "evidence/review/fresh-deep-review-disposition.md",
-      "evidence/whole-gate/comparison-final-pi-repeat-4-normalized.json"
+      "evidence/tests/registered-adapters-verified.log",
+      "evidence/runtime/2026-08-11-registered-paths-final/source-hashes.json",
+      "evidence/outcomes/cursor-native-host-final.json"
     ],
     "entities": [
       {
@@ -125,6 +126,12 @@
         "source": "derived"
       },
       {
+        "name": "dirty-checkout.txt",
+        "kind": "file",
+        "path": "evidence/inventory/dirty-checkout.txt",
+        "source": "derived"
+      },
+      {
         "name": "discovery-symlinks.txt",
         "kind": "file",
         "path": "evidence/inventory/discovery-symlinks.txt",
@@ -143,9 +150,21 @@
         "source": "derived"
       },
       {
-        "name": "dirty-checkout.txt",
-        "kind": "file",
-        "path": "evidence/inventory/dirty-checkout.txt",
+        "name": "directive-unit-verified.json",
+        "kind": "config",
+        "path": "evidence/outcomes/directive-unit-verified.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary.json",
+        "kind": "config",
+        "path": "evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-test-seam.json",
+        "kind": "config",
+        "path": "evidence/outcomes/opencode-test-seam.json",
         "source": "derived"
       },
       {
@@ -155,33 +174,21 @@
         "source": "derived"
       },
       {
-        "name": "structural-impact-coverage.md",
-        "kind": "doc",
-        "path": "evidence/inventory/structural-impact-coverage.md",
+        "name": "registered-adapters-verified.log",
+        "kind": "file",
+        "path": "evidence/tests/registered-adapters-verified.log",
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "fresh-deep-review-disposition.md",
-        "kind": "doc",
-        "path": "evidence/review/fresh-deep-review-disposition.md",
-        "source": "derived"
-      },
-      {
-        "name": "comparison-final-pi-repeat-4-normalized.json",
+        "name": "source-hashes.json",
         "kind": "config",
-        "path": "evidence/whole-gate/comparison-final-pi-repeat-4-normalized.json",
+        "path": "evidence/runtime/2026-08-11-registered-paths-final/source-hashes.json",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-native-host-final.json",
+        "kind": "config",
+        "path": "evidence/outcomes/cursor-native-host-final.json",
         "source": "derived"
       },
       {
@@ -203,12 +210,6 @@
         "source": "derived"
       },
       {
-        "name": "Verified Pi",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "All Claude",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -217,7 +218,7 @@
     ],
     "causal_summary": "Before this phase, the canonical decision recorded transcript size only when it delivered the full directive block",
     "created_at": "2026-08-11T12:34:41Z",
-    "last_save_at": "2026-08-12T04:14:50.825Z",
+    "last_save_at": "2026-08-12T05:31:12.086Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,15 +230,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:6148a599b8c4cac88bdd7b3041d7facb82cdb7e08bb236e18e113b6f11b9719f",
+    "source_fingerprint": "sha256:1abba5c3bd36fc8fb14dfe67c3a14739bb55487682aa1b5c570e470616904a84",
     "source_doc_hashes": {
-      "spec.md": "e92fb18c00c2790c6ddf1ef784d639d699eb07d6ec1ba86d11a44e1e21c69830",
-      "plan.md": "62df9d2b024a025e3e1bf286abd9ca3d1ab1b330527ba9490e08fc5fa932bb67",
-      "tasks.md": "47eb439b5691f426e8fee10d508a190d4de3b7e0c9695bd76becdc2fd7b41b93",
-      "checklist.md": "31a7a228733ed6bcfb277543251defc862cd651a2891ccb33ee71db17e5dc990",
+      "spec.md": "f00ff69d5afb03e56acddf705b0c93fdad7ec5ae5d376b56ee7b582b5446843f",
+      "plan.md": "5f64ce29a7cf36d6581f55d4d9901d45751fc2652a99cdc7bdaad496ecbbca40",
+      "tasks.md": "6303746dff874430236cfcca5e14dab0a6f0c05867e58132e73d490595648c46",
+      "checklist.md": "10a94e6454c111cd181968fdcf49975f2c55319dc711e5e540b396cb355fdbce",
       "decision-record.md": "a4b399f437316c3095dc9ee2be8ae4534502a45a67f88147867d9d48861ab6b6",
-      "implementation-summary.md": "05cca00e6690511a683016f531e16c24c2bd697bd4bc385f2aadb0cf67733f2b",
-      "handover.md": "5dc27e65d42f1faa487d07715eaa5f992e88320a53188a27da81bb4aaffb3478"
+      "implementation-summary.md": "7d9c8ee8ea7c9c26b3e61c78cfdf0686410dfdc8dca50e639ead2d6f77d551f8",
+      "handover.md": "644eeb93f78ee4ac67e653cfc33a1e82d770ad376798ee8af5ecb0b18102c92d"
     },
     "last_active_child_id": null,
     "last_active_at": null

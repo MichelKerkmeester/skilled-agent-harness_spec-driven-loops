@@ -297,7 +297,7 @@ Stop immediately when a required baseline is missing, a registered path conflict
 
 - **Trigger**: any stale suppression, cross-session suppression, path escape, record injection acceptance, symlink deletion/replacement, benchmark provenance regression, or new whole-gate failure.
 - **Immediate procedure**: set `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` to restore always-full delivery. Keep the discovery symlinks and historical reports untouched.
-- **Code rollback**: revert only the packet-owned core, lifecycle bridge, adapter, plugin, wrapper, and test changes to the captured baseline diff. Rebuild the affected dist packages and rerun the same whole-gate manifest.
+- **Code rollback**: revert the packet-owned core, lifecycle bridge, adapter, plugin, wrapper, and test changes — enumerated in `evidence/inventory/dirty-checkout.txt` — by `git revert` of the delivery commit once landed, or by deleting the new files and reverting the modified ones per that inventory while the change is still uncommitted. Rebuild the affected dist packages and rerun the same whole-gate manifest.
 - **State rollback**: treat version-mismatched records as invalid and delete only the contained directive-lifecycle state directory after owner/no-follow validation. State is disposable; deletion causes full delivery.
 - **Evidence rollback**: never delete or rewrite an immutable report. Mark a bad new run superseded in a later append-only manifest.
 - **Documentation rollback**: do not restore phase 017's deletion plan. If implementation is rolled back, phase 018 returns to planned/blocked and parent truth points at the kill-switch state.

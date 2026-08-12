@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
+  "description": "Turns the implemented contracts and observed operations into accurate API, security, setup, maintenance, incident, and rollback documentation.",
+  "keywords": [
+    "turns",
+    "implemented",
+    "contracts",
+    "observed",
+    "operations",
+    "accurate",
+    "api",
+    "security",
+    "setup",
+    "maintenance",
+    "incident",
+    "rollback",
+    "documentation"
+  ],
+  "lastUpdated": "2026-08-10T18:46:06.637Z",
+  "specId": "008",
+  "folderSlug": "documentation-and-runbooks",
+  "parentChain": [
+    "cli-external-orchestration",
+    "041-pi-remote-mobile-agent-like-cc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

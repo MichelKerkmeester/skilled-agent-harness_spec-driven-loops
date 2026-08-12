@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: Fix Code-Review P0-P3 Findings for Directive-Lifecycle Delivery"
-description: "Implement and verify the correctness, security, evidence-integrity, adapter-parity, and repository-truth remediation required by the directive-lifecycle review. Runtime work and regression evidence are complete; fresh review and final metadata reconciliation remain."
-status: "in_progress"
-completion_pct: 95
+description: "Implement and verify the correctness, security, evidence-integrity, adapter-parity, and repository-truth remediation required by the directive-lifecycle review. Runtime work, regression evidence, fresh review, and final metadata reconciliation are complete."
+status: "complete"
+completion_pct: 100
 trigger_phrases:
   - "directive lifecycle review findings"
   - "transcript high-water mark"
@@ -17,12 +17,11 @@ successor: "None"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
-    last_updated_at: "2026-08-11T19:57:46Z"
+    last_updated_at: "2026-08-12T05:31:09Z"
     last_updated_by: "codex"
-    recent_action: "Verified Pi repeat suppression and completed the identical whole-gate comparison"
-    next_safe_action: "Run the mandatory fresh deep review, then reconcile final metadata and strict validation"
-    blockers:
-      - "Fresh post-implementation deep review and final metadata reconciliation remain"
+    recent_action: "Completed fresh review, metadata regen, and strict validation (PASSED, 0/0)"
+    next_safe_action: "Commit the packet closeout and land the feature delivery commit"
+    blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts"
       - ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
@@ -30,10 +29,10 @@ _memory:
       - ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs"
     session_dedup:
-      fingerprint: "sha256:1f1340ebabf534388831d0374d2306a961c01750f6b86105572d889c5a1b4513"
+      fingerprint: "sha256:0a9d8eb05e130dab8944f8b767bb10ef121719a9273b86d4130760ba893e8437"
       session_id: "2026-08-11-directive-lifecycle-review-planning"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "P3 is a non-gating residual-risk register, not a formal repository priority"
@@ -48,11 +47,11 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-The source review found stale suppression after transcript growth and shrink, untrusted lifecycle and identity signals, unsafe file-store topology, and overstated evidence strength. The fail-open remediation now spans the canonical TypeScript core, the OpenCode JavaScript mirror, host lifecycle adapters, Pi prompt delivery, scenario 457, benchmark provenance, tests, and phase metadata. Focused suites and the final identical-manifest comparison pass; fresh deep review and final metadata reconciliation remain before completion.
+The source review found stale suppression after transcript growth and shrink, untrusted lifecycle and identity signals, unsafe file-store topology, and overstated evidence strength. The fail-open remediation now spans the canonical TypeScript core, the OpenCode JavaScript mirror, host lifecycle adapters, Pi prompt delivery, scenario 457, benchmark provenance, tests, and phase metadata. Focused suites and the final identical-manifest comparison pass; fresh review and final metadata reconciliation are complete and strict validation reports RESULT: PASSED with zero errors and warnings.
 
 **Key Decisions**: use an explicit host-wired lifecycle epoch plus transcript high-water mark and a store-wide invalidation generation for unidentified resets; require race-safe file-store operations before relying on cross-process state; classify proof as unit, adapter-driven, registered-path, or native-host-delivered; preserve every runtime discovery symlink.
 
-**Critical Dependencies**: the immutable whole-gate baseline and final comparison are present; registered hook paths, build outputs, and append-only benchmark provenance are verified. Final completion still depends on a fresh review and canonical metadata regeneration.
+**Critical Dependencies**: the immutable whole-gate baseline and final comparison are present; registered hook paths, build outputs, and append-only benchmark provenance are verified. Fresh review and canonical metadata regeneration are complete.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -62,8 +61,8 @@ The source review found stale suppression after transcript growth and shrink, un
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 (highest active formal finding; P0 tier is empty) |
-| **Status** | In progress — implementation and regression proof complete; fresh review and final metadata pending |
-| **Completion** | 95% |
+| **Status** | Complete |
+| **Completion** | 100% |
 | **Created** | 2026-08-11 |
 | **Branch** | Current checkout; no packet-specific branch assumed |
 | **Parent** | `../spec.md` |
