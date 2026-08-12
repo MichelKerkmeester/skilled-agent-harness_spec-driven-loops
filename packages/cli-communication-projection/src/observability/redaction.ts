@@ -40,6 +40,11 @@ export const REDACTION_CANARIES: readonly RedactionCanary[] = deepFreeze([
   },
 ]);
 
+const BASE64_REDACTION_CANARIES = deepFreeze(REDACTION_CANARIES.map((canary) => ({
+  canaryId: canary.id,
+  value: Buffer.from(canary.value).toString('base64'),
+})));
+
 /** Scan nested aggregates, exports, traces, and error metadata without reflecting values. */
 export function scanForRedactionCanaries(input: unknown): readonly RedactionCanaryFinding[] {
   const findings: RedactionCanaryFinding[] = [];
@@ -69,6 +74,14 @@ function scanValue(
     scanString(new TextDecoder().decode(value), path, findings);
     return;
   }
+  if (value instanceof Uint16Array) {
+    scanString(decodeUint16Array(value), path, findings);
+    return;
+  }
+  if (value instanceof ArrayBuffer) {
+    scanString(new TextDecoder().decode(new Uint8Array(value)), path, findings);
+    return;
+  }
   if (typeof value !== 'object' || value === null || visited.has(value)) {
     return;
   }
@@ -95,10 +108,17 @@ function scanString(
   findings: RedactionCanaryFinding[],
 ): void {
   for (const canary of REDACTION_CANARIES) {
-    if (value.includes(canary.value)) {
+    const encodedCanary = BASE64_REDACTION_CANARIES.find(
+      (encoded) => encoded.canaryId === canary.id,
+    );
+    if (value.includes(canary.value) || value.includes(encodedCanary?.value ?? '')) {
       findings.push({ path, canaryId: canary.id, code: 'redaction-canary' });
     }
   }
+}
+
+function decodeUint16Array(value: Uint16Array): string {
+  return Array.from(value, (codeUnit) => String.fromCharCode(codeUnit)).join('');
 }
 
 function appendPath(path: string, key: string): string {

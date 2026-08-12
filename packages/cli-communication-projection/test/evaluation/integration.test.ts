@@ -34,7 +34,7 @@ import type { RuntimeTelemetryRecord } from '../../src/runtimes/index.js';
 
 const POWER_INPUT = {
   standardDeviation: 0.1,
-  minimumDetectableDifference: 1,
+  nonInferiorityMargin: -1,
   alpha: 0.05,
   targetPower: 0.8,
 } as const;

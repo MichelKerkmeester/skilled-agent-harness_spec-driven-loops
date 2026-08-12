@@ -66,4 +66,18 @@ describe('telemetry export controls', () => {
     ]));
     expect(JSON.stringify(result)).not.toContain('sk-canary-telemetry-4d77a21f');
   });
+
+  it('omits aggregates with fractional counters and preserves integer counters', () => {
+    const aggregate = aggregateLifecycleEvents([]);
+    const fractional = {
+      ...aggregate,
+      counters: { ...aggregate.counters, accepted: 0.5 },
+    };
+
+    const result = createTelemetryExport([fractional, aggregate], { enabled: true });
+
+    expect(result.status).toBe('exported');
+    expect(result.recordCount).toBe(1);
+    expect(result.records[0]?.counters.accepted).toBe(0);
+  });
 });

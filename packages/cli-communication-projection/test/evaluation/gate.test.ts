@@ -24,7 +24,7 @@ import type { ProtectedDocument } from '../../src/fidelity/index.js';
 
 const powerInput = {
   standardDeviation: 0.1,
-  minimumDetectableDifference: 1,
+  nonInferiorityMargin: -1,
   alpha: 0.05,
   targetPower: 0.8,
 } as const;

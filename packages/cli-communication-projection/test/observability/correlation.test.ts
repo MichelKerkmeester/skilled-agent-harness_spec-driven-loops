@@ -73,6 +73,29 @@ describe('rotating keyed lifecycle correlation', () => {
     }
   });
 
+  it('treats a new secret at the same window index as a true rotation', () => {
+    const first = createRotatingCorrelationDigest(coordinates, {
+      ...rotation,
+      nowMs: 12_345,
+    });
+    const second = createRotatingCorrelationDigest(coordinates, {
+      ...rotation,
+      secretKey: 'different-deterministic-master-key',
+      nowMs: 12_345,
+    });
+
+    expect(first.status).toBe('created');
+    expect(second.status).toBe('created');
+    if (first.status !== 'created' || second.status !== 'created') {
+      return;
+    }
+    expect(first.keyRotationId).not.toBe(second.keyRotationId);
+    expect(verifyCorrelationRotationUnlinkability(first, second)).toEqual({
+      unlinkable: true,
+      reasonCode: 'rotation-and-digest-differ',
+    });
+  });
+
   it('rejects raw-content fields instead of hashing them', () => {
     const result = createRotatingCorrelationDigest({
       ...coordinates,

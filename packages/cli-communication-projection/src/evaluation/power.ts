@@ -11,7 +11,7 @@ export const MAXIMUM_PAIRED_RATINGS_PER_STRATUM = 100;
 /** Inputs for a normal-approximation paired non-inferiority power plan. */
 export interface PowerAnalysisInput {
   readonly standardDeviation: number;
-  readonly minimumDetectableDifference: number;
+  readonly nonInferiorityMargin: number;
   readonly alpha: number;
   readonly targetPower: number;
 }
@@ -21,7 +21,7 @@ export interface PoweredSampleSize {
   readonly alpha: number;
   readonly targetPower: number;
   readonly standardDeviation: number;
-  readonly minimumDetectableDifference: number;
+  readonly nonInferiorityMargin: number;
   readonly unboundedPairedRatings: number;
   readonly pairedRatingsPerStratum: number;
   readonly achievedPower: number;
@@ -29,14 +29,15 @@ export interface PoweredSampleSize {
   readonly clamped: boolean;
 }
 
-/** Compute a bounded paired-rating count using the frozen two-sided CI rule. */
+/** Compute a bounded paired-rating count for the one-sided non-inferiority hypothesis. */
 export function calculatePoweredSampleSize(
   input: PowerAnalysisInput,
 ): PoweredSampleSize {
   validatePowerInput(input);
-  const confidenceCritical = inverseStandardNormal(1 - input.alpha / 2);
+  const confidenceCritical = inverseStandardNormal(1 - input.alpha);
   const powerCritical = inverseStandardNormal(input.targetPower);
-  const ratio = input.standardDeviation / input.minimumDetectableDifference;
+  const effectToRuleOut = -input.nonInferiorityMargin;
+  const ratio = input.standardDeviation / effectToRuleOut;
   const rawEstimate = (confidenceCritical + powerCritical) ** 2 * ratio ** 2;
   const unboundedPairedRatings = Number.isFinite(rawEstimate)
     ? Math.ceil(rawEstimate)
@@ -47,7 +48,7 @@ export function calculatePoweredSampleSize(
   );
   const standardizedEffect = input.standardDeviation === 0
     ? Number.POSITIVE_INFINITY
-    : input.minimumDetectableDifference
+    : effectToRuleOut
       * Math.sqrt(pairedRatingsPerStratum)
       / input.standardDeviation;
   const achievedPower = standardNormalCdf(standardizedEffect - confidenceCritical);
@@ -57,7 +58,7 @@ export function calculatePoweredSampleSize(
     alpha: input.alpha,
     targetPower: input.targetPower,
     standardDeviation: input.standardDeviation,
-    minimumDetectableDifference: input.minimumDetectableDifference,
+    nonInferiorityMargin: input.nonInferiorityMargin,
     unboundedPairedRatings,
     pairedRatingsPerStratum,
     achievedPower,
@@ -71,10 +72,10 @@ function validatePowerInput(input: PowerAnalysisInput): void {
     throw new RangeError('Power standard deviation must be finite and non-negative.');
   }
   if (
-    !Number.isFinite(input.minimumDetectableDifference)
-    || input.minimumDetectableDifference <= 0
+    !Number.isFinite(input.nonInferiorityMargin)
+    || input.nonInferiorityMargin >= 0
   ) {
-    throw new RangeError('Minimum detectable difference must be finite and positive.');
+    throw new RangeError('Non-inferiority margin must be a finite negative number.');
   }
   if (!Number.isFinite(input.alpha) || input.alpha <= 0 || input.alpha >= 0.5) {
     throw new RangeError('Power alpha must be between zero and 0.5.');

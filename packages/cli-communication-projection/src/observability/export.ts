@@ -156,7 +156,11 @@ function filterCounters(
   if (!isRecord(input)) {
     return null;
   }
-  const values = COUNTER_KEYS.map((key) => finiteNumber(input[key], isRate ? 1 : undefined));
+  const values = COUNTER_KEYS.map((key) => finiteNumber(
+    input[key],
+    isRate ? 1 : undefined,
+    !isRate,
+  ));
   if (values.some((value) => value === null)) {
     return null;
   }
@@ -269,10 +273,15 @@ function isPresentationTier(value: unknown): value is PresentationTier {
   return (PRESENTATION_TIERS as readonly unknown[]).includes(value);
 }
 
-function finiteNumber(value: unknown, maximum?: number): number | null {
+function finiteNumber(
+  value: unknown,
+  maximum?: number,
+  requiresInteger = false,
+): number | null {
   return typeof value === 'number'
     && Number.isFinite(value)
     && value >= 0
+    && (!requiresInteger || Number.isInteger(value))
     && (maximum === undefined || value <= maximum)
     ? value
     : null;

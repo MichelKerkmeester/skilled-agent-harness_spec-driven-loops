@@ -82,9 +82,11 @@ export function createRotatingCorrelationDigest(
   const windowIndex = Math.floor(
     (options.nowMs - options.epochMs) / options.windowDurationMs,
   );
-  const keyRotationId = `window-${windowIndex}`;
+  const keyRotationId = `hmac-sha256:${createHmac('sha256', options.secretKey)
+    .update(`correlation-rotation:${options.epochMs}:${windowIndex}`)
+    .digest('hex')}`;
   const windowKey = createHmac('sha256', options.secretKey)
-    .update(`correlation-key:${keyRotationId}`)
+    .update(`correlation-key:${options.epochMs}:${windowIndex}`)
     .digest();
   const correlationDigest = createHmac('sha256', windowKey)
     .update(serializeCoordinates(input))

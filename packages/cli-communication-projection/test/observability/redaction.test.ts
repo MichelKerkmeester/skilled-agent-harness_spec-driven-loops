@@ -64,4 +64,39 @@ describe('redaction canary scanning', () => {
     expect(() => assertNoRedactionCanaryLeak(nested))
       .toThrow('Redaction canary detected in telemetry data.');
   });
+
+  it('detects base64 and typed-array encodings without reflecting their contents', () => {
+    const secret = REDACTION_CANARIES[0];
+    if (secret === undefined) {
+      throw new Error('Expected a synthetic secret canary.');
+    }
+    const encodedSecret = Buffer.from(secret.value).toString('base64');
+    const typedSecret = Uint16Array.from(
+      secret.value,
+      (character) => character.charCodeAt(0),
+    );
+    const nestedError = Object.assign(new Error('Provider request failed.'), {
+      details: { encodedSecret },
+    });
+
+    const base64Findings = scanForRedactionCanaries(nestedError);
+    const typedFindings = scanForRedactionCanaries({ details: { typedSecret } });
+
+    expect(base64Findings).toEqual([
+      expect.objectContaining({
+        path: '$.details.encodedSecret',
+        canaryId: secret.id,
+      }),
+    ]);
+    expect(typedFindings).toEqual([
+      expect.objectContaining({
+        path: '$.details.typedSecret',
+        canaryId: secret.id,
+      }),
+    ]);
+    expect(() => assertNoRedactionCanaryLeak(nestedError))
+      .toThrow('Redaction canary detected in telemetry data.');
+    expect(() => assertNoRedactionCanaryLeak(typedSecret))
+      .toThrow('Redaction canary detected in telemetry data.');
+  });
 });

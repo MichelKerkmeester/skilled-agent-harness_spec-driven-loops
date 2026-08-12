@@ -57,4 +57,28 @@ describe('masked review packets', () => {
 
     expect(verifyMaskedReviewPacket(leaked, comparison)).toBe(false);
   });
+
+  it('varies display order across seeds while remaining reproducible per seed', () => {
+    const bundles = Array.from({ length: 64 }, (_, index) => ({
+      seed: `seed-${index}`,
+      bundle: buildMaskedReviewPacket(comparison, `seed-${index}`),
+    }));
+    const firstSources = bundles.map(({ bundle }) => bundle.orderRecord.order[0]?.source);
+    const candidateFirst = bundles.find(
+      ({ bundle }) => bundle.orderRecord.order[0]?.source === 'candidate',
+    );
+    const referenceFirst = bundles.find(
+      ({ bundle }) => bundle.orderRecord.order[0]?.source === 'reference',
+    );
+
+    expect(new Set(firstSources)).toEqual(new Set(['candidate', 'reference']));
+    expect(candidateFirst?.seed).not.toBe(referenceFirst?.seed);
+    expect(candidateFirst?.bundle.orderRecord.order)
+      .not.toEqual(referenceFirst?.bundle.orderRecord.order);
+    expect(candidateFirst).toBeDefined();
+    if (candidateFirst !== undefined) {
+      expect(buildMaskedReviewPacket(comparison, candidateFirst.seed))
+        .toEqual(candidateFirst.bundle);
+    }
+  });
 });
