@@ -39,6 +39,7 @@ export type FreshnessReasonCode =
   | 'expiry-date-invalid'
   | 'fresh'
   | 'now-invalid'
+  | 'tested-date-future'
   | 'tested-date-invalid';
 
 /** One row whose evidence remains inside its declared window. */
@@ -70,6 +71,7 @@ export interface HostedPrivacyFreshnessResult {
     | 'not-opencode-go-hosted'
     | 'now-invalid'
     | 'privacy-fact-expired'
+    | 'privacy-fact-future'
     | 'privacy-fact-missing'
     | 'privacy-fact-unknown';
   readonly factNames: readonly ('retention' | 'training-use')[];

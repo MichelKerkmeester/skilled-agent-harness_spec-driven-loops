@@ -217,7 +217,7 @@ export async function checkEndpointReachability(input: DoctorInput): Promise<Doc
       return block('endpoint-reachability', 'endpoint-unreachable',
         'Restore endpoint reachability before enabling the provider route.');
     }
-    if (result.status === 'unknown') {
+    if (result.status !== 'reachable') {
       return block('endpoint-reachability', 'endpoint-reachability-unknown',
         'Confirm endpoint reachability before enabling the provider route.');
     }
@@ -346,6 +346,12 @@ export function checkPresentationTier(input: DoctorInput): DoctorFinding {
     ? warn('presentation-tier', 'presentation-tier-provisional',
       'Confirm the provisional presentation-tier evidence before release.')
     : ok('presentation-tier', 'presentation-tier-supported');
+}
+
+/** Represent structurally unusable input without retaining its content. */
+export function createMalformedInputFinding(): DoctorFinding {
+  return block('input-validation', 'input-malformed',
+    'Provide a structurally valid compatibility-doctor input.');
 }
 
 function findRuntimeEntry(runtime: string, pathId: string): RuntimeCapabilityMatrixEntry | undefined {

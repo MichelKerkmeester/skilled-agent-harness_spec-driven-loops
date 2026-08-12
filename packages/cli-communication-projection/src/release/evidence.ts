@@ -49,6 +49,7 @@ export const ReleaseAbortReasonCodes = {
   RUNTIME_SMOKES_MISSING: 'runtime-smokes-missing',
   STRICT_PACKET_VALIDATION_FAILED: 'strict-packet-validation-failed',
   STRICT_PACKET_VALIDATION_MISSING: 'strict-packet-validation-missing',
+  SUPPORT_MATRIX_DIGEST_MISMATCH: 'support-matrix-digest-mismatch',
   SUPPORT_MATRIX_INCOMPLETE: 'support-matrix-incomplete',
   SUPPORT_MATRIX_MISSING: 'support-matrix-missing',
   SUPPORT_MATRIX_STALE: 'support-matrix-stale',

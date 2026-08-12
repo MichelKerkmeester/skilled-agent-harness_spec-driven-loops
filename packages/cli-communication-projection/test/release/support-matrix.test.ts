@@ -69,6 +69,51 @@ describe('release support matrix', () => {
     expect(result.freshRows.every((entry) => entry.reasonCode === 'fresh')).toBe(true);
   });
 
+  it('blocks support evidence observed in the future', () => {
+    const row = SupportMatrix.rows[0];
+    if (row === undefined) {
+      throw new Error('Expected a populated support matrix.');
+    }
+    const futureMatrix: SupportMatrixRecord = {
+      version: SupportMatrix.version,
+      rows: [{
+        ...row,
+        testedDate: '2026-08-12T12:00:00.000Z',
+        expiryDate: '2026-08-13T12:00:00.000Z',
+      }],
+      contentFreeDigest: SupportMatrix.contentFreeDigest,
+    };
+
+    expect(assessSupportMatrixFreshness(futureMatrix, '2026-08-12T11:59:59.999Z'))
+      .toMatchObject({
+        decision: 'block',
+        staleRows: [{ row: futureMatrix.rows[0], reasonCode: 'tested-date-future' }],
+      });
+  });
+
+  it('expires support evidence at its exact expiry instant', () => {
+    const row = SupportMatrix.rows[0];
+    if (row === undefined) {
+      throw new Error('Expected a populated support matrix.');
+    }
+    const expiringMatrix: SupportMatrixRecord = {
+      version: SupportMatrix.version,
+      rows: [{
+        ...row,
+        testedDate: '2026-08-12T08:00:00.000Z',
+        expiryDate: '2026-08-12T12:00:00.000Z',
+      }],
+      contentFreeDigest: SupportMatrix.contentFreeDigest,
+    };
+
+    expect(assessSupportMatrixFreshness(expiringMatrix, '2026-08-12T11:59:59.999Z'))
+      .toMatchObject({ decision: 'allow' });
+    expect(assessSupportMatrixFreshness(expiringMatrix, '2026-08-12T12:00:00.000Z'))
+      .toMatchObject({ decision: 'block', reasonCodes: ['expired'] });
+    expect(assessSupportMatrixFreshness(expiringMatrix, '2026-08-12T12:00:00.001Z'))
+      .toMatchObject({ decision: 'block', reasonCodes: ['expired'] });
+  });
+
   it('blocks OpenCode Go hosted routing after its privacy facts expire', () => {
     const record = createOpenCodeGoDeepSeekV4FlashRecord({
       credentialReference: 'managed:release-support-test',
@@ -79,6 +124,55 @@ describe('release support matrix', () => {
     );
 
     expect(result).toEqual({
+      decision: 'block',
+      reasonCode: 'privacy-fact-expired',
+      factNames: ['retention', 'training-use'],
+    });
+  });
+
+  it('blocks OpenCode Go privacy facts observed in the future', () => {
+    const record = createOpenCodeGoDeepSeekV4FlashRecord({
+      credentialReference: 'managed:release-support-test',
+    });
+    const futureRecord = structuredClone({
+      ...record,
+      privacyFacts: record.privacyFacts.map((fact) => ({
+        ...fact,
+        observedAt: '2026-08-12T12:00:00.000Z',
+      })),
+    });
+
+    expect(assessOpenCodeGoHostedPrivacyFreshness(
+      futureRecord,
+      '2026-08-12T11:59:59.999Z',
+    )).toEqual({
+      decision: 'block',
+      reasonCode: 'privacy-fact-future',
+      factNames: ['retention', 'training-use'],
+    });
+  });
+
+  it('expires OpenCode Go privacy facts at their exact expiry instant', () => {
+    const record = createOpenCodeGoDeepSeekV4FlashRecord({
+      credentialReference: 'managed:release-support-test',
+    });
+    const expiringRecord = structuredClone({
+      ...record,
+      privacyFacts: record.privacyFacts.map((fact) => ({
+        ...fact,
+        observedAt: '2026-08-12T08:00:00.000Z',
+        expiresAt: '2026-08-12T12:00:00.000Z',
+      })),
+    });
+
+    expect(assessOpenCodeGoHostedPrivacyFreshness(
+      expiringRecord,
+      '2026-08-12T11:59:59.999Z',
+    )).toMatchObject({ decision: 'allow' });
+    expect(assessOpenCodeGoHostedPrivacyFreshness(
+      expiringRecord,
+      '2026-08-12T12:00:00.000Z',
+    )).toEqual({
       decision: 'block',
       reasonCode: 'privacy-fact-expired',
       factNames: ['retention', 'training-use'],

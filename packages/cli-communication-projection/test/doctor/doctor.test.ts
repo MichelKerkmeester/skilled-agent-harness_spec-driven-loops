@@ -10,7 +10,10 @@ import {
   createOpenCodeGoDeepSeekV4FlashRecord,
 } from '../../src/providers/index.js';
 
-import type { DoctorInput } from '../../src/doctor/index.js';
+import type {
+  DoctorInput,
+  DoctorReachabilityProbeResult,
+} from '../../src/doctor/index.js';
 import type { ProviderModelRecord } from '../../src/providers/index.js';
 
 const NOW = '2026-08-12T00:00:00.000Z';
@@ -68,23 +71,50 @@ describe('compatibility doctor', () => {
     });
   });
 
+  it('selects original-only for an unrecognized endpoint probe status', async () => {
+    const report = await runCompatibilityDoctor({
+      ...createHostedInput(),
+      reachabilityProbe: async () => ({
+        status: 'dns-failure',
+        durationMs: 1,
+      } as unknown as DoctorReachabilityProbeResult),
+    });
+
+    expect(report).toMatchObject({
+      overallDecision: 'blocked',
+      routeSelection: 'original-only',
+    });
+    expect(report.findings).toContainEqual(expect.objectContaining({
+      checkId: 'endpoint-reachability',
+      severity: 'block',
+      reasonCode: 'endpoint-reachability-unknown',
+    }));
+  });
+
   it('never includes a credential value or raw content in its report', async () => {
     const credentialCanary = 'credential-value-CANARY-7f08';
     const contentCanary = 'raw-message-content-CANARY-b3bd';
-    const provider = createOpenCodeGoDeepSeekV4FlashRecord({
-      credentialReference: 'managed:doctor-report-canary-reference',
+    const baseProvider = createOpenCodeGoDeepSeekV4FlashRecord({
+      credentialReference: `managed:${credentialCanary}`,
+    });
+    const provider = structuredClone({
+      ...baseProvider,
+      provider: {
+        ...baseProvider.provider,
+        endpoint: `https://doctor-canary.example.test/${contentCanary}`,
+      },
     });
     const input = createInput(provider, [{
       providerId: provider.provider.providerId,
       present: false,
     }]);
-    const inputWithCanaries = {
+    const report = await runCompatibilityDoctor({
       ...input,
-      credentialValue: credentialCanary,
-      rawContent: contentCanary,
-      reachabilityProbe: async () => ({ status: 'unreachable' as const, durationMs: 1 }),
-    };
-    const report = await runCompatibilityDoctor(inputWithCanaries);
+      reachabilityProbe: async ({ endpoint }) => {
+        expect(endpoint).toContain(contentCanary);
+        return { status: 'unreachable' as const, durationMs: 1 };
+      },
+    });
     const serialized = JSON.stringify(report);
 
     expect(report.overallDecision).toBe('blocked');
@@ -99,6 +129,29 @@ describe('compatibility doctor', () => {
       'reportVersion',
       'routeSelection',
     ]);
+  });
+
+  it('returns a blocked content-free report for malformed input', async () => {
+    const input = createHostedInput();
+    const provider = structuredClone(input.proposedProviders[0]) as unknown as {
+      provider: Record<string, unknown>;
+    };
+    delete provider.provider.capabilities;
+    const malformedInput = {
+      ...input,
+      proposedProviders: [provider],
+    } as unknown as DoctorInput;
+
+    await expect(runCompatibilityDoctor(malformedInput)).resolves.toMatchObject({
+      overallDecision: 'blocked',
+      routeSelection: 'original-only',
+      contentFree: true,
+      findings: [{
+        checkId: 'input-validation',
+        severity: 'block',
+        reasonCode: 'input-malformed',
+      }],
+    });
   });
 });
 

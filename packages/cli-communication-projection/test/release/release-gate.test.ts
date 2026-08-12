@@ -91,6 +91,22 @@ describe('release readiness gate', () => {
     });
   });
 
+  it('blocks a support matrix whose rows do not match its digest', () => {
+    const input = createPassingInput();
+    const rows = SupportMatrix.rows.map((row, index) =>
+      index === 0 ? { ...row, identifier: `${row.identifier}-modified` } : row);
+    const decision = evaluateReleaseReadiness({
+      ...input,
+      supportMatrix: { ...SupportMatrix, rows },
+    }, NOW);
+
+    expect(decision.overallDecision).toBe('blocked');
+    expect(decision.aborts).toContainEqual({
+      inputName: 'support-matrix',
+      reasonCode: 'support-matrix-digest-mismatch',
+    });
+  });
+
   it('blocks a doctor report whose overall decision is blocked', () => {
     const input = createPassingInput();
     const decision = evaluateReleaseReadiness({
@@ -145,8 +161,6 @@ describe('release readiness gate', () => {
     const contentCanary = 'raw-content-CANARY-771c0';
     const input = {
       ...createPassingInput(),
-      credentialValue: secretCanary,
-      rawContent: contentCanary,
       providerContracts: [passingCheck(`evidence/${secretCanary}/${contentCanary}`)],
     };
 

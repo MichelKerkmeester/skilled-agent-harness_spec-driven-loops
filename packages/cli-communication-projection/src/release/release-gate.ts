@@ -7,7 +7,10 @@ import { createSha256Digest } from '../contracts/exact-original.js';
 import { assertHumanCertifiable } from '../evaluation/types.js';
 import { deepFreeze } from '../fidelity/freeze.js';
 import { ReleaseAbortReasonCodes } from './evidence.js';
-import { assessSupportMatrixFreshness } from './support-matrix.js';
+import {
+  assessSupportMatrixFreshness,
+  createSupportMatrixDigest,
+} from './support-matrix.js';
 
 import type { RuntimeId } from '../contracts/common.js';
 import type {
@@ -117,6 +120,15 @@ function evaluateSupportMatrix(
       ReleaseAbortReasonCodes.SUPPORT_MATRIX_INCOMPLETE,
       [],
       Array.isArray(matrix.rows) ? matrix.rows.length : 0,
+    );
+  }
+  if (createSupportMatrixDigest(matrix.version, matrix.rows) !== matrix.contentFreeDigest) {
+    return blocked(
+      'support-matrix',
+      'invalid',
+      ReleaseAbortReasonCodes.SUPPORT_MATRIX_DIGEST_MISMATCH,
+      [],
+      matrix.rows.length,
     );
   }
 

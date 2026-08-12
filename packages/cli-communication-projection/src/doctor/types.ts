@@ -10,6 +10,7 @@ export type DoctorCheckId =
   | 'capability-presence'
   | 'credential-reference-presence'
   | 'endpoint-reachability'
+  | 'input-validation'
   | 'presentation-tier'
   | 'privacy-fact-freshness'
   | 'version-compatibility';

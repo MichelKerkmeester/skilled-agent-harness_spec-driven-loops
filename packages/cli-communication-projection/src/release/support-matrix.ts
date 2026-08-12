@@ -60,7 +60,7 @@ export function createSupportMatrix(): SupportMatrixRecord {
     createPromptProfileRow(evidenceDate, runtimeExpiryDate),
   ].sort(compareRows);
   const version = SUPPORT_MATRIX_VERSION;
-  const contentFreeDigest = createMatrixDigest(version, rows);
+  const contentFreeDigest = createSupportMatrixDigest(version, rows);
   return deepFreeze({ version, rows, contentFreeDigest });
 }
 
@@ -69,12 +69,12 @@ export function assessSupportMatrixFreshness(
   matrix: SupportMatrixRecord,
   now: string,
 ): FreshnessResult {
-  const nowDate = normalizeDate(now);
+  const nowTimestamp = parseInstant(now);
   const freshRows: FreshSupportRow[] = [];
   const staleRows: StaleSupportRow[] = [];
 
   for (const row of matrix.rows) {
-    const reasonCode = assessRowFreshness(row, nowDate);
+    const reasonCode = assessRowFreshness(row, nowTimestamp);
     if (reasonCode === 'fresh') {
       freshRows.push({ row, reasonCode });
     } else {
@@ -105,8 +105,8 @@ export function assessOpenCodeGoHostedPrivacyFreshness(
     return hostedPrivacyResult('block', 'not-opencode-go-hosted', []);
   }
 
-  const nowDate = normalizeDate(now);
-  if (nowDate === null) {
+  const nowTimestamp = parseInstant(now);
+  if (nowTimestamp === null) {
     return hostedPrivacyResult('block', 'now-invalid', []);
   }
 
@@ -126,10 +126,31 @@ export function assessOpenCodeGoHostedPrivacyFreshness(
     return hostedPrivacyResult('block', 'privacy-fact-unknown', unknownFacts);
   }
 
+  const invalidFacts = facts
+    .filter(({ fact }) => {
+      const observedAt = parseInstant(fact?.observedAt ?? '');
+      const expiresAt = parseInstant(fact?.expiresAt ?? '');
+      return observedAt === null || expiresAt === null || expiresAt < observedAt;
+    })
+    .map(({ name }) => name);
+  if (invalidFacts.length > 0) {
+    return hostedPrivacyResult('block', 'privacy-fact-unknown', invalidFacts);
+  }
+
+  const futureFacts = facts
+    .filter(({ fact }) => {
+      const observedAt = parseInstant(fact?.observedAt ?? '');
+      return observedAt !== null && observedAt > nowTimestamp;
+    })
+    .map(({ name }) => name);
+  if (futureFacts.length > 0) {
+    return hostedPrivacyResult('block', 'privacy-fact-future', futureFacts);
+  }
+
   const expiredFacts = facts
     .filter(({ fact }) => {
-      const expiryDate = normalizeDate(fact?.expiresAt ?? '');
-      return expiryDate === null || nowDate > expiryDate;
+      const expiresAt = parseInstant(fact?.expiresAt ?? '');
+      return expiresAt === null || nowTimestamp >= expiresAt;
     })
     .map(({ name }) => name);
   if (expiredFacts.length > 0) {
@@ -299,7 +320,7 @@ function providerExpiryDate(record: ProviderModelRecord): string {
   return earliest;
 }
 
-function createMatrixDigest(
+export function createSupportMatrixDigest(
   version: SupportMatrixRecord['version'],
   rows: readonly SupportRow[],
 ): string {
@@ -309,24 +330,26 @@ function createMatrixDigest(
 
 function assessRowFreshness(
   rowValue: SupportRow,
-  nowDate: string | null,
+  nowTimestamp: number | null,
 ): FreshnessReasonCode {
-  if (nowDate === null) {
+  if (nowTimestamp === null) {
     return 'now-invalid';
   }
-  const testedDate = parseDateOnly(rowValue.testedDate);
-  if (testedDate === null) {
+  const testedTimestamp = parseInstant(rowValue.testedDate);
+  if (testedTimestamp === null) {
     return 'tested-date-invalid';
   }
-  const expiryDate = parseDateOnly(rowValue.expiryDate);
-  if (expiryDate === null) {
+  const expiryTimestamp = parseInstant(rowValue.expiryDate);
+  if (expiryTimestamp === null) {
     return 'expiry-date-invalid';
   }
-  if (expiryDate < testedDate) {
+  if (expiryTimestamp < testedTimestamp) {
     return 'expiry-before-tested';
   }
-  const nowTimestamp = parseDateOnly(nowDate);
-  return nowTimestamp !== null && nowTimestamp > expiryDate ? 'expired' : 'fresh';
+  if (testedTimestamp > nowTimestamp) {
+    return 'tested-date-future';
+  }
+  return nowTimestamp >= expiryTimestamp ? 'expired' : 'fresh';
 }
 
 function uniqueReasonCodes(
@@ -381,6 +404,14 @@ function parseDateOnly(value: string): number | null {
     return null;
   }
   return timestamp;
+}
+
+function parseInstant(value: string): number | null {
+  if (ISO_DATE_PATTERN.test(value)) {
+    return parseDateOnly(value);
+  }
+  const timestamp = Date.parse(value);
+  return Number.isNaN(timestamp) ? null : timestamp;
 }
 
 function addUtcDays(date: string, days: number): string {

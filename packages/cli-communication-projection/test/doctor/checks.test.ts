@@ -15,7 +15,7 @@ import {
 import { createOpenCodeGoDeepSeekV4FlashRecord } from '../../src/providers/index.js';
 import { SupportMatrix } from '../../src/release/index.js';
 
-import type { DoctorInput } from '../../src/doctor/index.js';
+import type { DoctorInput, DoctorReachabilityProbeResult } from '../../src/doctor/index.js';
 
 const NOW = '2026-08-12T00:00:00.000Z';
 
@@ -131,6 +131,22 @@ describe('compatibility doctor checks', () => {
       reasonCode: 'endpoint-total-deadline-exceeded',
     });
     expect(reachabilityProbe).toHaveBeenCalledTimes(1);
+  });
+
+  it('blocks an unrecognized endpoint probe status', async () => {
+    const input = {
+      ...createHealthyInput(),
+      reachabilityProbe: async () => ({
+        status: 'dns-failure',
+        durationMs: 1,
+      } as unknown as DoctorReachabilityProbeResult),
+    };
+
+    await expect(checkEndpointReachability(input)).resolves.toMatchObject({
+      checkId: 'endpoint-reachability',
+      severity: 'block',
+      reasonCode: 'endpoint-reachability-unknown',
+    });
   });
 
   it('blocks a missing credential-reference presence flag', () => {
