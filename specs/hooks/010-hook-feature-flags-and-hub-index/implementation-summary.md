@@ -2,7 +2,7 @@
 title: "Implementation Summary: Hook Feature Flags + Full Hub Index"
 description: "Running log across six phases. Phases 1-4 shipped the shared guard and wired it through portable and skill-owned hook concerns. Phase 5 adds the full hub symlink index; Phase 6 remains the final cross-runtime sweep."
 status: "in-progress"
-completion_pct: 83
+completion_pct: 92
 trigger_phrases:
   - "hook feature flags status"
   - "hook-flags guard implementation"
@@ -15,8 +15,8 @@ _memory:
     packet_pointer: "hooks/010-hook-feature-flags-and-hub-index"
     last_updated_at: "2026-08-12T15:20:51Z"
     last_updated_by: "claude"
-    recent_action: "Phase 5 shipped: 49 relative hub-index symlinks resolve to every Phase 4 adapter"
-    next_safe_action: "Phase 6: rebuild required dist outputs, then run the final cross-runtime validation sweep"
+    recent_action: "Reviewer pass: verified packet, closed cursor gap, wrote hub docs"
+    next_safe_action: "Deploy-side: restore node_modules, npm run build, then live sweep"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,10 +25,10 @@ _memory:
       - ".opencode/hooks/shared/hook-flags.cjs"
       - ".opencode/hooks/shared/hook-flags.test.cjs"
     session_dedup:
-      fingerprint: "sha256:f77a9c65b2809c95f7477b2a1c8e4893c8c2f9ddecf375663660fd6c09ad8d2f"
+      fingerprint: "sha256:e561a4dd0ebe5988aa157bb8b5d7b6fd35eb2a0954939f71e1c7fed2e6bc37e4"
       session_id: "4654af88-ba88-466a-bd14-2fa43ea87923"
       parent_session_id: null
-    completion_pct: 83
+    completion_pct: 92
     open_questions: []
     answered_questions:
       - "Full hub index (symlink skill hooks in) vs portable-only -> full index"
@@ -103,8 +103,16 @@ The broader typecheck/plugin suite remains blocked by checkout provisioning: Spe
 
 The hub now includes 49 relative symlinks under the ten skill-owned concern folders. Every link resolves with `readlink -f` to the Phase 4 adapter that remains in its owning skill or `.opencode/plugins/`; no implementation file moved. Duplicate Claude basenames are disambiguated with `speckit-` for the Spec Kit shim/bridge while retaining the canonical Skill Advisor target. The shared Git preflight adapter is indexed once under `git-preflight/shared/` because the same physical file serves Claude, Codex, Cursor, and Devin.
 
-The packet plan also named edits to `.opencode/hooks/README.md` and `injection-contract.md`, but this implementation's explicit scope lock permits only symlink creation under `.opencode/hooks/`. Those documentation edits were skipped rather than exceeding scope.
+The packet plan also named edits to `.opencode/hooks/README.md` and `injection-contract.md`; the implementer left these to stay within its scope lock. They were completed in the final-review pass (full-index + kill-switch model).
 
-## PHASE 6 — pending
+## FINAL REVIEW + ACTIVATION STATE (reviewer pass)
 
-Phase 6 remains the final cross-runtime validation sweep after required dist rebuilds.
+Independent verification (not trusting the implementer reports): all 72 guarded code files' `hook-flags` imports resolve (base-aware for the 8 `.pi/extensions`-symlinked adapters), all 49 hub symlinks resolve, guard suite 7/7 + completion 5/5, and every guard is byte-identical in shape to the proven mcp-route-guard gating pattern. The one implementer-skipped entry point, `cursor/post-tool-use.mjs` (proxies dispatch + post-edit-quality), was guarded to short-circuit only when BOTH concerns are off — coverage is now complete.
+
+**Activation state — what a flag actually gates today:**
+- **Live on sync** (hooks run from source): `spec-gate-classify/enforce`, `completion-evidence-stop`, and every adapter under `.opencode/hooks/` (dispatch, mcp-route-guard, post-edit-quality, task-dispatch, goal) plus the OpenCode plugins. The guard takes effect as soon as the source is in the runtime tree.
+- **Dormant until `npm run build`** (hooks run from `mcp-server/dist/`): the compiled session-lifecycle and `user-prompt-submit` adapters (spec-kit) and the advisor's compiled hooks. Their guard is on the `.ts`/`.mjs` source but the runtime loads the stale `.js` dist; a rebuild activates them. Default-on makes this harmless until a flag is set.
+
+## PHASE 6 — deploy-side (not repo work)
+
+`dist` is gitignored, so the rebuild is a per-environment step. It is currently blocked because this workspace's `mcp-server/node_modules` is de-materialized (MEGA eviction — down to ~11 entries; `zod`/`better-sqlite3` gone). Restoring it needs a stable `npm install` outside MEGA's eviction window, then `npm run build`; the full live cross-runtime sweep follows on the deploy host.
