@@ -1088,10 +1088,14 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
     writeStubBinary(binDir, 'cursor-agent');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const allowed = [
+      'composer-2.5', 'composer-2.5-fast',
+      'cursor-grok-4.5-high', 'cursor-grok-4.5-high-fast',
       'cursor-grok-4.5-low', 'cursor-grok-4.5-low-fast',
       'cursor-grok-4.5-medium', 'cursor-grok-4.5-medium-fast',
-      'cursor-grok-4.5-high', 'cursor-grok-4.5-high-fast',
-      'composer-2.5', 'composer-2.5-fast',
+      'cursor-grok-4.6-high', 'cursor-grok-4.6-high-fast',
+      'cursor-grok-4.6-low', 'cursor-grok-4.6-low-fast',
+      'cursor-grok-4.6-medium', 'cursor-grok-4.6-medium-fast',
+      'cursor-grok-4.6-xhigh', 'cursor-grok-4.6-xhigh-fast',
       'glm-5.2-high', 'glm-5.2-max',
     ];
     for (const model of allowed) {
@@ -1225,12 +1229,11 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const allowed = [
-      'swe',
-      'glm-5-2', 'glm-5-2-max', 'glm-5-2-1m',
-      'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
-      'swe-1-7', 'swe-1-7-medium', 'swe-1-7-lightning',
-      'grok-4-5-low', 'grok-4-5-medium', 'grok-4-5-high',
-      'deepseek-v4-pro', 'deepseek-v4',
+      'deepseek-v4', 'deepseek-v4-pro',
+      'glm-5-2', 'glm-5-2-1m', 'glm-5-2-max', 'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
+      'grok-4-5-high', 'grok-4-5-low', 'grok-4-5-medium',
+      'grok-4-6-high', 'grok-4-6-low', 'grok-4-6-medium', 'grok-4-6-xhigh',
+      'swe', 'swe-1-7', 'swe-1-7-lightning', 'swe-1-7-medium',
     ];
     for (const model of allowed) {
       const command = buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts);
@@ -1242,7 +1245,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     const binDir = makeTempDir('fanout-run-devin-rejected-model-');
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.5-high', 'adaptive', 'opus']) {
+    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.6-high', 'adaptive', 'opus']) {
       expect(() => buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts))
         .toThrow(/not in the enforced allowlist/);
     }

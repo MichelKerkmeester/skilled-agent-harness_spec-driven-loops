@@ -9,7 +9,7 @@ trigger_phrases:
   - "cursor mode ask plan"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.2.0.0
 ---
 
 # Cursor Agent Delegation Reference
@@ -98,13 +98,13 @@ Approval flags (`--auto-review`/`--force`) have no effect in `--mode plan`/`--mo
 | Task Type | Execution mode | Model guidance |
 |-----------|-----------------|------------------|
 | Code review / bug detection | Default agent, `--sandbox enabled`, no write approval needed for the review itself | `composer-2.5` (default) |
-| Architecture exploration | `--mode ask` | `composer-2.5`, or `cursor-grok-4.5-high`/`glm-5.2-max` for deep analysis |
+| Architecture exploration | `--mode ask` | `composer-2.5`, or `cursor-grok-4.6-high`/`-xhigh`/`glm-5.2-max` for deep analysis |
 | Multi-step planning | `--mode plan` | `composer-2.5` |
 | Code generation / file edits | Default agent, `--auto-review` (or `--force` for unattended runs) | `composer-2.5` (default) |
 | Composer-specific validation | Default agent or `--mode ask` | `composer-2.5`/`composer-2.5-fast` explicitly |
-| Grok/GLM-specific second opinion | Default agent or `--mode ask` | `cursor-grok-4.5-{low,medium,high}[-fast]` or `glm-5.2-{high,max}` explicitly |
+| Grok/GLM-specific second opinion | Default agent or `--mode ask` | `cursor-grok-4.5-{low,medium,high}[-fast]`, `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]`, or `glm-5.2-{high,max}` explicitly |
 
-All model guidance above is scoped to the enforced 10-id allowlist (SKILL.md §3) — never `auto`, never a model outside this table.
+All model guidance above is scoped to the enforced 18-id allowlist (SKILL.md §3) — never `auto`, never a model outside this table.
 
 ---
 

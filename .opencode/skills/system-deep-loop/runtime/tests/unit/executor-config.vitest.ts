@@ -727,7 +727,7 @@ describe('resolveCursorApprovalMode', () => {
 });
 
 describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
-  it('is exactly the 10-id enforced allowlist, with auto excluded', () => {
+  it('is exactly the 18-id enforced allowlist (Grok 4.5 and 4.6 both present), with auto excluded', () => {
     expect([...CURSOR_SUPPORTED_MODELS].sort()).toEqual([
       'composer-2.5',
       'composer-2.5-fast',
@@ -737,6 +737,14 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
       'cursor-grok-4.5-low-fast',
       'cursor-grok-4.5-medium',
       'cursor-grok-4.5-medium-fast',
+      'cursor-grok-4.6-high',
+      'cursor-grok-4.6-high-fast',
+      'cursor-grok-4.6-low',
+      'cursor-grok-4.6-low-fast',
+      'cursor-grok-4.6-medium',
+      'cursor-grok-4.6-medium-fast',
+      'cursor-grok-4.6-xhigh',
+      'cursor-grok-4.6-xhigh-fast',
       'glm-5.2-high',
       'glm-5.2-max',
     ]);

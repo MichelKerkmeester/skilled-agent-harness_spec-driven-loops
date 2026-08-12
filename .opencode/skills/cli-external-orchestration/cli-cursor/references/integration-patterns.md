@@ -10,7 +10,7 @@ trigger_phrases:
   - "cursor validation pipeline"
 importance_tier: normal
 contextType: planning
-version: 1.0.0.0
+version: 1.2.0.0
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Cursor CLI
@@ -171,7 +171,7 @@ done < input.jsonl
 
 ## 5. MODEL SELECTION STRATEGY
 
-**cli-cursor dispatch is scoped to an enforced 10-id allowlist — Composer, Grok 4.5, and GLM 5.2 only. Choose based on task type; never dispatch a model outside this set.**
+**cli-cursor dispatch is scoped to an enforced 18-id allowlist — Composer, GLM 5.2, and Grok (4.5 and 4.6) only. Choose based on task type; never dispatch a model outside this set.**
 
 ### Decision Matrix
 
@@ -179,8 +179,8 @@ done < input.jsonl
 |-----------|-----------------|-----------|
 | General delegation | `composer-2.5` (default) | Cursor's own model; predictable, always allowed |
 | Task specifically wants Cursor's own model | `composer-2.5` / `composer-2.5-fast` | Cursor-exclusive — no hosted-provider equivalent |
-| Architecture / security analysis at high depth | `cursor-grok-4.5-high` (or `-high-fast`), or `glm-5.2-max` | Effort is baked into the id; pick the high tier |
-| Code generation | `composer-2.5`, or `cursor-grok-4.5-medium` | Balanced for most generation tasks |
+| Architecture / security analysis at high or extra-high depth | `cursor-grok-4.6-high` / `-xhigh` (or `-fast` siblings), or `glm-5.2-max` | Effort is baked into the id; pick the high or xhigh tier — 4.6's xhigh is the deepest available |
+| Code generation | `composer-2.5`, or `cursor-grok-4.5-medium` / `cursor-grok-4.6-medium` | Balanced for most generation tasks |
 | Trivial lookups | `composer-2.5-fast` | The fast variant is quicker for simple tasks |
 | Task wants a model NOT on this list (e.g. GPT, Claude, Gemini, Kimi via Cursor) | **Not supported by this skill** | Escalate to the user rather than substituting an allowed model silently |
 
@@ -195,10 +195,10 @@ cursor-agent -p "Review this diff for correctness" --model composer-2.5 --sandbo
 
 # High-effort analysis — pick the tier via the id itself, not a flag
 cursor-agent -p "Review the authentication architecture for security gaps" \
-  --mode ask --model cursor-grok-4.5-high
+  --mode ask --model cursor-grok-4.6-high
 
 # NEVER: parameterized bracket syntax — rejected outright by the live CLI
-# cursor-agent -p "..." --model 'cursor-grok-4.5[effort=high]'   # "Cannot use this model"
+# cursor-agent -p "..." --model 'cursor-grok-4.6[effort=high]'   # "Cannot use this model"
 
 # NEVER: a model outside the enforced allowlist, including auto
 # cursor-agent -p "..." --model auto            # rejected by fanout-run.cjs / dispatch-model.cjs
@@ -209,7 +209,7 @@ cursor-agent -p "Review the authentication architecture for security gaps" \
 
 - Omitting `--model` defaults to `composer-2.5`, never `auto` — the runtime layer rejects `auto` outright since it can silently resolve outside the allowlist
 - Explicit specification ensures reproducible behavior in scripts and CI/CD pipelines
-- The allowlist is fixed at 10 ids (`executor-config.ts`'s `CURSOR_SUPPORTED_MODELS`) — do not query `cursor-agent --list-models` to justify dispatching an id outside it; that command lists Cursor's full roster, not this skill's scope
+- The allowlist is fixed at 18 ids (`executor-config.ts`'s `CURSOR_SUPPORTED_MODELS`) — do not query `cursor-agent --list-models` to justify dispatching an id outside it; that command lists Cursor's full roster, not this skill's scope
 
 ---
 
@@ -384,10 +384,10 @@ cursor-agent -p "Migrate the database" --model composer-2.5 --force --sandbox di
 
 ```bash
 # BAD: rejected outright by the live CLI
-cursor-agent -p "..." --model 'cursor-grok-4.5[effort=high]'
+cursor-agent -p "..." --model 'cursor-grok-4.6[effort=high]'
 
 # GOOD: pick the exact effort-suffixed id
-cursor-agent -p "..." --model cursor-grok-4.5-high
+cursor-agent -p "..." --model cursor-grok-4.6-high
 ```
 
 ### 4. Ignoring the Shared Editor Config Surface

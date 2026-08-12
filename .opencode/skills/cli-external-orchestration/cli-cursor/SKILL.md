@@ -2,7 +2,7 @@
 name: cli-cursor
 description: "Cursor CLI executor for cursor-agent-backed coding, plan/ask read-only modes, native git worktree isolation, and a cloud worker — a shared-editor-config CLI dispatch."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.1.0.0
+version: 1.3.0.0
 hard_rules:
   - id: cursor-availability-required
     check: command-v-cursor-agent-required
@@ -39,10 +39,10 @@ Orchestrate Cursor's terminal coding agent (`cursor-agent`) for tasks that benef
 ### Activation Triggers
 
 - **Cross-AI Validation** — code review second perspective, bug detection, an independent implementation attempt.
-- **Composer Dispatch** — tasks that specifically want Cursor's own native model (`composer-2.5`/`composer-2.5-fast`), or the Grok 4.5 / GLM 5.2 tiers already on the enforced allowlist (see §3 Model Selection).
+- **Composer Dispatch** — tasks that specifically want Cursor's own native model (`composer-2.5`/`composer-2.5-fast`), or the Grok (4.5/4.6) / GLM 5.2 tiers already on the enforced allowlist (see §3 Model Selection).
 - **Read-Only Exploration** — `--mode plan` (read-only planning) or `--mode ask` (read-only Q&A) when a task wants Cursor's analysis without any file writes.
 - **Isolated Experimentation** — Cursor's native git worktree isolation (`-w`/`--worktree`) for a change the operator wants tried in a disposable checkout, documented in `references/cursor-tools.md` as an opt-in escape hatch, not this packet's default dispatch shape.
-- **Specialized Generation** — explicit Cursor requests naming Grok 4.5 or GLM 5.2 specifically (the only non-Composer models on the enforced allowlist).
+- **Specialized Generation** — explicit Cursor requests naming Grok (4.5 or 4.6) or GLM 5.2 specifically (the only non-Composer models on the enforced allowlist).
 
 ### When NOT to Use
 
@@ -226,7 +226,7 @@ cursor-agent -p "<prompt>" \
 | (nothing specified) | `--model composer-2.5 --auto-review --sandbox enabled` |
 | "Use Composer" | `--model composer-2.5 --auto-review --sandbox enabled` |
 | "Use Composer fast" | `--model composer-2.5-fast --auto-review --sandbox enabled` |
-| "Use Grok" / "Grok high" | `--model cursor-grok-4.5-high --auto-review --sandbox enabled` |
+| "Use Grok" / "Grok high" | `--model cursor-grok-4.6-high --auto-review --sandbox enabled` |
 | "Use GLM" / "GLM max" | `--model glm-5.2-max --auto-review --sandbox enabled` |
 | "Just plan it, don't write anything" | `--model composer-2.5 --mode plan` (read-only; approval flags do not apply in plan mode) |
 | "Full auto, run everything" | `--model composer-2.5 --force --sandbox disabled` |
@@ -236,9 +236,9 @@ Honor whichever dimensions the user names (approval level, mode). Model stays on
 
 ### Model Selection — Enforced Allowlist
 
-**cli-cursor dispatch is scoped to exactly 10 ids — never dispatch a model outside the allowlist (including `auto`), and never substitute the closest-sounding allowed model without telling the user.** Default `composer-2.5`; pick a Grok 4.5 / GLM 5.2 tier only when the task or user explicitly names that family. Cursor has no `--reasoning-effort` flag and rejects parameterized model brackets outright — effort tiers must be selected through exact enumerated ids.
+**cli-cursor dispatch is scoped to exactly 18 ids — never dispatch a model outside the allowlist (including `auto`), and never substitute the closest-sounding allowed model without telling the user.** Default `composer-2.5`; pick a Grok (4.5 or 4.6) / GLM 5.2 tier only when the task or user explicitly names that family. Cursor has no `--reasoning-effort` flag and rejects parameterized model brackets outright — effort tiers must be selected through exact enumerated ids.
 
-The enforced allowlist (10 ids) and the per-task rationale table live inline in [references/cli-reference.md](./references/cli-reference.md) §5 and [references/providers-and-models.md](./references/providers-and-models.md) §2. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`, checked by `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed) and at this skill layer. If a task seems to need a model outside the allowlist, escalate to the user rather than fabricating a substitute or falling back to `auto`.
+The enforced allowlist (18 ids) and the per-task rationale table live inline in [references/cli-reference.md](./references/cli-reference.md) §5 and [references/providers-and-models.md](./references/providers-and-models.md) §2. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`, checked by `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed) and at this skill layer. If a task seems to need a model outside the allowlist, escalate to the user rather than fabricating a substitute or falling back to `auto`.
 
 ### Cursor Agent Delegation
 
@@ -283,7 +283,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 - **The exit code is never an availability signal.** `cursor-agent -p` without auth exits `0` and prints an error to stdout/stderr instead. Every guard and pre-flight in this packet checks output text, never exit code.
 - **The canonical binary is `cursor-agent`, never the bare `agent` alias.** `agent` is a symlink to the same binary; using it in a process-ancestry match risks colliding with an unrelated `agent` command.
 - **Cursor shares its entire config surface with the Cursor editor** (`.cursor/`/`~/.cursor/`: `mcp.json`, `hooks.json`, `rules/`, `cli-config.json`). A dispatched `cursor-agent` silently inherits the operator's shared hooks/MCP/rules unless a workspace/config-isolation flag is used — see [shared-editor-config.md](./references/shared-editor-config.md).
-- **No `model[effort=...]` bracket support.** Unlike some sibling CLIs' parameterized model syntax, `cursor-agent --model 'cursor-grok-4.5[effort=high]'` is rejected outright ("Cannot use this model") — effort tiers must be selected via an exact enumerated id (`cursor-grok-4.5-high`), never a bracket.
+- **No `model[effort=...]` bracket support.** Unlike some sibling CLIs' parameterized model syntax, `cursor-agent --model 'cursor-grok-4.6[effort=high]'` is rejected outright ("Cannot use this model") — effort tiers must be selected via an exact enumerated id (`cursor-grok-4.6-high`), never a bracket.
 - **`--auto-review`/`--force` are the write-capable escalation, not `--sandbox`.** `--sandbox enabled|disabled` toggles the OS-level sandbox; the approval decision (whether unattended actions run without a human) is `--auto-review` (Smart Auto) or `--force`/`--yolo` (Run Everything) — omitting both leaves Cursor's own prompt-and-block default in place, which cannot proceed unattended.
 
 ---
@@ -320,7 +320,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 4. Assume Cursor output is correct without verification — cross-reference codebase and project standards.
 5. Build or maintain a packet-local Cursor execution adapter; the deep-loop runtime is the execution authority.
 6. Treat a `0` exit code as proof of a successful, authenticated dispatch — always inspect output text.
-7. Dispatch a `--model` value outside the enforced 10-id allowlist (§3 Model Selection) — including `auto` — or silently substitute the closest-sounding allowed model instead of asking the user. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS`/`isCursorModelAllowed` in `executor-config.ts`; a hard-rejecting check in `fanout-run.cjs`'s `buildCursorLineageCommand` and `dispatch-model.cjs`'s cli-cursor case) — this rule states the same constraint for any advisory/manual dispatch the runtime layer cannot see.
+7. Dispatch a `--model` value outside the enforced 18-id allowlist (§3 Model Selection) — including `auto` — or silently substitute the closest-sounding allowed model instead of asking the user. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS`/`isCursorModelAllowed` in `executor-config.ts`; a hard-rejecting check in `fanout-run.cjs`'s `buildCursorLineageCommand` and `dispatch-model.cjs`'s cli-cursor case) — this rule states the same constraint for any advisory/manual dispatch the runtime layer cannot see.
 
 ### ⚠️ ESCALATE IF
 
