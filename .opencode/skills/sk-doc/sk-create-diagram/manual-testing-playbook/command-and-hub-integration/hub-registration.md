@@ -28,7 +28,7 @@ Operators run the exact prompt and command sequence for `CMD-002` and confirm th
 - Real user request: `When someone says "redraw this drawio", the system should route to the diagram skill.`
 - Prompt: `Verify the sk-create-diagram packet is correctly registered in the sk-doc hub: its workflowMode, command, and aliases in mode-registry.json, its leaf references in leaf-manifest.json, and that the packet root carries no packet-local graph-metadata.json. Report PASS or FAIL for each registration fact.`
 - Expected execution process: the agent greps `mode-registry.json` for the `sk-create-diagram` entry, greps `leaf-manifest.json` for the packet's leaves, confirms the absence of `graph-metadata.json` in the packet root, and runs the package-structure validator for the packet.
-- Expected signals: the registry entry shows `workflowMode: sk-create-diagram`, `command: /create:diagram`, and aliases covering `create diagram`, `drawio`, `mermaid diagram`, `redraw diagram`, and `export diagram`; the leaf manifest lists the `references/type-*.md` files plus the import and export references; the packet root has no `graph-metadata.json`; the validator prints a `PASS` line and exits `0`.
+- Expected signals: the registry entry shows `workflowMode: sk-create-diagram`, `command: /create:diagram`, and aliases covering `create diagram`, `drawio`, `mermaid diagram`, `redraw diagram`, and `export diagram`; the leaf manifest lists the `references/types/type-*.md` files plus the import and export references; the packet root has no `graph-metadata.json`; the validator prints a `PASS` line and exits `0`.
 - Desired user-visible outcome: a registration verdict backed by the two manifest excerpts and the validator exit code.
 - Pass/fail: PASS if the registry entry, leaf manifest, absence of `graph-metadata.json`, and validator exit code all hold; FAIL if the registry is missing or misconfigured, the leaf manifest omits references, a packet-local `graph-metadata.json` exists, or the validator fails.
 
@@ -43,13 +43,13 @@ Operators run the exact prompt and command sequence for `CMD-002` and confirm th
 ### Commands
 
 1. `agent: Grep .opencode/skills/sk-doc/mode-registry.json for the sk-create-diagram entry; confirm workflowMode sk-create-diagram, command /create:diagram, and aliases including create diagram, drawio, mermaid diagram, redraw diagram, export diagram`
-2. `agent: Grep .opencode/skills/sk-doc/leaf-manifest.json for the packet's leaves; confirm the references/type-*.md files plus the import and export references are listed`
+2. `agent: Grep .opencode/skills/sk-doc/leaf-manifest.json for the packet's leaves; confirm the references/types/type-*.md files plus the import and export references are listed`
 3. `agent: Confirm .opencode/skills/sk-doc/sk-create-diagram/graph-metadata.json does not exist`
 4. `bash: python3 .opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .opencode/skills/sk-doc/sk-create-diagram --strict`
 
 ### Expected
 
-Step 1 shows a `sk-create-diagram` entry whose aliases cover the natural-language surface (`drawio`, `mermaid diagram`, `redraw diagram`, `export diagram`). Step 2 shows the packet's leaf list including all 27 `references/type-*.md` paths and the `import-*`/`export` references. Step 3 reports the file absent (an `ls` failure is the expected positive signal). Step 4 prints a `PASS` line and exits `0`.
+Step 1 shows a `sk-create-diagram` entry whose aliases cover the natural-language surface (`drawio`, `mermaid diagram`, `redraw diagram`, `export diagram`). Step 2 shows the packet's leaf list including all 27 `references/types/type-*.md` paths and the `import-*`/`export` references. Step 3 reports the file absent (an `ls` failure is the expected positive signal). Step 4 prints a `PASS` line and exits `0`.
 
 ### Evidence
 

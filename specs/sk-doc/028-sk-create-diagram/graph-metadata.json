@@ -11,7 +11,8 @@
     "sk-doc/028-sk-create-diagram/004-import-export-tooling",
     "sk-doc/028-sk-create-diagram/005-command-and-hub-wiring",
     "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
-    "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion"
+    "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
+    "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -106,17 +107,17 @@
     ],
     "causal_summary": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of editorial technical diagrams as self-contained HTML files with inline SVG — architecture, flowcharts, sequence, ER, Gantt, and more — plus draw.io/Mermaid import and PNG/SVG export",
     "created_at": "2026-08-12T05:43:11.000Z",
-    "last_save_at": "2026-08-12T08:21:53.000Z",
+    "last_save_at": "2026-08-12T12:33:52.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:483bd0ca96ee0373579fe5dadd3e37c388bfdfe38c1d345dfebeddce5b44359f",
+    "source_fingerprint": "sha256:5ff70e46817834058b59a418447f46026e2ab44eaa97971153b15c1afd893dcb",
     "source_doc_hashes": {
-      "spec.md": "603bbf61b54521ef54aba21aede683675466451eed41e8fe545b6bc801618e5a"
+      "spec.md": "2aea57de4ac01d6abc9b1846daa9d993f8a8ebd6d702d225b083a5eb08785656"
     },
-    "last_active_child_id": "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
-    "last_active_at": "2026-08-12T08:21:53.000Z"
+    "last_active_child_id": "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
+    "last_active_at": "2026-08-12T12:33:52.000Z"
   }
 }

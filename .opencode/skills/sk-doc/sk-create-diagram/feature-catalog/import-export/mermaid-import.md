@@ -30,7 +30,7 @@ Mermaid supplies content and declared direction, not coordinates, so this is a r
 
 ### Redraw pipeline
 
-The agent sets the four dials from `references/output-spec.md`, then picks a target type from the grammar and digest signals (advisory: a flowchart with service topology and no decisions is really an architecture diagram). The semantic model preserves source meaning — meaningful edge labels, state guards, sequence order and fragments, ER cardinality and fields, and container membership — while discarding init themes, `style`/`classDef`/`class`/`:::class` attachments, `linkStyle`, and leading frontmatter. Declared direction (`TD`, `LR`, `RL`, `BT`) is a hint that the chosen type's layout conventions may override. The redraw starts from a blank `viewBox`, applies semantic treatments, reroutes all connections with the mandatory connector rules, and never adds a component merely to fill space.
+The agent sets the four dials from `references/foundations/output-spec.md`, then picks a target type from the grammar and digest signals (advisory: a flowchart with service topology and no decisions is really an architecture diagram). The semantic model preserves source meaning — meaningful edge labels, state guards, sequence order and fragments, ER cardinality and fields, and container membership — while discarding init themes, `style`/`classDef`/`class`/`:::class` attachments, `linkStyle`, and leading frontmatter. Declared direction (`TD`, `LR`, `RL`, `BT`) is a hint that the chosen type's layout conventions may override. The redraw starts from a blank `viewBox`, applies semantic treatments, reroutes all connections with the mandatory connector rules, and never adds a component merely to fill space.
 
 ### Delivery and fidelity ledger
 
@@ -45,16 +45,16 @@ The deliverable is a single self-contained `.html` checked against the taste gat
 | File | Layer | Role |
 |---|---|---|
 | `scripts/mermaid_extract.py` | Script | Parses Mermaid text into the IR and digest with a strict trust boundary, supported-kinds reporting, size/node/edge limits, and exit code 2 for unreadable input |
-| `references/import-mermaid.md` | Shared | The six-step redraw procedure, supported grammars, edge cases, and anti-patterns |
-| `references/output-spec.md` | Shared | The four dials, size presets, degrade ladder, and fidelity-ledger contract |
-| `assets/example-import-mermaid.html` | Shared | Shipped worked example of the procedure on a sample flowchart source |
+| `references/import-export/import-mermaid.md` | Shared | The six-step redraw procedure, supported grammars, edge cases, and anti-patterns |
+| `references/foundations/output-spec.md` | Shared | The four dials, size presets, degrade ladder, and fidelity-ledger contract |
+| `assets/examples/example-import-mermaid.html` | Shared | Shipped worked example of the procedure on a sample flowchart source |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/import-export/mermaid-import.md` | Manual playbook | Scenario IMP-002 exercises extraction via `mermaid_extract.py`, redraw without copying the renderer layout, and the fidelity ledger |
-| `references/import-mermaid.md` | Reference | Anchor for the procedure and trust-boundary rules the scenario checks |
+| `references/import-export/import-mermaid.md` | Reference | Anchor for the procedure and trust-boundary rules the scenario checks |
 
 ---
 

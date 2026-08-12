@@ -16,7 +16,7 @@ This scenario validates type selection and routing for `DIA-001`. It focuses on 
 
 ### Why This Matters
 
-The packet's value depends on picking the right grammar for the reader: an architecture diagram, a flowchart, a sequence, and a swimlane communicate entirely different things. If the agent loads the wrong `references/type-*.md` or skips it entirely, every downstream rule — layout conventions, per-type ceilings, anti-patterns — silently drifts. This scenario locks the routing contract: the request shape is classified, the selection guide is consulted, and the matching type reference plus the always-loaded style guide are the resources that must appear in the agent's loaded set.
+The packet's value depends on picking the right grammar for the reader: an architecture diagram, a flowchart, a sequence, and a swimlane communicate entirely different things. If the agent loads the wrong `references/types/type-*.md` or skips it entirely, every downstream rule — layout conventions, per-type ceilings, anti-patterns — silently drifts. This scenario locks the routing contract: the request shape is classified, the selection guide is consulted, and the matching type reference plus the always-loaded style guide are the resources that must appear in the agent's loaded set.
 
 ---
 
@@ -27,8 +27,8 @@ Operators run the exact prompt and command sequence for `DIA-001` and confirm th
 - Objective: select the correct diagram type for a components-and-connections request and load the matching type reference before drawing
 - Real user request: `Draw an architecture diagram of our checkout service and its dependencies.`
 - Prompt: `Create an architecture diagram as a self-contained HTML file showing our checkout service, the auth service it calls, and the Postgres store behind it. Load the right type conventions, apply the style guide, and save it to docs/checkout-architecture.html.`
-- Expected execution process: the router classifies the request as GENERATE, the selection guide maps "components + connections in a system" to Architecture, and the agent reads `references/style-guide.md` (always) plus `references/type-architecture.md` before copying a template and drawing within the complexity budget.
-- Expected signals: `references/type-architecture.md` appears in the loaded references (not a flowchart or other mismatched type); the output HTML contains a self-contained `<svg>` with `role="img"` and prefixed `aria-labelledby`; the diagram stays within 9 nodes and 12 arrows.
+- Expected execution process: the router classifies the request as GENERATE, the selection guide maps "components + connections in a system" to Architecture, and the agent reads `references/foundations/style-guide.md` (always) plus `references/types/type-architecture.md` before copying a template and drawing within the complexity budget.
+- Expected signals: `references/types/type-architecture.md` appears in the loaded references (not a flowchart or other mismatched type); the output HTML contains a self-contained `<svg>` with `role="img"` and prefixed `aria-labelledby`; the diagram stays within 9 nodes and 12 arrows.
 - Desired user-visible outcome: a correct-typed, self-contained HTML diagram at `docs/checkout-architecture.html`.
 - Pass/fail: PASS if the correct type reference is loaded, the HTML is self-contained with the accessible-SVG contract satisfied, and the diagram is within the complexity budget; FAIL if a mismatched type reference is loaded, the HTML is missing or not self-contained, or the accessibility contract is violated.
 
@@ -42,22 +42,22 @@ Operators run the exact prompt and command sequence for `DIA-001` and confirm th
 
 ### Commands
 
-1. `agent: Read references/style-guide.md (always) and references/type-architecture.md (matching type)`
-2. `agent: Copy assets/template.html to docs/checkout-architecture.html`
+1. `agent: Read references/foundations/style-guide.md (always) and references/types/type-architecture.md (matching type)`
+2. `agent: Copy assets/templates/template.html to docs/checkout-architecture.html`
 3. `agent: Replace the eyebrow, H1, and SVG body; fill the prefixed <title>/<desc>; enforce the 4px grid and the complexity budget`
 4. `agent: Run the taste gate from SKILL.md SUCCESS CRITERIA and verify the accessible-SVG contract`
 
 ### Expected
 
-Step 1 loads `references/type-architecture.md` (the selection guide maps components + connections to Architecture). Step 2 produces `docs/checkout-architecture.html`. Step 3 yields a diagram with 3 nodes and 2 arrows — inside the 9-node / 12-arrow budget — with a single accent on the focal element. Step 4 reports the taste gate clean: `<svg>` has `role="img"`, `aria-labelledby` resolves to prefixed `<title>` / `<desc>`, and `<title>` is the first child of `<svg>`.
+Step 1 loads `references/types/type-architecture.md` (the selection guide maps components + connections to Architecture). Step 2 produces `docs/checkout-architecture.html`. Step 3 yields a diagram with 3 nodes and 2 arrows — inside the 9-node / 12-arrow budget — with a single accent on the focal element. Step 4 reports the taste gate clean: `<svg>` has `role="img"`, `aria-labelledby` resolves to prefixed `<title>` / `<desc>`, and `<title>` is the first child of `<svg>`.
 
 ### Evidence
 
-Capture the prompt used, the list of references the agent reported loading (must include `references/type-architecture.md`), the output path `docs/checkout-architecture.html`, and a grep of the HTML showing `role="img"`, `aria-labelledby="checkout-architecture-title checkout-architecture-desc"`, and the first-child `<title>`. Record the node/arrow counts and the accent count (must be at most 2).
+Capture the prompt used, the list of references the agent reported loading (must include `references/types/type-architecture.md`), the output path `docs/checkout-architecture.html`, and a grep of the HTML showing `role="img"`, `aria-labelledby="checkout-architecture-title checkout-architecture-desc"`, and the first-child `<title>`. Record the node/arrow counts and the accent count (must be at most 2).
 
 ### Pass / Fail
 
-- **Pass**: `references/type-architecture.md` was loaded, `docs/checkout-architecture.html` exists as a single self-contained file, the accessible-SVG contract holds, and the diagram is within the complexity budget.
+- **Pass**: `references/types/type-architecture.md` was loaded, `docs/checkout-architecture.html` exists as a single self-contained file, the accessible-SVG contract holds, and the diagram is within the complexity budget.
 - **Fail**: a mismatched type reference was loaded (e.g. `type-flowchart.md`), the HTML is missing or references external resources, or the accessibility contract is broken.
 
 ### Failure Triage
@@ -68,7 +68,7 @@ Capture the prompt used, the list of references the agent reported loading (must
 
 ### Optional Supplemental Checks
 
-Run a second variant with a decision-logic request (`Draw a flowchart of our refund approval rules.`) and confirm the agent instead loads `references/type-flowchart.md`, proving the router is not hardwired to one type.
+Run a second variant with a decision-logic request (`Draw a flowchart of our refund approval rules.`) and confirm the agent instead loads `references/types/type-flowchart.md`, proving the router is not hardwired to one type.
 
 ---
 
@@ -86,7 +86,7 @@ Run a second variant with a decision-logic request (`Draw a flowchart of our ref
 | File | Role |
 |---|---|
 | `SKILL.md` (Smart Routing + Selection Guide) | Primary implementation anchor |
-| `references/type-architecture.md` | Type convention anchor |
+| `references/types/type-architecture.md` | Type convention anchor |
 
 ---
 

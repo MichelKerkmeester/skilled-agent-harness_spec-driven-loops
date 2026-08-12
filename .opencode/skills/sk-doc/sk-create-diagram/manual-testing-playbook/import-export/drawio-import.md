@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `IMP-001` and confirm th
 - Objective: verify a `.drawio` source is extracted, read as a digest, redrawn at the four dials, and delivered with a fidelity ledger and an unchanged source
 - Real user request: `Here's our system diagram from draw.io — make it presentable for a blog post.`
 - Prompt: `Import docs/system.drawio and redraw it as an editorial architecture diagram for a blog post (format html, size doc-inline, detail balanced, audience mixed). Run the extraction script, read the digest, set the four dials, redraw with the type conventions, and report the fidelity ledger. Save it to docs/system-redrawn.html.`
-- Expected execution process: the agent runs `drawio_extract.py` on the source, reads the Markdown digest (never the raw file), sets format/size/detail/audience from `references/output-spec.md`, picks the target type from the digest signals, discards source coordinates/colors/shape quirks, redraws on the 4px grid with orthogonal connectors, and reports the fidelity ledger.
+- Expected execution process: the agent runs `drawio_extract.py` on the source, reads the Markdown digest (never the raw file), sets format/size/detail/audience from `references/foundations/output-spec.md`, picks the target type from the digest signals, discards source coordinates/colors/shape quirks, redraws on the 4px grid with orthogonal connectors, and reports the fidelity ledger.
 - Expected signals: the digest prints node/edge tables with geometry, hubs, container structure, and a `budget:` line; source fills map to semantic treatments (blue → white/ink, red → dashed optional); the output HTML is self-contained; the fidelity ledger lists every merge, collapse, and drop; the source file checksum is identical before and after.
 - Desired user-visible outcome: a fresh editorial layout of the source content plus an honest account of what changed.
 - Pass/fail: PASS if the digest is produced, the four dials are set before drawing, the ledger accounts for every source component, the output HTML is self-contained, and the source is byte-unchanged; FAIL if the agent reads the raw file instead of the digest, renders or converts the source layout, drops content without a ledger entry, or mutates the source.
@@ -44,7 +44,7 @@ Operators run the exact prompt and command sequence for `IMP-001` and confirm th
 
 1. `bash: shasum docs/system.drawio` (capture the before-checksum)
 2. `bash: python3 .opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py docs/system.drawio --page 0`
-3. `agent: Read references/import-drawio.md, references/output-spec.md, and the matching references/type-*.md`
+3. `agent: Read references/import-export/import-drawio.md, references/foundations/output-spec.md, and the matching references/types/type-*.md`
 4. `agent: Set the four dials (format html, size doc-inline, detail balanced, audience mixed); build the semantic model; redraw on the 4px grid; reroute every connector orthogonally`
 5. `agent: Write docs/system-redrawn.html; run the taste gate; report the fidelity ledger`
 6. `bash: shasum docs/system.drawio` (capture the after-checksum; must match the before value)
@@ -87,8 +87,8 @@ Run the multi-page variant: invoke `drawio_extract.py docs/multi.drawio --page a
 
 | File | Role |
 |---|---|
-| `references/import-drawio.md` | Redraw procedure, dials, and edge cases |
-| `references/output-spec.md` | Four dials, size presets, degrade ladder, fidelity ledger |
+| `references/import-export/import-drawio.md` | Redraw procedure, dials, and edge cases |
+| `references/foundations/output-spec.md` | Four dials, size presets, degrade ladder, fidelity ledger |
 | `scripts/drawio_extract.py` | IR extraction script |
 
 ---

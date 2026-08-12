@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-create-diagram"
-    last_updated_at: "2026-08-12T08:21:53.000Z"
+    last_updated_at: "2026-08-12T12:33:52.000Z"
     last_updated_by: "claude"
-    recent_action: "Completed all 7 phases; sk-create-diagram is registered and strict-validated"
+    recent_action: "Completed all 8 phases; sk-create-diagram is registered and strict-validated"
     next_safe_action: "Hand back to the user for review/merge decision on worktree branch sk-doc/0145-sk-create-diagram"
     blockers: []
     key_files:
@@ -51,7 +51,7 @@ _memory:
 |-------|-------|
 | **Level** | Phase parent |
 | **Priority** | P2 |
-| **Status** | Complete — all 7 phases shipped and strict-validated; see phase 006 for the one documented deferral and phase 007 for the adherence audit + playbook/catalog completion |
+| **Status** | Complete — all 8 phases shipped and strict-validated; see phase 006 for the one documented deferral, phase 007 for the adherence audit + playbook/catalog completion, and phase 008 for the domain-subfolder split |
 | **Created** | 2026-08-12 |
 | **Branch** | `sk-doc/0145-sk-create-diagram` (worktree `.worktrees/0145-sk-doc-sk-create-diagram`) |
 | **Track** | `sk-doc` |
@@ -108,6 +108,7 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | `005-command-and-hub-wiring/` | Create | 005 | `/create:diagram` command, mode-registry/hub-router/command-metadata entries |
 | `006-validation-and-quality-gate/` | Create | 006 | Strict validation, advisor smoke test, implementation-summary, closeout |
 | `007-adherence-audit-and-artifact-completion/` | Create | 007 | Literal template/code-standards audit + fix; manual-testing-playbook/ and feature-catalog/ packages |
+| `008-resource-reorganization-and-code-alignment/` | Create | 008 | references/ and assets/ split into domain subfolders; deeper Python alignment; scripts/README.md |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -124,6 +125,7 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | 5 | `005-command-and-hub-wiring/` | Register `/create:diagram` and the hub entries | Complete |
 | 6 | `006-validation-and-quality-gate/` | Strict validation, advisor smoke test, closeout | Complete — advisor smoke test deferred, see phase 006 |
 | 7 | `007-adherence-audit-and-artifact-completion/` | Literal template/code-standards adherence audit; author manual-testing-playbook/ and feature-catalog/ | Complete |
+| 8 | `008-resource-reorganization-and-code-alignment/` | Split references/ and assets/ into domain subfolders; deeper Python alignment; scripts/README.md | Complete |
 
 ### Phase Transition Rules
 
@@ -143,7 +145,8 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | Phases 003 and 004 | Phase 005 wiring | All 27 type references + examples, and import/export tooling, are present and internally consistent with `SKILL.md` | Phase 003/004 checklist evidence |
 | Phase 005 wiring | Phase 006 validation | `/create:diagram` command, `mode-registry.json`, `hub-router.json`, `command-metadata.json` entries exist and resolve | Phase 005 checklist evidence |
 | Phase 006 validation | Phase 007 audit | `validate.sh --strict` clean for the phase-parent and all 6 children | Phase 006 checklist evidence |
-| Phase 007 audit + artifacts | Closeout | Template/code-standards deviations fixed; `manual-testing-playbook/` and `feature-catalog/` exist and pass their validators; `validate.sh --recursive --strict` clean for parent + all 7 children | Recorded command output in `007-adherence-audit-and-artifact-completion/implementation-summary.md` |
+| Phase 007 audit + artifacts | Phase 008 reorg | `validate.sh --strict` clean for the phase-parent and all 7 children | Phase 007 checklist evidence |
+| Phase 008 reorg + alignment | Closeout | `references/`/`assets/` subfoldered with 0 broken cross-references; both scripts AST-clean; `scripts/README.md` exists; `validate.sh --recursive --strict` clean for parent + all 8 children | Recorded command output in `008-resource-reorganization-and-code-alignment/implementation-summary.md` |
 <!-- /ANCHOR:phase-map -->
 
 ---

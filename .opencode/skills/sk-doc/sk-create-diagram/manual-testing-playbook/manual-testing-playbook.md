@@ -31,7 +31,7 @@ A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and 
 
 This playbook covers the full operator-visible surface of the `sk-create-diagram` packet across three categories: diagram generation, import/export, and command/hub integration. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract. The operator validator computes the exact census from the walked tree; this document does not hand-maintain counts.
 
-Coverage note (2026-08-12): every scenario is runnable today against the shipped references, the `assets/template*.html` variants, and the `scripts/drawio_extract.py` / `scripts/mermaid_extract.py` extractors; the PNG export scenario requires a local Playwright install and is otherwise a documented `SKIP` with a named blocker.
+Coverage note (2026-08-12): every scenario is runnable today against the shipped references, the `assets/templates/template*.html` variants, and the `scripts/drawio_extract.py` / `scripts/mermaid_extract.py` extractors; the PNG export scenario requires a local Playwright install and is otherwise a documented `SKIP` with a named blocker.
 
 ### Realistic Test Model
 
@@ -55,7 +55,7 @@ Coverage note (2026-08-12): every scenario is runnable today against the shipped
 1. Working directory is the repository root, so `.opencode/skills/sk-doc/sk-create-diagram/` subpaths and the `.opencode/commands/create/` assets resolve.
 2. Python 3.9+ is available on `PATH` for the extraction scripts (`drawio_extract.py` / `mermaid_extract.py`).
 3. For the PNG export step of IMP-003, Playwright (`playwright` Python package + Chromium) must be installed; otherwise IMP-003 is a documented `SKIP` with a named blocker and a surfaced install instruction.
-4. Generated artifacts (`.html`, `.svg`, `.png`) are written to a scratch or docs output directory outside the packet. The one documented in-package mutation is `references/style-guide.md` during the onboarding scenario (DIA-003), which runs on a scratch checkout or is reverted with `git checkout -- .opencode/skills/sk-doc/sk-create-diagram/references/style-guide.md`.
+4. Generated artifacts (`.html`, `.svg`, `.png`) are written to a scratch or docs output directory outside the packet. The one documented in-package mutation is `references/foundations/style-guide.md` during the onboarding scenario (DIA-003), which runs on a scratch checkout or is reverted with `git checkout -- .opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md`.
 5. No destructive scenarios exist — the skill only writes new files and never mutates source inputs — but every import and export scenario MUST confirm the source file is byte-unchanged afterward.
 
 ---
@@ -163,12 +163,12 @@ This section records wave planning and capacity guidance for the manual testing 
 ### DIA-001 | Type selection and routing
 
 #### Description
-Verify that the agent selects the correct diagram type from the 27-type selection guide and loads the matching `references/type-*.md` convention plus `references/style-guide.md` before drawing.
+Verify that the agent selects the correct diagram type from the 27-type selection guide and loads the matching `references/types/type-*.md` convention plus `references/foundations/style-guide.md` before drawing.
 
 #### Scenario Contract
 Prompt: `Create an architecture diagram as a self-contained HTML file showing our checkout service, the auth service it calls, and the Postgres store behind it. Load the right type conventions, apply the style guide, and save it to docs/checkout-architecture.html.`
 
-The router classifies the request as GENERATE, the selection guide maps "components + connections" to Architecture, and the agent loads `references/type-architecture.md` before drawing. The output must satisfy the type fit and accessible-SVG checks.
+The router classifies the request as GENERATE, the selection guide maps "components + connections" to Architecture, and the agent loads `references/types/type-architecture.md` before drawing. The output must satisfy the type fit and accessible-SVG checks.
 
 Desired user-visible outcome: a correct-typed, self-contained HTML diagram at the requested path.
 
@@ -186,7 +186,7 @@ Verify the design system is applied exactly: 4px grid, one accent on at most 2 f
 #### Scenario Contract
 Prompt: `Create a swimlane diagram as a self-contained HTML file of the support handoff process across L1, L2, and ops. Use the editorial design system: 4px grid, accent on at most 2 focal elements, orthogonal rounded elbows on all off-axis connectors, fanned attach points, masked arrow labels with a visible gap, and a horizontal bottom legend. Save it to docs/support-handoff.html.`
 
-The agent applies `references/type-swimlane.md` conventions and runs the taste gate before delivery.
+The agent applies `references/types/type-swimlane.md` conventions and runs the taste gate before delivery.
 
 Desired user-visible outcome: a clean, readable swimlane whose every coordinate, connector, and accent obeys the design-system rules.
 
@@ -273,7 +273,7 @@ Desired user-visible outcome: an editorial flowchart that keeps the source meani
 ### IMP-003 | Export guidance
 
 #### Description
-Verify that PNG/SVG export is manual-only, diagram-only, follows `references/export.md`, keeps the source HTML byte-unchanged, and never runs unprompted.
+Verify that PNG/SVG export is manual-only, diagram-only, follows `references/import-export/export.md`, keeps the source HTML byte-unchanged, and never runs unprompted.
 
 #### Scenario Contract
 Prompt: `Export docs/checkout-architecture.html to PNG for a slide deck (scale 2) and also save it as SVG. Follow the export procedure: extract the first svg node for SVG, render the original HTML and screenshot the svg bounding box for PNG with a transparent background. Don't modify the source HTML. Save the outputs next to the source.`

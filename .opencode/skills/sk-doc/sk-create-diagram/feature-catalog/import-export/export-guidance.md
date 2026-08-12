@@ -1,6 +1,6 @@
 ---
 title: "Export guidance"
-description: "Manual, diagram-only export of a generated diagram HTML file to a portable .svg and/or .png beside it, following references/export.md."
+description: "Manual, diagram-only export of a generated diagram HTML file to a portable .svg and/or .png beside it, following references/import-export/export.md."
 trigger_phrases:
   - "Export guidance"
   - "export diagram to png"
@@ -16,9 +16,9 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-Manual, diagram-only export of a generated diagram HTML file to a portable `.svg` and/or `.png` beside it, following `references/export.md`.
+Manual, diagram-only export of a generated diagram HTML file to a portable `.svg` and/or `.png` beside it, following `references/import-export/export.md`.
 
-When asked to export, save, rasterize, or convert a generated diagram to `.png` or `.svg`, the agent loads `references/export.md` and follows the procedure there. Export is manual — never run unprompted — and it never modifies the source HTML. The caller is an operator who wants a diagram for a slide, social card, print, or further editing, and the main failure modes are missing a Playwright install for PNG and asking for a full-page screenshot rather than the diagram.
+When asked to export, save, rasterize, or convert a generated diagram to `.png` or `.svg`, the agent loads `references/import-export/export.md` and follows the procedure there. Export is manual — never run unprompted — and it never modifies the source HTML. The caller is an operator who wants a diagram for a slide, social card, print, or further editing, and the main failure modes are missing a Playwright install for PNG and asking for a full-page screenshot rather than the diagram.
 
 ---
 
@@ -48,15 +48,15 @@ The PNG's pixel dimensions are the SVG's `viewBox` × `device_scale_factor`, so 
 
 | File | Layer | Role |
 |---|---|---|
-| `references/export.md` | Shared | The manual-only trigger, diagram-only scope, SVG procedure, Playwright-gated PNG procedure, and sizing rules |
-| `references/output-spec.md` | Shared | The size presets whose `viewBox` the export multiplies by the device scale factor |
+| `references/import-export/export.md` | Shared | The manual-only trigger, diagram-only scope, SVG procedure, Playwright-gated PNG procedure, and sizing rules |
+| `references/foundations/output-spec.md` | Shared | The size presets whose `viewBox` the export multiplies by the device scale factor |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/import-export/export-guidance.md` | Manual playbook | Scenario IMP-003 verifies manual-only PNG/SVG export, the prefixed accessible title/desc, the transparent PNG, and a byte-unchanged source HTML (PNG step requires a local Playwright install, otherwise a documented SKIP) |
-| `references/export.md` | Reference | Anchor for the export procedure and the never-modifies-source invariant |
+| `references/import-export/export.md` | Reference | Anchor for the export procedure and the never-modifies-source invariant |
 
 ---
 

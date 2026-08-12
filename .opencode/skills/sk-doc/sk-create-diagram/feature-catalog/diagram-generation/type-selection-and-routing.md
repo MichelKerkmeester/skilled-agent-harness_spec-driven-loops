@@ -1,6 +1,6 @@
 ---
 title: "Type selection and routing"
-description: "Classifies each request into GENERATE, IMPORT, or EXPORT, then selects one of the 27 supported diagram types and loads the matching references/type-*.md convention before drawing."
+description: "Classifies each request into GENERATE, IMPORT, or EXPORT, then selects one of the 27 supported diagram types and loads the matching references/types/type-*.md convention before drawing."
 trigger_phrases:
   - "Type selection and routing"
   - "diagram type selection guide"
@@ -16,7 +16,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-Classifies each request into GENERATE, IMPORT, or EXPORT, then selects one of the 27 supported diagram types and loads the matching `references/type-*.md` convention before drawing.
+Classifies each request into GENERATE, IMPORT, or EXPORT, then selects one of the 27 supported diagram types and loads the matching `references/types/type-*.md` convention before drawing.
 
 Every diagram request starts in the router: it decides what kind of work is being asked for and, for a generate request, which of the 27 type grammars fits. The type choice is the single most load-bearing decision — an architecture, flowchart, sequence, and swimlane each carry different layout conventions, per-type ceilings, and anti-patterns. The typical caller is the `/create:diagram` command or natural-language routing, and the main failure mode is picking a type by vocabulary rather than by what the reader is being shown.
 
@@ -34,7 +34,7 @@ For generate requests the selection guide maps what is being shown to a diagram 
 
 ### Resource loading
 
-The router loads `references/style-guide.md` on every diagram and loads the matching `references/type-*.md` conditionally for generate requests, the import or export reference for those shapes, and primitives and assets only on demand. Every path is guarded and loaded only if it exists, so a missing reference simply does not load and the route falls back to the nearest guidance already loaded.
+The router loads `references/foundations/style-guide.md` on every diagram and loads the matching `references/types/type-*.md` conditionally for generate requests, the import or export reference for those shapes, and primitives and assets only on demand. Every path is guarded and loaded only if it exists, so a missing reference simply does not load and the route falls back to the nearest guidance already loaded.
 
 ---
 
@@ -45,7 +45,7 @@ The router loads `references/style-guide.md` on every diagram and loads the matc
 | File | Layer | Role |
 |---|---|---|
 | `SKILL.md` (Smart Routing + selection guide) | Handler | Request-shape classification, 27-type selection guide, resource loading levels, and the routing pseudocode |
-| `references/type-*.md` (27 files) | Shared | Per-type layout conventions, per-type ceilings, and anti-patterns loaded conditionally for generate requests |
+| `references/types/type-*.md` (27 files) | Shared | Per-type layout conventions, per-type ceilings, and anti-patterns loaded conditionally for generate requests |
 | `.opencode/commands/create/assets/create-diagram-auto.yaml`, `create-diagram-confirm.yaml` | Shared | Workflow YAML that carries the generate/import/export detection steps executed by the `/create:diagram` router |
 
 ### Validation And Tests
@@ -53,7 +53,7 @@ The router loads `references/style-guide.md` on every diagram and loads the matc
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/diagram-generation/type-selection-and-routing.md` | Manual playbook | Scenario DIA-001 verifies request classification, selection-guide mapping, and that the matching type reference is loaded before drawing |
-| `references/style-guide.md` | Reference | Anchor for the always-loaded design-system tokens that accompany the type reference |
+| `references/foundations/style-guide.md` | Reference | Anchor for the always-loaded design-system tokens that accompany the type reference |
 
 ---
 

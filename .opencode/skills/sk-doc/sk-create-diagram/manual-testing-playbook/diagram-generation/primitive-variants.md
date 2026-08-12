@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `DIA-004` and confirm th
 - Objective: verify the on-demand primitives are applied correctly — callouts, sketchy filter, terminal skin, and icon library
 - Real user request: `Make a loop diagram for my newsletter post about compounding habits — hand-drawn style, with a couple of annotations.`
 - Prompt: `Create a loop diagram as a self-contained HTML file in a sketchy, hand-drawn register with two annotation callouts and an editorial light layout. Save it to docs/compounding-loop.html.`
-- Expected execution process: the agent loads `references/type-loop.md` plus the requested primitives on demand (`references/primitive-sketchy.md` and `references/primitive-annotation.md`), applies the displacement filter to shape groups only, adds at most two italic-serif callouts with dashed leaders, and keeps all text outside the filtered group.
+- Expected execution process: the agent loads `references/types/type-loop.md` plus the requested primitives on demand (`references/primitives/primitive-sketchy.md` and `references/primitives/primitive-annotation.md`), applies the displacement filter to shape groups only, adds at most two italic-serif callouts with dashed leaders, and keeps all text outside the filtered group.
 - Expected signals: the `sketchy` filter wraps shapes but no `<text>` element is inside the filtered group; callout count ≤ 2 with dashed `stroke-dasharray="4,3"` leaders and landing dots; page title and names use the correct type roles; an optional terminal variant swaps tokens 1:1 to `terminal-*` with one accent.
 - Desired user-visible outcome: a hand-drawn-register loop diagram with crisp, unfiltered labels and at most two editorial callouts.
 - Pass/fail: PASS if the filter is applied to shapes only, callouts are ≤ 2 and placed in margins, text is legible and unfiltered, and (when the terminal variant is checked) the skin uses `terminal-*` tokens with a single accent; FAIL if text is inside the filtered group, more than two callouts appear, the terminal variant introduces a second accent, or a non-terminal skin uses JetBrains Mono.
@@ -42,15 +42,15 @@ Operators run the exact prompt and command sequence for `DIA-004` and confirm th
 
 ### Commands
 
-1. `agent: Read references/style-guide.md, references/type-loop.md, references/primitive-sketchy.md, and references/primitive-annotation.md (on demand)`
-2. `agent: Copy assets/template.html to docs/compounding-loop.html`
+1. `agent: Read references/foundations/style-guide.md, references/types/type-loop.md, references/primitives/primitive-sketchy.md, and references/primitives/primitive-annotation.md (on demand)`
+2. `agent: Copy assets/templates/template.html to docs/compounding-loop.html`
 3. `agent: Apply the sketchy turbulence/displacement filter to shape groups only; keep all text as siblings outside the filtered group`
 4. `agent: Add at most two italic Instrument Serif callouts with dashed Bézier leaders and landing dots in the margins`
 5. `agent: Run the taste gate and audit the filter grouping, callout count, and typography`
 
 ### Expected
 
-Step 3 produces a `<g filter="url(#sketchy)">` containing only shapes, with every `<text>` outside it. Step 4 yields exactly two callouts in the margins, each an italic serif with a dashed leader. Step 5 confirms the loop diagram stays within the budget and no forbidden font (JetBrains Mono) appears. If the operator also requests the terminal variant, step 2 is repeated from `assets/template-terminal.html` and the audit checks `terminal-*` tokens with one accent and a monospace title prefixed with `# `.
+Step 3 produces a `<g filter="url(#sketchy)">` containing only shapes, with every `<text>` outside it. Step 4 yields exactly two callouts in the margins, each an italic serif with a dashed leader. Step 5 confirms the loop diagram stays within the budget and no forbidden font (JetBrains Mono) appears. If the operator also requests the terminal variant, step 2 is repeated from `assets/templates/template-terminal.html` and the audit checks `terminal-*` tokens with one accent and a monospace title prefixed with `# `.
 
 ### Evidence
 
@@ -86,10 +86,10 @@ Add a `terminal` sub-check: request the loop diagram again with the terminal ski
 
 | File | Role |
 |---|---|
-| `references/primitive-annotation.md` | Callout grammar and rules |
-| `references/primitive-sketchy.md` | Displacement-filter grammar and tuning |
-| `references/primitive-terminal.md` | Terminal-skin tokens and rules |
-| `references/primitive-icons.md` | Icon library and `currentColor` convention |
+| `references/primitives/primitive-annotation.md` | Callout grammar and rules |
+| `references/primitives/primitive-sketchy.md` | Displacement-filter grammar and tuning |
+| `references/primitives/primitive-terminal.md` | Terminal-skin tokens and rules |
+| `references/primitives/primitive-icons.md` | Icon library and `currentColor` convention |
 
 ---
 

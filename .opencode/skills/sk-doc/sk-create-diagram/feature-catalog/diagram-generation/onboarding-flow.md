@@ -26,7 +26,7 @@ Before generating the first diagram in a project, the packet verifies the style 
 
 ### Style-guide gate
 
-Before the first diagram in a project, the agent opens `references/style-guide.md` and checks the default tokens. If the `accent` value is still the shipped default, the gate pauses and asks the user how to proceed: (a) pull from a website URL, (b) extract from an installed skill, (c) extract from a local folder or design-system directory, (d) paste tokens manually, or (e) proceed with the default for now. Once customized — or when the user explicitly opts for the default — the gate is skipped on subsequent runs; a simple detection treats an `accent` value that differs from the shipped default as custom.
+Before the first diagram in a project, the agent opens `references/foundations/style-guide.md` and checks the default tokens. If the `accent` value is still the shipped default, the gate pauses and asks the user how to proceed: (a) pull from a website URL, (b) extract from an installed skill, (c) extract from a local folder or design-system directory, (d) paste tokens manually, or (e) proceed with the default for now. Once customized — or when the user explicitly opts for the default — the gate is skipped on subsequent runs; a simple detection treats an `accent` value that differs from the shipped default as custom.
 
 ### Extraction pipeline
 
@@ -44,8 +44,8 @@ URL onboarding asks the user for the site and lets the calling AI session's own 
 
 | File | Layer | Role |
 |---|---|---|
-| `references/onboarding.md` | Shared | The URL, skill, and folder extraction methods, role mapping heuristics, contrast checks, and diff-approval workflow |
-| `references/style-guide.md` | Shared | The semantic role tables and constraints that onboarding rewrites after approval |
+| `references/foundations/onboarding.md` | Shared | The URL, skill, and folder extraction methods, role mapping heuristics, contrast checks, and diff-approval workflow |
+| `references/foundations/style-guide.md` | Shared | The semantic role tables and constraints that onboarding rewrites after approval |
 | `SKILL.md` (Style-guide gate) | Handler | The before-first-diagram gate, the five customization options, and the accent-based skip detection |
 
 ### Validation And Tests
@@ -53,7 +53,7 @@ URL onboarding asks the user for the site and lets the calling AI session's own 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/diagram-generation/onboarding-flow.md` | Manual playbook | Scenario DIA-003 verifies the gate fires on the shipped default accent, extraction maps roles with confidence, and `style-guide.md` is written only after approval |
-| `references/onboarding.md` | Reference | Anchor for the extraction flow the scenario exercises |
+| `references/foundations/onboarding.md` | Reference | Anchor for the extraction flow the scenario exercises |
 
 ---
 

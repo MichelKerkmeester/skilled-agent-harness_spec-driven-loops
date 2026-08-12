@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
+  "spec_folder": "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-diagram resource reorganization",
+      "diagram references subfolders",
+      "diagram scripts readme"
+    ],
+    "key_topics": [
+      "references",
+      "assets",
+      "flat",
+      "scan",
+      "glance",
+      "file",
+      "tree",
+      "operator",
+      "flagged"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "`references/` (37 files) and `assets/` (39 files) are flat, making the folder hard to scan at a glance in a file tree — the operator flagged this directly after reviewing the merged packet",
+    "created_at": "2026-08-12T00:00:00.000Z",
+    "last_save_at": "2026-08-12T12:34:22.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7cac14e3bee1b74cc5b152d0b82ce2608d3234f4e8a1367a4892804c6fb0faca",
+    "source_doc_hashes": {
+      "spec.md": "e0ef348803e60e123daa3a9378572ce3137098fb57d8c007e016da7eaa0128d9",
+      "plan.md": "aa4fd2676463b4fea23c5da3e14318b4e94246ab1f709d386327e9340e55a69a",
+      "tasks.md": "dc1cb9992c5fbdcd0f97192a43c41afd19d111567af6fb1c21f4203656d2c69b",
+      "checklist.md": "c9d6bd274e7d5176ef8d9c1fe447b5ccdb947273cf74a5eafcafc04121adf79b",
+      "decision-record.md": "05bfcfc9b95f0d3e50e1903face24e94fcb9a57dfc834fe24760fa3875b015bb",
+      "implementation-summary.md": "bcbba67c28738b6a18bff85424d5790a2ae4c405e98f560590b4afced7acedec"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T12:34:22.000Z"
+  }
+}

@@ -11,8 +11,8 @@ SELF-CHECK: Are create-diagram packet resources available?
 
 Indicators:
 - `.opencode/skills/sk-doc/sk-create-diagram/SKILL.md` is readable
-- `.opencode/skills/sk-doc/sk-create-diagram/references/style-guide.md` is readable
-- `.opencode/skills/sk-doc/sk-create-diagram/references/type-*.md` pattern references are available
+- `.opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md` is readable
+- `.opencode/skills/sk-doc/sk-create-diagram/references/types/type-*.md` pattern references are available
 - `.opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py` and `scripts/mermaid_extract.py` exist
 
 If all indicators are present:
@@ -35,8 +35,8 @@ This command requires the create-diagram packet for:
 - draw.io and Mermaid extraction for redraw requests
 
 Required references:
-.opencode/skills/sk-doc/sk-create-diagram/references/style-guide.md
-.opencode/skills/sk-doc/sk-create-diagram/references/type-<name>.md
+.opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md
+.opencode/skills/sk-doc/sk-create-diagram/references/types/type-<name>.md
 
 STATUS=FAIL ERROR="create-diagram resources unavailable"
 ```

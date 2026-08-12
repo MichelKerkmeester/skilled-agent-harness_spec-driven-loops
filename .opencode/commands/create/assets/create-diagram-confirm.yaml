@@ -156,18 +156,18 @@ diagram_scripts:
   drawio_extract: .opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py
   mermaid_extract: .opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py
 diagram_references:
-  style_guide: .opencode/skills/sk-doc/sk-create-diagram/references/style-guide.md
-  onboarding: .opencode/skills/sk-doc/sk-create-diagram/references/onboarding.md
-  output_spec: .opencode/skills/sk-doc/sk-create-diagram/references/output-spec.md
-  import_drawio: .opencode/skills/sk-doc/sk-create-diagram/references/import-drawio.md
-  import_mermaid: .opencode/skills/sk-doc/sk-create-diagram/references/import-mermaid.md
-  export: .opencode/skills/sk-doc/sk-create-diagram/references/export.md
-  type_reference_pattern: .opencode/skills/sk-doc/sk-create-diagram/references/type-<name>.md
+  style_guide: .opencode/skills/sk-doc/sk-create-diagram/references/foundations/style-guide.md
+  onboarding: .opencode/skills/sk-doc/sk-create-diagram/references/foundations/onboarding.md
+  output_spec: .opencode/skills/sk-doc/sk-create-diagram/references/foundations/output-spec.md
+  import_drawio: .opencode/skills/sk-doc/sk-create-diagram/references/import-export/import-drawio.md
+  import_mermaid: .opencode/skills/sk-doc/sk-create-diagram/references/import-export/import-mermaid.md
+  export: .opencode/skills/sk-doc/sk-create-diagram/references/import-export/export.md
+  type_reference_pattern: .opencode/skills/sk-doc/sk-create-diagram/references/types/type-<name>.md
 diagram_templates:
-  minimal_light: .opencode/skills/sk-doc/sk-create-diagram/assets/template.html
-  minimal_dark: .opencode/skills/sk-doc/sk-create-diagram/assets/template-dark.html
-  full_editorial: .opencode/skills/sk-doc/sk-create-diagram/assets/template-full.html
-  terminal: .opencode/skills/sk-doc/sk-create-diagram/assets/template-terminal.html
+  minimal_light: .opencode/skills/sk-doc/sk-create-diagram/assets/templates/template.html
+  minimal_dark: .opencode/skills/sk-doc/sk-create-diagram/assets/templates/template-dark.html
+  full_editorial: .opencode/skills/sk-doc/sk-create-diagram/assets/templates/template-full.html
+  terminal: .opencode/skills/sk-doc/sk-create-diagram/assets/templates/template-terminal.html
 
 # -----------------------------------------------------------------
 # WORKFLOW ENFORCEMENT (CRITICAL)
@@ -247,10 +247,10 @@ workflow:
     purpose: Load the style guide and the shape-specific reference (MANDATORY)
     enforcement: MANDATORY
     activities:
-    - "Load references/style-guide.md — ALWAYS"
-    - "IF generate: run the style-guide gate on first use; load references/type-<diagram_type>.md"
+    - "Load references/foundations/style-guide.md — ALWAYS"
+    - "IF generate: run the style-guide gate on first use; load references/types/type-<diagram_type>.md"
     - "IF import: route by extension to import-drawio.md or import-mermaid.md; run the extraction script (never render)"
-    - "IF export: load references/export.md"
+    - "IF export: load references/import-export/export.md"
     checkpoint:
       question: "Loaded style-guide.md plus [shape reference]. [Style-guide gate dialogue if applicable]. Proceed?"
       options: checkpoint_options.standard

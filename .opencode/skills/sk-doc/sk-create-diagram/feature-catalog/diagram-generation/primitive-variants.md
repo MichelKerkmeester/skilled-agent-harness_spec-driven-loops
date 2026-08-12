@@ -18,7 +18,7 @@ version: 1.0.0.0
 
 Four on-demand primitives loaded only on explicit request: annotation callouts, the sketchy filter, the terminal skin, and the monochrome icon library.
 
-The core SVG building blocks (background, arrow markers, node boxes, arrow labels, legend) are always part of a diagram. These primitives are distinct, optional registers layered on top when the user explicitly asks for an editorial aside, a hand-drawn register, CLI chrome, or iconography. Each lives in its own `references/primitive-*.md` file and is loaded on demand rather than on every diagram, because each trades away some of the default design-system grammar in exchange for its specific effect.
+The core SVG building blocks (background, arrow markers, node boxes, arrow labels, legend) are always part of a diagram. These primitives are distinct, optional registers layered on top when the user explicitly asks for an editorial aside, a hand-drawn register, CLI chrome, or iconography. Each lives in its own `references/primitives/primitive-*.md` file and is loaded on demand rather than on every diagram, because each trades away some of the default design-system grammar in exchange for its specific effect.
 
 ---
 
@@ -48,18 +48,18 @@ The icon library is a monochrome 24×24 set used in IT/cloud diagrams, with each
 
 | File | Layer | Role |
 |---|---|---|
-| `references/primitive-annotation.md` | Shared | The callout grammar (italic serif text, dashed Bézier leader, landing dot), margin rule, and 2-per-diagram cap |
-| `references/primitive-sketchy.md` | Shared | The displacement-filter grammar, tuning parameters, and the filter-shapes-not-text rule |
-| `references/primitive-terminal.md` | Shared | The fixed terminal skin tokens, titlebar chrome, monospace typography, and one-accent rule |
-| `references/primitive-icons.md` | Shared | The monochrome icon library with per-icon SVG snippets, categories, and license attribution |
-| `assets/icons.html`, `assets/template-terminal.html` | Shared | The icon gallery and the terminal template variant the primitive is applied to |
+| `references/primitives/primitive-annotation.md` | Shared | The callout grammar (italic serif text, dashed Bézier leader, landing dot), margin rule, and 2-per-diagram cap |
+| `references/primitives/primitive-sketchy.md` | Shared | The displacement-filter grammar, tuning parameters, and the filter-shapes-not-text rule |
+| `references/primitives/primitive-terminal.md` | Shared | The fixed terminal skin tokens, titlebar chrome, monospace typography, and one-accent rule |
+| `references/primitives/primitive-icons.md` | Shared | The monochrome icon library with per-icon SVG snippets, categories, and license attribution |
+| `assets/icons.html`, `assets/templates/template-terminal.html` | Shared | The icon gallery and the terminal template variant the primitive is applied to |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/diagram-generation/primitive-variants.md` | Manual playbook | Scenario DIA-004 verifies callout limits, the sketchy filter on shapes only, the terminal skin, and the icon library |
-| `references/primitive-annotation.md` | Reference | Anchor for the callout grammar exercised in the scenario |
+| `references/primitives/primitive-annotation.md` | Reference | Anchor for the callout grammar exercised in the scenario |
 
 ---
 

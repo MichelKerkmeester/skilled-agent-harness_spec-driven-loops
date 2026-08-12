@@ -43,7 +43,7 @@ Operators run the exact prompt and command sequence for `IMP-002` and confirm th
 ### Commands
 
 1. `bash: python3 .opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py docs/onboarding.md --diagram 0`
-2. `agent: Read references/import-mermaid.md, references/output-spec.md, and references/type-flowchart.md`
+2. `agent: Read references/import-export/import-mermaid.md, references/foundations/output-spec.md, and references/types/type-flowchart.md`
 3. `agent: Set the four dials; discard init themes, classDef/class/linkStyle, and click targets; preserve sequence order, guards, ER cardinality, and container membership`
 4. `agent: Redraw from a blank viewBox with orthogonal connectors; do not reproduce Mermaid spacing`
 5. `agent: Write docs/onboarding-flow.html; run the taste gate; report the fidelity ledger`
@@ -86,8 +86,8 @@ Run the multi-block variant: invoke `mermaid_extract.py docs/multi.md --diagram 
 
 | File | Role |
 |---|---|
-| `references/import-mermaid.md` | Redraw procedure, trust boundary, and edge cases |
-| `references/output-spec.md` | Four dials, size presets, degrade ladder, fidelity ledger |
+| `references/import-export/import-mermaid.md` | Redraw procedure, trust boundary, and edge cases |
+| `references/foundations/output-spec.md` | Four dials, size presets, degrade ladder, fidelity ledger |
 | `scripts/mermaid_extract.py` | IR extraction script |
 
 ---

@@ -32,7 +32,7 @@ A generic AI-drawn diagram is easy to spot: dark mode with a cyan glow, identica
 
 ### What It Does
 
-`sk-create-diagram` picks the right one of 27 diagram types for what's being shown, loads that type's layout conventions and complexity budget, draws against the shared design system in `references/style-guide.md`, and runs the SKILL.md §9 Pre-Output Checklist before handoff. It also redraws an existing draw.io or Mermaid source — extracting the structural content only, never the source's coordinates, colors, or renderer layout — at a chosen format, size, detail level, and audience. It produces standalone `.html` diagrams. Ongoing ASCII flowcharts embedded directly in markdown are `sk-create-flowchart`'s job, not this one.
+`sk-create-diagram` picks the right one of 27 diagram types for what's being shown, loads that type's layout conventions and complexity budget, draws against the shared design system in `references/foundations/style-guide.md`, and runs the SKILL.md §9 Pre-Output Checklist before handoff. It also redraws an existing draw.io or Mermaid source — extracting the structural content only, never the source's coordinates, colors, or renderer layout — at a chosen format, size, detail level, and audience. It produces standalone `.html` diagrams. Ongoing ASCII flowcharts embedded directly in markdown are `sk-create-flowchart`'s job, not this one.
 
 ### The 27 Diagram Types
 
@@ -56,7 +56,7 @@ Full selection guide with per-type reference links: `SKILL.md` §1.
 Draw an architecture diagram: frontend, backend, database, Redis cache.
 ```
 
-That request maps to `references/type-architecture.md`.
+That request maps to `references/types/type-architecture.md`.
 
 **Step 2: Draw the diagram against the design system, then run the taste gate.**
 
@@ -75,7 +75,7 @@ Each prints the same structural digest shape: nodes, edges, containers, hubs, an
 
 ## 4. HOW IT WORKS
 
-Every build follows the same order. Detect the request shape — generate, import, or export. For generate, run the style-guide gate on the first diagram in a new project, load the matching `references/type-<name>.md`, and draw against the shared design tokens and that type's complexity budget. For import, route by source extension to `references/import-drawio.md` or `references/import-mermaid.md`, extract the structural IR with the matching script, set the four output dials (format, size, detail, audience), and redraw — never invent a component to fill a layout, never silently drop one. For export, extract the `<svg>` node and emit PNG and/or SVG; export is always manual, never automatic. Every path ends at the same taste gate before delivery.
+Every build follows the same order. Detect the request shape — generate, import, or export. For generate, run the style-guide gate on the first diagram in a new project, load the matching `references/types/type-<name>.md`, and draw against the shared design tokens and that type's complexity budget. For import, route by source extension to `references/import-export/import-drawio.md` or `references/import-export/import-mermaid.md`, extract the structural IR with the matching script, set the four output dials (format, size, detail, audience), and redraw — never invent a component to fill a layout, never silently drop one. For export, extract the `<svg>` node and emit PNG and/or SVG; export is always manual, never automatic. Every path ends at the same taste gate before delivery.
 
 ### Key Concept: The Taste Gate Is Not Optional Polish
 
@@ -106,8 +106,8 @@ Reach for `sk-create-diagram` when a reader will learn more from a visual than f
 | Diagram looks generic or "AI-drawn" | Dark mode + glow, identical boxes, no real accent decision | Re-run the §9 taste gate's Signal checks; pick 1-2 genuinely focal elements |
 | Diagonal connector between two boxes | Off-axis nodes connected with a straight `<line>` instead of an orthogonal elbow | Route with a rounded right-angle connector (`r=8`); see `SKILL.md` RULES |
 | Arrow label unreadable or overlapping the line | Missing the mandatory 6-10px gap or opaque mask rect | Add the mask rect and the visible gap per the connector-rules checklist |
-| Import redraw looks nothing like the source | Wrong output dial (format/size/detail/audience) for the destination | Re-check the four dials in `references/output-spec.md` against where the diagram is going |
-| Fidelity ledger missing after an import | Redraw delivered without reporting what was merged, collapsed, or dropped | Every import must end with the fidelity ledger — see `references/import-drawio.md` / `import-mermaid.md` |
+| Import redraw looks nothing like the source | Wrong output dial (format/size/detail/audience) for the destination | Re-check the four dials in `references/foundations/output-spec.md` against where the diagram is going |
+| Fidelity ledger missing after an import | Redraw delivered without reporting what was merged, collapsed, or dropped | Every import must end with the fidelity ledger — see `references/import-export/import-drawio.md` / `import-mermaid.md` |
 
 ---
 
@@ -123,7 +123,7 @@ A: Pick the closest one and adapt it — the type references are layout-conventi
 
 **Q: Can this skill fetch my website automatically to onboard my brand colors?**
 
-A: No — the packet has no network-fetch tool. Onboarding is agent-mediated: the calling AI session fetches the URL with its own tools and this skill maps the result to semantic tokens. See `references/onboarding.md`.
+A: No — the packet has no network-fetch tool. Onboarding is agent-mediated: the calling AI session fetches the URL with its own tools and this skill maps the result to semantic tokens. See `references/foundations/onboarding.md`.
 
 ---
 
@@ -144,9 +144,9 @@ A: No — the packet has no network-fetch tool. Onboarding is agent-mediated: th
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Authoritative packet contract, design system, routing, and taste gate |
-| [`references/style-guide.md`](./references/style-guide.md) | Design tokens — the single source of truth for colors, typography, and spacing |
-| [`references/output-spec.md`](./references/output-spec.md) | The four import/export dials: format, size, detail, audience |
-| [`references/import-drawio.md`](./references/import-drawio.md) | draw.io redraw procedure |
-| [`references/import-mermaid.md`](./references/import-mermaid.md) | Mermaid redraw procedure |
-| [`references/export.md`](./references/export.md) | PNG/SVG export procedure |
-| [`references/type-architecture.md`](./references/type-architecture.md) | Example of a per-type layout-convention reference |
+| [`references/foundations/style-guide.md`](./references/foundations/style-guide.md) | Design tokens — the single source of truth for colors, typography, and spacing |
+| [`references/foundations/output-spec.md`](./references/foundations/output-spec.md) | The four import/export dials: format, size, detail, audience |
+| [`references/import-export/import-drawio.md`](./references/import-export/import-drawio.md) | draw.io redraw procedure |
+| [`references/import-export/import-mermaid.md`](./references/import-export/import-mermaid.md) | Mermaid redraw procedure |
+| [`references/import-export/export.md`](./references/import-export/export.md) | PNG/SVG export procedure |
+| [`references/types/type-architecture.md`](./references/types/type-architecture.md) | Example of a per-type layout-convention reference |

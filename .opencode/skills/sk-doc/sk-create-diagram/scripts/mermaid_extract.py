@@ -1061,6 +1061,7 @@ def _has_cycle(nodes: list[Node], edges: list[Edge]) -> bool:
     colors = {node.id: WHITE for node in nodes}
 
     def visit(start: str) -> bool:
+        """Iterative DFS from `start`; return True if a back-edge (cycle) is found."""
         stack: list[tuple[str, Any]] = [(start, iter(adjacency[start]))]
         colors[start] = GREY
         while stack:
@@ -1102,6 +1103,7 @@ def analyze(diagram: Diagram) -> dict[str, Any]:
         shapes[family] = shapes.get(family, 0) + 1
 
     def name(node: Node) -> str:
+        """Return a single-line display name for a node (label, or its id)."""
         return node.label.replace("\n", " · ") or node.id
 
     hubs = [

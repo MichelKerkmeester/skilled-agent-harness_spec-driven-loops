@@ -30,7 +30,7 @@ The extractor is always run instead of reading the file directly — most `.draw
 
 ### Redraw pipeline
 
-Before drawing, the agent sets the four dials — format, size, detail level, and audience — from `references/output-spec.md`, then picks a target type from the digest's structural signals (which are advisory, not instructions: a "flowchart" whose diamonds all ask which service is really an architecture diagram). The agent builds a semantic model by naming the story in one sentence, applying the degrade ladder until under the node ceiling, picking 1-2 focal nodes from the hub ranking, rewriting labels for the audience, and pruning edges the layout already implies. The redraw discards source coordinates, source colors, and shape quirks, maps shapes to semantic treatments, reroutes every connector with the mandatory connector rules, and sets the `viewBox` from the size preset before laying out.
+Before drawing, the agent sets the four dials — format, size, detail level, and audience — from `references/foundations/output-spec.md`, then picks a target type from the digest's structural signals (which are advisory, not instructions: a "flowchart" whose diamonds all ask which service is really an architecture diagram). The agent builds a semantic model by naming the story in one sentence, applying the degrade ladder until under the node ceiling, picking 1-2 focal nodes from the hub ranking, rewriting labels for the audience, and pruning edges the layout already implies. The redraw discards source coordinates, source colors, and shape quirks, maps shapes to semantic treatments, reroutes every connector with the mandatory connector rules, and sets the `viewBox` from the size preset before laying out.
 
 ### Delivery and fidelity ledger
 
@@ -45,16 +45,16 @@ The deliverable is a single self-contained `.html` written at the requested path
 | File | Layer | Role |
 |---|---|---|
 | `scripts/drawio_extract.py` | Script | Decodes draw.io formats into the IR and Markdown digest, with `--page`, `--json`, `--max-rows`, and `--out` options and exit code 2 for unreadable input |
-| `references/import-drawio.md` | Shared | The six-step redraw procedure: extract, set the four dials, pick the type, build the semantic model, redraw, deliver |
-| `references/output-spec.md` | Shared | The four dials, size presets, degrade ladder, and fidelity-ledger contract |
-| `assets/example-import-drawio.html` | Shared | Shipped worked example of the procedure on a sample architecture source |
+| `references/import-export/import-drawio.md` | Shared | The six-step redraw procedure: extract, set the four dials, pick the type, build the semantic model, redraw, deliver |
+| `references/foundations/output-spec.md` | Shared | The four dials, size presets, degrade ladder, and fidelity-ledger contract |
+| `assets/examples/example-import-drawio.html` | Shared | Shipped worked example of the procedure on a sample architecture source |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `manual-testing-playbook/import-export/drawio-import.md` | Manual playbook | Scenario IMP-001 exercises extraction via `drawio_extract.py`, the four dials, redraw, and the fidelity ledger |
-| `references/import-drawio.md` | Reference | Anchor for the procedure and edge-case table the scenario checks |
+| `references/import-export/import-drawio.md` | Reference | Anchor for the procedure and edge-case table the scenario checks |
 
 ---
 

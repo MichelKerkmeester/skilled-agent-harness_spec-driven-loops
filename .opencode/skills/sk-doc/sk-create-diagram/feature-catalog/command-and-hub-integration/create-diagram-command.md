@@ -30,7 +30,7 @@ The router owns three assets: the presentation contract (`create-diagram-present
 
 ### Modes and workflow
 
-`:auto` executes autonomously with pre-bound setup answers for non-interactive setup; `:confirm` (or an omitted mode) runs the same steps as an interactive, checkpointed workflow, so it is the default. The bound workflow runs the diagram pipeline: detect the generate/import/export request shape, load the style guide plus the matching `references/type-*.md` or import/export reference, draw or redraw against the shared design system and complexity budget, and validate the accessible-SVG contract before delivery. The `--import` and `--type` arguments route directly into shape detection and type selection.
+`:auto` executes autonomously with pre-bound setup answers for non-interactive setup; `:confirm` (or an omitted mode) runs the same steps as an interactive, checkpointed workflow, so it is the default. The bound workflow runs the diagram pipeline: detect the generate/import/export request shape, load the style guide plus the matching `references/types/type-*.md` or import/export reference, draw or redraw against the shared design system and complexity budget, and validate the accessible-SVG contract before delivery. The `--import` and `--type` arguments route directly into shape detection and type selection.
 
 ### Presentation boundary
 

@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CMD-001` and confirm th
 - Objective: verify the router loads the presentation contract, resolves `:auto` versus `:confirm`, executes the bound workflow YAML, and respects the presentation boundary
 - Real user request: `/create:diagram docs/order-flow.html "sequence diagram of our order placement flow" :auto — sequence diagram of the order flow, no questions.`
 - Prompt: `Run the /create:diagram command with argument docs/order-flow.html, description "sequence diagram of our order placement flow", mode :auto. Verify the router loads the presentation contract, binds create-diagram-auto.yaml, and the workflow produces the diagram without interactive questions.`
-- Expected execution process: the router reads `.opencode/commands/create/diagram.md`, reads the presentation contract and runs its Phase 0 verification, resolves `:auto` from the arguments, binds `create-diagram-auto.yaml`, and the workflow executes its steps — detect the generate shape, load the style guide and `references/type-sequence.md`, draw, and verify the accessible-SVG contract — before the completion display is presented from the presentation contract.
+- Expected execution process: the router reads `.opencode/commands/create/diagram.md`, reads the presentation contract and runs its Phase 0 verification, resolves `:auto` from the arguments, binds `create-diagram-auto.yaml`, and the workflow executes its steps — detect the generate shape, load the style guide and `references/types/type-sequence.md`, draw, and verify the accessible-SVG contract — before the completion display is presented from the presentation contract.
 - Expected signals: `:auto` completes without interactive questions; the omitted-mode case binds `create-diagram-confirm.yaml` and checkpoints; the workflow steps live in the YAML, not the router; user-facing wording comes from `create-diagram-presentation.txt`; the HTML lands at the argument path `docs/order-flow.html`.
 - Desired user-visible outcome: an HTML sequence diagram at the argument path, produced by the bound workflow, with the router never inventing prompts or dashboards.
 - Pass/fail: PASS if the mode resolves to `:auto`, the bound YAML executes, the HTML is written to the argument path, and the presentation boundary is respected; FAIL if the router binds the wrong mode, dispatches workflow behavior inline, invents user-facing wording, or the output lands anywhere other than the argument path.
@@ -44,7 +44,7 @@ Operators run the exact prompt and command sequence for `CMD-001` and confirm th
 
 1. `agent: Read .opencode/commands/create/diagram.md (the router contract)`
 2. `agent: Read .opencode/commands/create/assets/create-diagram-presentation.txt and the bound workflow .opencode/commands/create/assets/create-diagram-auto.yaml (for :auto)`
-3. `agent: Execute the workflow YAML steps: detect the generate shape, load references/style-guide.md and references/type-sequence.md, draw, and verify the accessible-SVG contract`
+3. `agent: Execute the workflow YAML steps: detect the generate shape, load references/foundations/style-guide.md and references/types/type-sequence.md, draw, and verify the accessible-SVG contract`
 4. `agent: Confirm the HTML exists at the argument path and that every user-facing prompt, dashboard, and completion line comes from the presentation contract, not the router`
 
 ### Expected

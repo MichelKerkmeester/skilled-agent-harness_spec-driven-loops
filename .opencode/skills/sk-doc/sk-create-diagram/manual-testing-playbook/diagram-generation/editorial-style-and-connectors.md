@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `DIA-002` and confirm th
 - Objective: verify the editorial design system and the five mandatory connector rules in a generated swimlane diagram
 - Real user request: `Make a swimlane diagram of our support handoff process, and make it consistent with our docs.`
 - Prompt: `Create a swimlane diagram as a self-contained HTML file of the support handoff process across L1, L2, and ops. Use the editorial design system: 4px grid, accent on at most 2 focal elements, orthogonal rounded elbows on all off-axis connectors, fanned attach points, masked arrow labels with a visible gap, and a horizontal bottom legend. Save it to docs/support-handoff.html.`
-- Expected execution process: the agent loads `references/style-guide.md` (always) and `references/type-swimlane.md`, copies `assets/template.html`, authorizes the lanes, handoffs, and connectors, and then runs the taste gate, including a mechanical scan for forbidden patterns.
+- Expected execution process: the agent loads `references/foundations/style-guide.md` (always) and `references/types/type-swimlane.md`, copies `assets/templates/template.html`, authorizes the lanes, handoffs, and connectors, and then runs the taste gate, including a mechanical scan for forbidden patterns.
 - Expected signals: every coordinate, dimension, and gap is divisible by 4; every off-axis connector uses rounded right-angle elbows (`r=8`); no two connectors share a stroke path; each edge attach point is fanned ≥12px apart; every arrow label has an opaque mask rect with a visible 6–10px gap; the legend is a horizontal bottom strip.
 - Desired user-visible outcome: a clean, readable swimlane whose layout, connectors, and accents all obey the design-system rules.
 - Pass/fail: PASS if all five mandatory connector rules are verified plus the 4px grid, accent count ≤ 2, legend placement, and typography roles; FAIL if any connector rule is violated, a coordinate is off-grid, more than 2 accents are used, or the legend floats inside the diagram area.
@@ -42,8 +42,8 @@ Operators run the exact prompt and command sequence for `DIA-002` and confirm th
 
 ### Commands
 
-1. `agent: Read references/style-guide.md and references/type-swimlane.md`
-2. `agent: Copy assets/template.html to docs/support-handoff.html`
+1. `agent: Read references/foundations/style-guide.md and references/types/type-swimlane.md`
+2. `agent: Copy assets/templates/template.html to docs/support-handoff.html`
 3. `agent: Author the three lanes, handoff nodes, and connectors using orthogonal elbows, fanned attach points, and masked labels`
 4. `bash: grep -nE "writing-mode|<line " docs/support-handoff.html` (expect no vertical-text matches and no diagonal plain lines)
 
@@ -85,8 +85,8 @@ Run the same audit on a second type, such as an ER diagram, to confirm the conne
 
 | File | Role |
 |---|---|
-| `references/style-guide.md` | Design-token source of truth |
-| `references/type-swimlane.md` | Type conventions for the lane layout |
+| `references/foundations/style-guide.md` | Design-token source of truth |
+| `references/types/type-swimlane.md` | Type conventions for the lane layout |
 | `SKILL.md` (RULES + SUCCESS CRITERIA) | Connector rules and taste-gate contract |
 
 ---

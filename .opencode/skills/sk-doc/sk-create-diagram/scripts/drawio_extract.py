@@ -495,6 +495,7 @@ def parse_page(diagram: ET.Element, index: int) -> Page:
 
     # Resolve absolute geometry + depth by walking the parent chain.
     def resolve(node: Node, seen: set[str]) -> tuple[float, float, int]:
+        """Resolve one node's absolute (x, y, depth) by walking its parent chain."""
         if node.id in seen:
             return node.x, node.y, 0
         seen.add(node.id)
@@ -602,6 +603,7 @@ def _has_cycle(nodes: list[Node], edges: list[Edge]) -> bool:
     color = {n.id: WHITE for n in nodes}
 
     def visit(start: str) -> bool:
+        """Iterative DFS from `start`; return True if a back-edge (cycle) is found."""
         stack = [(start, iter(adjacency.get(start, [])))]
         color[start] = GREY
         while stack:
@@ -654,6 +656,7 @@ def analyze(page: Page) -> dict[str, Any]:
         shapes[shape_family(node.shape)] = shapes.get(shape_family(node.shape), 0) + 1
 
     def name_of(node: Node) -> str:
+        """Return a single-line display name for a node (label, or its id)."""
         return (node.label.replace("\n", " · ") or node.id)
 
     ranked = sorted(

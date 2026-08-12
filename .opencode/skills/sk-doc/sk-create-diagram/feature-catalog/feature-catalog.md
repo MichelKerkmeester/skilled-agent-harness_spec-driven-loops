@@ -29,11 +29,11 @@ Use this catalog as the canonical inventory for the live `sk-create-diagram` fea
 
 #### Description
 
-Classifies each request into GENERATE, IMPORT, or EXPORT, then selects one of the 27 supported diagram types and loads the matching `references/type-*.md` convention before drawing.
+Classifies each request into GENERATE, IMPORT, or EXPORT, then selects one of the 27 supported diagram types and loads the matching `references/types/type-*.md` convention before drawing.
 
 #### Current Reality
 
-The router scores request vocabulary (`diagram`, `architecture`, `sequence`, `drawio`, `mermaid`, `export`, `png`) with an ambiguity delta of 1, guards every resource path, and loads `references/style-guide.md` always plus the conditional type/import/export references; the 27-type selection guide maps components-and-connections to Architecture, decision logic to Flowchart, time-ordered messages to Sequence, and so on.
+The router scores request vocabulary (`diagram`, `architecture`, `sequence`, `drawio`, `mermaid`, `export`, `png`) with an ambiguity delta of 1, guards every resource path, and loads `references/foundations/style-guide.md` always plus the conditional type/import/export references; the 27-type selection guide maps components-and-connections to Architecture, decision logic to Flowchart, time-ordered messages to Sequence, and so on.
 
 #### Source Files
 
@@ -49,7 +49,7 @@ The shared editorial design system every diagram draws against: semantic color a
 
 #### Current Reality
 
-Tokens live in `references/style-guide.md` (paper, ink, muted, accent, link) with a light-dark inversion rule and a separate terminal skin; every coordinate, size, and gap must be divisible by 4; the per-diagram budget is 9 nodes, 12 arrows, 2 focal elements, and 2 callouts; connectors must use rounded orthogonal elbows, masked arrow labels with a 6-10px gap, fanned attach points, and no overlapping strokes.
+Tokens live in `references/foundations/style-guide.md` (paper, ink, muted, accent, link) with a light-dark inversion rule and a separate terminal skin; every coordinate, size, and gap must be divisible by 4; the per-diagram budget is 9 nodes, 12 arrows, 2 focal elements, and 2 callouts; connectors must use rounded orthogonal elbows, masked arrow labels with a 6-10px gap, fanned attach points, and no overlapping strokes.
 
 #### Source Files
 
@@ -65,7 +65,7 @@ The style-guide gate before the first diagram in a project, plus agent-mediated 
 
 #### Current Reality
 
-The gate fires only when the `accent` token is still the shipped default and offers five options (URL, skill, folder, manual tokens, default); onboarding reads the source, extracts colors and fonts, maps them to semantic roles, runs contrast checks, proposes a diff, and writes only after approval; `references/onboarding.md` documents the full flow.
+The gate fires only when the `accent` token is still the shipped default and offers five options (URL, skill, folder, manual tokens, default); onboarding reads the source, extracts colors and fonts, maps them to semantic roles, runs contrast checks, proposes a diff, and writes only after approval; `references/foundations/onboarding.md` documents the full flow.
 
 #### Source Files
 
@@ -127,7 +127,7 @@ See [`import-export/mermaid-import.md`](import-export/mermaid-import.md) for ful
 
 #### Description
 
-Manual, diagram-only export of a generated diagram HTML file to a portable `.svg` and/or `.png` beside it, following `references/export.md`.
+Manual, diagram-only export of a generated diagram HTML file to a portable `.svg` and/or `.png` beside it, following `references/import-export/export.md`.
 
 #### Current Reality
 
