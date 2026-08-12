@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-communication-skill"
-    last_updated_at: "2026-08-12T13:10:00Z"
+    last_updated_at: "2026-08-12T17:49:00Z"
     last_updated_by: "claude"
-    recent_action: "Completed all authoring tasks."
+    recent_action: "Cited a persisted advisor smoke report as T005 evidence"
     next_safe_action: "None; complete."
     blockers: []
     key_files:
@@ -65,7 +65,7 @@ _memory:
 ## PHASE 3: VERIFICATION
 
 - [x] T004 Generate manifest and validate [evidence: `ci-skill-root-metadata` 12/12 clean; `validate_skill_package.py` PASS]
-- [x] T005 Confirm advisor routing [evidence: `.opencode/skills/sk-communication/graph-metadata.json` intent signals; advisor returns sk-communication as the top match]
+- [x] T005 Confirm advisor routing [evidence: `.opencode/skills/sk-communication/benchmark/reports/advisor-routing-smoke-2026-08-12.json` — advisor ranks sk-communication #1 at confidence 0.95 (above the 0.8 invoke threshold) for the projection prompt; reproduce via the command recorded in that file]
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -22,6 +22,11 @@
         "target": "sk-doc",
         "weight": 0.3,
         "context": "documentation peer for the package docs and handoff"
+      },
+      {
+        "target": "sk-git",
+        "weight": 0.3,
+        "context": "sk-git handles the worktree, commits, and PR when integrating the package"
       }
     ],
     "conflicts_with": [],

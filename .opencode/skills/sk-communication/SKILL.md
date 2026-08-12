@@ -127,7 +127,7 @@ canonical event/transcript ──> unchanged persistence + model context
                                                         atomic replace | append | sidecar | original-only
 ```
 
-Consume it through the package's subpath exports (`@portable-cli/communication-projection`, plus `./providers`, `./privacy`, `./runtimes`, `./clients`, `./evaluation`, `./observability`, `./doctor`, `./release`). Key entry points: `selectPrivacyRoute` then `executeProviderRoute`; the runtime adapters' `adapt`/`present`; `runCompatibilityDoctor`; `evaluateReleaseReadiness`.
+Consume it through the package's subpath exports (`@portable-cli/communication-projection`, plus `./contracts`, `./versioning`, `./providers`, `./privacy`, `./runtimes`, `./evaluation`, `./observability`, `./doctor`, `./release`). Key entry points: `selectPrivacyRoute` then `executeProviderRoute`; the runtime adapters' `adapt`/`present`; `runCompatibilityDoctor`; `evaluateReleaseReadiness`.
 
 ### The Two Presentation Tiers
 
@@ -149,7 +149,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 - Return the exact original bytes on any unsupported, unsafe, timed-out, cancelled, or failed path.
 - Make every runtime path declare full-projection or safe-native, and keep the two separate in any parity claim.
 - Keep telemetry content-free: reason codes only, never raw transcript, prompt, candidate, protected-span, or credential values; correlate with rotating keyed digests.
-- Revalidate OpenCode Go retention and training facts before 2026-08-31 and again at every release; a stale hosted-privacy fact blocks hosted routing.
+- Revalidate OpenCode Go retention and training facts before the OpenCode Go preset's `expiresAt` (`packages/cli-communication-projection/src/providers/presets.ts`) and again at every release; a stale hosted-privacy fact blocks hosted routing.
 
 ### ❌ NEVER
 

@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-communication-skill"
-    last_updated_at: "2026-08-12T13:10:00Z"
+    last_updated_at: "2026-08-12T17:49:00Z"
     last_updated_by: "claude"
-    recent_action: "Authored, validated, and registered the sk-communication skill."
-    next_safe_action: "None; the skill is complete and routable."
+    recent_action: "Applied deep-review remediation to the skill docs and packet"
+    next_safe_action: "Optionally clear the deferred P2 review advisories"
     blockers: []
     key_files:
       - "implementation-summary.md"

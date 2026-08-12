@@ -3,7 +3,6 @@
   "packet": ".",
   "leafRoots": [
     "references",
-    "assets",
     "feature-catalog",
     "manual-testing-playbook"
   ],

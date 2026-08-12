@@ -58,7 +58,7 @@ cd packages/cli-communication-projection
 npm run check   # typecheck + build + tests + import smoke
 ```
 
-Consume the package through its subpath exports — `@portable-cli/communication-projection`, plus `./providers`, `./privacy`, `./runtimes`, `./clients`, `./evaluation`, `./observability`, `./doctor`, and `./release`.
+Consume the package through its subpath exports — `@portable-cli/communication-projection`, plus `./contracts`, `./versioning`, `./providers`, `./privacy`, `./runtimes`, `./evaluation`, `./observability`, `./doctor`, and `./release`.
 
 ---
 
