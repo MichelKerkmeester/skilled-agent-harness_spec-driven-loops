@@ -12,7 +12,7 @@ parent: "hooks/002-injection-bloat-reduction"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup"
-    last_updated_at: "2026-08-09T07:30:34Z"
+    last_updated_at: "2026-08-11T09:55:00Z"
     last_updated_by: "claude"
     recent_action: "Shipped + proved the Pi-local directive dedup; 54/54 tests green"
     next_safe_action: "None; packet complete"
@@ -21,7 +21,7 @@ _memory:
       - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
       - ".opencode/hooks/dispatch/pi/directive-dedup.test.ts"
     session_dedup:
-      fingerprint: "sha256:2962c88af1b9cde0e817817342bf0b4c6e152b226987dec7a952d4048b0c9157"
+      fingerprint: "sha256:2b8f5a1a74e3b90a740856d1a9b8d1512aea503fbd258629a3bce6bfedc1ca6f"
       session_id: "2026-08-09-pi-directive-dedup"
       parent_session_id: null
     completion_pct: 100

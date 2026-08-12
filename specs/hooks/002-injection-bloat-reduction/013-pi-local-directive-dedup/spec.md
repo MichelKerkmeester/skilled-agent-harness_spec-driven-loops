@@ -14,7 +14,7 @@ parent: "hooks/002-injection-bloat-reduction"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup"
-    last_updated_at: "2026-08-09T07:30:34Z"
+    last_updated_at: "2026-08-11T09:55:00Z"
     last_updated_by: "claude"
     recent_action: "Shipped the Pi-adapter-local directive dedup with fail-open guardrails"
     next_safe_action: "None; packet complete"
@@ -22,7 +22,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
     session_dedup:
-      fingerprint: "sha256:c3fb8a78faa0d42acb5578096887fea8f346b3c5855e70b08c17d2d4251cf432"
+      fingerprint: "sha256:622d34422f3140a4d3a5736d81037a7512d51c675b3516a6c0e5bf4644952b94"
       session_id: "2026-08-09-pi-directive-dedup"
       parent_session_id: null
     completion_pct: 100
@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-08-09 |
 | **Level** | 2 |
 | **Predecessor** | 006-pi-dispatch-and-compaction |
-| **Successor** | None |
+| **Successor** | 014-cross-runtime-directive-lifecycle |
 | **Priority** | P2 |
 <!-- /ANCHOR:metadata -->
 

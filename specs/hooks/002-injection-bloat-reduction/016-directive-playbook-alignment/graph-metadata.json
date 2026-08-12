@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/016-directive-playbook-alignment",
+  "spec_folder": "hooks/002-injection-bloat-reduction/016-directive-playbook-alignment",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "hooks/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle",
+        "reason": "Documents/validates the 014 lifecycle feature",
+        "source": "derived"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "directive lifecycle playbook alignment",
+      "directive lifecycle scenario 457",
+      "directive lifecycle dedup playbook",
+      "directive lifecycle feature catalog",
+      "directive lifecycle playbook alignment plan",
+      "directive lifecycle scenario plan",
+      "directive lifecycle dedup catalog plan",
+      "directive lifecycle playbook alignment tasks",
+      "directive lifecycle scenario tasks",
+      "directive lifecycle playbook alignment checklist",
+      "directive lifecycle scenario verification",
+      "directive lifecycle dedup catalog verification"
+    ],
+    "key_topics": [
+      "directive",
+      "lifecycle",
+      "playbook",
+      "alignment",
+      "scenario",
+      "dedup",
+      "feature",
+      "catalog",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lifecycle Playbook Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "executable",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "concrete",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Phases",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Executable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Scenario",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "compact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Close the playbook/catalog coverage gap left by the live directive-lifecycle feature (013/014): add manual scenario 457 validating first-message full, repeat-turn route-only, boundary re-delivery, kill-switch revert, and fail-open per runtime (Pi/Claude/Cursor/Devin/Codex/OpenCode), register it in the root index, add the lifecycle-aware 119-C note, and publish the feature-catalog entry with both kill-switches — docs only.",
+    "created_at": "2026-08-11T10:10:08.000Z",
+    "last_save_at": "2026-08-11T16:06:51.135Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eadbaaecf9ab91c2a53d947ea37622b55a70f5dfd2566edea52967d098486494",
+    "source_doc_hashes": {
+      "spec.md": "996066feb378e4fc529b0141a0caabdded758679e3bac31f193e9ce2775d2aab",
+      "plan.md": "bce1a684ce0b1f447a0817c7e2ede13f945ff206d581c1870f87bfc8c6e459a7",
+      "tasks.md": "7bf344409c44bbb58884bbd26b6c097ade96e4f29e87cbffdca95084b863bc80",
+      "checklist.md": "75d8c2e295c7bb54782d4e91341fcc3230864b654d43324577669904e07dd34a",
+      "implementation-summary.md": "e5d1468c7b4cf27d7b39d0385807662019e6f29c9b809f72e10e84ca9bda1080"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

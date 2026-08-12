@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle",
+  "description": "Extend the 013 lifecycle rule to the model-context [SYS] runtimes: a canonical directive-lifecycle core drops the three constant advisor directives on",
+  "keywords": [
+    "extend",
+    "lifecycle",
+    "rule",
+    "model-context",
+    "sys",
+    "runtimes",
+    "canonical",
+    "directive-lifecycle",
+    "core",
+    "drops",
+    "three",
+    "constant",
+    "advisor",
+    "directives"
+  ],
+  "lastUpdated": "2026-08-11T16:06:21.131Z",
+  "specId": "014",
+  "folderSlug": "cross-runtime-directive-lifecycle",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

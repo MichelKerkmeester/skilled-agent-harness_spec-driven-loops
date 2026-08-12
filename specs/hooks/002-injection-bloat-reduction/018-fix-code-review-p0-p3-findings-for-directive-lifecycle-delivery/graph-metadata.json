@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
+  "spec_folder": "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [
+      {
+        "packet_id": "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+        "reason": "Phase 018 replaces the incorrect discovery-symlink deletion plan with the complete review remediation scope",
+        "source": "spec.md",
+        "spec_folder": "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
+        "title": "Adapter Live Delivery Verification"
+      }
+    ],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "directive lifecycle review findings",
+      "transcript high-water mark",
+      "directive lifecycle store hardening",
+      "scenario 457 evidence taxonomy",
+      "adapter parity",
+      "directive lifecycle remediation plan",
+      "host lifecycle epoch",
+      "file directive lifecycle store hardening",
+      "scenario 457 proof matrix",
+      "directive lifecycle remediation tasks",
+      "review findings implementation tasks",
+      "scenario 457 evidence repair"
+    ],
+    "key_topics": [
+      "directive",
+      "lifecycle",
+      "review",
+      "findings",
+      "transcript",
+      "high-water",
+      "mark",
+      "store",
+      "hardening",
+      "scenario",
+      "evidence",
+      "taxonomy"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "evidence/review/source-review-registry.json",
+      "evidence/negative-controls/final.json",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "evidence/whole-gate/manifest.json",
+      "spec.md",
+      "implementation-summary.md",
+      "evidence/inventory/discovery-symlinks.txt",
+      "evidence/inventory/lifecycle-producers-consumers.txt",
+      "evidence/inventory/evidence-producers-consumers.txt",
+      "evidence/inventory/dirty-checkout.txt",
+      "evidence/performance/result-final-5.json",
+      "evidence/inventory/structural-impact-coverage.md",
+      "handover.md",
+      "review/review-report.md",
+      "evidence/review/fresh-deep-review-disposition.md",
+      "evidence/whole-gate/comparison-final-pi-repeat-4-normalized.json"
+    ],
+    "entities": [
+      {
+        "name": "source-review-registry.json",
+        "kind": "config",
+        "path": "evidence/review/source-review-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "final.json",
+        "kind": "config",
+        "path": "evidence/negative-controls/final.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": "evidence/whole-gate/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "discovery-symlinks.txt",
+        "kind": "file",
+        "path": "evidence/inventory/discovery-symlinks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-producers-consumers.txt",
+        "kind": "file",
+        "path": "evidence/inventory/lifecycle-producers-consumers.txt",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-producers-consumers.txt",
+        "kind": "file",
+        "path": "evidence/inventory/evidence-producers-consumers.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dirty-checkout.txt",
+        "kind": "file",
+        "path": "evidence/inventory/dirty-checkout.txt",
+        "source": "derived"
+      },
+      {
+        "name": "result-final-5.json",
+        "kind": "config",
+        "path": "evidence/performance/result-final-5.json",
+        "source": "derived"
+      },
+      {
+        "name": "structural-impact-coverage.md",
+        "kind": "doc",
+        "path": "evidence/inventory/structural-impact-coverage.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "fresh-deep-review-disposition.md",
+        "kind": "doc",
+        "path": "evidence/review/fresh-deep-review-disposition.md",
+        "source": "derived"
+      },
+      {
+        "name": "comparison-final-pi-repeat-4-normalized.json",
+        "kind": "config",
+        "path": "evidence/whole-gate/comparison-final-pi-repeat-4-normalized.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Lifecycle Delivery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Before this phase, the canonical decision recorded transcript size only when it delivered the full directive block",
+    "created_at": "2026-08-11T12:34:41Z",
+    "last_save_at": "2026-08-12T04:14:50.825Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:6148a599b8c4cac88bdd7b3041d7facb82cdb7e08bb236e18e113b6f11b9719f",
+    "source_doc_hashes": {
+      "spec.md": "e92fb18c00c2790c6ddf1ef784d639d699eb07d6ec1ba86d11a44e1e21c69830",
+      "plan.md": "62df9d2b024a025e3e1bf286abd9ca3d1ab1b330527ba9490e08fc5fa932bb67",
+      "tasks.md": "47eb439b5691f426e8fee10d508a190d4de3b7e0c9695bd76becdc2fd7b41b93",
+      "checklist.md": "31a7a228733ed6bcfb277543251defc862cd651a2891ccb33ee71db17e5dc990",
+      "decision-record.md": "a4b399f437316c3095dc9ee2be8ae4534502a45a67f88147867d9d48861ab6b6",
+      "implementation-summary.md": "05cca00e6690511a683016f531e16c24c2bd697bd4bc385f2aadb0cf67733f2b",
+      "handover.md": "5dc27e65d42f1faa487d07715eaa5f992e88320a53188a27da81bb4aaffb3478"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

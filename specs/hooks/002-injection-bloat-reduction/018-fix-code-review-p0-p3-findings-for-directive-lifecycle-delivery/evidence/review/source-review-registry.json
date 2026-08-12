@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-11T14:46:00Z",
+  "source": "pre-change-source-review.md",
+  "sourceSha256": "c8c4826530650c9ff479af72c3160e3d42d626589ff8b078823235307e822964",
+  "reviewRunId": "dd20bd64",
+  "counts": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 3
+  },
+  "activeP0": [],
+  "activeP1": [
+    "DL-01",
+    "DL-02",
+    "DL-03",
+    "DL-04",
+    "DL-05",
+    "DL-06",
+    "DL-07"
+  ],
+  "activeP2": [
+    "DL-08",
+    "DL-09",
+    "DL-10"
+  ],
+  "verdict": "REQUESTED_CHANGES",
+  "evidenceClass": "source-review"
+}

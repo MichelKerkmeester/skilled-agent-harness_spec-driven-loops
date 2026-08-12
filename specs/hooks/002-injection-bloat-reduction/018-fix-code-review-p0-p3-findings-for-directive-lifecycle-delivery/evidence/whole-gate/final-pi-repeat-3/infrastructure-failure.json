@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "runLabel": "final-pi-repeat-3",
+  "status": "infrastructure-failure",
+  "productVerdict": null,
+  "reason": "The asynchronous runner attempt was interrupted during diagnosis before progress instrumentation and before a complete results receipt was produced.",
+  "replacementRun": "final-pi-repeat-4",
+  "recordedAt": "2026-08-11T19:57:18Z"
+}

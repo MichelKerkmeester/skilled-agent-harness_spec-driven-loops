@@ -1,0 +1,88 @@
+{
+  "runtime": "claude",
+  "evidenceClass": "registered-adapter",
+  "hostDeliveryStatus": "adapter-driven-only",
+  "adapter": ".opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/user-prompt-submit.js",
+  "checks": {
+    "firstFull": true,
+    "repeatRouteOnly": true,
+    "shrinkFull": true,
+    "killSwitchFull": true,
+    "unknownNeverRouteOnly": true
+  },
+  "outputs": {
+    "first": {
+      "exitCode": 0,
+      "signal": null,
+      "stderr": "",
+      "envelope": {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance"
+        }
+      },
+      "context": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance"
+    },
+    "repeat": {
+      "exitCode": 0,
+      "signal": null,
+      "stderr": "",
+      "envelope": {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "Advisor: live; use sk-code 0.91/0.23 pass."
+        }
+      },
+      "context": "Advisor: live; use sk-code 0.91/0.23 pass."
+    },
+    "afterShrink": {
+      "exitCode": 0,
+      "signal": null,
+      "stderr": "",
+      "envelope": {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance"
+        }
+      },
+      "context": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance"
+    },
+    "killSwitchFirst": {
+      "exitCode": 0,
+      "signal": null,
+      "stderr": "",
+      "envelope": {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance"
+        }
+      },
+      "context": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance"
+    },
+    "killSwitchRepeat": {
+      "exitCode": 0,
+      "signal": null,
+      "stderr": "",
+      "envelope": {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance"
+        }
+      },
+      "context": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance"
+    },
+    "unknownSession": {
+      "exitCode": 0,
+      "signal": null,
+      "stderr": "",
+      "envelope": {
+        "hookSpecificOutput": {
+          "hookEventName": "UserPromptSubmit",
+          "additionalContext": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance"
+        }
+      },
+      "context": "Advisor: live; use sk-code 0.91/0.23 pass.\nDirectives:\n- Comment hygiene\n- Governor\n- Proof over appearance"
+    }
+  },
+  "passed": true
+}

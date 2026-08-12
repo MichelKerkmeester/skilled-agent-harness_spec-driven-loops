@@ -1,0 +1,49 @@
+.opencode/plugins/mk-skill-advisor.js:661:  if (eventType === 'session.resumed') return 'resume';
+.opencode/plugins/mk-skill-advisor.js:662:  if (eventType === 'session.compacted' || eventType === 'session.compact') return 'compact';
+.opencode/plugins/mk-skill-advisor.js:1271:      if (eventType === 'session.resumed'
+.opencode/plugins/mk-skill-advisor.js:1272:        || eventType === 'session.compacted'
+.cursor/commands/goal-cursor.md:10:Cursor's `sessionStart` hook receives a native `session_id` and can safely read that session's scoped goal. Cursor's prompt-command surface does not expose the same identity, so management is intentionally unsupported. Calling the global CLI without an explicit binding would reintroduce ambiguous ownership.
+.opencode/plugins/mk-spec-gate.js:178:        if (eventType === 'session.resumed'
+.opencode/plugins/mk-spec-gate.js:179:          || eventType === 'session.compacted'
+.opencode/plugins/mk-spec-memory.js:574:      if (eventType === 'session.resumed'
+.opencode/plugins/mk-spec-memory.js:575:        || eventType === 'session.compacted'
+.devin/hooks.v1.json:2:  "SessionStart": [
+.devin/hooks.v1.json:8:          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/session-start.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in mcp-server\\\"}}\"'",
+.devin/hooks.v1.json:34:  "UserPromptSubmit": [
+.devin/hooks.v1.json:40:          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/devin/user-prompt-submit.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk devin hook could not resolve; run npm run build in mcp-server\\\"}}\"'",
+.devin/hooks.v1.json:154:  "PostCompaction": [
+.devin/hooks.v1.json:160:          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/devin/post-compaction.cjs'",
+.cursor/rules/skill-routing.md:17:Load only the packets relevant to the request, follow their verification commands, and keep scope tied to the user’s task. This file is static session context. Cursor’s `beforeSubmitPrompt` adapter is registered to call the shared advisor, but its dynamic per-turn delivery is dormant under the tested CLI build; this rule is a static complement, not a substitute for that brief.
+.devin/SYNC.md:87:`hooks.v1.json` puts the **eight event names at the top level** with no `hooks` wrapper; version lives in the filename. Entries are nested `{matcher, hooks: [...]}` and matchers are **anchored regex** (`^exec$`, `^edit$`, `^run_subagent$`). It is the only runtime with `PermissionRequest` and `PostCompaction`.
+.devin/SYNC.md:125:- **`hooks.v1.json` is hand-authored and unmirrorable.** Its event set is genuinely different — `PermissionRequest` and `PostCompaction` exist nowhere else.
+.devin/SYNC.md:127:- **`PostCompaction` has never been observed firing.** It needs a session long enough to trigger real compaction, which a scenario-sized dispatch cannot force.
+.devin/hooks/README.md:13:The current registration is live under `devin -p` when events are top-level arrays with nested matcher groups. Six lifecycle events have fired in a corrected-schema session. `PermissionRequest` and `PostCompaction` remain unobserved because those events did not occur.
+.devin/hooks/README.md:19:| Session lifecycle | `session-start.js`, `session-stop.js`, `user-prompt-submit.js`, `post-compaction.cjs`, `completion-evidence-stop.cjs` |
+.codex/SYNC.md:117:**Orphaned entries.** Ownership is keyed on the adapter path, so renaming a hook script leaves the old entry unrecognised in `~/.codex/hooks.json` — where the preserve-third-party rule would keep it forever, invoking a file that no longer exists. The installer therefore treats **any `.opencode/` path missing on disk as its own orphan** and prunes it; paths outside `.opencode/` are never touched, whether or not they resolve. This is not hypothetical: the `mcp_server` → `mcp-server` rename left five dead entries across `SessionStart`, `UserPromptSubmit`, `Stop` and `PreCompact`, and `--check` reported OK the whole time because every *expected* entry was present.
+.cursor/hooks.json:4:    "sessionStart": [
+.cursor/hooks.json:79:    "beforeSubmitPrompt": [
+.cursor/hooks.json:91:    "preCompact": [
+.codex/hooks/README.md:19:| `session-start.js` | No output | Valid `SessionStart` envelope |
+.codex/hooks/README.md:20:| `user-prompt-submit.js` | No output | Valid `UserPromptSubmit` envelope |
+.codex/hooks.json:3:    "SessionStart": [
+.codex/hooks.json:8:            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/session-start.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+.codex/hooks.json:13:            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/worktree-guard.sh || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+.codex/hooks.json:18:            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/check-git-hooks.sh || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+.codex/hooks.json:27:            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+.codex/hooks.json:33:    "UserPromptSubmit": [
+.codex/hooks.json:38:            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/user-prompt-submit.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+.codex/hooks.json:47:            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-classify.mjs || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"UserPromptSubmit\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
+.codex/hooks.json:140:    "PreCompact": [
+.codex/hooks.json:145:            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/compact-inject.js || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreCompact\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'"
+.cursor/SYNC.md:74:- **camelCase** events (`preToolUse`, `beforeSubmitPrompt`) where the others use PascalCase.
+.cursor/SYNC.md:81:**Known runtime limitation.** `beforeSubmitPrompt` is registered but **does not fire** under the tested CLI build, confirmed by a live marker probe. The adapter is designed to inject a per-turn skill-advisor brief; because it is dormant, `rules/skill-routing.md` carries static routing guidance as a complement — not a substitute for the dynamic brief.
+.cursor/SYNC.md:115:- **`beforeSubmitPrompt` dormancy is unresolved upstream.** The static rules file mitigates but does not replace it.
+.claude/settings.json:77:    "UserPromptSubmit": [
+.claude/settings.json:94:    "PreCompact": [
+.claude/settings.json:106:    "SessionStart": [
+.cursor/hooks/README.md:36:`spec-gate-prebind.mjs` is wired on `sessionStart` through its real path. Its mirror is discovery-only, like every other entry here.
+.opencode/plugins/tests/mk-skill-advisor.test.cjs:513:  assert.match(hookSource, /const output: ClaudeUserPromptSubmitOutput = \{[\s\S]*observeEmittedAdvisorPolicy\(emitted/);
+.opencode/plugins/tests/mk-spec-memory.test.cjs:334:test('UserPromptSubmit passes through one valid JSON line', () => {
+.opencode/plugins/tests/mk-spec-memory.test.cjs:343:test('UserPromptSubmit maps malformed and nonzero child output to the safe JSON default', () => {
+.opencode/plugins/tests/mk-spec-memory.test.cjs:354:test('UserPromptSubmit terminates a hanging child inside the outer hook budget', () => {
+.opencode/plugins/tests/mk-spec-memory.test.cjs:362:test('UserPromptSubmit bounds both stdin and captured child output', () => {

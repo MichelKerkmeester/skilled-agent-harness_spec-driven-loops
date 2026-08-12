@@ -1,0 +1,31 @@
+{
+  "level": "3",
+  "specFolder": "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
+  "description": "Before this phase, the canonical decision recorded transcript size only when it delivered the full directive block",
+  "keywords": [
+    "phase",
+    "canonical",
+    "decision",
+    "recorded",
+    "transcript",
+    "size",
+    "only",
+    "delivered",
+    "full",
+    "directive",
+    "block"
+  ],
+  "lastUpdated": "2026-08-12T04:14:50.825Z",
+  "specId": "018",
+  "folderSlug": "fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "11-08-26_21-55__deep-review-completed-6-iterations-convergence.md",
+    "12-08-26_05-14__created-the-phase-018-post-review-handover-the.md",
+    "12-08-26_05-14__handover-for-directive-lifecycle-phase-018.md"
+  ]
+}

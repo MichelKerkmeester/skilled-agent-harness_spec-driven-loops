@@ -1,0 +1,23 @@
+{
+  "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+  "verdict": "PASS",
+  "reason": "Canonical unit lane passed high-water, unknown evidence, generation/epoch, deferred receipt, directory-anchored topology, cleanup, contention, and rollback behavior.",
+  "stage": "unit",
+  "evidence": [
+    "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/tests/advisor-focused-final.log",
+    "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/performance/result-final-2.json"
+  ],
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true,
+    "evidenceClass": "unit",
+    "runtime": "directive-lifecycle-core",
+    "nodeVersion": "v25.6.1",
+    "command": "cd .opencode/skills/system-skill-advisor/mcp-server && npx vitest run tests/hooks/directive-lifecycle.vitest.ts tests/hooks/directive-lifecycle-boundary.vitest.ts tests/hooks/claude-user-prompt-submit-hook.vitest.ts --sequence.shuffle --sequence.seed=18018",
+    "payloadNotApplicableReason": "canonical unit lane operates on explicit decision vectors",
+    "executor": "vitest",
+    "executorObserved": true,
+    "modelNotApplicableReason": "canonical unit lane uses no model",
+    "supersedes": []
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "capturedAt": "2026-08-11T17:07:05.043Z",
+  "command": "node specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/performance/directive-lifecycle-race-latency.mjs",
+  "nodeVersion": "v25.6.1",
+  "platform": "darwin-arm64",
+  "sourceHashes": {
+    "harness": {
+      "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/performance/directive-lifecycle-race-latency.mjs",
+      "sha256": "e6c74cde506bccdab874509e814e87a1ed0326259e05197da3fce6b4db75935f"
+    },
+    "lifecycleDist": {
+      "path": ".opencode/skills/system-skill-advisor/mcp-server/dist/hooks/lib/directive-lifecycle.js",
+      "sha256": "c9d946204228ad6593ad06f02d91c752a83c86b37a89d0259f3426749fcc1996"
+    },
+    "helper": {
+      "path": ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle-store.py",
+      "sha256": "92cc953ea7fbf011e3580378637ac6bd7274bcdfbf6b7fc65ef8e85033da138c"
+    }
+  },
+  "baseline": {
+    "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/performance/result.json",
+    "fileStoreP99Ms": 5.536
+  },
+  "inMemory": {
+    "count": 1000,
+    "p50Ms": 0,
+    "p95Ms": 0.001,
+    "p99Ms": 0.005,
+    "maxMs": 0.277
+  },
+  "fileStoreSetGet": {
+    "count": 100,
+    "p50Ms": 31.458,
+    "p95Ms": 37.058,
+    "p99Ms": 65.706,
+    "maxMs": 71.503,
+    "budgetMs": 100
+  },
+  "fileStoreP99DeltaMs": 60.17,
+  "race": {
+    "submitted": [
+      100,
+      200,
+      300,
+      400,
+      500,
+      600,
+      700,
+      800,
+      900,
+      1000,
+      1100,
+      1200,
+      1300,
+      1400,
+      1500,
+      1600
+    ],
+    "successful": [
+      100,
+      200,
+      300,
+      400,
+      500,
+      600,
+      700,
+      800,
+      900,
+      1000,
+      1100,
+      1200,
+      1300,
+      1400,
+      1500,
+      1600
+    ],
+    "contentionCount": 0,
+    "finalHighWaterBytes": 1600,
+    "expectedHighWaterBytes": 1600,
+    "residue": []
+  },
+  "passed": true
+}

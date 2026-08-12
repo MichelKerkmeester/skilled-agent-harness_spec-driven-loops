@@ -1,6 +1,6 @@
 ---
 title: "Injection-Bloat Epic — Hooks Before vs After"
-description: "Side-by-side of the runtime hooks before the injection-bloat-reduction epic and after it, showing that emitted output stays byte-identical (every candidate flag off) while a measured, receipt-gated shadow machine is now in place for safe future activation — plus the follow-on alignment and playbook-results tooling that let the epic be validated per runtime."
+description: "Side-by-side of the runtime hooks before the injection-bloat-reduction epic and after it: the shadow machine (001-007) shipped byte-identical and flag-off, and phases 013/014 later turned the directive-lifecycle reduction LIVE for Pi and the model-context runtimes with default-on dedup and fail-open everywhere — plus the follow-on alignment and playbook-results tooling."
 trigger_phrases:
   - "hooks before after injection bloat"
   - "injection bloat epic summary"
@@ -14,9 +14,14 @@ contextType: "reference"
 
 ## 1. THE HEADLINE
 
-The epic changed **nothing a user sees**. Before and after, every runtime hook emits the **same bytes**. What the epic added is a **shadow** layer — measurement, delivery receipts, and a per-runtime activation gate — that sits beside the hooks with **every candidate flag off** (`activated = 0`) and **fails open** (any unknown or unobserved state emits the full content). It is the safe foundation for *future* reduction of repeated per-prompt injection, not a reduction that is live today.
+The shadow core of the epic (phases 001–007) changed **nothing a user sees**: it added measurement, delivery receipts, and a per-runtime activation gate beside the hooks with every candidate flag off (`activated = 0`), failing open on any unknown or unobserved state. That remains true for the central machine.
 
-Read the rest as "what each surface did before" → "what it does now, still emitting the same bytes."
+Two later phases turned the program's first **live** reductions on, per operator direction, each as an adapter-local mechanism that leaves the shadow machine and the 007 gate untouched:
+
+- **Phase 013 (Pi)** — the three constant advisor directives are no longer visibly re-appended onto every Pi prompt; they are delivered in full on the first message of a session and after every lifecycle boundary, and dropped on a proven same-content repeat. Default-on with `SPECKIT_PI_DIRECTIVE_DEDUP=0` as the kill-switch.
+- **Phase 014 (cross-runtime)** — the same lifecycle rule now applies to the model-context runtimes: the Claude/Cursor/Devin/Codex shim and the OpenCode plugin deliver the full directives only on the first message and after lifecycle boundaries (startup/resume/compact; transcript shrink on the subprocess shim), keeping the dynamic `Advisor:` route line on repeats. Default-on with `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` as the kill-switch.
+
+Both are **fail-open**: unknown/unconfirmed sessions, the directives-only fallback, the kill-switch, and any error always deliver the full brief — a guardrail is never silently dropped.
 
 ---
 
@@ -24,7 +29,7 @@ Read the rest as "what each surface did before" → "what it does now, still emi
 
 | Surface / hook | Before the epic | After the epic (shadow, flag-off) |
 |---|---|---|
-| **Skill-advisor prompt hooks** — `hooks/claude/user-prompt-submit.ts`, `hooks/pi/prompt-advisor.ts` | Emit the full advisor brief / skill recommendations every turn. No record of what was delivered. | Same full emission. **Plus** a strictly post-emission shadow observation (`observeEmittedAdvisorPolicy`) that records an *observed* delivery receipt (`lifecycleEpoch >= 1`). Feeds the default-off suppression path; emitted envelope byte-identical. |
+| **Skill-advisor prompt hooks** — `hooks/claude/user-prompt-submit.ts`, `hooks/pi/prompt-advisor.ts`, `plugins/mk-skill-advisor.js` | Emit the full advisor brief / skill recommendations every turn. No record of what was delivered. | Full emission on the first message and after every lifecycle boundary; the three constant directives are dropped on a proven same-content repeat within one lifecycle epoch (route line kept). **Plus** the shadow delivery observer (`observeEmittedAdvisorPolicy`) recording observed receipts. Live since phases 013 (Pi) and 014 (Claude/Cursor/Devin/Codex shim + OpenCode plugin); fail-open everywhere; kill-switches `SPECKIT_PI_DIRECTIVE_DEDUP` / `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP`. |
 | **Gate-3 classify adapters** — `spec-gate-classify` for claude / codex / cursor / devin / pi | Surface the full Gate-3 spec-folder question on every mutation-shaped turn. | Same full question. **Plus** a strictly post-emission delivery observer (`observeGate3QuestionDelivery`). A *repeated* question is suppressible only when `MK_SPEC_GATE_3_DELIVERY_SUPPRESSION` is enabled (default off) **and** an observed receipt with `lifecycleEpoch >= 1` confirms the prior delivery. |
 | **Advisor policy delivery** — `mcp-server/lib/render.ts`, `mcp-server/lib/policy-plan.ts` | Full policy/directive block every turn. No delivery state, no measurement. | A shadow delivery-state machine that *measures* would-be savings and gates confirmation on an observed epoch≥1 receipt. Route-only vs full-first tracked as shadow only. No emitted-byte change. |
 | **OpenCode route + transforms** — plugins / route builder | Uncapped compiled-route target list; duplicate system-message transforms re-emitted. | Shadow route-line bounding (candidate 002) and shadow same-message transform dedup (candidate 003), both behind off-by-default flags. |
@@ -59,8 +64,8 @@ Together these turn "the hooks emit the same bytes" from an assertion into somet
 
 | Dimension | Before | After |
 |---|---|---|
-| Emitted bytes | Full content every turn | **Identical** — byte-for-byte parity on every negative-control fixture |
-| Runtime behavior | Full delivery | **Unchanged** — `activated = 0`, fail-open everywhere |
-| What's new | — | A measured, receipt-gated, per-runtime framework that can *safely* suppress repeated injection when/if a candidate is turned on — with guardrails, rollback, and an epoch-floored confirmation contract — plus per-runtime playbook validation whose results auto-save to the correct location |
+| Emitted bytes | Full content every turn | Shadow core (001–007): **identical** — byte-for-byte parity, every candidate flag off. Live reductions (013–014): the three constant directives deliver in full on the first message and after lifecycle boundaries only; repeats carry the route line (~43 B) instead of the ~763 B directive block, with fail-open guarantees and kill-switches. |
+| Runtime behavior | Full delivery | Shadow core: unchanged. 013/014: **live** directive-lifecycle dedup on Pi and on the Claude/Cursor/Devin/Codex shim + OpenCode plugin — default-on, per-operator direction, adapter-local, central machine and 007 gate untouched. |
+| What's new | — | A measured, receipt-gated, per-runtime framework with guardrails, rollback, and an epoch-floored confirmation contract; two live adapter-local lifecycle reductions; plus per-runtime playbook validation whose results auto-save to the correct location |
 
-The epic's value is **optionality with safety**: the program can now measure how much repeated per-prompt injection each runtime carries and turn reduction on one candidate-runtime cell at a time, each gated by evidence and reversible — without having changed a single emitted byte to get here.
+The epic's value is **optionality with safety**: the program measured how much repeated per-prompt injection each runtime carries, shipped the shadow machine byte-identical and flag-off, and then — where the operator chose to act — turned on adapter-local lifecycle reductions that cut the recurring directive payload on repeat turns while remaining fail-open and fully reversible.

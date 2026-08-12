@@ -1,0 +1,30 @@
+{
+  "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+  "verdict": "PASS",
+  "reason": "Registered Codex path passed native payload/envelope cadence, failure handling, lifecycle bridge, and durable provenance gates.",
+  "stage": "registered-path",
+  "evidence": [
+    "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/codex.json",
+    "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
+    "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/source-hashes.json",
+    "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/payload-fixtures.json",
+    "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/tests/registered-adapters-final.log"
+  ],
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true,
+    "evidenceClass": "registered-path",
+    "runtime": "codex",
+    "nodeVersion": "v25.6.1",
+    "hostVersionObservation": "not-observed",
+    "command": "node specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/run-registered-adapter-cadence.mjs specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2",
+    "payloadFixture": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/payload-fixtures.json",
+    "executor": "node",
+    "executorObserved": true,
+    "modelNotApplicableReason": "registered-path harness uses a deterministic advisor target without a model",
+    "supersedes": [
+      ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-3",
+      ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--codex-adapter"
+    ]
+  }
+}

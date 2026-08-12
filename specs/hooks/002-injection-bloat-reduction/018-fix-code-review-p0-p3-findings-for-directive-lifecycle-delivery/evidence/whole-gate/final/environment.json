@@ -1,0 +1,20 @@
+{
+  "inheritedKeys": [
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PATH",
+    "SHELL",
+    "TMPDIR",
+    "USER"
+  ],
+  "pinned": {
+    "CI": "1",
+    "FORCE_COLOR": "0",
+    "NO_COLOR": "1",
+    "SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP": "1"
+  },
+  "node": "v25.6.1",
+  "platform": "darwin",
+  "arch": "arm64"
+}

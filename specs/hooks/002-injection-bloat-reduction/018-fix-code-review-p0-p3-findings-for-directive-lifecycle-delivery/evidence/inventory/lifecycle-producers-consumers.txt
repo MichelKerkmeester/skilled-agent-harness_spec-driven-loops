@@ -1,0 +1,103 @@
+.opencode/plugins/mk-skill-advisor.js:260: * OpenCode mirror of directive-lifecycle.ts decideDirectiveLifecycleDelivery,
+.opencode/plugins/mk-skill-advisor.js:649:    input?.lifecycle_event,
+.opencode/plugins/mk-skill-advisor.js:678:      || input?.session_identity_ambiguous
+.opencode/plugins/mk-skill-advisor.js:682:    ?? input?.session_identity_confirmed;
+.opencode/plugins/mk-skill-advisor.js:842:    directiveDedupBySession: new Map(),
+.opencode/plugins/mk-skill-advisor.js:1046:    state.directiveDedupBySession.clear();
+.opencode/plugins/mk-skill-advisor.js:1183:        state.directiveDedupBySession,
+.opencode/plugins/mk-skill-advisor.js:1259:          state.directiveDedupBySession.delete(sessionIdFrom(eventPayload));
+.opencode/plugins/mk-skill-advisor.js:1276:          state.directiveDedupBySession.delete(sessionID);
+.opencode/plugins/mk-skill-advisor.js:1297:        state.directiveDedupBySession.delete(sessionID);
+.opencode/plugins/mk-skill-advisor.js:1354:            `directive_dedup_sessions=${state.directiveDedupBySession.size}`,
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:23:// persist per-session records through FileDirectiveLifecycleStore. The
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:94:  readonly transcriptBytes: number | null;
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:118:  readonly transcriptBytes?: number | null;
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:141:  transcriptBytes: number | null | undefined,
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:155:  if (typeof record.transcriptBytes === 'number' && typeof transcriptBytes !== 'number') {
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:158:  return typeof record.transcriptBytes === 'number'
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:159:    && typeof transcriptBytes === 'number'
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:160:    && transcriptBytes < record.transcriptBytes;
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:171:export function decideDirectiveLifecycleDelivery(
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:191:    || transcriptShrunkOrMoved(record, input.transcriptPath, input.transcriptBytes);
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:200:      transcriptBytes: typeof input.transcriptBytes === 'number' && Number.isFinite(input.transcriptBytes)
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:201:        ? input.transcriptBytes
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:260:export class FileDirectiveLifecycleStore implements DirectiveLifecycleState {
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:292:        transcriptBytes: typeof parsed.transcriptBytes === 'number' ? parsed.transcriptBytes : null,
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:360:let defaultFileStore: FileDirectiveLifecycleStore | null = null;
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:362:export function defaultDirectiveLifecycleStore(): FileDirectiveLifecycleStore {
+.opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:363:  defaultFileStore ??= new FileDirectiveLifecycleStore();
+.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:151:  directiveDedupBySession?: Map<string, string>;
+.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:235:  if (!store.directiveDedupBySession) {
+.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:236:    store.directiveDedupBySession = new Map();
+.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:238:  const map = store.directiveDedupBySession;
+.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:256:  compactShadowStore().directiveDedupBySession?.delete(key);
+.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:260:  compactShadowStore().directiveDedupBySession?.clear();
+.opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:363:  store.directiveDedupBySession?.clear();
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:19:  decideDirectiveLifecycleDelivery,
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:46:  readonly session_identity_confirmed?: boolean;
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:47:  readonly session_identity_ambiguous?: boolean;
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:49:  readonly lifecycle_event?: string;
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:149:  const explicit = input.lifecycle_event ?? input.lifecycle_source;
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:167:    sessionIdentityConfirmed: input.session_identity_confirmed ?? hasSessionId,
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:168:    sessionIdentityAmbiguous: input.session_identity_ambiguous === true,
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:293:      const sessionConfirmed = input.session_identity_confirmed
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:294:        ?? (Boolean(sessionId) && input.session_identity_ambiguous !== true);
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:298:      let transcriptBytes: number | null = null;
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:301:          transcriptBytes = statSync(transcriptPath).size;
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:303:          transcriptBytes = null;
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:306:      const decision = decideDirectiveLifecycleDelivery(emitted, {
+.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:312:        transcriptBytes,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:13:  decideDirectiveLifecycleDelivery,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:15:  FileDirectiveLifecycleStore,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:42:  return decideDirectiveLifecycleDelivery(context, {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:58:    const first = decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:59:    const second = decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:66:    decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:67:    const changed = decideDirectiveLifecycleDelivery(FULL_V2, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:70:    const repeat = decideDirectiveLifecycleDelivery(FULL_V2, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:77:    decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:78:    const decision = decideDirectiveLifecycleDelivery(FULL_ROUTE_V2, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:85:      decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:86:      const boundary = decideDirectiveLifecycleDelivery(FULL, {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:94:      const after = decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:101:    decideDirectiveLifecycleDelivery(FULL, {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:106:      transcriptBytes: 5000,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:108:    const shrunk = decideDirectiveLifecycleDelivery(FULL, {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:113:      transcriptBytes: 900,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:120:    decideDirectiveLifecycleDelivery(FULL, {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:125:      transcriptBytes: 5000,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:127:    const moved = decideDirectiveLifecycleDelivery(FULL, {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:132:      transcriptBytes: 6000,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:139:    decideDirectiveLifecycleDelivery(FULL, {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:144:      transcriptBytes: 5000,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:146:    const grown = decideDirectiveLifecycleDelivery(FULL, {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:151:      transcriptBytes: 6400,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:158:    decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:159:    expect(decideDirectiveLifecycleDelivery(FULL, { state, sessionId: undefined })).toEqual({
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:163:    expect(decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: false })).toEqual({
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:171:    const first = decideDirectiveLifecycleDelivery(FALLBACK, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:172:    const second = decideDirectiveLifecycleDelivery(FALLBACK, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:179:    decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:180:    const disabled = decideDirectiveLifecycleDelivery(FULL, {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:191:    decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:192:    const s2First = decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's2', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:193:    const s1Repeat = decideDirectiveLifecycleDelivery(FULL, { state, sessionId: 's1', sessionConfirmed: true });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:233:describe('FileDirectiveLifecycleStore', () => {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:246:    const store = new FileDirectiveLifecycleStore({ baseDir: dir });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:249:    store.set('s1', { directives: DIRECTIVES, transcriptPath: '/t.jsonl', transcriptBytes: 100 });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:250:    expect(store.get('s1')).toEqual({ directives: DIRECTIVES, transcriptPath: '/t.jsonl', transcriptBytes: 100 });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:259:    const writer = new FileDirectiveLifecycleStore({ baseDir: dir });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:260:    writer.set('s1', { directives: DIRECTIVES, transcriptPath: null, transcriptBytes: null });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:262:    const reader = new FileDirectiveLifecycleStore({ baseDir: dir });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:263:    const decision = decideDirectiveLifecycleDelivery(FULL, {
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:273:    const store = new FileDirectiveLifecycleStore({ baseDir: dir });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:274:    store.set('s1', { directives: DIRECTIVES, transcriptPath: null, transcriptBytes: null });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:282:    const store = new FileDirectiveLifecycleStore({ baseDir: dir, maxSessions: 2 });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:283:    store.set('s1', { directives: DIRECTIVES, transcriptPath: null, transcriptBytes: null });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:284:    store.set('s2', { directives: DIRECTIVES, transcriptPath: null, transcriptBytes: null });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:285:    store.set('s3', { directives: DIRECTIVES, transcriptPath: null, transcriptBytes: null });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:293:    const store = new FileDirectiveLifecycleStore({ baseDir: dir });
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:306:      transcriptBytes: null,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts:311:      transcriptBytes: null,
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:315:      lifecycle_event: 'compact',
+.opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts:411:      // lifecycle_event field — the shrink itself must re-arm full delivery.

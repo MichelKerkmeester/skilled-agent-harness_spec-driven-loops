@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "runLabel": "final-pi-repeat-2",
+  "status": "infrastructure-failure",
+  "productVerdict": null,
+  "reason": "The synchronous manifest runner stalled before it could produce a complete results receipt and was interrupted during runner diagnosis.",
+  "replacementRun": "final-pi-repeat-4",
+  "recordedAt": "2026-08-11T19:57:18Z"
+}

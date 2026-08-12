@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle",
+  "spec_folder": "hooks/002-injection-bloat-reduction/014-cross-runtime-directive-lifecycle",
+  "parent_id": "hooks/002-injection-bloat-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "hooks/002-injection-bloat-reduction/013-pi-local-directive-dedup",
+        "reason": "Extends the 013 Pi-local directive dedup to the model-context runtimes",
+        "source": "derived"
+      }
+    ],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats",
+        "reason": "Same lifecycle-epoch suppression concept, shadow-only in the central machine",
+        "source": "derived"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross-runtime directive lifecycle",
+      "directive lifecycle dedup",
+      "SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP",
+      "model-context directive suppression",
+      "constant directive repetition",
+      "cross-runtime directive lifecycle plan",
+      "directive lifecycle dedup plan",
+      "cross-runtime directive lifecycle tasks",
+      "cross-runtime directive lifecycle checklist",
+      "directive lifecycle dedup verification",
+      "cross-runtime directive lifecycle implementation",
+      "directive lifecycle dedup summary"
+    ],
+    "key_topics": [
+      "cross-runtime",
+      "directive",
+      "lifecycle",
+      "dedup",
+      "model-context",
+      "suppression",
+      "constant",
+      "repetition",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Directive Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a Pi-adapter-local",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deliver",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Shim",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sibling Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Extend the 013 lifecycle rule to the model-context [SYS] runtimes: a canonical directive-lifecycle core drops the three constant advisor directives on a proven same-content repeat within a lifecycle epoch across the Claude/Cursor/Devin/Codex shim and the OpenCode plugin, fail-open everywhere, with Pi's local dedup and the shadow program untouched.",
+    "created_at": "2026-08-11T07:37:36.000Z",
+    "last_save_at": "2026-08-11T16:06:51.134Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:85afeec5e32518a50fab4daa15e0529377c26ef5f02a86280d18d23aed324fce",
+    "source_doc_hashes": {
+      "spec.md": "c70e1dcaaca3609e29b4c2fee1b5999efd15da473b82a4ede47ca613301da7f9",
+      "plan.md": "9c261c52ca73ad53ec2700d95d942d876403baa227444a6d660f2bd039546796",
+      "tasks.md": "e79840a0e730dd5c4d54975aa02865f95d94626583804dad893a8a2fcaf5b118",
+      "checklist.md": "ab7ec2a6e4f6714de29f43fac5315151ce34b7dc9683e81ce7ea84de41caf40a",
+      "implementation-summary.md": "b0a06a2e438ea05effc294ce7811ba569fb6d2d7358386d6bd2cf20c9bb8dafa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
