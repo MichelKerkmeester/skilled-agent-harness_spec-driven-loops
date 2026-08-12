@@ -33,6 +33,7 @@ export {
 } from './fidelity-veto.js';
 export { evaluateDimensionNonInferiority } from './noninferiority.js';
 export { evaluateReleaseGate } from './gate.js';
+export { createReleaseReport } from './report.js';
 
 export type {
   BaselineComparison,
@@ -62,6 +63,16 @@ export type {
   DimensionNonInferiorityResult,
   PairedConfidenceInterval,
 } from './noninferiority.js';
+export type {
+  CreateReleaseReportInput,
+  EvaluationReleaseReport,
+  ReleaseReportClaim,
+  ReleaseReportDimension,
+  ReleaseReportFidelity,
+  ReleaseReportOperationalMetrics,
+  ReleaseReportStratum,
+  StratumOperationalMetricsInput,
+} from './report.js';
 export type { RunVariancePilotInput } from './pilot.js';
 export type {
   PowerAnalysisInput,
