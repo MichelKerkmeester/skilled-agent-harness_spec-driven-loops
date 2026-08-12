@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Hook Feature Flags + Full Hub Index"
-description: "Per-phase task tracking for the shared kill-switch guard, the mcp-route-guard pilot, the hub and skill-owned concern fan-out, the hub symlink index, and the cross-runtime validation sweep."
+description: "Per-phase task tracking for hook kill-switches, the full hub index, remaining runtime adapters, and the final concern-by-runtime coverage matrix."
 status: "in-progress"
 completion_pct: 83
 importance_tier: "high"
@@ -48,3 +48,22 @@ parent: "./spec.md"
 ## PHASE 6 — Cross-runtime validation
 
 - [ ] Each runtime loads clean; master-off silences all; per-concern toggles verified; no stray files
+
+## PHASE 7 — Remaining index gaps
+
+- [x] Index Cursor dispatch coverage at `.opencode/hooks/dispatch/cursor/post-tool-use.mjs` [Evidence: relative link resolves to the live Cursor post-tool proxy with `readlink -f`]
+- [x] Index Cursor post-edit-quality coverage at `.opencode/hooks/post-edit-quality/cursor/post-tool-use.mjs` [Evidence: relative link resolves to the same multiplexed proxy with `readlink -f`]
+- [x] Keep Pi directive lifecycle represented by the existing `skill-advisor/pi/prompt-advisor.ts` index rather than adding a duplicate concern alias [Evidence: directive de-dup is embedded in the advisor adapter and is not independently guarded by `directive-lifecycle`]
+- [x] Keep OpenCode session lifecycle represented by the existing owning plugin indexes rather than adding duplicate aliases [Evidence: session events are embedded across guarded `mk-*` plugins and no standalone `session-lifecycle` adapter exists]
+
+## PHASE 8 — Fillable runtime adapters
+
+- [ ] Add guarded advisory-only completion coverage for Cursor `onEnd`
+- [ ] Add guarded advisory-only completion coverage for Pi's apt turn/session event
+- [ ] Determine whether Codex and Pi expose genuine task-dispatch interception events; implement only where real
+- [ ] Load-check every new adapter and prove default-on, concern-off, and master-off behavior
+
+## PHASE 9 — Coverage matrix
+
+- [ ] Append a complete concern × runtime coverage matrix to `.opencode/hooks/README.md`
+- [ ] Record every intentionally unfilled gap as by-design or unavailable with a one-line reason

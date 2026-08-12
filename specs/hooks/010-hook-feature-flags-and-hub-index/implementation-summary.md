@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Hook Feature Flags + Full Hub Index"
-description: "Running log across six phases. Phases 1-4 shipped the shared guard and wired it through portable and skill-owned hook concerns. Phase 5 adds the full hub symlink index; Phase 6 remains the final cross-runtime sweep."
+description: "Running log across nine phases: shared hook guards, full indexing, remaining runtime coverage adapters, and the final concern-by-runtime coverage matrix."
 status: "in-progress"
 completion_pct: 92
 trigger_phrases:
@@ -116,3 +116,14 @@ Independent verification (not trusting the implementer reports): all 72 guarded 
 ## PHASE 6 — deploy-side (not repo work)
 
 `dist` is gitignored, so the rebuild is a per-environment step — but it is **not** blocked. `npm run build` runs clean (exit 0) and `zod` resolves via `.opencode/node_modules`; the earlier "missing deps / dist absent" reading was an artifact of the implementer's isolated worktree symlinks, not the real environment (the mcp-server's own `node_modules` intentionally holds only a few packages, the rest resolving from the hoisted `.opencode/node_modules`). The only requirement is that the guarded source be present in the runtime checkout — fast-forward it to this branch, then `npm run build` compiles the guards into `mcp-server/dist/` and the live cross-runtime sweep follows.
+
+## PHASE 7 — Remaining index gaps (shipped)
+
+Cursor's live `post-tool-use.mjs` proxy multiplexes both dispatch audit (`Shell`) and post-edit quality (`Write`). Two relative index symlinks now expose that same real proxy under `dispatch/cursor/` and `post-edit-quality/cursor/`; no implementation file was copied or moved.
+
+Pi's directive de-dup remains represented by the existing `skill-advisor/pi/prompt-advisor.ts` index. It is embedded inside that adapter and the adapter is guarded as `skill-advisor`, not `directive-lifecycle`, so a second alias would imply a separate kill-switch boundary that does not exist. OpenCode session handling likewise remains visible through the existing owning `mk-*` plugin indexes: session events are distributed across those plugins and no standalone `session-lifecycle` adapter exists to index truthfully.
+
+### Proof
+
+- `readlink -f .opencode/hooks/dispatch/cursor/post-tool-use.mjs` resolved to `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/post-tool-use.mjs`.
+- `readlink -f .opencode/hooks/post-edit-quality/cursor/post-tool-use.mjs` resolved to the same live proxy.
