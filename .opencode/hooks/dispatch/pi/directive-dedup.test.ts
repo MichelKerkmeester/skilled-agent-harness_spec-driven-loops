@@ -2,8 +2,11 @@ import { afterEach, describe, expect, it } from "vitest";
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import promptAdvisor, {
+  PI_ADVISOR_DEBUG_FLAG,
   PI_DIRECTIVE_DEDUP_FLAG,
   decidePiDirectiveDelivery,
+  formatPiAdvisorDebug,
+  isPiAdvisorDebugEnabled,
   isPiDirectiveDedupEnabled,
   resetPiDirectiveDedupForSession,
   resetPiDirectiveDedupState,
@@ -41,6 +44,7 @@ function ctxFor(sessionId: string) {
 afterEach(() => {
   resetPiDirectiveDedupState();
   delete process.env[PI_DIRECTIVE_DEDUP_FLAG];
+  delete process.env[PI_ADVISOR_DEBUG_FLAG];
 });
 
 describe("decidePiDirectiveDelivery", () => {
@@ -131,5 +135,29 @@ describe("lifecycle handlers reset the dedup state", () => {
     expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(true);
     await start!({ reason: "resume" }, ctxFor("s1"));
     expect(decidePiDirectiveDelivery(FULL, "s1").suppressed).toBe(false);
+  });
+});
+
+describe("advisor-debug (opt-in cli-pi diagnostic)", () => {
+  it("is disabled by default and honours the flag", () => {
+    expect(isPiAdvisorDebugEnabled()).toBe(false);
+    process.env[PI_ADVISOR_DEBUG_FLAG] = "1";
+    expect(isPiAdvisorDebugEnabled()).toBe(true);
+  });
+
+  it("classifies the directives-only fallback as unavailable", () => {
+    const line = formatPiAdvisorDebug(FALLBACK, false, 2503);
+    expect(line).toContain("brief=fallback(unavailable)");
+    expect(line).toContain("durationMs=2503");
+  });
+
+  it("classifies a live advisor head and its freshness", () => {
+    // FULL begins with "Advisor: live; …" — the head case, advisor working.
+    expect(formatPiAdvisorDebug(FULL, false, 118)).toContain("brief=head(live)");
+  });
+
+  it("classifies an import/throw advisor failure and an empty brief", () => {
+    expect(formatPiAdvisorDebug(undefined, true, 5)).toContain("brief=failed");
+    expect(formatPiAdvisorDebug("", false, 5)).toContain("brief=empty");
   });
 });

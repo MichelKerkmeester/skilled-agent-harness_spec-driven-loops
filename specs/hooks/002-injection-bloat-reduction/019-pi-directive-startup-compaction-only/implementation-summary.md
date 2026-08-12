@@ -13,10 +13,10 @@ parent: "../spec.md"
 _memory:
   continuity:
     packet_pointer: "hooks/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only"
-    last_updated_at: "2026-08-12T12:53:56Z"
+    last_updated_at: "2026-08-12T13:10:14Z"
     last_updated_by: "claude"
-    recent_action: "Shipped Pi directives-only fallback dedup; test updated; vitest 10/10 pass"
-    next_safe_action: "Root-cause why cli-pi advisor returns fallback every turn"
+    recent_action: "Added opt-in SPECKIT_PI_ADVISOR_DEBUG diagnostic; vitest 14/14 pass"
+    next_safe_action: "Operator runs cli-pi with SPECKIT_PI_ADVISOR_DEBUG=1; report the line"
     blockers: []
     key_files:
       - "spec.md"
@@ -24,7 +24,7 @@ _memory:
       - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
       - ".opencode/hooks/dispatch/pi/directive-dedup.test.ts"
     session_dedup:
-      fingerprint: "sha256:d10f681225ab1eaad1c49893444adc680f707698868b018950781965fc2f9ede"
+      fingerprint: "sha256:d2141a6e2411f598cf7987e877fa916c41eb366aebc709ca37351c1f3b94d468"
       session_id: "4654af88-ba88-466a-bd14-2fa43ea87923"
       parent_session_id: null
     completion_pct: 60
@@ -64,7 +64,7 @@ Ran the actual exported `decidePiDirectiveDelivery` against `git show origin:…
 
 ## 3. VALIDATION
 
-- `npx vitest run hooks/dispatch/pi/directive-dedup.test.ts` → **10 passed (10)**, including the updated `dedups the advisor-failure fallback (directives-only) to once per boundary` case and the unchanged head+directives, kill-switch, and session-isolation cases.
+- `npx vitest run hooks/dispatch/pi/directive-dedup.test.ts` → **14 passed (14)** (10 dedup + 4 advisor-debug), including the updated `dedups the advisor-failure fallback (directives-only) to once per boundary` case and the unchanged head+directives, kill-switch, and session-isolation cases.
 - Test `directive-dedup.test.ts:81` was rewritten from `never suppresses the advisor-failure fallback` (the old fail-open assertion) to assert the new boundary-dedup behavior.
 
 ## 4. DESIGN CHANGE + TRADEOFF (accepted)
@@ -75,7 +75,13 @@ Mitigation: the durable framework (`CLAUDE.md`) remains the source of the guardr
 
 ## 5. ROOT-CAUSE (open thread)
 
-The operator's cli-pi shows directives on **every** message because the advisor returns the directives-only fallback on every turn there. `renderAdvisorBrief` (`mcp-server/lib/render.ts`) always prepends an `Advisor: …` head when it produces a brief; a directives-only brief means it returned `null` and the caller fell back to `renderAdvisorFallbackDirective`. So the deeper question is **why cli-pi's advisor yields nothing usable every turn** (not wired in Pi / daemon unreachable / consistently below threshold). This mask stops the symptom; the root-cause is tracked as `next_safe_action` and investigated next.
+The operator's cli-pi shows directives on **every** message because the advisor returns the directives-only fallback on every turn there. `renderAdvisorBrief` (`mcp-server/lib/render.ts`) always prepends an `Advisor: …` head when it produces a brief; a directives-only brief means it returned `null` and the caller fell back to `renderAdvisorFallbackDirective`.
+
+The advisor code is proven healthy in a warm environment — invoked exactly as Pi invokes it (same dist, cwd=repo-root) it returns `Advisor: live …` (`freshness:"live"`). But the **cold first call measured 2362ms against the 2500ms budget** — a razor-thin margin on a fast machine. On a slower cold call (or MEGA-evicted `node_modules` / stale `dist`), the advisor recommend exceeds the budget → `freshness:'unavailable'` → the directives-only fallback. Pi also never warms the advisor daemon on `session_start` (Claude/OpenCode do), so every Pi turn risks a cold recommend.
+
+### Diagnostic shipped: opt-in advisor-debug line
+
+To pin the exact cli-pi trigger, this packet adds an **opt-in** diagnostic to `hooks/pi/prompt-advisor.ts`, gated on `SPECKIT_PI_ADVISOR_DEBUG=1` (default off). It surfaces one line per turn — `[advisor-debug] brief=<head(freshness)|fallback(unavailable)|failed|empty> durationMs=<n> budgetMs=<n>` — visible even on a suppressed turn. Reading it from the operator's real cli-pi separates a timeout (`durationMs ≈ budgetMs`) from an unreachable daemon (fast fallback) or a healthy advisor. Verified end-to-end: turn 1 emitted `brief=head(live) durationMs=2362`, and the line still surfaces on the suppressed turn 2. `formatPiAdvisorDebug` / `isPiAdvisorDebugEnabled` are unit-tested (vitest 14/14). The precise fix (warm the daemon on Pi `session_start`, and/or raise `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS`) is deferred until the operator's debug line confirms the trigger.
 
 ## 6. DEFERRED FOLLOW-UPS
 

@@ -218,6 +218,35 @@ const FULL_PI_DIRECTIVE_DELIVERY: PiDirectiveDeliveryDecision = Object.freeze({
   suppressed: false,
 });
 
+export const PI_ADVISOR_DEBUG_FLAG = "SPECKIT_PI_ADVISOR_DEBUG";
+
+export function isPiAdvisorDebugEnabled(): boolean {
+  const v = process.env[PI_ADVISOR_DEBUG_FLAG];
+  return v === "1" || v === "true";
+}
+
+// Operator-facing, opt-in only. Classifies what the advisor returned this turn
+// so a cli-pi operator can tell a live advisor route from the directives-only
+// failure fallback, and read how long the advisor call took against its timeout
+// budget — enough to distinguish a timeout (durationMs ≈ budgetMs) from an
+// unreachable daemon (fast fallback) without instrumenting the advisor itself.
+export function formatPiAdvisorDebug(
+  context: string | undefined,
+  advisorFailed: boolean,
+  durationMs: number,
+): string {
+  let brief: string;
+  if (advisorFailed) brief = "failed";
+  else if (!context || !context.trim()) brief = "empty";
+  else if (context.startsWith("Directives:")) brief = "fallback(unavailable)";
+  else {
+    const match = context.match(/^Advisor:\s*([A-Za-z]+)/);
+    brief = match ? `head(${match[1]})` : "other";
+  }
+  const budgetMs = Number(process.env.SPECKIT_CLAUDE_HOOK_TIMEOUT_MS) || 2500;
+  return `[advisor-debug] brief=${brief} durationMs=${durationMs} budgetMs=${budgetMs}`;
+}
+
 /**
  * Decide whether this extension may omit its entire visible contribution.
  * Suppresses only for a confirmed session's proven same-content repeat within
@@ -551,6 +580,8 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
 
     let context: string | undefined;
     let advisorFailed = false;
+    let advisorMs = 0;
+    const advisorStart = Date.now();
     try {
       if (!event.text.trim()) return;
 
@@ -578,12 +609,26 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
     } catch {
       latchPiDispatchFailure(compactShadowStore(), sessionIdFromContext(ctx));
       advisorFailed = true;
+    } finally {
+      advisorMs = Date.now() - advisorStart;
     }
+
+    const advisorDebug = isPiAdvisorDebugEnabled()
+      ? formatPiAdvisorDebug(context, advisorFailed, advisorMs)
+      : "";
 
     if (!advisorFailed && context) {
       try {
         const decision = decidePiDirectiveDelivery(context, sessionIdFromContext(ctx));
-        if (decision.suppressed) return;
+        if (decision.suppressed) {
+          // A suppressed turn normally emits no transform. When advisor-debug is
+          // opt-in enabled, still surface the debug line so the operator can read
+          // advisor freshness on every cli-pi turn, not only the delivered ones.
+          if (advisorDebug) {
+            return { action: "transform" as const, text: `${event.text}\n\n${advisorDebug}` };
+          }
+          return;
+        }
       } catch {
         // Directive de-dup is advisory; on any failure keep the full contribution.
       }
@@ -600,8 +645,13 @@ export default function promptAdvisor(pi: ExtensionAPI): void {
       }
     }
 
-    const text = context
-      ? `${event.text}\n\n${context}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
+    const briefBlock = advisorDebug
+      ? context
+        ? `${advisorDebug}\n\n${context}`
+        : advisorDebug
+      : context;
+    const text = briefBlock
+      ? `${event.text}\n\n${briefBlock}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`
       : `${event.text}\n\n${PI_SUBAGENT_DISPATCH_DIRECTIVE}`;
     const output = { action: "transform" as const, text };
     await observeEmittedPiDispatch(sessionIdFromContext(ctx));
