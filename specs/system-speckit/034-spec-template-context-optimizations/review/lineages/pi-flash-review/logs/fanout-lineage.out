@@ -1,0 +1,12 @@
+All gates pass. The deep-review fan-out lineage is complete.
+
+**Summary of the run:**
+
+- **Phases:** init → 10-iteration main loop (stop-policy=max-iterations; convergence telemetry only) → synthesis. All writes confined to `review/lineages/pi-flash-review`.
+- **Verdict: CONDITIONAL** — 0 P0, 8 P1, 8 P2 (16 evidence-backed findings after F009→F004 merge and dropping reducer `SUMMARY-*` placeholders).
+- **Headline finding (F007, P1):** the packet docs claim "Planned — no implementation yet" while the working tree contains uncommitted implementations of all four phases (templates restructured 2,017 lines, AC_COVERAGE default flipped, SCOPE_ADHERENCE rule added, memory_search budget + tests added). The packet's current-state claims are contradicted by observable evidence.
+- **Three failing acceptance gates:** F001 (golden snapshot suite red at all 4 levels — REQ-002 byte-identical proof unmet), F002 (packet fails its own `validate.sh --strict`, exit 2, DESCRIPTION_SHAPE missing `level`), F008 (REQ-004 "warn severity" unmet — AC_COVERAGE never emits warn status, verified by execution on a real under-covered packet), F015 (REQ-005 scope rule false-positives on the packet's own docs).
+- **Verified working:** REQ-006 functional core (5/5 budget tests pass), with residual drift tracked (F005 duplicate helper vs CHK-006, F006 feedback-before-truncation).
+- **State files:** config (status=complete), 12-record JSONL (parses clean), findings registry (16 open), strategy, dashboard, 10 iteration files with valid final verdict lines, and `review-report.md` with all 9 core sections (resource-map gate skipped — no map at init).
+
+FANOUT_LINEAGE_COMPLETE:pi-flash-review

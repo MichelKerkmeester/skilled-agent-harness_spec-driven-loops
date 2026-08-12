@@ -31,6 +31,8 @@ _memory:
 ## Task Notation
 
 `[ ]` open · `[~]` in progress · `[x]` done · `[!]` blocked. Evidence (exit code / grep / diff) required on completion. Task ids group by implementation phase P1–P4.
+
+> **Phase-numbering note:** the `## Phase 1/2/3` headings below are **lifecycle stages** (Setup / Implementation / Verification) and are distinct from `plan.md`'s **value-ordered implementation phases P1–P4** (REQ-001…006). The P1–P4 work items live *inside* the Implementation stage, labelled "Impl Phase P1…P4". When a doc says "Phase 2" unqualified: in `plan.md` it means REQ-002 consolidation; in `tasks.md` it means the Implementation stage.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -39,8 +41,8 @@ _memory:
 ## Phase 1: Setup
 
 - [x] **T001** Author packet spec + phased plan + decision record from the 033 research shortlist.
-- [ ] **T002** Resolve Open Question 1 (does deep-research consume `research.md.tmpl`?) — gates the REQ-001 savings claim.
-- [ ] **T003** Resolve Open Question 3 (canonical changed-files source) — gates REQ-005.
+- [x] **T002** Resolve Open Question 1 (does deep-research consume `research.md.tmpl`?) — RESOLVED: the template is workflow-owned (`spec-kit-docs.json` `owner:workflow, creationTrigger:deep-research`); deep-research writes its own synthesis, so REQ-001 savings are authoring-only.
+- [x] **T003** Resolve Open Question 3 (canonical changed-files source) — RESOLVED: contract defined as `MK_SCOPE_CHANGED_FILES` (explicit list) or `MK_SCOPE_BASE` (git diff ref) in `check-scope-adherence.sh`; packet docs are implicitly in-scope.
 - [ ] **T004** Capture regression baselines: renderer snapshot suite, mcp-server suite, `validate.sh --strict` on the packet fleet.
 <!-- /ANCHOR:phase-1 -->
 

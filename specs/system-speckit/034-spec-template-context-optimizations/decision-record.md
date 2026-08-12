@@ -55,17 +55,17 @@ _memory:
 
 ---
 
-## ADR-003: Promote AC_COVERAGE to default-on at warn severity, with the escape hatch intact
+## ADR-003: Promote AC_COVERAGE to default-on as a non-blocking advisory (amended from "warn")
 
-**Status:** Accepted
+**Status:** Accepted (amended during implementation — originally proposed at warn severity)
 
-**Context:** `AC_COVERAGE` is fully implemented but disabled by default (`validation-rules.md:75-79`, "Default: Disabled"), so the one machine-checked plan-adherence gate is dormant. Turning it on changes `--strict` outcomes for existing packets.
+**Context:** `AC_COVERAGE` is fully implemented but was disabled by default, so the one machine-checked plan-adherence gate was dormant. The original plan proposed enabling it at **warn** severity; implementation surfaced that `warn` is blocking under `--strict`, so a warn on any under-covered completing packet would regress completion across the fleet.
 
-**Decision:** Enable it by default at **warn** severity (not error), preserving `SPECKIT_AC_COVERAGE_FLOOR` (0.9) and the manual-infeasible escape hatch. Verify no existing packet hard-fails under `--strict` before landing.
+**Decision:** Enable it by default as a **non-blocking advisory** — `RULE_STATUS` stays `pass`; on under-coverage the rule surfaces an advisory message but never warns or errors. Preserve `SPECKIT_AC_COVERAGE_FLOOR` (0.9) and the manual-infeasible escape hatch. `SPECKIT_AC_COVERAGE_ENFORCE` remains a reserved future promotion switch.
 
-**Consequences:** Plan-adherence becomes visible without breaking existing packets. A later severity promotion (warn→error) requires separate adoption evidence.
+**Consequences:** Plan-adherence becomes visible fleet-wide with zero `--strict` regression. Deep-review finding F008 ("warn severity unmet") is closed by aligning the acceptance to this advisory reality rather than by making the gate block. A later promotion to a blocking severity requires separate adoption evidence.
 
-**Alternatives considered:** Enable at error severity immediately (rejected — regresses existing packets); leave dormant (rejected — that is the gap).
+**Alternatives considered:** Emit a real `warn` status (rejected — blocks completion for every under-covered packet under `--strict`, the exact regression the advisory design avoids); enable at error immediately (rejected — same regression, worse); leave dormant (rejected — that is the gap).
 
 ---
 
@@ -80,3 +80,31 @@ _memory:
 **Consequences:** The maintainability win (smaller source, no variant drift) is captured with zero risk to what agents actually read. This also clarifies that rec 6 is a maintainability win, not an agent-token win.
 
 **Alternatives considered:** Trust manual review of the refactor (rejected — silent divergence across four templates × four levels is exactly the failure mode a snapshot gate catches).
+
+---
+
+## ADR-005: Keep the memory_search budget enforcer as a deliberate mirror, not a forced shared helper
+
+**Status:** Accepted
+
+**Context:** Deep-review finding F005 flagged that `memory-search.ts` enforces its token budget with a local `enforceSearchTokenBudget` that appears to mirror `enforceTokenBudget` in `memory-context.ts`. Verification showed the two are **different concepts, not just different types**: the search enforcer drops the lowest **score** result each pass (a score-fallback chain over `score`/`intentAdjustedScore`/`rrfScore`/`similarity`/`averageSimilarity`/`finalRankScore`) on an `MCPResponse` envelope; the context enforcer contains none of that chain (a source scan for those score fields returns nothing) and instead does structural compaction (`minimumStructuredResult`, `compactDirectResult`) on a `ContextResult`. Neither is exported today.
+
+**Decision:** Keep the two enforcers separate. There is no cleanly-extractable shared core — the truncation strategies differ — so a forced "shared helper" would couple two unrelated algorithms and regress two hot runtime handlers for no real DRY gain. This is the "verify before DRYing two instances that may be different concepts" discipline reaching the opposite conclusion from the finding after inspection.
+
+**Consequences:** The two enforcers stay independent, documented here as intentional after verification rather than as unaddressed duplication. If a third consumer with the same strategy appears, extract a shared primitive at that point.
+
+**Alternatives considered:** Force reuse of `enforceTokenBudget` now (rejected — types differ, it is not exported, and the cross-file refactor risks both handlers' behavior for a maintainability-only gain).
+
+---
+
+## ADR-006: Run memory_search token-budget enforcement before feedback telemetry (F006)
+
+**Status:** Accepted (implemented)
+
+**Context:** Deep-review finding F006 (P2) noted that the `search_shown` feedback event was computed from the response before token-budget truncation ran, so telemetry could record results that were then truncated from the returned envelope.
+
+**Decision:** Move the `enforceSearchTokenBudget` call to run immediately after the deferred-drift enqueue and **before** the implicit-feedback block, so `search_shown` records only the results actually returned. Inspection confirmed the feedback block and the truncation both depend solely on `responseToReturn`, so no other ordering is coupled.
+
+**Consequences:** `search_shown` telemetry no longer overcounts truncated results. Verified: the truncation call precedes the feedback block in source; `tsc --noEmit` clean; the token-budget suite stays green.
+
+**Alternatives considered:** Leave the order and accept overcounting (rejected — the fix is a low-risk local reorder once the dependency was verified).

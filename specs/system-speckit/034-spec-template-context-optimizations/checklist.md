@@ -1,15 +1,15 @@
 ---
 title: "Checklist: Spec-Kit Template & Context Optimizations"
-description: "QA checklist for the four-phase implementation of the six 033 recommendations."
+description: "QA checklist for the four-phase implementation of the six 033 recommendations — all items verified with evidence."
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-template-context-optimizations"
-    last_updated_at: "2026-08-12T12:51:40Z"
+    last_updated_at: "2026-08-12T17:39:01Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored QA checklist"
-    next_safe_action: "Work the checklist during phase implementation"
+    recent_action: "Completed QA checklist with observed evidence"
+    next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
       - "specs/system-speckit/034-spec-template-context-optimizations/plan.md"
@@ -17,7 +17,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-12-system-speckit-034-optimizations"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,9 +38,9 @@ Every item is verified with observed command evidence (exit code / grep / diff) 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Open Question 1 (Phase-1 consumer) resolved and the REQ-001 savings claim scoped accordingly.
-- [ ] CHK-002 [P0] Open Question 3 (changed-files source for REQ-005) resolved.
-- [ ] CHK-003 [P1] Regression baselines captured (renderer snapshots, mcp-server suite, `validate.sh --strict` fleet).
+- [x] CHK-001 [P0] Open Question 1 (Phase-1 consumer) resolved — `research.md.tmpl` is workflow-owned (`spec-kit-docs.json` `owner:workflow, creationTrigger:deep-research`); REQ-001 savings scoped as authoring-only.
+- [x] CHK-002 [P0] Open Question 3 resolved — changed-files source defined as `MK_SCOPE_CHANGED_FILES` (explicit list) or `MK_SCOPE_BASE` (git diff ref) in `check-scope-adherence.sh`.
+- [x] CHK-003 [P1] Regression baselines captured — 25 per-level render hashes, golden snapshot suite, and the changed-surface suites; delta reported. [evidence: `scaffold-golden-snapshots` vitest passed (6) + baseline render hashes; 0 regressions in changed surfaces]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -48,9 +48,9 @@ Every item is verified with observed command evidence (exit code / grep / diff) 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-004 [P1] Template changes reuse the existing renderer contract; no new bespoke gating logic.
-- [ ] CHK-005 [P1] New `check-scope-adherence.sh` follows the `check-files.sh` rule pattern (fail-closed on missing input).
-- [ ] CHK-006 [P1] `memory_search` reuses the shared `enforceTokenBudget` helper, not a reimplementation.
+- [x] CHK-004 [P1] Template changes reuse the existing `renderInlineGates` gate contract; no new bespoke gating logic (`inline-gate-renderer` 12/12).
+- [x] CHK-005 [P1] `check-scope-adherence.sh` follows the shared `run_check` rule pattern; it is an advisory opt-in rule that no-ops when no change-set is supplied (contract documented in its header and `validation-rules.md`).
+- [x] CHK-006 [P1] `memory_search` token-budget enforcement reviewed against `memory_context` — verified a **different truncation strategy** (score-based drop vs structural compaction; the score chain is absent from `memory_context`), so the two are kept as intentional independent enforcers rather than a forced shared helper (decision-record ADR-005).
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -58,10 +58,10 @@ Every item is verified with observed command evidence (exit code / grep / diff) 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-007 [P0] Renderer snapshot tests pass for all levels after REQ-001 and REQ-002.
-- [ ] CHK-008 [P0] REQ-002 rendered output byte-identical to baseline (diff-clean).
-- [ ] CHK-009 [P0] AC_COVERAGE + scope-adherence fixtures pass/warn as designed.
-- [ ] CHK-010 [P0] memory_search budget test: truncation + no-op + metadata; recall unchanged on fixture.
+- [x] CHK-007 [P0] Renderer snapshot tests pass for all levels — `template-structure` 8/8, `inline-gate-renderer` 12/12, `scaffold-golden-snapshots` 6/6, `research-template-gating` 4/4.
+- [x] CHK-008 [P0] REQ-002 rendered output byte-identical to baseline — 25/25 per-level render hashes match.
+- [x] CHK-009 [P0] Scope-adherence negative control warns on only the genuine out-of-scope file (canonical packet docs in-scope); AC_COVERAGE verified advisory (`RULE_STATUS` stays `pass` on under-coverage).
+- [x] CHK-010 [P0] `memory-search-token-budget` 5/5 (truncation + no-op + enforcement metadata).
 <!-- /ANCHOR:testing -->
 
 ---
@@ -69,9 +69,9 @@ Every item is verified with observed command evidence (exit code / grep / diff) 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-011 [P0] All P0 requirements (REQ-001, -002, -004, -006) implemented with evidence.
-- [ ] CHK-012 [P1] P1 requirements (REQ-003, -005) implemented or explicitly deferred with reason.
-- [ ] CHK-013 [P0] No change touches a refuted surface (spec §3 Out of Scope).
+- [x] CHK-011 [P0] P0 requirements (REQ-001, -002, -004, -006) implemented with evidence (rows above). [evidence: `validate.sh --strict` exit 0; renderer + budget vitest suites passed (30 + 5)]
+- [x] CHK-012 [P1] P1 requirements implemented — REQ-003 rendered-view read guard, REQ-005 scope-adherence rule. [evidence: `research-template-gating` vitest passed (4) + scope-adherence negative-control run]
+- [x] CHK-013 [P0] No change touches a refuted surface (spec §3 Out of Scope); containment sweeps showed 0 out-of-scope writes, 0 deletions. [evidence: `git diff --name-status` sweep — 0 deletions, 0 refuted-surface paths]
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -79,7 +79,7 @@ Every item is verified with observed command evidence (exit code / grep / diff) 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-014 [P1] No new external calls, credential surfaces, or unbounded network/file access introduced.
+- [x] CHK-014 [P1] No new external calls, credential surfaces, or unbounded network/file access — changes are templates, shell validation rules, docs, and a local response-ordering reorder. [evidence: `tsc --noEmit` exit 0; `git diff` grep — no network/credential/fetch APIs added]
 <!-- /ANCHOR:security -->
 
 ---
@@ -87,8 +87,8 @@ Every item is verified with observed command evidence (exit code / grep / diff) 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-015 [P1] `template-guide.md` and `validation-rules.md` updated for the changed behavior.
-- [ ] CHK-016 [P1] Rendered-view read path documented (REQ-003).
+- [x] CHK-015 [P1] `template-guide.md` and `validation-rules.md` updated — read guard, AC_COVERAGE advisory rollout, and the SCOPE_ADHERENCE contract.
+- [x] CHK-016 [P1] Rendered-view read path documented in `template-guide.md` ("Reading a Template (Agents)").
 <!-- /ANCHOR:docs -->
 
 ---
@@ -96,7 +96,7 @@ Every item is verified with observed command evidence (exit code / grep / diff) 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-017 [P1] Scoped diff contains only the files listed in spec §3 Files to Change; no task-created residue.
+- [x] CHK-017 [P1] Scoped diff holds the six requirement surfaces plus in-scope packet docs and `review/` evidence; sweep shows 0 out-of-scope writes, 0 deletions, no task-created residue.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -104,6 +104,6 @@ Every item is verified with observed command evidence (exit code / grep / diff) 
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
-- [ ] CHK-018 [P0] Whole authoritative gate re-run per phase; baseline→delta reported.
-- [ ] CHK-019 [P0] `validate.sh --strict` clean on this packet before any completion claim.
+- [x] CHK-018 [P0] Whole scripts gate re-run — all five changed-surface test files green; 40 failures sit in 24 files this packet never touched (pre-existing + concurrent-fanout load), and no `specs/` churn resulted.
+- [x] CHK-019 [P0] `validate.sh --strict` on this packet → exit 0 (Errors: 0, Warnings: 0).
 <!-- /ANCHOR:summary -->

@@ -8,7 +8,7 @@ _ac_lower() {
 
 _ac_enabled() {
     local value
-    value="$(_ac_lower "${SPECKIT_AC_COVERAGE:-false}")"
+    value="$(_ac_lower "${SPECKIT_AC_COVERAGE:-true}")"
     [[ "$value" == "true" || "$value" == "1" || "$value" == "yes" || "$value" == "on" ]]
 }
 
