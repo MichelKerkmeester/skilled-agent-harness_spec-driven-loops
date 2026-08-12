@@ -1,0 +1,104 @@
+{
+  "schema_version": 2,
+  "skill_id": "sk-communication",
+  "family": "sk-util",
+  "category": "utility",
+  "deprecated": false,
+  "edges": {
+    "depends_on": [],
+    "enhances": [],
+    "siblings": [
+      {
+        "target": "sk-code",
+        "weight": 0.5,
+        "context": "sk-code builds and verifies integration code against the communication-projection package"
+      },
+      {
+        "target": "sk-design",
+        "weight": 0.3,
+        "context": "sk-design owns any companion UI that renders a full-projection view"
+      },
+      {
+        "target": "sk-doc",
+        "weight": 0.3,
+        "context": "documentation peer for the package docs and handoff"
+      }
+    ],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "domains": [
+    "communication-projection",
+    "cli-communication",
+    "plain-english",
+    "claudish-to-english",
+    "presentation-projection",
+    "provider-routing",
+    "privacy-first",
+    "fidelity",
+    "full-projection",
+    "safe-native",
+    "exact-original",
+    "non-inferiority",
+    "compatibility-doctor",
+    "release-gate"
+  ],
+  "intent_signals": [
+    "make CLI output readable",
+    "rewrite agent output to plain english",
+    "claudish to english",
+    "communication projection",
+    "portable cli projection",
+    "presentation projection layer",
+    "privacy-first provider routing",
+    "local vs hosted rewrite",
+    "full-projection vs safe-native",
+    "presentation tier",
+    "exact-original fallback",
+    "runtime adapter for claude codex pi opencode devin cursor",
+    "blind non-inferiority evaluation",
+    "content-free telemetry",
+    "compatibility doctor",
+    "release gate",
+    "deepseek ollama llama.cpp provider"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "communication projection",
+      "claudish to english",
+      "rewrite cli output to plain english",
+      "privacy-first provider routing",
+      "full-projection vs safe-native"
+    ],
+    "key_topics": [
+      "communication",
+      "projection",
+      "cli",
+      "plain-english",
+      "privacy",
+      "provider",
+      "fidelity",
+      "presentation-tier",
+      "evaluation",
+      "release-gate"
+    ],
+    "key_files": [
+      ".opencode/skills/sk-communication/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "sk-communication",
+        "kind": "skill",
+        "path": ".opencode/skills/sk-communication/SKILL.md",
+        "source": "derived"
+      }
+    ],
+    "source_docs": [
+      "SKILL.md",
+      "leaf-manifest.config.json"
+    ],
+    "causal_summary": "Routes requests to the portable CLI communication-projection package, which rewrites terse agent output into readable plain English while keeping canonical bytes unchanged, behind privacy-first provider routing and honest full-projection versus safe-native tiers.",
+    "created_at": "2026-08-12T12:55:02.180324+00:00",
+    "last_updated_at": "2026-08-12T12:55:02.180324+00:00"
+  }
+}

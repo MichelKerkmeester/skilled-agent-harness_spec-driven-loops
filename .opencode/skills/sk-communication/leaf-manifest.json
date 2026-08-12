@@ -1,0 +1,10 @@
+{
+  "modes": [
+    {
+      "leaves": [],
+      "packet": ".",
+      "workflowMode": "sk-communication"
+    }
+  ],
+  "resourceContractVersion": 1
+}
