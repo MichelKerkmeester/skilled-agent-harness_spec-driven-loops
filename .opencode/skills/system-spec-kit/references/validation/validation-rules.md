@@ -69,7 +69,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `CURRENT_STATE_DISCIPLINE` | INFO | implementation summaries | Long-lived summaries avoid migration-history narratives |
 | `SCOPE_ADHERENCE`    | WARNING  | change-set (opt-in) | Advises when a supplied change-set exceeds spec.md "Files to Change" |
 
-> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (37 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
+> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (46 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, SCOPE_ADHERENCE, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
 
 ### Non-Breaking Acceptance Coverage Rollout
 

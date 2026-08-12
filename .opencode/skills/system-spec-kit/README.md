@@ -822,7 +822,7 @@ The manual testing playbook runs every scenario behind these checks.
 | [`references/workflows/spec-folder-write-recipe.md`](./references/workflows/spec-folder-write-recipe.md) | step-by-step recipe for a spec folder that passes strict validation on the first try |
 | [`references/workflows/spec-folder-authoring-checklist.md`](./references/workflows/spec-folder-authoring-checklist.md) | companion checklist for the Level contract, continuity frontmatter and metadata files |
 | [`references/workflows/rollback-runbook.md`](./references/workflows/rollback-runbook.md) | feature-flag rollback and smoke-test procedures |
-| [`references/validation/validation-rules.md`](./references/validation/validation-rules.md) | validation rule reference, the 45-rule registry is authoritative |
+| [`references/validation/validation-rules.md`](./references/validation/validation-rules.md) | validation rule reference, the 46-rule registry is authoritative |
 | [`references/templates/template-guide.md`](./references/templates/template-guide.md) | template usage and composition rules |
 | [`references/config/environment-variables.md`](./references/config/environment-variables.md) | full environment variable reference |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | complete catalog of implemented features |
