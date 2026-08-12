@@ -167,7 +167,7 @@ Expected result: `HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/git/pre-commit"` �
 
 ## Coverage matrix
 
-This matrix is the coverage authority for the intentionally uneven runtime surface. A checkmark means a runtime adapter or plugin covers the concern. `by-design` means the behavior is inherent in another named owner rather than a separately indexed adapter. `n/a` means the runtime exposes no event capable of implementing that concern.
+This matrix is the coverage authority for the intentionally uneven runtime surface. A checkmark means a runtime adapter or plugin covers the concern. `by-design` means the behavior is inherent in another named owner rather than a separately indexed adapter. `n/a` means the runtime exposes no event capable of implementing that concern. `~ partial` means covered for the common case with a known, documented gap. `unverified` means an event may exist but its feasibility for this concern has not been confirmed live, and no adapter is wired.
 
 | Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi |
 |---|---|---|---|---|---|---|
@@ -179,10 +179,10 @@ This matrix is the coverage authority for the intentionally uneven runtime surfa
 | `git-preflight` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `goal` | — by-design: goal state ships only on native session-bound goal surfaces | — by-design: goal state ships only on native session-bound goal surfaces | ✓ covered | — by-design: goal state ships only on native session-bound goal surfaces | ✓ covered | ✓ covered |
 | `mcp-route-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `permission-policy` | n/a: no repo-supported `permission-request` event | n/a: no repo-supported `permission-request` event | n/a: no repo-supported `permission-request` event | ✓ covered | n/a: no repo-supported `permission-request` event | n/a: no separate approval event beyond `tool_call` |
+| `permission-policy` | — by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | — by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | — by-design: no dedicated permission-request adapter | ✓ covered | — by-design: no dedicated permission-request adapter | — by-design: no separate approval event beyond `tool_call` |
 | `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | — by-design: session events run inside the owning `mk-*` plugins | ✓ covered |
 | `skill-advisor` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `spec-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `spec-memory` | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | ✓ covered | — by-design: OpenCode plugin owns continuity retrieval |
-| `task-dispatch` | ✓ covered | n/a: no Task/subagent hook event | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `task-dispatch` | ✓ covered | unverified: `PreToolUse` exists but no confirmed agent-spawn tool event; no adapter | ✓ covered | ✓ covered | ✓ covered | ~ partial: intercepts direct `subagent` calls; workflow-nested (`runs.run`) dispatches not yet covered |

@@ -25,7 +25,7 @@ _memory:
       - ".opencode/hooks/shared/hook-flags.cjs"
       - ".opencode/hooks/shared/hook-flags.test.cjs"
     session_dedup:
-      fingerprint: "sha256:5a044941f7cbc61a9c4bfce113341239a8a0e992c03591394dcd821a1dae58eb"
+      fingerprint: "sha256:e6089bcf3d889af5717035727cf4fe6e96101f8423927fb17aa4d664dab644d1"
       session_id: "4654af88-ba88-466a-bd14-2fa43ea87923"
       parent_session_id: null
     completion_pct: 92
@@ -148,3 +148,12 @@ Codex task-dispatch remains unfilled. Its checked-in hook contract exposes `exec
 `.opencode/hooks/README.md` now carries the complete 15-concern × six-runtime matrix. Each cell is either covered, by-design with its actual owning surface, or unavailable because the runtime exposes no corresponding event. The matrix explicitly records the inherent goal surfaces (Cursor, OpenCode, Pi), the three OpenCode-plugin-only concerns (`codex-watchdog`, `dist-freshness`, `spec-memory`), Devin's exclusive `PermissionRequest` policy, embedded Pi/OpenCode directive lifecycle, embedded OpenCode session lifecycle, and Codex's missing Task/subagent interception point.
 
 The README's older inventory prose was realigned with the final tree: Cursor's multiplexed post-tool proxy now appears under dispatch and post-edit quality, and Pi task dispatch appears as a native extension-backed adapter.
+
+## Review adjudication (final reviewer)
+
+A GPT-5.6-SOL-high adversarial review returned FAIL with **0 P0** (nothing unsafe shipped) and 3 P1 correctness findings. Verified against the repo, the resolution:
+- **Pi task-dispatch is partial, not "covered."** The adapter intercepts direct `subagent` tool-calls but not workflow-nested (`runs.run`) dispatches. Kept (advisory, fail-open) and relabeled `~ partial` in the matrix rather than removed.
+- **Codex task-dispatch is `unverified`, not `n/a`.** Codex exposes `PreToolUse`, but the repo has no confirmed agent-spawn hook event (`.codex/agents/*.toml` are interactive-TUI personas, not hooks). The matrix cell was softened from a false "no event."
+- **Permission-policy: the reviewer overclaimed a `PermissionRequest` hook** — none exists in `.claude/` or `.codex/` (only `PreToolUse`/`PostToolUse`/`Stop`). Corrected to "by-design: permission via `PreToolUse` decision, no dedicated adapter"; Devin's dedicated `permission-request` adapter stays the only one.
+
+Remaining minor (P2): the `.cursor/hooks/` discovery mirror does not yet list the new completion entrypoint.
