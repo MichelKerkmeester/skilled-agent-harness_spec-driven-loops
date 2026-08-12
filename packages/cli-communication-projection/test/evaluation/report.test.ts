@@ -92,6 +92,8 @@ function gate(
   return {
     gateVersion: 'evaluation-release-gate/1.0.0',
     claimTier: presentationTier,
+    evidenceClass: 'human',
+    isProvisional: false,
     status: 'pass',
     reasonCode: 'lower-bounds-clear-margins',
     releaseApproved: true,
@@ -99,6 +101,8 @@ function gate(
     strata: [{
       stratumId,
       presentationTier,
+      evidenceClass: 'human',
+      isProvisional: false,
       status: 'pass',
       reasonCode: 'lower-bounds-clear-margins',
       fidelityPassed: true,

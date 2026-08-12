@@ -120,6 +120,7 @@ function ratings(
       return {
         comparisonId: assignment.comparisonId,
         reviewerId,
+        evidenceClass: 'human',
         candidateScores: {
           directness: candidateScore,
           fluency: candidateScore,

@@ -6,6 +6,7 @@ import { EvaluationDimensionNames } from '../contracts/evidence.js';
 import { deepFreeze } from '../fidelity/freeze.js';
 import { evaluateDimensionNonInferiority } from './noninferiority.js';
 import { assertFrozenPreRegistration } from './preregistration.js';
+import { resolveEvidenceClass } from './types.js';
 
 import type { EvaluationDimensionName } from '../contracts/evidence.js';
 import type { EvaluationFidelityVetoDecision } from './fidelity-veto.js';
@@ -15,11 +16,13 @@ import type {
   PresentationTier,
   ReviewerAssignment,
 } from './preregistration.js';
+import type { EvidenceClass } from './types.js';
 
-/** One synthetic or human paired score after trusted unblinding. */
+/** One provenance-labeled paired score after trusted unblinding. */
 export interface BlindReviewerRating {
   readonly comparisonId: string;
   readonly reviewerId: string;
+  readonly evidenceClass: EvidenceClass;
   readonly candidateScores: Readonly<Record<EvaluationDimensionName, number>>;
   readonly referenceScores: Readonly<Record<EvaluationDimensionName, number>>;
 }
@@ -49,6 +52,8 @@ export interface EvaluateReleaseGateInput {
 export interface StratumReleaseGateDecision {
   readonly stratumId: string;
   readonly presentationTier: PresentationTier;
+  readonly evidenceClass: EvidenceClass;
+  readonly isProvisional: boolean;
   readonly status: 'fail' | 'inconclusive' | 'pass';
   readonly reasonCode:
     | 'fidelity-veto'
@@ -64,6 +69,8 @@ export interface StratumReleaseGateDecision {
 export interface ReleaseGateDecision {
   readonly gateVersion: 'evaluation-release-gate/1.0.0';
   readonly claimTier: PresentationTier;
+  readonly evidenceClass: EvidenceClass;
+  readonly isProvisional: boolean;
   readonly status: 'fail' | 'inconclusive' | 'pass';
   readonly reasonCode: StratumReleaseGateDecision['reasonCode'];
   readonly releaseApproved: boolean;
@@ -73,7 +80,7 @@ export interface ReleaseGateDecision {
 
 const DIMENSIONS = Object.values(EvaluationDimensionNames) as readonly EvaluationDimensionName[];
 
-/** Combine absolute fidelity vetoes and paired human evidence without tier pooling. */
+/** Combine absolute fidelity vetoes and paired reviewer evidence without tier pooling. */
 export function evaluateReleaseGate(input: EvaluateReleaseGateInput): ReleaseGateDecision {
   assertFrozenPreRegistration(input.preRegistration);
   validateDiagnostics(input.diagnosticMetrics ?? []);
@@ -97,6 +104,8 @@ export function evaluateReleaseGate(input: EvaluateReleaseGateInput): ReleaseGat
       return deepFreeze({
         stratumId: stratum.stratumId,
         presentationTier: stratum.presentationTier,
+        evidenceClass: 'human',
+        isProvisional: false,
         status: 'fail',
         reasonCode: 'missing-stratum-evidence',
         fidelityPassed: false,
@@ -119,9 +128,14 @@ export function evaluateReleaseGate(input: EvaluateReleaseGateInput): ReleaseGat
   const reasonCode = failed?.reasonCode
     ?? inconclusive?.reasonCode
     ?? 'lower-bounds-clear-margins';
+  const evidenceClass = resolveEvidenceClass(
+    decisions.map((decision) => decision.evidenceClass),
+  );
   return deepFreeze({
     gateVersion: 'evaluation-release-gate/1.0.0',
     claimTier: input.claimTier,
+    evidenceClass,
+    isProvisional: evidenceClass === 'llm-proxy',
     status,
     reasonCode,
     releaseApproved: status === 'pass',
@@ -140,6 +154,8 @@ function evaluateStratum(
   if (stratum === undefined || samplePlan === undefined) {
     throw new TypeError('Registered stratum is missing its sample plan.');
   }
+  const evidenceClass = ratingEvidenceClass(evidence.ratings);
+  const isProvisional = evidenceClass === 'llm-proxy';
   const assignments = registration.reviewerAssignments.filter(
     (assignment) => assignment.stratumId === stratumId,
   );
@@ -152,6 +168,8 @@ function evaluateStratum(
     return deepFreeze({
       stratumId,
       presentationTier: stratum.presentationTier,
+      evidenceClass,
+      isProvisional,
       status: 'fail',
       reasonCode: 'fidelity-veto',
       fidelityPassed: false,
@@ -165,6 +183,7 @@ function evaluateStratum(
       dimension,
       pairedDifferences: evidence.ratings.map((rating) =>
         rating.candidateScores[dimension] - rating.referenceScores[dimension]),
+      evidenceClass,
       margin: registration.nonInferiorityMargins[dimension],
       requiredSampleSize: samplePlan.pairedRatingsPerStratum,
       sampleCap: samplePlan.pairedRatingsPerStratum,
@@ -181,6 +200,8 @@ function evaluateStratum(
   return deepFreeze({
     stratumId,
     presentationTier: stratum.presentationTier,
+    evidenceClass,
+    isProvisional,
     status,
     reasonCode: failed
       ? 'noninferiority-fail'
@@ -190,6 +211,18 @@ function evaluateStratum(
     fidelityPassed: allComparisonsHaveFidelity,
     dimensions,
   });
+}
+
+function ratingEvidenceClass(
+  ratings: readonly BlindReviewerRating[],
+): EvidenceClass {
+  const evidenceClasses = ratings.map((rating) => {
+    if (rating.evidenceClass !== 'human' && rating.evidenceClass !== 'llm-proxy') {
+      throw new TypeError('Ratings must identify a known evidence class.');
+    }
+    return rating.evidenceClass;
+  });
+  return resolveEvidenceClass(evidenceClasses);
 }
 
 function validateFidelity(

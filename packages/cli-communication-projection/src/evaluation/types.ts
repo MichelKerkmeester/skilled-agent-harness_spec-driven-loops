@@ -9,6 +9,34 @@ import type {
 } from '../contracts/index.js';
 import type { ProtectedSpanKind } from '../fidelity/types.js';
 
+/** Origin of subjective reviewer evidence used by an evaluation decision. */
+export type EvidenceClass = 'human' | 'llm-proxy';
+
+/** Provenance fields carried by any result that might be presented as release evidence. */
+export interface EvidenceProvenance {
+  readonly evidenceClass: EvidenceClass;
+  readonly isProvisional: boolean;
+}
+
+/** Resolve mixed reviewer evidence conservatively to proxy provenance. */
+export function resolveEvidenceClass(
+  evidenceClasses: readonly EvidenceClass[],
+): EvidenceClass {
+  return evidenceClasses.includes('llm-proxy') ? 'llm-proxy' : 'human';
+}
+
+/** Refuse provisional evidence at a human-certification boundary. */
+export function assertHumanCertifiable<T extends EvidenceProvenance>(
+  result: T,
+): asserts result is T & { readonly evidenceClass: 'human'; readonly isProvisional: false } {
+  if (result.evidenceClass === 'llm-proxy') {
+    throw new TypeError('LLM proxy evidence is PROVISIONAL and cannot be human-certified.');
+  }
+  if (result.isProvisional) {
+    throw new TypeError('Provisional evidence cannot be human-certified.');
+  }
+}
+
 /** Content-free expectation for protected span coverage in one case. */
 export interface ExpectedProtectedSpan {
   readonly kind: ProtectedSpanKind;
@@ -109,4 +137,3 @@ export interface PilotVarianceEstimate extends PilotStratum {
   readonly variance: number;
   readonly samples: readonly PilotSample[];
 }
-

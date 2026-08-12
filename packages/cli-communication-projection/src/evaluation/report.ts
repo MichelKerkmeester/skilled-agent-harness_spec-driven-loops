@@ -6,6 +6,7 @@ import { createSha256Digest } from '../contracts/exact-original.js';
 import { deepFreeze } from '../fidelity/freeze.js';
 import { assertNoRedactionCanaryLeak } from '../observability/redaction.js';
 import { assertFrozenPreRegistration } from './preregistration.js';
+import { resolveEvidenceClass } from './types.js';
 
 import type { EvaluationDimensionName } from '../contracts/evidence.js';
 import type { RuntimeId } from '../contracts/common.js';
@@ -20,6 +21,7 @@ import type {
   FrozenPreRegistration,
   PresentationTier,
 } from './preregistration.js';
+import type { EvidenceClass } from './types.js';
 
 /** Numeric operational evidence associated with exactly one release stratum. */
 export interface StratumOperationalMetricsInput {
@@ -40,6 +42,8 @@ export interface CreateReleaseReportInput {
 /** Tier-specific approval that cannot borrow evidence from another tier. */
 export interface ReleaseReportClaim {
   readonly presentationTier: PresentationTier;
+  readonly evidenceClass: EvidenceClass;
+  readonly isProvisional: boolean;
   readonly status: 'fail' | 'inconclusive' | 'pass';
   readonly reasonCode:
     | ReleaseGateDecision['reasonCode']
@@ -51,6 +55,7 @@ export interface ReleaseReportClaim {
 /** Closed copy of one dimension decision used in the report digest. */
 export interface ReleaseReportDimension {
   readonly dimension: EvaluationDimensionName;
+  readonly evidenceClass: EvidenceClass;
   readonly status: DimensionNonInferiorityResult['status'];
   readonly reasonCode: DimensionNonInferiorityResult['reasonCode'];
   readonly sampleCount: number;
@@ -96,6 +101,8 @@ export interface ReleaseReportStratum {
   readonly runtimeId: RuntimeId;
   readonly presentationTier: PresentationTier;
   readonly gate: {
+    readonly evidenceClass: EvidenceClass;
+    readonly isProvisional: boolean;
     readonly status: StratumReleaseGateDecision['status'];
     readonly reasonCode:
       | StratumReleaseGateDecision['reasonCode']
@@ -111,6 +118,8 @@ export interface ReleaseReportStratum {
 export interface EvaluationReleaseReport {
   readonly reportVersion: 'evaluation-release-report/1.0.0';
   readonly preRegistrationDigest: string;
+  readonly evidenceClass: EvidenceClass;
+  readonly isProvisional: boolean;
   readonly claims: readonly ReleaseReportClaim[];
   readonly strata: readonly ReleaseReportStratum[];
   readonly reproducibilityDigest: string;
@@ -164,6 +173,8 @@ export function createReleaseReport(
         presentationTier: stratum.presentationTier,
         gate: gateStratum === undefined
           ? {
+              evidenceClass: 'human',
+              isProvisional: false,
               status: 'fail',
               reasonCode: 'missing-stratum-decision',
               fidelityPassed: false,
@@ -184,15 +195,22 @@ export function createReleaseReport(
     const gate = gateByTier.get(presentationTier);
     return [{
       presentationTier,
+      evidenceClass: gate?.evidenceClass ?? 'human',
+      isProvisional: gate?.isProvisional ?? false,
       status: gate?.status ?? 'fail',
       reasonCode: gate?.reasonCode ?? 'missing-gate-decision',
       releaseApproved: gate?.releaseApproved ?? false,
       stratumCount: tierStrata.length,
     } satisfies ReleaseReportClaim];
   });
+  const evidenceClass = resolveEvidenceClass(
+    [...gateByTier.values()].map((gate) => gate.evidenceClass),
+  );
   const base = {
     reportVersion: 'evaluation-release-report/1.0.0' as const,
     preRegistrationDigest: input.preRegistration.preRegistrationDigest,
+    evidenceClass,
+    isProvisional: evidenceClass === 'llm-proxy',
     claims,
     strata,
   };
@@ -222,13 +240,27 @@ function indexGates(
         if (stratum.presentationTier !== decision.claimTier) {
           throw new TypeError('Gate strata cannot cross presentation tiers.');
         }
+        const expectedProvisional = stratum.evidenceClass === 'llm-proxy';
+        if (
+          stratum.isProvisional !== expectedProvisional
+          || stratum.dimensions.some(
+            (dimension) => dimension.evidenceClass !== stratum.evidenceClass,
+          )
+        ) {
+          throw new TypeError('Gate stratum provenance must be internally consistent.');
+        }
         return stratum.stratumId;
       })
       .sort(compareText);
+    const evidenceClass = resolveEvidenceClass(
+      decision.strata.map((stratum) => stratum.evidenceClass),
+    );
     if (
       expectedIds.length === 0
       || JSON.stringify(expectedIds) !== JSON.stringify(actualIds)
       || decision.releaseApproved !== (decision.status === 'pass')
+      || decision.evidenceClass !== evidenceClass
+      || decision.isProvisional !== (evidenceClass === 'llm-proxy')
     ) {
       throw new TypeError('Gate decision does not match its registered presentation tier.');
     }
@@ -321,6 +353,8 @@ function copyGateStratum(
   decision: StratumReleaseGateDecision,
 ): ReleaseReportStratum['gate'] {
   return {
+    evidenceClass: decision.evidenceClass,
+    isProvisional: decision.isProvisional,
     status: decision.status,
     reasonCode: decision.reasonCode,
     fidelityPassed: decision.fidelityPassed,
@@ -335,6 +369,7 @@ function copyDimension(
 ): ReleaseReportDimension {
   return {
     dimension: decision.dimension,
+    evidenceClass: decision.evidenceClass,
     status: decision.status,
     reasonCode: decision.reasonCode,
     sampleCount: decision.sampleCount,

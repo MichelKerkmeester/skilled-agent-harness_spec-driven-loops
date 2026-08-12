@@ -122,6 +122,7 @@ function ratings(
     assignment.reviewerIds.map((reviewerId) => ({
       comparisonId: assignment.comparisonId,
       reviewerId,
+      evidenceClass: 'human',
       candidateScores: {
         directness: candidateScore,
         fluency: candidateScore,

@@ -28,12 +28,17 @@ export {
 } from './preregistration.js';
 export { createRunManifest } from './run-manifest.js';
 export {
+  runProxyReviewers,
+  scoreMaskedReviewPacketWithProxy,
+} from './proxy-judge.js';
+export {
   evaluateFidelityVeto,
   evaluateFidelityVetoes,
 } from './fidelity-veto.js';
 export { evaluateDimensionNonInferiority } from './noninferiority.js';
 export { evaluateReleaseGate } from './gate.js';
 export { createReleaseReport } from './report.js';
+export { assertHumanCertifiable } from './types.js';
 
 export type {
   BaselineComparison,
@@ -75,6 +80,11 @@ export type {
 } from './report.js';
 export type { RunVariancePilotInput } from './pilot.js';
 export type {
+  ProxyJudgeScorer,
+  ProxyPerDimensionScores,
+  ProxyPresentationScores,
+} from './proxy-judge.js';
+export type {
   PowerAnalysisInput,
   PoweredSampleSize,
 } from './power.js';
@@ -92,6 +102,8 @@ export type {
 export type { CreateRunManifestInput } from './run-manifest.js';
 export type {
   CorpusManifest,
+  EvidenceClass,
+  EvidenceProvenance,
   EvaluationCase,
   EvaluationCorpus,
   ExpectedProtectedSpan,

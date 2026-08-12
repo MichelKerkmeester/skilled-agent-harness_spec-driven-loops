@@ -11,6 +11,7 @@ describe('paired non-inferiority decision', () => {
     const result = evaluateDimensionNonInferiority({
       dimension: 'directness',
       pairedDifferences: Array.from({ length: 30 }, () => 0),
+      evidenceClass: 'human',
       margin: -0.2,
       requiredSampleSize: 30,
       sampleCap: 30,
@@ -31,6 +32,7 @@ describe('paired non-inferiority decision', () => {
     const result = evaluateDimensionNonInferiority({
       dimension: 'fluency',
       pairedDifferences: Array.from({ length: 30 }, () => -0.5),
+      evidenceClass: 'human',
       margin: -0.2,
       requiredSampleSize: 30,
       sampleCap: 30,
@@ -52,6 +54,7 @@ describe('paired non-inferiority decision', () => {
     const interim = evaluateDimensionNonInferiority({
       dimension: 'reference-likeness',
       pairedDifferences: alternating(30),
+      evidenceClass: 'human',
       margin: -0.2,
       requiredSampleSize: 30,
       sampleCap: 100,
@@ -59,6 +62,7 @@ describe('paired non-inferiority decision', () => {
     const capped = evaluateDimensionNonInferiority({
       dimension: 'reference-likeness',
       pairedDifferences: alternating(100),
+      evidenceClass: 'human',
       margin: -0.2,
       requiredSampleSize: 30,
       sampleCap: 100,

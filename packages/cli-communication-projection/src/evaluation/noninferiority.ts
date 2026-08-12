@@ -9,11 +9,13 @@ import {
 } from './power.js';
 
 import type { EvaluationDimensionName } from '../contracts/evidence.js';
+import type { EvidenceClass } from './types.js';
 
 /** Frozen inputs for one dimension's paired confidence interval decision. */
 export interface DimensionNonInferiorityInput {
   readonly dimension: EvaluationDimensionName;
   readonly pairedDifferences: readonly number[];
+  readonly evidenceClass: EvidenceClass;
   readonly margin: number;
   readonly requiredSampleSize: number;
   readonly sampleCap: number;
@@ -29,6 +31,7 @@ export interface PairedConfidenceInterval {
 /** Statistical and release result for one quality dimension. */
 export interface DimensionNonInferiorityResult {
   readonly dimension: EvaluationDimensionName;
+  readonly evidenceClass: EvidenceClass;
   readonly status: 'fail' | 'inconclusive' | 'pass';
   readonly reasonCode:
     | 'confidence-interval-crosses-margin'
@@ -141,6 +144,7 @@ function result(
 ): DimensionNonInferiorityResult {
   return Object.freeze({
     dimension: input.dimension,
+    evidenceClass: input.evidenceClass,
     status,
     reasonCode,
     sampleCount: input.pairedDifferences.length,
@@ -158,6 +162,9 @@ function result(
 function validateInput(input: DimensionNonInferiorityInput): void {
   if (!DIMENSIONS.includes(input.dimension)) {
     throw new TypeError('Unknown evaluation dimension.');
+  }
+  if (input.evidenceClass !== 'human' && input.evidenceClass !== 'llm-proxy') {
+    throw new TypeError('Unknown evaluation evidence class.');
   }
   if (!Number.isFinite(input.margin) || input.margin >= 0) {
     throw new RangeError('Non-inferiority margin must be a finite negative number.');
