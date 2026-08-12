@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/035-improved-communication"
     last_updated_at: "2026-08-12T04:14:38Z"
     last_updated_by: "codex"
-    recent_action: "Completed and verified Phase 007 evaluation and observability."
-    next_safe_action: "Approve the Phase 008 packaging architecture, then execute T001."
+    recent_action: "Completed and verified all eight implementation phases."
+    next_safe_action: "Supply the operator release prerequisites, then record the release decision."
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "035-improved-communication-20260811"
       parent_session_id: null
-    completion_pct: 88
+    completion_pct: 100
     open_questions:
       - "Which runtimes prove atomic replacement under pinned fixtures?"
     answered_questions:
@@ -51,13 +51,13 @@ _memory:
 |-------|-------|
 | **Level** | Phase parent |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-08-11 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None |
 | **Parent Packet** | `cli-external-orchestration/035-improved-communication` |
 | **Predecessor** | None |
-| **Successor** | `001-research-strategy/` through `007-evaluation-and-observability/` complete. `008-packaging-and-release-hardening/` is next. |
+| **Successor** | All eight phases (`001` through `008`) are implemented and verified. The release decision is operator-gated. |
 | **Handoff Criteria** | Each child passes its own implementation gates and strict validation before the next phase consumes its output |
 <!-- /ANCHOR:metadata -->
 
@@ -129,9 +129,9 @@ Detailed research, architecture, implementation, and verification belong to chil
 | 5 | `005-provider-adapters-and-privacy/` | Implement OpenCode Go, Ollama, llama.cpp, generic hosted adapters, discovery, and privacy-first routing | Complete |
 | 6 | `006-runtime-adapters-and-clients/` | Implement Claude, Codex, Pi, OpenCode, Devin, and Cursor adapters with explicit full-projection and safe-native presentation tiers | Complete |
 | 7 | `007-evaluation-and-observability/` | Execute the powered blind parity protocol, aggregate redacted telemetry, and produce operational reports | Complete |
-| 8 | `008-packaging-and-release-hardening/` | Package supported configurations, compatibility doctor, rollback, and release gates | Draft |
+| 8 | `008-packaging-and-release-hardening/` | Package supported configurations, compatibility doctor, rollback, and release gates | Complete |
 
-All seven implementation children exist as Level 3 packets. Phases 002 through 007 have verified code, fixtures and tests. Phase 008 remains unimplemented.
+All seven implementation children exist as Level 3 packets. Phases 002 through 008 have verified code, fixtures and tests. All eight phases are implemented and verified on the branch; the release decision is operator-gated.
 ### Phase Transition Rules
 
 - Each phase must pass `validate.sh` independently before its handoff.
@@ -167,7 +167,7 @@ All seven implementation children exist as Level 3 packets. Phases 002 through 0
 
 ## RELATED DOCUMENTS
 
-- **Active child**: `008-packaging-and-release-hardening/spec.md`
-- **Completed predecessor handover**: `007-evaluation-and-observability/handover.md`
+- **Active child**: none; all phases complete. Release decision pending operator prerequisites.
+- **Completed predecessor handover**: `008-packaging-and-release-hardening/handover.md`
 - **Reference implementation**: `context/claudish-to-english-main/`
 - **Graph metadata**: `graph-metadata.json`

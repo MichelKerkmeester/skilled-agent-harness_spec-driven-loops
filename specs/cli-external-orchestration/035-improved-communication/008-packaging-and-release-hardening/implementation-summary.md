@@ -1,6 +1,6 @@
 ---
 title: "Implementation Status: Phase 008 Packaging and Release Hardening"
-description: "Phase 008 is scaffolded as a Level 3 implementation packet; implementation has not started."
+description: "Phase 008 packaging, doctor, and release-gate framework is implemented and verified; release execution is the operator gate."
 trigger_phrases:
   - "packaging-and-release-hardening"
   - "implementation status"
@@ -10,26 +10,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening"
-    last_updated_at: "2026-08-11T13:45:02Z"
-    last_updated_by: "codex"
-    recent_action: "Repaired the Phase 008 planning contract; no implementation was performed."
-    next_safe_action: "Obtain project-owner approval, then start T001 after Phase 007 evidence is accepted."
-    blockers:
-      - "Project-owner approval of the Proposed architecture decision is not yet recorded."
+    last_updated_at: "2026-08-12T11:24:18.928Z"
+    last_updated_by: "claude"
+    recent_action: "Completed the Phase 008 framework, remediation, and reconciliation."
+    next_safe_action: "Run the operator release prerequisites, then record the parent release decision."
+    blockers: []
     key_files:
       - "implementation-summary.md"
       - "spec.md"
-      - "plan.md"
-      - "tasks.md"
-      - "checklist.md"
+      - "handover.md"
+      - "specs/cli-external-orchestration/035-improved-communication/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "phase-008-scaffold-20260811"
-      parent_session_id: null
-    completion_pct: 0
+      session_id: "phase-008-implementation-20260812"
+      parent_session_id: "phase-008-scaffold-20260811"
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Phase purpose, boundary, dependencies, and handoff are defined."
+      - "Packaging, the compatibility doctor, release gates, rollback, and rehearsals are implemented and verified."
+      - "The release gate blocks on provisional evidence and requires human-certified non-inferiority."
+      - "The live credentialed smoke and the powered blind human study remain operator-run release prerequisites."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Status: Phase 008 Packaging and Release Hardening
@@ -45,8 +45,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-packaging-and-release-hardening |
-| **Status** | Draft |
-| **Implementation** | Not started |
+| **Status** | Complete |
+| **Implementation** | Framework implemented and validated; release execution is the operator gate |
 | **Level** | 3 |
 | **Scaffolded** | 2026-08-11 |
 <!-- /ANCHOR:metadata -->
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No runtime or provider implementation has been built in this phase. The current artifact is a repaired Level 3 planning packet for hardening the existing package with explicit provider privacy choices, a tested tiered compatibility matrix, diagnostics, rollback, and six-runtime release gates. Implementation remains blocked on project-owner approval and accepted Phase 007 evidence.
+Phase 008 hardens the package boundary and adds the release machinery. `package.json` now exposes ten subpath exports for the core, contracts, versioning, providers, runtimes, privacy, evaluation, observability, doctor, and release surfaces. A dated support matrix (`src/release/support-matrix.ts`) derives evidence-backed, expiry-stamped rows from the provider presets and runtime records and fails closed on stale or future-dated evidence. A compatibility doctor (`src/doctor/`) diagnoses versions, capabilities, deadline-bounded endpoint probes, credential references, privacy-fact freshness, and tiers, failing closed to original-only and returning a blocked report on malformed input.
 
-The authored artifacts `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` define eight requirements, six acceptance scenarios, the architecture and rollback, an executable task sequence, and completion gates. All implementation and release checks remain pending unless the checklist records direct evidence.
+The release-readiness gate (`src/release/release-gate.ts`) assembles independent evidence and releases only when every input is present, fresh, and passing, including a human-certified non-inferiority result; a provisional llm-proxy evaluation is blocked. It emits a content-free reproducible evidence manifest. Rollback coordination (`src/release/rollback.ts`) provides a provider- and network-free original-only emergency mode that never mutates a canonical transcript. Operator docs (`docs/`) and deterministic rehearsals (`test/release/`) complete the boundary.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,7 +66,7 @@ The authored artifacts `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `de
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The scaffold was derived from the completed Phase 001 synthesis and the parent phase map. Spec-kit Level 3 templates provide the document contract; phase-specific content replaces template placeholders. Implementation must proceed through the task and checklist gates.
+Implementation ran as dispatched worker packets on GPT-5.6 SOL through cli-codex — support matrix, doctor, release gate and rollback, and packaging plus rehearsals — each verified against `npm run check` before the next. A read-only adversarial review on DeepSeek V4 Flash confirmed the fail-closed gate correct and surfaced one fail-open endpoint edge and four hardening items, all remediated.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -76,8 +76,9 @@ The scaffold was derived from the completed Phase 001 synthesis and the parent p
 
 | Decision | Why |
 |----------|-----|
-| Propose release gating with an expiring support matrix and fail-closed compatibility doctor | It preserves canonical state and gives every unsupported, stale, or failed case an explicit safe outcome. |
-| Keep implementation status Draft | No code, runtime integration, provider call, or implementation test has been completed in this phase. |
+| A dated support matrix and fail-closed compatibility doctor | Unsupported versions and stale facts must never pass silently. |
+| The release gate requires human-certified non-inferiority | An automated or provisional signal must never authorize a release. |
+| Original-only rollback needs no provider or network | Recovery must work even when every provider is down. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,10 +88,15 @@ The scaffold was derived from the completed Phase 001 synthesis and the parent p
 
 | Check | Result |
 |-------|--------|
-| Level 3 document inventory | Required as the scaffold handoff gate |
-| Phase-specific placeholder scan | Required as the scaffold handoff gate |
-| Strict packet validation | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening --strict` before handoff |
-| Implementation tests | Not run; implementation has not started |
+| Package gate | PASS: typecheck, build, 59 files and 289 tests, import smoke |
+| Package dry run | PASS: `npm pack --dry-run` ships only dist and docs, no secret files |
+| Second-model adversarial review | PASS after remediation: 0 P0, 1 P1, 4 P2 found and fixed |
+| Fail-closed release gate | PASS: provisional evaluation blocks; stale, doctor-blocked, and failing inputs block |
+| Fail-closed doctor | PASS: unknown or unrecognized status blocks to original-only; malformed input returns a blocked report |
+| Local-only privacy | PASS: rehearsal proves zero hosted calls with no hidden fallback |
+| Rollback | PASS: original-only mode needs no provider or network and never mutates canonical state |
+| Strict packet validation | PASS: Phase 008 strict and parent recursive strict, zero errors |
+| Implementation checkpoint | `aea92b33b6` (series 3ae034247d through aea92b33b6) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -98,8 +104,7 @@ The scaffold was derived from the completed Phase 001 synthesis and the parent p
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Implementation absent**: All code, tests, integrations, packaging, and runtime behavior described here remain to be built.
-2. **Proposed paths**: Package paths may be refined during boundary preflight, but the phase scope and contracts are frozen unless the parent map is explicitly revised.
-3. **External drift**: Runtime and provider capabilities must be revalidated against pinned versions before release.
-4. **Approval pending**: The architecture decision remains Proposed; no implementation task may start until project-owner approval is recorded.
+1. **Release execution is the operator gate**: the framework enforces the release gate, but a real release requires the operator to supply the live credentialed provider smoke, the powered blind human non-inferiority result, and fresh provider and privacy facts. The gate blocks until they are present.
+2. **Live credentialed smoke deferred**: the six-runtime rehearsal uses injected transports. The first real credentialed provider smoke, persisting no content or secret, needs operator credentials.
+3. **Dated hosted facts**: OpenCode Go privacy and retention facts must be revalidated before 2026-08-31 and at every release; a stale result blocks hosted routing.
 <!-- /ANCHOR:limitations -->

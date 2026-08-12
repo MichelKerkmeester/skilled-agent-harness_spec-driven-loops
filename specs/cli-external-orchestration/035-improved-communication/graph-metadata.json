@@ -39,7 +39,7 @@
       "code"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-research-strategy/spec.md",
@@ -47,19 +47,12 @@
       "006-runtime-adapters-and-clients/spec.md",
       "006-runtime-adapters-and-clients/handover.md",
       "007-evaluation-and-observability/spec.md",
-      "008-packaging-and-release-hardening/spec.md",
-      "007-evaluation-and-observability/handover.md"
+      "008-packaging-and-release-hardening/handover.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
-        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -92,19 +85,25 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
     "created_at": "2026-08-11T06:21:47Z",
-    "last_save_at": "2026-08-12T09:43:15.188Z",
+    "last_save_at": "2026-08-12T11:24:19.165Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c090df9849f83fbd24d7519a523aaf1abd4d0cc91aff302eb479d52c980205ef",
+    "source_fingerprint": "sha256:5b5647b22142913ede1082a446ab8365781c451a4358030a52bb20056a960585",
     "source_doc_hashes": {
-      "spec.md": "c9b17112d9bbe9f3ac63d84f2940be0efd44c49a43f4546ff33fe06a40b36fbb"
+      "spec.md": "87f7ffe936739678e756784611acebbddda22f999ad93b53b9a884055d932faa"
     },
     "last_active_child_id": "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy",
     "last_active_at": "2026-08-12T05:25:21.635Z"

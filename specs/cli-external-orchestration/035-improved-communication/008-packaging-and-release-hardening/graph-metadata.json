@@ -39,13 +39,14 @@
       "verification"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "handover.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -77,6 +78,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -164,12 +171,6 @@
         "source": "derived"
       },
       {
-        "name": "explicit",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -182,13 +183,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "content-free",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -196,7 +197,7 @@
     ],
     "causal_summary": "Package the system with explicit provider privacy choices, a tested compatibility matrix, diagnostics, rollback, and six-runtime release gates",
     "created_at": "2026-08-11T10:04:33Z",
-    "last_save_at": "2026-08-11T13:46:04.565Z",
+    "last_save_at": "2026-08-12T11:25:19.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,16 +206,18 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:39644ee15229fe71962eb3faa47e3bda0d5ec61785cbbf9720cf8807f8c2d865",
+    "source_fingerprint": "sha256:3901d266a9aef1281a8c53d12202bb43b23d71acf81421a34bf42014801c5378",
     "source_doc_hashes": {
-      "spec.md": "a12de519666eb071f8e9d3831be4164dd1cf2bb8c35a8d98d004ef1bba6d1aef",
+      "spec.md": "02fe93764cb717daca9b27f7f3dd71ad4569ce766d61123f27b5870bd1ef537c",
       "plan.md": "5c6422e5104a60a2b4d4cdb89bbd41cfa1438d97ee03fde4246a6496ea1e1ed1",
-      "tasks.md": "3986a92a60ce0e0cb728e47d03a17d4ef6930d0eec72fe1dfd1787ef56692ef0",
-      "checklist.md": "11de6175004b3a65187f15be62946fec771f6e9651ca4b80b7473b77a1e5d7cb",
-      "decision-record.md": "051076abf0f2dca1aa90b37bf653b57bc9048f0bda73c9e4c389ba022414c5fe",
-      "implementation-summary.md": "624c674c7b02ba6b54abf17a50e26e9ea20c1bdf49d064c6cd77ee5083e44f42"
+      "tasks.md": "0c4d3433e0a451cac3c6c871db97ef6f480ab7861a85370adc7b4c45fd4d45e3",
+      "checklist.md": "363f02c89537f7675d76260fbb86d07b30e777c76761ae15bde9b23a1a3d5d4b",
+      "decision-record.md": "2673b8aad7f47c2db387dbaf22f4ca41e26e368fa3e520a1811e836d77a60d92",
+      "implementation-summary.md": "d9c9c5bbcb9e861192da5724085455f80606928fee2b3f68bda32603298af0bc",
+      "handover.md": "9609621c166567e950d9d20c50cf423dd278123527ee5ab6be395c1a58276d73"
     },
     "last_active_child_id": null,
     "last_active_at": null
