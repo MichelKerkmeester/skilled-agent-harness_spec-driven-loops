@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/028-sk-communication-skill",
+  "description": "Author a standalone advisor-routable skill that surfaces the portable CLI communication-projection package",
+  "keywords": [
+    "sk-communication",
+    "skill",
+    "communication",
+    "projection",
+    "standalone",
+    "advisor",
+    "wrapper",
+    "package",
+    "routable",
+    "cli"
+  ],
+  "lastUpdated": "2026-08-12T13:10:00Z",
+  "specId": "028",
+  "folderSlug": "sk-communication-skill",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
