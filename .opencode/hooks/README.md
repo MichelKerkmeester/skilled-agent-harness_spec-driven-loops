@@ -96,7 +96,7 @@ hooks/
     `-- opencode/ mk-goal.js (browsability symlink -> ../../../plugins/)
 ```
 
-Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `goal/pi/`) — Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.opencode/plugins/` — the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified — the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor has no `dispatch`/`post-edit-quality` wiring today, so those subfolders have no `cursor/` entry.
+Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `goal/pi/`) — Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.opencode/plugins/` — the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified — the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
 
 ---
 
@@ -104,10 +104,10 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 
 | Concern | Real adapters here | Stays in `.opencode/plugins/` (mirrored at `opencode/` via browsability symlink) |
 |---|---|---|
-| `dispatch` | claude, devin, codex, pi (symlinked from `.pi/extensions/`) | `mk-cli-dispatch-audit.js` |
+| `dispatch` | claude, devin, codex, cursor (indexed proxy), pi (symlinked from `.pi/extensions/`) | `mk-cli-dispatch-audit.js` |
 | `mcp-route-guard` | claude, cursor, devin, codex, pi (symlinked) | `mk-mcp-route-guard.js` |
-| `post-edit-quality` | claude, devin, codex, pi (symlinked) | `mk-post-edit-quality.js` |
-| `task-dispatch` | claude, cursor, devin | `mk-deep-loop-guard.js` |
+| `post-edit-quality` | claude, devin, codex, cursor (indexed proxy), pi (symlinked) | `mk-post-edit-quality.js` |
+| `task-dispatch` | claude, cursor, devin, pi (symlinked) | `mk-deep-loop-guard.js` |
 | `goal` | cursor, pi (symlinked); plus `lib/` core + `bin/` manage CLI | `mk-goal.js` |
 
 `mk-git-preflight-advisory.js` and `mk-cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.
@@ -164,3 +164,25 @@ Expected result: `HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/git/pre-commit"` �
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors pointing back into this tree.
 - [`../plugins/README.md`](../plugins/README.md): the OpenCode plugins that import these cores directly.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): the Pi extensions that import these cores directly.
+
+## Coverage matrix
+
+This matrix is the coverage authority for the intentionally uneven runtime surface. A checkmark means a runtime adapter or plugin covers the concern. `by-design` means the behavior is inherent in another named owner rather than a separately indexed adapter. `n/a` means the runtime exposes no event capable of implementing that concern.
+
+| Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi |
+|---|---|---|---|---|---|---|
+| `codex-watchdog` | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | ✓ covered | — by-design: OpenCode plugin audits Codex hook installation |
+| `completion` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `directive-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | — by-design: embedded in `mk-skill-advisor` lifecycle state | — by-design: embedded in `prompt-advisor.ts` directive de-dup |
+| `dispatch` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `dist-freshness` | — by-design: OpenCode plugin owns source/dist freshness projection | — by-design: OpenCode plugin owns source/dist freshness projection | — by-design: OpenCode plugin owns source/dist freshness projection | — by-design: OpenCode plugin owns source/dist freshness projection | ✓ covered | — by-design: OpenCode plugin owns source/dist freshness projection |
+| `git-preflight` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `goal` | — by-design: goal state ships only on native session-bound goal surfaces | — by-design: goal state ships only on native session-bound goal surfaces | ✓ covered | — by-design: goal state ships only on native session-bound goal surfaces | ✓ covered | ✓ covered |
+| `mcp-route-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `permission-policy` | n/a: no repo-supported `permission-request` event | n/a: no repo-supported `permission-request` event | n/a: no repo-supported `permission-request` event | ✓ covered | n/a: no repo-supported `permission-request` event | n/a: no separate approval event beyond `tool_call` |
+| `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | — by-design: session events run inside the owning `mk-*` plugins | ✓ covered |
+| `skill-advisor` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `spec-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `spec-memory` | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | ✓ covered | — by-design: OpenCode plugin owns continuity retrieval |
+| `task-dispatch` | ✓ covered | n/a: no Task/subagent hook event | ✓ covered | ✓ covered | ✓ covered | ✓ covered |

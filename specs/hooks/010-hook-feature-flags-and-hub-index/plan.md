@@ -47,4 +47,4 @@ Adapter languages differ: `.cjs` require, `.mjs`/`.js` import, `.ts` (Pi/Claude)
 
 ## STATUS
 
-Phases 1-8 shipped. Phase 7 indexed Cursor's existing multiplexed post-tool proxy under both concerns. Phase 8 added completion evidence on Cursor's documented `afterAgentResponse` and Pi's native `turn_end`, plus advisory-only Pi task-dispatch coverage on native `subagent` tool calls. Codex has no Task/subagent hook event, so that gap remains a documented capability limit. Phase 9 coverage documentation is next.
+Phases 1-9 shipped. Phase 7 closed truthful index gaps, Phase 8 added source-direct completion and Pi task-dispatch adapters where real events exist, and Phase 9 made every concern/runtime verdict explicit in the hook hub coverage matrix. Deploy-side dist rebuilding remains outside this worktree task.

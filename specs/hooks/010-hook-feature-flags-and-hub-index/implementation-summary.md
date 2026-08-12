@@ -142,3 +142,9 @@ Codex task-dispatch remains unfilled. Its checked-in hook contract exposes `exec
 - Pi completion: default registered `turn_end`, sent one hidden advisory, and wrote one log line; both disable switches registered no handler and produced no message or log.
 - Pi task dispatch: default registered `tool_call` and returned an advisory `reason` for a mode mismatch without `block`; both disable switches registered no handler.
 - All new symlinks resolved to source adapters. Cursor JSON parsed, the Cursor adapter passed `node --check`, and both Pi adapters loaded through `.pi/extensions/` with `node --experimental-strip-types --preserve-symlinks`.
+
+## PHASE 9 — Coverage matrix (shipped)
+
+`.opencode/hooks/README.md` now carries the complete 15-concern × six-runtime matrix. Each cell is either covered, by-design with its actual owning surface, or unavailable because the runtime exposes no corresponding event. The matrix explicitly records the inherent goal surfaces (Cursor, OpenCode, Pi), the three OpenCode-plugin-only concerns (`codex-watchdog`, `dist-freshness`, `spec-memory`), Devin's exclusive `PermissionRequest` policy, embedded Pi/OpenCode directive lifecycle, embedded OpenCode session lifecycle, and Codex's missing Task/subagent interception point.
+
+The README's older inventory prose was realigned with the final tree: Cursor's multiplexed post-tool proxy now appears under dispatch and post-edit quality, and Pi task dispatch appears as a native extension-backed adapter.

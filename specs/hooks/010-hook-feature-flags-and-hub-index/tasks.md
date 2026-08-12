@@ -66,5 +66,5 @@ parent: "./spec.md"
 
 ## PHASE 9 — Coverage matrix
 
-- [ ] Append a complete concern × runtime coverage matrix to `.opencode/hooks/README.md`
-- [ ] Record every intentionally unfilled gap as by-design or unavailable with a one-line reason
+- [x] Append a complete concern × runtime coverage matrix to `.opencode/hooks/README.md` [Evidence: 15 concern rows × six runtime columns]
+- [x] Record every intentionally unfilled gap as by-design or unavailable with a one-line reason [Evidence: matrix includes inherent goal surfaces, OpenCode-plugin-only concerns, Devin-only permission policy, embedded lifecycle ownership, and missing Task events]
