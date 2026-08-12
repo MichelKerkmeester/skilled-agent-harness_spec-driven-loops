@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/004-import-export-tooling",
+  "spec_folder": "sk-doc/028-sk-create-diagram/004-import-export-tooling",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "diagram import export tooling",
+      "drawio mermaid extraction port"
+    ],
+    "key_topics": [
+      "import",
+      "export",
+      "drawio",
+      "mermaid",
+      "extraction",
+      "tooling",
+      "redraw",
+      "routing",
+      "scripts",
+      "references"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Generating diagrams from scratch is only half the source skill's value — redrawing an existing draw.io or Mermaid diagram at a chosen format/size/detail/audience is the other half, and neither the extraction tooling nor its routing exists yet in the ported packet",
+    "created_at": "2026-08-12T06:20:00.000Z",
+    "last_save_at": "2026-08-12T06:38:42.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b6a8755412882213d3100385a173e8c3d519c1ac05ee3f69d014a93af00dc61d",
+    "source_doc_hashes": {
+      "spec.md": "7e76dc292eb3b70cbd0e8ad6483a30d4a82ab56bbff8584efc81ec35e1de6bc9",
+      "plan.md": "25336fbb621709b905c6fb28512aa71323abed5a46fb86ec69453ba20f4a2f50",
+      "tasks.md": "9a82677f19441dafa173e00820cb5d4e95945ddbf922967024daf97e6fbc30ea",
+      "checklist.md": "8d9637d8fbcd85a8e5231f1f84826411921d61b0554404e2a73487a8a7cea6da",
+      "implementation-summary.md": "27a7203bf8ed8d8a8ad61af4cb30995af5dedddac829038c2dff1e24b96c0e39"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T06:38:42.000Z"
+  }
+}

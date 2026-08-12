@@ -1,0 +1,43 @@
+{
+  "name": "diagram-design",
+  "description": "Editorial-quality technical and product diagrams - 27 types rendered as standalone HTML with inline SVG, skinnable to match your brand, plus draw.io and Mermaid import at a chosen format, size, and level of detail",
+  "version": "2.2.0",
+  "author": {
+    "name": "Cathryn Lavery",
+    "url": "https://github.com/cathrynlavery"
+  },
+  "homepage": "https://github.com/cathrynlavery/diagram-design",
+  "repository": "https://github.com/cathrynlavery/diagram-design",
+  "license": "MIT",
+  "keywords": [
+    "diagrams",
+    "svg",
+    "architecture",
+    "flowchart",
+    "visualization",
+    "editorial",
+    "drawio",
+    "mermaid",
+    "import"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Diagram Design",
+    "shortDescription": "Create editorial technical and product diagrams as standalone HTML.",
+    "longDescription": "Generate architecture, flowchart, sequence, state machine, ER, timeline, swimlane, quadrant, nested, tree, layers, venn, and pyramid diagrams with an opinionated editorial design system.",
+    "developerName": "Cathryn Lavery",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/cathrynlavery/diagram-design",
+    "defaultPrompt": [
+      "Make an architecture diagram of my app.",
+      "Create a flowchart for this decision process.",
+      "Build a sequence diagram for this workflow.",
+      "Redraw this Mermaid diagram at the right size and detail level."
+    ],
+    "brandColor": "#b5523a"
+  }
+}

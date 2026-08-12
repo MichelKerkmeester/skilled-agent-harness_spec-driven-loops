@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
+  "spec_folder": "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-create-diagram validation",
+      "diagram packet strict gate",
+      "028 packet closeout"
+    ],
+    "key_topics": [
+      "validation",
+      "quality",
+      "gate",
+      "strict",
+      "closeout",
+      "residue",
+      "sweep",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Five phases have each been spot-verified individually, but the packet as a whole — and the spec-folder tree describing it — has never been run through the authoritative strict gates together",
+    "created_at": "2026-08-12T05:53:36.000Z",
+    "last_save_at": "2026-08-12T08:21:53.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:31a47e3e1afd6d735964128a925ee4ffe4ebd11ab5837952b3ebcf95189dbc1a",
+    "source_doc_hashes": {
+      "spec.md": "a5f57b234eff5a431d7755d456432136a1d8f000510187e8b707ba9157f54740",
+      "plan.md": "a1a79683ca203566bbfd3164f44fb42a2aff6f424ac0db7b5c5e38301e3ec2a2",
+      "tasks.md": "3a05af9ef2f748144134f96fc4dffa1158282115a3d5cd5dac916607ca3172f6",
+      "checklist.md": "918155f885fa5c3d019ecc9a9dc4db5af4a5bc6d1657731681663e294d234cdf",
+      "implementation-summary.md": "95e0dd9a7b5074bbfaf472ffde4c1a2273af2702803f12828b4ed88cfa35a518"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T08:21:53.000Z"
+  }
+}

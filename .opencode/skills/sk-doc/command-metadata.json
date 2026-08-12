@@ -390,5 +390,39 @@
         "action": "load the command presentation contract before resolving setup and execution mode"
       }
     ]
+  },
+  {
+    "command": "/create:diagram",
+    "ownerMode": "sk-create-diagram",
+    "description": "Create a self-contained HTML/SVG technical diagram across 27 types, or redraw an existing draw.io/Mermaid source. Modes :auto, :confirm.",
+    "argumentHint": "<target-diagram.html> [description | --import source-file] [--type <diagram-type>] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
+    "userIntent": {
+      "job": "I want a self-contained HTML/SVG diagram of a system, process, or data model, or a redraw of an existing draw.io/Mermaid source.",
+      "ownedSignals": [
+        "draw an architecture or sequence diagram",
+        "redraw a draw.io or Mermaid source",
+        "export a generated diagram to PNG or SVG"
+      ]
+    },
+    "choreography": [
+      {
+        "order": 1,
+        "skill": "sk-doc",
+        "resource": ".opencode/skills/sk-doc/SKILL.md",
+        "action": "load the sk-doc parent hub routing table"
+      },
+      {
+        "order": 2,
+        "skill": "create-diagram",
+        "resource": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+        "action": "load the diagram authoring mode contract, then apply the workflow to $ARGUMENTS"
+      },
+      {
+        "order": 3,
+        "skill": "create-diagram",
+        "resource": ".opencode/commands/create/assets/create-diagram-presentation.txt",
+        "action": "load the command presentation contract before resolving setup and execution mode"
+      }
+    ]
   }
 ]

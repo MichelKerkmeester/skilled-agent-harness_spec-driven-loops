@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/028-sk-create-diagram/002-skill-scaffold-and-design-system",
+  "description": "Phase 001 decided what ports and how `SKILL.md` remaps, but nothing has been written yet — the packet folder does not exist",
+  "keywords": [
+    "phase",
+    "decided",
+    "ports",
+    "skill",
+    "remaps",
+    "nothing",
+    "written",
+    "packet",
+    "folder",
+    "exist"
+  ],
+  "lastUpdated": "2026-08-12T06:11:08.621Z",
+  "specId": "002",
+  "folderSlug": "skill-scaffold-and-design-system",
+  "parentChain": [
+    "sk-doc",
+    "028-sk-create-diagram"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

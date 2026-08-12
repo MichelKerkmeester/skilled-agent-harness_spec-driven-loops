@@ -36,7 +36,7 @@ Keyword triggers: `create flowchart`, `/create:flowchart`, `flowchart`, `ASCII f
 Use another `sk-doc` packet when:
 
 - A short 2-3 step bullet list is clearer.
-- The requested output is Mermaid, Graphviz, SVG, HTML, screenshot, canvas, or interactive design work.
+- The requested output is Mermaid, Graphviz, SVG, HTML, screenshot, canvas, or interactive design work. Use `create-diagram` for self-contained HTML/SVG technical diagrams across 27 types.
 - The work audits, validates, scores, or optimizes an existing markdown document or existing flowchart without a flowchart-authoring deliverable. Use `create-quality-control`.
 - The requested artifact is a README, skill, command, agent, benchmark package, catalog, testing playbook, or changelog. Use `create-readme`, `create-skill`, `create-command`, `create-agent`, `create-benchmark`, `create-feature-catalog`, `create-manual-testing-playbook`, or `create-changelog`.
 

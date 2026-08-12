@@ -1,0 +1,19 @@
+{
+  "name": "diagram-design",
+  "description": "Editorial-quality technical and product diagrams — 27 types rendered as standalone HTML with inline SVG, skinnable to match your brand, plus draw.io and Mermaid import at a chosen format, size, and level of detail",
+  "version": "2.2.0",
+  "homepage": "https://github.com/cathrynlavery/diagram-design",
+  "repository": "https://github.com/cathrynlavery/diagram-design",
+  "license": "MIT",
+  "keywords": [
+    "diagrams",
+    "svg",
+    "architecture",
+    "flowchart",
+    "visualization",
+    "editorial",
+    "drawio",
+    "mermaid",
+    "import"
+  ]
+}

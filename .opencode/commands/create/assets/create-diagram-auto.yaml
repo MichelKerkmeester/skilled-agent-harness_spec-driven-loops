@@ -1,0 +1,493 @@
+# -----------------------------------------------------------------
+# OPENCODE CREATE: DIAGRAM CREATION WORKFLOW (AUTO MODE)
+# -----------------------------------------------------------------
+# Mode: autonomous (no user approval gates)
+# Note: This workflow executes all steps sequentially with
+#       continuous self-validation. Pauses only if confidence < 40%.
+# -----------------------------------------------------------------
+role: Expert Diagram Author using sk-doc create-diagram packet
+purpose: Produce a self-contained HTML/SVG technical diagram, or redraw an existing draw.io/Mermaid source, with a taste-gated 5-step workflow
+action: Detect the request shape (generate / import / export), load the matching design-system and type references, draw or redraw against the complexity budget, and verify the accessible-SVG contract before delivery
+
+# -----------------------------------------------------------------
+# PREREQUISITE: CREATE-DIAGRAM PACKET VERIFICATION
+# -----------------------------------------------------------------
+# This workflow REQUIRES the create-diagram packet for:
+#   - The shared editorial design system, complexity budget, and taste gate
+#   - Per-type layout conventions across 27 diagram types
+#   - draw.io / Mermaid extraction for redraw requests
+#
+# PHASE 0 in the presentation contract verifies the packet resources
+# BEFORE this YAML workflow loads. If you're executing this workflow,
+# create-diagram verification has already passed.
+#
+# To invoke correctly: /create:diagram <target-diagram.html> [description | --import source-file] [--type <diagram-type>]
+# -----------------------------------------------------------------
+
+operating_mode:
+  workflow: sequential_5_step
+  workflow_compliance: MANDATORY
+  workflow_execution: autonomous
+  approvals: none
+  tracking: progressive_task_checklists
+  validation: continuous_self_validation
+  output_configuration: self_contained_html_file
+  description: |
+    Executes the 5-step diagram workflow without step-by-step approval.
+    Pauses only if confidence drops below threshold or a required input is missing.
+
+development_philosophy:
+  principle: "The highest-quality move is usually deletion — earn every node, every accent, every connector"
+  approach: "Detect shape -> Load design system + type/import reference -> Draw or redraw -> Taste gate -> Deliver"
+  mandate: "Never invent a component to fill a layout; never silently drop one when redrawing an import source"
+
+diagram_path_resolution:
+  default: none
+  required_extension: .html
+
+# -----------------------------------------------------------------
+# CONFIDENCE & CLARIFICATION FRAMEWORK
+# -----------------------------------------------------------------
+confidence_framework:
+  thresholds:
+    high: { range: "80-100%", action: "Proceed with citable source" }
+    medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+
+  scoring_weights:
+    request_shape_clarity: 0.25
+    target_path_clarity: 0.20
+    source_content_specificity: 0.30
+    diagram_type_clarity: 0.25
+
+  clarification_format: |
+    "I need clarity (confidence: [NN%]). Which approach:
+    - A) [option with brief rationale]
+    - B) [option with brief rationale]
+    - C) [option with brief rationale]"
+
+  escalation:
+    timebox_minutes: 10
+    failed_attempts_threshold: 2
+    action: "Present options to user with current findings"
+
+# -----------------------------------------------------------------
+# REQUEST ANALYSIS FRAMEWORK
+# -----------------------------------------------------------------
+request_analysis_framework:
+  code_search_note: "Use Glob/Grep to locate the target path, any prior diagram at that path, and (for import) the source file. Read files before drawing. Do not use memory search for arbitrary code or docs."
+  solution_flow:
+  - "Parse carefully: generate, import, or export — which shape is ACTUALLY requested?"
+  - "Gather Context: read the source content or import source file"
+  - "Identify Approach: the SIMPLEST diagram type that represents the real content, or the four output dials for import"
+  - "Validate Choice: would a table or a sentence communicate this better? If yes, don't draw."
+  - "Clarify If Needed: if <80% confidence, ask"
+  - "Scope Check: producing ONLY the requested self-contained HTML file?"
+  - "Execute: draw or redraw, run the taste gate, and report"
+
+  pre_change_validation:
+    items:
+    - "Target diagram path provided and ends in .html?"
+    - "For generate: source content and diagram type resolved?"
+    - "For import: source file exists and format recognized (.drawio*, .mmd, .mermaid, or fenced Mermaid)?"
+    - "For export: an existing generated diagram and a target format (png/svg) identified?"
+    - "Confidence >=80%? (if not: ask)"
+    stop_conditions: [ "Any item unchecked", "No target diagram path (generate/import)" ]
+    stop_action: "STOP and address before proceeding"
+
+# -----------------------------------------------------------------
+# USER INPUTS (From gate outputs)
+# -----------------------------------------------------------------
+user_inputs:
+  request_shape: |
+    [REQUEST_SHAPE]
+    One of: generate, import, export.
+    FROM UNIFIED SETUP PHASE (Q0 or derived from arguments/source extension).
+
+  target_diagram_path: |
+    [TARGET_DIAGRAM_PATH]
+    Workspace-relative .html path for the output (generate/import).
+    FROM UNIFIED SETUP PHASE (Q1 or command argument).
+
+  source_content: |
+    [SOURCE_CONTENT]
+    What the diagram should show — components, process steps, entities, events. Required for generate.
+    FROM UNIFIED SETUP PHASE (Q2).
+
+  diagram_type: |
+    [DIAGRAM_TYPE]
+    One of the 27 supported types. Required for generate.
+    FROM UNIFIED SETUP PHASE (Q3, --type, or derived from source_content).
+
+  import_source_path: |
+    [IMPORT_SOURCE_PATH]
+    Workspace-relative path to the .drawio/.drawio.png/.drawio.svg or .mmd/.mermaid/fenced-Mermaid source. Required for import.
+    FROM UNIFIED SETUP PHASE (Q2 or --import).
+
+  export_format: |
+    [EXPORT_FORMAT]
+    png, svg, or html+png. Required for export.
+    FROM UNIFIED SETUP PHASE (--format).
+
+# -----------------------------------------------------------------
+# FIELD HANDLING
+# -----------------------------------------------------------------
+field_handling:
+  request_shape:
+    validation: "must be one of: generate, import, export"
+    default: "derive_from_arguments"
+    note: "--import or a .drawio/.mmd/.mermaid source implies import; export/png/svg/rasterize against an existing diagram implies export; otherwise generate"
+
+  target_diagram_path:
+    validation: "workspace-relative path ending in .html"
+    required: true
+
+  diagram_type:
+    validation: "must be one of the 27 types listed in SKILL.md WHEN TO USE selection guide"
+    default: "derive_from_source_content"
+
+  defaults:
+    output_format: "single self-contained HTML file (inlined CSS, inline SVG, no external images, no required JavaScript)"
+    skill_contract: .opencode/skills/sk-doc/sk-create-diagram/SKILL.md
+
+input_contract:
+  required:
+    - create_diagram_verified
+    - request_shape
+    - target_diagram_path
+  conditional:
+    - source_content       # required when request_shape=generate
+    - diagram_type         # required when request_shape=generate
+    - import_source_path   # required when request_shape=import
+    - export_format        # required when request_shape=export
+
+# -----------------------------------------------------------------
+# DOCUMENTATION LEVEL
+# -----------------------------------------------------------------
+documentation_level:
+  default: "No separate spec packet for ordinary diagram creation"
+  required_files:
+  - target_diagram_path
+  note: "The command output is a single self-contained HTML file unless the user explicitly asks for surrounding documentation."
+
+# -----------------------------------------------------------------
+# CREATE-DIAGRAM RESOURCES
+# -----------------------------------------------------------------
+diagram_resources:
+  skill_contract: .opencode/skills/sk-doc/sk-create-diagram/SKILL.md
+
+diagram_scripts:
+  drawio_extract: .opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py
+  mermaid_extract: .opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py
+
+diagram_references:
+  style_guide: .opencode/skills/sk-doc/sk-create-diagram/references/style-guide.md
+  onboarding: .opencode/skills/sk-doc/sk-create-diagram/references/onboarding.md
+  output_spec: .opencode/skills/sk-doc/sk-create-diagram/references/output-spec.md
+  import_drawio: .opencode/skills/sk-doc/sk-create-diagram/references/import-drawio.md
+  import_mermaid: .opencode/skills/sk-doc/sk-create-diagram/references/import-mermaid.md
+  export: .opencode/skills/sk-doc/sk-create-diagram/references/export.md
+  type_reference_pattern: .opencode/skills/sk-doc/sk-create-diagram/references/type-<name>.md
+
+diagram_templates:
+  minimal_light: .opencode/skills/sk-doc/sk-create-diagram/assets/template.html
+  minimal_dark: .opencode/skills/sk-doc/sk-create-diagram/assets/template-dark.html
+  full_editorial: .opencode/skills/sk-doc/sk-create-diagram/assets/template-full.html
+  terminal: .opencode/skills/sk-doc/sk-create-diagram/assets/template-terminal.html
+
+# -----------------------------------------------------------------
+# WORKFLOW ENFORCEMENT (CRITICAL)
+# -----------------------------------------------------------------
+workflow_enforcement:
+  mode: strict
+  step_order: sequential_mandatory
+  skip_allowed: false
+
+  phase_gate:
+    location: "Between Step 2 and Step 3"
+    purpose: "Verify the style guide, type/import reference, and complexity budget are loaded before drawing"
+    requirements:
+    - "Style guide checked for customization (style-guide gate, generate/import only)"
+    - "Matching type or import reference loaded"
+    - "Complexity budget for the selected type known"
+    action_if_failed: "STOP and return to the incomplete step"
+
+  critical_steps:
+    step_2_resource_loading:
+      enforcement: "MUST load style-guide.md always, plus the type-<name>.md or import-<format>.md reference the shape requires"
+      verification: "Self-validate the correct reference loaded before drawing"
+    step_3_draw_or_redraw:
+      enforcement: "MUST produce a single self-contained HTML file with inline SVG; MUST NOT invent components when redrawing an import source, and MUST NOT silently drop one either"
+      verification: "Fidelity ledger recorded for import; complexity budget respected for generate"
+    step_4_taste_gate:
+      enforcement: "MUST run the SKILL.md §9 Pre-Output Checklist (remove test, signal, connector rules, accessible SVG contract, typography) before delivery"
+      verification: "Every checklist item explicitly checked, not assumed"
+
+gate_logic:
+  hard:
+    H0_diagram_verified:
+      description: "create-diagram packet resource verification must have passed in Phase 0"
+      fail_action: "STOP and return to the command setup phase"
+    H1_required_fields:
+      description: "Required setup fields for the resolved request_shape must be present before drawing"
+      fail_action: "STOP and collect missing inputs"
+    H2_connector_rules:
+      description: "The five mandatory connector rules (orthogonal-only, label gap, no-overlap, fan attach points, non-endpoint routing) must hold in the delivered SVG"
+      fail_action: "Fix the diagram before delivery; a diagonal connector or an unlabeled-gap violation is an automatic fail"
+    H3_accessible_svg:
+      description: "The delivered <svg> must carry role=img, aria-labelledby, a first-child <title>, and a <desc>, with diagram/variant-prefixed IDs"
+      fail_action: "Fix the accessibility contract before delivery"
+  soft:
+    S1_existing_diagram:
+      description: "Warn when the target diagram path already exists"
+      fail_action: "Proceed only after explicit overwrite intent"
+    S2_style_not_customized:
+      description: "Warn on the first diagram in a project when the style guide is still at the shipped default"
+      fail_action: "Run the style-guide gate dialogue from SKILL.md before drawing, unless the user already opted for the default"
+
+# -----------------------------------------------------------------
+# WORKFLOW (5 STEPS - AUTONOMOUS)
+# -----------------------------------------------------------------
+workflow_overview:
+  steps:
+    - id: step_1_request_analysis
+      purpose: "Normalize inputs, resolve request_shape, and validate the target path"
+    - id: step_2_resource_loading
+      purpose: "Load the style guide plus the matching type or import/export reference"
+    - id: step_3_draw_or_redraw
+      purpose: "Generate a new diagram, redraw an import source, or export an existing diagram"
+    - id: step_4_taste_gate
+      purpose: "Run the SKILL.md §9 Pre-Output Checklist and fix any finding"
+    - id: step_5_delivery
+      purpose: "Emit final status with path, design-system state, and taste-gate evidence"
+
+workflow:
+  step_1_request_analysis:
+    purpose: Parse inputs and resolve request_shape (from UNIFIED SETUP PHASE)
+    activities:
+    - Confirm request_shape from UNIFIED SETUP PHASE (Q0 or derived from arguments)
+    - Confirm target_diagram_path (generate/import) ends in .html
+    - "IF request_shape=generate: confirm source_content and diagram_type"
+    - "IF request_shape=import: confirm import_source_path exists and its extension is recognized"
+    - "IF request_shape=export: confirm the existing diagram and export_format"
+    - Check whether target_diagram_path already exists
+    validation:
+      path_format: "workspace-relative .html path"
+      check_exists: true
+      command: "test -e [target_diagram_path]"
+    outputs:
+    - request_shape_confirmed
+    - target_path_validated
+    - existing_diagram_check
+
+  step_2_resource_loading:
+    purpose: Load the style guide and the shape-specific reference (MANDATORY)
+    enforcement: MANDATORY
+    activities:
+    - "Load references/style-guide.md — ALWAYS"
+    - "IF request_shape=generate: run the style-guide gate (SKILL.md §0) on first use in a project; load references/type-<diagram_type>.md"
+    - "IF request_shape=import: route by extension to references/import-drawio.md or references/import-mermaid.md; run the matching extraction script (never render the source)"
+    - "IF request_shape=export: load references/export.md"
+    outputs:
+    - style_guide_loaded
+    - shape_reference_loaded
+    - extraction_ir_captured (import only)
+    validation: resources_loaded
+
+  # ==============================================================
+  # PHASE GATE: RESOURCE LOADING -> DRAWING
+  # ==============================================================
+  phase_gate_loading_to_drawing:
+    trigger: "After Step 2 completes"
+    enforcement: HARD_BLOCK
+    verification: |
+      BEFORE proceeding to Draw or Redraw (Step 3):
+
+      VERIFY all loading artifacts exist:
+      - [ ] Style guide loaded
+      - [ ] Type or import/export reference loaded for the resolved shape
+      - [ ] For import, the structural IR was extracted (never rendered)
+
+      IF any artifact missing:
+      - STOP -> Return to Step 2 -> Complete it -> Return here
+
+      WHEN all artifacts verified:
+      - SET PHASE GATE STATUS: PASSED -> Proceed to Step 3
+    action_if_failed: "Return to incomplete step"
+
+  step_3_draw_or_redraw:
+    purpose: Produce the diagram artifact for the resolved shape
+    enforcement: MANDATORY
+    activities:
+    - "IF generate: copy the closest template variant, draw against the type reference's layout conventions and the shared complexity budget, apply the five mandatory connector rules"
+    - "IF import: set the four output dials (format, size, detail, audience) per output-spec.md, redraw the extracted IR — never invent a component to fill a layout, never silently drop one, report the fidelity ledger"
+    - "IF export: extract the <svg> node per export.md and emit .png and/or .svg; never export unprompted"
+    - Write the single self-contained HTML file (generate/import) or export artifact(s) to the resolved path
+    quality_requirements:
+      source_fidelity: "generate: content matches source_content only; import: content matches the extracted IR only, nothing invented or silently dropped"
+      complexity_budget: "respect the per-type node/arrow/accent limits in the type reference"
+      output_scope: "single self-contained HTML file (generate/import) or the requested export format(s)"
+    outputs:
+    - diagram_file_created
+    - fidelity_ledger (import only)
+    validation: file_created
+
+  step_4_taste_gate:
+    purpose: Run the SKILL.md §9 Pre-Output Checklist before delivery
+    enforcement: HARD_BLOCK
+    activities:
+    - "Type fit: right type for the content? Loaded the matching reference? Would a table or sentence do the same job?"
+    - "Remove test: can any node, arrow, or label be removed without losing meaning?"
+    - "Signal: accent on ≤2 elements? Legend covers every type used and nothing extra? Within the complexity budget?"
+    - "Technical: role=img + aria-labelledby + first-child <title> + <desc> with prefixed IDs? Arrows drawn before boxes? Every connector orthogonal with no diagonal slants? Every arrow label has a visible 6-10px gap? No overlapping connectors? Fan attach points on shared edges? No connector behind a non-endpoint box (except the dashed-transit exception)? Legend is a horizontal bottom strip? No vertical writing-mode text? Every coordinate divisible by 4?"
+    - "Typography: names in Geist sans, technical sublabels in Geist Mono, title in Instrument Serif, no JetBrains Mono?"
+    - If any item fails, fix the diagram and re-run this step
+    validation_command: "Self-check against SKILL.md §9 — no external script; every item is a direct visual/structural check against the delivered SVG"
+    quality_gates:
+      connector_rules: "all five mandatory rules hold"
+      accessible_svg: "role, aria-labelledby, title, desc, prefixed IDs all present"
+      complexity_budget: "within the type's documented limits"
+      enforcement: HARD_BLOCK
+    fix_workflow: |
+      IF the taste gate finds an issue:
+      1. Identify the exact failing checklist item.
+      2. Fix the diagram directly.
+      3. Re-run the full checklist.
+      4. Repeat until every item passes.
+    outputs:
+    - taste_gate_result: pass_or_fail
+    - taste_gate_findings: list_if_failed
+    validation: taste_gate_passed
+
+  step_5_delivery:
+    purpose: Emit completion status with path and taste-gate evidence
+    condition: "target_diagram_path or export artifact path is not null"
+    activities:
+    - Ensure the output remains a single self-contained artifact per the resolved shape
+    - Record request_shape, diagram_type or import source, fidelity ledger (import), and taste-gate result in the delivery summary
+    - State any fidelity limitation honestly; never present an import redraw as pixel-perfect
+    - Do not create packet-local advisor metadata or extra output files
+    outputs:
+    - delivery_summary: "diagram path, design-system state, and taste-gate evidence"
+    validation: delivery_ready
+
+    validation_evidence:
+      validator: "SKILL.md §9 Pre-Output Checklist (self-applied, no external script)"
+      critical_note: "Run every checklist item directly against the delivered SVG before claiming delivery. Do not claim a clean taste gate if any item was skipped."
+      when: "Immediately after the diagram file is written"
+
+    anchor_requirements:
+      enforcement: NOT_APPLICABLE
+      rationale: "The command creates a single diagram artifact, not a memory packet."
+
+    importance_tier:
+      assign: normal
+      rationale: "Diagram creation is artifact-scoped unless the user requests durable project memory."
+      promotion_note: "Promote only if the diagram becomes authoritative project documentation."
+
+# -----------------------------------------------------------------
+# CIRCUIT BREAKER
+# -----------------------------------------------------------------
+circuit_breaker:
+  consecutive_failure_threshold: 3
+  states:
+    closed: "Normal operation"
+    open: "3+ failures - pause and report to user"
+    half_open: "Test with single retry before resuming"
+  on_open:
+    action: "Report failures to user with summary"
+    suggest: "Review inputs and try again, or escalate"
+
+# -----------------------------------------------------------------
+# ERROR RECOVERY
+# -----------------------------------------------------------------
+error_recovery:
+  invalid_target_path:
+    action: "Show valid format (workspace-relative .html path), prompt for correction"
+    example: "Expected: docs/diagrams/architecture.html"
+  ambiguous_diagram_type:
+    action: "Present the WHEN TO USE selection guide and ask which type fits"
+  unrecognized_import_source:
+    action: "Explain supported formats: .drawio, .drawio.xml, .drawio.png, .drawio.svg, .mmd, .mermaid, or Markdown with fenced mermaid blocks"
+  taste_gate_failure:
+    action: "Fix the specific failing checklist item (connector rule, accessible-SVG field, complexity budget) and re-run the gate"
+  export_without_generated_diagram:
+    action: "Ask for the path to the already-generated diagram to export"
+
+# -----------------------------------------------------------------
+# AUTONOMOUS EXECUTION
+# -----------------------------------------------------------------
+autonomous_execution:
+  validation_approach: "Continuous self-validation at each step"
+  error_handling: "Auto-recover if possible, halt on critical failures"
+  progress_reporting: "Brief status updates between steps"
+
+# -----------------------------------------------------------------
+# QUALITY STANDARDS
+# -----------------------------------------------------------------
+quality_standards:
+  taste_gate_validation: MANDATORY
+  validation_enforcement: HARD_BLOCK
+  validation_pipeline:
+    stage_1: "Type fit and remove test"
+    stage_2: "Signal (accent, legend, complexity budget)"
+    stage_3: "Technical (accessible SVG, connector rules, 4px grid)"
+    stage_4: "Typography"
+  template_adherence: required
+  core_standards_reference: ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md"
+
+# -----------------------------------------------------------------
+# COMPLETION REPORT TEMPLATE
+# -----------------------------------------------------------------
+completion_report:
+  template: |
+    Diagram Creation Complete
+
+    Shape: [generate | import | export]
+    Diagram Type: [diagram-type, generate only]
+    Location: [target-diagram-path]
+
+    Source:
+    - Content: [source-content-summary, generate] | [import-source-path, import]
+    - Fidelity ledger: [merged/collapsed/dropped summary, import only]
+
+    Validation:
+    - Taste gate (SKILL.md §9): PASSED
+
+    Output:
+    - Single self-contained HTML file, inline SVG, no external images
+
+    STATUS=OK PATH=[target-diagram-path]
+
+# -----------------------------------------------------------------
+# TERMINATION
+# -----------------------------------------------------------------
+termination:
+  after_step: step_5_delivery
+  message: "Diagram creation workflow complete."
+  next_steps:
+    - condition: "Diagram needs source-owner review"
+      action: "Ask the content owner to verify components and relationships"
+    - condition: "Diagram should export for a slide or social card"
+      action: "Run /create:diagram again with an export request against the same path"
+
+# -----------------------------------------------------------------
+# RULES
+# -----------------------------------------------------------------
+rules:
+  ALWAYS:
+    - "Load style-guide.md before drawing anything"
+    - "Load the matching type-<name>.md or import-<format>.md reference before drawing"
+    - "Run the full SKILL.md §9 taste gate before claiming delivery"
+    - "Respect the five mandatory connector rules exactly"
+    - "Deliver the accessible-SVG contract (role, aria-labelledby, title, desc, prefixed IDs)"
+    - "Report the fidelity ledger honestly for import redraws"
+    - "Keep everything local — no network, no telemetry"
+  NEVER:
+    - "Skip the taste gate between drawing and delivery"
+    - "Invent a component to fill a layout when redrawing an import source"
+    - "Silently drop a component when redrawing an import source"
+    - "Present an import redraw as pixel-perfect or visually equivalent to the source"
+    - "Produce a diagonal connector between off-axis nodes"
+    - "Export a diagram unprompted"
+    - "Create packet-local advisor metadata"

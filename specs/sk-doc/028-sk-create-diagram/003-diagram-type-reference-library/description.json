@@ -1,0 +1,26 @@
+{
+  "specFolder": "sk-doc/028-sk-create-diagram/003-diagram-type-reference-library",
+  "description": "The skill's actual value — 27 distinct diagram types, each with its own layout conventions, anti-patterns, and complexity budget — has not been ported",
+  "keywords": [
+    "diagram",
+    "types",
+    "layout",
+    "conventions",
+    "anti-patterns",
+    "complexity",
+    "budget",
+    "reference",
+    "library",
+    "ported"
+  ],
+  "lastUpdated": "2026-08-12T06:31:38.000Z",
+  "specId": "003",
+  "folderSlug": "diagram-type-reference-library",
+  "parentChain": [
+    "sk-doc",
+    "028-sk-create-diagram"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

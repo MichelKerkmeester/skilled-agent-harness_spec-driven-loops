@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["sk-create-skill", "sk-create-skill-parent", "sk-create-readme", "sk-create-agent", "sk-create-command", "sk-create-feature-catalog", "sk-create-manual-testing-playbook", "sk-create-benchmark", "sk-create-flowchart", "sk-create-changelog", "sk-create-diff", "sk-create-quality-control"],
+    "tieBreak": ["sk-create-skill", "sk-create-skill-parent", "sk-create-readme", "sk-create-agent", "sk-create-command", "sk-create-feature-catalog", "sk-create-manual-testing-playbook", "sk-create-benchmark", "sk-create-flowchart", "sk-create-changelog", "sk-create-diff", "sk-create-diagram", "sk-create-quality-control"],
     "outcomes": {
       "single": "one dominant authoring/quality intent routes to one workflow mode",
       "orderedBundle": "clearly separate authoring intents route to an ordered workflow mode list",
@@ -31,6 +31,7 @@
     "sk-create-flowchart": { "weight": 3, "classes": ["create-flowchart-aliases"], "resources": ["sk-create-flowchart/SKILL.md"] },
     "sk-create-changelog": { "weight": 3, "classes": ["create-changelog-aliases"], "resources": ["sk-create-changelog/SKILL.md"] },
     "sk-create-diff": { "weight": 3, "classes": ["create-diff-aliases"], "resources": ["sk-create-diff/SKILL.md"] },
+    "sk-create-diagram": { "weight": 3, "classes": ["create-diagram-aliases"], "resources": ["sk-create-diagram/SKILL.md"] },
     "sk-create-quality-control": { "weight": 4, "classes": ["create-quality-control-aliases", "quality-actions"], "resources": ["sk-create-quality-control/SKILL.md"] }
   },
   "vocabularyClasses": {
@@ -46,6 +47,7 @@
     "create-flowchart-aliases": { "keywords": ["create flowchart", "flowchart", "ASCII flowchart", "workflow diagram", "text diagram", "text characters", "decision tree", "decision branch", "swimlane", "parallel execution diagram", "approval loop diagram"] },
     "create-changelog-aliases": { "keywords": ["create changelog", "changelog", "changelog entry", "release notes", "global changelog", "packet-local changelog", "nested changelog", "since the last version", "--bump", "--release", "vX.Y.Z.B"] },
     "create-diff-aliases": { "keywords": ["create diff report", "document before after review", "before after document diff", "document change report"] },
+    "create-diagram-aliases": { "keywords": ["create diagram", "diagram", "architecture diagram", "sequence diagram", "ER diagram", "entity relationship diagram", "data model diagram", "state machine diagram", "swimlane diagram", "venn diagram", "org chart", "quadrant diagram", "gantt chart", "radar chart", "high-level diagram", "medallion diagram", "data flow diagram", "draw.io", "drawio", "mermaid diagram", "redraw diagram", "self-contained HTML diagram", "editorial diagram"] },
     "create-quality-control-aliases": { "keywords": ["doc quality", "audit documentation quality", "document audit", "validate a document", "validate markdown", "validation rules", "score this document", "optimize this doc", "DQI", "HVR", "human voice", "AI-friendly documentation", "extract structure", "quality bar", "flag", "model's budget", "trim"] }
   }
 }

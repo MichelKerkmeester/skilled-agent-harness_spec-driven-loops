@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/028-sk-create-diagram/001-inventory-and-skill-contract",
+  "description": "The source plugin ships 282 files (references, 100 example HTML assets, two Python extractors, its own CI/lint tooling, marketplace/plugin manifests",
+  "keywords": [
+    "source",
+    "plugin",
+    "ships",
+    "files",
+    "references",
+    "example",
+    "html",
+    "assets",
+    "two",
+    "python",
+    "extractors",
+    "own",
+    "lint",
+    "tooling",
+    "marketplace",
+    "manifests"
+  ],
+  "lastUpdated": "2026-08-12T05:53:48.119Z",
+  "specId": "001",
+  "folderSlug": "inventory-and-skill-contract",
+  "parentChain": [
+    "sk-doc",
+    "028-sk-create-diagram"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

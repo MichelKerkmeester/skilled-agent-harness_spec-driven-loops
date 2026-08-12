@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/028-sk-create-diagram/005-command-and-hub-wiring",
+  "description": "The packet exists on disk but is invisible to the advisor and unreachable by any command — `sk-doc` doesn't know it exists",
+  "keywords": [
+    "hub",
+    "wiring",
+    "mode-registry",
+    "hub-router",
+    "command-metadata",
+    "create-diagram",
+    "sk-doc",
+    "advisor",
+    "routing"
+  ],
+  "lastUpdated": "2026-08-12T06:53:44.000Z",
+  "specId": "005",
+  "folderSlug": "command-and-hub-wiring",
+  "parentChain": [
+    "sk-doc",
+    "028-sk-create-diagram"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
