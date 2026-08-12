@@ -10,7 +10,7 @@ trigger_phrases:
   - "cursor session resume"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.2.0.0
 ---
 
 # Cursor CLI - Complete Command Reference
@@ -23,7 +23,7 @@ Comprehensive reference for all Cursor CLI commands, flags, models, configuratio
 
 ### Core Principle
 
-Cursor CLI (`cursor-agent`) is a terminal-based AI coding agent from Cursor, distinct from the Cursor editor but sharing its entire config surface. It dispatches non-interactively via `-p`; this skill defaults dispatch to `composer-2.5` (Cursor's own model) and enforces a 10-id allowlist — Cursor's own `auto` router is deliberately excluded (§5). Unlike sibling CLIs, Cursor has no `--reasoning-effort` flag and no `model[effort=...]` bracket support — effort tiers are baked into the model id itself.
+Cursor CLI (`cursor-agent`) is a terminal-based AI coding agent from Cursor, distinct from the Cursor editor but sharing its entire config surface. It dispatches non-interactively via `-p`; this skill defaults dispatch to `composer-2.5` (Cursor's own model) and enforces an 18-id allowlist — Cursor's own `auto` router is deliberately excluded (§5). Unlike sibling CLIs, Cursor has no `--reasoning-effort` flag and no `model[effort=...]` bracket support — effort tiers are baked into the model id itself.
 
 ### Purpose
 
@@ -167,19 +167,22 @@ cursor-agent -p "Summarize this module" --output-format json --model composer-2.
 
 ### Supported Models — Enforced Allowlist
 
-Cursor's live roster spans 150+ hosted-frontier ids (GPT/Claude/Gemini/Grok/GLM/Kimi families, `cursor-agent --list-models`), with no per-model prompt-craft data for almost all of them and ids that drift over time. **cli-cursor dispatch is scoped to exactly 10 ids — this is an enforced allowlist, not a reference list.** `auto` (Cursor's own router) is excluded: it can silently resolve to a model outside this set, defeating the point of enforcing one. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`; a hard-rejecting check in both `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed).
+Cursor's live roster spans 150+ hosted-frontier ids (GPT/Claude/Gemini/Grok/GLM/Kimi families, `cursor-agent --list-models`), with no per-model prompt-craft data for almost all of them and ids that drift over time. **cli-cursor dispatch is scoped to exactly 18 ids — this is an enforced allowlist, not a reference list.** `auto` (Cursor's own router) is excluded: it can silently resolve to a model outside this set, defeating the point of enforcing one. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`; a hard-rejecting check in both `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed).
+
+Alphabetical by family:
 
 | Family | Allowed ids | Notes |
 |-------|----|-------|
 | **Composer** (Cursor-native) ★ default | `composer-2.5`, `composer-2.5-fast` | The direct analog to a provider's own house model — Cursor-exclusive |
-| **Grok 4.5** (via Cursor) | `cursor-grok-4.5-low`, `cursor-grok-4.5-low-fast`, `cursor-grok-4.5-medium`, `cursor-grok-4.5-medium-fast`, `cursor-grok-4.5-high`, `cursor-grok-4.5-high-fast` | xAI's Grok 4.5, all 3 thinking tiers, each with a `-fast` variant |
 | **GLM 5.2** (via Cursor) | `glm-5.2-high`, `glm-5.2-max` | Z.AI's GLM 5.2, 2 tiers |
+| **Grok 4.5** (via Cursor) | `cursor-grok-4.5-low`, `cursor-grok-4.5-low-fast`, `cursor-grok-4.5-medium`, `cursor-grok-4.5-medium-fast`, `cursor-grok-4.5-high`, `cursor-grok-4.5-high-fast` | xAI's Grok 4.5, 3 thinking tiers, each with a `-fast` variant |
+| **Grok 4.6** (via Cursor) | `cursor-grok-4.6-low`, `cursor-grok-4.6-low-fast`, `cursor-grok-4.6-medium`, `cursor-grok-4.6-medium-fast`, `cursor-grok-4.6-high`, `cursor-grok-4.6-high-fast`, `cursor-grok-4.6-xhigh`, `cursor-grok-4.6-xhigh-fast` | xAI's Grok 4.6, all 4 thinking tiers (adds xhigh over 4.5), each with a `-fast` variant |
 
-Effort tiers are suffixes on the id (`-low`/`-medium`/`-high`/`-fast`/`-max`), not a separate flag. Any other model id — including `auto` and every GPT/Claude/Gemini/Kimi id — is out of scope for this skill; escalate to the user rather than dispatching it.
+Effort tiers are suffixes on the id (`-low`/`-medium`/`-high`/`-xhigh`/`-fast`/`-max`), not a separate flag. Any other model id — including `auto` and every GPT/Claude/Gemini/Kimi id — is out of scope for this skill; escalate to the user rather than dispatching it.
 
 ### Reasoning Effort Configuration
 
-**There is no `--reasoning-effort` flag, and no `model[effort=...]` parameterized bracket support.** Effort is selected by choosing the exact enumerated id with the desired tier suffix (e.g. `cursor-grok-4.5-high` instead of `cursor-grok-4.5` + a bracket); the bracket form is rejected outright with `Cannot use this model`. Full live-tested detail and the id-form footgun → [providers-and-models.md](./providers-and-models.md) §4.
+**There is no `--reasoning-effort` flag, and no `model[effort=...]` parameterized bracket support.** Effort is selected by choosing the exact enumerated id with the desired tier suffix (e.g. `cursor-grok-4.6-high` instead of `cursor-grok-4.6` + a bracket); the bracket form is rejected outright with `Cannot use this model`. Full live-tested detail and the id-form footgun → [providers-and-models.md](./providers-and-models.md) §4.
 
 ### Selection Strategy
 
@@ -187,7 +190,7 @@ Effort tiers are suffixes on the id (`-low`/`-medium`/`-high`/`-fast`/`-max`), n
 |-----------|-----------------|-----------|
 | General delegation | `composer-2.5` (default) | Cursor's own model; predictable and always allowed |
 | Task specifically wants Cursor's own model | `composer-2.5` / `composer-2.5-fast` | Cursor-exclusive, no hosted-provider equivalent |
-| Task specifically wants Grok or GLM at a tier | An exact allowed id (e.g. `cursor-grok-4.5-high`, `glm-5.2-max`) | Effort is baked into the id; only these 8 non-Composer ids are permitted |
+| Task specifically wants Grok or GLM at a tier | An exact allowed id (e.g. `cursor-grok-4.5-high`, `cursor-grok-4.6-high`, `glm-5.2-max`) | Effort is baked into the id; only these 16 non-Composer ids are permitted |
 | Task wants any model outside the allowlist | **Not supported** | Escalate to the user — do not substitute an allowed model silently |
 
 Always specify `--model` explicitly in scripts for predictability; omitting it defaults to `composer-2.5`, never `auto`.

@@ -8,7 +8,7 @@ trigger_phrases:
   - "which framework for which model"
 importance_tier: normal
 contextType: general
-version: 0.8.0.12
+version: 0.8.0.13
 ---
 
 # Small-Model Prompt-Craft Profiles — Index
@@ -46,7 +46,7 @@ Status legend mirrors the registry's `recommended_frameworks.status`:
 - **carried** — inherited from a sibling model's benchmark; `carried_from` names the source. NOT a fresh run on this model.
 - **default-unverified** — convention default (RCAF + mandatory caller-side pre-planning); no model-specific benchmark yet.
 
-Optional, not-yet-adopted (no active profile): Claude Haiku. Frontier models (Opus, Sonnet, gpt-5.5) are out of scope — this includes the hosted frontier ids Cursor can also drive (`gpt-5.6-sol-*`, `claude-opus-4-8-*`, `cursor-grok-4.5-*`); only Composer, Cursor's own native model, gets a profile here.
+Optional, not-yet-adopted (no active profile): Claude Haiku. Frontier models (Opus, Sonnet, gpt-5.5) are out of scope — this includes the hosted frontier ids Cursor can also drive (`gpt-5.6-sol-*`, `claude-opus-4-8-*`, `cursor-grok-4.6-*`); only Composer, Cursor's own native model, gets a profile here.
 
 ---
 

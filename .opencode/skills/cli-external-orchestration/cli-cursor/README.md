@@ -8,7 +8,7 @@ trigger_phrases:
   - "composer"
   - "delegate to cursor"
   - "second opinion"
-version: 1.2.1.0
+version: 1.3.0.0
 ---
 
 # cli-cursor
@@ -45,7 +45,7 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 | Guard | What the skill knows how to operate |
 |---|---|
 | **Smart router** | Score task intent across code generation, review, Composer dispatch, read-only plan or ask exploration and agent delegation, then load only the matching references |
-| **Model allowlist** | Enforce the exact 10 Cursor model ids across Composer, Grok 4.5 and GLM 5.2, rejecting `auto` and parameterized `model[effort=...]` brackets |
+| **Model allowlist** | Enforce the exact 18 Cursor model ids across Composer, GLM 5.2 and Grok (4.5 and 4.6), rejecting `auto` and parameterized `model[effort=...]` brackets |
 | **Auth pre-flight** | Read `cursor-agent about` output text and halt on "Not logged in" before the first dispatch |
 | **Self-invocation guard** | Detect `CURSOR_AGENT` or `CURSOR_CONVERSATION_ID` plus `cursor-agent` process ancestry, then refuse to load |
 | **Memory handback** | Extract a live Cursor session's context in 7 steps and persist it through `generate-context.js` |
@@ -126,7 +126,7 @@ When any layer matches, the skill returns a refusal and loads nothing. The cli-X
 
 ### Model Selection And Execution Modes
 
-Dispatch is scoped to an enforced 10-id allowlist. Cursor's own `auto` router is deliberately excluded, since it can silently resolve outside the set. **Composer** (`composer-2.5` and `composer-2.5-fast`) is Cursor's native model and the skill default. **Grok 4.5** adds 6 tiers (`cursor-grok-4.5-{low,medium,high}[-fast]`) and **GLM 5.2** (`glm-5.2-high`, `glm-5.2-max`) rounds out the allowlist. Effort tiers are baked directly into a model id. There is no `--reasoning-effort` flag. The parameterized `model[effort=...]` bracket some sibling CLIs support is rejected outright by Cursor CLI.
+Dispatch is scoped to an enforced 18-id allowlist. Cursor's own `auto` router is deliberately excluded, since it can silently resolve outside the set. **Composer** (`composer-2.5` and `composer-2.5-fast`) is Cursor's native model and the skill default. **Grok** adds both live versions — 4.5's 6 tiers (`cursor-grok-4.5-{low,medium,high}[-fast]`) and 4.6's 8 tiers (`cursor-grok-4.6-{low,medium,high,xhigh}[-fast]`) — and **GLM 5.2** (`glm-5.2-high`, `glm-5.2-max`) rounds out the allowlist. Effort tiers are baked directly into a model id. There is no `--reasoning-effort` flag. The parameterized `model[effort=...]` bracket some sibling CLIs support is rejected outright by Cursor CLI.
 
 Three execution modes govern how a dispatch behaves: the default agent mode (reads and writes, gated by approval flags), `--mode plan` (read-only planning) and `--mode ask` (read-only Q&A). Approval is a separate axis from the sandbox. `--auto-review` (Smart Auto) auto-runs safe actions and prompts for the rest. `--force` and `--yolo` (Run Everything) never prompt. Omitting both leaves Cursor's own default prompt-and-block behavior in place, which cannot proceed unattended.
 
@@ -174,8 +174,8 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `command not found: cursor-agent` | CLI not installed or PATH not updated | `curl https://cursor.com/install -fsS \| bash`, then restart the terminal |
 | Output contains `Error: Authentication required` (exit code still `0`) | Not logged in or headless auth env vars unset | Run `cursor-agent login` or set `CURSOR_API_KEY` and `CURSOR_AUTH_TOKEN` |
 | Task ran but no files changed | A read-only mode (`--mode plan` or `--mode ask`) was used or neither `--auto-review` nor `--force` was passed | Use the default agent mode with `--auto-review` or `--force` for edit tasks |
-| `Cannot use this model: <id>[effort=...]` | Parameterized model bracket syntax, not supported by Cursor CLI | Use an exact enumerated id from the allowlist (e.g. `cursor-grok-4.5-high`) |
-| `cli-cursor model '<id>' is not in the enforced allowlist` | The requested `--model` is outside the 10-id allowlist (SKILL.md §3) | Pick one of the 10 allowed ids or ask the operator to extend the allowlist |
+| `Cannot use this model: <id>[effort=...]` | Parameterized model bracket syntax, not supported by Cursor CLI | Use an exact enumerated id from the allowlist (e.g. `cursor-grok-4.6-high`) |
+| `cli-cursor model '<id>' is not in the enforced allowlist` | The requested `--model` is outside the 18-id allowlist (SKILL.md §3) | Pick one of the 18 allowed ids or ask the operator to extend the allowlist |
 | `Self-invocation refused` | The caller is already inside Cursor CLI, with `CURSOR_AGENT` or `CURSOR_CONVERSATION_ID` set or `cursor-agent` ancestry present | Use a different runtime or exit the current Cursor session first |
 | Dispatch behaves differently than expected or an unexpected hook fires | Cursor CLI shares config with the editor (`hooks.json`, `mcp.json`, `rules/`) | Read `references/shared-editor-config.md` and consider a workspace-isolation flag |
 | `Workspace Trust Required` | Cursor CLI does not trust the target directory yet | Pass `--trust` (or `--force` or `--yolo`) for a directory you control |
@@ -190,7 +190,7 @@ A: You can. This skill exists for when an external AI assistant (Claude Code, Co
 
 **Q: When do I pick Composer over Grok or GLM?**
 
-A: Pick `composer-2.5` or `composer-2.5-fast` (the default) when the task specifically wants Cursor's own house model or when no other model is named. Pick `cursor-grok-4.5-{low,medium,high}[-fast]` or `glm-5.2-{high,max}` when the task or user explicitly names Grok or GLM. Dispatch is enforced to exactly these 10 ids. Hosted GPT, Claude, Gemini and Kimi ids, plus `auto`, are all out of scope for this skill.
+A: Pick `composer-2.5` or `composer-2.5-fast` (the default) when the task specifically wants Cursor's own house model or when no other model is named. Pick `cursor-grok-4.5-{low,medium,high}[-fast]`, `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]`, or `glm-5.2-{high,max}` when the task or user explicitly names Grok or GLM. Dispatch is enforced to exactly these 18 ids. Hosted GPT, Claude, Gemini and Kimi ids, plus `auto`, are all out of scope for this skill.
 
 **Q: The task ran but nothing changed. What happened?**
 
@@ -198,7 +198,7 @@ A: Either the dispatch used `--mode plan` or `--mode ask` (both read-only regard
 
 **Q: Does Cursor CLI use a `--reasoning-effort` flag like some sibling CLIs?**
 
-A: No. Effort tiers are baked into the model id itself (`cursor-grok-4.5-high`, `glm-5.2-max`). The parameterized `model[effort=...]` bracket syntax is rejected outright by the CLI, confirmed live rather than assumed from documentation.
+A: No. Effort tiers are baked into the model id itself (`cursor-grok-4.6-high`, `glm-5.2-max`). The parameterized `model[effort=...]` bracket syntax is rejected outright by the CLI, confirmed live rather than assumed from documentation.
 
 **Q: When do I pick Cursor over Codex or Claude Code?**
 
@@ -225,7 +225,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the smart router and the full rule set |
 | [`references/cli-reference.md`](./references/cli-reference.md) | Complete CLI subcommands, flags, auth and troubleshooting reference |
-| [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of the Cursor provider and the enforced 10-id model allowlist |
+| [`references/providers-and-models.md`](./references/providers-and-models.md) | Single-source catalog of the Cursor provider and the enforced 18-id model allowlist |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |
 | [`references/cursor-tools.md`](./references/cursor-tools.md) | Cursor-unique surfaces: native worktree, cloud worker, plugin marketplace, MCP |
 | [`references/hook-contract.md`](./references/hook-contract.md) | Cursor's shared hooks.json contract |

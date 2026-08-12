@@ -9,7 +9,7 @@ trigger_phrases:
   - "cursor plan ask template"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.2.0.0
 ---
 
 # Prompt Templates - Cursor CLI
@@ -31,13 +31,13 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
 
 ### Flag Reference
 
-> **Non-existent flags:** `--reasoning-effort` and the parameterized `model[effort=...]` bracket do NOT exist / are rejected outright by Cursor CLI. Select an effort-suffixed model id (e.g. `cursor-grok-4.5-high`) instead.
+> **Non-existent flags:** `--reasoning-effort` and the parameterized `model[effort=...]` bracket do NOT exist / are rejected outright by Cursor CLI. Select an effort-suffixed model id (e.g. `cursor-grok-4.6-high`) instead.
 > **Exit code caveat:** `-p` always exits `0`, even on auth failure. Every template below assumes the caller inspects output text, not the exit code.
-> **Enforced allowlist:** `--model` is scoped to 10 ids — `composer-2.5`/`composer-2.5-fast`, 6 Grok 4.5 tiers, `glm-5.2-{high,max}`. `auto` and every other Cursor id are rejected before a command is constructed (SKILL.md §3).
+> **Enforced allowlist:** `--model` is scoped to 18 ids — `composer-2.5`/`composer-2.5-fast`, 6 Grok 4.5 tiers, 8 Grok 4.6 tiers, `glm-5.2-{high,max}`. `auto` and every other Cursor id are rejected before a command is constructed (SKILL.md §3).
 
 | Flag | Purpose |
 | ---- | ------- |
-| `--model composer-2.5` | Skill default — Cursor's own native model. Override with `cursor-grok-4.5-high` or `glm-5.2-max` for a specific allowed provider/tier — never `auto`, never an id outside the allowlist. |
+| `--model composer-2.5` | Skill default — Cursor's own native model. Override with `cursor-grok-4.6-high` or `glm-5.2-max` for a specific allowed provider/tier — never `auto`, never an id outside the allowlist. |
 | `--output-format text` | Skill default — final answer only. Use `json` for a structured envelope with `session_id`/`usage`. |
 | `--mode plan` | Read-only planning — no writes regardless of approval flags. |
 | `--mode ask` | Read-only Q&A — no writes regardless of approval flags. |

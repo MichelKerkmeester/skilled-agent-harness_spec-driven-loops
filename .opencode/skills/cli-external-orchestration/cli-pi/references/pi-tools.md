@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi tool surface"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # Pi CLI Unique Capabilities
@@ -134,7 +134,7 @@ Devin's built-in surface is materially larger (file ops, shell, fetch, `run_suba
 
 ### Compared to Other CLI Executors
 
-`cli-cursor` bakes reasoning effort into the model id itself (`cursor-grok-4.5-high`, `glm-5.2-max`) and explicitly rejects a separate effort flag or bracket syntax. `cli-devin` is different again: its model ids carry no effort tier at all (`opus`, `sonnet`, `swe`, `gpt`, `codex`, `gemini`, `adaptive`); reasoning depth is instead toggled mid-session via `Alt+T`/`Opt+T`, not a dispatch-time flag or an id suffix. `cli-codex` uses a config-level `model_reasoning_effort` rather than a bare CLI flag. Pi's `--thinking` is a standalone flag, not folded into model-id selection and not a mid-session toggle — confirm the target model actually honors it before assuming a tier changes behavior; the pin did not exhaustively test every model/tier pairing.
+`cli-cursor` bakes reasoning effort into the model id itself (`cursor-grok-4.6-high`, `glm-5.2-max`) and explicitly rejects a separate effort flag or bracket syntax. `cli-devin` is different again: its model ids carry no effort tier at all (`opus`, `sonnet`, `swe`, `gpt`, `codex`, `gemini`, `adaptive`); reasoning depth is instead toggled mid-session via `Alt+T`/`Opt+T`, not a dispatch-time flag or an id suffix. `cli-codex` uses a config-level `model_reasoning_effort` rather than a bare CLI flag. Pi's `--thinking` is a standalone flag, not folded into model-id selection and not a mid-session toggle — confirm the target model actually honors it before assuming a tier changes behavior; the pin did not exhaustively test every model/tier pairing.
 
 ---
 

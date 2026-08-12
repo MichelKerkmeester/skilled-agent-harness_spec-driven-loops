@@ -9,7 +9,7 @@ trigger_phrases:
   - "subagent delegation"
   - "second opinion"
   - "cross-validate"
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # cli-devin
@@ -43,7 +43,7 @@ The skill routes a request through the smart router, picks a curated model and a
 
 | Capability | What the skill can operate |
 |---|---|
-| **Multi-model dispatch** | a curated roster of four families (GLM-5.2, SWE-1.7, Grok 4.5 and DeepSeek V4 Pro) chosen per dispatch with `--model` |
+| **Multi-model dispatch** | a curated roster of four families (DeepSeek V4 Pro, GLM-5.2, Grok 4.5 and 4.6, and SWE-1.7) chosen per dispatch with `--model` |
 | **Subagent delegation** | read-only and full-access workers through `run_subagent`, plus custom `.devin/agents/<name>/AGENT.md` profiles |
 | **Cloud handoff** | a cloud VM with its own shell, browser and repo access via `/handoff` |
 | **Session management** | continue and resume workflows with `devin -c` and `devin -r <session-id>` |
@@ -181,7 +181,7 @@ A: When the task benefits from a second AI perspective or a fresh context window
 
 **Q: Which model should I pick?**
 
-A: The default `swe` (alias for `swe-1-7-lightning`) balances speed and cost. Use `grok-4-5-high` for reasoning-heavy work, `glm-5-2` for general generation, `swe-1-7` for max-effort SWE work and `swe-1-7-lightning` for quick edits. The curated roster lives in `references/providers-and-models.md` and the full family list is available through `devin models list`.
+A: The default `swe` (alias for `swe-1-7-lightning`) balances speed and cost. Use `grok-4-6-high` for reasoning-heavy work, `glm-5-2` for general generation, `swe-1-7` for max-effort SWE work and `swe-1-7-lightning` for quick edits. The curated roster lives in `references/providers-and-models.md` and the full family list is available through `devin models list`.
 
 **Q: Can Devin keep working after I close my laptop?**
 

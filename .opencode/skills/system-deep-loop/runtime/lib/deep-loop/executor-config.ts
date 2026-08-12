@@ -180,23 +180,39 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  * 150+ hosted-frontier ids across GPT/Claude/Gemini/Grok/GLM/Kimi families,
  * with no per-model prompt-craft data for almost all of them and ids that
  * drift over time — dispatch is scoped to this curated set only, confirmed
- * live via `cursor-agent --list-models` (2026-07-24, account
- * mkerkmeester@proton.me, cursor-agent 2026.07.23-e383d2b; no id here was
+ * live via `cursor-agent --list-models` (2026-08-12, account
+ * mkerkmeester@proton.me, cursor-agent 2026.08.11-e8db854; no id here was
  * ever fabricated). This is a hard gate, not a typo-checked reference: any
  * caller-supplied model outside this set must be rejected before a command
  * is constructed. `auto` (Cursor's own router) is deliberately excluded — it
  * can silently resolve to a model outside this allowlist, defeating the
- * point of enforcing one.
+ * point of enforcing one. Entries are sorted alphabetically, not grouped by
+ * family.
+ *
+ * Grok 4.6 joined this allowlist alongside Grok 4.5 (2026-08-12) — both
+ * versions are live and dispatchable on Cursor, so this is an addition, not
+ * a swap. 4.6 adds a fourth tier, xhigh, that 4.5 never had (8 ids:
+ * low/medium/high/xhigh, each with a -fast sibling); 4.5 keeps its original
+ * 6 (low/medium/high, each with a -fast sibling). All 8 Grok 4.6 ids were
+ * live-dispatch-tested end-to-end before being added here.
  */
 export const CURSOR_SUPPORTED_MODELS = [
+  'composer-2.5',
+  'composer-2.5-fast',
+  'cursor-grok-4.5-high',
+  'cursor-grok-4.5-high-fast',
   'cursor-grok-4.5-low',
   'cursor-grok-4.5-low-fast',
   'cursor-grok-4.5-medium',
   'cursor-grok-4.5-medium-fast',
-  'cursor-grok-4.5-high',
-  'cursor-grok-4.5-high-fast',
-  'composer-2.5',
-  'composer-2.5-fast',
+  'cursor-grok-4.6-high',
+  'cursor-grok-4.6-high-fast',
+  'cursor-grok-4.6-low',
+  'cursor-grok-4.6-low-fast',
+  'cursor-grok-4.6-medium',
+  'cursor-grok-4.6-medium-fast',
+  'cursor-grok-4.6-xhigh',
+  'cursor-grok-4.6-xhigh-fast',
   'glm-5.2-high',
   'glm-5.2-max',
 ] as const;
@@ -214,36 +230,43 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * Enforced allowlist of devin --model ids. Devin exposes 37 model families and
  * accepts a family slug, an alias, or a full model uid, which is far more
  * surface than deep-loop dispatch needs or has prompt-craft data for. This set
- * is the curated four-family scope: GLM-5.2, SWE-1.7, Grok 4.5, and DeepSeek.
- * Every entry was read from the live `devin models list` — no id here was
- * inferred from documentation.
+ * is the curated four-family scope: GLM-5.2, SWE-1.7, Grok (4.5 and 4.6), and
+ * DeepSeek. Every entry was read from the live `devin models list` — no id
+ * here was inferred from documentation. Entries are sorted alphabetically,
+ * not grouped by family.
  *
  * Tier naming matters and is easy to get wrong: `glm-5-2` is "GLM-5.2 High" and
  * is the free tier, while `glm-5-2-max` is the separate paid "GLM-5.2 Max"
  * tier. The skill's reference table lists these uids without their tier names,
  * so read the live list rather than the doc when picking one.
+ *
+ * Grok 4.6 joined this allowlist alongside Grok 4.5 (2026-08-12, devin
+ * 3000.4.16) — both versions are live and dispatchable on Devin, so this is
+ * an addition, not a swap. 4.6 adds a fourth tier, xhigh, that 4.5 never had
+ * (4 uids: low/medium/high/xhigh); 4.5 keeps its original 3
+ * (low/medium/high). All 4 Grok 4.6 uids were live-dispatch-tested
+ * end-to-end before being added here.
  */
 export const DEVIN_SUPPORTED_MODELS = [
-  // SWE-1.7 default alias.
-  'swe',
-  // GLM-5.2 uids. `glm-5-2` = "GLM-5.2 High" [200K, Free].
+  'deepseek-v4',
+  'deepseek-v4-pro',
   'glm-5-2',
-  'glm-5-2-max',
   'glm-5-2-1m',
+  'glm-5-2-max',
   'glm-5-2-max-1m',
   'glm-5-2-none',
   'glm-5-2-none-1m',
-  // SWE-1.7 tier uids.
-  'swe-1-7',
-  'swe-1-7-medium',
-  'swe-1-7-lightning',
-  // Grok 4.5 tier uids read from the live `devin models list`.
+  'grok-4-5-high',
   'grok-4-5-low',
   'grok-4-5-medium',
-  'grok-4-5-high',
-  // DeepSeek family slug and model uid read from the live `devin models list`.
-  'deepseek-v4-pro',
-  'deepseek-v4',
+  'grok-4-6-high',
+  'grok-4-6-low',
+  'grok-4-6-medium',
+  'grok-4-6-xhigh',
+  'swe',
+  'swe-1-7',
+  'swe-1-7-lightning',
+  'swe-1-7-medium',
 ] as const;
 export type DevinSupportedModel = typeof DEVIN_SUPPORTED_MODELS[number];
 

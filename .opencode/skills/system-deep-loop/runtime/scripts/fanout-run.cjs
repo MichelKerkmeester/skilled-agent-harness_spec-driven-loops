@@ -1708,15 +1708,25 @@ function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedP
 // convention of hand-duplicating small per-kind cursor facts (see
 // SPECKIT_STATE_ENV_BY_KIND above) instead of threading an async import
 // through a sync call path.
+// Sorted alphabetically, not grouped by family. Grok 4.6 joined alongside
+// Grok 4.5 (2026-08-12) — both versions are live and dispatchable on Cursor.
 const CURSOR_ALLOWED_MODELS = new Set([
+  'composer-2.5',
+  'composer-2.5-fast',
+  'cursor-grok-4.5-high',
+  'cursor-grok-4.5-high-fast',
   'cursor-grok-4.5-low',
   'cursor-grok-4.5-low-fast',
   'cursor-grok-4.5-medium',
   'cursor-grok-4.5-medium-fast',
-  'cursor-grok-4.5-high',
-  'cursor-grok-4.5-high-fast',
-  'composer-2.5',
-  'composer-2.5-fast',
+  'cursor-grok-4.6-high',
+  'cursor-grok-4.6-high-fast',
+  'cursor-grok-4.6-low',
+  'cursor-grok-4.6-low-fast',
+  'cursor-grok-4.6-medium',
+  'cursor-grok-4.6-medium-fast',
+  'cursor-grok-4.6-xhigh',
+  'cursor-grok-4.6-xhigh-fast',
   'glm-5.2-high',
   'glm-5.2-max',
 ]);
@@ -1828,22 +1838,28 @@ function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
 // Must mirror DEVIN_SUPPORTED_MODELS in executor-config.ts; duplicated as plain JS
 // literal for the same reason CURSOR_ALLOWED_MODELS is: buildDevinLineageCommand
 // stays synchronous and directly unit-testable.
+// Sorted alphabetically, not grouped by family. Grok 4.6 joined alongside
+// Grok 4.5 (2026-08-12) — both versions are live and dispatchable on Devin.
 const DEVIN_ALLOWED_MODELS = new Set([
-  'swe',
+  'deepseek-v4',
+  'deepseek-v4-pro',
   'glm-5-2',
-  'glm-5-2-max',
   'glm-5-2-1m',
+  'glm-5-2-max',
   'glm-5-2-max-1m',
   'glm-5-2-none',
   'glm-5-2-none-1m',
-  'swe-1-7',
-  'swe-1-7-medium',
-  'swe-1-7-lightning',
+  'grok-4-5-high',
   'grok-4-5-low',
   'grok-4-5-medium',
-  'grok-4-5-high',
-  'deepseek-v4-pro',
-  'deepseek-v4',
+  'grok-4-6-high',
+  'grok-4-6-low',
+  'grok-4-6-medium',
+  'grok-4-6-xhigh',
+  'swe',
+  'swe-1-7',
+  'swe-1-7-lightning',
+  'swe-1-7-medium',
 ]);
 const DEVIN_DEFAULT_MODEL = 'swe';
 
