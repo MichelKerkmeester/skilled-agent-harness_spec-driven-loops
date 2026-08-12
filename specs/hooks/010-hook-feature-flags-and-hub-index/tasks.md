@@ -21,11 +21,11 @@ parent: "./spec.md"
 
 ## PHASE 2 — Pilot: mcp-route-guard (all 6 runtimes)
 
-- [ ] Guard `mcp-route-guard/{claude,codex,devin}/mcp-route-guard.cjs`
-- [ ] Guard `mcp-route-guard/cursor/mcp-route-guard.mjs`
-- [ ] Guard `mcp-route-guard/pi/mcp-route-guard.ts` (settle Pi import path)
-- [ ] Realign `plugins/mk-mcp-route-guard.js` to the shared helper
-- [ ] Prove: `MK_MCP_ROUTE_GUARD_DISABLED=1` and `MK_HOOKS_DISABLED=1` each silence it; default guards
+- [x] Guard `mcp-route-guard/{claude,codex,devin}/mcp-route-guard.cjs` — import `../../shared/hook-flags.cjs`
+- [x] Guard `mcp-route-guard/cursor/mcp-route-guard.mjs` — import `../../shared/hook-flags.mjs`
+- [x] Guard `mcp-route-guard/pi/mcp-route-guard.ts` — import `../../.opencode/hooks/shared/hook-flags.mjs` (Pi base settled)
+- [x] Realign `plugins/mk-mcp-route-guard.js` to the shared helper — import `../hooks/shared/hook-flags.cjs`
+- [x] Prove: default=ADVISORY, concern-off=silent, master-off=silent (4 stdin adapters); plugin + pi load OK
 
 ## PHASE 3 — Remaining hub concerns
 

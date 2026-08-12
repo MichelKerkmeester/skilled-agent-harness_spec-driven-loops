@@ -2,7 +2,7 @@
 title: "Feature Specification: Hook Feature Flags + Full Hub Index"
 description: "Give every repo-authored runtime hook a per-concern kill-switch honored across all six runtimes, behind one shared guard with a master switch, and complete the .opencode/hooks index so every hook (skill-owned as symlink, global as real file) is browsable in one place."
 status: "in-progress"
-completion_pct: 15
+completion_pct: 30
 trigger_phrases:
   - "hook feature flags"
   - "feature-flag all hooks"
@@ -69,4 +69,4 @@ Two coupled outcomes for the repo's ~90 authored runtime hook adapters across si
 
 ## 7. STATUS
 
-**In progress — Phase 1 shipped.** Shared guard (`.opencode/hooks/shared/hook-flags.{cjs,mjs,ts}`) + master switch, `node --test` 7/7 pass (incl. cross-flavor facade parity). Phase 2 pilot next.
+**In progress — Phases 1-2 shipped.** Shared guard + master switch (`node --test` 7/7). Pilot: all six `mcp-route-guard` adapters gated and proven (default=advisory, concern-off=silent, master-off=silent; plugin + Pi load clean). Per-runtime import path settled. Phase 3 fan-out next.

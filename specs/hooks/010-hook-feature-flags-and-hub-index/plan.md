@@ -2,7 +2,7 @@
 title: "Implementation Plan: Hook Feature Flags + Full Hub Index"
 description: "Six-phase plan: ship a shared kill-switch guard, pilot it on one concern end-to-end, fan out to all hub and skill-owned concerns across six runtimes, then complete the hub symlink index and validate."
 status: "in-progress"
-completion_pct: 15
+completion_pct: 30
 importance_tier: "high"
 contextType: "plan"
 parent: "./spec.md"
@@ -44,4 +44,4 @@ Adapter languages differ: `.cjs` require, `.mjs`/`.js` import, `.ts` (Pi/Claude)
 
 ## STATUS
 
-Phase 1 shipped. Phase 2 pilot in progress.
+Phases 1-2 shipped. Import-path pattern settled per runtime kind (see implementation-summary). Phase 3 fan-out next.
