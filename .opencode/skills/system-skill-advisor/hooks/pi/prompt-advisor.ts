@@ -195,10 +195,19 @@ interface PiDirectiveBriefParts {
 
 function splitPiDirectiveBrief(context: string): PiDirectiveBriefParts | null {
   const index = context.indexOf(PI_DIRECTIVE_SEPARATOR);
-  // index <= 0 means there is no directive block, or no advisor head before
-  // it (the advisor-failure fallback is directives-only): not reducible.
-  if (index <= 0) return null;
-  return { head: context.slice(0, index), directives: context.slice(index) };
+  if (index > 0) {
+    return { head: context.slice(0, index), directives: context.slice(index) };
+  }
+  // Advisor-failure / no-route fallback: the brief is the directive block with
+  // no advisor head. Normalize it to the separator-prefixed form so an
+  // identical directive block dedups to the same key whether or not a head was
+  // present; record an empty head. Without this the operator-visible directives
+  // repeat on every headless-brief turn.
+  const label = PI_DIRECTIVE_SEPARATOR.slice(1);
+  if (context.startsWith(label)) {
+    return { head: "", directives: PI_DIRECTIVE_SEPARATOR + context.slice(label.length) };
+  }
+  return null;
 }
 
 export interface PiDirectiveDeliveryDecision {
@@ -224,7 +233,7 @@ export function decidePiDirectiveDelivery(
   const key = receiptSessionKey(sessionId);
   if (!key) return FULL_PI_DIRECTIVE_DELIVERY;
   const parts = splitPiDirectiveBrief(context);
-  if (!parts || !parts.head.trim()) return FULL_PI_DIRECTIVE_DELIVERY;
+  if (!parts) return FULL_PI_DIRECTIVE_DELIVERY;
 
   const store = compactShadowStore();
   if (!store.directiveDedupBySession) {

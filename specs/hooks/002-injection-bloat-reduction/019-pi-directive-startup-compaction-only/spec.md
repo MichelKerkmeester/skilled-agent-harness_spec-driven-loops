@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: Directive Delivery — Startup + Compaction Only (Pi directives-only gap fix)"
-description: "Constant advisor directives are shown on every message (confirmed on cli-pi). Root-caused to the directives-only fallback brief bypassing Pi dedup, plus a headless per-process store gap. Plans a boundary-gated show-once redesign. Investigation + plan only; no runtime code changed."
-status: "planned"
-completion_pct: 0
+description: "Constant advisor directives shown on every cli-pi message. Root-caused: the directives-only advisor-failure fallback was intentionally always-shown, so it repeats whenever the advisor is unavailable in Pi. Fix ships: the fallback now dedups to once per boundary (Pi). Root-cause of the advisor unavailability in cli-pi is a separate open thread."
+status: "in-progress"
+completion_pct: 0.6
 trigger_phrases:
   - "directives every message"
   - "pi directive startup compaction only"
@@ -66,7 +66,15 @@ The dedup store is `compactShadowStore()` on `globalThis` (persists within one p
 
 ## 3. DECISION
 
-Replace the content-diff, head-dependent dedup with a **boundary-gated "show once per startup/compaction"** rule, applied consistently across runtimes and detecting the directive block by its `Directives:` label (not by splitting off a head). Rationale: it directly encodes the operator's desired behavior, removes the directives-only gap, and is trivially auditable. Full design in `plan.md`.
+Operator decision (2026-08-12): **mask now + root-cause**.
+
+**Shipped (this packet):** extend the existing Pi dedup to cover the directives-only fallback. `splitPiDirectiveBrief` now recognizes a headless `Directives:` block and normalizes it to the same dedup key as a head+directives brief; `decidePiDirectiveDelivery` drops its head requirement. The fallback is therefore shown once and suppressed on identical repeats, re-armed by a lifecycle boundary (`session_start` / `session_compact`) exactly like the head+directives path.
+
+**Design change + tradeoff (accepted):** this reverses the prior intentional fail-open where the advisor-failure fallback was *always* shown. When the advisor is unavailable for a long stretch with no boundary, the guardrail block is no longer re-injected every turn — it is shown once per startup/compaction. The durable framework remains the source of the guardrails and every compaction/resume re-shows them; the kill-switch `SPECKIT_PI_DIRECTIVE_DEDUP=0` restores always-full.
+
+**Open (root-cause thread):** why does cli-pi hit the fallback on *every* turn? The available advisor path always emits an `Advisor: …` head, so a directives-only brief means `renderAdvisorBrief` returned null in Pi. Investigated separately (see implementation-summary §Root-cause).
+
+The broader cross-runtime boundary-gated redesign (plan §1-2), headless durable store, and [SYS] live verification remain deferred follow-ups.
 
 ---
 
@@ -84,4 +92,4 @@ Replace the content-diff, head-dependent dedup with a **boundary-gated "show onc
 
 ## 5. STATUS
 
-**Planned.** Investigation complete and root cause proven; no runtime code changed in this packet. Awaiting operator go-ahead to implement.
+**In progress — Pi fallback-dedup shipped.** The directives-only fallback now dedups to once per boundary in Pi (`hooks/pi/prompt-advisor.ts`); the test was updated and the vitest suite passes 10/10. Remaining open: (1) root-cause why cli-pi's advisor returns the fallback every turn; (2) cross-runtime boundary-gated redesign + headless durable store + [SYS] live verification (deferred follow-ups). Kill-switch `SPECKIT_PI_DIRECTIVE_DEDUP=0` restores prior always-full behavior.

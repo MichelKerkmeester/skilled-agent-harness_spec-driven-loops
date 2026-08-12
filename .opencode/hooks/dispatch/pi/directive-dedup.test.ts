@@ -78,8 +78,15 @@ describe("decidePiDirectiveDelivery", () => {
     expect(decidePiDirectiveDelivery(FULL, "").suppressed).toBe(false);
   });
 
-  it("never suppresses the advisor-failure fallback (directives-only, no route line)", () => {
+  it("dedups the advisor-failure fallback (directives-only) to once per boundary", () => {
+    // The directives-only fallback has no advisor head, but its guardrail block
+    // is still deduped: shown once, suppressed on identical repeats, and
+    // re-armed by a lifecycle boundary. This keeps the operator-visible
+    // directives off every headless-brief turn (the reported symptom) while a
+    // compaction/resume still re-shows them.
     expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(false);
+    expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(true);
+    resetPiDirectiveDedupForSession("s1");
     expect(decidePiDirectiveDelivery(FALLBACK, "s1").suppressed).toBe(false);
   });
 

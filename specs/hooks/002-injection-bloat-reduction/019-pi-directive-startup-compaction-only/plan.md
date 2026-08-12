@@ -1,8 +1,8 @@
 ---
 title: "Implementation Plan: Boundary-Gated Directive Delivery"
-description: "Plan to replace head-dependent content-diff directive dedup with a boundary-gated show-once rule across runtimes, closing the Pi directives-only gap. Plan only; no code changed yet."
-status: "planned"
-completion_pct: 0
+description: "Plan for closing the Pi directives-only dedup gap. Shipped the minimal mask (fallback now dedups to once per boundary in Pi); the broader cross-runtime boundary-gated redesign and headless durable store remain deferred follow-ups."
+status: "in-progress"
+completion_pct: 0.6
 trigger_phrases:
   - "boundary-gated directive delivery plan"
   - "pi directives-only fix plan"
@@ -70,4 +70,8 @@ Feature-flag all ~101 hooks (13 Pi + 40 OpenCode + 48 advisor/spec-kit runtime):
 
 ## 5. STATUS
 
-Planned. No runtime code changed. Reproduction harness: `scratchpad/pi-dedup-test.cjs` (CASE A/B/C).
+**Shipped (minimal mask):** `splitPiDirectiveBrief` + `decidePiDirectiveDelivery` in `hooks/pi/prompt-advisor.ts` now dedup the directives-only fallback to once per boundary. Test `directive-dedup.test.ts` updated; vitest 10/10 pass. Real-module before/after captured in `implementation-summary.md`.
+
+**Deferred (follow-ups):** the full boundary-gated redesign in §1-2 (flag-tracked replacement of the content-diff model), the headless `pi -p` durable-store backing (§2 / §3 case 6), [SYS] live verification (§2), and the root-cause of why cli-pi's advisor returns the fallback every turn. The §4 feature-flag-all-hooks item remains a separate packet.
+
+Reproduction harness: `pi-dedup-test.cjs` (CASE A/B/C).
