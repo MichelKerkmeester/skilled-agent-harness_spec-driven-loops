@@ -31,6 +31,7 @@ import {
 } from '../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
 import { createGitContext } from '../lib/git-context.mjs';
 import { GIT_CHECKS, GIT_SHAPE } from '../lib/git-rule-checks.mjs';
+import { isHookEnabled } from '../../../../hooks/shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -78,6 +79,11 @@ function resolveSuppression() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  // Kill-switch: master MK_HOOKS_DISABLED or MK_GIT_PREFLIGHT_DISABLED. The
+  // advisory is advisory-only, so silence is a safe no-op; approve() (exit 0)
+  // is also the fail-open path if the guard ever throws. The SKGIT_ADVISORY
+  // suppression tier below is untouched and still applies when enabled.
+  if (!isHookEnabled('git-preflight')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

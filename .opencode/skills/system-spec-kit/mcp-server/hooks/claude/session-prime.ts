@@ -5,6 +5,7 @@
 // Runs on Claude Code SessionStart event. Injects context via stdout
 // based on the session source (compact, startup, resume, clear).
 
+import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -25,6 +26,17 @@ import {
 import { buildWarmSessionResumeSection } from '../spec-memory-cli-fallback.js';
 import { getCachedSessionSummaryDecision, logCachedSummaryDecision } from '../../handlers/session-resume.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
+
+const require = createRequire(import.meta.url);
+
+function sessionLifecycleHookEnabled(): boolean {
+  try {
+    const { isHookEnabled } = require(fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)));
+    return typeof isHookEnabled !== 'function' || isHookEnabled('session-lifecycle') !== false;
+  } catch {
+    return true;
+  }
+}
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS & TYPES
@@ -302,6 +314,7 @@ async function maybeAppendCliWarmFallback(
 // ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
+  if (!sessionLifecycleHookEnabled()) return;
   ensureStateDir();
 
   const input = await withTimeout(parseHookStdin(), HOOK_TIMEOUT_MS, null);

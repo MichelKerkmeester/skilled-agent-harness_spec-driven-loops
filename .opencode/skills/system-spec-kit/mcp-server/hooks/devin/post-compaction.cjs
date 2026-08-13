@@ -36,6 +36,15 @@ const MAX_CONTEXT_BYTES = 4096;
 const MEMORY_CONTEXT_TIMEOUT_MS = 2500;
 const BOUNDARY_TIMEOUT_MS = 750;
 
+function sessionLifecycleHookEnabled() {
+  try {
+    const { isHookEnabled } = require('../../../../../../.opencode/hooks/shared/hook-flags.cjs');
+    return typeof isHookEnabled !== 'function' || isHookEnabled('session-lifecycle') !== false;
+  } catch (_) {
+    return true;
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -159,6 +168,7 @@ function boundedMemoryContextResume(projectDir) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!sessionLifecycleHookEnabled()) return emit(null);
   let payload;
   try {
     payload = JSON.parse(await readStdin());

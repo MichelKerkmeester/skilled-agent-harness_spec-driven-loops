@@ -1,0 +1,4 @@
+{
+  "_comment": "Machine-local override for advisor routing exclusions. Copy this file to route-exclusions.local.json (same directory) to customize privately. When present it FULLY REPLACES the committed route-exclusions.json denylist — set excludedSkillIds to [] to re-enable every skill on this machine. Keys other than excludedSkillIds are ignored.",
+  "excludedSkillIds": []
+}

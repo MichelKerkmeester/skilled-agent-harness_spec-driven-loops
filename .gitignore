@@ -195,6 +195,10 @@ specs/anobel.com
 # ───────────────────────────────────────────
 .opencode/skills/system-skill-advisor/mcp-server/data/shadow-deltas.jsonl
 .opencode/skills/system-skill-advisor/mcp-server/data/shadow-deltas.jsonl.*
+# Machine-local routing-exclusion override; fully replaces the committed
+# config/route-exclusions.json denylist. Copy route-exclusions.local.json.example
+# to route-exclusions.local.json to customize privately. Never commit the override.
+.opencode/skills/system-skill-advisor/mcp-server/config/route-exclusions.local.json
 
 # ───────────────────────────────────────────
 # Runtime: system-spec-kit

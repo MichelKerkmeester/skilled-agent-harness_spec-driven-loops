@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication"
-    last_updated_at: "2026-08-13T17:10:00.000Z"
+    last_updated_at: "2026-08-13T19:13:48.000Z"
     last_updated_by: "claude"
-    recent_action: "Added the completed package relocation into the sk-communication skill (Phase 015)."
-    next_safe_action: "Begin Phase 009 planning; preserve completed Phase 008/014/015 evidence."
+    recent_action: "Added the completed default-off enablement gate and advisor route-exclusion (Phase 016)."
+    next_safe_action: "Begin Phase 009 planning; preserve completed Phase 008/014/015/016 evidence."
     blockers: []
     key_files:
       - "spec.md"
@@ -24,11 +24,12 @@ _memory:
       - "009-prompt-token-contract/spec.md"
       - "014-code-and-doc-conformance/spec.md"
       - "015-package-into-skill/spec.md"
+      - "016-default-off-and-advisor-exclusion/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "035-improved-communication-20260811"
       parent_session_id: null
-    completion_pct: 67
+    completion_pct: 69
     open_questions:
       - "Which runtimes prove atomic replacement under pinned fixtures?"
     answered_questions:
@@ -38,8 +39,8 @@ _memory:
       - "Phase 003 delivered the verified normalization, assembly, context, and evidence core."
       - "Phase 004 delivered the verified protected-span, fidelity, render, and content-free evidence boundary."
       - "Phase 005 delivered verified model-scoped providers, privacy-first routing, bounded execution, and exact-original fallback."
-      - "Phase 006 delivered verified six-runtime adapters over eight paths, client-owned presentation, a capability matrix, and tier-honest content-free telemetry."
       - "Phase 015 delivered the verified relocation of the package into the sk-communication skill."
+      - "Phase 016 delivered the verified default-off enablement gate and the advisor route-exclusion for sk-communication."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -60,7 +61,7 @@ _memory:
 | **Parent Spec** | None |
 | **Parent Packet** | `cli-external-orchestration/035-improved-communication` |
 | **Predecessor** | None |
-| **Successor** | Phases `009` through `013` are planned; Phase `014` records completed code and documentation conformance and Phase `015` records the completed package relocation into its owning skill. |
+| **Successor** | Phases `009` through `013` are planned; Phase `014` records completed code and documentation conformance, Phase `015` records the completed package relocation into its owning skill, and Phase `016` records the completed default-off enablement gate and advisor route-exclusion. |
 | **Handoff Criteria** | Each child passes its own implementation gates and strict validation before the next phase consumes its output |
 <!-- /ANCHOR:metadata -->
 
@@ -118,6 +119,7 @@ Detailed research, architecture, implementation, and verification belong to chil
 | `009-prompt-token-contract/` through `013-capability-evidence-unblock/` | Create | 009-013 | Planned projection-quality workstreams for prompt tokens, marker burden, meaning judgment, no-op rejection, and capability evidence |
 | `014-code-and-doc-conformance/` | Create | 014 | Completed package README coverage, operator-reference conformance, package alignment, and review evidence |
 | `015-package-into-skill/` | Create | 015 | Completed rename-preserving relocation of the package into the sk-communication skill and its skill-doc reference updates |
+| `016-default-off-and-advisor-exclusion/` | Create | 016 | Completed default-off enablement gate for projection and the adjustable advisor route-exclusion that holds sk-communication out of routing |
 | `context/claudish-to-english-main/` | Read only | All | Reference behavior and evidence. Never modified by this epic. |
 <!-- /ANCHOR:scope -->
 
@@ -143,8 +145,9 @@ Detailed research, architecture, implementation, and verification belong to chil
 | 13 | `013-capability-evidence-unblock/` | Supply dated evidence so supported provider controls reach transport while stale facts remain fail closed | Planned |
 | 14 | `014-code-and-doc-conformance/` | Record complete code-folder README coverage, reference-document conformance, package-gate alignment, and zero-defect review evidence | Complete |
 | 15 | `015-package-into-skill/` | Record the completed rename-preserving relocation of the package into the sk-communication skill and its 140-reference skill-doc update | Complete |
+| 16 | `016-default-off-and-advisor-exclusion/` | Record the completed default-off enablement gate for projection and the adjustable advisor route-exclusion that holds sk-communication out of routing | Complete |
 
-The first eight children, Phase 014, and Phase 015 are implemented and verified. Phases 009 through 013 are planned follow-on workstreams and retain zero-percent completion until their own implementation evidence exists.
+The first eight children, Phase 014, Phase 015, and Phase 016 are implemented and verified. Phases 009 through 013 are planned follow-on workstreams and retain zero-percent completion until their own implementation evidence exists.
 ### Phase Transition Rules
 
 - Each phase must pass `validate.sh` independently before its handoff.
@@ -171,7 +174,8 @@ The first eight children, Phase 014, and Phase 015 are implemented and verified.
 | 012 no-op rejection | 013 capability-evidence unblock | No-improvement policy remains independent from provider capability reachability | Threshold plan and strict packet validation |
 | 013 capability-evidence unblock | 014 code and documentation conformance | Capability work remains independent while the completed package documentation and implementation evidence are recorded | Phase 013 strict planned-packet validation plus Phase 014 conformance evidence |
 | 014 code and documentation conformance | 015 package relocation into skill | Conformance evidence remains valid while the package is relocated into its owning skill | Phase 014 strict conformance evidence plus Phase 015 rename and reference-sweep evidence |
-| 015 package relocation into skill | Parent packet decision | Rename history is preserved, every skill-doc reference is updated, package alignment holds from the new location, and strict packet gates are complete | 207/207 rename detections, 140/140 skill-doc references updated, 289/289 tests, and strict validation |
+| 015 package relocation into skill | 016 default-off and advisor exclusion | Relocation evidence remains valid while projection is made default-off and the skill is excluded from advisor routing | Phase 015 strict relocation evidence plus Phase 016 gate, exclusion, and live-probe evidence |
+| 016 default-off and advisor exclusion | Parent packet decision | Projection resolves to off with no opt-in, the advisor no longer recommends sk-communication, the package gate is green, and strict packet gates are complete | Package gate 296/296, advisor +10 tests with 0 new failures against the 41-failure baseline, live probe omits sk-communication, and strict validation |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -193,5 +197,6 @@ The first eight children, Phase 014, and Phase 015 are implemented and verified.
 - **Planned follow-on range**: `009-prompt-token-contract/` through `013-capability-evidence-unblock/`
 - **Completed conformance phase**: `014-code-and-doc-conformance/implementation-summary.md`
 - **Completed relocation phase**: `015-package-into-skill/implementation-summary.md`
+- **Completed privacy-default phase**: `016-default-off-and-advisor-exclusion/implementation-summary.md`
 - **Reference implementation**: `context/claudish-to-english-main/`
 - **Graph metadata**: `graph-metadata.json`

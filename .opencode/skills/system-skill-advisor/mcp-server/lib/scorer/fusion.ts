@@ -28,6 +28,7 @@ import {
   liveWeightTotal,
 } from './weights-config.js';
 import { isLiveScorerLane } from './lane-registry.js';
+import { isRouteExcludedSkillId } from '../routing/route-exclusions.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from '../compat/contract.js';
 import type {
   AdvisorProjection,
@@ -369,6 +370,7 @@ function promptMentionsSkill(promptLower: string, skill: SkillProjection): boole
 }
 
 function isDefaultRoutable(promptLower: string, skill: SkillProjection): boolean {
+  if (isRouteExcludedSkillId(skill.id)) return false;
   if (skill.lifecycleStatus === 'archived' || skill.lifecycleStatus === 'future') return false;
   if (skill.lifecycleStatus === 'deprecated') return promptMentionsSkill(promptLower, skill);
   return true;

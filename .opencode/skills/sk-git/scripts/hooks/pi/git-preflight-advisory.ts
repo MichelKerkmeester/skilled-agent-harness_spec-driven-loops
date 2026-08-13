@@ -4,6 +4,7 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { join } from "node:path";
+import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 const MAX_ADVISORIES = 3;
 
@@ -44,6 +45,10 @@ export default function gitPreflightAdvisory(pi: ExtensionAPI): void {
 
   pi.on("tool_call", async (event, ctx) => {
     try {
+      // Kill-switch: master MK_HOOKS_DISABLED or MK_GIT_PREFLIGHT_DISABLED. The
+      // advisory is advisory-only, so silence is a safe no-op. Fail-open: inside
+      // the try, so a guard throw never disturbs a valid command.
+      if (!isHookEnabled("git-preflight")) return;
       if (event.toolName !== "bash" || typeof event.input.command !== "string") return;
 
       const [lint, gitChecks, gitContext] = await Promise.all([

@@ -8,6 +8,7 @@
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createReadStream, openSync, fstatSync, readSync, closeSync, type Stats } from 'node:fs';
+import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
 import { fileURLToPath } from 'node:url';
@@ -21,6 +22,17 @@ import {
 } from './hook-state.js';
 import { estimateCost, type TranscriptUsage } from './claude-transcript.js';
 import { runTrueCitationEmit } from './true-citation-mining.js';
+
+const require = createRequire(import.meta.url);
+
+function sessionLifecycleHookEnabled(): boolean {
+  try {
+    const { isHookEnabled } = require(fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)));
+    return typeof isHookEnabled !== 'function' || isHookEnabled('session-lifecycle') !== false;
+  } catch {
+    return true;
+  }
+}
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -632,6 +644,7 @@ export async function processStopHook(
 // ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
+  if (!sessionLifecycleHookEnabled()) return;
   ensureStateDir();
 
   // --finalize mode: manual cleanup of stale session states
