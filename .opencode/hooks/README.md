@@ -67,20 +67,20 @@ hooks/
 |   +-- claude/   dispatch-preflight-lint.mjs, dispatch-audit-posttooluse.mjs
 |   +-- devin/    (same pair)
 |   +-- codex/    (same pair)
-|   +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (symlinked from .pi/extensions/)
+|   +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real file; `.pi/extensions/` symlinks to it)
 |   `-- opencode/ mk-cli-dispatch-audit.js (browsability symlink -> ../../../plugins/)
 +-- mcp-route-guard/                 # native mcp_* call -> Code Mode routing advisory
 |   +-- lib/mcp-route-guard.cjs, mcp-route-guard.test.cjs
 |   +-- claude/, devin/, codex/      mcp-route-guard.cjs
 |   +-- cursor/   mcp-route-guard.mjs
-|   +-- pi/       mcp-route-guard.ts (symlinked from .pi/extensions/)
+|   +-- pi/       mcp-route-guard.ts (real file; `.pi/extensions/` symlinks to it)
 |   `-- opencode/ mk-mcp-route-guard.js (browsability symlink -> ../../../plugins/)
 +-- post-edit-quality/               # comment-hygiene + dist-staleness findings on edit/write
 |   +-- lib/post-edit-router.cjs
 |   +-- claude/   claude-posttooluse.cjs
 |   +-- devin/    post-edit-quality.cjs
 |   +-- codex/    post-edit-quality.cjs
-|   +-- pi/       post-edit-quality.ts (symlinked from .pi/extensions/)
+|   +-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` symlinks to it)
 |   `-- opencode/ mk-post-edit-quality.js (browsability symlink -> ../../../plugins/)
 +-- task-dispatch/                   # Task/subagent dispatch guard + Fable-subagent policy
 |   +-- lib/dispatch-guard.cjs
@@ -92,9 +92,11 @@ hooks/
     +-- lib/goal-core.cjs, goal-core.test.cjs
     +-- bin/goal.cjs                 # scoped management, diagnostics, and explicit legacy quarantine
     +-- cursor/   goal-inject.mjs
-    +-- pi/       goal-context.ts (symlinked from .pi/extensions/)
+    +-- pi/       goal-context.ts (real file; `.pi/extensions/` symlinks to it)
     `-- opencode/ mk-goal.js (browsability symlink -> ../../../plugins/)
 ```
+
+**Skill-owned concerns are indexed here too** — the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill; see "Full index + kill-switches" above): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `spec-memory/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`.
 
 Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `goal/pi/`) — Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.opencode/plugins/` — the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified — the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
 
@@ -173,7 +175,7 @@ This matrix is the coverage authority for the intentionally uneven runtime surfa
 |---|---|---|---|---|---|---|
 | `codex-watchdog` | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | ✓ covered | — by-design: OpenCode plugin audits Codex hook installation |
 | `completion` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `directive-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | — by-design: embedded in `mk-skill-advisor` lifecycle state | — by-design: embedded in `prompt-advisor.ts` directive de-dup |
+| `directive-lifecycle` | ✓ covered | — by-design: embedded in the shared `user-prompt-submit` lifecycle | — by-design: embedded in the shared `user-prompt-submit` lifecycle | — by-design: embedded in the shared `user-prompt-submit` lifecycle | — by-design: embedded in `mk-skill-advisor` lifecycle state | — by-design: embedded in `prompt-advisor.ts` directive de-dup |
 | `dispatch` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `dist-freshness` | — by-design: OpenCode plugin owns source/dist freshness projection | — by-design: OpenCode plugin owns source/dist freshness projection | — by-design: OpenCode plugin owns source/dist freshness projection | — by-design: OpenCode plugin owns source/dist freshness projection | ✓ covered | — by-design: OpenCode plugin owns source/dist freshness projection |
 | `git-preflight` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |

@@ -2,7 +2,7 @@
 title: "Implementation Plan: Hook Feature Flags + Full Hub Index"
 description: "Nine-phase plan: ship the shared hook guard and full index, close remaining index and adapter gaps, then publish an explicit concern-by-runtime coverage matrix."
 status: "in-progress"
-completion_pct: 30
+completion_pct: 95
 importance_tier: "high"
 contextType: "plan"
 parent: "./spec.md"

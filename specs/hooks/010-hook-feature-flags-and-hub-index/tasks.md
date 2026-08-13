@@ -2,7 +2,7 @@
 title: "Tasks: Hook Feature Flags + Full Hub Index"
 description: "Per-phase task tracking for hook kill-switches, the full hub index, remaining runtime adapters, and the final concern-by-runtime coverage matrix."
 status: "in-progress"
-completion_pct: 83
+completion_pct: 95
 importance_tier: "high"
 contextType: "tasks"
 parent: "./spec.md"
@@ -42,8 +42,8 @@ parent: "./spec.md"
 
 ## PHASE 5 — Full hub index + docs
 
-- [x] Symlink every Phase 4 adapter into `.opencode/hooks/<concern>/<runtime>/` — 49 relative links, all resolved with `readlink -f`
-- [ ] Rewrite hub `README.md` + `injection-contract.md` for the full-index model — skipped because this implementation's scope lock permits only new symlinks under `.opencode/hooks/`
+- [x] Symlink every Phase 4 adapter into `.opencode/hooks/<concern>/<runtime>/` — 58 relative links, all resolved with `readlink -f`
+- [x] Rewrite hub `README.md` + `injection-contract.md` for the full-index model — completed in the review-fix pass (full-index + kill-switch model)
 
 ## PHASE 6 — Cross-runtime validation
 

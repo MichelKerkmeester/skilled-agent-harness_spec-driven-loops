@@ -2,7 +2,7 @@
 title: "Implementation Summary: Hook Feature Flags + Full Hub Index"
 description: "Running log across nine phases: shared hook guards, full indexing, remaining runtime coverage adapters, and the final concern-by-runtime coverage matrix."
 status: "in-progress"
-completion_pct: 92
+completion_pct: 95
 trigger_phrases:
   - "hook feature flags status"
   - "hook-flags guard implementation"
@@ -13,10 +13,10 @@ parent: "./spec.md"
 _memory:
   continuity:
     packet_pointer: "hooks/010-hook-feature-flags-and-hub-index"
-    last_updated_at: "2026-08-12T15:20:51Z"
-    last_updated_by: "claude"
-    recent_action: "Corrected false MEGA-eviction note; build verified clean (exit 0)"
-    next_safe_action: "Fast-forward runtime checkout, npm run build, then live sweep"
+    last_updated_at: "2026-08-13T04:49:00Z"
+    last_updated_by: "deep-review"
+    recent_action: "Fan-out deep review completed: verdict CONDITIONAL (0 P0, 1 P1 F003, 8 P2); review/review-report.md compiled; pi lineage fulfilled, devin lineage blocked by workspace-trust prerequisite"
+    next_safe_action: "Run /speckit:plan to remediate F003 (spec.md/plan.md status reconciliation) with P2 lanes folded in"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,10 +25,10 @@ _memory:
       - ".opencode/hooks/shared/hook-flags.cjs"
       - ".opencode/hooks/shared/hook-flags.test.cjs"
     session_dedup:
-      fingerprint: "sha256:e6089bcf3d889af5717035727cf4fe6e96101f8423927fb17aa4d664dab644d1"
+      fingerprint: "sha256:3238bcd38a316b3c2ac9ee2824adf10ea1ae5aa83daeb93bf45d09a8b3159307"
       session_id: "4654af88-ba88-466a-bd14-2fa43ea87923"
       parent_session_id: null
-    completion_pct: 92
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "Full hub index (symlink skill hooks in) vs portable-only -> full index"
@@ -101,7 +101,7 @@ The broader typecheck/plugin suite remains blocked by checkout provisioning: Spe
 
 ## PHASE 5 — Full hub index (shipped)
 
-The hub now includes 49 relative symlinks under the ten skill-owned concern folders. Every link resolves with `readlink -f` to the Phase 4 adapter that remains in its owning skill or `.opencode/plugins/`; no implementation file moved. Duplicate Claude basenames are disambiguated with `speckit-` for the Spec Kit shim/bridge while retaining the canonical Skill Advisor target. The shared Git preflight adapter is indexed once under `git-preflight/shared/` because the same physical file serves Claude, Codex, Cursor, and Devin.
+The hub now includes 58 relative symlinks under the ten skill-owned concern folders. Every link resolves with `readlink -f` to the Phase 4 adapter that remains in its owning skill or `.opencode/plugins/`; no implementation file moved. Duplicate Claude basenames are disambiguated with `speckit-` for the Spec Kit shim/bridge while retaining the canonical Skill Advisor target. The shared Git preflight adapter is indexed once under `git-preflight/shared/` because the same physical file serves Claude, Codex, Cursor, and Devin.
 
 The packet plan also named edits to `.opencode/hooks/README.md` and `injection-contract.md`; the implementer left these to stay within its scope lock. They were completed in the final-review pass (full-index + kill-switch model).
 
@@ -156,4 +156,16 @@ A GPT-5.6-SOL-high adversarial review returned FAIL with **0 P0** (nothing unsaf
 - **Codex task-dispatch is `unverified`, not `n/a`.** Codex exposes `PreToolUse`, but the repo has no confirmed agent-spawn hook event (`.codex/agents/*.toml` are interactive-TUI personas, not hooks). The matrix cell was softened from a false "no event."
 - **Permission-policy: the reviewer overclaimed a `PermissionRequest` hook** — none exists in `.claude/` or `.codex/` (only `PreToolUse`/`PostToolUse`/`Stop`). Corrected to "by-design: permission via `PreToolUse` decision, no dedicated adapter"; Devin's dedicated `permission-request` adapter stays the only one.
 
-Remaining minor (P2): the `.cursor/hooks/` discovery mirror does not yet list the new completion entrypoint.
+Resolved: the `.cursor/hooks/` discovery mirror now lists `completion-evidence-response.mjs`, and the `.pi/extensions/` README reflects the wired completion/task-dispatch extensions.
+
+## Deep-review adjudication (10-iteration)
+
+A 10-iteration `/deep:review` (`--stop-policy=max-iterations`, no early convergence) ran on the packet. Only the **deepseek-flash (pi)** lineage fulfilled all 10 iterations; the **GLM-5.2-max (devin)** lineage was rejected pre-review by devin's workspace-trust guard on the `/private/tmp` worktree, so its perspective is absent. Verdict: **CONDITIONAL** — 0 P0, 1 P1, 8 P2. The guard implementation itself is functionally sound (7/7 tests; all 84 guarded importers place `isHookEnabled` before work; all 58 symlinks + discovery mirrors resolve).
+
+Every finding was verified against the repo (no over-claims) and remediated in this pass:
+- **F003 (P1):** reconciled `spec.md` STATUS + `completion_pct` and `plan.md` to the true Phases-1-9-shipped state; all four packet docs now read `completion_pct: 95`.
+- **F004/F005/F009 (P2):** checked the stale Phase-5 checkbox, corrected the hub symlink count (49→58), cleared the resolved-mirror residue.
+- **F006 (P2):** aligned the `directive-lifecycle` matrix cells — codex/cursor/devin are `by-design: embedded in the shared user-prompt-submit`, not dedicated adapters.
+- **F007/F008 (P2):** added the ten skill-owned concerns to the README directory index; clarified the Pi symlink-direction annotations.
+- **F001 (P2):** the cursor post-tool proxy now gates each branch's spawn on its own concern (`post-edit-quality` for Write, `dispatch` for Shell), so a disabled concern no longer spawns its counterpart.
+- **F002 (P2, documented not changed):** `install-codex-hooks.mjs` is a SessionStart *installer*, not a passive per-turn hook, so the per-concern kill-switch does not naturally apply; changing a SessionStart installer's behavior is disproportionate blast radius for a P2.

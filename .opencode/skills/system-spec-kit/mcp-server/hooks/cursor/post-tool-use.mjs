@@ -119,6 +119,7 @@ async function main() {
       session_id: sessionID,
     };
 
+    if (!isHookEnabled('post-edit-quality')) return approve();
     const findings = runChild(
       join(projectDir, CLAUDE_POST_TOOL_USE_RELATIVE),
       claudeShapedPayload,
@@ -141,6 +142,7 @@ async function main() {
       tool_use_id: payload?.tool_use_id,
       tool_response: toolResponse,
     };
+    if (!isHookEnabled('dispatch')) return approve();
     runChild(
       join(projectDir, DISPATCH_AUDIT_RELATIVE),
       dispatchPayload,
