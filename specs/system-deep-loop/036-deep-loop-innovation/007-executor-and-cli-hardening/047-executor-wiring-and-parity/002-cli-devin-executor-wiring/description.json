@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/002-cli-devin-executor-wiring",
+  "description": "`EXECUTORKINDS` in `runtime/lib/deep-loop/executor-config.ts` shipped five kinds — `native`, `cli-codex`, `cli-claude-code`, `cli-opencode`,",
+  "keywords": [
+    "executorkinds",
+    "runtime",
+    "lib",
+    "deep-loop",
+    "executor-config",
+    "shipped",
+    "five",
+    "kinds",
+    "native",
+    "cli-codex",
+    "cli-claude-code",
+    "cli-opencode"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.909Z",
+  "specId": "002",
+  "folderSlug": "cli-devin-executor-wiring",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "047-executor-wiring-and-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

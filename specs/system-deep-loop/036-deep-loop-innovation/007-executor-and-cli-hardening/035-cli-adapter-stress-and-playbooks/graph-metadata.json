@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/035-cli-adapter-stress-and-playbooks",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/035-cli-adapter-stress-and-playbooks",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli adapter stress tests",
+      "deep-loop executor adapter coverage",
+      "fan-out stress testing",
+      "external CLI manual testing playbook",
+      "stdin hang adapter regression"
+    ],
+    "key_topics": [
+      "cli",
+      "adapter",
+      "stress",
+      "tests",
+      "deep-loop",
+      "executor",
+      "coverage",
+      "fan-out",
+      "testing",
+      "external",
+      "manual",
+      "playbook"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Six External",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Loop Adapters",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Out Orchestration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The adapter family has a wide failure surface that is not safely covered by one green unit suite",
+    "created_at": "2026-08-07T07:50:32Z",
+    "last_save_at": "2026-08-13T20:13:32.107Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:4b798459f371f9fabf8f71328ecd6a82c03f9416d3031087b8b051c8bbb5996b",
+    "source_doc_hashes": {
+      "spec.md": "5d158628c72e6d373977be5772e42d4cd82959354bbd2e9720469cfa855fcc9b",
+      "plan.md": "d4bc0db393a6166b0f8f93468cedcd32d146a454e9a6dc33c26b3291e077b48d",
+      "tasks.md": "9e4e639c937b84bb5bfa12b6e965d7c4b61f323abc1e6511ae9f39e27f735ee2",
+      "checklist.md": "061992cbca84d49a01196ed1737e91178f532edb553a3375fcdd2b4f33d006f4",
+      "decision-record.md": "992fef296c6707cf8d662df11cd6d0208cca2d7c860beaf68780f7bc4be0733e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

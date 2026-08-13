@@ -1,0 +1,42 @@
+{
+  "topic": "Analyze the 036 phase-parent (specs/system-deep-loop/036-deep-loop-innovation) child phase folders (currently ~50, matching ^[0-9]{3}-). Determine (1) whether merging/grouping them into fewer, larger multi-phase groups is feasible and beneficial for context optimization; (2) HOW - which child folders cluster into which fewer bigger multi-phase parents, by theme/dependency, with optimized names; (3) the full migration plan - renaming, and updating ALL references and JSONs (parent+child graph-metadata children_ids, spec.md phase documentation map, cross-refs, description.json, validate.sh manifest); (4) CRITICAL - a timeline.md design that records which spec folder was worked on first and which came after, so the chronological lineage survives any renumbering (derive order from git history and graph-metadata created/updated timestamps). Ground every proposed grouping in the actual on-disk folders and their metadata; this is research/proposal only - do not restructure anything.",
+  "specFolder": "specs/system-deep-loop/036-deep-loop-innovation/057-phase-consolidation-research",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "executionMode": "auto",
+  "lineageMode": "restart",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-opencode",
+        "model": "opencode-go/deepseek-v4-flash",
+        "label": "ds-a",
+        "count": 1,
+        "iterations": 5,
+        "timeoutSeconds": 900,
+        "promptFramework": "rcaf"
+      },
+      {
+        "kind": "cli-opencode",
+        "model": "opencode-go/deepseek-v4-flash",
+        "label": "ds-b",
+        "count": 1,
+        "iterations": 5,
+        "timeoutSeconds": 900,
+        "promptFramework": "rcaf"
+      }
+    ],
+    "concurrency": 2
+  },
+  "status": "error",
+  "error": "spec_mutation_conflict: host spec.md lacks the required template sections and anchors for bounded findings writeback"
+}

@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift",
+  "description": "Whole-system gate, integrate-latest closeout, and drift census and plan revalidation.",
+  "keywords": [
+    "whole-system",
+    "gate",
+    "integrate-latest",
+    "closeout",
+    "drift",
+    "census",
+    "plan",
+    "revalidation"
+  ],
+  "lastUpdated": "2026-08-13T19:59:04.238Z",
+  "specId": "004",
+  "folderSlug": "gate-closeout-and-drift",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

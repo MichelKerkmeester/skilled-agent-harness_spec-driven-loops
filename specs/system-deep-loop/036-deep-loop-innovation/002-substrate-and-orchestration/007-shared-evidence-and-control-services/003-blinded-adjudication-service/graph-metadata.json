@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/003-blinded-adjudication-service",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/003-blinded-adjudication-service",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "blinded adjudication service",
+      "counterfactual adjudication",
+      "bias-controlled multi-candidate judgement",
+      "blinded adjudication implementation plan",
+      "counterfactual adjudication service plan",
+      "blinded adjudication tasks",
+      "counterfactual adjudication implementation tasks",
+      "blinded adjudication checklist",
+      "counterfactual adjudication verification",
+      "blinded adjudication implementation summary",
+      "blinded adjudication verification evidence"
+    ],
+    "key_topics": [
+      "blinded",
+      "adjudication",
+      "service",
+      "counterfactual",
+      "bias-controlled",
+      "multi-candidate",
+      "judgement",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Blinded Adjudication Service",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "randomized",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "four",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-closed",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoped",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "producer",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "pairwise",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan a shared blinded and counterfactual adjudication service that controls identity and position bias while preserving replayable raw scoring evidence.",
+    "created_at": "2026-07-16T03:43:46.917Z",
+    "last_save_at": "2026-08-13T20:13:25.695Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:000dcbd863ded50a06ed44f4ec35a9febdcfe4770b38c10f2651cb20403a6528",
+    "source_doc_hashes": {
+      "spec.md": "b496ebdc1c42a322d6956a35704db6158c0744e0b49301c0e5f2dc47b25a2bf9",
+      "plan.md": "1c1afa052c44918b6240b4d3636012d7fdb9fe9b98ec96e0af354c63f2f9e62a",
+      "tasks.md": "db9366fa3ef756cb74afd1855f5e08ff62ad4b2a1648a098c9c73f2996fca2b6",
+      "checklist.md": "b5103717bb3cb4f6e2acf2d303cd93a9e81bbdb40f70be0ee5367dd593acb994",
+      "implementation-summary.md": "235c4630ea52bdd3a14367a53166dfdd58f88583a5f8b209a8c5ae249ea037da"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity",
+  "description": "Implemented the dark shadow-parity harness for the Deep AI Council migration.",
+  "keywords": [
+    "implemented",
+    "dark",
+    "shadow-parity",
+    "harness",
+    "deep",
+    "council",
+    "migration"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.750Z",
+  "specId": "006",
+  "folderSlug": "shadow-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "013-mode-and-lane-migrations",
+    "003-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

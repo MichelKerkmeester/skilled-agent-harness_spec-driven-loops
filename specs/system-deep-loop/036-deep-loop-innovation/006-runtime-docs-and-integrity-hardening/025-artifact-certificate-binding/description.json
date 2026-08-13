@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/025-artifact-certificate-binding",
+  "description": "Evidence is accepted on partial or metadata-only correspondence in twelve places",
+  "keywords": [
+    "evidence",
+    "accepted",
+    "partial",
+    "metadata-only",
+    "correspondence",
+    "twelve",
+    "places"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.893Z",
+  "specId": "025",
+  "folderSlug": "artifact-certificate-binding",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

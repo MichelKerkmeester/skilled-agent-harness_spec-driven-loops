@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/010-novelty-claims-continuity-and-projections/003-claim-continuity",
+  "description": "Implements one durable claim identity across iterations so support, contradiction, supersession, lifecycle, and recomputed status accumulate through",
+  "keywords": [
+    "implements",
+    "one",
+    "durable",
+    "claim",
+    "identity",
+    "across",
+    "iterations",
+    "support",
+    "contradiction",
+    "supersession",
+    "lifecycle",
+    "recomputed",
+    "status",
+    "accumulate"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.707Z",
+  "specId": "003",
+  "folderSlug": "claim-continuity",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "002-substrate-and-orchestration",
+    "010-novelty-claims-continuity-and-projections"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

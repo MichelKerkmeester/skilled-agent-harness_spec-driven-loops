@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration",
+  "description": "Live-tools unblock, authorized-ledger substrate, evidence and control services, compatibility and rollback bridge, durable fan-out orchestration,",
+  "keywords": [
+    "live-tools",
+    "unblock",
+    "authorized-ledger",
+    "substrate",
+    "evidence",
+    "control",
+    "services",
+    "compatibility",
+    "rollback",
+    "bridge",
+    "durable",
+    "fan-out",
+    "orchestration"
+  ],
+  "lastUpdated": "2026-08-13T19:59:04.148Z",
+  "specId": "002",
+  "folderSlug": "substrate-and-orchestration",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

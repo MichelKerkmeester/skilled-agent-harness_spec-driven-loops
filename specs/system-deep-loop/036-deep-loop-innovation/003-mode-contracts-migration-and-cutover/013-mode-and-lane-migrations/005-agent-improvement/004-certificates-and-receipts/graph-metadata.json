@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/005-agent-improvement/004-certificates-and-receipts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/005-agent-improvement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent improvement certificates and receipts",
+      "agent-improvement replay fingerprint",
+      "typed event ledger receipts",
+      "agent improvement certificates and receipts implementation plan",
+      "agent-improvement offline verifier",
+      "replay fingerprint implementation plan",
+      "agent improvement certificates and receipts tasks",
+      "agent-improvement evidence tasks",
+      "offline verifier tasks",
+      "agent improvement certificates and receipts checklist",
+      "agent-improvement verifier gate",
+      "certificate replay verification"
+    ],
+    "key_topics": [
+      "agent",
+      "improvement",
+      "certificates",
+      "receipts",
+      "agent-improvement",
+      "replay",
+      "fingerprint",
+      "typed",
+      "event",
+      "ledger",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement Certificates",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Provide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Agent Improvement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Typed",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Agent Improvement",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "run",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Provide a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-007 primitives, preserves deep-improvement-common evaluator/canary/promotion identities, and can be re-verified offline before the mode gate accepts shadow parity",
+    "created_at": "2026-07-16T03:43:38.290Z",
+    "last_save_at": "2026-08-13T20:12:57.972Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2ebd249854c279e855914515c691a3356db295431ee3c875dd57fa91caec5342",
+    "source_doc_hashes": {
+      "spec.md": "8f3328f819f27efbebc4a1875a21ab9fbbce81ce62d0a337b9d1e10be9e81f14",
+      "plan.md": "41338bd7e832049a2e7f0807f3ba6b9b41d65df9f4f62a865757ea421c4527d5",
+      "tasks.md": "d292c1e3e28928dadb0c3e67f1a9868785565aea5a06d6186f8b7bc599528a96",
+      "checklist.md": "93e2deba48cc7c080cc0651e117a4583b6dc1d6e6fc425360b7c93800c6dc100",
+      "implementation-summary.md": "d9e2baf7680888593e2e1f61adc54124aa844e5efc63cad0c3e1ea256e1411aa"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

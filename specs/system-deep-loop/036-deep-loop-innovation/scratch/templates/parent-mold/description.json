@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/scratch/templates/parent-mold",
+  "description": "The create-* generator families and their templates can still emit underscore filesystem names.",
+  "keywords": [
+    "generator",
+    "families",
+    "templates",
+    "still",
+    "emit",
+    "underscore",
+    "filesystem",
+    "names"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.929Z",
+  "specId": "",
+  "folderSlug": "parent-mold",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "scratch",
+    "templates"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

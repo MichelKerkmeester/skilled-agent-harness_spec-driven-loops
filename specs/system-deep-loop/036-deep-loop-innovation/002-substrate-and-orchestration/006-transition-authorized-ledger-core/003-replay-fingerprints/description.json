@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-transition-authorized-ledger-core/003-replay-fingerprints",
+  "description": "Define independently versioned replay fingerprints over closed typed-ledger ranges, canonical replay dependencies, and byte-stable outputs, with",
+  "keywords": [
+    "define",
+    "independently",
+    "versioned",
+    "replay",
+    "fingerprints",
+    "closed",
+    "typed-ledger",
+    "ranges",
+    "canonical",
+    "dependencies",
+    "byte-stable",
+    "outputs"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.679Z",
+  "specId": "003",
+  "folderSlug": "replay-fingerprints",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "002-substrate-and-orchestration",
+    "006-transition-authorized-ledger-core"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

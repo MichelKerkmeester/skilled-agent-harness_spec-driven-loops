@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/005-agent-improvement",
+  "description": "Migrate the agent-improvement variant of the deep-improvement evaluator loop onto the typed event-ledger substrate through seven concern children,",
+  "keywords": [
+    "migrate",
+    "agent-improvement",
+    "variant",
+    "deep-improvement",
+    "evaluator",
+    "loop",
+    "onto",
+    "typed",
+    "event-ledger",
+    "substrate",
+    "seven",
+    "concern",
+    "children"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.771Z",
+  "specId": "005",
+  "folderSlug": "agent-improvement",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "013-mode-and-lane-migrations"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

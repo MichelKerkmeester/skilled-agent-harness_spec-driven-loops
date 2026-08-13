@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/005-agent-improvement/001-typed-ledger-schema",
+  "description": "The additive-dark Agent Improvement typed ledger extends the shared Deep Improvement Common Services schema with typed AgentIR, change-contract,",
+  "keywords": [
+    "additive-dark",
+    "agent",
+    "improvement",
+    "typed",
+    "ledger",
+    "extends",
+    "shared",
+    "deep",
+    "common",
+    "services",
+    "schema",
+    "agentir",
+    "change-contract"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.764Z",
+  "specId": "001",
+  "folderSlug": "typed-ledger-schema",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "013-mode-and-lane-migrations",
+    "005-agent-improvement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

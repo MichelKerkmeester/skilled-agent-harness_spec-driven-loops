@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/019-runtime-code-readmes",
+  "description": "Most folders that hold code in the system-deep-loop runtime have no README",
+  "keywords": [
+    "folders",
+    "hold",
+    "code",
+    "system-deep-loop",
+    "runtime",
+    "readme"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.882Z",
+  "specId": "019",
+  "folderSlug": "runtime-code-readmes",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

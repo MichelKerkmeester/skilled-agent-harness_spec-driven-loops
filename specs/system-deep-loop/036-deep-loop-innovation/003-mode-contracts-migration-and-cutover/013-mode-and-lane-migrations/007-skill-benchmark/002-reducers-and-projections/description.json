@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections",
+  "description": "Plan the pure reducers and live projections for the skill-benchmark migration: replay the typed skill event ledger into deterministic",
+  "keywords": [
+    "plan",
+    "pure",
+    "reducers",
+    "live",
+    "projections",
+    "skill-benchmark",
+    "migration",
+    "replay",
+    "typed",
+    "skill",
+    "event",
+    "ledger",
+    "deterministic"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.783Z",
+  "specId": "002",
+  "folderSlug": "reducers-and-projections",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "013-mode-and-lane-migrations",
+    "007-skill-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

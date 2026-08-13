@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts",
+  "description": "Define the sealed reference-artifact contract for Deep Improvement Common Services",
+  "keywords": [
+    "define",
+    "sealed",
+    "reference-artifact",
+    "contract",
+    "deep",
+    "improvement",
+    "common",
+    "services"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.757Z",
+  "specId": "003",
+  "folderSlug": "sealed-artifacts",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "013-mode-and-lane-migrations",
+    "004-deep-improvement-common"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+  "description": "Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority,",
+  "keywords": [
+    "runtime",
+    "code",
+    "readmes",
+    "sk-code",
+    "alignment",
+    "plus",
+    "artifact-certificate",
+    "alignment-coverage",
+    "mode-gate",
+    "dispatch-integrity",
+    "promotion-authority"
+  ],
+  "lastUpdated": "2026-08-13T19:59:04.335Z",
+  "specId": "006",
+  "folderSlug": "runtime-docs-and-integrity-hardening",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

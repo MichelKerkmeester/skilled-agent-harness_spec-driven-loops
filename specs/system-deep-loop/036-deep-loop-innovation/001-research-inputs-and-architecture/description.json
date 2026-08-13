@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture",
+  "description": "Market and effectiveness research, baseline taxonomy and state census, and the architecture coverage and transition contract.",
+  "keywords": [
+    "market",
+    "effectiveness",
+    "research",
+    "baseline",
+    "taxonomy",
+    "state",
+    "census",
+    "architecture",
+    "coverage",
+    "transition",
+    "contract"
+  ],
+  "lastUpdated": "2026-08-13T19:59:04.105Z",
+  "specId": "001",
+  "folderSlug": "research-inputs-and-architecture",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout",
+  "description": "001 produced a broad landscape and 8 ranked recommendations, but at survey depth: one-line lessons per repo, not mechanisms or reference",
+  "keywords": [
+    "produced",
+    "broad",
+    "landscape",
+    "ranked",
+    "recommendations",
+    "survey",
+    "depth",
+    "one-line",
+    "lessons",
+    "per",
+    "repo",
+    "mechanisms",
+    "reference"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.663Z",
+  "specId": "002",
+  "folderSlug": "deep-loop-effectiveness-and-fanout",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "001-research-inputs-and-architecture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

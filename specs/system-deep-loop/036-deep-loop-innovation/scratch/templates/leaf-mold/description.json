@@ -1,0 +1,31 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/scratch/templates/leaf-mold",
+  "description": "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real",
+  "keywords": [
+    "catalog",
+    "playbook",
+    "root",
+    "index",
+    "names",
+    "consumed",
+    "network",
+    "runtime",
+    "paths",
+    "just",
+    "classifier",
+    "symlink",
+    "plus",
+    "real"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.928Z",
+  "specId": "",
+  "folderSlug": "leaf-mold",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "scratch",
+    "templates"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

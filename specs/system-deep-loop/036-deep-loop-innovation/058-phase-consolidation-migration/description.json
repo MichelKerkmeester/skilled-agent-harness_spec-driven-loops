@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/058-phase-consolidation-migration",
+  "description": "Temporary implementation phase: execute the 8-group consolidation of the 036 phase tree.",
+  "keywords": [
+    "temporary",
+    "implementation",
+    "phase",
+    "execute",
+    "8-group",
+    "consolidation",
+    "tree"
+  ],
+  "lastUpdated": "2026-08-13T20:50:07.123Z",
+  "specId": "058",
+  "folderSlug": "phase-consolidation-migration",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

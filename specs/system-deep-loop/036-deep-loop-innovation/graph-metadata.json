@@ -4,44 +4,16 @@
   "spec_folder": "system-deep-loop/036-deep-loop-innovation",
   "parent_id": null,
   "children_ids": [
-    "system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research",
-    "system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout",
-    "system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census",
-    "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract",
-    "system-deep-loop/036-deep-loop-innovation/005-fanout-live-tools-unblock",
-    "system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core",
-    "system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services",
-    "system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge",
-    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration",
-    "system-deep-loop/036-deep-loop-innovation/010-novelty-claims-continuity-and-projections",
-    "system-deep-loop/036-deep-loop-innovation/011-convergence-termination-and-health",
-    "system-deep-loop/036-deep-loop-innovation/012-shared-mode-contracts-and-fixtures",
-    "system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations",
-    "system-deep-loop/036-deep-loop-innovation/014-staged-state-migration-and-authority-cutover",
-    "system-deep-loop/036-deep-loop-innovation/015-legacy-writer-retirement",
-    "system-deep-loop/036-deep-loop-innovation/016-whole-system-gate",
-    "system-deep-loop/036-deep-loop-innovation/017-integrate-latest-and-closeout",
-    "system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation",
-    "system-deep-loop/036-deep-loop-innovation/019-runtime-code-readmes",
-    "system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment",
-    "system-deep-loop/036-deep-loop-innovation/021-completion-evidence-reconcile",
-    "system-deep-loop/036-deep-loop-innovation/022-shadow-parity-independent-derivation",
-    "system-deep-loop/036-deep-loop-innovation/023-legacy-compat-event-vocabulary",
-    "system-deep-loop/036-deep-loop-innovation/024-durable-write-boundaries",
-    "system-deep-loop/036-deep-loop-innovation/025-artifact-certificate-binding",
-    "system-deep-loop/036-deep-loop-innovation/026-alignment-coverage-integrity",
-    "system-deep-loop/036-deep-loop-innovation/027-mode-gate-and-contract-binding",
-    "system-deep-loop/036-deep-loop-innovation/028-fanout-dispatch-integrity",
-    "system-deep-loop/036-deep-loop-innovation/029-improvement-promotion-authority",
-    "system-deep-loop/036-deep-loop-innovation/030-runtime-mirror-and-routing-parity",
-    "system-deep-loop/036-deep-loop-innovation/031-silent-failure-and-harness-repair",
-    "system-deep-loop/036-deep-loop-innovation/032-docs-drift-and-p2-batch",
-    "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening",
-    "system-deep-loop/036-deep-loop-innovation/035-cli-adapter-stress-and-playbooks",
-    "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity",
-    "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening",
-    "system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity",
-    "system-deep-loop/036-deep-loop-innovation/050-trustworthy-state-records"
+    "system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture",
+    "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover",
+    "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift",
+    "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
+    "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
+    "system-deep-loop/036-deep-loop-innovation/057-phase-consolidation-research",
+    "system-deep-loop/036-deep-loop-innovation/058-phase-consolidation-migration"
   ],
   "manual": {
     "depends_on": [],
@@ -77,36 +49,14 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      "004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/plan.md",
-      "002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
       "spec.md",
-      "016-whole-system-gate/review/pre-014-clearance-verdict-v2.md",
-      "024-durable-write-boundaries/build-spec.md",
       "handover.md"
     ],
     "entities": [
       {
-        "name": "fanout-prototype.cjs",
-        "kind": "file",
-        "path": "002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "pre-014-clearance-verdict-v2.md",
-        "kind": "doc",
-        "path": "016-whole-system-gate/review/pre-014-clearance-verdict-v2.md",
-        "source": "derived"
-      },
-      {
-        "name": "build-spec.md",
-        "kind": "doc",
-        "path": "024-durable-write-boundaries/build-spec.md",
         "source": "derived"
       },
       {
@@ -184,19 +134,19 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-12T15:23:08.017Z",
+    "last_save_at": "2026-08-13T20:14:31.931Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:9ccea77bd5fb54fe50a13efac861e7d73496e1338dfea2226de0135f3483e5c8",
+    "source_fingerprint": "sha256:a34bd73a61a55033be8cc02ccb8ccd0841418908795e137a1d7880f3a23ef229",
     "source_doc_hashes": {
-      "spec.md": "de774ad4905a6c212dcf61b56da7e5692a267d65b06301089b3f3db8526cd59d",
+      "spec.md": "117bc419cef630ee303a023bd13b832ed6325ff1f9af27eb572b24f79884c545",
       "handover.md": "574f542f18cb7aae3449f8ee2b33e0ee903bef4f85cd4e0f47d1bf62de97c0c5"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/057-phase-consolidation-research",
     "last_active_at": "2026-08-12T15:23:08.017Z"
   }
 }
