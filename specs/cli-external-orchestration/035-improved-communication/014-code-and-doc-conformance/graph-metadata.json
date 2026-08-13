@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance",
+  "parent_id": "cli-external-orchestration/035-improved-communication",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code-and-doc-conformance",
+      "code and documentation conformance",
+      "cli communication projection documentation",
+      "package conformance evidence",
+      "implementation plan",
+      "package documentation conformance",
+      "tasks",
+      "documentation conformance",
+      "verification checklist",
+      "quality gate",
+      "implementation status",
+      "current state"
+    ],
+    "key_topics": [
+      "code-and-doc-conformance",
+      "code",
+      "documentation",
+      "conformance",
+      "cli",
+      "communication",
+      "projection",
+      "package",
+      "evidence",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Conformance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Template",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The implementation was complete, but conformance was not closed until every maintained package folder had a standard README and every operator document passed the reference contract",
+    "created_at": "2026-08-13T05:54:57.670Z",
+    "last_save_at": "2026-08-13T05:56:57.372Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:509805bc1c341fa30d7e9e161e5f99ec4a50ffcde7c27acbeb9017bdb31d53dd",
+    "source_doc_hashes": {
+      "spec.md": "a439bc4694cbfdbd373b3ee979931dfc11936fefb96e4aa73eed12295de69e34",
+      "plan.md": "245733111feee834f96cd94530ff7b9b008ae9b3e4a54148b2679f356ad72545",
+      "tasks.md": "d02f5668e3b94e77af35654e53fa845f397fab6599b382fff639b817cc6e18a4",
+      "checklist.md": "5715e09b60ff41246d1b91c323f28d5d9dc6f0a0e15578e8bd51d9b335341610",
+      "implementation-summary.md": "5cc27ecd6739333a78baf6776fd6777e7782058c9f49d272a3ae65aa08c78c6d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

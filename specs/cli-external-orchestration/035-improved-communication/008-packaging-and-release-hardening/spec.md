@@ -11,12 +11,11 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening"
-    last_updated_at: "2026-08-11T10:15:00Z"
-    last_updated_by: "codex"
-    recent_action: "Repaired the Phase 008 package-hardening and terminal release contracts."
-    next_safe_action: "Obtain project-owner approval, then begin T001 after Phase 007 evidence is accepted."
-    blockers:
-      - "Project-owner approval of the Proposed architecture decision is not yet recorded."
+    last_updated_at: "2026-08-13T04:36:10.000Z"
+    last_updated_by: "claude"
+    recent_action: "Linked Phase 008 forward to the 009-013 projection-quality follow-on phases."
+    next_safe_action: "Run the operator release prerequisites, then record the parent release decision."
+    blockers: []
     key_files:
       - "spec.md"
       - "plan.md"
@@ -27,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-008-scaffold-20260811"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Phase purpose, boundary, dependencies, and handoff are defined."
@@ -56,13 +55,13 @@ Phase 008 turns the completed research into the packaging and release hardening 
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-11 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 8 of 8 |
+| **Phase** | 8 of 13 |
 | **Predecessor** | `007-evaluation-and-observability` |
-| **Successor** | Parent packet release decision |
+| **Successor** | `009-prompt-token-contract` (parent release decision preserved) |
 | **Handoff Criteria** | Clean-install and six-runtime smoke tests pass, privacy facts and support rows are fresh, rollback reviews pass, the doctor fails closed on unknown or stale critical facts, and the parent packet receives the signed release evidence. |
 <!-- /ANCHOR:metadata -->
 

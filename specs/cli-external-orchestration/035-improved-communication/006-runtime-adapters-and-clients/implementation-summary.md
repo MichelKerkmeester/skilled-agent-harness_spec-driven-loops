@@ -1,6 +1,6 @@
 ---
 title: "Implementation Status: Phase 006 Runtime Adapters and Clients"
-description: "Phase 006 is scaffolded as a Level 3 implementation packet; implementation has not started."
+description: "Phase 006 runtime adapter and client implementation is complete and verified."
 trigger_phrases:
   - "runtime-adapters-and-clients"
   - "implementation status"
@@ -10,28 +10,29 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients"
-    last_updated_at: "2026-08-12T04:14:38Z"
-    last_updated_by: "codex"
-    recent_action: "Received the verified Phase 005 provider and privacy handover."
-    next_safe_action: "Approve the Phase 006 architecture, then execute T001."
-    blockers:
-      - "Project-owner approval of the Proposed architecture decision is not yet recorded."
+    last_updated_at: "2026-08-12T09:10:00Z"
+    last_updated_by: "claude"
+    recent_action: "Completed Phase 006 and pinned checkpoint 0a07c50640."
+    next_safe_action: "Approve the Phase 007 evaluation architecture, then execute T001."
+    blockers: []
     key_files:
       - "implementation-summary.md"
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
-      - "specs/cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy/handover.md"
+      - "handover.md"
+      - "specs/cli-external-orchestration/035-improved-communication/007-evaluation-and-observability/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "phase-006-scaffold-20260811"
-      parent_session_id: null
-    completion_pct: 0
+      session_id: "phase-006-implementation-20260812"
+      parent_session_id: "phase-006-scaffold-20260811"
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Phase purpose, boundary, dependencies, and handoff are defined."
-      - "Phase 005 is complete with a verified 89-test provider/privacy baseline."
+      - "Six adapters over eight concrete paths, the client presentation layer, and the capability matrix are implemented and tested."
+      - "A second-model adversarial review found one tier-label hazard and three minor items, all remediated."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Status: Phase 006 Runtime Adapters and Clients
@@ -47,8 +48,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-runtime-adapters-and-clients |
-| **Status** | Draft |
-| **Implementation** | Not started |
+| **Status** | Complete |
+| **Implementation** | Implemented and validated |
 | **Level** | 3 |
 | **Scaffolded** | 2026-08-11 |
 <!-- /ANCHOR:metadata -->
@@ -58,9 +59,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No runtime or client implementation has been built in this phase. The current artifact is an implementation-ready Level 3 packet covering integration of the projection core with six CLIs through their safest supported event and presentation boundaries.
+Phase 006 integrates the projection core with six CLIs through a shared runtime adapter contract (`src/runtimes/adapter.ts`), a fail-closed capability and presentation-tier mapper (`src/runtimes/capability.ts` and `matrix.ts`), a client-owned presentation layer (`src/clients/`), and a version-pinned capability matrix.
 
-The authored artifacts `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` define eight requirements, six acceptance scenarios, the architecture and rollback, an executable task sequence, and completion gates. All implementation and release checks remain pending unless the checklist records direct evidence.
+The runtime layer defines the adapter contract plus a reusable conformance harness. Six adapters implement eight concrete paths: Claude MessageDisplay/headless (full projection) and interactive (safe native); Codex App Server, OpenCode server/SSE, Devin ACP, and Cursor ACP (full projection); and Pi with an asynchronous JSON-RPC full-projection path plus a synchronous safe-native transformer. Every adapter maps its lifecycle into shared envelopes and generations, declares tested runtime and protocol versions with an evidence date, and fails closed to safe-native/original-only on unknown capabilities or incompatible majors.
+
+The client layer applies an accepted outcome as an atomic complete-message replacement for full projection, a sidecar view, or an original-only fallback, and never writes canonical state. The capability matrix assigns one tier and one degradation policy to each of the eight paths from adapter-owned evidence.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +71,7 @@ The authored artifacts `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `de
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The scaffold was derived from the completed Phase 001 synthesis, the parent phase map, and the verified Phase 005 provider/privacy handover. Spec-kit Level 3 templates provide the document contract; phase-specific content replaces template placeholders. Implementation must proceed through the task and checklist gates.
+Implementation ran as four dispatched worker packets on GPT-5.6 SOL through cli-codex — the runtime contract and Claude reference adapter, the five remaining adapters, the client and matrix layer, and the fixture/smoke/edge/performance test surface — each verified independently against `npm run check` before the next began. A read-only adversarial review on DeepSeek V4 Flash through cli-opencode then audited the build against the load-bearing invariants. Its one substantive finding and three minor items were remediated in a final worker.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,8 +81,9 @@ The scaffold was derived from the completed Phase 001 synthesis, the parent phas
 
 | Decision | Why |
 |----------|-----|
-| Use client-owned presentation whenever native interception is not explicitly safe | It preserves canonical state and gives every unsupported or failed case an explicit safe outcome. |
-| Keep implementation status Draft | No code, runtime integration, provider call, or implementation test has been completed in this phase. |
+| Client-owned presentation whenever native interception is not explicitly safe | It preserves canonical state and gives every unsupported or unsafe surface a deterministic degraded outcome. |
+| Report exact-original outcomes as the safe-native tier in telemetry | An original-only fallback is not a 1:1 full-projection result; stamping safe-native keeps the downstream parity count honest and consistent with the capability matrix. |
+| Allowlist the telemetry pathId against declared capability records | A caller-controlled envelope field must not be able to smuggle content into a content-free terminal event. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -89,11 +93,14 @@ The scaffold was derived from the completed Phase 001 synthesis, the parent phas
 
 | Check | Result |
 |-------|--------|
-| Level 3 document inventory | Required as the scaffold handoff gate |
-| Phase-specific placeholder scan | Required as the scaffold handoff gate |
-| Strict packet validation | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients --strict` before handoff |
-| Phase 005 predecessor | PASS: provider/privacy handover and 89-test package baseline are available |
-| Implementation tests | Not run; implementation has not started |
+| Package gate | PASS: typecheck, build, 37 files and 202 tests, import smoke |
+| Focused runtime and client suites | PASS |
+| Adapter-overhead performance | PASS: measured per tier, within the provisional 30 ms p95 budget |
+| Second-model adversarial review | PASS after remediation: 0 P0, 1 P1, 3 P2 found and fixed |
+| Canonical immutability | PASS: conformance snapshot compare plus Proxy write-spies on all eight paths |
+| Secret and content safety | PASS: content and credential canaries plus pathId allowlist |
+| Strict packet validation | PASS: Phase 006 strict and parent recursive strict, zero errors |
+| Implementation checkpoint | `0a07c50640` (final; series 0a0d931dfc, dea1ad3d2a, b5f02f638c, b9cd4d1d46, 0a07c50640) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -101,7 +108,7 @@ The scaffold was derived from the completed Phase 001 synthesis, the parent phas
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Implementation absent**: All code, tests, integrations, packaging, and runtime behavior described here remain to be built.
-2. **Proposed paths**: Package paths may be refined during boundary preflight, but the phase scope and contracts are frozen unless the parent map is explicitly revised.
-3. **External drift**: Runtime and provider capabilities must be revalidated against pinned versions before release.
+1. **No live runtime attach**: Verification uses pinned fixtures and deterministic harnesses. A credentialed six-runtime smoke belongs to Phase 008.
+2. **Pinned capability evidence**: Each adapter's tested versions and evidence date are dated 2026-08-12 and must be re-probed against the actual runtime build before release.
+3. **Parity measurement is downstream**: Phase 007 owns the blinded 1:1 communication-quality evaluation; Phase 006 provides the tier-honest telemetry it aggregates.
 <!-- /ANCHOR:limitations -->

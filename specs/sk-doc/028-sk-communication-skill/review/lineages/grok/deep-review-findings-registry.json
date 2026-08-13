@@ -1,0 +1,734 @@
+{
+  "sessionId": "fanout-grok-1786552183697-d6ykc1",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Skill advertises non-existent `./clients` package subpath export, `.opencode/skills/sk-communication/SKILL.md:130`, SKILL HOW IT WORKS lists public subpath exports including `./clients`, but `packages/cli-communication-projection/package.json:16-56` exports only `.`, `./contracts`, `./versioning`, `./doctor`, `./release`, `./providers`, `./runtimes`, `./privacy`, `./evaluation`, `./observability`. No `./clients` key exists; `rg` finds no consumer import of that subpath. Same false claim at `.opencode/skills/sk-communication/README.md:61`. Agents following the skill will fail to import a documented surface. Dimension: correctness. Recommendation: remove `./clients` from the advertised export list (or add a real package export if clients become public) and mention the real `./contracts` / `./versioning` subpaths.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "T005 completion evidence lacks advisor-run transcript, `specs/sk-doc/028-sk-communication-skill/tasks.md:68`, Checked row claims \"advisor returns sk-communication as the top match\" but cites only `graph-metadata.json` intent signals as evidence",
+      "file": null,
+      "line": null,
+      "description": "not a command transcript or captured recommendation fields. Warm advisor smoke in this review does return `skillId: sk-communication` first (confidence 0.9423), so the behavior appears true, but the packet's checked completion claim is under-evidenced for `checklist_evidence`. Dimension: traceability. Recommendation: attach the advisor CLI/MCP transcript (exit status + top recommendation fields) to T005 evidence, or point at a persisted COMM-001 benchmark report.",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "D2 Security - privacy ordering, secrets, telemetry",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "title": "`leafRoots` includes missing `assets/` directory, `.opencode/skills/sk-communication/leaf-manifest.config.json:6`, Config declares `\"assets\"` among leafRoots, but `.opencode/skills/sk-communication/assets` does not exist. `generate-leaf-manifest.cjs` silently skips empty/missing roots (`collectStandaloneLeaves` walk), so emitted `leaf-manifest.json` has zero `assets/` leaves. Scaffold leftover that misstates package shape. Dimension: correctness. Recommendation: drop `assets` from `leafRoots` until an assets tree is authored, then regenerate the manifest.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "title": "OpenCode Go retention deadline is dual-sourced, `.opencode/skills/sk-communication/SKILL.md:152`, SKILL hardcodes \"before 2026-08-31\" while the machine source of truth is `packages/cli-communication-projection/src/providers/presets.ts:48` (`expiresAt = '2026-08-31T23:59:59.000Z'`). Freshness enforcement itself is correct via `assessOpenCodeGoHostedPrivacyFreshness` and privacy router stale-fact denial, but the skill prose date can drift from presets without a cross-check, raising hosted-routing policy staleness risk. Dimension: security. Recommendation: cite the preset/assessor as authoritative and treat the SKILL date as a derived reminder, or generate the reminder from the same constant.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Placeholder session_dedup fingerprints in packet docs, `specs/sk-doc/028-sk-communication-skill/spec.md:23`, Continuity frontmatter uses `sha256:0000…0000` in spec.md, plan.md, tasks.md, and implementation-summary.md despite `completion_pct: 100` and Status Complete. Weakens resume/freshness honesty for a claimed-complete packet. Dimension: traceability. Recommendation: run a real continuity save so fingerprints recompute, or stop claiming completion freshness until they do.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "COMM-001 catalog cross-ref is a privacy feature, not advisor routing, `.opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md:130`, Advisor-routing scenario links its catalog entry to `privacy-first-provider-routing.md`. Playbook release rules require each root-indexed scenario to map to a current catalog entry; privacy is adjacent but not the advisor skill-routing capability under test. Dimension: traceability. Recommendation: add an advisor-routing catalog entry or document an explicit exception for skill-level (non-package) scenarios.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "Benchmark README still contains scaffold TODO, `.opencode/skills/sk-communication/benchmark/README.md:19`, Overview section is literally `TODO describe what this skill is benchmarked on and by which harness.` while the playbook already defines the Lane C harness and report persistence contract. Incomplete operator onboarding for benchmarks. Dimension: maintainability. Recommendation: replace the TODO with a short description pointing at the manual-testing playbook and `run-skill-benchmark.cjs`.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "Five catalog features lack playbook scenario coverage, `.opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md:18`, Playbook coverage note intentionally selects operator-visible invariants, but these catalog features have no root-indexed COMM scenario: `assembly-and-context/bounded-context-selection.md`, `assembly-and-context/generation-keyed-message-assembly.md`, `evaluation-and-observability/content-free-observability.md`, `provider-and-privacy/provider-adapters-and-execution.md`, `runtime-adapters/six-runtime-adapter-matrix.md`. Raises operator blind spots for assembly, observability, provider execution, and runtime matrix. Dimension: maintainability. Recommendation: either add critical-path scenarios or explicitly mark those catalog features as automated-only in the playbook coverage note with named rationale.",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "Stabilization - catalog coverage and export-list completeness",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability (stabilization)",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability (stabilization)"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "D2 Security - privacy ordering, secrets, telemetry",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "SUMMARY-P1-001",
+      "severity": "P1",
+      "title": "Summary P1 finding 1",
+      "file": null,
+      "line": null,
+      "description": "D2 Security - privacy ordering, secrets, telemetry",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P1-002",
+      "severity": "P1",
+      "title": "Summary P1 finding 2",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "D4 Maintainability - docs hygiene and follow-on cost",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 10
+  },
+  "openFindingsCount": 14,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9299999999999999,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

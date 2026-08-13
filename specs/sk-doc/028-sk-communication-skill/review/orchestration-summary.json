@@ -1,0 +1,53 @@
+{
+  "run_id": "1786554114570-0u7w7m",
+  "loop_type": "review",
+  "spec_folder": "specs/sk-doc/028-sk-communication-skill",
+  "base_artifact_dir": "specs/sk-doc/028-sk-communication-skill/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "glm",
+      "state_log": "specs/sk-doc/028-sk-communication-skill/review/lineages/glm/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-12T17:01:54.576Z",
+        "end_at_iso": "2026-08-12T17:08:30.220Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 2,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 9
+      },
+      "sample": [
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T17:12:00Z",
+          "deltaMs": 89780
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T17:14:00Z",
+          "deltaMs": 209780
+        }
+      ]
+    }
+  ]
+}

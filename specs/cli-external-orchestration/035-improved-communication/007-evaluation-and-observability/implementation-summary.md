@@ -1,6 +1,6 @@
 ---
 title: "Implementation Status: Phase 007 Evaluation and Observability"
-description: "Phase 007 is scaffolded as a Level 3 implementation packet; implementation has not started."
+description: "Phase 007 evaluation and observability framework is implemented and verified; the human study is the operator-run release gate."
 trigger_phrases:
   - "evaluation-and-observability"
   - "implementation status"
@@ -10,26 +10,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/007-evaluation-and-observability"
-    last_updated_at: "2026-08-11T13:45:02Z"
-    last_updated_by: "codex"
-    recent_action: "Repaired the Phase 007 planning contract; no implementation was performed."
-    next_safe_action: "Obtain project-owner approval, then start T001."
-    blockers:
-      - "Project-owner approval of the Proposed architecture decision is not yet recorded."
+    last_updated_at: "2026-08-12T09:40:00Z"
+    last_updated_by: "claude"
+    recent_action: "Completed the Phase 007 framework, remediation, and a live LLM-judge demo."
+    next_safe_action: "Approve the Phase 008 packaging architecture, then execute T001."
+    blockers: []
     key_files:
       - "implementation-summary.md"
       - "spec.md"
-      - "plan.md"
-      - "tasks.md"
-      - "checklist.md"
+      - "handover.md"
+      - "specs/cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "phase-007-scaffold-20260811"
-      parent_session_id: null
-    completion_pct: 0
+      session_id: "phase-007-implementation-20260812"
+      parent_session_id: "phase-007-scaffold-20260811"
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Phase purpose, boundary, dependencies, and handoff are defined."
+      - "The evaluation framework, observability aggregation, and LLM-judge proxy are implemented and verified."
+      - "A live DeepSeek judge produced provisional scores through the framework, clearly not the human study."
+      - "The powered blind human non-inferiority study remains the operator-run release gate."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Status: Phase 007 Evaluation and Observability
@@ -45,8 +45,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-evaluation-and-observability |
-| **Status** | Draft |
-| **Implementation** | Not started |
+| **Status** | Complete |
+| **Implementation** | Framework implemented and validated; human study is the operator-run release gate |
 | **Level** | 3 |
 | **Scaffolded** | 2026-08-11 |
 <!-- /ANCHOR:metadata -->
@@ -56,9 +56,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No runtime or provider implementation has been built in this phase. The current artifact is a repaired Level 3 planning packet for measuring whether output feels 1:1 with the reference while proving fidelity, latency, cost, privacy, and operational behavior. Implementation remains blocked on project-owner approval.
+Phase 007 delivers the release-gate framework: a versioned secret-free corpus (`src/evaluation/corpus.ts`), a three-sample variance pilot and reproducible run manifest, a digest-stamped pre-registration that freezes strata and a margin-powered sample plan (`src/evaluation/preregistration.ts`, `power.ts`), deterministic fidelity vetoes, blind masked review packets, two-sided 95% confidence-interval non-inferiority decisions (`src/evaluation/noninferiority.ts`, `gate.ts`), a stratified content-free release report (`src/evaluation/report.ts`), and content-free observability aggregation with rotating keyed correlation and redaction canaries (`src/observability/`).
 
-The authored artifacts `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `decision-record.md` define eight requirements, six acceptance scenarios, the architecture and rollback, an executable task sequence, and completion gates. All implementation and release checks remain pending unless the checklist records direct evidence.
+It also adds an LLM-judge proxy (`src/evaluation/proxy-judge.ts`): the framework can run end to end with a model reviewer, but every proxy result is permanently stamped `evidenceClass: 'llm-proxy'` and `isProvisional`, and `assertHumanCertifiable` refuses to certify a release on proxy evidence.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,7 +66,7 @@ The authored artifacts `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `de
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The scaffold was derived from the completed Phase 001 synthesis and the parent phase map. Spec-kit Level 3 templates provide the document contract; phase-specific content replaces template placeholders. Implementation must proceed through the task and checklist gates.
+Implementation ran as dispatched worker packets on GPT-5.6 SOL through cli-codex — corpus and pilot, release-gate statistics, observability aggregation, the report generator, and the proxy reviewer — each verified against `npm run check` before the next. A read-only adversarial review on DeepSeek V4 Flash confirmed the non-inferiority, tier-separation, and pre-registration logic correct and surfaced five hardening items, all remediated. A live DeepSeek judge then scored blind comparisons end to end as a provisional demonstration.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -76,8 +76,9 @@ The scaffold was derived from the completed Phase 001 synthesis and the parent p
 
 | Decision | Why |
 |----------|-----|
-| Propose deterministic safety plus a pre-registered, powered, blind human non-inferiority protocol | It separates a variance pilot from release proof and prevents inconclusive or tier-mixed evidence from passing. |
-| Keep implementation status Draft | No code, runtime integration, provider call, or implementation test has been completed in this phase. |
+| Deterministic safety plus a pre-registered blind human non-inferiority gate | It separates absolute fidelity from subjective quality and resists provider and expectation bias. |
+| Carry an evidence-provenance label through every rating, decision, and report | An automated or LLM-judge run must never be counted as the human non-inferiority pass. |
+| Keep evaluation content-free with rotating keyed correlation | Improving the system must never expose a user's prompts, candidates, or protected spans. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,10 +88,14 @@ The scaffold was derived from the completed Phase 001 synthesis and the parent p
 
 | Check | Result |
 |-------|--------|
-| Level 3 document inventory | Required as the scaffold handoff gate |
-| Phase-specific placeholder scan | Required as the scaffold handoff gate |
-| Strict packet validation | Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/cli-external-orchestration/035-improved-communication/007-evaluation-and-observability --strict` before handoff |
-| Implementation tests | Not run; implementation has not started |
+| Package gate | PASS: typecheck, build, 52 files and 247 tests, import smoke |
+| Second-model adversarial review | PASS after remediation: 0 P0, 0 P1, 5 P2 found and fixed |
+| Statistical correctness | Confirmed by review: CI lower bound vs frozen margin; inconclusive-at-cap fails |
+| Privacy and redaction | PASS: plaintext, base64, and byte-array canary scans; keyed digests |
+| Live LLM-judge demo | PASS (provisional): a real DeepSeek judge scored blind comparisons; result stamped `llm-proxy` / provisional |
+| Deterministic gate | PASS: test files run serially so benchmarks measure without contention |
+| Strict packet validation | PASS: Phase 007 strict and parent recursive strict, zero errors |
+| Implementation checkpoint | `ffce7901a2` (series 65e814fae1 through ffce7901a2) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -98,8 +103,7 @@ The scaffold was derived from the completed Phase 001 synthesis and the parent p
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Implementation absent**: All code, tests, integrations, packaging, and runtime behavior described here remain to be built.
-2. **Proposed paths**: Package paths may be refined during boundary preflight, but the phase scope and contracts are frozen unless the parent map is explicitly revised.
-3. **External drift**: Runtime and provider capabilities must be revalidated against pinned versions before release.
-4. **Approval pending**: The architecture decision remains Proposed; no implementation task may start until project-owner approval is recorded.
+1. **Human study is the real release gate**: SC-002 and SC-003 require an operator-run powered blind study with at least three independent human reviewers and owner-approved protocol parameters and frozen margins. The framework executes and enforces this gate; the study itself is not run here.
+2. **The LLM-judge demo is provisional only**: it exercises the plumbing with a real model reviewer and is permanently marked non-human; it must never be presented as release evidence.
+3. **Operational metrics need live runs**: latency and cost figures are populated by real provider and runtime execution, which belongs to Phase 008 packaging validation.
 <!-- /ANCHOR:limitations -->

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/035-improved-communication/010-adjacent-span-coalescing",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/010-adjacent-span-coalescing",
+  "parent_id": "cli-external-orchestration/035-improved-communication",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "adjacent-span-coalescing",
+      "adjacent span coalescing",
+      "protected marker inflation",
+      "projection quality",
+      "implementation plan",
+      "tasks",
+      "implementation",
+      "verification checklist",
+      "quality gate",
+      "architecture decision",
+      "model-facing representation"
+    ],
+    "key_topics": [
+      "adjacent-span-coalescing",
+      "adjacent",
+      "span",
+      "coalescing",
+      "protected",
+      "marker",
+      "inflation",
+      "projection",
+      "quality",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Span Coalescing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Immutable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`collectProtectedRanges` includes structural blocks, commands, list markers, links, URLs, flags, hashes, variables, numbers, and identifiers; ranges are overlap-filtered but never merged",
+    "created_at": "2026-08-13T04:05:03.213Z",
+    "last_save_at": "2026-08-13T04:18:55.097Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:cd10c6f3bf5ace4539560f0a44625e33554e25bf18b5f098568c7ae93aa9ae76",
+    "source_doc_hashes": {
+      "spec.md": "d46c1d33355e0c45e38186f95be7fb093348bc8be1e604ffb7206b4366b79acb",
+      "plan.md": "c57839cebed464f0830611cab76f8e27158df0f9c2457a05df0ad7d47a8a0c02",
+      "tasks.md": "97810e6180ed217674d12a9d19a84e83cb715489ab75301b134d02d131b4324c",
+      "checklist.md": "8bd1ac39271f174c14bb525ba87990ec00488a67960a5ede0bf2b7d387b2a179",
+      "decision-record.md": "e8bba2da5131e0466885fa2933e260aeaeb5dbc31ce3ce070fb8faf9b36abe66"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

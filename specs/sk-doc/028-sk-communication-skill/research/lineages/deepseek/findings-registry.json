@@ -1,0 +1,293 @@
+{
+  "openQuestions": [
+    "Quality efficacy versus the deterministic baseline still requires a fixed-corpus comparison and human evidence."
+  ],
+  "resolvedQuestions": [
+    {
+      "question": "Why do rewrites underwhelm at the representation boundary?",
+      "answer": "The dialect tokenizes every protected range into an opaque ~48-char marker, the wire body is a two-message prompt, and the instruction asks the model to preserve facts/names/numbers/paths it can no longer see; the validator also accepts an unchanged echo via the restored.text === sourceText short-circuit.",
+      "iteration": 1,
+      "sources": ["packages/cli-communication-projection/src/fidelity/dialect.ts:134-288", "packages/cli-communication-projection/src/providers/adapters.ts:96-100", "packages/cli-communication-projection/src/fidelity/validator.ts:183-222"]
+    },
+    {
+      "question": "Which quality levers are wired versus gated fail-closed?",
+      "answer": "Temperature and thinking controls are gated fail-closed for the shipped DeepSeek preset (capabilities 'unknown'), so the reference-like profile returns exact-original before transport; the profile has no few-shot/token-rubric field; adjacent spans are not coalesced; no source-backed model quality tier exists.",
+      "iteration": 2,
+      "sources": ["packages/cli-communication-projection/src/providers/controls.ts:100-116", "packages/cli-communication-projection/src/providers/presets.ts:171-179", "packages/cli-communication-projection/src/contracts/prompt.ts:21-32", "packages/cli-communication-projection/src/fidelity/dialect.ts:37-46,265-288"]
+    },
+    {
+      "question": "Is the meaning-preservation judge wired into the provider/runtime/render path?",
+      "answer": "No: executeProviderRoute returns a candidate and decideRender consumes a validation result, neither invoking the judge; evaluateFidelityVeto hard-disables it; the judge sees restored plaintext (a second egress if hosted); the offline proxy reviewer is provisional evidence, not a runtime validator.",
+      "iteration": 3,
+      "sources": ["packages/cli-communication-projection/src/providers/executor.ts:110-138", "packages/cli-communication-projection/src/fidelity/validator.ts:229-244,315-370", "packages/cli-communication-projection/src/evaluation/fidelity-veto.ts:30-50", "packages/cli-communication-projection/src/evaluation/proxy-judge.ts:32-58"]
+    },
+    {
+      "question": "Is local-tokenize -> model -> restore the right architecture?",
+      "answer": "The primitive is the right security boundary but whole-message projection is the wrong granularity; the payload is raw text and the Codex adapter references canonical text IDs, so a hybrid deterministic skeleton plus bounded prose slots is the best fit; semantic diff is a safety gate, not a renderer; Codex is the only full-projection path.",
+      "iteration": 4,
+      "sources": ["packages/cli-communication-projection/src/core/assembly-output.ts:66-99", "packages/cli-communication-projection/src/runtimes/codex.ts:271-294,116-135", "packages/cli-communication-projection/src/fidelity/semantics.ts:61-107", "packages/cli-communication-projection/src/clients/types.ts:101-105"]
+    },
+    {
+      "question": "Does projection earn its complexity over deterministic formatting?",
+      "answer": "Conditionally: complex multi-sentence user-facing warnings, caveats, consequences, and recovery explanations justify a deterministic-first hybrid; short/structured messages stay deterministic/native; release requires human non-inferiority; rollback makes the safe-native experiment reversible.",
+      "iteration": 5,
+      "sources": [".opencode/skills/sk-communication/SKILL.md:33-40,132-135", "packages/cli-communication-projection/docs/runbook.md:19-21", "packages/cli-communication-projection/docs/rollback.md:1-37"]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f1-broad-protection",
+      "title": "Protection covers structure, not just values",
+      "summary": "collectProtectedRanges protects fenced code, tables, headings, commands, list markers, links, URLs, paths, quoted literals, variables, flags, hashes, identifiers, and numbers; accepted ranges are only overlap-filtered, never merged.",
+      "iteration": 1,
+      "sources": ["packages/cli-communication-projection/src/fidelity/dialect.ts:134-288"]
+    },
+    {
+      "id": "f1-opaque-token",
+      "title": "Every span becomes a ~48-char opaque placeholder",
+      "summary": "createToken emits ⟦pcp:v1:{24-hex-namespace}:{index}:{12-hex-digest}⟧ with no readable semantics; the model must reproduce each exactly once in order.",
+      "iteration": 1,
+      "sources": ["packages/cli-communication-projection/src/fidelity/protected-spans.ts:396-415"]
+    },
+    {
+      "id": "f1-two-message-body",
+      "title": "Wire body is one system + one user message",
+      "summary": "messages() sends systemInstruction plus the whole encoded text; no token inventory, schema, or examples.",
+      "iteration": 1,
+      "sources": ["packages/cli-communication-projection/src/providers/adapters.ts:96-100"]
+    },
+    {
+      "id": "f1-prompt-token-mismatch",
+      "title": "Prompt describes values the model cannot see",
+      "summary": "The instruction says 'keep every fact, name, number, and file path', but those values are already opaque ⟦pcp:v1:...⟧ tokens; the model is never told how to treat the placeholders.",
+      "iteration": 1,
+      "sources": ["packages/cli-communication-projection/test/fixtures/prompt-profiles.json:13-56"]
+    },
+    {
+      "id": "f1-echo-shortcircuit",
+      "title": "Unchanged echo is accepted without quality check",
+      "summary": "The Markdown-structure and semantic-veto stages run only inside if (restored.text !== sourceText), so a verbatim echo skips every readability/meaning check and is accepted.",
+      "iteration": 1,
+      "sources": ["packages/cli-communication-projection/src/fidelity/validator.ts:183-222"]
+    },
+    {
+      "id": "f1-strict-restore",
+      "title": "Restoration is fail-closed on any token deviation",
+      "summary": "duplicate, changed, unexpected, missing, or reordered tokens all reject; token granularity therefore trades directly against model usability.",
+      "iteration": 1,
+      "sources": ["packages/cli-communication-projection/src/fidelity/protected-spans.ts:133-181"]
+    },
+    {
+      "id": "f2-control-gate",
+      "title": "DeepSeek temperature/thinking gated fail-closed",
+      "summary": "baseCapabilities(true) marks temperature/thinking 'unknown'; compilePromptControls requires state 'yes' + confidence 'confirmed', so the shipped preset + reference-like profile returns unsupported('temperature') and exact-original before transport.",
+      "iteration": 2,
+      "sources": ["packages/cli-communication-projection/src/providers/presets.ts:171-179", "packages/cli-communication-projection/src/providers/controls.ts:100-116", "packages/cli-communication-projection/src/providers/executor.ts:150-185"]
+    },
+    {
+      "id": "f2-no-examples-field",
+      "title": "Prompt profile has no few-shot/rubric field",
+      "summary": "PromptProfileRecord has promptVersion, systemInstruction, copyEditingScope, protectedValuePolicyVersion, temperature, thinkingMode, providerControlMappings, unsupportedControlBehavior — no examples or token contract.",
+      "iteration": 2,
+      "sources": ["packages/cli-communication-projection/src/contracts/prompt.ts:21-32"]
+    },
+    {
+      "id": "f2-adjacent-inflation",
+      "title": "Adjacent spans are not coalesced",
+      "summary": "addRange only overlap-filters; each inline regex emits its own token, so a flag + number + path in one clause become three ~48-char tokens with no adjacent-span context.",
+      "iteration": 2,
+      "sources": ["packages/cli-communication-projection/src/fidelity/dialect.ts:37-46,265-288"]
+    },
+    {
+      "id": "f2-smoke-not-reproducible",
+      "title": "Live smoke is not reproducible through shipped preset",
+      "summary": "The smoke's modest rewrite implies fresh confirmed capability evidence (or a distinct profile) that is not checked into the package; the exact-original short-circuit otherwise fires first.",
+      "iteration": 2,
+      "sources": ["packages/cli-communication-projection/src/providers/controls.ts:71-76"]
+    },
+    {
+      "id": "f3-no-runtime-judge",
+      "title": "Optional meaning judge is not composed into rendering",
+      "summary": "executeProviderRoute returns a candidate, decideRender consumes a validation result; no production source connects the candidate to validateProjectionCandidate with judgeMode required.",
+      "iteration": 3,
+      "sources": ["packages/cli-communication-projection/src/providers/executor.ts:110-138", "packages/cli-communication-projection/src/render/decision.ts:40-91"]
+    },
+    {
+      "id": "f3-veto-disables-judge",
+      "title": "Evaluation fidelity veto disables the judge",
+      "summary": "evaluateFidelityVeto calls validateProjectionCandidate with judgeMode 'disabled', so the deterministic evaluation lane never exercises the meaning judge.",
+      "iteration": 3,
+      "sources": ["packages/cli-communication-projection/src/evaluation/fidelity-veto.ts:30-50"]
+    },
+    {
+      "id": "f3-judge-plaintext",
+      "title": "Judge seam receives restored plaintext values",
+      "summary": "runJudge passes sourceText (decoded) and restored.text (restored candidate), so a hosted judge would be a second egress of real protected values.",
+      "iteration": 3,
+      "sources": ["packages/cli-communication-projection/src/fidelity/validator.ts:175-181,317-357"]
+    },
+    {
+      "id": "f3-semantics-restored",
+      "title": "Semantic veto operates on restored text",
+      "summary": "compareSemanticMeaning runs after restoration, so protected numbers/identifiers are already guaranteed; the veto can only catch prose-level drift, never awkwardness, verbosity, or a barely-changed rewrite.",
+      "iteration": 3,
+      "sources": ["packages/cli-communication-projection/src/fidelity/semantics.ts:61-107"]
+    },
+    {
+      "id": "f3-proxy-provisional",
+      "title": "Offline proxy reviewer is provisional evidence",
+      "summary": "scoreMaskedReviewPacketWithProxy returns evidenceClass 'llm-proxy'; assertHumanCertifiable throws on proxy evidence, so it can rank profiles/models but never authorize a release.",
+      "iteration": 3,
+      "sources": ["packages/cli-communication-projection/src/evaluation/proxy-judge.ts:32-58", "packages/cli-communication-projection/src/evaluation/types.ts:28-38"]
+    },
+    {
+      "id": "f4-raw-text-payload",
+      "title": "Projection payload is raw text, not typed fields",
+      "summary": "completeAssembly decodes the final assistant message's exact bytes to text; EventEnvelope.payload is an opaque JsonObject and the Codex adapter maps content to canonical references (textOriginalId, toolInputOriginalId, toolResultOriginalId).",
+      "iteration": 4,
+      "sources": ["packages/cli-communication-projection/src/core/assembly-output.ts:66-99", "packages/cli-communication-projection/src/runtimes/codex.ts:271-294"]
+    },
+    {
+      "id": "f4-deterministic-substrate",
+      "title": "Typed event envelope supports a deterministic shell",
+      "summary": "EventEnvelope carries typed kind, phase, terminalStatus, order coordinates, and canonical refs, so a deterministic renderer can format the shell of typed status/error/lifecycle messages without a model.",
+      "iteration": 4,
+      "sources": ["packages/cli-communication-projection/src/contracts/event.ts:52-87", "packages/cli-communication-projection/src/core/assembler.ts:122-260"]
+    },
+    {
+      "id": "f4-hybrid-fit",
+      "title": "Hybrid skeleton + prose slots fits the boundaries",
+      "summary": "A deterministic skeleton for the structured shell plus bounded locally-protected prose slots for raw-text regions concentrates model work where it helps and reduces opaque-token burden; the primitive stays as the security boundary.",
+      "iteration": 4,
+      "sources": ["packages/cli-communication-projection/src/core/assembly-output.ts:66-99", "packages/cli-communication-projection/src/clients/types.ts:101-105"]
+    },
+    {
+      "id": "f4-codex-only-full-projection",
+      "title": "Codex is the only full-projection path",
+      "summary": "CodexCapabilityRecords marks completeMessage and atomicRenderDecision CONFIRMED_YES but append and sidecar CONFIRMED_NO; full-projection parity requires ownsCompleteMessage && ownsAtomicRenderDecision.",
+      "iteration": 4,
+      "sources": ["packages/cli-communication-projection/src/runtimes/codex.ts:116-135", "packages/cli-communication-projection/src/clients/types.ts:101-105"]
+    },
+    {
+      "id": "f5-deterministic-first",
+      "title": "Deterministic formatting should own short and structured messages",
+      "summary": "Short statuses, typed lifecycle events, command/result summaries, raw tool data, secret-heavy diagnostics, and incomplete streams have little incremental readability value from a model and should default to native/deterministic or exact-original.",
+      "iteration": 5,
+      "sources": ["packages/cli-communication-projection/src/contracts/event.ts:52-87", "packages/cli-communication-projection/src/clients/types.ts:101-105"]
+    },
+    {
+      "id": "f5-human-evidence",
+      "title": "Release requires human non-inferiority evidence",
+      "summary": "Runbook step 8 requires a powered, blinded HUMAN non-inferiority study; proxy/synthetic scores are diagnostic only and assertHumanCertifiable throws on llm-proxy evidence.",
+      "iteration": 5,
+      "sources": ["packages/cli-communication-projection/docs/runbook.md:19-21", "packages/cli-communication-projection/src/evaluation/types.ts:28-38"]
+    },
+    {
+      "id": "f5-reversible-rollout",
+      "title": "Provider-free rollback makes safe-native rollout reversible",
+      "summary": "Rollback disables projections, selects OriginalOnlyEmergencyMode, reinstalls the previous exact tarball offline, and verifies the canonical transcript digest — no provider call, no canonical mutation.",
+      "iteration": 5,
+      "sources": ["packages/cli-communication-projection/docs/rollback.md:1-37"]
+    },
+    {
+      "id": "f5-durable-excluded",
+      "title": "Durable content is out of scope",
+      "summary": "The skill's WHEN NOT TO USE excludes rewriting durable Markdown or on-disk files; value is bounded to transient display of a terminal message.",
+      "iteration": 5,
+      "sources": [".opencode/skills/sk-communication/SKILL.md:33-40"]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Relax token identity/order/count checks",
+      "reason": "Exact ordered restoration is the fail-closed privacy/fidelity boundary.",
+      "iteration": 1,
+      "source": "packages/cli-communication-projection/src/fidelity/protected-spans.ts:133-181"
+    },
+    {
+      "direction": "Treat the two-message wire body as a sufficient prompt",
+      "reason": "It carries no token contract or examples.",
+      "iteration": 1,
+      "source": "packages/cli-communication-projection/src/providers/adapters.ts:96-100"
+    },
+    {
+      "direction": "Assume temperature alone fixes readability",
+      "reason": "Temperature cannot be applied through the shipped DeepSeek preset without fresh confirmed capability evidence.",
+      "iteration": 2,
+      "source": "packages/cli-communication-projection/src/providers/controls.ts:100-116"
+    },
+    {
+      "direction": "Assume a model-tier upgrade is source-confirmed",
+      "reason": "No package source establishes a quality ranking across tiers.",
+      "iteration": 2,
+      "source": "packages/cli-communication-projection/src/providers/presets.ts:43-84"
+    },
+    {
+      "direction": "Treat evaluateFidelityVeto as meaning-judge wiring",
+      "reason": "It hard-codes judgeMode 'disabled'.",
+      "iteration": 3,
+      "source": "packages/cli-communication-projection/src/evaluation/fidelity-veto.ts:30-50"
+    },
+    {
+      "direction": "Use the masked LLM proxy reviewer as the runtime meaning gate",
+      "reason": "It is comparative provisional evidence, not a privacy-scoped reject-only validator.",
+      "iteration": 3,
+      "source": "packages/cli-communication-projection/src/evaluation/proxy-judge.ts:32-58"
+    },
+    {
+      "direction": "Call a hosted judge after restoration",
+      "reason": "It would egress restored plaintext values as a second boundary.",
+      "iteration": 3,
+      "source": "packages/cli-communication-projection/src/fidelity/validator.ts:175-181,317-357"
+    },
+    {
+      "direction": "Replace local restoration with remote structured rendering",
+      "reason": "It moves exactness/privacy across the provider boundary without solving arbitrary assistant prose.",
+      "iteration": 4,
+      "source": "packages/cli-communication-projection/src/fidelity/protected-spans.ts:70-114"
+    },
+    {
+      "direction": "Assume event kind alone supports universal templates",
+      "reason": "The projected body is raw text, not typed fields.",
+      "iteration": 4,
+      "source": "packages/cli-communication-projection/src/runtimes/codex.ts:271-294"
+    },
+    {
+      "direction": "Use semantic diff as a readability generator",
+      "reason": "It is a deterministic rejection/diagnostic layer.",
+      "iteration": 4,
+      "source": "packages/cli-communication-projection/src/fidelity/semantics.ts:61-107"
+    },
+    {
+      "direction": "Enable projection for every message",
+      "reason": "Short/structured output has little incremental value while each model route adds latency, provider, validation, and fallback cost.",
+      "iteration": 5,
+      "source": "packages/cli-communication-projection/src/contracts/event.ts:52-87"
+    },
+    {
+      "direction": "Use hosted routing as a default quality upgrade",
+      "reason": "It requires consent and fresh privacy evidence, with no source-backed provider/tier winner.",
+      "iteration": 5,
+      "source": "packages/cli-communication-projection/docs/privacy.md:7-32"
+    },
+    {
+      "direction": "Treat proxy/synthetic/injected evidence as product-value proof",
+      "reason": "Release requires a powered blinded human non-inferiority study.",
+      "iteration": 5,
+      "source": "packages/cli-communication-projection/docs/runbook.md:19-21"
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 1,
+    "resolvedQuestions": 5,
+    "keyFindings": 23,
+    "convergenceScore": 0.37,
+    "coverageBySources": { "sourceFiles": 22, "sourceFamilies": 10 }
+  },
+  "sessionId": "fanout-deepseek-1786568849119-wn6hux",
+  "generation": 1,
+  "status": "complete",
+  "lastIteration": 5,
+  "nextFocus": "No further loop; future work is the fixed-corpus quality and human non-inferiority validation described in research.md."
+}

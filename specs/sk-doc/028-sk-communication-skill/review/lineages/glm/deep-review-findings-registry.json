@@ -1,0 +1,165 @@
+{
+  "sessionId": "fanout-glm-1786554114570-0u7w7m",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Skill advertises non-existent ./clients package subpath export; bidirectional export-map drift",
+      "file": ".opencode/skills/sk-communication/SKILL.md",
+      "line": 130,
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "leafRoots includes missing assets/ directory",
+      "file": ".opencode/skills/sk-communication/leaf-manifest.config.json",
+      "line": 6,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "OpenCode Go retention deadline dual-sourced between skill prose and package code",
+      "file": ".opencode/skills/sk-communication/SKILL.md",
+      "line": 152,
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "T005 completion evidence lacks advisor-run transcript",
+      "file": "specs/sk-doc/028-sk-communication-skill/tasks.md",
+      "line": 68,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Placeholder session_dedup fingerprints in packet docs",
+      "file": "specs/sk-doc/028-sk-communication-skill/spec.md",
+      "line": 23,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "COMM-001 catalog cross-ref maps to a privacy feature, not an advisor-routing feature",
+      "file": ".opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 130,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Benchmark README still contains scaffold TODO",
+      "file": ".opencode/skills/sk-communication/benchmark/README.md",
+      "line": 19,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Five catalog features lack playbook scenario coverage",
+      "file": ".opencode/skills/sk-communication/feature-catalog/feature-catalog.md",
+      "line": 1,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Sibling-edge drift between SKILL.md and graph-metadata.json",
+      "file": ".opencode/skills/sk-communication/SKILL.md",
+      "line": 183,
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 7
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.82,
+  "graphConvergenceScore": 0,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}
