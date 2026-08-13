@@ -35,19 +35,19 @@ When every lane passes, the returned manifest and decision are `release-ready` a
 
 | File | Layer | Role |
 |---|---|---|
-| `packages/cli-communication-projection/src/release/release-gate.ts` | Handler | Evaluates every dated evidence lane and returns release readiness. |
-| `packages/cli-communication-projection/src/release/evidence.ts` | Shared | Defines manifest lanes, abort reasons, and readiness decisions. |
-| `packages/cli-communication-projection/src/release/support-matrix.ts` | Shared | Publishes dated support rows and freshness assessments. |
-| `packages/cli-communication-projection/src/release/rollback.ts` | Handler | Builds provider-free original-only rollback plans. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/release/release-gate.ts` | Handler | Evaluates every dated evidence lane and returns release readiness. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/release/evidence.ts` | Shared | Defines manifest lanes, abort reasons, and readiness decisions. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/release/support-matrix.ts` | Shared | Publishes dated support rows and freshness assessments. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/release/rollback.ts` | Handler | Builds provider-free original-only rollback plans. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `packages/cli-communication-projection/test/release/release-gate.test.ts` | Unit | Covers required evidence lanes, staleness, provisional evidence, and approval. |
-| `packages/cli-communication-projection/test/release/support-matrix.test.ts` | Unit | Verifies support rows, digests, and freshness decisions. |
-| `packages/cli-communication-projection/test/release/rollback.test.ts` | Unit | Verifies rollback ordering, original-only mode, and immutable-state checks. |
-| `packages/cli-communication-projection/test/release/rehearsal.test.ts` | Integration | Exercises the deterministic multi-runtime release rehearsal. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/release/release-gate.test.ts` | Unit | Covers required evidence lanes, staleness, provisional evidence, and approval. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/release/support-matrix.test.ts` | Unit | Verifies support rows, digests, and freshness decisions. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/release/rollback.test.ts` | Unit | Verifies rollback ordering, original-only mode, and immutable-state checks. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/release/rehearsal.test.ts` | Integration | Exercises the deterministic multi-runtime release rehearsal. |
 
 ---
 

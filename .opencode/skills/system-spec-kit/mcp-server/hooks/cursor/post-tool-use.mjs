@@ -29,6 +29,9 @@
 
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
+// Repo-root-relative (this file's real home is under system-spec-kit; Node
+// resolves relative imports against the realpath, not the hub symlink).
+import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -95,6 +98,9 @@ function parseShellToolOutput(rawToolOutput) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  // Kill-switch gate matching the sibling adapters (e.g. the Cursor
+  // mcp-route-guard proxy): a disabled concern makes the whole proxy a no-op.
+  if (!isHookEnabled('dispatch')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

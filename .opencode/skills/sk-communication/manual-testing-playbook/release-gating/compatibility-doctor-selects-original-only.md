@@ -37,13 +37,13 @@ Unknown or incompatible runtime facts must degrade safely. Continuing with proje
 
 ### Exact Command Sequence
 
-1. Change directory to `packages/cli-communication-projection/`.
+1. Change directory to `.opencode/skills/sk-communication/cli-communication-projection/`.
 2. Run `npm run test -- test/doctor/doctor.test.ts -t "selects original-only whenever a critical check blocks"`.
 3. Capture the exit status and focused-test summary.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| COMM-007 | Compatibility doctor selects original-only | Prove incompatible protocol evidence fails closed. | `Run the compatibility doctor against an incompatible protocol major and verify it selects original-only, then return PASS or FAIL with evidence.` | 1. `bash: cd packages/cli-communication-projection` -> 2. `package: npm run test -- test/doctor/doctor.test.ts -t "selects original-only whenever a critical check blocks"` -> 3. Capture exit status and focused-test summary. | Exit zero; one focused test passes; test assertions require a `blocked` overall decision and `original-only` route selection. | Command transcript, exit status, passing test name, and asserted outcome fields. | PASS if all signals match; FAIL if the command fails or the doctor does not select original-only; SKIP only if Node or installed dependencies are unavailable. | 1. Rerun the complete doctor test file; 2. inspect the mutated protocol version fixture; 3. inspect compatibility check severity; 4. inspect route derivation in `doctor.ts`. |
+| COMM-007 | Compatibility doctor selects original-only | Prove incompatible protocol evidence fails closed. | `Run the compatibility doctor against an incompatible protocol major and verify it selects original-only, then return PASS or FAIL with evidence.` | 1. `bash: cd .opencode/skills/sk-communication/cli-communication-projection` -> 2. `package: npm run test -- test/doctor/doctor.test.ts -t "selects original-only whenever a critical check blocks"` -> 3. Capture exit status and focused-test summary. | Exit zero; one focused test passes; test assertions require a `blocked` overall decision and `original-only` route selection. | Command transcript, exit status, passing test name, and asserted outcome fields. | PASS if all signals match; FAIL if the command fails or the doctor does not select original-only; SKIP only if Node or installed dependencies are unavailable. | 1. Rerun the complete doctor test file; 2. inspect the mutated protocol version fixture; 3. inspect compatibility check severity; 4. inspect route derivation in `doctor.ts`. |
 
 ### Evidence Review
 
@@ -64,9 +64,9 @@ The report's blocking status is necessary but not sufficient; evidence must also
 
 | File | Role |
 |---|---|
-| [Compatibility doctor](../../../../../packages/cli-communication-projection/src/doctor/doctor.ts) | Runs checks and derives route selection. |
-| [Doctor checks](../../../../../packages/cli-communication-projection/src/doctor/checks.ts) | Version, capability, reachability, privacy, and tier checks. |
-| [Doctor tests](../../../../../packages/cli-communication-projection/test/doctor/doctor.test.ts) | Ready, degraded, blocking, and malformed-input outcomes. |
+| [Compatibility doctor](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/doctor/doctor.ts) | Runs checks and derives route selection. |
+| [Doctor checks](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/doctor/checks.ts) | Version, capability, reachability, privacy, and tier checks. |
+| [Doctor tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/doctor/doctor.test.ts) | Ready, degraded, blocking, and malformed-input outcomes. |
 
 ---
 

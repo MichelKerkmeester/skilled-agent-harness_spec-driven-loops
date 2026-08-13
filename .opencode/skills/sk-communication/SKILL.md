@@ -9,7 +9,7 @@ version: 1.0.0.0
 
 # Communication Projection
 
-Make supported CLI and agent output read like careful plain English, across Claude, Codex, Pi, OpenCode, Devin, and Cursor, while leaving the canonical event stream, transcript, tool data, and model context byte-for-byte unchanged. Every unsafe or failed path returns the exact original. The implementation is the `@portable-cli/communication-projection` package under `packages/cli-communication-projection/`; this skill routes you to the right part of it and enforces its invariants.
+Make supported CLI and agent output read like careful plain English, across Claude, Codex, Pi, OpenCode, Devin, and Cursor, while leaving the canonical event stream, transcript, tool data, and model context byte-for-byte unchanged. Every unsafe or failed path returns the exact original. The implementation is the `@portable-cli/communication-projection` package under `.opencode/skills/sk-communication/cli-communication-projection/`; this skill routes you to the right part of it and enforces its invariants.
 
 ---
 
@@ -57,7 +57,7 @@ The capability is one package split by responsibility. Route to the subsystem th
 
 ### Resource Domains
 
-- The package itself under `packages/cli-communication-projection/` is the primary resource; its `docs/` folder holds install, configuration, privacy, support-matrix, rollback, and runbook guidance.
+- The package itself under `.opencode/skills/sk-communication/cli-communication-projection/` is the primary resource; its `docs/` folder holds install, configuration, privacy, support-matrix, rollback, and runbook guidance.
 - The design and requirements history lives in the spec epic under `specs/cli-external-orchestration/035-improved-communication/`.
 
 ### Loading Levels
@@ -149,7 +149,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 - Return the exact original bytes on any unsupported, unsafe, timed-out, cancelled, or failed path.
 - Make every runtime path declare full-projection or safe-native, and keep the two separate in any parity claim.
 - Keep telemetry content-free: reason codes only, never raw transcript, prompt, candidate, protected-span, or credential values; correlate with rotating keyed digests.
-- Revalidate OpenCode Go retention and training facts before the OpenCode Go preset's `expiresAt` (`packages/cli-communication-projection/src/providers/presets.ts`) and again at every release; a stale hosted-privacy fact blocks hosted routing.
+- Revalidate OpenCode Go retention and training facts before the OpenCode Go preset's `expiresAt` (`.opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts`) and again at every release; a stale hosted-privacy fact blocks hosted routing.
 
 ### ❌ NEVER
 
@@ -171,8 +171,8 @@ Run the package's authoritative gate from the package directory: `npm run check`
 ### Core
 
 - `references/package-map.md` — the subsystem-to-path map and the public entry points; the smart router loads it.
-- `packages/cli-communication-projection/` — the implementation; read `src/<subsystem>/index.ts` for the public surface.
-- `packages/cli-communication-projection/docs/` — install, configuration, privacy, support-matrix, rollback, and runbook.
+- `.opencode/skills/sk-communication/cli-communication-projection/` — the implementation; read `src/<subsystem>/index.ts` for the public surface.
+- `.opencode/skills/sk-communication/cli-communication-projection/docs/` — install, configuration, privacy, support-matrix, rollback, and runbook.
 
 ### Deep Detail
 

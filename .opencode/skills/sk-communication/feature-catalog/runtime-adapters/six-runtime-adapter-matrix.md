@@ -35,24 +35,24 @@ Capability records derive presentation tier from dated evidence. A path is `full
 
 | File | Layer | Role |
 |---|---|---|
-| `packages/cli-communication-projection/src/runtimes/adapter.ts` | Shared | Defines mapping, presentation, and reusable conformance contracts. |
-| `packages/cli-communication-projection/src/runtimes/capability.ts` | Shared | Derives tiers and applies fail-closed major-version compatibility. |
-| `packages/cli-communication-projection/src/runtimes/matrix.ts` | Handler | Publishes and resolves the consolidated path capability matrix. |
-| `packages/cli-communication-projection/src/runtimes/claude.ts` | Handler | Maps Claude headless and interactive paths. |
-| `packages/cli-communication-projection/src/runtimes/codex.ts` | Handler | Maps the Codex App Server client path. |
-| `packages/cli-communication-projection/src/runtimes/pi.ts` | Handler | Maps Pi JSON-RPC and synchronous display paths. |
-| `packages/cli-communication-projection/src/runtimes/opencode.ts` | Handler | Maps the OpenCode server and SSE stable-client path. |
-| `packages/cli-communication-projection/src/runtimes/devin.ts` | Handler | Maps the Devin ACP client path. |
-| `packages/cli-communication-projection/src/runtimes/cursor.ts` | Handler | Maps the Cursor ACP client path. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/runtimes/adapter.ts` | Shared | Defines mapping, presentation, and reusable conformance contracts. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/runtimes/capability.ts` | Shared | Derives tiers and applies fail-closed major-version compatibility. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/runtimes/matrix.ts` | Handler | Publishes and resolves the consolidated path capability matrix. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/runtimes/claude.ts` | Handler | Maps Claude headless and interactive paths. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/runtimes/codex.ts` | Handler | Maps the Codex App Server client path. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/runtimes/pi.ts` | Handler | Maps Pi JSON-RPC and synchronous display paths. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/runtimes/opencode.ts` | Handler | Maps the OpenCode server and SSE stable-client path. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/runtimes/devin.ts` | Handler | Maps the Devin ACP client path. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/runtimes/cursor.ts` | Handler | Maps the Cursor ACP client path. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `packages/cli-communication-projection/test/runtimes/conformance.test.ts` | Integration | Runs shared invariants across every runtime adapter. |
-| `packages/cli-communication-projection/test/runtimes/matrix.test.ts` | Unit | Verifies capability tiers and compatibility resolution. |
-| `packages/cli-communication-projection/test/runtimes/smoke.test.ts` | Integration | Exercises the supported runtime paths end to end with fixtures. |
-| `packages/cli-communication-projection/test/contracts/runtime-fixtures.test.ts` | Fixture | Validates runtime fixture metadata and portable event mappings. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/runtimes/conformance.test.ts` | Integration | Runs shared invariants across every runtime adapter. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/runtimes/matrix.test.ts` | Unit | Verifies capability tiers and compatibility resolution. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/runtimes/smoke.test.ts` | Integration | Exercises the supported runtime paths end to end with fixtures. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/contracts/runtime-fixtures.test.ts` | Fixture | Validates runtime fixture metadata and portable event mappings. |
 
 ---
 

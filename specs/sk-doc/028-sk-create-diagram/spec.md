@@ -11,15 +11,16 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-create-diagram"
-    last_updated_at: "2026-08-13T06:00:00.000Z"
+    last_updated_at: "2026-08-13T17:15:00.000Z"
     last_updated_by: "claude"
-    recent_action: "Phase 015 deprecated sk-create-flowchart fully (deleted, not redirected)"
-    next_safe_action: "Hand back to the user for review/merge decision on worktree branch sk-doc/0145-sk-create-diagram"
+    recent_action: "All 16 phases complete; packet closed"
+    next_safe_action: "None — packet complete and closed"
     blockers: []
     key_files:
       - "spec.md"
       - "001-inventory-and-skill-contract/decision-record.md"
       - "015-flowchart-deprecation/implementation-summary.md"
+      - "016-command-mirror-restoration/implementation-summary.md"
       - "../../../.opencode/skills/sk-doc/sk-create-diagram/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -51,9 +52,9 @@ _memory:
 |-------|-------|
 | **Level** | Phase parent |
 | **Priority** | P2 |
-| **Status** | Complete — all 15 phases shipped; phase 013 ran a 10-iteration multi-model deep review (CONDITIONAL, 4 P1), phase 014 resolved every P1 finding, and phase 015 fully deprecated (deleted, not redirected) the superseded `sk-create-flowchart` skill |
+| **Status** | Complete and closed — all 16 phases shipped; phase 013 ran a 10-iteration multi-model deep review (CONDITIONAL, 4 P1), phase 014 resolved every P1 finding, phase 015 fully deprecated (deleted, not redirected) the superseded `sk-create-flowchart` skill, and phase 016 restored 3 dangling symlinks from an unrelated earlier incident and completed diagram's cross-runtime command mirrors |
 | **Created** | 2026-08-12 |
-| **Branch** | `sk-doc/0145-sk-create-diagram` (worktree `.worktrees/0145-sk-doc-sk-create-diagram`) |
+| **Branch** | `skilled/v4.0.0.0` (phases 001-015 via worktree `sk-doc/0145-sk-create-diagram`; phase 016 direct commit under operator bypass authority) |
 | **Track** | `sk-doc` |
 | **Predecessor** | None |
 | **Successor** | `001-inventory-and-skill-contract` |
@@ -116,6 +117,7 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | `013-deep-review-grok-deepseek/` | Create | 013 | 10-iteration fan-out deep review (Grok 4.6 + deepseek-v4-flash), merged CONDITIONAL verdict |
 | `014-review-remediation/` | Create | 014 | All 4 P1 findings from the 013 review resolved, verified clean |
 | `015-flowchart-deprecation/` | Create | 015 | `sk-create-flowchart` fully deprecated: skill directory deleted, every command/prompt mirror deleted, all live hub/router/advisor/doc references purged or repointed at `sk-create-diagram` |
+| `016-command-mirror-restoration/` | Create | 016 | 3 dangling symlinks from an unrelated earlier bulk-sync incident restored; `/create:diagram`'s missing Codex/Pi/Cursor mirrors created — packet closeout |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -140,6 +142,7 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | 13 | `013-deep-review-grok-deepseek/` | 10-iteration fan-out deep review (Grok 4.6 + deepseek-v4-flash); merged CONDITIONAL verdict | Complete |
 | 14 | `014-review-remediation/` | Fix all 4 P1 findings from phase 013's review | Complete |
 | 15 | `015-flowchart-deprecation/` | Fully deprecate `sk-create-flowchart`: delete the skill and every command/prompt mirror, purge/repoint every live hub, router, advisor, and doc reference | Complete |
+| 16 | `016-command-mirror-restoration/` | Restore 3 dangling symlinks from an unrelated earlier incident; complete `/create:diagram`'s cross-runtime mirrors | Complete |
 
 ### Phase Transition Rules
 
@@ -167,7 +170,8 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | Phase 012 flowchart merge | Phase 013 deep review | `sk-create-diagram` routes both output formats; hub JSON + advisor index refreshed | Phase 012 checklist evidence |
 | Phase 013 deep review | Phase 014 remediation | Merged verdict recorded; headline finding independently confirmed real | Phase 013 checklist evidence |
 | Phase 014 remediation | Phase 015 flowchart deprecation | All 4 P1 findings resolved; `validate.sh --recursive --strict` clean for parent + all 14 children | Recorded command output in `014-review-remediation/implementation-summary.md` |
-| Phase 015 flowchart deprecation | Closeout | `sk-create-flowchart` fully removed; 0 live references remain outside historical spec docs; `validate.sh --recursive --strict` clean for parent + all 15 children | Recorded command output in `015-flowchart-deprecation/implementation-summary.md` |
+| Phase 015 flowchart deprecation | Phase 016 command mirror restoration | `sk-create-flowchart` fully removed; 0 live references remain outside historical spec docs; `validate.sh --recursive --strict` clean for parent + all 15 children | Recorded command output in `015-flowchart-deprecation/implementation-summary.md` |
+| Phase 016 command mirror restoration | Closeout | 0 dangling symlinks remain in the command/advisor scope; `/create:diagram` reachable from all 4 runtimes; `validate.sh --recursive --strict` clean for parent + all 16 children | Recorded command output in `016-command-mirror-restoration/implementation-summary.md` |
 <!-- /ANCHOR:phase-map -->
 
 ---

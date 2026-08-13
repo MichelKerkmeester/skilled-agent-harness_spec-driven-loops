@@ -19,7 +19,8 @@
     "sk-doc/028-sk-create-diagram/012-flowchart-capability-merge",
     "sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek",
     "sk-doc/028-sk-create-diagram/014-review-remediation",
-    "sk-doc/028-sk-create-diagram/015-flowchart-deprecation"
+    "sk-doc/028-sk-create-diagram/015-flowchart-deprecation",
+    "sk-doc/028-sk-create-diagram/016-command-mirror-restoration"
   ],
   "manual": {
     "depends_on": [],
@@ -114,17 +115,17 @@
     ],
     "causal_summary": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of editorial technical diagrams as self-contained HTML files with inline SVG — architecture, flowcharts, sequence, ER, Gantt, and more — plus draw.io/Mermaid import and PNG/SVG export",
     "created_at": "2026-08-12T05:43:11.000Z",
-    "last_save_at": "2026-08-13T05:55:33.000Z",
+    "last_save_at": "2026-08-13T17:15:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a2cc54b140f84266dbb2fabccb0690dfdc5bb3eb580d618120fff7c53f9fd483",
+    "source_fingerprint": "sha256:2460e253811cfe59f48e6b94989d81ecdf8b3568792698a534f059d700218d91",
     "source_doc_hashes": {
-      "spec.md": "ac721d30a362b0a32d0734753112b8d94744208ada44a60074e63faf99b78152"
+      "spec.md": "611fc5aadc21261a177216648c7d49c0d3659a1c2f535c44bf08b49546b37240"
     },
-    "last_active_child_id": "sk-doc/028-sk-create-diagram/015-flowchart-deprecation",
-    "last_active_at": "2026-08-13T05:55:33.000Z"
+    "last_active_child_id": "sk-doc/028-sk-create-diagram/016-command-mirror-restoration",
+    "last_active_at": "2026-08-13T17:15:00.000Z"
   }
 }

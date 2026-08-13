@@ -37,6 +37,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "research/research.md",
       "plan.md",
       "tasks.md",
       "spec.md",
@@ -45,6 +46,12 @@
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -182,17 +189,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
     "created_at": "2026-08-12T12:51:40.227Z",
-    "last_save_at": "2026-08-13T05:56:08.501Z",
+    "last_save_at": "2026-08-13T17:04:53.300Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,16 +202,18 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:6e92e1cf1deb978299cb33ae98e9b972fd6354507a76b3a2726ef82f4a765e26",
+    "source_fingerprint": "sha256:403510e5657d40eea847e1a1e941cdb9a5e75d85c037109bd134278d5337c229",
     "source_doc_hashes": {
-      "spec.md": "f0717bff088feb3a7bce8acabc19dc12ac9ef3fa9aeecf81c4a3820f63df874f",
-      "plan.md": "c27148d9c1d05e52a3ba72b7734512d87457e76cea66bcb65ed3cdf3afdb1d8a",
-      "tasks.md": "3bad17532f40c8b07ffe4c880d3d0d7b4046d4f09adddc4c9c1ec01ea2505cf8",
+      "spec.md": "d300f83117cbc1711edac1cf2baffbb7206f641bcb533522abe28a1f14befd8e",
+      "plan.md": "3e36aefbab416b91cd8fbf7141145ef5c24a377fb5882516658e0fb611df8b58",
+      "tasks.md": "4d6d9d504ede0eb6cc2faf8b54d199c804cc63c6da8afc73e8a206d70dbfed27",
       "checklist.md": "15935701d96aaa99264a4d655704fa92f1b6e788ae0c18a18363ceb6ad1f380a",
-      "decision-record.md": "1063f331e61b33cdb6e49817e037451334f00068eb07ca24227704bbd8f36a89",
-      "implementation-summary.md": "1b36248213a678a4fbe31819d00c1c8123ce6f484911d772b87414697ad1509f"
+      "decision-record.md": "3e521f23221c8325d4da28c842328a5aa85603d2686aaf6445d3eaf9c0ddd1e4",
+      "implementation-summary.md": "df9947a2c1a298e6b408bfad0ede082cfae6d560cd0f3840d2526e38851c11f3",
+      "research/research.md": "dd31944295aa48933d1a022dab903852758477b27182ceb14bac27afc0a9b583"
     },
     "last_active_child_id": null,
     "last_active_at": null

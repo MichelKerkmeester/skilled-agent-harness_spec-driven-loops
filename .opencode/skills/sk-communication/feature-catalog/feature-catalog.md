@@ -18,7 +18,7 @@ This document is the current feature inventory for the `sk-communication` skill 
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the shipped communication-projection surface. Each feature summary links to a per-feature reference with implementation and test anchors under `packages/cli-communication-projection/`.
+Use this catalog as the canonical inventory for the shipped communication-projection surface. Each feature summary links to a per-feature reference with implementation and test anchors under `.opencode/skills/sk-communication/cli-communication-projection/`.
 
 ---
 

@@ -35,19 +35,19 @@ After trusted unblinding, the gate applies absolute fidelity vetoes and computes
 
 | File | Layer | Role |
 |---|---|---|
-| `packages/cli-communication-projection/src/evaluation/preregistration.ts` | Shared | Freezes strata, margins, sample plans, reviewers, and stop rules. |
-| `packages/cli-communication-projection/src/evaluation/blinding.ts` | Handler | Builds identity-free review packets and trusted order records. |
-| `packages/cli-communication-projection/src/evaluation/noninferiority.ts` | Shared | Computes paired confidence intervals and dimension decisions. |
-| `packages/cli-communication-projection/src/evaluation/gate.ts` | Handler | Combines fidelity vetoes and per-stratum quality decisions. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/evaluation/preregistration.ts` | Shared | Freezes strata, margins, sample plans, reviewers, and stop rules. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/evaluation/blinding.ts` | Handler | Builds identity-free review packets and trusted order records. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/evaluation/noninferiority.ts` | Shared | Computes paired confidence intervals and dimension decisions. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/evaluation/gate.ts` | Handler | Combines fidelity vetoes and per-stratum quality decisions. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `packages/cli-communication-projection/test/evaluation/blinding.test.ts` | Unit | Verifies masking, deterministic randomization, and identity exclusion. |
-| `packages/cli-communication-projection/test/evaluation/noninferiority.test.ts` | Unit | Covers paired statistics, margins, and sample boundaries. |
-| `packages/cli-communication-projection/test/evaluation/gate.test.ts` | Unit | Covers fidelity vetoes, tier isolation, provenance, and approval. |
-| `packages/cli-communication-projection/test/evaluation/integration.test.ts` | Integration | Exercises the evaluation pipeline across registered strata. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/evaluation/blinding.test.ts` | Unit | Verifies masking, deterministic randomization, and identity exclusion. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/evaluation/noninferiority.test.ts` | Unit | Covers paired statistics, margins, and sample boundaries. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/evaluation/gate.test.ts` | Unit | Covers fidelity vetoes, tier isolation, provenance, and approval. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/evaluation/integration.test.ts` | Integration | Exercises the evaluation pipeline across registered strata. |
 
 ---
 

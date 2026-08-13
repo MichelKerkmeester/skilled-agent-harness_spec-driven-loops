@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-spec-templates-and-context-reducer",
-  "spec_folder": "system-speckit/033-spec-templates-and-context-reducer",
-  "parent_id": null,
+  "packet_id": "cli-external-orchestration/035-improved-communication/015-package-into-skill",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/015-package-into-skill",
+  "parent_id": "cli-external-orchestration/035-improved-communication",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,37 +11,40 @@
   },
   "derived": {
     "trigger_phrases": [
-      "spec templates context reducer",
-      "reducer engineering speckit",
-      "template weight reduction research",
-      "context reduction deep research",
-      "plan adherence optimization research",
-      "spec templates context reducer plan",
-      "deep research launch matrix speckit"
+      "package-into-skill",
+      "package into skill",
+      "cli communication projection relocation",
+      "package relocation evidence",
+      "implementation plan",
+      "package relocation plan",
+      "tasks",
+      "package relocation tasks",
+      "verification checklist",
+      "quality gate",
+      "implementation status",
+      "current state"
     ],
     "key_topics": [
-      "spec",
-      "templates",
-      "context",
-      "reducer",
-      "engineering",
-      "speckit",
-      "template",
-      "weight",
-      "reduction",
-      "research",
-      "deep",
-      "plan"
+      "package-into-skill",
+      "package",
+      "skill",
+      "cli",
+      "communication",
+      "projection",
+      "relocation",
+      "evidence",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/research.md",
-      "context/Reducer Engineering.md",
-      "context/The $1.2M Agent Engineering skill.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,21 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Reducer Engineering.md",
-        "kind": "doc",
-        "path": "context/Reducer Engineering.md",
-        "source": "derived"
-      },
-      {
-        "name": "The $1.2M Agent Engineering skill.md",
-        "kind": "doc",
-        "path": "context/The $1.2M Agent Engineering skill.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -94,31 +85,31 @@
         "source": "derived"
       },
       {
-        "name": "Kit Template",
+        "name": "Package Relocation Into Skill",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Context Reducer Research",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Reducer Engineering",
+        "name": "Handoff Criteria",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Agent Engineering",
+        "name": "Phase Context This",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Parent Packet",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -130,19 +121,25 @@
         "source": "derived"
       },
       {
-        "name": "Stop Policy Flag",
+        "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Model Selection",
+        "name": "Overview Close",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Enforced Allowlist",
+        "name": "Pattern Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,55 +157,61 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "a",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Last Updated",
+        "name": "Verification Protocol",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Two external agent-engineering write-ups landed as context material here (`context/Reducer Engineering.md`, `context/The $1.2M Agent Engineering skill.md`)",
-    "created_at": "2026-08-12T05:47:02.666Z",
-    "last_save_at": "2026-08-13T05:59:18.651Z",
+    "causal_summary": "The package lived under a generic `packages/` root even though it is owned and consumed exclusively by the sk-communication skill, unlike system skills (for example, system-spec-kit) that bundle their code inside the skill directory",
+    "created_at": "2026-08-13T17:02:13.812Z",
+    "last_save_at": "2026-08-13T17:06:24.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3035e2f8f90dc4740aa9b73913c78337036d22c7524b1ba36d0510770f6d67bc",
+    "source_fingerprint": "sha256:3c1c1a7084cd018863de3f65d6d4c49faa8d391970162fbdf2429067e152c76a",
     "source_doc_hashes": {
-      "spec.md": "8299fa3dc1e93f62ccf4768aa17dde5b6d4188ab7a0000b56a12669829db607d",
-      "plan.md": "6ca0f3962f8cf84827e800abbf77082ad964f2d9551c0ed0974107d61f5908a6",
-      "tasks.md": "d5dea35992490f34709e9f12353ed23ad92ee5e494bf31d479230a9e5429b04b",
-      "implementation-summary.md": "c0321efe22efb6094d1238518f2833d558bee1c0022f8933ef1d51ba73bda216",
-      "research/research.md": "39e1ae7e73d662b612acee0f90b771e77509094e759782a0e34253bd9c0a57e1"
+      "spec.md": "2a825436b4bb396e65f3f82d5bd4495bf1a403bee044817c3a5e951a34619f59",
+      "plan.md": "8bc09f027b7712f6e15fddd6235469b2c84bfd23ab6b0da1fec59a6aa26c1edb",
+      "tasks.md": "c30371bbe70c52c200ff848292b889687d1a4c390aac9ddd0cb1812cf55d9e6f",
+      "checklist.md": "e1a7d0b9081f754dc0180858ae38fe2fe8d248c48d22e578dff9b6e9eebd27b6",
+      "implementation-summary.md": "df049153a559d0de09bdcb21256f3501cfdc4ffdeb0368bd1379ee4c2adee544"
     },
     "last_active_child_id": null,
     "last_active_at": null

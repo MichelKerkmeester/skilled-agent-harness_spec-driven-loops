@@ -37,14 +37,14 @@ Constrained display surfaces cannot guarantee 1:1 replacement. Their safety prom
 
 ### Exact Command Sequence
 
-1. Change directory to `packages/cli-communication-projection/`.
+1. Change directory to `.opencode/skills/sk-communication/cli-communication-projection/`.
 2. Run `npm run test -- test/clients/display.test.ts -t "never suppresses the original when the atomic commit fails"`.
 3. Run `npm run test -- test/clients/sidecar.test.ts -t "shows the projection separately while leaving the original visible"`.
 4. Capture both exit statuses and focused-test summaries.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| COMM-005 | Safe-native preserves original visibility | Prove constrained and failed presentation never hides the original. | `Verify that safe-native append and sidecar presentation keep the original visible, including commit failures, then report PASS or FAIL with evidence.` | 1. `bash: cd packages/cli-communication-projection` -> 2. `package: npm run test -- test/clients/display.test.ts -t "never suppresses the original when the atomic commit fails"` -> 3. `package: npm run test -- test/clients/sidecar.test.ts -t "shows the projection separately while leaving the original visible"` | Both commands exit zero; each reports one passing focused test; failed commit and sidecar-original-visible test names appear. | Both transcripts, exit statuses, and passing test names. | PASS if all signals match; FAIL if either command fails, a test is missing, or original visibility is false on these paths; SKIP only if Node or installed dependencies are unavailable. | 1. Rerun both complete client test files; 2. inspect result `mode` and visibility fields; 3. inspect `display.ts` commit-failure handling; 4. inspect `sidecar.ts` degradation handling. |
+| COMM-005 | Safe-native preserves original visibility | Prove constrained and failed presentation never hides the original. | `Verify that safe-native append and sidecar presentation keep the original visible, including commit failures, then report PASS or FAIL with evidence.` | 1. `bash: cd .opencode/skills/sk-communication/cli-communication-projection` -> 2. `package: npm run test -- test/clients/display.test.ts -t "never suppresses the original when the atomic commit fails"` -> 3. `package: npm run test -- test/clients/sidecar.test.ts -t "shows the projection separately while leaving the original visible"` | Both commands exit zero; each reports one passing focused test; failed commit and sidecar-original-visible test names appear. | Both transcripts, exit statuses, and passing test names. | PASS if all signals match; FAIL if either command fails, a test is missing, or original visibility is false on these paths; SKIP only if Node or installed dependencies are unavailable. | 1. Rerun both complete client test files; 2. inspect result `mode` and visibility fields; 3. inspect `display.ts` commit-failure handling; 4. inspect `sidecar.ts` degradation handling. |
 
 ### Evidence Review
 
@@ -65,10 +65,10 @@ Evidence must cover both halves of the contract. A safe sidecar result does not 
 
 | File | Role |
 |---|---|
-| [Display client](../../../../../packages/cli-communication-projection/src/clients/display.ts) | Atomic and append display application. |
-| [Sidecar client](../../../../../packages/cli-communication-projection/src/clients/sidecar.ts) | Sidecar degradation with original visibility. |
-| [Client display tests](../../../../../packages/cli-communication-projection/test/clients/display.test.ts) | Failed commit and append behavior. |
-| [Sidecar tests](../../../../../packages/cli-communication-projection/test/clients/sidecar.test.ts) | Separate-view visibility and fallback. |
+| [Display client](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/clients/display.ts) | Atomic and append display application. |
+| [Sidecar client](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/clients/sidecar.ts) | Sidecar degradation with original visibility. |
+| [Client display tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/clients/display.test.ts) | Failed commit and append behavior. |
+| [Sidecar tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/clients/sidecar.test.ts) | Separate-view visibility and fallback. |
 
 ---
 

@@ -35,16 +35,16 @@ Unavailable transcripts, missing user messages, meta-only history, stale transcr
 
 | File | Layer | Role |
 |---|---|---|
-| `packages/cli-communication-projection/src/context/selector.ts` | Handler | Selects and bounds the request-scoped user context. |
-| `packages/cli-communication-projection/src/contracts/context.ts` | Shared | Defines bounded-context, privacy, freshness, and absence contracts. |
-| `packages/cli-communication-projection/src/contracts/validate-policy.ts` | Shared | Validates bounded-context and privacy records. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/context/selector.ts` | Handler | Selects and bounds the request-scoped user context. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/contracts/context.ts` | Shared | Defines bounded-context, privacy, freshness, and absence contracts. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/contracts/validate-policy.ts` | Shared | Validates bounded-context and privacy records. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `packages/cli-communication-projection/test/core/context-selector.test.ts` | Unit | Covers selection, freshness, privacy, truncation, and absence reasons. |
-| `packages/cli-communication-projection/test/contracts/context-prompt-provider.test.ts` | Integration | Verifies context records alongside prompt and provider policy contracts. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/core/context-selector.test.ts` | Unit | Covers selection, freshness, privacy, truncation, and absence reasons. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/contracts/context-prompt-provider.test.ts` | Integration | Verifies context records alongside prompt and provider policy contracts. |
 
 ---
 

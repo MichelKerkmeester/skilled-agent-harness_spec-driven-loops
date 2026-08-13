@@ -67,6 +67,7 @@ const DIRECTIVE_LIFECYCLE_DEDUP_ENV = 'SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP';
 const DIRECTIVE_SEPARATOR = '\nDirectives:';
 const MAX_DIRECTIVE_DEDUP_SESSIONS = 64;
 const pluginRequire = createRequire(import.meta.url);
+const { isHookEnabled } = pluginRequire('../hooks/shared/hook-flags.cjs');
 
 // Compact, prompt-safe per-hub compiled-routing serving summary. Reads the
 // promoted runtime status (file-only, no engine load, no subprocess) and fails
@@ -237,10 +238,7 @@ function normalizeThreshold(value) {
 }
 
 function envDisablesPlugin() {
-  return process.env[DISABLED_ENV] === '1'
-    || process.env[DISABLED_ENV_PLUGIN] === '1'
-    || process.env[LEGACY_HOOK_DISABLED_ENV] === '1'
-    || process.env[LEGACY_PLUGIN_DISABLED_ENV] === '1';
+  return !isHookEnabled('skill-advisor');
 }
 
 function isDirectiveLifecycleDedupEnabled() {

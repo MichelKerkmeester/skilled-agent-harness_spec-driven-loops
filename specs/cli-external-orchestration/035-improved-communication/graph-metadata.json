@@ -17,7 +17,8 @@
     "cli-external-orchestration/035-improved-communication/011-meaning-judge-wiring",
     "cli-external-orchestration/035-improved-communication/012-no-op-rejection",
     "cli-external-orchestration/035-improved-communication/013-capability-evidence-unblock",
-    "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance"
+    "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance",
+    "cli-external-orchestration/035-improved-communication/015-package-into-skill"
   ],
   "manual": {
     "depends_on": [],
@@ -51,13 +52,13 @@
       "001-research-strategy/spec.md",
       "005-provider-adapters-and-privacy/handover.md",
       "006-runtime-adapters-and-clients/spec.md",
-      "006-runtime-adapters-and-clients/handover.md",
       "007-evaluation-and-observability/spec.md",
       "009-prompt-token-contract/spec.md",
-      "013-capability-evidence-unblock/spec.md",
       "014-code-and-doc-conformance/spec.md",
+      "015-package-into-skill/spec.md",
       "008-packaging-and-release-hardening/handover.md",
-      "014-code-and-doc-conformance/implementation-summary.md"
+      "014-code-and-doc-conformance/implementation-summary.md",
+      "015-package-into-skill/implementation-summary.md"
     ],
     "entities": [
       {
@@ -105,15 +106,15 @@
     ],
     "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
     "created_at": "2026-08-11T06:21:47Z",
-    "last_save_at": "2026-08-13T05:56:57.797Z",
+    "last_save_at": "2026-08-13T17:13:05.704Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d15e366efa88b8431be492ae4418f9668d8421cffd71c949bd565223e97e19e2",
+    "source_fingerprint": "sha256:471a19d0e80b290d1c1fc342813e7d2fcbd1244cdb04db4f9e4dbbb500198b5b",
     "source_doc_hashes": {
-      "spec.md": "45183ebf5e24d8b87eae4cdb4f7d5bfe4a05ad586528adea57acf49c09ac2f3d"
+      "spec.md": "9a7fd27d11e87d35e2eefae4da61085c36abcedf4910c4ab6660f8c21c0c968b"
     },
     "last_active_child_id": "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy",
     "last_active_at": "2026-08-12T05:25:21.635Z"

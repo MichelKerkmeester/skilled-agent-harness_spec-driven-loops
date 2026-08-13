@@ -35,17 +35,17 @@ The assembler enforces finite event, byte, active-attempt, idle-time, and termin
 
 | File | Layer | Role |
 |---|---|---|
-| `packages/cli-communication-projection/src/core/assembler.ts` | Handler | Runs the generation-keyed bounded assembly state machine. |
-| `packages/cli-communication-projection/src/core/normalizer.ts` | Shared | Normalizes events and derives deterministic sequence digests. |
-| `packages/cli-communication-projection/src/core/assembly-output.ts` | Shared | Builds completed and exact-original terminal results. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/core/assembler.ts` | Handler | Runs the generation-keyed bounded assembly state machine. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/core/normalizer.ts` | Shared | Normalizes events and derives deterministic sequence digests. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/core/assembly-output.ts` | Shared | Builds completed and exact-original terminal results. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `packages/cli-communication-projection/test/core/assembler.test.ts` | Unit | Covers lifecycle, ordering, idempotence, bounds, and fallback behavior. |
-| `packages/cli-communication-projection/test/core/normalizer.test.ts` | Unit | Verifies normalization and deterministic ordering digests. |
-| `packages/cli-communication-projection/test/core/performance.test.ts` | Benchmark | Exercises bounded assembly latency and throughput behavior. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/core/assembler.test.ts` | Unit | Covers lifecycle, ordering, idempotence, bounds, and fallback behavior. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/core/normalizer.test.ts` | Unit | Verifies normalization and deterministic ordering digests. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/core/performance.test.ts` | Benchmark | Exercises bounded assembly latency and throughput behavior. |
 
 ---
 

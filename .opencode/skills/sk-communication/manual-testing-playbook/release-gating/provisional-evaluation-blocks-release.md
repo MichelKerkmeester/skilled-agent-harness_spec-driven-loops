@@ -37,14 +37,14 @@ Automated reviewers are useful diagnostics, but allowing them to authorize relea
 
 ### Exact Command Sequence
 
-1. Change directory to `packages/cli-communication-projection/`.
+1. Change directory to `.opencode/skills/sk-communication/cli-communication-projection/`.
 2. Run `npm run test -- test/evaluation/proxy-judge.test.ts -t "marks an automated end-to-end gate as provisional without changing its statistics"`.
 3. Run `npm run test -- test/release/release-gate.test.ts -t "blocks a numerically passing provisional LLM-proxy evaluation"`.
 4. Capture both exit statuses and focused-test summaries.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| COMM-006 | Provisional evaluation blocks release | Prove diagnostic proxy evidence cannot authorize release. | `Prove that an LLM-proxy evaluation remains provisional and cannot authorize a communication-projection release, then return PASS or FAIL with evidence.` | 1. `bash: cd packages/cli-communication-projection` -> 2. `package: npm run test -- test/evaluation/proxy-judge.test.ts -t "marks an automated end-to-end gate as provisional without changing its statistics"` -> 3. `package: npm run test -- test/release/release-gate.test.ts -t "blocks a numerically passing provisional LLM-proxy evaluation"` | Both commands exit zero; each reports one passing focused test; provisional provenance and package-level release refusal are both exercised. | Both transcripts, exit statuses, passing test names, and refusal reason from the test source. | PASS if all signals match; FAIL if either test fails or provisional evidence authorizes release; SKIP only if Node or installed dependencies are unavailable. | 1. Rerun both complete test files; 2. inspect `evidenceClass` and `isProvisional`; 3. inspect human-certifiability enforcement in the release gate; 4. compare the catalog evaluation contract. |
+| COMM-006 | Provisional evaluation blocks release | Prove diagnostic proxy evidence cannot authorize release. | `Prove that an LLM-proxy evaluation remains provisional and cannot authorize a communication-projection release, then return PASS or FAIL with evidence.` | 1. `bash: cd .opencode/skills/sk-communication/cli-communication-projection` -> 2. `package: npm run test -- test/evaluation/proxy-judge.test.ts -t "marks an automated end-to-end gate as provisional without changing its statistics"` -> 3. `package: npm run test -- test/release/release-gate.test.ts -t "blocks a numerically passing provisional LLM-proxy evaluation"` | Both commands exit zero; each reports one passing focused test; provisional provenance and package-level release refusal are both exercised. | Both transcripts, exit statuses, passing test names, and refusal reason from the test source. | PASS if all signals match; FAIL if either test fails or provisional evidence authorizes release; SKIP only if Node or installed dependencies are unavailable. | 1. Rerun both complete test files; 2. inspect `evidenceClass` and `isProvisional`; 3. inspect human-certifiability enforcement in the release gate; 4. compare the catalog evaluation contract. |
 
 ### Evidence Review
 
@@ -66,10 +66,10 @@ Do not infer success from the proxy gate's numeric status alone. The decisive ev
 
 | File | Role |
 |---|---|
-| [Proxy judge](../../../../../packages/cli-communication-projection/src/evaluation/proxy-judge.ts) | Produces provisional automated reviewer evidence. |
-| [Release gate](../../../../../packages/cli-communication-projection/src/release/release-gate.ts) | Rejects non-human-certifiable evidence. |
-| [Proxy judge tests](../../../../../packages/cli-communication-projection/test/evaluation/proxy-judge.test.ts) | Provenance and statistics evidence. |
-| [Release gate tests](../../../../../packages/cli-communication-projection/test/release/release-gate.test.ts) | Package-level provisional-evidence refusal. |
+| [Proxy judge](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/evaluation/proxy-judge.ts) | Produces provisional automated reviewer evidence. |
+| [Release gate](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/release/release-gate.ts) | Rejects non-human-certifiable evidence. |
+| [Proxy judge tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/evaluation/proxy-judge.test.ts) | Provenance and statistics evidence. |
+| [Release gate tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/release/release-gate.test.ts) | Package-level provisional-evidence refusal. |
 
 ---
 
