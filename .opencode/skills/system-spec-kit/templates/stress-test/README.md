@@ -7,20 +7,6 @@ description: "Findings rubric and report templates for the system-spec-kit stres
 
 > Report and rubric templates for packet-local stress-test evidence.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. USAGE](#3--usage)
-- [4. KEY FILES](#4--key-files)
-- [5. BOUNDARIES](#5--boundaries)
-- [6. ENTRYPOINTS](#6--entrypoints)
-- [7. VALIDATION](#7--validation)
-- [8. RELATED](#8--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
 ## 1. OVERVIEW

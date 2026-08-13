@@ -12,20 +12,6 @@ trigger_phrases:
 
 > Spec Kit injects session continuity into two runtimes with different lifecycle surfaces. This contract names, for each runtime, exactly WHERE continuity is (a) RECOVERED and (b) PERSISTED, states the guarantee both runtimes share, and records where their capabilities intentionally diverge. It is the single reference a reviewer can check when either surface changes.
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. WHY THIS EXISTS](#1-why-this-exists)
-- [2. SHARED GUARANTEE (THE INTERSECTION)](#2-shared-guarantee-the-intersection)
-- [3. RUNTIME MAP](#3-runtime-map)
-- [4. CLAUDE RUNTIME](#4-claude-runtime)
-- [5. OPENCODE RUNTIME](#5-opencode-runtime)
-- [6. INTENTIONAL DIVERGENCE](#6-intentional-divergence)
-- [7. CAPABILITY VOCABULARY](#7-capability-vocabulary)
-- [8. VERIFICATION](#8-verification)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
 ## 1. WHY THIS EXISTS

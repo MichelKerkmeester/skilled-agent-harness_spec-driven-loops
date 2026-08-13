@@ -588,9 +588,9 @@ def validate_general_structure(content: str, doc_type_rules: Dict[str, Any]) -> 
             'fix_hint': 'Remove the Table of Contents and use numbered H2 sections for navigation.',
         })
     if doc_type_rules.get('anchorNavigationForbidden', False) and re.search(
-        r'<!--\s*/?ANCHOR\b',
+        r'^[ \t]*<!--[ \t]*/?ANCHOR:[^>\r\n]*-->[ \t]*$',
         outside_body,
-        re.IGNORECASE,
+        re.IGNORECASE | re.MULTILINE,
     ):
         errors.append({
             'type': 'general_no_anchor',

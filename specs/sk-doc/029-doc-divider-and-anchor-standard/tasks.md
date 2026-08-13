@@ -50,7 +50,7 @@ _memory:
 ## Phase 1: Ratify the standard
 
 - [x] T001 Record the ratified rule in `decision-record.md` (bare numbered-H2: no TOC, no nav-anchors, `---` between numbered ALL-CAPS H2) — ADR-001 Accepted
-- [ ] T002 Reconcile `hvr-rules.md` §9 wording so it stops endorsing TOC + anchors on general docs
+- [x] T002 Reconciled `hvr-rules.md` §9 wording (deepseek-flash): dropped the "with anchors" / "TOC entries … with correct anchors" endorsements in favor of "numbered ALL CAPS, separated by `---`" + "No Table of Contents and no `<!-- ANCHOR -->` navigation comments". `core-standards.md` already consistent (no change).
 - [ ] T003 [P] Empirically confirm GitHub slug output for `## 1. OVERVIEW` (single vs double dash) and note it in `research.md`
 <!-- /ANCHOR:phase-1 -->
 
@@ -71,11 +71,11 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Normalize the fleet (dividers DONE; TOC/anchor strip pending)
 
-- [ ] T009 Triage the ~54 `<!-- ANCHOR -->` files into a keep (continuity) vs strip (nav) allowlist
+- [x] T009 Triaged the 54 `<!-- ANCHOR -->` files: most are FUNCTIONAL (spec-doc `level-*` templates, deep-research state, command tooling) or prose mentions — only 7 system-spec-kit folder READMEs/contracts carry vestigial TOC + nav-anchors. Strip scoped to exactly those 7.
 - [x] T010 [P] Added missing `---` dividers via a deterministic insert-only fixer (`scratch/fix_dividers.py`): 993 files / 2,642 gaps (strict ALL-CAPS) + 16 files / 26 gaps (ALL-CAPS with lowercase parenthetical qualifier, per operator scope choice) = 1,009 files / 2,668 gaps. Content-preservation proven on clean HEAD copies (0 content lost); deepseek-flash read-only audit confirmed non-destructive. Detection widened via `_section_caps_ignoring_qualifier`. Strict round committed in `947f8a6b58`; widening round on disk, uncommitted.
-- [ ] T011 [P] Strip vestigial TOC (7 files) and nav-anchors; normalize any remaining single-dash slugs per the T003 finding
-- [~] T012 Re-run census: in-scope divider gaps = 0 (done). 60 genuinely-title-case gaps (e.g. `## 1. first failing stage:`, function-signature headings) intentionally OUT of scope per operator choice. TOC/nav-anchor count pending T009/T011.
-- [ ] T013 After T011, flip `SKDOC_ENFORCE_STRUCTURE` to default-on (blocking) — NOT before, or the un-stripped TOC files fail
+- [x] T011 [P] Stripped TOC + standalone nav-anchor lines from the 7 files (gpt-5.6-luna), removals-only (0 additions). Also fixed the anchor-nav check to only flag standalone `<!-- ANCHOR:… -->` lines, not prose/inline-code mentions (was false-positiving on docs that describe the syntax).
+- [x] T012 Full flag-on dry-run across 8,627 files: general_h2_separator=0, general_no_toc=0, general_no_anchor=0. 60 genuinely-title-case gaps (e.g. `## 1. first failing stage:`, function-signature headings) intentionally OUT of scope per operator choice.
+- [ ] T013 READY (0 blocking proven) but HELD: flipping `SKDOC_ENFORCE_STRUCTURE` to default-on makes the rule blocking repo-wide. Deferred to a quiet window / operator go-ahead — with ~7 sessions actively committing (drift reappeared mid-run), flipping now would fail their in-flight drifted docs.
 <!-- /ANCHOR:phase-3 -->
 
 ---
