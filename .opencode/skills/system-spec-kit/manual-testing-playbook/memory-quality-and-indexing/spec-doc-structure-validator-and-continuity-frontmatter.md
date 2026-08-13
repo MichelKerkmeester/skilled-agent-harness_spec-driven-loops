@@ -14,6 +14,8 @@ expected_leaf_resources: []
 
 This scenario validates the phase 018 spec-doc structure validator for `201`. It focuses on the five fail-closed rules and the thin `_memory.continuity` block.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 
@@ -134,10 +136,14 @@ BLOCKED: scenario command 4 requires repairing the continuity block in the selec
 
 Inspect `mcp-server/lib/validation/spec-doc-structure.ts` rule dispatch, validate.sh aliases, and the continuity block renderer
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/spec-doc-structure-validator.md](../../feature-catalog/memory-quality-and-indexing/spec-doc-structure-validator.md)
 - Source files: `mcp-server/lib/validation/spec-doc-structure.ts`, `scripts/spec/validate.sh`
+
+---
 
 ## 5. SOURCE METADATA
 

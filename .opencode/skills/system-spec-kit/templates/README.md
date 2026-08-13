@@ -10,26 +10,8 @@ trigger_phrases:
 
 # Templates
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [Templates](#templates)
-  - [TABLE OF CONTENTS](#table-of-contents)
-  - [1. OVERVIEW](#1-overview)
-  - [2. ARCHITECTURE](#2-architecture)
-  - [3. PACKAGE TOPOLOGY](#3-package-topology)
-  - [4. DIRECTORY TREE](#4-directory-tree)
-  - [5. KEY FILES](#5-key-files)
-  - [6. BOUNDARIES AND FLOW](#6-boundaries-and-flow)
-  - [7. ENTRYPOINTS](#7-entrypoints)
-  - [8. VALIDATION](#8-validation)
-  - [9. RELATED](#9-related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `templates/` contains the markdown templates and manifest data used by the Spec Kit packet scaffolder and validator. It is a content folder rather than a runtime package, but it still has a strict structure because scripts read its files directly.
@@ -40,11 +22,8 @@ Current state:
 - `manifest/*.md.tmpl` files contain gated markdown blocks rendered by the inline-gate renderer.
 - `examples/` stores rendered reference packets for each supported Level.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:architecture -->
 ## 2. ARCHITECTURE
 
 ```text
@@ -74,11 +53,8 @@ scripts read templates and manifest data
 templates do not call scripts or import runtime modules
 ```
 
-<!-- /ANCHOR:architecture -->
-
 ---
 
-<!-- ANCHOR:package-topology -->
 ## 3. PACKAGE TOPOLOGY
 
 ```text
@@ -107,11 +83,8 @@ templates/ → MCP runtime modules
 examples/ → scaffolder input
 ```
 
-<!-- /ANCHOR:package-topology -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 4. DIRECTORY TREE
 
 ```text
@@ -145,11 +118,8 @@ templates/
 └── scratch/
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 5. KEY FILES
 
 | File                                      | Responsibility                                                                   |
@@ -167,11 +137,8 @@ templates/
 | `manifest/EXTENSION-GUIDE.md`             | Explains how maintainers add a new document type.                                |
 | `examples/`                               | Shows rendered output for Levels 1, 2, 3 and 3+. Phase-parent scaffolding is defined by the manifest template contract. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-flow -->
 ## 6. BOUNDARIES AND FLOW
 
 | Boundary  | Rule                                                                                                                                                 |
@@ -208,11 +175,8 @@ Render flow:
 ╰──────────────────────────────────────────╯
 ```
 
-<!-- /ANCHOR:boundaries-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 7. ENTRYPOINTS
 
 | Entrypoint                                  | Type              | Purpose                                                  |
@@ -224,11 +188,8 @@ Render flow:
 | `scripts/spec/validate.sh`                  | Script caller     | Reads the same contract to validate packets.             |
 | `scripts/templates/inline-gate-renderer.sh` | Script caller     | Renders gated template blocks for a selected Level.      |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 8. VALIDATION
 
 Run from the repository root.
@@ -241,11 +202,8 @@ Expected result for a real spec folder: the validator reads the manifest contrac
 
 For template changes, also run the template and resolver test suite used by the repository.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 9. RELATED
 
 - [Manifest README](./manifest/README.md)
@@ -255,5 +213,3 @@ For template changes, also run the template and resolver test suite used by the 
 - [Template Resolver](../mcp-server/lib/templates/level-contract-resolver.ts)
 - [Spec Scaffolder](../scripts/spec/create.sh)
 - [Spec Validator](../scripts/spec/validate.sh)
-
-<!-- /ANCHOR:related -->

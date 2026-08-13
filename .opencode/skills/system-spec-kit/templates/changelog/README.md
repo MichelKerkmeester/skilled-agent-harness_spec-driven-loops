@@ -9,22 +9,8 @@ trigger_phrases:
 
 # Packet Changelog Templates
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES AND FLOW](#4--boundaries-and-flow)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `templates/changelog/` contains packet-local changelog templates generated inside spec folders. These templates summarize canonical packet docs and are separate from global release-note templates under `.opencode/changelog/`.
@@ -35,11 +21,8 @@ Current state:
 - `phase.md` renders changelogs for phase child folders.
 - Recovery flows through `/speckit:resume`, implemented by `.opencode/commands/speckit/resume.md`, and canonical continuity docs.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -49,11 +32,8 @@ changelog/
 └── phase.md   # Phase child changelog template
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Role |
@@ -61,11 +41,8 @@ changelog/
 | `root.md` | Template for `changelog/changelog-<packet>-root.md`. |
 | `phase.md` | Template for phase child changelogs in the parent packet `changelog/` folder. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 Boundaries:
@@ -94,11 +71,8 @@ Generation flow:
 └────────────────────┘
 ```
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Use |
@@ -107,11 +81,8 @@ Generation flow:
 | `phase.md` | Phase child changelog generation. |
 | Changelog generator script | Reads canonical packet docs and applies one template. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 6. VALIDATION
 
 Run from the repository root after template edits:
@@ -122,15 +93,10 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 Generated changelogs should reference available packet docs and avoid claiming task completion beyond those docs.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 | Document | Role |
 |---|---|
 | [sk-doc changelog template](../../../sk-doc/shared/assets/changelog-template.md) | Global changelog and release-note template. |
-
-<!-- /ANCHOR:related -->

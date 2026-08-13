@@ -970,6 +970,48 @@ describe('Pi 0.83 adaptive-thinking compatibility', () => {
   });
 });
 
+describe('DeepSeek compat classification', () => {
+  function deepSeekProxyModel(compat: Record<string, unknown> = {}) {
+    return {
+      provider: 'opencode-go',
+      id: 'deepseek-v4-pro',
+      name: 'DeepSeek V4 Pro',
+      api: 'openai-completions',
+      baseUrl: 'https://proxy.example/v1',
+      compat,
+    };
+  }
+
+  test('long retention is optional/verify-first, never required or in the snippet', () => {
+    const model = deepSeekProxyModel();
+    assert.equal(internals.isDeepSeekCompatCheckApplicable(model), true);
+
+    const missing = internals.describeMissingDeepSeekCompat(model);
+    assert.ok(!missing.includes('supportsLongCacheRetention'));
+    assert.ok(missing.includes('sendSessionAffinityHeaders'));
+
+    // The copyable snippet / fix write-set must never carry the risky flag.
+    assert.equal(
+      internals.buildDeepSeekCompatSuggestion(missing).supportsLongCacheRetention,
+      undefined,
+    );
+
+    // It is surfaced only as verify-first optional advice.
+    assert.deepEqual(
+      internals.describeOptionalDeepSeekCompat(model),
+      ['supportsLongCacheRetention'],
+    );
+  });
+
+  test('optional long retention clears once explicitly enabled', () => {
+    const model = deepSeekProxyModel({ supportsLongCacheRetention: true });
+    assert.deepEqual(internals.describeOptionalDeepSeekCompat(model), []);
+    assert.ok(
+      !internals.describeMissingDeepSeekCompat(model).includes('supportsLongCacheRetention'),
+    );
+  });
+});
+
 // ───────────────────────────────────────────────────────────────────
 // 11. EXPLICIT COMPAT PRECEDENCE
 // ───────────────────────────────────────────────────────────────────
@@ -1402,6 +1444,9 @@ describe('/cache-optimizer fix command', () => {
         const written = await readFile(modelsPath, 'utf8');
         const parsed = freshModule.__internals_for_tests.parseJsonc(written) as any;
         assert.ok(parsed);
+        // Fix must NOT auto-enable long retention: DeepSeek prefix caching does not
+        // need it, and a proxy that rejects prompt_cache_retention returns 400. The
+        // pre-existing explicit `false` override must survive the fix untouched.
         assert.deepEqual(
           freshModule.__internals_for_tests.resolveExplicitCompatValue(
             parsed,
@@ -1409,7 +1454,7 @@ describe('/cache-optimizer fix command', () => {
             'deepseek-v4',
             'supportsLongCacheRetention',
           ),
-          { source: 'modelOverride', value: true },
+          { source: 'modelOverride', value: false },
         );
         assert.deepEqual(
           freshModule.__internals_for_tests.resolveExplicitCompatValue(

@@ -9,33 +9,16 @@ trigger_phrases:
 
 # Template Manifest
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. OVERVIEW](#1--overview)
-- [2. DIRECTORY TREE](#2--directory-tree)
-- [3. KEY FILES](#3--key-files)
-- [4. BOUNDARIES AND FLOW](#4--boundaries-and-flow)
-- [5. ENTRYPOINTS](#5--entrypoints)
-- [6. VALIDATION](#6--validation)
-- [7. RELATED](#7--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 `templates/manifest/` is private implementation infrastructure for Spec Kit template contracts. It maps public Level values to the document set, lazy document lifecycle and section gates consumed by scaffolding and validation code.
 
 Public and AI-facing surfaces must keep using Level 1, Level 2, Level 3, Level 3+ and phase-parent wording. Private JSON taxonomy stays inside this directory and implementation code.
 
-<!-- /ANCHOR:overview -->
-
 ---
 
-<!-- ANCHOR:directory-tree -->
 ## 2. DIRECTORY TREE
 
 ```text
@@ -47,11 +30,8 @@ manifest/
 └── review.spec.md.tmpl       # Review-record spec template for the review packet type
 ```
 
-<!-- /ANCHOR:directory-tree -->
-
 ---
 
-<!-- ANCHOR:key-files -->
 ## 3. KEY FILES
 
 | File | Role |
@@ -61,11 +41,8 @@ manifest/
 | `phase-parent.spec.md.tmpl` | Provides the lean parent spec for phase workflows. |
 | `review.spec.md.tmpl` | Provides the review-record spec for the review packet type. |
 
-<!-- /ANCHOR:key-files -->
-
 ---
 
-<!-- ANCHOR:boundaries-and-flow -->
 ## 4. BOUNDARIES AND FLOW
 
 Boundaries:
@@ -94,11 +71,8 @@ Render flow:
 └────────────────────┘
 ```
 
-<!-- /ANCHOR:boundaries-and-flow -->
-
 ---
 
-<!-- ANCHOR:entrypoints -->
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Use |
@@ -107,11 +81,8 @@ Render flow:
 | `scripts/templates/inline-gate-renderer.sh` | Shell wrapper for renderer use from scripts. |
 | `spec-kit-docs.json` | Contract source read by scaffold and validation code. |
 
-<!-- /ANCHOR:entrypoints -->
-
 ---
 
-<!-- ANCHOR:validation -->
 ## 6. VALIDATION
 
 Run template and spec validation from the repository root after contract edits:
@@ -123,16 +94,11 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 Rendered output should match the intended public Level contract and must not leak private manifest terms.
 
-<!-- /ANCHOR:validation -->
-
 ---
 
-<!-- ANCHOR:related -->
 ## 7. RELATED
 
 | Document | Role |
 |---|---|
 | [Templates README](../README.md) | Parent template package overview. |
 | [Changelog templates](../changelog/README.md) | Packet-local changelog template notes. |
-
-<!-- /ANCHOR:related -->

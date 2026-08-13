@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/008-pi-caching-like-reasonix/014-fix-deepseek-compat-snippet-consistency",
+  "spec_folder": "hooks/008-pi-caching-like-reasonix/014-fix-deepseek-compat-snippet-consistency",
+  "parent_id": "hooks/008-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deepseek long retention advice",
+      "supportsLongCacheRetention snippet fix",
+      "pi-cache-optimizer verify-first optional",
+      "deepseek compat consistency",
+      "cache-optimizer fix long retention"
+    ],
+    "key_topics": [
+      "deepseek",
+      "compat",
+      "supportslongcacheretention",
+      "verify-first",
+      "optional",
+      "pi-cache-optimizer",
+      "snippet",
+      "warning",
+      "fix",
+      "consistency"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Aligned the DeepSeek compat path with the verify-first OpenAI-proxy pattern so supportsLongCacheRetention is optional, not required/auto-written; 53/53 tests green.",
+    "created_at": "2026-08-13T00:00:00.000Z",
+    "last_save_at": "2026-08-13T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ad7e925b482d358c7375c9f0ec7cbbb290e0809c16f8e3e2e297954d2b8e7a96",
+    "source_doc_hashes": {
+      "spec.md": "bd2d7c53f5550d7809c67667613ca3eabec42883f81fbc33f68225b272811d0f",
+      "plan.md": "b6a0a783345856ab4436dabab1c32b3bc60c51944b8c6e2dfd9d6098d6173661",
+      "tasks.md": "873ec28f577fb5a283ef0e2d0d5e19bbe84c718964401d75e03aadb4d265943f",
+      "implementation-summary.md": "51dbe09b6830c4f8b5db8ad433805a4bae8f233a8655959a544f91857aedcaa2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

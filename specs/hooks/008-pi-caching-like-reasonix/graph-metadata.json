@@ -16,7 +16,8 @@
     "hooks/008-pi-caching-like-reasonix/010-doc-template-and-code-readme-alignment",
     "hooks/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization",
     "hooks/008-pi-caching-like-reasonix/012-implement-non-deepseek-fixes",
-    "hooks/008-pi-caching-like-reasonix/013-apply-opencode-go-cache-compat"
+    "hooks/008-pi-caching-like-reasonix/013-apply-opencode-go-cache-compat",
+    "hooks/008-pi-caching-like-reasonix/014-fix-deepseek-compat-snippet-consistency"
   ],
   "manual": {
     "depends_on": [],
