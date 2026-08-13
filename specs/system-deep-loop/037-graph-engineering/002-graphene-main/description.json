@@ -1,0 +1,30 @@
+{
+  "level": 1,
+  "specFolder": "system-deep-loop/037-graph-engineering/002-graphene-main",
+  "description": "20-iteration deep-research study (gpt-5.6-sol high; synthesized by gpt-5.6-sol xhigh; verified by DeepSeek V4 Pro) of the graphene-main Rust event-sourced graph engine with a belief/truth-maintenance layer. Extends the repo-1 graph-based deep-loop design with executable contracts for truth-maintaining convergence, a ledger-to-graph fold reducer, adversarial causal-prefix parity, claim-and-fence mutation safety, serializable truth admission, authority-zero refusals, and belief-context human gates.",
+  "keywords": [
+    "graphene-main",
+    "graph-engineering",
+    "deep-loop",
+    "belief-projection",
+    "truth-maintenance",
+    "event-sourced-fold",
+    "036-authority-plane",
+    "causal-prefix-parity",
+    "claim-fence",
+    "research",
+    "gpt-5.6-sol",
+    "deepseek-v4-pro-verified"
+  ],
+  "lastUpdated": "2026-08-13T21:00:00Z",
+  "specId": "002",
+  "folderSlug": "graphene-main",
+  "parentChain": [
+    "system-deep-loop",
+    "037-graph-engineering"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-13-26_21-00__graphene-main-graph-engineering-20-iteration-deep-research.md"
+  ]
+}

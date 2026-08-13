@@ -1,0 +1,49 @@
+{
+  "topic": "Extract graph-engineering patterns from graphene-main, grounded in all 12 graph-engineering blog posts, to extend the repo-1 graph-based system-deep-loop design across truth maintenance, ledger projection, parity, fencing, temporal/nogood semantics, refusals, and human gates.",
+  "maxIterations": 20,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-deep-loop/037-graph-engineering/002-graphene-main",
+  "fanout_lineage_artifact_dir": "specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high",
+  "resource_map_present": true,
+  "resource_map": { "emit": true },
+  "createdAt": "2026-08-13T19:20:07.008Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-graphene-main-sol-high-1786648621541-lzda3r",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive"
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/037-graph-engineering/001-agent-swarms",
+  "spec_folder": "system-deep-loop/037-graph-engineering/001-agent-swarms",
+  "parent_id": "system-deep-loop/037-graph-engineering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent-swarms graph engineering",
+      "graph-based deep loop agent-swarms",
+      "agent swarms deep loop study",
+      "graph engineering repo study",
+      "agent-swarms graph plan",
+      "graph-based deep loop plan",
+      "repo study 1 plan",
+      "agent-swarms graph tasks",
+      "graph-based deep loop tasks",
+      "repo study 1 tasks",
+      "agent-swarms graph summary",
+      "graph-based deep loop summary"
+    ],
+    "key_topics": [
+      "agent-swarms",
+      "graph",
+      "engineering",
+      "graph-based",
+      "deep",
+      "loop",
+      "agent",
+      "swarms",
+      "study",
+      "repo",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/resource-map.md",
+      "research/deep-research-config.json",
+      "research/deep-research-state.jsonl",
+      "research/findings-registry.json",
+      "research/fanout-attribution.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Deep",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repo Study",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 037 corpus grew well past what the gen-1 research studied",
+    "created_at": "2026-08-13T18:42:57.524Z",
+    "last_save_at": "2026-08-13T18:56:26.205Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:554c41b5f60420a1420b9d10f6dd4d2c101869321c6143526bc1388f475fa46f",
+    "source_doc_hashes": {
+      "spec.md": "7e495251ca647a83a28ff2ddf0f2ceb4a065cb165a31adbb7e545ae809832368",
+      "plan.md": "7e4f18a92533b23b241d0d84b3341a3da8f08d70311e655fef333c194d33ac9e",
+      "tasks.md": "4ab6c453b1e8cc3a1e4d71475b6ee8559ab0408dcc949c315d9cf65c4e4b006a",
+      "implementation-summary.md": "19231e5283071ce81289085047cbd6b5314ee2638a2e396c0bc1c750f0923dd3",
+      "research/research.md": "fb74bd990be6b2697645829f04ff067de9f22dfcd8a52ee96e8db26d94f1da06"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

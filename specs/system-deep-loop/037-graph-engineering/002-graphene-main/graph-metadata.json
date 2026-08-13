@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/037-graph-engineering/002-graphene-main",
+  "spec_folder": "system-deep-loop/037-graph-engineering/002-graphene-main",
+  "parent_id": "system-deep-loop/037-graph-engineering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "graphene-main graph engineering",
+      "graph-based deep loop graphene",
+      "belief truth maintenance deep loop",
+      "graphene repo study",
+      "graphene graph plan",
+      "graph-based deep loop plan 2",
+      "repo study 2 plan",
+      "graphene graph tasks",
+      "graph-based deep loop tasks 2",
+      "repo study 2 tasks",
+      "graphene graph summary",
+      "graph-based deep loop summary 2"
+    ],
+    "key_topics": [
+      "graphene-main",
+      "graph",
+      "engineering",
+      "graph-based",
+      "deep",
+      "loop",
+      "graphene",
+      "belief",
+      "truth",
+      "maintenance",
+      "repo",
+      "study"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/verification-deepseek-v4-pro.md",
+      "research/deep-research-state.jsonl",
+      "research/findings-plain-language.md",
+      "research/resource-map.md",
+      "research/findings-registry.json",
+      "research/fanout-attribution.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-deepseek-v4-pro.md",
+        "kind": "doc",
+        "path": "research/verification-deepseek-v4-pro.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-plain-language.md",
+        "kind": "doc",
+        "path": "research/findings-plain-language.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Deep",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repo Study",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Repo",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Repo study 1 (agent-swarms) produced a graph-based deep-loop design but studied a TypeScript product runtime whose weak spots (self-declared loops, best-effort checkpoints, look-alike parity) left the hardest parts under-specified",
+    "created_at": "2026-08-13T21:14:44.834Z",
+    "last_save_at": "2026-08-13T21:14:44.834Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:327bcbac081a556e9a8cb54685ed148bce2448c0d56f50a1d0b86618c5d7ecbb",
+    "source_doc_hashes": {
+      "spec.md": "6217c2231f713f954cb1408d79261a369effa0b7d73d729517a327efa7d8ac9f",
+      "plan.md": "a27ae8116e2c8e8ae2e56f95478399a693d9f315bf4f99ef63a1c4bdfb9ced2a",
+      "tasks.md": "bfc11c25433358de4b204785dfbc54b7beee4b98f6e27974652eb35b3ccdc9b9",
+      "implementation-summary.md": "58970d20ed55223f3d58e1f705fe127536b9c0d9a6b05f34ddf65ce3536bdb37",
+      "research/research.md": "885ba854909cadb3240e3c60cd8edc2495b3011ad903365f39937ee58cec17f9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

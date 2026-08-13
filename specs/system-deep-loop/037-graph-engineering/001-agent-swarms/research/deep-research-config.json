@@ -1,0 +1,61 @@
+{
+  "topic": "Evolve system-deep-loop into a graph-based agent-loop system by extracting graph-engineering patterns from AgentSwarms and all 12 graph-engineering blog posts, grounded in orientation.md and mapped onto the current runtime plus the 036 authority plane.",
+  "maxIterations": 20,
+  "minIterations": 20,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 20,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-deep-loop/037-graph-engineering/001-agent-swarms",
+  "artifactDir": "specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/lineages/agent-swarms-sol-high",
+  "fanout_lineage_artifact_dir": "specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/lineages/agent-swarms-sol-high",
+  "resource_map_present": true,
+  "resource_map": { "emit": true },
+  "createdAt": "2026-08-13T18:16:49Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-agent-swarms-sol-high-1786644869562-gvk422",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": ["key-questions", "answered-questions", "what-worked", "what-failed", "exhausted-approaches", "ruled-out-directions", "divergence-frontier", "next-focus"]
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}
