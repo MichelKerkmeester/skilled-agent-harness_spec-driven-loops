@@ -47,6 +47,15 @@ A research and adjudication pass on the non-DeepSeek code path (the entire activ
 
 Two related findings were deliberately left unimplemented, both with a stated reason rather than silently dropped: a per-model prefix-cache-support opt-out on the prompt-rewrite chain (no runtime evidence yet that any enabled provider needs it), and a Gemini-transport raw-normalizer fix (no Gemini model is currently enabled in this project).
 
+### DeepSeek Long-Retention Advice Consistency (2026-08-13)
+
+The DeepSeek compat path treated `supportsLongCacheRetention` as a required/missing flag: it appeared in the "merged compat lacks …" startup warning, in the copyable "Recommended DeepSeek compat snippet", and in the `/cache-optimizer fix` auto-write set. That contradicted the extension's own OpenAI-compatible proxy path — and its README — which treat long retention as verify-first optional. DeepSeek prefix caching is automatic and does not need it, and a proxy that rejects the OpenAI `prompt_cache_retention` parameter returns a non-retryable 400. This session aligned the DeepSeek path with the OpenAI-proxy path:
+
+- Removed `supportsLongCacheRetention` from `describeMissingDeepSeekCompat` (the required set), from `buildDeepSeekCompatSuggestion` (the copyable snippet and the `/cache-optimizer fix` write-set), and from the `appendDeepSeekCompatAdviceLines` advice.
+- Added `describeOptionalDeepSeekCompat` and `appendOptionalDeepSeekCompatAdviceLines`, mirroring the existing `describeOptionalOpenAICompatibleProxyCompat` / `appendOptionalOpenAIProxyCompatAdviceLines`, and wired them into the `doctor` and `compat` renderers so long retention is surfaced as verify-first optional advice carrying the existing `prompt_cache_retention` 400 caveat.
+- Net effect: `/cache-optimizer fix` no longer auto-enables long retention for a DeepSeek model, and the startup warning and snippet stop recommending it unconditionally. Session affinity and the DeepSeek reasoning/thinking flags remain required and safe-fixable as before.
+- Updated the fix-command test to assert the corrected behavior (a pre-existing `supportsLongCacheRetention: false` override now survives the fix untouched) and added two tests locking the required-vs-optional split.
+
 ### Rationale
 
 `pi-cache-optimizer` previously ran unconditionally for DeepSeek's direct API. The sibling `deep-pi` extension now owns `deepseek/deepseek-v4-flash` and `deepseek/deepseek-v4-pro` exclusively, so this fork is a no-op for those two exact models and remains active for every other provider and model, including DeepSeek-family IDs on other providers such as `opencode/deepseek-v4-flash-free`.
@@ -60,6 +69,7 @@ Two related findings were deliberately left unimplemented, both with a stated re
 - A `diff -rq` comparison against the pinned fork commit reported zero differences before the later `package.json` test-runner configuration change.
 - Current state (after the later test-file additions): `npm test` passes 34 tests across 8 suites; `tsc --noEmit` remains clean.
 - Current state (after the 2026-08-09 non-DeepSeek hardening pass): `npm test` passes 51 tests across 13 suites; `tsc --noEmit` remains clean. Beyond the automated suite, a standalone manual scenario run drove the real registered `before_provider_request`/`after_provider_response`/`message_end` hooks through realistic multi-turn sequences for K1, K2, and K5 (not test-runner mocks) — all 9 scenarios passed after fixing the K5 error-recording asymmetry above.
+- Current state (after the 2026-08-13 DeepSeek long-retention advice consistency fix): `npm test` passes 53 tests across 14 suites; `tsc --noEmit` remains clean. A standalone functional check confirmed the warning for a DeepSeek-on-proxy channel now lists only `sendSessionAffinityHeaders` as missing, keeps `supportsLongCacheRetention` out of the copyable snippet, and reports it as verify-first optional.
 - Live Pi sessions confirmed that the guard fires only for the two exact DeepSeek-direct model IDs.
 - A non-DeepSeek session incremented statistics normally.
 - An `opencode/deepseek-v4-flash-free` session created a new statistics entry.
