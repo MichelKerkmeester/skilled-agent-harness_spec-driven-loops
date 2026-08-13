@@ -51,7 +51,7 @@ _memory:
 
 - [x] T001 Record the ratified rule in `decision-record.md` (bare numbered-H2: no TOC, no nav-anchors, `---` between numbered ALL-CAPS H2) — ADR-001 Accepted
 - [x] T002 Reconciled `hvr-rules.md` §9 wording (deepseek-flash): dropped the "with anchors" / "TOC entries … with correct anchors" endorsements in favor of "numbered ALL CAPS, separated by `---`" + "No Table of Contents and no `<!-- ANCHOR -->` navigation comments". `core-standards.md` already consistent (no change).
-- [ ] T003 [P] Empirically confirm GitHub slug output for `## 1. OVERVIEW` (single vs double dash) and note it in `research.md`
+- [x] T003 [P] MOOT — every TOC was removed (T011), so there are no `#slug` links left whose single-vs-double-dash rendering matters. Recorded in `research.md` §8.
 <!-- /ANCHOR:phase-1 -->
 
 ---

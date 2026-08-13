@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "sk-doc/029-doc-divider-and-anchor-standard"
     last_updated_at: "2026-08-13T06:20:00Z"
     last_updated_by: "spec-author"
-    recent_action: "Phase 2 landed + verified: SKDOC_ENFORCE_STRUCTURE-gated general-path divider/TOC/anchor check in validate_document.py (gpt-5.6-luna via cli-codex)"
-    next_safe_action: "Phase 3 (fleet normalization ~1,016 files) on operator go-ahead; then flip SKDOC_ENFORCE_STRUCTURE to default-on"
+    recent_action: "Closed: flag-gated validator + 1,009-file divider normalization + 7-file TOC/anchor strip + anchor-check false-positive fix + HVR reconcile — all shipped to origin/v4 and verified (0 divider/TOC/anchor blocking across 8,627 files)"
+    next_safe_action: "Only T013 remains: flip SKDOC_ENFORCE_STRUCTURE to default-on in a quiet window (operator-gated). validate.sh --strict blocked by the pre-existing mcp-server zod install."
     blockers:
       - "Phase 3 bulk fleet edit needs explicit operator go-ahead (high blast radius)"
       - "Concurrent session activity in specs/sk-doc reverted docs mid-authoring; confirm no other session owns 029 before executing"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-029-authoring"
       parent_session_id: null
-    completion_pct: 40
+    completion_pct: 95
     open_questions:
       - "Constitutional-memory divider policy (Title-Case H2 class)"
       - "GitHub single-vs-double-dash slug (empirical)"
@@ -46,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 029-doc-divider-and-anchor-standard |
-| **Status** | Planning complete, execution pending |
+| **Status** | Complete — standard built, normalized + verified across 8,627 files, shipped to origin/v4; enforcement flip (T013) operator-deferred |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
