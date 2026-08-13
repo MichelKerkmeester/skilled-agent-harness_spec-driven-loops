@@ -35,17 +35,17 @@ Only providers that pass privacy evaluation reach the ranker. Default ranking us
 
 | File | Layer | Role |
 |---|---|---|
-| `packages/cli-communication-projection/src/privacy/router.ts` | Handler | Applies consent and evidence checks before provider ranking. |
-| `packages/cli-communication-projection/src/privacy/types.ts` | Shared | Defines approved, denied, policy, and evaluation contracts. |
-| `packages/cli-communication-projection/src/providers/registry.ts` | Shared | Validates and indexes provider records used by the router. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/privacy/router.ts` | Handler | Applies consent and evidence checks before provider ranking. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/privacy/types.ts` | Shared | Defines approved, denied, policy, and evaluation contracts. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/registry.ts` | Shared | Validates and indexes provider records used by the router. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `packages/cli-communication-projection/test/providers/privacy.test.ts` | Unit | Covers privacy classes, consent, evidence freshness, and fallbacks. |
-| `packages/cli-communication-projection/test/providers/registry.test.ts` | Unit | Verifies registry validation and capability evidence handling. |
-| `packages/cli-communication-projection/test/fixtures/provider-cases.json` | Fixture | Supplies provider and privacy routing cases. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/providers/privacy.test.ts` | Unit | Covers privacy classes, consent, evidence freshness, and fallbacks. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/providers/registry.test.ts` | Unit | Verifies registry validation and capability evidence handling. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/fixtures/provider-cases.json` | Fixture | Supplies provider and privacy routing cases. |
 
 ---
 

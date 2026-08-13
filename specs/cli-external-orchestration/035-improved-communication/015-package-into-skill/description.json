@@ -1,0 +1,30 @@
+{
+  "specFolder": "cli-external-orchestration/035-improved-communication/015-package-into-skill",
+  "description": "The package lived under a generic `packages/` root even though it is owned and consumed exclusively by the sk-communication skill, unlike system",
+  "keywords": [
+    "package",
+    "lived",
+    "generic",
+    "packages",
+    "root",
+    "even",
+    "though",
+    "owned",
+    "consumed",
+    "exclusively",
+    "sk-communication",
+    "skill",
+    "unlike",
+    "system"
+  ],
+  "lastUpdated": "2026-08-13T17:04:53.392Z",
+  "specId": "015",
+  "folderSlug": "package-into-skill",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -35,18 +35,18 @@ Candidate validation first requires a successful, complete provider terminal sta
 
 | File | Layer | Role |
 |---|---|---|
-| `packages/cli-communication-projection/src/fidelity/protected-spans.ts` | Handler | Protects and exactly restores literal-sensitive source spans. |
-| `packages/cli-communication-projection/src/fidelity/validator.ts` | Handler | Applies completeness, digest, restoration, semantic, and judge checks. |
-| `packages/cli-communication-projection/src/fidelity/semantics.ts` | Shared | Detects semantic changes that invalidate a rewrite. |
-| `packages/cli-communication-projection/src/fidelity/dialect.ts` | Shared | Measures dialect and content-retention properties. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/fidelity/protected-spans.ts` | Handler | Protects and exactly restores literal-sensitive source spans. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/fidelity/validator.ts` | Handler | Applies completeness, digest, restoration, semantic, and judge checks. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/fidelity/semantics.ts` | Shared | Detects semantic changes that invalidate a rewrite. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/fidelity/dialect.ts` | Shared | Measures dialect and content-retention properties. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `packages/cli-communication-projection/test/fidelity/protected-spans.test.ts` | Unit | Covers tokenization, restoration, and protected-span tampering. |
-| `packages/cli-communication-projection/test/fidelity/validator.test.ts` | Unit | Covers deterministic and semantic acceptance and fallback rules. |
-| `packages/cli-communication-projection/test/fidelity/performance.test.ts` | Benchmark | Exercises fidelity processing under bounded input sizes. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/protected-spans.test.ts` | Unit | Covers tokenization, restoration, and protected-span tampering. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/validator.test.ts` | Unit | Covers deterministic and semantic acceptance and fallback rules. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/performance.test.ts` | Benchmark | Exercises fidelity processing under bounded input sizes. |
 
 ---
 

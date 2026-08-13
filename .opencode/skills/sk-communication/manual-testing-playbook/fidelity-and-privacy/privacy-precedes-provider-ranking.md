@@ -37,13 +37,13 @@ Ranking by quality, cost, or latency before privacy evaluation can leak private 
 
 ### Exact Command Sequence
 
-1. Change directory to `packages/cli-communication-projection/`.
+1. Change directory to `.opencode/skills/sk-communication/cli-communication-projection/`.
 2. Run `npm run test -- test/providers/privacy.test.ts`.
 3. Capture the exit status, five-test summary, and the two named privacy-ordering tests.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| COMM-003 | Privacy precedes provider ranking | Prove privacy eligibility is decided before ranking. | `Check that hosted egress is rejected before provider ranking when consent is absent, and return a PASS or FAIL verdict with the focused test evidence.` | 1. `bash: cd packages/cli-communication-projection` -> 2. `package: npm run test -- test/providers/privacy.test.ts` -> 3. Capture exit status and named tests. | Exit zero; one test file passes; five tests pass; early-denial and approved-candidates-only test names are present. | Command transcript, exit status, five-test summary, and named-test lines. | PASS if all signals match; FAIL if the suite fails, the count differs, or either named test is missing; SKIP only if Node or installed dependencies are unavailable. | 1. Confirm the package lockfile dependencies are installed; 2. rerun the early-denial test with `-t`; 3. inspect `router.ts` before the ranking call; 4. inspect provider fixtures for changed census. |
+| COMM-003 | Privacy precedes provider ranking | Prove privacy eligibility is decided before ranking. | `Check that hosted egress is rejected before provider ranking when consent is absent, and return a PASS or FAIL verdict with the focused test evidence.` | 1. `bash: cd .opencode/skills/sk-communication/cli-communication-projection` -> 2. `package: npm run test -- test/providers/privacy.test.ts` -> 3. Capture exit status and named tests. | Exit zero; one test file passes; five tests pass; early-denial and approved-candidates-only test names are present. | Command transcript, exit status, five-test summary, and named-test lines. | PASS if all signals match; FAIL if the suite fails, the count differs, or either named test is missing; SKIP only if Node or installed dependencies are unavailable. | 1. Confirm the package lockfile dependencies are installed; 2. rerun the early-denial test with `-t`; 3. inspect `router.ts` before the ranking call; 4. inspect provider fixtures for changed census. |
 
 ### Evidence Review
 
@@ -64,9 +64,9 @@ The ranker's non-invocation on denied hosted egress is load-bearing. A merely de
 
 | File | Role |
 |---|---|
-| [Privacy router](../../../../../packages/cli-communication-projection/src/privacy/router.ts) | Consent, evidence, eligibility, and ranking order. |
-| [Provider registry](../../../../../packages/cli-communication-projection/src/providers/registry.ts) | Provider records consumed by the router. |
-| [Privacy router tests](../../../../../packages/cli-communication-projection/test/providers/privacy.test.ts) | Deterministic privacy and fallback coverage. |
+| [Privacy router](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/privacy/router.ts) | Consent, evidence, eligibility, and ranking order. |
+| [Provider registry](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/providers/registry.ts) | Provider records consumed by the router. |
+| [Privacy router tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/providers/privacy.test.ts) | Deterministic privacy and fallback coverage. |
 
 ---
 

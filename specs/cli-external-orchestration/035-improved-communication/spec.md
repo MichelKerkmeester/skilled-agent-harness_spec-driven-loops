@@ -10,26 +10,25 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication"
-    last_updated_at: "2026-08-13T05:56:32.000Z"
-    last_updated_by: "codex"
-    recent_action: "Added the completed code and documentation conformance phase."
-    next_safe_action: "Begin Phase 009 planning while preserving the completed Phase 008 and Phase 014 evidence."
+    last_updated_at: "2026-08-13T17:10:00.000Z"
+    last_updated_by: "claude"
+    recent_action: "Added the completed package relocation into the sk-communication skill (Phase 015)."
+    next_safe_action: "Begin Phase 009 planning; preserve completed Phase 008/014/015 evidence."
     blockers: []
     key_files:
       - "spec.md"
       - "001-research-strategy/spec.md"
       - "005-provider-adapters-and-privacy/handover.md"
       - "006-runtime-adapters-and-clients/spec.md"
-      - "006-runtime-adapters-and-clients/handover.md"
       - "007-evaluation-and-observability/spec.md"
       - "009-prompt-token-contract/spec.md"
-      - "013-capability-evidence-unblock/spec.md"
       - "014-code-and-doc-conformance/spec.md"
+      - "015-package-into-skill/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "035-improved-communication-20260811"
       parent_session_id: null
-    completion_pct: 64
+    completion_pct: 67
     open_questions:
       - "Which runtimes prove atomic replacement under pinned fixtures?"
     answered_questions:
@@ -40,6 +39,7 @@ _memory:
       - "Phase 004 delivered the verified protected-span, fidelity, render, and content-free evidence boundary."
       - "Phase 005 delivered verified model-scoped providers, privacy-first routing, bounded execution, and exact-original fallback."
       - "Phase 006 delivered verified six-runtime adapters over eight paths, client-owned presentation, a capability matrix, and tier-honest content-free telemetry."
+      - "Phase 015 delivered the verified relocation of the package into the sk-communication skill."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -60,7 +60,7 @@ _memory:
 | **Parent Spec** | None |
 | **Parent Packet** | `cli-external-orchestration/035-improved-communication` |
 | **Predecessor** | None |
-| **Successor** | Phases `009` through `013` are planned; Phase `014` records completed code and documentation conformance. |
+| **Successor** | Phases `009` through `013` are planned; Phase `014` records completed code and documentation conformance and Phase `015` records the completed package relocation into its owning skill. |
 | **Handoff Criteria** | Each child passes its own implementation gates and strict validation before the next phase consumes its output |
 <!-- /ANCHOR:metadata -->
 
@@ -117,6 +117,7 @@ Detailed research, architecture, implementation, and verification belong to chil
 | `002-contracts-and-fixtures/` through `008-packaging-and-release-hardening/` | Create | 002-008 | Completed implementation workstreams derived from the research synthesis |
 | `009-prompt-token-contract/` through `013-capability-evidence-unblock/` | Create | 009-013 | Planned projection-quality workstreams for prompt tokens, marker burden, meaning judgment, no-op rejection, and capability evidence |
 | `014-code-and-doc-conformance/` | Create | 014 | Completed package README coverage, operator-reference conformance, package alignment, and review evidence |
+| `015-package-into-skill/` | Create | 015 | Completed rename-preserving relocation of the package into the sk-communication skill and its skill-doc reference updates |
 | `context/claudish-to-english-main/` | Read only | All | Reference behavior and evidence. Never modified by this epic. |
 <!-- /ANCHOR:scope -->
 
@@ -141,8 +142,9 @@ Detailed research, architecture, implementation, and verification belong to chil
 | 12 | `012-no-op-rejection/` | Reject unchanged and threshold-defined near-echo candidates as no improvement | Planned |
 | 13 | `013-capability-evidence-unblock/` | Supply dated evidence so supported provider controls reach transport while stale facts remain fail closed | Planned |
 | 14 | `014-code-and-doc-conformance/` | Record complete code-folder README coverage, reference-document conformance, package-gate alignment, and zero-defect review evidence | Complete |
+| 15 | `015-package-into-skill/` | Record the completed rename-preserving relocation of the package into the sk-communication skill and its 140-reference skill-doc update | Complete |
 
-The first eight children and Phase 014 are implemented and verified. Phases 009 through 013 are planned follow-on workstreams and retain zero-percent completion until their own implementation evidence exists.
+The first eight children, Phase 014, and Phase 015 are implemented and verified. Phases 009 through 013 are planned follow-on workstreams and retain zero-percent completion until their own implementation evidence exists.
 ### Phase Transition Rules
 
 - Each phase must pass `validate.sh` independently before its handoff.
@@ -168,7 +170,8 @@ The first eight children and Phase 014 are implemented and verified. Phases 009 
 | 011 meaning-judge wiring | 012 no-op rejection | Meaning-loss and no-change policies remain separate, typed production outcomes | Composition plan and strict packet validation |
 | 012 no-op rejection | 013 capability-evidence unblock | No-improvement policy remains independent from provider capability reachability | Threshold plan and strict packet validation |
 | 013 capability-evidence unblock | 014 code and documentation conformance | Capability work remains independent while the completed package documentation and implementation evidence are recorded | Phase 013 strict planned-packet validation plus Phase 014 conformance evidence |
-| 014 code and documentation conformance | Parent packet decision | All code-folder READMEs, operator references, package alignment, review evidence, and strict packet gates are complete | 27 code-folder validations, 6 reference validations, 289/289 tests, zero code defects, and strict validation |
+| 014 code and documentation conformance | 015 package relocation into skill | Conformance evidence remains valid while the package is relocated into its owning skill | Phase 014 strict conformance evidence plus Phase 015 rename and reference-sweep evidence |
+| 015 package relocation into skill | Parent packet decision | Rename history is preserved, every skill-doc reference is updated, package alignment holds from the new location, and strict packet gates are complete | 207/207 rename detections, 140/140 skill-doc references updated, 289/289 tests, and strict validation |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -189,5 +192,6 @@ The first eight children and Phase 014 are implemented and verified. Phases 009 
 - **Completed predecessor handover**: `008-packaging-and-release-hardening/handover.md`
 - **Planned follow-on range**: `009-prompt-token-contract/` through `013-capability-evidence-unblock/`
 - **Completed conformance phase**: `014-code-and-doc-conformance/implementation-summary.md`
+- **Completed relocation phase**: `015-package-into-skill/implementation-summary.md`
 - **Reference implementation**: `context/claudish-to-english-main/`
 - **Graph metadata**: `graph-metadata.json`

@@ -37,13 +37,13 @@ Fail-closed negative tests prove unsafe evidence is rejected; a positive boundar
 
 ### Exact Command Sequence
 
-1. Change directory to `packages/cli-communication-projection/`.
+1. Change directory to `.opencode/skills/sk-communication/cli-communication-projection/`.
 2. Run `npm run test -- test/release/release-gate.test.ts -t "releases only a complete, fresh, passing, human-certified bundle"`.
 3. Capture the exit status and focused-test summary.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| COMM-008 | Human-certified bundle gates release | Prove the complete human-certified evidence boundary authorizes release. | `Verify that only a complete, fresh, passing, human-certified evidence bundle can release the projection package, then return PASS or FAIL with evidence.` | 1. `bash: cd packages/cli-communication-projection` -> 2. `package: npm run test -- test/release/release-gate.test.ts -t "releases only a complete, fresh, passing, human-certified bundle"` -> 3. Capture exit status and focused-test summary. | Exit zero; one focused test passes; decision is `release-ready`; manifest has eight passing entries. | Command transcript, exit status, passing test name, decision, and manifest census. | PASS if all signals match; FAIL if the command fails or any release signal differs; SKIP only if Node or installed dependencies are unavailable. | 1. Rerun the complete release-gate test file; 2. inspect the human evaluation fixture; 3. inspect evidence freshness bounds; 4. inspect manifest entry construction and abort reasons. |
+| COMM-008 | Human-certified bundle gates release | Prove the complete human-certified evidence boundary authorizes release. | `Verify that only a complete, fresh, passing, human-certified evidence bundle can release the projection package, then return PASS or FAIL with evidence.` | 1. `bash: cd .opencode/skills/sk-communication/cli-communication-projection` -> 2. `package: npm run test -- test/release/release-gate.test.ts -t "releases only a complete, fresh, passing, human-certified bundle"` -> 3. Capture exit status and focused-test summary. | Exit zero; one focused test passes; decision is `release-ready`; manifest has eight passing entries. | Command transcript, exit status, passing test name, decision, and manifest census. | PASS if all signals match; FAIL if the command fails or any release signal differs; SKIP only if Node or installed dependencies are unavailable. | 1. Rerun the complete release-gate test file; 2. inspect the human evaluation fixture; 3. inspect evidence freshness bounds; 4. inspect manifest entry construction and abort reasons. |
 
 ### Evidence Review
 
@@ -64,9 +64,9 @@ The focused test is a positive boundary, not a waiver for the full package gate.
 
 | File | Role |
 |---|---|
-| [Release gate](../../../../../packages/cli-communication-projection/src/release/release-gate.ts) | Evaluates the dated evidence bundle. |
-| [Release evidence contracts](../../../../../packages/cli-communication-projection/src/release/evidence.ts) | Manifest lanes, decisions, and reason codes. |
-| [Release gate tests](../../../../../packages/cli-communication-projection/test/release/release-gate.test.ts) | Positive and fail-closed release evidence. |
+| [Release gate](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/release/release-gate.ts) | Evaluates the dated evidence bundle. |
+| [Release evidence contracts](../../../../../.opencode/skills/sk-communication/cli-communication-projection/src/release/evidence.ts) | Manifest lanes, decisions, and reason codes. |
+| [Release gate tests](../../../../../.opencode/skills/sk-communication/cli-communication-projection/test/release/release-gate.test.ts) | Positive and fail-closed release evidence. |
 
 ---
 

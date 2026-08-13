@@ -35,17 +35,17 @@ This boundary controls only what the operator sees. It exposes no canonical writ
 
 | File | Layer | Role |
 |---|---|---|
-| `packages/cli-communication-projection/src/render/decision.ts` | Handler | Chooses a digest-checked capability-supported render mode. |
-| `packages/cli-communication-projection/src/clients/display.ts` | Handler | Applies atomic replacement or append on a client-owned display. |
-| `packages/cli-communication-projection/src/clients/sidecar.ts` | Handler | Applies sidecar projection without suppressing the original. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/render/decision.ts` | Handler | Chooses a digest-checked capability-supported render mode. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/clients/display.ts` | Handler | Applies atomic replacement or append on a client-owned display. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/clients/sidecar.ts` | Handler | Applies sidecar projection without suppressing the original. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `packages/cli-communication-projection/test/fidelity/render.test.ts` | Unit | Covers render prerequisites, mode selection, and exact-original fallback. |
-| `packages/cli-communication-projection/test/clients/display.test.ts` | Unit | Verifies ownership, atomic commit, append, and failure behavior. |
-| `packages/cli-communication-projection/test/clients/sidecar.test.ts` | Unit | Verifies sidecar-only degradation and original visibility. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/fidelity/render.test.ts` | Unit | Covers render prerequisites, mode selection, and exact-original fallback. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/clients/display.test.ts` | Unit | Verifies ownership, atomic commit, append, and failure behavior. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/clients/sidecar.test.ts` | Unit | Verifies sidecar-only degradation and original visibility. |
 
 ---
 

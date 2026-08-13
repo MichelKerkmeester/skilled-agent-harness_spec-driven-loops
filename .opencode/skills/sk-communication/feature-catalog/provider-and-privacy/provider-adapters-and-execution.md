@@ -35,18 +35,18 @@ Adapters translate the shared prompt and protected document into Ollama or OpenA
 
 | File | Layer | Role |
 |---|---|---|
-| `packages/cli-communication-projection/src/providers/adapters.ts` | Handler | Prepares and parses provider-family wire formats. |
-| `packages/cli-communication-projection/src/providers/controls.ts` | Shared | Compiles only capability-backed prompt controls. |
-| `packages/cli-communication-projection/src/providers/executor.ts` | Handler | Runs the approved attempt sequence with deadlines and fallback. |
-| `packages/cli-communication-projection/src/providers/presets.ts` | Shared | Builds shipped local and hosted provider-model records. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts` | Handler | Prepares and parses provider-family wire formats. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/controls.ts` | Shared | Compiles only capability-backed prompt controls. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/executor.ts` | Handler | Runs the approved attempt sequence with deadlines and fallback. |
+| `.opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts` | Shared | Builds shipped local and hosted provider-model records. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `packages/cli-communication-projection/test/providers/adapters.test.ts` | Unit | Verifies wire preparation, control handling, and response parsing. |
-| `packages/cli-communication-projection/test/providers/executor.test.ts` | Unit | Covers attempt order, cancellation, timeout, and exact-original results. |
-| `packages/cli-communication-projection/test/providers/performance.test.ts` | Benchmark | Exercises provider execution overhead under injected transports. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/providers/adapters.test.ts` | Unit | Verifies wire preparation, control handling, and response parsing. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/providers/executor.test.ts` | Unit | Covers attempt order, cancellation, timeout, and exact-original results. |
+| `.opencode/skills/sk-communication/cli-communication-projection/test/providers/performance.test.ts` | Benchmark | Exercises provider execution overhead under injected transports. |
 
 ---
 

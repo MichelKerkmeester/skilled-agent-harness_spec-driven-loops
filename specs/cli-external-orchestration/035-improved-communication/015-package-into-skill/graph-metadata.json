@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance",
-  "spec_folder": "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance",
+  "packet_id": "cli-external-orchestration/035-improved-communication/015-package-into-skill",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/015-package-into-skill",
   "parent_id": "cli-external-orchestration/035-improved-communication",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "code-and-doc-conformance",
-      "code and documentation conformance",
-      "cli communication projection documentation",
-      "package conformance evidence",
+      "package-into-skill",
+      "package into skill",
+      "cli communication projection relocation",
+      "package relocation evidence",
       "implementation plan",
-      "package documentation conformance",
+      "package relocation plan",
       "tasks",
-      "documentation conformance",
+      "package relocation tasks",
       "verification checklist",
       "quality gate",
       "implementation status",
       "current state"
     ],
     "key_topics": [
-      "code-and-doc-conformance",
-      "code",
-      "documentation",
-      "conformance",
+      "package-into-skill",
+      "package",
+      "skill",
       "cli",
       "communication",
       "projection",
-      "package",
+      "relocation",
       "evidence",
       "implementation",
       "plan",
-      "tasks"
+      "tasks",
+      "verification"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -85,7 +85,7 @@
         "source": "derived"
       },
       {
-        "name": "Documentation Conformance",
+        "name": "Package Relocation Into Skill",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -133,7 +133,7 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Template",
+        "name": "Pattern Rename",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The implementation was complete, but conformance was not closed until every maintained package folder had a standard README and every operator document passed the reference contract",
-    "created_at": "2026-08-13T05:54:57.670Z",
-    "last_save_at": "2026-08-13T17:09:50.743Z",
+    "causal_summary": "The package lived under a generic `packages/` root even though it is owned and consumed exclusively by the sk-communication skill, unlike system skills (for example, system-spec-kit) that bundle their code inside the skill directory",
+    "created_at": "2026-08-13T17:02:13.812Z",
+    "last_save_at": "2026-08-13T17:06:24.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a72c6f92d8fb5e801e7660cc5010c8a34caccab3b5f83ab9d1a5c1efc20ee18",
+    "source_fingerprint": "sha256:3c1c1a7084cd018863de3f65d6d4c49faa8d391970162fbdf2429067e152c76a",
     "source_doc_hashes": {
-      "spec.md": "2e7023cb3857900ce828d33e0defb0525eccd16ff1a18f0ccc146679609a5497",
-      "plan.md": "6097e867da144752e937148e7554fdbd02d5abc9fdf9f52afcd7abb9848d442c",
-      "tasks.md": "3e59f2acb4fd331a6a31bd752130ebe147d133cf2cdd32469287482af8b3434d",
-      "checklist.md": "661afb12b8d5d738da13f1b4c9ec6c7fad2f38701b5ea557aaf7fb7a9ca3f240",
-      "implementation-summary.md": "d849601c415c788758a5c8d0d8a78b2eb0f37194f6456ef77d926faa49c30e1b"
+      "spec.md": "2a825436b4bb396e65f3f82d5bd4495bf1a403bee044817c3a5e951a34619f59",
+      "plan.md": "8bc09f027b7712f6e15fddd6235469b2c84bfd23ab6b0da1fec59a6aa26c1edb",
+      "tasks.md": "c30371bbe70c52c200ff848292b889687d1a4c390aac9ddd0cb1812cf55d9e6f",
+      "checklist.md": "e1a7d0b9081f754dc0180858ae38fe2fe8d248c48d22e578dff9b6e9eebd27b6",
+      "implementation-summary.md": "df049153a559d0de09bdcb21256f3501cfdc4ffdeb0368bd1379ee4c2adee544"
     },
     "last_active_child_id": null,
     "last_active_at": null

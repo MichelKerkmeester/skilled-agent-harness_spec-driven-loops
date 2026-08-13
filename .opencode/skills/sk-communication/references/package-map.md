@@ -12,7 +12,7 @@ version: 1.0.0.0
 
 # Communication Projection Package Map
 
-Deep-dive routing for `packages/cli-communication-projection/`. Read `src/<subsystem>/index.ts` for the exact public surface before integrating.
+Deep-dive routing for `.opencode/skills/sk-communication/cli-communication-projection/`. Read `src/<subsystem>/index.ts` for the exact public surface before integrating.
 
 ---
 
@@ -58,4 +58,4 @@ canonical event/transcript ──> unchanged persistence + model context
 
 ## 5. VERIFICATION
 
-Run the package gate from `packages/cli-communication-projection/`: `npm run check` (typecheck, build, tests, import smoke). Test files run serially so latency benchmarks measure without contention.
+Run the package gate from `.opencode/skills/sk-communication/cli-communication-projection/`: `npm run check` (typecheck, build, tests, import smoke). Test files run serially so latency benchmarks measure without contention.
