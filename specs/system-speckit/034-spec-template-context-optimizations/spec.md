@@ -13,9 +13,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-template-context-optimizations"
-    last_updated_at: "2026-08-12T20:29:59Z"
+    last_updated_at: "2026-08-13T04:01:32Z"
     last_updated_by: "claude-code"
-    recent_action: "Added before/after comparison and packet changelog; packet complete"
+    recent_action: "Remediated second deep-review findings; packet complete"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Complete (uncommitted) — all four phases implemented; deep-review findings remediated; QA checklist verified; awaiting commit go-ahead |
+| **Status** | Complete — all four phases shipped and committed; two independent deep-reviews run and their findings remediated; QA checklist verified |
 | **Created** | 2026-08-12 |
 | **Branch** | `system-spec-kit/0146-speckit-template-optimizations` |
 | **Parent Packet** | system-speckit |
@@ -107,16 +107,16 @@ Ship the six verified/multi-lineage improvements as four independently-shippable
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Level-gate `research.md.tmpl` (Phase 1) | Rendered L1 output is materially smaller than the pre-gating full render (944 lines at every level; achieved: L1 = 175 lines) while L3/3+/phase stay byte-identical; renderer snapshot tests pass; the `research.md` documents entry in `spec-kit-docs.json` carries `owner`/`creationTrigger`/`absenceBehavior` |
-| REQ-002 | Consolidate cross-level template duplication (Phase 2) | The four multi-level templates use one shared core + per-level gated addenda; **rendered output per level is byte-identical to pre-change** (renderer snapshot proof); template source shrinks materially |
+| REQ-001 | Level-gate `research.md.tmpl` (Phase 1) | Rendered L1 output is materially smaller than the full render (measure via `inline-gate-renderer.sh --level N research.md.tmpl`: pre-gating ~944 lines at every level; achieved L1 = 175 lines) while L3/3+/phase stay byte-identical; renderer snapshot tests pass; the `research.md` documents entry in `spec-kit-docs.json` carries `owner`/`creationTrigger`/`absenceBehavior` |
+| REQ-002 | Consolidate cross-level template duplication (Phase 2) | Each of the four multi-level templates keeps its shared content ungated and wraps per-level content in inline `<!-- IF level:N -->` gates (one file per template, not an extracted shared include); **rendered output per level is byte-identical to pre-change** (renderer snapshot proof); template source shrinks materially |
 | REQ-004 | Promote `AC_COVERAGE` to default-on (Phase 3) | Rule runs by default as a non-blocking advisory (surfaces an INFO-level message on under-coverage; `RULE_STATUS` stays `pass`) with the manual-infeasible escape hatch intact; a known-under-covered packet surfaces the advisory message but never errors or hard-fails; existing packets do not hard-fail under `--strict` |
-| REQ-006 | Enforce a token budget in `memory_search` (Phase 4) | `handleMemorySearch` applies the shared `enforceTokenBudget` / `getTokenBudget('memory_search')`; a test proves oversized results are truncated lowest-score-first with enforcement metadata |
+| REQ-006 | Enforce a token budget in `memory_search` (Phase 4) | `handleMemorySearch` applies a dedicated `enforceSearchTokenBudget` (mirrors `memory_context`'s enforcement; kept as a separate enforcer per ADR-005) with `getTokenBudget('memory_search')`; a test proves oversized results are truncated lowest-score-first with enforcement metadata |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | Rendered-view read guard + helper (Phase 2) | A documented `inline-gate-renderer --level N --stdout` (or equivalent) read path exists; an authoring-checklist item points agents to it instead of raw `.tmpl` |
+| REQ-003 | Rendered-view read guard + helper (Phase 2) | A documented `inline-gate-renderer.sh --level N <template>` read path exists (prints to STDOUT when `--out-dir` is omitted); an authoring-checklist item points agents to it instead of raw `.tmpl` |
 | REQ-005 | Add `check-scope-adherence.sh` (Phase 3) | A new warn-severity rule verifies changed-file paths fall within the plan/spec declared scope; wired into `validate.sh`'s rule loop; passes on an in-scope fixture, warns on an out-of-scope fixture |
 <!-- /ANCHOR:requirements -->
 

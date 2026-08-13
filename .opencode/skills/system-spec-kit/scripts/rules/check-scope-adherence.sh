@@ -58,13 +58,18 @@ run_check() {
         fi
     fi
 
+    # Split on newlines when the change-set has them (git diff --name-only output),
+    # so paths that contain spaces survive; fall back to whitespace only for legacy
+    # single-line space-separated input.
     local changed_files=()
     local changed_file=""
+    local _split=' '
+    [[ "$changed_text" == *$'\n'* ]] && _split=$'\n'
     while IFS= read -r changed_file; do
         [[ -z "$changed_file" ]] && continue
         changed_file="${changed_file#./}"
         changed_files+=("$changed_file")
-    done < <(printf '%s\n' "$changed_text" | tr '[:space:]' '\n')
+    done < <(printf '%s\n' "$changed_text" | tr "$_split" '\n')
 
     if [[ ${#changed_files[@]} -eq 0 ]]; then
         RULE_MESSAGE="Scope adherence: not active (no change-set provided)"
@@ -127,13 +132,25 @@ run_check() {
     fi
 
     local canonical_docs=" spec.md plan.md tasks.md checklist.md decision-record.md implementation-summary.md research.md resource-map.md handover.md description.json graph-metadata.json "
+    # Resolve the packet's own folder so the canonical-doc exception below stays
+    # scoped to THIS packet — a same-named file elsewhere in the tree is never
+    # in-scope merely by matching a basename.
+    local folder_norm="${folder#./}"; folder_norm="${folder_norm%/}"
+    local pkt_dir="${folder_norm##*/}"
 
     local violations=()
     local matched=false
     for changed_file in "${changed_files[@]}"; do
         matched=false
-        # A packet's own canonical docs are always in-scope for its change-set.
-        if [[ "$canonical_docs" == *" ${changed_file##*/} "* ]]; then
+        # A packet's own canonical docs are always in-scope — but only when the file
+        # actually lives in this packet's folder, never merely by basename.
+        local base="${changed_file##*/}"
+        local parent="${changed_file%/*}"
+        [[ "$parent" == "$changed_file" ]] && parent=""
+        if [[ "$canonical_docs" == *" $base "* ]] \
+           && { { [[ -n "$folder_norm" ]] && [[ "$parent" == "$folder_norm" ]]; } \
+                || { [[ -n "$pkt_dir" ]] && [[ "$parent" == *"/$pkt_dir" ]]; } \
+                || { [[ -n "$pkt_dir" ]] && [[ "$parent" == "$pkt_dir" ]]; }; }; then
             continue
         fi
         for declared_prefix in "${declared_prefixes[@]}"; do

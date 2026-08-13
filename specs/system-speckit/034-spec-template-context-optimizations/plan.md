@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-template-context-optimizations"
-    last_updated_at: "2026-08-12T12:51:40Z"
+    last_updated_at: "2026-08-13T04:01:32Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored four-phase implementation plan"
-    next_safe_action: "Resolve Phase 1 consumer question; implement Phase 1"
+    recent_action: "Reconciled plan to shipped state after two deep-reviews"
+    next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
       - "specs/system-speckit/034-spec-template-context-optimizations/spec.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-12-system-speckit-034-optimizations"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -81,7 +81,7 @@ Four surfaces, four phases. The template renderer contract (`inline-gate-rendere
 
 ### Phase 3 — Plan-adherence validation gates (REQ-004, REQ-005) · validation
 
-- **Do (REQ-004):** promote `AC_COVERAGE` to default-on at warn severity — flip the default in `check-ac-coverage.sh` or set `SPECKIT_AC_COVERAGE=true` in the completion gate; keep `SPECKIT_AC_COVERAGE_FLOOR` (0.9) and the manual-infeasible escape hatch; update `validation-rules.md:75-79`.
+- **Do (REQ-004):** promote `AC_COVERAGE` to default-on as a **non-blocking advisory (INFO)** — flip the default in `check-ac-coverage.sh` (`RULE_STATUS` stays `pass`); keep `SPECKIT_AC_COVERAGE_FLOOR` (0.9) and the manual-infeasible escape hatch; update `validation-rules.md`. (Shipped as advisory, not warn — see decision-record ADR-003.)
 - **Do (REQ-005):** add `check-scope-adherence.sh` (warn) following the `check-files.sh` pattern — verify changed-file paths fall within the plan/spec declared scope; wire it into `validate.sh`'s rule loop; resolve the changed-files contract (Open Question 3) first.
 - **Prove:** covered fixture passes, under-covered fixture warns (not errors); in-scope fixture passes, out-of-scope fixture warns; no existing packet hard-fails under `--strict`.
 

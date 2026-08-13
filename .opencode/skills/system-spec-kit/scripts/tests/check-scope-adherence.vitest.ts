@@ -1,6 +1,7 @@
 // Behavioral coverage for the advisory SCOPE_ADHERENCE rule: it must no-op without a
-// change-set, warn only on genuinely out-of-scope paths, and always treat a packet's own
-// canonical docs as in-scope (the false-positive the rule was hardened against).
+// change-set, warn only on genuinely out-of-scope paths, and treat a packet's own
+// canonical docs as in-scope ONLY when they live in that packet's folder — a same-named
+// doc elsewhere in the tree is not exempt (the over-broad basename skip this guards against).
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -10,15 +11,16 @@ import path from 'node:path';
 const RULE = path.resolve(__dirname, '../rules/check-scope-adherence.sh');
 
 let fixtureDir: string;
+let pkt: string; // basename of the packet folder under review
 let harness: string;
 
 beforeAll(() => {
   fixtureDir = fs.mkdtempSync(path.join(os.tmpdir(), 'scope-adherence-'));
+  pkt = path.basename(fixtureDir);
   fs.writeFileSync(
     path.join(fixtureDir, 'spec.md'),
     '# Spec\n## Files to Change\n- `.opencode/skills/foo/`\n',
   );
-  // Harness sources the rule and prints the rule outputs for assertion.
   harness = path.join(fixtureDir, 'harness.sh');
   fs.writeFileSync(
     harness,
@@ -58,20 +60,26 @@ describe('SCOPE_ADHERENCE rule', () => {
     expect(r.message).toMatch(/not active/i);
   });
 
-  it('warns on only the genuinely out-of-scope file, not packet docs or declared paths', () => {
+  it("warns on only the out-of-scope file; this packet's own docs and declared paths pass", () => {
     const r = run({
       MK_SCOPE_CHANGED_FILES:
-        'specs/x/spec.md .opencode/skills/foo/bar.ts some/other/out-of-scope.ts',
+        `${pkt}/spec.md .opencode/skills/foo/bar.ts some/other/out-of-scope.ts`,
     });
     expect(r.status).toBe('warn');
     expect(r.violations).toBe('some/other/out-of-scope.ts');
   });
 
-  it('passes when the change-set is only canonical packet docs plus declared paths', () => {
+  it("passes when the change-set is only this packet's canonical docs plus declared paths", () => {
     const r = run({
-      MK_SCOPE_CHANGED_FILES: 'specs/x/spec.md specs/x/plan.md .opencode/skills/foo/bar.ts',
+      MK_SCOPE_CHANGED_FILES: `${pkt}/spec.md ${pkt}/plan.md .opencode/skills/foo/bar.ts`,
     });
     expect(r.status).toBe('pass');
     expect(r.violations).toBe('');
+  });
+
+  it('warns on a same-named canonical doc that lives in a DIFFERENT folder (not exempt by basename)', () => {
+    const r = run({ MK_SCOPE_CHANGED_FILES: 'other/spec.md' });
+    expect(r.status).toBe('warn');
+    expect(r.violations).toBe('other/spec.md');
   });
 });
