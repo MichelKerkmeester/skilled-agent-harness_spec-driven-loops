@@ -1,0 +1,71 @@
+{
+  "run_id": "1786656633113-zhqpv7",
+  "loop_type": "research",
+  "spec_folder": "specs/system-deep-loop/037-graph-engineering/003-graph-arch",
+  "base_artifact_dir": "specs/system-deep-loop/037-graph-engineering/003-graph-arch/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "graph-arch-sol-high",
+      "state_log": "specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/lineages/graph-arch-sol-high/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-13T21:30:33.117Z",
+        "end_at_iso": "2026-08-13T23:05:40.354Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 12,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 26
+      },
+      "sample": [
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-08-14T00:12:00Z",
+          "deltaMs": 3859646
+        },
+        {
+          "index": 12,
+          "reason": "after_window",
+          "timestamp": "2026-08-14T00:24:00Z",
+          "deltaMs": 4579646
+        },
+        {
+          "index": 13,
+          "reason": "after_window",
+          "timestamp": "2026-08-14T00:36:00Z",
+          "deltaMs": 5299646
+        },
+        {
+          "index": 14,
+          "reason": "after_window",
+          "timestamp": "2026-08-14T00:48:00Z",
+          "deltaMs": 6019646
+        },
+        {
+          "index": 15,
+          "reason": "after_window",
+          "timestamp": "2026-08-14T01:00:00Z",
+          "deltaMs": 6739646
+        }
+      ]
+    }
+  ]
+}
