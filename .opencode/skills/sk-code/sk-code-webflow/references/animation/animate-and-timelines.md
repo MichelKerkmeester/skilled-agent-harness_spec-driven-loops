@@ -88,6 +88,8 @@ animate(
 
 The current Webflow codebase often uses `easing` in options while official docs use `ease` in current examples. When authoring new generic snippets, prefer the official option name unless a local component pattern proves compatibility constraints (Sources: https://motion.dev/docs/animate; External/historical example: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`).
 
+---
+
 ## 4. TIMELINES (sequence, parallel, with relative/absolute positioning)
 
 Motion's timeline-style sequencing is expressed as an array passed to `animate()`. Segment timing can be positioned:

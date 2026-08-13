@@ -164,6 +164,8 @@ RESOURCE_MAP = {
 }
 ```
 
+---
+
 ## 3. SURFACE STANDARDS (the non-negotiables)
 
 - **Plugins never write to the TUI.** OpenCode plugins must not print to the process stdout/stderr (no overlay on the chat input); user/agent-visible output goes through system-context injection, tools, or append-only log files; DEBUG-gated stderr is allowed only behind an env flag. See `references/javascript/quality-standards/overview-modules-and-docs.md` and the plugin exemption tier.

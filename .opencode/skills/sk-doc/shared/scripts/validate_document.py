@@ -530,6 +530,14 @@ def _transparent_structure_line(line: str) -> bool:
     return not stripped or bool(re.fullmatch(r'<!--.*-->', stripped))
 
 
+def _section_caps_ignoring_qualifier(title: str) -> bool:
+    """A numbered H2 counts as a section heading when its text, minus any parenthetical
+    qualifier, is uppercase. This keeps headings like "FILE-LAYER SURFACE (what the AI
+    edits)" in scope while leaving genuinely title-case headings out."""
+    core = re.sub(r'\([^)]*\)', '', title).strip()
+    return bool(core) and core == core.upper()
+
+
 def validate_general_structure(content: str, doc_type_rules: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Validate staged divider and navigation rules for the general path."""
     if not _structure_enforcement_enabled():
@@ -546,7 +554,7 @@ def validate_general_structure(content: str, doc_type_rules: Dict[str, Any]) -> 
             if line_number in fenced_lines:
                 continue
             match = h2_pattern.match(line)
-            if match and is_uppercase_section(match.group(2)):
+            if match and _section_caps_ignoring_qualifier(match.group(2)):
                 numbered_h2_lines.append(line_number)
 
         for line_number in numbered_h2_lines[1:]:

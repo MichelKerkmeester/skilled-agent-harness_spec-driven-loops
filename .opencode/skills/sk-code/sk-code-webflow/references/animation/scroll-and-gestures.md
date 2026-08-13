@@ -74,6 +74,8 @@ const stop = inView("[data-reveal]", (element) => {
 
 `inView()` is built on Intersection Observer, and the docs describe `root`, `margin`, and `amount` options for viewport control (Source: https://motion.dev/docs/inview).
 
+---
+
 ## 4. GESTURES (drag, hover, tap, focus)
 
 For vanilla JavaScript, current Motion docs expose gesture/event helpers including `hover()` and `press()` (Sources: https://motion.dev/docs/hover, https://motion.dev/docs/press).

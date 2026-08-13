@@ -47,6 +47,8 @@ Query blocks in notes render those fields as tables, lists, task lists, or calen
 
 Dataview never writes note content. Its only persisted artifact is its settings file.
 
+---
+
 ## 3. FILE-LAYER SURFACE (what the AI edits)
 
 | Layer | Path / artifact | Operable by AI |

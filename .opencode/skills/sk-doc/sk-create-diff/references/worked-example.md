@@ -47,6 +47,8 @@ python3 scripts/validate_report.py /tmp/onboarding-review.html
 
 Open the file in any browser, offline. The unified view shows old/new line numbers, a `+`/`−` marker column, collapsed unchanged runs, and inline `<mark>` highlights on changed words. Add `--view side-by-side` for two columns.
 
+---
+
 ## 3. THE AUTOMATIC (snapshot) FLOW
 
 The same result via the baseline workflow — capture before editing, compare after:

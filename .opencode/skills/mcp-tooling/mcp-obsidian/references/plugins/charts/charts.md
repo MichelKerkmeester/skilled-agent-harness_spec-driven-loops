@@ -58,6 +58,8 @@ The editor context menu shows an Insert Chart entry when the `contextMenu` setti
 - It offers no custom sidebar view in this version. VERIFY: older release notes describe a Charts View sidebar pane. The installed 3.9.0 bundle registers no custom view.
 - The creator dialog and the table wizard are UI-only. The AI works at the file layer instead.
 
+---
+
 ## 3. FILE-LAYER SURFACE (what the AI touches)
 
 | Layer | Path / artifact | Safe handling |
@@ -74,6 +76,8 @@ The editor context menu shows an Insert Chart entry when the `contextMenu` setti
 | --- | --- | --- |
 | `chart` | YAML with `type`, `labels`, `series` | Renderer pipeline: YAML to Chart.js config |
 | `advanced-chart` | JSON, a Chart.js configuration | Direct Chart.js render |
+
+---
 
 ## 4. RENDER BLOCK CONTRACT (quick start)
 

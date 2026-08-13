@@ -50,6 +50,8 @@ The plugin surface includes more than the canvas.
 
 The AI operates the note layer and the settings JSON only.
 
+---
+
 ## 3. FILE-LAYER SURFACE (what the AI edits)
 
 | Layer | Path / artifact | Operable by AI |
@@ -60,6 +62,8 @@ The AI operates the note layer and the settings JSON only.
 | Drawing template | `<templateFilePath>` (default `Excalidraw/Template.excalidraw`) | **Yes**: copy into new drawings |
 | Shape library | `<libraryFolderPath>/<libraryFileName>.excalidrawLib` (default `Excalidraw/Libraries/local-library`) | Read-only for the AI |
 | In-app drawing UI | Excalidraw view | **No**: out of reach headlessly |
+
+---
 
 ## 4. DRAWING FILE CONTRACT (summary)
 

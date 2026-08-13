@@ -33,6 +33,8 @@ The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebo
 
 Customizes icons and their colors directly in the Obsidian UI: tabs, files & folders, bookmarks, tags, properties, and ribbon commands. Rules can match by file extension or folder name; per-item overrides exist for individual icons. Rendering happens in-app; the mode touches only the JSON.
 
+---
+
 ## 3. FILE-LAYER SURFACE (what the AI edits)
 
 | Layer | Path / artifact | Operable by AI |
@@ -51,6 +53,8 @@ Customizes icons and their colors directly in the Obsidian UI: tabs, files & fol
 
 - The full asset contains **only the two mergeable rule arrays** — no `data.json` settings, no `dialogState`, no per-item override maps.
 - It is **never a whole-`data.json` replacement**: merge it by stable rule `id` into a freshly-read vault `data.json` (update matching ids, append missing ids), preserving unrelated settings and user overrides.
+
+---
 
 ## 4. RULE SHAPE (one rule)
 
