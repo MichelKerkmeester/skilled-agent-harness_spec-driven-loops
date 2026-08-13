@@ -1,6 +1,6 @@
 # Deep Research Synthesis: Spec-Kit Templates & Context Reducer
 
-**Packet:** `specs/system-speckit/033-spec-templates-and-context-reducer`
+**Packet:** `specs/system-speckit/034-spec-template-context-optimizations/research` (research originally conducted as packet 033)
 **Question:** Do the two `context/*.md` concepts (Reducer Engineering; the $1.2M Agent Engineering harness) yield concrete in-repo improvements to system-speckit's templates, documentation logic, and context/memory system — for (a) context/token reduction, (b) AI plan adherence, (c) general optimization?
 **Mode:** Report-only. No product code was implemented. All lineage writes were containment-confined; the repo has zero net damage.
 

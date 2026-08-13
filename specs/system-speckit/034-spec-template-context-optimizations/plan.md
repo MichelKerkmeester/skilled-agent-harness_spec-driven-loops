@@ -35,7 +35,7 @@ _memory:
 
 Implement the six 033 recommendations as **four independently-shippable phases**, ordered by verified value and surface cohesion. Each phase captures a regression baseline, changes one surface, proves its result with focused tests, and re-runs the authoritative gate. Phase 1 is the highest-verified win and self-contained; Phases 3 and 4 are independent and could run in parallel with the template phases.
 
-All findings and file:line evidence trace to `../033-spec-templates-and-context-reducer/research/research.md`. The refutation list there is a hard blocker: no phase may reinvent existing deep-loop reducers, the memory_context budget, or the evaluator/handoff machinery.
+All findings and file:line evidence trace to `research/research.md`. The refutation list there is a hard blocker: no phase may reinvent existing deep-loop reducers, the memory_context budget, or the evaluator/handoff machinery.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -107,7 +107,7 @@ Four surfaces, four phases. The template renderer contract (`inline-gate-rendere
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-- 033 research report (`../033-.../research/research.md`) — evidence + refutation list.
+- 033 research report (`research/research.md`) — evidence + refutation list.
 - `inline-gate-renderer.ts` + its snapshot test harness.
 - `validate.sh` rule-loader + `scripts/rules/` conventions (`check-files.sh` as the pattern for REQ-005).
 - mcp-server test harness + the shared `enforceTokenBudget` / `getTokenBudget` helpers.

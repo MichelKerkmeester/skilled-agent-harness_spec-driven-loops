@@ -19,7 +19,7 @@ _memory:
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-spec-templates-and-context-reducer/research/research.md"
+      - "specs/system-speckit/034-spec-template-context-optimizations/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-12-system-speckit-034-optimizations"
@@ -48,7 +48,7 @@ _memory:
 | **Created** | 2026-08-12 |
 | **Branch** | `system-spec-kit/0146-speckit-template-optimizations` |
 | **Parent Packet** | system-speckit |
-| **Predecessor** | `033-spec-templates-and-context-reducer` (research) |
+| **Predecessor** | `033-spec-templates-and-context-reducer` (research, now incorporated at `research/`) |
 | **Successor** | None |
 | **Handoff Criteria** | Each of the four implementation phases lands with passing tests and a clean regression gate; every change classified against the 033 refutation list so nothing reinvents shipped machinery |
 <!-- /ANCHOR:metadata -->

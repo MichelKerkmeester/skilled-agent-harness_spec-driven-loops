@@ -96,5 +96,5 @@ _memory:
 ## Cross-References
 
 - Spec: `spec.md` · Plan: `plan.md` · Decisions: `decision-record.md` · Checklist: `checklist.md`
-- Evidence source: `../033-spec-templates-and-context-reducer/research/research.md`
+- Evidence source: `research/research.md`
 <!-- /ANCHOR:cross-refs -->
