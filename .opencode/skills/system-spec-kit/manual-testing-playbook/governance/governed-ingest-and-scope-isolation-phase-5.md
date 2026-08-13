@@ -209,6 +209,8 @@ Queried `memory_index` for the same governed scope/provenance markers:
 
 Inspect the governed save validation path, scope-filtering logic, and `governance_audit` writes if provenance or isolation behavior regresses.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md](../../feature-catalog/governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md)

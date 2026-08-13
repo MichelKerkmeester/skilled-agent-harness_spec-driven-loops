@@ -130,6 +130,8 @@ result.content[0].text = serializeEnvelopeWithTokenCount(envelope);
 
 Inspect `hooks/response-hints.ts`, `context-server.ts`, and token-estimation helpers if token metadata diverges from the serialized payload
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/final-token-metadata-recomputation.md](../../feature-catalog/ux-hooks/final-token-metadata-recomputation.md)

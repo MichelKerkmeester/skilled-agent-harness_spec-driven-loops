@@ -58,6 +58,8 @@ Test transcript + suite summary
 
 Re-run `npx vitest run tests/memory-state-baseline.vitest.ts -t persist`; inspect `lib/eval/memory-state-baseline.ts` and eval DB path resolution if assertions drift
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/memory-roadmap-baseline-snapshot.md](../../feature-catalog/evaluation-and-measurement/memory-roadmap-baseline-snapshot.md)

@@ -1,0 +1,38 @@
+You are implementing Phase 2 of an approved spec. Work in this repo (cwd is the repo root).
+
+Spec folder: .opencode/specs/sk-doc/029-doc-divider-and-anchor-standard (PRE-APPROVED — skip Gate 3; do NOT ask the documentation-scope question).
+
+FIRST, load context:
+1. Load the `sk-code` skill; let it detect the surface for a Python script inside the `.opencode` repo (opencode surface) and run that surface's verification commands at the end.
+2. Read the packet's spec.md, plan.md, tasks.md, and research.md in full. They contain the complete diagnosis. Follow the plan; do not re-investigate.
+
+GOAL (Phase 2 = teach the GENERAL validation path to enforce the standard). Target files ONLY:
+- .opencode/skills/sk-doc/shared/scripts/validate_document.py
+- .opencode/skills/sk-doc/shared/assets/template-rules.json
+- a new negative-control fixture + a test under .opencode/skills/sk-doc/scripts/tests/ (mirror the existing test layout there)
+
+TASKS:
+- T005: Add a check to the GENERAL validation path (the code path that runs for `--type=readme`, `reference`, `command`, `agent`, etc. — i.e. `validate_document(...)` dispatch, NOT `validate_code_folder`) that flags a missing `---` divider between consecutive numbered ALL-CAPS H2 sections. It MUST be fence-aware (ignore numbered headings inside ``` fenced code blocks — reuse the existing fence-line logic in this file) and MUST treat HTML-comment-only lines (e.g. `<!-- ANCHOR:x -->`) as transparent when looking for the `---` immediately above a heading. Only fire between numbered ALL-CAPS H2 (`## N. TITLE`), never between H3 subsections.
+- T006: In the same general path, flag a Table of Contents section and `<!-- ANCHOR -->` navigation comments on README and skill-doc types (mirror the existing `code_folder_no_toc` / `code_folder_no_anchor` rules).
+- T007: Update template-rules.json flags as needed so the general path applies these rules for the right doc types.
+- T004: Add a negative-control fixture — a numbered-H2 doc that is missing exactly one `---` divider — plus a test asserting the new check detects it, and a positive fixture (all dividers present) asserting it does NOT fire.
+
+HARD CONSTRAINTS (violating any of these fails the task):
+1. CI-SAFE: Merging this must NOT turn the doc gate red on the current fleet (1,015 files currently drift). Implement the new divider/TOC/anchor rules as NON-BLOCKING by default — either severity 'warning' (not 'blocking') OR gated behind an env flag that defaults OFF (e.g. only 'blocking' when SKDOC_ENFORCE_STRUCTURE=1). The negative-control TEST runs with enforcement ON to prove detection. Blocking-by-default is deferred to after fleet normalization (Phase 3). State clearly in your report which mechanism you chose.
+2. DO NOT modify `validate_code_folder` or the code-folder path — it already works.
+3. DO NOT touch the spec-kit continuity anchor system: anchor-generator.ts, scripts/spec/validate.sh, or scripts/test-fixtures/007-valid-anchors and 008-invalid-anchors. Those `<!-- ANCHOR:... -->` markers are REQUIRED in spec.md/plan.md/tasks.md/implementation-summary.md/memory/context.md and must never be flagged by your new rule. Your rule applies to README/skill-doc TYPES only, not spec-type docs.
+4. Respect existing exemptions (e.g. the templates/changelog anchor-contract skip). Do not regress any current test.
+5. SCOPE LOCK: change only the files listed above. No cleanup or refactor of adjacent code.
+6. COMMENT HYGIENE: no spec paths, packet ids, ADR/REQ/task ids, or commit hashes in code comments — write the durable WHY only.
+
+VERIFICATION (run and report actual output):
+- Negative control: it must be DETECTED with enforcement ON, and the positive fixture must NOT fire. Show the command + output.
+- Regression: the existing sk-doc test suite under .opencode/skills/sk-doc/scripts/tests/ still passes (run it with python3 -m pytest or the runner already used there).
+- Continuity anchors untouched: confirm a spec-type doc carrying `<!-- ANCHOR:... -->` is NOT flagged by the new rule.
+- T008 DRY-RUN (read-only): with enforcement ON, run the divider check across all structured .md under .opencode/skills, .opencode/commands, .opencode/agents (exclude z_archive, tests, node_modules, dist, test-fixtures, scratch) and report the count of files flagged. Cross-check it against the census baseline in research.md (~1,015 divider-drift files). You may reuse .opencode/specs/sk-doc/029-doc-divider-and-anchor-standard/scratch/census.py as a reference.
+
+NOTE: The node-based validator (scripts/spec/validate.sh) is currently BROKEN in this environment (a hollow mcp-server/node_modules/zod install crashes it). Do NOT try to fix that. Use Python-only checks and the sk-doc pytest tests for verification.
+
+WHEN DONE: write a concise report to
+.opencode/specs/sk-doc/029-doc-divider-and-anchor-standard/scratch/luna-phase2-report.md
+covering: exact files changed, the CI-safe mechanism you chose (warning vs flag), the negative-control command+output, the regression result, the continuity-anchor confirmation, and the dry-run count vs the ~1,015 baseline. Do not claim success without pasted command output.

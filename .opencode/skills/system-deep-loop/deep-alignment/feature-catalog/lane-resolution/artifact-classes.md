@@ -19,6 +19,8 @@ The four artifact-class values a deep-alignment lane may carry: `docs`, `code`, 
 
 An artifact-class names the kind of thing a lane audits. It is the first axis of the scoping tree because it determines which authorities are even offered next — a `git-history` lane has nothing to do with `sk-doc`, and a `docs` lane has nothing to do with `sk-git` — and it constrains which scope shapes make sense for the lane.
 
+---
+
 ## 2. HOW IT WORKS
 
 `ARTIFACT_CLASSES` is a frozen four-value set: `docs` (Markdown documentation, spec-kit docs, skill reference docs), `code` (source files under a stack `sk-code` recognizes), `designs` (DESIGN.md style-reference docs and design tokens), and `git-history` (commits, branches, and worktree state, not file content). `validateLane()` rejects any lane whose `artifactClass` is outside this set, and additionally rejects a class the named authority does not support (see the authority registry). Declaration order matches the documented axis order but validation does not depend on it.

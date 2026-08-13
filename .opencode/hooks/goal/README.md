@@ -29,7 +29,7 @@ OpenCode's `.opencode/plugins/mk-goal.js` remains a separate native implementati
 | Pi | `input`, restore on `session_start` | Native `/goal-pi` registered by the extension | Heuristic check on `turn_end`; no forced continuation | Supported |
 | Cursor | `sessionStart` using `session_id`, then `conversation_id` fallback | Unavailable because prompt commands do not receive the hook's native identity | Turn touch only; no continuation | Injection-only |
 | OpenCode | Native `mk-goal` plugin, outside this core | Native `/goal-opencode` tools | Native verifier and guarded continuation | Separate supported system |
-| Claude Code | No adapter in this core | Use the runtime's native goal feature where available | Outside this core | Not provided here |
+| Claude Code | No adapter in this core | No repository command; live native capability unverified here | Outside this core | Not provided here |
 | Codex | No adapter | None | None | Unsupported |
 
 A runtime is not called fully supported unless injection and management bind the same native current-session identity. Cursor therefore remains injection-only, and its `/goal-cursor` prompt fails closed instead of invoking an unbound CLI.
@@ -40,19 +40,27 @@ The default state root is `.opencode/skills/.goal-state/`. Tests and isolated pr
 
 ```text
 .goal-state/
-├── pi-<full-sha256-of-native-session-id>.json
-├── cursor-<full-sha256-of-native-session-id>.json
+├── <sha256-of-canonical-scope>.json
+├── .locks/
+│   └── <sha256-of-lock-identity>.lock/
 ├── .archive/
-│   ├── pi-<digest>/
-│   │   └── active-goal-<goal-id>.json
-│   ├── cursor-<digest>/
-│   │   └── active-goal-<goal-id>.json
+│   ├── <sha256-of-canonical-scope>/
+│   │   └── active-goal-<safe-goal-id>-<record-digest>.json
 │   └── .legacy/
 │       └── active-goal-<goal-id-or-content-digest>.json
 └── active-goal.json                    # legacy, diagnostic-only when present
 ```
 
-Raw session ids never appear in filenames or aggregate diagnostics. State files use mode `0600`; created directories use mode `0700`; writes use a temporary file, `fsync`, and atomic rename.
+The canonical scope digest hashes the unambiguous JSON serialization of the resolved
+repository root, runtime, and native session id. This keeps workspaces isolated even when
+they share an explicit state root. The previous runtime-plus-session-digest layout is
+adopted only under the matching workspace-default state root, where ownership is
+unambiguous.
+
+Raw identities never appear in filenames or aggregate diagnostics. State files use mode
+`0600`; created directories use mode `0700`; writes use a temporary file, `fsync`, and
+atomic rename. Lifecycle mutations take cross-process filesystem locks. Archive filenames
+use segment-safe identities, and resolved targets must remain inside the real state root.
 
 ## 4. MANAGE CLI
 

@@ -100,6 +100,8 @@ press("button", (element) => {
 
 Drag behavior in the current repo is implemented manually with Pointer Events plus `motionValue()` and `animate(..., { type: "inertia" })`, not via a vanilla `drag` helper. Cite the local implementation before copying that pattern (External/historical example: `a_nobel_en_zn/2_javascript/slider/testimonial.js`; Motion animation options: https://motion.dev/docs/animate).
 
+---
+
 ## 5. EXTERNAL/HISTORICAL EXAMPLES
 
 ### Testimonial drag inertia
@@ -118,6 +120,8 @@ External/historical example `a_nobel_en_zn/2_javascript/hero/hero_video_scroll.j
 ### Play-on-hover and hover patterns
 
 External/historical examples `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js`, `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, and `a_nobel_en_zn/2_javascript/molecules/link_hero.js` use pointer/hover guards and native events plus `window.Motion.animate` for hover animations.
+
+---
 
 ## 6. REFERENCES AND RELATED RESOURCES
 

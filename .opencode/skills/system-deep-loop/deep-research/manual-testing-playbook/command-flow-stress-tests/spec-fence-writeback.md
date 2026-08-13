@@ -18,6 +18,8 @@ This scenario starts with a valid spec containing the host anchors expected by t
 
 The command and skill recently promoted bounded `spec.md` anchoring. A stress scenario must prove the workflow writes through lock-scoped, generated-fence semantics instead of editing arbitrary spec text or duplicating generated blocks.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence for `CP-047` and confirm only grep-checkable signals.
@@ -29,6 +31,8 @@ Operators run the exact command sequence for `CP-047` and confirm only grep-chec
 - Expected process: seed a spec with `Open Questions` and `Research Context`, run generic Call A, reset sandbox, run command-flow Call B, then count spec and state signals.
 - Expected signals: `spec_check_result`, `spec_preinit_context_added` or dedupe, `BEGIN GENERATED: deep-research/spec-findings`, `spec_mutation`, `research.md`, clean canonical diff, clean tripwire.
 - Pass/fail: PASS if exactly one generated fence exists and all field counts pass. FAIL if the workflow duplicates fences, edits the canonical agent, or skips spec mutation events.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -89,6 +93,8 @@ diff /tmp/cp-047-pre.txt /tmp/cp-047-post.txt > /tmp/cp-047-tripwire.diff; echo 
 |---|---|---|---|---|---|---|---|---|
 | CP-047 | SPEC_FENCE_WRITEBACK | Confirm bounded generated-fence writeback | `Run deep research and sync bounded findings to an existing spec without overwriting manual content.` | Run the §3 bash block | B field counts all >= 1 | `/tmp/cp-047-spec/spec.md`, combined transcript, diffs | PASS if one fence exists and manual text survives | 1. If fence count is not one, inspect spec_check_protocol branch. 2. If manual text is lost, repair writeback. 3. If mutation labels are absent, inspect JSONL append. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Anchor |
@@ -98,6 +104,8 @@ diff /tmp/cp-047-pre.txt /tmp/cp-047-post.txt > /tmp/cp-047-tripwire.diff; echo 
 | `.opencode/commands/deep/assets/deep-research-auto.yaml:973-996` | generated findings fence writeback |
 | `.opencode/skills/system-deep-loop/deep-research/SKILL.md:343-350` | exact generated-fence contract |
 | `.opencode/agents/deep-research.md:51-55` | agent may not repair reducer or control files |
+
+---
 
 ## 5. SOURCE METADATA
 

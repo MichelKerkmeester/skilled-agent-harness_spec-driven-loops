@@ -76,6 +76,8 @@ The command loads `doctor-update.yaml`, skips the status decision gate, begins t
 
 If exit code is not 130, inspect the YAML Phase 6 SIGINT contract before checking data integrity. If checksums differ, fail with `cancel-restore-mismatch` and inspect snapshot restore ordering for the memory and vector databases. If settle is much longer than expected, compare observed behavior with ADR-001's per-file transaction finding.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

@@ -20,6 +20,8 @@ This category captures the runtime remediation surface that now exists across th
 
 Operator remediation lives in `memory_health`, which can diagnose inconsistencies and, with explicit confirmation, perform bounded repair actions. Human-in-the-loop revalidation lives in `memory_validate`, which feeds confidence, promotion, negative feedback, and learned-feedback pipelines after results are used, while checkpoints provide the rollback safety net around destructive or high-risk remediation work. This means audit phase `021-remediation-revalidation` is now a real runtime category: the system both blocks bad writes and exposes targeted repair and revalidation paths after data has already been indexed.
 
+---
+
 ## 2. HOW IT WORKS
 
 The remediation surface is distributed but coherent:
@@ -37,6 +39,8 @@ The remediation surface is distributed but coherent:
 - Runtime revalidation is not limited to save-time gates. `memory_validate`, implemented in `checkpoints.ts`, records whether a surfaced memory was actually useful. Positive feedback updates confidence, writes an adaptive ranking signal, can trigger auto-promotion, can register ground-truth selection against a query, and can learn new query terms. Negative feedback persists a dedicated demotion event and can accumulate enough evidence to suggest the spec-doc record should be updated or removed.
 - Checkpoints are the rollback layer around remediation work. The same handler module exposes `checkpoint_create`, `checkpoint_list`, `checkpoint_restore`, and `checkpoint_delete`, so operators can snapshot memory state before risky cleanup or recovery operations and restore it later if a repair path goes wrong.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -50,6 +54,8 @@ The remediation surface is distributed but coherent:
 | `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts` | Handler | Main orchestration path that wires preflight, V-rules, quality loop, later validation gates, dry-run, rejection, and rollback semantics together |
 | `.opencode/skills/system-spec-kit/mcp-server/handlers/checkpoints.ts` | Handler | Exposes checkpoint rollback tools and the `memory_validate` revalidation pathway for confidence, promotion, and learned feedback |
 | `.opencode/skills/system-spec-kit/mcp-server/handlers/memory-crud-health.ts` | Handler | Diagnostics and explicitly confirmed auto-repair for FTS, trigger cache, orphaned edges, vectors, chunks, and alias-health reporting |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Remediation Revalidation

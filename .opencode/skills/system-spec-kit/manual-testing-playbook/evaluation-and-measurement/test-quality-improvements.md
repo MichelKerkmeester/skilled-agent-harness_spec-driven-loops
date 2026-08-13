@@ -59,6 +59,8 @@ Test inspection evidence + teardown/assertion pattern samples + reliability sign
 
 Inspect specific test changes; verify teardown completeness; check for residual flaky patterns
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/test-quality-improvements.md](../../feature-catalog/evaluation-and-measurement/test-quality-improvements.md)

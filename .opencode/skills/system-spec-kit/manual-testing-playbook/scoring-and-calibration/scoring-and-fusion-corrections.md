@@ -60,6 +60,8 @@ Saved `rg` output showing each symbol in the expected implementation files plus 
 
 If a symbol is missing, inspect the corresponding implementation file listed in step 1 or 2. Use `mcp-server/lib/search/hybrid-search.ts` first when the missing anchor is `fusionLists`, `keywordFusionResults`, or `fuseResultsMulti(fusionLists)`. If Vitest fails, use the first failing file to localize the regression: `composite-scoring.vitest.ts` / `score-normalization.vitest.ts` for normalization math, `hybrid-search.vitest.ts` for BM25 scope handling and single-pass fusion wiring, `unit-rrf-fusion.vitest.ts` and `adaptive-fusion.vitest.ts` for fusion logic, `score-resolution-consistency.vitest.ts` for alias resolution, `interference.vitest.ts` for threshold wiring, and `intent-weighting.vitest.ts` for recency-aware intent weighting.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/scoring-and-fusion-corrections.md](../../feature-catalog/scoring-and-calibration/scoring-and-fusion-corrections.md)

@@ -40,6 +40,8 @@ The fenced block is the complete shipped `fixture-manifest.json`. It records sta
 fixture inputs and oracle-derived expectations; it does not contain oracle or
 adapter implementation logic.
 
+---
+
 ## 2. FIXTURE MANIFEST
 
 ```json
@@ -131,6 +133,8 @@ adapter implementation logic.
 }
 ```
 
+---
+
 ## 3. INDEPENDENCE AND CLASSIFICATION RULES
 
 - `productionAdapterImportProhibited` stays the JSON boolean `true`. A production
@@ -145,6 +149,8 @@ adapter implementation logic.
   from a production-adapter run.
 - Hash the complete fixture root and each fixture after generation. Any content
   change requires a manifest update and a new evidence identity.
+
+---
 
 ## 4. VALIDATION
 

@@ -18,6 +18,7 @@ version: 3.6.0.3
 
 The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a second IPC client over the unchanged mk-spec-memory daemon. The CLI generates its command map at runtime from `TOOL_DEFINITIONS`, so all 41 MCP tools are CLI commands with no generated manifest to drift. It validates argv-derived arguments with the existing Zod schemas, sends `tools/call` JSON-RPC frames over `daemon-ipc.sock`, auto-spawns via `mk-spec-memory-launcher.cjs` when the daemon probe fails, and renders `json`, `jsonl`, or text output.
 
+---
 
 ## 2. HOW IT WORKS
 
@@ -38,6 +39,8 @@ The 028 MCP-to-CLI program shipped `node .opencode/bin/spec-memory.cjs` as a sec
 `spec-memory list-tools --format json` enumerates the generated surface as `{ status: "ok", data: { count: 41, tools: [...] } }` straight from `TOOL_DEFINITIONS`, so surface parity against the MCP registration is a one-command check.
 
 The automation surface also supports `list-tools --compact` and `list-tools --names-only` across the three daemon CLIs. Compact mode keeps names, aliases, descriptions, and counts while omitting schemas; names-only mode keeps canonical tool names and counts only. Both modes preserve the 41 / 8 / 9 counts and return zero `inputSchema` fields. `completion bash|zsh` emits generated shell completion from the same registries for `spec-memory`, `code-index`, and `skill-advisor`.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -61,6 +64,8 @@ The automation surface also supports `list-tools --compact` and `list-tools --na
 | `mcp-server/tests/spec-memory-cli-dual-spawn-hardening.vitest.ts` | Automated test | Dual-spawn hardening with re-election on and off |
 | `mcp-server/tests/spec-memory-cli-dual-client-hardening.vitest.ts` | Automated test | Real MCP and CLI clients running concurrently against one daemon |
 | `mcp-server/tests/spec-memory-cli-lifecycle-hardening.vitest.ts` | Automated test | N-probe reap gating and SIGTERM transparent-recycle behavior |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

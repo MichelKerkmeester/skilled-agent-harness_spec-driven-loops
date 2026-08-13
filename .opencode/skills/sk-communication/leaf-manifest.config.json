@@ -1,0 +1,12 @@
+{
+  "workflowMode": "sk-communication",
+  "packet": ".",
+  "leafRoots": [
+    "references",
+    "feature-catalog",
+    "manual-testing-playbook"
+  ],
+  "excludeIndexFiles": true,
+  "resourceContractVersion": 1,
+  "_note": "Standalone single-mode manifest config. Consumed by generate-leaf-manifest.cjs to emit leaf-manifest.json; leaf-aliases.json is the derived identity projection of that manifest, so regenerate both together via ci-skill-root-metadata.cjs --fix."
+}

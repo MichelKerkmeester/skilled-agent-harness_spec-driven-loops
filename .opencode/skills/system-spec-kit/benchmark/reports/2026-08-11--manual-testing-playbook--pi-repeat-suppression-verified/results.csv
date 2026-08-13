@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+ux-hooks-directive-lifecycle-dedup,system-spec-kit,,adapter-driven,manual,,,pi-repeat-suppression-verified,,PASS,"Pi adapter-driven suite passed first-full delivery, byte-for-byte unmodified proven repeats with no new receipt, compact and resume re-arm, advisor-failure behavior, kill switch behavior, and session isolation."

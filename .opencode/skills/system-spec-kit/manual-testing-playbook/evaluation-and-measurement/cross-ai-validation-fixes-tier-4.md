@@ -59,6 +59,8 @@ Fix location inspection + representative flow outputs + regression check evidenc
 
 Inspect each fix from Phase 018 tier-4 changelog; run targeted tests for each fix area; check for unintended side effects
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/cross-ai-validation-fixes.md](../../feature-catalog/evaluation-and-measurement/cross-ai-validation-fixes.md)

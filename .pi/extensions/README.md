@@ -25,7 +25,7 @@ trigger_phrases:
 | `prompt-advisor.ts` | `.opencode/skills/system-skill-advisor/hooks/pi/` |
 | `git-preflight-advisory.ts` | `.opencode/skills/sk-git/scripts/hooks/pi/` |
 
-Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). The 6 tool_call/tool_result/input adapters delegate to the same shared, runtime-neutral guard-core modules `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call. Four of the five session-lifecycle adapters (`session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `session-compact-context.ts`) proxy into the Claude lifecycle-hook dist files under `system-spec-kit/mcp-server/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. `prompt-advisor.ts` is the exception: it imports the compiled advisor lifecycle module (`system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js`) directly and calls `handleClaudeUserPromptSubmit()` in-process, because Pi awaits `input` handlers before agent processing begins and the old two-process `spawnSync` bridge blocked every send. No guard or lifecycle logic is reimplemented here. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes.
+Each file is a thin adapter: it registers a handler against one of Pi's lifecycle events (`pi.on(event, handler)`). The 6 tool_call/tool_result/input adapters delegate to the same shared, runtime-neutral guard-core modules `cli-cursor`'s `hooks.json` and `cli-devin`'s `hooks.v1.json` already call. Four of the five session-lifecycle adapters (`session-start-context.ts`, `session-start-advisories.ts`, `session-stop-context.ts`, `session-compact-context.ts`) proxy into the Claude lifecycle-hook dist files under `system-spec-kit/mcp-server/dist/hooks/claude/` via `lib/claude-hook-adapter.ts` -- the same lifecycle owner devin and cursor already proxy into via their own runtime-specific `spawnSync` adapters, so state and transcript semantics never drift across runtimes. `prompt-advisor.ts` is the exception: it imports the compiled advisor lifecycle module (`system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js`) directly and calls `handleClaudeUserPromptSubmit()` in-process, because Pi awaits `input` handlers before agent processing begins and the old two-process `spawnSync` bridge blocked every send. Its visible contribution is lifecycle-deduped: the advisor brief and Pi dispatch reminder render in full on the first message and after `session_start`/`session_compact`, while a proven same-content repeat returns no transform and leaves the raw turn byte-identical (`SPECKIT_PI_DIRECTIVE_DEDUP`, default ON; `0`/`false`/`off` restores always-full). The separate tool-call preflight still enforces dispatch authorization on every turn. Every handler wraps its call in try/catch and fails open: a guard-core or lifecycle-bridge bug must never block or alter work it only observes.
 
 ---
 
@@ -65,7 +65,7 @@ extensions/
 | `session-start-context.ts` | `session_start` | `system-spec-kit/mcp-server/dist/hooks/claude/session-prime.js` (via `lib/claude-hook-adapter.ts`) |
 | `session-start-advisories.ts` | `session_start` | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh --all`, `install-codex-hooks.mjs --check` (direct `ctx.exec()`) |
 | `session-stop-context.ts` | `session_shutdown` (reason `quit`) | `system-spec-kit/mcp-server/dist/hooks/claude/session-stop.js` (via `lib/claude-hook-adapter.ts`) |
-| `prompt-advisor.ts` | `input` | `system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js` `handleClaudeUserPromptSubmit()` (in-process dynamic import) |
+| `prompt-advisor.ts` | `input` | `system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js` `handleClaudeUserPromptSubmit()` (in-process dynamic import); full first + boundaries, no transform on proven repeats (`SPECKIT_PI_DIRECTIVE_DEDUP`) |
 | `session-compact-context.ts` | `session_compact` | Native port of `mcp-server/hooks/devin/post-compaction.cjs`'s recovery chain (shared tmpdir state file + `spec-memory.cjs` CLI fallback) |
 
 Paths without a leading `.opencode/` are relative to `.opencode/skills/`. The four `.opencode/hooks/` cores are the fully-portable guard cores relocated out of their owning skill; see [`../../.opencode/hooks/README.md`](../../.opencode/hooks/README.md) for why those four moved and the rest did not.
@@ -112,8 +112,10 @@ Pi lifecycle event -> pi.on(event, handler) -> lib/claude-hook-adapter.ts spawns
 In-process advisor (input, the exception):
 Pi input event -> pi.on("input", handler) -> dynamic import of the compiled advisor
   hook module -> handleClaudeUserPromptSubmit(payload) -> envelope read from the
-  return value -> { action: "transform" } with the additionalContext appended, or
-  undefined on any error (fail open). No adapter/shim subprocess on this path — the advisor's own bounded python subprocess still runs on cache misses.
+  return value -> { action: "transform" } with the complete advisor and dispatch
+  contribution on first/boundary delivery, or undefined for a proven repeat or
+  any error. No adapter/shim subprocess runs on this path — the advisor's own
+  bounded python subprocess still runs on cache misses.
 ```
 
 

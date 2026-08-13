@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+ux-hooks-directive-lifecycle-dedup,system-spec-kit,,adapter-driven,manual,,,pi-adapter-driven-final,,PASS,"Pi adapter-driven suite passed first-full, repeat route-only, lifecycle re-arm, fail-open, kill-switch, and session isolation behavior."

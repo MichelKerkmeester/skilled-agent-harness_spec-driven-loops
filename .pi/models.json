@@ -1,0 +1,9 @@
+{
+  "providers": {
+    "opencode-go": {
+      "compat": {
+        "sendSessionAffinityHeaders": true
+      }
+    }
+  }
+}

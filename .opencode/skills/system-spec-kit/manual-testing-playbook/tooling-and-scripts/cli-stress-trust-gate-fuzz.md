@@ -15,6 +15,8 @@ This stress scenario is part of the 028 CLI stress set (434-438). It fuzzes the 
 
 The gate's mutation set is `advisor_rebuild`, `skill_graph_scan`, and `skill_graph_propagate_enhances` in real apply mode (`mode=apply` with `dryRun` not true).
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm every untrusted mutation attempt across the fuzz matrix exits 64 and none reaches IPC.
@@ -24,6 +26,8 @@ The gate's mutation set is `advisor_rebuild`, `skill_graph_scan`, and `skill_gra
 - Expected signals: Zero non-64 exits in the untrusted block; the control rows behave per their comments.
 - Desired user-visible outcome: The trust gate holds against shape games, not just the happy-path refusal.
 - Pass/fail: PASS only when the untrusted block is uniformly 64 and the controls match.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -124,6 +128,8 @@ drwx------@ 3 michelkerkmeester  wheel  96 Jul  2 22:50 ..
 
 A 75 in the untrusted block is a gate bypass: check `assertTrustedForMutation`'s tool set and the `isPropagateApply` predicate against the attempted shape, then add the bypassing shape to the daemon-side trust-gate suite. A 64 in the control block means trust resolution broke (`--trusted` / `--maintainer` parsing or `envTrustedDefault`). Daemon-side defense in depth is locked by `advisor-trust-gate.vitest.ts`, including the daemon-environment-only `MK_SKILL_ADVISOR_TRUST_DEFAULT` grant.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -140,6 +146,8 @@ A 75 in the untrusted block is a gate bypass: check `assertTrustedForMutation`'s
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | Trust-gate predicate, flag parsing (`--trusted` / `--maintainer` / `--untrusted`), env default |
 | `.opencode/skills/system-skill-advisor/mcp-server/advisor-server.ts` | Daemon-side untrusted default and `MK_SKILL_ADVISOR_TRUST_DEFAULT` |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate regression suite |
+
+---
 
 ## 5. SOURCE METADATA
 

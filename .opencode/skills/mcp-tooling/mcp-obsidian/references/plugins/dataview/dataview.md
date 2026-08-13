@@ -33,6 +33,8 @@ The `mcp-obsidian` mode operates Dataview by **editing note metadata, placing qu
 
 The vault has **no `data.json` yet**, so every documented default applies until the plugin writes its settings.
 
+---
+
 ## 2. WHAT IT DOES
 
 Dataview turns **plain note content into queryable data**. It reads three metadata sources from every markdown note and renders them on demand:
@@ -61,6 +63,8 @@ Dataview never writes note content. Its only persisted artifact is its settings 
 - The AI **can** evaluate most DQL queries by reading the source notes and applying the grammar in this reference set.
 - The AI **cannot** run DataviewJS code or force the plugin to refresh an open pane.
 - The AI **can** write and validate the query text. Obsidian renders it on the next note open or reload.
+
+---
 
 ## 4. METADATA LAYERS
 
@@ -96,6 +100,8 @@ Due:: 2026-06-30
 
 A query such as `TABLE status, Due FROM "Reports"` reads all three layers from this one note.
 
+---
+
 ## 5. QUERY BLOCK FORMATS
 
 | Format | Fence | Content | Enabled by default |
@@ -107,6 +113,8 @@ A query such as `TABLE status, Due FROM "Reports"` reads all three layers from t
 
 The `dataviewjs` and `$=` formats require `enableDataviewJs` and `enableInlineDataviewJs` in settings. Both default to `false`.
 
+---
+
 ## 6. SETTINGS LOCATION
 
 - **File**: `<vault>/.obsidian/plugins/dataview/data.json`.
@@ -115,6 +123,8 @@ The `dataviewjs` and `$=` formats require `enableDataviewJs` and `enableInlineDa
 - **Discipline**: read first, back up before any write, merge not replace, re-read after the user changes settings in-app.
 
 Notable defaults: `enableDataviewJs: false`, `enableInlineDataview: true`, `renderNullAs: "\-"`, `taskCompletionTracking: false`.
+
+---
 
 ## 7. WHEN TO USE THIS REFERENCE SET
 
@@ -136,6 +146,8 @@ Load this reference set when a request involves:
 
 The general file-layer operating model lives in `references/plugins/plugin-operation-logic.md`.
 
+---
+
 ## 8. GOTCHAS
 
 - **Read notes before promising results.** The user may have changed frontmatter, moved notes or edited queries since the last read.
@@ -146,6 +158,8 @@ The general file-layer operating model lives in `references/plugins/plugin-opera
 - **Inline fields need the exact separator.** `Key:: Value` with two colons parses. A single colon does not.
 - **Field name typos render empty tables.** A query with a wrong field name returns rows with blank cells, not an error.
 - **Never fabricate query output.** If the notes on disk do not support the answer, report the gap and mark the missing evidence.
+
+---
 
 ## 9. RELATION TO THE MODE
 

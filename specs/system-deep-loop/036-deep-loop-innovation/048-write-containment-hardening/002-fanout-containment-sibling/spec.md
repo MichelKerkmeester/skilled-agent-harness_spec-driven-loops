@@ -46,10 +46,10 @@ _memory:
 | **Status** | In Progress |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | None |
-| **Parent Packet** | system-deep-loop |
-| **Predecessor** | 041-cli-devin-executor-wiring |
-| **Successor** | None |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening |
+| **Predecessor** | `001-cli-codex-write-containment` |
+| **Successor** | `003-write-containment-concurrent-safety` |
 | **Handoff Criteria** | A leaf tripping containment reverts only its own out-of-scope writes; sibling lineage artifacts survive, proven by regression test |
 <!-- /ANCHOR:metadata -->
 

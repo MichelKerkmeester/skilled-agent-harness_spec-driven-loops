@@ -259,6 +259,8 @@ log('Initialized with config:', config);
 log('Processing item:', item.id);
 ```
 
+---
+
 ## 3. RELATED RESOURCES
 
 - [`../../shared/cross-language-rules.md`](../../shared/cross-language-rules.md) — file naming, comment principles, file-header banner shape, platform-specific prefixes

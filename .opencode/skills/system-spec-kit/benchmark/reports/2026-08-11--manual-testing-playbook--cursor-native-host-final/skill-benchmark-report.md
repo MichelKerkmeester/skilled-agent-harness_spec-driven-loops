@@ -1,0 +1,51 @@
+# Skill Benchmark Report — system-spec-kit
+
+> Rendered from report.json (do not hand-edit). Scoring: `not-applicable-manual-outcome` · trace mode: `doc`.
+
+**Verdict: SKIP**
+
+## Dimension scores
+
+| Dimension | Weight | Score |
+| --------- | ------ | ----- |
+| D1 inter (advisor) | — | _not-applicable-manual-outcome_ |
+| D1 intra (router) | — | _not-applicable-manual-outcome_ |
+| D2 discovery | — | _not-applicable-manual-outcome_ |
+| D3 efficiency | — | _not-applicable-manual-outcome_ |
+| D4 usefulness | — | _not-applicable-manual-outcome_ |
+| D5 connectivity | — | _not-applicable-manual-outcome_ |
+
+## Provenance & execution context
+
+_Repo-relative provenance — this archived report carries no absolute checkout path and stays valid when copied elsewhere._
+
+| Field | Value |
+| ----- | ----- |
+| Skill root (repo-relative) | `.opencode/skills/system-spec-kit` |
+| Captured at | 2026-08-11T16:58:00.000Z |
+| Active manifest | `—` · digest `—` |
+| Engine resolver | `—` |
+| Source report digest | `—` |
+| Executor / model | — / — (cursor-native-host-final) |
+| CLI version | — |
+| Flag state | `—` |
+| Runtime digest | `—` |
+| Run revision | — |
+
+## Funnel
+
+
+## Ranked bottlenecks
+
+_None._
+
+## Scenarios
+
+| Scenario | Class | Stage | Score | First failing stage |
+| -------- | ----- | ----- | ----- | ------------------- |
+| ux-hooks-directive-lifecycle-dedup | manual | native-host-delivered | — | SKIP: Installed Cursor CLI has no reproducible beforeSubmitPrompt live-fire trigger in this evidence run; registered-path delivery passes but native-host delivery remains dormant and unconfirmed. |
+
+## Methodology / caveats
+
+- Manual playbook outcome; no Lane C dimension scoring applies.
+- Scenario count: 1.

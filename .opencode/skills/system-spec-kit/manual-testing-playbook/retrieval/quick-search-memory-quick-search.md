@@ -60,6 +60,8 @@ Tool outputs for each call showing result count, specFolder scoping, limit adher
 
 Verify `memory_quick_search` tool is listed in search.md allowed-tools → Check L2 layer routing → Confirm query parameter is required → Inspect optional parameter handling for specFolder, limit, tenantId, userId, agentId
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/fast-delegated-search-memory-quick-search.md](../../feature-catalog/retrieval/fast-delegated-search-memory-quick-search.md)

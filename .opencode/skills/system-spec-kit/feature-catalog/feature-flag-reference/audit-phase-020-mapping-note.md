@@ -17,13 +17,19 @@ version: 3.6.0.9
 
 External audit entries map to this category by slug (`feature-flag-reference`).
 
+---
+
 ## 2. HOW IT WORKS
 
 The numeric prefixes are not the contract; matching is slug-based.
 
+---
+
 ## 3. SOURCE FILES
 
 No source files are listed yet.
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Feature Flag Reference

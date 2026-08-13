@@ -106,6 +106,8 @@ Validate the graph-metadata and lineage repair runner: dry-run, real run, idempo
 - Block D non-idempotent: confirm the runner's writeback path produces byte-identical output when given the same input file. Compare a sample file's before/after content after the second dry-run.
 - Block E residual failures: inspect the residual files individually. If they are `description.json` files outside the runner's mutation surface, document as out-of-scope. If they are graph-metadata.json files, audit the runner's classification logic.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md](../../feature-catalog/memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md)

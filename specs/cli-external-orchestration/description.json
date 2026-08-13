@@ -1,6 +1,6 @@
 {
   "specFolder": "cli-external-orchestration",
-  "description": "Track folder for cli-external-orchestration packets \u2014 the external-CLI orchestration skill family (cli-codex, cli-claude-code, cli-opencode, cli-gemini, cli-devin, cli-copilot) plus their model-support and deprecation history. Hosts spec folders 001-028 covering CLI creation, provider + model optimization (minimax, mimo, kimi, glm), self-invocation guards, testing playbooks, skill patterns, tone/prompting, deprecations, the cli-external parent hub, codex revival, and the cli hub rename.",
+  "description": "Track folder for external-CLI orchestration packets: runtime creation, provider and model support, dispatch safeguards, testing playbooks, prompting, lifecycle changes, and the CLI parent hub. Hook, plugin, extension, injection, and goal-lifecycle packets live under the hooks track.",
   "keywords": [
     "cli-external",
     "orchestration",
@@ -23,7 +23,7 @@
     "testing-playbooks",
     "hub-rename"
   ],
-  "lastUpdated": "2026-07-14T19:33:39.000Z",
+  "lastUpdated": "2026-08-11T07:16:33.848Z",
   "specId": "cli-external-orchestration",
   "folderSlug": "cli-external-orchestration",
   "parentChain": [],

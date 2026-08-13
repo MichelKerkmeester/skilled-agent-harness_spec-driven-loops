@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "system-spec-kit",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit"
+  },
+  "executor": null,
+  "model": null,
+  "variant": "cursor-native-host",
+  "verdict": "SKIP",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+      "verdict": "SKIP",
+      "reason": "Installed Cursor CLI does not live-fire beforeSubmitPrompt in the tested build; adapter cadence passes but native-host delivery remains dormant and unconfirmed.",
+      "stage": "native-host",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "cursor-native-host",
+      "evidence": [
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-adapters/cursor.json",
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/pre-change-source-review.md"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-adapters/cursor.json",
+          "status": "verified",
+          "bytes": 2564,
+          "sha256": "b8cc726b24165262c2ab91e4a7e0e8e8365470f991c54a85f0cc3b273fd49c5f"
+        },
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/pre-change-source-review.md",
+          "status": "verified",
+          "bytes": 9256,
+          "sha256": "c8c4826530650c9ff479af72c3160e3d42d626589ff8b078823235307e822964"
+        }
+      ]
+    }
+  ],
+  "supersedes": [
+    ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-4"
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-11T15:55:00.000Z",
+    "evidenceClass": "native-host",
+    "evidenceArtifacts": [
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-adapters/cursor.json",
+        "status": "verified",
+        "bytes": 2564,
+        "sha256": "b8cc726b24165262c2ab91e4a7e0e8e8365470f991c54a85f0cc3b273fd49c5f"
+      },
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/pre-change-source-review.md",
+        "status": "verified",
+        "bytes": 9256,
+        "sha256": "c8c4826530650c9ff479af72c3160e3d42d626589ff8b078823235307e822964"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+    "stage": "native-host",
+    "dispatch": "none",
+    "evidenceClass": "native-host",
+    "variant": "cursor-native-host",
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true,
+    "runtime": "cursor",
+    "hostDeliveryStatus": "dormant-unconfirmed",
+    "runtimeVersion": "v25.6.1",
+    "supersedes": [
+      ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-4"
+    ]
+  }
+}

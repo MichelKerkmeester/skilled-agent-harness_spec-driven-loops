@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-code/023-dist-guard-skip-unprovisioned",
   "description": "Teach the dist-staleness checker to report a package as unprovisioned (skip) instead of stale when it is not buildable in this checkout, so bare",
   "keywords": [
@@ -15,13 +16,12 @@
     "checkout",
     "bare"
   ],
-  "lastUpdated": "2026-08-09T06:16:27.244Z",
+  "lastUpdated": "2026-08-09T09:12:55.134Z",
   "specId": "023",
   "folderSlug": "dist-guard-skip-unprovisioned",
   "parentChain": [
     "sk-code"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

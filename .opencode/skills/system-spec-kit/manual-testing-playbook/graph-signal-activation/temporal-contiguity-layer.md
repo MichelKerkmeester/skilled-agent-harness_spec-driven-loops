@@ -64,6 +64,8 @@ Vector result rankings + timestamp/boost comparison + cap verification + query-p
 
 Verify clamped-window configuration and default 3600-second behavior -> inspect pairwise distance weighting factor -> check cumulative cap accumulation logic -> confirm `idx_spec_folder_created_at` exists and the bounded range predicate is used before delta computation
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/temporal-contiguity-layer.md](../../feature-catalog/graph-signal-activation/temporal-contiguity-layer.md)

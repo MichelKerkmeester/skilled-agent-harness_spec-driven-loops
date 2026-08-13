@@ -1,0 +1,11 @@
+Implemented Phase 2.
+
+- Added gated general-path divider/TOC/anchor validation.
+- `SKDOC_ENFORCE_STRUCTURE=1` enables blocking checks; default remains CI-safe/off.
+- Added negative/positive fixtures and tests.
+- Focused tests: `4 passed`; validator runner `11/11`; code-folder tests passed.
+- Dry-run: `993` files / `2,671` ALL-CAPS divider gaps. The census found `23` additional mixed-case files, excluded by the requirement.
+- Continuity spec validation: `0` issues; protected anchor files untouched.
+- Full suite: `103 passed, 2 failed` due pre-existing deleted docs; baseline was `99 passed, 2 failed`.
+
+Report: [luna-phase2-report.md](/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/sk-doc/029-doc-divider-and-anchor-standard/scratch/luna-phase2-report.md)

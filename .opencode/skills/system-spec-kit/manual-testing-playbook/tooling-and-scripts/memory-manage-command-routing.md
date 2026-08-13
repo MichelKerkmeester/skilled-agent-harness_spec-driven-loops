@@ -252,6 +252,8 @@ On an unknown mode, return `STATUS=FAIL ERROR="Unknown mode: <mode>"` and list t
 
 Verify argument routing logic in Section 4 of manage.md → Check mode parsing in mandatory first action → Confirm tool-to-mode mapping → Inspect confirmation gates on destructive operations (delete, bulk-delete, checkpoint restore)
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/constitutional-memory-manager-command.md](../../feature-catalog/tooling-and-scripts/constitutional-memory-manager-command.md)

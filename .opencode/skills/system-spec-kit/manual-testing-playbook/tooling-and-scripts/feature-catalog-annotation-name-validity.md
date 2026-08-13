@@ -212,6 +212,8 @@ Known-item ground truth corpus
 
 Inspect the extracted annotation comments and the catalog H3 headings if any names fail to match exactly.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/feature-catalog-code-references.md](../../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md)

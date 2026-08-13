@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`EXECUTORKINDS` in `runtime/lib/deep-loop/executor-config.ts` shipped five kinds — `native`, `cli-codex`, `cli-claude-code`, `cli-opencode`, `cli-cursor` — with no `cli-devin`",
     "created_at": "2026-07-27T16:55:59Z",
-    "last_save_at": "2026-08-08T07:14:09.140Z",
+    "last_save_at": "2026-08-11T14:06:26.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02bea16a3ba64aad12660895afe78530ba255671bceabdfe88509ea1d1709860",
+    "source_fingerprint": "sha256:bb2c2bbd3a3048625d701b2ed30c335e64c7fe98f9045f692339321470dd1946",
     "source_doc_hashes": {
-      "spec.md": "b9ddfe61d160c9aa8f1effc261c9413a6d92683fb48e5cd25bb02abe80bef01c",
+      "spec.md": "170e2523d90c79e3d9e6a2aae58b94af42c817a0d875328adad13e4a2fa01205",
       "plan.md": "2da977ed9084af8c1f1fe6c28225708ba38c90f2a08914c48138b883982b21ab",
       "tasks.md": "4d8e5f0bda98e7a547d000087d4fd3e23514d2641ae3056104e34f149615895a",
       "checklist.md": "a5f5ead9549bd6e176635587ca096660042367ba1663c36f54ecd2017808be8e",
-      "implementation-summary.md": "07df5ae941adc66f51d08e6ae5a68ccb835b946a69a4cf449f43dd4093e94c73"
+      "implementation-summary.md": "10a851a964fb0ad6fa921941dd30ced662d57f919ce306e24e1d367b4b4cf312"
     },
     "last_active_child_id": null,
     "last_active_at": null

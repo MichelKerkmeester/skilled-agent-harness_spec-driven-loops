@@ -60,6 +60,8 @@ Export-list capture from `api/eval.ts` + comparison notes against internal modul
 
 Check for missing re-exports in `mcp-server/api/eval.ts` -> verify the internal eval module symbol names still match the facade export list -> inspect recent script imports for drift back to `lib/eval/*` paths -> confirm no local implementation was added to the facade
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/evaluation-api-surface.md](../../feature-catalog/evaluation-and-measurement/evaluation-api-surface.md)

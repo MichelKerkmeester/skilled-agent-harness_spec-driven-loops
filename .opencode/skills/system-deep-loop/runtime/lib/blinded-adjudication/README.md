@@ -11,6 +11,8 @@ description: "Reviewer-blind adjudication service comparing a baseline judgment 
 
 Additive-dark service for `system-deep-loop` modes that need a counterfactual verdict without leaking who or what was judged. The identity vault separates a candidate's identity from its judgment and the reducer folds every component into one fail-closed verdict. The service layers this over the shared event envelope, authorized-ledger gateway and replay contracts so a verdict is reproducible from the ledger alone.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -27,15 +29,21 @@ Additive-dark service for `system-deep-loop` modes that need a counterfactual ve
 | `service.ts` | `BlindedAdjudicationService`, additive-dark orchestration over the shared envelope, gateway, ledger and replay contracts |
 | `validation.ts` | Input guards such as `isPlainRecord` shared by the service and reducer |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/reducer.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/adjudication.ts` (shared adjudication closure)
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts`
+
+---
 
 ## 5. RELATED
 

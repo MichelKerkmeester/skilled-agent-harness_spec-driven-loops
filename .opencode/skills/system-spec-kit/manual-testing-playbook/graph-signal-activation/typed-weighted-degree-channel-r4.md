@@ -62,6 +62,8 @@ Query output with per-edge-type scores + cap verification + first-run batch SQL 
 
 Verify edge type taxonomy → Check cap configuration → Inspect cached global max state and invalidation path → Validate batch degree computation query shape
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/typed-weighted-degree-channel.md](../../feature-catalog/graph-signal-activation/typed-weighted-degree-channel.md)

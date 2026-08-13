@@ -12,6 +12,8 @@ trigger_phrases:
 
 This folder contains query-plan builders for explaining how query intelligence surfaces interpreted a request. Plans describe intent, complexity, artifact class, authority need, selected channels, skipped channels and fallback policy.
 
+---
+
 ## 2. DIRECTORY TREE
 
 ```text
@@ -20,11 +22,15 @@ query/
 `-- README.md      # Folder orientation
 ```
 
+---
+
 ## 3. KEY FILES
 
 | File | Role |
 |---|---|
 | `query-plan.ts` | Creates and merges query-plan objects without making routing decisions. |
+
+---
 
 ## 4. ENTRYPOINTS
 
@@ -33,11 +39,15 @@ query/
 - `buildRoutingQueryPlan(input)` records channel selection and fallback policy.
 - `mergeQueryPlans(...plans)` combines telemetry from multiple query surfaces.
 
+---
+
 ## 5. BOUNDARIES
 
 - Builders in this folder must remain telemetry-only.
 - Routing decisions belong to callers that already selected channels.
 - Query plans should explain behavior without mutating memory, graph or index state.
+
+---
 
 ## 6. VALIDATION
 
@@ -46,6 +56,8 @@ Run from the repository root:
 ```bash
 npm test -- --runInBand
 ```
+
+---
 
 ## 7. RELATED
 

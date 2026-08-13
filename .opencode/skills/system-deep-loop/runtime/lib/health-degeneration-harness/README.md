@@ -11,6 +11,8 @@ description: "Turns normalized budget, cycle and coverage signals into a per-mod
 
 Runtime primitives consumed by `system-deep-loop` workflow modes to detect degenerative run patterns such as mode collapse, repetition, novelty starvation, quality decay, budget thrash and telemetry gaps. Adapters normalize raw budget, cycle and coverage signals into shared observations, a versioned policy sets the evaluation thresholds and a projector aggregates observations into a health state (`observing` through `critical`) with a recommended response action (pause region, reseed frontier, quarantine candidate, request stop).
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -21,10 +23,14 @@ Runtime primitives consumed by `system-deep-loop` workflow modes to detect degen
 | `health-policy.ts` | Builds the immutable, hash-versioned threshold policy (windows, floors, ratios) the projector evaluates against |
 | `index.ts` | Public API barrel |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/mode-contract-types.ts` and `substrate-ports.ts` require `HealthObservationProjector` as a required substrate port
 - `.opencode/skills/system-deep-loop/runtime/lib/hierarchical-budgets/` feeds budget-lifecycle inputs into the adapters
+
+---
 
 ## 4. TESTS
 

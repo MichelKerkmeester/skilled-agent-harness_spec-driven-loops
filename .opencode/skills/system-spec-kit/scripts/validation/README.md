@@ -22,6 +22,8 @@ Current responsibilities:
 - Audit `[EVIDENCE: ...]` markers across spec-packet markdown.
 - Provide a strict-mode evidence-marker lint bridge for validation scripts.
 
+---
+
 ## 2. DIRECTORY TREE
 
 ```text
@@ -33,6 +35,8 @@ validation/
 `-- README.md
 ```
 
+---
+
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -41,6 +45,8 @@ validation/
 | `continuity-freshness.ts` | Compares `_memory.continuity.last_updated_at` against the `graph-metadata.json` save time and reports lag. |
 | `evidence-marker-audit.ts` | Parses evidence markers while ignoring fenced and inline code; read-only unless `--rewrap` is supplied. |
 | `evidence-marker-lint.ts` | Converts audit results into validation-friendly output and exits non-zero under `--strict` when invalid markers exist. |
+
+---
 
 ## 4. COMMENT-HYGIENE GUARD
 
@@ -56,12 +62,16 @@ Behavior worth knowing:
 - The guard never flags itself (`ephemeral-pointer-audit.mjs` is excluded by name).
 - Exit codes: `0` clean, `1` violations found, `2` bad invocation (no paths). A non-code-only commit can still print a scary banner from upstream wrappers while this checker reports clean.
 
+---
+
 ## 5. USAGE NOTES
 
 - Run these scripts against spec folders or source trees as noted; the audit recurses directories.
 - `evidence-marker-audit.ts` is read-only unless `--rewrap` is supplied.
 - `evidence-marker-lint.ts` requires `--folder` and supports `--json` and `--strict`.
 - `continuity-freshness.ts` treats missing optional files as skipped checks rather than hard failures.
+
+---
 
 ## 6. VALIDATION
 
@@ -83,6 +93,8 @@ python .opencode/skills/sk-doc/scripts/validate_document.py \
 ```
 
 Expected result: the audit exits `0` over a clean tree and the README validation exits `0`.
+
+---
 
 ## 7. RELATED
 

@@ -170,6 +170,8 @@ Assertion snippets inspected from `tests/memory-crud-extended.vitest.ts`:
 
 Inspect `handlers/memory-crud-health.ts`, `handlers/memory-crud-types.ts`, and response-envelope shaping for `repair` payload regressions
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/memory-health-autorepair-metadata.md](../../feature-catalog/ux-hooks/memory-health-autorepair-metadata.md)

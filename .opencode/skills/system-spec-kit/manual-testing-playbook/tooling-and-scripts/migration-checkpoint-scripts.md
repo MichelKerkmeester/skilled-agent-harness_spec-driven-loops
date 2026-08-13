@@ -77,6 +77,8 @@ Observed transcript:
 
 Re-run `npm test -- --run tests/migration-checkpoint-scripts.vitest.ts -t restore`; inspect `scripts/migrations/create-checkpoint.ts` and `scripts/migrations/restore-checkpoint.ts` if assertions drift
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/migration-checkpoint-scripts.md](../../feature-catalog/tooling-and-scripts/migration-checkpoint-scripts.md)

@@ -60,6 +60,8 @@ Linker output showing created edges + density guard metrics + entity normalizati
 
 Verify shared entities exist across documents; check density guard thresholds; inspect entity normalization pipeline
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/cross-document-entity-linking.md](../../feature-catalog/retrieval-enhancements/cross-document-entity-linking.md)

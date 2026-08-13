@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "system-spec-kit",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit"
+  },
+  "executor": "pi",
+  "model": "opencode-go/deepseek-v4-flash",
+  "variant": "pi",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+      "verdict": "PASS",
+      "reason": "Pi dispatch suite 54/54 incl. directive dedup lane 10/10 (first-full, repeat-suppressed, resume/compact re-arm, dirty-content, unknown-session fail-open, fallback, kill-switch, session isolation)",
+      "stage": "documentation",
+      "classKind": "manual",
+      "providerModel": "opencode-go/deepseek-v4-flash",
+      "variant": "pi",
+      "evidence": [
+        "/tmp/pi-dispatch-suite.log"
+      ]
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+    "stage": "documentation",
+    "dispatch": "manual",
+    "executor": "pi",
+    "model": "opencode-go/deepseek-v4-flash",
+    "variant": "pi"
+  }
+}

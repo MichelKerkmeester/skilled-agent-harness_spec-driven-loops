@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/007-fable-governor-pi-hook/009-injection-contract-directive-sync",
+  "spec_folder": "hooks/007-fable-governor-pi-hook/009-injection-contract-directive-sync",
+  "parent_id": "hooks/007-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "injection contract directive sync",
+      "injection-contract.md directives",
+      "advisor directive ownership",
+      "three directives contract",
+      "injection contract sync plan",
+      "directive ownership plan",
+      "contract grep verification plan",
+      "injection contract sync tasks",
+      "directive inventory tasks",
+      "contract grep tasks",
+      "injection contract sync checklist",
+      "directive documentation verification"
+    ],
+    "key_topics": [
+      "injection",
+      "contract",
+      "directive",
+      "sync",
+      "injection-contract",
+      "directives",
+      "advisor",
+      "ownership",
+      "three",
+      "plan",
+      "grep",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Injection Contract Directive Sync",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Advisor Brief",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The review's P3 finding requires `injection-contract.md` to document all three fixed advisor directives — comment hygiene, governor, and proof-over-appearance — and the modules that own their text",
+    "created_at": "2026-08-04T17:57:55Z",
+    "last_save_at": "2026-08-11T06:50:06.191Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:358c926559eb6b12357b9039206e9b022f62f42c7e48de5ce73e4d3a68aa46d2",
+    "source_doc_hashes": {
+      "spec.md": "943d642fff2715e800671abec8e1f265b37eba640def09a30799cf59d2f38072",
+      "plan.md": "5d475b7e4bab4f4f2139d3e1456ca732a2cda1f63d11c641cb07bf4fd95bfc8e",
+      "tasks.md": "438aeed53fd8f71d08da0ed3334a6acc7c2927bfb54049e35e17f004b053dd8f",
+      "checklist.md": "c5e7977eabba4f7d6ec9654d16f7ef7c2c11fdb101dbab1108caa34cb22eb6b5",
+      "implementation-summary.md": "afaa7f4978e16ad394ccbf018c72473a72c3468760cc295c3c1d3a004eca9d1c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

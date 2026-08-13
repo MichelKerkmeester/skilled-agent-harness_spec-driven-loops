@@ -203,6 +203,8 @@ ls: .opencode/skills/system-spec-kit/mcp-server/database/.spec-memory-owner.json
 
 Check annotation placement after MODULE: header → Verify feature name spelling matches catalog H3 heading exactly
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/feature-catalog-code-references.md](../../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md)

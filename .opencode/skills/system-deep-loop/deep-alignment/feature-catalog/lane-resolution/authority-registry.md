@@ -20,6 +20,8 @@ The `AUTHORITY_ARTIFACT_CLASSES` map binding each registered standard authority 
 
 A standard authority is the owner whose own creation standards a lane audits against. The registry is the single place that decides which authorities exist and which artifact-class each one is allowed to cover, so a lane naming a real authority with an unsupported class fails fast, before `DISCOVER` starts.
 
+---
+
 ## 2. HOW IT WORKS
 
 `AUTHORITY_ARTIFACT_CLASSES` is a frozen map: `sk-doc -> [docs]`, `sk-git -> [git-history]`, `sk-design -> [designs]`, `sk-code -> [code]`. `validateLane()` reads it twice — once to confirm the authority is registered at all (naming the full registered set in the error if not), and once to confirm the requested artifact-class is one that authority supports. The values are arrays deliberately: a future authority may cover more than one class, and a class may be covered by more than one authority, even though every v1 authority-to-class mapping is a singleton. `registeredAuthorities()` returns the keys in registration order for the interactive tree's multi-select and for error messages.

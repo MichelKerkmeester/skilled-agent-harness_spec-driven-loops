@@ -15,6 +15,8 @@ This scenario verifies the automation-focused discovery forms added to the three
 
 The scenario is daemon-free: list output and completion scripts are generated from local registries and do not contact the daemon socket.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm compact/names-only CLI discovery and generated shell completion work for all three daemon-backed CLIs.
@@ -24,6 +26,8 @@ The scenario is daemon-free: list output and completion scripts are generated fr
 - Expected signals: Compact and names-only counts are `39`, `8`, and `9`; compact and names-only outputs contain zero `inputSchema` fields; generated bash and zsh completion scripts parse successfully for all three CLIs.
 - Desired user-visible outcome: The operator can state that all three CLIs expose compact automation output and parseable shell completion without daemon contact.
 - Pass/fail: PASS only when all counts match, schema-field counts are zero, and every generated completion script parses under its target shell.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -110,6 +114,8 @@ No count/schema lines were produced because the first JSON parse failed before t
 
 If counts drift, rerun the list-tools parity scenario first. If schemas appear in compact output, inspect the list renderer for that CLI. If completion parsing fails, inspect the completion generator for shell quoting and command-name normalization.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -129,6 +135,8 @@ If counts drift, rerun the list-tools parity scenario first. If schemas appear i
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | skill-advisor compact/names-only and completion implementation |
 | `mcp-server/tests/spec-memory-cli-help-aliases-errors.vitest.ts` | spec-memory compact/names-only and completion tests |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-help-aliases-errors.vitest.ts` | skill-advisor compact/names-only and completion tests |
+
+---
 
 ## 5. SOURCE METADATA
 

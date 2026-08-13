@@ -25,6 +25,8 @@ These entries can be lifted into `.opencode/skills/sk-code/manual-testing-playbo
 
 Copy the relevant scenario entry into the manual testing playbook, then update artifact paths, browser setup notes, and API context links for the current test run.
 
+---
+
 ## 2. SCENARIO ENTRIES
 
 ### MR-001 - Motion.dev API Smoke
@@ -121,6 +123,8 @@ API context:
 - `references/animation/performance-and-pitfalls.md`
 - `assets/animation/snippets/stagger-animation.js`
 
+---
+
 ## 3. CONTRACT REGRESSION EXAMPLES
 
 Use these examples to prevent snippet and caveat drift in cross-stack routing checks.
@@ -133,6 +137,8 @@ Use these examples to prevent snippet and caveat drift in cross-stack routing ch
 
 Expected response shape: name the exact snippet asset, include the relevant Motion.dev reference file, and only add the Webflow `snake_case` caveat when the prompt is Webflow-owned.
 
+---
+
 ## 4. CROSS-LINKS
 
 - Packet 1 root playbook: `.opencode/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md`
@@ -141,6 +147,8 @@ Expected response shape: name the exact snippet asset, include the relevant Moti
 - Motion integration patterns: `references/animation/integration-patterns.md`
 - Motion performance guidance: `references/animation/performance-and-pitfalls.md`
 - Motion stagger snippet: `assets/animation/snippets/stagger-animation.js`
+
+---
 
 ## 5. RELATED RESOURCES
 

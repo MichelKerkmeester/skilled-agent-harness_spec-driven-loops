@@ -42,6 +42,8 @@ The deep-improvement Lane C harness benchmarks `sk-design` against its own `manu
 
 The live-mode sibling reports (e.g. `after-016-hub-routing/`, `after-018-transport-integration/`, `after-022-coverage-fill/`) each carry their own **PASS** headline verdict *and* a P1 `funnel_attrition` bottleneck in the same document — that is not a contradiction to reconcile away, it is two claims about different scope. The PASS verdict is computed over the weighted, scored dimensions only (D1intra, D2, D3, D5); D1-inter and D4 stay unscored in these runs (no advisor probe/rank-gold, no `--d4`). It does **not** certify the browser-class scenarios: most first-fail at the `browser` stage because the harness has no per-URL export/motion/video probe for three scenario types (`PARTIAL-NEEDS-ARTIFACT`) and no recipe at all for the rest (`SKIP-NO-BROWSER`) — an instrumentation gap in the benchmark harness, not an observed routing/discovery defect in the skill. Read each report's Ranked bottlenecks table before treating its PASS as browser-complete.
 
+---
+
 ## 2. RE-RUNNING
 
 ```bash

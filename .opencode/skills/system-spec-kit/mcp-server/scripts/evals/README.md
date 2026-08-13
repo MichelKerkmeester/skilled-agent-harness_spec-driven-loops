@@ -11,6 +11,8 @@ description: "Standalone CLI drivers that measure retrieval-flag recall, calibra
 
 `scripts/evals/` holds standalone CLI eval drivers for the retrieval and confidence-scoring flags in `../../lib/eval/` and `../../lib/search/`. Every driver opens the live database read-only, works on a temporary copy or a synthesized labeled set and never mutates the source database. Each driver answers one specific measurement question: does a flag improve recall relative to the default path, does a rendered response preserve the verdict fields the tool shipped, does a retention decision match the documented safety contract and so on.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -33,6 +35,8 @@ description: "Standalone CLI drivers that measure retrieval-flag recall, calibra
 | `context-recall-golden.json` | Generated golden query set for `run-context-recall-eval.mjs`, keyed by memory id and title. |
 | `edge-recall-golden.json` | Generated golden edge set for `run-edge-recall-eval.mjs`, derived by `derive-edge-recall-golden.mjs`. |
 
+---
+
 ## 3. VALIDATION
 
 Run from `.opencode/skills/system-spec-kit/mcp-server/` unless noted.
@@ -42,6 +46,8 @@ node scripts/evals/run-retrieval-flag-eval.mjs
 ```
 
 Each driver reads `MEMORY_DB_PATH` (default `database/context-index.sqlite`) and prints a before/after or pass/fail report. Golden JSON files are regenerated with their matching `derive-*` or `generate-*` script, not hand-edited.
+
+---
 
 ## 4. RELATED
 

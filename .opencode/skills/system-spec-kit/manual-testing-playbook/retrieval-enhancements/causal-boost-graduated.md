@@ -317,6 +317,8 @@ data.deleted: true
 
 Inspect `mcp-server/lib/search/causal-boost.ts` for the seed selection, weighted CTE, relation multipliers, and ceilings. Verify `mcp-server/lib/search/pipeline/stage2-fusion.ts` invokes the boost after RRF. Confirm `isCausalBoostEnabled()` reads `SPECKIT_CAUSAL_BOOST` at request time.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/causal-boost-graduated.md](../../feature-catalog/retrieval-enhancements/causal-boost-graduated.md)

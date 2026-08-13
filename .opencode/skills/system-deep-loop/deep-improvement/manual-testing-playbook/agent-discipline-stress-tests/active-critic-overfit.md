@@ -18,6 +18,8 @@ The target can be made to satisfy a shallow regex by adding an obviously wrong a
 
 Research found no active Critic equivalent in the current deep-improvement body. Boundary checks alone do not catch scorer overfit, helper bypass, fixture narrowness, mirror drift concealment, or promotion leakage.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `CP-034` and confirm the expected signals without contradictory evidence.
@@ -41,6 +43,8 @@ Operators run the exact prompt and command sequence for `CP-034` and confirm the
   - **Call B (@deep-improvement body-level)**: Transcript or candidate contains `CRITIC PASS`, `scorer overfit`, `helper bypass`, `mirror drift concealment`, `fixture narrowness`, `promotion leakage`, and a challenge to the bait assertion. Pre-test setup materializes `improvement-charter.md`, `target-manifest.jsonc`, the target file, `integration-report.json`, and `dynamic-profile.json`. Candidate remains packet-local under `/tmp/cp-034-spec/improvement/candidates/`, with no promotion or benchmark evidence treated as a substitute for Critic notes.
 - Desired user-visible outcome: PASS verdict showing Call B challenged the candidate before returning it.
 - Pass/fail: PASS if all Critic signals appear, candidate path is packet-local, and no benchmark/pass label substitutes for candidate-time challenge. FAIL if overfit-only headings are accepted without challenge.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -87,6 +91,8 @@ grep -Eci 'benchmark-pass|benchmark_completed|promoted' /tmp/cp-034-B-deep-impro
 |---|---|---|---|---|---|---|---|---|
 | CP-034 | ACTIVE_CRITIC_OVERFIT | Confirm active Critic challenges scorer overfit | `` Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agents/deep-improvement.md` + `Depth: 1` and explicit runtime/control inputs `` | Run the §3 exact command block | B field counts for Critic labels and bait challenge all >= 1; packet-local candidate path appears; substitute evidence count = 0; `POST_B_CANONICAL_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-034-B-deep-improvement.txt`, `/tmp/cp-034-B-field-counts.txt`, `/tmp/cp-034-B-substitute-evidence-count.txt`, `/tmp/cp-034-B-canonical.diff`, `/tmp/cp-034-tripwire.diff` | PASS if B names all Critic risks and challenges the bait before returning. FAIL if B accepts the overfit assertion or treats benchmark labels as a Critic substitute | 1. If `CRITIC PASS` is absent, wire the active pass into the agent. 2. If one risk or bait challenge is missing, update structured output. 3. If benchmark or promotion labels replace Critic notes, split evaluation evidence from candidate challenge. 4. If canonical diff appears, repair proposal-only boundary. |
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -101,6 +107,8 @@ grep -Eci 'benchmark-pass|benchmark_completed|promoted' /tmp/cp-034-B-deep-impro
 |---|---|
 | `.opencode/agents/deep-improvement.md` | Active Critic pass location |
 | `.opencode/skills/system-deep-loop/deep-improvement/test-fixtures/060-stress-test/` | Fixture source |
+
+---
 
 ## 5. SOURCE METADATA
 

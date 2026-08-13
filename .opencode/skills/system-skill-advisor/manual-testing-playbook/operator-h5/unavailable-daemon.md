@@ -129,6 +129,8 @@ Do NOT modify, create, or delete any file OTHER than the single scenario file na
 .opencode/skills/system-skill-advisor/manual-testing-playbook/operator-h5/unavailable-daemon.md (this file only)
 ```
 
+---
+
 ## 7. PASS/FAIL
 
 BLOCKED - The scenario requires creating and corrupting a disposable SQLite database copy, but this run permits writes only to this scenario file.

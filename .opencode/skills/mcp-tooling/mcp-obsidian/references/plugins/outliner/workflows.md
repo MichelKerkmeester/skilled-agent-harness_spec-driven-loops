@@ -27,6 +27,8 @@ Every operation below runs at the file layer. The mode cannot drive the Obsidian
 
 Backup name convention: `data.json.bak-YYYYMMDD-HHMMSS` in the same folder.
 
+---
+
 ## 2. VERIFY INSTALLATION AND VERSION
 
 1. Read `<vault>/.obsidian/plugins/obsidian-outliner/manifest.json`.
@@ -36,6 +38,8 @@ Backup name convention: `data.json.bak-YYYYMMDD-HHMMSS` in the same folder.
 
 Checkpoint: the recorded version matches the manifest exactly and the plugin is enabled. Expected in the active vault: version 4.10.2, minimum 1.11.7, enabled.
 
+---
+
 ## 3. READ CURRENT SETTINGS
 
 1. Check whether `<vault>/.obsidian/plugins/obsidian-outliner/data.json` exists.
@@ -43,6 +47,8 @@ Checkpoint: the recorded version matches the manifest exactly and the plugin is 
 3. If present, read it and note the plugin folder listing.
 
 Checkpoint: the read result states file presence and the parsed JSON or the default values. In the active vault the file is absent, so defaults apply.
+
+---
 
 ## 4. VALIDATE SETTINGS
 
@@ -72,6 +78,8 @@ After:
 ```
 
 Checkpoint: every key is known and every enum value is valid.
+
+---
 
 ## 5. MODIFY A SETTING
 
@@ -105,6 +113,8 @@ After:
 
 Checkpoint: the diff touches only the target keys and the backup exists.
 
+---
+
 ## 6. RESET A SETTING TO DEFAULT
 
 1. Back up `data.json`.
@@ -115,6 +125,8 @@ Before: `"dnd": false`. After: the key is removed, or `"dnd": true`.
 
 Checkpoint: the resulting file equals the schema default for that key.
 
+---
+
 ## 7. RESTORE FROM BACKUP
 
 1. List `data.json.bak-*` files newest first.
@@ -123,6 +135,8 @@ Checkpoint: the resulting file equals the schema default for that key.
 4. Re-read and confirm JSON validity.
 
 Checkpoint: the restored file parses and matches the backup byte for byte.
+
+---
 
 ## 8. INSPECT LIST MARKDOWN COMPATIBILITY
 
@@ -151,6 +165,8 @@ After (consistent):
 
 Checkpoint: the list uses one indent character throughout and valid task markers. This is note hygiene, not a plugin transformation.
 
+---
+
 ## 9. MAP INTENT TO SETTINGS
 
 The mode cannot run in-app commands, so it translates user intent into settings where possible.
@@ -167,6 +183,8 @@ The mode cannot run in-app commands, so it translates user intent into settings 
 
 Checkpoint: every proposed change uses only documented keys and respects the dependency gate.
 
+---
+
 ## 10. POST-WRITE VERIFICATION
 
 1. Re-read the written `data.json`.
@@ -175,6 +193,8 @@ Checkpoint: every proposed change uses only documented keys and respects the dep
 4. Confirm the backup exists and no stray temp files remain.
 
 Checkpoint: file valid, diff scoped, backup present, plugin folder clean.
+
+---
 
 ## 11. PLUGIN RELOAD AND SIDE EFFECTS
 

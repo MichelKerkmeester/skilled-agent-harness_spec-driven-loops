@@ -9,6 +9,20 @@ trigger_phrases:
   - "wrapper writes iteration artifacts"
 importance_tier: "important"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf"
+    last_updated_at: "2026-08-11T14:05:00Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled the moved packet metadata and strict-validation contract"
+    next_safe_action: "Run the full-budget alignment gate."
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
 ---
 # Feature Specification: Read-Only cli-codex Deep-Alignment Audit Leaf
 
@@ -27,6 +41,9 @@ contextType: "general"
 | **Status** | In Progress |
 | **Created** | 2026-07-23 |
 | **Track** | system-deep-loop |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | None |
+| **Successor** | `002-cli-devin-executor-wiring` |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -137,6 +154,20 @@ Make a `cli-codex` deep-alignment leaf structurally incapable of writing anythin
 - codex returns non-zero / times out: existing dispatch-audit failure path handles it before the writer runs.
 
 <!-- /ANCHOR:edge-cases -->
+---
+
+<!-- ANCHOR:implementation-phases -->
+## 9. IMPLEMENTATION PHASES
+
+### Phase 1: Read-only producer boundary
+
+Build and verify the wrapper-owned artifact writer, then move the cli-codex leaf to a read-only final-message contract.
+
+### Phase 2: Full-budget acceptance
+
+Run the complete alignment budget and require both lanes, zero contract violations, and strict packet validation before closeout.
+
+<!-- /ANCHOR:implementation-phases -->
 ---
 
 <!-- ANCHOR:questions -->

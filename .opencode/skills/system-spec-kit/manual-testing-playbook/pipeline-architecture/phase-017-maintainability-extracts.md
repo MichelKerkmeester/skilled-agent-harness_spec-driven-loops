@@ -132,6 +132,8 @@ expect(parsed.meta.structuralRoutingNudge).toMatchObject({
 
 Inspect `mcp-server/lib/utils/exhaustiveness.ts`, `mcp-server/handlers/save/post-insert.ts`, `mcp-server/lib/storage/reconsolidation.ts`, and `mcp-server/handlers/memory-context.ts`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/phase-017-maintainability-extracts.md](../../feature-catalog/pipeline-architecture/phase-017-maintainability-extracts.md)

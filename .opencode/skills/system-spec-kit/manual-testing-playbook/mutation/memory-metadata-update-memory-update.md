@@ -60,6 +60,8 @@ Update output + search
 
 Retry with allowPartialUpdate if embedding fails
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [mutation/memory-metadata-update-memoryupdate.md](../../feature-catalog/mutation/memory-metadata-update-memoryupdate.md)

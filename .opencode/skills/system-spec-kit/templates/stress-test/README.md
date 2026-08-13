@@ -35,6 +35,8 @@ Current state:
 - `findings-rubric.template.json` provides the JSON rubric scaffold.
 - `findings-rubric.schema.md` explains the rubric fields and severity model.
 
+---
+
 ## 2. DIRECTORY TREE
 
 ```text
@@ -45,20 +47,26 @@ stress-test/
 `-- README.md
 ```
 
+---
+
 ## 3. USAGE
 
 1. Copy `findings.template.md` to the active stress-test packet as `findings.md`.
 2. Copy `findings-rubric.template.json` to the packet as `findings-rubric.json`.
 3. Fill the copied rubric from `findings-rubric.schema.md` and the active test scope.
 
+---
+
 ## 4. KEY FILES
 
-| File | Responsibility |
-|---|---|
-| `findings.template.md` | Markdown report scaffold for stress-test findings, evidence and follow-up actions. |
-| `findings-rubric.template.json` | JSON starter file for scoring categories and verdict fields. |
-| `findings-rubric.schema.md` | Human-readable contract for rubric fields, severity levels and scoring notes. |
-| `README.md` | Folder contract for template usage and validation. |
+| File                            | Responsibility                                                                     |
+| ---------------------------------| ------------------------------------------------------------------------------------|
+| `findings.template.md`          | Markdown report scaffold for stress-test findings, evidence and follow-up actions. |
+| `findings-rubric.template.json` | JSON starter file for scoring categories and verdict fields.                       |
+| `findings-rubric.schema.md`     | Human-readable contract for rubric fields, severity levels and scoring notes.      |
+| `README.md`                     | Folder contract for template usage and validation.                                 |
+
+---
 
 ## 5. BOUNDARIES
 
@@ -69,12 +77,16 @@ stress-test/
 | Scope | Do not use this pack for unrelated review or findings reports. |
 | Packet output | Copy templates into the active packet before adding run-specific results. |
 
+---
+
 ## 6. ENTRYPOINTS
 
 - Start with `findings.template.md` when the packet needs a human-readable stress-test report.
 - Start with `findings-rubric.template.json` when the packet needs machine-readable scoring input.
 - Read `findings-rubric.schema.md` before changing rubric field names or severity meanings.
 - Use the stress-testing playbook for execution order, evidence capture and operator prompts.
+
+---
 
 ## 7. VALIDATION
 
@@ -86,6 +98,8 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/sy
 ```
 
 Expected result: validation exits `0`, reports no HVR violations and DQI is `good` or better.
+
+---
 
 ## 8. RELATED
 

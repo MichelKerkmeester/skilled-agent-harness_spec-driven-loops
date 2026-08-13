@@ -26,9 +26,13 @@ Private procedure card for applying the existing design-interface deck planning 
 | Proof gate | The plan names slide layout types, one-message-per-slide discipline, minimum body text size, overflow checks, navigation expectations, and any placeholder imagery decisions. |
 | Privacy rule | This card is private deck-planning guidance inside `design-interface`, not a public deck skill. |
 
+---
+
 ## 2. READ-ONLY COMPATIBILITY
 
 `design-interface` may produce the deck plan and handoff. It must not require Write, Edit, or Bash to use this card.
+
+---
 
 ## 3. PROCEDURE
 

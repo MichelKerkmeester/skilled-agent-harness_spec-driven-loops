@@ -7,6 +7,7 @@ trigger_phrases:
   - "overall.sealed preliminary authoritative"
 importance_tier: "important"
 contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity/001-alignment-registry-sealing"
@@ -32,6 +33,8 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 
 # Feature Specification: deep-alignment registry seal-state
+
+> Phase adjacency under the `049-deep-alignment-integrity` parent (navigation order, not a runtime dependency): predecessor none (first sibling); successor `002-deep-alignment-multi-executor`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

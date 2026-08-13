@@ -15,6 +15,8 @@ Shared error-handling code for the Spec Kit Memory MCP server. This folder conve
 
 Use this folder when MCP tools need consistent failure responses. Recovery hints should be actionable and should re-anchor packet-scoped work on `/speckit:resume` when continuity context is missing.
 
+---
+
 ## 2. STRUCTURE
 
 | File | Role |
@@ -22,6 +24,8 @@ Use this folder when MCP tools need consistent failure responses. Recovery hints
 | `core.ts` | `MemoryError`, timeout wrapper, transient checks, and response builders. |
 | `recovery-hints.ts` | Error-code catalog, default hints, and tool-specific hint lookup. |
 | `index.ts` | Public exports for error helpers. |
+
+---
 
 ## 3. FLOW
 
@@ -47,6 +51,8 @@ Use this folder when MCP tools need consistent failure responses. Recovery hints
 ╰──────────────────────╯
 ```
 
+---
+
 ## 4. ALLOWED DEPENDENCY DIRECTION
 
 ```text
@@ -66,6 +72,8 @@ Use this folder when MCP tools need consistent failure responses. Recovery hints
 
 Application modules may import error helpers. Error helpers should not import tool handlers, storage implementations, search pipeline stages, or recovery workflows.
 
+---
+
 ## 5. ERROR CATEGORIES
 
 | Range | Category |
@@ -79,6 +87,8 @@ Application modules may import error helpers. Error helpers should not import to
 | `E060` to `E109` | Checkpoint, session, memory, validation, and causal-graph failures. |
 | `E429`, `E503` | Rate-limit and service-availability failures. |
 
+---
+
 ## 6. USAGE
 
 ```typescript
@@ -90,6 +100,8 @@ try {
   return buildErrorResponse('memory_search', error, { query });
 }
 ```
+
+---
 
 ## 7. RELATED FILES
 

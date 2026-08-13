@@ -12,6 +12,8 @@ trigger_phrases:
 
 `stress-test/substrate/` promotes the shared-daemon runner into a canonical Vitest gate and adds pure-logic stress coverage for the local LLM substrate. This slice is provider-aware where it must be and pure logic where daemon startup would add noise.
 
+---
+
 ## 2. SCOPE
 
 | File | Coverage |
@@ -23,6 +25,8 @@ trigger_phrases:
 | `query-expansion-bound-stress.vitest.ts` | Bounded combined-query construction for 100 expansion-eligible queries. |
 | `secret-scrub-save-flood-stress.vitest.ts` | Secret scrub behavior under save-flood stress. |
 | `v-rule-save-flood-stress.vitest.ts` | V8 cross-spec contamination rules under a 50-save canonical-doc flood. |
+
+---
 
 ## 3. RUN RECIPE
 
@@ -51,6 +55,8 @@ Run the standalone harness and remove all regenerated sandbox evidence after it 
 ```bash
 node stress-test/substrate/run-substrate-stress-harness.mjs --clean
 ```
+
+---
 
 ## 4. SCENARIO BOUNDARY
 

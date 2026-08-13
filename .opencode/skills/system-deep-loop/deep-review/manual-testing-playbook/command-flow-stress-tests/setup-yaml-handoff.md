@@ -18,6 +18,8 @@ This scenario checks the command-owned entrypoint. The differentiator is whether
 
 The deep-review command says markdown owns setup and YAML must not load until all required inputs are bound. If setup is skipped, the loop can start with stale or ambiguous state.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence and judge only grep-checkable signals.
@@ -30,6 +32,8 @@ Operators run the exact command sequence and judge only grep-checkable signals.
 - Expected signals: transcript names auto YAML or setup handoff. Artifacts include `deep-review-config.json`, `deep-review-state.jsonl`, and `deep-review-strategy.md`. Config/state name `agent:deep-review`, `auto`, `maxIterations`, and `convergenceThreshold`. Canonical agent diff and project tripwire are empty.
 - Desired outcome: PASS verdict proving command markdown did setup rather than letting YAML infer missing bindings.
 - Pass/fail: PASS if every field count is `1+`. FAIL if YAML runs without setup state, artifacts are missing, or sandbox/canonical files are mutated.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -77,6 +81,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 |---|---|---|---|---|---|---|---|---|
 | CP-052 | SETUP_YAML_HANDOFF | Prove command setup owns input binding before YAML execution | `Run the setup-to-YAML handoff scenario and prove deep-review binds target, mode, iterations, and convergence before YAML execution.` | Run §3 exactly | All `/tmp/cp-052-B-field-counts.txt` lines are `1+` | Transcript, combined artifacts, field counts, agent diff, tripwire diff | PASS if setup state exists and target/mode/numeric inputs are bound | If YAML signal is absent, inspect command entrypoint loading. If state files are absent, inspect init. If diffs are non-empty, investigate write boundary leakage. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Lines | Role |
@@ -84,6 +90,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | `.opencode/commands/deep/review.md` | 7-25, 43-160, 238-245 | Setup-first command contract and YAML handoff |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 253-346 | Command-only invocation and three-layer workflow |
 | `.opencode/agents/deep-review.md` | 23-33, 218-238 | Agent is single-iteration target and mirrors are read-only |
+
+---
 
 ## 5. SOURCE_METADATA
 

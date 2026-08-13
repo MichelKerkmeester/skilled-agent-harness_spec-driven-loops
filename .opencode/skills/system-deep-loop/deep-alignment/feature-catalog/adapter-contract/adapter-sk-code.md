@@ -20,6 +20,8 @@ The hybrid authority adapter that surface-detects code artifacts and runs the re
 
 `sk-code.cjs` is the hardest, least-deterministic adapter (ADR-008: HYBRID). It wraps the real sk-code surface-detection router and the real deterministic drift tooling, and builds a documented dispatch packet for everything that tooling structurally cannot check. Every finding is tagged `deterministic` or `reasoning-agent` — no false determinism.
 
+---
+
 ## 2. HOW IT WORKS
 
 `discover()` walks code files (the OpenCode-checkable extension set plus CSS/HTML), reading each candidate's content because `stack-detection.md`'s WEBFLOW detection order includes a content-grep fallback a path-only classifier cannot reproduce. It classifies each artifact's surface (OPENCODE highest precedence, then WEBFLOW path/filename/content markers, else UNKNOWN) and flags a MOTION_DEV overlay signal. `standardSource('sk-code')` returns the surface router, the per-surface validators, an `excludedFromCheck` record for the tree-mutating `minify-webflow.mjs`, and the reference dirs. `check()` runs a surface-routed deterministic layer — `verify_alignment_drift.py --root` for OPENCODE (ERROR → P0, WARN → P1; a non-covered extension yields a `deterministic-layer-not-applicable` P2), and `verify-minification.mjs`/`test-minified-runtime.mjs` for WEBFLOW when a real project root is discoverable (FAIL → P0; otherwise an honest `deterministic-layer-unavailable` fallback per NFR-R01) — plus a reasoning-agent `checkPatternConformance()` layer. That layer is verify-first: `buildReasoningLayerDispatch()` prepares which dimensions to judge and which references to read, but the `.cjs` never judges itself; it only translates confirmed, cited contradictions the caller feeds back into findings.

@@ -58,6 +58,8 @@ Search output
 
 Check feature flag governance section
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/6-debug-and-telemetry.md](../../feature-catalog/feature-flag-reference/6-debug-and-telemetry.md)

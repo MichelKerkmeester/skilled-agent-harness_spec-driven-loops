@@ -19,6 +19,8 @@ Current responsibilities:
 - Render markdown templates while preserving fenced code behavior.
 - Provide a shell wrapper for callers that need a stable executable entrypoint.
 
+---
+
 ## 2. DIRECTORY TREE
 
 ```text
@@ -28,6 +30,8 @@ templates/
 `-- README.md
 ```
 
+---
+
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -35,12 +39,16 @@ templates/
 | `inline-gate-renderer.ts` | Implements expression parsing, gate evaluation and template rendering. |
 | `inline-gate-renderer.sh` | Runs the TypeScript renderer through the local `tsx` loader. |
 
+---
+
 ## 4. USAGE NOTES
 
 - Supported render levels are `1`, `2`, `3`, `3+` and `phase`.
 - Gate markers are ignored inside fenced code blocks so examples remain intact.
 - Empty gate markers are validated and removed from output.
 - Use the shell wrapper when a Bash script needs to call the renderer.
+
+---
 
 ## 5. VALIDATION
 
@@ -51,6 +59,8 @@ python .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sys
 ```
 
 Expected result: the README validation exits `0`.
+
+---
 
 ## 6. RELATED
 

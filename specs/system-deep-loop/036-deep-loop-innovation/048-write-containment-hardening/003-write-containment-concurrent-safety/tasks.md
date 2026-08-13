@@ -10,10 +10,10 @@ parent: "system-deep-loop"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/003-write-containment-concurrent-safety"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the task list recording the shipped fix and its verification"
-    next_safe_action: "None; packet complete"
+    last_updated_at: "2026-08-11T14:03:33Z"
+    last_updated_by: "codex"
+    recent_action: "Preserved the shipped tasks while reopening moved-packet metadata closeout"
+    next_safe_action: "Refresh continuity after packet paths are clean."
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:047768ec731e89bd4ff48194f382c5308ffcc55c8bd85add676017356048460d"
       session_id: "2026-08-06-deep-loop-046"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 
 **Task Format**: `T### [P?] Description (file path)`
 
-Status: Complete - the fix, tests, and typecheck were run and verified before this documentation pass; this packet records that shipped work.
+Status: In Progress - the fix, tests, and typecheck are shipped; moved-packet metadata closeout remains open.
 <!-- /ANCHOR:notation -->
 
 ---
@@ -84,10 +84,18 @@ Status: Complete - the fix, tests, and typecheck were run and verified before th
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Metadata Closeout
+
+- [ ] T013 Refresh continuity fingerprints after the moved packet's paths are clean (`description.json`, packet docs)
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All tasks marked `[x]`
+- [ ] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Unit suite and typecheck both green
 - [x] Spec-doc packet (spec/plan/tasks/checklist/implementation-summary) authored and validated

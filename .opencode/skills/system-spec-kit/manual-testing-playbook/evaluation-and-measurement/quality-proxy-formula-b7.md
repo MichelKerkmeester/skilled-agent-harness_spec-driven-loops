@@ -59,6 +59,8 @@ Exported log data + manual computation worksheet + stored proxy value comparison
 
 Check formula component extraction from logs → Verify coefficient weights → Inspect stored value write path
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/quality-proxy-formula.md](../../feature-catalog/evaluation-and-measurement/quality-proxy-formula.md)

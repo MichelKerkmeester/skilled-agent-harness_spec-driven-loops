@@ -16,6 +16,8 @@ Exercise the extended review-loop graph vocabulary. Before Phase G, the review c
 
 Without graph-side persistence, the ledger has nowhere to project its richer semantics (bug class taxonomy, invariant tests, producer/consumer paths). Graphless reviews can still proceed via the text/JSON ledger, but graph-backed reviews now have a structured surface for the candidate evidence the v2 contract demands.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the review-loop coverage-graph accepts and persists upserts for all five new node kinds: `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, `TEST`.
@@ -23,6 +25,8 @@ Without graph-side persistence, the ledger has nowhere to project its richer sem
 - Real user request: `Upsert a BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, and TEST node into the review coverage-graph and confirm all five persist.`
 - Expected signals: each upsert returns success. Subsequent graph query (or graph state inspection) shows all five node kinds present in the review-loop namespace. YAML event filter does not drop them.
 - Pass/fail: PASS if all five upserts succeed AND all five nodes are observable after persistence. FAIL if any kind is rejected with `unsupported_kind` OR disappears after upsert.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -52,6 +56,8 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 - A node kind disappears after upsert: inspect persistence (graph DB query) rather than only the upsert response.
 - The YAML event filter drops the event upstream: inspect `deep-review-auto.yaml` event-filter normalization block.
 
+---
+
 ## 4. SOURCE REFERENCES
 
 - Allow-list: `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` (`VALID_KINDS['review']` constant).
@@ -60,6 +66,8 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 - Confirm mirror: `.opencode/commands/deep/assets/deep-review-confirm.yaml`.
 - Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts`.
 - Phase spec: complexity-ledger-led graph-vocab spec (see this skill's changelog for provenance).
+
+---
 
 ## 5. SOURCE_METADATA
 

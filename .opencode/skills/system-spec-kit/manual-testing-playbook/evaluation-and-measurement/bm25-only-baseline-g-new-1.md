@@ -60,6 +60,8 @@ BM25 baseline output with MRR@5 value + channel trace showing BM25-only + eviden
 
 Verify all non-BM25 channels are disabled, confirm BM25 path activation, check BM25 index health, and inspect channel activation flags before treating the run as a valid BM25-only baseline
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/bm25-only-baseline.md](../../feature-catalog/evaluation-and-measurement/bm25-only-baseline.md)

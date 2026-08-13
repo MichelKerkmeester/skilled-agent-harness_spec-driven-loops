@@ -42,18 +42,6 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-shadow-parity/harness-adapter.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-shadow-parity/harness-adapter.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-shadow-parity/harness-adapter.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-shadow-parity/harness-adapter.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-review-shadow-parity/harness-adapter.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-shadow-parity.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-shadow-parity.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-shadow-parity.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/model-benchmark-shadow-parity.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-shadow-parity.vitest.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts",
       "implementation-summary.md"
     ],
     "entities": [
@@ -85,48 +73,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "harness-adapter.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-ai-council-shadow-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-shadow-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-alignment-shadow-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-shadow-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "agent-improvement-shadow-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/agent-improvement-shadow-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "model-benchmark-shadow-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/model-benchmark-shadow-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark-shadow-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-shadow-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-shadow-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-shadow-parity.vitest.ts",
         "source": "derived"
       },
       {
@@ -200,11 +146,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
     "created_at": "2026-07-31T01:25:19.594Z",
-    "last_save_at": "2026-08-08T12:26:16.163Z",
+    "last_save_at": "2026-08-11T14:06:20.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,10 +203,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2bf1895c5f2766cc654ea843b7b8c827ca473a1ff33e6b488942b6cf6168b816",
+    "source_fingerprint": "sha256:f72ba5ef08d4f043839ad065b203cc78f314ea9d9443d79a40ba4d68688ec11d",
     "source_doc_hashes": {
       "spec.md": "3f5d12a5fc2a2fde62854d0ac11127144cde070d8b708e107df1db9f1e0f2ef6",
-      "plan.md": "dea3cde6029f01745e99170bfdb89d6a65209ee9915598d082d3da0fe634ba9a",
+      "plan.md": "da16ebc44db6be9316e4890f34fd4786c86e9e3e6e7fc25e58be131449f1f9e7",
       "tasks.md": "b56b42a67860b1b449863e1254132decea4bcdbf81e60bf00de2ff570f7a3c53",
       "checklist.md": "84d4e46d162e588681739bf08b4a31ed7d59b3725de3ca4155b848efb607db08",
       "decision-record.md": "6108bf88d41302077e8776deabdcfdd9be46b9b32aaa9b7c15a02b7230d7a36e",

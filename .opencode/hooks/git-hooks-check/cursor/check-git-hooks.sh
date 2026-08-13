@@ -1,0 +1,1 @@
+../../../bin/check-git-hooks.sh

@@ -13,9 +13,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-template-context-optimizations"
-    last_updated_at: "2026-08-12T17:39:01Z"
+    last_updated_at: "2026-08-13T04:01:32Z"
     last_updated_by: "claude-code"
-    recent_action: "Completed deep-review remediation and QA checklist; packet complete"
+    recent_action: "Remediated second deep-review findings; packet complete"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Complete (uncommitted) — all four phases implemented; deep-review findings remediated; QA checklist verified; awaiting commit go-ahead |
+| **Status** | Complete — all four phases shipped and committed; two independent deep-reviews run and their findings remediated; QA checklist verified |
 | **Created** | 2026-08-12 |
 | **Branch** | `system-spec-kit/0146-speckit-template-optimizations` |
 | **Parent Packet** | system-speckit |
@@ -107,16 +107,16 @@ Ship the six verified/multi-lineage improvements as four independently-shippable
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Level-gate `research.md.tmpl` (Phase 1) | Rendered L1 output is materially smaller than the pre-gating full render (944 lines at every level; achieved: L1 = 175 lines) while L3/3+/phase stay byte-identical; renderer snapshot tests pass; the `research.md` documents entry in `spec-kit-docs.json` carries `owner`/`creationTrigger`/`absenceBehavior` |
-| REQ-002 | Consolidate cross-level template duplication (Phase 2) | The four multi-level templates use one shared core + per-level gated addenda; **rendered output per level is byte-identical to pre-change** (renderer snapshot proof); template source shrinks materially |
+| REQ-001 | Level-gate `research.md.tmpl` (Phase 1) | Rendered L1 output is materially smaller than the full render (measure via `inline-gate-renderer.sh --level N research.md.tmpl`: pre-gating ~944 lines at every level; achieved L1 = 175 lines) while L3/3+/phase stay byte-identical; renderer snapshot tests pass; the `research.md` documents entry in `spec-kit-docs.json` carries `owner`/`creationTrigger`/`absenceBehavior` |
+| REQ-002 | Consolidate cross-level template duplication (Phase 2) | Each of the four multi-level templates keeps its shared content ungated and wraps per-level content in inline `<!-- IF level:N -->` gates (one file per template, not an extracted shared include); **rendered output per level is byte-identical to pre-change** (renderer snapshot proof); template source shrinks materially |
 | REQ-004 | Promote `AC_COVERAGE` to default-on (Phase 3) | Rule runs by default as a non-blocking advisory (surfaces an INFO-level message on under-coverage; `RULE_STATUS` stays `pass`) with the manual-infeasible escape hatch intact; a known-under-covered packet surfaces the advisory message but never errors or hard-fails; existing packets do not hard-fail under `--strict` |
-| REQ-006 | Enforce a token budget in `memory_search` (Phase 4) | `handleMemorySearch` applies the shared `enforceTokenBudget` / `getTokenBudget('memory_search')`; a test proves oversized results are truncated lowest-score-first with enforcement metadata |
+| REQ-006 | Enforce a token budget in `memory_search` (Phase 4) | `handleMemorySearch` applies a dedicated `enforceSearchTokenBudget` (mirrors `memory_context`'s enforcement; kept as a separate enforcer per ADR-005) with `getTokenBudget('memory_search')`; a test proves oversized results are truncated lowest-score-first with enforcement metadata |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-003 | Rendered-view read guard + helper (Phase 2) | A documented `inline-gate-renderer --level N --stdout` (or equivalent) read path exists; an authoring-checklist item points agents to it instead of raw `.tmpl` |
+| REQ-003 | Rendered-view read guard + helper (Phase 2) | A documented `inline-gate-renderer.sh --level N <template>` read path exists (prints to STDOUT when `--out-dir` is omitted); an authoring-checklist item points agents to it instead of raw `.tmpl` |
 | REQ-005 | Add `check-scope-adherence.sh` (Phase 3) | A new warn-severity rule verifies changed-file paths fall within the plan/spec declared scope; wired into `validate.sh`'s rule loop; passes on an in-scope fixture, warns on an out-of-scope fixture |
 <!-- /ANCHOR:requirements -->
 
@@ -184,6 +184,22 @@ Ship the six verified/multi-lineage improvements as four independently-shippable
 ## L2: COMPLEXITY ASSESSMENT
 
 Four surfaces (template renderer, template source, validation framework, MCP search handler), each with its own test suite and regression gate. Individually the recs are small-to-medium; collectively they touch enough architecture (renderer contract, validation rule-loader, MCP handler) to warrant a decision record. Planning-stage Level 2; the final level firms up as implementation LOC lands. Not phase-folder scale — the recs are loosely coupled and tracked as phases within this plan.
+
+---
+
+## L2: BEFORE VS AFTER
+
+Concrete impact of the shipped optimizations (all template renders proven byte-identical where output must not change):
+
+| Surface | Before | After |
+|---------|--------|-------|
+| `research.md.tmpl` | Single 944-line doc rendered in full at every level | Level-gated — L1 renders ~175 lines; L3/3+/phase render the full doc byte-identical |
+| `spec` / `plan` / `tasks` / `implementation-summary` templates | Four embedded full copies per template (~2,931 source lines) | One shared core + per-level gated addenda (~1,314 lines, −55%); every level renders byte-identical |
+| Template read path | Agents read the raw ungated `.md.tmpl` (the full wall) | `template-guide.md` directs agents to the rendered, level-appropriate view |
+| `AC_COVERAGE` rule | Implemented but disabled by default (dormant gate) | Default-on advisory (INFO, non-blocking; `RULE_STATUS` stays `pass`) |
+| Scope discipline | Prose-only convention (a 033 research lineage wandered out of scope) | `check-scope-adherence.sh` advisory rule — opt-in change-set, packet docs always in-scope |
+| `memory_search` response size | Unbounded — a large result set could flood the caller's context | Token budget enforced (lowest-score dropped first), mirroring `memory_context`; feedback telemetry counts only returned results |
+| Registry rule count / docs | AC_COVERAGE documented off; scope vars undocumented; counts 45/37/36 | Docs reconciled to the new behavior; registry count aligned to 46 across references |
 
 ---
 

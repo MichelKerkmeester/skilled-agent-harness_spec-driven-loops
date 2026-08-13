@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+ux-hooks-directive-lifecycle-dedup,system-spec-kit,,registered-path,manual,,,cursor-registered-path-final,,PASS,"Registered Cursor path passed native payload/agent_message cadence, failure handling, lifecycle bridge, and durable provenance gates; native host delivery is separate."

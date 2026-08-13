@@ -51,6 +51,8 @@ elements: 12
 links: none
 ```
 
+---
+
 ## 2. VALIDATE A DRAWING
 
 Goal: prove a drawing note is loadable before any edit.
@@ -89,6 +91,8 @@ INVALID: Architecture.excalidraw.md
 - action: restore from backup or ask the user to repair in-app
 ```
 
+---
+
 ## 3. CREATE A DRAWING FROM TEMPLATE
 
 Goal: create a new drawing note that the plugin can open.
@@ -116,6 +120,8 @@ After:
 created: Excalidraw/Drawing 2026-01-01 10.00.00.excalidraw.md
 json: valid, elements 0
 ```
+
+---
 
 ## 4. MODIFY DRAWING JSON WITH BACKUP DISCIPLINE
 
@@ -148,6 +154,8 @@ After (one element added by copy):
 
 - The added element must come from a verified source. If no verified source exists, do not write the element and report the gap.
 
+---
+
 ## 5. EMBED A DRAWING IN A NOTE
 
 Goal: render a drawing or a single element inside another Markdown note.
@@ -178,6 +186,8 @@ Group embed:
 
 - The `#^` anchor id must match a real element id or group id in the drawing. Verify it by reading the drawing JSON first.
 
+---
+
 ## 6. ADD OR UPDATE A SCRIPT NOTE
 
 Goal: make a script available in the Script Engine menu.
@@ -204,6 +214,8 @@ Excalidraw/Scripts/
   Distribute Horizontally.md
   My New Script.md
 ```
+
+---
 
 ## 7. SET DRAWING-LEVEL EXPORT FRONTMATTER
 
@@ -237,6 +249,8 @@ excalidraw-export-pngscale: 2
 
 - Only use keys from the verified registry in `data-model.md` section 3.
 
+---
+
 ## 8. EDIT SETTINGS IN DATA.JSON
 
 Goal: change plugin defaults without the UI.
@@ -260,6 +274,8 @@ After:
 ```
 
 - The plugin reads settings at load. The user must reload Obsidian or toggle the plugin off and on for the change to take effect.
+
+---
 
 ## 9. BACKUP AND ROLLBACK PATTERN
 

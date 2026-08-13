@@ -13,6 +13,8 @@ trigger_phrases:
 
 `lib/interfaces/` keeps the local runtime contract for vector-store implementations. TypeScript interface definitions live in `@spec-kit/shared`, while this folder provides a real class that plain JavaScript consumers can extend.
 
+---
+
 ## 2. DATA FLOW
 
 ```text
@@ -25,6 +27,8 @@ embedding or vector request
 
 The interface boundary lets retrieval code call a vector backend without binding to one storage implementation.
 
+---
+
 ## 3. KEY FILES
 
 | File | Purpose |
@@ -33,9 +37,13 @@ The interface boundary lets retrieval code call a vector backend without binding
 
 Shared types such as `VectorStoreInterface` are re-exported from `@spec-kit/shared/types`.
 
+---
+
 ## 4. BOUNDARIES
 
 This folder owns contracts, not storage behavior. It does not create embeddings, open database handles, run vector search, or manage memory records.
+
+---
 
 ## 5. ENTRYPOINTS
 
@@ -50,11 +58,15 @@ This folder owns contracts, not storage behavior. It does not create embeddings,
 | `IVectorStore.getEmbeddingDimension()` | Report the expected embedding dimension |
 | `IVectorStore.close()` | Release backend resources |
 
+---
+
 ## 6. VALIDATION
 
 - Base-class methods throw until a subclass overrides them.
 - Interface compliance is covered by `../../tests/interfaces.vitest.ts`.
 - Implementations should match the shared `VectorStoreInterface` type when used from TypeScript.
+
+---
 
 ## 7. RELATED
 

@@ -60,6 +60,8 @@ Self-loop attempt output + depth clamp evidence + cache invalidation trace
 
 Inspect self-loop guard logic; verify depth clamp constants; check cache invalidation trigger points
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/graph-and-cognitive-memory-fixes.md](../../feature-catalog/graph-signal-activation/graph-and-cognitive-memory-fixes.md)

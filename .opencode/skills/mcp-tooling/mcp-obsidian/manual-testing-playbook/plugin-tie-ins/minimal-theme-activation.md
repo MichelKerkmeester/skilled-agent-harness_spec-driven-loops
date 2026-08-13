@@ -15,6 +15,8 @@ This scenario validates that the mode can operate the Minimal theme at the file 
 
 Minimal is a theme, not a plugin. Its entire configuration is the file layer: the package, the activation key and the snippets folder. If the mode can recreate that layer in a throwaway vault without touching a real vault, theme operations are fully delegated to vault files.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Feature ID: OBS-021
@@ -26,6 +28,8 @@ Minimal is a theme, not a plugin. Its entire configuration is the file layer: th
 - Evidence: File listing, jq outputs, brace counts, backup path.
 - Pass/Fail Criteria: PASS if all three layers verify and the throwaway vault is removed; FAIL if any file fails to parse, the version differs, `cssTheme` mismatches or the real vault is written.
 - Failure Triage: 1. Recreate the throwaway vault from scratch. 2. Re-check the file paths against the data model. 3. Re-run on a fresh copy.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -108,6 +112,8 @@ Set up the Minimal theme in my vault and make the headings smaller with a snippe
 | PASS | Manifest parses with version `9.0.2`, `cssTheme` equals `Minimal`, the snippet has balanced braces and a backup exists, the throwaway vault is removed and the real vault is untouched |
 | FAIL | Any parse error, version mismatch, `cssTheme` mismatch, missing backup or a real vault file modified |
 | SKIP | No source theme package available at the real vault path |
+
+---
 
 ## 4. CLEANUP
 

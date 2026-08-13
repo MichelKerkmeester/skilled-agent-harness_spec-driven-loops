@@ -188,6 +188,8 @@ Command: read-only bounds verification using the documented Stage 2 formula from
 
 Verify multiplier formula → Check bounds clamping → Inspect validation count resolution
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/validation-signals-as-retrieval-metadata.md](../../feature-catalog/pipeline-architecture/validation-signals-as-retrieval-metadata.md)

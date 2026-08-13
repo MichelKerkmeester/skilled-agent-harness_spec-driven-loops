@@ -18,6 +18,8 @@ This scenario pre-seeds a resumable research packet whose strategy marks `blocke
 
 State-first discipline is body-owned. The command can classify resume correctly, but the leaf still has to read exhausted approaches before focus selection and avoid repeating known dead ends.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence for `CP-051` and grade only file and grep signals.
@@ -29,6 +31,8 @@ Operators run the exact command sequence for `CP-051` and grade only file and gr
 - Expected process: seed config, state and strategy, run generic Call A, reset sandbox, run command-flow Call B, then inspect resumed state and leaf output.
 - Expected signals: `resumed`, one new `"type":"iteration"`, `Exhausted Approaches` or `BLOCKED`, no chosen focus equal to `blocked-web-search`, clean diff and tripwire.
 - Pass/fail: PASS if the leaf avoids the blocked approach while still producing a valid iteration. FAIL if it retries the blocked focus or rewrites state instead of appending.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -106,6 +110,8 @@ diff /tmp/cp-051-pre.txt /tmp/cp-051-post.txt > /tmp/cp-051-tripwire.diff; echo 
 |---|---|---|---|---|---|---|---|---|
 | CP-051 | EXHAUSTED_APPROACH_RESPECT | Confirm leaf avoids blocked approach on resume | `Resume deep research from existing state without retrying a blocked approach.` | Run the §3 bash block | B field counts all >= 1 | state log, iteration file, diffs | PASS if resume appends one iteration and chosen focus avoids blocked-web-search | 1. If resumed is missing, inspect session classification. 2. If focus repeats bait, repair state-first body rule. 3. If JSONL count is wrong, inspect append discipline. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Anchor |
@@ -116,6 +122,8 @@ diff /tmp/cp-051-pre.txt /tmp/cp-051-post.txt > /tmp/cp-051-tripwire.diff; echo 
 | `.opencode/agents/deep-research.md:113-130` | focus selection and exhausted approach handling |
 | `.opencode/agents/deep-research.md:399-428` | always and never rules for state discipline |
 | `.opencode/skills/system-deep-loop/deep-research/SKILL.md:367-383` | skill-level state and exhausted approach rules |
+
+---
 
 ## 5. SOURCE METADATA
 

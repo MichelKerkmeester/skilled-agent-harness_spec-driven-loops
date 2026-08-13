@@ -26,6 +26,8 @@ The `mcp-obsidian` mode operates this plugin by **managing the data files it ren
 | Version / minApp | 2.1.0 / 1.12.0 | Installed in all vaults (Phase 11); desktop and mobile supported |
 | Companion exporters | Health.md iOS/Android app | Apple export profile v7; Android frozen export v4; Android analytical export v5 |
 
+---
+
 ## 2. WHAT IT DOES
 
 Renders interactive health visualizations from data files **already in the vault**. A `health-viz` fenced code block placed in any note (including daily notes) becomes a chart canvas fed by the local data. It never fetches from Apple or a cloud — it renders what the data folder contains.
@@ -66,6 +68,8 @@ When the data folder is **missing or empty**, the plugin falls back to determini
 
 Verification always requires: identify the actual selected data folder from the plugin settings (not the default) and confirm at least one authentic source file exists there, matches the file pattern, and parses.
 
+---
+
 ## 6. DATA FORMATS
 
 | Format | Extension | Notes |
@@ -76,6 +80,8 @@ Verification always requires: identify the actual selected data folder from the 
 | Obsidian Bases | YAML frontmatter | Same frontmatter path as Markdown |
 
 Markdown without frontmatter renders granular tables but cannot declare schema, units, timezone, or capture completeness.
+
+---
 
 ## 7. GOTCHAS
 

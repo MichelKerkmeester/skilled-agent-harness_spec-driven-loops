@@ -24,6 +24,8 @@ Subagents are unavailable. Define the interaction-state matrix directly in this 
 
 This scenario validates direct execution for `interface`'s temporal/motion procedure card when subagents are unavailable.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm `interface` runs in the current session with Read/Glob/Grep only and preserves selected-card, context, and proof requirements.
@@ -34,11 +36,15 @@ This scenario validates direct execution for `interface`'s temporal/motion proce
 - Desired user-visible outcome: Motion state guidance with equivalent proof to delegated execution.
 - Pass/fail: PASS if direct fallback preserves proof and read-only boundary; FAIL if proof is skipped or mutating tools are used.
 
+---
+
 ## 3. TEST EXECUTION
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | MOTION-PROCCARD-003 | Motion direct fallback | Confirm no-subagent path keeps proof bar | `Subagents are unavailable. Define the interaction-state matrix directly in this session and show the selected card, context basis, proof line, and read-only boundary.` | grep direct fallback in `SKILL.md` -> agent: run prompt -> inspect tool calls and proof order | No Task dispatch; selected card named; proof precedes guidance; only Read/Glob/Grep used | Transcript, response, tool-call record | PASS if direct and read-only with full proof; FAIL if Task/mutating tool or skipped proof appears | 1. Re-read direct fallback; 2. Inspect first ready/handoff claim; 3. Compare tool surface |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -47,6 +53,8 @@ This scenario validates direct execution for `interface`'s temporal/motion proce
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../SKILL.md` | Motion direct-fallback contract |
 | `../../procedures/interaction-states-pass.md` | Selected card |
+
+---
 
 ## 5. SOURCE METADATA
 

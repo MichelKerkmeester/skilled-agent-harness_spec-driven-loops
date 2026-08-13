@@ -262,6 +262,8 @@ EXIT_CODE=2
 
 Verify validation level definitions; check exit code mapping; inspect auto-fix application logic
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)

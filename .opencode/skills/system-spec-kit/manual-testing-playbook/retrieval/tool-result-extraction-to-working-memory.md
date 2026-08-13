@@ -63,6 +63,8 @@ Tool outputs; working-memory or log evidence showing extraction/upsert; schema/q
 
 Verify after-tool callback registration in `context-server.ts` -> inspect `extraction-adapter.ts` for summary or redaction gating -> confirm session IDs and memory IDs are stable -> inspect checkpoint restore flow -> review score-clamp and eviction handling in working-memory decay logic -> confirm no pre-upsert existence probe remains in `upsertExtractedEntry()`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/tool-result-extraction-to-working-memory.md](../../feature-catalog/retrieval/tool-result-extraction-to-working-memory.md)

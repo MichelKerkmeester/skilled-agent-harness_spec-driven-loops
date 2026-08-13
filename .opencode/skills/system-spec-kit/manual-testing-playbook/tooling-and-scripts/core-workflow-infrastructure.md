@@ -92,6 +92,8 @@ tests/workflow-e2e.vitest.ts
 
 Inspect `scripts/core/memory-indexer.ts`, `post-save-review.ts`, `quality-scorer.ts`, `config.ts`, and workflow entrypoints if any targeted suite fails
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/core-workflow-infrastructure.md](../../feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md)

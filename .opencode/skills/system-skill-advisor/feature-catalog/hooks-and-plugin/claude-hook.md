@@ -17,11 +17,15 @@ version: 0.8.0.17
 
 Surface skill recommendations in Claude Code sessions at prompt time, without blocking the prompt when the advisor is degraded.
 
+---
+
 ## 2. HOW IT WORKS
 
 `hooks/claude/user-prompt-submit.ts` reads the prompt from stdin, calls the native advisor and returns a JSON envelope with `hookSpecificOutput.additionalContext`. The hook honors `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and fails open on any daemon-level failure. As a default-off, fail-open shadow it also records post-emission advisor-policy delivery (`observeEmittedAdvisorPolicy`) — an observed receipt with `lifecycleEpoch >= 1` — as the final step before returning, leaving the emitted envelope byte-identical. `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` bounds the native advisor subprocess and the remaining CLI fallback window. Raw prompts never appear in diagnostics. Freshness vocabulary is `live / stale / absent / unavailable`. Status vocabulary is `ok / skipped / degraded / fail_open`.
 
 Hook diagnostics are prompt-safe rollups handled by `lib/metrics.ts`. The `spec_kit.<group>.<metric_name>` instrumentation namespace emits only when `SPECKIT_METRICS_ENABLED=true`. Default off is no emission and is byte-identical to the pre-instrumentation surface. Alert thresholds for the rolling cache-hit p95 are read from the environment with conservative defaults: `SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_WARN_MS` (default 75) and `SPECKIT_ADVISOR_HOOK_CACHE_HIT_P95_PAGE_MS` (default 150). Both flags are forwarded to the daemon child through the launcher `CHILD_ENV_ALLOWLIST` and the plugin bridge env allowlist so the same thresholds reach every runtime.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -38,6 +42,8 @@ Hook diagnostics are prompt-safe rollups handled by `lib/metrics.ts`. The `spec_
 |---|---|---|
 | `Playbook scenario [CL-001](../../manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md).` | Manual playbook | Source reference |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-runtime-parity.vitest.ts` | Automated test | parity across hooks |
+
+---
 
 ## 4. SOURCE METADATA
 

@@ -16,6 +16,8 @@ Inspect Devin's native repository-skill discovery with `devin skills list` and v
 
 Devin discovers repository skills directly. It has no command-file system, so a valid scenario must test the native skill surface rather than invented command mirrors or a nonexistent mirror directory.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm that `devin skills list` reports repository skills discovered natively from `.opencode/skills`.
@@ -25,6 +27,8 @@ Devin discovers repository skills directly. It has no command-file system, so a 
 - Expected signals: Repo-local skill entries point into `./.opencode/skills`; no mirror directory or separate command-file abstraction is required or asserted.
 - Desired user-visible outcome: A reproducible native skill-discovery report grounded in the CLI output and real repository paths.
 - Pass/fail: PASS when reported repo-local skill paths exist under `.opencode/skills`; FAIL when Devin reports a missing repo-local path or omits native discovery entirely; SKIP when Devin authentication or CLI availability makes the native list unavailable.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -60,6 +64,8 @@ Inspect stderr and authentication state first. If a reported path is stale, comp
 |---|---|---|---|---|---|---|---|---|
 | DV-014 | Native skill discovery | Verify native `.opencode/skills` discovery | `List the repository skills Devin discovers natively, include each reported repository path, and do not infer any command-file mirrors.` | Run `devin skills list`; filter repo-local paths; verify each reported path exists. | Native entries resolve under `./.opencode/skills`; no command-file mirror is asserted. | Raw output, exit status, filtered entries, and path checks. | PASS on valid native paths; FAIL on absent discovery or stale repo-local paths; SKIP only for a specific unavailable auth or CLI runtime. | Diagnose the CLI or reported path; never synthesize a command mirror. |
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -74,6 +80,8 @@ Inspect stderr and authentication state first. If a reported path is stale, comp
 |---|---|
 | `../../SKILL.md` | Native `.opencode/skills` discovery and command-file non-concept |
 | `../../../../` | Repository skill packets discovered by Devin |
+
+---
 
 ## 5. SOURCE METADATA
 

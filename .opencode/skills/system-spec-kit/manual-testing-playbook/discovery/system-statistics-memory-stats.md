@@ -57,6 +57,8 @@ Stats output
 
 Retry with default ranking on scoring error
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [discovery/system-statistics-memorystats.md](../../feature-catalog/discovery/system-statistics-memorystats.md)

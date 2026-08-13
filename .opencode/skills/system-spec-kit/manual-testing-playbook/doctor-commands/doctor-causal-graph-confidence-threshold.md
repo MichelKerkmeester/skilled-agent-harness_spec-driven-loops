@@ -121,6 +121,8 @@ The state log or final report shows `threshold: 0.7`, the attempted count, inser
 
 If a `0.65` or `0.40` candidate is linked, fail with `confidence-threshold-violation` and inspect `candidate_selection.confidence_threshold` plus Phase 3 validation in `.opencode/commands/doctor/assets/doctor-causal-graph.yaml`. If skip evidence is missing, inspect Phase 1 output assembly and state-log serialization before rerunning.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

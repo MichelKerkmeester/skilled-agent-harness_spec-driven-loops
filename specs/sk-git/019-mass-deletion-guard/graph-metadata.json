@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/019-mass-deletion-guard",
+  "spec_folder": "sk-git/019-mass-deletion-guard",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "sk-git/015-remote-branch-policy",
+      "sk-git/016-git-action-advisory-hook"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mass deletion guard",
+      "git add -A clobber",
+      "stale tree snapshot deletion",
+      "deletion ceiling hook",
+      "SPECKIT_ALLOW_MASS_DELETION",
+      "mass deletion guard plan",
+      "mass deletion guard tasks",
+      "mass deletion guard checklist",
+      "mass deletion guard summary"
+    ],
+    "key_topics": [
+      "mass",
+      "deletion",
+      "guard",
+      "git",
+      "hook",
+      "pre-commit",
+      "pre-push",
+      "threshold",
+      "fail-open",
+      "clobber",
+      "override",
+      "audit-log"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/scripts/git-hooks/lib/mass-deletion-guard.sh",
+      ".opencode/scripts/git-hooks/pre-commit",
+      ".opencode/scripts/git-hooks/pre-push",
+      ".opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mass-deletion-guard.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/lib/mass-deletion-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/pre-commit",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/pre-push",
+        "source": "derived"
+      },
+      {
+        "name": "mass-deletion-guard.test.sh",
+        "kind": "test",
+        "path": ".opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A stale-tree `git add -A` snapshot recorded 902 branch files as deletions and clobbered the release branch; this adds a fail-open git-hook ceiling on tracked-file deletions per commit/push, overridable per operation, to stop the next one.",
+    "created_at": "2026-08-13T00:00:00.000Z",
+    "last_save_at": "2026-08-13T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_doc_hashes": {
+      "spec.md": "99e4ddd3a05529a0a4e3708101595f8ddd96db067b05e108e3c9fcebbb85be14",
+      "plan.md": "1ef822dbeccf3b1c49809850363c866d4089c88e7ef38c7e4bed02dd49c0a4d6",
+      "tasks.md": "e2c8220061fcbd66ca248fbfe36846adab3aa53611a3aa8bc2712fcdea5da874",
+      "checklist.md": "8a89881c17bcaa6f71a69653a731b160f156b85e4ba0e87eabebf8a3dbf1e492",
+      "implementation-summary.md": "6204002d5f432bbfd5f585e9ba9a0c66a0687941838bada665723705f4c1328f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

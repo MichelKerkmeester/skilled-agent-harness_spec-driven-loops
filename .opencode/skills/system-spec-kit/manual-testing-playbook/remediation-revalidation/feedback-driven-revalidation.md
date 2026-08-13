@@ -154,6 +154,8 @@ PASS
 
 Inspect `mcp-server/handlers/checkpoints.ts`, `mcp-server/lib/scoring/confidence-tracker.ts`, `mcp-server/lib/cognitive/adaptive-ranking.ts`, `mcp-server/lib/search/auto-promotion.ts`, `mcp-server/lib/scoring/negative-feedback.ts`, `mcp-server/lib/search/learned-feedback.ts`, and `mcp-server/lib/eval/ground-truth-feedback.ts` if validation outcomes or bounded learning signals regress
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [remediation-revalidation/feedback-driven-revalidation.md](../../feature-catalog/remediation-revalidation/feedback-driven-revalidation.md)

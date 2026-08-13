@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "mappings": [
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--claude-adapter",
+      "replacement": "2026-08-11--manual-testing-playbook--claude-registered-path-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--claude-adapter",
+      "replacement": "2026-08-11--manual-testing-playbook--claude-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--claude-registered-path-final",
+      "replacement": "2026-08-11--manual-testing-playbook--claude-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--codex-adapter",
+      "replacement": "2026-08-11--manual-testing-playbook--codex-registered-path-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--codex-adapter",
+      "replacement": "2026-08-11--manual-testing-playbook--codex-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--codex-registered-path-final",
+      "replacement": "2026-08-11--manual-testing-playbook--codex-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--cursor-adapter",
+      "replacement": "2026-08-11--manual-testing-playbook--cursor-registered-path-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--cursor-adapter",
+      "replacement": "2026-08-11--manual-testing-playbook--cursor-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--cursor-native-host",
+      "replacement": "2026-08-11--manual-testing-playbook--cursor-native-host-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--cursor-native-host",
+      "replacement": "2026-08-11--manual-testing-playbook--cursor-native-host-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--cursor-native-host-final",
+      "replacement": "2026-08-11--manual-testing-playbook--cursor-native-host-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--cursor-registered-path-final",
+      "replacement": "2026-08-11--manual-testing-playbook--cursor-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--devin-adapter",
+      "replacement": "2026-08-11--manual-testing-playbook--devin-registered-path-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--devin-adapter",
+      "replacement": "2026-08-11--manual-testing-playbook--devin-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--devin-registered-path-final",
+      "replacement": "2026-08-11--manual-testing-playbook--devin-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--directive-unit-final",
+      "replacement": "2026-08-11--manual-testing-playbook--directive-unit-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--opencode-adapter-driven-final",
+      "replacement": "2026-08-11--manual-testing-playbook--opencode-adapter-driven-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--opencode-test-seam",
+      "replacement": "2026-08-11--manual-testing-playbook--opencode-adapter-driven-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--opencode-test-seam",
+      "replacement": "2026-08-11--manual-testing-playbook--opencode-adapter-driven-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--pi",
+      "replacement": "2026-08-11--manual-testing-playbook--pi-adapter-driven-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--pi",
+      "replacement": "2026-08-11--manual-testing-playbook--pi-adapter-driven-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--pi",
+      "replacement": "2026-08-11--manual-testing-playbook--pi-repeat-suppression-verified",
+      "capturedAt": "2026-08-11T19:57:46.561Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--pi-adapter-driven-final",
+      "replacement": "2026-08-11--manual-testing-playbook--pi-adapter-driven-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--pi-adapter-driven-final",
+      "replacement": "2026-08-11--manual-testing-playbook--pi-repeat-suppression-verified",
+      "capturedAt": "2026-08-11T19:57:46.561Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--pi-adapter-driven-verified",
+      "replacement": "2026-08-11--manual-testing-playbook--pi-repeat-suppression-verified",
+      "capturedAt": "2026-08-11T19:57:46.561Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--pi-adapter-suite",
+      "replacement": "2026-08-11--manual-testing-playbook--pi-adapter-driven-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--pi-adapter-suite",
+      "replacement": "2026-08-11--manual-testing-playbook--pi-adapter-driven-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--pi-adapter-suite",
+      "replacement": "2026-08-11--manual-testing-playbook--pi-repeat-suppression-verified",
+      "capturedAt": "2026-08-11T19:57:46.561Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks",
+      "replacement": "2026-08-11--manual-testing-playbook--opencode-adapter-driven-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks",
+      "replacement": "2026-08-11--manual-testing-playbook--opencode-adapter-driven-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-2",
+      "replacement": "2026-08-11--manual-testing-playbook--claude-registered-path-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-2",
+      "replacement": "2026-08-11--manual-testing-playbook--claude-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-3",
+      "replacement": "2026-08-11--manual-testing-playbook--codex-registered-path-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-3",
+      "replacement": "2026-08-11--manual-testing-playbook--codex-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-4",
+      "replacement": "2026-08-11--manual-testing-playbook--cursor-native-host-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-4",
+      "replacement": "2026-08-11--manual-testing-playbook--cursor-native-host-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-4",
+      "replacement": "2026-08-11--manual-testing-playbook--cursor-registered-path-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-4",
+      "replacement": "2026-08-11--manual-testing-playbook--cursor-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-5",
+      "replacement": "2026-08-11--manual-testing-playbook--devin-registered-path-final",
+      "capturedAt": "2026-08-11T16:58:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    },
+    {
+      "superseded": ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-5",
+      "replacement": "2026-08-11--manual-testing-playbook--devin-registered-path-verified",
+      "capturedAt": "2026-08-11T17:10:00.000Z",
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup"
+    }
+  ]
+}

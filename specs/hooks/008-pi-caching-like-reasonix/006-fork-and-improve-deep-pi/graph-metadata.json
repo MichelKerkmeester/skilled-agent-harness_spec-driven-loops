@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi",
+  "spec_folder": "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi",
+  "parent_id": "hooks/008-pi-caching-like-reasonix",
+  "children_ids": [
+    "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi",
+    "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/002-vendor-and-repoint",
+    "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fork deep-pi",
+      "improve deep-pi",
+      "deep-pi hardening"
+    ],
+    "key_topics": [
+      "fork",
+      "deep-pi",
+      "improve",
+      "hardening",
+      "full",
+      "read",
+      "installed",
+      "source",
+      "lines",
+      "across",
+      "files",
+      "surfaced"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Fork",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A full read of `deep-pi`'s installed source (1,299 lines across 7 files) surfaced real, source-confirmed gaps: two silent failure counters nothing ever reads, a hardcoded model allowlist with no drift signal when DeepSeek ships a new model id, and unguarded telemetry cost math",
+    "created_at": "2026-08-07T14:44:32Z",
+    "last_save_at": "2026-08-11T06:43:18.407Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f5bf98daf6100204db479e8847d48b75f45337306963b8258231ec8d43ff4c56",
+    "source_doc_hashes": {
+      "spec.md": "66e0a79aeb4a1b89ccb08f6dd4337532c3bb631e4f4bedc3ca08f59c5abb4c1c"
+    },
+    "last_active_child_id": "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout",
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+ux-hooks-directive-lifecycle-dedup,system-spec-kit,,registered-adapter,manual,,,cursor-adapter,,PASS,"Registered Cursor adapter produced full, route-only, and shrink-boundary full delivery with its native payload and agent_message envelope."

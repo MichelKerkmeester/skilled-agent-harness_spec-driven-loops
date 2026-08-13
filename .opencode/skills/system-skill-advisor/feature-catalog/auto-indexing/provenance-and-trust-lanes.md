@@ -18,6 +18,8 @@ version: 0.8.0.14
 
 Make derived entries inspectable and weighted by source. Every derived token carries a provenance fingerprint (so operators can tell when an entry truly changed) and a trust lane (so the scorer knows whether evidence came from author-declared signals, body prose, examples or local docs).
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/derived/provenance.ts` computes a stable fingerprint for each derived entry. `lib/derived/trust-lanes.ts` classifies the entry into one of six lanes:
@@ -34,6 +36,8 @@ Make derived entries inspectable and weighted by source. Every derived token car
 The scorer consumes the lane tag in `lib/scorer/lanes/derived.ts` and weights evidence accordingly.
 
 Skill-graph edge propagation also records write provenance. The guarded apply path derives `source_kind` server-side from write intent: automated `skill_graph_propagate_enhances` writes stamp `source_kind: "automated"`, while trusted-maintainer writes can stamp `source_kind: "trusted"`. Automated writes refuse to overwrite existing manual or trusted provenance, and legacy edges without `source_kind` remain valid for idempotent reads.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -55,6 +59,8 @@ Skill-graph edge propagation also records write provenance. The guarded apply pa
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | lane assignment and fingerprint stability |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/cross-skill-edges.vitest.ts` | Automated test | `source_kind`, manual protection, trusted update and legacy tolerance |
 | `Playbook scenario [AI-003](../../manual-testing-playbook/auto-indexing/provenance-and-trust-lanes.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

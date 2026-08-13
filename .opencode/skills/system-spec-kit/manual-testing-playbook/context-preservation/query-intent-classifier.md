@@ -70,6 +70,7 @@ Validate query-intent classifier and confirm intent labels, telemetry envelope, 
 
 ### Failure Triage
 
+---
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

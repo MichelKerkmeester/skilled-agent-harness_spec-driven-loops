@@ -120,6 +120,8 @@ qualityLoop: {
 
 Verify quality check criteria → Check max retry configuration → Inspect rejection reason generation
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md](../../feature-catalog/memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md)

@@ -15,6 +15,8 @@ This stress scenario is part of the 028 CLI stress set (434-438). Flag values ar
 
 Validation runs entirely client-side, so the whole fuzz matrix is host-safe and fast.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm valid numeric/boolean strings coerce (exit 75 in the sandbox) and malformed values are rejected with exit 64.
@@ -23,6 +25,8 @@ Validation runs entirely client-side, so the whole fuzz matrix is host-safe and 
 - Expected signals: Each case lands on its expected side: coercible values (including out-of-range numbers, whose clamping is handler-owned) exit 75, while malformed values exit 64 with a clear `Invalid value for limit` style message.
 - Desired user-visible outcome: Argument mistakes produce immediate, named usage errors; valid values never get mangled.
 - Pass/fail: PASS only when the full matrix matches.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -102,6 +106,8 @@ Sample failure rerun without `>/dev/null`:
 
 A malformed numeric reaching IPC means `coerceArgsToSchema` started passing unparseable strings through — the validation parity with `validateToolArgs()` is the invariant to restore. An out-of-range number suddenly exiting 64 means CLI-side validation started enforcing ranges the handler is supposed to clamp, breaking MCP/CLI behavior parity; the parity suite (scenario 427) localizes that drift.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -114,6 +120,8 @@ A malformed numeric reaching IPC means `coerceArgsToSchema` started passing unpa
 
 | File | Role |
 |---|---|
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -132,6 +132,8 @@ rg -n "SPEC-KIT-COPILOT-CONTEXT|Active Advisor Brief|Advisor:" "$SPECKIT_COPILOT
 
 Pass when the wrapper inspection shows the top-level Copilot-safe fields, stdout is `{}`, and the temp custom-instructions file contains the managed Spec Kit block with an advisor brief.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/cross-runtime-fallback.md](../../feature-catalog/context-preservation/cross-runtime-fallback.md)

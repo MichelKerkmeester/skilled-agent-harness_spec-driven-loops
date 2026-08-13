@@ -16,6 +16,8 @@ Ask Devin to use its built-in `subagent_explore` profile for read-only repositor
 
 The built-in profile is the simplest proof that Devin's native `run_subagent` surface is working and that the calling session can receive a child result.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Obtain a bounded repository map from `subagent_explore`.
@@ -26,6 +28,8 @@ The built-in profile is the simplest proof that Devin's native `run_subagent` su
 - Desired user-visible outcome: A child-produced repository map with traceable paths.
 - Pass/fail: PASS when the built-in profile delegates and returns useful content; FAIL on inline-only work or mutation; SKIP on auth/availability blockers.
 
+---
+
 ## 3. TEST EXECUTION
 
 1. `devin -p "Use a subagent_explore subagent to identify the cli-external-orchestration skill packet, its SKILL.md, and its manual-testing playbooks. Do not edit files." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv010.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv010.txt`
@@ -35,6 +39,8 @@ The built-in profile is the simplest proof that Devin's native `run_subagent` su
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | DV-010 | `devin -p ... subagent_explore ...` | Built-in read-only child result, clean tree | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -50,6 +56,8 @@ The built-in profile is the simplest proof that Devin's native `run_subagent` su
 |---|---|
 | `../../references/agent-delegation.md` | Built-in profile and invocation contract |
 | `../../SKILL.md` | Conductor ownership and profile-routing rule |
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -184,19 +184,19 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-09T12:34:15.232Z",
+    "last_save_at": "2026-08-12T15:23:08.017Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:fb11ce3ee0b382a823a88dfa5f6248f66db0a804b7002122035c811173268aa0",
+    "source_fingerprint": "sha256:9ccea77bd5fb54fe50a13efac861e7d73496e1338dfea2226de0135f3483e5c8",
     "source_doc_hashes": {
       "spec.md": "de774ad4905a6c212dcf61b56da7e5692a267d65b06301089b3f3db8526cd59d",
-      "handover.md": "cda06886fa0b73993df04cad2195792ae38c8ae70078876865da6be84a11c08f"
+      "handover.md": "574f542f18cb7aae3449f8ee2b33e0ee903bef4f85cd4e0f47d1bf62de97c0c5"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-08-09T12:34:15.232Z"
+    "last_active_at": "2026-08-12T15:23:08.017Z"
   }
 }

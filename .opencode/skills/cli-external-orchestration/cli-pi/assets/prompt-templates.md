@@ -218,6 +218,8 @@ failures: [failure or none]
 unknowns: [unknown or none]
 ```
 
+---
+
 ## 11. SOURCE AND CONFIDENCE
 
 Confirmed flags and observed failure behavior: [Pi contract pin](../../../../specs/cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).

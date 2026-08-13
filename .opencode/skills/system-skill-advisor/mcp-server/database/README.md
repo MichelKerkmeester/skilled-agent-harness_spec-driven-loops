@@ -18,11 +18,15 @@ This folder holds package-local SQLite runtime state for the standalone Skill Ad
 
 The default database path is `.opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite`, created at runtime and absent from a fresh checkout. SQLite sidecars such as `-wal` and `-shm`, launcher lease files and duplicate generated JSON fallbacks live beside it when the database is active, but they are ignored runtime state.
 
+---
+
 ## 2. BOUNDARIES
 
 Runtime state belongs to the standalone advisor package. Tests may override the directory with `MK_SKILL_ADVISOR_DB_DIR`; `SYSTEM_SKILL_ADVISOR_DB_DIR` remains a legacy fallback. Operator documentation should treat the package-local path as canonical.
 
 The tracked JSON fallback remains `../scripts/skill-graph.json`. Do not commit duplicates from this directory.
+
+---
 
 ## 3. KEY FILES
 

@@ -16,10 +16,8 @@ import {
   runCursorHook,
   toClaudeShape,
 } from './shared.js';
-import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 async function main(): Promise<void> {
-  if (!isHookEnabled('session-lifecycle')) return undefined;
   const input = await readCursorHookInput('sessionEnd', ['session_id']);
   if (!input) return;
 

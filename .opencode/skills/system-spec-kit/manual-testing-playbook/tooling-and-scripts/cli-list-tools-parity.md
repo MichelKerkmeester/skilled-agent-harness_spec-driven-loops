@@ -15,6 +15,8 @@ This scenario verifies the tool-surface parity contract of the three 028 CLIs. E
 
 `list-tools` is served locally from the loaded definitions — no daemon contact happens — so the check is host-safe by construction. The parity suites lock the same invariant in CI.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm each CLI's `list-tools` count matches its system's registered MCP tool surface (39 / 8 / 9).
@@ -24,6 +26,8 @@ This scenario verifies the tool-surface parity contract of the three 028 CLIs. E
 - Expected signals: `status: "ok"` with `data.count` of 39 (spec-memory), 8 (code-index), and 9 (skill-advisor); parity suites green.
 - Desired user-visible outcome: The operator can state that the CLI fallback surface is tool-for-tool identical to the MCP surface for all three systems.
 - Pass/fail: PASS only when all three counts match and the parity suites pass.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -150,6 +154,8 @@ null
 
 A count drift means a tool was added or removed in the schema source without the CLI manifest following (code-index and skill-advisor) or signals a generation bug (spec-memory generates at runtime and cannot drift unless the schema import itself broke). Diff `tool-schemas.ts` / `TOOL_DEFINITIONS` against the CLI manifest module and rebuild dist.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -168,6 +174,8 @@ A count drift means a tool was added or removed in the schema source without the
 | `.opencode/bin/skill-advisor.cjs` | skill-advisor shim |
 | `mcp-server/tests/spec-memory-cli-parity-and-help.vitest.ts` | 41-tool parity lock |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-parity.vitest.ts` | 9-tool parity lock |
+
+---
 
 ## 5. SOURCE METADATA
 

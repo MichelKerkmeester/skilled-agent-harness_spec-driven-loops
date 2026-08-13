@@ -63,6 +63,8 @@ SurrogateMetadata output + SurrogateMatchResult + test transcript
 
 Verify isQuerySurrogatesEnabled() → Check extractAliases() for parenthetical patterns → Inspect MAX_SURROGATE_QUESTIONS (5) → Verify MIN_MATCH_THRESHOLD (0.15) → Check MAX_SUMMARY_LENGTH (200)
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/index-time-query-surrogates.md](../../feature-catalog/query-intelligence/index-time-query-surrogates.md)

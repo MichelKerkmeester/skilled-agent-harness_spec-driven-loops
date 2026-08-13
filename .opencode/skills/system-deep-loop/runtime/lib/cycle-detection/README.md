@@ -11,6 +11,8 @@ description: "Detects unproductive repetition across loop iterations by comparin
 
 Repetition signal for `system-deep-loop` iterations. Cycle observation canonicalizes coverage, blocker and progress evidence into one verified observation. Cycle history folds those observations into a bounded projection for one detector policy generation. The detector evaluates only the latest bounded suffix so stop authority stays outside this module. The progress gate and shadow observer let a caller check for real forward motion or run the detector beside an opaque authoritative result without changing it.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -25,15 +27,21 @@ Repetition signal for `system-deep-loop` iterations. Cycle observation canonical
 | `cycle-shadow.ts` | `observeCycleInShadow`, projecting cycle evidence beside an opaque authoritative result without changing it |
 | `index.ts` | Public API surface |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-adapters.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/health-adapters.ts`
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/cycle-detection.vitest.ts`
+
+---
 
 ## 5. RELATED
 

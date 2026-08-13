@@ -16,6 +16,8 @@ Exercise the validator's hard-fail tier on explicit v2 records. With `DEEP_REVIE
 
 The strict tier is the contract enforcement that gives the v2 schema operational value. If a v2-tagged record passes when it lacks `searchLedger` (or any other obligation), agents cannot trust that "v2" means "auditable candidate generation."
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm validator emits all five v2 failure codes when malformed v2 records are present under `DEEP_REVIEW_V2_ENFORCEMENT=strict`.
@@ -23,6 +25,8 @@ The strict tier is the contract enforcement that gives the v2 schema operational
 - Real user request: `Run the validator fixture under DEEP_REVIEW_V2_ENFORCEMENT=strict and confirm all five v2 failure codes fire on the corresponding malformed records.`
 - Expected signals: For each malformed input, validator result `ok: false` with `reason` matching one of `v2_missing_ledger | v2_uncited_ledger_row | v2_broken_linked_finding | v2_shallow_finding_details | state_delta_iteration_mismatch`.
 - Pass/fail: PASS if every malformed input trips its expected failure code. FAIL if any code is missing OR `ok: true` is returned for any malformed input.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -52,11 +56,15 @@ Under `DEEP_REVIEW_V2_ENFORCEMENT=strict`, all five v2 failure codes fire on the
 - Legacy warnings appear instead of failure codes: confirm the record includes `reviewDepthSchemaVersion: 2`.
 - The fixture passes unexpectedly: inspect whether `DEEP_REVIEW_V2_ENFORCEMENT` is still `warn` or `off`.
 
+---
+
 ## 4. SOURCE REFERENCES
 
 - Validator: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts` (v2 strict checks branch + new failure-reason union members).
 - Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts`.
 - Schema: `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md` (`## Review Depth Schema (v2)`).
+
+---
 
 ## 5. SOURCE_METADATA
 

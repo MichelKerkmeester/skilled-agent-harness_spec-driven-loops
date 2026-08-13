@@ -20,6 +20,8 @@ Spec-Folder Detection and Description Metadata is the script surface that decide
 
 This audited slice combines interactive and deterministic folder selection, content-alignment safety checks, path-safety enforcement, and the CLI used to generate or refresh per-folder `description.json` metadata.
 
+---
+
 ## 2. HOW IT WORKS
 
 The shipped behavior in this slice currently works as follows:
@@ -38,6 +40,8 @@ The shipped behavior in this slice currently works as follows:
 12. `generate-description.ts` is the CLI for per-folder `description.json` creation. It resolves real paths to prevent traversal and prefix-bypass attacks, accepts either an explicit `--description` string or a `spec.md`-derived description path, preserves `memorySequence` and `memoryNameHistory` from existing metadata, and writes the refreshed description through the MCP-server API helpers.
 13. `spec-folder/index.ts` is the public barrel for this subsystem. It exports detection, archive filtering, alignment configuration, topic extraction, scoring, telemetry-drift validation, folder-alignment validation, and memory-directory setup as one reusable surface for the rest of the scripts layer.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -49,6 +53,8 @@ The shipped behavior in this slice currently works as follows:
 | `.opencode/skills/system-spec-kit/scripts/spec-folder/directory-setup.ts` | Filesystem setup | Path sanitization, `NNN-name` enforcement, existence validation, and `memory/` directory creation |
 | `.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts` | CLI | Generates or refreshes per-folder `description.json` metadata from explicit text or `spec.md` content |
 | `.opencode/skills/system-spec-kit/scripts/spec-folder/index.ts` | Barrel export | Re-exports the spec-folder detection, validation, and setup API surface |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

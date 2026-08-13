@@ -39,22 +39,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/system-deep-loop/README.md",
-      ".opencode/skills/system-deep-loop/deep-research/README.md",
-      ".opencode/skills/system-deep-loop/deep-ai-council/README.md",
-      ".opencode/skills/system-deep-loop/deep-alignment/README.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/README.md",
-      ".opencode/skills/system-deep-loop/runtime/README.md",
-      ".opencode/skills/system-deep-loop/runtime/scripts/README.md",
-      ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      ".opencode/skills/system-deep-loop/runtime/references/script-interface-contract.md",
-      ".opencode/skills/system-deep-loop/benchmark/reports/README.md",
-      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs",
-      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/wave-plan.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/mode-gate.ts",
-      "implementation-summary.md",
-      ".opencode/commands/deep/assets/deep-research-auto.yaml"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -82,57 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "script-interface-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/runtime/references/script-interface-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "advise-council-completion.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/advise-council-completion.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "transition-policy-registry.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "wave-plan.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/wave-plan.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mode-gate.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-rollback-gate/mode-gate.ts",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
         "source": "derived"
       },
       {
@@ -200,11 +137,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Integration",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The roster drift is one fact repeated in five places: three READMEs advertise a pre-alignment four-family roster and four improvement lanes against a registry with five families and three lanes",
     "created_at": "2026-07-31T01:25:21.765Z",
-    "last_save_at": "2026-08-08T01:03:36.881Z",
+    "last_save_at": "2026-08-11T14:06:22.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e395fc5d17cfd9f66c0038f4ebabf2a8f78168fb0e7526c6504348a67e2535a",
+    "source_fingerprint": "sha256:08ff9554d5bece953943bd8ac429d1566db2eecd49730d1a681fdeb84c328408",
     "source_doc_hashes": {
-      "spec.md": "6b381bc1de2b27b6c1bf7a393688c8f69e9f9d7c93fd9dcfb7f2fc23d3896d31",
+      "spec.md": "2f414a4e48fccc7f0686e0ca907e942bfc562c5c7e846cd48619e3ef7a4ad92c",
       "plan.md": "f7991b3b1d0556012b838b5bb2688a15e275c017da1a1ddfbe5b20d29861f417",
       "tasks.md": "0ce9a92cec44ac00e83385e1178f31c0eb275533cbe079334389a5714b827ec6",
       "checklist.md": "dd9b87b37ddc67327d00a7452488bc9da32abced9ae3c21525eb0c5fafdb9438",
-      "implementation-summary.md": "dc30ede5bb620ec2b7c179a4a03dfdd77f21ca24aecb00674e9a4f58f936dab8"
+      "implementation-summary.md": "7b86db6c0d089809923521deccdb3e57f3514cdd0765838f8c5b5fc175ba4b6c"
     },
     "last_active_child_id": null,
     "last_active_at": null

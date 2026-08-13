@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/033-deepseek-v4-flash-pi-roster",
+  "description": "The operator asked to add DeepSeek V4 Flash to four cli-external-orchestration modes: cli-cursor, cli-devin, cli-opencode, cli-pi",
+  "keywords": [
+    "operator",
+    "asked",
+    "deepseek",
+    "flash",
+    "four",
+    "cli-external-orchestration",
+    "modes",
+    "cli-cursor",
+    "cli-devin",
+    "cli-opencode",
+    "cli-pi"
+  ],
+  "lastUpdated": "2026-08-11T07:15:55.240Z",
+  "specId": "033",
+  "folderSlug": "deepseek-v4-flash-pi-roster",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

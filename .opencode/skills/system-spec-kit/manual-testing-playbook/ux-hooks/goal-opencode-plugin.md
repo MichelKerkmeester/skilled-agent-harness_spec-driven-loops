@@ -183,6 +183,8 @@ injection_preview="[active_goal:goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894]\nstat
 
 Confirm OpenCode was restarted -> inspect `.opencode/plugins/mk-goal.js` plugin load -> inspect `.opencode/commands/goal-opencode.md` allowed tools -> run `mk-goal-state` and `mk-goal-tool-path` tests -> inspect `.opencode/skills/.goal-state/` only as runtime evidence, not as command-owned state.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

@@ -30,6 +30,29 @@ function makeSkill() {
   return root;
 }
 
+function passProof(skillRoot, name, overrides = {}) {
+  const evidenceDir = path.join(skillRoot, 'evidence');
+  fs.mkdirSync(evidenceDir, { recursive: true });
+  const relativeEvidence = `evidence/${name}.txt`;
+  fs.writeFileSync(path.join(skillRoot, relativeEvidence), `${name}\n`);
+  return {
+    evidence: [relativeEvidence],
+    executionContext: {
+      evidenceRoot: skillRoot,
+      requireDurableEvidence: true,
+      evidenceClass: 'unit',
+      command: 'node --test manual-playbook-persist.test.cjs',
+      runtime: 'node-test',
+      nodeVersion: process.version,
+      payloadNotApplicableReason: 'unit persistence test has no runtime payload',
+      executor: 'node:test',
+      executorObserved: true,
+      modelNotApplicableReason: 'deterministic local test uses no model',
+      ...overrides,
+    },
+  };
+}
+
 function reportsDir(skillRoot) {
   return path.join(skillRoot, 'benchmark', 'reports');
 }
@@ -83,7 +106,7 @@ test('PASS, FAIL, and SKIP persist seven-file non-scoring records', async () => 
   const skillRoot = makeSkill();
   const pass = await manualRun.run({
     skill: skillRoot, scenario: 'MP-001', variant: 'pass-case', verdict: 'PASS',
-    reason: 'completed', evidence: 'evidence/pass.txt', now: NOW,
+    reason: 'completed', now: NOW, ...passProof(skillRoot, 'pass'),
   });
   const fail = await manualRun.run({
     skill: skillRoot, scenario: 'MP-002', variant: 'fail-case', verdict: 'FAIL',
@@ -130,7 +153,9 @@ test('outcome JSON overrides flags and preserves evidence and execution context'
     stage: 'documentation',
     evidence: ['notes/limitation.md'],
     executionContext: {
-      operator: 'qa', dispatch: 'none', runToken: 'kept', executor: 'json-executor', model: 'json-model',
+      operator: 'qa', dispatch: 'none', runToken: 'kept',
+      executor: 'json-executor', executorObserved: true,
+      model: 'json-model', modelObserved: true,
     },
   }));
 
@@ -155,6 +180,165 @@ test('outcome JSON overrides flags and preserves evidence and execution context'
   assert.equal(report.executionContext.runToken, 'kept');
   assert.equal(report.executor, 'json-executor');
   assert.equal(report.model, 'json-model');
+});
+
+test('requested executor and model labels are not reported as observed provenance', async () => {
+  const skillRoot = makeSkill();
+  const proof = passProof(skillRoot, 'requested-labels', {
+    executor: 'claimed-executor',
+    executorObserved: false,
+    executorNotApplicableReason: 'requested label was not executed',
+    model: 'claimed-model',
+    modelObserved: false,
+    modelNotApplicableReason: 'requested label was not executed',
+  });
+  const result = await manualRun.run({
+    skill: skillRoot,
+    scenario: 'PROVENANCE-001',
+    variant: 'requested-labels',
+    verdict: 'PASS',
+    executor: 'claimed-executor',
+    model: 'claimed-model',
+    now: NOW,
+    ...proof,
+  });
+  const { report } = assertRecord(result, 'PASS');
+  assert.equal(report.executor, null);
+  assert.equal(report.model, null);
+  assert.equal(report.scenarioRows[0].providerModel, null);
+  assert.equal(report.executionContext.requestedExecutorLabel, 'claimed-executor');
+  assert.equal(report.executionContext.requestedModelLabel, 'claimed-model');
+});
+
+test('durable evidence is repo-relative, hashed, and fail-closed outside its root', async () => {
+  const skillRoot = makeSkill();
+  const evidenceRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'manual-evidence-root-'));
+  tempRoots.push(evidenceRoot);
+  fs.mkdirSync(path.join(evidenceRoot, 'evidence'));
+  fs.writeFileSync(path.join(evidenceRoot, 'evidence', 'receipt.json'), '{"passed":true}\n');
+  const outcomePath = path.join(skillRoot, 'durable-outcome.json');
+  fs.writeFileSync(outcomePath, JSON.stringify({
+    scenarioId: 'EVIDENCE-001',
+    verdict: 'PASS',
+    evidence: ['evidence/receipt.json'],
+    executionContext: {
+      evidenceRoot,
+      requireDurableEvidence: true,
+      evidenceClass: 'registered-path',
+      command: 'node deterministic-adapter.mjs',
+      runtime: 'test-adapter',
+      nodeVersion: process.version,
+      payloadFixture: 'evidence/receipt.json',
+      executor: 'node',
+      executorObserved: true,
+      modelNotApplicableReason: 'deterministic adapter fixture uses no model',
+      supersedes: ['prior-false-record'],
+    },
+  }));
+  const result = await manualRun.run({
+    skill: skillRoot,
+    scenario: 'EVIDENCE-001',
+    variant: 'durable-evidence',
+    'outcome-json': outcomePath,
+    now: NOW,
+  });
+  const { report } = assertRecord(result, 'PASS');
+  assert.deepEqual(report.supersedes, ['prior-false-record']);
+  assert.equal(report.targetSkill.root, undefined);
+  assert.ok(report.targetSkill.rootRel);
+  const supersession = JSON.parse(fs.readFileSync(path.join(reportsDir(skillRoot), 'supersession-manifest.json'), 'utf8'));
+  assert.deepEqual(supersession.mappings, [{
+    superseded: 'prior-false-record',
+    replacement: result.folderName,
+    capturedAt: NOW.toISOString(),
+    scenarioId: 'EVIDENCE-001',
+  }]);
+  assert.deepEqual(report.scenarioRows[0].evidenceArtifacts, [{
+    path: 'evidence/receipt.json',
+    status: 'verified',
+    bytes: 16,
+    sha256: '1ea63e7fda68e7ce49b013af8410102e9228f7591e79ef602dd23d95556d03bc',
+  }]);
+
+  const outsideOutcome = path.join(skillRoot, 'outside-outcome.json');
+  fs.writeFileSync(outsideOutcome, JSON.stringify({
+    scenarioId: 'EVIDENCE-002',
+    verdict: 'PASS',
+    evidence: ['/tmp/non-durable-receipt.json'],
+    executionContext: {
+      evidenceRoot,
+      requireDurableEvidence: true,
+      evidenceClass: 'registered-path',
+      command: 'node deterministic-adapter.mjs',
+      runtime: 'test-adapter',
+      nodeVersion: process.version,
+      payloadNotApplicableReason: 'outside-path negative control',
+      executor: 'node',
+      executorObserved: true,
+      modelNotApplicableReason: 'deterministic negative control uses no model',
+    },
+  }));
+  const error = await rejected(() => manualRun.run({
+    skill: skillRoot,
+    scenario: 'EVIDENCE-002',
+    variant: 'outside-evidence',
+    'outcome-json': outsideOutcome,
+    now: NOW,
+  }));
+  assert.equal(error.code, 'BAD_EVIDENCE');
+
+  const privateFile = path.join(skillRoot, 'private.txt');
+  const linkedEvidence = path.join(evidenceRoot, 'evidence', 'linked.txt');
+  fs.writeFileSync(privateFile, 'private\n');
+  fs.symlinkSync(privateFile, linkedEvidence);
+  const linkOutcome = path.join(skillRoot, 'link-outcome.json');
+  fs.writeFileSync(linkOutcome, JSON.stringify({
+    scenarioId: 'EVIDENCE-003',
+    verdict: 'PASS',
+    evidence: ['evidence/linked.txt'],
+    executionContext: {
+      evidenceRoot,
+      requireDurableEvidence: true,
+      evidenceClass: 'unit',
+      command: 'node link-negative-control.mjs',
+      runtime: 'node-test',
+      nodeVersion: process.version,
+      payloadNotApplicableReason: 'symlink negative control',
+      executor: 'node',
+      executorObserved: true,
+      modelNotApplicableReason: 'deterministic negative control uses no model',
+    },
+  }));
+  const linkError = await rejected(() => manualRun.run({
+    skill: skillRoot,
+    scenario: 'EVIDENCE-003',
+    variant: 'linked-evidence',
+    'outcome-json': linkOutcome,
+    now: NOW,
+  }));
+  assert.equal(linkError.code, 'BAD_EVIDENCE');
+});
+
+test('PASS rejects missing durable proof and unknown evidence classes', async () => {
+  const skillRoot = makeSkill();
+  const missing = await rejected(() => manualRun.run({
+    skill: skillRoot,
+    scenario: 'STRICT-001',
+    variant: 'missing-proof',
+    verdict: 'PASS',
+    now: NOW,
+  }));
+  assert.ok(['BAD_OUTCOME', 'BAD_EVIDENCE'].includes(missing.code));
+
+  const unknown = await rejected(() => manualRun.run({
+    skill: skillRoot,
+    scenario: 'STRICT-002',
+    variant: 'unknown-class',
+    verdict: 'PASS',
+    now: NOW,
+    ...passProof(skillRoot, 'unknown-class', { evidenceClass: 'invented-class' }),
+  }));
+  assert.equal(unknown.code, 'BAD_OUTCOME');
 });
 
 test('legacy rows without explicit verdict keep the original scenario-table cell', () => {
@@ -193,9 +377,11 @@ test('same-day runs reserve base and base-2 siblings', async () => {
   const skillRoot = makeSkill();
   const first = await manualRun.run({
     skill: skillRoot, scenario: 'MP-005', variant: 'same-day', verdict: 'PASS', now: NOW,
+    ...passProof(skillRoot, 'same-day-first'),
   });
   const second = await manualRun.run({
     skill: skillRoot, scenario: 'MP-006', variant: 'same-day', verdict: 'PASS', now: NOW,
+    ...passProof(skillRoot, 'same-day-second'),
   });
   assert.equal(second.folderName, `${first.folderName}-2`);
   assert.deepEqual(reportFolders(skillRoot), [first.folderName, second.folderName]);
@@ -206,7 +392,7 @@ test('baseline and occupied explicit destinations fail closed without partial wr
   const baselineSkill = makeSkill();
   const baselineError = await rejected(() => manualRun.run({
     skill: baselineSkill, scenario: 'MP-007', variant: 'baseline-case', verdict: 'PASS',
-    runLabel: 'baseline', now: NOW,
+    runLabel: 'baseline', now: NOW, ...passProof(baselineSkill, 'baseline'),
   }));
   assert.equal(baselineError.code, 'BAD_LABEL');
   assert.equal(fs.existsSync(reportsDir(baselineSkill)), false);
@@ -218,7 +404,7 @@ test('baseline and occupied explicit destinations fail closed without partial wr
   const before = fs.readdirSync(occupiedDir).sort();
   const occupiedError = await rejected(() => manualRun.run({
     skill: occupiedSkill, scenario: 'MP-008', variant: 'occupied-case', verdict: 'PASS',
-    destination: occupiedDir, now: NOW,
+    destination: occupiedDir, now: NOW, ...passProof(occupiedSkill, 'occupied'),
   }));
   assert.equal(occupiedError.code, 'COLLISION');
   assert.deepEqual(fs.readdirSync(occupiedDir).sort(), before);

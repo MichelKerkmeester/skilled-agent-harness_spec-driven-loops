@@ -178,6 +178,8 @@ printenv SPECKIT_AUTO_ENTITIES; printenv SPECKIT_ROLLOUT_PERCENT
 
 Verify entity extraction pipeline is wired into save handler; check entity type classification; inspect default extraction configuration
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/auto-entity-extraction.md](../../feature-catalog/memory-quality-and-indexing/auto-entity-extraction.md)

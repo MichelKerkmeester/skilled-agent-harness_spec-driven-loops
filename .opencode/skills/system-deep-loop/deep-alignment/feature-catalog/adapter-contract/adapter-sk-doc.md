@@ -20,6 +20,8 @@ The reference authority adapter: wraps `validate_document.py` and `extract_struc
 
 `sk-doc.cjs` is the phase-005 reference adapter every other authority adapter copies in shape (three methods, a known-deviation loader, a subprocess-wrapper section, a shared `makeFinding`). It wraps the real, already-shipping sk-doc validators rather than reimplementing document validation.
 
+---
+
 ## 2. HOW IT WORKS
 
 `discover()` walks Markdown files under a `paths`/`globs` scope (excluding the same directories `validate_document.py` skips), classifies each document's type from its path alone via a 1:1 port of `extract_structure.py`'s `detect_document_type()`, and emits `FILE` seed nodes carrying that `docType`. `standardSource('sk-doc')` returns the two validator paths, the create-skill template dirs, `core-standards.md`, and the loaded deviations. `check()` runs two sub-checks: a deterministic template-conformance check that spawns `validate_document.py --json` (blocking-errors → P0, warnings → P1) and `extract_structure.py` (DQI below the 75 floor → P2), and a verify-first reasoning-agent reality-alignment check that only turns already-contradicted, caller-supplied claims into `reality-drift` findings. Known-deviation suppression runs last.

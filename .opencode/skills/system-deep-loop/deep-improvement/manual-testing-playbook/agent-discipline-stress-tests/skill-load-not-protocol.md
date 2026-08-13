@@ -18,6 +18,8 @@ This scenario sends the same small agent-improvement task to a generic implement
 
 Research found that loading `SKILL.md` does not fire scanner, profiler, scorer, reducer, benchmark or journal helpers. The disciplined path must leave grep-checkable evidence that those surfaces ran or were explicitly required.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `CP-032` and confirm the expected signals without contradictory evidence.
@@ -41,6 +43,8 @@ Operators run the exact prompt and command sequence for `CP-032` and confirm the
   - **Call B (`/deep:agent-improvement` command flow)**: Transcript or artifacts contain `scan-integration.cjs`, `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs`, `candidate_generated`, and `candidate_scored`. Candidate path is under `/tmp/cp-032-spec/improvement/candidates/`. Canonical target diff is empty. Project tripwire is empty.
 - Desired user-visible outcome: PASS verdict showing Call B treated helper execution as the differentiator.
 - Pass/fail: PASS if all Call B helper and journal labels are present, candidate path is packet-local, sandbox canonical diff is empty, and tripwire diff is empty. FAIL if only `Read(".opencode/skills/system-deep-loop/deep-improvement/SKILL.md")` appears or Call B edits canonical target.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -87,6 +91,8 @@ grep -c 'Read(".opencode/skills/system-deep-loop/deep-improvement/SKILL.md")' /t
 |---|---|---|---|---|---|---|---|---|
 | CP-032 | SKILL_LOAD_NOT_PROTOCOL | Confirm helper execution is proven, not only skill loading | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:agent-improvement` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for helper and journal labels all >= 1; `POST_B_CANONICAL_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-032-B-command.txt`, `/tmp/cp-032-B-combined.txt`, `/tmp/cp-032-B-field-counts.txt`, `/tmp/cp-032-B-canonical.diff`, `/tmp/cp-032-tripwire.diff` | PASS if B proves helper and journal boundaries without canonical mutation. FAIL if B treats skill load as enough or writes canonical target | 1. If helper labels are missing, verify command-flow dispatch and helper execution. 2. If candidate journal labels are missing, inspect `/tmp/cp-032-spec/improvement/`. 3. If canonical diff is non-empty, repair proposal-only boundary. 4. If only skill-load text appears, distinguish loading from execution. 5. If tripwire diff is non-empty, inspect project mutation before rerun. |
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -103,6 +109,8 @@ grep -c 'Read(".opencode/skills/system-deep-loop/deep-improvement/SKILL.md")' /t
 | `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` | Protocol execution contract |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Required scoring helper |
 | `.opencode/skills/system-deep-loop/deep-improvement/test-fixtures/060-stress-test/` | Fixture source |
+
+---
 
 ## 5. SOURCE METADATA
 

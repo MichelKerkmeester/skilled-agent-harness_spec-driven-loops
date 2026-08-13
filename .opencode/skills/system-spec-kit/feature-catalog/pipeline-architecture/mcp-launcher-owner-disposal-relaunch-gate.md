@@ -20,6 +20,8 @@ The launcher owns the shared mk-spec-memory daemon for the MCP host that spawned
 
 The owner-disposal relaunch gate re-checks reality at the moment the backoff fires. If the launcher is shutting down, or its owning runtime has gone away, it releases the owner lease and exits cleanly instead of respawning. Crash-recovery and RSS-recycle are untouched: both run with the owner alive, so the gate is a no-op for them and the daemon relaunches as before.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Owner identity capture
@@ -38,6 +40,8 @@ The launcher captures `LAUNCHER_INITIAL_PPID` once at module load. The MCP host 
 
 The gate is additive. Crash-recovery and the in-place RSS-recycle (`recycleDaemonInPlace`) both schedule their relaunch with the owner process alive and no shutdown in progress, so the predicate returns false and relaunch proceeds through `launchServer`.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -53,6 +57,8 @@ The gate is additive. Crash-recovery and the in-place RSS-recycle (`recycleDaemo
 |---|---|---|
 | `mcp-server/tests/launcher-watchdog.vitest.ts` | Automated test | Unit-tests `shouldAbortRelaunchOnFire` across owner-alive, shutdown, changed-ppid, orphan-to-1 and crash/recycle cases alongside the watchdog helpers |
 | `mcp-server/stress-test/durability/daemon-recycle-transparency-stress.vitest.ts` | Automated test | Daemon-recycle transparency under load, where bridged clients survive an in-place recycle |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture

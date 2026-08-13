@@ -20,6 +20,8 @@ The `/goal` OpenCode plugin persists a session-local objective and injects a com
 
 This entry lives with the Skill Advisor hook/plugin documentation because it uses the same OpenCode plugin surface: command markdown stays state-free, plugin tools own state mutation, and runtime hooks add bounded context without exposing raw state files to slash commands.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### State Store And Command Router
@@ -44,6 +46,8 @@ Continuation is default-off. `MK_GOAL_AUTONOMY=smoke` logs that a continuation w
 
 Live verification: the plugin is registered and driven end-to-end in a real OpenCode session. A `opencode serve` run lists `mk_goal` and `mk_goal_status` in the session tool set, and a live model turn calls `mk_goal` and persists per-session state. Earlier the tools failed to surface because the file carried multiple named exports — OpenCode treats every export of a plugin module as its own plugin, so the helper exports broke whole-file loading; the module now exports only its `default` plugin (the test surface hangs off `MkGoalPlugin.__test`), matching the sibling plugins. Coverage: unit suite + tool-path test (real `ToolContext` persist/read/clear) + the live serve smoke. Active continuation remains opt-in (default-off) by design.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -67,6 +71,8 @@ Live verification: the plugin is registered and driven end-to-end in a real Open
 | `.opencode/plugins/tests/mk-goal-continuation.test.cjs` | Automated test | Default-off autonomy gates, smoke mode, active promptAsync dispatch and caps |
 | `.opencode/plugins/tests/mk-goal-lifecycle.test.cjs` | Automated test | Usage accounting, lifecycle suppression and budget limits |
 | `manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md` | Manual playbook | Operator scenario for `/goal` command and plugin behavior |
+
+---
 
 ## 4. SOURCE METADATA
 

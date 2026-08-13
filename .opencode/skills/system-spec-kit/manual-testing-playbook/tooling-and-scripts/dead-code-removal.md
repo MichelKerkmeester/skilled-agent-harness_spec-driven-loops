@@ -99,6 +99,8 @@ Reason: `activeProvider` still has live references in `.opencode/skills/system-s
 
 Re-check the dead-code audit list against the codebase; inspect string-based references; run targeted regression suites for the affected subsystems
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/dead-code-removal.md](../../feature-catalog/tooling-and-scripts/dead-code-removal.md)

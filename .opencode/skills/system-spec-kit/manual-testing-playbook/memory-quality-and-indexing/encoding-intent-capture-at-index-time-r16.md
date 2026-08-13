@@ -137,6 +137,8 @@ Command: inline Node metadata probe from `.opencode/skills/system-spec-kit/mcp-s
 
 Verify intent classification rules → Check metadata persistence → Inspect read-only enforcement
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/encoding-intent-capture-at-index-time.md](../../feature-catalog/memory-quality-and-indexing/encoding-intent-capture-at-index-time.md)

@@ -20,6 +20,8 @@ Covers Code Graph edge explanation metadata and enriched `blast_radius` analysis
 
 This feature gives Code Graph consumers more audit detail for structural relationships. Edges carry graph-local `reason` and `step` values beside the existing confidence, detector provenance and evidence class fields. Blast-radius responses keep their existing file-oriented output while also returning depth groups, a risk level, optional minimum-confidence traversal and structured fallback details.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Edge Explanation Metadata
@@ -35,6 +37,8 @@ The structural indexer writes `reason` and `step` into the existing `code_edges.
 
 When a symbol subject resolves to multiple graph nodes, the response returns ambiguity candidates and a structured fallback instead of choosing a default node. Failed blast-radius resolution also returns `failureFallback` with any partial result available.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -46,6 +50,8 @@ When a symbol subject resolves to multiple graph nodes, the response returns amb
 
 | File | Type | Role |
 |---|---|---|
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Analysis

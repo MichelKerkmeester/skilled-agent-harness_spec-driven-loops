@@ -12,6 +12,8 @@ This scenario verifies the language sub-detection layer within OPENCODE. When th
 
 Sub-detection rules are defined in SKILL.md lines 78-90 and `references/stack-detection.md:50-62`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants to harden the executor-config parser to throw early when an invalid model is supplied for cli-opencode.
@@ -36,6 +38,8 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 
 **Expected NOT loaded**: any of `sk-code-opencode/references/{python,shell,config}/*`, any of `sk-code-opencode/assets/checklists/{python,shell,config}_checklist.md`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -59,11 +63,15 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 1. If a python/shell/config ref leaks: verify the file extension parsing in SKILL.md sub-detection table.
 2. If quick-reference.md is missing: check whether the quick-reference always-load rule in `resource-loading.md` is intact.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (lines 78-90 — sub-detection table).
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` (lines 50-62).
 - `.opencode/skills/sk-code/sk-code-opencode/references/typescript/{style_guide,quality_standards,quick_reference}.md`.
+
+---
 
 ## 5. SOURCE METADATA
 

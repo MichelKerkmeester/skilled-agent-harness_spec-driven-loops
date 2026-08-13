@@ -122,6 +122,8 @@ The executed suite passed, but the observed assertions did not include typed `po
 
 Inspect `handlers/save/response-builder.ts`, `hooks/mutation-feedback.ts`, and response-envelope formatting if payload fields drift
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/mutation-response-ux-payload-exposure.md](../../feature-catalog/ux-hooks/mutation-response-ux-payload-exposure.md)

@@ -68,6 +68,8 @@ Every `SPECKIT_*` token referenced in `lib/search/search-flags.ts` (91 unique) r
 
 Verify flag enumeration covers all source files; diff code-declared flags against the ENV_REFERENCE feature-flags table and patch whichever side drifted — then open the drift as a tracked remediation item (spec folder or issue) and re-run this scenario to confirm closure. A recorded FAIL must not be left un-actioned in the transcript: a detector that fires without routing its finding to remediation is the gap this closure step exists to close.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [governance/feature-flag-governance.md](../../feature-catalog/governance/feature-flag-governance.md)

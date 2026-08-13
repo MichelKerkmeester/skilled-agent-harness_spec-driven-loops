@@ -32,6 +32,8 @@ Diagnose the note data, the query block and the settings file separately. A vali
 | Settings ignored | `data.json` invalid JSON, or Obsidian not reloaded |
 | Old results on screen | The note or pane needs a reload |
 
+---
+
 ## 2. DIAGNOSIS SEQUENCE
 
 1. Read the note and confirm the block exists with the exact fence language `dataview` or `dataviewjs`.
@@ -41,6 +43,8 @@ Diagnose the note data, the query block and the settings file separately. A vali
 5. Apply WHERE, SORT, GROUP BY, FLATTEN and LIMIT by hand and compare with the expected rows.
 6. For JavaScript, confirm the enabling setting is `true`.
 7. Check the render step: the user must reload the note or pane after a file change.
+
+---
 
 ## 3. QUERY RETURNS NOTHING
 
@@ -73,6 +77,8 @@ FROM "Projects"
 ```
 ````
 
+---
+
 ## 4. BLOCK RENDERS AS RAW CODE
 
 | Cause | Check | Fix |
@@ -84,6 +90,8 @@ FROM "Projects"
 
 A raw-code render means Obsidian does not see a registered code block language. The language name must match the plugin's registered names exactly: `dataview` and `dataviewjs`.
 
+---
+
 ## 5. INLINE FIELDS NOT RECOGNIZED
 
 | Cause | Check | Fix |
@@ -93,6 +101,8 @@ A raw-code render means Obsidian does not see a registered code block language. 
 | Inline queries disabled | Check `enableInlineDataview` | Set it to `true` |
 | Field in a code block | Inline fields inside fenced blocks do not parse | Move the field into the note body |
 | Malformed value | Multi-line value without indentation | Indent the continuation lines |
+
+---
 
 ## 6. DATAVIEWJS DOES NOT RUN
 
@@ -106,6 +116,8 @@ The default is `enableDataviewJs: false`. A `dataviewjs` block renders as code u
 
 Use only verified API methods (`dv.pages`, `dv.current`, `dv.list`, `dv.table`, `dv.taskList`). Anything else: VERIFY against the official documentation before promising output.
 
+---
+
 ## 7. SETTINGS LOST OR IGNORED
 
 | Cause | Check | Fix |
@@ -116,6 +128,8 @@ Use only verified API methods (`dv.pages`, `dv.current`, `dv.list`, `dv.table`, 
 | Wrong file path | Confirm the folder `dataview` under plugins | Use the correct path |
 
 The canonical defaults are in `data-model.md` section 2. Re-create the file from those defaults only when no backup exists.
+
+---
 
 ## 8. RECOVERY
 
@@ -128,6 +142,8 @@ The canonical defaults are in `data-model.md` section 2. Re-create the file from
 | Broken `data.json` | Restore from backup or the documented defaults |
 | Wrong dates | Use ISO dates, verify timezone assumptions |
 | Stale results | Reload the note or pane |
+
+---
 
 ## 9. VALIDATION CHECKPOINTS
 
@@ -143,6 +159,8 @@ Named checks for every fix attempt:
 | `where_filter_evaluated` | The filter was applied by hand and matches expectations |
 | `js_enablement_confirmed` | JS settings are `true` before promising JS output |
 | `reload_advised` | The user knows a note or pane reload is required |
+
+---
 
 ## 10. LIMITS
 

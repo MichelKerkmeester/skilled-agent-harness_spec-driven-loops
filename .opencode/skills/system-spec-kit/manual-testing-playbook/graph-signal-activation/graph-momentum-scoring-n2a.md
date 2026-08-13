@@ -60,6 +60,8 @@ Momentum scoring output with delta values + cap verification + zero-history node
 
 Verify snapshot comparison window → Check cap configuration → Inspect delta computation formula
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/graph-momentum-scoring.md](../../feature-catalog/graph-signal-activation/graph-momentum-scoring.md)

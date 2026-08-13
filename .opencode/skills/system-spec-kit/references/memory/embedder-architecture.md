@@ -45,6 +45,8 @@ The runtime has two embedder paths:
 
 Both paths must agree on the active model and vector dimension.
 
+---
+
 ## 2. BOOTSTRAP AUTO-SELECTION
 
 On first memory-runtime use, `context-server.ts` opens the vector database and calls `ensureActiveEmbedder()`. If `vec_metadata` already has a valid active pointer, startup reuses it. If the pointer is empty, `autoSelectActiveEmbedder()` probes this **local-first** precedence chain (ADR-014, 2026-05-19) and persists the first available choice:
@@ -70,6 +72,8 @@ The selected pointer is persisted in:
 
 A filesystem lock beside the active database serializes concurrent daemon starts, so two bootstraps do not both write the pointer.
 
+---
+
 ## 3. DIM-TAGGED TABLES
 
 Dim-tagged vector tables keep incompatible vectors separated:
@@ -82,6 +86,8 @@ Dim-tagged vector tables keep incompatible vectors separated:
 | `vec_1536` | 1536 | `text-embedding-3-small` |
 
 Search queries must be encoded to the same dimension as the active vector source. A 768-dim query against `vec_1024` is invalid.
+
+---
 
 ## 4. STORAGE LAYOUT
 
@@ -100,6 +106,8 @@ Legacy profile databases named `context-index__<slug>.sqlite` migrate during gua
 
 No environment variable controls this layout. `MEMORY_DB_PATH` still points at the canonical DB when explicitly set; the active shard path is derived from the canonical directory and the active embedding profile.
 
+---
+
 ## 5. SUPPORTED MANIFESTS
 
 The MCP registry currently exposes a single Ollama-backed re-index manifest (`MANIFESTS` in `shared/embeddings/registry.ts`). `embedder_set` rejects any name not in this list with `UNKNOWN_EMBEDDER`:
@@ -109,6 +117,8 @@ The MCP registry currently exposes a single Ollama-backed re-index manifest (`MA
 | `nomic-embed-text-v1.5` | `nomic-embed-text:v1.5` | 768 | Requires query/document prefixes; local-first cascade default |
 
 To support additional models, add manifests to `shared/embeddings/registry.ts`. Cloud and hf-local providers are selected during bootstrap, not by `embedder_set`.
+
+---
 
 ## 6. SWAP RUNBOOK
 
@@ -136,6 +146,8 @@ curl http://127.0.0.1:11434/api/tags
 
 The re-index job writes the target dim table and flips the active pointer only after completion. Existing tables remain on disk for rollback.
 
+---
+
 ## 7. RSS EXPECTATIONS
 
 | Provider | Expected memory shape |
@@ -145,6 +157,8 @@ The re-index job writes the target dim table and flips the active pointer only a
 | Voyage/OpenAI | spec-memory keeps only client/request state; model memory is remote |
 
 For active `jina-embeddings-v3`, the expected operator result after daemon restart is that `context-server.js` uses Ollama for query encoding and does not load an extra in-process embedding model.
+
+---
 
 ## 8. MEMORY DIAGNOSTICS
 
@@ -196,6 +210,8 @@ Full `memory_health` reports expose `cache_byte_estimates.embedding_cache_by_pro
 Heap snapshots remain opt-in because they can contain indexed text, prompts, file paths, and secret-shaped values. Set `SPECKIT_HEAP_SNAPSHOT_DIR=/path/to/private/dir` before launching the context server, then call the heap profiler snapshot path during an investigation; the server creates the directory with mode `0700` and each `.heapsnapshot` with mode `0600`.
 
 `SPECKIT_CONTEXT_SERVER_MAX_OLD_SPACE_MB` can pass `--max-old-space-size=<mb>` to the spawned `context-server.js` child for profiling or leak-canary sessions. Leave it unset for normal operation until packed BM25 and byte-bounded cache packets have reduced retained heap enough to pick a safe cap.
+
+---
 
 ## 9. REFERENCES
 

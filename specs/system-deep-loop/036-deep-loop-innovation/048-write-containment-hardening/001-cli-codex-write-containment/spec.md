@@ -10,6 +10,20 @@ trigger_phrases:
   - "workspace-write"
 importance_tier: "important"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/001-cli-codex-write-containment"
+    last_updated_at: "2026-08-11T14:05:00Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled moved-packet metadata and strict-validation evidence"
+    next_safe_action: "None; packet complete."
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Feature Specification: codex Write-Containment Guard for Deep-Loop Dispatches
 
@@ -28,6 +42,9 @@ contextType: "general"
 | **Status** | Complete |
 | **Created** | 2026-07-22 |
 | **Track** | system-deep-loop |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | None |
+| **Successor** | `002-fanout-containment-sibling` |
 
 <!-- /ANCHOR:metadata -->
 ---

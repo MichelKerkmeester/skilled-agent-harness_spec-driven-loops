@@ -81,6 +81,8 @@ Commands 2 and 4 are expected to write JSON/artifact outputs outside the allowed
 
 Inspect `scripts/evals/map-ground-truth-ids.ts`, `run-ablation.ts`, `run-bm25-baseline.ts`, `run-performance-benchmarks.ts`, `check-architecture-boundaries.ts`, and `import-policy-rules.ts` if provenance, runner behavior, or policy checks fail
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/evaluation-benchmark-and-import-policy-tooling.md](../../feature-catalog/tooling-and-scripts/evaluation-benchmark-and-import-policy-tooling.md)

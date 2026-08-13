@@ -110,6 +110,8 @@ The barrel references `mutation-feedback` and `response-hints`, but it does not 
 
 Inspect hooks/index.ts exports and hooks/README.md for missing entries
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/hooks-readme-and-export-alignment.md](../../feature-catalog/ux-hooks/hooks-readme-and-export-alignment.md)

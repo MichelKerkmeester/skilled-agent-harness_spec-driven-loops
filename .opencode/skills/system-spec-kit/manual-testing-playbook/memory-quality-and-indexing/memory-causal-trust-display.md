@@ -161,6 +161,8 @@ Validate memory causal trust badges through response profiles.
 - **Block A**: Inspect `mcp-server/formatters/search-results.ts` for badge derivation + DB lookup, `mcp-server/lib/response/profile-formatters.ts` for profile preservation, `mcp-server/tests/memory/trust-badges.test.ts` for runtime contract. Note: 010/007/T-E DI fix exposes `fetchTrustBadgeSnapshots` with optional `dbGetter` parameter; trust-badges suite was previously `describe.skip` and is now 3/3 PASS.
 - **Block B**: Inspect `mcp-server/lib/storage/causal-edges.ts` for `causalEdgesGeneration` counter + `invalidateDegreeCache()` mutator; `mcp-server/lib/search/search-utils.ts` for `causalEdgesGeneration?: number` on `CacheArgsInput` gated by `enableCausalBoost === true`; `mcp-server/handlers/memory-search.ts` for the import + thread-through (010/007/T-F R-007-12).
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/memory-causal-trust-display.md](../../feature-catalog/memory-quality-and-indexing/memory-causal-trust-display.md)

@@ -93,6 +93,8 @@ Coverage summary:
 - An honest note on which aspect was weakest in top-5 (and whether that's correct given the corpus).
 - Active provider from memory_health.
 
+---
+
 ## 4. PASS PREDICATE
 
 A naive lexical ranker would over-weight "embedding" (frequent) and underweight "Apple Silicon" (less frequent). The semantic ranker should balance contributions and ensure each aspect surfaces. If a single-aspect-dominated top-5 is observed (e.g., 5 hits all about embeddings, none about Apple Silicon), mark FAIL.

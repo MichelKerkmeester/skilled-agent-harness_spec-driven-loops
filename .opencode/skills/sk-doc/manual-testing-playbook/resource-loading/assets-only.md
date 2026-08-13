@@ -1,17 +1,17 @@
 ---
 id: SD-005
-title: 'FLOWCHART intent loads only assets/flowcharts/*'
+title: 'FLOWCHART intent loads only assets/ascii-patterns/*'
 description: "This scenario validates FLOWCHART assets-only resource loading for SD-005."
 stage: routing
-expected_intent: sk-create-flowchart
+expected_intent: sk-create-diagram
 expected_resources:
-  - sk-create-flowchart/assets/simple-workflow.md
-  - sk-create-flowchart/assets/decision-tree-flow.md
-expected_workflow_mode: sk-create-flowchart
+  - sk-create-diagram/assets/ascii-patterns/simple-workflow.md
+  - sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md
+expected_workflow_mode: sk-create-diagram
 expected_leaf_resources:
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/simple-workflow.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/decision-tree-flow.md
 version: 1.8.0.6
 ---
@@ -88,8 +88,8 @@ Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare a
 
 - **Intent picked**: `FLOWCHART`
 - **Resources loaded**:
-  - `assets/flowcharts/simple-workflow.md`
-  - `assets/flowcharts/decision-tree-flow.md`
+  - `assets/ascii-patterns/simple-workflow.md`
+  - `assets/ascii-patterns/decision-tree-flow.md`
   - ONLY (no `references/*` loaded)
 - **Outcome**: CLI emits an ASCII flowchart matching one of the asset templates, demonstrating the deploy pipeline with rollback decision branch.
 

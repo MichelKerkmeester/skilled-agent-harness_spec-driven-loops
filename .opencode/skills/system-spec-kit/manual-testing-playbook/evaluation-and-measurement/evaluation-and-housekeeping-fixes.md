@@ -59,6 +59,8 @@ Eval run output with run-ID + upsert verification + boundary guard test evidence
 
 Inspect run-ID generation logic; verify upsert idempotency; check boundary guard threshold values
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/evaluation-and-housekeeping-fixes.md](../../feature-catalog/evaluation-and-measurement/evaluation-and-housekeeping-fixes.md)

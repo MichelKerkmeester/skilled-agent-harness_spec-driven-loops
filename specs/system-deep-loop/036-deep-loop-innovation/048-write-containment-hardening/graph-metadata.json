@@ -84,15 +84,15 @@
     ],
     "causal_summary": "Group the deep-loop fan-out write-containment guard fixes so a dispatched leaf can never leave, delete, or misattribute out-of-scope writes.",
     "created_at": "2026-08-08T07:14:11.279Z",
-    "last_save_at": "2026-08-08T07:14:11.279Z",
+    "last_save_at": "2026-08-11T14:06:31.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4085d09519750da7c4b4dd1b86ce6365b8be3e20757992eecc2fee7c0e049f30",
+    "source_fingerprint": "sha256:8ec2f00d75d039aac08011670731f3e09160e6f40e8d1da8cf414596a11028e4",
     "source_doc_hashes": {
-      "spec.md": "9da472b2734ca1075e0dda632f075ceb6b113b27ac3d3fec073bb85abaa8521b"
+      "spec.md": "6c22e95360c8819ac8d301a9594133cabf668b77e6b69734dbf790fce1e8e07c"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/003-write-containment-concurrent-safety",
     "last_active_at": null

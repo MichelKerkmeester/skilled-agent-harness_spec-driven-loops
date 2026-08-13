@@ -11,14 +11,18 @@
 
 const { test, beforeEach, afterEach } = require('node:test');
 const assert = require('node:assert/strict');
-const { execFileSync } = require('node:child_process');
+const { execFileSync, spawn } = require('node:child_process');
+const { createHash } = require('node:crypto');
 const {
   existsSync,
+  lstatSync,
+  mkdirSync,
   mkdtempSync,
   readdirSync,
   readFileSync,
   rmSync,
   statSync,
+  symlinkSync,
   writeFileSync,
 } = require('node:fs');
 const { join } = require('node:path');
@@ -74,6 +78,47 @@ function envelopeField(stdout, key) {
   return line ? line.slice(key.length + 1) : undefined;
 }
 
+function runCoreWorker(operation, rawOptions, startAtMs) {
+  const workerSource = [
+    'const core = require(process.argv[1]);',
+    'const operation = process.argv[2];',
+    'const options = JSON.parse(process.argv[3]);',
+    'const startAtMs = Number(process.argv[4]);',
+    'while (Date.now() < startAtMs) {}',
+    'try {',
+    '  if (operation === "recordTurn") core.recordTurn({}, options);',
+    '  else if (operation === "clearGoal") core.clearGoal(options);',
+    '  else if (operation === "completeGoal") core.completeGoal(options);',
+    '  else if (operation === "migrateLegacyGoal") core.migrateLegacyGoal(options);',
+    '  else throw new Error(`Unknown operation: ${operation}`);',
+    '} catch (error) {',
+    '  if (!["GOAL_NOT_FOUND", "TARGET_SCOPE_OCCUPIED"].includes(error?.code)) throw error;',
+    '}',
+  ].join('\n');
+  return new Promise((resolveWorker, rejectWorker) => {
+    const child = spawn(process.execPath, [
+      '-e',
+      workerSource,
+      __filename.replace(/goal-core\.test\.cjs$/, 'goal-core.cjs'),
+      operation,
+      JSON.stringify(rawOptions),
+      String(startAtMs),
+    ], { stdio: ['ignore', 'ignore', 'pipe'] });
+    let stderr = '';
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', rejectWorker);
+    child.on('exit', (status) => {
+      if (status === 0) resolveWorker();
+      else rejectWorker(new Error(`${operation} worker exited ${status}: ${stderr}`));
+    });
+  });
+}
+
+async function runCoreWorkers(operations, rawOptions) {
+  const startAtMs = Date.now() + 750;
+  await Promise.all(operations.map((operation) => runCoreWorker(operation, rawOptions, startAtMs)));
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // STATE ROUNDTRIP + ATOMICITY
 // ─────────────────────────────────────────────────────────────────────────────
@@ -109,13 +154,18 @@ test('invalid runtime namespaces fail before any state is written', () => {
   assert.deepEqual(readdirSync(stateDir), []);
 });
 
-test('scope paths use runtime plus a full SHA-256 digest without raw session ids', () => {
+test('scope paths hash canonical workspace, runtime, and session identity', () => {
   const rawSessionId = 'session/with spaces\nand separators';
   const scope = core.resolveGoalScope(scopedOpts('Pi', rawSessionId));
-  assert.match(scope.scopeKey, /^pi-[a-f0-9]{64}$/);
+  const expectedKey = createHash('sha256')
+    .update(JSON.stringify([scope.workspace, 'pi', rawSessionId]), 'utf8')
+    .digest('hex');
+  assert.equal(scope.scopeKey, expectedKey);
+  assert.match(scope.scopeKey, /^[a-f0-9]{64}$/);
   assert.equal(scope.statePath, join(stateDir, `${scope.scopeKey}.json`));
   assert.equal(scope.statePath.includes(rawSessionId), false);
   assert.equal(scope.archiveDir.includes(rawSessionId), false);
+  assert.equal(scope.statePath.includes('pi'), false);
 });
 
 test('two sessions keep independent goals through lifecycle mutations', () => {
@@ -149,11 +199,42 @@ test('two sessions keep independent goals through lifecycle mutations', () => {
 test('runtime and workspace namespaces cannot collide', () => {
   const pi = core.resolveGoalScope(scopedOpts('pi', 'same-session'));
   const cursor = core.resolveGoalScope(scopedOpts('cursor', 'same-session'));
+  const otherWorkspaceRoot = join(stateDir, 'other-workspace');
+  mkdirSync(join(otherWorkspaceRoot, '.opencode', 'skills'), { recursive: true });
   const otherWorkspace = core.resolveGoalScope({
-    scope: { runtime: 'pi', sessionId: 'same-session', workspace: join(stateDir, 'other') },
+    stateDir,
+    scope: { runtime: 'pi', sessionId: 'same-session', workspace: otherWorkspaceRoot },
   });
   assert.notEqual(pi.statePath, cursor.statePath);
   assert.notEqual(pi.statePath, otherWorkspace.statePath);
+});
+
+test('nested workspace paths canonicalize to one repository scope', () => {
+  const repositoryRoot = join(__dirname, '..', '..', '..', '..');
+  const rootScope = core.resolveGoalScope({
+    stateDir,
+    scope: { runtime: 'pi', sessionId: 'same-session', workspace: repositoryRoot },
+  });
+  const nestedScope = core.resolveGoalScope({
+    stateDir,
+    scope: { runtime: 'pi', sessionId: 'same-session', workspace: join(repositoryRoot, '.opencode', 'hooks') },
+  });
+  assert.equal(nestedScope.workspace, rootScope.workspace);
+  assert.equal(nestedScope.scopeKey, rootScope.scopeKey);
+});
+
+test('same explicit state root keeps different workspaces isolated', () => {
+  const workspaceA = join(stateDir, 'workspace-a');
+  const workspaceB = join(stateDir, 'workspace-b');
+  mkdirSync(join(workspaceA, '.opencode', 'skills'), { recursive: true });
+  mkdirSync(join(workspaceB, '.opencode', 'skills'), { recursive: true });
+  const optionsA = { stateDir, scope: { runtime: 'pi', sessionId: 'same-session', workspace: workspaceA } };
+  const optionsB = { stateDir, scope: { runtime: 'pi', sessionId: 'same-session', workspace: workspaceB } };
+  core.setGoal({ objective: 'Workspace A goal' }, optionsA);
+  core.setGoal({ objective: 'Workspace B goal' }, optionsB);
+  assert.notEqual(core.resolveGoalScope(optionsA).scopeKey, core.resolveGoalScope(optionsB).scopeKey);
+  assert.equal(core.showGoal(optionsA).objective, 'Workspace A goal');
+  assert.equal(core.showGoal(optionsB).objective, 'Workspace B goal');
 });
 
 test('legacy singleton state is diagnostic-only and never a scoped read fallback', () => {
@@ -292,6 +373,108 @@ test('setGoal with a different objective on an active goal replaces it', () => {
   const second = core.setGoal({ objective: 'Fix the bug', runtime: 'pi' }, opts());
   assert.equal(second.mutation, 'replaced');
   assert.notEqual(second.record.goalId, first.record.goalId);
+});
+
+test('hostile stored goal ids remain contained during replace, clear, and complete', () => {
+  for (const action of ['replace', 'clear', 'complete']) {
+    const options = scopedOpts('pi', `hostile-${action}`);
+    const scope = core.resolveGoalScope(options);
+    const victimPath = join(stateDir, `${action}-victim.json`);
+    const victimBytes = `${action}-must-survive\n`;
+    writeFileSync(victimPath, victimBytes, { mode: 0o600 });
+    writeFileSync(scope.statePath, JSON.stringify({
+      goalId: `x/../../../${action}-victim`,
+      objective: `Hostile ${action}`,
+      status: 'active',
+      revision: 1,
+    }), { mode: 0o600 });
+
+    if (action === 'replace') core.setGoal({ objective: 'Replacement objective' }, options);
+    else if (action === 'clear') core.clearGoal(options);
+    else core.completeGoal(options);
+
+    assert.equal(readFileSync(victimPath, 'utf8'), victimBytes);
+    const archived = core.listArchivedGoals(options);
+    assert.equal(archived.length, 1);
+    assert.match(archived[0].filename, /^active-goal-[A-Za-z0-9._-]+-[a-f0-9]{64}\.json$/);
+    assert.equal(archived[0].filename.includes('/'), false);
+  }
+});
+
+test('hostile legacy goal ids remain contained during migration quarantine', () => {
+  const legacyPath = join(stateDir, 'active-goal.json');
+  const victimPath = join(stateDir, 'legacy-victim.json');
+  const victimBytes = 'legacy-victim-must-survive\n';
+  writeFileSync(victimPath, victimBytes, { mode: 0o600 });
+  writeFileSync(legacyPath, JSON.stringify({
+    goalId: 'x/../../../legacy-victim',
+    objective: 'Migrate hostile legacy state safely',
+    status: 'active',
+  }), { mode: 0o600 });
+  const migrated = core.migrateLegacyGoal(scopedOpts('pi', 'hostile-legacy'));
+  assert.equal(migrated.migrated, true);
+  assert.equal(readFileSync(victimPath, 'utf8'), victimBytes);
+  assert.equal(migrated.archivePath.startsWith(join(stateDir, '.archive', '.legacy')), true);
+  assert.match(migrated.archiveFilename, /^active-goal-[A-Za-z0-9._-]+\.json$/);
+});
+
+test('archive namespaces that resolve outside the state root fail closed', () => {
+  const options = scopedOpts('pi', 'archive-symlink-escape');
+  const scope = core.resolveGoalScope(options);
+  const escapeDir = mkdtempSync(join(tmpdir(), 'goal-archive-escape-'));
+  try {
+    core.setGoal({ objective: 'Keep archives contained' }, options);
+    mkdirSync(join(stateDir, '.archive'), { recursive: true });
+    symlinkSync(escapeDir, scope.archiveDir);
+    core.clearGoal(options);
+    assert.deepEqual(readdirSync(escapeDir), []);
+    assert.equal(core.showGoal(options), null);
+  } finally {
+    rmSync(escapeDir, { recursive: true, force: true });
+  }
+});
+
+test('cross-process recordTurn mutations preserve every update', async () => {
+  const options = scopedOpts('pi', 'concurrent-turns');
+  core.setGoal({ objective: 'Preserve concurrent turns' }, options);
+  const workerCount = 16;
+  await runCoreWorkers(Array(workerCount).fill('recordTurn'), options);
+  const record = core.showGoal(options);
+  assert.equal(record.turnsUsed, workerCount);
+  assert.equal(record.revision, workerCount + 1);
+});
+
+test('cross-process clear and complete serialize to one terminal archive', async () => {
+  const options = scopedOpts('pi', 'concurrent-terminal');
+  core.setGoal({ objective: 'Serialize terminal operations' }, options);
+  await runCoreWorkers(['clearGoal', 'completeGoal'], options);
+  assert.equal(core.showGoal(options), null);
+  const archived = core.listArchivedGoals(options);
+  assert.equal(archived.length, 1);
+  assert.match(archived[0].goal.status, /^(cleared|completed)$/);
+});
+
+test('cross-process legacy migration preserves the successful target', async () => {
+  const options = scopedOpts('pi', 'concurrent-migration');
+  writeFileSync(join(stateDir, 'active-goal.json'), JSON.stringify({
+    goalId: 'legacy-concurrent',
+    objective: 'Migrate exactly once',
+    status: 'active',
+    padding: 'x'.repeat(200000),
+  }), { mode: 0o600 });
+  await runCoreWorkers(Array(8).fill('migrateLegacyGoal'), options);
+  assert.equal(core.showGoal(options).objective, 'Migrate exactly once');
+  assert.equal(existsSync(join(stateDir, 'active-goal.json')), false);
+  assert.equal(core.inspectLegacyGoal({ stateDir }).status, 'absent');
+});
+
+test('Claude command discovery excludes the OpenCode-only goal router', () => {
+  const repositoryRoot = join(__dirname, '..', '..', '..', '..');
+  const claudeCommands = join(repositoryRoot, '.claude', 'commands');
+  assert.equal(lstatSync(claudeCommands).isSymbolicLink(), false);
+  assert.equal(lstatSync(claudeCommands).isDirectory(), true);
+  assert.equal(existsSync(join(claudeCommands, 'goal-opencode.md')), false);
+  assert.equal(lstatSync(join(claudeCommands, 'agent-router.md')).isSymbolicLink(), true);
 });
 
 test('writeJsonAtomic never leaves a .tmp file behind on success', () => {

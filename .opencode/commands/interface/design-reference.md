@@ -35,6 +35,8 @@ Use the shared nine-stage contract for source-faithful extraction. The canonical
 - **Escalate:** never invent around capture failure or label inferred semantics as measured.
 - **Route instead:** when redesign, critique, or new system authorship dominates, return `STATUS=DEFER ROUTE=<hub|sibling>`.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -43,6 +45,8 @@ Use the shared nine-stage contract for source-faithful extraction. The canonical
 | Presentation source of truth | `.opencode/commands/interface/assets/interface-design-reference-presentation.txt` |
 | Auto workflow | `.opencode/commands/interface/assets/interface-design-reference-auto.yaml` |
 | Confirm workflow | `.opencode/commands/interface/assets/interface-design-reference-confirm.yaml` |
+
+---
 
 ## 3. MODE ROUTING
 
@@ -61,9 +65,13 @@ Use the shared nine-stage contract for source-faithful extraction. The canonical
 - Proof carries `register`.
 <!-- /ANCHOR:register -->
 
+---
+
 ## 4. VISIBLE OUTPUT CONTRACT
 
 Return `Route Proof`, `Resolved Brief`, `Context Manifest`, `Grounding Record`, `Creation/Remediation Artifact` (Style Reference DESIGN.md), `Critique/Validation`, `Evidence Ledger`, and `Next Action/Handoff`.
+
+---
 
 ## 5. EXECUTION TARGETS
 
@@ -72,9 +80,13 @@ Return `Route Proof`, `Resolved Brief`, `Context Manifest`, `Grounding Record`, 
 | `:auto`, or complete input | `.opencode/commands/interface/assets/interface-design-reference-auto.yaml` |
 | `:confirm`, or incomplete input | `.opencode/commands/interface/assets/interface-design-reference-confirm.yaml` |
 
+---
+
 ## 6. PRESENTATION BOUNDARY
 
 The presentation asset owns prompts, visible blocks, typed status lines, and recommend-only next actions. The router owns route and asset selection only.
+
+---
 
 ## 7. WORKFLOW SUMMARY
 

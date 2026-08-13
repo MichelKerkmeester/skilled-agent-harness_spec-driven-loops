@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies that improvement-host modes use `loop-host.cjs --mode` semantics and explicit null `runtimeLoopType`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: An operator wants to confirm that agent-improvement is host-driven rather than handled by the runtime convergence loop.
@@ -41,6 +43,8 @@ For an agent-improvement run, resolve the mode through the registry and state th
 - Discriminator evidence: `runtimeLoopType` is explicit null for improvement-host modes and is never inferred from `workflowMode`.
 
 **Desired user-visible outcome**: The AI reports `runtimeLoopType: null`, backend `improvement-host`, and loop host mode `agent-improvement` without naming `convergence.cjs --loop-type improvement`.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -75,10 +79,14 @@ For an agent-improvement run, resolve the mode through the registry and state th
 2. If backend is wrong, compare against `backendKind: "improvement-host"`.
 3. If command is wrong, compare against `command: "/deep:agent-improvement"`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - backend and NEVER-infer rules.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `agent-improvement` backend fields.
+
+---
 
 ## 5. SOURCE METADATA
 

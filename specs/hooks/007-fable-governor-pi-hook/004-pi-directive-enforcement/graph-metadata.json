@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/007-fable-governor-pi-hook/004-pi-directive-enforcement",
+  "spec_folder": "hooks/007-fable-governor-pi-hook/004-pi-directive-enforcement",
+  "parent_id": "hooks/007-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi directive enforcement",
+      "dispatch shapes deny",
+      "tool_call deny",
+      "pi directive enforcement plan",
+      "pi directive enforcement tasks",
+      "pi directive enforcement summary"
+    ],
+    "key_topics": [
+      "directive",
+      "enforcement",
+      "dispatch",
+      "shapes",
+      "deny",
+      "plan",
+      "tasks",
+      "summary",
+      "capsule",
+      "line",
+      "phase",
+      "reminder-only"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Directive Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "user-text",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The capsule line (phase 003) is reminder-only: pi can still silently spawn `cursor-agent -p`, `devin -p`, `opencode run`, etc",
+    "created_at": "2026-08-04T12:04:54Z",
+    "last_save_at": "2026-08-11T06:50:05.420Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ff6cde887db7fef3a9feeb83acb93c07e8bcdefbb1f423e0c6ba80f9855c73e0",
+    "source_doc_hashes": {
+      "spec.md": "ad5bf56d817d845317a5294112b748606792829fa964ce240beba3bc002128fd",
+      "plan.md": "546c29321df1451b5f3ba0f724641129a8e9acbb6ee8fd7d4e2bbdbfacd8f05f",
+      "tasks.md": "799b84e5d1c6cd6e90d68fec8fa3f3cbf2ed18b4fd34f6de5379d42522c36cf1",
+      "implementation-summary.md": "43f6cda067d3a6e478dfa521d867911d299db0b112ffa9004a387f0ea1ab30e6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

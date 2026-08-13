@@ -295,6 +295,8 @@ Validate session attention boost and confirm Stage 2 fusion lifts attended resul
 
 Inspect `mcp-server/lib/search/session-boost.ts` for the 0.15 multiplier and ceiling check. Confirm `mcp-server/lib/search/pipeline/stage2-fusion.ts` invokes `applySessionBoost` for the active session. Verify `isSessionBoostEnabled()` reads `SPECKIT_SESSION_BOOST` at request time.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/session-boost-graduated.md](../../feature-catalog/retrieval-enhancements/session-boost-graduated.md)

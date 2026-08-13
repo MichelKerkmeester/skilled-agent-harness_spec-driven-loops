@@ -31,6 +31,8 @@ The `mcp-obsidian` mode operates this plugin by **editing render blocks inside n
 | Enablement | Enabled in `community-plugins.json` | Verified in this vault |
 | State file | `<vault>/.obsidian/plugins/obsidian-charts/data.json` | Settings surface. Absent in this vault, so plugin defaults apply |
 
+---
+
 ## 2. WHAT IT DOES
 
 Renders interactive charts inside notes from fenced code blocks. Two block languages exist in the installed version. A `chart` block carries a YAML body with `type`, `labels` and `series`. An `advanced-chart` block carries a raw Chart.js JSON configuration. A chart can read its data from a table in the same note or in another note.
@@ -110,6 +112,8 @@ A minimal `advanced-chart` block:
 | Raw Chart.js configuration control | `advanced-chart` |
 | Data from a table in a note | `chart` with `id`, `file`, `layout` and `select` |
 
+---
+
 ## 5. SETTINGS LOCATION
 
 Settings live in `.obsidian/plugins/obsidian-charts/data.json`. This vault has no `data.json` yet, so the plugin defaults apply. The defaults carry four keys: `colors`, `contextMenu`, `imageSettings` and `themeable`.
@@ -133,9 +137,13 @@ The settings tab renders the heading Settings - Charts. Its controls map one-to-
 
 Read the full contract in data-model.md section 2.
 
+---
+
 ## 6. WHEN TO USE THIS REFERENCE SET
 
 Use this reference set when the user asks to create a chart in a note, edit an existing chart block, point a chart at a table, export a chart as an image, change chart colors or fix a chart that fails to render. Use it before touching chart-related settings or plugin enablement.
+
+---
 
 ## 7. SIBLING FILES
 
@@ -144,6 +152,8 @@ Use this reference set when the user asks to create a chart in a note, edit an e
 | data-model.md | Exact artifact schemas: settings keys, chart block models, table-reference mode, image export and the global API |
 | workflows.md | Numbered file-layer recipes with before and after patterns |
 | troubleshooting.md | Failure modes, fixes and named validation checkpoints |
+
+---
 
 ## 8. GOTCHAS
 

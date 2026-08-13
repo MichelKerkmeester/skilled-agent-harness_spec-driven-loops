@@ -29,9 +29,13 @@ Private procedure card for applying the existing `sk-design-md-generator` tweak-
 | Proof gate | Each control changes a meaningful design axis, maps to a token or state, has a default, and excludes nonessential knobs. |
 | Privacy rule | This is private design-system guidance and does not create a public tweakable skill. |
 
+---
+
 ## 2. READ-ONLY COMPATIBILITY
 
 `sk-design-md-generator` can return the control schema and handoff without writing code or running host protocols. Implementation of controls belongs to a mutating follow-up or `sk-code`.
+
+---
 
 ## 3. PROCEDURE
 
@@ -40,6 +44,8 @@ Private procedure card for applying the existing `sk-design-md-generator` tweak-
 3. Map each control to a token, CSS custom property, or stateful UI setting.
 4. Specify defaults and persistence behavior for implementation.
 5. Require the final design to hide tweak chrome when controls are off.
+
+---
 
 ## 4. RELATED CARDS
 

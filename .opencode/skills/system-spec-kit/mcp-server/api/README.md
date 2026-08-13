@@ -15,6 +15,8 @@ trigger_phrases:
 
 Internal MCP server code should import from its owning `lib/`, `handlers/`, `core/`, or local module instead of routing through this API barrel.
 
+---
+
 ## 2. SURFACE
 
 | Surface | Purpose |
@@ -27,6 +29,8 @@ Internal MCP server code should import from its owning `lib/`, `handlers/`, `cor
 | Governance | Scope-governance audit and tier-downgrade helpers for scripts. |
 | Discovery and metadata | Folder descriptions, entities, graph metadata and capability flags. |
 
+---
+
 ## 3. EXPORTS
 
 `index.ts` re-exports focused modules from this folder plus selected support contracts:
@@ -38,6 +42,8 @@ Internal MCP server code should import from its owning `lib/`, `handlers/`, `cor
 - `storage.ts`: checkpoint and access tracker initialization.
 - Selected `lib/` exports for governance, folder discovery, entity extraction, graph metadata, validation, performance benchmarking, layer metadata and roadmap flags.
 
+---
+
 ## 4. ALLOWED IMPORTS
 
 | Caller | Rule |
@@ -46,6 +52,8 @@ Internal MCP server code should import from its owning `lib/`, `handlers/`, `cor
 | Eval tooling | Import from this folder unless a local test fixture needs a private module. |
 | Internal MCP server code | Import from the owning internal module, not from `api/index.ts`. |
 | New public needs | Add a narrow export here or document the exception in the import-policy allowlist. |
+
+---
 
 ## 5. KEY FILES
 
@@ -58,6 +66,8 @@ Internal MCP server code should import from its owning `lib/`, `handlers/`, `cor
 | `providers.ts` | Embedding provider surface. |
 | `storage.ts` | Storage initialization surface. |
 
+---
+
 ## 6. VALIDATION
 
 Run from the repository root:
@@ -68,6 +78,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 ```
 
 Expected result: import policy tests pass and README validation exits `0` with no HVR issues.
+
+---
 
 ## 7. RELATED
 

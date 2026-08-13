@@ -59,8 +59,8 @@ RESOURCE_MAP = {
         "sk-create-command/assets/command-template.md"
     ],
     "FLOWCHART": [
-        "sk-create-flowchart/assets/simple-workflow.md",
-        "sk-create-flowchart/assets/decision-tree-flow.md"
+        "sk-create-diagram/assets/ascii-patterns/simple-workflow.md",
+        "sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md"
     ],
     "INSTALL_GUIDE": [
         "sk-create-readme/assets/install-guide-template.md",
@@ -150,16 +150,16 @@ RESOURCE_MAP = {
         "sk-create-feature-catalog/references/README.md",
         "sk-create-feature-catalog/references/common-pitfalls.md",
         "sk-create-feature-catalog/references/examples.md",
-        "sk-create-flowchart/assets/approval-workflow-loops.md",
-        "sk-create-flowchart/assets/decision-tree-flow.md",
-        "sk-create-flowchart/assets/parallel-execution.md",
-        "sk-create-flowchart/assets/simple-workflow.md",
-        "sk-create-flowchart/assets/system-architecture-swimlane.md",
-        "sk-create-flowchart/assets/user-onboarding.md",
-        "sk-create-flowchart/references/README.md",
-        "sk-create-flowchart/references/notation-and-validator.md",
-        "sk-create-flowchart/references/pattern-selection.md",
-        "sk-create-flowchart/references/worked-example.md",
+        "sk-create-diagram/assets/ascii-patterns/approval-workflow-loops.md",
+        "sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md",
+        "sk-create-diagram/assets/ascii-patterns/parallel-execution.md",
+        "sk-create-diagram/assets/ascii-patterns/simple-workflow.md",
+        "sk-create-diagram/assets/ascii-patterns/system-architecture-swimlane.md",
+        "sk-create-diagram/assets/ascii-patterns/user-onboarding.md",
+        "sk-create-diagram/references/ascii-format/README.md",
+        "sk-create-diagram/references/ascii-format/notation-and-validator.md",
+        "sk-create-diagram/references/ascii-format/pattern-selection.md",
+        "sk-create-diagram/references/ascii-format/worked-example.md",
         "sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
         "sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
         "sk-create-manual-testing-playbook/references/README.md",

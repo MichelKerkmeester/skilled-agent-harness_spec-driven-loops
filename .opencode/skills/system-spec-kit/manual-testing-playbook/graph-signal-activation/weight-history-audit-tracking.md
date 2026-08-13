@@ -60,6 +60,8 @@ Audit table rows showing before/after values + rollback verification + row count
 
 Check audit table schema → Verify trigger/hook on edge mutation → Inspect rollback query logic
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/weight-history-audit-tracking.md](../../feature-catalog/graph-signal-activation/weight-history-audit-tracking.md)

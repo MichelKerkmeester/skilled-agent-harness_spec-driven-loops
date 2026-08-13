@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "system-spec-kit",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit"
+  },
+  "executor": "codex",
+  "model": "gpt-5.6-luna\ncomposer-2.5",
+  "variant": "ux-hooks",
+  "verdict": "FAIL",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+      "verdict": "FAIL",
+      "reason": "Dedup engine cadence passes via the compiled claude target (turn1 full, repeat route-only, shrink re-deliver, kill-switch, fail-open) but the runtime hook surface is non-functional: hooks.json registers dist/hooks/codex/user-prompt-submit.js which the build does not produce (dist has only claude/lib/pi), and the .codex/hooks/user-prompt-submit.js shim imports ./shared.js which never existed at HEAD (ERR_MODULE_NOT_FOUND). Runtime fails open with the registration's own diagnostic; the advisor brief never reaches codex.",
+      "stage": "documentation",
+      "classKind": "manual",
+      "providerModel": "gpt-5.6-luna\ncomposer-2.5",
+      "variant": "ux-hooks",
+      "evidence": [
+        "/tmp/directive-dl/codex/turn1.json",
+        "/tmp/directive-dl/codex/turn2.json",
+        "/tmp/directive-dl/codex/turn3.json",
+        "/tmp/directive-dl/codex/kill.json",
+        "/tmp/directive-dl/codex/nosess.json",
+        "/tmp/directive-dl/shim-codex/out.json"
+      ]
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+    "stage": "documentation",
+    "dispatch": "manual",
+    "executor": "codex",
+    "model": "gpt-5.6-luna\ncomposer-2.5",
+    "variant": "ux-hooks"
+  }
+}

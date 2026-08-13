@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks/003-goal-hooks-cross-runtime/005-pi-goal-hooks",
+  "description": "The runtime-neutral goal core (phase 001) and the capability-probe matrix (phase 002) give cli-pi sessions everything needed to carry an operator-set",
+  "keywords": [
+    "runtime-neutral",
+    "goal",
+    "core",
+    "phase",
+    "capability-probe",
+    "matrix",
+    "give",
+    "cli-pi",
+    "sessions",
+    "everything",
+    "needed",
+    "carry",
+    "operator-set"
+  ],
+  "lastUpdated": "2026-08-11T06:40:40.659Z",
+  "specId": "005",
+  "folderSlug": "pi-goal-hooks",
+  "parentChain": [
+    "hooks",
+    "003-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

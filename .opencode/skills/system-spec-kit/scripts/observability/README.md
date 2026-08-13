@@ -19,6 +19,8 @@ Current state:
 - Records compliance JSONL without blocking caller execution.
 - Aggregates telemetry into markdown summaries for review.
 
+---
+
 ## 2. DIRECTORY TREE
 
 ```text
@@ -30,6 +32,8 @@ observability/
 `-- smart-router-telemetry.ts            # Compliance record types and JSONL writer
 ```
 
+---
+
 ## 3. KEY FILES
 
 | File | Role |
@@ -39,9 +43,13 @@ observability/
 | `smart-router-measurement.ts` | Runs static corpus checks using skill-advisor briefs and predicted route metadata. |
 | `smart-router-analyze.ts` | Collapses telemetry rows by prompt and emits class distribution summaries. |
 
+---
+
 ## 4. BOUNDARIES
 
 These helpers are observe-only. Runtime wrappers and measurement scripts may call into telemetry utilities, but telemetry failures must not change the caller's behavior.
+
+---
 
 ## 5. VALIDATION
 
@@ -52,6 +60,8 @@ npm test -- --run smart-router
 ```
 
 For syntax coverage after edits, run the package TypeScript or test command used by the active system-spec-kit workflow.
+
+---
 
 ## 6. RELATED
 

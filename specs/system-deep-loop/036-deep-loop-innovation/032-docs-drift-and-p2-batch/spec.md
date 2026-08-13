@@ -37,7 +37,7 @@ _memory:
 
 # Feature Specification: Batch the P2 Backlog and the Three Doc-Contract P1s
 
-> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `031-silent-failure-and-harness-repair`; successor `none (last child in the remediation tree)`.
+> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `031-silent-failure-and-harness-repair`; successor `033-identity-and-lock-ownership-hardening`.
 
 > **Scaffold dependency.** This child is scaffolded under `036-deep-loop-innovation/` as a flat
 > sibling of phases 001-020. That nesting is conditional on child `021`'s hashed-child-manifest fix

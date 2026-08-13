@@ -14,6 +14,8 @@ The disambiguation question MUST ask for:
 1. The explicit runtime surface (which stack are you on?).
 2. Verification commands appropriate to the stack (how do we know it works?).
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A backend developer on a Go HTTP server asks the AI to add a request-ID middleware.
@@ -38,6 +40,8 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 **Expected agent dispatch**: NONE. sk-code MUST NOT dispatch `@code` for an unsupported stack.
 
 **Desired user-visible outcome**: The AI replies with a disambiguation question along the lines of: "I don't have stack-specific guidance for Go. To proceed safely, please confirm: (1) what is the runtime surface (Go modules, version, framework like chi/echo/gorilla)? (2) what verification commands should I run after the edit (`go test ./...`? `go vet`? a specific lint config)?"
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -80,11 +84,15 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 2. If `sk-code-webflow/references/*` is incorrectly loaded: the router is matching some marker. Check whether `motion`, `gsap`, or `lenis` substrings exist in the prompt unintentionally (they don't here, but always verify).
 3. If `sk-code-opencode/references/*` is incorrectly loaded: the CWD probably contains `/.opencode/` — but this prompt explicitly targets `cmd/api/main.go` (Go path). Check whether the CWD-based detection is overriding target-path detection (it should not).
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — Multi-Repository Architecture table with "Unsupported / Unknown" row.
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` — Marker definitions (none should match Go).
 - `AGENTS.md` (project root) — Multi-Repository Architecture table cross-reference.
+
+---
 
 ## 5. SOURCE METADATA
 

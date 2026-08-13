@@ -11,6 +11,8 @@ description: "Python and Node utilities shared across every /create:* command: t
 
 `shared/scripts/` holds the validators and helpers every `/create:*` command and CI gate in `sk-doc` builds on, rather than each command reimplementing its own copy. `validate_document.py` is the floor template validator invoked by every other package's README and document checks. The naming guards, the frontmatter versioning engine and the semantic rename toolchain are grouped here because they apply repo-wide, not to one command's output.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -40,6 +42,8 @@ description: "Python and Node utilities shared across every /create:* command: t
 | `rename_tooling_fixture_harness.py` | CLI that runs the semantic-rename fixture corpus against disposable Git repositories only. |
 | `rename_tooling_fixture_core.py` | Core harness that runs rename and reference-checker scenarios from declarative fixture data, never touching the real worktree. |
 
+---
+
 ## 3. VALIDATION
 
 Run from the repository root.
@@ -52,6 +56,8 @@ bash .opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
 ```
 
 Expected result: `validate_document.py` exits 0 on a valid document, 1 on blocking errors and 2 on a missing file or parse error. The naming guards exit 0 when clean and 1 with offenders printed otherwise.
+
+---
 
 ## 4. RELATED
 

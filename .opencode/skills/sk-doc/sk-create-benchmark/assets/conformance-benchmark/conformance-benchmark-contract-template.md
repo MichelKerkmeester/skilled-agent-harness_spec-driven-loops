@@ -46,6 +46,8 @@ named `{{AUTHORITY}}` authority through the `{{ADAPTER}}` peer adapter. Its purp
 is {{PURPOSE_AND_DECISION_THIS_BENCHMARK_SUPPORTS}}. The contract fixes inputs and
 interpretation boundaries; it does not implement or run the check.
 
+---
+
 ## 2. SCOPE AND CANONICAL CORPUS
 
 | Field | Value |
@@ -61,6 +63,8 @@ interpretation boundaries; it does not implement or run the check.
 The canonical source and selection rule decide membership. A copied artifact
 count is evidence about one revision, not a substitute source of truth.
 
+---
+
 ## 3. LANE BINDING
 
 | Lane field | Value |
@@ -75,6 +79,8 @@ count is evidence about one revision, not a substitute source of truth.
 
 The adapter is a peer selector under an existing authority and artifact class.
 It does not create a new deep-alignment authority or artifact-class value.
+
+---
 
 ## 4. ADAPTER-OWNED DIMENSIONS AND SEVERITIES
 
@@ -100,6 +106,8 @@ Finding codes, dimension assignment, severity assignment, and known-deviation
 semantics remain adapter-owned. A package update may refresh these links but may
 not substitute local definitions.
 
+---
+
 ## 5. FIXTURE POLICY
 
 - **Manifest:** [`fixtures/fixture-manifest.json`](./fixtures/fixture-manifest.json).
@@ -118,6 +126,8 @@ Expected outcomes come from the independent oracle, never from a production
 adapter run. The stable package may carry oracle provenance and expected outcomes;
 the oracle implementation remains spec- or lane-owned.
 
+---
+
 ## 6. EXECUTION INPUTS
 
 | Input | Location | Required state |
@@ -134,6 +144,8 @@ Execution command:
 ```bash
 {{EXECUTION_COMMAND_WITH_LANE_CONFIG_SPEC_FOLDER_AND_EVIDENCE_LOCATION}}
 ```
+
+---
 
 ## 7. VALIDITY GATES
 
@@ -165,6 +177,8 @@ P0/P1/P2 contracts. A subject pass is no such findings over the complete declare
 corpus. `adapter-error`, incomplete coverage, corrupt evidence, or an oracle
 mismatch is an instrument failure, never a subject finding.
 
+---
+
 ## 8. EVIDENCE LOCATION
 
 Stable inputs live in this mode-owned package. Run evidence lives at
@@ -172,6 +186,8 @@ Stable inputs live in this mode-owned package. Run evidence lives at
 including transcripts, state, raw deltas, reduced reports, and generated
 scorecards. The accepted run identity is `{{RUN_ID_OR_PENDING}}`; its input hash is
 `{{INPUT_HASH_OR_PENDING}}`.
+
+---
 
 ## 9. OWNERSHIP BOUNDARY
 
@@ -188,6 +204,8 @@ It does **not** own or template:
 Those remain with the selected adapter, deep-alignment engine, independent oracle,
 or executing spec phase. Cross-link them; do not copy their implementation or
 measurement contracts here.
+
+---
 
 ## 10. RELATED RESOURCES
 

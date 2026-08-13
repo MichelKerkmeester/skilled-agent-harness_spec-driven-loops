@@ -16,6 +16,8 @@ Probe the exact documentation/runtime mismatch: `devin --help` prints `smart`, w
 
 Permission-mode routing is safety-critical. Treating a help-only value as executable can make a dispatcher believe it selected a policy that the binary did not accept.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Reproduce and document the mismatch between help output and runtime validation.
@@ -25,6 +27,8 @@ Permission-mode routing is safety-critical. Treating a help-only value as execut
 - Expected signals: Help contains `smart`; the `smart` invocation is rejected by the binary; a `normal` control invocation succeeds if authenticated.
 - Desired user-visible outcome: The route documents `smart` as invalid for this installed version and uses only verified values.
 - Pass/fail: PASS when help advertises but runtime rejects `smart`; FAIL if the test reports `smart` as accepted without evidence; SKIP only when the binary cannot be invoked.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -36,6 +40,8 @@ Permission-mode routing is safety-critical. Treating a help-only value as execut
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | DV-004 | `devin -p ... --permission-mode smart` | Help mentions `smart`; runtime rejects it | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -51,6 +57,8 @@ Permission-mode routing is safety-critical. Treating a help-only value as execut
 |---|---|
 | `../../references/cli-reference.md` | Permission-mode reference, reconciled against live facts |
 | `../../SKILL.md` | Explicit-mode dispatch rule |
+
+---
 
 ## 5. SOURCE METADATA
 

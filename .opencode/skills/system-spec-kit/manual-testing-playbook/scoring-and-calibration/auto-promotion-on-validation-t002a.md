@@ -60,6 +60,8 @@ Tier change log + throttle enforcement evidence + promotion audit trail
 
 Verify promotion threshold configuration → Check throttle window duration → Inspect audit logging
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/auto-promotion-on-validation.md](../../feature-catalog/scoring-and-calibration/auto-promotion-on-validation.md)

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Combo Test Matrix + Ambient-Config Isolation"
-description: "Closing the fan-out parity packet: the combo coverage matrix (log every skip) and the cross-cutting ambient-config isolation tracked from phases 003-004. Leaf 1 (read-only pi disables auto-loaded extensions/skills/templates) is built and gated; the combo matrix and cursor/devin/MCP isolation remain."
+description: "All three executor-parity leaves are built: read-only pi disables ambient extensions, the combo matrix covers 117 combinations, and cursor uses a fail-closed neutral workspace. Strict closeout and operator sign-off remain."
 trigger_phrases:
   - "combo matrix ambient isolation progress"
   - "pi no-extensions read-only builder"
@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parit
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix"
-    last_updated_at: "2026-07-29T15:45:00Z"
+    last_updated_at: "2026-08-11T14:03:33Z"
     last_updated_by: "claude"
     recent_action: "Fixed the two SOL P1s on the cursor isolation leaf"
-    next_safe_action: "Land leaf 3, close 005, then do 006 docs closeout"
+    next_safe_action: "Pass strict validation and obtain operator sign-off."
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |---|---|
 | **Spec Folder** | 005-combo-test-matrix |
-| **Completed** | In progress (leaf 1 of 3 built) |
+| **Delivery status** | All three leaves built; strict closeout and operator sign-off remain |
 | **Level** | 2 |
 | **Status** | In Progress |
 | **Posture** | Layered read-only containment: tool allowlist + disable write-capable ambient lifecycle |
@@ -130,7 +130,7 @@ Leaf 1 is a small, exact-arg-test-guarded shared-builder change, verified inline
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-The combo coverage matrix (leaf 2) and the cursor/devin/MCP ambient-config isolation (leaf 3) are not yet built. Cursor hooks and MCP, and devin config, need a config/workspace-level isolation because those CLIs read ambient config from the working directory with no per-invocation disable flag; the mechanism (neutral workspace + add-dir, isolated config dir, or a hooks-disable env) is an open question to resolve in leaf 3, validated not to break legitimate read access.
+Live provider/model dispatch remains credentials-gated, so the 117-cell matrix proves command construction and records explicit live skips rather than claiming every provider was contacted. Strict packet validation and operator sign-off remain open closeout gates.
 <!-- /ANCHOR:limitations -->
 
 <!-- ANCHOR:deviations -->

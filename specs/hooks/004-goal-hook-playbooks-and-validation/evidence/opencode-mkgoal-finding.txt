@@ -1,0 +1,35 @@
+=== OpenCode-native mk-goal: live headless validation NOT achievable (a finding) ===
+
+mk-goal (.opencode/plugins/mk-goal.js) is the OpenCode-native goal plugin — a SEPARATE
+system from the cross-runtime port under .opencode/hooks/goal/. It stores per-OpenCode-
+session state (filename = hex(sessionID) + .json under .opencode/skills/.goal-state/) and
+injects the active goal via `experimental.chat.system.transform`.
+
+Attempted live validation via `opencode run` with two cheap models; both failed for the
+SAME structural reason, not a model weakness:
+
+1. `mk_goal` TOOL IS NOT EXPOSED IN HEADLESS `opencode run`.
+   - gpt-5.6-luna turn 1: referenced mk_goal but never executed a set (no goal persisted).
+   - deepseek-v4-pro turn 1 (explicit set instruction): replied verbatim
+     "The `mk_goal` tool is not available in my tool set. I cannot call tools that don't exist."
+     Tool calls made: (none).
+   => The default headless-run agent does not surface the plugin's mk_goal / mk_goal_status tools.
+
+2. THE INJECTION TRANSFORM DOES NOT FIRE IN `opencode run --session` EVEN WITH ACTIVE STATE.
+   - Pre-seeded a valid ACTIVE mk-goal state file for session ses_052ccc813ffevaYQ2B6HW1aC2p
+     (canary GOALCANARY-CO-1010816640), replicating the shipped schema exactly, then resumed
+     that session with `opencode run --session ... deepseek-v4-pro "what is my active goal?"`.
+   - turn 2 result: [active_goal] occurrences = 0, canary occurrences = 0; model said NONE.
+   => `experimental.chat.system.transform` is not exercised by headless `opencode run`
+     (it is interactive/TUI-scoped, or the plugin's transform path does not run in `run` mode).
+
+CONCLUSION: mk-goal's injection is designed for and exercised in INTERACTIVE OpenCode
+(TUI/serve) sessions, which are not scriptable in this environment. A live headless proof
+via `opencode run` is not achievable. mk-goal's setGoal / injection / lifecycle / supervisor
+behavior is covered by its 7 committed unit suites (.opencode/plugins/tests/mk-goal-*.test.cjs).
+
+This is orthogonal to packet 003: the cross-runtime hooks (Pi/Devin/Cursor) read a shared
+state file the manage CLI controls, so they ARE live-validatable headless — and were
+(Pi + Devin POSITIVE, Cursor RECORDED-EVIDENCE). mk-goal is the pre-existing native system.
+
+(No paid model behaved incorrectly; the limitation is the headless run surface, not the model.)

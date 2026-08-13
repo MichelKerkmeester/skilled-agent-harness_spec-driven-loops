@@ -130,6 +130,8 @@ Node.js v22.23.1
 
 Inspect `scripts/evals/map-ground-truth-ids.ts`, `scripts/evals/run-ablation.ts`, ground-truth/eval DB initialization, and channel parsing if provenance, gating, or artifact persistence regresses
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/eval-runner-cli.md](../../feature-catalog/tooling-and-scripts/eval-runner-cli.md)

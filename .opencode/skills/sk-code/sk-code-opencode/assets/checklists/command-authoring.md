@@ -39,7 +39,7 @@ This checklist keeps user-invoked commands consistent with the two live command 
 - [ ] For YAML-router commands, verify real assets such as `.opencode/commands/create/assets/create-skill-auto.yaml`, `.opencode/commands/create/assets/create-skill-confirm.yaml`, and `.opencode/commands/create/assets/create-skill-presentation.txt`.
 - [ ] For contract-renderer commands, verify the rendered contract source such as `.opencode/commands/deep/assets/compiled/deep-research.contract.md` and workflow assets such as `.opencode/commands/deep/assets/deep-research-auto.yaml`.
 - [ ] Confirm command scope, required user inputs, dispatch targets, and file-write authority.
-- [ ] Check command runtime parity with `ls -la .claude/commands`: `.claude/commands` is a symlink to `../.opencode/commands`, so command parity is automatic through the repo-level symlink.
+- [ ] Classify the command's runtime scope, then run the mirror generator. `.claude/commands` is a real filtered tree of per-command symlinks, so OpenCode-only commands must be excluded deliberately.
 - [ ] Do not mirror commands into `.opencode/prompts/`; that path is not present in this workspace.
 - [ ] Confirm the command does not bypass skill-owned workflows for deep research, deep review, memory save, or spec folder writes.
 
@@ -55,7 +55,7 @@ This checklist keeps user-invoked commands consistent with the two live command 
 4. For YAML-router commands, add or update presentation and workflow assets under the command asset directory.
 5. For contract-renderer commands, keep the wrapper minimal and update the rendered contract source or deep-loop runtime assets instead of duplicating behavior in the wrapper.
 6. Reference the owning skill and any agent dispatch contracts by exact path or command name.
-7. Rely on the `.claude/commands` symlink for Claude parity; do not add manual command mirrors or `.opencode/prompts` entries.
+7. Run `node .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs` for Claude parity; do not add manual command mirrors or `.opencode/prompts` entries.
 8. Validate links, command examples, contract-renderer references, and YAML workflow references.
 
 ---
@@ -66,7 +66,7 @@ This checklist keeps user-invoked commands consistent with the two live command 
 - [ ] grep verification for command frontmatter: `rg -n "^(description|argument-hint|allowed-tools):" .opencode/commands/create/skill.md .opencode/commands/speckit/complete.md .opencode/commands/deep/research.md`.
 - [ ] grep verification for YAML-router assets: `rg -n "create_skill_(auto|confirm)\\.yaml|speckit_complete_(auto|confirm)\\.yaml|presentation" .opencode/commands/create/skill.md .opencode/commands/speckit/complete.md`.
 - [ ] grep verification for contract-renderer commands: `rg -n "render-command-contract\\.cjs|deep/research" .opencode/commands/deep/research.md .opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs`.
-- [ ] Symlink parity check: `ls -la .claude/commands` must show `../.opencode/commands`; `ls -la .opencode/prompts` should fail because that path is absent.
+- [ ] Filtered parity check: `.claude/commands` is a real directory, each shared command is a symlink, excluded commands are absent, and `sync-runtime-mirrors.cjs --check` exits 0. `.opencode/prompts` should remain absent.
 
 ---
 
@@ -75,5 +75,5 @@ This checklist keeps user-invoked commands consistent with the two live command 
 - YAML-router examples: `.opencode/commands/create/skill.md`, `.opencode/commands/speckit/complete.md`
 - Contract-renderer example: `.opencode/commands/deep/research.md`
 - Renderer: `.opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs`
-- Command parity path: `.claude/commands` symlink to `../.opencode/commands`
+- Command parity path: generated per-command symlinks under `.claude/commands`
 - Verification recipes: `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/universal-checklist.md`

@@ -19,11 +19,15 @@ Current state:
 - Conflict warnings: `findInlineConflictWarnings` flags result pairs whose documents `contradicts` or `supersedes` each other before a caller applies them.
 - `__testables` exposes internal state resets for tests only.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
 |------|---------|
 | `retrieval-observability.ts` | All ranker-trace, vector-degradation, maintenance-run and conflict-warning observability state and accessors. |
+
+---
 
 ## 3. CONSUMERS
 
@@ -32,9 +36,13 @@ Current state:
 - `lib/embedders/reindex.ts`
 - `handlers/embedder-status.ts`, `handlers/memory-embedding-reconcile.ts`, `handlers/memory-index.ts`, `handlers/memory-search.ts`, `handlers/memory-crud-health.ts`
 
+---
+
 ## 4. TESTS
 
 - `tests/openltm-retrieval-observability.vitest.ts`
+
+---
 
 ## 5. RELATED
 

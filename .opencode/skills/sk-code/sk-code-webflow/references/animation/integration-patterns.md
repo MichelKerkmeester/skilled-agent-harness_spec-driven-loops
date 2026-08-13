@@ -59,6 +59,8 @@ Motion's quick start documents script-tag usage for basic HTML pages and no-code
 
 External/historical anchor: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js` destructures `animate` from `window.Motion || {}` and exits with a warning if it is unavailable.
 
+---
+
 ## 3. NPM / ES MODULES
 
 Bundled projects should use package imports so the bundler can resolve dependencies and tree-shake where possible (Source: https://motion.dev/docs/quick-start, https://motion.dev/docs/animate).
@@ -72,6 +74,8 @@ import { animate, inView, motionValue, scroll } from "motion";
 ```
 
 External/historical anchor: `a_nobel_en_zn/2_javascript/slider/testimonial.js` uses a dynamic import from a pinned CDN ESM URL as a Webflow-friendly fallback, then patches `window.Motion` with `animate`, `inView`, `scroll`, and `motionValue`.
+
+---
 
 ## 4. WEBFLOW-CDN-SPECIFIC NOTES
 
@@ -89,12 +93,16 @@ Webflow patterns in this repo include:
 
 External/historical anchors: `a_nobel_en_zn/2_javascript/molecules/link_grid.js`, `a_nobel_en_zn/2_javascript/molecules/link_hero.js`, `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`.
 
+---
+
 ## 5. NON-WEBFLOW STACKS
 
 Use the stack's native client-only lifecycle:
 - Bundled SPA/MPA: import from `"motion"` inside client-side modules (Source: https://motion.dev/docs/quick-start).
 - SSR/hydrated UI: defer DOM-targeting `animate()`, `scroll()`, `hover()`, and `inView()` until the client has `window` and DOM nodes available. This follows the browser API requirements implied by those functions accepting DOM selectors/elements (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview, https://motion.dev/docs/hover).
 - Bundle-sensitive UI: use `motion/mini` when only mini-supported HTML/SVG style animation is needed (Source: https://motion.dev/docs/animate).
+
+---
 
 ## 6. INITIALIZATION SAFEGUARDS
 
@@ -143,6 +151,8 @@ export function init_motion_component(root = document) {
   return animate(target, { opacity: [0, 1] }, { duration: 0.25 });
 }
 ```
+
+---
 
 ## 7. REFERENCES AND RELATED RESOURCES
 

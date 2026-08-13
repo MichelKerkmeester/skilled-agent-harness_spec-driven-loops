@@ -10,6 +10,8 @@ version: 3.5.0.3
 
 Verify language sub-detection for `.json` / `.jsonc` files within OPENCODE. Config ref set loads; other sub-language sets do not.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: Add a derived metadata field to a packet's graph-metadata.json.
@@ -34,6 +36,8 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 
 **Expected NOT loaded**: any `sk-code-opencode/references/{typescript,python,shell}/*`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -57,10 +61,14 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 1. Verify `.json` and `.jsonc` are mapped to CONFIG in SKILL.md sub-detection table.
 2. Verify the package descriptor / graph-metadata files are not accidentally classified as typescript by an over-broad TS marker.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
 - `.opencode/skills/sk-code/sk-code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`.
+
+---
 
 ## 5. SOURCE METADATA
 

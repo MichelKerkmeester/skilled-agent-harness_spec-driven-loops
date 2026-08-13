@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/007-fable-governor-pi-hook/007-dispatch-validation-evidence",
+  "spec_folder": "hooks/007-fable-governor-pi-hook/007-dispatch-validation-evidence",
+  "parent_id": "hooks/007-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dispatch validation evidence",
+      "Pi tool_call coverage",
+      "full corpus Vitest baseline",
+      "test evidence reconciliation",
+      "dispatch evidence plan",
+      "Pi factory test plan",
+      "Vitest corpus baseline plan",
+      "dispatch evidence tasks",
+      "Pi factory evidence",
+      "Vitest baseline tasks",
+      "dispatch evidence checklist",
+      "Pi tool_call verification"
+    ],
+    "key_topics": [
+      "dispatch",
+      "validation",
+      "evidence",
+      "coverage",
+      "full",
+      "corpus",
+      "vitest",
+      "baseline",
+      "test",
+      "reconciliation",
+      "plan",
+      "factory"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "evidence/full-corpus-baseline.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "full-corpus-baseline.md",
+        "kind": "doc",
+        "path": "evidence/full-corpus-baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Validation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Corpus Baseline",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Capture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet currently mixes pure predicate assertions, shared matcher tests, registered Pi behavior, and live startup into one evidence story",
+    "created_at": "2026-08-04T17:57:54Z",
+    "last_save_at": "2026-08-11T06:50:05.873Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a514aeeb6acf0fc75ab85bfe7035e6e042e7880c6edd4a53f203e82cc41acbea",
+    "source_doc_hashes": {
+      "spec.md": "5ce0d4808313fe7a973f6010777a6867224f1633778dccb02bcaa5c027830770",
+      "plan.md": "08b378bc34d9e9f9f9bbdd2f9fba412fe460f838b6896f693453cf509407bb88",
+      "tasks.md": "78589d0fe093aec729ed1bb12fe346bd653354ec35fa238714ec122e612420cd",
+      "checklist.md": "cb458b09674af86b207ed736e69a246a81ab4026b59d769ff749eb234c02fd7c",
+      "implementation-summary.md": "9589af57f34895b2d150ce07575cb6e246e0c896d597dc17f95b2689233bf2ee"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

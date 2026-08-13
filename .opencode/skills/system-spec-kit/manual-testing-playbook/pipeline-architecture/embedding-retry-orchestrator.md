@@ -62,6 +62,8 @@ Save/index transcript during outage + pending status evidence + retry-manager ru
 
 Inspect retry-manager batch selection and backoff logic; verify embedding cache reuse; check pending-status persistence during fallback; confirm retry success path clears stale vector rows and writes refreshed embeddings
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/embedding-retry-orchestrator.md](../../feature-catalog/pipeline-architecture/embedding-retry-orchestrator.md)

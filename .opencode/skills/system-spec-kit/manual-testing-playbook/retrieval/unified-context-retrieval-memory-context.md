@@ -90,6 +90,8 @@ memory_context responses for all three budgets with envelope fields highlighted
 
 Inspect `mcp-server/handlers/memory-context.ts` token-budget enforcement path and the envelope serializer; confirm packet 003 dist marker present
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/unified-context-retrieval-memorycontext.md](../../feature-catalog/retrieval/unified-context-retrieval-memorycontext.md)

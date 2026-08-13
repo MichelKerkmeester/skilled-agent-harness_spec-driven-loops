@@ -17,6 +17,8 @@ Either is acceptable IF the chosen behavior is documented in SKILL.md. What is N
 
 > **Note**: This scenario was the validation target for F-NEW-001 from the 2026-05-04 deep-review iteration. SKILL.md smart router pseudocode previously had a precedence bug (WEBFLOW markers capturing OPENCODE-targeted prompts; unconditional `SURFACE="UNKNOWN"` overwriting prior matches). **REMEDIATED 2026-05-04**: pseudocode restructured with explicit `if/elif/else` precedence — OPENCODE target/CWD wins over WEBFLOW markers. This scenario now exercises the documented precedence (Outcome A).
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants to add Lenis smooth-scroll to a local preview server's index page (the preview server is itself an `.opencode/` system tool).
@@ -37,6 +39,8 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 **Outcome B (clarification ask)**: sk-code reports `SURFACE: AMBIGUOUS` and asks: "Is this an OpenCode internal tool (use OPENCODE) or a Webflow shipping artifact you happened to place under `.opencode/` (use WEBFLOW)?"
 
 **Unacceptable**: Silent choice (e.g. WEBFLOW silently wins because of marker order in pseudocode) without documenting the precedence.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -65,11 +69,15 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 2. If OPENCODE silently wins WITH no documentation: add the precedence rule to SKILL.md "Smart Router" section.
 3. If AMBIGUOUS but no clarification question: the router is detecting ambiguity but not surfacing it. Verify the disambiguation-question rule is documented.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` §2 "Code Surface Detection (FIRST)" — post-remediation pseudocode with explicit if/elif/else precedence.
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` §2 "DETECTION ORDER" — post-remediation precedence wording + new mixed-marker test case in §4 TEST CASES.
 - Internal design notes — F-NEW-001 source (historical gpt-5.5 high adversarial pass).
+
+---
 
 ## 5. SOURCE METADATA
 

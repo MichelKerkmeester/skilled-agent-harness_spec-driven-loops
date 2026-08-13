@@ -24,12 +24,16 @@ The pilot behind spec 143 proved two things about benchmark-driven improvement: 
 | **Held-out** | grader only | promotion gates | the proposer NEVER sees ids, prompts or seeds; promotion requires non-regression here, not on visible fixtures |
 | **Gold** (optional) | humans + grader | grader calibration | human-anchored target scores, version-locked; never optimized against |
 
+---
+
 ## 2. HELD-OUT RULES
 
 1. **Gradeable, always.** Every held-out fixture must produce a delimited deliverable (`<DELIVERABLE>` contract). Interactive fixtures that answer with a clarifying question are ungradeable and turn into false gate failures (teaching T6). Gate lists with `scripts/shared/fixture-lint.cjs` before any paid dispatch.
 2. **Dimension-sensitive.** Prefer held-out fixtures that are maximally sensitive to the dimensions being optimized (the pilot's stat-centric fixture collapsed under a no-stats deficit, which is exactly what made its signal decisive).
 3. **Unpublished seeds.** Adversarial seeds and expected answers must not live in files the proposer reads. If a fixture's tricks are enumerated in-repo, it is a visible fixture by definition.
 4. **N-sample evidence.** Single runs are stochastic (teaching T4; one fixture swung 16 to 22 across runs). Held-out gating uses N >= 3 sample averages with all-samples pass semantics (`--samples` in Lane B).
+
+---
 
 ## 3. GOLD-SET RULES
 
@@ -41,6 +45,8 @@ A gold set anchors the GRADER, not the proposer: a small output set with human-a
 - Hard rules (banned vocabulary, structural rules) are checked by **deterministic code linters**, never by a model.
 - Grader replies follow a strict-JSON contract (single-line JSON, no fences); parsers stay tolerant and record explicit `grader_error` values — an auth failure must be diagnosable from the record, not parsed as a zero score (teaching T11).
 - Probe provider auth with one minimal dispatch before any multi-dispatch batch; an expired credential must fail the batch in one probe, not N grading calls.
+
+---
 
 ## 5. PHANTOM GAP
 

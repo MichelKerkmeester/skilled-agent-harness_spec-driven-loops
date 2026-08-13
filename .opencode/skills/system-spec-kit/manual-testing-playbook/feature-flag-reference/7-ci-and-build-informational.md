@@ -58,6 +58,8 @@ Search output
 
 Search CI scripts and runtime helpers
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/7-ci-and-build-informational.md](../../feature-catalog/feature-flag-reference/7-ci-and-build-informational.md)

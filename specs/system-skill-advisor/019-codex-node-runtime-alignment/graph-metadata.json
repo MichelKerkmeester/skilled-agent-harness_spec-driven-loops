@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/019-codex-node-runtime-alignment",
+  "spec_folder": "system-skill-advisor/019-codex-node-runtime-alignment",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Codex MCP startup interrupted",
+      "mk_skill_advisor failed to start",
+      "better-sqlite3 NODE_MODULE_VERSION 141",
+      "Codex advisor runtime plan",
+      "MCP initialize handshake verification",
+      "Codex MCP runtime alignment tasks",
+      "mk_skill_advisor startup repair",
+      "Codex skill advisor runtime fixed",
+      "mk_skill_advisor initialize passes",
+      "Codex MCP startup ABI alignment"
+    ],
+    "key_topics": [
+      "codex",
+      "mcp",
+      "startup",
+      "interrupted",
+      "failed",
+      "start",
+      "better-sqlite3",
+      "advisor",
+      "runtime",
+      "plan",
+      "initialize",
+      "handshake"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Codex Skill Advisor Node Runtime Alignment",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Launch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Altering Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Server",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inspect Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Codex",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Alignment The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Codex launches `mkskilladvisor` with Node 22, whose module ABI is 127",
+    "created_at": "2026-08-10T08:28:59Z",
+    "last_save_at": "2026-08-10T08:41:41.770Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4e9e493390c89a6881b4825be476765fa3b7088189c498a74d2f101fbc48c559",
+    "source_doc_hashes": {
+      "spec.md": "089a5f9b61515d642fcb860a489280d33f76942e0358e968af118960fbbfe5f9",
+      "plan.md": "a66b9221e29a4d6ecd36189756b0ad0f3dcafdfe137f3f23eda434f87766242c",
+      "tasks.md": "2c257d3150a176c50e5416d450d16dd4bdd60fd960d9efec73820f25365050e1",
+      "implementation-summary.md": "f57eff4b3914e369967092fa1ecebe918a283c9aaf96a9d157d5a8173de10a9c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

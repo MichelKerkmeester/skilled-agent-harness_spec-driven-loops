@@ -167,6 +167,8 @@ Observed comparison to Expected: the Expected signal was `MCP guardrails returne
 
 Verify in config files directly
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/3-mcp-configuration.md](../../feature-catalog/feature-flag-reference/3-mcp-configuration.md)

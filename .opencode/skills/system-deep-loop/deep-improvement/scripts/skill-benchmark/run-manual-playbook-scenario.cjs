@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const { parse } = require('./_args.cjs');
@@ -25,6 +26,7 @@ const TRACE_MODE = 'doc';
 const SCORING_METHOD = 'not-applicable-manual-outcome';
 const MANUAL_DIMENSION_STATUS = 'not-applicable-manual-outcome';
 const VERDICTS = new Set(['PASS', 'FAIL', 'SKIP']);
+const EVIDENCE_CLASSES = new Set(['unit', 'adapter-driven', 'registered-path', 'native-host-delivered']);
 const ARTIFACT_NAMES = [
   'skill-benchmark-report.json',
   'skill-benchmark-report.md',
@@ -64,6 +66,52 @@ function normalizeEvidence(value) {
   if (value == null || value === '') return [];
   if (Array.isArray(value)) return value.map((entry) => String(entry));
   return String(value).split(',').map((entry) => entry.trim()).filter(Boolean);
+}
+
+function evidenceArtifacts(evidence, executionContext, requireDurable) {
+  const requestedRoot = path.resolve(executionContext.evidenceRoot || process.cwd());
+  let evidenceRoot;
+  try {
+    evidenceRoot = fs.realpathSync(requestedRoot);
+  } catch {
+    if (requireDurable) throw fail('BAD_EVIDENCE', `evidence root is unavailable: ${requestedRoot}`);
+    return normalizeEvidence(evidence).map((source) => ({ path: source, status: 'unverified' }));
+  }
+  return normalizeEvidence(evidence).map((source) => {
+    const absolute = path.resolve(path.isAbsolute(source) ? source : path.join(evidenceRoot, source));
+    const relative = path.relative(evidenceRoot, absolute);
+    const withinRoot = relative !== '' && !relative.startsWith('..') && !path.isAbsolute(relative);
+    let descriptor = null;
+    try {
+      let current = evidenceRoot;
+      for (const segment of relative.split(path.sep)) {
+        current = path.join(current, segment);
+        if (fs.lstatSync(current).isSymbolicLink()) throw new Error('symlink evidence path');
+      }
+      const canonical = fs.realpathSync(absolute);
+      const canonicalRelative = path.relative(evidenceRoot, canonical);
+      if (!withinRoot || canonicalRelative.startsWith('..') || path.isAbsolute(canonicalRelative)) {
+        throw new Error('outside evidence root');
+      }
+      descriptor = fs.openSync(absolute, fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW);
+      const metadata = fs.fstatSync(descriptor);
+      if (!metadata.isFile() || metadata.nlink !== 1) throw new Error('unsafe evidence file');
+      const bytes = fs.readFileSync(descriptor);
+      return {
+        path: relative.split(path.sep).join('/'),
+        status: 'verified',
+        bytes: bytes.length,
+        sha256: crypto.createHash('sha256').update(bytes).digest('hex'),
+      };
+    } catch {
+      if (requireDurable) {
+        throw fail('BAD_EVIDENCE', `durable evidence must be an owned regular file beneath ${evidenceRoot}: ${source}`);
+      }
+      return { path: source, status: 'unverified' };
+    } finally {
+      if (descriptor !== null) fs.closeSync(descriptor);
+    }
+  });
 }
 
 function readOutcomeFile(args) {
@@ -171,32 +219,67 @@ function dimensionScores() {
   };
 }
 
-function buildReport({ skillRoot, variant, args, outcome }) {
+function buildReport({ skillRoot, variant, args, outcome, capturedAt }) {
   const contextInput = isObject(outcome.executionContext) ? outcome.executionContext : {};
+  const {
+    executor: claimedExecutor,
+    model: claimedModel,
+    ...contextRest
+  } = contextInput;
   const executorArg = argValue(args, 'executor');
   const modelArg = argValue(args, 'model');
-  const executor = contextInput.executor || (executorArg == null || executorArg === true
-    ? null
-    : String(executorArg));
-  const model = contextInput.model || (modelArg == null || modelArg === true
-    ? null
-    : String(modelArg));
+  const requestedExecutorLabel = claimedExecutor
+    || (executorArg == null || executorArg === true ? null : String(executorArg));
+  const requestedModelLabel = claimedModel
+    || (modelArg == null || modelArg === true ? null : String(modelArg));
+  const executor = contextInput.executorObserved === true && claimedExecutor ? String(claimedExecutor) : null;
+  const model = contextInput.modelObserved === true && claimedModel ? String(claimedModel) : null;
+  const evidenceClass = typeof contextInput.evidenceClass === 'string' ? contextInput.evidenceClass : '';
+  if (evidenceClass && !EVIDENCE_CLASSES.has(evidenceClass)) {
+    throw fail('BAD_OUTCOME', `unknown evidence class: ${evidenceClass}`);
+  }
+  const strictPass = outcome.verdict === 'PASS';
+  if (strictPass) {
+    const requiredStrings = ['command', 'runtime'];
+    for (const field of requiredStrings) {
+      if (typeof contextInput[field] !== 'string' || !contextInput[field].trim()) {
+        throw fail('BAD_OUTCOME', `PASS requires executionContext.${field}`);
+      }
+    }
+    if (!EVIDENCE_CLASSES.has(evidenceClass)) throw fail('BAD_OUTCOME', 'PASS requires a controlled evidenceClass');
+    if (contextInput.requireDurableEvidence !== true) throw fail('BAD_EVIDENCE', 'PASS requires durable evidence');
+    if (!contextInput.nodeVersion && !contextInput.runtimeVersion) throw fail('BAD_OUTCOME', 'PASS requires an observed runtime or Node version');
+    if (!contextInput.payloadFixture && !contextInput.payloadNotApplicableReason) throw fail('BAD_OUTCOME', 'PASS requires a payload fixture or reason');
+    if (!executor && !contextInput.executorNotApplicableReason) throw fail('BAD_OUTCOME', 'PASS requires observed executor provenance or reason');
+    if (!model && !contextInput.modelNotApplicableReason) throw fail('BAD_OUTCOME', 'PASS requires observed model provenance or reason');
+  }
+  const artifacts = evidenceArtifacts(outcome.evidence, contextInput, strictPass || contextInput.requireDurableEvidence === true);
+  if (strictPass && (artifacts.length === 0 || artifacts.some((artifact) => artifact.status !== 'verified'))) {
+    throw fail('BAD_EVIDENCE', 'PASS requires at least one verified evidence artifact');
+  }
+  const supersedes = normalizeEvidence(contextInput.supersedes);
   const executionContext = {
     traceMode: TRACE_MODE,
     scenarioId: outcome.scenarioId,
     stage: outcome.stage,
     dispatch: outcome.verdict === 'SKIP' ? 'none' : 'manual',
+    evidenceClass: evidenceClass || null,
     ...(executor ? { executor } : {}),
     ...(model ? { model } : {}),
+    ...(requestedExecutorLabel ? { requestedExecutorLabel } : {}),
+    ...(requestedModelLabel ? { requestedModelLabel } : {}),
     variant,
-    ...contextInput,
+    ...contextRest,
   };
 
   return {
     schemaVersion: 'skill-benchmark-report.v1',
     traceMode: TRACE_MODE,
     scoringMethod: SCORING_METHOD,
-    targetSkill: { id: path.basename(skillRoot), root: skillRoot },
+    targetSkill: {
+      id: path.basename(skillRoot),
+      rootRel: path.relative(process.cwd(), skillRoot).split(path.sep).join('/'),
+    },
     executor,
     model,
     variant,
@@ -216,9 +299,14 @@ function buildReport({ skillRoot, variant, args, outcome }) {
       providerModel: model,
       variant,
       evidence: outcome.evidence,
+      evidenceArtifacts: artifacts,
     }],
+    supersedes,
     provenance: {
       note: 'Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.',
+      capturedAt,
+      evidenceClass: executionContext.evidenceClass,
+      evidenceArtifacts: artifacts,
     },
     executionContext,
   };
@@ -287,6 +375,37 @@ function reserveFolder({ reportsDir, base, args }) {
   throw fail('COLLISION', `no free output folder for "${base}" after ${MAX_OUTPUT_ORDINAL} attempts`);
 }
 
+function updateSupersessionManifest(reportsDir, replacementFolder, report) {
+  if (!Array.isArray(report.supersedes) || report.supersedes.length === 0) return;
+  const manifestPath = path.join(reportsDir, 'supersession-manifest.json');
+  let manifest = { schemaVersion: 1, mappings: [] };
+  if (fs.existsSync(manifestPath)) {
+    const parsed = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    if (!isObject(parsed) || !Array.isArray(parsed.mappings)) throw fail('BAD_SUPERSESSION', 'invalid supersession manifest');
+    manifest = parsed;
+  }
+  const existing = new Set(manifest.mappings.map((entry) => `${entry.superseded}\u0000${entry.replacement}`));
+  for (const superseded of report.supersedes) {
+    const mapping = {
+      superseded,
+      replacement: replacementFolder,
+      capturedAt: report.provenance.capturedAt,
+      scenarioId: report.scenarioRows[0].scenarioId,
+    };
+    const key = `${mapping.superseded}\u0000${mapping.replacement}`;
+    if (!existing.has(key)) manifest.mappings.push(mapping);
+  }
+  manifest.mappings.sort((left, right) => left.superseded.localeCompare(right.superseded)
+    || left.replacement.localeCompare(right.replacement));
+  const temporary = `${manifestPath}.tmp-${process.pid}`;
+  try {
+    fs.writeFileSync(temporary, `${JSON.stringify(manifest, null, 2)}\n`, { encoding: 'utf8', mode: 0o600 });
+    fs.renameSync(temporary, manifestPath);
+  } finally {
+    if (fs.existsSync(temporary)) fs.unlinkSync(temporary);
+  }
+}
+
 function persistReport({ reportsDir, report, variant, args, now, skillRoot }) {
   const base = runFolderName({ now, subject: SUBJECT, variant: slugField(variant) });
   const reserved = reserveFolder({ reportsDir, base, args });
@@ -321,6 +440,7 @@ function persistReport({ reportsDir, report, variant, args, now, skillRoot }) {
     report,
     corpus,
   });
+  updateSupersessionManifest(reportsDir, reserved.folderName, report);
   return {
     folderPath: reserved.folderPath,
     folderName: reserved.folderName,
@@ -368,9 +488,15 @@ async function run(args = {}) {
     }
   } finally {
     const finalOutcome = finalizeOutcome(outcome, executionError, Boolean(executor));
-    const report = buildReport({ skillRoot, variant, args, outcome: finalOutcome });
     const rawNow = args.now == null ? new Date() : (args.now instanceof Date ? args.now : new Date(args.now));
     if (Number.isNaN(rawNow.getTime())) throw fail('BAD_LABEL', `invalid run timestamp: ${args.now}`);
+    const report = buildReport({
+      skillRoot,
+      variant,
+      args,
+      outcome: finalOutcome,
+      capturedAt: rawNow.toISOString(),
+    });
     const reportsDir = path.join(skillRoot, 'benchmark', 'reports');
     persisted = persistReport({ reportsDir, report, variant, args, now: rawNow, skillRoot });
   }

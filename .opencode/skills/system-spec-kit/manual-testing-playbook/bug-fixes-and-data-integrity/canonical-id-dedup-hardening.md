@@ -62,6 +62,8 @@ Dedup input (mixed IDs) + dedup output (canonical IDs) + SQL/test evidence for `
 
 Inspect canonical ID resolution logic → Check format normalization rules → Verify same-path lookup is split into direct probes → Confirm schema migration/index creation coverage
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md](../../feature-catalog/bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md)

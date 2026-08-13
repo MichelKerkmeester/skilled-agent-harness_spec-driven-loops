@@ -18,12 +18,16 @@ contextType: "reference"
 
 Each row below is one run folder. The first row is a hand-authored, derived-after-the-fact record — not a Lane C harness run — so it is dated by the day it was authored rather than a harness execution timestamp.
 
+---
+
 ## 2. RUN INDEX
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--claude/`](./2026-08-08--manual-testing-playbook--claude/) | claude claude-sonnet-5 claude | 1 SKIP | **SKIP** | `manual-testing-playbook` |
 | 2026-07-29 | [`2026-07-29--manual-testing-playbook--goal-hook/`](./2026-07-29--manual-testing-playbook--goal-hook/) | doc (hand-derived, no dispatch) | not recorded | **SKIP** | `CC-029` goal-hook manual-testing-playbook |
+
+---
 
 ## 3. STORAGE RULE
 

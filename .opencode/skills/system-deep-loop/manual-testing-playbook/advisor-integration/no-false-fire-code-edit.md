@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies that the deep-loop hub does not capture ordinary implementation work. A plain code-edit prompt should route to `sk-code`, not to `system-deep-loop`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer asks for a targeted code change with no iterative research, review, council, benchmark, or improvement-loop intent.
@@ -39,6 +41,8 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 - Registry evidence: every deep-loop mode requires a matching `workflowMode` such as `research`, `review`, `ai-council`, `agent-improvement`, `model-benchmark`, or `skill-benchmark`; the prompt does not express any of those controls.
 
 **Desired user-visible outcome**: The advisor or orchestrator routes the prompt to `sk-code` and does not load or invoke the deep-loop hub.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -78,10 +82,14 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 2. If `sk-code` does not win, inspect the advisor output for the competing top skill before changing any routing assets.
 3. If the orchestrator starts a loop, re-read the hub's When NOT to Use rule for single quick read/edit work.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - When NOT to Use and hub scope.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - finite list of deep-loop modes.
+
+---
 
 ## 5. SOURCE METADATA
 

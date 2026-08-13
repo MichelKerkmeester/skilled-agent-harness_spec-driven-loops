@@ -23,12 +23,14 @@ const {
   openSync,
   readdirSync,
   readFileSync,
+  realpathSync,
   renameSync,
+  rmdirSync,
   statSync,
   unlinkSync,
   writeSync,
 } = require('node:fs');
-const { dirname, join, resolve } = require('node:path');
+const { dirname, isAbsolute, join, relative, resolve, sep } = require('node:path');
 const { createHash, randomUUID } = require('node:crypto');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -41,10 +43,17 @@ const STATE_SUBDIR = '.opencode/skills/.goal-state';
 const LEGACY_STATE_FILENAME = 'active-goal.json';
 const ARCHIVE_SUBDIR = '.archive';
 const LEGACY_ARCHIVE_SUBDIR = '.legacy';
+const LOCK_SUBDIR = '.locks';
 const MAX_SESSION_ID_CHARS = 4096;
 const RUNTIME_NAMESPACE_PATTERN = /^[a-z][a-z0-9-]{0,63}$/;
-const SCOPED_KEY_PATTERN = /^[a-z][a-z0-9-]{0,63}-[a-f0-9]{64}$/;
-const SCOPED_STATE_PATTERN = /^[a-z][a-z0-9-]{0,63}-[a-f0-9]{64}\.json$/;
+const SCOPED_KEY_PATTERN = /^(?:[a-f0-9]{64}|[a-z][a-z0-9-]{0,63}-[a-f0-9]{64})$/;
+const SCOPED_STATE_PATTERN = /^(?:[a-f0-9]{64}|[a-z][a-z0-9-]{0,63}-[a-f0-9]{64})\.json$/;
+const SAFE_GOAL_ID_SEGMENT_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$/;
+const SAFE_ARCHIVE_FILENAME_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{0,254}$/;
+const LOCK_RETRY_MS = 10;
+const LOCK_TIMEOUT_MS = 10_000;
+const LOCK_STALE_MS = 120_000;
+const LOCK_WAIT_BUFFER = new Int32Array(new SharedArrayBuffer(4));
 
 const DEFAULT_MAX_OBJECTIVE_CHARS = 4000;
 const DEFAULT_MAX_GOAL_PROMPT_CHARS = 4000;
@@ -137,9 +146,10 @@ function resolveStateDir(rawOptions = {}) {
   const envDir = typeof process.env[STATE_DIR_ENV] === 'string' && process.env[STATE_DIR_ENV].trim();
   if (envDir) return resolve(envDir.trim());
   const explicitWorkspace = rawOptions.scope?.workspace ?? rawOptions.workspace;
-  const repoRoot = typeof explicitWorkspace === 'string' && explicitWorkspace.trim()
-    ? resolve(explicitWorkspace.trim())
-    : resolveRepoRoot(rawOptions.cwd || process.cwd());
+  const workspaceStart = typeof explicitWorkspace === 'string' && explicitWorkspace.trim()
+    ? explicitWorkspace.trim()
+    : rawOptions.cwd || process.cwd();
+  const repoRoot = resolveRepoRoot(workspaceStart);
   return join(repoRoot, STATE_SUBDIR);
 }
 
@@ -169,20 +179,29 @@ function resolveGoalScope(rawOptions = {}) {
 
   const runtime = normalizeRuntimeNamespace(rawScope.runtime);
   const rawWorkspace = rawScope.workspace ?? rawOptions.workspace;
-  const workspace = typeof rawWorkspace === 'string' && rawWorkspace.trim()
-    ? resolve(rawWorkspace.trim())
-    : resolveRepoRoot(rawOptions.cwd || process.cwd());
+  const workspaceStart = typeof rawWorkspace === 'string' && rawWorkspace.trim()
+    ? rawWorkspace.trim()
+    : rawOptions.cwd || process.cwd();
+  const workspace = resolveRepoRoot(workspaceStart);
   const stateDir = resolveStateDir({ ...rawOptions, scope: { ...rawScope, workspace } });
   const sessionDigest = createHash('sha256').update(sessionId, 'utf8').digest('hex');
-  const scopeKey = `${runtime}-${sessionDigest}`;
+  const legacyScopeKey = `${runtime}-${sessionDigest}`;
+  const scopeKey = createHash('sha256')
+    .update(JSON.stringify([workspace, runtime, sessionId]), 'utf8')
+    .digest('hex');
+  const workspaceStateDir = join(workspace, STATE_SUBDIR);
+  const canAdoptLegacyScope = resolve(stateDir) === resolve(workspaceStateDir);
   return Object.freeze({
     workspace,
     runtime,
     sessionDigest,
     scopeKey,
+    legacyScopeKey,
     stateDir,
     statePath: join(stateDir, `${scopeKey}.json`),
     archiveDir: join(stateDir, ARCHIVE_SUBDIR, scopeKey),
+    legacyScopedStatePath: canAdoptLegacyScope ? join(stateDir, `${legacyScopeKey}.json`) : null,
+    legacyScopedArchiveDir: canAdoptLegacyScope ? join(stateDir, ARCHIVE_SUBDIR, legacyScopeKey) : null,
   });
 }
 
@@ -274,7 +293,10 @@ function redactEvidence(value, maxChars = DEFAULT_MAX_EVIDENCE_CHARS) {
 }
 
 function normalizeGoalID(value) {
-  return sanitizeInlineText(value, GOAL_ID_MAX_CHARS).replace(/\s+/g, '-');
+  const normalized = sanitizeInlineText(value, GOAL_ID_MAX_CHARS).replace(/\s+/g, '-');
+  if (SAFE_GOAL_ID_SEGMENT_PATTERN.test(normalized)) return normalized;
+  const digest = createHash('sha256').update(String(value ?? ''), 'utf8').digest('hex');
+  return `goal-${digest}`;
 }
 
 function quoteValue(value) {
@@ -463,6 +485,107 @@ function verifyGoalHeuristic({ goal, transcriptText } = {}) {
 // 8. ATOMIC STATE I/O (fail-open)
 // ─────────────────────────────────────────────────────────────────────────────
 
+function isPathWithin(basePath, candidatePath) {
+  const relation = relative(basePath, candidatePath);
+  return relation === '' || (!relation.startsWith(`..${sep}`) && relation !== '..' && !isAbsolute(relation));
+}
+
+function resolveArchiveTarget(archiveRoot, stateDir, filename) {
+  if (!SAFE_ARCHIVE_FILENAME_PATTERN.test(filename)) {
+    throw new GoalError('INVALID_ARCHIVE_PATH', 'Archive filename is not a safe path segment');
+  }
+  ensureDir(stateDir);
+  ensureDir(archiveRoot);
+  const realStateDir = realpathSync(stateDir);
+  const realArchiveRoot = realpathSync(archiveRoot);
+  if (!isPathWithin(realStateDir, realArchiveRoot)) {
+    throw new GoalError('INVALID_ARCHIVE_PATH', 'Archive directory escapes the goal state root');
+  }
+  const targetPath = resolve(archiveRoot, filename);
+  if (dirname(targetPath) !== resolve(archiveRoot)) {
+    throw new GoalError('INVALID_ARCHIVE_PATH', 'Archive target escapes its archive namespace');
+  }
+  return targetPath;
+}
+
+function archiveFilenameForRecord(record) {
+  const goalSegment = normalizeGoalID(record?.goalId);
+  const recordDigest = createHash('sha256').update(JSON.stringify(record), 'utf8').digest('hex');
+  return `active-goal-${goalSegment}-${recordDigest}.json`;
+}
+
+function lockNameDigest(name) {
+  return createHash('sha256').update(String(name), 'utf8').digest('hex');
+}
+
+function acquireFileLock(stateDir, name) {
+  const lockRoot = join(stateDir, LOCK_SUBDIR);
+  mkdirSync(lockRoot, { recursive: true, mode: 0o700 });
+  const lockPath = join(lockRoot, `${lockNameDigest(name)}.lock`);
+  const deadlineMs = Date.now() + LOCK_TIMEOUT_MS;
+  while (true) {
+    try {
+      mkdirSync(lockPath, { mode: 0o700 });
+      return lockPath;
+    } catch (error) {
+      if (error?.code !== 'EEXIST') {
+        throw new GoalError('GOAL_LOCK_FAILED', `Failed to acquire goal-state lock: ${error.message}`);
+      }
+    }
+
+    try {
+      if (Date.now() - statSync(lockPath).mtimeMs > LOCK_STALE_MS) {
+        rmdirSync(lockPath);
+        continue;
+      }
+    } catch (error) {
+      if (error?.code === 'ENOENT') continue;
+    }
+
+    if (Date.now() >= deadlineMs) {
+      throw new GoalError('GOAL_LOCK_TIMEOUT', 'Timed out waiting for a goal-state mutation lock');
+    }
+    Atomics.wait(LOCK_WAIT_BUFFER, 0, 0, LOCK_RETRY_MS);
+  }
+}
+
+function withFileLocks(stateDir, names, operation) {
+  const acquired = [];
+  try {
+    for (const name of [...new Set(names)].sort()) {
+      acquired.push(acquireFileLock(stateDir, name));
+    }
+    return operation();
+  } finally {
+    for (const lockPath of acquired.reverse()) {
+      try { rmdirSync(lockPath); } catch { /* a stale-lock reaper may already have removed it */ }
+    }
+  }
+}
+
+function adoptLegacyScopedState(goalScope) {
+  if (!goalScope.legacyScopedStatePath || existsSync(goalScope.statePath)) return;
+  try {
+    renameSync(goalScope.legacyScopedStatePath, goalScope.statePath);
+  } catch (error) {
+    if (error?.code !== 'ENOENT' && error?.code !== 'EEXIST') throw error;
+  }
+  if (!goalScope.legacyScopedArchiveDir || existsSync(goalScope.archiveDir)) return;
+  try {
+    renameSync(goalScope.legacyScopedArchiveDir, goalScope.archiveDir);
+  } catch (error) {
+    if (error?.code !== 'ENOENT' && error?.code !== 'EEXIST') throw error;
+  }
+}
+
+function withScopeMutation(rawOptions, operation) {
+  const goalScope = resolveGoalScope(rawOptions);
+  return withFileLocks(goalScope.stateDir, [`scope:${goalScope.scopeKey}`], () => {
+    adoptLegacyScopedState(goalScope);
+    return operation(goalScope);
+  });
+}
+
 function ensureDir(dir) {
   try {
     mkdirSync(dir, { recursive: true, mode: 0o700 });
@@ -495,13 +618,16 @@ function writeJsonAtomic(targetPath, record) {
 
 /** Fail-open read: any missing file, invalid scope, or parse error returns null. */
 function readGoalRecordForScope(goalScope) {
-  try {
-    const raw = readFileSync(goalScope.statePath, 'utf8');
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === 'object' ? parsed : null;
-  } catch {
-    return null;
+  for (const path of [goalScope.statePath, goalScope.legacyScopedStatePath].filter(Boolean)) {
+    try {
+      const raw = readFileSync(path, 'utf8');
+      const parsed = JSON.parse(raw);
+      return parsed && typeof parsed === 'object' ? parsed : null;
+    } catch {
+      continue;
+    }
   }
+  return null;
 }
 
 function readGoalRecord(rawOptions = {}) {
@@ -517,21 +643,22 @@ function archiveGoalRecord(record, goalScope) {
   if (!record || !record.goalId) return;
   try {
     ensureDir(goalScope.archiveDir);
-    writeJsonAtomic(
-      join(goalScope.archiveDir, `active-goal-${normalizeGoalID(record.goalId)}.json`),
-      record,
-    );
+    const filename = archiveFilenameForRecord(record);
+    const targetPath = resolveArchiveTarget(goalScope.archiveDir, goalScope.stateDir, filename);
+    writeJsonAtomic(targetPath, record);
   } catch {
     // Archiving is best-effort; never block the mutation it precedes.
   }
 }
 
 function removeStateFile(goalScope) {
-  try {
-    unlinkSync(goalScope.statePath);
-  } catch (error) {
-    if (error?.code !== 'ENOENT') {
-      throw new GoalError('CLEAR_GOAL_FAILED', `Failed to clear goal state: ${error.message}`);
+  for (const path of [goalScope.statePath, goalScope.legacyScopedStatePath].filter(Boolean)) {
+    try {
+      unlinkSync(path);
+    } catch (error) {
+      if (error?.code !== 'ENOENT') {
+        throw new GoalError('CLEAR_GOAL_FAILED', `Failed to clear goal state: ${error.message}`);
+      }
     }
   }
 }
@@ -572,23 +699,25 @@ function inspectLegacyGoal(rawOptions = {}) {
 
 function resolveLegacyArchiveTarget(snapshot, rawOptions = {}) {
   const archiveRoot = legacyArchiveDir(rawOptions);
+  const stateDir = resolveStateDir(rawOptions);
   const digest = createHash('sha256').update(snapshot.raw || '', 'utf8').digest('hex');
   const stem = snapshot.status === 'valid'
     ? `active-goal-${normalizeGoalID(snapshot.goal.goalId)}`
     : `active-goal-malformed-${digest}`;
-  const primaryPath = join(archiveRoot, `${stem}.json`);
+  const primaryFilename = `${stem}.json`;
+  const primaryPath = resolveArchiveTarget(archiveRoot, stateDir, primaryFilename);
   if (!existsSync(primaryPath)) {
-    return { archiveRoot, archivePath: primaryPath, archiveFilename: `${stem}.json`, alreadyArchived: false };
+    return { archiveRoot, archivePath: primaryPath, archiveFilename: primaryFilename, alreadyArchived: false };
   }
   try {
     if (readFileSync(primaryPath, 'utf8') === snapshot.raw) {
-      return { archiveRoot, archivePath: primaryPath, archiveFilename: `${stem}.json`, alreadyArchived: true };
+      return { archiveRoot, archivePath: primaryPath, archiveFilename: primaryFilename, alreadyArchived: true };
     }
   } catch {
     // A distinct fallback filename keeps an existing archive untouched.
   }
   const fallbackFilename = `${stem}-${digest}.json`;
-  const fallbackPath = join(archiveRoot, fallbackFilename);
+  const fallbackPath = resolveArchiveTarget(archiveRoot, stateDir, fallbackFilename);
   if (existsSync(fallbackPath)) {
     try {
       if (readFileSync(fallbackPath, 'utf8') === snapshot.raw) {
@@ -643,82 +772,88 @@ function quarantineLegacySnapshot(snapshot, rawOptions = {}) {
 function migrateLegacyGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
   const goalScope = resolveGoalScope(rawOptions);
-  const snapshot = inspectLegacyGoal(rawOptions);
-  if (!snapshot.present) {
-    return {
-      migrated: false,
-      reason: 'no_legacy_state',
-      record: null,
-      archiveFilename: null,
-      archivePath: null,
+  return withFileLocks(goalScope.stateDir, ['legacy-singleton', `scope:${goalScope.scopeKey}`], () => {
+    adoptLegacyScopedState(goalScope);
+    const snapshot = inspectLegacyGoal(rawOptions);
+    if (!snapshot.present) {
+      return {
+        migrated: false,
+        reason: 'no_legacy_state',
+        record: null,
+        archiveFilename: null,
+        archivePath: null,
+      };
+    }
+    if (snapshot.status !== 'valid') {
+      throw new GoalError('LEGACY_GOAL_MALFORMED', 'Legacy goal state is not a valid migratable record');
+    }
+    if (!['active', 'paused'].includes(snapshot.goal.status)) {
+      throw new GoalError('LEGACY_GOAL_NOT_ACTIVE', 'Only active or paused legacy goals can migrate to a live session');
+    }
+    if (existsSync(goalScope.statePath)) {
+      throw new GoalError('TARGET_SCOPE_OCCUPIED', 'The target session already has goal state');
+    }
+
+    const objective = sanitizeInlineText(snapshot.goal.objective, DEFAULT_MAX_OBJECTIVE_CHARS);
+    if (!objective) throw new GoalError('LEGACY_GOAL_MALFORMED', 'Legacy goal objective is invalid');
+    const nowMsValue = Date.now();
+    const promptRuntimeLabel = rawOptions.runtimeLabel || goalScope.runtime;
+    const baseRecord = buildNewRecord(
+      objective,
+      buildGoalPrompt(objective, { runtimeLabel: promptRuntimeLabel }),
+      snapshot.goal.tokenBudget ?? null,
+      goalScope.runtime,
+      nowMsValue,
+    );
+    const record = {
+      ...baseRecord,
+      ...snapshot.goal,
+      goalId: normalizeGoalID(snapshot.goal.goalId),
+      objective,
+      goalPrompt: buildGoalPrompt(objective, { runtimeLabel: promptRuntimeLabel }),
+      status: snapshot.goal.status,
+      runtime: goalScope.runtime,
+      usageSource: snapshot.goal.usageSource || USAGE_SOURCE,
+      updatedAt: isoFromMs(nowMsValue),
+      updatedAtMs: nowMsValue,
+      lastActivityAtMs: nowMsValue,
+      revision: (Number.isFinite(snapshot.goal.revision) ? snapshot.goal.revision : 0) + 1,
+      migrationSource: 'legacy-singleton',
+      migratedAt: isoFromMs(nowMsValue),
+      migratedAtMs: nowMsValue,
     };
-  }
-  if (snapshot.status !== 'valid') {
-    throw new GoalError('LEGACY_GOAL_MALFORMED', 'Legacy goal state is not a valid migratable record');
-  }
-  if (!['active', 'paused'].includes(snapshot.goal.status)) {
-    throw new GoalError('LEGACY_GOAL_NOT_ACTIVE', 'Only active or paused legacy goals can migrate to a live session');
-  }
-  if (existsSync(goalScope.statePath)) {
-    throw new GoalError('TARGET_SCOPE_OCCUPIED', 'The target session already has goal state');
-  }
 
-  const objective = sanitizeInlineText(snapshot.goal.objective, DEFAULT_MAX_OBJECTIVE_CHARS);
-  if (!objective) throw new GoalError('LEGACY_GOAL_MALFORMED', 'Legacy goal objective is invalid');
-  const nowMsValue = Date.now();
-  const promptRuntimeLabel = rawOptions.runtimeLabel || goalScope.runtime;
-  const baseRecord = buildNewRecord(
-    objective,
-    buildGoalPrompt(objective, { runtimeLabel: promptRuntimeLabel }),
-    snapshot.goal.tokenBudget ?? null,
-    goalScope.runtime,
-    nowMsValue,
-  );
-  const record = {
-    ...baseRecord,
-    ...snapshot.goal,
-    goalId: normalizeGoalID(snapshot.goal.goalId),
-    objective,
-    goalPrompt: buildGoalPrompt(objective, { runtimeLabel: promptRuntimeLabel }),
-    status: snapshot.goal.status,
-    runtime: goalScope.runtime,
-    usageSource: snapshot.goal.usageSource || USAGE_SOURCE,
-    updatedAt: isoFromMs(nowMsValue),
-    updatedAtMs: nowMsValue,
-    lastActivityAtMs: nowMsValue,
-    revision: (Number.isFinite(snapshot.goal.revision) ? snapshot.goal.revision : 0) + 1,
-    migrationSource: 'legacy-singleton',
-    migratedAt: isoFromMs(nowMsValue),
-    migratedAtMs: nowMsValue,
-  };
-
-  writeJsonAtomic(goalScope.statePath, record);
-  try {
-    const archive = quarantineLegacySnapshot(snapshot, rawOptions);
-    return { migrated: true, reason: null, record, ...archive };
-  } catch (error) {
-    try { removeStateFile(goalScope); } catch { /* source record remains authoritative */ }
-    throw error;
-  }
+    writeJsonAtomic(goalScope.statePath, record);
+    try {
+      const archive = quarantineLegacySnapshot(snapshot, rawOptions);
+      return { migrated: true, reason: null, record, ...archive };
+    } catch (error) {
+      try { removeStateFile(goalScope); } catch { /* source record remains authoritative */ }
+      throw error;
+    }
+  });
 }
 
 function archiveLegacyGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  const snapshot = inspectLegacyGoal(rawOptions);
-  if (!snapshot.present) {
-    return {
-      archived: false,
-      reason: 'no_legacy_state',
-      status: 'absent',
-      archiveFilename: null,
-      archivePath: null,
-    };
-  }
-  if (snapshot.status === 'unreadable') {
-    throw new GoalError('LEGACY_GOAL_UNREADABLE', 'Legacy goal state cannot be read safely');
-  }
-  const archive = quarantineLegacySnapshot(snapshot, rawOptions);
-  return { archived: true, reason: null, status: snapshot.status, ...archive };
+  const stateDir = resolveStateDir(rawOptions);
+  return withFileLocks(stateDir, ['legacy-singleton'], () => {
+    const snapshot = inspectLegacyGoal(rawOptions);
+    if (!snapshot.present) {
+      return {
+        archived: false,
+        reason: 'no_legacy_state',
+        status: 'absent',
+        archiveFilename: null,
+        archivePath: null,
+      };
+    }
+    if (snapshot.status === 'unreadable') {
+      throw new GoalError('LEGACY_GOAL_UNREADABLE', 'Legacy goal state cannot be read safely');
+    }
+    const archive = quarantineLegacySnapshot(snapshot, rawOptions);
+    return { archived: true, reason: null, status: snapshot.status, ...archive };
+  });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -759,46 +894,47 @@ function buildNewRecord(objective, goalPrompt, tokenBudget, runtime, nowMsValue)
  */
 function setGoal({ objective, tokenBudget = null, runtimeLabel = null } = {}, rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  const goalScope = resolveGoalScope(rawOptions);
   const sanitizedObjective = sanitizeInlineText(objective, DEFAULT_MAX_OBJECTIVE_CHARS);
   if (!sanitizedObjective) throw new GoalError('INVALID_OBJECTIVE', 'Objective is required');
 
-  const current = readGoalRecordForScope(goalScope);
-  const nowMsValue = Date.now();
-  const promptRuntimeLabel = runtimeLabel || goalScope.runtime;
-  let mutation = 'created';
-  let record;
+  return withScopeMutation(rawOptions, (goalScope) => {
+    const current = readGoalRecordForScope(goalScope);
+    const nowMsValue = Date.now();
+    const promptRuntimeLabel = runtimeLabel || goalScope.runtime;
+    let mutation = 'created';
+    let record;
 
-  if (current && current.objective === sanitizedObjective && (current.status === 'active' || current.status === 'paused')) {
-    mutation = 'refreshed';
-    const goalPrompt = buildGoalPrompt(sanitizedObjective, { runtimeLabel: promptRuntimeLabel });
-    record = {
-      ...current,
-      status: 'active',
-      goalPrompt,
-      tokenBudget: tokenBudget ?? current.tokenBudget ?? null,
-      startedAtMs: current.status === 'paused' ? nowMsValue : current.startedAtMs,
-      updatedAt: isoFromMs(nowMsValue),
-      updatedAtMs: nowMsValue,
-      lastActivityAtMs: nowMsValue,
-      revision: (current.revision || 0) + 1,
-      runtime: goalScope.runtime,
-    };
-  } else {
-    mutation = current ? 'replaced' : 'created';
-    if (current) archiveGoalRecord(current, goalScope);
-    const goalPrompt = buildGoalPrompt(sanitizedObjective, { runtimeLabel: promptRuntimeLabel });
-    record = buildNewRecord(
-      sanitizedObjective,
-      goalPrompt,
-      tokenBudget,
-      goalScope.runtime,
-      nowMsValue,
-    );
-  }
+    if (current && current.objective === sanitizedObjective && (current.status === 'active' || current.status === 'paused')) {
+      mutation = 'refreshed';
+      const goalPrompt = buildGoalPrompt(sanitizedObjective, { runtimeLabel: promptRuntimeLabel });
+      record = {
+        ...current,
+        status: 'active',
+        goalPrompt,
+        tokenBudget: tokenBudget ?? current.tokenBudget ?? null,
+        startedAtMs: current.status === 'paused' ? nowMsValue : current.startedAtMs,
+        updatedAt: isoFromMs(nowMsValue),
+        updatedAtMs: nowMsValue,
+        lastActivityAtMs: nowMsValue,
+        revision: (current.revision || 0) + 1,
+        runtime: goalScope.runtime,
+      };
+    } else {
+      mutation = current ? 'replaced' : 'created';
+      if (current) archiveGoalRecord(current, goalScope);
+      const goalPrompt = buildGoalPrompt(sanitizedObjective, { runtimeLabel: promptRuntimeLabel });
+      record = buildNewRecord(
+        sanitizedObjective,
+        goalPrompt,
+        tokenBudget,
+        goalScope.runtime,
+        nowMsValue,
+      );
+    }
 
-  writeJsonAtomic(goalScope.statePath, record);
-  return { record, mutation };
+    writeJsonAtomic(goalScope.statePath, record);
+    return { record, mutation };
+  });
 }
 
 function requireCurrentGoal(goalScope) {
@@ -810,61 +946,79 @@ function requireCurrentGoal(goalScope) {
 /** Mark the goal completed, archive it, then remove the active state file. */
 function completeGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  const goalScope = resolveGoalScope(rawOptions);
-  const current = requireCurrentGoal(goalScope);
-  const nowMsValue = Date.now();
-  const record = { ...current, status: 'completed', updatedAt: isoFromMs(nowMsValue), updatedAtMs: nowMsValue };
-  archiveGoalRecord(record, goalScope);
-  removeStateFile(goalScope);
-  return record;
+  return withScopeMutation(rawOptions, (goalScope) => {
+    const current = requireCurrentGoal(goalScope);
+    const nowMsValue = Date.now();
+    const record = {
+      ...current,
+      status: 'completed',
+      updatedAt: isoFromMs(nowMsValue),
+      updatedAtMs: nowMsValue,
+      revision: (current.revision || 0) + 1,
+    };
+    archiveGoalRecord(record, goalScope);
+    removeStateFile(goalScope);
+    return record;
+  });
 }
 
 /** Archive the goal as cleared, then remove the active state file. */
 function clearGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  const goalScope = resolveGoalScope(rawOptions);
-  const current = readGoalRecordForScope(goalScope);
-  if (current) {
-    const nowMsValue = Date.now();
-    const record = { ...current, status: 'cleared', updatedAt: isoFromMs(nowMsValue), updatedAtMs: nowMsValue };
-    archiveGoalRecord(record, goalScope);
-  }
-  removeStateFile(goalScope);
-  return null;
+  return withScopeMutation(rawOptions, (goalScope) => {
+    const current = readGoalRecordForScope(goalScope);
+    if (current) {
+      const nowMsValue = Date.now();
+      const record = {
+        ...current,
+        status: 'cleared',
+        updatedAt: isoFromMs(nowMsValue),
+        updatedAtMs: nowMsValue,
+        revision: (current.revision || 0) + 1,
+      };
+      archiveGoalRecord(record, goalScope);
+    }
+    removeStateFile(goalScope);
+    return null;
+  });
 }
 
 function pauseGoal({ reason = '' } = {}, rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  const goalScope = resolveGoalScope(rawOptions);
-  const current = requireCurrentGoal(goalScope);
-  if (current.status !== 'active') throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot pause a goal in status ${current.status}`);
-  const nowMsValue = Date.now();
-  const record = {
-    ...current,
-    status: 'paused',
-    pauseReason: sanitizeInlineText(reason, DEFAULT_MAX_REASON_CHARS) || null,
-    updatedAt: isoFromMs(nowMsValue),
-    updatedAtMs: nowMsValue,
-  };
-  writeJsonAtomic(goalScope.statePath, record);
-  return record;
+  return withScopeMutation(rawOptions, (goalScope) => {
+    const current = requireCurrentGoal(goalScope);
+    if (current.status !== 'active') throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot pause a goal in status ${current.status}`);
+    const nowMsValue = Date.now();
+    const record = {
+      ...current,
+      status: 'paused',
+      pauseReason: sanitizeInlineText(reason, DEFAULT_MAX_REASON_CHARS) || null,
+      updatedAt: isoFromMs(nowMsValue),
+      updatedAtMs: nowMsValue,
+      revision: (current.revision || 0) + 1,
+    };
+    writeJsonAtomic(goalScope.statePath, record);
+    return record;
+  });
 }
 
 function resumeGoal(rawOptions = {}) {
   if (isPluginDisabled()) throw new GoalError('PLUGIN_DISABLED', `${DISABLED_ENV}=1 disables goal core execution`);
-  const goalScope = resolveGoalScope(rawOptions);
-  const current = requireCurrentGoal(goalScope);
-  if (current.status !== 'paused') throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot resume a goal in status ${current.status}`);
-  const nowMsValue = Date.now();
-  const record = {
-    ...current,
-    status: 'active',
-    pauseReason: null,
-    updatedAt: isoFromMs(nowMsValue),
-    updatedAtMs: nowMsValue,
-  };
-  writeJsonAtomic(goalScope.statePath, record);
-  return record;
+  return withScopeMutation(rawOptions, (goalScope) => {
+    const current = requireCurrentGoal(goalScope);
+    if (current.status !== 'paused') throw new GoalError('INVALID_STATUS_TRANSITION', `Cannot resume a goal in status ${current.status}`);
+    const nowMsValue = Date.now();
+    const record = {
+      ...current,
+      status: 'active',
+      pauseReason: null,
+      updatedAt: isoFromMs(nowMsValue),
+      updatedAtMs: nowMsValue,
+      revision: (current.revision || 0) + 1,
+    };
+    writeJsonAtomic(goalScope.statePath, record);
+    return record;
+  });
 }
 
 /** Read the current record for display, or null. Never throws. */
@@ -874,22 +1028,24 @@ function showGoal(rawOptions = {}) {
 
 /** Increment the turn counter and refresh activity time, fail-open. */
 function recordTurn(_input = {}, rawOptions = {}) {
-  const goalScope = resolveGoalScope(rawOptions);
   try {
     if (isPluginDisabled()) return null;
-    const current = readGoalRecordForScope(goalScope);
-    if (!current || current.status !== 'active') return null;
-    const nowMsValue = Date.now();
-    const record = {
-      ...current,
-      turnsUsed: (Number.isFinite(current.turnsUsed) ? current.turnsUsed : 0) + 1,
-      lastActivityAtMs: nowMsValue,
-      updatedAt: isoFromMs(nowMsValue),
-      updatedAtMs: nowMsValue,
-      runtime: goalScope.runtime,
-    };
-    writeJsonAtomic(goalScope.statePath, record);
-    return record;
+    return withScopeMutation(rawOptions, (goalScope) => {
+      const current = readGoalRecordForScope(goalScope);
+      if (!current || current.status !== 'active') return null;
+      const nowMsValue = Date.now();
+      const record = {
+        ...current,
+        turnsUsed: (Number.isFinite(current.turnsUsed) ? current.turnsUsed : 0) + 1,
+        lastActivityAtMs: nowMsValue,
+        updatedAt: isoFromMs(nowMsValue),
+        updatedAtMs: nowMsValue,
+        revision: (current.revision || 0) + 1,
+        runtime: goalScope.runtime,
+      };
+      writeJsonAtomic(goalScope.statePath, record);
+      return record;
+    });
   } catch {
     return null;
   }
@@ -898,19 +1054,26 @@ function recordTurn(_input = {}, rawOptions = {}) {
 function listArchivedGoals(rawOptions = {}) {
   try {
     const goalScope = resolveGoalScope(rawOptions);
-    return readdirSync(goalScope.archiveDir, { withFileTypes: true })
-      .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
-      .map((entry) => {
-        const filePath = join(goalScope.archiveDir, entry.name);
-        try {
-          const parsed = JSON.parse(readFileSync(filePath, 'utf8'));
-          const sizeBytes = statSync(filePath).size;
-          return { filename: entry.name, goal: parsed, sizeBytes };
-        } catch {
-          return null;
-        }
-      })
-      .filter(Boolean)
+    const archiveDirs = [...new Set([goalScope.archiveDir, goalScope.legacyScopedArchiveDir].filter(Boolean))];
+    return archiveDirs.flatMap((dir) => {
+      try {
+        return readdirSync(dir, { withFileTypes: true })
+          .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
+          .map((entry) => {
+            const filePath = join(dir, entry.name);
+            try {
+              const parsed = JSON.parse(readFileSync(filePath, 'utf8'));
+              const sizeBytes = statSync(filePath).size;
+              return { filename: entry.name, goal: parsed, sizeBytes };
+            } catch {
+              return null;
+            }
+          })
+          .filter(Boolean);
+      } catch {
+        return [];
+      }
+    })
       .sort((a, b) => (b.goal.updatedAtMs || 0) - (a.goal.updatedAtMs || 0));
   } catch {
     return [];

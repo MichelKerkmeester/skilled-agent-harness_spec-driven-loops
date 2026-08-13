@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies that iteration outputs are directed to the mode's registry `artifactRoot`. The test does not require a full loop; it verifies the operator-facing route explanation and destination contract.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: An operator wants to know where artifacts will be written before starting an AI council run.
@@ -40,6 +42,8 @@ Before starting an AI council deliberation, resolve the mode through the registr
 - Packet source: the council packet describes packet-local `ai-council/**` artifact persistence.
 
 **Desired user-visible outcome**: The AI names `ai-council/` as the artifact root and does not redirect council artifacts to `research/`, `review/`, `improvement/`, or `/tmp`.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -75,11 +79,15 @@ Before starting an AI council deliberation, resolve the mode through the registr
 2. If `/tmp` is suggested, re-read the packet-local persistence language.
 3. If route is wrong, verify the prompt's `AI council deliberation` wording.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - packet artifact ownership.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-council` artifact root.
 - `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` - council artifact persistence.
+
+---
 
 ## 5. SOURCE METADATA
 

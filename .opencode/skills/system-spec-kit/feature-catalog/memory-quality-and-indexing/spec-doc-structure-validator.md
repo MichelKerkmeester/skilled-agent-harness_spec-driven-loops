@@ -20,6 +20,8 @@ Spec-doc structure validator fail-closes malformed frontmatter continuity blocks
 
 The validator is the last structural checkpoint before a routed save becomes part of the canonical spec-doc surface. It does not try to infer meaning; it simply makes sure the document contract is intact, the frontmatter continuity block stays thin, and the write does not leak across anchors or silently corrupt the rendered doc.
 
+---
+
 ## 2. HOW IT WORKS
 
 `mcp-server/lib/validation/spec-doc-structure.ts` exposes five canonical continuity rules through `validate.sh --strict`.
@@ -31,6 +33,8 @@ The validator is the last structural checkpoint before a routed save becomes par
 - `POST_SAVE_FINGERPRINT` confirms the rendered output matches the expected post-save fingerprint and did not drift during write promotion.
 
 The validator is wired into the save pipeline and the dedicated regression suite so structural failures are caught before canonical continuity writes can land.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -48,6 +52,8 @@ The validator is wired into the save pipeline and the dedicated regression suite
 |---|---|---|
 | `mcp-server/tests/spec-doc-structure.vitest.ts` | Automated test | Rule-level validator coverage |
 | `mcp-server/tests/gate-d-regression-quality-gates.vitest.ts` | Automated test | Gate D regression coverage for the validator bridge |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Memory Quality And Indexing

@@ -42,6 +42,8 @@ Choose the pattern by workflow shape, not by topic. A deployment process can be 
 - use parallel execution for concurrent branches with synchronization; use swimlane when responsibility boundaries matter more than timing
 - use user journey when motivation, feedback, skip, retry, or support paths affect the experience
 
+---
+
 ## 3. WHEN TO SPLIT A LARGE DIAGRAM
 
 Split before the diagram becomes a wall of branches. The script warns over 200 lines, but readability can fail earlier when one screen cannot hold the main path and side paths together.

@@ -19,6 +19,8 @@ Current responsibilities:
 - Train and score a small ridge-regression model without external ML packages.
 - Provide matrix operations used by the learned combiner.
 
+---
+
 ## 2. DIRECTORY TREE
 
 ```text
@@ -28,6 +30,8 @@ ranking/
 `-- README.md
 ```
 
+---
+
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -35,12 +39,16 @@ ranking/
 | `learned-combiner.ts` | Defines feature names, model types, training, prediction, LOOCV and feature-importance logic. |
 | `matrix-math.ts` | Supplies dependency-free matrix helpers used by the combiner. |
 
+---
+
 ## 4. USAGE NOTES
 
 - `learned-combiner.ts` re-exports matrix helpers from `matrix-math.ts` for existing callers.
 - `FEATURE_NAMES` defines the required feature order for all feature vectors.
 - Missing or non-finite scoring values are clamped to `0` during feature extraction.
 - The learned combiner is intended for shadow scoring behind the `SPECKIT_LEARNED_STAGE2_COMBINER` flag.
+
+---
 
 ## 5. VALIDATION
 
@@ -51,6 +59,8 @@ python .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sys
 ```
 
 Expected result: the README validation exits `0`.
+
+---
 
 ## 6. RELATED
 

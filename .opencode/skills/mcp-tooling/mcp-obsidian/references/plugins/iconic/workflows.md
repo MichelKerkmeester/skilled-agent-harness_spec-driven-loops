@@ -28,6 +28,8 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts 
 4. Write + re-parse JSON.
 5. Tell the user the icons render after an in-app reload.
 
+---
+
 ## 2. RECIPES
 
 ### Give an extension an icon (add a file rule)
@@ -65,6 +67,8 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts 
 ```json
 { "id": "gen<4chars>", "name": "Screenshots", "icon": "lucide-camera", "color": "#64748b", "match": "any", "conditions": [{ "source": "name", "operator": "is", "value": "screenshots" }], "enabled": true }
 ```
+
+---
 
 ## 3. VERIFYING
 

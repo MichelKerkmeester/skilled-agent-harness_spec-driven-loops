@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has",
     "created_at": "2026-07-19T12:13:37.963Z",
-    "last_save_at": "2026-07-20T17:23:25.083Z",
+    "last_save_at": "2026-08-11T14:06:19.328Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,9 +207,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:dc3397be10b2ae982531444bfe3fc55b7a8d8275f178cb689d4759d434894b7a",
+    "source_fingerprint": "sha256:6eeed67331ea3231039c00939c3e080140d442f63e261dce1d2c706cb4b01927",
     "source_doc_hashes": {
-      "spec.md": "9e34f2f59e157ef31aa31418c556f7815661d87a88009f62459b67bbf785ea3f",
+      "spec.md": "ab1c8d2c1d4be054ee0491e534880098739610dbf8ac8eb98a14b15d22aee5b7",
       "plan.md": "9021825aca6430264906d2e378bea370e76f2877106bee58d53523f5436da7f3",
       "tasks.md": "5650ddeaed434418baac234a80abbacb7fe55e21d1694373fa5d7591154f72b7",
       "checklist.md": "47afeb081e5addc6984a30beee4dadc6b3c4c94b45a2370a74d074689dd67805",

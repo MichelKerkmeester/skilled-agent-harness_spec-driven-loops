@@ -135,6 +135,8 @@ PASS — `atomic-index-memory.vitest.ts` passed 7/7 focused tests, and the obser
 
 Inspect `memory-save.ts` ordering and retry path; verify pending-path generation/cleanup helpers in `transaction-manager.ts`; confirm tool schema and save handler inputs do not bypass the guarded flow
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/atomic-write-then-index-api.md](../../feature-catalog/pipeline-architecture/atomic-write-then-index-api.md)

@@ -20,11 +20,15 @@ Describes automatic tier promotion triggered by positive validations (normal at 
 
 When a spec-doc record keeps proving useful over and over, it earns a promotion. After five thumbs-up reviews, a regular memory becomes "important." After ten, it becomes "critical." This happens automatically so you do not have to manually tag your most valuable knowledge. A speed limit prevents too many promotions from happening at once during a busy session.
 
+---
+
 ## 2. HOW IT WORKS
 
 Positive validations now trigger automatic tier promotion. When a normal-tier memory accumulates 5 positive validations, it is promoted to important. When an important-tier memory reaches 10, it is promoted to critical. A throttle safeguard limits promotions to 3 per 8-hour rolling window to prevent runaway promotion during bulk validation sessions.
 
 Constitutional, critical, temporary and deprecated tiers are non-promotable. Each promotion is logged to a `memory_promotion_audit` table for traceability. The `memory_validate` response includes `autoPromotion` metadata showing whether promotion was attempted, the previous and new tier, validation count and the reason.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -42,6 +46,8 @@ Constitutional, critical, temporary and deprecated tiers are non-promotable. Eac
 | important -> critical at 10 validations | `PROMOTION_PATHS.important.threshold = 10`, checked by `checkAutoPromotion(...)` | `mcp-server/tests/learned-feedback.vitest.ts` (`R11-AP02`) |
 | Throttle behavior (3 per 8h rolling window) | `MAX_PROMOTIONS_PER_WINDOW = 3`, `PROMOTION_WINDOW_HOURS = 8`, enforced in `executeAutoPromotion(...)` transaction | `mcp-server/tests/learned-feedback.vitest.ts` (`R11-AP12`, `R11-AP13`) |
 | Non-promotable tier rejection | `NON_PROMOTABLE_TIERS` guard in `checkAutoPromotion(...)`, returns `tier_not_promotable:*` reason | `mcp-server/tests/learned-feedback.vitest.ts` (`R11-AP05`, `R11-AP06`) |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Scoring And Calibration

@@ -241,6 +241,8 @@ PASS: `correction`, `preference`, and `reinforcement` were each detected from va
 
 Verify signal vocabulary dictionary → Check category detection regex/rules → Inspect trigger matching integration
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/signal-vocabulary-expansion.md](../../feature-catalog/memory-quality-and-indexing/signal-vocabulary-expansion.md)

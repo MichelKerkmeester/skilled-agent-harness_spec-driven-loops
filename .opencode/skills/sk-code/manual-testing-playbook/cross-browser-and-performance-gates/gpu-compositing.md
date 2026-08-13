@@ -22,6 +22,8 @@ Operators run the exact prompt and command sequence for `CB-003` and capture Dev
 |---|---|---|---|---|---|---|---|---|
 | `CB-003` | GPU Compositing | Verify Motion animations use compositor-friendly properties where expected | `Inspect Motion dropdown and slider compositing in Chrome DevTools; flag layout animations and return PASS/FAIL with trace notes.` | open target -> enable paint flashing/layer borders -> record performance trace -> exercise dropdown and slider -> inspect layout/paint/composite events -> write verdict | slider transform uses compositor-friendly path; dropdown height animation is identified as layout-affecting; no unexpected repeated forced layouts | `/tmp/skc-CB003-trace.json`, `/tmp/skc-CB003-rendering.png`, `/tmp/skc-CB003-verdict.md` | PASS iff transform/opacity animations are composited where expected and any layout-affecting animation is documented with acceptable rationale | If layout thrashing appears, inspect reads/writes around `scrollHeight`, `offsetHeight`, and repeated style mutation |
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Prompt

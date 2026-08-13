@@ -16,6 +16,8 @@ version: 3.6.0.6
 
 `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` controls server-side idle self-exit for the three native MCP servers that share the launcher lifecycle pattern. It exists to reduce orphan accumulation without making the CJS launchers guess whether a server is still in use.
 
+---
+
 ## 2. HOW IT WORKS
 
 The setting defaults to `30` minutes. Fractional values are allowed for tests, and `0` disables the idle monitor. Primary stdio input and secondary IPC socket connect/data/write events refresh activity. Active secondary IPC clients keep the server alive past the timeout.
@@ -23,6 +25,8 @@ The setting defaults to `30` minutes. Fractional values are allowed for tests, a
 The idle monitor lives in the MCP server processes, not only in the CJS launchers. When the timeout fires, the server closes IPC state and exits through the existing process path. The launchers continue to handle lease cleanup through their child-process exit handlers.
 
 This knob is documented in `mcp-server/ENV-REFERENCE.md` and surfaced in the affected runtime READMEs. It is separate from the orphan process sweeper: idle timeout prevents some future stale servers, while the sweeper remains the operator fallback for already-orphaned process classes.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -42,6 +46,8 @@ This knob is documented in `mcp-server/ENV-REFERENCE.md` and surfaced in the aff
 | `.opencode/skills/system-spec-kit/mcp-server/tests/ipc-socket-activity.vitest.ts` | Automated test | IPC activity keeps the server alive. |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/launcher-idle-timeout.vitest.ts` | Automated test | Skill Advisor idle behavior. |
 | `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` | Manual playbook | Manual dry-run and lifecycle guardrail scenario. |
+
+---
 
 ## 4. SOURCE METADATA
 

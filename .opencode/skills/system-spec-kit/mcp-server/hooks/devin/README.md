@@ -11,6 +11,8 @@ description: "Devin CLI lifecycle adapters that normalize payloads, delegate to 
 
 `hooks/devin/` adapts Devin CLI's `SessionStart` and `UserPromptSubmit` lifecycle events onto the existing Claude hook implementations in `../claude/`. Each adapter reads and validates its own Devin payload, spawns the matching compiled Claude adapter with a normalized input, and translates the result back into Devin's documented `hookSpecificOutput` response envelope (the same shape Codex uses -- confirmed by phase 001's citation that Devin's event-name set closely mirrors Claude Code's own hook contract). No lifecycle logic is duplicated: state and transcript semantics stay owned by the Claude adapters.
 
+---
+
 ## 2. STATUS: LIVE WITH EVENT-SPECIFIC CAVEATS
 
 Live-probed 2026-07-24 against `devin 3000.2.17`. The registration must use top-level event arrays with nested `{matcher, hooks:[...]}` groups. The earlier wrapper-shaped file was silently discarded and produced a false packet-wide dormancy conclusion.
@@ -26,6 +28,8 @@ Live-probed 2026-07-24 against `devin 3000.2.17`. The registration must use top-
 
 These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, directly tested and live-fire verified for events that occurred. Re-run the corrected-schema smoke test after material Devin CLI changes.
 
+---
+
 ## 3. CONTENTS
 
 | File | Purpose |
@@ -37,9 +41,13 @@ These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, dire
 | `completion-evidence-stop.cjs` | `Stop` adapter (phase 008), plain directly-runnable `.cjs` (no build step). Reads the Stop payload, resolves the active packet from the shared `lastSpecFolder` state file, and delegates policy to `../../lib/hooks/completion-evidence-sentinel.cjs`. Advisory only -- never emits a block/continue decision. |
 | `post-compaction.cjs` | `PostCompaction` adapter (phase 008) -- **bespoke, not a port**. Devin fires `PostCompaction` *after* compaction with only `session_id` + a possibly-null `summary`, unlike Claude's before-compaction `PreCompact`. Implements a 5-step recovery chain: retain `summary` first, rehydrate spec-folder continuity from the shared `lastSpecFolder` state, a bounded `memory_context(mode=resume)` CLI fallback (only when `summary` is empty), provenance/length sanitization (4096-byte cap + control-char strip), then emits `additionalContext` directly. |
 
+---
+
 ## 4. CONSUMERS
 
 - The project's `.devin/hooks.v1.json` registers compiled `dist/hooks/devin/*.js` outputs against `SessionStart`, `UserPromptSubmit` and `Stop`, plus plain `.cjs` files against `Stop` and `PostCompaction`. The `.ts` adapters require `npm run build` in `mcp-server/` before their `dist/` paths resolve.
+
+---
 
 ## 5. SPEC-GATE (GATE-3) AND PERMISSION HOOKS
 
@@ -53,6 +61,8 @@ This folder also holds the Devin CLI side of the Gate-3 spec-folder discipline (
 | `spec-gate-devin.test.mjs`, `permission-request-policy.test.mjs` | Co-located tests, run with `node --test`. | — |
 
 `.devin/hooks.v1.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit`, `spec-gate-enforce.mjs` to `PreToolUse` (`^exec$`, `^edit$` matchers), and `permission-request-policy.mjs` to `PermissionRequest`.
+
+---
 
 ## 6. RELATED
 

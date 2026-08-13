@@ -15,6 +15,8 @@ This stress scenario is part of the 028 CLI stress set (434-438). It loads the d
 
 The dual-client suites are the shipped 028 hardening artifacts; the stress framing here is running them concurrently and repeatedly rather than once in isolation.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm dual MCP+CLI clients stay correct under concurrent tri-system load across repeated runs.
@@ -24,6 +26,8 @@ The dual-client suites are the shipped 028 hardening artifacts; the stress frami
 - Expected signals: All suites green in every round; zero orphan processes after the final round.
 - Desired user-visible outcome: Dual-stack usage is safe under concurrent load, not just sequential smoke.
 - Pass/fail: PASS only when all rounds are green and no orphans remain.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -161,6 +165,8 @@ launchers before=      14 after=      14
 
 A failure that only appears under tri-system concurrency points at shared host resources (port/socket collisions in /tmp, file-descriptor pressure) rather than per-system logic — rerun the failing suite alone to discriminate. A launcher count that stays above BEFORE after the settle window means a harness teardown was skipped after a failed assertion (a real orphan); reap manually and triage the assertion first. A count that settled to `<= BEFORE` is clean — the suites' sandbox lease-holder daemons live in their own fresh socket dirs (e.g. `/var/folders/.../ci-*`), never the host daemon, so a bridge to such a socket during a run is expected, not a host-daemon touch.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -176,6 +182,8 @@ A failure that only appears under tri-system concurrency points at shared host r
 |---|---|
 | `mcp-server/tests/spec-memory-cli-dual-client-hardening.vitest.ts` | Real MCP + CLI clients against one spec-memory daemon |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-dual-client.vitest.ts` | Dual-client MCP + CLI coverage for the advisor daemon |
+
+---
 
 ## 5. SOURCE METADATA
 

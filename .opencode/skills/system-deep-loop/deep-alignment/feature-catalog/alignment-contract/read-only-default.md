@@ -20,6 +20,8 @@ Invariant 3 of the alignment contract: the loop observes and reports; it never m
 
 A conformance audit is a read operation. The default surface is built so that finding drift and fixing drift are two separate acts, and only the first happens automatically — the second is a gated, opt-in pass covered by the gated-remediation invariant.
 
+---
+
 ## 2. HOW IT WORKS
 
 The default surface exposes no `Write`/`Edit`. `SKILL.md`'s `allowed-tools` list carries `Task` and `Bash`, but its own header note states they are reserved for the gated, opt-in remediation pass, not the default read-only surface — and that loop-owned state writes route through shared runtime scripts into the bound `alignment/` directory, never as direct edits to an audited artifact. There is no `WebFetch`: alignment checks local artifacts against local authority standards, so no network read is needed either. Every adapter reinforces this at the tool level — sk-code explicitly excludes the tree-mutating `minify-webflow.mjs` from `check()`, and sk-design never invokes the rendering/extraction pipeline — so even the deterministic tooling the loop runs is chosen to be non-mutating.

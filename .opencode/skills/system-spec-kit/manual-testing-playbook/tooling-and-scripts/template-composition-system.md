@@ -273,6 +273,8 @@ rm: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/: Operation not permitted
 
 Inspect the Level contract resolver, inline gate renderer, scaffolder output, and the first failing validator message.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/template-composition-system.md](../../feature-catalog/tooling-and-scripts/template-composition-system.md)

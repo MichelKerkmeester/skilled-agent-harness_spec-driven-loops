@@ -11,6 +11,8 @@ description: "Groups semantically equivalent claims into namespaced communities 
 
 Clusters claims that mean the same thing, even when their wording differs, into namespaced semantic communities. Each new claim observation is checked against existing candidates in its namespace and admitted as a semantic-equivalence edge when it qualifies, then folded incrementally into a versioned community projection. A novelty helper pairs the resulting concept-novelty signal with the legacy coverage-graph's authoritative novelty result while that migration is in flight.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -22,15 +24,21 @@ Clusters claims that mean the same thing, even when their wording differs, into 
 | `semantic-equivalence.ts` | Admits semantic-equivalence edges between claims within a namespace |
 | `semantic-novelty.ts` | Pairs semantic novelty with the unchanged legacy coverage-graph novelty result |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/path-coverage-termination/` (types and universe)
 - `.opencode/skills/system-deep-loop/runtime/lib/stopping-clocks/` (novelty_decay clock type)
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts`
 - Also exercised by `path-coverage-termination.vitest.ts` and `stopping-clocks.vitest.ts`.
+
+---
 
 ## 5. RELATED
 

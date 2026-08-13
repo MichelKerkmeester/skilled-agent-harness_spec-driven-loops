@@ -227,6 +227,8 @@ for (const name of [...PRIORITY_ORDER].reverse()) {
 
 Check Step 3 trim logic with reversed PRIORITY_ORDER
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/budget-allocator.md](../../feature-catalog/context-preservation/budget-allocator.md)

@@ -59,6 +59,8 @@ Script summary output showing scanned count, aligned count, violations count
 
 Identify orphaned dist file -> check if source was deleted/renamed -> either restore source, remove dist artifact, or add time-bounded allowlist entry
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/source-dist-alignment-enforcement.md](../../feature-catalog/tooling-and-scripts/source-dist-alignment-enforcement.md)

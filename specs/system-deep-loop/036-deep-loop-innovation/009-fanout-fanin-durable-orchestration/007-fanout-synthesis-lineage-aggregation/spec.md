@@ -29,6 +29,8 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Fan-out Synthesis Lineage Aggregation
 
+> Phase adjacency under the durable-orchestration parent (navigation order, not a runtime dependency): predecessor `006-provenance-balanced-reduction`; successor none (last sibling).
+
 <!-- SPECKIT_LEVEL: 3 -->
 
 ## EXECUTIVE SUMMARY

@@ -196,6 +196,8 @@ Native MCP debug profile returned a full response-shaped payload, but this does 
 
 Verify SPECKIT_RESPONSE_PROFILE env → Inspect profile-formatters.ts profile routing → Check estimateTokens() → Verify QuickProfile.tokenReduction.savingsPercent → Check fallback for unknown profile names
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/mode-aware-response-profiles.md](../../feature-catalog/ux-hooks/mode-aware-response-profiles.md)

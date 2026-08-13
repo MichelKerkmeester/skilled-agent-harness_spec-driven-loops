@@ -51,6 +51,8 @@ classification. It is the denominator every D5 latency ratio and every provision
 `budget_ms` is derived from, so an uncaptured cell here is never quotable as
 behavior.
 
+---
+
 ## 2. BASELINE TABLE
 
 <!-- Until a Claude leg is captured, keep this paragraph and leave every cell
@@ -69,6 +71,8 @@ is never quotable as behavior.
 | {{PREFIX}}-002 | pending | pending | {{PENDING_OR_NA}} | pending | not_captured |
 | {{PREFIX}}-NNN | pending | pending | {{PENDING_OR_NA}} | pending | not_captured |
 
+---
+
 ## 3. CAPTURE PROVENANCE
 
 The framework requires the date, the host and CLI versions on the baseline leg,
@@ -81,6 +85,8 @@ fill all four below, not just the date.
 - **Leg**: `claude-cli` {{CLI_BINARY_VERSION_OR_TO_BE_CAPTURED}} — `claude ... -p --output-format stream-json --verbose --dangerously-skip-permissions`, matching the sibling packages' baseline leg.
 - **Sampling**: {{NONE_YET_OR_SAMPLES_PER_CELL_AND_RERUN_POLICY}}.
 - **Host confound (stated per the framework)**: the baseline runs a different host binary than the opencode legs, so host overhead (session bootstrap, hook wiring) folds into every latency ratio derived from these values. Restate this confound inline wherever a D5 ratio is reported.
+
+---
 
 ## 4. NOTES
 

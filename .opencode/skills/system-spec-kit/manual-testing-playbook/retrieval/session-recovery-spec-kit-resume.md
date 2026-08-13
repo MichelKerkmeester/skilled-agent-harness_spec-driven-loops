@@ -65,6 +65,8 @@ Command transcript; tool invocation logs for resume, search, and list paths; evi
 
 Verify `/speckit:resume` command routing against `.opencode/commands/speckit/resume.md`; inspect `memory-context.ts` resume-mode wiring; confirm fallback search anchors and candidate-discovery list behavior; check session-manager breadcrumbs and reusable-session auto-resume settings
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/session-recovery-spec-kit-resume.md](../../feature-catalog/retrieval/session-recovery-spec-kit-resume.md)

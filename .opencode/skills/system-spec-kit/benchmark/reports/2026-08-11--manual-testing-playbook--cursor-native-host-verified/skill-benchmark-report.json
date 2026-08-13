@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "system-spec-kit",
+    "rootRel": ".opencode/skills/system-spec-kit"
+  },
+  "executor": null,
+  "model": null,
+  "variant": "cursor-native-host-verified",
+  "verdict": "SKIP",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+      "verdict": "SKIP",
+      "reason": "Installed Cursor CLI has no reproducible beforeSubmitPrompt live-fire trigger in this evidence run; registered-path delivery passes but native-host delivery remains dormant and unconfirmed.",
+      "stage": "native-host-delivered",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "cursor-native-host-verified",
+      "evidence": [
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-verified/cursor.json",
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/pre-change-source-review.md"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-verified/cursor.json",
+          "status": "verified",
+          "bytes": 2561,
+          "sha256": "45dde18f1ef4c96844011ffa4585b013d6e1b58f040e73e2f8b3dcf77dba633a"
+        },
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/pre-change-source-review.md",
+          "status": "verified",
+          "bytes": 9256,
+          "sha256": "c8c4826530650c9ff479af72c3160e3d42d626589ff8b078823235307e822964"
+        }
+      ]
+    }
+  ],
+  "supersedes": [
+    ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-4",
+    ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--cursor-native-host",
+    ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--cursor-native-host-final"
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-11T17:10:00.000Z",
+    "evidenceClass": "native-host-delivered",
+    "evidenceArtifacts": [
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-verified/cursor.json",
+        "status": "verified",
+        "bytes": 2561,
+        "sha256": "45dde18f1ef4c96844011ffa4585b013d6e1b58f040e73e2f8b3dcf77dba633a"
+      },
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/review/pre-change-source-review.md",
+        "status": "verified",
+        "bytes": 9256,
+        "sha256": "c8c4826530650c9ff479af72c3160e3d42d626589ff8b078823235307e822964"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+    "stage": "native-host-delivered",
+    "dispatch": "none",
+    "evidenceClass": "native-host-delivered",
+    "variant": "cursor-native-host-verified",
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true,
+    "runtime": "cursor",
+    "hostVersionObservation": "cursor-agent 2026.07.23-e383d2b documented; beforeSubmitPrompt dormant",
+    "command": "not executed: no supported command forces beforeSubmitPrompt in the installed build",
+    "payloadNotApplicableReason": "native host did not fire the event",
+    "executorNotApplicableReason": "native host event was unavailable",
+    "modelNotApplicableReason": "no native host delivery occurred",
+    "supersedes": [
+      ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-4",
+      ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--cursor-native-host",
+      ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--cursor-native-host-final"
+    ]
+  }
+}

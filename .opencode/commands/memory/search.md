@@ -26,6 +26,8 @@ Guardrails:
 - Do not open raw SQLite or edit memory DB files.
 - This is a direct-dispatch command with no workflow YAML by design; do not create or modify workflow YAML from this command.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -35,6 +37,8 @@ Guardrails:
 This is a direct-dispatch command: it routes straight to the memory and code-graph MCP tools and owns no workflow YAML by design.
 
 Before asking startup questions or displaying results, read the presentation asset and use it as the display source of truth.
+
+---
 
 ## 3. MODE ROUTING
 
@@ -47,6 +51,8 @@ Execution order:
 5. Render the response from the presentation contract; retrieval results must use the inline contract in §4 EXECUTION TARGETS.
 
 Startup routing. **Reach this ONLY IF `ARGS_PRESENT=false`.** A populated `QUERY` never reaches here — if `ARGS_PRESENT=true`, you already executed the retrieval or analysis route in §4 EXECUTION TARGETS. When `ARGS_PRESENT=false`, ask one open-ended question from the presentation asset. Do not dump the full intent/menu list at startup. Treat a custom answer as the retrieval query.
+
+---
 
 ## 4. EXECUTION TARGETS
 
@@ -131,6 +137,8 @@ Known analysis subcommands:
 
 `dashboard` invokes `eval_reporting_dashboard` against stored eval snapshots. It reports persisted metric trends and channel breakdowns. C9 gate-verdict and calibration values are produced by stored ablation runs in the baseline metadata. They are not recomputed by the dashboard command.
 
+---
+
 ## 5. PRESENTATION BOUNDARY
 
 The full presentation contract lives in `.opencode/commands/memory/assets/search-presentation.txt`. This router may only inline the compressed retrieval result shape above as a hard render reminder.
@@ -141,6 +149,8 @@ The following content must come from the presentation asset, not from router pro
 - Analysis overview, preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard, empty-result, and error displays.
 - Forbidden vocabulary, result labels, fallback labels, examples, and recovery text.
 - Verdict render-slot placement, exact field names (`requestQuality` and `citationPolicy`), the conditionally-mandatory required-when-present rule, and the `data.envelopeRender` paste fragment.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

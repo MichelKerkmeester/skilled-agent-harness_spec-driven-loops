@@ -23,6 +23,8 @@ Advise whether this transition should be faster or slower, and state whether a p
 
 This scenario validates `Procedure applied: none - baseline interface workflow` for non-card temporal/motion advice, now that the fallback line is `interface`'s single baseline fallback.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm `interface` states the exact fallback and continues with the restraint gate, temporal concern routing, and handoff.
@@ -33,11 +35,15 @@ This scenario validates `Procedure applied: none - baseline interface workflow` 
 - Desired user-visible outcome: Narrow motion advice without invented procedure support.
 - Pass/fail: PASS if exact fallback appears; FAIL if omitted, wrong, or all cards loaded.
 
+---
+
 ## 3. TEST EXECUTION
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | MOTION-PROCCARD-002 | Motion no-card fallback | Verify exact baseline fallback | `Advise whether this transition should be faster or slower, and state whether a private procedure card applies before answering.` | grep fallback in `SKILL.md` -> agent: run prompt -> inspect proof line | Exact fallback appears; baseline workflow continues | Transcript and response | PASS if exact fallback appears and no card selected; FAIL otherwise | 1. Re-read fallback line; 2. Remove state-feedback triggers; 3. Confirm baseline proof remains |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -45,6 +51,8 @@ This scenario validates `Procedure applied: none - baseline interface workflow` 
 |---|---|
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../SKILL.md` | Exact no-card fallback line |
+
+---
 
 ## 5. SOURCE METADATA
 

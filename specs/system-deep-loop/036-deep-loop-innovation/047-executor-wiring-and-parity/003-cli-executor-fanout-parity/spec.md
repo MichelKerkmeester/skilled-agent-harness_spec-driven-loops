@@ -46,6 +46,9 @@ _memory:
 | **Created** | 2026-07-29 |
 | **Owner skill** | system-deep-loop (owns the fan-out runtime and executor config) |
 | **Origin** | Operator: "analyze all cli modes on v4 (pi, cursor, devin, codex, claude code) and that fan-out executors work for every cli / provider / model combo" |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `002-cli-devin-executor-wiring` |
+| **Successor** | `004-devin-fanout-allowlist-parity` |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

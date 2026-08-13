@@ -34,14 +34,26 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "implementation-summary.md",
       "decision-record.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "spec.md"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -67,18 +79,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -97,6 +97,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,13 +115,13 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Verify Run",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -134,12 +140,6 @@
       },
       {
         "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. ARCHITECTURE",
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The single-executor deep-alignment loop dispatches its `cli-codex` leaf with `--sandbox workspace-write` because the leaf is required to Bash-write its three per-iteration artifacts (the iteration narrative, the appended `deep-alignment-state.jsonl` record, and the write-once delta file) — the native `@deep-alignment` agent deliberately has no Write/Edit tool",
     "created_at": "2026-07-23T12:49:06.629Z",
-    "last_save_at": "2026-08-08T07:14:08.855Z",
+    "last_save_at": "2026-08-11T14:10:49.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +200,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0bf8a87339f54994ca5317c5f95a4b18a89f6106caebf3d22a34aabb99ddb5c5",
+    "source_fingerprint": "sha256:778c41dde161a27b62236e6984129f47a046745374f4e2e429d5e119176ee437",
     "source_doc_hashes": {
-      "spec.md": "142d4cd4dcc698bf5a4d58186a558f631ad6afd92e8c8edc7b59f7922ddd4ddd",
-      "plan.md": "0f8bfeb8e4cc86178771ad4c37e32f17d06a3fef49d0cf96c1f61de2911503eb",
-      "tasks.md": "79c957ba3f7a3185c87b574af0673a0791410355694fbbcf11513739aa745c82",
-      "checklist.md": "63d63c0cebf068a5494f49f1b9d21ea5bb35b3396edd63a66f3887bbbc461c2b",
+      "spec.md": "6a87e7b8956cad618a69d0faa1a494c50845cd6d89df37ce91fd651e238d3b06",
+      "plan.md": "c00046c7d881280b97de66e4ceccb9dc86b6f094aefc383cb3b776da04cc337b",
+      "tasks.md": "81adf16fe9f8cb5efacd813219407698f1012f07f014ff058c0be716145bcc48",
+      "checklist.md": "84a727e4f0e1f6a443dc89341211cbbc4dc720cebf18ff05e907ef64aa4844ad",
       "decision-record.md": "7402cb9d56f2384c1751471725a8de1fc1434d31dd66f296836f3a126ba4903f",
-      "implementation-summary.md": "2bb9ca227ce15a576c7403f5781ec022808ac09c5fe41d33ddd6ceccb573a072"
+      "implementation-summary.md": "dea4fd8dd022ff87c08c23a8d4cba52998522c3de4380e29c34f59be5aceb6c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

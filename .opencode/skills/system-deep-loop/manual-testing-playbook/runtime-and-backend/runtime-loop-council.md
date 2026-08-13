@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies that the public mode key `ai-council` maps to runtime loop key `council`. The runtime loop type must not be inferred by copying the workflow mode.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: An operator wants a registry-grounded route explanation for the council backend.
@@ -40,6 +42,8 @@ For an AI council deliberation, resolve the mode through the registry and state 
 - Hub source: `ai-council` maps to `runtimeLoopType: council`.
 
 **Desired user-visible outcome**: The AI reports `runtimeLoopType: council` and does not invent `runtimeLoopType: ai-council`.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -74,10 +78,14 @@ For an AI council deliberation, resolve the mode through the registry and state 
 2. If packet is wrong, compare `packet: "deep-ai-council"` with `agent: "ai-council"`.
 3. If backend is wrong, verify `backendKind: "runtime-loop-type"`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - three-tier discriminator and council mapping.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-council` backend fields.
+
+---
 
 ## 5. SOURCE METADATA
 

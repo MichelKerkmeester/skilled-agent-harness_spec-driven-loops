@@ -21,9 +21,13 @@ Authoritative computation for the Skill Benchmark Report. Source of truth: the c
 
 Lane C scores a skill across five dimensions (D1-D5) and rolls them into a single verdict. D5 (structural connectivity) is a static hard gate that runs first. Mode A (router-replay) scores everything that needs no live model deterministically; D1-inter is built but opt-in via the in-repo advisor. The weighted **D4** dimension (a hallucination-grader proxy) stays unscored in the aggregate **by design** — it does not measure task usefulness. Real routine-task usefulness is measured separately by the opt-in **D4-R task-outcome ablation**, reported as an advisory signal (never folded into the weighted score); the live trace (Mode B) is built. The aggregate normalizes over the dimensions actually measured so the headline number stays honest about coverage.
 
+---
+
 ## 2. POINT WEIGHTS (FULL / LIVE MODE)
 
 `D1 = 25` (inter 12 + intra 13) · `D2 = 20` · `D3 = 15` · `D4 = 25` · `D5 = 15` (hard gate).
+
+---
 
 ## 3. MODE A (ROUTER-REPLAY, DETERMINISTIC)
 
@@ -34,6 +38,8 @@ Scores only what needs no live model; the aggregate normalizes over the measured
 - **D3** (Mode A proxy) = `1 - wastedRouted / totalRouted` (over-routing penalty). Live mode replaces with calls/tokens-to-first-expected.
 - **D5** = `100 - Σ penalties` (P0 40, P1 12, P2 3), floored at 0. Any P0 sets `gateFailed`.
 
+---
+
 ## 4. D1-INTER — OPT-IN ADVISOR PROBE (BUILT, DETERMINISTIC)
 
 D1-inter (does the skill *advisor* select this skill for the scenario?) is built and deterministic, but **opt-in** so the pure-router default stays fast and dependency-free:
@@ -42,6 +48,8 @@ D1-inter (does the skill *advisor* select this skill for the scenario?) is built
 - Scored out-of-band via the deterministic SQLite advisor (`scoreAdvisorPrompt` / `skill_advisor.py`) with the advisor hook disabled so the answer cannot leak into the dispatched prompt.
 - When disabled it reports `status: unscored-mode-a` (never faked); when enabled it contributes its 12 points to the measured aggregate.
 - For an **advisor-invisible** skill — one whose directory carries no `graph-metadata.json`, so the advisor ranks its owning parent identity rather than the packet — D1-inter is **excluded-by-design**: reported `applicable: false, status: "excluded-by-design"` with the owning identity in `delegatedMeasure.targetSkill`, and listed under `excludedDimensions` (not `unscoredDimensions`). This is structural N/A, not a missing score; the weighted aggregate is unaffected either way.
+
+---
 
 ## 5. LIVE MODE (MODE B) + ADVISORY SIGNALS
 
@@ -55,6 +63,8 @@ The weighted **D4** dimension stays `unscored-mode-a` in the aggregate by design
 ### Advisory Signals
 
 `score-skill-benchmark.cjs` emits `advisorySignals` in the machine report, and `build-report.cjs` renders them under **Advisory signals (NOT in the weighted aggregate)**. `D4_task_outcome` reports the opt-in D4-R routine-task usefulness delta when `--d4` live ablation runs; otherwise it is unscored. `assetRecall` reports expected deferred-asset support when live stated assets are available; otherwise it is deferred or unscored. Both are diagnostic only and never change `aggregateScore`, `dimensionScores`, `verdict`, or D4's weighted status.
+
+---
 
 ## 6. FUNNEL + BOTTLENECK RANKING
 

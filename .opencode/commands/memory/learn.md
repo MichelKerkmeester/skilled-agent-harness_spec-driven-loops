@@ -23,6 +23,8 @@ Guardrails:
 - For removal, validate filename is basename-only and wait for explicit confirmation.
 - This is a direct-dispatch command with no workflow YAML by design; do not create or modify workflow YAML from this command.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -33,6 +35,8 @@ This is a direct-dispatch command: it routes straight to the memory MCP tools an
 
 Before rendering any dashboard, approval prompt, or result block, read the presentation asset and use it as the display source of truth.
 
+---
+
 ## 3. MODE ROUTING
 
 Inputs:
@@ -42,6 +46,8 @@ Inputs:
 - `edit <filename>` edits an existing constitutional rule.
 - `remove <filename>` removes an existing constitutional rule after confirmation.
 - Any other text is treated as a proposed new constitutional rule.
+
+---
 
 ## 4. EXECUTION TARGETS
 
@@ -55,6 +61,8 @@ This command dispatches to the constitutional-rule directory and the memory MCP 
 6. Verify constitutional visibility with `memory_search` when a new rule is created.
 7. Render all displays from the presentation asset.
 
+---
+
 ## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/memory/assets/learn-presentation.txt`:
@@ -64,6 +72,8 @@ The following content lives only in `.opencode/commands/memory/assets/learn-pres
 - Visibility verification, token-budget, and next-step text.
 
 The router must not invent visible wording for those surfaces; it only resolves the operation and required safety gates.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

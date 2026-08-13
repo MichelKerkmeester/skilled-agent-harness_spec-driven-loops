@@ -18,6 +18,8 @@ Current state:
 - Eval code reads this file as fixture input.
 - No runtime logic, database writes or generated reports live here.
 
+---
+
 ## 2. ARCHITECTURE
 
 ```text
@@ -30,6 +32,8 @@ eval loaders and ablation runners
 recall, ranking and reporting outputs
 ```
 
+---
+
 ## 3. DIRECTORY TREE
 
 ```text
@@ -38,11 +42,15 @@ data/
 `-- README.md          # Folder orientation
 ```
 
+---
+
 ## 4. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `ground-truth.json` | Stores labeled query fixtures used to compare expected retrieval behavior against eval outputs. |
+
+---
 
 ## 5. BOUNDARIES AND FLOW
 
@@ -58,9 +66,13 @@ fixture query
     -> report outside this folder
 ```
 
+---
+
 ## 6. ENTRYPOINTS
 
 There are no code exports. The entrypoint is the `ground-truth.json` file path consumed by eval tooling.
+
+---
 
 ## 7. VALIDATION
 
@@ -75,6 +87,8 @@ Check JSON syntax when editing fixtures:
 ```bash
 node -e "JSON.parse(require('node:fs').readFileSync('.opencode/skills/system-spec-kit/mcp-server/lib/eval/data/ground-truth.json', 'utf8'))"
 ```
+
+---
 
 ## 8. RELATED
 

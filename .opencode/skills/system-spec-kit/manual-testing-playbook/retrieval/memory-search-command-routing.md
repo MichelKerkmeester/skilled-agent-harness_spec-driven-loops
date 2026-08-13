@@ -66,6 +66,8 @@ Tool invocation logs for each subcommand; intent detection output for retrieval 
 
 Verify argument routing logic in Section 4 of search.md → Check intent detection keywords → Confirm analysis subcommand first-token matching → Inspect tool coverage matrix for correct tool-to-subcommand mapping
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/unified-context-retrieval-memorycontext.md](../../feature-catalog/retrieval/unified-context-retrieval-memorycontext.md)

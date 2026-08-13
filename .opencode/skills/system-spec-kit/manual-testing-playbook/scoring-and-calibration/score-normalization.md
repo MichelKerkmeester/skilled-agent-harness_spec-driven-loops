@@ -60,6 +60,8 @@ Normalized output with range verification + edge case test results
 
 Verify min-max formula → Check edge case guards (single result, all-equal) → Inspect batch processing order
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/score-normalization.md](../../feature-catalog/scoring-and-calibration/score-normalization.md)

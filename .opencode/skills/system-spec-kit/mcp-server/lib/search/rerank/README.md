@@ -13,9 +13,13 @@ trigger_phrases:
 
 `lib/search/rerank/` contains helpers that improve retrieval quality after the primary candidate set is built.
 
+---
+
 ## 2. OWNERSHIP
 
 The memory search stack owns this folder. Generic ranking algorithms belong in `@spec-kit/shared/algorithms`; this folder owns mk-spec-memory-specific rescue behavior.
+
+---
 
 ## 3. KEY FILES
 
@@ -23,15 +27,21 @@ The memory search stack owns this folder. Generic ranking algorithms belong in `
 |---|---|
 | `retrieval-rescue.ts` | Applies rescue behavior for weak or missing high-authority retrieval candidates. |
 
+---
+
 ## 4. BOUNDARIES
 
 - Do not call MCP handlers from this folder.
 - Keep cross-package ranking math in `shared/algorithms/`.
 - Keep telemetry schemas in `lib/telemetry/`.
 
+---
+
 ## 5. ENTRYPOINTS
 
 Search pipeline modules import `retrieval-rescue.ts` directly when composing ranked results.
+
+---
 
 ## 6. VALIDATION
 

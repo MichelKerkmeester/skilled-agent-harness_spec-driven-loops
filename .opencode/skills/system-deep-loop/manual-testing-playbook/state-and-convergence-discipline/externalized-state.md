@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies documented state discipline without running a full loop. The operator confirms that state belongs to the mode packet and command workflow, not to ad hoc `/tmp` prompts or a manually scripted dispatcher.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: An operator asks how to run an iterative review loop safely and wants to avoid manual state drift.
@@ -41,6 +43,8 @@ Before running deep review, explain where iteration state is owned and confirm w
 - Packet source: deep-review requires the command workflow to own dispatch and `scripts/reduce-state.cjs` to be the single state writer.
 
 **Desired user-visible outcome**: The AI says no to manual `/tmp` iteration state and points the operator to `/deep:review` and packet-owned state discipline.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -76,11 +80,15 @@ Before running deep review, explain where iteration state is owned and confirm w
 2. If hub ownership is claimed, re-read the hub rule that per-mode state contracts live in packets.
 3. If route is not review, verify the prompt's `deep review` control is intact.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - packet-owned state and hub logic boundary.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `review` route fields.
 - `.opencode/skills/system-deep-loop/deep-review/SKILL.md` - forbidden manual state and command-owned workflow rules.
+
+---
 
 ## 5. SOURCE METADATA
 

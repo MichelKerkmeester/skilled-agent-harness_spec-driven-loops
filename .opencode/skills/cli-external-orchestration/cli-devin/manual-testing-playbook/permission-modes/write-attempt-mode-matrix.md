@@ -16,6 +16,8 @@ Compare the ordinary approval modes on an isolated temporary workspace. The matr
 
 Devin's permission mode controls tool approval independently of the model. A write task must not be described as successful merely because a model returned text.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Observe whether the same write request is allowed, prompted, or refused under each mode.
@@ -25,6 +27,8 @@ Devin's permission mode controls tool approval independently of the model. A wri
 - Expected signals: `normal` may prompt or decline in non-interactive mode; `accept-edits` permits workspace edits; `bypass` permits the write without an approval prompt. No repository file changes.
 - Desired user-visible outcome: A mode-by-mode evidence table, not a guessed equivalence.
 - Pass/fail: PASS when observed behavior is recorded per mode and matches the installed binary's response; FAIL on an unrecorded or contradictory mode result; SKIP if auth is unavailable.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -37,6 +41,8 @@ Devin's permission mode controls tool approval independently of the model. A wri
 | Feature ID | Exact commands | Expected signal | Verdict |
 |---|---|---|---|
 | DV-005 | Same prompt with `normal`, `accept-edits`, `bypass` | Mode-specific result and isolated file evidence | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -52,6 +58,8 @@ Devin's permission mode controls tool approval independently of the model. A wri
 |---|---|
 | `../../references/cli-reference.md` | Mode semantics and examples |
 | `../../SKILL.md` | Repo dispatch uses `bypass`; dangerous requires approval |
+
+---
 
 ## 5. SOURCE METADATA
 

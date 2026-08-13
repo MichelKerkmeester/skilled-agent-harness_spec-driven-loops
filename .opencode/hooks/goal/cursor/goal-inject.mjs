@@ -34,7 +34,6 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const { readGoalRecord, renderGoalBrief, recordTurn, isPluginDisabled } = require('../lib/goal-core.cjs');
-const { isHookEnabled } = require('../../shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -56,7 +55,6 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  if (!isHookEnabled('goal')) return allow();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

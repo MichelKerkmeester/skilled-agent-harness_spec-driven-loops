@@ -18,6 +18,8 @@ version: 3.6.0.21
 
 This entry records the completed dead-code cleanup rather than a live runtime feature. Approximately 360 lines of dead code across four categories have been verified absent from the source tree.
 
+---
+
 ## 2. HOW IT WORKS
 
 The codebase is clean across four dead-code categories:
@@ -41,6 +43,8 @@ The codebase is clean across four dead-code categories:
 ### Edge Cases & Caveats
 
 **Preserved but not part of the removal set:** `computeStructuralFreshness` and `computeGraphCentrality` still exist as exported utilities in `fsrs.ts`. They remain in the source tree, but this entry does not treat them as active runtime search features or pending activations.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -142,6 +146,8 @@ Cross-cutting evidence is distributed across:
     - `rg "export\\s+(function|const|type|interface)\\s+(computeCausalDepth|getSubgraphWeights|RECOVERY_HALF_LIFE_DAYS|CoActivationEvent)\\b" mcp-server/lib` => no matches.
     - `rg -n "computeCausalDepth\\b|computeCausalDepthScores" mcp-server/lib/graph/graph-signals.ts` => only `computeCausalDepthScores` is present and used.
 - **Approx LOC removed:** `~118` (`graph-signals -65`, `graph-search-fn -16`, `negative-feedback -5`, `co-activation -20`, `causal-edges -12`, commit `b4f85e327`).
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

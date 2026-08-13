@@ -10,29 +10,26 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication"
-    last_updated_at: "2026-08-12T04:14:38Z"
+    last_updated_at: "2026-08-13T05:56:32.000Z"
     last_updated_by: "codex"
-    recent_action: "Completed and verified Phase 005 provider adapters and privacy."
-    next_safe_action: "Approve the Phase 006 architecture, then execute T001."
-    blockers:
-      - "Phase 006 architecture decision remains Proposed until owner approval."
+    recent_action: "Added the completed code and documentation conformance phase."
+    next_safe_action: "Begin Phase 009 planning while preserving the completed Phase 008 and Phase 014 evidence."
+    blockers: []
     key_files:
       - "spec.md"
       - "001-research-strategy/spec.md"
-      - "001-research-strategy/plan.md"
-      - "002-contracts-and-fixtures/spec.md"
-      - "003-core-normalization-and-assembly/spec.md"
-      - "003-core-normalization-and-assembly/handover.md"
-      - "004-protected-spans-fidelity-render/spec.md"
-      - "004-protected-spans-fidelity-render/handover.md"
-      - "005-provider-adapters-and-privacy/spec.md"
       - "005-provider-adapters-and-privacy/handover.md"
       - "006-runtime-adapters-and-clients/spec.md"
+      - "006-runtime-adapters-and-clients/handover.md"
+      - "007-evaluation-and-observability/spec.md"
+      - "009-prompt-token-contract/spec.md"
+      - "013-capability-evidence-unblock/spec.md"
+      - "014-code-and-doc-conformance/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "035-improved-communication-20260811"
       parent_session_id: null
-    completion_pct: 63
+    completion_pct: 64
     open_questions:
       - "Which runtimes prove atomic replacement under pinned fixtures?"
     answered_questions:
@@ -42,6 +39,7 @@ _memory:
       - "Phase 003 delivered the verified normalization, assembly, context, and evidence core."
       - "Phase 004 delivered the verified protected-span, fidelity, render, and content-free evidence boundary."
       - "Phase 005 delivered verified model-scoped providers, privacy-first routing, bounded execution, and exact-original fallback."
+      - "Phase 006 delivered verified six-runtime adapters over eight paths, client-owned presentation, a capability matrix, and tier-honest content-free telemetry."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
@@ -62,7 +60,7 @@ _memory:
 | **Parent Spec** | None |
 | **Parent Packet** | `cli-external-orchestration/035-improved-communication` |
 | **Predecessor** | None |
-| **Successor** | `001-research-strategy/` through `005-provider-adapters-and-privacy/` complete. `006-runtime-adapters-and-clients/` is next. |
+| **Successor** | Phases `009` through `013` are planned; Phase `014` records completed code and documentation conformance. |
 | **Handoff Criteria** | Each child passes its own implementation gates and strict validation before the next phase consumes its output |
 <!-- /ANCHOR:metadata -->
 
@@ -116,7 +114,9 @@ Detailed research, architecture, implementation, and verification belong to chil
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
 | `001-research-strategy/` | Create | 001 | Reverse engineering, current-source research, architecture framing, evaluation design, and downstream phase recommendation |
-| `002-contracts-and-fixtures/` through `008-packaging-and-release-hardening/` | Create | 002-008 | Level 3 implementation workstreams derived from the completed research synthesis |
+| `002-contracts-and-fixtures/` through `008-packaging-and-release-hardening/` | Create | 002-008 | Completed implementation workstreams derived from the research synthesis |
+| `009-prompt-token-contract/` through `013-capability-evidence-unblock/` | Create | 009-013 | Planned projection-quality workstreams for prompt tokens, marker burden, meaning judgment, no-op rejection, and capability evidence |
+| `014-code-and-doc-conformance/` | Create | 014 | Completed package README coverage, operator-reference conformance, package alignment, and review evidence |
 | `context/claudish-to-english-main/` | Read only | All | Reference behavior and evidence. Never modified by this epic. |
 <!-- /ANCHOR:scope -->
 
@@ -132,11 +132,17 @@ Detailed research, architecture, implementation, and verification belong to chil
 | 3 | `003-core-normalization-and-assembly/` | Implement immutable normalization, canonical-byte storage, bounded context selection, ordering, deduplication, bounds, cancellation, retry generations, and content-free event emission | Complete |
 | 4 | `004-protected-spans-fidelity-render/` | Implement protected spans, deterministic validators, semantic vetoes, compare-and-swap, and render decisions | Complete |
 | 5 | `005-provider-adapters-and-privacy/` | Implement OpenCode Go, Ollama, llama.cpp, generic hosted adapters, discovery, and privacy-first routing | Complete |
-| 6 | `006-runtime-adapters-and-clients/` | Implement Claude, Codex, Pi, OpenCode, Devin, and Cursor adapters with explicit full-projection and safe-native presentation tiers | Draft, next; owner approval required |
-| 7 | `007-evaluation-and-observability/` | Execute the powered blind parity protocol, aggregate redacted telemetry, and produce operational reports | Draft |
-| 8 | `008-packaging-and-release-hardening/` | Package supported configurations, compatibility doctor, rollback, and release gates | Draft |
+| 6 | `006-runtime-adapters-and-clients/` | Implement Claude, Codex, Pi, OpenCode, Devin, and Cursor adapters with explicit full-projection and safe-native presentation tiers | Complete |
+| 7 | `007-evaluation-and-observability/` | Execute the powered blind parity protocol, aggregate redacted telemetry, and produce operational reports | Complete |
+| 8 | `008-packaging-and-release-hardening/` | Package supported configurations, compatibility doctor, rollback, and release gates | Complete |
+| 9 | `009-prompt-token-contract/` | Make the versioned prompt profile explicitly preserve protected markers while rewriting surrounding prose | Planned |
+| 10 | `010-adjacent-span-coalescing/` | Reduce model-facing marker burden through a locally resolved representation that preserves strict restoration | Planned |
+| 11 | `011-meaning-judge-wiring/` | Compose a local post-restoration reject-only meaning judge into the production path | Planned |
+| 12 | `012-no-op-rejection/` | Reject unchanged and threshold-defined near-echo candidates as no improvement | Planned |
+| 13 | `013-capability-evidence-unblock/` | Supply dated evidence so supported provider controls reach transport while stale facts remain fail closed | Planned |
+| 14 | `014-code-and-doc-conformance/` | Record complete code-folder README coverage, reference-document conformance, package-gate alignment, and zero-defect review evidence | Complete |
 
-All seven implementation children exist as Level 3 packets. Phases 002 through 005 have verified code, fixtures and tests. Phases 006 through 008 remain unimplemented.
+The first eight children and Phase 014 are implemented and verified. Phases 009 through 013 are planned follow-on workstreams and retain zero-percent completion until their own implementation evidence exists.
 ### Phase Transition Rules
 
 - Each phase must pass `validate.sh` independently before its handoff.
@@ -156,6 +162,13 @@ All seven implementation children exist as Level 3 packets. Phases 002 through 0
 | 005 provider adapters and privacy | 006 runtime adapters and clients | OpenCode Go DeepSeek V4 Flash, Ollama, llama.cpp and generic routes pass contracts. Privacy runs before ranking. | Provider stubs, egress negative controls and no implicit local-to-hosted fallback |
 | 006 runtime adapters and clients | 007 evaluation and observability | All six adapters declare a presentation tier and pass pinned fixture replay plus explicit degraded-mode smokes without canonical writes. | Conformance suite, tiered six-runtime smokes and state snapshots |
 | 007 evaluation and observability | 008 packaging and release hardening | Pilot variance, powered blind comparisons, predeclared non-inferiority margins, operational metrics, and redaction canaries produce a conclusive passing report | Versioned report hashes, reviewer randomization checks, confidence-interval gates, and zero-leak telemetry scan |
+| 008 packaging and release hardening | 009 prompt token contract | Preserve the completed release evidence while opening the versioned prompt-profile follow-on | Phase 008 handover plus Phase 009 strict planned-packet validation |
+| 009 prompt token contract | 010 adjacent-span coalescing | Token contract is planned independently; combined marker-burden measurements remain available to the next phase | Fixed-corpus token-contract plan and strict packet validation |
+| 010 adjacent-span coalescing | 011 meaning-judge wiring | Representation and privacy decisions are explicit before production composition consumes candidates | Decision record, fidelity plan, and strict packet validation |
+| 011 meaning-judge wiring | 012 no-op rejection | Meaning-loss and no-change policies remain separate, typed production outcomes | Composition plan and strict packet validation |
+| 012 no-op rejection | 013 capability-evidence unblock | No-improvement policy remains independent from provider capability reachability | Threshold plan and strict packet validation |
+| 013 capability-evidence unblock | 014 code and documentation conformance | Capability work remains independent while the completed package documentation and implementation evidence are recorded | Phase 013 strict planned-packet validation plus Phase 014 conformance evidence |
+| 014 code and documentation conformance | Parent packet decision | All code-folder READMEs, operator references, package alignment, review evidence, and strict packet gates are complete | 27 code-folder validations, 6 reference validations, 289/289 tests, zero code defects, and strict validation |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -172,7 +185,9 @@ All seven implementation children exist as Level 3 packets. Phases 002 through 0
 
 ## RELATED DOCUMENTS
 
-- **Active child**: `006-runtime-adapters-and-clients/spec.md`
-- **Completed predecessor handover**: `005-provider-adapters-and-privacy/handover.md`
+- **Active child**: `009-prompt-token-contract/spec.md` (planned; implementation not started)
+- **Completed predecessor handover**: `008-packaging-and-release-hardening/handover.md`
+- **Planned follow-on range**: `009-prompt-token-contract/` through `013-capability-evidence-unblock/`
+- **Completed conformance phase**: `014-code-and-doc-conformance/implementation-summary.md`
 - **Reference implementation**: `context/claudish-to-english-main/`
 - **Graph metadata**: `graph-metadata.json`

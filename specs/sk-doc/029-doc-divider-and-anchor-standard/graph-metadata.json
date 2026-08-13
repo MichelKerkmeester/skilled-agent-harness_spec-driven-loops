@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "029-doc-divider-and-anchor-standard",
+  "spec_folder": "029-doc-divider-and-anchor-standard",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"],
+    "entities": [],
+    "causal_summary": "Reconcile the numbered ALL-CAPS H2 section-divider convention and the TOC/anchor navigation convention across the structured .md documentation fleet, and close the validator enforcement gaps that let both drift",
+    "created_at": "2026-08-13T06:06:24Z",
+    "last_save_at": "2026-08-13T06:06:24Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"]
+  }
+}

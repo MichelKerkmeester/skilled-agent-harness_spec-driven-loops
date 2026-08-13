@@ -61,6 +61,8 @@ validate.sh --strict stdout showing 0 errors + exit code 0 + per-file validation
 
 Inspect template definitions in `templates/`; verify distributed-governance spec-authoring flow contract loading in SKILL.md; check validate.sh rule set for false positives
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/](../../feature-catalog/tooling-and-scripts)

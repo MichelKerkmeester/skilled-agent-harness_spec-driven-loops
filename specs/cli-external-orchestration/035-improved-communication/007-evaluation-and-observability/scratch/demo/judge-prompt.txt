@@ -1,0 +1,16 @@
+You are a blind communication-quality judge. Two texts, A and B, each try to explain the same CLI event in plain English. Do NOT assume which is a reference and which is a candidate. Score BOTH on four dimensions, each 0 to 10:
+- directness: gets to the point, no filler
+- fluency: natural, readable prose
+- meaning-preservation: keeps the original technical facts intact
+- reference-likeness: reads like a careful human-written explanation
+
+Output STRICT JSON ONLY (no prose, no code fence):
+{"comparison-1":{"directness":{"A":0,"B":0},"fluency":{"A":0,"B":0},"meaning-preservation":{"A":0,"B":0},"reference-likeness":{"A":0,"B":0}},"comparison-2":{"directness":{"A":0,"B":0},"fluency":{"A":0,"B":0},"meaning-preservation":{"A":0,"B":0},"reference-likeness":{"A":0,"B":0}}}
+
+Comparison 1:
+A: The build finished. All 226 tests passed and the type check was clean, so the package is ready to publish.
+B: Build done — ok. tests: 226/226 pass; tsc: no errors; pkg publishable now.
+
+Comparison 2:
+A: Timed out after 30s waiting for the provider; kept your original text unchanged and showed it as-is.
+B: The request to the provider exceeded the thirty-second limit, so nothing was rewritten and your original wording was preserved exactly.

@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/003-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
+  "spec_folder": "hooks/003-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
+  "parent_id": "hooks/003-goal-hooks-cross-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dispatch shape coverage",
+      "devin cursor pi dispatch regex",
+      "codex dispatch shape fold-in",
+      "severity mapping block warn",
+      "dispatch shape coverage plan",
+      "codex shape fold-in plan",
+      "severity mapping implementation",
+      "dispatch shape coverage tasks",
+      "dispatch shape coverage checklist",
+      "dispatch shape coverage summary"
+    ],
+    "key_topics": [
+      "dispatch",
+      "shape",
+      "coverage",
+      "devin",
+      "cursor",
+      "regex",
+      "codex",
+      "fold-in",
+      "severity",
+      "mapping",
+      "block",
+      "warn"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fold Codex",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "each",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`cli-devin`, `cli-cursor`, and `cli-pi` already declare `hardrules:` in their SKILL.md frontmatter (availability check, self-invocation guard, deep-loop-runtime delegation — all `severity: error`), but the shared dispatch-shape registry (`DISPATCHSHAPES` in `.opencode/hooks/dispatch/lib/dispatch-audit.mjs`) only recognizes `opencode run` and `claude -p` command shapes",
+    "created_at": "2026-07-28T17:27:32.298Z",
+    "last_save_at": "2026-08-11T06:50:04.437Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:176f6f33335bd0686f373f30e2be8ad37dc27cc1ad6c022300e2b983fd9ccec3",
+    "source_doc_hashes": {
+      "spec.md": "b9ab55a123d27c7a96e4ff70244f6e0c47462cc8843ede853cdb52275bb431e0",
+      "plan.md": "343aecbfd7b36384cdf98e40b26c072d786344d25688e369d87018d5903d5593",
+      "tasks.md": "fb0b4cff583d8d5fc1d5612604bfd9147b3a5867ded7e138553ab61da7266928",
+      "checklist.md": "d4b406ee9b6f3cec1d691b21599a7a08b0a45cb850853b08617165d76338d899",
+      "implementation-summary.md": "2b20729b08b3fb19ad90f5bb42ad1392a8ac7953439b1b7c8bcd19f66c217311"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

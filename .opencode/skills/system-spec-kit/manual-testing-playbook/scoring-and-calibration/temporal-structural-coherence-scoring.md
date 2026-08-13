@@ -84,6 +84,8 @@ RETRY
 
 Verify control content satisfies structural checks -> Inspect coherence penalty branches for future-dated claims and causal links -> Confirm rejection threshold or downgrade path -> Check retry loop configuration and attempt count -> Ensure broader chronology analysis was not assumed in the verdict
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/temporal-structural-coherence-scoring.md](../../feature-catalog/scoring-and-calibration/temporal-structural-coherence-scoring.md)

@@ -20,6 +20,8 @@ Covers the causal graph health metrics tool reporting edge counts, relationship 
 
 This gives you a health report on the web of connections between your spec-doc records. It tells you how many connections exist, how strong they are and whether enough spec-doc records are linked together. If too many records are isolated with no edges, the system warns you because it means the decision-lineage network is too thin to be useful for tracing decisions.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Core Metrics
@@ -35,6 +37,8 @@ Orphaned edges (edges referencing source or target spec-doc records that no long
 ### Rolling-Window Deltas & Balance Metrics
 
 The response now also reports rolling-window deltas and balance metrics: `deltaByRelation` (per-relation count of new edges in the active window), `dominantRelation` and `dominantRelationShare` (largest relation type and its share of the window total), `balanceStatus` (one of `balanced`, `relation_skewed`, `insufficient_data`), `remediationHint` (a string naming the producer when skew is detected, e.g. prediction-error supersede burst), and `windowStartedAt`. `by_relation` is zero-filled across all 6 relation types so a missing type appears as 0 rather than disappearing. When `dominantRelationShare > 0.80` AND total new edges in window >= 50, `balanceStatus` is `relation_skewed` and `remediationHint` is set. Auto-edge insertion on PE / reconsolidation paths now respects a per-relation per-window cap routed through shared cap logic so supersedes bursts cannot dominate the graph.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -60,6 +64,8 @@ The response now also reports rolling-window deltas and balance metrics: `deltaB
 | `mcp-server/tests/handler-causal-graph.vitest.ts` | Automated test | Causal graph handler validation |
 | `mcp-server/tests/integration-causal-graph.vitest.ts` | Automated test | Causal graph integration |
 | `mcp-server/tests/graph-signals.vitest.ts` | Automated test | Graph signal computation tests |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Analysis

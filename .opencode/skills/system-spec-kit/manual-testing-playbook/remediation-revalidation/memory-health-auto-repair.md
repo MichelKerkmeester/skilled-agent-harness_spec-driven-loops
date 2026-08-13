@@ -143,6 +143,8 @@ tests/tool-input-schema.vitest.ts:577:     expect(parsed).toEqual({ autoRepair: 
 
 Inspect `mcp-server/handlers/memory-crud-health.ts`, `mcp-server/lib/parsing/trigger-matcher.ts`, `mcp-server/lib/search/vector-index.ts`, and `mcp-server/lib/storage/causal-edges.ts` if repair staging, metadata, or cleanup coverage regresses
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [remediation-revalidation/memory-health-auto-repair.md](../../feature-catalog/remediation-revalidation/memory-health-auto-repair.md)

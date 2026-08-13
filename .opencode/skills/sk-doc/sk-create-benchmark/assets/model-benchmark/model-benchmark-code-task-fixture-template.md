@@ -66,6 +66,8 @@ validators (many adversarial-malformed inputs a lax-but-plausible solution wrong
 accepts), because raw computational difficulty saturates for frontier models. Bias
 `hidden_tests[]` toward those held-out adversarial cases.
 
+---
+
 ## 2. SCAFFOLD
 
 ```json
@@ -108,6 +110,8 @@ Inline guidance (the fixtures README + scorer are authoritative):
   no comments in the shipped .json.
 -->
 
+---
+
 ## 3. FIELD REFERENCE
 
 | Field | Type | Fill with |
@@ -124,6 +128,8 @@ Inline guidance (the fixtures README + scorer are authoritative):
 | `hidden_tests` | array | Held-out oracle cases in the same shape; bias toward adversarial / invalid-dominant inputs that a lax solution wrongly accepts. |
 | `expectedDifficulty` | string | Author's difficulty label, e.g. `trivial`, `hard`, `adversarial`. Aligns with `tier`. |
 | `saturation` | object | `{ "status": "active" }`. `active` = discriminating; a fixture frontier models ace is a demote candidate and stops being quotable as signal. |
+
+---
 
 ## 4. RELATED RESOURCES
 

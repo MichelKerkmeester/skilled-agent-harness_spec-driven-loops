@@ -12,7 +12,10 @@ This map separates the canonical contracts, the private gold, and the curated ou
 | Topology digest | `not recorded` |
 | Machine record | [`skill-benchmark-report.json`](./skill-benchmark-report.json) |
 | Curated result set | [`results.csv`](./results.csv) |
+| Produced artifact | none — intentionally omitted, see Boundary |
 
 ## Boundary
 
 The corpus and its private gold are inputs and are never rewritten by a run. This folder holds outputs only. A run that needs different gold gets a new corpus revision and a new folder, so a prior run is never overwritten when its result changes.
+
+No artifact file is copied into this folder: no diagram artifact — this scenario verifies registry facts (mode-registry.json, hub-router.json, leaf-manifest.json), it produces no HTML/SVG output.

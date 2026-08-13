@@ -18,6 +18,8 @@ The advisory is the shared sk-git preflight hook at `.opencode/skills/sk-git/scr
 
 Devin runs shell commands through the `exec` tool. A directory-scoped `git commit --only <dir>` silently excludes untracked files inside the directory and reports success by count. Without the advisory, the operator learns the omission only after the damage. This scenario proves the advisory reaches Devin's context at command time and that a hook error fails open rather than blocking the command.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Verify the sk-git advisory fires on a directory-scoped commit with an untracked file inside, stays silent on an ordinary commit, is suppressible, and fails open — all delivered as Devin `PreToolUse` `exec` `additionalContext` that never blocks.
@@ -27,6 +29,8 @@ Devin runs shell commands through the `exec` tool. A directory-scoped `git commi
 - Expected signals: `additionalContext` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`; no denial field; the commit still runs; the suppressed re-run prints nothing; the ordinary commit prints nothing; the registered fallback approves when the hook cannot resolve.
 - Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the advisory text and silence evidence.
 - Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND suppression silences it. FAIL if the command is blocked or no advisory appears on the trap shape.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -40,6 +44,8 @@ Devin runs shell commands through the `exec` tool. A directory-scoped `git commi
 || Feature ID | Exact commands | Expected signal | Verdict |
 ||---|---|---|---|
 || DV-021 | `.devin/hooks.v1.json` registration check; `exec` trap payload through the shared hook; `SKGIT_ADVISORY=0` re-run; ordinary clean commit; fail-open envelope | Advisory names `commit-scope-drops-untracked` with no denial; suppression and ordinary commit silent; fallback approves on resolution failure | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -57,6 +63,8 @@ Devin runs shell commands through the `exec` tool. A directory-scoped `git commi
 || `../../../../../skills/sk-git/SKILL.md` | The 17 `hard_rules:` frontmatter the hook parses |
 || `.devin/hooks.v1.json` | `PreToolUse` matcher `^exec$` registration with `DEVIN_PROJECT_DIR` envelope and approval fallback |
 || `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
+
+---
 
 ## 5. SOURCE METADATA
 

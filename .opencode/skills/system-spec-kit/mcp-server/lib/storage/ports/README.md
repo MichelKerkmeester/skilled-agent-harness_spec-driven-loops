@@ -18,6 +18,8 @@ Current state:
 - `index.ts` re-exports every port type and implementation as the package barrel.
 - Adapters delegate to existing modules (`../../search/bm25-index.ts`, `../../search/vector-index-store.ts`, `../../graph/bfs-traversal.ts`) rather than reimplementing storage logic.
 
+---
+
 ## 2. PACKAGE TOPOLOGY
 
 ```text
@@ -45,6 +47,8 @@ lib/storage/ports → handlers
 lib/storage/ports → tests/fakes
 ```
 
+---
+
 ## 3. KEY FILES
 
 | File | Responsibility |
@@ -57,6 +61,8 @@ lib/storage/ports → tests/fakes
 | `vector-store.ts` | `VectorStore` port and the `BetterSqliteVectorStore` adapter wrapping `../../search/vector-index-store.ts`, `vector-index-queries.ts` and `vector-index-mutations.ts`. |
 | `index.ts` | Re-exports every port type and adapter as the package's public surface. |
 
+---
+
 ## 4. VALIDATION
 
 Run from the repository root unless noted.
@@ -66,6 +72,8 @@ cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/storage-p
 ```
 
 Expected result: the contract suite passes for both the real adapters and the `tests/fakes/storage-ports.ts` test doubles.
+
+---
 
 ## 5. RELATED
 

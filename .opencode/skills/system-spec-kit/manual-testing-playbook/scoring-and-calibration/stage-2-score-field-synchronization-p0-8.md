@@ -63,6 +63,8 @@ Search trace output showing score field progression through pipeline stages
 
 Inspect stage-2 intent weighting logic; verify Math.max sync placement; check resolveEffectiveScore fallback chain for non-hybrid flow
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/scoring-and-fusion-corrections.md](../../feature-catalog/scoring-and-calibration/scoring-and-fusion-corrections.md)

@@ -14,6 +14,8 @@ The validator asserts that every known language resolves to an on-disk reference
 
 This is a deterministic command scenario: the contract is exit-code behavior, not runtime routing.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants to confirm the documented code-opencode languages still match the folders on disk, and that a stray language folder is caught.
@@ -31,6 +33,8 @@ Run the language reference folder validator, confirm a clean pass, then add an o
 - Removing the orphan restores exit 0.
 
 **Desired user-visible outcome**: A structural guard that passes when the documented language set and the folders agree and fails loudly, naming the orphan, when they drift.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -81,10 +85,14 @@ Run the language reference folder validator, confirm a clean pass, then add an o
 2. If a known language is wrongly flagged: confirm the folder name matches the known language set exactly.
 3. If `shared/` is wrongly flagged: confirm it remains in the exempt non-language set.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` — code-opencode language reference folder validator.
 - `.opencode/skills/sk-code/sk-code-opencode/references/` — language reference folders and shared cross-language material checked by the validator.
+
+---
 
 ## 5. SOURCE METADATA
 

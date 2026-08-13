@@ -62,6 +62,8 @@ OnIndexResult output with llmBackfillScheduled field + test transcript
 
 Check isLlmGraphBackfillEnabled() → Verify registerLlmBackfillFn() was called → Inspect qualityScore vs llmBackfillThreshold (default 0.7) → Check setImmediate scheduling
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/llm-graph-backfill.md](../../feature-catalog/graph-signal-activation/llm-graph-backfill.md)

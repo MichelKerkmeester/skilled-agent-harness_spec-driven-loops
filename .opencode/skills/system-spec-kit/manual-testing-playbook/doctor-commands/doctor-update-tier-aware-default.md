@@ -104,6 +104,8 @@ The command loads `doctor-update.yaml` and uses tier-aware interactive mode. Sho
 
 If no ETA prompt appears before memory rebuild, inspect `doctor-update.yaml` `prompt_tiers.long_pole_eta`. If medium steps are prompted separately, inspect the combined prompt policy. If short steps require approval, compare observed behavior to ADR-006 default-mode tiering.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

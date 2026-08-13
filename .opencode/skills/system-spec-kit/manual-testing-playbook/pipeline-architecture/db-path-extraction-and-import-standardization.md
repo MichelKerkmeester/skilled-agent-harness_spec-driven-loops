@@ -147,6 +147,8 @@ $ SPEC_KIT_DB_DIR=.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-
 
 Verify shared resolver module is imported by all consumers; check env var precedence order; inspect for hardcoded path fallbacks
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/dbpath-extraction-and-import-standardization.md](../../feature-catalog/pipeline-architecture/dbpath-extraction-and-import-standardization.md)

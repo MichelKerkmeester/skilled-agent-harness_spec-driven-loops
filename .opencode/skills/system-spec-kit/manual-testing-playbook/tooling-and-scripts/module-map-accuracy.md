@@ -327,6 +327,8 @@ Comparison result: FAIL. `mcp-server/lib/MODULE-MAP.md` lists `mcp-server/lib/sc
 
 Identify stale entry -> update MODULE-MAP.md -> re-verify
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/module-boundary-map.md](../../feature-catalog/tooling-and-scripts/module-boundary-map.md)

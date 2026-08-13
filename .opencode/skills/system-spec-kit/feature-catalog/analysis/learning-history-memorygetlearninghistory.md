@@ -20,6 +20,8 @@ Covers the learning history retrieval tool that aggregates Learning Index trends
 
 This shows you a report card of learning across all completed tasks in a project. You can see the average learning score, which tasks produced the biggest breakthroughs and whether your understanding is trending up or down over time. It is like a fitness tracker for knowledge growth.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Core Retrieval
@@ -42,6 +44,8 @@ Handler safety around the backing table is tighter now. Schema initialization is
 
 The runtime tool schema labels `memory_get_learning_history` as `[L7:Maintenance]`, even though this catalog groups it under Analysis. Treat the catalog placement as a documentation grouping rather than the handler's runtime layer classification.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -62,6 +66,8 @@ The runtime tool schema labels `memory_get_learning_history` as `[L7:Maintenance
 | `mcp-server/tests/handler-session-learning.vitest.ts` | Automated test | Session learning handler validation |
 | `mcp-server/tests/integration-learning-history.vitest.ts` | Automated test | Learning history integration |
 | `mcp-server/tests/learning-stats-filters.vitest.ts` | Automated test | Learning stats filter tests including `includeSummary` and `onlyComplete` |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Analysis

@@ -31,7 +31,7 @@ _memory:
 
 # Feature Specification: Combo Test Matrix + Ambient-Config Isolation
 
-> Phase adjacency under the `043-cli-executor-fanout-parity` parent (grouping order, not a runtime dependency): predecessor `004-per-mode-executor-parity`; successor `006-docs-closeout`.
+> Phase adjacency under the `003-cli-executor-fanout-parity` parent (grouping order, not a runtime dependency): predecessor `004-per-mode-executor-parity`; successor `006-docs-and-closeout`.
 
 ---
 
@@ -83,10 +83,11 @@ Assemble the end-to-end combo coverage matrix (log every skip) and close the amb
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- **R1 (pi isolation)** — A read-only pi command disables auto-loaded extensions, skills, and prompt templates; the flags are pi-valid and behavior-preserving (read-only pi does text analysis with read-only file tools and never invokes skills).
-- **R2 (no regression)** — The pi flag additions do not change any other executor kind or the workspace-write/full-access pi paths; the exact-arg tests across the fan-out, model-benchmark, and ai-council suites lock the new read-only pi vector.
-- **R3 (combo coverage)** — The coverage matrix enumerates every kind × model × mode and records reachable / constructed / skipped-with-reason; no combination is silently omitted.
-- **R4 (ambient-config isolation)** — A read-only cursor/devin/pi leaf or seat cannot write via ambient config; unapproved MCP cannot hang it.
+- **REQ-001 (pi isolation)** — A read-only pi command disables auto-loaded extensions, skills, and prompt templates; the flags are pi-valid and behavior-preserving.
+- **REQ-002 (no regression)** — Pi hardening does not change any other executor kind or writable pi path; exact-argument tests cover every consumer.
+- **REQ-003 (combo coverage)** — The matrix enumerates every kind × model × mode and records reachable, constructed, or skipped-with-reason; no combination is silently omitted.
+- **REQ-004 (ambient-config isolation)** — A read-only cursor, devin, or pi leaf or seat cannot write via ambient config; unapproved MCP cannot hang it.
+- **REQ-005 (fail-closed isolation root)** — The neutral cursor workspace rejects a symlink, foreign owner, or planted `.cursor/` directory before dispatch.
 <!-- /ANCHOR:requirements -->
 
 ---

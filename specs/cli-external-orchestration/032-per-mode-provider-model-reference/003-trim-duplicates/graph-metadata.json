@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/032-per-mode-provider-model-reference/003-trim-duplicates",
+  "spec_folder": "cli-external-orchestration/032-per-mode-provider-model-reference/003-trim-duplicates",
+  "parent_id": "cli-external-orchestration/032-per-mode-provider-model-reference",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trim cli reference model tables",
+      "compact residue plus pointer",
+      "de-duplicate provider model docs",
+      "self-sufficiency dispatch gate",
+      "preserve advisor routing tokens",
+      "trim cli reference model tables plan",
+      "compact residue plus pointer plan",
+      "de-duplicate provider model docs plan",
+      "self-sufficiency dispatch gate approach",
+      "trim cli reference model tables tasks",
+      "compact residue plus pointer task list",
+      "de-duplicate provider model docs tasks"
+    ],
+    "key_topics": [
+      "trim",
+      "cli",
+      "reference",
+      "model",
+      "tables",
+      "compact",
+      "residue",
+      "plus",
+      "pointer",
+      "de-duplicate",
+      "provider",
+      "docs"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Now",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview With",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern De",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Reader",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Now that each mode has a dedicated `providers-and-models.md`, the exhaustive model enumerations still living in that mode's `cli-reference.md` model section and `SKILL.md` roster are redundant duplicates that will drift out of sync",
+    "created_at": "2026-07-29T08:35:29Z",
+    "last_save_at": "2026-08-11T07:17:30.779Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:da19e7e78813b7ddecf1656956c9cb3014296391ad22f29f81ac354b2aea3795",
+    "source_doc_hashes": {
+      "spec.md": "8175b73e35e78789cc193da7e8ee63b0c18953ecc65be29b85d5162404cd47c7",
+      "plan.md": "2ead03ed87ce4a67e667ccd3f598ae072b27bbb47b9762f5a3b684bf1a0d0d0e",
+      "tasks.md": "cd315eb84a6864d0a9001da0f3f37d7f8a1f5f5fca7c430191dcb2bb4afc97f7",
+      "implementation-summary.md": "2587b9d0f797d643a3a903d86c0893f453dc60ff9a3aab66a5f90c4d79719a70"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

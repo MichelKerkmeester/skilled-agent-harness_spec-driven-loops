@@ -11,6 +11,8 @@ description: "Normative scenario contract and reference runner for scoring live 
 
 Shared behavior-benchmark contract consumed by every deep-loop mode (`deep-ai-council`, `deep-alignment`, `deep-improvement`, `deep-research`, `deep-review`). `framework.md` is the single source of truth for the scenario schema, scoring rubric and classification taxonomy. `behavior-bench-run.cjs` is the reference runner that executes one scenario against one executor leg and emits a scored result JSON. Per-mode scenario packages live under each `deep-*` skill's own `behavior-benchmark/` folder and link back to `framework.md` rather than redefining the contract.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -18,6 +20,8 @@ Shared behavior-benchmark contract consumed by every deep-loop mode (`deep-ai-co
 | `behavior-bench-run.cjs` | Reference runner. Spawns an executor leg for one scenario, watches the live process against a no-progress watchdog, extracts checkpoints and delegation evidence from the transcript and scores the run against the five-dimension rubric. |
 | `framework.md` | Normative scenario contract: v1/v2 schema, D1-D5 scoring rubric, classification taxonomy, entry-surface and clarity codes, budget policy. |
 | `tests/` | Hermetic test suite for the runner. See `tests/README.md`. |
+
+---
 
 ## 3. CONSUMERS
 
@@ -28,6 +32,8 @@ node behavior-bench-run.cjs --scenario <file> --leg <name> --out-dir <dir>
   [--samples <count>] [--baseline <file>] [--repo-root <dir>]
   [--timeout-ms <ms>] [--watchdog-ms <ms>]
 ```
+
+---
 
 ## 4. TESTS
 

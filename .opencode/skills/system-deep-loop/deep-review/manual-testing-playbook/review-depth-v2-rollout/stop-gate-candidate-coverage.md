@@ -16,6 +16,8 @@ Exercise the `candidateCoverageGate` added to the legal-stop decision tree. A st
 
 Without the gate, a review can terminate with PASS verdict even though the agent never searched the required bug classes. The whole review-depth v2 rollout is gated on this: a no-finding STOP is only legitimate when the search debt is zero (or the iteration is explicitly trivial-scope with cited evidence).
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm legal-stop decision tree emits `blocked_stop` with `candidateCoverageGate` in `blocked_gates[]` when v2 search debt remains for non-trivial scope.
@@ -23,6 +25,8 @@ Without the gate, a review can terminate with PASS verdict even though the agent
 - Real user request: `Run a standard-scope v2 review iteration with one required bug class uncovered and confirm STOP is blocked by candidateCoverageGate.`
 - Expected signals: blocked_stop event with `blocked_gates[]` containing `candidateCoverageGate`. Recovery_strategy mentions resolving deferred/blocked obligations. Reducer `searchDebt` non-empty.
 - Pass/fail: PASS if `blocked_gates[]` contains `candidateCoverageGate` AND `searchDebt` is non-empty. FAIL if STOP succeeds OR gate is absent from the blocker payload.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -51,6 +55,8 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 - The blocked output is generic: inspect whether `candidateCoverageGate` was dropped before the final gate payload.
 - `searchDebt` is empty: rerun the reducer path and confirm the uncovered class is represented in reducer state.
 
+---
+
 ## 4. SOURCE REFERENCES
 
 - Workflow YAML: `.opencode/commands/deep/assets/deep-review-auto.yaml` (`step_check_convergence` legal-stop decision tree).
@@ -58,6 +64,8 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 - Reducer: `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (registry exposing `candidateCoverage`, `searchDebt`).
 - Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: complexity-candidate-saturation-gates decision record (see this skill's changelog for provenance).
+
+---
 
 ## 5. SOURCE_METADATA
 

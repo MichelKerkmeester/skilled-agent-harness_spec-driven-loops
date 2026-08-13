@@ -109,6 +109,8 @@ Validate dual-level retrieval modes and confirm auto-mode fallback fires on weak
 
 Inspect `mcp-server/handlers/memory-search.ts` for the `retrievalLevel` dispatch. Confirm `mcp-server/lib/search/search-flags.ts` registers the parameter and the kill-switch. Check the auto-mode threshold logic against the empty-result recovery thresholds.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/dual-level-retrieval.md](../../feature-catalog/retrieval-enhancements/dual-level-retrieval.md)

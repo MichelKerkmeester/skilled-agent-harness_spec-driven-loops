@@ -31,6 +31,15 @@ if [[ -z "$REPO_ROOT" ]]; then
   exit 0
 fi
 
+# Mass-deletion guard: source if present. The gate inside the loop checks that
+# its function actually loaded before using it, so a missing/broken lib simply
+# means the deletion ceiling is not enforced (fail-open) — never a blocked push.
+_MASS_DEL_GUARD="$REPO_ROOT/.opencode/scripts/git-hooks/lib/mass-deletion-guard.sh"
+if [[ -f "$_MASS_DEL_GUARD" ]]; then
+  # shellcheck source=/dev/null
+  . "$_MASS_DEL_GUARD" 2>/dev/null || true
+fi
+
 # --- Fail-safe validator load — never block a push on a missing/broken validator ---
 NAMING="$REPO_ROOT/.opencode/skills/sk-git/scripts/worktree-naming.sh"
 if [[ ! -f "$NAMING" ]]; then
@@ -74,7 +83,7 @@ NAME_SKIP=0
 
 REJECTED=0
 
-while read -r _ _ remote_ref remote_sha; do
+while read -r _ local_sha remote_ref remote_sha; do
   [[ -n "$remote_ref" ]] || continue
 
   case "$remote_ref" in
@@ -82,15 +91,29 @@ while read -r _ _ remote_ref remote_sha; do
     *) continue ;;   # tags and other ref types sit outside both gates
   esac
 
-  # Release branches are the one namespace neither gate ever touches, new or updated.
-  case "$branch_name" in
-    skilled/v*) continue ;;
-  esac
-
   is_new=0
   if [[ "$remote_sha" =~ ^0+$ ]]; then
     is_new=1
   fi
+
+  # ── Gate 0: mass-deletion ceiling — runs for EVERY branch, releases included.
+  # The destructive stale-tree push that motivated this guard went to a release
+  # branch, which the naming and permission gates deliberately skip; this gate
+  # must not. Updates only: a brand-new branch has no prior remote state to
+  # delete from. Fail-open if the guard lib did not load.
+  if [[ "$is_new" -eq 0 ]] && command -v mass_deletion_verdict >/dev/null 2>&1; then
+    _mdg_pushdel="$(mass_deletion_range_count "$remote_sha" "$local_sha")"
+    if ! mass_deletion_verdict "$_mdg_pushdel"; then
+      mass_deletion_report push "$_mdg_pushdel" "($branch_name $remote_sha..$local_sha)"
+      REJECTED=1
+      continue
+    fi
+  fi
+
+  # Release branches are the one namespace the naming/permission gates never touch.
+  case "$branch_name" in
+    skilled/v*) continue ;;
+  esac
 
   # ── Gate 1: naming (new branches only; updates keep migration tolerance) ──
   if [[ "$NAME_SKIP" -eq 1 ]]; then

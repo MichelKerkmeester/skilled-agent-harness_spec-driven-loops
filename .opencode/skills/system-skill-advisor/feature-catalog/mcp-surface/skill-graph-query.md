@@ -22,9 +22,13 @@ version: 0.8.0.10
 `depends_on`, `dependents`, `enhances`, `family_members`, `transitive_path`,
 `hub_skills`, `orphans` and `subgraph`.
 
+---
+
 ## 2. HOW IT WORKS
 
 Current runtime behavior is documented in the source files below.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -32,6 +36,8 @@ Current runtime behavior is documented in the source files below.
 |------|------|
 | `system-skill-advisor/mcp-server/tools/skill-graph-tools.ts` | Public MCP descriptor |
 | `system-skill-advisor/mcp-server/handlers/skill-graph/query.ts` | Handler |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph

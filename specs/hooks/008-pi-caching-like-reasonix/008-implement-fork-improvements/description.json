@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements",
+  "description": "Phase 007 ran four independent research lineages (`gpt-5.6-sol`, `gpt-5.6-luna`, Grok 4.5, `deepseek-v4-flash`) over 24 forced-full-depth iterations",
+  "keywords": [
+    "phase",
+    "ran",
+    "four",
+    "independent",
+    "research",
+    "lineages",
+    "gpt-5",
+    "6-sol",
+    "6-luna",
+    "grok",
+    "deepseek-v4-flash",
+    "forced-full-depth",
+    "iterations"
+  ],
+  "lastUpdated": "2026-08-11T06:40:10.414Z",
+  "specId": "008",
+  "folderSlug": "implement-fork-improvements",
+  "parentChain": [
+    "hooks",
+    "008-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

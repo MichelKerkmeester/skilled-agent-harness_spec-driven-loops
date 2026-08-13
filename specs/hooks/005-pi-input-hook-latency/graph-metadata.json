@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/005-pi-input-hook-latency",
+  "spec_folder": "hooks/005-pi-input-hook-latency",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi hook delay",
+      "pi input latency",
+      "prompt-advisor spawnSync",
+      "pi slow message send",
+      "pi hook adapter blocking",
+      "pi input latency plan",
+      "prompt-advisor rework plan",
+      "pi input latency tasks",
+      "prompt-advisor tasks",
+      "pi input latency checklist",
+      "prompt-advisor verification",
+      "pi input latency summary"
+    ],
+    "key_topics": [
+      "hook",
+      "delay",
+      "input",
+      "latency",
+      "prompt-advisor",
+      "spawnsync",
+      "slow",
+      "message",
+      "send",
+      "adapter",
+      "blocking",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Input Events",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "emission",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator observed that PI CLI adds delay before a message is sent, while the opencode plugin, the codex hooks, and the claude hooks do not",
+    "created_at": "2026-08-02T10:45:25.735Z",
+    "last_save_at": "2026-08-11T06:50:09.789Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b509ee1baf323fb6c3afc4aa3f0fad09df363de2027e114435cdeb33b86633e9",
+    "source_doc_hashes": {
+      "spec.md": "eb29c1ee4ff8a0b874266a12c98e3d51af19df4b9e334eb4a0573d9d3d5c6509",
+      "plan.md": "9cd34fa58e207cb0014e8bc451271c87a30afba2e0cd3fae9a65f6477590034d",
+      "tasks.md": "c2f3f8eb945d5655af32cd13495abc376d902e8ff36617f8a1818cdd2d8f29d2",
+      "checklist.md": "9c5737cff51120e94be80cf88f9ce20c79503e0b51928baebbc32767bf9cd75d",
+      "implementation-summary.md": "a5bc7d6a3d0ed81e457cc0352e655360eec906371b4a7b0dd32467d53f6865e3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

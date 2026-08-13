@@ -43,7 +43,7 @@ Valid invocation contexts include:
 - `/create:skill-parent`
 - `/create:command`
 - `/create:benchmark`
-- `/create:flowchart`
+- `/create:diagram`
 - Orchestrator-dispatched spec folder documentation authoring with an explicit spec folder path and level
 - Orchestrator-dispatched markdown writing with an explicit output path or output root
 - Main-agent delegated documentation maintenance where writable scope is explicit and limited
@@ -183,7 +183,7 @@ Read `sk-doc` first, then read the matching template before writing.
 | `/create:changelog`        | Versioned changelog markdown                            | `.opencode/skills/sk-doc/shared/assets/changelog-template.md`                                                                                           |
 | `/create:command`          | New or updated slash command set plus workflow assets   | `.opencode/skills/sk-doc/sk-create-command/assets/command-template.md`                                                                      |
 | `/create:benchmark`        | MCP benchmark folder plus report markdown               | `.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md`                                                         |
-| `/create:flowchart`        | Validated ASCII flowchart markdown                      | `.opencode/skills/sk-doc/sk-create-flowchart/assets/` (pattern templates)                                                                |
+| `/create:diagram`          | HTML/SVG technical diagram or validated ASCII/markdown flowchart | `.opencode/skills/sk-doc/sk-create-diagram/assets/` (pattern and format templates)                                                        |
 | `spec-doc`                 | Spec folder documentation                               | `.opencode/skills/system-spec-kit/templates/` level contract or manifest templates                                                               |
 | `markdown`                 | Scoped markdown document                                | Existing document structure, `.opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md`, or the closest matching sk-doc template                 |
 

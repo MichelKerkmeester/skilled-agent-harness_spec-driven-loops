@@ -223,6 +223,8 @@ No observed command output confirmed the written JSON value, `pendingCompactPrim
 
 Check `hook-state.ts` for state directory path and atomic write logic
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/precompact-hook.md](../../feature-catalog/context-preservation/precompact-hook.md)

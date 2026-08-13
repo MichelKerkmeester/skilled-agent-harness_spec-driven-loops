@@ -146,6 +146,8 @@ Observed comparison: the targeted Vitest command passed, the `sed` output shows 
 
 Inspect `context-server.ts`, `lib/providers/embeddings.ts`, and `../shared/embeddings.ts`; confirm no test setup or shell environment is forcing legacy warmup behavior
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [implement-and-remove-deprecated-features/lazy-loading-migration-and-warmup-compatibility.md](../../feature-catalog/implement-and-remove-deprecated-features/lazy-loading-migration-and-warmup-compatibility.md)

@@ -62,6 +62,8 @@ perIntentKSweep() output + NDCG@10/MRR@5 metrics + selected K values + test tran
 
 Verify isKExperimentalEnabled() → Confirm flag is not forced off → Check JUDGED_K_SWEEP_VALUES constant → Inspect argmaxNdcg10() tie-breaking logic → Verify evalQueriesAtK() metric computation → Check resolveRrfK() override path
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/rrf-k-experimental.md](../../feature-catalog/scoring-and-calibration/rrf-k-experimental.md)

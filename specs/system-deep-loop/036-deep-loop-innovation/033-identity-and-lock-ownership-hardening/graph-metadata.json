@@ -41,11 +41,6 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
       "checklist.md",
       "decision-record.md",
       "handover.md",
@@ -55,36 +50,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "transition-authorization-gateway.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts",
-        "source": "derived"
-      },
-      {
-        "name": "transition-policy-registry.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "atomic-state.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-artifact-writer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/leaf-artifact-writer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "loop-lock.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
-        "source": "derived"
-      },
       {
         "name": "checklist.md",
         "kind": "doc",
@@ -198,11 +163,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The authorization gateway skipped identity comparisons when authority bindings and resolver output were absent, allowing caller-supplied identity fields to pass unvalidated",
     "created_at": "2026-08-05T18:42:31.847Z",
-    "last_save_at": "2026-08-08T00:39:36.210Z",
+    "last_save_at": "2026-08-11T14:06:23.298Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +209,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:a7c850bf69eac8270c84cda64c334f3c5cda404d41bdad01ce957c61b8002788",
+    "source_fingerprint": "sha256:ed958f60ae4023cf4d6d7ab484727f8588a49ec756527e12b5e414278f757b9f",
     "source_doc_hashes": {
-      "spec.md": "391d05da84fccff9b68d9d60f7e1eec7f6d9384dd583a7417ad65d1511a98ce1",
+      "spec.md": "c414cdb9e90390cc4f4e666aded18d5850e0f43d602f45100e9e971b7622154c",
       "plan.md": "09bbebad0e2340dbb339b53d3b9d3ab6c8d5af91bf162df82bdf25bc7845c022",
       "tasks.md": "c17c8787f157f6cd61177ae408c9d97313edc6d659f8d0b1d5dee7064eb8a7f2",
       "checklist.md": "f6b1e16582363cd0106df3a71a7fc4e3ed3adde0f14974ae6fbe5dc2b9bda255",
       "decision-record.md": "73198d2a95b1ec1a7ef424ab96adc9f71dae5805254c214cf271fe3eb19a67c9",
-      "implementation-summary.md": "6e466e4d64e7527628c1fba0658ecb0e830fef795f77e5597970b31ce23e23f9",
+      "implementation-summary.md": "412c71a1fecdaf07afc402d868b3313a6e01ceb2da45f7ee167fb718ce522ac7",
       "handover.md": "44678685914936569131b627cd5c4e7fa0418d15ca920101145cb62d8f8a8317"
     },
     "last_active_child_id": null,

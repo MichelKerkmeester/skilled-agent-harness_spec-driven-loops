@@ -67,6 +67,8 @@ Validate context preservation QualityScore and confirm session_health reports th
 
 Inspect `mcp-server/lib/session/context-metrics.ts` for the four-factor computation and the level thresholds. Verify `mcp-server/handlers/session-health.ts` includes the score in its response. Confirm `mcp-server/lib/session/session-manager.ts` does not persist metrics state across restart.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/context-preservation-metrics.md](../../feature-catalog/context-preservation/context-preservation-metrics.md)

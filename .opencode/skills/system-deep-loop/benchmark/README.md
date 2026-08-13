@@ -41,6 +41,8 @@ Note: the harness itself lives inside this hub (`deep-improvement/scripts/skill-
 - **D1-inter and D4 are unscored** in router mode by design (need live mode / `--d4`).
 - **The four MR mode-routing scenarios route out to browser class** by the harness `classifyKind` heuristic (the `MR` prefix is treated as browser-class, matching how every hub's `MR-*` scenarios behave). They are scored only in live mode; the router aggregate is computed over the 16 text-scorable scenarios.
 
+---
+
 ## 2. RUN-LABEL INDEX
 
 Every run-label folder on disk holds one run's rendered report pair (`skill-benchmark-report.json` + `.md`). One row per folder; verdicts are read from each folder's report and are not restated as a rubric here.
@@ -48,6 +50,8 @@ Every run-label folder on disk holds one run's rendered report pair (`skill-benc
 | Run label | What it is | Verdict/Status | Evidence |
 |---|---|---|---|
 | [`baseline/`](./reports/baseline/) | Frozen pre-optimization snapshot, router mode — the before-comparison anchor described in §1 | CONDITIONAL · 71 (router) | [report](./reports/baseline/skill-benchmark-report.md) |
+
+---
 
 ## 3. RE-RUNNING
 

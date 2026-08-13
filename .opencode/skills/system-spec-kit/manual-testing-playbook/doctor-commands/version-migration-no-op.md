@@ -83,6 +83,8 @@ manifest top-level keys: schema_version, migration, completed_at, executor, work
 
 If migration scripts run, inspect `migration-manifest.json` no-op `upgrade_paths` entry and `doctor-update.yaml` Phase 8 source/current comparison. If the command reports a gap, verify `3.4.1.0` remains listed in `valid_source_versions`. If cleanup prompts appear, inspect `cleanup_legacy` flag binding.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

@@ -11,6 +11,8 @@ description: "One adapter per registered standard authority, each implementing d
 
 Adapters translate a deep-alignment lane into calls against one named authority (sk-doc, sk-git, sk-design, sk-code). Every adapter implements the same three-method contract, `discover(scope)`, `standardSource(authority)` and `check(artifact, rules, options)`, so the state machine in `../` never branches on which authority a lane names.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -21,10 +23,14 @@ Adapters translate a deep-alignment lane into calls against one named authority 
 | `sk-design.cjs` | Static-only adapter. Reads `DESIGN.md` and `tokens.json`, never renders and never drives Playwright or chrome-devtools |
 | `sk-doc-command.cjs` | Checks cross-artifact integrity for canonical OpenCode command documents |
 
+---
+
 ## 3. CONSUMERS
 
 - `scoping.cjs` resolves which adapter a lane uses through its `adapter` discriminator, defaulting to the authority's own module
 - `../tests/scoping-adapter.test.cjs` and `../tests/sk-doc-command-adapter.test.cjs` cover the discriminator and the command adapter
+
+---
 
 ## 4. RELATED
 

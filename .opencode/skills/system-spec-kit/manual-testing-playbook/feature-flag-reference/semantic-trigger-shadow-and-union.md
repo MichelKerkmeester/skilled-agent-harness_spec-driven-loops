@@ -149,6 +149,8 @@ The scenario could not complete the required daemon or fresh handler restart bou
 
 Inspect `lib/triggers/semantic-trigger-matcher.ts`, `handlers/memory-triggers.ts`, and the semantic-trigger vitest suites. Confirm the daemon process actually picked up the env changes before judging the result.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

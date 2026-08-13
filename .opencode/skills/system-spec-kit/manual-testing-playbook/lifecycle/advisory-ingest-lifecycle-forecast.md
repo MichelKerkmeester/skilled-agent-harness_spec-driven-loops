@@ -61,6 +61,8 @@ Start/status transcript across early and progressing states + optional telemetry
 
 Inspect `handlers/memory-ingest.ts`, `lib/ops/job-queue.ts`, and `lib/telemetry/retrieval-telemetry.ts` if forecast fields disappear or throw
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [lifecycle/async-ingestion-job-lifecycle.md](../../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md)

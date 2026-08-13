@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The deep-alignment loop seeds its findings registry FAIL-closed before the first LEAF dispatch (a non-empty-but-unaudited corpus reduces to `incompleteCoverage` FAIL, so a failed or empty first pass can never terminate as a false PASS)",
     "created_at": "2026-07-19T17:16:27.443Z",
-    "last_save_at": "2026-08-08T07:14:11.597Z",
+    "last_save_at": "2026-08-11T14:10:51.898Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff1692dae97aa3c263a9858da257c68779d606e3e4801cd2de221ae02e5c029c",
+    "source_fingerprint": "sha256:010f352bc32c4fedd0120bf0817cdf4023f635dd7019ad0c387cf55ac468d829",
     "source_doc_hashes": {
-      "spec.md": "d054a6423348d99f48ea06c10d1252ecc95d36835c865ff8d56c5b02665e4ac4",
+      "spec.md": "c25f7479e8577415527f074e5e23a568676929b78f06f3ab2e0bd459a0c72308",
       "plan.md": "a31e17102dd8bd23c76465b8e990d4d241a122e35afd9c3a6d656ad468e6ef36",
       "tasks.md": "44cb06c7abe9dda079d71b419ff038b41cc4e80d8341d3394269c6057991da40",
       "checklist.md": "67e3681c497a67d28bed666d56e735ae4c2b23dc8e65e6cd0bbb9bcc96395e65",
-      "implementation-summary.md": "ab018b4f3c271b181a8bdb9e1eec22d6e854ef2dca4700360d03369bc89549e4"
+      "implementation-summary.md": "4009841b95403354680db7008e371aae5d50e1d209d5ab72157a7df92d5fd0e5"
     },
     "last_active_child_id": null,
     "last_active_at": null

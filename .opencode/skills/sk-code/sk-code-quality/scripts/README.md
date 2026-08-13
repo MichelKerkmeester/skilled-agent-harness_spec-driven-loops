@@ -11,6 +11,8 @@ description: "The code-quality skill's standalone checkers plus the hook adapter
 
 `scripts/` owns the `code-quality` skill's two standalone checkers (comment hygiene and dist staleness) and the two subfolders that turn them into per-edit warnings: `hooks/` (the Claude Code and Codex CLI PostToolUse adapters) and `lib/` (the shared runtime-neutral dispatch table both adapters call).
 
+---
+
 ## 2. CONTENTS
 
 | File / Folder | Purpose |
@@ -21,6 +23,8 @@ description: "The code-quality skill's standalone checkers plus the hook adapter
 | `hooks/` | Claude Code and Codex CLI PostToolUse adapters, see `hooks/README.md` |
 | `lib/` | Shared runtime-neutral dispatch table consumed by both hook adapters, see `lib/README.md` |
 
+---
+
 ## 3. VALIDATION
 
 Run from the repository root:
@@ -30,6 +34,8 @@ bash .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.test
 ```
 
 Expected: `All comment hygiene test cases passed`.
+
+---
 
 ## 4. RELATED
 

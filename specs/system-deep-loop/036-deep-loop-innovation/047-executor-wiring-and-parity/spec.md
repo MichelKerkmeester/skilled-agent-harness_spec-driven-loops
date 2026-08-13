@@ -41,6 +41,8 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-deep-loop/036-deep-loop-innovation |
+| **Predecessor** | `035-cli-adapter-stress-and-playbooks` |
+| **Successor** | `048-write-containment-hardening` |
 | **Handoff Criteria** | Every executor kind the deep-loop fan-out advertises dispatches through the real fan-out for the providers and models it claims, or is explicitly and enforceably scoped out; each child phase strict-validates independently. |
 <!-- /ANCHOR:metadata -->
 

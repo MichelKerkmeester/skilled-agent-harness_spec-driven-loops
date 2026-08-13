@@ -18,12 +18,16 @@ contextType: "general"
 
 Each row below is one run folder. Rows are written by the benchmark harness at the moment it writes the report, so this table cannot fall behind the folders beside it.
 
+---
+
 ## 2. RUN INDEX
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
 | 2026-07-10 | [`2026-07-10--live--kimi-2-7/`](./2026-07-10--live--kimi-2-7/) | live | 22 PASS | **PASS** 100/100 | not recorded |
 | 2026-07-10 | [`2026-07-10--live--glm-5-2-high/`](./2026-07-10--live--glm-5-2-high/) | live | 21 PASS, 1 FAIL | **PASS** 100/100 | not recorded |
+
+---
 
 ## 3. STORAGE RULE
 

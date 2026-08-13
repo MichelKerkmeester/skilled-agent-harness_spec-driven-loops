@@ -124,6 +124,8 @@ Before/after mutation responses + restore completion or failure output
 
 If the barrier remains latched, inspect the `restoreCheckpoint()` `finally` path that releases restore maintenance
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [lifecycle/checkpoint-restore-checkpointrestore.md](../../feature-catalog/lifecycle/checkpoint-restore-checkpointrestore.md)

@@ -20,6 +20,8 @@ This feature is default-on in the launcher code. It lets the shared mk-spec-memo
 
 When `SPECKIT_DAEMON_REELECTION` is enabled, the owner spawns the daemon detached, and on shutdown it releases the daemon instead of killing it: it keeps the daemon lease and socket, drops only the owner lease, and detaches the exit handler so shutdown does not wipe the lease. A connected live secondary keeps its transport across the owner's exit. A fresh session started after the owner is gone reaps the released daemon before it spawns a replacement, so the database is never left with two writers. On by default in the launcher code; set `0` or `off` to revert to kill-on-disposal.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Flag gate, default on
@@ -42,6 +44,8 @@ A fresh session started after the owner has exited finds the daemon lease stale,
 
 A released daemon that no live secondary keeps and no fresh session reaps is bounded by the daemon's own idle self-exit at `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`. The orphan sweeper can also reap an ownerless daemon when enabled.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -57,6 +61,8 @@ A released daemon that no live secondary keeps and no fresh session reaps is bou
 | `mcp-server/tests/launcher-daemon-reelection.vitest.ts` | Automated test | Unit-tests the flag-gating, the detached spawn, and the release-instead-of-kill shutdown decision and lease handling |
 | `mcp-server/stress-test/durability/daemon-reelection-release-integration.vitest.ts` | Automated test | Drives the real release-vs-kill decision functions and OS reparent semantics with a detached stand-in |
 | `mcp-server/stress-test/durability/daemon-reelection-adoption-live.vitest.ts` | Automated test | Runs two real launchers in an isolated root: a live secondary keeps transport, the daemon dies with the flag off, and a fresh session after disposal reaps the released daemon to stay the single writer |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture

@@ -11,10 +11,10 @@ parent: "system-deep-loop"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/003-write-containment-concurrent-safety"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Recorded the shipped and verified write-containment concurrent-writer safety fix"
-    next_safe_action: "None; packet complete"
+    last_updated_at: "2026-08-11T14:03:33Z"
+    last_updated_by: "codex"
+    recent_action: "Preserved the shipped fix while reopening moved-packet metadata closeout"
+    next_safe_action: "Refresh continuity after packet paths are clean."
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:ae8d6b2a9fe52de5f9f37e05114d0cbc05691ff8c7396040bd4d4891404b0d0c"
       session_id: "2026-08-06-deep-loop-046"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -41,9 +41,10 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 046-write-containment-concurrent-safety |
-| **Completed** | 2026-08-06 |
+| **Spec Folder** | 003-write-containment-concurrent-safety |
+| **Implementation landed** | 2026-08-06 |
 | **Level** | 2 |
+| **Status** | In Progress — code landed; moved-packet metadata closeout is open |
 <!-- /ANCHOR:metadata -->
 
 ---

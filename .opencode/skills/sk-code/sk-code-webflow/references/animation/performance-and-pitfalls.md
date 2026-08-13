@@ -54,6 +54,8 @@ animate(".card", { opacity: [0, 1], transform: ["translateY(12px)", "translateY(
 
 Existing sk-code Webflow guidance gives the same local rule: animate `transform` and `opacity` first, and manage `will-change` dynamically around active animations (Repo: `.opencode/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md`).
 
+---
+
 ## 3. LAYOUT-THRASHING ANTI-PATTERNS
 
 Avoid animating layout properties like `top`, `left`, `width`, and `height` unless the UX requires measured layout transitions. These properties can cause layout recalculation and Core Web Vitals/INP risk in the local performance guide (Repo: `.opencode/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md`).
@@ -63,6 +65,8 @@ When height is required, use measured-height patterns and cleanup, as local drop
 - animate `height` from/to explicit pixels,
 - restore `height: auto` or hidden state in `onComplete` (External/historical example: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/navigation/nav_language_selector.js`).
 
+---
+
 ## 4. BUNDLE SIZE CONSIDERATIONS
 
 Motion documents a mini `animate()` import for small HTML/SVG style animation and a larger hybrid import for independent transforms, sequence arrays, CSS variables, SVG paths, objects, and WebGL (Source: https://motion.dev/docs/animate).
@@ -71,6 +75,8 @@ Decision:
 - Use `motion/mini` or `animateMini`-style guidance for small bundled interactions that only need HTML/SVG style animation (Source: https://motion.dev/docs/animate).
 - Use the hybrid `motion` import when you need `x`/`y` independent transforms, sequences, motion values, or non-DOM values (Source: https://motion.dev/docs/animate).
 - Use CDN globals in Webflow/no-code contexts only when bundling is not available or a project already centralizes Motion loading (Source: https://motion.dev/docs/quick-start; External/historical example: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`).
+
+---
 
 ## 5. PREFERS-REDUCED-MOTION COMPLIANCE
 
@@ -92,6 +98,8 @@ External/historical anchors:
 - `a_nobel_en_zn/2_javascript/slider/testimonial.js` uses `matchMedia("(prefers-reduced-motion: reduce)")` to skip meaningful transition duration in snap behavior.
 - `a_nobel_en_zn/2_javascript/video/video_hls_background_play_on_hover.js` includes reduced-motion/mobile detection for video behavior.
 
+---
+
 ## 6. CWV IMPACT
 
 Animation can affect Core Web Vitals indirectly:
@@ -104,6 +112,8 @@ Mitigations:
 - Prefer transform/opacity and pre-measured layout changes (Repo: `.opencode/skills/sk-code/sk-code-webflow/references/implementation/performance-patterns/overview-and-checklist.md`).
 - Use `requestAnimationFrame` for render scheduling and avoid unnecessary per-frame DOM reads (External/historical example: `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 - For scroll-linked animation, use `scroll()` where supported so the browser can use ScrollTimeline for supported animations (Source: https://motion.dev/docs/scroll).
+
+---
 
 ## 7. FRAME-LEVEL VISUAL VERIFICATION
 
@@ -128,6 +138,8 @@ Look for:
 - Clipping during arc, throw, or scatter movement, especially under `overflow: hidden` parents.
 
 Do not vendor external recording scripts into sk-code for this workflow. Prefer the active project's browser automation path, such as Chrome DevTools MCP, `mcp-chrome-devtools`/`bdg`, Playwright, or a local recording tool that the project already accepts.
+
+---
 
 ## 8. REFERENCES AND RELATED RESOURCES
 

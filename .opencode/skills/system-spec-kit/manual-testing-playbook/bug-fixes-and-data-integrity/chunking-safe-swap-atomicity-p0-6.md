@@ -63,6 +63,8 @@ Re-chunk output + staged chunk evidence + old-child linkage snapshot + staged ch
 
 Inspect chunking orchestrator finalize transaction; verify `parent_id` unlink happens inside the transaction; check rollback/cleanup path for staged chunks; verify parent BM25 mutation happens after chunk success/finalize only
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md](../../feature-catalog/bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md)

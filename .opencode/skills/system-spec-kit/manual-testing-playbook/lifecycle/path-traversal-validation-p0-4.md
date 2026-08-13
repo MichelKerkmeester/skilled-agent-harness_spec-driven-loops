@@ -63,6 +63,8 @@ Rejection error messages for invalid paths + successful job creation for valid p
 
 Inspect path validation logic in ingest handler; verify allowed base directory configuration; check for bypass via URL-encoded or symlinked paths
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [lifecycle/async-ingestion-job-lifecycle.md](../../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md)

@@ -59,6 +59,8 @@ Before/after list outputs
 
 Validate name, `confirmName`, and sandbox scope; retry
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [lifecycle/checkpoint-deletion-checkpointdelete.md](../../feature-catalog/lifecycle/checkpoint-deletion-checkpointdelete.md)

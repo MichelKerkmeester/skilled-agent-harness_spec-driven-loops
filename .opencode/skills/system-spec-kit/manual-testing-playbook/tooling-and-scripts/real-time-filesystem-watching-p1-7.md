@@ -75,6 +75,8 @@ No watched spec file was created, modified, or deleted, so no real `[file-watche
 
 Inspect `lib/ops/file-watcher.ts` for `seedHash`, `scheduleReindex`, and ENOENT catch
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md](../../feature-catalog/tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md)

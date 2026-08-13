@@ -14,6 +14,8 @@ trigger_phrases:
 
 `scripts/ops/` contains deterministic shell runbooks for known spec-kit operational failure classes. Each healer runs detect, repair, and verify steps with bounded retry behavior and emits a structured escalation payload when retry budget is exhausted.
 
+---
+
 ## 2. SCRIPT IO
 
 | Flow | Input | Output |
@@ -25,6 +27,8 @@ trigger_phrases:
 
 Supported classes are `index-drift`, `session-ambiguity`, `ledger-mismatch`, and `telemetry-drift`.
 
+---
+
 ## 3. ENTRYPOINTS
 
 - `runbook.sh list` prints supported failure classes.
@@ -34,6 +38,8 @@ Supported classes are `index-drift`, `session-ambiguity`, `ledger-mismatch`, and
 - `ops-common.sh` provides shared retry, logging, and escalation helpers.
 - `process-memory-harness.ts` captures process/RSS/swap/wired snapshots used by arc 009 memory evidence.
 - `process-sweep.ts` emits non-destructive termination plans from exact ownership evidence; no live apply command exists.
+
+---
 
 ## 4. VALIDATION FROM REPO ROOT
 
@@ -45,6 +51,8 @@ bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh show index-drift
 bash .opencode/skills/system-spec-kit/scripts/ops/runbook.sh drill all --scenario success --max-attempts 1
 python3 .opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py --root .opencode/skills/system-spec-kit/scripts/ops
 ```
+
+---
 
 ## 5. KEY FILES
 
@@ -67,11 +75,15 @@ Arc 009 lifecycle helper map:
 | Spec Kit runtime | `mcp-server/lib/memory/bounded-cache.ts`, `audit-rotation.ts`, `mcp-server/lib/runtime/timer-registry.ts`, `shutdown-hooks.ts` |
 | Ops | `scripts/ops/process-memory-harness.ts`, `scripts/ops/process-sweep.ts` |
 
+---
+
 ## 6. BOUNDARIES
 
 - Ops scripts model known failure classes; they are not a general incident-management system.
 - Healers must keep bounded retries and emit one escalation JSON line on retry exhaustion.
 - Scripts should remain deterministic so drills and release gates are repeatable.
+
+---
 
 ## 7. RELATED
 

@@ -151,6 +151,8 @@ Allowed write path from the user instruction:
 
 If the branch or directory naming diverges, re-read the numbered-worktree rule in `.opencode/skills/sk-git/SKILL.md` and the worktree creation examples in `.opencode/skills/sk-git/references/worktree-workflows.md`. Note the distinct ephemeral per-session form (`work/{runtime}/{slug}` + `.worktrees/{runtime}-{slug}`) is auto-managed and intentionally not numbered.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - sk-git convention: `.opencode/skills/sk-git/SKILL.md` (numbered-worktree rule: `wt/{NNNN}-{name}`, `.worktrees/{NNNN}-{name}`, 4-digit global max+1)

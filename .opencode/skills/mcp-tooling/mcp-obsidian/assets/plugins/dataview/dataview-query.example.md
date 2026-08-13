@@ -60,6 +60,8 @@ LIMIT 20
 ```
 ````
 
+---
+
 ## 3. WHAT THE QUERY READS
 
 | Query token | Metadata layer | Source in the note |
@@ -72,6 +74,8 @@ LIMIT 20
 | `contains(status, "active")` | Verified function | Filters on the frontmatter value |
 
 The `File` column comes from the implicit layer. `file.name`, `file.path` and `file.mtime` exist on every note without any declaration.
+
+---
 
 ## 4. HONEST LIMITS
 

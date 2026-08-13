@@ -90,6 +90,8 @@ Command 4 was not run because `bash scripts/setup/install.sh --skip-verify` is a
 
 Inspect `scripts/setup/check-prerequisites.sh`, `check-native-modules.sh`, `rebuild-native-modules.sh`, `record-node-version.js`, and `install.sh` if setup state or native-module health is misreported
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/setup-native-module-health-and-mcp-installation.md](../../feature-catalog/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md)

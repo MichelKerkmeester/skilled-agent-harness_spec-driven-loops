@@ -17,9 +17,13 @@ version: 0.8.0.13
 
 Let the advisor forward queries from a superseded skill to its successor without silently losing traceability or creating routing loops.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/lifecycle/supersession.ts` reads supersession fields from each skill's `graph-metadata.json`, demotes the superseded skill and exposes redirect metadata on responses: `lifecycle.redirect_to` on matches against the superseded slug and `lifecycle.redirect_from` on the successor's own responses. The redirect is asymmetric, the successor does not redirect back. `lib/compat/redirect-metadata.ts` adapts the lifecycle data into the stable envelope consumed by callers.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -37,6 +41,8 @@ Let the advisor forward queries from a superseded skill to its successor without
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/compat/redirect-metadata.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | Validation reference |
 | `Playbook scenarios [LC-002](../../manual-testing-playbook/lifecycle-routing/supersession.md) and [NC-005](../../manual-testing-playbook/native-mcp-tools/lifecycle-redirect-metadata.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

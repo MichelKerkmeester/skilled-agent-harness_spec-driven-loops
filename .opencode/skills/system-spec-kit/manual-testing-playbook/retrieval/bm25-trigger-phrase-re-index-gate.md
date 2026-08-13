@@ -59,6 +59,8 @@ Re-index activity evidence + search output for new trigger phrase + optional evi
 
 Verify the re-index gate detects trigger mutations, confirm BM25 enablement state, inspect `syncChangedRows()` maintenance behavior, and avoid treating FTS5-only lexical updates as BM25 evidence
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/bm25-trigger-phrase-re-index-gate.md](../../feature-catalog/retrieval/bm25-trigger-phrase-re-index-gate.md)

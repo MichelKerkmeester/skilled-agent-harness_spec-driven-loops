@@ -13,6 +13,8 @@ trigger_phrases:
 
 `lib/extraction/` turns selected tool output into memory-adjacent signals. It resolves target memory IDs, summarizes matched output, applies redaction, extracts entities, and optionally checks entity or relation pairs against an ontology schema.
 
+---
+
 ## 2. DATA FLOW
 
 ```text
@@ -28,6 +30,8 @@ tool result
 
 The extraction adapter fails closed when it cannot resolve a valid memory ID. Redaction runs before extracted content can reach downstream insert paths.
 
+---
+
 ## 3. KEY FILES
 
 | File | Purpose |
@@ -38,9 +42,13 @@ The extraction adapter fails closed when it cannot resolve a valid memory ID. Re
 | `entity-denylist.ts` | Filters low-signal entity terms |
 | `ontology-hooks.ts` | Loads schema data and validates entity or relation pairs when enabled |
 
+---
+
 ## 4. BOUNDARIES
 
 This module prepares extraction data and safety checks. It does not own canonical memory saves, response envelopes, search ranking, or graph traversal.
+
+---
 
 ## 5. ENTRYPOINTS
 
@@ -57,6 +65,8 @@ This module prepares extraction data and safety checks. It does not own canonica
 | `loadOntologySchema()` | Load the default or configured ontology schema |
 | `validateExtraction()` | Check an entity and relation pair against the schema |
 
+---
+
 ## 6. VALIDATION
 
 - Extraction rules reject unsafe regex patterns at startup.
@@ -64,6 +74,8 @@ This module prepares extraction data and safety checks. It does not own canonica
 - Memory ID resolution checks the database before returning an ID.
 - Entity extraction deduplicates by normalized name and filters denylisted terms.
 - Ontology hooks fail open when disabled and validate against configured allowed types when enabled.
+
+---
 
 ## 7. RELATED
 

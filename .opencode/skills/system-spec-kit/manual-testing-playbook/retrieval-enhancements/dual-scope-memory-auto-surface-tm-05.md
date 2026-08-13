@@ -143,6 +143,8 @@ Command 3, verify surfaced memories: PARTIAL. The memory gate output did surface
 
 Verify auto-surface hook registration → Check compaction trigger logic → Inspect context matching for surfaced memories
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/dual-scope-memory-auto-surface.md](../../feature-catalog/retrieval-enhancements/dual-scope-memory-auto-surface.md)

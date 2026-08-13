@@ -245,6 +245,8 @@ Expected trace objects to appear due to env override, but observed output again 
 
 Check `handlers/memory-search.ts` for includeTrace and env branching
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/provenance-rich-response-envelopes.md](../../feature-catalog/retrieval-enhancements/provenance-rich-response-envelopes.md)

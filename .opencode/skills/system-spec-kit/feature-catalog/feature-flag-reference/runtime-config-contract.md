@@ -21,6 +21,8 @@ This document captures the implemented behavior, source references, and remediat
 
 In practice, this means `config.jsonc` is authoritative for a small legacy subset of script settings, while the rest of the file is descriptive rather than binding.
 
+---
+
 ## 2. HOW IT WORKS
 
 The shipped runtime contract is:
@@ -66,6 +68,8 @@ Outside Section 1, `config/config.jsonc` currently declares the following boolea
 | `constitutionalTier.alwaysSurface` | `true` | Documents always-surface behavior for the constitutional tier. |
 | `confidenceTracking.enabled` | `true` | Documents confidence tracking and promotion logic as enabled. |
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -82,6 +86,8 @@ Outside Section 1, `config/config.jsonc` currently declares the following boolea
 |---|---|---|
 | `scripts/tests/runtime-memory-inputs.vitest.ts` | Automated test | Legacy `qualityAbortThreshold` normalization and explicit config-input failure handling in the script runtime |
 | `manual-testing-playbook/feature-flag-reference/runtime-config-contract.md` | Manual playbook | End-to-end sandbox verification of Section 1 overrides, invalid values, and documentation-only sections |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Feature Flag Reference

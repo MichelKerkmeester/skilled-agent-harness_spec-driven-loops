@@ -120,6 +120,8 @@ The transcript shows the targeted suite passed and captures the dry-run plan cou
 
 If this scenario regresses, re-run `npm test -- --run tests/memory-lineage-backfill.vitest.ts -t rollback`; inspect `lib/storage/lineage-state.ts` and `scripts/migrations/*checkpoint*.ts` if backfill or restore assertions drift.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../../feature-catalog/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md)

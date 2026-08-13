@@ -2,8 +2,25 @@
 
 > This is the durable, long-form execution plan. It complements the separate goal prompt that must remain at or below
 > 4,000 characters. It does not itself authorize a mode flip, writer retirement, push, or merge.
+>
+> **Execution state on 2026-08-12:** the phase-014 components are landed but remain dark and unwired. The independent
+> review verdict is `REQUEST_CHANGES`, so the first live authority flip is blocked. No historical test count or landed
+> commit in this document is operator approval to change authority.
+>
+> **Autonomous execution (2026-08-12):** this tail is driven by Claude as orchestrator dispatching two external models —
+> GPT-5.6-SOL HIGH (cli-codex) and DeepSeek-v4-flash (cli-opencode / opencode-go) — as alternating implementer/checker.
+> Work runs in an isolated worktree (`0144` at `ced5fe53cc1`, tsc rc0 baseline); nothing lands to the moving `skilled/v4`
+> and no irreversible step runs until a fresh review returns APPROVE and the operator clears the frontier. The short
+> operational contract is `goal-prompt.md`.
+>
+> **Re-grounding (2026-08-12):** the 13 review findings were re-verified at `ced5fe53cc1`. F5 is already fixed; the six
+> P0s are PARTIAL. F6's residual is a *deliberately-deferred design change* (permanent-lock census rows must become a
+> distinct verified PIN disposition, not overloaded `BLOCK`); a one-line denial gate is an over-denial that makes cutover
+> unreachable — it was tried, caught by cross-model review against the packet's `hardening-notes.md`, and reverted. Treat
+> every "PARTIAL → quick fix" as suspect until re-scoped against each packet's `hardening-notes.md` / `t001-disposition.md`
+> design rationale. A green test is not proof; the checker model must read design docs and try to refute.
 
-## 1. Epic overview and planning baseline
+## 1. EPIC OVERVIEW AND PLANNING BASELINE
 
 Packet 036 turns 178 research recommendations into one convergent deep-loop runtime architecture: a typed append-only
 event ledger behind a fail-closed transition-authorization gateway, with sealed reference artifacts, deterministic
@@ -13,33 +30,87 @@ measured zero use.
 
 | Field | Durable value |
 |---|---|
-| Planning anchor | `origin/skilled/v4.0.0.0` at `a677adb195`, as frozen by the 2026-08-09 briefing |
+| Latest observed branch tip | `HEAD == origin/skilled/v4.0.0.0 == 414936c3151f` on 2026-08-11; this dirty documentation checkout is not an acceptance candidate |
+| Historical phase-014 anchors | 014/001 `a677adb195`; 014/002 `d76f84439a` plus hardening through `cf26cf5309`, `a37ab143d0`, and `75dbe65e09`; 014/003 `eaf0a79024` |
 | Branch destination | `skilled/v4.0.0.0`, then an explicitly approved merge to `main` |
-| Current program shape | Phases 001–013 landed; remediation blockers discharged; 014/001 and 014/003 landed; 014/002 was building at the briefing anchor |
-| Remaining critical path | Accept 014/002 build → execute eight mode cutovers → build and execute 015 → run 016 Stage B → execute 017 → merge |
+| Current program shape | The 001–013 substrate and all three dark 014 components are landed. No mode has been proved live on the new authority path. Phase 015 is Planned at 0/29 checklist items; 016 Stage B and 017 are unstarted |
+| Independent review | `goal-plan-review.md` is `REQUEST_CHANGES`: seven P0 findings block the first irreversible authority transition and six P1 findings block their consuming phases or final closeout |
+| Remaining critical path | Re-accept the exact 014 candidate and close every P0 → freeze integration inputs → execute and stabilize eight mode cutovers → build 015 telemetry and closed-world inventory → approve and retire legacy writers → run 016 Stage B → execute 017 final recensus → reconcile all packet evidence → approve the exact merge |
 | Authority rule | Legacy remains authoritative until one named mode passes every gate and an operator authorizes that exact transition |
 | Audit rule | A flip is irreversible as an append-only historical fact, although runtime routing remains reversible during its governed rollback window |
 
-The local origin ref can advance while work is in progress. During this document review it had already moved beyond
-`a677adb195` and contained a dark 014/002 candidate. That observation does not change the planning anchor or prove the
-candidate acceptable. At the start of every phase and immediately before every land, capture the fresh origin tip and
-reconcile the candidate against it. If 014/002 is already landed, “finish the build” means independently accept or
-reopen that exact landed candidate; it does not mean rebuild it blindly.
+The observed tip is a navigation fact, not a frozen candidate. Origin can advance after this edit. At the start of
+every phase, before every irreversible authority change or deletion, and immediately before landing, resolve the fresh
+tip and bind every receipt to the exact candidate SHA and tree. The current 014 implementation must be independently
+re-accepted or reopened from a clean, reproducible commit; do not rebuild it blindly and do not execute it from this
+dirty checkout.
+
+### Current execution ledger
+
+| State | Scope | Meaning and next move |
+|---|---|---|
+| Landed, dark, not accepted for live use | 014/001, 014/002, 014/003 | Treat the implementation and recorded unit counts as historical evidence. Reproduce them on the exact clean candidate and close the seven P0 review findings before wiring any mode |
+| Blocked before first live flip | Phase-014 execution | A fresh independent review must return `APPROVE` with zero open P0 findings; then the operator must approve mode 1’s exact candidate, epoch, evidence, rollback assets, and command |
+| Planned / unstarted | 015 retirement | Build the inventory and telemetry first; prove closed-world zero use and closed rollback windows; obtain a separate operator approval before deleting anything |
+| Planned / unstarted | 016 Stage B and 017 closeout | Run only after their prerequisites. Stage B must exercise the full authority lifecycle, and 017 must recensus current origin and rerun Stage B on the final SHA |
+| Open evidence debt | Packet-wide closeout | Landed code is not equivalent to a complete packet. Reconcile every non-final child, checklist, ADR, status, residual, and generated-metadata record before the parent can close; known examples include 029’s 0/50 checklist and Proposed ADRs and 048/003’s reopened metadata closeout |
+
+### Immediate next safe action
+
+1. Resolve the fresh `origin/skilled/v4.0.0.0` tip and create a clean, isolated, reproducible candidate only after the
+   operator chooses the Git workspace strategy. Record candidate SHA, tree hash, BASE SHA, tool versions, and a clean
+   status. The recommendation is a fresh worktree because the current shared checkout is materially dirty.
+2. Reconcile all seven P0 findings in `goal-plan-review.md` against that exact tree. For each finding, either land the
+   fix with negative-control evidence or record a fresh independent refutation tied to current symbols and tests.
+3. Rerun typecheck, the three phase-014 unit files, new integration/process-death/negative suites, unauthorized-append
+   and cast greps, scoped diff checks, and strict packet validation on the same commit. Freeze the results in a sealed
+   gate manifest; any SHA or tree drift invalidates the set.
+4. Obtain a new independent review. Continue only on `APPROVE` with zero open P0 findings and owned P1 routes.
+5. **STOP — request operator approval for mode 1 only.** No approval is implied by this roadmap edit.
 
 ### Current delivered substrate
 
-- 014/003 supplies cutover-certificate assembly/verification and rollback-window evaluation. Its unit suite has 41
-  tests at the briefing anchor.
+- 014/003 supplies dark cutover-certificate assembly/verification and rollback-window evaluation. Its packet records
+  41/41 unit tests at its historical build anchor; rerun them on the accepted candidate.
 - 014/001 supplies the five disposition executors, fenced resumable migration coordinator, durable receipts, and
-  successor handoff. Its unit suite has 31 tests at the briefing anchor.
-- 014/002 supplies or is expected to supply the dark authority registry, selector, preflight, manifest guard,
-  authority-transition event, and cutover coordinator. The reviewed candidate suite contains 42 tests.
+  successor handoff. Its packet records 31/31 unit tests at its historical build anchor; rerun them on the accepted
+  candidate.
+- 014/002 supplies the dark authority registry, selector, preflight, manifest guard, authority-transition event, and
+  cutover coordinator. Its packet records 42/42 tests, but the independent review found live-safety gaps that keep the
+  component unaccepted and unwired.
 - All new ledger writes must pass the transition-authorization gateway and
   `appendAuthorizedThroughFence`. No live path may regain a public append escape hatch.
 
+### Definition of full completion and perfected closeout
+
+The epic is **fully complete** only when all of the following are simultaneously true on one final, reproducible
+commit—not merely because the dark code landed:
+
+1. The phase-014 candidate is accepted with zero open P0 findings; all eight modes cut over in frozen order, each has
+   an independently evidenced live rollback drill, and every required rollback window closes cleanly.
+2. Phase 015 proves a closed-world inventory and zero live legacy use, preserves historical readers, rehearses
+   restoration, and retires only the operator-approved delete manifest.
+3. Phase 016 Stage B passes every declared row, including the authority-lifecycle matrix, on one exact candidate/BASE
+   pair with a blocking independent `APPROVE` verdict.
+4. Phase 017 integrates current origin, reopens every affected owner, reruns Stage B on the exact final SHA, and
+   reconciles the 178-row ledger plus every child’s status and evidence.
+5. All non-final packet state is closed or explicitly deferred with an owner, rationale, and trigger. Checklists,
+   tasks, ADRs, implementation summaries, changelogs, `description.json`, and `graph-metadata.json` agree; recursive
+   strict validation returns Errors 0 and Warnings 0 from the committed tree.
+6. The operator approves the exact Stage-B/SOL-reviewed SHA for merge; required mainline gates pass; rollback/revert
+   instructions, evidence retention, and post-merge monitoring ownership are recorded.
+
+The epic is **perfected** when the full-completion gates above also survive the adversarial tail: verification from a
+fresh detached checkout with no untracked inputs; zero unresolved P0/P1 findings or unowned carryovers; full forward
+and reverse crash/restart negative controls; mixed-version and shared-backend authority isolation; a closed-world test
+of delayed/offline consumers and oldest-supported logs; no stale or contradictory packet metadata; and a post-merge
+observation receipt showing no authority, replay, receipt, budget, or degeneration regression. Optional work may remain
+unimplemented only when it has an explicit non-blocking disposition and cannot change an accepted contract.
+
 ### Source-of-truth and drift policy
 
-1. The briefing and this document define the remaining execution intent.
+1. This document defines the remaining execution intent; `goal-plan-review.md` defines the unresolved adversarial
+   findings until a fresh review closes or supersedes them.
 2. Existing phase specs own their domain contracts.
 3. Runtime code and tests prove what is actually implemented.
 4. If those sources disagree, stop at the earlier safe authority state. Do not reinterpret a contradiction during a
@@ -47,46 +118,49 @@ reopen that exact landed candidate; it does not mean rebuild it blindly.
 5. Every “COMPLETE” report is a hypothesis. Independently rerun typecheck, the relevant per-file suites, the cast and
    append-boundary greps, the scoped diff, and strict validation before accepting it.
 
-## 2. Non-negotiable execution and landing mechanics
+## 2. NON-NEGOTIABLE EXECUTION AND LANDING MECHANICS
 
-### 014 build worktree
+### Clean candidate workspace
 
-- Build serially in `.worktrees/0135-skilled-014-cutover` from the fresh
-  `origin/skilled/v4.0.0.0` tip. The 014 children are ledger-adjacent and must not be built in parallel.
-- Symlink `runtime/node_modules` and `system-spec-kit/node_modules` from the main checkout as described in the
-  briefing. Record the resolved targets before running commands.
+- Before implementation, the operator must explicitly choose a Git workspace strategy. Use a fresh isolated worktree
+  from the then-current `origin/skilled/v4.0.0.0` tip for the recommended path; never treat the historical 0135
+  worktree or the current dirty shared checkout as the candidate. The 014 components are ledger-adjacent and must be
+  repaired and accepted serially.
+- Use dependencies already available to the project. If a worktree reuses dependency directories, record and verify
+  the resolved targets before running commands; a dependency change is a separate scoped mutation.
 - From `.opencode/skills/system-deep-loop/runtime/`, typecheck with:
 
   `../../system-spec-kit/node_modules/.bin/tsc --noEmit -p tsconfig.json`
 
 - Run Vitest per file only with `node_modules/.bin/vitest run <file> --no-coverage` and
   `fileParallelism: false`. Never substitute the aggregate suite: append-lock contention can make the aggregate hang.
-- Before each per-file suite, restore only the isolated build worktree’s test `database/` fixture to its known clean
-  state. First prove that path contains no operator work. Do not run a broad checkout in the dirty 0129 worktree.
-- The 0135 worktree lacks Spec Kit `scripts/dist` and `tsx`. Never claim strict validation passed there.
+- Before each per-file suite, restore only the isolated candidate’s test `database/` fixture to its known clean state.
+  First prove that path contains no operator work. Never run a broad checkout in a shared dirty checkout.
+- Run strict validation from the exact tracked candidate. Tool absence or a stale generated build blocks the gate; it
+  is not permission to validate a different tree.
 
-### Canonical/twin documentation and validation
+### Canonical documentation and validation
 
-- The 0129 canonical `specs/` tree is sparse and can false-fail sibling references. Run strict validation against the
-  full-tree `.opencode/specs/` twin in 0129.
-- In this worktree `.opencode/specs` is a real directory; on origin it resolves to `specs`. When execution updates
-  packet docs, copy deliberately between canonical and twin paths, compare them byte-for-byte, and land the canonical
-  `specs/` path.
+- `specs/` is canonical. `.opencode/specs` is a symlink to it at the observed branch tip; verify that topology from the
+  exact candidate and reject an unexpected real-directory twin or untracked evidence.
+- Edit and land only the canonical `specs/` path. Do not maintain or copy a second packet tree.
 - Regenerate child metadata with:
 
-  - `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js <child> <repo-root>`
-  - `node .opencode/skills/system-spec-kit/scripts/dist/spec-folder/backfill-graph-metadata.js <child>`
+  - `npx tsx .opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts <absolute-child-path> <repo-root>`
+  - `npx tsx .opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts <absolute-child-path>`
 
-  Re-add `level` if regeneration drops it, then validate again.
+  Preserve required `level` metadata, inspect the scoped generated diff, then validate again. Use only one-packet
+  invocations; a tree-wide backfill is not part of a child closeout.
 
 ### Evidence and landing
 
 - Completed task/checklist rows must cite a concrete runtime symbol or named test plus the suite digest, candidate SHA,
   result, and exit code. A citation only to `spec.md` is not evidence.
 - Keep `_memory.continuity.recent_action` and `next_safe_action` at 90 characters or fewer.
-- Land with `/tmp/ks/land-wt0129.sh <paths-file> <msg-file>`. The path file must name the exact runtime directory,
-  exact test file, and exact documentation directory. The lander must seed from the fresh origin tip, allow zero
-  deletions unless deletion is the approved 015 action, and reject anything outside the named prefixes.
+- Land through the execution session’s approved leak-guard workflow with an exact path allowlist naming the runtime
+  directory, test files, and packet docs. It must seed from the fresh origin tip, allow zero deletions unless deletion
+  is the separately approved 015 action, and reject anything outside the named prefixes. Do not depend on an
+  ephemeral `/tmp` helper as the durable contract.
 - New writes use `appendAuthorizedThroughFence` with a gateway proof. The changed paths must have zero direct
   `.appendAuthorized(` calls and zero `as any`/`as unknown` cast-arounds used to reach the private append boundary.
   Canonical-JSON `as unknown as JsonObject` conversions remain permitted when unrelated to append access.
@@ -94,24 +168,25 @@ reopen that exact landed candidate; it does not mean rebuild it blindly.
   run.
 - An automated stop hook, task notification, green test, or agent message is never operator consent.
 
-## 3. Remaining roadmap and objective phase gates
+## 3. REMAINING ROADMAP AND OBJECTIVE PHASE GATES
 
-### Phase 014/002 — finish and accept the dark authority-flip build
+### Phase 014 acceptance — reopen and accept the landed dark build
 
-**Objective:** deliver an unwired, mode-keyed selector and cutover coordinator that cannot move live authority and is
-safe enough to become the only authority-transition mechanism after explicit wiring.
+**Objective:** independently reproduce, repair where required, and accept the landed 014/001–003 components on one
+clean commit. The accepted result remains unwired and cannot itself move live authority; it must be safe enough to
+become the only forward-and-reverse authority-transition mechanism after separate operator-approved wiring.
 
 **Pass gates:**
 
 1. `tsc` exits 0.
 2. These suites run separately and all exit 0:
 
-   | Suite | Required count |
+   | Suite | Historical minimum before review-closure additions |
    |---|---:|
    | `tests/unit/per-mode-authority-flip.vitest.ts` | 42/42 |
    | `tests/unit/cutover-certificate.vitest.ts` | 41/41 |
    | `tests/unit/inflight-state-migration.vitest.ts` | 31/31 |
-   | Total | 114/114, zero skipped |
+   | Total | At least 114 historical cases plus every new review-closure case, zero skipped |
 
 3. The order guard rejects every out-of-order request, not only benchmark variants before
    `deep-improvement-common`. A predecessor matrix proves all eight positions.
@@ -131,16 +206,25 @@ safe enough to become the only authority-transition mechanism after explicit wir
      readers never observe false dark authority, and a post-append CAS conflict cannot strand an uncompleted
      transition.
 
-8. Crash tests include real process death, not only a thrown callback. They prove recovery from a stale `wx`
+8. The same live registry and persistence boundary implement the reverse state machine
+   `new_authoritative_reversible → rollback_pending → legacy_authoritative`. A realistic drill proves the new legacy
+   epoch, a successful legacy write, and rejection of the pre-rollback dark lease after restart; a rollback artifact
+   with `authorityMutation: false` is an automatic failure.
+9. Rollback-window evaluation and closure verify signed source evidence and bind every execution/health receipt to the
+   mode, window digest, exact epoch, certificate, candidate, and observation interval. Missing, empty, stale,
+   duplicate, or cross-mode signal families deny closure; closure recomputes its inputs rather than trusting a
+   caller-supplied eligibility object.
+10. Crash tests include real process death, not only a thrown callback. They prove recovery from a stale `wx`
    transaction lock and from death before/after authorization, ledger append, registry publication, and receipt
    persistence.
-9. A missing authority record does not silently hide provisioning mistakes. Either live wiring pre-creates and verifies
+11. A missing authority record does not silently hide provisioning mistakes. Either live wiring pre-creates and verifies
    all eight legacy records, or the contract is ratified to treat missing as a typed denial. The dark unit-test default
    is not sufficient evidence for production.
-10. `rg` returns zero unauthorized append/cast escape hatches in changed code. The scoped diff contains only the
+12. `rg` returns zero unauthorized append/cast escape hatches in changed code. The scoped diff contains only the
     expected 014/002 runtime directory, its unit test, and its packet docs.
-11. Strict validation of the 014/002 full-tree twin exits 0 with Errors 0 and Warnings 0.
-12. The leak-guard land produces zero unintended deletions and the landed tree equals the independently verified
+13. Strict validation of the canonical 014 packet exits 0 with Errors 0 and Warnings 0 from the exact tracked
+    candidate tree.
+14. The leak-guard land produces zero unintended deletions and the landed tree equals the independently verified
     candidate tree.
 
 **Fail:** any failed/omitted test, implicit live wiring, incomplete order enforcement, tolerated veto row, optional
@@ -224,7 +308,7 @@ documentation and evidence agree before merge.
 5. Parent phase map, child statuses, completion percentages, checklists, tasks, implementation summaries, changelogs,
    `description.json`, and `graph-metadata.json` are mutually consistent.
 6. Canonical and twin packet paths compare equal after deterministic regeneration.
-7. Recursive strict validation from the full-tree twin exits 0 with Errors 0 and Warnings 0.
+7. Recursive strict validation from the exact canonical tracked tree exits 0 with Errors 0 and Warnings 0.
 8. Leak-guard scope shows only approved closeout paths and zero unintended deletion.
 
 **Fail:** conflict, unexplained drift, reopened phase not reclosed, stale receipt, Stage-B failure, metadata mismatch,
@@ -239,7 +323,7 @@ the repository’s required local gates are green; rollback/revert instructions 
 the operator explicitly approves this exact merge. Re-resolve the main tip immediately before merging. Any drift
 invalidates the approval and requires integration recensus plus the affected final gates.
 
-## 4. Per-mode authority-cutover execution runbook
+## 4. PER-MODE AUTHORITY-CUTOVER EXECUTION RUNBOOK
 
 ### Frozen mode order
 
@@ -354,7 +438,7 @@ distinct lifecycle facts:
 Phase 015 consumes item 5 plus independent zero-use and archival evidence. It must never treat item 1 as proof that a
 flip happened or that a window closed.
 
-## 5. Phase 015 build and retirement plan
+## 5. PHASE 015 BUILD AND RETIREMENT PLAN
 
 ### Stage 015-A — reversible inventory and telemetry build
 
@@ -409,7 +493,7 @@ implementation still needed by the variants. Remove shared legacy emitters/helpe
 - Do not claim a runtime rollback promise for removed live writers. A source-level revert remains possible before
   downstream integration, but state/evidence compatibility must be reassessed rather than assumed.
 
-## 6. Phase 016 Stage-B whole-system acceptance matrix
+## 6. PHASE 016 STAGE-B WHOLE-SYSTEM ACCEPTANCE MATRIX
 
 Run Stage B in a clean, frozen-SHA worktree after 015 lands. Before execution, publish a gate manifest containing every
 command, expected suite/scenario/fixture/fault count, tool version, artifact digest, and owner. “All” means executed
@@ -429,14 +513,14 @@ count equals declared count with zero skip/xfail/waiver.
 | Legacy retirement | Frozen deletion manifest matches source; zero live writer paths; every retained schema family reads; archival surfaces cannot append | 015 |
 | Receipts/budgets | Counts and semantic totals match the phase-003 protected baseline or an approved, owned delta; no missing effect receipt | 007 |
 | Blocking SOL review | Review binds candidate and BASE SHAs, commands, counts, exit codes, digests, findings, and tracked-mutation check; verdict is APPROVE with zero unresolved blockers | 016/reopened owner |
-| Recursive strict validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-deep-loop/036-deep-loop-innovation --strict --recursive` exits 0 with Errors 0 and Warnings 0 | Owning packet |
+| Recursive strict validate | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-deep-loop/036-deep-loop-innovation --strict --recursive` exits 0 with Errors 0 and Warnings 0 from the exact tracked candidate | Owning packet |
 | Mutation check | `git diff --exit-code` and `git diff --cached --exit-code` both exit 0 after disposable gate outputs are removed; no tracked gate mutation | 016 |
 
 Run test files separately with `fileParallelism: false`. Never replace the frozen manifest with the known-hanging
 aggregate. A failed row reopens the owning phase; after correction, rerun that row and every dependent row on a new
 exact SHA, then renew the blocking SOL review.
 
-## 7. Phase 017 integration, rollup, and merge closeout
+## 7. PHASE 017 INTEGRATION, ROLLUP, AND MERGE CLOSEOUT
 
 1. Create a clean integration worktree from the latest origin tip. Record the last Stage-B SHA, integration target,
    tree IDs, and tool versions.
@@ -448,8 +532,8 @@ exact SHA, then renew the blocking SOL review.
 6. Reconcile the 178-row ledger and carried-forward work append-only. Do not rewrite research inputs.
 7. Reconcile every child’s `spec.md` status, tasks, checklist, implementation summary, changelog, description metadata,
    graph metadata, and parent phase-map row. Verify no contradictory completion claim remains.
-8. Copy/regenerate canonical and twin documentation deliberately, compare the intended files, and run recursive strict
-   validation from the full-tree twin.
+8. Regenerate canonical documentation metadata with scoped tooling, verify `.opencode/specs` still resolves to
+   canonical `specs/`, and run recursive strict validation from the exact tracked candidate.
 9. Land only the leak-guarded closeout paths on the fresh origin tip. If the tip changed after review, recensus and
    rerun affected gates.
 10. Prepare the exact merge diff, commit set, final SHA, rollback/revert instructions, and retained evidence location.
@@ -461,49 +545,66 @@ Optional 018 tail work, 034 runtime-lib reorganization, and 035 CLI-adapter stre
 interleave 034 before ledger-touching work is closed. Any optional item that changes an accepted contract must enter the
 drift ledger and reopen its owner.
 
-## 8. Risks, gaps, and open questions
+## 8. RISKS, GAPS, AND OPEN QUESTIONS
 
 ### P0 — must close before the first live authority flip
 
-1. **Full mode order is not implemented by the reviewed candidate.** The guard proves single-mode requests and
-   common-before-variant ordering, but does not prove `deep-research → deep-review → … → deep-alignment` predecessor
-   order. Add and test the complete predecessor matrix.
-2. **The authority event and selector record are not one storage transaction.** The reviewed coordinator appends the
-   event, then publishes the record CAS. Its retry logic is useful, but process death can also strand a filesystem
-   `wx` lock. Ratify and prove a real recoverable transaction protocol before live use.
-3. **Migration veto semantics conflict.** The migration spec says `BLOCK` prevents a mode flip, while reviewed preflight
-   comments allow policy-frozen `BLOCK` as terminal. `PIN` also conflicts with a mode-wide dark selector unless a tested
-   per-run legacy lane survives. Resolve the contract and make uncertainty deny.
-4. **Gateway identity remains opt-in and can be partial.** “Resolver configured” is not enough. A null or partially
-   populated expectation currently carries no mismatch. Live transitions must require positive actor, capability, and
-   evidence verification.
-5. **Captured authorization state/proof freshness is not yet operationally proved.** Recheck authority, head, policy,
-   evidence, identity, decision expiry, and fence at commit so an earlier allow cannot authorize a later state.
-6. **Certificate lifecycle language is contradictory.** Some docs describe the certificate as pre-flip authorization;
-   others make it sound post-flip. Use the five distinct facts in section 4 and update phase evidence during execution.
-7. **The requested physical order “CAS then event” is unsafe without a shared transaction.** The inverse is also
-   unsafe without recovery. The build must define the actual commit protocol rather than relying on arrow notation.
+1. **Rollback must really restore live authority.** Implement the reverse registry transition against the canonical
+   persistence boundary and prove it with process-death/restart drills, a new legacy epoch, a successful legacy write,
+   and rejection of the stale dark lease. A record that merely claims restoration fails.
+2. **The authority event and selector record need one recoverable commit protocol.** Use a shared transaction or a
+   durable prepare/commit state machine whose readers derive one authority and whose startup recovery handles every
+   crash boundary, CAS conflict, and stale lock.
+3. **Identity, policy, and proof freshness must be mandatory at commit.** Require a deployment `identityResolver`,
+   positively resolve actor/capability/evidence, require the gateway policy tuple to equal the certificate’s trusted
+   policy tuple, and recheck head, epoch, authority, policy, identity, evidence, decision expiry, and fence at the
+   append boundary.
+4. **Rollback-window evidence must be authority-bound and complete.** Bind signed execution and health receipts to the
+   mode, window, epoch, certificate, candidate, and time interval; deny empty/stale/duplicate/cross-mode families; and
+   recompute closure inputs inside the closure operation.
+5. **Acceptance needs an immutable, buildable candidate.** Reproduce all imports, typecheck, tests, negative controls,
+   tree identity, and packet validation from a clean isolated commit with zero unexpected paths. The shared dirty
+   checkout and historical test reports cannot supply this proof.
+6. **`BLOCK` and unresolved `PIN` semantics must deny a mode-level flip.** Require zero blocked/aborted rows. Permit a
+   `PIN` only when a separately verified live legacy lane, owner, expiry/review policy, and admission-isolation proof
+   survive that mode’s selector change.
+7. **Frozen order and one-mode blast radius must come from durable state.** Enforce the complete eight-mode predecessor
+   prefix from registry/ledger facts, not request claims. Partition or unify every shared backend by authority domain,
+   mode, and epoch, and prove the mixed-state/rollback dependency matrix with concurrent legacy and dark writers.
 
 ### P1 — must ratify before the phase that consumes it
 
-1. **Live rollback-drill semantics are underspecified.** A real post-flip rollback returns the mode to legacy and makes
-   any re-cutover a new approval-bound transition. The runbook adopts that strict interpretation.
-2. **Overlapping rollback windows have no settled policy.** Multiple reversible modes enlarge the blast radius. Default
-   to one open window unless the operator approves a higher cap with evidence.
-3. **Missing authority records default to legacy in the dark candidate while the spec says missing selector state
-   fails closed.** Explicitly provision records or ratify a narrower bootstrap exception before wiring.
-4. **Certificate verification trusts bound digests without necessarily re-reading every upstream artifact at flip
-   time.** Rehash and independently verify the evidence immediately before commit.
-5. **The 015 zero-use interval has no duration or workload sufficiency rule.** Ratify it before instrumentation lands;
-   a quiet counter is not proof.
-6. **Dynamic telemetry completeness is unproved.** Subprocess, retry, replay, repair, rollback, shared-backend, and
-   generated routes need positive controls and an unknown-path blocker.
-7. **The 015 common-before-variant order can be misread as permission to delete shared code early.** Remove the common
-   mode binding first, but shared implementation last.
-8. **Stage-B exact counts and commands do not yet exist as one manifest.** Freeze them before running 016; count-only or
-   “representative” evidence fails.
-9. **The planning anchor is already subject to origin drift.** Reconfirm fresh origin before each land and bind every
-   receipt to the accepted candidate, not the briefing SHA.
+1. **Certificates must verify evidence authorities, not self-reported shapes.** Verify each source envelope through a
+   trusted issuer/verifier registry and bind mode, candidate, epochs, manifest, and policy before aggregation. Add
+   tamper and substitution tests for every evidence family.
+2. **Phase 015 needs a closed-world consumer proof.** Inventory deployed binary/config hashes, API/protocol versions,
+   queue age, cache/service-worker TTLs, scheduled and repair jobs, and replay producers. Drain or expire them beyond
+   proven dormancy, retain a deny/tombstone for old writes, and test delayed N-1 clients plus oldest-supported logs.
+3. **Integration freeze must precede irreversible state.** Reconcile latest origin before each flip, invalidate
+   certificates on relevant drift, freeze shared authority/persistence surfaces through 015, and recensus again before
+   deletion while rollback assets still exist. Phase 017 remains the final recensus, not the first current-main test.
+4. **Stage B must exercise the complete authority lifecycle.** Add all eight modes, rolling N-1/N processes,
+   allowed partial orders, shared-backend concurrency, forward and reverse crash boundaries, restart/reconciliation,
+   stale-writer rejection, window closure, and post-retirement old-client/log replay to the frozen gate manifest.
+5. **Final proof must come from the committed tree.** Run recursive validation and evidence checks from a fresh
+   detached checkout or extracted archive of the exact candidate; assert all inputs are tracked and record tree hash,
+   path topology, `git status`, and `git ls-files` in the blocking receipt.
+6. **Phase 017 must use phase 003, never `000`, as the protected baseline.** Before execution, correct its contract and
+   machine-bind `{phase_id, exact_sha, manifest_digest}`; reject aliases, missing IDs, or any tuple drift.
+
+### Operational decisions — close before their consuming gate
+
+1. A real rollback returns the mode to legacy; any re-cutover requires a fresh candidate-bound certificate and a new
+   single-use operator approval.
+2. Default to one open rollback window unless the operator ratifies a higher cap with blast-radius evidence.
+3. Pre-create and verify all eight legacy authority records, or formally ratify a narrower bootstrap rule that denies
+   ambiguous missing state.
+4. Freeze the zero-use duration, workload sufficiency, positive controls, and unknown-path blocker before 015
+   instrumentation starts. Remove common-mode bindings in order, but delete shared implementation last.
+5. Freeze Stage B’s exact commands, cases, expected counts, negative controls, and failure owners before running it;
+   count-only or “representative” evidence fails.
+6. Use the five-fact certificate lifecycle in section 4 consistently: readiness, operator authorization, committed
+   transition, rollback-window state, and final closure are distinct facts.
 
 ### P2 — track without delaying the critical path unless it changes accepted contracts
 
@@ -514,7 +615,7 @@ drift ledger and reopen its owner.
 4. Parent and child metadata are known to lag landed reality. Phase 017 must reconcile them, but stale metadata must not
    be used as authority for a live flip.
 
-## 9. Operator approval ledger — explicit STOP points
+## 9. OPERATOR APPROVAL LEDGER — EXPLICIT STOP POINTS
 
 | STOP | Required approval payload | What invalidates it |
 |---|---|---|

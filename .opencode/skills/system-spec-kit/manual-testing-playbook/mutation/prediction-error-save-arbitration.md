@@ -65,6 +65,8 @@ Save output per action type + memory_conflicts table query + force:true bypass e
 
 Inspect similarity threshold constants; verify contradiction detection logic; check memory_conflicts table schema matches expected columns
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [mutation/prediction-error-save-arbitration.md](../../feature-catalog/mutation/prediction-error-save-arbitration.md)

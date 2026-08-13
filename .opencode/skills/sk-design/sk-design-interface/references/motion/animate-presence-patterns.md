@@ -65,6 +65,8 @@ Example:
 
 The `exit` transition is defined on the `exit` prop itself so it does not inherit the ease-out enter curve. Enter uses ease-out (`[0.16, 1, 0.3, 1]`); exit uses ease-in (`[0.55, 0, 1, 0.45]`) at `0.16s`, about 75 percent of the enter duration, satisfying both the ease-in-for-exits rule and the exits-faster rule.
 
+---
+
 ## 3. MODES
 
 | Mode | Use for | Risk and remedy |
@@ -75,15 +77,21 @@ The `exit` transition is defined on the `exit` prop itself so it does not inheri
 
 If `mode="wait"` uses `0.3s` enter and `0.3s` exit, the user perceives about `0.6s`. Reduce each phase when the total must feel fast.
 
+---
+
 ## 4. PRESENCE HOOKS
 
 - `useIsPresent` belongs in a child of `AnimatePresence`, not the parent.
 - Exiting elements should disable interactions when no longer present.
 - If `usePresence` performs async cleanup, call `safeToRemove` after cleanup completes.
 
+---
+
 ## 5. NESTED EXITS
 
 Nested `AnimatePresence` needs `propagate` when child exits should run as the parent exits. Coordinate parent and child durations; a parent that vanishes before children complete makes exits look broken.
+
+---
 
 ## 6. LISTS
 
@@ -91,6 +99,8 @@ Nested `AnimatePresence` needs `propagate` when child exits should run as the pa
 - Keep stagger under `50ms` per item and cap total stagger.
 - Use `popLayout` when removal changes list geometry.
 - Avoid animating every list item on routine resort/filter operations if it slows power users.
+
+---
 
 ## 7. AUDIT FINDINGS FORMAT
 

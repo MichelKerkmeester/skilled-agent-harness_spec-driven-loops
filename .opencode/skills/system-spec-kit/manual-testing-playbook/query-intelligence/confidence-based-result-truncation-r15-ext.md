@@ -176,6 +176,8 @@ Observed output:
 
 Verify cliff detection algorithm → Check min-result guarantee → Inspect confidence score distribution
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/confidence-based-result-truncation.md](../../feature-catalog/query-intelligence/confidence-based-result-truncation.md)

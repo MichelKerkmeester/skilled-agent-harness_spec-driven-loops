@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "hooks/008-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer",
+  "description": "`pi-cache-optimizer` v2.8.0 (installed, live stats confirm 89% hit rate / ~87% token-cache rate on `openai-codex/gpt-5.6-luna`) already has an",
+  "keywords": [
+    "pi-cache-optimizer",
+    "installed",
+    "live",
+    "stats",
+    "confirm",
+    "hit",
+    "rate",
+    "token-cache",
+    "openai-codex",
+    "gpt-5",
+    "6-luna",
+    "already"
+  ],
+  "lastUpdated": "2026-08-11T06:40:10.397Z",
+  "specId": "003",
+  "folderSlug": "fork-and-guard-cache-optimizer",
+  "parentChain": [
+    "hooks",
+    "008-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -15,6 +15,8 @@ Route /create:diagram to its presentation contract and workflow YAML for produci
 - Do not dispatch workflow behavior from this router.
 - Do not edit workflow YAML while executing this command.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -22,6 +24,8 @@ Route /create:diagram to its presentation contract and workflow YAML for produci
 | Presentation contract | `.opencode/commands/create/assets/create-diagram-presentation.txt` |
 | Auto workflow | `.opencode/commands/create/assets/create-diagram-auto.yaml` |
 | Confirm workflow | `.opencode/commands/create/assets/create-diagram-confirm.yaml` |
+
+---
 
 ## 3. MODE ROUTING
 
@@ -36,12 +40,16 @@ Route /create:diagram to its presentation contract and workflow YAML for produci
 6. Execute the selected YAML step by step.
 7. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
 
+---
+
 ## 4. EXECUTION TARGETS
 
 | Mode | Target |
 |------|--------|
 | `:auto` | `.opencode/commands/create/assets/create-diagram-auto.yaml` |
 | `:confirm` or omitted mode | `.opencode/commands/create/assets/create-diagram-confirm.yaml` |
+
+---
 
 ## 5. PRESENTATION BOUNDARY
 
@@ -50,6 +58,8 @@ The following content lives only in `.opencode/commands/create/assets/create-dia
 - Startup questions, Phase 0 verification, setup dashboard, confirmation prompts, status display, completion display, and next-step text.
 
 The router must not invent visible wording for those surfaces; it only selects the workflow YAML and execution mode.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

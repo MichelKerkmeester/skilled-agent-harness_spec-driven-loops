@@ -43,6 +43,8 @@ git diff --stat
 
 Anything outside this allowlist counts as state-changing and moves to a throwaway repository.
 
+---
+
 ## 2. RECIPES
 
 ### Read the plugin state
@@ -164,6 +166,8 @@ The mode never rewrites existing entries and never deletes the file.
 4. Run `git remote -v` and confirm the remote matches user intent.
 5. Report findings. When the repository is missing, the plugin can initialize it through its own commands, which the user triggers in the app.
 
+---
+
 ## 3. BACKUP DISCIPLINE
 
 Every settings write follows this pattern.
@@ -175,6 +179,8 @@ Every settings write follows this pattern.
 
 The same rule applies to `.gitignore`: copy before appending.
 
+---
+
 ## 4. VERIFYING
 
 - After any write: read the file back and validate the JSON parse.
@@ -185,6 +191,8 @@ The same rule applies to `.gitignore`: copy before appending.
 - Confirm the rendered commit message preview contains no unresolved placeholder tokens.
 - Confirm no file outside the scoped write target changed.
 - State clearly which outcomes still need the app: push success, view rendering, credential prompts.
+
+---
 
 ## 5. LIMITS
 

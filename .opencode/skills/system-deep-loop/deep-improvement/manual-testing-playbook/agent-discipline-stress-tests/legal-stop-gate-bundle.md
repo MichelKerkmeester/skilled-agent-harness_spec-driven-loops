@@ -18,6 +18,8 @@ The fixture has good-looking structure but insufficient benchmark replay. The di
 
 Research found that generic `gate_evaluation` is too weak. Stop claims must be grounded in all five legal-stop gates and a failed gate must produce `blocked_stop`, not `converged`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `CP-035` and confirm the expected signals without contradictory evidence.
@@ -41,6 +43,8 @@ Operators run the exact prompt and command sequence for `CP-035` and confirm the
   - **Call B (`/deep:agent-improvement` command flow)**: Contains `legal_stop_evaluated`, nested `details.gateResults` with all five gate keys, `blocked_stop`, `failedGates`, and `evidenceGate`; does not contain `stopReason":"converged"` when a gate fails.
 - Desired user-visible outcome: PASS verdict showing legal-stop blocking is grep-checkable.
 - Pass/fail: PASS if complete gate bundle and block signals appear with no converged stop. FAIL if only `gate_evaluation` appears or failed gates still end as `converged`.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -85,6 +89,8 @@ grep -c "gate_evaluation" /tmp/cp-035-B-combined.txt | tee /tmp/cp-035-B-generic
 |---|---|---|---|---|---|---|---|---|
 | CP-035 | LEGAL_STOP_GATE_BUNDLE | Confirm all five legal-stop gates block convergence | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:agent-improvement` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for `details.gateResults` and all five gate keys are >= 1; `blocked_stop` appears when any gate fails; converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-035-B-command.txt`, `/tmp/cp-035-B-combined.txt`, `/tmp/cp-035-B-field-counts.txt`, `/tmp/cp-035-B-converged-count.txt`, `/tmp/cp-035-tripwire.diff` | PASS if complete `details.gateResults` bundle and blocked stop appear. FAIL if generic gate evaluation substitutes for legal-stop evidence | 1. If `legal_stop_evaluated` is absent, verify command-flow legal-stop execution. 2. If `details.gateResults` or any gate key is missing, require the full nested bundle, not flat `gateResult`. 3. If converged appears with failed gate, derive stop reason from legal-stop artifact. |
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -100,6 +106,8 @@ grep -c "gate_evaluation" /tmp/cp-035-B-combined.txt | tee /tmp/cp-035-B-generic
 | `.opencode/commands/deep/assets/deep-agent-improvement-auto.yaml` | Auto workflow journal boundary |
 | `.opencode/commands/deep/assets/deep-agent-improvement-confirm.yaml` | Confirm workflow journal boundary |
 | `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` | Legal-stop gate contract |
+
+---
 
 ## 5. SOURCE METADATA
 

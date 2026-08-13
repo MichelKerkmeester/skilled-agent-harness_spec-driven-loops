@@ -61,6 +61,8 @@ Bulk delete output + checkpoint listing
 
 Re-run with explicit scope; restore `pre-ex009-bulk-delete` if needed
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [mutation/tier-based-bulk-deletion-memorybulkdelete.md](../../feature-catalog/mutation/tier-based-bulk-deletion-memorybulkdelete.md)

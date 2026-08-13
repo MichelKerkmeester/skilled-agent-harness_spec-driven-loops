@@ -26,6 +26,8 @@ version: "1.0.0.0"
 
 This scenario verifies that a read-only conformance-audit request against a named standard authority resolves to `workflowMode: alignment` and does not route to review, research, or an improvement lane. It realizes the `DA-R01` alignment seed row from the routing research: the seventh public mode needs a loader-eligible direct-route scenario so the corpus covers every workflow mode.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants to check whether a skill conforms to its named standard authority, without changing any files.
@@ -57,6 +59,8 @@ Run a conformance audit against the named standard authority for the sk-git skil
 
 **Desired user-visible outcome**: The AI invokes or describes the `alignment` lane, names `/deep:alignment`, `deep-alignment`, `runtime-loop-type`, and `alignment/`, and states that the audit is read-only by default.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -82,10 +86,14 @@ Run a conformance audit against the named standard authority for the sk-git skil
 1. If the hub picks review, check whether the prompt over-emphasizes findings severity rather than named-standard conformance.
 2. If the backend is wrong, verify the `alignment` entry's `runtimeLoopType` is `review` and `backendKind` is `runtime-loop-type`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule and mode table.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `alignment` mode source of truth.
+
+---
 
 ## 5. SOURCE METADATA
 

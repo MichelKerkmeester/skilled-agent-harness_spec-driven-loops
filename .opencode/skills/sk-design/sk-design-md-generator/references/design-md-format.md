@@ -69,6 +69,8 @@ characterizing claim must map to a real token (a hex, a size, a weight). Restrai
 purple. No assumed audience ("targets captains and port agents") unless the page states
 it.
 
+---
+
 ## 3. TOKENS — COLORS
 
 Rendered verbatim in the output as `## Tokens — Colors`. A table, most-prominent first:
@@ -91,6 +93,8 @@ Rendered verbatim in the output as `## Tokens — Colors`. A table, most-promine
   ("Do not promote it to the primary CTA color").
 - L1/L2 colours in the main table. L3 in a `### Current Campaign Colors (Subject to
   change)` sub-table. L4 excluded entirely.
+
+---
 
 ## 4. TOKENS — TYPOGRAPHY
 
@@ -121,6 +125,8 @@ Then:
   heading, heading-lg, display, hero` — mapped by size rank, NEVER the raw DOM tag
   ("div"). Map the extracted levels onto this scale by ascending size.
 - Token: `--text-<role>`.
+
+---
 
 ## 5. TOKENS — SPACING & SHAPES
 
@@ -157,6 +163,8 @@ Rendered verbatim in the output as `## Tokens — Spacing & Shapes`.
 - Density: `spacious` if section gaps are large relative to content; `compact` if tight.
 - Border Radius: map measured radii to element roles (buttons/cards/inputs/badges/etc.).
 
+---
+
 ## 6. COMPONENTS
 
 Rendered verbatim in the output as `## Components`.
@@ -177,11 +185,15 @@ radius, border, hover/focus states, transition, and an example label or use.>
   focus" line on every component — characterize it once where it matters (and flag it in
   Accessibility / Agent Guide if it is an a11y problem).
 
+---
+
 ## 7. DO'S AND DON'TS
 
 Rendered verbatim in the output as `## Do's and Don'ts`. `### Do` and `### Don't` bullet lists. Each bullet cites a concrete value and reads as an
 instruction ("Use `#06458c` for all link colors", "Do not add `box-shadow` — there are
 zero shadow tokens; any shadow is an invention").
+
+---
 
 ## 8. SURFACES
 
@@ -198,11 +210,15 @@ Derive levels from the background colours actually used, ordered base → elevat
 cards share the canvas hex, say so ("same hex as canvas — cards are defined by radius +
 padding, not fill").
 
+---
+
 ## 9. ELEVATION
 
 Rendered verbatim in the output as `## Elevation`. Either a per-component shadow list, or — when there are 0 shadow tokens — a prose line
 stating the system is flat and HOW depth is achieved instead (border, tonal contrast,
 whitespace). This is the honest replacement for the old "gradient-as-depth" failure.
+
+---
 
 ## 10. IMAGERY
 
@@ -210,10 +226,14 @@ Rendered verbatim in the output as `## Imagery`. Prose: what imagery the site us
 grounded in what was observed. If no meaningful imagery signal was extracted, say so
 plainly rather than inventing a visual language.
 
+---
+
 ## 11. LAYOUT
 
 Rendered verbatim in the output as `## Layout`. Prose: max-width, hero structure, section rhythm, nav behavior, grid vs asymmetric —
 grounded in the breakpoint/spacing/column data.
+
+---
 
 ## 12. MOTION
 
@@ -254,6 +274,8 @@ Rendered verbatim in the output as `## Motion`. This section is conditional and 
 - This measured section does not infer `motionCharacter`; that semantic handoff belongs
   to authored design decisions, not extracted evidence.
 
+---
+
 ## 13. AGENT PROMPT GUIDE
 
 Rendered verbatim in the output as `## Agent Prompt Guide`.
@@ -273,12 +295,16 @@ Rendered verbatim in the output as `## Agent Prompt Guide`.
 If no distinct CTA/action colour was observed, say "no distinct CTA color" — do not
 invent one.
 
+---
+
 ## 14. SIMILAR BRANDS
 
 Rendered verbatim in the output as `## Similar Brands`. 3–5 brands with a one-line WHY each, as **confident grounded inference** from the
 observed system (palette discipline, type scale, layout rhythm). This section is
 explicitly inferential and that is allowed — it characterizes the design's family, it
 does not fabricate the site's own data.
+
+---
 
 ## 15. QUICK START
 

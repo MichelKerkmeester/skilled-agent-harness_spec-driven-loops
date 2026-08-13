@@ -227,6 +227,8 @@ Result: continuity freshness and evidence-marker strict checks produced the expe
 
 Inspect `scripts/spec/validate.sh`, `scripts/validation/continuity-freshness.ts`, `scripts/validation/evidence-marker-lint.ts`, `scripts/validation/evidence-marker-audit.ts`, and `scripts/rules/check-normalizer-lint.sh`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md](../../feature-catalog/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md)

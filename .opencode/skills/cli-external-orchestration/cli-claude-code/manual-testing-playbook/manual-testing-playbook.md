@@ -32,7 +32,7 @@ Canonical package artifacts:
 
 This playbook provides 28 deterministic scenarios across 9 categories validating the `cli-claude-code` cross-AI delegation skill. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals and feature-file reference.
 
-Coverage note (2026-08-10): `CC-029` verifies the deliberate boundary between Claude Code's native goal surface and the repository's runtime-neutral goal core. The core has Pi support, Cursor injection-only support, and no Claude Code or Codex adapter. The scenario checks repository source/config/documentation truth; it does not claim product-internal native state or model-delivery evidence.
+Coverage note (2026-08-10): `CC-029` verifies the deliberate repository discovery boundary between Claude Code and the OpenCode-only goal command. The core has Pi support, Cursor injection-only support, and no Claude Code or Codex adapter. The scenario checks the filtered command mirror, source, config, and documentation; it does not claim a live Claude product version exposes native goal state.
 
 Coverage note (2026-04-26): all categories validate the orchestrator-led cross-AI delegation contract where an external AI (OpenCode, Copilot, OpenCode) acts as conductor and dispatches the `claude` binary for supplementary tasks. Scenarios CC-006 (acceptEdits permission mode) and CC-007 (bypassPermissions) are destructive and MUST run only against rebuildable, non-production scratch files.
 
@@ -635,19 +635,19 @@ Expected signals: `wait` returns exit 0. Captured stdout file is non-empty. Pare
 
 ## 15. GOAL HOOK
 
-This category covers one repository-boundary scenario. It verifies that Claude Code routes to its native goal surface and that the runtime-neutral core registers no Claude Code adapter or shared-CLI command.
+This category covers one repository-boundary scenario. It verifies that Claude Code cannot discover the OpenCode-only goal command and that the runtime-neutral core registers no Claude Code adapter.
 
-### CC-029 | Claude Code native goal boundary
+### CC-029 | Claude Code repository goal discovery boundary
 
 #### Description
 
-Confirm Claude Code stays outside the OpenCode `mk-goal` plugin and the runtime-neutral Pi/Cursor core, with no Claude adapter or registration in the repository.
+Confirm the filtered Claude command tree excludes the OpenCode `mk-goal` router and the repository contains no Claude goal adapter or registration.
 
 #### Scenario Contract
 
-Prompt: Verify that Claude Code uses its native goal surface, that this repository registers no Claude goal adapter or shared-CLI command, and that OpenCode, Pi, Cursor, and Codex support claims match current source.
+Prompt: Verify that this repository does not expose the OpenCode-only goal command to Claude Code, registers no Claude goal adapter, and makes no unproven claim about a separate live Claude goal feature.
 
-Expected signals: No `goal/claude` adapter or Claude goal registration exists. The runtime matrix and constitutional rule route Claude Code outside the sibling core and do not suggest an unbound CLI fallback.
+Expected signals: No `goal/claude` adapter or Claude goal registration exists. `.claude/commands` is a filtered real directory, `goal-opencode.md` is absent, a shared command is linked, and the mirror check passes.
 
 #### Test Execution
 
@@ -663,7 +663,7 @@ The cli-claude-code skill is a thin orchestration wrapper around the external An
 |---|---|---|
 | `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (generate-review-fix, structured output) |
 | `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (cross-runtime handback) |
-| `.opencode/hooks/goal/README.md` + `.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md` | Documents the Claude Code native boundary and current Pi/Cursor support matrix | `CC-029` |
+| Goal README + runtime routing rule + runtime mirror generator | Documents and enforces the Claude repository boundary and current Pi/Cursor support matrix | `CC-029` |
 
 Validator support: the shared `validate_document.py` validates this root playbook structurally but does not recurse into category folders. Per-feature file completeness is checked manually via the link integrity and feature ID count gates documented in section 5.
 
@@ -723,4 +723,4 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### GOAL HOOK
 
-- CC-029: [Claude Code native goal boundary](../manual-testing-playbook/goal-hook/goal-hook.md)
+- CC-029: [Claude Code repository goal discovery boundary](../manual-testing-playbook/goal-hook/goal-hook.md)

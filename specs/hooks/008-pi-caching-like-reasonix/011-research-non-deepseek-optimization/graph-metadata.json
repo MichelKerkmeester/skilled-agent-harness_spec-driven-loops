@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization",
+  "spec_folder": "hooks/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization",
+  "parent_id": "hooks/008-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi-cache-optimizer non-deepseek optimization",
+      "prompt cache key self-heal",
+      "provider coverage matrix",
+      "cache-hit-rate economics",
+      "non-deepseek optimization research plan",
+      "deep research pi-cache-optimizer",
+      "non-deepseek optimization research tasks",
+      "implementation summary",
+      "non-deepseek optimization research"
+    ],
+    "key_topics": [
+      "pi-cache-optimizer",
+      "non-deepseek",
+      "optimization",
+      "prompt",
+      "cache",
+      "key",
+      "self-heal",
+      "provider",
+      "coverage",
+      "matrix",
+      "cache-hit-rate",
+      "economics"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/lineages/deepseek-flash/research.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/lineages/deepseek-flash/invocation-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "invocation-metadata.json",
+        "kind": "config",
+        "path": "research/lineages/deepseek-flash/invocation-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optimization Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 008's fork work guards `pi-cache-optimizer`'s two mutation hooks against DeepSeek-matched models, leaving deep-pi as the exclusive DeepSeek-direct extension",
+    "created_at": "2026-08-09T05:53:50.261Z",
+    "last_save_at": "2026-08-11T06:50:08.133Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9bbe1a62c6797167cbe347c9ef4f962f62fbac76ec6fd238d9c13d39c2d42715",
+    "source_doc_hashes": {
+      "spec.md": "9fba5b905da5aa9cf985d9489eb9c4fcec29d13dc49b7d1c32c8c96077746700",
+      "plan.md": "87b15f4de0e474fc9738bd7c38b7080b32db0e64c4f771f7fa3e2d6dbf0d862c",
+      "tasks.md": "8c0ffd758b4bcc3643af43556d0ea6d644ba750c7598256a55e4504f6e66238b",
+      "implementation-summary.md": "0031da74406b698a916d19b2b8ea02744f413d92cc4d71184f6d93a576f42fb9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

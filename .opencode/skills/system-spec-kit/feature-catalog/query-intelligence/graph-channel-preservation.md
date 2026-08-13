@@ -20,6 +20,8 @@ The router preserves the graph (and degree) channel for find_decision/find_spec 
 
 The complexity router used to gate the graph channel behind the >8-term complex tier, which natural user queries (1-5 terms) almost never hit. With 1,328 stored causal edges sitting unused on those queries, this feature adds a routing-layer override that fires graph based on intent and entity-density signals — turning previously-dormant traversal data into recall improvements without bloating the simple-tier latency budget. The override mirrors the existing `shouldPreserveBm25` precedent so the pattern stays consistent and feature-flag-revertible.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Entry Point & Routing
@@ -40,6 +42,8 @@ A 200-decision rolling ring in `routing-telemetry.ts` records every routing deci
 ### Configuration
 
 The `SPECKIT_GRAPH_CHANNEL_PRESERVATION` flag is **enabled by default** (`isGraphChannelPreservationEnabled()` returns true unless `SPECKIT_GRAPH_CHANNEL_PRESERVATION=false`). When disabled, the override no-ops and the channel set reverts to byte-for-byte pre-012 behavior — clean rollback path.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -75,6 +79,8 @@ The `SPECKIT_GRAPH_CHANNEL_PRESERVATION` flag is **enabled by default** (`isGrap
 | `data.routing` block in memory_health | `memory-crud-health.ts` | 629-683 |
 | Default-on flag (`raw !== 'false'`) | `query-router.ts:isGraphChannelPreservationEnabled` | 182-198 |
 | Spec REQ-001..REQ-008 | `specs/.../009-causal-graph-channel-routing/spec.md` | 136-155 |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Query Intelligence

@@ -31,6 +31,8 @@ Prevent: re-read `data.json` before every merge and write the smallest scoped di
 
 Checkpoint: VALIDATE-SETTINGS passes and the plugin reloads.
 
+---
+
 ## 2. FAILURE MODE: FOLD COMMAND BLOCKED
 
 Symptom: fold or unfold shows a notice that folding is disabled.
@@ -44,6 +46,8 @@ Fix: enable the Obsidian editor setting "Fold indent". No file-layer change can 
 Prevent: check the core setting before recommending fold-based workflows.
 
 Checkpoint: the core setting is on and the fold notice disappears.
+
+---
 
 ## 3. FAILURE MODE: DRAG AND DROP INERT
 
@@ -59,6 +63,8 @@ Prevent: never assume drag and drop is on. Read the file first.
 
 Checkpoint: VALIDATE-SETTINGS passes with `dnd: true`.
 
+---
+
 ## 4. FAILURE MODE: ZOOM DOES NOTHING
 
 Symptom: the zoom-in click action has no effect.
@@ -72,6 +78,8 @@ Fix: either install the Zoom plugin or keep `listLineAction: "toggle-folding"`.
 Prevent: gate every zoom claim on a live dependency check.
 
 Checkpoint: the dependency check passes, or the action value matches an available feature.
+
+---
 
 ## 5. FAILURE MODE: TAB OR ENTER ENHANCEMENTS SKIPPED
 
@@ -87,6 +95,8 @@ Prevent: mention the IME pause when users report Enter or Tab surprises.
 
 Checkpoint: a retry after composition yields the enhanced behavior.
 
+---
+
 ## 6. FAILURE MODE: STALE OR LEGACY SETTINGS
 
 Symptom: old boolean values for `stickCursor` appear in `data.json`.
@@ -100,6 +110,8 @@ Fix: the plugin maps `true` to `bullet-and-checkbox` and `false` to `never`, so 
 Prevent: normalize enum values whenever a merge touches the file.
 
 Checkpoint: VALIDATE-SETTINGS accepts the value.
+
+---
 
 ## 7. FAILURE MODE: CORRUPT OR PARTIAL DATA.JSON
 
@@ -115,6 +127,8 @@ Prevent: always keep a backup from the previous successful state.
 
 Checkpoint: RESTORE-FROM-BACKUP passes and the file parses.
 
+---
+
 ## 8. FAILURE MODE: HOTKEY CONFLICTS OR MISSING COMMANDS
 
 Symptom: a listed command does not run, or another action fires instead.
@@ -129,6 +143,8 @@ Prevent: always present the defaults as defaults, never as fixed bindings.
 
 Checkpoint: the user confirms the bound hotkey matches intent.
 
+---
+
 ## 9. EXPECTED BEHAVIOR VS DEFECT
 
 Some reports are expected behavior. Confirm these before treating them as defects.
@@ -140,6 +156,8 @@ Some reports are expected behavior. Confirm these before treating them as defect
 - `previousRelease` is bookkeeping and must never be edited.
 
 If the behavior matches one of these, explain it and close the case without a fix.
+
+---
 
 ## 10. QUICK TRIAGE
 
@@ -155,6 +173,8 @@ Follow this order when a report arrives.
 
 Each step ends with a checkpoint name from section 11.
 
+---
+
 ## 11. VALIDATION CHECKPOINTS
 
 | Checkpoint | Pass condition |
@@ -165,6 +185,8 @@ Each step ends with a checkpoint name from section 11.
 | DEPENDENCY-CHECK | Zoom claims only with the Zoom plugin present |
 | FOLDER-CLEAN | No stray temp files in the plugin folder |
 | RESTORE-FROM-BACKUP | Restored file parses and matches the backup |
+
+---
 
 ## 12. ESCALATION
 

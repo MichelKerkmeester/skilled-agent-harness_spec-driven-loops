@@ -126,6 +126,8 @@ Source inspection showed recommended-layer metadata is advisory: `memory-context
 
 Inspect `layer-definitions.ts` completeness; verify `context-server.ts` dispatch entrypoint and budget injection; review `tools/index.ts` fan-out modules; confirm handler metadata does not masquerade as an execution router
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/7-layer-tool-architecture-metadata.md](../../feature-catalog/pipeline-architecture/7-layer-tool-architecture-metadata.md)

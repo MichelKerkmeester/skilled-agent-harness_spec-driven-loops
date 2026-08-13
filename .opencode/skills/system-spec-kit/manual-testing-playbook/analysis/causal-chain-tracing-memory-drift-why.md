@@ -58,6 +58,8 @@ Trace output
 
 Lower depth/rel filters if empty
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [analysis/causal-chain-tracing-memorydriftwhy.md](../../feature-catalog/analysis/causal-chain-tracing-memorydriftwhy.md)

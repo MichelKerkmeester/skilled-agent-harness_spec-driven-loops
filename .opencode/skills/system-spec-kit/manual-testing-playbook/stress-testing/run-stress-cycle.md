@@ -23,6 +23,8 @@ Preconditions:
 - Scope, target packets, corpus, dimensions, and scoring owner are declared before scoring starts.
 - Runtime and measurement paths are stable enough that another operator can rerun or inspect the evidence.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 
@@ -150,6 +152,8 @@ Use `npm run stress` for the full opt-in harness. Use the domain scripts for tar
 
 Add the new cycle to the parent packet's PHASE MAP. Keep the update minimal: folder name, focus, and status. Do not narrate migration history in phase-parent specs.
 
+---
+
 ## 4. VERIFICATION
 
 - Strict validator exits 0 for the cycle packet.
@@ -162,6 +166,8 @@ Add the new cycle to the parent packet's PHASE MAP. Keep the update minimal: fol
 - Telemetry samples exist under `measurements/` when the cycle exercised a wired runtime.
 
 Success criteria: a future investigator can read `findings.md`, `findings-rubric.json`, and `measurements/*summary.json` and reproduce the verdict reasoning without the original operator present.
+
+---
 
 ## 5. REFERENCES
 
@@ -176,12 +182,16 @@ Success criteria: a future investigator can read `findings.md`, `findings-rubric
 - v1.0.2 rerun: `<spec-folder>`
 - v1.0.3 wiring run: `<spec-folder>`
 
+---
+
 ## 6. SOURCE METADATA
 
 - Group: Stress testing
 - Playbook ID: 01
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `stress-testing/run-stress-cycle.md`
+
+---
 
 ## 7. EVIDENCE
 
@@ -220,6 +230,8 @@ The scenario also requires writes outside the only allowed write path for this m
 ```
 
 No strict validator command was run because `<path>` is unspecified and the owning cycle artifact packet is not declared in this scenario file or the user request.
+
+---
 
 ## 8. PASS/FAIL
 

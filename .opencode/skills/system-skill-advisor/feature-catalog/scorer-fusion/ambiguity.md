@@ -18,6 +18,8 @@ version: 0.8.0.15
 
 Avoid silently picking a single winner when two candidates are tied or near-tied. Expose the ambiguity to callers so routing decisions stay honest under the 5-lane fusion.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/scorer/ambiguity.ts` evaluates a **dual-margin OR** predicate against the top-1 candidate. A candidate joins the ambiguity cluster when the gap on EITHER axis is within 0.05:
@@ -26,6 +28,8 @@ Avoid silently picking a single winner when two candidates are tied or near-tied
 - `AMBIGUITY_CONFIDENCE_MARGIN = 0.05` on `confidence` (catches user-visible near-ties when score gap just exceeds margin, Packet 084, SAD-002 fix).
 
 If either gap is within margin, the response carries an ambiguity signal that the render path surfaces as an ambiguous brief. A candidate is unambiguously ranked only when **both** gaps exceed margin.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -42,6 +46,8 @@ If either gap is within margin, the response carries an ambiguity signal that th
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | ambiguity window behavior |
 | `Playbook scenarios [SC-003](../../manual-testing-playbook/scorer-fusion/ambiguity.md) and [NC-004](../../manual-testing-playbook/native-mcp-tools/ambiguous-brief-rendering.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

@@ -15,6 +15,8 @@ This scenario verifies the launcher guard that stops a relaunch timer from start
 
 The check is automated-test-backed. A human runs the launcher syntax checks, the launcher watchdog unit suite, and targeted greps that prove the predicate is defined, exported, wired into the timer callback, and does not block crash or recycle recovery while the owner is alive.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm owner disposal aborts a delayed daemon relaunch while normal crash and recycle recovery still relaunch under a live owner.
@@ -24,6 +26,8 @@ The check is automated-test-backed. A human runs the launcher syntax checks, the
 - Expected signals: `node --check` exits cleanly for both launcher files. `launcher-watchdog.vitest.ts` passes including the `shouldAbortRelaunchOnFire` cases. The predicate appears at its lib definition, the launcher re-export and the timer call site. `recycleDaemonInPlace` and the crash relaunch path still reach `launchServer`.
 - Desired user-visible outcome: The MCP daemon no longer flaps after owner-session disposal, and live-owner recovery behavior is unchanged.
 - Pass/fail: PASS only when syntax, unit tests, predicate wiring, and recovery-path evidence all match expectations.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -100,6 +104,8 @@ $ rg -n "recycleDaemonInPlace|scheduleRelaunch|launchServer\(" .opencode/bin/mk-
 
 If a syntax check fails, inspect the helper placement and the CommonJS exports first. If a predicate case fails, compare the implementation to the required true-states: shutdown in progress, a changed parent pid, and reparent to pid 1. If grep cannot find the predicate, confirm the lib definition, the launcher re-export, and the timer call site all exist. If the recovery wiring is unclear, read the `superviseChildExit`, `scheduleRelaunch`, `recycleDaemonInPlace`, and `launchServer` lines together.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -116,6 +122,8 @@ If a syntax check fails, inspect the helper placement and the CommonJS exports f
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | Primary implementation anchor |
 | `.opencode/bin/lib/model-server-supervision.cjs` | Pure relaunch-gate predicate anchor |
 | `mcp-server/tests/launcher-watchdog.vitest.ts` | Regression or validation anchor |
+
+---
 
 ## 5. SOURCE METADATA
 

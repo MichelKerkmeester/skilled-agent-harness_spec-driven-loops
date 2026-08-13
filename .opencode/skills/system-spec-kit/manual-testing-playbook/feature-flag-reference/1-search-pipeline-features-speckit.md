@@ -59,6 +59,8 @@ Search/context outputs + catalog cross-check notes
 
 Validate against code/config docs; remove any manual-test wording that still treats retired topics as live search-pipeline behavior
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/1-search-pipeline-features-speckit.md](../../feature-catalog/feature-flag-reference/1-search-pipeline-features-speckit.md)

@@ -61,6 +61,8 @@ Ingest tool outputs + duplicate-path reporting + job state sequence
 
 Inspect `handlers/memory-ingest.ts` path canonicalization and dedup logic, `lib/ops/job-queue.ts` state machine, and `resetIncompleteJobsToQueued`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [lifecycle/async-ingestion-job-lifecycle.md](../../feature-catalog/lifecycle/async-ingestion-job-lifecycle.md)

@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/005-devin-allowlist-prune-and-deepseek"
-    last_updated_at: "2026-07-30T07:45:39.076Z"
+    last_updated_at: "2026-08-11T14:03:33Z"
     last_updated_by: "implementer"
     recent_action: "Implementation verified; packet docs finalized"
     next_safe_action: "Commit the runtime change + packet to skilled/v4.0.0.0"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 045-devin-allowlist-prune-and-deepseek |
+| **Spec Folder** | 005-devin-allowlist-prune-and-deepseek |
 | **Completed** | 2026-07-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

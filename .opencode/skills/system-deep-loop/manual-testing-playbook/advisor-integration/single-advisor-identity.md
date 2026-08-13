@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies the hub identity rule: positive deep-loop prompts should surface `system-deep-loop` as the public advisor-routable identity, with the hub then resolving the mode through the registry.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: An operator checks that the advisor treats the deep-loop family as one hub, while still preserving mode-level routing inside the hub.
@@ -45,6 +47,8 @@ Evaluate and score an agent candidate for promotion or rollback.
 - Registry evidence: the commands and agents are `"/deep:research"` with `"deep-research"`, `"/deep:review"` with `"deep-review"`, `"/deep:ai-council"` with `"ai-council"`, and `"/deep:agent-improvement"` with `"deep-improvement"`.
 
 **Desired user-visible outcome**: The AI reports one public skill identity and four mode-level routes, rather than treating nested mode packets as separate advisor skills.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -82,10 +86,14 @@ Evaluate and score an agent candidate for promotion or rollback.
 2. If a prompt resolves to multiple modes, inspect dominant-intent selection in the hub routing rule.
 3. If route fields drift, compare each observed mode to the matching `modes[]` entry.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - public advisor identity and hub routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - advisor routing projection and mode fields.
+
+---
 
 ## 5. SOURCE METADATA
 

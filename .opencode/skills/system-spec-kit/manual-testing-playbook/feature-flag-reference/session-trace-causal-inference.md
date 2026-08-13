@@ -67,6 +67,8 @@ Seed fixture description, disabled and enabled reducer output, edge-count before
 
 Inspect `lib/feedback/session-trace-causal-reducer.ts`, `tests/session-trace-causal-reducer.vitest.ts`, and causal-edge insertion provenance. Verify the fixture contains same-session traces before judging empty candidates.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

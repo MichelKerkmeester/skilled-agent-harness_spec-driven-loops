@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/019-codex-node-runtime-alignment",
+  "description": "Codex launches `mkskilladvisor` with Node 22, whose module ABI is 127",
+  "keywords": [
+    "codex",
+    "launches",
+    "mkskilladvisor",
+    "node",
+    "whose",
+    "module",
+    "abi"
+  ],
+  "lastUpdated": "2026-08-10T08:41:32.060Z",
+  "specId": "019",
+  "folderSlug": "codex-node-runtime-alignment",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

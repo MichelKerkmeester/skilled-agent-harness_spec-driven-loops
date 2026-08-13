@@ -61,6 +61,8 @@ sandbox copies of `filters.jsonc`, captured before or after prompt lists for eac
 
 Inspect `scripts/lib/content-filter.ts` loader and merge logic, verify the fixture prompt list actually exercises noise plus dedupe plus quality branches, and confirm the malformed-config run did not silently reuse stale in-memory config from a prior execution
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/filter-config-contract.md](../../feature-catalog/feature-flag-reference/filter-config-contract.md)

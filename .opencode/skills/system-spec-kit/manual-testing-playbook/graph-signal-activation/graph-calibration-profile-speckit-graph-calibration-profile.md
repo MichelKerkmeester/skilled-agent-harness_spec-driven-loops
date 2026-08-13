@@ -61,6 +61,8 @@ Test transcript with cap verification + scoring context before/after calibration
 
 Verify isGraphCalibrationEnabled() → Check loadCalibrationProfile() env overrides → Inspect GRAPH_WEIGHT_CAP constant (0.05) → Verify COMMUNITY_SCORE_CAP constant (0.03) → Check Louvain minDensity (0.3) and minSize (10)
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/graph-calibration-profiles.md](../../feature-catalog/graph-signal-activation/graph-calibration-profiles.md)

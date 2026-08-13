@@ -35,6 +35,8 @@ Those utilities support the Gate E continuity model where `/speckit:resume` rest
 | Utility modules | 4 |
 | Source | `format-helpers.ts`, `canonical-path.ts` and `logger.ts` are local. `path-security.ts` re-exports from `@spec-kit/shared` |
 
+---
+
 ## 2. STRUCTURE
 
 ```
@@ -55,6 +57,8 @@ utils/
 | `logger.ts` | Structured logging utilities for MCP server operations |
 | `path-security.ts` | Re-exports path validation and regex escaping from `@spec-kit/shared/utils/path-security` |
 | `index-scope.ts` | Shared path-policy module (Packet 026/010/002). Exports `shouldIndexForMemory`, `shouldIndexForCodeGraph`, `resolveCanonicalPath`, `GOVERNANCE_AUDIT_ACTIONS`, `recordTierDowngradeAudit`, `buildGovernanceLogicalKey`. Single source of truth for `z-future/` + `/external/` exclusions and constitutional-tier normalization |
+
+---
 
 ## 3. FEATURES
 
@@ -122,6 +126,8 @@ Re-exports from `@spec-kit/shared/utils/path-security`:
 |----------|---------|
 | Structured logging | Consistent log output for MCP server operations |
 
+---
+
 ## 4. USAGE EXAMPLES
 
 ### Format Helpers
@@ -147,6 +153,8 @@ const safe = validateFilePath(userPath, allowed);
 const escaped = escapeRegex('file.name (1)');
 // Returns: "file\\.name \\(1\\)"
 ```
+
+---
 
 ## 5. RELATED RESOURCES
 

@@ -20,6 +20,8 @@ Covers the preflight tool that records knowledge, uncertainty and context comple
 
 Before starting a task, this tool records how much you know, how uncertain you are and how complete your context is. It is like taking a "before" photo at the start of a home renovation. Later, you can compare against the "after" to measure how much progress you made and what you learned along the way.
 
+---
+
 ## 2. HOW IT WORKS
 
 Before starting implementation work, this tool records how much the agent knows, how uncertain it is and how complete the context is. All three scores are on a 0-100 scale. You can optionally list identified knowledge gaps as an array of strings.
@@ -27,6 +29,8 @@ Before starting implementation work, this tool records how much the agent knows,
 Records are stored in the `session_learning` table with a `UNIQUE` constraint on `(spec_folder, task_id)`. If a preflight record already exists for the same combination and is still in the "preflight" phase, calling preflight again updates the existing record rather than creating a duplicate. Completed records (where postflight has already run) cannot be overwritten. That guard prevents accidental resets of finished learning cycles.
 
 The purpose of preflight is establishing a baseline for learning measurement. Without knowing where you started, you cannot measure how much you learned. The postflight tool completes the measurement.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -48,6 +52,8 @@ The purpose of preflight is establishing a baseline for learning measurement. Wi
 | `mcp-server/tests/handler-session-learning.vitest.ts` | Automated test | Session learning handler validation |
 | `mcp-server/tests/integration-learning-history.vitest.ts` | Automated test | Learning history integration |
 | `mcp-server/tests/learning-stats-filters.vitest.ts` | Automated test | Learning stats filter tests |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Analysis

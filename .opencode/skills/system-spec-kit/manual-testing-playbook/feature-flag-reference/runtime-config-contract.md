@@ -61,6 +61,8 @@ sandbox copies of `config.jsonc`, captured runtime config output for each load, 
 
 Inspect `scripts/core/config.ts` merge and validation flow, confirm the test run is loading the intended sandbox file, and verify any observed behavior change is not coming from a different runtime path outside the core config loader
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/runtime-config-contract.md](../../feature-catalog/feature-flag-reference/runtime-config-contract.md)

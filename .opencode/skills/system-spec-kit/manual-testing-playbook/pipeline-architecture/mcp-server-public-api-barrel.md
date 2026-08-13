@@ -294,6 +294,8 @@ The barrel centralizes the approved evaluation, indexing, search, provider, stor
 
 Inspect `mcp-server/api/index.ts` for stale or missing re-exports -> verify renamed helper symbols still match the barrel contract -> check `mcp-server/api/README.md` for outdated consumer guidance -> confirm callers are not forced back to internal paths for metadata or rollout helpers
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/mcp-server-public-api-barrel.md](../../feature-catalog/pipeline-architecture/mcp-server-public-api-barrel.md)

@@ -26,6 +26,8 @@ Load:
 
 Do not copy the canonical taxonomy into this card. Do not create a second STAR, BUILD, ATLAS, or CONTEXT table here.
 
+---
+
 ## 2. THREE TIERS
 
 ### Tier 1 - Fast Path
@@ -39,6 +41,8 @@ If the selected Pi provider/model has a profile in sk-prompt/sk-prompt-models, t
 ### Tier 3 - Deep Path
 
 Use the canonical card's Tier 3 trigger list. When it calls for prompt improvement, dispatch the approved prompt-improver workflow rather than loading the full prompt system inline.
+
+---
 
 ## 3. PI DISPATCH ADDENDA
 
@@ -54,6 +58,8 @@ After the canonical prompt is selected, add:
 
 For a read-only review, ask for findings and evidence, then use the installed tool allowlist pattern from [cli-reference.md](../references/cli-reference.md).
 
+---
+
 ## 4. COMPOSITION CHECK
 
 - [ ] Canonical framework selected.
@@ -64,6 +70,8 @@ For a read-only review, ask for findings and evidence, then use the installed to
 - [ ] No secret is in the prompt.
 - [ ] The handback format is explicit.
 - [ ] The child is told to return evidence rather than a completion assertion.
+
+---
 
 ## 5. RELATED
 

@@ -305,6 +305,8 @@ mcp-server/lib/search/pipeline/stage1-candidate-gen.ts:510:     return [query];
 
 Verify isQueryDecompositionEnabled() → Confirm flag is not forced off → Check MAX_FACETS=3 constant → Inspect conjunction splitting regex → Verify deep-mode gate in stage1-candidate-gen → Check graceful fallback path
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/query-decomposition.md](../../feature-catalog/query-intelligence/query-decomposition.md)

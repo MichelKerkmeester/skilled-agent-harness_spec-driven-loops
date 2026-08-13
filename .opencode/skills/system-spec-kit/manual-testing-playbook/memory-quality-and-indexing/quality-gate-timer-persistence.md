@@ -104,6 +104,8 @@ Blocker: the scenario has no Preconditions section and its Commands section does
 
 Check persistence storage mechanism; verify timer read-on-startup logic; inspect for race conditions during restart
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/quality-gate-timer-persistence.md](../../feature-catalog/memory-quality-and-indexing/quality-gate-timer-persistence.md)

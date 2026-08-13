@@ -63,6 +63,8 @@ Session table before/after cleanup + timestamp format verification
 
 Inspect cleanupOldSessions datetime comparison SQL; verify SQLite datetime function compatibility; test with edge-case timestamps (midnight, timezone boundaries)
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/working-memory-timestamp-fix.md](../../feature-catalog/bug-fixes-and-data-integrity/working-memory-timestamp-fix.md)

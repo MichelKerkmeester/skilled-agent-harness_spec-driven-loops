@@ -30,6 +30,8 @@ Maintenance role:
 - Track eval channel contribution for later analysis.
 - Inspect stored trace and consumption tables during audits.
 
+---
+
 ## 2. TOPOLOGY
 
 ```text
@@ -47,6 +49,8 @@ Maintenance role:
 └──────────────┘ └──────────────┘ └──────────────┘ └──────────────┘
 ```
 
+---
+
 ## 3. KEY FILES
 
 | File | Role |
@@ -56,6 +60,8 @@ Maintenance role:
 | `scoring-observability.ts` | Sampled SQLite-backed scoring observations for N4 cold-start boost and TM-01 interference scoring. |
 | `eval-channel-tracking.ts` | Channel contribution telemetry used by eval and reporting paths. |
 | `consumption-logger.ts` | Active consumption event logging surface. `isConsumptionLogEnabled()` delegates to the `SPECKIT_CONSUMPTION_LOG` feature flag. |
+
+---
 
 ## 4. BOUNDARIES
 
@@ -71,6 +77,8 @@ Does not own:
 - Eval metric formulas.
 - Memory DB schema outside telemetry tables.
 - Resume or packet continuity order.
+
+---
 
 ## 5. ENTRYPOINTS
 
@@ -91,6 +99,8 @@ Does not own:
 | `SPECKIT_INTERFERENCE_SCORE` | unset | Gates interference scoring observation fields. |
 | `SPECKIT_CONSUMPTION_LOG` | `true` | Enables consumption event logging unless rollout policy or an explicit `false`/`0` disables it. |
 
+---
+
 ## 6. VALIDATION
 
 Run focused tests when changing this folder:
@@ -106,11 +116,15 @@ Run document validation after README edits:
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp-server/lib/telemetry/README.md
 ```
 
+---
+
 ## 7. RELATED
 
 - `../eval/README.md` documents metric and channel analysis.
 - `../search/README.md` documents retrieval flow.
 - `../scoring/README.md` documents score composition.
+
+---
 
 ## 8. SCHEMA REFERENCE
 

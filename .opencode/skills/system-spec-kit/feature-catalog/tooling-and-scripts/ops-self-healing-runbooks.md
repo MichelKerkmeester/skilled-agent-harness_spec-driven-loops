@@ -20,6 +20,8 @@ Ops Self-Healing Runbooks provide a small shell-based operational control surfac
 
 The supporting remediation scripts share a common retry-and-escalation engine. Each healing script models a failure class as a sequence of bounded steps, emits structured logs for each attempt, and returns either a recovery payload or an escalation payload when retries are exhausted.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Entry Point & Routing
@@ -54,6 +56,8 @@ When `runbook.sh drill all` is used, the dispatcher executes all four classes in
 
 For canonical post-implementation verification of MCP daemon changes, see the four reference docs under packet `008-mcp-daemon-rebuild-protocol/references/`: `mcp-rebuild-restart-protocol.md` (rebuild + restart sequence), `live-probe-template.md` (live-probe envelope), `dist-marker-grep-cheatsheet.md` (dist-marker grep patterns), and `implementation-verification-checklist.md` (post-rebuild verification checklist).
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -66,6 +70,8 @@ For canonical post-implementation verification of MCP daemon changes, see the fo
 | `.opencode/skills/system-spec-kit/scripts/ops/heal-ledger-mismatch.sh` | Remediator | Deterministic ledger-mismatch recovery flow with detect and replay steps |
 | `.opencode/skills/system-spec-kit/scripts/ops/heal-telemetry-drift.sh` | Remediator | Telemetry-drift stub that validates arguments, then fails fast until a supported schema-doc parity workflow is restored |
 | `.opencode/skills/system-spec-kit/scripts/ops/ops-common.sh` | Shared library | Provides validation helpers, UTC logging, deterministic retry loops, escalation JSON emission, and recovery payload generation |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

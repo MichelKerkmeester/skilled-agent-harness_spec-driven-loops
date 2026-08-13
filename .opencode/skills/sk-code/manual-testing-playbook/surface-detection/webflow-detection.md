@@ -14,6 +14,8 @@ WEBFLOW is the frontend HTML/CSS/JS surface for Webflow / vanilla-animation proj
 
 Detection markers are defined verbatim in `references/stack-detection.md:30-37`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A frontend developer working on a Webflow site asks the AI to add smooth-scroll behavior using the Lenis library, gated behind an IntersectionObserver so it only initializes once the user scrolls into the hero section.
@@ -46,6 +48,8 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 **Expected agent dispatch**: `@code` (LEAF) for the actual edit, dispatched ONLY by `@orchestrate`. If the user prompt is invoked directly without orchestration, the AI may apply the change inline using sk-code guidance without dispatching @code.
 
 **Desired user-visible outcome**: The AI applies the edit to `src/2_javascript/scroll.js`, citing webflow-specific patterns (IntersectionObserver gate from `sk-code-webflow/assets/patterns/interaction-gate-patterns.js`) and confirming the modification with a Lenis initializer + observer fence.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -95,6 +99,8 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 2. If surface != WEBFLOW: re-read `references/stack-detection.md:30-37` and verify the markers in the prompt actually match the regex/grep patterns.
 3. If `sk-code-opencode/references/*` is loaded: the router is mis-classifying. Check whether the CWD shell variable (`PWD`) accidentally contains `/.opencode/` (would trigger OPENCODE) — the marker priority is documented in SKILL.md smart router pseudocode.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — Smart router pseudocode (lines 53-68).
@@ -102,6 +108,8 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - `.opencode/skills/sk-code/shared/references/smart-routing.md` — Intent → resource-loading mapping.
 - `.opencode/skills/sk-code/sk-code-webflow/references/implementation/webflow-patterns/overview-limits-and-collection-lists.md` — Expected-loaded reference.
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` — sk-code signals + adjacency.
+
+---
 
 ## 5. SOURCE METADATA
 

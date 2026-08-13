@@ -49,6 +49,8 @@ ESM CDN:
 </script>
 ```
 
+---
+
 ## 3. NPM INSTALL SNIPPET
 
 ```bash
@@ -58,6 +60,8 @@ npm install motion
 ```js
 import { animate, inView, scroll } from "motion";
 ```
+
+---
 
 ## 4. ES MODULE IMPORT PATTERNS
 
@@ -80,12 +84,16 @@ const motion = await import("https://cdn.jsdelivr.net/npm/motion@12.38.0/+esm");
 window.Motion = { ...(window.Motion || {}), ...motion };
 ```
 
+---
+
 ## 5. VERSION-PIN GUIDANCE
 
 - Pin Motion CDN URLs to an exact version.
 - Do not use `@latest` in production or reusable snippets.
 - Record the version in the owning reference or loader.
 - Re-run MR-002 from the manual testing playbook after changing the pinned version.
+
+---
 
 ## 6. VERIFICATION SNIPPET
 
@@ -101,6 +109,8 @@ ES module:
 import { animate } from "motion";
 console.log(animate);
 ```
+
+---
 
 ## 7. RELATED RESOURCES
 

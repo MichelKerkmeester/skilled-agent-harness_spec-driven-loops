@@ -33,6 +33,8 @@ Systematic prompt engineering requires matching the right framework to each task
 - Recovering and repairing weak prompts
 - Building reusable prompt templates
 
+---
+
 ## 2. FRAMEWORK LIBRARY & SELECTION
 
 ### Complete Framework Matrix
@@ -102,6 +104,8 @@ select_optimal_framework:
 | Any        | No      | Yes      | Yes      | No        | **COSTAR**  |
 | 6+         | No      | No       | No       | Yes       | **TIDD-EC** |
 | 7-10       | No      | Yes      | No       | Yes       | **CRAFT**   |
+
+---
 
 ## 3. FRAMEWORK DEEP DIVES
 
@@ -346,6 +350,8 @@ comprehensive_craft:
 | Research CRAFT    | Hypothesis-driven, evidence-based | Technical investigation, feasibility  |
 | Product CRAFT     | User-centred, iterative phases    | Feature planning, roadmap items       |
 
+---
+
 ## 4. ADVANCED PATTERN COMBINATIONS
 
 ### Framework Fusion Patterns
@@ -408,6 +414,8 @@ tidd_ec_fewshot:
 | **RACE + ToT**         | Quick decisions      | Decision trees for speed          |
 | **CRAFT + All**        | Maximum power        | Comprehensive with all techniques |
 
+---
+
 ## 5. FRAMEWORK OPTIMIZATION STRATEGIES
 
 ### Token Optimization
@@ -437,6 +445,8 @@ optimize_framework_tokens:
 | token_count > threshold AND complexity < 4         | CRAFT to RCAF   | 15-20%  |
 | token_count > threshold AND complexity < 2         | RCAF to RACE    | 5-10%   |
 | token_count > threshold AND precision not critical | TIDD-EC to RCAF | 12-15%  |
+
+---
 
 ## 6. SYSTEMATIC ENHANCEMENT METHODOLOGY
 
@@ -476,6 +486,8 @@ enhancement_pipeline:
         add_flexibility: {find: rigid_structures, action: add_conditional_logic}
 ```
 
+---
+
 ## 7. PATTERN-BASED REFINEMENTS
 
 ### Vague to Specific Transformation
@@ -511,6 +523,8 @@ scope_boundaries:
 
 **Impact:** CLEAR +4 to +6 | Primary: Logic/Coverage
 
+---
+
 ## 8. EXCELLENCE PATTERNS
 
 ### Complete Context Layering (45+ CLEAR)
@@ -539,6 +553,8 @@ scope_boundaries:
 | Immediate  | [Quick wins]    |
 | Short-term | [30-day goals]  |
 | Long-term  | [90+ day goals] |
+
+---
 
 ## 9. RECOVERY & REPAIR PROTOCOLS
 
@@ -576,6 +592,8 @@ repair_framework:
     description: "Record for pattern learning"
     learning_record: [original_prompt, final_prompt, improvement_delta, successful_patterns, iterations_needed]
 ```
+
+---
 
 ## 10. CLEAR EVALUATION MASTERY
 
@@ -681,6 +699,8 @@ contextual_clear_scoring:
 
 A deliverable scoring 40+ overall but failing a per-dimension floor must still be revised until the floor is met.
 
+---
+
 ## 11. ADVANCED SCORING TECHNIQUES
 
 ### Multi-Pass Scoring
@@ -709,6 +729,8 @@ comparative_scoring:
     extract_patterns: success_factors
     generate_path: optimization_sequence
 ```
+
+---
 
 ## 12. WEAKNESS DETECTION & ANALYSIS
 
@@ -742,6 +764,8 @@ detect_prompt_weaknesses:
 
   output: [categorized_issues, severity_scores, priority_fixes, estimated_improvement]
 ```
+
+---
 
 ## 13. USE CASE TEMPLATES
 
@@ -787,6 +811,8 @@ exploratory_data_analysis:
   response: "Jupyter notebook with: data quality, stats, visualizations, recommendations"
 ```
 
+---
+
 ## 14. MASTERY PRINCIPLES
 
 ### Ten Commandments of Prompt Excellence
@@ -831,6 +857,8 @@ excellence_formula:
     token_penalty: [0, 0.2]
     depth_bonus: 5  # points
 ```
+
+---
 
 ## 15. QUICK REFERENCE CARD
 

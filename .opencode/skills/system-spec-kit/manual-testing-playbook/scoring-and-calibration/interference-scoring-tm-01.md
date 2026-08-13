@@ -61,6 +61,8 @@ Query output showing penalized vs unpenalized scores + state/tier verification f
 
 Verify similarity threshold, retrievable-row predicates, and penalty formula in `interference-scoring.ts`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/interference-scoring.md](../../feature-catalog/scoring-and-calibration/interference-scoring.md)

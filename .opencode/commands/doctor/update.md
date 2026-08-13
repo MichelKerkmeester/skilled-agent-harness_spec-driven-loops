@@ -15,12 +15,16 @@ Do not dispatch agents from this Markdown file. Do not edit workflow YAML while 
 
 Load the presentation contract before showing startup questions, mid-run prompts, dashboards, validation displays, result summaries, or restart-required text.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
 | Presentation source of truth | `.opencode/commands/doctor/assets/doctor-update-presentation.txt` |
 | Update workflow | `.opencode/commands/doctor/assets/doctor-update.yaml` |
+
+---
 
 ## 3. MODE ROUTING
 
@@ -34,6 +38,8 @@ Load the presentation contract before showing startup questions, mid-run prompts
 - If any referenced asset is missing, stop and report the missing path.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
+---
+
 ## 4. EXECUTION TARGETS
 
 1. Read `.opencode/commands/doctor/assets/doctor-update-presentation.txt`.
@@ -45,6 +51,8 @@ Load the presentation contract before showing startup questions, mid-run prompts
 7. Execute the YAML phase by phase.
 8. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, restart-required display, and next-step text.
 
+---
+
 ## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/doctor/assets/doctor-update-presentation.txt`:
@@ -53,6 +61,8 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor-upd
 - Cross-subsystem health dashboard layout.
 - Status output, state-log, snapshot, restart-required, and failure display templates.
 - Related-command and next-step display text.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

@@ -65,6 +65,8 @@ Save output including route category plus packet metadata timestamps and follow-
 
 Validate file path/type, rendered anchor/frontmatter shape, and content quality
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [mutation/memory-indexing-memorysave.md](../../feature-catalog/mutation/memory-indexing-memorysave.md)

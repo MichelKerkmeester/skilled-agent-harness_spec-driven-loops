@@ -60,6 +60,8 @@ Cache hit/miss output + timing comparison + metadata timestamp verification
 
 Verify cache key computation (content+model) → Check cache storage backend → Inspect TTL/eviction policy
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/embedding-cache.md](../../feature-catalog/scoring-and-calibration/embedding-cache.md)

@@ -152,6 +152,6 @@ test('same-scope concurrent writers leave one valid record and no temp files', a
   const show = runCli([...binding, 'show']);
   assert.equal(field(show, 'goal_present'), 'true');
   const entries = readdirSync(stateDir);
-  assert.equal(entries.filter((name) => /^[a-z][a-z0-9-]*-[a-f0-9]{64}\.json$/.test(name)).length, 1);
+  assert.equal(entries.filter((name) => /^[a-f0-9]{64}\.json$/.test(name)).length, 1);
   assert.equal(entries.some((name) => name.endsWith('.tmp')), false);
 });

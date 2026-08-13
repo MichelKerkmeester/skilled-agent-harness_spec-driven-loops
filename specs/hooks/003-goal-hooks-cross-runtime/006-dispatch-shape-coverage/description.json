@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks/003-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
+  "description": "`cli-devin`, `cli-cursor`, and `cli-pi` already declare `hardrules:` in their SKILL.md frontmatter (availability check, self-invocation guard,",
+  "keywords": [
+    "cli-devin",
+    "cli-cursor",
+    "cli-pi",
+    "already",
+    "declare",
+    "hardrules",
+    "skill",
+    "frontmatter",
+    "availability",
+    "check",
+    "self-invocation",
+    "guard"
+  ],
+  "lastUpdated": "2026-08-11T06:40:10.374Z",
+  "specId": "006",
+  "folderSlug": "dispatch-shape-coverage",
+  "parentChain": [
+    "hooks",
+    "003-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

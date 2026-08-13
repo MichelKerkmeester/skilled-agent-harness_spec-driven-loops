@@ -39,13 +39,14 @@
       "verification"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "handover.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -77,6 +78,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -152,6 +159,12 @@
         "source": "derived"
       },
       {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -164,13 +177,7 @@
         "source": "derived"
       },
       {
-        "name": "six",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
+        "name": "six CLIs",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Integrate the projection core with six CLIs through their safest supported event and presentation boundaries",
     "created_at": "2026-08-11T10:04:31Z",
-    "last_save_at": "2026-08-12T04:16:41.718Z",
+    "last_save_at": "2026-08-12T07:18:13.065Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,16 +206,18 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:d12482c3b75e61c17e2636ce213f96b010f09f01787d397156752461de4908f0",
+    "source_fingerprint": "sha256:3907c299f0b2324a24b1afb1ae0c811b92b99b93c04c1e3cabeec0c86763d95f",
     "source_doc_hashes": {
-      "spec.md": "03c7742fedc40e579ff9d8fc5ac153d211a65454f6cf1837c74312bec1e00165",
-      "plan.md": "c0c8e1f144aabffdb8188c799632f6f1432733214c42d49b048db8408ec7b973",
-      "tasks.md": "f0b53c1feae141862202b226b00b10b2de681e90b979f9a4f4bbca6f13d6c458",
-      "checklist.md": "9c1970d60a53e58f9057f84341a34aa8263a104c3bb97bd71cab448bf982d314",
-      "decision-record.md": "d9ea182d31e80eaec82ea43cef0c2df88fe1e3937f020900b16ff43f236ced1f",
-      "implementation-summary.md": "607251b7bd18af90d73c4052faba4af92dcd641c6b1ce55efeb5cd4e424c3bcd"
+      "spec.md": "5989ab4269be6ceffd18d2bac3273de7b190cfd7256f7d79a318feb2d0caeb41",
+      "plan.md": "c3ca11fabaf4cf0ca3ed84233f6e26936105b72c029706f88d0c646d74be22aa",
+      "tasks.md": "356432f54e36e28e6c9b37c63da028ba35f14c205d3044f0aedfa21138b76c1c",
+      "checklist.md": "f78ef401b4c267fe4a3eb42e8a96c9e399a0520ff49e9ea2e3e964def5865865",
+      "decision-record.md": "69449e83c2d8e958753533ebfce513e068c075e008559a45400f435f735a4a4b",
+      "implementation-summary.md": "e78af8da75bc8687519fc953fda1f00710bffc60cad09f214c4abbcc3b8201f1",
+      "handover.md": "8b040770ca4b8ccdcf2f4d2e59288071877f146302ef797f46ace279a1ea870d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -58,6 +58,8 @@ History output
 
 Remove filter if no results
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [analysis/learning-history-memorygetlearninghistory.md](../../feature-catalog/analysis/learning-history-memorygetlearninghistory.md)

@@ -15,6 +15,8 @@ This scenario verifies the fail-closed trusted-mutation gate in the skill-adviso
 
 The daemon enforces the gate independently: callers carry `_meta.callerAuthority`, and the daemon's own default is untrusted unless `MK_SKILL_ADVISOR_TRUST_DEFAULT=trusted` is set in the daemon's environment, so a hand-rolled IPC client cannot skip the check.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm untrusted mutation commands exit 64 client-side, trusted flags grant passage, and read-safe defaults stay open.
@@ -24,6 +26,8 @@ The daemon enforces the gate independently: callers carry `_meta.callerAuthority
 - Expected signals: `requires --trusted or MK_SKILL_ADVISOR_CLI_TRUSTED=1` with exit 64 on refusals; `backend unavailable` with exit 75 on gate-passing calls.
 - Desired user-visible outcome: Mutations are impossible without an explicit trust grant, and the refusal names the exact grant options.
 - Pass/fail: PASS only when every untrusted mutation exits 64 and every gate-passing call reaches the IPC stage.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -111,6 +115,8 @@ PASS: the three untrusted mutations exited 64 pre-IPC; the trusted and dry-run c
 
 An untrusted mutation reaching IPC means `assertTrustedForMutation` lost a tool from its set or the propagate `isPropagateApply` predicate regressed. A trusted call exiting 64 means flag parsing dropped `--trusted` (note: when both `--trusted` and `--untrusted` are given, the later flag wins). Daemon-side enforcement is covered by `advisor-trust-gate.vitest.ts` including the `MK_SKILL_ADVISOR_TRUST_DEFAULT` grant.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -128,6 +134,8 @@ An untrusted mutation reaching IPC means `assertTrustedForMutation` lost a tool 
 | `.opencode/skills/system-skill-advisor/mcp-server/advisor-server.ts` | Daemon-side trust default (`MK_SKILL_ADVISOR_TRUST_DEFAULT`) |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate regression coverage |
 | `.opencode/skills/system-skill-advisor/mcp-server/tools/skill-graph-tools.ts` | `skill_graph_propagate_enhances` schema with `dryRun` default true |
+
+---
 
 ## 5. SOURCE METADATA
 

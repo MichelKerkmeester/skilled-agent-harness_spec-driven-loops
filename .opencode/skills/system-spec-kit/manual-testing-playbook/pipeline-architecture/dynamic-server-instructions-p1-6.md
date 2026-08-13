@@ -91,6 +91,8 @@ The MCP server exited before an `initialize` response could expose startup instr
 
 Inspect `context-server.ts` `buildServerInstructions`, `startup-checks.ts`, and `SPECKIT_DYNAMIC_INIT` flag handling
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md](../../feature-catalog/pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md)

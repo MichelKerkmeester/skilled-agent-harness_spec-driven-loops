@@ -99,6 +99,8 @@ No `memory_index_scan`, `rg`, or `memory_save` command was run because following
 - Block B failures: revert and re-apply the patch from packet 018; confirm the rationale comment is present.
 - Block C false-accept: inspect `evaluateMemorySufficiency` and `validation-responses.ts:38`. The gate must still reject non-classified content that fails `support >= 3` and `anchors >= 1` when primary evidence is absent.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md](../../feature-catalog/memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md)

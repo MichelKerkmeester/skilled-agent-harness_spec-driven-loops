@@ -117,6 +117,8 @@ system-spec-kit/022-hybrid-rag-fusion 0 0
 
 Inspect `scripts/kpi/quality-kpi.sh`, markdown traversal logic, and trigger-phrase counting if scope handling or JSON generation is wrong
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/memory-quality-kpi-reporting.md](../../feature-catalog/tooling-and-scripts/memory-quality-kpi-reporting.md)

@@ -17,6 +17,8 @@ version: 0.8.0.13
 
 Keep malformed or malicious skill labels out of every surface that touches trust: SQLite rows, graph-metadata derived writes, response envelopes and adapter diagnostics. A single sanitizer, applied at every boundary, is the routing surface's anti-injection line.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/derived/sanitizer.ts` normalizes skill labels to the slug shape `[a-z0-9][a-z0-9-]*` and rejects control characters, path separators and prompt-shaped content. It runs at four write boundaries:
@@ -27,6 +29,8 @@ Keep malformed or malicious skill labels out of every surface that touches trust
 4. Diagnostic records written by `hooks/*/user-prompt-submit.ts`.
 
 Unsanitized labels never leak to readers.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -45,6 +49,8 @@ Unsanitized labels never leak to readers.
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-privacy.vitest.ts` | Automated test | boundary sanitization |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | envelope sanitization |
 | `Playbook scenario [AI-002](../../manual-testing-playbook/auto-indexing/sanitizer-boundaries.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

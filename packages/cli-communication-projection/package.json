@@ -10,7 +10,8 @@
   },
   "packageManager": "npm@11.9.0",
   "files": [
-    "dist"
+    "dist",
+    "docs"
   ],
   "exports": {
     ".": {
@@ -24,6 +25,34 @@
     "./versioning": {
       "types": "./dist/versioning/index.d.ts",
       "import": "./dist/versioning/index.js"
+    },
+    "./doctor": {
+      "types": "./dist/doctor/index.d.ts",
+      "import": "./dist/doctor/index.js"
+    },
+    "./release": {
+      "types": "./dist/release/index.d.ts",
+      "import": "./dist/release/index.js"
+    },
+    "./providers": {
+      "types": "./dist/providers/index.d.ts",
+      "import": "./dist/providers/index.js"
+    },
+    "./runtimes": {
+      "types": "./dist/runtimes/index.d.ts",
+      "import": "./dist/runtimes/index.js"
+    },
+    "./privacy": {
+      "types": "./dist/privacy/index.d.ts",
+      "import": "./dist/privacy/index.js"
+    },
+    "./evaluation": {
+      "types": "./dist/evaluation/index.d.ts",
+      "import": "./dist/evaluation/index.js"
+    },
+    "./observability": {
+      "types": "./dist/observability/index.d.ts",
+      "import": "./dist/observability/index.js"
     }
   },
   "scripts": {

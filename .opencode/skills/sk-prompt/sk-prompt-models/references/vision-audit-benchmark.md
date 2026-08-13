@@ -71,6 +71,8 @@ Real-world confirmation: MiniMax-M3 (anthropic) then audited 7 Anobel concepts (
 returned specific, accurate, file-grounded findings (panel overflow, eyebrow overlapping a
 node, too-light bottom row) — no hallucinated palette violations.
 
+---
+
 ## 5. RECOMMENDATION
 
 - **Design-vision auditor of record = MiniMax-M3** via the anthropic endpoint + base64 image,

@@ -85,6 +85,8 @@ No memory-save command was run because it would necessarily create or modify mem
 
 Inspect the `ensureUniqueMemoryFilename` path, the random-fallback suffix generation, and the `description.json` update flow if collision handling regresses.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/spec-folder-description-discovery.md](../../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)

@@ -59,6 +59,8 @@ Two `memory_context` outputs with and without `includeTrace` + field-level compa
 
 Inspect `handlers/memory-context.ts`, `handlers/memory-search.ts`, and `lib/search/session-transition.ts` if fields leak or ordering drifts
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/unified-context-retrieval-memorycontext.md](../../feature-catalog/retrieval/unified-context-retrieval-memorycontext.md)

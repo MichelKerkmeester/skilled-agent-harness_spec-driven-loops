@@ -1,8 +1,8 @@
 ---
 title: "Feature Specification: Write-Containment Concurrent-Writer Safety"
 description: "Stop the deep-loop write-containment guard from irreversibly deleting untracked out-of-scope files it cannot attribute to the leaf, so deep-loop fan-out can run safely on a dirty, multi-actor working tree."
-status: complete
-completion_pct: 100
+status: in_progress
+completion_pct: 95
 trigger_phrases:
   - "write containment deletes untracked files"
   - "deep-loop containment data loss"
@@ -12,10 +12,10 @@ contextType: "spec"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/003-write-containment-concurrent-safety"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Recorded the shipped write-containment concurrent-writer safety fix"
-    next_safe_action: "None; packet complete"
+    last_updated_at: "2026-08-11T14:03:33Z"
+    last_updated_by: "codex"
+    recent_action: "Preserved the shipped fix while reopening moved-packet metadata closeout"
+    next_safe_action: "Refresh continuity after packet paths are clean."
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:c710b86e29dd49d5f705fa5cf1e50a658d8b6a618b1d8cabf51aa124f50f988c"
       session_id: "2026-08-06-deep-loop-046"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "Not-in-HEAD (untracked) out-of-scope paths are now preserved, never deleted; in-HEAD out-of-scope paths are still reverted from HEAD and remain fatal"
@@ -46,9 +46,12 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress — code landed; moved-packet metadata closeout is open |
 | **Created** | 2026-08-06 |
 | **Branch** | `skilled/v4.0.0.0` (recorded directly; no dedicated packet branch was created for this doc-only pass) |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `002-fanout-containment-sibling` |
+| **Successor** | None |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -61,6 +61,8 @@ Baseline vs increased strength output comparison + contribution delta calculatio
 
 Verify strength parameter propagation → Check co-activation hydration query shapes → Inspect Stage 2 batching/precompute path
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/co-activation-boost-strength-increase.md](../../feature-catalog/graph-signal-activation/co-activation-boost-strength-increase.md)

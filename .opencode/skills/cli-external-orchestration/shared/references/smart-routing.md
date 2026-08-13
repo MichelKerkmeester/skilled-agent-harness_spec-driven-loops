@@ -117,6 +117,8 @@ RESOURCE_MAP = {
 }
 ```
 
+---
+
 ## 3. HOW TO READ THIS
 
 - One dominant executor intent routes to one mode's leaf set.

@@ -84,6 +84,8 @@ Because creating a sandbox spec folder and modifying its contents would create a
 
 Inspect `scripts/validation/continuity-freshness.ts`, `scripts/spec/validate.sh`, and continuity freshness vitest suites. Confirm the sandbox actually contains a stale fingerprint or dirty packet-scoped path before judging a pass as false negative.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

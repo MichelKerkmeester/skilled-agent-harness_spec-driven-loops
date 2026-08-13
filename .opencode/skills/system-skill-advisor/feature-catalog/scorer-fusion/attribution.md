@@ -18,11 +18,15 @@ version: 0.8.0.15
 
 Make the fusion score auditable by exposing each lane's contribution per recommendation, without leaking prompt text or evidence snippets.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/scorer/attribution.ts` builds the `laneBreakdown` array when `includeAttribution: true` is passed to `advisor_recommend`. Each entry carries exactly `lane`, `rawScore`, `weight`, `weightedScore` and `shadowOnly`. The semantic lane reports `shadowOnly: false` because it is a live lane (registry weight 0.05); fusion derives `shadowOnly` from lane liveness. Prompt substrings are never copied into attribution.
 
 The same opt-in response also includes `why_recommended`, a prompt-safe explanation string that summarizes the dominant lane, top contributing lanes and matched feature categories such as `phrase_match`, `token_match` and `semantic_similarity`. It must not include raw prompt phrases, prompt tokens, scorer evidence strings or the original prompt.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -42,6 +46,8 @@ The same opt-in response also includes `why_recommended`, a prompt-safe explanat
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | attribution shape and prompt-safe `why_recommended` gating |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-privacy.vitest.ts` | Automated test | no prompt leakage |
 | `Playbook scenario [SC-004](../../manual-testing-playbook/scorer-fusion/lane-attribution.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

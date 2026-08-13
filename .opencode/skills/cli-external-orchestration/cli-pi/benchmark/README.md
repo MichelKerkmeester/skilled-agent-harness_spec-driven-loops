@@ -1,6 +1,6 @@
 ---
 title: "cli-pi Benchmark Artifacts"
-description: "Benchmark tree for cli-pi holding curated goal-hook validation reports derived from packet 034's captured evidence -- a manual-testing-playbook record, not a Lane C skill-benchmark D1-D5 run."
+description: "Benchmark tree for cli-pi holding curated goal-hook validation reports derived from packet 004's captured evidence -- a manual-testing-playbook record, not a Lane C skill-benchmark D1-D5 run."
 trigger_phrases:
   - "cli-pi benchmark"
   - "cli-pi goal hook validation report"
@@ -21,11 +21,15 @@ This `benchmark/` tree holds reports **derived after the fact from a manual-test
 
 Every file inside a run-label folder carries the marker `_Derived after the fact from this run's stored record, not written at run time._` for that reason.
 
+---
+
 ## 2. RUN-LABEL INDEX
 
 | Run label | Trace mode | Verdict | Scenarios | Source |
 |---|---|---|---|---|
-| [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | live | **PASS** | 4 (3 PASS, 1 SKIP) | `034-goal-hook-playbooks-and-validation` |
+| [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | live | **PASS** | 4 (3 PASS, 1 SKIP) | `004-goal-hook-playbooks-and-validation` |
+
+---
 
 ## 3. STRUCTURE
 
@@ -35,6 +39,8 @@ benchmark/
     +-- README.md                                             # run index
     `-- 2026-07-29--manual-testing-playbook--goal-hook/      # this run's 7-file package
 ```
+
+---
 
 ## 4. READING THE REPORTS
 
@@ -50,11 +56,13 @@ Each run-label folder holds the seven-file package the storage guide defines:
 | `source.md` | Where the packet, playbook, and raw evidence live |
 | `README.md` | Per-run context: verdict, fields, and the file map |
 
+---
+
 ## 5. RELATED RESOURCES
 
 | Document | Purpose |
 |---|---|
 | [`cli-pi`](../SKILL.md) | The CLI under measurement |
 | [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md) | The `PI-021` scenario this run validates |
-| [`034-goal-hook-playbooks-and-validation`](../../../../specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/spec.md) | The spec packet that captured the underlying evidence |
+| [`004-goal-hook-playbooks-and-validation`](../../../../specs/hooks/004-goal-hook-playbooks-and-validation/spec.md) | The spec packet that captured the underlying evidence |
 | [`skill-benchmark-storage-guide.md`](../../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md) | The storage standard this tree follows |

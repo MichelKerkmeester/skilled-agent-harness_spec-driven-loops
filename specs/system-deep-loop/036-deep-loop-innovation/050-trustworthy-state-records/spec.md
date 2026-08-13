@@ -25,6 +25,8 @@ _memory:
 
 # Feature Specification: State Records A Deep Loop Can Trust
 
+> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `049-deep-alignment-integrity`; successor none (last sibling).
+
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 

@@ -15,6 +15,8 @@ This scenario verifies that the launcher IPC bridge probes the lease holder seve
 
 The check is automated-test-backed. A human runs the bridge syntax check, the reap-hardening unit suite, and a grep that proves the retrying probe and the attempt-count resolver are defined and wired into the reap decision. Together they confirm the bridge only reaps after the configured number of consecutive probe failures, not after a single transient miss.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the lease probe retries up to the configured attempt count and only reaps the socket after consecutive failures, not after one transient probe miss.
@@ -24,6 +26,8 @@ The check is automated-test-backed. A human runs the bridge syntax check, the re
 - Expected signals: `node --check` exits cleanly for the bridge. `launcher-reap-hardening.vitest.ts` passes including the retry-then-succeed and retry-then-reap cases. `probeLeaseHolderWithRetries` and `resolveLeaseProbeAttempts` appear at their definitions and at the reap-path call site.
 - Desired user-visible outcome: A momentarily slow or busy lease holder survives transient probe failures, and only a genuinely dead socket is reaped.
 - Pass/fail: PASS only when syntax, unit tests, and probe-retry wiring all match expectations.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -90,6 +94,8 @@ $ rg -n "probeLeaseHolderWithRetries|resolveLeaseProbeAttempts" .opencode/bin/li
 
 If the syntax check fails, inspect the helper placement and the CommonJS exports first. If the retry-then-succeed case fails, confirm a later successful probe stops the retry loop and prevents the reap. If the retry-then-reap case fails, compare the loop count against `resolveLeaseProbeAttempts` and confirm the reap only fires after the configured consecutive failures. If grep cannot find the helpers, confirm both the definitions and the reap-path call site exist.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -105,6 +111,8 @@ If the syntax check fails, inspect the helper placement and the CommonJS exports
 |---|---|
 | `.opencode/bin/lib/launcher-ipc-bridge.cjs` | Primary implementation anchor |
 | `mcp-server/tests/launcher-reap-hardening.vitest.ts` | Regression or validation anchor |
+
+---
 
 ## 5. SOURCE METADATA
 

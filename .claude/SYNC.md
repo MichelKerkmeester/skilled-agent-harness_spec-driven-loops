@@ -5,13 +5,13 @@ description: "How .claude derives from .opencode: which surfaces are symlinks, w
 
 # Claude Code Sync Manifest
 
-> `.opencode/` is the source of truth for shared content. `.claude/` is mostly a set of symlinks onto it — with one deliberate exception, `agents/`, which is a real fork held in step by a pre-commit gate.
+> `.opencode/` is the source of truth for shared content. `.claude/` is mostly a set of whole-directory or generated per-file symlinks onto it — with one deliberate content fork, `agents/`, held in step by a pre-commit gate.
 
 ---
 
 ## 1. OVERVIEW
 
-Claude Code reads this directory for its hooks, agents, MCP servers and runtime routing. Almost nothing here is authored content: commands, skills, specs and the changelog are whole-directory symlinks, so they cannot drift by construction.
+Claude Code reads this directory for its hooks, agents, MCP servers and runtime routing. Almost nothing here is authored content. Skills, specs and the changelog are whole-directory symlinks. Commands are a generated, filtered per-file mirror so OpenCode-only entries never enter Claude's repository discovery tree.
 
 The exception matters. `.claude/agents/` holds **real files**, not symlinks, because Claude's agent dialect (`tools:`) differs from OpenCode's (`mode`/`temperature`/`permission:`). The bodies are otherwise the same document. A blocking pre-commit gate keeps the pair aligned.
 
@@ -23,7 +23,7 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 
 | Surface | Mechanism | Source | Can it drift? |
 |---|---|---|---|
-| `commands` | whole-dir symlink | `../.opencode/commands` | No — same inode |
+| `commands/**/*.md` (34) | filtered per-file symlinks | `.opencode/commands/**/*.md` | Yes — guarded by the mirror generator; OpenCode-only entries are excluded |
 | `skills` | whole-dir symlink | `../.opencode/skills` | No |
 | `specs` | whole-dir symlink | `../.opencode/specs` | No |
 | `changelog` | whole-dir symlink | `../.opencode/changelog` | No |
@@ -47,7 +47,8 @@ The exception matters. `.claude/agents/` holds **real files**, not symlinks, bec
 - An agent changes in `.opencode/agents/` → the `.claude/agents/` twin must be updated in the same commit, or the pre-commit gate blocks you.
 - A new agent is added → add it to both trees, to `agents/README.txt`, and run the mirror generator so Cursor and Devin pick it up.
 - A hook is registered in `settings.json` → run the mirror generator to add the matching `hooks/` symlink.
-- Commands, skills or specs change → nothing to do; they are symlinks.
+- A command is added, removed, or changes runtime scope → run the mirror generator; ordinary edits to an already-linked command need no relink.
+- Skills or specs change → nothing to do; they are whole-directory symlinks.
 
 ---
 
@@ -88,7 +89,7 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 ## 6. REQUIRED PARITY
 
 - 13 agents, same names, in all five surfaces.
-- 35 commands reachable from every runtime that supports them. The count moves as commands are added or retired; the drift checks below are authoritative, not this number.
+- 34 shared commands reachable from Claude's repository command tree. OpenCode-only commands are excluded. The count moves as commands are added or retired; the drift check below is authoritative.
 - An agent added here must reach `.opencode/agents`, `.codex/agents`, `.cursor/agents` and `.devin/agents`.
 - `agents/README.txt` lists every agent present in the directory.
 
@@ -110,6 +111,7 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 - **`agents/` is a fork, not a mirror.** The pre-commit gate compares token sets, so a pure-prose edit on one side can pass while the two documents diverge in wording. Only a real symlink or a generator would remove this class entirely.
 - **`agents/README.txt` has no gate.** It drifted before — `deep-alignment` was missing from it while the agent file existed.
 - **`settings.json` is hand-authored and unmirrorable.** The four runtimes use incompatible event vocabularies and entry shapes; no generator can produce it from a shared source.
+- **The command mirror proves repository discovery boundaries, not product-internal behavior.** A live Claude version may expose separate native capabilities that this repository check neither confirms nor denies.
 
 ---
 

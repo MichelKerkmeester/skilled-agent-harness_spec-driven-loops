@@ -265,6 +265,8 @@ Command 2 exact MCP output:
 
 Cross-check shared config loader and vector-index store override path
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/4-memory-and-storage.md](../../feature-catalog/feature-flag-reference/4-memory-and-storage.md)

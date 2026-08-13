@@ -1,0 +1,16 @@
+{
+  "artifact": "advisor-routing-smoke",
+  "purpose": "Persisted evidence for tasks.md T005 (Confirm advisor routing) — proves the skill advisor ranks sk-communication as the top match for a projection-intent prompt.",
+  "capturedAt": "2026-08-12",
+  "reproduce": "python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py \"make CLI output readable — rewrite terse agent/CLI output into plain English with privacy-first provider routing and presentation tiers\" --threshold 0.5",
+  "prompt": "make CLI output readable — rewrite terse agent/CLI output into plain English with privacy-first provider routing and presentation tiers",
+  "scorerSource": "local Python scorer (native advisor daemon cold at capture time; local scorer is the documented fallback)",
+  "result": {
+    "topMatch": "sk-communication",
+    "ranking": [
+      { "skill": "sk-communication", "confidence": 0.95, "uncertainty": 0.15, "passes_threshold": true },
+      { "skill": "sk-code", "confidence": 0.9, "uncertainty": 0.2, "passes_threshold": true }
+    ]
+  },
+  "verdict": "PASS — sk-communication is the #1 match at confidence 0.95, above the 0.8 mandatory-invoke threshold; matched signals include 'make cli output readable' and 'privacy-first provider routing'."
+}

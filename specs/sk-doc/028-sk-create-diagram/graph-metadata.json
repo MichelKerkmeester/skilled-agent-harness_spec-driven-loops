@@ -18,7 +18,8 @@
     "sk-doc/028-sk-create-diagram/011-reference-template-alignment",
     "sk-doc/028-sk-create-diagram/012-flowchart-capability-merge",
     "sk-doc/028-sk-create-diagram/013-deep-review-grok-deepseek",
-    "sk-doc/028-sk-create-diagram/014-review-remediation"
+    "sk-doc/028-sk-create-diagram/014-review-remediation",
+    "sk-doc/028-sk-create-diagram/015-flowchart-deprecation"
   ],
   "manual": {
     "depends_on": [],
@@ -111,19 +112,19 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of editorial technical diagrams as self-contained HTML files with inline SVG \u2014 architecture, flowcharts, sequence, ER, Gantt, and more \u2014 plus draw.io/Mermaid import and PNG/SVG export",
+    "causal_summary": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of editorial technical diagrams as self-contained HTML files with inline SVG — architecture, flowcharts, sequence, ER, Gantt, and more — plus draw.io/Mermaid import and PNG/SVG export",
     "created_at": "2026-08-12T05:43:11.000Z",
-    "last_save_at": "2026-08-12T19:55:45.000Z",
+    "last_save_at": "2026-08-13T05:55:33.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1eddea0f131e713af35ef460b5852cc1f24f073f6f56e37947c7ff956e20c548",
+    "source_fingerprint": "sha256:a2cc54b140f84266dbb2fabccb0690dfdc5bb3eb580d618120fff7c53f9fd483",
     "source_doc_hashes": {
-      "spec.md": "c36ff1420500daf236302947e17ff42004d355697e30d40ab6a657b4db14f8b8"
+      "spec.md": "ac721d30a362b0a32d0734753112b8d94744208ada44a60074e63faf99b78152"
     },
-    "last_active_child_id": "sk-doc/028-sk-create-diagram/014-review-remediation",
-    "last_active_at": "2026-08-12T19:55:45.000Z"
+    "last_active_child_id": "sk-doc/028-sk-create-diagram/015-flowchart-deprecation",
+    "last_active_at": "2026-08-13T05:55:33.000Z"
   }
 }

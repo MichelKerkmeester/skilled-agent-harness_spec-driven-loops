@@ -193,7 +193,7 @@
     ],
     "causal_summary": "`sk-create-flowchart` (ASCII/markdown-only) and `sk-create-diagram` (HTML/SVG-only) are two separately-routed skills for overlapping request shapes (decision trees, workflows, system interactions)",
     "created_at": "2026-08-12T18:18:41.897Z",
-    "last_save_at": "2026-08-12T20:16:58.000Z",
+    "last_save_at": "2026-08-13T05:55:33.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,16 +204,16 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44dbdf73b9411f8daf264faf4bc4884db412f33055cdc66970b020a825ee32eb",
+    "source_fingerprint": "sha256:f4cc86e3d7024fa37bc67f496accedcfcd1bb1b8d2dd30d8402677b7b2362136",
     "source_doc_hashes": {
-      "spec.md": "ab2473174a7b9b882c120c90b627929eba7f656ccbb9040146c10a8f7ab1022f",
-      "plan.md": "42523949b23d8f09a760bdd2264c13e71b1b6896bda0a14ee625ef4734203191",
-      "tasks.md": "ffc8c6d5da0c644c556aa0610b3c4c66e38b3c59b815aa58bfe37a2b121beda9",
-      "checklist.md": "4403c8856defd5a728468333b2123d55569f4db86c5be4fbe1c9a401d50b320b",
-      "decision-record.md": "26501eb6ea57a25babe9711fe36a3717c98de39ddd51256b44cce3ee2205f7cf",
-      "implementation-summary.md": "391bca828072a09e705d1574cdcf1c80f37b46e3dbb2630766a899c80cdc2f4d"
+      "spec.md": "5f1233b359ca372bf9c0106e1a3eb819c0b3d8c4bbafb1b09f1484944599eb9e",
+      "plan.md": "63905714494fd5cae869e97b7a4e0a71fdcf962bb0457517a5e4b8c436d9954f",
+      "tasks.md": "4006c371aa6da8bf7dcbdb442660ae9d49c98da61a8b1b499c7388018bb74fc6",
+      "checklist.md": "8df4fcdbc849acab1d727547811022613424ef3a5ff6fe2e268cffd7a35ac298",
+      "decision-record.md": "0a2d2b7b4b1ca75f779664631901be3a8fff4560806752d0da88273f202261ef",
+      "implementation-summary.md": "4f678a20fcbba256ac09c7e5abbeb32027d9ca403659cdbbc905c3bce1946ef0"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-08-12T20:16:58.000Z"
+    "last_active_at": "2026-08-13T05:55:33.000Z"
   }
 }

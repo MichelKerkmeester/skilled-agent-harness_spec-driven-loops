@@ -20,6 +20,8 @@ Covers the causal edge creation tool that builds directed relationship edges bet
 
 This lets you draw a line between two memories to show they are related, like connecting pins on a corkboard with string. You can say one memory caused another, replaced another or contradicts another. These connections help the search system understand how ideas relate to each other and surface better results when you are tracing the history of a decision.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Core Behavior
@@ -39,6 +41,8 @@ A batch insert variant (`insertEdgesBatch()`) handles bulk edge creation during 
 ### Reference Resolution
 
 Reference resolution for auto-extracted causal links now batches all references from the spec-doc record file before insertion begins. The resolver tries numeric IDs first, then exact `canonical_file_path`/`file_path` equality using normalized path candidates, then exact title matches, and only falls back to fuzzy `LIKE` lookups for unresolved path or title references. That exact-first order reduces false-positive fuzzy resolutions and avoids rerunning separate lookup queries for each edge candidate.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -65,6 +69,8 @@ Reference resolution for auto-extracted causal links now batches all references 
 | `mcp-server/tests/full-spec-doc-indexing.vitest.ts` | Automated test | Full spec doc indexing with causal chains |
 | `mcp-server/tests/graph-signals.vitest.ts` | Automated test | Graph signal computation tests |
 | `mcp-server/tests/causal-boost.vitest.ts` | Automated test | Causal boost scoring tests |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Analysis

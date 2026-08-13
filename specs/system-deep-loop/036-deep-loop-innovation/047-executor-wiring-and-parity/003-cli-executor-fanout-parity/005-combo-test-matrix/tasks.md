@@ -1,3 +1,22 @@
+---
+title: "Tasks: Combo Test Matrix and Ambient-Config Isolation"
+description: "Track the three isolation and executor-coverage leaves through strict closeout."
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/003-cli-executor-fanout-parity/005-combo-test-matrix"
+    last_updated_at: "2026-08-11T14:03:33Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled all three built leaves with the strict-validation contract"
+    next_safe_action: "Pass strict validation and obtain operator sign-off."
+    blockers: []
+    key_files:
+      - "tasks.md"
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
+---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
@@ -35,12 +54,12 @@
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 - [x] Read-only pi is hermetic against auto-loaded extensions/skills/templates.
-- [ ] The combo matrix logs every combination and skip; ambient-config isolation is verified for all read-only executors.
+- [x] The combo matrix logs every combination and skip; ambient-config isolation is verified for all read-only executors.
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
 - Parent: `system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/003-cli-executor-fanout-parity`
-- Predecessor: `004-per-mode-executor-parity`; successor: `006-docs-closeout`
+- Predecessor: `004-per-mode-executor-parity`; successor: `006-docs-and-closeout`
 - Code: `runtime/scripts/fanout-run.cjs` (pi read-only builder) + the three exact-arg suites
 <!-- /ANCHOR:cross-refs -->

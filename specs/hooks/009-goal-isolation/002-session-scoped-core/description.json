@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "hooks/009-goal-isolation/002-session-scoped-core",
+  "description": "The shared core hardcodes one `active-goal.json` and exposes operations that receive no session identity",
+  "keywords": [
+    "shared",
+    "core",
+    "hardcodes",
+    "one",
+    "active-goal",
+    "json",
+    "exposes",
+    "operations",
+    "receive",
+    "session",
+    "identity"
+  ],
+  "lastUpdated": "2026-08-11T06:40:10.424Z",
+  "specId": "002",
+  "folderSlug": "session-scoped-core",
+  "parentChain": [
+    "hooks",
+    "009-goal-isolation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

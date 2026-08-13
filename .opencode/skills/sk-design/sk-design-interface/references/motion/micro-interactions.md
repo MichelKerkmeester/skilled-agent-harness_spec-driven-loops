@@ -107,6 +107,8 @@ When a project has no animation library, swap contextual state or hover icons wi
 }
 ```
 
+---
+
 ## 3. LOADING AND WAITING
 
 - Skeletons preserve layout and reduce perceived wait.
@@ -114,12 +116,16 @@ When a project has no animation library, swap contextual state or hover icons wi
 - Loading copy must be product-specific: `Syncing your team's changes...`, not generic jokes.
 - For waits above a few seconds, set expectations or provide cancel/escape.
 
+---
+
 ## 4. GESTURES
 
 - Drag states need lift, target feedback, and rollback/undo when meaningful.
 - Swipe actions need thresholds and visible alternatives.
 - Touch interactions need 44 by 44 pixel targets and spacing.
 - Gesture-only actions need accessible alternatives.
+
+---
 
 ## 5. DELIGHT BOUNDARIES
 
@@ -131,6 +137,8 @@ Never:
 - Add celebration to routine low-value actions.
 - Play sound without respecting system settings and mute controls.
 - Repeat the same flourish until it becomes noise.
+
+---
 
 ## 6. MORPHING ICONS
 
@@ -145,6 +153,8 @@ Rules distilled from the corpus:
 - Lines use `strokeLinecap="round"`.
 - Decorative icon SVGs are `aria-hidden="true"`; the control carries the accessible name.
 - Reduced motion sets transition duration to zero or swaps instantly.
+
+---
 
 ## 7. HANDOFF SNIPPET
 

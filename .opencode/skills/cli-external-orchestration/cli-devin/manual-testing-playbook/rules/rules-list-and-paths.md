@@ -16,6 +16,8 @@ Inspect both `devin rules paths` and `devin rules list` to confirm the cross-run
 
 Rules are context inputs, not slash commands. The path report proves where Devin looks; the list proves which Cursor, Claude, Standard, and Windsurf sources are actually loaded.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the rule roots and loaded inheritance classes.
@@ -25,6 +27,8 @@ Rules are context inputs, not slash commands. The path report proves where Devin
 - Expected signals: Devin reports its own `.windsurf/rules/*.md` directory as always-on, also reads `.cursor/rules/*.md` conditionally, and lists `skill-routing [Cursor]`, `CLAUDE [Claude]`, `AGENTS [Standard]`, and `global_rules [Windsurf]`.
 - Desired user-visible outcome: A concrete rule-inheritance matrix, not a claim that Devin has `.devin/rules/`.
 - Pass/fail: PASS when paths and entries match; FAIL when a source is missing or a nonexistent `.devin/rules/` path is reported as authoritative; SKIP on auth/availability blockers.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -36,6 +40,8 @@ Rules are context inputs, not slash commands. The path report proves where Devin
 | Feature ID | Exact commands | Expected signal | Verdict |
 |---|---|---|---|
 | DV-017 | `devin rules paths` and `devin rules list` | Cursor + Claude + Standard + Windsurf inheritance | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -53,6 +59,8 @@ Rules are context inputs, not slash commands. The path report proves where Devin
 | `../../../../.cursor/rules/` | Cursor conditional rules |
 | `../../../../AGENTS.md` | Standard repository rules |
 | `../../../../CLAUDE.md` | Claude repository rules |
+
+---
 
 ## 5. SOURCE METADATA
 

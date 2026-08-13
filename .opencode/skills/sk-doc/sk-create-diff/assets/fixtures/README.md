@@ -21,6 +21,8 @@ A runnable before/after worked example for the local create-diff workflow.
 
 `onboarding-before.md` and `onboarding-after.md` are two versions of the same onboarding guide: the "after" edits a sentence, expands two bullets, adds a "First Login" section, and extends the support line.
 
+---
+
 ## 2. RUN IT
 
 From the packet directory (`.opencode/skills/sk-doc/sk-create-diff/`):

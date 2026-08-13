@@ -39,6 +39,8 @@ Proceed when this file was invoked directly as the command, or by an explicit de
 
 If any blocking phase was skipped, stop, report the skipped phase through the presentation contract, return to it, and complete it before loading YAML.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -51,12 +53,16 @@ If any blocking phase was skipped, stop, report the skipped phase through the pr
 | Behavioral matrix | `.opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json` |
 | Behavioral matrix scheduler | `.opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs` |
 
+---
+
 ## 3. MODE ROUTING
 
 1. `:auto` binds `execution_mode = AUTONOMOUS`; `:confirm` binds `execution_mode = INTERACTIVE`; no suffix binds `execution_mode = ASK` until the presentation contract resolves it.
 2. `--axis=conformance` selects only the pre-bound alignment target. `--axis=behavior` selects only the matrix scheduler. `--axis=all` or no axis flag selects both targets in conformance-then-behavior order.
 3. Treat `<spec-folder>`, `--run-id`, and `--axis` as workflow inputs, never execution modes.
 4. Load the selected mode workflow only after the blocking gate is complete.
+
+---
 
 ## 4. EXECUTION TARGETS
 
@@ -66,6 +72,8 @@ If any blocking phase was skipped, stop, report the skipped phase through the pr
 | `:confirm` or interactive choice | `.opencode/commands/deep/assets/deep-command-benchmark-confirm.yaml` |
 
 The selected workflow binds the stable lane config and executing spec folder directly into the matching alignment workflow asset. It invokes the behavioral matrix scheduler with its frozen `--matrix` and `--out-dir` interface. `all` composes the two target outputs side by side and never combines their subject results.
+
+---
 
 ## 5. PRESENTATION BOUNDARY
 
@@ -77,6 +85,8 @@ The presentation asset exclusively owns:
 - Evidence-layout display, error text, and next-step suggestions.
 
 The router and workflow assets supply bound values and owner-produced evidence only. They do not synthesize presentation text or reinterpret a subject result.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

@@ -6,9 +6,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-template-context-optimizations"
-    last_updated_at: "2026-08-12T17:39:01Z"
+    last_updated_at: "2026-08-13T04:18:38Z"
     last_updated_by: "claude-code"
-    recent_action: "Completed QA checklist with observed evidence"
+    recent_action: "Added AC traceability; remediated deferred findings"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
@@ -107,3 +107,22 @@ Every item is verified with observed command evidence (exit code / grep / diff) 
 - [x] CHK-018 [P0] Whole scripts gate re-run — all five changed-surface test files green; 40 failures sit in 24 files this packet never touched (pre-existing + concurrent-fanout load), and no `specs/` churn resulted.
 - [x] CHK-019 [P0] `validate.sh --strict` on this packet → exit 0 (Errors: 0, Warnings: 0).
 <!-- /ANCHOR:summary -->
+
+---
+
+## Acceptance-Criteria Traceability
+
+Maps each acceptance criterion to its verifying evidence (consumed by the advisory `AC_COVERAGE` scan).
+
+| AC ID | Class | Evidence |
+|-------|-------|----------|
+| AC-001 (REQ-001 L1 gating) | Tested | scripts/tests/research-template-gating.vitest.ts:1 |
+| AC-002 (REQ-001 docs entry) | Tested | templates/manifest/spec-kit-docs.json:1 |
+| AC-003 (REQ-002 byte-identical render) | Tested | scripts/tests/scaffold-golden-snapshots.vitest.ts:1 |
+| AC-004 (REQ-003 read guard) | Tested | references/templates/template-guide.md:77 |
+| AC-005 (REQ-004 default-on advisory) | Tested | scripts/rules/check-ac-coverage.sh:11 |
+| AC-006 (REQ-005 scope rule) | Tested | scripts/tests/check-scope-adherence.vitest.ts:1 |
+| AC-007 (REQ-006 token budget) | Tested | mcp-server/tests/memory-search-token-budget.vitest.ts:1 |
+| AC-008 (whole-gate regression) | Tested | scripts/tests/template-structure.vitest.ts:1 |
+| AC-009 (renderer contract) | Tested | scripts/tests/inline-gate-renderer.vitest.ts:1 |
+| AC-010 (docs/registry alignment) | Tested | references/validation/validation-rules.md:70 |

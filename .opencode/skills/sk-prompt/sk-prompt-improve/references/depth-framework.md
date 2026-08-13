@@ -89,6 +89,8 @@ Configure the maximum number of DEPTH improvement rounds per mode:
 | **Short** (`$short`) | 3 | Quick refinements need fewer rounds |
 | **Raw** (`$raw`) | 0 | Passthrough mode; no enhancement rounds |
 
+---
+
 ## 2. DEPTH PHASES
 
 | Phase | Purpose | Output |
@@ -200,6 +202,8 @@ system_state:
   techniques_applied: []
 ```
 
+---
+
 ## 3. COGNITIVE RIGOR
 
 ### Standard Perspectives (Per-Prompt, Not Per-Iteration)
@@ -247,6 +251,8 @@ If any gate fails, apply the relevant technique and re-validate.
 | Prototype | Mechanism First validation, assumption flagging | Structure building (WHY then WHAT) |
 | Test | Full rigor validation, assumption flags check, mechanism depth | CLEAR scoring |
 | Harmonize | Final perspective check (per energy level), all gates pass | Final verification, delivery prep |
+
+---
 
 ## 4. CLEAR SCORING AND INTEGRATION
 
@@ -368,6 +374,8 @@ clear_depth_check:
     blocking: true
 ```
 
+---
+
 ## 5. QUALITY AND TRANSPARENCY
 
 ### Proof Through Output Metadata
@@ -419,6 +427,8 @@ improvement_cycle:
 ### REPAIR Protocol
 
 For structural recovery when enhancement fails validation repeatedly, reference the REPAIR protocol for systematic error diagnosis and correction. Consult the Patterns and Evaluation guide.
+
+---
 
 ## 6. QUICK REFERENCE
 

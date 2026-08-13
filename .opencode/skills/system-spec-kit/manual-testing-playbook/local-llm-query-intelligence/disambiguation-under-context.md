@@ -92,6 +92,8 @@ For each variant:
 - An honest note if a particular variant's top-3 mixes senses — list which senses appeared and discuss whether the mixing is reasonable (e.g., a `memory_save` file might appear in the git-sense query because both involve "saving").
 - Active provider from memory_health.
 
+---
+
 ## 4. NOTES
 
 This scenario stresses the embedding's ability to distinguish senses based on surrounding context. Current local and Ollama models should handle these common English-language disambiguations cleanly, but ambiguous queries (e.g., bare "save context" without a qualifier) may legitimately return mixed top-K — that's not a failure of the disambiguation itself.

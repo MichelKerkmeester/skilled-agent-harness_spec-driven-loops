@@ -17,9 +17,13 @@ version: 0.8.0.13
 
 Keep routing sensitive to currency without discounting author-declared signals. Older skills should see their auto-generated (derived) evidence softened, but their explicit declarations (`intent_signals`, trigger phrases) remain authoritative.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/lifecycle/age-haircut.ts` reads each skill's source modification time and applies a documented decay curve to the derived lane only. The `explicit_author`, `lexical`, `graph_causal` and `semantic_shadow` lanes are untouched. The haircut shows up as a gap between `rawScore` and `weightedScore` in lane attribution for the derived lane.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -36,6 +40,8 @@ Keep routing sensitive to currency without discounting author-declared signals. 
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | derived-lane decay application |
 | `Playbook scenario [LC-001](../../manual-testing-playbook/lifecycle-routing/age-haircut.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

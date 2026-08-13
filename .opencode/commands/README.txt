@@ -86,7 +86,7 @@ command/
 │   ├── manual-testing-playbook.md   # Create or update manual testing playbook package
 │   ├── command.md            # Create or update OpenCode slash command set
 │   ├── benchmark.md          # Promote a curated MCP benchmark folder
-│   ├── flowchart.md          # Create a validated ASCII flowchart
+│   ├── diagram.md             # Create an HTML/SVG diagram or a validated ASCII flowchart
 │   ├── diff.md               # Create a before/after document diff report
 │   └── assets/               # YAML workflow definitions (20 files)
 ├── deep/                     # Deep-loop commands
@@ -145,7 +145,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 | Testing Playbook | `/create:manual-testing-playbook <skill> [create\|update]` | Create or update a rooted `manual-testing-playbook/` package |
 | Command | `/create:command <command_invocation> [command_request]` | Create or update an OpenCode slash command set |
 | Benchmark | `/create:benchmark <skill> <spec-packet> [create\|update]` | Promote a curated MCP benchmark folder and report into a skill |
-| Flowchart | `/create:flowchart <target-flowchart.md> [source/process description]` | Create a validated ASCII flowchart markdown file |
+| Diagram | `/create:diagram <target-diagram.html\|target-flowchart.md> [description] [--output-format html-svg\|ascii-markdown]` | Create an HTML/SVG technical diagram or a validated ASCII/markdown flowchart |
 
 ### Doctor Commands
 

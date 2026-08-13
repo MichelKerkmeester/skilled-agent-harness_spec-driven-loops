@@ -112,6 +112,8 @@ The scenario commands require `memory_search`, `memory_health`, `memory_index_sc
 
 Inspect `lib/observability/retrieval-observability.ts`, `formatters/search-results.ts`, `handlers/memory-search.ts`, `handlers/memory-crud-health.ts`, and `tests/openltm-retrieval-observability.vitest.ts`. Confirm process-local counters were checked before daemon restart.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

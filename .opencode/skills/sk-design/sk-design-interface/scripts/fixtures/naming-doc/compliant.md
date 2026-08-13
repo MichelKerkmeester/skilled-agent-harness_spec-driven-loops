@@ -13,11 +13,15 @@ artifactKind: token
 | `--color-primary` | `oklch(0.62 0.18 245)` | primary action |
 | `--color-on-primary` | `oklch(0.99 0.01 245)` | text on primary |
 
+---
+
 ## 2. TYPE SCALE
 
 | Role | Size | Use |
 | --- | --- | --- |
 | Body | `16px` | running text |
+
+---
 
 ## 3. SPACING SCALE
 
@@ -26,6 +30,8 @@ artifactKind: token
 | `--baseline` | `4px` | rhythm base |
 | `--space-2xs` | `4px` | tight inline gap |
 | `--space-md` | `16px` | default block gap |
+
+---
 
 ## 4. HAND OFF
 

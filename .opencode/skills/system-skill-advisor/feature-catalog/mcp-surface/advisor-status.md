@@ -18,6 +18,8 @@ version: 0.8.0.15
 
 Give operators and runtimes a single diagnostic read that summarizes whether advisor state is healthy enough to trust for routing.
 
+---
+
 ## 2. HOW IT WORKS
 
 `handlers/advisor-status.ts` returns `freshness`, `generation`, `trustState` (with `state` and optional `reason`), `skillCount`, `lastScanAt` and `laneWeights` (the canonical 5-lane configuration). Freshness vocabulary is `live / stale / absent / unavailable`. The call is fail-open: even when the daemon is absent, status returns a well-formed envelope describing the shortfall.
@@ -25,6 +27,8 @@ Give operators and runtimes a single diagnostic read that summarizes whether adv
 When callers pass `includeSemanticHealth` or `debug`, the status envelope also includes `semanticLaneHealth`. That opt-in diagnostic reports active embedder identity, vector coverage, dimension mismatch state, last vector refresh timestamp, disabled reason and whether the semantic lane is enabled. The semantic-shadow lane records degraded-vector reasons such as database absence, adapter unavailability, dimension mismatch, prompt embedding failure, skill-vector load failure and empty vector coverage.
 
 `readAdvisorStatus()` is strictly diagnostic. It reports stale, absent or unavailable advisor state and does not repair it. Operators should call `advisor_rebuild` when status reports stale state or when a forced rebuild is needed.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -44,6 +48,8 @@ When callers pass `includeSemanticHealth` or `debug`, the status envelope also i
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-status.vitest.ts` | Automated test | compact status, semantic health fields and degraded-vector reason coverage |
 | `Playbook scenario [NC-002](../../manual-testing-playbook/native-mcp-tools/native-status-transitions.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

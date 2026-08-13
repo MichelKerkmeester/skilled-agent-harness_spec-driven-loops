@@ -29,10 +29,14 @@ Defines the operational contract for `verify_alignment_drift.py`, including:
 
 Use this reference when tuning recurring checks or interpreting verifier output in automation.
 
+---
+
 ## 2. SCRIPT
 
 - Path: `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py`
 - Purpose: run lightweight, deterministic, behavior-neutral checks across OpenCode system languages.
+
+---
 
 ## 3. WHAT IT CHECKS
 
@@ -69,6 +73,8 @@ not by this script. These remain manual review gates:
 - **WARN**: style findings (`JS-*`, `TS-*`, `PY-*`, `SH-*`) by default.
 - **Context-aware advisory downgrade**: any finding under archival/contextual paths is downgraded to `WARN`:
   - `z_archive`, `scratch`, `memory`, `research`, `context`, `assets`, `examples`, `fixtures`, and test-heavy paths.
+
+---
 
 ## 4. USAGE
 

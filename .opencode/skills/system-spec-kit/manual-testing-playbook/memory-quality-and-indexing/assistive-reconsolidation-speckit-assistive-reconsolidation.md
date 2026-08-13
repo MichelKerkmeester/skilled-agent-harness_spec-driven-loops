@@ -351,6 +351,8 @@ expect(rows).toEqual([
 
 Verify predecessor snapshot comparison (`content_hash`, `updated_at`) → Check shared reconsolidation guardrails → Confirm assistive bridge still limits itself to shadow-archive/recommend behavior
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/assistive-reconsolidation.md](../../feature-catalog/memory-quality-and-indexing/assistive-reconsolidation.md)

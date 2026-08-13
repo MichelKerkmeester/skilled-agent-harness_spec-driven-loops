@@ -17,6 +17,8 @@ version: 0.8.0.11
 
 Give operators an explicit repair path for stale, absent or unavailable advisor state without hiding rebuild side effects inside `advisor_status`.
 
+---
+
 ## 2. HOW IT WORKS
 
 `advisor_rebuild` is the explicit MCP repair tool that keeps rebuild behavior out of `advisor_status`. The handler reads the current status first. If status is `live` and `force` is not true, it skips the rebuild and returns a diagnostic telling the caller to pass `force:true` when a live rebuild is intentional.
@@ -24,6 +26,8 @@ Give operators an explicit repair path for stale, absent or unavailable advisor 
 When rebuild proceeds, it indexes `.opencode/skills/`, publishes a fresh skill-graph generation with `reason: "advisor_rebuild"`, rereads status and returns freshness before/after, generation before/after, skill count, indexing summary and warnings. `advisor_status` remains diagnostic-only and never repairs stale state.
 
 The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor_recommend`, `advisor_status` and `advisor_validate`. The standalone advisor server currently exposes eight public tools: four `advisor_*` tools and four `skill_graph_*` tools.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -53,6 +57,8 @@ The tool descriptor and dispatcher register `advisor_rebuild` alongside `advisor
 |---|---|---|
 | `.opencode/skills/system-spec-kit/mcp-server/tests/advisor-rebuild.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-spec-kit/mcp-server/tests/tool-input-schema.vitest.ts` | Automated test | Validation reference |
+
+---
 
 ## 4. SOURCE METADATA
 

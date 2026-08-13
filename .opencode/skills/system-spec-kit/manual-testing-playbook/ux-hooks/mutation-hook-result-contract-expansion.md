@@ -151,6 +151,8 @@ Highlighted assertion snippets observed in `tests/hooks-ux-feedback.vitest.ts`:
 
 Inspect `handlers/memory-crud-types.ts`, `handlers/mutation-hooks.ts`, and `hooks/mutation-feedback.ts` if any field disappears or changes type
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/mutation-hook-result-contract-expansion.md](../../feature-catalog/ux-hooks/mutation-hook-result-contract-expansion.md)

@@ -9,7 +9,7 @@ trigger_phrases:
   - "leaf publication single winner"
 importance_tier: "critical"
 contextType: "specification"
-parent: "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening"
+parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/033-identity-and-lock-ownership-hardening"
@@ -36,6 +36,8 @@ _memory:
       - "Fresh loop-lock acquisition uses openSync(lockPath,'wx') (O_EXCL) create-then-write, which guarantees a single exclusive winner but leaves the partial-record window open; closing it is a per-mode 014-cutover precondition. The release/reclaim path uses rename-based single-inode claims with a vacancy-guarded restore."
 ---
 # Feature Specification: Identity and Lock Ownership Hardening
+
+> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `032-docs-drift-and-p2-batch`; successor `035-cli-adapter-stress-and-playbooks`.
 
 > **STATUS: LANDED.** All five findings (F001-F005) landed as `4446839af8` on
 > `skilled/v4.0.0.0` on the third attempt. The first two attempts produced a 451-test

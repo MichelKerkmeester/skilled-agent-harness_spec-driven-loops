@@ -1,6 +1,6 @@
 {
   "name": "sk-doc",
-  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to eleven nested workflow packets: sk-create-skill (+ sk-create-skill-parent), sk-create-readme (install guides folded), sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-flowchart, sk-create-changelog, sk-create-diff (local before/after document reviews), and sk-create-quality-control (validate/score/optimize an existing doc). The universal sk-create-quality-control pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
+  "description": "Documentation & OpenCode-component authoring parent hub. One advisor identity that routes through mode-registry.json + hub-router.json to eleven nested workflow packets: sk-create-skill (+ sk-create-skill-parent), sk-create-readme (install guides folded), sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram (HTML/SVG diagrams and ASCII/markdown flowcharts, one output-format dial), sk-create-changelog, sk-create-diff (local before/after document reviews), and sk-create-quality-control (validate/score/optimize an existing doc). The universal sk-create-quality-control pipeline — validators, global standards, frontmatter/llms/template assets — lives once in shared/ and is consumed by every packet. Workflow-only hub: no surface axis, zero named extensions.",
   "version": "2.0.0.0",
   "importance_tier": "high",
   "keywords": [
@@ -19,7 +19,7 @@
     "sk-create-feature-catalog",
     "sk-create-manual-testing-playbook",
     "sk-create-benchmark",
-    "sk-create-flowchart",
+    "sk-create-diagram",
     "sk-create-changelog",
     "sk-create-diff",
     "create diff report",
@@ -32,5 +32,5 @@
     "human-voice",
     "sk-create-skill-parent"
   ],
-  "lastUpdated": "2026-07-14T00:00:00.000Z"
+  "lastUpdated": "2026-08-13T00:00:00.000Z"
 }

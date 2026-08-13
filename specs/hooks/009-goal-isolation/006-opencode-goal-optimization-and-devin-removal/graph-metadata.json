@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
+  "spec_folder": "hooks/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
+  "parent_id": "hooks/009-goal-isolation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode goal optimization",
+      "opencode goal state migration",
+      "remove devin goal remnants",
+      "fixed length goal state key",
+      "opencode goal optimization plan",
+      "legacy goal state migration",
+      "devin goal remnant removal",
+      "opencode goal optimization tasks",
+      "devin goal residue tasks",
+      "goal state migration tasks",
+      "opencode goal optimization checklist",
+      "goal state migration verification"
+    ],
+    "key_topics": [
+      "opencode",
+      "goal",
+      "optimization",
+      "state",
+      "migration",
+      "remove",
+      "devin",
+      "remnants",
+      "length",
+      "key",
+      "plan",
+      "legacy"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Goal Remnant Removal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Active Devin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Repair",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`mk-goal.js` derives a state filename by hex-encoding the full OpenCode session id",
+    "created_at": "2026-08-10T17:42:43Z",
+    "last_save_at": "2026-08-11T06:50:09.331Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:2f3780b4fb54a04210b6933e37a50a28721be5cea96cc32748927a497b7fb348",
+    "source_doc_hashes": {
+      "spec.md": "f7a779e85bf928183331d14e75c4ff939306246332e11e78ec586530c1234791",
+      "plan.md": "4c2232075d97f6232bdc239ee9f0138f7e720e4187352d8edaf32ee8b1a827a0",
+      "tasks.md": "9f795dd8fba0225b434604cd2d691f3a75ed046b101803489989569008d2c395",
+      "checklist.md": "8f91a3967beb2c6f149282c25589fc0677032796631698b1b0f137f63676b4c7",
+      "implementation-summary.md": "a289e40364b1cc3b8b2c1cd3fda1fbfff1355331bff47d2136f3d6c5044dcec5",
+      "handover.md": "7d5faf099650f33d4a3bb4739a62e307ea7198e72a2eab1ddde3a4688823a9de"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -32,6 +32,8 @@ version: 1.0.0.0
 
 Serving-authority focus: mcp-tooling's characteristic decision is an **ordered design-transport bundle** — the hub selects and orders transports (`mcp-figma` / `mcp-refero` / `mcp-mobbin` and the devtools transports) for one prompt. This scenario exercises the Refero real-app-reference transport within that ordered-bundle family, and promotes design-transport routing from a prose-supplemental aside to a primary, evidence-bearing compiled-routing row: it proves the compiled engine serves that transport decision (`servingAuthority: compiled`) and matches the legacy routing decision. Distinct rationale versus the other ordered-bundle hubs: this ordering selects a **design-reference transport** (a real shipped-app UI source), not a deep-loop mode or a CLI executor.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Exact prompt**:
@@ -42,6 +44,8 @@ Pull real shipped-app UI references from Refero and Mobbin for this checkout scr
 **Expected route**:
 - Mode: `mcp-refero`
 - Route shape: `orderedBundle` — a design-transport resolved within the hub's ordered-transport family.
+
+---
 
 ## 3. COMMAND SEQUENCE
 

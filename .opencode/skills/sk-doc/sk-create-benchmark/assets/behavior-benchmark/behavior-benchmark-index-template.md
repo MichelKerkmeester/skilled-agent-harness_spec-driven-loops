@@ -74,6 +74,8 @@ already cover; they concentrate on the behaviors **distinctive to `{{MODE}}`** â
 - **`mode: "{{MODE}}"`** â€” {{WHERE_THIS_MODE_VALUE_IS_ALREADY_CARRIED_IN_THE_SHIPPED_MODE_AND_WHY_IT_EXTENDS_THE_FRAMEWORK_ENUM}}
 - **ID prefix `{{PREFIX}}`** ({{PREFIX_EXPANSION}}) â€” extends the framework's fixed per-package prefix table.
 
+---
+
 ## 2. SCENARIO TABLE
 
 <!-- One row per scenario file. Entry âˆˆ {E1,E2,E3,E4}; Clarity âˆˆ {C1,C2,C3};
@@ -89,6 +91,8 @@ already cover; they concentrate on the behaviors **distinctive to `{{MODE}}`** â
 | {{PREFIX}}-002 | {{SCENARIO_2_TITLE}} | {{E}} | {{C}} | {{EXPECTED}} | {{BUDGET_MS}} |
 | {{PREFIX}}-NNN | {{ADD_ONE_ROW_PER_SCENARIO}} | {{E}} | {{C}} | {{EXPECTED}} | {{BUDGET_MS}} |
 
+---
+
 ## 3. AXIS COVERAGE
 
 <!-- State the coverage the table achieves, as prose. Report entry-surface counts,
@@ -99,6 +103,8 @@ already cover; they concentrate on the behaviors **distinctive to `{{MODE}}`** â
 Entry-surface coverage: {{E1_COUNT_AND_CELLS}}, {{E2_COUNT_AND_CELLS}}, {{E3_COUNT_AND_CELLS}}, {{E4_COUNT_AND_CELLS}}. Clarity coverage: {{C1_COUNT_AND_CELLS}}, {{C2_COUNT_AND_CELLS}}, {{C3_COUNT_AND_CELLS}} â€” {{ONE_LINE_ON_WHETHER_THE_MATRIX_EXERCISES_UNDER_SPECIFIED_INPUT_NOT_JUST_THE_FULLY_PINNED_PATH}}. Invariant coverage: {{WHICH_MODE_INVARIANT_IS_ISOLATED_IN_WHICH_CELL}}. Boundary coverage: {{WHICH_DECLINE_OR_BOUNDARY_CELLS_GUARD_WHICH_ADJACENT_MODE}}.
 
 {{ONE_PARAGRAPH_NAMING_ANY_AXIS_INTENTIONALLY_NOT_EXERCISED_AND_WHY_E_G_E4_ALREADY_COVERED_BY_SIBLINGS}}
+
+---
 
 ## 4. EXECUTION
 
@@ -124,6 +130,8 @@ describes. Per-scenario baseline checkpoints live in
 leg has been captured, every cell's D5 is `null` and its `budget_ms` is the
 framework-floor provisional value shown in the table above, not a baseline-derived
 one.
+
+---
 
 ## 5. RELATED RESOURCES
 

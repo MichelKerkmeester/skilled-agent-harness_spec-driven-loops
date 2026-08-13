@@ -11,6 +11,8 @@ description: "Multi-seat dispatch, adjudicator-verdict stability, and cost guard
 
 Runtime primitives consumed by deep-ai-council orchestrators for iterative multi-topic deliberation. Implements 3-level state hierarchy (session to topic to round) with verdict-delta convergence scoring.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -24,11 +26,15 @@ Runtime primitives consumed by deep-ai-council orchestrators for iterative multi
 | `council-graph-query.ts` | Prompt-safe council graph query helpers |
 | `convergence.cjs` | Council-specific convergence signals, blockers, trace, and JSON bridge payload helpers |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs`
 - `.opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs`
 - `.opencode/skills/system-deep-loop/runtime/scripts/{upsert,query,status,convergence}.cjs` for `loopType=council` graph operations
+
+---
 
 ## 4. TESTS
 

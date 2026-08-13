@@ -78,6 +78,8 @@ Commands 1 and 2 require creating `/tmp/278-source-diff.txt` and `/tmp/278-vites
 
 If dist marker missing: re-run `npm run build`, check `tsc -b` errors. If marker present but live probe pre-fix: confirm runtime restart actually happened (some IDEs cache the MCP daemon process). If live probe still pre-fix after confirmed restart: check whether multiple `mcp-server/dist/` copies exist on the search path (workspace cache, plugin folder, etc.) and which one the runtime is actually loading.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Reference (canonical contract): `<spec-folder>`

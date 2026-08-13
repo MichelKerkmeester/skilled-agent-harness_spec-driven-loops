@@ -59,6 +59,8 @@ Test transcript + key assertion output for schema validation and shared result-c
 
 Inspect `handlers/checkpoints.ts`, `schemas/tool-input-schemas.ts`, `tool-schemas.ts`, `tools/types.ts`, and hook result type definitions if any contract diverges
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/schema-and-type-contract-synchronization.md](../../feature-catalog/ux-hooks/schema-and-type-contract-synchronization.md)

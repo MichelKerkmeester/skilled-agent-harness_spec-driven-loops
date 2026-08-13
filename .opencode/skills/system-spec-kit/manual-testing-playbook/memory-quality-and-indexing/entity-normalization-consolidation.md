@@ -99,6 +99,8 @@ Output:
 
 Verify shared normalization function is used by both paths; check unicode handling; inspect normalization rules for edge cases
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/entity-normalization-consolidation.md](../../feature-catalog/memory-quality-and-indexing/entity-normalization-consolidation.md)

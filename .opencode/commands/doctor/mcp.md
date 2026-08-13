@@ -15,6 +15,8 @@ Do not dispatch agents from this Markdown file. Do not edit workflow YAML while 
 
 Load the presentation contract before showing startup questions, setup dashboards, approval prompts, MCP health dashboards, result summaries, or next-step text.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -22,6 +24,8 @@ Load the presentation contract before showing startup questions, setup dashboard
 | Presentation source of truth | `.opencode/commands/doctor/assets/doctor-mcp-presentation.txt` |
 | Install workflow | `.opencode/commands/doctor/assets/doctor-mcp-install.yaml` |
 | Debug workflow | `.opencode/commands/doctor/assets/doctor-mcp-debug.yaml` |
+
+---
 
 ## 3. MODE ROUTING
 
@@ -32,6 +36,8 @@ Load the presentation contract before showing startup questions, setup dashboard
 - This command repairs MCP infrastructure itself; subsystem database diagnostics stay under `/doctor <target>` and `/doctor:update`.
 - This command's `install` workflow covers the registered MCP servers (the `servers:` block in `doctor-mcp-install.yaml`). The CLI-primary design skills (`mcp-figma`, `mcp-chrome-devtools`, `mcp-click-up`) are not registered servers; each self-diagnoses via its own `scripts/install.sh` and read-only `scripts/doctor.sh`, enumerated under `cli_skill_diagnostics:` in the same YAML. Run those per-skill for CLI readiness.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
+
+---
 
 ## 4. EXECUTION TARGETS
 
@@ -49,6 +55,8 @@ Load the presentation contract before showing startup questions, setup dashboard
 8. Load the selected workflow YAML and execute it step by step.
 9. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
 
+---
+
 ## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/doctor/assets/doctor-mcp-presentation.txt`:
@@ -57,6 +65,8 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor-mcp
 - Unknown-sub-action and cross-sub-action flag errors.
 - MCP assessment, install, repair, verification, and final-report display templates.
 - Examples, troubleshooting display, and next-step text.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

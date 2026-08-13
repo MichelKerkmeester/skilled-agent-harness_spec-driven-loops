@@ -45,6 +45,8 @@ Good candidates:
 
 Avoid another developer-tool, SaaS dashboard or infrastructure brand for this exemplar.
 
+---
+
 ## 3. EXTRACTION FOCUS
 
 Study these signals after a real extraction:
@@ -58,6 +60,8 @@ Study these signals after a real extraction:
 | Components | Cards, article teasers, product tiles, newsletter blocks and navigation |
 | Fidelity | Every value still comes from `tokens.json` |
 
+---
+
 ## 4. WRITING NOTES TEMPLATE
 
 ```text
@@ -69,6 +73,8 @@ Content-layer values excluded: yes
 What not to copy: the category look, palette or type choice
 What to learn: how the v3 Style Reference names roles outside SaaS aesthetics
 ```
+
+---
 
 ## 5. GUARDRAIL
 

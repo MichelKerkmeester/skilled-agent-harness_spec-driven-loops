@@ -22,13 +22,13 @@ import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const router = require('../hooks/post-edit-quality/lib/post-edit-router.cjs');
-const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
+const DISABLED_ENV = 'MK_POST_EDIT_QUALITY_DISABLED';
 const LOG_RELATIVE = join('.opencode', 'logs', 'post-edit-quality.log');
 const MAX_LOG_BYTES = 256 * 1024;
 const MAX_CALL_IDS = 1_000;
@@ -131,7 +131,7 @@ export default async function MkPostEditQualityPlugin(ctx) {
   return {
     async 'tool.execute.before'(input, output) {
       try {
-        if (!isHookEnabled('post-edit-quality')) return;
+        if (process.env[DISABLED_ENV] === '1') return;
         const tool = typeof input?.tool === 'string' ? input.tool.toLowerCase() : '';
         if (!MUTATING_TOOLS.has(tool)) return;
         const filePath = filePathFromArgs(output?.args);
@@ -144,7 +144,7 @@ export default async function MkPostEditQualityPlugin(ctx) {
 
     async 'tool.execute.after'(input, output) {
       try {
-        if (!isHookEnabled('post-edit-quality')) return;
+        if (process.env[DISABLED_ENV] === '1') return;
         const filePath = callPaths.take(input?.callID);
         if (!filePath) return; // no correlated path -- no-op
         // filePath is the raw stashed arg, which tools may hand over as a
@@ -173,7 +173,7 @@ export default async function MkPostEditQualityPlugin(ctx) {
 
     async 'experimental.chat.system.transform'(_input, output) {
       try {
-        if (!isHookEnabled('post-edit-quality')) return;
+        if (process.env[DISABLED_ENV] === '1') return;
         if (pendingFindings.length === 0 || !output || typeof output !== 'object') return;
         const brief = [
           '[post-edit-quality] Advisory findings from recent edits:',

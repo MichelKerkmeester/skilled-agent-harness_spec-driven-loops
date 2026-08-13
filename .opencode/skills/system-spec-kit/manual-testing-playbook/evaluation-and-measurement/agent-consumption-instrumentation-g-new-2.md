@@ -59,6 +59,8 @@ Instrumentation trace showing handler wiring + logger gate state + empty telemet
 
 Verify logger gate configuration → Check handler registration → Inspect inert/active mode toggle
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/agent-consumption-instrumentation.md](../../feature-catalog/evaluation-and-measurement/agent-consumption-instrumentation.md)

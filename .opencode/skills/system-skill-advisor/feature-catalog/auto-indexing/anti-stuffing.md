@@ -17,6 +17,8 @@ version: 0.8.0.14
 
 Stop a skill from gaming routing by spamming trigger phrases or crafting adversarial content designed to dominate the derived lane. Caps and density checks keep derived evidence honest.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/derived/anti-stuffing.ts` enforces:
@@ -26,6 +28,8 @@ Stop a skill from gaming routing by spamming trigger phrases or crafting adversa
 3. Adversarial-fixture rejection using the fixture allowlist bundled in `scripts/fixtures/`.
 
 Demoted or rejected entries never reach the scorer, so stuffed fixtures cannot outrank honest candidates.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -41,6 +45,8 @@ Demoted or rejected entries never reach the scorer, so stuffed fixtures cannot o
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | derived-lane boundary behavior |
 | `Playbook scenario [AI-005](../../manual-testing-playbook/auto-indexing/anti-stuffing.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

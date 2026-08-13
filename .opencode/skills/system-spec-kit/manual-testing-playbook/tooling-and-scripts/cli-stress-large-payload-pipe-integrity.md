@@ -15,6 +15,8 @@ This stress scenario verifies that payloads larger than the classic 64KB pipe-bu
 
 Pipe truncation classically shows up as nondeterministic tail loss under load, which the hash-stability loop would catch immediately. IPC socket-frame integrity for daemon-backed large responses is locked by the dual-client hardening suites, which round-trip real frames over `daemon-ipc.sock`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm a >64KB CLI payload is byte-stable and JSON-valid across repetitions.
@@ -24,6 +26,8 @@ Pipe truncation classically shows up as nondeterministic tail loss under load, w
 - Expected signals: Size > 65536 bytes; one unique hash per format across all reps; every rep parses.
 - Desired user-visible outcome: Large CLI payloads can be piped into downstream tooling without integrity concerns.
 - Pass/fail: PASS only when size, hash stability, and parseability all hold.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -110,6 +114,8 @@ The `@spec-kit/mcp-server dist is stale...` line appeared before the byte-count 
 
 Multiple hashes with parse failures on the shorter reps is classic pipe truncation — check the CLI's stdout flush path and the shim's `stdio: 'inherit'` spawn. Multiple hashes with all reps parsing means nondeterministic output ordering crept into the tool listing, which breaks the parity fixture assumption in scenario 427.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -126,6 +132,8 @@ Multiple hashes with parse failures on the shorter reps is classic pipe truncati
 | `.opencode/bin/spec-memory.cjs` | Shim spawning the CLI with inherited stdio |
 | `mcp-server/spec-memory-cli.ts` | Output rendering (`json` / `jsonl` / text) |
 | `mcp-server/tests/spec-memory-cli-dual-client-hardening.vitest.ts` | Real socket-frame round-trip coverage |
+
+---
 
 ## 5. SOURCE METADATA
 

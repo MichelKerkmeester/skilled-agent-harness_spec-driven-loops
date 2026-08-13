@@ -77,6 +77,8 @@ Observed output:
 
 Re-run `npm test -- --run tests/vector-index-schema-compatibility.vitest.ts -t compatible`; inspect `vector-index-schema.ts` required-table/column lists if assertions drift
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/schema-compatibility-validation.md](../../feature-catalog/tooling-and-scripts/schema-compatibility-validation.md)

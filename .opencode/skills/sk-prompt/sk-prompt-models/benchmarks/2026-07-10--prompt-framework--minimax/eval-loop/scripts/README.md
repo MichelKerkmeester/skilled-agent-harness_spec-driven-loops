@@ -11,6 +11,8 @@ description: "Deep-loop scripts that dispatch, score, mutate and converge MiniMa
 
 `scripts/` is the MiniMax adaptation of the SWE 1.6 eval-loop orchestrator. It runs the same 10-step iteration cycle, retargeted at MiniMax M2.7 through cli-opencode and a five-framework axis (RCAF, RACE, CIDI, TIDD-EC, COSTAR) held constant against the same fixture set. It reads the sibling `eval-rig/` package for deterministic checks and grading.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -25,6 +27,8 @@ description: "Deep-loop scripts that dispatch, score, mutate and converge MiniMa
 | `synthesize.cjs` | Ranks every evaluated variant and writes the final `synthesis.md` handoff |
 | `dispatch-swe16.cjs` | Carried over from the SWE 1.6 loop but unused here. `loop.cjs` requires `dispatch-minimax.cjs`, not this file |
 
+---
+
 ## 3. VALIDATION
 
 Run from `003-minimax-prompt-framework/eval-loop/`:
@@ -34,6 +38,8 @@ node scripts/loop.cjs --mock --max-iters 2
 ```
 
 Exercises the full iteration cycle against mocked MiniMax dispatches. Exit 0 means the run ended normally, whether by converging, exhausting the mutation queue or reaching `--max-iters`, with a synthesis written in every case. Exit 1 means the iteration-one sanity gate rejected the run. Exit 2 means the loop paused on a pause sentinel or a rate-limit signal. Exit 3 means a fatal, uncaught error.
+
+---
 
 ## 4. RELATED
 

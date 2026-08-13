@@ -60,6 +60,8 @@ Community assignment output + co-member boost values + cap verification
 
 Verify community detection algorithm → Check boost injection point in pipeline → Inspect cap enforcement
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/community-detection.md](../../feature-catalog/graph-signal-activation/community-detection.md)

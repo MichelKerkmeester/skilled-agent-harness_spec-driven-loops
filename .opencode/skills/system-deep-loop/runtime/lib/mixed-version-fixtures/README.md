@@ -11,6 +11,8 @@ description: "Authors, compiles and oracle-verifies fixture cases that mix old a
 
 Not a passive fixtures directory. This folder authors, seals and oracle-verifies a corpus of state-transition cases that mix old-runtime and new-runtime behavior (`pure-old`, `pure-new`, `mid-upgrade`, `interrupted-migration`) to prove that resume classification behaves correctly across a `system-deep-loop` mode cutover boundary. A compatibility adapter bridges the `compatibility-shadow` upcaster into these cases. A seal compiler produces hash-verified artifact references so a case replays byte-identically on every run.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -21,6 +23,8 @@ Not a passive fixtures directory. This folder authors, seals and oracle-verifies
 | `reducer-resume-oracle.ts` | Runs an authored case through frozen classification-manifest verification to prove correct resume disposition |
 | `seal-compiler.ts` | Compiles authored cases into sealed, hash-verified artifact references for reproducible execution |
 | `index.ts` | Public API barrel |
+
+---
 
 ## 3. TESTS
 

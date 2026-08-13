@@ -85,6 +85,8 @@ Because creating an isolated DB sandbox and saving sandbox memory files would cr
 
 Inspect schema v37 migration paths, delete handler branching, retention sweep partition logic, and `tests/causal-edge-tombstones.vitest.ts`. Confirm the sandbox DB is isolated before diagnosing recall behavior.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

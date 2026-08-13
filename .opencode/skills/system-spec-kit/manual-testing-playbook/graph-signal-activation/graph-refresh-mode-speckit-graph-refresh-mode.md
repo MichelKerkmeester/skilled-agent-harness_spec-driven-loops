@@ -61,6 +61,8 @@ GraphRefreshResult output with mode='write_local', dirtyNodes >= 1, localRecompu
 
 Check resolveGraphRefreshMode() → Verify SPECKIT_GRAPH_REFRESH_MODE env is set → Inspect markDirty() input nodeIds → Check estimateComponentSize() threshold (default 50)
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/graph-lifecycle-refresh.md](../../feature-catalog/graph-signal-activation/graph-lifecycle-refresh.md)

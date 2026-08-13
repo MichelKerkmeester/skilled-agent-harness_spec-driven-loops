@@ -1,71 +1,22 @@
 {
-  "run_id": "1786551828250-nkwps1",
+  "run_id": "1786566874028-sks2q2",
   "loop_type": "review",
   "spec_folder": "specs/system-speckit/034-spec-template-context-optimizations",
   "base_artifact_dir": "specs/system-speckit/034-spec-template-context-optimizations/review",
   "total_cli_lineages": 1,
   "orphaned_lineages": [],
   "total": 1,
-  "succeeded": 1,
-  "failed": 0,
-  "all_failed": false,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
   "gauges": {
     "lag": 0,
     "pending": 0,
-    "failed": 0
+    "failed": 1
   },
   "failure_classes": {
     "timeout": 0,
-    "exit": 0,
+    "exit": 1,
     "salvage_miss": 0
-  },
-  "timestamp_anomalies": [
-    {
-      "label": "pi-flash-review",
-      "state_log": "specs/system-speckit/034-spec-template-context-optimizations/review/lineages/pi-flash-review/deep-review-state.jsonl",
-      "window": {
-        "start_at_iso": "2026-08-12T16:23:48.255Z",
-        "end_at_iso": "2026-08-12T16:42:45.017Z",
-        "tolerance_ms": 120000
-      },
-      "counts": {
-        "anomalous": 6,
-        "untimestamped": 1,
-        "unparseable": 0,
-        "total": 12
-      },
-      "sample": [
-        {
-          "index": 6,
-          "reason": "after_window",
-          "timestamp": "2026-08-12T16:45:30Z",
-          "deltaMs": 44983
-        },
-        {
-          "index": 7,
-          "reason": "after_window",
-          "timestamp": "2026-08-12T16:47:00Z",
-          "deltaMs": 134983
-        },
-        {
-          "index": 8,
-          "reason": "after_window",
-          "timestamp": "2026-08-12T16:49:30Z",
-          "deltaMs": 284983
-        },
-        {
-          "index": 9,
-          "reason": "after_window",
-          "timestamp": "2026-08-12T16:51:30Z",
-          "deltaMs": 404983
-        },
-        {
-          "index": 10,
-          "reason": "after_window",
-          "timestamp": "2026-08-12T16:53:30Z",
-          "deltaMs": 524983
-        }
-      ]
-    }
-  ]
+  }
 }

@@ -130,6 +130,8 @@ SCHEMA_VERSION_CHECK={
 
 Inspect `mcp-server/handlers/memory-save.ts` (`getBackgroundEnrichmentStats`) and `mcp-server/handlers/memory-crud-health.ts` (the `post_insert_enrichment_status` aggregation and `backgroundEnrichment` block). Confirm the gauges are read-side and default to zero when the distribution is empty.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

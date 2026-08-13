@@ -20,6 +20,8 @@ The `ITERATE`-state resolver that answers "what should the next iteration check?
 
 `partition-corpus.cjs` is a single-shot resolver: the planned `/deep:alignment` command workflow (phase-009, not yet built) will call it once per iteration and act on the answer, and it is runnable directly via its own CLI today. It never dispatches or loops itself, mirroring the other runtime scripts and honoring the FORBIDDEN INVOCATION PATTERNS ban on a self-looping dispatcher.
 
+---
+
 ## 2. HOW IT WORKS
 
 It reads the DISCOVER-state corpus (`deep-alignment-corpus.json`) and the reducer's per-lane `artifactsChecked` count, then walks the corpus lanes in declaration order — wrapping — and returns the next lane whose corpus still has unaudited artifacts, sliced to `batchSize` (default 5). A lane whose corpus is zero-length (a `NOT_APPLICABLE` lane) or already fully checked is skipped without ending the walk; `{ done: true }` is returned only when every lane's corpus is exhausted. The response carries the lane's identity (`laneId`, `authority`, `artifactClass`, `scope`), the artifact slice, and the count remaining after the slice, so the planned driving agent will know exactly which authority's `check()` to run against which artifacts next.

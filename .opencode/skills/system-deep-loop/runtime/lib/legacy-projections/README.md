@@ -11,6 +11,8 @@ description: "Folds verified ledger events into disposable legacy JSON or JSONL 
 
 Runtime primitives that keep legacy JSON and JSONL readers fed while a `system-deep-loop` workflow mode migrates its state to the ledger. The engine folds verified ledger events into legacy-format bytes without acquiring legacy write authority. A durable shadow store publishes those bytes atomically with watermark tracking so refreshes never regress or partially overwrite a reader-visible file.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -23,9 +25,13 @@ Runtime primitives that keep legacy JSON and JSONL readers fed while a `system-d
 | `shadow-projection-store.ts` | `ShadowProjectionStore`: atomic durable filesystem writer and reader with watermark tracking |
 | `index.ts` | Public API barrel |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/rollback-drills/rollback-drill-runner.ts`
+
+---
 
 ## 4. TESTS
 

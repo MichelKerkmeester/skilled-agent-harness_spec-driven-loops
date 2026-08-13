@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "system-spec-kit",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit"
+  },
+  "executor": "claude",
+  "model": "sonnet-5",
+  "variant": "ux-hooks",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+      "verdict": "PASS",
+      "reason": "Live shim cadence via compiled claude target: turn1 full, turn2 route-only, transcript-shrink re-delivers full, kill-switch=0 forces full, no-session fails open full (5/5). Runtime shim .claude/hooks/user-prompt-submit.js resolves and emits the brief.",
+      "stage": "documentation",
+      "classKind": "manual",
+      "providerModel": "sonnet-5",
+      "variant": "ux-hooks",
+      "evidence": [
+        "/tmp/directive-dl/claude/turn1.json",
+        "/tmp/directive-dl/claude/turn2.json",
+        "/tmp/directive-dl/claude/turn3.json",
+        "/tmp/directive-dl/claude/kill.json",
+        "/tmp/directive-dl/claude/nosess.json"
+      ]
+    }
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored."
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+    "stage": "documentation",
+    "dispatch": "manual",
+    "executor": "claude",
+    "model": "sonnet-5",
+    "variant": "ux-hooks"
+  }
+}

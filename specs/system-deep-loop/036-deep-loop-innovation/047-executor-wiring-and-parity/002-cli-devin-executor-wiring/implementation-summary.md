@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 041-cli-devin-executor-wiring |
+| **Spec Folder** | 002-cli-devin-executor-wiring |
 | **Completed** | 2026-07-27 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -132,4 +132,3 @@ CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
 Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
 HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
 -->
-

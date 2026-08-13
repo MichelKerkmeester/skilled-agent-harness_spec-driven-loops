@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/007-fable-governor-pi-hook/008-phase-state-reconciliation",
+  "spec_folder": "hooks/007-fable-governor-pi-hook/008-phase-state-reconciliation",
+  "parent_id": "hooks/007-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase state reconciliation",
+      "spec metadata reconciliation",
+      "stale completion frontmatter",
+      "graph status repair",
+      "phase state reconciliation plan",
+      "metadata refresh plan",
+      "parent map repair plan",
+      "phase state reconciliation tasks",
+      "metadata refresh tasks",
+      "parent map repair tasks",
+      "phase state reconciliation checklist",
+      "metadata reconciliation verification"
+    ],
+    "key_topics": [
+      "phase",
+      "state",
+      "reconciliation",
+      "spec",
+      "metadata",
+      "stale",
+      "completion",
+      "frontmatter",
+      "graph",
+      "status",
+      "repair",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Metadata Reconciliation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet's phase implementation summaries contain contradictory state: some frontmatter says planned or not started while the body says implemented, completion percentages remain at zero after claimed work, graph metadata still reports draft/planned state, and completion criteria remain unchecked",
+    "created_at": "2026-08-04T17:57:55Z",
+    "last_save_at": "2026-08-11T06:50:06.027Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f2b3b3f7ef1e425b480022271d0aec05c17c22c7b0bb49af9f9be255e9111b99",
+    "source_doc_hashes": {
+      "spec.md": "10904396f084ca4207012d37c0be2a4446e51faccd4338dec07b862c63bf688a",
+      "plan.md": "7d0ca83e06e725a296db70fe56931272581f67e941f59092a03d9613cd928b86",
+      "tasks.md": "af45f04ec2e2303f8386114d64ccf826a81974033ca9908a9b926a23e4ad40e2",
+      "checklist.md": "47d967b2ecb98afbb75cdebd2e9395f5411b4fec8719ea692e53d296645ec67d",
+      "implementation-summary.md": "9ad4ec8fc53149889ab4ee86f36ab1e78c3fd699d48395dfdf8edcca2bed2554"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

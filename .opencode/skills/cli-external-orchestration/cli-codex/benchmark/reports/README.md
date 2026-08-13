@@ -18,6 +18,8 @@ contextType: "general"
 
 Each row below is one run folder. Rows are written by the benchmark harness at the moment it writes the report, so this table cannot fall behind the folders beside it.
 
+---
+
 ## 2. RUN INDEX
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
@@ -65,6 +67,8 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-3/`](./2026-08-08--manual-testing-playbook--codex-3/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex-2/`](./2026-08-08--manual-testing-playbook--codex-2/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-08 | [`2026-08-08--manual-testing-playbook--codex/`](./2026-08-08--manual-testing-playbook--codex/) | codex gpt-5.6-luna codex | 1 PASS | **PASS** | `manual-testing-playbook` |
+
+---
 
 ## 3. STORAGE RULE
 

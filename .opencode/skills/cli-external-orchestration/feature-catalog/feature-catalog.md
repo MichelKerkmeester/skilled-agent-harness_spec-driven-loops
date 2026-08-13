@@ -10,7 +10,7 @@ trigger_phrases:
   - "Cursor CLI spec-gate integration"
   - "cross-runtime goal isolation"
 last_updated: "2026-08-10"
-version: 1.6.0.0
+version: 1.6.0.1
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -107,7 +107,7 @@ The runtime-neutral goal core stores one active goal per workspace, runtime, and
 
 #### Current Reality
 
-Pi has a native registered `/goal-pi` management command plus session-bound injection and turn-end verification. Cursor has session-bound injection but no safe management bridge, so `/goal-cursor` fails with `UNSUPPORTED_SESSION_BINDING`. Claude Code uses its native feature where available; Codex has no adapter. Legacy `active-goal.json` is never injected automatically and can only be inspected, migrated to an explicit validated scope, or archived. Aggregate diagnostics expose counts and classification without raw session ids.
+Pi has a native registered `/goal-pi` management command plus session-bound injection and turn-end verification. Cursor has session-bound injection but no safe management bridge, so `/goal-cursor` fails with `UNSUPPORTED_SESSION_BINDING`. Claude Code has no repository adapter or goal command; any separate live native capability is unverified here. Codex has no adapter. Legacy `active-goal.json` is never injected automatically and can only be inspected, migrated to an explicit validated scope, or archived. Aggregate diagnostics expose counts and classification without raw session ids.
 
 #### Source Files
 

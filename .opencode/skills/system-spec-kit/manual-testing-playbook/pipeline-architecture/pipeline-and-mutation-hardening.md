@@ -213,6 +213,8 @@ Before/after mutation responses + restore completion or failure output
 
 If the retry still reports restore-in-progress, inspect the `restoreCheckpoint()` barrier release in the storage layer `finally` path
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/pipeline-and-mutation-hardening.md](../../feature-catalog/pipeline-architecture/pipeline-and-mutation-hardening.md)

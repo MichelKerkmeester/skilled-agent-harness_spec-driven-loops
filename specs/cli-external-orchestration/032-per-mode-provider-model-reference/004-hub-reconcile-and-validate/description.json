@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/032-per-mode-provider-model-reference/004-hub-reconcile-and-validate",
+  "description": "The hub-level docs do not yet point readers at the new per-mode catalogs",
+  "keywords": [
+    "hub-level",
+    "docs",
+    "point",
+    "readers",
+    "new",
+    "per-mode",
+    "catalogs"
+  ],
+  "lastUpdated": "2026-08-11T07:15:55.239Z",
+  "specId": "004",
+  "folderSlug": "hub-reconcile-and-validate",
+  "parentChain": [
+    "cli-external-orchestration",
+    "032-per-mode-provider-model-reference"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

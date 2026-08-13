@@ -59,6 +59,8 @@ Eval metric output with ground truth comparison + per-metric values
 
 Verify ground truth corpus is seeded → Check metric computation functions → Inspect edge cases (empty results, single result)
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/core-metric-computation.md](../../feature-catalog/evaluation-and-measurement/core-metric-computation.md)

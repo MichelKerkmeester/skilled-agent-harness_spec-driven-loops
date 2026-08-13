@@ -20,6 +20,8 @@ Preserves the completed review packet for future recovery without making it part
 
 This is the final lifecycle phase after synthesis. It hands the completed review context to the continuity system while keeping the on-disk review packet authoritative if the save step fails.
 
+---
+
 ## 2. HOW IT WORKS
 
 The save step is intentionally narrow. It runs `generate-context.js` at the spec-folder boundary after the review report has already been written, and the skill treats that script as the supported continuity handoff. The save step is not allowed to rewrite the review conclusions or downgrade the packet if continuity persistence has trouble.

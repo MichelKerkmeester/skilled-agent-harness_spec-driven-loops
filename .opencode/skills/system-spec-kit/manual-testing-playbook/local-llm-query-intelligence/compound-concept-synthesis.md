@@ -175,6 +175,8 @@ Summary:
 
 BLOCKED — The required MCP query tool was not registered, the CLI equivalent rejected the scenario's `query`/`num_results` arguments with `Missing required fields: operation, subject`, and `memory_health` was unavailable because `@spec-kit/mcp-server dist is stale`.
 
+---
+
 ## 4. NOTES
 
 This scenario stresses **retrieval breadth**, not depth. A top-3 with 3 different constituent sources is BETTER than a top-3 with 3 paragraphs from the same file, even if that single file has the longest individual coverage.

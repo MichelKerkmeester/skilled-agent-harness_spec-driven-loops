@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/019-mass-deletion-guard",
+  "description": "A shared fail-open git-hook guard refuses commits (and, where pre-push is wired, pushes) that remove more than a configurable number of tracked files unless the operator authorizes that one operation, blocking the stale-tree `git add -A` snapshot that erased 902 tracked files.",
+  "keywords": [
+    "mass",
+    "deletion",
+    "guard",
+    "git",
+    "hook",
+    "pre-commit",
+    "pre-push",
+    "add-all",
+    "stale-tree",
+    "clobber",
+    "threshold",
+    "fail-open",
+    "tracked",
+    "files",
+    "ceiling",
+    "override"
+  ],
+  "lastUpdated": "2026-08-13T00:00:00.000Z",
+  "specId": "019",
+  "folderSlug": "mass-deletion-guard",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

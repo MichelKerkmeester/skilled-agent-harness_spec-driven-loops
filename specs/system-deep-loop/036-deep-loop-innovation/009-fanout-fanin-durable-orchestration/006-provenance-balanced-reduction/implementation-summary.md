@@ -11,7 +11,7 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orch
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction"
-    last_updated_at: "2026-07-21T08:45:00Z"
+    last_updated_at: "2026-08-11T14:06:17.736Z"
     last_updated_by: "codex"
     recent_action: "Completed the additive-dark provenance-balanced reducer and evidence suite"
     next_safe_action: "Keep legacy fan-in authoritative until a later activation gate"

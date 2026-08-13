@@ -62,6 +62,8 @@ fuseResultsMulti() output scores + bonus breakdown + test transcript
 
 Verify isCalibratedOverlapBonusEnabled() → Confirm flag is not forced off → Check CALIBRATED_OVERLAP_BETA=0.15 constant → Verify CALIBRATED_OVERLAP_MAX=0.06 cap → Inspect fuseResultsMulti() overlap detection logic
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/calibrated-overlap-bonus.md](../../feature-catalog/scoring-and-calibration/calibrated-overlap-bonus.md)

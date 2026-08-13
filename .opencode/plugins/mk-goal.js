@@ -13,12 +13,8 @@ import { createHash, randomUUID } from 'node:crypto';
 import { appendFile, link, mkdir, open, readFile, readdir, rename, stat, unlink } from 'node:fs/promises';
 import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createRequire } from 'node:module';
 
 import { tool } from '@opencode-ai/plugin/tool';
-
-const require = createRequire(import.meta.url);
-const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -234,7 +230,7 @@ function normalizeOptions(rawOptions = {}) {
   const injectedSupervisorVerifier = typeof options.supervisorVerifier === 'function' ? options.supervisorVerifier : null;
 
   const normalized = {
-    enabled: options.enabled !== false && isHookEnabled('goal'),
+    enabled: options.enabled !== false && process.env[DISABLED_ENV] !== '1',
     stateDir: resolvePath(typeof options.stateDir === 'string' && options.stateDir.trim()
       ? options.stateDir.trim()
       : DEFAULT_STATE_DIR),
@@ -1275,8 +1271,13 @@ async function adoptLegacyGoalFile(sessionID, directoryPath, rawOptions = {}) {
     if (error?.code === 'ENOENT' || error?.code === 'ENAMETOOLONG') return null;
     throw error;
   }
+  const parsed = JSON.parse(raw);
+  const embeddedSessionID = normalizeSessionID(parsed?.sessionId);
+  if (!embeddedSessionID || embeddedSessionID !== normalizedSessionID) {
+    throw new GoalError('INVALID_GOAL_STATE', 'Legacy goal state must contain the exact requested session id');
+  }
   const goal = normalizeStoredGoal(
-    JSON.parse(raw),
+    parsed,
     normalizedSessionID,
     options,
     normalizedSessionID,
@@ -1394,7 +1395,7 @@ async function deleteGoalFile(sessionID, rawOptions = {}) {
     try {
       await unlink(path);
     } catch (error) {
-      if (error?.code !== 'ENOENT') {
+      if (error?.code !== 'ENOENT' && error?.code !== 'ENAMETOOLONG') {
         throw new GoalError('CLEAR_GOAL_FAILED', `Failed to clear goal state: ${error.message}`);
       }
     }
@@ -1469,7 +1470,9 @@ async function archiveGoalStateFile(sessionID, rawOptions = {}) {
       return null;
     }
     await unlink(legacyGoalPathForSession(normalizedSessionID, options)).catch((error) => {
-      if (error?.code !== 'ENOENT') writeDebugStderr('archiveGoalStateFile.unlinkLegacy', error);
+      if (error?.code !== 'ENOENT' && error?.code !== 'ENAMETOOLONG') {
+        writeDebugStderr('archiveGoalStateFile.unlinkLegacy', error);
+      }
     });
     await fsyncDirectory(options.stateDir, options);
     await fsyncDirectory(archiveDir, options);

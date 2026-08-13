@@ -178,6 +178,8 @@ Targeted test transcript showing `scan_started_at` removal and `last_index_scan`
 
 Inspect `completeIndexScanLease()` in `core/db-state.ts` and the post-response completion calls in `handlers/memory-index.ts` if cooldown starts too early or active leases linger
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [maintenance/workspace-scanning-and-indexing-memoryindexscan.md](../../feature-catalog/maintenance/workspace-scanning-and-indexing-memoryindexscan.md)

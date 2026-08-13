@@ -33,6 +33,8 @@ This packet separates three headless contracts:
 
 The JSON and RPC distinctions are confirmed by the local pin and the [JSON documentation](https://pi.dev/docs/latest/json) and [RPC documentation](https://pi.dev/docs/latest/rpc).
 
+---
+
 ## 2. INSTALLATION AND VERSION
 
 The pinned contract installed Pi with:
@@ -52,6 +54,8 @@ command -v pi
 
 No path means no dispatch. The availability probe is a hard rule, not an installation suggestion.
 
+---
+
 ## 3. COMMANDS
 
 | Command | Purpose | Dispatch note |
@@ -68,6 +72,8 @@ No path means no dispatch. The availability probe is a hard rule, not an install
 | pi --export file | Export a session to HTML and exit | Use only with a known session path |
 | pi --help | Print the CLI help | Use to detect version drift |
 | pi --version | Print the installed version | Capture before contract changes |
+
+---
 
 ## 4. HEADLESS OPTIONS
 
@@ -93,6 +99,8 @@ No path means no dispatch. The availability probe is a hard rule, not an install
 
 These names came from the installed help capture. Check pi --help again if the installed version changes.
 
+---
+
 ## 5. TOOL BOUNDARIES
 
 | Option | Meaning |
@@ -111,6 +119,8 @@ pi --tools read,grep,find,ls -p "Review the code"
 
 This is a caller-selected tool restriction. It is not evidence that Pi has a built-in plan mode.
 
+---
+
 ## 6. RESOURCE OPTIONS
 
 | Option | Meaning |
@@ -127,6 +137,8 @@ This is a caller-selected tool restriction. It is not evidence that Pi has a bui
 
 Per Pi docs, unconfirmed for this packet: the exact flattening and precedence behavior of all resource locations. Read [native-skills-and-extensions.md](./native-skills-and-extensions.md) before relying on it.
 
+---
+
 ## 7. TRUST AND NETWORK OPTIONS
 
 | Option | Meaning |
@@ -140,6 +152,8 @@ Per Pi docs, unconfirmed for this packet: the exact flattening and precedence be
 
 The local pin confirmed that an unapproved project-local package install fails and that adding --approve permits the install. It also observed that --verbose without --offline can hang when no network path is available.
 
+---
+
 ## 8. PROVIDER AUTHENTICATION
 
 The help output lists provider variables including ANTHROPIC_API_KEY, OPENAI_API_KEY, GEMINI_API_KEY, GROQ_API_KEY, XAI_API_KEY, MISTRAL_API_KEY, MINIMAX_API_KEY, KIMI_API_KEY, QWEN_TOKEN_PLAN_API_KEY, and AWS credentials. The full installed list is the source of truth for that version.
@@ -152,6 +166,8 @@ No API key found for the selected model. Use /login to log into a provider via O
 
 Do not put keys in prompts. Configure the provider outside the dispatch payload.
 
+---
+
 ## 9. FAILURE HANDLING
 
 The first unauthenticated print attempt returned exit 0. Later equivalent attempts returned exit 1. That inconsistency is confirmed by the pin. Therefore:
@@ -161,6 +177,8 @@ The first unauthenticated print attempt returned exit 0. Later equivalent attemp
 3. Treat output text as authoritative for failure classification.
 4. Use the exit code only as an additional signal.
 5. Do not claim a model ran because the process exited 0.
+
+---
 
 ## 10. JSON MODE
 
@@ -176,6 +194,8 @@ pi --mode json "Summarize the work"
 
 Use the [JSON documentation](https://pi.dev/docs/latest/json) for event names when writing a new parser. The local packet does not treat the current event schema as permanent across Pi versions.
 
+---
+
 ## 11. RPC MODE
 
 The pin confirmed RPC mode as a persistent stdin/stdout JSONL protocol. It is architecturally different from one-shot print mode. The RPC documentation is the source for request and response framing: [pi.dev/docs/latest/rpc](https://pi.dev/docs/latest/rpc).
@@ -185,6 +205,8 @@ pi --mode rpc --no-session
 ~~~
 
 The shared runtime must keep the process alive, write newline-delimited JSON requests, and read newline-delimited JSON responses. Do not route RPC through a print-mode adapter. See [pi-tools.md](./pi-tools.md) §2 for how RPC compares to every sibling CLI's own session-continuity model.
+
+---
 
 ## 12. SAFE INVOCATION CHECKLIST
 
@@ -197,6 +219,8 @@ The shared runtime must keep the process alive, write newline-delimited JSON req
 - [ ] Output is captured with stderr.
 - [ ] Auth and extension errors are checked in text.
 - [ ] Changes are verified by the calling workflow.
+
+---
 
 ## 13. MODEL SELECTION
 

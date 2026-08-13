@@ -190,6 +190,8 @@ MISMATCH_OBSERVED terminal=CLOSED code=-32002 retryable=false logs=["backend soc
 
 Inspect `PROTOCOL_MISMATCH_ERROR` and the terminal-`CLOSED` branch (the "must not retry a version-mismatched backend" guard) in `.opencode/bin/lib/launcher-session-proxy.cjs` if a version mismatch is retried instead of failing closed.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Front-proxy: `.opencode/bin/lib/launcher-session-proxy.cjs` (`RETRYABLE_RECYCLE_ERROR` -32001, `PROTOCOL_MISMATCH_ERROR` -32002, reattach loop, terminal CLOSED)

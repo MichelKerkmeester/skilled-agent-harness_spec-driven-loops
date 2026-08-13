@@ -73,6 +73,8 @@ The first invocation loads `doctor-update.yaml` and acquires the exclusive non-b
 
 If both commands proceed, inspect `doctor-update.yaml` Phase 1 and the command's lock acquisition order. If the second refusal lacks PID or start timestamp, inspect the flock refusal message contract in `.opencode/commands/doctor/update.md` and the PID-file fallback path.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

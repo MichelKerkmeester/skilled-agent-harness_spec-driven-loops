@@ -32,6 +32,8 @@ const info = await tool_info({
 
 Use the exact tool name returned by `list_tools()` or `search_tools()`. Call `tool_info()` before composing a new workflow so parameter names and output envelopes come from the live schema.
 
+---
+
 ## 2. CONFIGURED MANUALS
 
 The current `.utcp_config.json` contains these ten manual names:
@@ -50,6 +52,8 @@ The current `.utcp_config.json` contains these ten manual names:
 
 This table names manuals, not tools. A manual may be disabled, unauthenticated, or changed between sessions; discovery is authoritative for the callable inventory.
 
+---
+
 ## 3. CALLING CONTRACT
 
 The TypeScript namespace is derived from the manual and tool name returned by discovery. For example, the confirmed Mobbin callable is:
@@ -66,6 +70,8 @@ const result = await mobbin.mobbin_search_screens({
 ```
 
 Do not infer a tool from a service label, a remembered catalog, or a similarly named manual. If discovery does not return a callable, stop and report the missing or unavailable manual.
+
+---
 
 ## 4. CONFIGURATION AUTHORITY
 

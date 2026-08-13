@@ -34,7 +34,7 @@ const { spawnSync } = require('node:child_process');
 // under sk-doc.
 const CHECKER_RELATIVE_PATHS = {
   commentHygiene: '.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh',
-  flowchart: '.opencode/skills/sk-doc/sk-create-flowchart/scripts/validate-flowchart.sh',
+  flowchart: '.opencode/skills/sk-doc/sk-create-diagram/scripts/validate-flowchart.sh',
   frontmatterVersions: '.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh',
   placeholders: '.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh',
   wikilinks: '.opencode/skills/system-spec-kit/scripts/rules/check-links.sh',
@@ -102,17 +102,19 @@ function relativeSegments(absFilePath, projectDir) {
  * candidate for validate_flowchart.sh.
  *
  * Deliberately path-based only (filename contains "flowchart", or the file
- * lives under a create-flowchart skill's assets/ output dir) rather than also
+ * lives under sk-create-diagram's ASCII-pattern output dir) rather than also
  * sniffing file content for box-drawing glyphs as an OR clause. Measured
  * against this repo's real docs (e.g. system-spec-kit/ARCHITECTURE.md), a
  * generic box-drawing-glyph check false-positives on ordinary architecture
  * diagrams embedded in reference docs -- exactly the adversarial case this
  * router must not flag. Path-based matching resolves every named test case
- * with zero false positives.
+ * with zero false positives. Scoped to `ascii-patterns/`, not all of
+ * sk-create-diagram's `assets/`, since that dir also holds HTML/SVG
+ * templates and examples that are not flowchart-shaped.
  */
 function isFlowchartCandidate(basename, segments) {
   if (/flowchart/i.test(basename)) return true;
-  return segments.includes('create-flowchart') && segments.includes('assets');
+  return segments.includes('sk-create-diagram') && segments.includes('ascii-patterns');
 }
 
 function canonicalSkillScopeSubtree(segment) {

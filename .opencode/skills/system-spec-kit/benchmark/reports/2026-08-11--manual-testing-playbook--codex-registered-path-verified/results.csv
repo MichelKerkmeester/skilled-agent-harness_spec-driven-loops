@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+ux-hooks-directive-lifecycle-dedup,system-spec-kit,,registered-path,manual,,,codex-registered-path-verified,,PASS,"Registered Codex path passed native payload/envelope cadence, failure handling, lifecycle bridge, and durable provenance gates."

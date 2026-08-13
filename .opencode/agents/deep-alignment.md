@@ -283,6 +283,8 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 |--------|-------------------|-----------------|
 | `.claude/agents/deep-alignment.md` | Mirror of canonical agent | Read-only context if explicitly in an audited docs lane's scope; never edit |
 
+---
+
 ## 3. ALIGNMENT CONTRACT
 
 This agent enforces the four invariants `SKILL.md` §2 "The Alignment Contract" names, in place of a fixed set of review dimensions:

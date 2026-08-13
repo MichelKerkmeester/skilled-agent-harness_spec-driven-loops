@@ -24,6 +24,8 @@ Subagents are unavailable. foundations: complete the hierarchy/rhythm review dir
 
 This scenario validates the `Context, Proof, And Direct Fallback` section for foundations.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm foundations executes directly with Read/Glob/Grep only while preserving selected-card, context, and proof requirements.
@@ -34,11 +36,15 @@ This scenario validates the `Context, Proof, And Direct Fallback` section for fo
 - Desired user-visible outcome: Foundations review with evidence labels and no weakened fallback.
 - Pass/fail: PASS if direct fallback preserves proof and read-only boundary; FAIL if proof is skipped or mutating tools are used.
 
+---
+
 ## 3. TEST EXECUTION
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | FOUND-PROCCARD-003 | Foundations direct fallback | Confirm no-subagent path keeps proof bar | `Subagents are unavailable. foundations: complete the hierarchy/rhythm review directly in this session and show the selected procedure, context basis, proof line, and read-only boundary.` | grep `Context, Proof, And Direct Fallback` in `SKILL.md` -> agent: run exact prompt -> inspect tool calls and proof order | No Task dispatch; selected card or fallback named; proof precedes ready/handoff; only Read/Glob/Grep used | Transcript, response, tool-call record | PASS if direct and read-only with full proof; FAIL if Task/mutating tool or skipped proof appears | 1. Re-read direct fallback section; 2. Inspect first ready/handoff claim; 3. Compare tool surface |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -47,6 +53,8 @@ This scenario validates the `Context, Proof, And Direct Fallback` section for fo
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../SKILL.md` | Foundations direct-fallback contract |
 | `../../../shared/context-loading-contract.md` | Shared proof fields |
+
+---
 
 ## 5. SOURCE METADATA
 

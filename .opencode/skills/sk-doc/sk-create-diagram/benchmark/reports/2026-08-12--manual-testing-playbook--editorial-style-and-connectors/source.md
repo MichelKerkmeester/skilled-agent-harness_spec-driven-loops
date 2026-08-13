@@ -12,6 +12,7 @@ This map separates the canonical contracts, the private gold, and the curated ou
 | Topology digest | `not recorded` |
 | Machine record | [`skill-benchmark-report.json`](./skill-benchmark-report.json) |
 | Curated result set | [`results.csv`](./results.csv) |
+| Produced artifact | [`artifact.html`](./artifact.html) — copy of the scenario's real output file |
 
 ## Boundary
 

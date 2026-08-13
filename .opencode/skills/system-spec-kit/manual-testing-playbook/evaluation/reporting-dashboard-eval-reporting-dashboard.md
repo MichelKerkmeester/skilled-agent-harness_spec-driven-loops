@@ -57,6 +57,8 @@ Dashboard output in text and JSON plus source-backed confirmation of parent-memo
 
 Retry with `format:"json"` or `format:"text"`; inspect `handlers/eval-reporting.ts` and `lib/eval/reporting-dashboard.ts` if chunk IDs leak through or sprint ordering contradicts recency selection
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation/reporting-dashboard-evalreportingdashboard.md](../../feature-catalog/evaluation/reporting-dashboard-evalreportingdashboard.md)

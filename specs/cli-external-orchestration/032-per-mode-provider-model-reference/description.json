@@ -1,0 +1,27 @@
+{
+  "level": "phase",
+  "specFolder": "cli-external-orchestration/032-per-mode-provider-model-reference",
+  "description": "The `cli-external-orchestration` hub has six workflow modes, and each one documents \"which providers, which models, which personas/effort tiers, how",
+  "keywords": [
+    "cli-external-orchestration",
+    "hub",
+    "six",
+    "workflow",
+    "modes",
+    "one",
+    "documents",
+    "providers",
+    "models",
+    "personas",
+    "effort",
+    "tiers"
+  ],
+  "lastUpdated": "2026-08-11T07:15:55.239Z",
+  "specId": "032",
+  "folderSlug": "per-mode-provider-model-reference",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

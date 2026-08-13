@@ -11,6 +11,8 @@ description: "Derives, scores and durably records the next research or review fo
 
 Runtime primitives that decide where a `system-deep-loop` research or review mode should look next. Candidates are derived from coverage gaps, open contradictions and under-covered semantic communities, scored under one versioned policy. The winning (or unavailable) decision is recorded as a ledger event so it can be replayed deterministically. Selection is shadow-compared against the legacy pivot-candidate selector during migration.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -23,9 +25,13 @@ Runtime primitives that decide where a `system-deep-loop` research or review mod
 | `next-focus-types.ts` | Candidate, signal, region and decision type contracts |
 | `index.ts` | Public API barrel |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/cycle-detection/`
+
+---
 
 ## 4. TESTS
 

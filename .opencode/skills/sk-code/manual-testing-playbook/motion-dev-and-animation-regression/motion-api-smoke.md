@@ -26,6 +26,8 @@ Operators run the exact prompt and command sequence for `MR-001` and confirm the
 |---|---|---|---|---|---|---|---|---|
 | `MR-001` | Motion.dev API Smoke | Prove pinned CDN Motion exports and basic runtime calls work in a Webflow-style sandbox | `Create a Webflow-style Motion smoke page using pinned CDN animate, inView, and spring exports; return PASS/FAIL with console evidence.` | create `/tmp/skc-MR001-motion-smoke.html` -> open in Chrome -> inspect console -> click/run visible target -> save transcript | pinned `motion@<version>` URL; `typeof animate`, `typeof inView`, `typeof spring` are `function`; `animate()` resolves or completes; no uncaught console errors | `/tmp/skc-MR001-console.txt`, screenshot of animated element, smoke HTML path | PASS iff all exports are functions, `animate()` completes without throwing, `inView()` fires when target enters viewport, and console has no uncaught errors | If import fails, verify CDN URL and network; if export missing, compare with official Motion docs; if callback fails, verify element visibility and IntersectionObserver support |
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Prompt

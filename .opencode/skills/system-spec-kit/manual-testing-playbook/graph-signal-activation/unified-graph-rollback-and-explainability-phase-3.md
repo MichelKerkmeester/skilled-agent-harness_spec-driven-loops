@@ -63,6 +63,8 @@ Search output + trace payloads for enabled/disabled runs + SQL/query-plan eviden
 
 Verify `SPECKIT_GRAPH_UNIFIED` propagation into Stage 2 → Inspect `graphContribution` trace metadata → Inspect graph query shape for CTE materialization and SQL-side dedup → Re-run identical query to confirm tie-break stability and cached FTS availability
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md](../../feature-catalog/graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md)

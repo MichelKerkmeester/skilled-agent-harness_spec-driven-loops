@@ -62,6 +62,8 @@ Baseline and post-access query results, accumulator snapshots, persisted access 
 
 Verify repeated retrievals hit the same target spec-doc record -> Inspect accumulator threshold and flush path -> Check `access_count` and `last_accessed` persistence writes -> Review composite scoring popularity contribution -> Confirm dormancy logic is reading updated access data
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/access-driven-popularity-scoring.md](../../feature-catalog/scoring-and-calibration/access-driven-popularity-scoring.md)

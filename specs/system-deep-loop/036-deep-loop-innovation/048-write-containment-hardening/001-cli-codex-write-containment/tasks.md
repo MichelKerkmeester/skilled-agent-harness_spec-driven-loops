@@ -7,6 +7,19 @@ trigger_phrases:
   - "dispatch guard"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/001-cli-codex-write-containment"
+    last_updated_at: "2026-08-11T14:05:00Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled moved-packet metadata and strict-validation evidence"
+    next_safe_action: "None; packet complete."
+    blockers: []
+    key_files:
+      - "tasks.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Tasks: codex Write-Containment Guard
 
@@ -32,7 +45,7 @@ contextType: "general"
 ## Phase 1: Setup
 
 - [x] T001 Create shared containment helper scaffold (`runtime/lib/deep-loop/write-containment.ts`)
-- [x] T002 Decide fail-open + auto-skip contract (non-git / artifact dir outside worktree → no-op)
+- [x] T002 Decide fail-open + auto-skip contract (non-git / artifact dir outside worktree → no-op) [evidence: `plan.md` §3 records the fail-open and non-worktree boundary]
 
 <!-- /ANCHOR:phase-1 -->
 ---
@@ -41,7 +54,7 @@ contextType: "general"
 ## Phase 2: Implementation
 
 - [x] T010 Implement snapshot / detect / revert / enforce + event builder
-- [x] T011 Scoped revert only (tracked→HEAD restore; untracked→remove specific path; never blanket clean)
+- [x] T011 Scoped revert only (tracked→HEAD restore; untracked→remove specific path; never blanket clean) [evidence: `write-containment.vitest.ts` covers tracked, untracked, and pre-existing-dirty paths]
 
 <!-- /ANCHOR:phase-2 -->
 ---

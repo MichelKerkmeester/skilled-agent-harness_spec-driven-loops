@@ -487,6 +487,8 @@ Desired user-visible outcome: A citation-backed comparison brief the operator ca
 
 > **Feature File:** [CX-026](../manual-testing-playbook/agent-routing/research-profile.md)
 
+---
+
 ## 11. SESSION CONTINUITY (`CX-016..CX-017`)
 
 This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract.

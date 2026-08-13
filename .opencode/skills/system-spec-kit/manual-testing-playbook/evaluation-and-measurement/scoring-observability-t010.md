@@ -59,6 +59,8 @@ Observability log rows + forced error output + sample rate verification across N
 
 Check sample rate configuration → Verify write error try/catch → Inspect observability table schema
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/scoring-observability.md](../../feature-catalog/evaluation-and-measurement/scoring-observability.md)

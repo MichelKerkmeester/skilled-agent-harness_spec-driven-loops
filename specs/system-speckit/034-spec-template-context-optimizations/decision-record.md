@@ -6,10 +6,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-template-context-optimizations"
-    last_updated_at: "2026-08-12T12:51:40Z"
+    last_updated_at: "2026-08-13T04:18:38Z"
     last_updated_by: "claude-code"
-    recent_action: "Recorded phasing + non-scope decisions"
-    next_safe_action: "Implement Phase 1"
+    recent_action: "Added ADRs from two deep-reviews (advisory, mirror, fingerprint)"
+    next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
       - "specs/system-speckit/033-spec-templates-and-context-reducer/research/research.md"
@@ -17,7 +17,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-12-system-speckit-034-optimizations"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -108,3 +108,17 @@ _memory:
 **Consequences:** `search_shown` telemetry no longer overcounts truncated results. Verified: the truncation call precedes the feedback block in source; `tsc --noEmit` clean; the token-budget suite stays green.
 
 **Alternatives considered:** Leave the order and accept overcounting (rejected — the fix is a low-risk local reorder once the dependency was verified).
+
+---
+
+## ADR-007: Keep the all-zero continuity fingerprint as the grandfathered placeholder (F015)
+
+**Status:** Accepted
+
+**Context:** Deep-review finding F015 (P2) noted that `_memory.continuity.session_dedup.fingerprint` is the all-zero placeholder (`sha256:000…`) across this packet's docs. This packet's continuity was maintained by direct frontmatter edits (allowed by ADR-004), not by `generate-context.js` memory saves, so the fingerprint was never populated with a real content hash.
+
+**Decision:** Keep the all-zero placeholder. `CONTINUITY_FRESHNESS` explicitly grandfathers the all-zero fingerprint (it is the sanctioned "not fingerprinted" value), so the packet validates `--strict` clean with it. Populating a real fingerprint requires a `generate-context.js` save — a separate memory operation with its own indexing/DB side effects — which is out of scope for a doc-reconciliation pass and offers no correctness gain here.
+
+**Consequences:** The packet stays validation-clean; continuity dedup for this packet relies on `session_id`/content rather than a stored fingerprint. A future `/memory:save` on this folder would replace the placeholder with a real hash if fingerprint-based freshness is later wanted.
+
+**Alternatives considered:** Run `generate-context.js` now to populate real fingerprints (rejected — added indexing/churn risk for a grandfathered, validation-clean placeholder).

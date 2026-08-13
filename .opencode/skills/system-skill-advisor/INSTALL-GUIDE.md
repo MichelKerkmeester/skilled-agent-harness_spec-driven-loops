@@ -386,6 +386,8 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 - Skill-advisor schema helpers: [`mcp-server/lib/embedders/schema.ts`](./mcp-server/lib/embedders/schema.ts).
 - Architecture-gap follow-on: packet `003/006-shared-embedder-logic-with-spec-memory` (shipped phase 003/006).
 
+---
+
 ## 13. RELATED RESOURCES
 
 | Document | Purpose |

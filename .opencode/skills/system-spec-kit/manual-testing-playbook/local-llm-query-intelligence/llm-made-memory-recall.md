@@ -144,6 +144,8 @@ Summary: 8/10 or better in top-3, mean rank <= 2.0 -> PASS
 
 BLOCKED - Required Memory MCP search and health evidence could not be collected: native MCP returned `E030` / backend recycle errors, and the warm CLI fallback refused to run because `@spec-kit/mcp-server dist is stale`; rebuilding dist would violate this scenario's allowed write paths.
 
+---
+
 ## 4. NOTES
 
 This scenario tests embedding consistency over time: memories stored earlier should still surface today under faithful paraphrases. If the recall rate drops below 80%, possible causes:
@@ -154,6 +156,8 @@ This scenario tests embedding consistency over time: memories stored earlier sho
 4. Paraphrase similarity is below the dense embedder's usable semantic margin.
 
 If recall is high (>= 90%), the local-LLM round-trip is healthy and embeddings remain stable across the storage-to-retrieval boundary.
+
+---
 
 ## 5. CLEANUP
 

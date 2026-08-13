@@ -158,6 +158,8 @@ Observed output:
 
 Verify chunk ordering index → Check collapse algorithm → Inspect ordering preservation across save/retrieve cycle
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/chunk-ordering-preservation.md](../../feature-catalog/pipeline-architecture/chunk-ordering-preservation.md)

@@ -12,6 +12,8 @@ This scenario verifies the `ceiling:` comment convention added to `references/un
 
 It is a durable WHY, not a brand or tool prefix (a brand prefix reads as a perishable, cargo-cult label), and it is explicitly NOT added to the comment-hygiene checker's allowed-pattern list — it already passes because it carries no forbidden id, and allow-listing it would let a forbidden id on the same line slip through. This is the producer-side companion to the reviewer-side downgrade rule (sk-code-review CR-022).
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer asks for a deliberately simple in-memory rate limiter on a local-only preview server, and wants the shortcut marked so it reads as a choice.
@@ -32,6 +34,8 @@ Add a small in-memory rate limiter to the sk-doc local preview server at .openco
 - `check-comment-hygiene.sh` passes the file (exit 0) WITHOUT `ceiling:` being added to the checker's allowed-pattern list.
 
 **Desired user-visible outcome**: A simplification that reads as a deliberate, upgradeable choice and survives the comment-hygiene gate on its own merits.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -73,10 +77,14 @@ Add a small in-memory rate limiter to the sk-doc local preview server at .openco
 2. If `ceiling:` was allow-listed: revert the checker change; the convention must pass without an allow-list entry.
 3. If the comment is a bare label: verify the §4 convention requires shortcut + ceiling + upgrade trigger.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/shared/references/universal/code-style-guide.md` — §4 neutral `ceiling:` intentional-simplification convention.
 - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker the convention must pass without an allow-list entry.
+
+---
 
 ## 5. SOURCE METADATA
 

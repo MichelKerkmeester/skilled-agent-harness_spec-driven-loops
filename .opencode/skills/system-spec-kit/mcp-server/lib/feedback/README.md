@@ -18,6 +18,8 @@ Current state:
 - Ranking metrics are computed from logged activity and replayed result sets.
 - Scheduled shadow evaluation builds a privacy-preserving synthetic corpus from non-reversible telemetry signals (intent, coarse result-count bucket, counted query hash) and compares live and proposed ranks. No raw query text is stored or reconstructable.
 
+---
+
 ## 2. ARCHITECTURE
 
 ```text
@@ -42,6 +44,8 @@ shadow-evaluation-runtime.ts
     +--> replay-seed-vocab.ts      # static intent seed vocabulary
 ```
 
+---
+
 ## 3. DIRECTORY TREE
 
 ```text
@@ -61,6 +65,8 @@ feedback/
 `-- README.md                      # Folder orientation
 ```
 
+---
+
 ## 4. KEY FILES
 
 | File | Responsibility |
@@ -77,6 +83,8 @@ feedback/
 | `feedback-retention-reducer.ts` | Computes conservative retention decisions (`delete`, `extend`, `protect`) from batch feedback summaries. |
 | `session-trace-causal-reducer.ts` | Converts deferred feedback-ledger session traces into weak (strength 0.3) causal links. Not invoked by any live feedback-logging path. |
 | `true-citation-emitter.ts` | Mines shown memory IDs that reappear in later assistant output (used) versus those that do not (shown-but-not-used) into a separate shadow ledger of citation pairs. Never touches ranking; flag `SPECKIT_TRUE_CITATION_EMITTER`, default off. |
+
+---
 
 ## 5. BOUNDARIES AND FLOW
 
@@ -95,6 +103,8 @@ implicit event
     -> adaptive proposal outside this folder
 ```
 
+---
+
 ## 6. ENTRYPOINTS
 
 | Export | File | Purpose |
@@ -105,6 +115,8 @@ implicit event
 | Shadow evaluation runtime exports | `shadow-evaluation-runtime.ts` | Start and execute scheduled shadow replay cycles. |
 | Metric helpers | `rank-metrics.ts` | Score live and shadow ranked lists. |
 
+---
+
 ## 7. VALIDATION
 
 Run from the repository root:
@@ -112,6 +124,8 @@ Run from the repository root:
 ```bash
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp-server/lib/feedback/README.md
 ```
+
+---
 
 ## 8. RELATED
 

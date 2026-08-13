@@ -27,6 +27,8 @@ Run Lane C with `loop-host.cjs --mode=skill-benchmark` (or `/deep:skill-benchmar
 > - Flags: `--scenarios <ids|critical>`, `--executor`, `--playbook-dir`. Live model via env `SKILL_BENCH_OPENCODE_MODEL` / `SKILL_BENCH_OPENCODE_VARIANT`.
 > - **Live model guidance:** `gpt-5.5-fast --variant high` completes (~78s); `xhigh` is too slow and times out. Live is advisory (cost + nondeterminism) — the gated verdict stays driven by router mode + the D5 hard gate. Auto-CREATE generator (`playbook-generator.cjs`) is opt-in + staged.
 
+---
+
 ## 2. INVOCATION
 
 ```bash
@@ -55,12 +57,16 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
 
 Command surface: `/deep:skill-benchmark` (see `commands/deep/skill-benchmark.md`).
 
+---
+
 ## 3. WHAT RUNS (MODE A)
 
 1. **D5 connectivity** (static, hard gate) — runs first; dead routed paths, dead intent keys, path escapes, orphan refs, unparseable router. Any P0 caps the verdict to `BLOCKED-BY-STRUCTURE`.
 2. **Fixtures** — public/private pairs under `assets/skill-benchmark/fixtures/<skill-id>/` (`<id>.public.json` + `<id>.private.json`).
 3. **Per scenario** — contamination-lint the public prompt (a leak is a fixture failure), then router-replay, then join with private gold to score.
 4. **Report** — `skill-benchmark-report.json` + `skill-benchmark-report.md` (rendered FROM the JSON, anti-drift).
+
+---
 
 ## 4. DIMENSIONS
 
@@ -82,13 +88,19 @@ Command surface: `/deep:skill-benchmark` (see `commands/deep/skill-benchmark.md`
 
 D1-inter is **built and deterministic** but opt-in (`--advisor-mode=python`); the live in-situ trace (Mode B) is built. The weighted **D4** dimension stays `unscored-mode-a` on purpose — its grader scores *hallucination*, not task usefulness, so folding it would mislabel the number. Real usefulness is the opt-in **D4-R task-outcome ablation** (`--d4`), reported separately as advisory `D4_task_outcome`, never summed into the weighted score. Mode A stays honest about coverage: the aggregate normalizes over the dimensions actually measured.
 
+---
+
 ## 5. VERDICT BANDS
 
 `PASS` ≥80 & no gate · `CONDITIONAL` 50–79 · `FAIL` <50 · `BLOCKED-BY-STRUCTURE` on any D5 P0. (Provisional — calibrate on 2-3 pilots.)
 
+---
+
 ## 6. TARGET ELIGIBILITY
 
 Mode A needs a parseable `INTENT_SIGNALS` + `RESOURCE_MAP` router (e.g. the `cli-*` skills). Skills without that pattern report `router_unparseable` and gate — that is a real signal that the skill is not smart-router-routable, not a harness bug. A skill that routes via a different mechanism is a candidate for live-mode (Mode B) measurement once built.
+
+---
 
 ## 7. AUTHORING THE BENCHMARK FOLDER
 

@@ -20,6 +20,8 @@ The `CONVERGE`-state decision: artifact-coverage AND dry-run-stability, with max
 
 `check-convergence.cjs` is the single-shot convergence check the planned command loop (phase-009, not yet built) will call once per iteration, and it is runnable directly via its own CLI today. It is the NFR-R01-sanctioned "documented manual coverage check" fallback — deliberately not a `runtime/scripts/convergence.cjs` code path, because that engine's loopType enum rejects `alignment` and its review-shaped composite score depends on graph conventions deep-alignment's adapters have no reason to produce.
 
+---
+
 ## 2. HOW IT WORKS
 
 It reduces the state log into the registry, reads iteration records and the corpus sizes, then evaluates two signals. Artifact-coverage is the fraction of discovered artifacts checked at least once across all applicable lanes (a zero-artifact lane is excluded from both sides of the ratio — vacuously covered, matching the reducer's `NOT_APPLICABLE` treatment); default threshold 100%. Dry-run stability requires the last N iteration records (default window 2, across all lanes in append order) to all report `newFindingsRatio === 0`; fewer than N recorded fails closed to "not stable," so a fresh run can never converge on its first iteration. `CONVERGED` requires both — never OR — because full coverage with unstable findings is not done, and stability with incomplete coverage is not done either.

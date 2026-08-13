@@ -60,6 +60,8 @@ Stage trace output for hybrid vs non-hybrid queries + intent weight comparison
 
 Check hybrid detection logic → Verify stage-2 guard condition → Inspect intent weight application point
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/double-intent-weighting-investigation.md](../../feature-catalog/scoring-and-calibration/double-intent-weighting-investigation.md)

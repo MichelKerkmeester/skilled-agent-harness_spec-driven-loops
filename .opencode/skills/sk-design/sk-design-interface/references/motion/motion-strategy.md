@@ -43,6 +43,8 @@ Decide why an interface element moves before deciding how. This reference covers
 
 If motion does not improve clarity or feeling at one of these layers, remove it.
 
+---
+
 ## 3. TIMING
 
 | Duration | Use case |
@@ -53,6 +55,8 @@ If motion does not improve clarity or feeling at one of these layers, remove it.
 | `500-800ms` | one earned entrance or brand choreography |
 
 This is the 100/300/500 rule: roughly 100ms for instant feedback, 300ms for state changes, 500ms for layout changes, and timing matters more than easing for whether motion feels right. Exit animations should usually run at about 75 percent of the entrance duration. User-initiated feedback over `300ms` feels laggy. Anything under about `80ms` reads as effectively instant, because perception buffers input for roughly that long; keep the fastest feedback tier near its `100-150ms` floor so micro-interactions land at the edge of that instant window.
+
+---
 
 ## 4. EASING
 
@@ -68,6 +72,8 @@ Use ease-in for exits and spring only when overshoot-and-settle is the actual de
 
 Reserve `linear` for determinate progress bars and similar progress indicators; never use it for movement. Linear motion reads as mechanical, so transforms and position changes should use a deceleration or ease-in curve, not `linear`.
 
+---
+
 ## 5. STAGING
 
 - Animate one focal point prominently at a time.
@@ -75,6 +81,8 @@ Reserve `linear` for determinate progress bars and similar progress indicators; 
 - Dim modal backgrounds to direct focus.
 - Coordinate z-index and layer hierarchy before animating overlays.
 - Stagger lists only when they are actual related siblings. Cap total delay; reduce per-item delay when the list is long.
+
+---
 
 ## 6. MOTION MATERIALS
 
@@ -89,6 +97,8 @@ Transform and opacity are reliable defaults, but not the whole palette.
 | FLIP/grid-row | layout-like transitions | measure once, animate transform or bounded row expansion |
 
 For lightweight removals, use a small fixed translate on exit instead of moving the element by its full height or turning the exit into a dramatic departure. Around `12px` is enough to show direction while keeping the exit shorter and softer than the enter.
+
+---
 
 ## 7. VERIFICATION
 

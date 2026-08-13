@@ -19,6 +19,8 @@ Runtime code imports the compiled output from `scripts/dist/renderers/`. Source 
 
 Use this folder when a script needs template expansion that is shared across spec generation, context saving, or report output. Keep template selection and file-write policy in the caller.
 
+---
+
 ## 2. SURFACE
 
 | Surface | Purpose |
@@ -27,6 +29,8 @@ Use this folder when a script needs template expansion that is shared across spe
 | `renderTemplate()` | Renders a template string with variables, sections, inverted sections, comments and array loops. |
 | Cleanup helpers | Normalize excess newlines and remove template instruction blocks before write. |
 | `TemplateContext` | Shared data shape for renderer input. |
+
+---
 
 ## 3. EXPORTS
 
@@ -42,6 +46,8 @@ Use this folder when a script needs template expansion that is shared across spe
 - `stripTemplateConfigComments`
 - `isFalsy`
 
+---
+
 ## 4. ALLOWED IMPORTS
 
 | Import | Rule |
@@ -52,6 +58,8 @@ Use this folder when a script needs template expansion that is shared across spe
 | `scripts/dist/` | Do not import compiled output from source files. |
 | MCP server modules | Do not import MCP server runtime modules from this folder. |
 
+---
+
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -59,6 +67,8 @@ Use this folder when a script needs template expansion that is shared across spe
 | `template-renderer.ts` | Template expansion, missing placeholder handling, value escaping and output cleanup. |
 | `index.ts` | Public barrel for renderer imports. |
 | `README.md` | Folder contract for maintainers and reviewers. |
+
+---
 
 ## 6. BOUNDARIES
 
@@ -69,12 +79,16 @@ Use this folder when a script needs template expansion that is shared across spe
 | Caller control | Keep destination paths, overwrite rules and workflow decisions outside this folder. |
 | Runtime separation | Do not import MCP server runtime modules or compiled output into source renderer files. |
 
+---
+
 ## 7. ENTRYPOINTS
 
 - Call `populateTemplate()` when a script needs to load and render a named template file.
 - Call `renderTemplate()` when a caller already has the template string in memory.
 - Import `TemplateContext` when typing context objects passed into renderer functions.
 - Use `cleanupExcessiveNewlines()` and `stripTemplateConfigComments()` only for focused tests or adjacent script cleanup.
+
+---
 
 ## 8. VALIDATION
 
@@ -86,6 +100,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 ```
 
 Expected result: TypeScript builds and README validation exits `0` with no HVR issues.
+
+---
 
 ## 9. RELATED
 

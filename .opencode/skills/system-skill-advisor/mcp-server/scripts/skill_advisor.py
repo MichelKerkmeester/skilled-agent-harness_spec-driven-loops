@@ -2424,6 +2424,15 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-create-command",
         "routing_enabled": False,
     },
+    "command-create-diagram": {
+        "description": "",
+        "slash_markers": ["/create:diagram"],
+        "inventory_id": "command-create-diagram",
+        "command": "/create:diagram",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-diagram",
+        "routing_enabled": False,
+    },
     "command-create-diff": {
         "description": "",
         "slash_markers": ["/create:diff"],
@@ -2431,15 +2440,6 @@ GENERATED_COMMAND_BRIDGES = {
         "command": "/create:diff",
         "skill_id": "sk-doc",
         "owner_mode": "sk-create-diff",
-        "routing_enabled": False,
-    },
-    "command-create-flowchart": {
-        "description": "",
-        "slash_markers": ["/create:flowchart"],
-        "inventory_id": "command-create-flowchart",
-        "command": "/create:flowchart",
-        "skill_id": "sk-doc",
-        "owner_mode": "sk-create-flowchart",
         "routing_enabled": False,
     },
     "command-create-skill-parent": {

@@ -53,6 +53,8 @@ active_embedder_provider
 
 If no tier is available, startup fails with a tier-by-tier diagnostic. This is intentional: a missing embedder should be visible before the daemon serves stale or mismatched vectors.
 
+---
+
 ## 3. RUNTIME FALLBACK
 
 Provider creation still has bounded runtime fallback for transient failures:
@@ -65,6 +67,8 @@ Provider creation still has bounded runtime fallback for transient failures:
 | Voyage | none |
 
 Runtime fallback is best-effort and may change dimensions. When that happens, logs must warn that existing vector tables may need reindexing.
+
+---
 
 ## 4. DEGRADED SEARCH
 
@@ -92,6 +96,8 @@ Confirm vector health correctly before concluding corruption:
 
 The misread to avoid: "main-DB `sqlite_master` shows no `vec_memories`" plus "health reads degraded, N vectors missing" looks like a broken index, but both are expected during a healthy async rebuild against the sharded layout. Verify the shard and `recallDegradation.degraded` before reporting a regression or running a repair.
 
+---
+
 ## 5. RETRY POLICY
 
 Transient cloud failures retry with bounded exponential backoff before falling through:
@@ -105,6 +111,8 @@ Transient cloud failures retry with bounded exponential backoff before falling t
 | Local provider unavailable | Fallback or fail with a clear startup error |
 
 Permanent authorization failures should not be retried.
+
+---
 
 ## 6. CACHE SHAPE
 
@@ -122,6 +130,8 @@ last_used_at  TEXT
 ```
 
 Never reuse a cache row across profile, input-kind, model, or dimension boundaries.
+
+---
 
 ## 7. OPERATOR CHECKS
 

@@ -20,6 +20,8 @@ The root `manual-testing-playbook.md` states "Total scenarios: 20" across 5 cate
 
 **Total scenarios enumerated: 21** (20 catalogued + `DL-CR-001`).
 
+---
+
 ## 3. RESULT SUMMARY
 
 | Metric | Value |
@@ -30,6 +32,8 @@ The root `manual-testing-playbook.md` states "Total scenarios: 20" across 5 cate
 | SKIP | 1 |
 | Individual prompt checks run (multi-prompt scenarios expand) | 26 |
 | Compiled vs legacy drift (across all 26 checks) | **0** |
+
+---
 
 ## 4. SCENARIO VERDICT TABLE
 
@@ -65,11 +69,15 @@ Multi-prompt scenarios (`AI-001`, `AI-002`, `AI-003`) are expanded one row per s
 | SC-004 | state-and-convergence-discipline | review | review | review | PASS | |
 | DL-CR-001 | compiled-routing (uncatalogued 21st) | research | research | research | PASS | resources match expected_resources |
 
+---
+
 ## 5. LANE C PARITY CROSS-CHECK (21/0)
 
 - **Recorded figure**: `system-deep-loop | compiled-serving (21/0) | f9f639674b` — `013-compiled-coverage-buildout/handover.md` line 23 (STATUS line 13 also cites `system-deep-loop 21`).
 - **This sweep**: 21 scenario files enumerated on disk (matches 21). 26 individual prompt checks executed (multi-prompt scenarios expand). **0 of 26 show `compiled != legacy`** — full agreement on every single probe, including the one that fails against its own doc expectation (AI-001/review — both sides independently `defer`, so it is agreement, not drift).
 - **Verdict: CORROBORATES the recorded 21/0 parity figure.** Compiled routing is byte-for-byte behaviorally identical to legacy routing across the entire live playbook corpus for this hub, re-confirmed independently by this manual sweep.
+
+---
 
 ## 6. FAIL DETAIL
 
@@ -83,6 +91,8 @@ Multi-prompt scenarios (`AI-001`, `AI-002`, `AI-003`) are expanded one row per s
 - **Classification**: this is a scenario-fidelity gap in the playbook's own secondary-probe wording (or an alias-coverage gap in the registry) — **it is explicitly not a compiled-vs-legacy drift**, since both implementations agree exactly. Per the root playbook's own Verdict Rules ("PASS iff one public advisor identity is observed and all four resolved modes match the registry"), one of the four sub-probes fails to resolve at all, so the scenario is graded FAIL overall per the Feature Verdict Rules ("FAIL: any mapped scenario is FAIL"). The other 3/4 AI-001 sub-probes (research, ai-council, agent-improvement) pass cleanly.
 - **Not touched**: this is a read-only finding; no registry, alias list, or scenario file was edited (out of scope / HARD constraint).
 
+---
+
 ## 7. SKIP DETAIL
 
 ### RB-004 (Retired Backend Scenario)
@@ -90,6 +100,8 @@ Multi-prompt scenarios (`AI-001`, `AI-002`, `AI-003`) are expanded one row per s
 - **File**: `runtime-and-backend/external-adapter.md`
 - **Reason**: the file body is an explicit retirement placeholder — no "Exact prompt", no "Expected route", no Pass/Fail Criteria, no command sequence. Its own text: *"This placeholder remains only to keep the runtime-and-backend playbook directory stable; no execution contract or acceptance test remains for the retired backend."*
 - **Genuinely un-runnable headlessly**: there is nothing to feed to either `resolve.cjs` or `router-replay.cjs` — the file documents a negative marker (no active mode ever used the retired `external-adapter` backend), not a live scenario.
+
+---
 
 ## 8. GUARDRAIL VERIFICATION
 
@@ -113,6 +125,8 @@ All three hashes also match the prefixes recorded in `013-compiled-coverage-buil
 - The 2 named strays were confirmed pre-existing-dirty and left untouched by this sweep: `.opencode/specs/mcp-tooling/008-mcp-aside/001-research/research/research.md` and `.opencode/specs/system-deep-loop/032-deep-alignment-mode/013-review-remediation/decision-record.md`.
 - `git status` also shows `.opencode/bin/compiled-routing-foundation.vitest.ts` and `.opencode/bin/tests/compiled-route-manifest.test.cjs` modified, and a `cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/` directory appeared mid-sweep. Neither is attributable to this sweep — this session made zero `Edit`/`Write` calls into the repository (only `Read` and read-only `Bash` — `node`, `shasum`, `grep`, `find`, `diff`, `mkdir -p` for the archive folder itself, plus the two named report files). The shared scratchpad's generically-named `report.json`/`report.md` and `scenarios.json`/`playbook-verify-results.json` were confirmed by content to belong to concurrent sibling agents running the identical exercise for `sk-code` and `sk-doc` respectively — this worktree is being used concurrently by multiple per-hub playbook-verify agents, which explains both the extra dirty files and the appearing sibling archive directory.
 - **No commit was made.** This sweep is read-only plus one new archive folder (`report.json` + this `report.md`).
+
+---
 
 ## 9. ARCHIVE PATH
 

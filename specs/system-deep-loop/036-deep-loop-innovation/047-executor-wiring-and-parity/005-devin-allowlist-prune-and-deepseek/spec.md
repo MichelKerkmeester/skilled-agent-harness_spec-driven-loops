@@ -45,8 +45,8 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | None |
-| **Predecessor** | 044-devin-fanout-allowlist-parity |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `004-devin-fanout-allowlist-parity` |
 | **Successor** | None |
 | **Handoff Criteria** | Allowlist equals the curated four-family scope in both surfaces; parity test pins the mirror; suites green |
 <!-- /ANCHOR:metadata -->

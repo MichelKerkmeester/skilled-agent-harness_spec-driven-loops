@@ -14,6 +14,8 @@ Route /create:changelog to its presentation contract and workflow YAML for creat
 - Do not dispatch agents from this router.
 - Do not edit workflow YAML while executing this command.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -21,6 +23,8 @@ Route /create:changelog to its presentation contract and workflow YAML for creat
 | Presentation contract | `.opencode/commands/create/assets/create-changelog-presentation.txt` |
 | Auto workflow | `.opencode/commands/create/assets/create-changelog-auto.yaml` |
 | Confirm workflow | `.opencode/commands/create/assets/create-changelog-confirm.yaml` |
+
+---
 
 ## 3. MODE ROUTING
 
@@ -34,12 +38,16 @@ Route /create:changelog to its presentation contract and workflow YAML for creat
 5. Execute the selected YAML step by step.
 6. Use the presentation contract, not this router, for user prompts, setup/status dashboards, release-option display, and final result display.
 
+---
+
 ## 4. EXECUTION TARGETS
 
 | Mode | Target |
 |------|--------|
 | `:auto` | `.opencode/commands/create/assets/create-changelog-auto.yaml` |
 | `:confirm` or omitted mode | `.opencode/commands/create/assets/create-changelog-confirm.yaml` |
+
+---
 
 ## 5. PRESENTATION BOUNDARY
 
@@ -48,6 +56,8 @@ The following content lives only in `.opencode/commands/create/assets/create-cha
 - Startup questions, Phase 0 verification, setup dashboard, release prompt layout, status display, completion display, and next-step text.
 
 The router must not invent visible wording for those surfaces; it only selects the workflow YAML and execution mode.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

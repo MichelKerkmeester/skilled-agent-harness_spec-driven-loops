@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+ux-hooks-directive-lifecycle-dedup,system-spec-kit,,documentation,manual,,opencode-go/deepseek-v4-flash,pi,,PASS,"Pi dispatch suite 54/54 incl. directive dedup lane 10/10 (first-full, repeat-suppressed, resume/compact re-arm, dirty-content, unknown-session fail-open, fallback, kill-switch, session isolation)"

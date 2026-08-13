@@ -11,6 +11,8 @@ description: "Self-contained harness that dispatches five prompt frameworks agai
 
 `eval/` is a self-contained bake-off harness for MiMo-V2.5-Pro (and, in later runs, MiniMax M3) prompt frameworks. For each framework x fixture combination it dispatches a coding task through the OpenCode CLI, extracts the returned JavaScript function, runs a hidden assertion suite in isolated child processes and scores `assertion_pass_rate`, `format_adherence` and output length. It is a leaner port of the framework-variant-plus-scorer pattern used by the MiniMax bake-off in `003-minimax-prompt-framework/`.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -22,11 +24,15 @@ description: "Self-contained harness that dispatches five prompt frameworks agai
 | `runtests.cjs` | Runs an extracted function against its fixture's hidden tests, one isolated child process per test case, so a hang or throw in one case cannot mask the others |
 | `runner-child.cjs` | Single-test child process. Defines the model's function via the `Function` constructor and deep-equals one test case, printing a JSON result |
 
+---
+
 ## 3. RUN ARTIFACTS
 
 - `results.json`, `results-mimo-*.json` and `results-minimax-*.json` hold per-combo dispatch results from individual bake-off runs, written by `run-mimo-bench.cjs`
 - `runs/` and `runs-archive/` hold raw per-combo dispatch output and archived prior runs, organized by model and reasoning-effort cell (`mimo-default`, `mimo-high`, `minimax-high` and more)
 - `synthesis.md`, `synthesis-high-reasoning.md` and `synthesis-m3-vs-mimo.md` hold ranked findings for the default bake-off, a reasoning-effort sweep across MiMo and MiniMax and an M3-vs-MiMo rerun
+
+---
 
 ## 4. VALIDATION
 
@@ -35,6 +41,8 @@ node run-mimo-bench.cjs --model opencode/mimo-v2.5-free --frameworks rcaf --fixt
 ```
 
 Real dispatches only, no fabricated scores. Failures record the exit code and stderr. Use the full default invocation (`node run-mimo-bench.cjs`) to run all 5 frameworks against both fixtures on the pro model.
+
+---
 
 ## 5. RELATED
 

@@ -26,9 +26,13 @@ Private procedure card for applying the existing design-interface discovery ques
 | Proof gate | The response shows the missing facts that would change design direction, caps the question set to only material items, and records which minor decisions the mode will make without asking. |
 | Privacy rule | This is a private interface procedure card, not a public question-mode skill. |
 
+---
+
 ## 2. READ-ONLY COMPATIBILITY
 
 The card requires only reading the prompt and any supplied artifacts. `design-interface` may return questions or proceed with stated assumptions; it must not require writing files, running commands, or invoking a separate tool to use this card.
+
+---
 
 ## 3. PROCEDURE
 
@@ -37,6 +41,8 @@ The card requires only reading the prompt and any supplied artifacts. `design-in
 3. Bundle questions into one round rather than asking serially.
 4. Prefer structured choices when possible, but keep freeform escape hatches for brand, reference, or constraint details.
 5. After answers arrive, recap only the choices that alter the design plan.
+
+---
 
 ## 4. CONFLICT RULE
 

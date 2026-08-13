@@ -204,6 +204,8 @@ Command 2: `cd .opencode/skills/system-spec-kit/scripts && npx vitest run tests/
 
 Inspect `scripts/extractors/file-extractor.ts`, `diagram-extractor.ts`, `session-activity-signal.ts`, and the extractor barrel if module loading or enrichment semantics fail
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/session-extraction-and-enrichment.md](../../feature-catalog/tooling-and-scripts/session-extraction-and-enrichment.md)

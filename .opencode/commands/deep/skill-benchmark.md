@@ -82,6 +82,8 @@ Resolve:
 - **trace mode** — `router` (Mode A, deterministic, default/CI) or `live` (Mode B, BUILT — playbook corpus dispatched through `cli-opencode`).
 - **advisor mode** (optional) — `python` enables the opt-in D1-inter advisor probe; off by default and in CI.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -93,12 +95,16 @@ Resolve:
 | Benchmark orchestrator | `scripts/skill-benchmark/run-skill-benchmark.cjs` (D5 hard gate → per-scenario contamination-lint → router-replay → score → dual report) |
 | Methodology + operator guide | `references/skill-benchmark/operator-guide.md`, `references/skill-benchmark/routing-optimization.md`, and the target skill's SKILL.md |
 
+---
+
 ## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
 2. Treat the skill id/root, `--outputs-dir`, `--fixtures-dir`, `--trace-mode`, and `--advisor-mode` as workflow inputs, not execution modes.
 3. Resolve the Mandatory Input Gate values from `$ARGUMENTS` and defaults. For `:auto`, resolve confidently or fail fast naming the missing inputs; for `:confirm`/no suffix, present the resolved inputs and wait for confirmation.
 4. After Phase 0 and the input gate pass, read the target skill's SKILL.md + the operator guide, then load the matching workflow YAML in §4 and execute it step by step using the resolved setup values.
+
+---
 
 ## 4. EXECUTION TARGETS
 
@@ -119,6 +125,8 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host
 
 `--advisor-mode=python` enables the built-but-opt-in D1-inter advisor probe (deterministic in-repo SQLite advisor, scored out-of-band; off by default and in CI). The orchestrator (`scripts/skill-benchmark/run-skill-benchmark.cjs`) runs the D5 hard gate first, then per-scenario contamination-lint → router-replay → score, then writes the dual report.
 
+---
+
 ## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/deep/assets/deep-skill-benchmark-presentation.txt`:
@@ -136,6 +144,8 @@ The following router-owned display must still render verbatim from this document
 The following content must not come from this router: loop-host progress, benchmark scores, verdicts, ranked bottlenecks, scenario rows, report wording, remediation details, and any skill-owned fixture, playbook, live-routing, advisor, or browser-scenario description beyond the setup fields named here.
 
 Lane C is **diagnostic by default** (no target-skill mutation). Findings hand off to Lane A (`/deep:agent-improvement`) or a follow-up spec packet via the remediation taxonomy.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

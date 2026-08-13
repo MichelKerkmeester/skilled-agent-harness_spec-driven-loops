@@ -26,9 +26,13 @@ Private procedure card for applying the existing design-interface wireframe expl
 | Proof gate | The options differ in structure or flow, not cosmetic styling; each option has a rationale and a recommended next step. |
 | Privacy rule | This card is private interface guidance and is not exposed as a standalone wireframe skill. |
 
+---
+
 ## 2. READ-ONLY COMPATIBILITY
 
 For read-only operation, the card returns a storyboard, ASCII outline, or handoff plan. It must not require file creation or prototype rendering from `design-interface`.
+
+---
 
 ## 3. PROCEDURE
 
@@ -37,6 +41,8 @@ For read-only operation, the card returns a storyboard, ASCII outline, or handof
 3. Generate at least three options that span safe, refined, and riskier structures.
 4. Annotate each option with the tradeoff it tests.
 5. End with a recommended next procedure: direction, variation, prototype handoff, or another wireframe round.
+
+---
 
 ## 4. CONFLICT RULE
 

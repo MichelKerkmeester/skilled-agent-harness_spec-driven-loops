@@ -60,6 +60,8 @@ Mutation output + SQL inspection results + schema constraint verification
 
 Inspect transaction wrappers; verify schema migration state; check for incomplete writes in DB
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/database-and-schema-safety.md](../../feature-catalog/bug-fixes-and-data-integrity/database-and-schema-safety.md)

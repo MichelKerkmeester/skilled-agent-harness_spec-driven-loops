@@ -15,6 +15,8 @@ trigger_phrases:
 
 `scripts/` owns the command-line tooling for initializing, packaging and validating skills, generating leaf manifests, refreshing derived skill data and checking compiled-routing assets. The `lib/` and `tests/` directories are separate source zones with their own READMEs.
 
+---
+
 ## 2. CONTENTS
 
 | File | Responsibility |
@@ -30,11 +32,15 @@ trigger_phrases:
 | `validate-playbook-topology.cjs` | Validates manual playbook topology. |
 | `validate_skill_package.py` | Runs skill and parent-hub package validation. |
 
+---
+
 ## 3. BOUNDARIES
 
 - `lib/` contains pure contracts used by the generators.
 - `tests/` contains self-running Node regression scripts.
 - Generated manifests and derived files are written only by their owning generator commands.
+
+---
 
 ## 4. VALIDATION
 
@@ -45,6 +51,8 @@ for script in .opencode/skills/sk-doc/sk-create-skill/scripts/*.cjs; do node --c
 ```
 
 Use the package-specific commands in the create-skill workflow when validating a skill or hub.
+
+---
 
 ## 5. RELATED
 

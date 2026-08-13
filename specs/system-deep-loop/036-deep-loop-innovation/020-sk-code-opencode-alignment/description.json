@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/020-sk-code-opencode-alignment",
   "description": "A large share of the system-deep-loop runtime was authored across many independent fan-out build sessions, and that code",
   "keywords": [
@@ -14,7 +15,7 @@
     "sessions",
     "code"
   ],
-  "lastUpdated": "2026-08-07T00:20:48.664Z",
+  "lastUpdated": "2026-08-11T13:51:54.258Z",
   "specId": "020",
   "folderSlug": "sk-code-opencode-alignment",
   "parentChain": [
@@ -22,6 +23,5 @@
     "036-deep-loop-innovation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

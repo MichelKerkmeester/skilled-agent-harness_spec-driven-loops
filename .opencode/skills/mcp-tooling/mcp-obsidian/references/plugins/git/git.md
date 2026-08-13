@@ -32,6 +32,8 @@ The `mcp-obsidian` mode operates this plugin by reading and editing its `data.js
 | State file | `<vault>/.obsidian/plugins/obsidian-git/data.json` | The settings surface for the mode |
 | State file present | Not yet | The vault has no data.json, so built-in defaults apply |
 
+---
+
 ## 2. WHAT IT DOES
 
 Turns the vault into a git repository. The repository root is the vault root when the repository is initialized. Automatic backup commits changed files on an interval measured in minutes. Commit-and-sync can pull before push and push after commit. When local and remote history diverge, the plugin merges, rebases or hard-resets per the `syncMethod` setting. It can also auto-resolve conflicts per `mergeStrategy`. Conflicted files are listed in a file written at the vault root. The plugin integrates with the built-in Source Control view and registers its own commands, a History view and a Diff view.
@@ -46,6 +48,8 @@ Turns the vault into a git repository. The repository root is the vault root whe
 With `differentIntervalCommitAndPush` enabled, commit and push run on separate timers.
 
 The plugin registers three views: the Source Control view, the History view and the Diff view. All three render in the app, none of them needs file-layer work from the mode.
+
+---
 
 ## 3. FILE-LAYER SURFACE
 
@@ -69,6 +73,8 @@ The plugin registers three views: the Source Control view, the History view and 
 | Delete repository command | Irreversible |
 | Discard all changes command | Irreversible |
 | Raw command palette | Unbounded by design, out of the allowlist |
+
+---
 
 ## 4. PLUGIN COMMANDS
 
@@ -145,13 +151,19 @@ Every command id below is verified from the installed `main.js`. The palette nam
 | Pause/Resume automatic routines | `pause-automatic-routines` | Master switch for automation |
 | Raw command | `raw-command` | Unbounded git input, out of the allowlist |
 
+---
+
 ## 5. SETTINGS LOCATION
 
 Settings live in `.obsidian/plugins/obsidian-git/data.json` as a JSON object with flat keys plus two nested objects, `hunks` and `lineAuthor`. This vault has no data.json yet, so every key uses its built-in default until the user changes it in the app. The full key table with defaults and enums lives in `data-model.md`. The mode must read the file before any edit and must never assume a key exists.
 
+---
+
 ## 6. WHEN TO USE THIS REFERENCE SET
 
 Use this set when the user asks about Obsidian Git backup, commit-and-sync behavior, vault repository state, commit messages, ignore rules or pull and push failures. Use it when a task reads or edits the plugin settings file. Use it before any workflow that inspects vault repository state. Use it for the plugin commands named in `workflows.md` when the mode must explain or verify behavior at the file layer.
+
+---
 
 ## 7. REFERENCE FILES
 
@@ -161,9 +173,13 @@ Use this set when the user asks about Obsidian Git backup, commit-and-sync behav
 | `workflows.md` | Read, validate and modify recipes with backup discipline and before/after patterns |
 | `troubleshooting.md` | Failure modes, diagnosis sequence and named validation checkpoints |
 
+---
+
 ## 8. SAFETY DOCTRINE
 
 The mode never runs destructive git operations on a real vault. Delete repository, discard all changes and history rewrites are out of reach. State-changing git workflows are validated in throwaway repositories only. Read-only git inspection of the real vault is allowed against an explicit allowlist in `workflows.md`. Every settings edit takes a backup copy first. Any unverified detail is marked VERIFY and stays out of copyable examples.
+
+---
 
 ## 9. GOTCHAS
 

@@ -20,7 +20,6 @@
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
-import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -84,7 +83,6 @@ function filePathFrom(toolInput, projectDir) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  if (!isHookEnabled('spec-gate')) return approve();
   const payload = parseJsonFailOpen(await readStdin());
   if (payload === null) return approve(); // no/invalid payload -> fail open
 

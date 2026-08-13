@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "hooks/008-pi-caching-like-reasonix/013-apply-opencode-go-cache-compat",
+  "description": "Apply a credential-free provider-level session-affinity models.json overlay for the opencode-go channel so the pi-cache-optimizer DeepSeek compat warning stops and the prefix cache stays warm, plus user docs.",
+  "keywords": [
+    "opencode-go",
+    "cache",
+    "compat",
+    "overlay",
+    "session",
+    "affinity",
+    "models.json",
+    "deepseek",
+    "pi-cache-optimizer"
+  ],
+  "lastUpdated": "2026-08-13T00:00:00.000Z",
+  "specId": "013",
+  "folderSlug": "apply-opencode-go-cache-compat",
+  "parentChain": [
+    "hooks",
+    "008-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

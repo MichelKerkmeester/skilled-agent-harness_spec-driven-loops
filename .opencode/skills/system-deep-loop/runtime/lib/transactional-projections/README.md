@@ -11,6 +11,8 @@ description: "Applies verified ledger events into one atomic, fenced multi-view 
 
 Applies verified ledger events into one atomic projection generation, so a bundle of related views always advances together or not at all. The engine reduces events under a fenced lease from `locks-and-fencing`. A store treats one fenced document as the transaction boundary. A publisher delivers immutable committed snapshot manifests once a generation lands. A legacy-comparison helper records bounded, path-level evidence against the value the projection is meant to replace.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -24,16 +26,22 @@ Applies verified ledger events into one atomic projection generation, so a bundl
 | `transactional-projection-store.ts` | Fenced document store that is the transaction boundary for projections and pointers |
 | `transactional-projection-types.ts` | Bundle, snapshot and reduce-context type contracts |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/health-degeneration-harness/`
 
 It depends on `locks-and-fencing` for fenced leases and `stream-fold-gauges` for the metric bindings a bundle can carry.
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/transactional-projections.vitest.ts`
 - Also exercised by `health-degeneration-harness.vitest.ts`.
+
+---
 
 ## 5. RELATED
 

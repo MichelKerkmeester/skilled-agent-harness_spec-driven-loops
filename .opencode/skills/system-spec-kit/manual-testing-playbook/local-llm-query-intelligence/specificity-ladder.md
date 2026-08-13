@@ -136,6 +136,8 @@ For each level, classify the top-3 results as:
 
 BLOCKED — The required Spec Kit Memory search and health commands could not run because the local MCP server dist is stale; fixing it would require running the requested build command, which would write outside the single allowed scenario file.
 
+---
+
 ## 4. NOTES
 
 This is the most subjective of the scenarios — A/M/S classification requires judgment. To make the assessment fair:

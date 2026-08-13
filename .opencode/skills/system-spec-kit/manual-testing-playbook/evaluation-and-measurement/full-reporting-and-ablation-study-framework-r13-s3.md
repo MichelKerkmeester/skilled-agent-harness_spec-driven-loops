@@ -59,6 +59,8 @@ Ablation snapshot files + dashboard text or JSON output + per-channel metrics
 
 Verify eval dataset exists → Check ablation channel-off logic → Inspect snapshot storage path → Validate dashboard template
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/full-reporting-and-ablation-study-framework.md](../../feature-catalog/evaluation-and-measurement/full-reporting-and-ablation-study-framework.md)

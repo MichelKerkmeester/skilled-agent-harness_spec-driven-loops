@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/002-vendor-and-repoint",
+  "description": "Phase 1 produces a patched fork in a working clone outside this repo",
+  "keywords": [
+    "phase",
+    "produces",
+    "patched",
+    "fork",
+    "working",
+    "clone",
+    "outside",
+    "repo"
+  ],
+  "lastUpdated": "2026-08-11T06:40:10.401Z",
+  "specId": "002",
+  "folderSlug": "vendor-and-repoint",
+  "parentChain": [
+    "hooks",
+    "008-pi-caching-like-reasonix",
+    "006-fork-and-improve-deep-pi"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

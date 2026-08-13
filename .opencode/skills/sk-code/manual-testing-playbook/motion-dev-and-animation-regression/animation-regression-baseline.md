@@ -22,6 +22,8 @@ Operators run the exact prompt and command sequence for `MR-004` and produce a b
 |---|---|---|---|---|---|---|---|---|
 | `MR-004` | Animation Regression Baseline | Capture reusable baseline videos for Motion dropdown and testimonial slider flows | `Record baseline videos for the Motion dropdown and slider flows; compare drift, console errors, and timing regressions.` | open target page -> clear console -> record dropdown -> record slider -> save console -> compare with previous baseline if present | dropdown opens/closes smoothly and reaches correct final state; slider advances, snaps, and updates active state; no console errors | `/tmp/skc-MR004-nav-dropdown.mp4`, `/tmp/skc-MR004-testimonial.mp4`, `/tmp/skc-MR004-console.txt`, `/tmp/skc-MR004-verdict.md` | PASS iff both flows match baseline behavior or approved first baseline, with clean console and correct final states | If drift appears, isolate whether markup, Motion API, timing constants, or reduced-motion settings changed |
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Prompt

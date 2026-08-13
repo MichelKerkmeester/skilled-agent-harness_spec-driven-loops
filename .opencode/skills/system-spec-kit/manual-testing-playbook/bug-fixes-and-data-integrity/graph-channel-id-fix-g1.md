@@ -60,6 +60,8 @@ Command transcript + search output showing non-zero graph hits
 
 Verify causal edges exist via `memory_causal_stats()` → Check graph channel ID matches schema → Inspect channel activation flags
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/graph-channel-id-fix.md](../../feature-catalog/bug-fixes-and-data-integrity/graph-channel-id-fix.md)

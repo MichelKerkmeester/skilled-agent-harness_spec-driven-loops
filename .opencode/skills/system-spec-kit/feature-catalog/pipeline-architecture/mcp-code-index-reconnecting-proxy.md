@@ -15,7 +15,7 @@ version: 3.6.0.2
 
 ## 1. OVERVIEW
 
-
+---
 
 ## 2. HOW IT WORKS
 
@@ -31,6 +31,7 @@ version: 3.6.0.2
 
 ### Never-replay mutating tools
 
+---
 
 ## 3. SOURCE FILES
 
@@ -44,6 +45,8 @@ version: 3.6.0.2
 | File | Type | Role |
 |---|---|---|
 | `mcp-server/tests/launcher-code-index-proxy.vitest.ts` | Automated test | Unit-tests the code-index reattach-and-replay path, the read-tool replay set and the never-replay classification of scan, apply and verify |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture

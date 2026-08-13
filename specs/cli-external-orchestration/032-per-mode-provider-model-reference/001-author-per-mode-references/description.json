@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/032-per-mode-provider-model-reference/001-author-per-mode-references",
+  "description": "Each cli mode scatters its provider/model/invocation facts across its `SKILL.md` roster, its `references/cli-reference.md` model section, and model",
+  "keywords": [
+    "cli",
+    "mode",
+    "scatters",
+    "provider",
+    "model",
+    "invocation",
+    "facts",
+    "across",
+    "skill",
+    "roster",
+    "references",
+    "cli-reference",
+    "section"
+  ],
+  "lastUpdated": "2026-08-11T07:15:55.237Z",
+  "specId": "001",
+  "folderSlug": "author-per-mode-references",
+  "parentChain": [
+    "cli-external-orchestration",
+    "032-per-mode-provider-model-reference"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

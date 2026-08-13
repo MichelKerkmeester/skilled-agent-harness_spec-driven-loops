@@ -126,6 +126,8 @@ SOURCES=["importance_tier","frontmatter_explicit","importance_tier"]
 
 Verify content generation template → Check structure preservation rules → Inspect `inferMemoryTypesBatch()` fallback-key handling in `type-inference.ts`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/smarter-memory-content-generation.md](../../feature-catalog/memory-quality-and-indexing/smarter-memory-content-generation.md)

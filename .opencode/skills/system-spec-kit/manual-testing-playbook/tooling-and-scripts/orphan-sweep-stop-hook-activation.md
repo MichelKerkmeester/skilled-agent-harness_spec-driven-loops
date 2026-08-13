@@ -15,6 +15,8 @@ This scenario verifies that the session-cleanup Stop hook ships an orphan-sweep 
 
 The check is automated-test-backed. A human runs the shell syntax check, the Stop-hook orphan-sweep unit suite, and a grep that proves the fallback function and the controlling flag are defined and wired into the hook. Together they confirm the sweep defaults to off and activates only when the flag is set.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the Stop-hook orphan-sweep fallback defaults to off and only runs when the operator sets the activation flag.
@@ -24,6 +26,8 @@ The check is automated-test-backed. A human runs the shell syntax check, the Sto
 - Expected signals: `bash -n` exits cleanly for the cleanup script. `launcher-stop-hook-orphan-sweep.vitest.ts` passes including the default-off and flag-enabled cases. `run_orphan_sweep_fallback` and `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` appear at the function definition, the default-off assignment and the activation guard.
 - Desired user-visible outcome: Operators can opt into reaping leftover launcher processes on session end, while the default behavior leaves live sessions untouched.
 - Pass/fail: PASS only when syntax, unit tests, and flag-gated wiring all match expectations.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -86,6 +90,8 @@ $ rg -n "run_orphan_sweep_fallback|SPECKIT_STOP_HOOK_ORPHAN_SWEEP" .opencode/scr
 
 If the syntax check fails, inspect the function placement and the shell quoting first. If the default-off case fails, confirm `SPECKIT_STOP_HOOK_ORPHAN_SWEEP` resolves to `off` when unset and the guard skips the sweep. If the flag-enabled case fails, confirm the guard calls `run_orphan_sweep_fallback` only when the flag is set to an on value. If grep cannot find the tokens, confirm the function definition, the default assignment, and the activation guard all exist.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -102,6 +108,8 @@ If the syntax check fails, inspect the function placement and the shell quoting 
 | `.opencode/scripts/session-cleanup.sh` | Primary implementation anchor |
 | `.opencode/scripts/orphan-mcp-sweeper.sh` | Orphan-only sweeper anchor |
 | `mcp-server/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Regression or validation anchor |
+
+---
 
 ## 5. SOURCE METADATA
 

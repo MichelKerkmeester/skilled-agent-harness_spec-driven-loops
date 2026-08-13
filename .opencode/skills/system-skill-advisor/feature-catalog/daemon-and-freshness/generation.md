@@ -17,9 +17,13 @@ version: 0.8.0.12
 
 Make reindex transitions observable and atomic. Every snapshot is tagged with a monotonically increasing generation so readers can tell when routing state has advanced and cache layers can invalidate in lockstep.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/freshness/generation.ts` writes the generation counter through a temp-file plus atomic rename. Post-commit publication makes the new snapshot visible to readers only after the counter has advanced. Corrupted counters are recovered when recoverable and reported as `unavailable` freshness when not. Generation bumps feed both `advisor_status.generation` and cache invalidation (see `lib/freshness/cache-invalidation.ts`).
+
+---
 
 ## 3. SOURCE FILES
 
@@ -37,6 +41,8 @@ Make reindex transitions observable and atomic. Every snapshot is tagged with a 
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | generation bump atomicity |
 | `Playbook scenario [AU-004](../../manual-testing-playbook/auto-update-daemon/generation-publication.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

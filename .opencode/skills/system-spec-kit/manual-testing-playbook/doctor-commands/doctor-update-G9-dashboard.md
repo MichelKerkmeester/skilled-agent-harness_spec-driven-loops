@@ -109,6 +109,8 @@ The command loads `doctor-update.yaml` and renders the cross-subsystem dashboard
 
 If row count is wrong, inspect `doctor-update.yaml` Phase 4 dashboard rows and compare with `.opencode/commands/doctor/update.md` output contract. If age is missing, inspect the status probe adapters for `last_indexed_at` or equivalent freshness metadata.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

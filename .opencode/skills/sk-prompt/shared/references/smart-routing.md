@@ -31,6 +31,8 @@ leaf paths, and this router never re-decides the mode.
 
 This reference maps prompt-craft intent to the leaf resources owned by `sk-prompt`. The model registry at `sk-prompt-models/assets/model-profiles.json` is the authority for profiled model ids and executor paths; this router is CI-verified against that registry.
 
+---
+
 ## 2. 🧭 INTENT MODEL
 
 - **prompt-improve leaves** — the DEPTH/CLEAR prompt engine's own references and
@@ -120,6 +122,8 @@ RESOURCE_MAP = {
     ],
 }
 ```
+
+---
 
 ## 4. 🛠️ HOW TO READ THIS
 

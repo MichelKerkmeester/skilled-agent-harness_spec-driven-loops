@@ -138,6 +138,8 @@ Per CLI:
 - A FAIL here points to a SERIOUS issue: either the DB isn't shared correctly (each CLI is opening its own DB), the embedding rendering differs across MCP clients (shouldn't, since embeddings are persisted in the DB), or the trigger-phrase routing is AI-session-dependent (it shouldn't be).
 - PARTIAL (rank 4-10) is acceptable if the corpus is large — drift down the ranking is normal when there's a busy index.
 
+---
+
 ## 5. CLEAN-UP
 
 ```

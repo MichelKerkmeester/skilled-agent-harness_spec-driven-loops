@@ -60,6 +60,8 @@ Stage 3 output with score field trace showing fallback path taken for each test 
 
 Inspect resolveEffectiveScore implementation; verify fallback priority constants; test all combinations of missing fields
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/stage-3-effectivescore-fallback-chain.md](../../feature-catalog/scoring-and-calibration/stage-3-effectivescore-fallback-chain.md)

@@ -124,12 +124,6 @@
         "source": "derived"
       },
       {
-        "name": "Resolve Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Open Question",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -137,6 +131,12 @@
       },
       {
         "name": "focused",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
     "created_at": "2026-08-12T12:51:40.227Z",
-    "last_save_at": "2026-08-12T17:45:33.324Z",
+    "last_save_at": "2026-08-13T05:56:08.501Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f679dde6b9e3556771cbfa8329cef29db40a1d5fe776d97b0d75bdc85d09ea2",
+    "source_fingerprint": "sha256:6e92e1cf1deb978299cb33ae98e9b972fd6354507a76b3a2726ef82f4a765e26",
     "source_doc_hashes": {
-      "spec.md": "0fe112deaeee9b15ce0fdc62afbe2a9732a45c397876124ee9312b3b38d5bb18",
-      "plan.md": "bed9f988c3572ed2133e3313cf15466271244f0fa5d28655d2bd09db30beb2d3",
-      "tasks.md": "664cd1a7a687f57001a8fc53b830d33aaa92fe05cb6218d09fc71822e3740e23",
-      "checklist.md": "baa9c5b356be481fcab032723719c2b10cff63dad36dfc159ccd85f8c6fcf9ba",
-      "decision-record.md": "4561623f538dc208144a2c674eeec604042ba3e4c8bf5bfc20221119d9d42793",
-      "implementation-summary.md": "6d26fdd1e068b016dfae178521dc9b51a28f6ffbe684255ef69a9c162e0e047b"
+      "spec.md": "f0717bff088feb3a7bce8acabc19dc12ac9ef3fa9aeecf81c4a3820f63df874f",
+      "plan.md": "c27148d9c1d05e52a3ba72b7734512d87457e76cea66bcb65ed3cdf3afdb1d8a",
+      "tasks.md": "3bad17532f40c8b07ffe4c880d3d0d7b4046d4f09adddc4c9c1ec01ea2505cf8",
+      "checklist.md": "15935701d96aaa99264a4d655704fa92f1b6e788ae0c18a18363ceb6ad1f380a",
+      "decision-record.md": "1063f331e61b33cdb6e49817e037451334f00068eb07ca24227704bbd8f36a89",
+      "implementation-summary.md": "1b36248213a678a4fbe31819d00c1c8123ce6f484911d772b87414697ad1509f"
     },
     "last_active_child_id": null,
     "last_active_at": null

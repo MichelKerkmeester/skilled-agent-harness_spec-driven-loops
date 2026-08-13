@@ -265,6 +265,8 @@ Command output for safe `generateFolderDescriptions` execution against a non-sta
 
 Verify generateFolderDescriptions covers the current spec inventory → Check JSON schema validation and C1 field-type rules → Inspect per-folder vs spec.md preference logic
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/spec-folder-description-discovery.md](../../feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md)

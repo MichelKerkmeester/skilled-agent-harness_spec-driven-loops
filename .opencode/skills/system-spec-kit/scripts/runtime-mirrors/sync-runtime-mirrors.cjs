@@ -2,8 +2,8 @@
 // ║ Sync Runtime Mirrors                                                     ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 //
-// Cursor and Devin discover agents and commands by file convention, each at its
-// own path and in its own shape. Rather than fork the content per runtime, every
+// Claude, Cursor, and Devin discover agents and commands by file convention,
+// each at its own path and in its own shape. Rather than fork the content, every
 // entry is a symlink back to one canonical file, so a mirror cannot drift from
 // what it mirrors. This script owns those symlink trees.
 //
@@ -28,6 +28,7 @@ const EXCLUDED_COMMAND_DIRS = new Set(['assets', 'scripts', 'fixtures']);
 // `permission:` block, so agents deliberately source from .claude/agents.
 // Commands have no dialect split and source from .opencode directly.
 const CLAUDE_AGENTS = '.claude/agents';
+const CLAUDE_COMMANDS = '.claude/commands';
 const OPENCODE_COMMANDS = '.opencode/commands';
 
 const HOOK_CONFIGS = [
@@ -115,6 +116,7 @@ function buildExpectedLinks() {
     if (isCanonicalMirrorExcluded(relativePath)) continue;
     const source = `${OPENCODE_COMMANDS}/${relativePath}`;
     const flat = toFlatName(relativePath);
+    links.push({ tree: 'claude-commands', mirror: `${CLAUDE_COMMANDS}/${relativePath}`, source });
     links.push({ tree: 'cursor-commands', mirror: `.cursor/commands/${flat}.md`, source });
   }
 
@@ -198,6 +200,16 @@ function findOrphans(expectedLinks) {
 
 function checkMirrors(expectedLinks) {
   const drift = [];
+  const claudeCommandsRoot = path.join(REPO_ROOT, CLAUDE_COMMANDS);
+  try {
+    const rootStat = fs.lstatSync(claudeCommandsRoot);
+    if (!rootStat.isDirectory() || rootStat.isSymbolicLink()) {
+      drift.push(`STALE ${CLAUDE_COMMANDS} — must be a real filtered command directory`);
+    }
+  } catch (error) {
+    if (error?.code === 'ENOENT') drift.push(`MISSING ${CLAUDE_COMMANDS}`);
+    else throw error;
+  }
   for (const link of expectedLinks) {
     const result = inspect(link);
     if (result.state === 'MISSING') drift.push(`MISSING ${link.mirror}`);
@@ -218,6 +230,18 @@ function checkMirrors(expectedLinks) {
 
 function writeMirrors(expectedLinks) {
   let changed = 0;
+  const claudeCommandsRoot = path.join(REPO_ROOT, CLAUDE_COMMANDS);
+  try {
+    const rootStat = fs.lstatSync(claudeCommandsRoot);
+    if (rootStat.isSymbolicLink()) {
+      fs.unlinkSync(claudeCommandsRoot);
+    } else if (!rootStat.isDirectory()) {
+      throw new Error(`${CLAUDE_COMMANDS} exists but is not a directory`);
+    }
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error;
+  }
+  fs.mkdirSync(claudeCommandsRoot, { recursive: true });
 
   for (const link of expectedLinks) {
     const result = inspect(link);

@@ -60,6 +60,8 @@ K-grid metric output + sensitivity comparison table + optimal K selection ration
 
 Verify K-grid configuration → Check metric computation per K → Inspect sensitivity analysis methodology
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/rrf-k-value-sensitivity-analysis.md](../../feature-catalog/scoring-and-calibration/rrf-k-value-sensitivity-analysis.md)

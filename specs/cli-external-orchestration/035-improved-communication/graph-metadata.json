@@ -11,7 +11,13 @@
     "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy",
     "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients",
     "cli-external-orchestration/035-improved-communication/007-evaluation-and-observability",
-    "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening"
+    "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening",
+    "cli-external-orchestration/035-improved-communication/009-prompt-token-contract",
+    "cli-external-orchestration/035-improved-communication/010-adjacent-span-coalescing",
+    "cli-external-orchestration/035-improved-communication/011-meaning-judge-wiring",
+    "cli-external-orchestration/035-improved-communication/012-no-op-rejection",
+    "cli-external-orchestration/035-improved-communication/013-capability-evidence-unblock",
+    "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance"
   ],
   "manual": {
     "depends_on": [],
@@ -43,20 +49,26 @@
     "key_files": [
       "spec.md",
       "001-research-strategy/spec.md",
-      "001-research-strategy/plan.md",
-      "002-contracts-and-fixtures/spec.md",
-      "003-core-normalization-and-assembly/spec.md",
-      "003-core-normalization-and-assembly/handover.md",
-      "004-protected-spans-fidelity-render/spec.md",
-      "004-protected-spans-fidelity-render/handover.md",
-      "005-provider-adapters-and-privacy/spec.md",
       "005-provider-adapters-and-privacy/handover.md",
-      "006-runtime-adapters-and-clients/spec.md"
+      "006-runtime-adapters-and-clients/spec.md",
+      "006-runtime-adapters-and-clients/handover.md",
+      "007-evaluation-and-observability/spec.md",
+      "009-prompt-token-contract/spec.md",
+      "013-capability-evidence-unblock/spec.md",
+      "014-code-and-doc-conformance/spec.md",
+      "008-packaging-and-release-hardening/handover.md",
+      "014-code-and-doc-conformance/implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -89,27 +101,21 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
     "created_at": "2026-08-11T06:21:47Z",
-    "last_save_at": "2026-08-12T04:19:36.839Z",
+    "last_save_at": "2026-08-13T05:56:57.797Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:98b8417a2909426da959856cad29889479cc6d40a4c9d7bf701fbf7b699545b3",
+    "source_fingerprint": "sha256:d15e366efa88b8431be492ae4418f9668d8421cffd71c949bd565223e97e19e2",
     "source_doc_hashes": {
-      "spec.md": "fd2a12304fc0f110a15e22c13a8e75dfecaff5c347c4e8b54f1c1d04f7511a32"
+      "spec.md": "45183ebf5e24d8b87eae4cdb4f7d5bfe4a05ad586528adea57acf49c09ac2f3d"
     },
-    "last_active_child_id": "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients",
-    "last_active_at": "2026-08-12T04:19:36.839Z"
+    "last_active_child_id": "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy",
+    "last_active_at": "2026-08-12T05:25:21.635Z"
   }
 }

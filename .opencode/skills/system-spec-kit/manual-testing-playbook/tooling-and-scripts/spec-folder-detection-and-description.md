@@ -123,6 +123,8 @@ Command 4 was not executed: `npx tsx .opencode/skills/system-spec-kit/scripts/sp
 
 Inspect `scripts/spec-folder/folder-detector.ts`, `alignment-validator.ts`, `directory-setup.ts`, and `generate-description.ts` if a path cannot be resolved or description generation fails
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/spec-folder-detection-and-description.md](../../feature-catalog/tooling-and-scripts/spec-folder-detection-and-description.md)

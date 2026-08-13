@@ -61,6 +61,8 @@ Frontmatter capture from `gate-enforcement.md` + notes/snippets for cross-refere
 
 Verify `gate-enforcement.md` frontmatter still includes constitutional tier and trigger phrases -> inspect the gate cross-reference and continuation/compaction sections for accidental removal -> confirm `constitutional/README.md` still documents fixed-priority surfacing semantics -> check `AGENTS.md` Section 2 remains the referenced authoritative source
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [governance/constitutional-gate-enforcement-rule-pack.md](../../feature-catalog/governance/constitutional-gate-enforcement-rule-pack.md)

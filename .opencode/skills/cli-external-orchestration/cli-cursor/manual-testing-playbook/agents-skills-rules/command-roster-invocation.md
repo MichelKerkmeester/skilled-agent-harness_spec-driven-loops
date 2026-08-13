@@ -16,6 +16,8 @@ Derive the `.cursor/commands/*.md` roster from the synchronizer's canonical scop
 
 The command roster is a separate parity surface from custom agents. File presence must be paired with a real invocation so a stale or unreadable mirror cannot pass by counting alone.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the runtime-derived Cursor command roster matches the canonical command scope plus the native `goal-cursor.md` entry, and verify one representative command is invocable.
@@ -25,6 +27,8 @@ The command roster is a separate parity surface from custom agents. File presenc
 - Expected signals: The derived result is `canonical: 34`, `native: 1`, `expected: 35`, `actual: 35` in this worktree; `/speckit-plan` produces command-specific plan output; no unknown-command error or file mutation.
 - Desired user-visible outcome: Complete roster plus one live invocation.
 - Pass/fail: PASS when derived count, resolution, and invocation agree; FAIL on a missing/unreadable command or unknown command; SKIP on Cursor auth/availability blockers.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -75,6 +79,8 @@ The command roster is a separate parity surface from custom agents. File presenc
 |---|---|---|---|---|---|---|---|---|
 | CU-024 | Command roster and invocation | Verify runtime-derived command count and `/speckit-plan` invocation | `Draft a short plan for adding a manual test scenario to a documentation-only packet. Do not create or modify files.` | Canonical-scope Node count -> `cursor-agent -p "/speckit-plan ..." --model composer-2.5 --auto-review --sandbox enabled --output-format text` -> inspect output and git status | `canonical: 34`, `native: 1`, `expected: 35`, `actual: 35`; command-specific output; no file mutation | Count JSON, symlink targets, dispatch output, exit code, and git status | PASS when derived count and invocation agree; SKIP on auth/availability blocker; FAIL on mirror drift or unknown command | Reconcile the canonical scope and native entry first; do not restore a hardcoded count |
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -90,6 +96,8 @@ The command roster is a separate parity surface from custom agents. File presenc
 | `../../SKILL.md` | Cursor command-file parity boundary |
 | `../../../../.cursor/commands/` | Cursor-facing command roster |
 | `../../../../.opencode/commands/` | Canonical command bodies |
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -6,9 +6,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/034-spec-template-context-optimizations"
-    last_updated_at: "2026-08-12T17:39:01Z"
+    last_updated_at: "2026-08-13T05:56:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Completed deep-review remediation and QA checklist; packet complete"
+    recent_action: "Aligned docs; regenerated packet metadata"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
@@ -20,11 +20,11 @@ _memory:
       session_id: "2026-08-12-system-speckit-034-optimizations"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "REQ-005 scope-rule changed-files contract (MK_SCOPE_BASE) not yet formally defined"
+    open_questions: []
     answered_questions:
       - "Phase-1 consumer: research.md.tmpl is workflow-owned (deep-research), so gating savings are authoring-only"
       - "AC_COVERAGE severity: implemented as default-on advisory (non-blocking), not a hard warn"
+      - "REQ-005 changed-files contract defined: MK_SCOPE_CHANGED_FILES / MK_SCOPE_BASE; canonical-doc exception is packet-folder-scoped"
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -40,7 +40,7 @@ _memory:
 | **Level** | 2 |
 | **Status** | Complete (uncommitted) — all phases + deep-review remediation + QA checklist done; awaiting commit go-ahead |
 | **Completion** | 100% (implementation, deep-review remediation, and QA checklist verified; commit pending) |
-| **Last Updated** | 2026-08-12 |
+| **Last Updated** | 2026-08-13 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -84,7 +84,7 @@ Primary writer was deepseek-v4-flash (via the opencode-go provider) under strict
 
 - Focused suites green: `template-structure` 8/8, `inline-gate-renderer` 12/12, `memory-search-token-budget` 5/5.
 - Byte-identical render gate: 25/25 per-level render hashes matched baseline for REQ-002; research.md.tmpl L3/3+/phase renders matched baseline for REQ-001.
-- `scaffold-golden-snapshots` shows 4 failures — confirmed pre-existing (they fail on the original templates too via baseline isolation); stale fixtures, not a regression from this work.
+- `scaffold-golden-snapshots` is green (6/6) after regenerating the stale goldens; the failures seen during the build were pre-existing stale fixtures on the original templates (confirmed via baseline isolation), since regenerated. `research-template-gating` 4/4.
 - A 10-iteration deep-review (deepseek-v4-flash) returned **CONDITIONAL** (P0=0, P1=8, P2=8); every P1 was subsequently remediated (code/doc fixes) or recorded as a verified decision (F005). Its report lives under `review/`.
 <!-- /ANCHOR:verification -->
 

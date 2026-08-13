@@ -192,6 +192,8 @@ Validation surface command: `npx vitest run tests/learned-feedback.vitest.ts`
 
 Verify trigger learning pipeline → Check safeguard limits → Inspect queryId validation
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/learned-relevance-feedback.md](../../feature-catalog/pipeline-architecture/learned-relevance-feedback.md)

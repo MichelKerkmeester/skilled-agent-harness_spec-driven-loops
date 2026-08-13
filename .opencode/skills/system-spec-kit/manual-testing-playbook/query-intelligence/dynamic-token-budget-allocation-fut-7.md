@@ -123,6 +123,8 @@ No files found
 
 Verify budget allocation formula → Check complexity tier detection → Inspect system budget limits
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/dynamic-token-budget-allocation.md](../../feature-catalog/query-intelligence/dynamic-token-budget-allocation.md)

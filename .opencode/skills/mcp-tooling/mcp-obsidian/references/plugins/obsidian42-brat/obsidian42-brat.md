@@ -30,15 +30,21 @@ BRAT selects GitHub releases and writes the exact plugin assets `main.js`, `mani
 
 For headless work, keep the stages explicit: stage release assets to disk, register the repository in BRAT's `pluginList` and release policy, then activate the manifest ID in Obsidian's community-plugin list. A frozen version is an exact tag in `pluginSubListFrozenVersion`; update-all skips that entry.
 
+---
+
 ## 2. DEEP REFERENCES
 
 - [`data-model.md`](data-model.md) — complete `data.json` keys, defaults, repository/theme records, schema version, and v2.0+ SecretStorage boundary.
 - [`workflows.md`](workflows.md) — stage→register→activate recipes for plugins, frozen tags, updates, themes, removal, and the two sibling mode plugins.
 - [`troubleshooting.md`](troubleshooting.md) — cause→detection→fix catalog for release, asset, compatibility, token, update, and path failures.
 
+---
+
 ## 3. STARTER ASSET
 
 Use [`brat-data-entry.example.json`](../../../assets/brat-data-entry.example.json) as a valid populated example, not as a replacement for an existing vault file. Merge into the existing BRAT settings while preserving unrelated keys and entries.
+
+---
 
 ## 4. SOURCE BOUNDARY
 

@@ -17,9 +17,13 @@ version: 0.8.0.17
 
 Give OpenCode a first-class plugin that surfaces advisor output at prompt time while delegating scoring to the native advisor via an isolated bridge process.
 
+---
+
 ## 2. HOW IT WORKS
 
 `.opencode/plugins/mk-skill-advisor.js` exports the plugin. `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` runs `buildSkillAdvisorBrief` + `renderAdvisorBrief` out-of-process via IPC. Cache TTL is 5 minutes. The live threshold pair is `confidenceThreshold: 0.8` and `uncertaintyThreshold: 0.35`. The bridge times out after 1000 ms with SIGKILL escalation. Opt-out via `MK_SKILL_ADVISOR_HOOK_DISABLED=1` or `MK_SKILL_ADVISOR_PLUGIN_DISABLED=1` (with legacy `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` and `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` aliases) or `enabled: false` in plugin config. Compat regressions are preserved by routing through the stable `compat/index.ts` entrypoint.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -37,6 +41,8 @@ Give OpenCode a first-class plugin that surfaces advisor output at prompt time w
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/compat/plugin-bridge.vitest.ts` | Automated test | Validation reference |
 | `Playbook scenario [CL-005](../../manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

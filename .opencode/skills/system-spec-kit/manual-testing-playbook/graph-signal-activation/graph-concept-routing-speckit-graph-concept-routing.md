@@ -62,6 +62,8 @@ Entity linker output + concept matches + graph channel activation log + test tra
 
 Verify isGraphConceptRoutingEnabled() → Confirm flag is not forced off → Check entity-linker.ts noun phrase extraction → Inspect alias table in SQLite → Verify stage1-candidate-gen graph channel activation logic
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/graph-concept-routing.md](../../feature-catalog/query-intelligence/graph-concept-routing.md)

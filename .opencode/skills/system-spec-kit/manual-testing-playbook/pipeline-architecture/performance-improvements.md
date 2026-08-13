@@ -179,6 +179,8 @@ code: E_SESSION_SCOPE
 
 Profile the heavy retrieval path; check whether enrichment helpers are re-entered per tier; inspect token-budget estimation for cache misses; verify BM25 enablement and warmup scheduling behavior
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/performance-improvements.md](../../feature-catalog/pipeline-architecture/performance-improvements.md)

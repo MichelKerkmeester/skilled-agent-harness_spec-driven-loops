@@ -167,6 +167,8 @@ tests/context-server.vitest.ts:2745-2776
 
 Inspect checkpoint handler, schemas, tool typing alignment, and context-server structural test expectations
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/checkpoint-delete-confirmname-safety.md](../../feature-catalog/ux-hooks/checkpoint-delete-confirmname-safety.md)

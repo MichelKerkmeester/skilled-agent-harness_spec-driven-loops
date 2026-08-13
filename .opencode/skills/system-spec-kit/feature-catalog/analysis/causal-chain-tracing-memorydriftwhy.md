@@ -20,6 +20,8 @@ Covers the graph traversal tool that traces causal relationship chains to explai
 
 This answers the question "why was this decision made?" by following the chain of connections backward through related memories. It is like tracing a family tree to understand how you got from a problem to a solution. If two memories in the chain contradict each other, the system flags the conflict so you can resolve it.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Entry Point & Routing
@@ -39,6 +41,8 @@ You can filter to specific relationship types after traversal. Pass `relations: 
 ### Edge Cases & Caveats
 
 When contradictions are found, the response includes warning hints. Two memories that contradict each other in the same causal chain is a signal that something needs resolution.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -63,6 +67,8 @@ When contradictions are found, the response includes warning hints. Two memories
 | `mcp-server/tests/handler-causal-graph.vitest.ts` | Automated test | Causal graph handler validation |
 | `mcp-server/tests/integration-causal-graph.vitest.ts` | Automated test | Causal graph integration |
 | `mcp-server/tests/graph-signals.vitest.ts` | Automated test | Graph signal computation tests |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Analysis

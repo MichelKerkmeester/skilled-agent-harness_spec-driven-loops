@@ -316,6 +316,8 @@ Targeted R6 automated test output:
 
 Verify stage ordering enforcement → Check verbose metadata emission → Inspect stage-4 immutability guard
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/4-stage-pipeline-refactor.md](../../feature-catalog/pipeline-architecture/4-stage-pipeline-refactor.md)

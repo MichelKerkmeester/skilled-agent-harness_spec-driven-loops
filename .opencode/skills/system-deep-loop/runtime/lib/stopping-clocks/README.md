@@ -11,6 +11,8 @@ description: "Arbitrates five independent loop-termination signals into one dete
 
 Decides when a loop is actually done. Five independent clocks, each from its own owning domain, observe budget exhaustion, wall-time, cycle detection, novelty decay and coverage. The arbiter composes their observations into one deterministic termination result with a stable tie-break rank. A shadow bridge pairs that result with the authoritative legacy convergence decision while the two run side by side.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -23,15 +25,21 @@ Decides when a loop is actually done. Five independent clocks, each from its own
 | `stopping-clock-shadow.ts` | Pairs stopping-clock evidence with the authoritative legacy convergence result |
 | `stopping-clock-types.ts` | Closed vocabularies and arbitration type contracts |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
 
 It depends on `cycle-detection`, `hierarchical-budgets`, `path-coverage-termination` and `semantic-communities` for the individual clock inputs.
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/stopping-clocks.vitest.ts`
+
+---
 
 ## 5. RELATED
 

@@ -119,6 +119,8 @@ No `persisted decision log` runtime claim was observed in the TM-04 quality-gate
 
 Verify gate ordering, warning surfacing, and save-path branching in the actual runtime output
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/pre-storage-quality-gate.md](../../feature-catalog/memory-quality-and-indexing/pre-storage-quality-gate.md)

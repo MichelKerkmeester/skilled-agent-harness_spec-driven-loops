@@ -62,6 +62,8 @@ A populated 6-row result set survives with `count = 6` and compact overflow rows
 
 Inspect envelope budget enforcement -> Check display-floor constant behavior -> Verify compact-overflow rendering preserves ids and drops content -> Confirm count and truncation metadata stay synchronized
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Regression test: [mcp-server/tests/token-budget-constitutional-sync.vitest.ts](../../mcp-server/tests/token-budget-constitutional-sync.vitest.ts) — `T207: display floor + compact overflow`

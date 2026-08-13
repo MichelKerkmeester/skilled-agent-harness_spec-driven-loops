@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "hooks/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
+  "description": "`mk-goal.js` derives a state filename by hex-encoding the full OpenCode session id",
+  "keywords": [
+    "mk-goal",
+    "derives",
+    "state",
+    "filename",
+    "hex-encoding",
+    "full",
+    "opencode",
+    "session"
+  ],
+  "lastUpdated": "2026-08-11T06:49:52.702Z",
+  "specId": "006",
+  "folderSlug": "opencode-goal-optimization-and-devin-removal",
+  "parentChain": [
+    "hooks",
+    "009-goal-isolation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

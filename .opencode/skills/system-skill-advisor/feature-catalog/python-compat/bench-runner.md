@@ -17,9 +17,13 @@ version: 0.8.0.14
 
 Keep latency visible from the Python surface so routing performance regressions are caught quickly without needing a TypeScript test harness.
 
+---
+
 ## 2. HOW IT WORKS
 
 `scripts/skill_advisor_bench.py` drives the bench measurements. The design envelope is `cache-hit p95 <= 50 ms` and `uncached p95 <= 60 ms`, design ceilings rather than enforceable CI gates, since p95 timing varies with sandbox load. Current stable-workstation measurements are 6.989 ms (cache-hit p95) and 11.45 ms (uncached p95), well within the envelope. Daemon-side idle measurements are 0.031% CPU and 5.516 MB RSS. The CI wrapper at `mcp-server/stress-test/skill-advisor/python-bench-runner-stress.vitest.ts` verifies the subprocess surface and JSON envelope shape. Tightened p95 gating belongs in a stable benchmark environment, not the stress suite.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -35,6 +39,8 @@ Keep latency visible from the Python surface so routing performance regressions 
 | File | Type | Role |
 |---|---|---|
 | `Playbook scenario [PC-005](../../manual-testing-playbook/python-compat/bench-runner.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

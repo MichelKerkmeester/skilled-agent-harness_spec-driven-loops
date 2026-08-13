@@ -20,6 +20,8 @@ Re-reads blocker evidence before a P0 can become a confirmed review conclusion.
 
 This control keeps the review loop from overcalling blockers. Before a P0 is treated as real enough to shape the verdict, the workflow requires a deliberate re-check of the cited evidence.
 
+---
+
 ## 2. HOW IT WORKS
 
 The skill contract requires an adversarial self-check on every P0 finding. The guidance is simple but strict: re-read the cited code, actively try to disprove the blocker, and only keep the P0 label when the evidence still holds. This guard appears both in the loop rules and in the success criteria for final review completion.

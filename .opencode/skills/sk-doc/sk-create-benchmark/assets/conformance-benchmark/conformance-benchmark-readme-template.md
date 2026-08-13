@@ -54,6 +54,8 @@ does not execute, score, or reduce a run.
 **Package status:** {{PACKAGE_STATUS}}. **Owning mode:** `{{MODE_ID}}`.
 **Source specification:** [`{{SOURCE_SPEC_PACKET_LABEL}}`]({{SOURCE_SPEC_PACKET_PATH}}).
 
+---
+
 ## 2. BENCHMARK-ID INDEX
 
 <!-- Add one row per benchmark-id directory. The Authority and Adapter columns
@@ -66,6 +68,8 @@ does not execute, score, or reduce a run.
 | [`{{BENCHMARK_ID_1}}`](./{{BENCHMARK_ID_1}}/conformance-benchmark.md) | `{{AUTHORITY_1}}` | `{{ADAPTER_1}}` | {{CORPUS_DESCRIPTION_1}} | {{STATUS_1}} | [`{{SOURCE_SPEC_PACKET_LABEL_1}}`]({{SOURCE_SPEC_PACKET_PATH_1}}) | [command](#{{EXECUTION_ANCHOR_1}}) | [`{{EVIDENCE_LABEL_1}}`]({{EVIDENCE_LOCATION_1}}) |
 | [`{{BENCHMARK_ID_N}}`](./{{BENCHMARK_ID_N}}/conformance-benchmark.md) | `{{AUTHORITY_N}}` | `{{ADAPTER_N}}` | {{CORPUS_DESCRIPTION_N}} | {{STATUS_N}} | [`{{SOURCE_SPEC_PACKET_LABEL_N}}`]({{SOURCE_SPEC_PACKET_PATH_N}}) | [command](#{{EXECUTION_ANCHOR_N}}) | [`{{EVIDENCE_LABEL_N}}`]({{EVIDENCE_LOCATION_N}}) |
 
+---
+
 ## 3. CORPUS
 
 | Benchmark ID | Canonical corpus source | Inclusion boundary | Fixture manifest |
@@ -76,6 +80,8 @@ does not execute, score, or reduce a run.
 The canonical source, not a copied count in this README, decides corpus
 membership. If the source inventory changes, regenerate or re-verify the corpus,
 refresh its recorded hash, and update the affected index row before execution.
+
+---
 
 ## 4. EXECUTION
 
@@ -97,6 +103,8 @@ Expected stable inputs:
 
 {{ADD_ONE_EXECUTION_SUBSECTION_PER_ADDITIONAL_BENCHMARK_ID}}
 
+---
+
 ## 5. EVIDENCE LOCATION
 
 The package is the stable authoring surface; it is not the audit trail. Evidence
@@ -105,6 +113,8 @@ for `{{BENCHMARK_ID_1}}` lands at
 That location owns transcripts, deep-alignment state and deltas, reduced reports,
 and any generated scorecard. Update the pointer after each accepted run; do not
 copy those generated artifacts into this package.
+
+---
 
 ## 6. RELATED RESOURCES
 

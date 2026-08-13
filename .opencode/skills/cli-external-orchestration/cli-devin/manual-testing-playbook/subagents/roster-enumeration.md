@@ -16,6 +16,8 @@ Treat the filesystem as the authoritative roster: enumerate the 13 mirrored `.de
 
 An LLM-generated list is nondeterministic and cannot prove mirror parity. Filesystem enumeration catches missing profiles, duplicate names, and broken symlink targets; one named dispatch checks that a discovered profile is usable without making the model reconstruct the roster.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Prove 13/13 mirrored-agent filesystem parity and read-only dispatchability of the explicitly named `review` profile.
@@ -25,6 +27,8 @@ An LLM-generated list is nondeterministic and cannot prove mirror parity. Filesy
 - Expected signals: The filesystem roster contains exactly ai-council, code, context, debug, deep-alignment, deep-improvement, deep-research, deep-review, design, markdown, orchestrate, prompt-improver, and review. The bounded dispatch uses the `review` profile and returns read-only findings or an explicit no-findings result.
 - Desired user-visible outcome: Deterministic 13/13 filesystem parity plus evidence that one named mirrored profile is dispatchable.
 - Pass/fail: PASS when the symlink roster matches exactly, every target resolves, and the named `review` dispatch completes read-only; FAIL on roster drift, a broken target, an unavailable named profile, or mutation; SKIP when Devin authentication or CLI availability prevents the dispatch after filesystem parity is recorded.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -61,6 +65,8 @@ For roster drift, compare the missing or extra path with the canonical agent sou
 |---|---|---|---|---|---|---|---|---|
 | DV-012 | Agent roster enumeration | Prove filesystem parity and dispatch one named profile | `Use the review subagent to inspect the current diff for correctness and repository-convention issues. Read only, cite file paths, and do not modify files.` | List and validate `.devin/agents/*/AGENT.md`; dispatch `review` once with `--permission-mode auto`. | Exact 13-name symlink roster; resolvable targets; read-only `review` response. | Sorted paths, target check, exit status, and transcript. | PASS on exact parity and usable named dispatch; FAIL on drift, broken target, missing profile, or mutation; SKIP only for a specific unavailable auth or CLI runtime. | Check the filesystem mirror first, then inspect the single-profile transcript. |
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -76,6 +82,8 @@ For roster drift, compare the missing or extra path with the canonical agent sou
 | `../../references/agent-delegation.md` | Roster and profile rules |
 | `../../SKILL.md` | Verified 13-agent roster and canonical permission modes |
 | `../../../../../../.devin/agents/` | Authoritative mirror directory under test |
+
+---
 
 ## 5. SOURCE METADATA
 

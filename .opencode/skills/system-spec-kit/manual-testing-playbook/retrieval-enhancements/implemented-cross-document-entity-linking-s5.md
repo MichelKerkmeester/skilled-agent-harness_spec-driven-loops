@@ -153,6 +153,8 @@ MCP error -32000: Connection closed
 
 Verify entity linker implementation is active; check supports-edge schema; inspect density guard threshold and enforcement
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/cross-document-entity-linking.md](../../feature-catalog/retrieval-enhancements/cross-document-entity-linking.md)

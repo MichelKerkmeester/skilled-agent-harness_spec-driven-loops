@@ -240,6 +240,8 @@ Larger embedders trade RAM and disk for stronger recall on long-tail queries. Us
 
 The rescue layer on the memory side is the clearest example of the trade. ADR-011 measured `+1` quality at `~2.16x` median latency. The verdict was GATE default-on with a documented kill switch. Embedder choice itself rarely produces latency that large; the dominant cost is the rescue stage when active. If you need to chase tail latency, the lever to pull first is `SPECKIT_RERANK_LAYER=false`, not the embedder.
 
+---
+
 ## 7. APPENDIX: VALIDATED AGAINST
 
 This document was authored against the following source files at the commits below. If the source files drift, this document needs updating.

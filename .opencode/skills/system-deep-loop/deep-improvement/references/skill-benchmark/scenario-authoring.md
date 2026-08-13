@@ -21,6 +21,8 @@ How to author the public/private fixture pairs Lane C scores against.
 
 Each scenario is a public/private pair under `assets/skill-benchmark/fixtures/<skill-id>/`. The public half is the only material that crosses the dispatch boundary; the private half is scorer-only gold. Author fixtures in three tiers to manage circularity, publish the T1-T2 score gap as the circularity meter, and aim for one admitted fixture per router key.
 
+---
+
 ## 2. FIXTURE STRUCTURE
 
 - `<scenarioId>.public.json` — dispatched material only. `{ scenarioId, tier, public: { prompt, runtime, mutationBoundary, outputContract }, provenance }`. The `prompt` is written in **domain language** — it must NOT name the skill, its triggers, intent keys, resource paths/basenames, or commands (the contamination linter rejects leaks before scoring).
@@ -43,6 +45,8 @@ Route-gold fixtures may extend the private `expected` block with workflow-router
 
 For router-scoring corpora, domain router keywords are allowed when they are the behavior under test. Use identity-scoped contamination lint for those prompts: ban the skill id, workflow mode names, and resource basenames, but do not ban the domain keywords the router is meant to match.
 
+---
+
 ## 3. THREE TIERS (ANTI-CIRCULARITY)
 
 - **T1 — auto-derived + paraphrased.** Gold keys mechanically derived from the skill's own `RESOURCE_MAP[intent]`; prompt paraphrased from the task domain and decontaminated. Breadth/coverage; circular unless decontaminated.
@@ -51,9 +55,13 @@ For router-scoring corpora, domain router keywords are allowed when they are the
 
 Publish the **T1↔T2 score gap** as the circularity meter (mirrors the advisor corpus↔holdout split). A large gap is a finding against the corpus, not evidence the skill is good.
 
+---
+
 ## 4. COVERAGE
 
 Aim for ≥1 admitted fixture per `INTENT_SIGNALS` key, per `RESOURCE_MAP` target, and per "When NOT to Use" class. Uncovered keys are themselves dead-key findings.
+
+---
 
 ## 5. NOTE ON EMPTY GOLD
 

@@ -17,6 +17,8 @@ version: 0.8.0.16
 
 Combine evidence from five independent lanes into a single routing score with documented, auditable weights.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/scorer/fusion.ts` fuses five lanes using the canonical weights below. Each lane runs independently and writes `{ lane, rawScore, weight, weightedScore, shadowOnly }` metadata that the attribution path consumes.
@@ -38,6 +40,8 @@ The opt-in `SPECKIT_ADVISOR_RRF_FUSION` flag (default off) routes the same five 
 ### Self-recommendation penalty
 
 On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPenalty` (-0.25) to any recommendation whose skill is in the canonical self-recommendation id set. That set covers both `system-skill-advisor` and the `skill-advisor` alias, so neither the canonical id nor the alias self-recommends to the top. The penalty is the SOLE defense: the separate opt-in self-recommendation guard that once sat behind it was removed as behaviorally redundant (a benchmark built to trigger it moved zero top-1 results, and the advisor never reaches the guard's confidence branch since it is never `readOnlyRouteAllowed`). The penalty therefore carries a durable rationale and a regression contract test.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -61,6 +65,8 @@ On read-only audit and explainer prompts the scorer applies `auditRecsAdvisorPen
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | fusion arithmetic and lane weights |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-status.vitest.ts` | Automated test | `laneWeights` exposure |
 | `Playbook scenario [SC-001](../../manual-testing-playbook/scorer-fusion/five-lane-fusion.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

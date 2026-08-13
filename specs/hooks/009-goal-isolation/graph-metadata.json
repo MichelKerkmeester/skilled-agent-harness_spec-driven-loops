@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/009-goal-isolation",
+  "spec_folder": "hooks/009-goal-isolation",
+  "parent_id": null,
+  "children_ids": [
+    "hooks/009-goal-isolation/001-goal-isolation-research",
+    "hooks/009-goal-isolation/002-session-scoped-core",
+    "hooks/009-goal-isolation/003-pi-and-runtime-bindings",
+    "hooks/009-goal-isolation/004-legacy-cutover-and-docs",
+    "hooks/009-goal-isolation/005-verification-and-validation",
+    "hooks/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      {
+        "packet_id": "hooks/003-goal-hooks-cross-runtime",
+        "reason": "Investigates and corrects the shared singleton state model introduced by the cross-runtime goal-hook packet.",
+        "source": "author",
+        "spec_folder": "hooks/003-goal-hooks-cross-runtime",
+        "title": "Cross-runtime goal hooks"
+      },
+      {
+        "packet_id": "hooks/004-goal-hook-playbooks-and-validation",
+        "reason": "Extends the prior goal-hook validation surface with explicit concurrent-session isolation evidence.",
+        "source": "author",
+        "spec_folder": "hooks/004-goal-hook-playbooks-and-validation",
+        "title": "Goal-hook playbooks and validation"
+      }
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal isolation",
+      "multiple active goals",
+      "pi goal confusion",
+      "cross-runtime goal state",
+      "session-scoped goal",
+      "goal isolation plan",
+      "session-scoped goal implementation",
+      "pi goal state migration",
+      "active-goal singleton replacement",
+      "goal isolation tasks",
+      "pi session goal tasks",
+      "cross-runtime goal implementation"
+    ],
+    "key_topics": [
+      "goal",
+      "isolation",
+      "multiple",
+      "active",
+      "goals",
+      "confusion",
+      "cross-runtime",
+      "state",
+      "session-scoped",
+      "plan",
+      "implementation",
+      "migration"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Goal Isolation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Explicit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Aware Management",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Probe Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bind Cursor",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cross-runtime core resolves every Pi and Cursor goal operation to one fixed file, `active-goal.json`",
+    "created_at": "2026-08-10T10:17:19Z",
+    "last_save_at": "2026-08-11T06:50:10.398Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:32d2e7bd8b92d7bf3d72ea34f67c17376abc9650b8060d3b350502af445723e8",
+    "source_doc_hashes": {
+      "spec.md": "027c5a3278b20eecdb7d8a0a28b6df42c0304816f1f1813c98def7e17feb4419",
+      "plan.md": "1515971baa25e90f0bec0ac426205c9275e38191abe0e16e506cbeee7c8c3157",
+      "tasks.md": "d5cb1b2439003d99988f1bfec7f67746d00166991b942fcdf8f56fe41da58a5e",
+      "checklist.md": "2afc7febae4601609a417ce891127dbe3d36b6b4ebc6f7449dc5c189326b19ff",
+      "decision-record.md": "ded40514cc3d262923a8b4985f31f34639d3fee38875bea7e7a5a37a5b4fc378",
+      "implementation-summary.md": "0213dc94ec4ef973b0a153c97a9239320bf20e8115332025961bed9f6b1d8857"
+    },
+    "last_active_child_id": "hooks/009-goal-isolation/006-opencode-goal-optimization-and-devin-removal",
+    "last_active_at": "2026-08-10T19:27:47.625Z"
+  }
+}

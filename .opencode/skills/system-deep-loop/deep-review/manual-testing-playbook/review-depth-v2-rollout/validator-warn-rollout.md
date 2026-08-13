@@ -16,6 +16,8 @@ Exercise the validator's three-phase rollout in its initial `warn` state. Legacy
 
 Without the warn surface, an operator cannot stage rollout: they would have to either enforce v2 hard (breaking every legacy review packet) or skip enforcement entirely (no migration pressure). The `warn` tier is the bridge.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm validator emits `legacy_unversioned_record` advisory for a legacy review record under `DEEP_REVIEW_V2_ENFORCEMENT=warn` without hard-failing.
@@ -23,6 +25,8 @@ Without the warn surface, an operator cannot stage rollout: they would have to e
 - Real user request: `Run a deep-review iteration against a legacy unversioned record with DEEP_REVIEW_V2_ENFORCEMENT=warn and confirm the legacy advisory fires without failing the record.`
 - Expected signals: validator result `ok: true` with `warnings[]` containing one entry whose `code` is `legacy_unversioned_record`. No v2 failure reasons. Record continues to parse downstream.
 - Pass/fail: PASS if `ok: true` AND `warnings[].code` contains `legacy_unversioned_record`. FAIL if validator hard-fails OR advisory is absent OR `DEEP_REVIEW_V2_ENFORCEMENT` was not honored.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -50,11 +54,15 @@ The validator surfaces `legacy_unversioned_record` while `DEEP_REVIEW_V2_ENFORCE
 - The run hard-fails: verify the environment is `DEEP_REVIEW_V2_ENFORCEMENT=warn`, not `strict`.
 - Advisory output is present but uncited in notes: capture the exact validator output beside the scenario verdict.
 
+---
+
 ## 4. SOURCE REFERENCES
 
 - Validator: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts` (`PostDispatchAdvisory`, `legacy_unversioned_record`).
 - Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts`.
 - Rollout policy: complexity-validator-v2-enforcement decision record, ADR-001 (see this skill's changelog for provenance).
+
+---
 
 ## 5. SOURCE_METADATA
 

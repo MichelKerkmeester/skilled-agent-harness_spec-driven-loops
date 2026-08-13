@@ -258,6 +258,8 @@ Observed comparison against Expected: complex rule-based query expansion produce
 
 Verify expansion trigger threshold → Check dedup logic → Inspect simple-query detection
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/query-expansion.md](../../feature-catalog/query-intelligence/query-expansion.md)

@@ -20,6 +20,8 @@ Lets an operator pause an autonomous review loop between iterations by creating 
 
 In autonomous mode the sentinel is the only graceful intervention short of terminating the run. It gives operators a safe, reversible way to hold the loop, inspect state, and resume from exactly where the review left off.
 
+---
+
 ## 2. HOW IT WORKS
 
 Before each dispatch, Step 2a checks for `review/.deep-review-pause` (the file name uses the shared `-pause` suffix). When the sentinel exists, the loop logs a JSONL event `{"type":"event","event":"userPaused","mode":"review","stopReason":"userPaused","reason":"sentinel file detected"}` and halts with a message instructing the operator to delete the sentinel to resume. Resuming reads persisted state and continues from the last completed iteration rather than restarting from iteration 1.

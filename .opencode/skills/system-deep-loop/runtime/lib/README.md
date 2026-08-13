@@ -11,6 +11,8 @@ description: "Domain logic library for system-deep-loop, holding thirty-seven do
 
 Shared domain logic for the `system-deep-loop` hub, which routes research, review, ai-council, alignment and three improvement lanes. Active graph-backed workflow modes use `runtimeLoopType` values `research`, `review` or `council`. Legacy `context` handling remains only for historical artifacts, and improvement lanes keep `runtimeLoopType: null`. Most domains isolate their own concerns and write verified events through the shared `authorized-ledger` gateway on top of the `event-envelope` substrate, though a few domains such as `council/`, `coverage-graph/` and `write-set-conflict-graph/` stay outside that ledger-backed spine. This is the domain layer. CLI-specific infrastructure lives in `scripts/lib/` instead.
 
+---
+
 ## 2. LIBRARY DOMAINS
 
 Each domain owns its own `README.md` with contents, consumers and tests. The two foundation layers are `event-envelope` (canonical serialization and the event-schema registry) and `authorized-ledger` (the default-deny write and replay gateway) that most other domains build on.
@@ -54,6 +56,8 @@ Each domain owns its own `README.md` with contents, consumers and tests. The two
 | `transactional-projections/` | Applies verified ledger events into one atomic fenced multi-view projection bundle and publishes committed snapshot manifests. |
 | `voc-allocation/` | Scores marginal value of computation for outstanding branches against budget pressure and plans a non-authoritative allocation. |
 | `write-set-conflict-graph/` | Derives a deterministic conflict graph over declared shipped-mode resources, then schedules non-conflicting work into ordered lanes. |
+
+---
 
 ## 3. RELATED RESOURCES
 

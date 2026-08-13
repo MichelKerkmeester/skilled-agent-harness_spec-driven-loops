@@ -22,6 +22,8 @@ This scenario validates the 028 CLI fallback for the advisor daemon. `node .open
 
 The program-wide CLI scenarios live in the spec-kit playbook (427 parity, 428 warm-only, 431 trusted gate, 432 tri-daemon drill, 438 trust-gate fuzz); this scenario is the advisor-local smoke an operator can run in under a minute.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm list-tools parity (9), warm-only no-spawn (75), untrusted mutation refusal (64), and trusted pass-through.
@@ -30,6 +32,8 @@ The program-wide CLI scenarios live in the spec-kit playbook (427 parity, 428 wa
 - Expected signals: `ok 9`; exit 75 on the warm-only read; exit 64 with the trust-grant message on untrusted `advisor_rebuild`; exit 75 on the `--trusted` variant (gate passed, daemon absent).
 - Desired user-visible outcome: The CLI is a faithful, fail-closed stand-in for the MCP surface during transport-down windows.
 - Pass/fail: PASS only when all four signals match.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -79,6 +83,8 @@ The final `ls "$SANDBOX/sock" 2>/dev/null || echo "socket dir empty"` command pr
 
 Count drift means the manifest no longer tracks `TOOL_DEFINITIONS` — run the parity suite. An untrusted mutation reaching IPC is a trust-gate bypass: inspect `assertTrustedForMutation` and add the shape to `advisor-trust-gate.vitest.ts`. A trusted refusal points at flag parsing or `envTrustedDefault`.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Implementation And Test Anchors
@@ -92,6 +98,8 @@ Count drift means the manifest no longer tracks `TOOL_DEFINITIONS` — run the p
 | `mcp-server/tests/skill-advisor-cli-dual-client.vitest.ts` | Dual-client MCP + CLI coverage |
 | `mcp-server/tests/handlers/advisor-trust-gate.vitest.ts` | Daemon-side trust-gate enforcement |
 | `../../feature-catalog/mcp-surface/skill-advisor-cli.md` | Feature-catalog source for this surface |
+
+---
 
 ## 5. SOURCE METADATA
 

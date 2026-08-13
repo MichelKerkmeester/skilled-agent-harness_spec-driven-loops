@@ -116,6 +116,8 @@ Test output showing unknown detection
 
 Ensure test clears all runtime-related env vars before assertion
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/runtime-detection.md](../../feature-catalog/context-preservation/runtime-detection.md)

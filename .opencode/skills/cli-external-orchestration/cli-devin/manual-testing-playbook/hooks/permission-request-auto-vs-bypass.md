@@ -16,6 +16,8 @@ Record a documented `SKIP` for the headless `PermissionRequest` comparison betwe
 
 An absent event in two headless traces does not prove permission-mode parity. `PreToolUse` remains a separate hook-coverage claim and must not substitute for evidence about `PermissionRequest` delivery.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Record the unavailable headless `PermissionRequest` comparison without turning missing runtime control into a product failure.
@@ -25,6 +27,8 @@ An absent event in two headless traces does not prove permission-mode parity. `P
 - Expected signals: The CLI exposes canonical `auto` and `dangerous` modes, but no controllable headless `PermissionRequest` event trigger is available.
 - Desired user-visible outcome: `SKIP` with the exact blocker, not a false failure or a claim derived from `PreToolUse`.
 - Pass/fail: `SKIP` -- blocker: headless Devin exposes no controllable `PermissionRequest` event to compare `auto` versus `dangerous`; the runtime event path is unavailable.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -59,6 +63,8 @@ If a future CLI exposes a controllable trigger, update this scenario to exercise
 |---|---|---|---|---|---|---|---|---|
 | DV-008 | PermissionRequest auto versus dangerous | Document the unavailable headless comparison | `Compare PermissionRequest delivery under Devin's auto and dangerous permission modes only if headless Devin exposes a controllable event trigger; otherwise record the specific runtime blocker.` | Run `devin --help 2>&1`; do not run a write probe without a controllable trigger. | Canonical modes are visible; no controllable headless event trigger is available. | Help excerpt plus the exact runtime blocker. | `SKIP` -- blocker: headless Devin exposes no controllable `PermissionRequest` event to compare `auto` versus `dangerous`; the event path is unavailable. | Reopen only when the CLI exposes a deterministic trigger; keep `PreToolUse` separate. |
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -75,6 +81,8 @@ If a future CLI exposes a controllable trigger, update this scenario to exercise
 | `../../SKILL.md` | Canonical Devin permission modes and hook limitations |
 | `../../../../../specs/cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/implementation-summary.md` | Historical PermissionRequest behavior |
 | `../../../../../specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md` | Historical hook-event matrix |
+
+---
 
 ## 5. SOURCE METADATA
 

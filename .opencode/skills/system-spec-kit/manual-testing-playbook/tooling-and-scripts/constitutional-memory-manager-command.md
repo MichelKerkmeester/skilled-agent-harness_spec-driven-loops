@@ -313,6 +313,8 @@ Result: BLOCKED because the command surfaces match the constitutional overview/l
 
 Inspect the `/memory:learn` command flow and the active documentation files listed in the grep command if the overview behavior or constitutional-only wording regresses.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/constitutional-memory-manager-command.md](../../feature-catalog/tooling-and-scripts/constitutional-memory-manager-command.md)

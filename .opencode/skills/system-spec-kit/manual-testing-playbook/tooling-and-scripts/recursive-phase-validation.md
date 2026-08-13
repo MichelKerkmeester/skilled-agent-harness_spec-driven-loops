@@ -123,6 +123,8 @@ Introduce a deliberate error in one child spec.md and re-run; verify aggregated 
 
 Verify parent folder contains child folders matching `[0-9][0-9][0-9]-*/` pattern; check validate.sh supports --recursive flag; inspect exit code handling logic
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)

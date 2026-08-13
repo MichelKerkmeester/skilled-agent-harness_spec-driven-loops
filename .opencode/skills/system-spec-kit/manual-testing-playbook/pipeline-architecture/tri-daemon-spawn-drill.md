@@ -15,6 +15,8 @@ This scenario runs the 028 program gate: a drill that spawns all three CLI-backe
 
 The drill is env-gated and skipped by default: it only executes under `SPECKIT_RUN_TRI_DAEMON_DRILL=1`. It exercises the three REAL launchers with stub CLI children by design — proving lease ownership and serialization under concurrent auto-spawn, not the full CLI binaries end-to-end. The drill sandbox re-roots to /tmp and stubs spec-memory boot artifacts, so host daemons stay untouched.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the env-gated tri-daemon drill passes: three real launchers under concurrent auto-spawn with single-owner leases, serialized respawn locks, divergent SIGTERM reap, and zero orphans.
@@ -24,6 +26,8 @@ The drill is env-gated and skipped by default: it only executes under `SPECKIT_R
 - Expected signals: Drill suite passes 1/1; without the gate env the describe block is skipped.
 - Desired user-visible outcome: Concurrent tri-CLI auto-spawn is safe — no cross-daemon deadlock, no duplicate owners, no orphans.
 - Pass/fail: PASS only when the gated run is green and the ungated run skips.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -124,6 +128,8 @@ Observed output:
 
 A duplicate-owner failure points at respawn-lock serialization in the affected launcher. A reap-divergence failure means a launcher's SIGTERM behavior changed (spec-memory must transparent-recycle; the other two must exit). Orphans at teardown indicate a launcher left its child unreaped — cross-check scenario 423 (lease-probe retry reap hardening) and scenario 426 (daemon ownership re-election).
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -140,6 +146,8 @@ A duplicate-owner failure points at respawn-lock serialization in the affected l
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/tri-daemon-drill.vitest.ts` | Env-gated drill (program gate), `SPECKIT_RUN_TRI_DAEMON_DRILL=1` |
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | Launcher with transparent-recycle SIGTERM reap |
 | `.opencode/bin/mk-skill-advisor-launcher.cjs` | Launcher that exits on child SIGTERM |
+
+---
 
 ## 5. SOURCE METADATA
 

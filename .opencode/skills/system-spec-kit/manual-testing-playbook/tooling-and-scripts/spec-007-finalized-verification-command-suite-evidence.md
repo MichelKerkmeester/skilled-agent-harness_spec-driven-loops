@@ -211,6 +211,8 @@ McpError: MCP error -32000: Connection closed
 
 Re-run the failing verification step in isolation and inspect the corresponding Spec 007 handler or test coverage
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: *(Spec 007 verification suite — no dedicated catalog entry)*

@@ -20,6 +20,8 @@ Measures whether a review iteration is still uncovering genuinely new defect pat
 
 These two signals catch a failure mode the severity-weighted composite vote can miss: a review that keeps producing moderate `newFindingsRatio` from reworded refinements while the genuinely new defect categories are already exhausted. They feed the legal-stop gate evaluation rather than the composite stop-score.
 
+---
+
 ## 2. HOW IT WORKS
 
 Two signals supplement the 3-signal composite vote and participate in legal-stop gate evaluation.

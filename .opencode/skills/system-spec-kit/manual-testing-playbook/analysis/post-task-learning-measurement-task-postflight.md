@@ -58,6 +58,8 @@ Postflight output
 
 Verify taskId matches preflight
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [analysis/post-task-learning-measurement-taskpostflight.md](../../feature-catalog/analysis/post-task-learning-measurement-taskpostflight.md)

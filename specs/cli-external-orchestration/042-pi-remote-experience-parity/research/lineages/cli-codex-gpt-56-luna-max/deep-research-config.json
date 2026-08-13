@@ -1,0 +1,59 @@
+{
+  "topic": "Design the best-in-class remote-control experience for the Pi coding agent: a private mobile client that pairs with Pi like the Claude Code + Claude mobile app but must exceed it, without abandoning loopback-relay, tailnet-only, foreground-authority, and redaction security posture. Cover live transcript richness, exact-action phone approval, content-free attention push, lease/CAS-bound accept-edits, opaque session browsing, background sessions, simpler pairing, and single-host multi-session concurrency, anchored to 041's pi --mode rpc JSONL, TypeScript relay, immutable epochs, durable persist-before-broadcast replay, and final-boundary approval extension.",
+  "maxIterations": 20,
+  "minIterations": 20,
+  "convergenceThreshold": 0.02,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 20,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 600,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 15,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/cli-external-orchestration/042-pi-remote-experience-parity",
+  "createdAt": "2026-08-12T00:00:00.000Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-cli-codex-gpt-56-luna-max-1786514481346-vicu2t",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": ["key-questions", "answered-questions", "what-worked", "what-failed", "exhausted-approaches", "ruled-out-directions", "divergence-frontier", "next-focus"]
+  },
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

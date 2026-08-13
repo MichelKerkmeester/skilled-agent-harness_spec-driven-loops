@@ -20,6 +20,8 @@ The non-interactive `--lane-config <file.json>` path: a bare JSON array of lane 
 
 When a run cannot ask an operator the three-axis question — an unattended sweep, a cron job, a headless invocation — the lanes come from a config file instead. ADR-011 locks this to config-file-only (one `--lane-config` flag, not repeated `--lane` flags and not an inline JSON-array flag), because a file is versionable, diffable, and reviewable as a tracked artifact.
 
+---
+
 ## 2. HOW IT WORKS
 
 `parseLaneConfigFile()` reads a file path (or `-` for stdin, mirroring the runtime's own stdin convention), parses it as JSON, and hands the result to `resolveLanesFromConfig()`, which requires a bare array and maps each entry through the same `validateLane()` the interactive path uses. Each entry has exactly three keys — `authority`, `artifactClass`, `scope` — and any single malformed lane fails the whole file with exit `3`, never a partial or best-effort lane set. An empty array is valid and resolves to zero lanes, mirroring the "empty resolves, does not fail" pattern used for empty scopes.

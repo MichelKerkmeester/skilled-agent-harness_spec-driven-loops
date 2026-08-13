@@ -98,6 +98,8 @@ The scenario requires a fixture or packet containing both missing-metadata and c
 
 Inspect `scripts/memory/backfill-research-metadata.ts`, the workflow follow-up integration, and the backfill test fixtures
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/research-metadata-backfill.md](../../feature-catalog/tooling-and-scripts/research-metadata-backfill.md)

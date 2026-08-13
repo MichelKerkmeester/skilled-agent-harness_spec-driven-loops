@@ -11,6 +11,8 @@ description: "Runs a candidate implementation against its legacy baseline and is
 
 Gates a cutover on proof, not confidence. A compiled case manifest runs each candidate path in shadow mode alongside its legacy baseline and compares terminal status, return value, error behavior and replay fingerprint. A parity certificate is issued only when every case in a mode closes with zero observed divergence. It carries the minimum successful-run and rollback-window guarantees a transition policy requires.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -21,15 +23,21 @@ Gates a cutover on proof, not confidence. A compiled case manifest runs each can
 | `shadow-parity-harness.ts` | Runs one case in shadow mode, recording intent without dispatching a live effect |
 | `shadow-parity-types.ts` | Observation classes, divergence records and certificate type contracts |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/`
 
 It depends on `replay-fingerprint` and `sealed-reference-artifacts` for fingerprint verification and sealed-input binding.
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/shadow-parity-harness.vitest.ts`
+
+---
 
 ## 5. RELATED
 

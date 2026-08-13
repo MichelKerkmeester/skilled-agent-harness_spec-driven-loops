@@ -36,7 +36,7 @@ _memory:
 
 # Feature Specification: Drift Census and Plan Revalidation
 
-> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `017-integrate-latest-and-closeout`; successor: none (last sibling).
+> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `017-integrate-latest-and-closeout`; successor `019-runtime-code-readmes`.
 
 ---
 

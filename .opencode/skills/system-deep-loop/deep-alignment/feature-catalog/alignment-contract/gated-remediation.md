@@ -20,6 +20,8 @@ Invariant 4 of the alignment contract: fixing findings is a separate, opt-in, op
 
 Remediation is where a conformance audit could turn destructive, so it is the most tightly gated part of the mode. Today it is realized as a callable, testable hook point that performs no action; the wiring for the transition exists and is proven safe, but the fixing logic is deliberately unbuilt until an operator explicitly approves building it.
 
+---
+
 ## 2. HOW IT WORKS
 
 The optional `REMEDIATE` state follows `REPORT` only when explicitly requested and approved. `remediate-hook.cjs` is that state's hook point: `enterRemediateHook()` always returns `{ status: 'not_implemented', state: 'REMEDIATE', ... }` and touches neither the filesystem nor git — no writes, no git operations, no scoped-stage calls. Its message cites ADR-005 invariant 4 and `SKILL.md`'s NEVER "run the gated remediation pass without an explicit, separate operator opt-in" rule, and it carries the safety discipline a future implementation must honor: scoped staging only (never `git add -A`), a worktree when the branch has diverged, and doc-only restraint when concurrent sessions are live. The `--confirm` flag is accepted but not yet actionable. A future phase that builds real remediation replaces this script's body, not its call site — the loop-wiring contract (REPORT can optionally transition to REMEDIATE) is already correct.
