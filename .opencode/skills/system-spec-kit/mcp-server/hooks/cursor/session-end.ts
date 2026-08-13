@@ -10,6 +10,8 @@
 // reliably with `reason`/`final_status` fields and a real transcript_path.
 // This is a deliberate substitution, not a naming alias for the same event.
 
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 import {
   readCursorHookInput,
   runClaudeHookAdapter,
@@ -17,7 +19,19 @@ import {
   toClaudeShape,
 } from './shared.js';
 
+const require = createRequire(import.meta.url);
+
+function sessionLifecycleHookEnabled(): boolean {
+  try {
+    const { isHookEnabled } = require(fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)));
+    return typeof isHookEnabled !== 'function' || isHookEnabled('session-lifecycle') !== false;
+  } catch {
+    return true;
+  }
+}
+
 async function main(): Promise<void> {
+  if (!sessionLifecycleHookEnabled()) return;
   const input = await readCursorHookInput('sessionEnd', ['session_id']);
   if (!input) return;
 

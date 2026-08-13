@@ -10,6 +10,7 @@
 import { spawnSync } from 'node:child_process';
 import { performance } from 'node:perf_hooks';
 import { closeSync, fstatSync, openSync, readFileSync, readSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
   parseHookStdin, hookLog,
@@ -31,6 +32,17 @@ import {
 } from '@spec-kit/shared/unicode-normalization';
 import { refreshAuthoredContinuitySnapshot } from '../../lib/continuity/authored-continuity-snapshot.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
+
+const require = createRequire(import.meta.url);
+
+function sessionLifecycleHookEnabled(): boolean {
+  try {
+    const { isHookEnabled } = require(fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)));
+    return typeof isHookEnabled !== 'function' || isHookEnabled('session-lifecycle') !== false;
+  } catch {
+    return true;
+  }
+}
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -638,9 +650,11 @@ function isCliEntrypoint(): boolean {
 
 // Run — exit cleanly even on error (hooks must never block Claude)
 if (isCliEntrypoint()) {
-  const operation = process.argv.includes('--authored-snapshot-worker')
-    ? Promise.resolve().then(runAuthoredSnapshotWorker)
-    : main();
+  const operation = !sessionLifecycleHookEnabled()
+    ? Promise.resolve()
+    : process.argv.includes('--authored-snapshot-worker')
+      ? Promise.resolve().then(runAuthoredSnapshotWorker)
+      : main();
   operation.catch((err: unknown) => {
     hookLog('error', 'compact-inject', `Unhandled error: ${err instanceof Error ? err.message : String(err)}`);
   }).finally(() => {

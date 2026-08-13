@@ -3,6 +3,16 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import * as hookFlags from "../../../../../../.opencode/hooks/shared/hook-flags.mjs";
+
+function sessionLifecycleHookEnabled(): boolean {
+  try {
+    return typeof hookFlags.isHookEnabled !== "function"
+      || hookFlags.isHookEnabled("session-lifecycle") !== false;
+  } catch {
+    return true;
+  }
+}
 
 interface AdvisoryCheck {
   readonly label: string;
@@ -23,6 +33,7 @@ const CHECKS: AdvisoryCheck[] = [
 
 /** Runs the same warn-only, always-exit-0 SessionStart advisory scripts cursor/devin wire into their SessionStart chain, surfacing any warning text via a Pi notification. */
 export default function sessionStartAdvisories(pi: ExtensionAPI): void {
+  if (!sessionLifecycleHookEnabled()) return undefined;
   pi.on("session_start", async (event, ctx) => {
     if (event.reason !== "startup" && event.reason !== "new") return;
     for (const check of CHECKS) {

@@ -14,6 +14,7 @@ import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { statSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
 import { join, resolve as resolvePath } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,6 +22,8 @@ import { fileURLToPath } from 'node:url';
 import { tool } from '@opencode-ai/plugin/tool';
 
 import * as messageIdentity from './lib/opencode-message-identity.js';
+
+const require = createRequire(import.meta.url);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -82,6 +85,15 @@ function normalizePositiveInt(value, fallback) {
 
 function envDisablesPlugin() {
   return process.env[DISABLED_ENV] === '1' || process.env[LEGACY_DISABLED_ENV] === '1';
+}
+
+function specMemoryHookEnabled() {
+  try {
+    const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
+    return typeof isHookEnabled !== 'function' || isHookEnabled('spec-memory') !== false;
+  } catch {
+    return true;
+  }
 }
 
 function disabledEnvName() {
@@ -544,6 +556,7 @@ export default async function MkSpecMemoryPlugin(ctx, rawOptions) {
 
   async function appendContinuityBrief(input = {}, output = { system: [] }) {
     if (!output || typeof output !== 'object') return;
+    if (!specMemoryHookEnabled()) return;
     output.system = Array.isArray(output.system) ? output.system : [];
     if (!options.enabled) return;
     const sessionID = sessionIdFrom(input);

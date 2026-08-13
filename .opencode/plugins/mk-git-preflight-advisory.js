@@ -10,6 +10,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { createRequire } from 'node:module';
 import { join } from 'node:path';
 
 import {
@@ -19,6 +20,9 @@ import {
 import { createGitContext } from '../skills/sk-git/scripts/lib/git-context.mjs';
 import { GIT_CHECKS, GIT_SHAPE } from '../skills/sk-git/scripts/lib/git-rule-checks.mjs';
 import { findRepoRoot } from '../skills/system-spec-kit/mcp-server/hooks/lib/workspace/repo-root.mjs';
+
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -87,6 +91,11 @@ export default async function MkGitPreflightAdvisoryPlugin(ctx) {
   return {
     async 'tool.execute.before'(input, output) {
       try {
+        // Kill-switch: master MK_HOOKS_DISABLED or MK_GIT_PREFLIGHT_DISABLED. The
+        // advisory is advisory-only, so silence is a safe no-op. Fail-open: this
+        // check lives inside the try, so a guard throw still leaves the Bash call
+        // untouched.
+        if (!isHookEnabled('git-preflight')) return;
         if (!input || String(input.tool).toLowerCase() !== 'bash') return;
         const command = commandFromArgs(output?.args);
         if (!command || !GIT_SHAPE.test(command)) return;

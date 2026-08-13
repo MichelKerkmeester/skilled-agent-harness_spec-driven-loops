@@ -14,9 +14,19 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
+import * as hookFlags from "../../../../../../.opencode/hooks/shared/hook-flags.mjs";
 
 const MAX_CONTEXT_BYTES = 4_096;
 const MEMORY_CONTEXT_TIMEOUT_MS = 2_500;
+
+function sessionLifecycleHookEnabled(): boolean {
+  try {
+    return typeof hookFlags.isHookEnabled !== "function"
+      || hookFlags.isHookEnabled("session-lifecycle") !== false;
+  } catch {
+    return true;
+  }
+}
 
 function readLastSpecFolder(cwd: string, sessionId: string): string | null {
   try {
@@ -61,6 +71,7 @@ function sanitizeForInjection(text: string): string {
 
 /** Rehydrates spec-folder continuity after a compaction, mirroring the devin PostCompaction recovery chain. */
 export default function sessionCompactContext(pi: ExtensionAPI): void {
+  if (!sessionLifecycleHookEnabled()) return undefined;
   pi.on("session_compact", async (event, ctx) => {
     try {
       const sessionId = ctx.sessionManager.getSessionId();
