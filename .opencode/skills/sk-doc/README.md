@@ -125,7 +125,7 @@ The scripts own the deterministic work. `extract_structure.py` parses, measures,
 
 Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build an install guide, a feature catalog, a testing playbook, a flowchart, a changelog or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
 
-You reach it through eleven `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:flowchart`, `/create:readme`, `/create:changelog` and `/create:diff`. `/create:benchmark --family=conformance_benchmark` authors and validates stable conformance inputs, then stops before adapter or deep-alignment execution. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
+You reach it through eleven `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:diagram`, `/create:readme`, `/create:changelog` and `/create:diff`. `/create:benchmark --family=conformance_benchmark` authors and validates stable conformance inputs, then stops before adapter or deep-alignment execution. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
 
 Skip sk-doc when the task belongs to a neighbor:
 
@@ -170,7 +170,7 @@ A: A feature catalog documents current behavior. It inventories what a skill or 
 
 **Q: Which `/create:*` command do I use?**
 
-A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring, including `conformance_benchmark`. `/create:flowchart` for a validated ASCII flowchart. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review.
+A: `/create:skill` for a new skill under `.opencode/skills/`. `/create:skill-parent` for a parent skill with nested mode packets. `/create:agent` for an agent under `.opencode/agents/`. `/create:command` for an OpenCode slash command set. `/create:feature-catalog` for a rooted feature inventory. `/create:manual-testing-playbook` for a manual testing package. `/create:benchmark` for MCP promotion and family-keyed benchmark authoring, including `conformance_benchmark`. `/create:diagram` for an HTML/SVG technical diagram or a validated ASCII/markdown flowchart. `/create:readme` for a directory-level README. `/create:changelog` for a versioned changelog entry. `/create:diff` for a git-free before/after document review.
 
 ---
 
@@ -213,5 +213,5 @@ The skill ships the checks that prove a document is ready.
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Skill directory scaffold from the template set |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validate and package a skill to a zip file |
 | [`assets/skill/`](./sk-create-skill/assets/skill/) | SKILL.md, README, reference and asset templates for skill creation |
-| [`assets/flowcharts/`](./sk-create-flowchart/assets/) | Reusable ASCII flowchart patterns for workflows and decision trees |
+| [`assets/ascii-patterns/`](./sk-create-diagram/assets/ascii-patterns/) | Reusable ASCII flowchart patterns for workflows and decision trees |
 | [`changelog/`](./changelog/) | Per-release entries, one file per version |

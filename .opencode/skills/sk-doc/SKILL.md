@@ -1,6 +1,6 @@
 ---
 name: sk-doc
-description: "Documentation & OpenCode-component authoring parent hub: routes to eleven workflow packets that create skills, parent hubs, READMEs/install-guides, agents, commands, feature catalogs, manual-testing playbooks, MCP benchmark folders, ASCII flowcharts, changelogs, and local before/after document reviews, plus a sk-create-quality-control mode that validates/scores/optimizes existing docs. Holds no per-packet logic; dispatches by workflowMode through mode-registry.json."
+description: "Documentation & OpenCode-component authoring parent hub: routes to eleven workflow packets that create skills, parent hubs, READMEs/install-guides, agents, commands, feature catalogs, manual-testing playbooks, MCP benchmark folders, HTML/SVG diagrams and ASCII flowcharts, changelogs, and local before/after document reviews, plus a sk-create-quality-control mode that validates/scores/optimizes existing docs. Holds no per-packet logic; dispatches by workflowMode through mode-registry.json."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 2.0.0.0
 metadata:
@@ -8,7 +8,7 @@ metadata:
   family: sk-util
 ---
 
-<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, conformance benchmark, conformance_benchmark, peer adapter benchmark, deep-alignment benchmark, lane-config benchmark, sk-doc-command, sk-create-flowchart, sk-create-changelog, sk-create-diff, sk-create-quality-control, shared-backbone, create-quality-control-pipeline -->
+<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, conformance benchmark, conformance_benchmark, peer adapter benchmark, deep-alignment benchmark, lane-config benchmark, sk-doc-command, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-quality-control, shared-backbone, create-quality-control-pipeline -->
 
 # Documentation Authoring Hub (sk-doc)
 
@@ -29,7 +29,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | **sk-create-feature-catalog** | Author a feature-catalog inventory package | `sk-create-feature-catalog/` | `/create:feature-catalog` |
 | **sk-create-manual-testing-playbook** | Author a manual-testing-playbook package | `sk-create-manual-testing-playbook/` | `/create:manual-testing-playbook` |
 | **sk-create-benchmark** | Author MCP-promotion, behavior, conformance, skill-benchmark, and model-benchmark packages or inputs | `sk-create-benchmark/` | `/create:benchmark` |
-| **sk-create-flowchart** | Generate and validate an ASCII flowchart | `sk-create-flowchart/` | `/create:flowchart` |
+| **sk-create-diagram** | Generate an HTML/SVG technical diagram (27 types) or a validated ASCII/markdown flowchart via `--output-format` | `sk-create-diagram/` | `/create:diagram` |
 | **sk-create-changelog** | Author a global or packet-local changelog entry (version bump + topology-aware placement) | `sk-create-changelog/` | `/create:changelog` |
 | **sk-create-diff** | Produce a local, Git-free before/after review of an edited document (text/Markdown/HTML/DOCX/text-PDF) as a self-contained HTML report | `sk-create-diff/` | — (routes via aliases) |
 | **sk-create-quality-control** | Validate / score / optimize an EXISTING document (extract → DQI → HVR → validate) | `sk-create-quality-control/` | `/doc:quality` |
@@ -65,7 +65,7 @@ REGISTRY = SKILL_ROOT / "mode-registry.json"
 HUB_ROUTER = SKILL_ROOT / "hub-router.json"
 
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-flowchart, sk-create-changelog, sk-create-diff, or sk-create-quality-control work",
+    "Confirm whether this is sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-changelog, sk-create-diff, or sk-create-quality-control work",
     "Confirm the target document or component being authored, scaffolded, or reviewed",
     "Provide the available inputs: existing doc, source material, or scaffold parameters",
     "Confirm the validation expectations before completion (DQI/HVR scoring, validate.sh, or packet-specific checks)",
@@ -128,7 +128,7 @@ sk-doc/
   changelog/  manual-testing-playbook/  benchmark/  feature-catalog/
   sk-create-skill/  sk-create-readme/  sk-create-agent/  sk-create-command/
   sk-create-feature-catalog/  sk-create-manual-testing-playbook/
-  sk-create-benchmark/  sk-create-flowchart/  sk-create-changelog/  sk-create-diff/  sk-create-quality-control/    # nested workflow packets
+  sk-create-benchmark/  sk-create-diagram/  sk-create-changelog/  sk-create-diff/  sk-create-quality-control/    # nested workflow packets
   scripts/               # facade symlinks -> shared/ + owning packets (tool paths only)
   shared/                # sk-create-quality-control backbone: validators, global standards, shared assets
 ```
@@ -165,6 +165,6 @@ Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, an
 - Registry: `mode-registry.json` (eleven packets; `packetKind: workflow`).
 - Hub router: `hub-router.json` (signals + vocabulary classes).
 - Advisor descriptor: `description.json`; skill-graph identity: `graph-metadata.json`.
-- Packets: `sk-create-skill/`, `sk-create-readme/`, `sk-create-agent/`, `sk-create-command/`, `sk-create-feature-catalog/`, `sk-create-manual-testing-playbook/`, `sk-create-benchmark/`, `sk-create-flowchart/`, `sk-create-changelog/`, `sk-create-diff/`, `sk-create-quality-control/`.
+- Packets: `sk-create-skill/`, `sk-create-readme/`, `sk-create-agent/`, `sk-create-command/`, `sk-create-feature-catalog/`, `sk-create-manual-testing-playbook/`, `sk-create-benchmark/`, `sk-create-diagram/`, `sk-create-changelog/`, `sk-create-diff/`, `sk-create-quality-control/`.
 - Shared backbone: `shared/scripts/`, `shared/references/`, `shared/assets/`.
 - Parent-skill pattern: `sk-create-skill/references/parent-skill/parent-skills-nested-packets.md`.

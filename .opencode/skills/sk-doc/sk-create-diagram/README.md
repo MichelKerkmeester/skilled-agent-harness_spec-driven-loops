@@ -32,7 +32,7 @@ A generic AI-drawn diagram is easy to spot: dark mode with a cyan glow, identica
 
 ### What It Does
 
-`sk-create-diagram` picks the right one of 27 diagram types for what's being shown, loads that type's layout conventions and complexity budget, draws against the shared design system in `references/foundations/style-guide.md`, and runs the SKILL.md §6 Pre-Output Checklist before handoff. It also redraws an existing draw.io or Mermaid source — extracting the structural content only, never the source's coordinates, colors, or renderer layout — at a chosen format, size, detail level, and audience. It produces standalone `.html` diagrams for the `html-svg` format, or a plain markdown flowchart for the `ascii-markdown` format — `sk-create-flowchart` is now a redirect into this packet, not a separate destination.
+`sk-create-diagram` picks the right one of 27 diagram types for what's being shown, loads that type's layout conventions and complexity budget, draws against the shared design system in `references/foundations/style-guide.md`, and runs the SKILL.md §6 Pre-Output Checklist before handoff. It also redraws an existing draw.io or Mermaid source — extracting the structural content only, never the source's coordinates, colors, or renderer layout — at a chosen format, size, detail level, and audience. It produces standalone `.html` diagrams for the `html-svg` format, or a plain markdown flowchart for the `ascii-markdown` format — the two formats live in this one packet; the earlier separate `sk-create-flowchart` skill has been fully deprecated and removed.
 
 ### The 27 Diagram Types
 
@@ -87,13 +87,12 @@ Every build follows the same order. Detect the request shape — generate, impor
 
 ### When To Use This Skill
 
-Reach for `sk-create-diagram` when a reader will learn more from a visual than from prose, a table, or a bulleted list, and the deliverable is a standalone HTML/SVG artifact. Skip it when a short bullet list or a 3-column table already says the same thing. Skip it too when the actual deliverable is an ASCII flowchart embedded directly in a markdown document — that's `sk-create-flowchart`'s scope, not this one.
+Reach for `sk-create-diagram` when a reader will learn more from a visual than from prose, a table, or a bulleted list. Pick `--output-format html-svg` for a standalone HTML/SVG artifact, or `--output-format ascii-markdown` when the deliverable is an ASCII flowchart embedded directly in a markdown document — both output formats live in this one packet. Skip it entirely when a short bullet list or a 3-column table already says the same thing.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `sk-create-flowchart` | Owns ASCII/box-drawing flowcharts embedded in markdown. `sk-create-diagram` owns everything that needs SVG, HTML, or a real design system. |
 | `create-quality-control` | Audits or scores an existing document. `sk-create-diagram` is for authoring a new diagram artifact. |
 | `sk-design` | Owns interface/product UI design. `sk-create-diagram` is scoped to standalone technical/product diagrams, not application interfaces. |
 
@@ -115,7 +114,7 @@ Reach for `sk-create-diagram` when a reader will learn more from a visual than f
 
 **Q: Why HTML/SVG instead of Mermaid or a design tool?**
 
-A: Self-contained HTML with inline SVG opens in any browser with no renderer, build step, or account. If the deliverable specifically needs an ASCII flowchart in markdown, that's `sk-create-flowchart`; if it needs pixel-level product UI, that's `sk-design`.
+A: Self-contained HTML with inline SVG opens in any browser with no renderer, build step, or account. If the deliverable specifically needs an ASCII flowchart in markdown, pass `--output-format ascii-markdown`; if it needs pixel-level product UI, that's `sk-design`.
 
 **Q: What if my content doesn't fit any of the 27 types?**
 

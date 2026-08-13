@@ -181,7 +181,7 @@ python scripts/package_skill.py skill-path        # Package skill
 ├── sk-create-feature-catalog/
 ├── sk-create-manual-testing-playbook/
 ├── sk-create-benchmark/
-├── sk-create-flowchart/
+├── sk-create-diagram/
 ├── sk-create-changelog/
 ├── sk-create-diff/
 ├── sk-create-quality-control/

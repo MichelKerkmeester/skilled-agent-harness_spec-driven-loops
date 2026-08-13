@@ -11,15 +11,15 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-create-diagram"
-    last_updated_at: "2026-08-12T19:55:45.000Z"
+    last_updated_at: "2026-08-13T06:00:00.000Z"
     last_updated_by: "claude"
-    recent_action: "All 14 phases complete: reviewed, P1 findings resolved"
+    recent_action: "Phase 015 deprecated sk-create-flowchart fully (deleted, not redirected)"
     next_safe_action: "Hand back to the user for review/merge decision on worktree branch sk-doc/0145-sk-create-diagram"
     blockers: []
     key_files:
       - "spec.md"
       - "001-inventory-and-skill-contract/decision-record.md"
-      - "014-review-remediation/implementation-summary.md"
+      - "015-flowchart-deprecation/implementation-summary.md"
       - "../../../.opencode/skills/sk-doc/sk-create-diagram/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -51,7 +51,7 @@ _memory:
 |-------|-------|
 | **Level** | Phase parent |
 | **Priority** | P2 |
-| **Status** | Complete — all 14 phases shipped; phase 013 ran a 10-iteration multi-model deep review (CONDITIONAL, 4 P1) and phase 014 resolved every P1 finding, independently verified |
+| **Status** | Complete — all 15 phases shipped; phase 013 ran a 10-iteration multi-model deep review (CONDITIONAL, 4 P1), phase 014 resolved every P1 finding, and phase 015 fully deprecated (deleted, not redirected) the superseded `sk-create-flowchart` skill |
 | **Created** | 2026-08-12 |
 | **Branch** | `sk-doc/0145-sk-create-diagram` (worktree `.worktrees/0145-sk-doc-sk-create-diagram`) |
 | **Track** | `sk-doc` |
@@ -115,6 +115,7 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | `012-flowchart-capability-merge/` | Create | 012 | `sk-create-flowchart`'s ASCII/markdown capability merged into `sk-create-diagram` as a second output format |
 | `013-deep-review-grok-deepseek/` | Create | 013 | 10-iteration fan-out deep review (Grok 4.6 + deepseek-v4-flash), merged CONDITIONAL verdict |
 | `014-review-remediation/` | Create | 014 | All 4 P1 findings from the 013 review resolved, verified clean |
+| `015-flowchart-deprecation/` | Create | 015 | `sk-create-flowchart` fully deprecated: skill directory deleted, every command/prompt mirror deleted, all live hub/router/advisor/doc references purged or repointed at `sk-create-diagram` |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -138,6 +139,7 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | 12 | `012-flowchart-capability-merge/` | Merge `sk-create-flowchart`'s ASCII/markdown capability into `sk-create-diagram`; advisor/hub integration | Complete |
 | 13 | `013-deep-review-grok-deepseek/` | 10-iteration fan-out deep review (Grok 4.6 + deepseek-v4-flash); merged CONDITIONAL verdict | Complete |
 | 14 | `014-review-remediation/` | Fix all 4 P1 findings from phase 013's review | Complete |
+| 15 | `015-flowchart-deprecation/` | Fully deprecate `sk-create-flowchart`: delete the skill and every command/prompt mirror, purge/repoint every live hub, router, advisor, and doc reference | Complete |
 
 ### Phase Transition Rules
 
@@ -164,7 +166,8 @@ Fork the external plugin's content into a new `sk-create-diagram` nested workflo
 | Phase 011 reference alignment | Phase 012 flowchart merge | 10/10 named files structurally aligned with the template | Phase 011 checklist evidence |
 | Phase 012 flowchart merge | Phase 013 deep review | `sk-create-diagram` routes both output formats; hub JSON + advisor index refreshed | Phase 012 checklist evidence |
 | Phase 013 deep review | Phase 014 remediation | Merged verdict recorded; headline finding independently confirmed real | Phase 013 checklist evidence |
-| Phase 014 remediation | Closeout | All 4 P1 findings resolved; `validate.sh --recursive --strict` clean for parent + all 14 children | Recorded command output in `014-review-remediation/implementation-summary.md` |
+| Phase 014 remediation | Phase 015 flowchart deprecation | All 4 P1 findings resolved; `validate.sh --recursive --strict` clean for parent + all 14 children | Recorded command output in `014-review-remediation/implementation-summary.md` |
+| Phase 015 flowchart deprecation | Closeout | `sk-create-flowchart` fully removed; 0 live references remain outside historical spec docs; `validate.sh --recursive --strict` clean for parent + all 15 children | Recorded command output in `015-flowchart-deprecation/implementation-summary.md` |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -182,5 +185,4 @@ None remaining — all three resolved in phase 001's `decision-record.md` §5 (i
 - Source material: `context/skills/diagram-design/SKILL.md`, `context/README.md`
 - Inventory and mapping: `001-inventory-and-skill-contract/spec.md`, `001-inventory-and-skill-contract/decision-record.md`
 - Skill-creation standard: `.opencode/skills/sk-doc/sk-create-skill/SKILL.md`
-- Sibling boundary reference: `.opencode/skills/sk-doc/sk-create-flowchart/SKILL.md`
 - Machine metadata: `description.json` and `graph-metadata.json`

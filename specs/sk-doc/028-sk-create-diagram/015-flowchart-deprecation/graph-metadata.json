@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/028-sk-create-diagram/015-flowchart-deprecation",
+  "spec_folder": "sk-doc/028-sk-create-diagram/015-flowchart-deprecation",
+  "parent_id": "sk-doc/028-sk-create-diagram",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "flowchart full deprecation",
+      "delete sk-create-flowchart"
+    ],
+    "key_topics": [
+      "flowchart",
+      "deprecation",
+      "deletion",
+      "advisor",
+      "hub-router",
+      "mode-registry",
+      "leaf-manifest",
+      "post-edit-router"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [],
+    "causal_summary": "Phase 012 merged sk-create-flowchart's ASCII/markdown capability into sk-create-diagram and left the source skill as a redirect stub; this phase deletes it outright and purges every live reference, since sk-create-diagram now fully covers its capability",
+    "created_at": "2026-08-13T05:55:33.000Z",
+    "last_save_at": "2026-08-13T05:55:33.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:88114088e415e4f236169dcf00756d6d76060c16dcd5476fedb224d36b57a8eb",
+    "source_doc_hashes": {
+      "spec.md": "d6cc9ff89ec6fe3e79322d231269235fa4555c8a14e94dab0adcb1cd89c4808b",
+      "plan.md": "de3556f30a62c32f9577258e448119673398b77b6b988f10480d79e7a72b88e8",
+      "tasks.md": "9c16773f7737d6f21421ca8202adbb99ed0a9e9c8e898d853d698bf3ebbf77df",
+      "checklist.md": "8328ffc73f32693debb88e83684b249da92e95eadf788af6d81b5a5ef58d195f",
+      "implementation-summary.md": "c4c920e31e9a6ca421c0326ab1e8e2d72b78dcc27ca2daa2d99bbbf1ff05d574"
+    },
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-13T05:55:33.000Z"
+  }
+}

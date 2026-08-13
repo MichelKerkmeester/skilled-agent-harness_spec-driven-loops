@@ -198,22 +198,6 @@
     },
     {
       "leaves": [
-        "assets/approval-workflow-loops.md",
-        "assets/decision-tree-flow.md",
-        "assets/parallel-execution.md",
-        "assets/simple-workflow.md",
-        "assets/system-architecture-swimlane.md",
-        "assets/user-onboarding.md",
-        "references/README.md",
-        "references/notation-and-validator.md",
-        "references/pattern-selection.md",
-        "references/worked-example.md"
-      ],
-      "packet": "sk-create-flowchart",
-      "workflowMode": "sk-create-flowchart"
-    },
-    {
-      "leaves": [
         "assets/manual-testing-playbook-snippet-template.md",
         "assets/manual-testing-playbook-template.md",
         "references/README.md",

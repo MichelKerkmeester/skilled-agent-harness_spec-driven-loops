@@ -112,18 +112,6 @@
       "advisorRouting": { "routingClass": "metadata" }
     },
     {
-      "workflowMode": "sk-create-flowchart",
-      "packetKind": "workflow",
-      "backendKind": "template-scaffold",
-      "toolSurface": { "allowed": ["Read", "Write", "Edit", "Bash", "Grep", "Glob"], "forbidden": ["Task"], "mutatesWorkspace": true, "bashAllowlist": [] },
-      "packet": "sk-create-flowchart",
-      "packetSkillName": "sk-create-flowchart",
-      "grandfatheredFolderMismatch": false,
-      "command": "/create:flowchart",
-      "aliases": ["create flowchart", "flowchart", "ASCII flowchart", "workflow diagram", "decision tree", "swimlane", "parallel execution diagram", "approval loop diagram"],
-      "advisorRouting": { "routingClass": "metadata" }
-    },
-    {
       "workflowMode": "sk-create-changelog",
       "packetKind": "workflow",
       "backendKind": "template-scaffold",

@@ -13,7 +13,6 @@
       "sk-create-feature-catalog",
       "sk-create-manual-testing-playbook",
       "sk-create-benchmark",
-      "sk-create-flowchart",
       "sk-create-changelog",
       "sk-create-diff",
       "sk-create-diagram",
@@ -109,15 +108,6 @@
       ],
       "resources": [
         "sk-create-benchmark/SKILL.md"
-      ]
-    },
-    "sk-create-flowchart": {
-      "weight": 3,
-      "classes": [
-        "create-flowchart-aliases"
-      ],
-      "resources": [
-        "sk-create-flowchart/SKILL.md"
       ]
     },
     "sk-create-changelog": {
@@ -297,21 +287,6 @@
         "Lane A agent-improvement",
         "agent_improvement_authoring_guide",
         "agent quality dimensions"
-      ]
-    },
-    "create-flowchart-aliases": {
-      "keywords": [
-        "create flowchart",
-        "flowchart",
-        "ASCII flowchart",
-        "workflow diagram",
-        "text diagram",
-        "text characters",
-        "decision tree",
-        "decision branch",
-        "swimlane",
-        "parallel execution diagram",
-        "approval loop diagram"
       ]
     },
     "create-changelog-aliases": {

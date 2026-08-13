@@ -290,40 +290,6 @@
     ]
   },
   {
-    "command": "/create:flowchart",
-    "ownerMode": "sk-create-flowchart",
-    "description": "Create an ASCII flowchart markdown file with pattern selection and validation. Modes :auto, :confirm.",
-    "argumentHint": "<target-flowchart.md> [source/process description] [:auto|:confirm] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
-    "userIntent": {
-      "job": "I want to turn a real process or decision tree into a validated ASCII flowchart.",
-      "ownedSignals": [
-        "draw an ASCII flowchart",
-        "map a process as a diagram",
-        "validate a flowchart"
-      ]
-    },
-    "choreography": [
-      {
-        "order": 1,
-        "skill": "sk-doc",
-        "resource": ".opencode/skills/sk-doc/SKILL.md",
-        "action": "load the sk-doc parent hub routing table"
-      },
-      {
-        "order": 2,
-        "skill": "create-flowchart",
-        "resource": ".opencode/skills/sk-doc/sk-create-flowchart/SKILL.md",
-        "action": "load the flowchart authoring mode contract, then apply the workflow to $ARGUMENTS"
-      },
-      {
-        "order": 3,
-        "skill": "create-flowchart",
-        "resource": ".opencode/commands/create/assets/create-flowchart-presentation.txt",
-        "action": "load the command presentation contract before resolving setup and execution mode"
-      }
-    ]
-  },
-  {
     "command": "/create:changelog",
     "ownerMode": "sk-create-changelog",
     "description": "Create global or packet-local changelog. Topology-aware, optional GitHub release. :auto/:confirm.",

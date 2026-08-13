@@ -46,7 +46,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **manual-testing-playbook** | `/create:manual-testing-playbook <skill-name> [create\|update] [--path <dir>] [:auto\|:confirm]` | Create or update a rooted `manual-testing-playbook/` package using the shipped `sk-doc` contract |
 | **command** | `/create:command <command_invocation> [command_request] [:auto\|:confirm]` | Create or update an OpenCode slash command set with router and `:auto`/`:confirm` workflow assets |
 | **benchmark** | `/create:benchmark <skill-name> <spec-packet> [create\|update] [--date YYYY-MM-DD] [--path <dir>] [:auto\|:confirm]` | Promote a curated MCP benchmark folder and report into a skill |
-| **flowchart** | `/create:flowchart <target-flowchart.md> [source/process description] [:auto\|:confirm]` | Create a validated ASCII flowchart markdown file |
+| **diagram** | `/create:diagram <target-diagram.html\|target-flowchart.md> [description] [--output-format html-svg\|ascii-markdown] [:auto\|:confirm]` | Create an HTML/SVG technical diagram or a validated ASCII/markdown flowchart |
 
 ### README Types
 
@@ -74,7 +74,7 @@ create/
 ├── manual-testing-playbook.md   # /create:manual-testing-playbook command
 ├── command.md            # /create:command command
 ├── benchmark.md          # /create:benchmark command
-├── flowchart.md          # /create:flowchart command
+├── diagram.md             # /create:diagram command
 └── assets/               # YAML workflow definitions
     ├── create-agent-auto.yaml
     ├── create-agent-confirm.yaml
@@ -94,8 +94,9 @@ create/
     ├── create-command-confirm.yaml
     ├── create-benchmark-auto.yaml
     ├── create-benchmark-confirm.yaml
-    ├── create-flowchart-auto.yaml
-    └── create-flowchart-confirm.yaml
+    ├── create-diagram-auto.yaml
+    ├── create-diagram-confirm.yaml
+    └── create-diagram-presentation.txt
 ```
 
 ---

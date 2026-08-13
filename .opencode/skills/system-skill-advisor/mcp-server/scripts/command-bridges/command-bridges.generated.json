@@ -110,6 +110,21 @@
       }
     },
     {
+      "id": "command-create-diagram",
+      "command": "/create:diagram",
+      "skillId": "sk-doc",
+      "ownerMode": "sk-create-diagram",
+      "source": ".opencode/skills/sk-doc/command-metadata.json",
+      "runtime": {
+        "typescript": {
+          "enabled": false
+        },
+        "python": {
+          "enabled": false
+        }
+      }
+    },
+    {
       "id": "command-create-diff",
       "command": "/create:diff",
       "skillId": "sk-doc",
@@ -144,21 +159,6 @@
             "/create:feature-catalog",
             "create:feature-catalog"
           ]
-        }
-      }
-    },
-    {
-      "id": "command-create-flowchart",
-      "command": "/create:flowchart",
-      "skillId": "sk-doc",
-      "ownerMode": "sk-create-flowchart",
-      "source": ".opencode/skills/sk-doc/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
         }
       }
     },

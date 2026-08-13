@@ -10,7 +10,7 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-create-diagram/012-flowchart-capability-merge"
-    last_updated_at: "2026-08-12T20:16:58.000Z"
+    last_updated_at: "2026-08-13T05:55:33.000Z"
     last_updated_by: "opencode"
     recent_action: "Completed implementation; all validation blockers resolved"
     next_safe_action: "None — phase complete"
@@ -57,7 +57,7 @@ _memory:
 
 `sk-create-diagram` now owns both HTML/SVG diagrams and ASCII/markdown flowcharts through an explicit output-format dial. The existing HTML/SVG `type-flowchart.md` remains a type reference. The new ASCII resources live under `references/ascii-format/` and `assets/ascii-patterns/`, and the copied validator remains byte-identical to the source validator.
 
-`sk-create-flowchart` is redirected rather than deleted. Its source references, assets, and validator remain in place. `/create:flowchart` passes through to `/create:diagram` with `ascii-markdown` pre-selected.
+`sk-create-flowchart` was redirected rather than deleted at the time this phase shipped. Its source references, assets, and validator remained in place, and `/create:flowchart` passed through to `/create:diagram` with `ascii-markdown` pre-selected. Phase 015 later completed the deprecation: the redirect skill and command were deleted outright.
 
 | Area | Result |
 |---|---|
@@ -110,7 +110,7 @@ The implementation ported the source resources first, then updated format-first 
 | Requested package validator path | FAIL | `.opencode/skills/sk-doc/shared/scripts/validate_skill_package.py` does not exist in this checkout. |
 | Actual strict package validator | PASS | `.opencode/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .opencode/skills/sk-doc/sk-create-diagram --strict` returned `PASS (exit 0)` in the final worktree state. |
 | Child packet strict validator | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-doc/028-sk-create-diagram/012-flowchart-capability-merge --strict --verbose` returned `RESULT: PASSED` with zero errors and zero warnings. |
-| Parent recursive validator | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-doc/028-sk-create-diagram --recursive --strict` reports 0 errors across the parent and all 14 children (parent retains its one pre-existing, already-documented `PHASE_PARENT_CONTENT` warning). Phases `010`/`011`'s template/anchor gaps and the benchmark-folder-naming exemption were resolved in later work on this packet. |
+| Parent recursive validator | PASS | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/sk-doc/028-sk-create-diagram --recursive --strict` reports 0 errors across the parent and all children (parent retains its one pre-existing, already-documented `PHASE_PARENT_CONTENT` warning). Phases `010`/`011`'s template/anchor gaps and the benchmark-folder-naming exemption were resolved in later work on this packet. |
 | Diff hygiene | PASS | `git diff --check` returned no output. |
 <!-- /ANCHOR:verification -->
 

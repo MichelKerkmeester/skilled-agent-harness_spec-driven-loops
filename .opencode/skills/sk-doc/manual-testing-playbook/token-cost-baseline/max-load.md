@@ -62,16 +62,16 @@ expected_resources:
   - sk-create-feature-catalog/references/README.md
   - sk-create-feature-catalog/references/common-pitfalls.md
   - sk-create-feature-catalog/references/examples.md
-  - sk-create-flowchart/assets/approval-workflow-loops.md
-  - sk-create-flowchart/assets/decision-tree-flow.md
-  - sk-create-flowchart/assets/parallel-execution.md
-  - sk-create-flowchart/assets/simple-workflow.md
-  - sk-create-flowchart/assets/system-architecture-swimlane.md
-  - sk-create-flowchart/assets/user-onboarding.md
-  - sk-create-flowchart/references/README.md
-  - sk-create-flowchart/references/notation-and-validator.md
-  - sk-create-flowchart/references/pattern-selection.md
-  - sk-create-flowchart/references/worked-example.md
+  - sk-create-diagram/assets/ascii-patterns/approval-workflow-loops.md
+  - sk-create-diagram/assets/ascii-patterns/decision-tree-flow.md
+  - sk-create-diagram/assets/ascii-patterns/parallel-execution.md
+  - sk-create-diagram/assets/ascii-patterns/simple-workflow.md
+  - sk-create-diagram/assets/ascii-patterns/system-architecture-swimlane.md
+  - sk-create-diagram/assets/ascii-patterns/user-onboarding.md
+  - sk-create-diagram/references/ascii-format/README.md
+  - sk-create-diagram/references/ascii-format/notation-and-validator.md
+  - sk-create-diagram/references/ascii-format/pattern-selection.md
+  - sk-create-diagram/references/ascii-format/worked-example.md
   - sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
   - sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
   - sk-create-manual-testing-playbook/references/README.md
@@ -121,7 +121,7 @@ expected_resources:
   - sk-create-skill/references/shared/validation-and-packaging.md
   - sk-create-skill/references/skill/creation-workflow.md
   - sk-create-skill/references/skill/examples-and-maintenance.md
-expected_workflow_mode: sk-create-agent+sk-create-benchmark+sk-create-changelog+sk-create-command+sk-create-diff+sk-create-feature-catalog+sk-create-flowchart+sk-create-manual-testing-playbook+sk-create-quality-control+sk-create-readme+sk-create-skill+sk-create-skill-parent
+expected_workflow_mode: sk-create-agent+sk-create-benchmark+sk-create-changelog+sk-create-command+sk-create-diff+sk-create-feature-catalog+sk-create-diagram+sk-create-manual-testing-playbook+sk-create-quality-control+sk-create-readme+sk-create-skill+sk-create-skill-parent
 full_inventory_intent: true
 expected_leaf_resources:
   - workflow_mode: sk-create-agent
@@ -238,25 +238,25 @@ expected_leaf_resources:
     leaf_resource_id: references/common-pitfalls.md
   - workflow_mode: sk-create-feature-catalog
     leaf_resource_id: references/examples.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/approval-workflow-loops.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/decision-tree-flow.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/parallel-execution.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/simple-workflow.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/system-architecture-swimlane.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: assets/user-onboarding.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: references/README.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: references/notation-and-validator.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: references/pattern-selection.md
-  - workflow_mode: sk-create-flowchart
+  - workflow_mode: sk-create-diagram
     leaf_resource_id: references/worked-example.md
   - workflow_mode: sk-create-manual-testing-playbook
     leaf_resource_id: assets/manual-testing-playbook-snippet-template.md
