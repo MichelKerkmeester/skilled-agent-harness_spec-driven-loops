@@ -8,7 +8,7 @@ _ac_lower() {
 
 _ac_enabled() {
     local value
-    value="$(_ac_lower "${SPECKIT_AC_COVERAGE:-false}")"
+    value="$(_ac_lower "${SPECKIT_AC_COVERAGE:-true}")"
     [[ "$value" == "true" || "$value" == "1" || "$value" == "yes" || "$value" == "on" ]]
 }
 
@@ -220,6 +220,6 @@ run_check() {
         return 0
     fi
 
-    RULE_MESSAGE="AC_COVERAGE WARNING: ${covered}/${total} ACs have evidence; floor ${required}/${total}. Add evidence or mark Manual-infeasible."
+    RULE_MESSAGE="AC_COVERAGE advisory (under floor): ${covered}/${total} ACs have evidence; floor ${required}/${total}. Add evidence or mark Manual-infeasible."
     RULE_REMEDIATION="Add file:line evidence to traceability rows, or mark Manual-infeasible with a rationale when automation is not feasible."
 }

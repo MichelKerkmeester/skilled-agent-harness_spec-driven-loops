@@ -4,7 +4,7 @@
 # ───────────────────────────────────────────────────────────────
 # Extended suite for validator behavior against the registry-backed
 # validator and numbered fixture corpus. As of this revision, the registry
-# contains 45 rule entries and the fixture tree contains 76 numbered
+# contains 46 rule entries and the fixture tree contains 76 numbered
 # directories (highest 077).
 #
 # COVERAGE FRAME:

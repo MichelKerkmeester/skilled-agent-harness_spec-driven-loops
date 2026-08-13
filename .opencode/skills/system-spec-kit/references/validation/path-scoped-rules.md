@@ -84,7 +84,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | `EVIDENCE_CITED`     | WARNING  | Verify `[EVIDENCE:]` on completed P0/P1 items       |
 | `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs in spec docs (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md) and generated continuity support artifacts |
 
-> **Partial reference:** This table lists a commonly-encountered subset. The authoritative, complete rule set (36 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, PHASE_PARENT_CONTENT, AI_PROTOCOLS, TEMPLATE_HEADERS, SPEC_DOC_INTEGRITY, CONTINUITY_FRESHNESS, and strict-only validators) lives in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
+> **Partial reference:** This table lists a commonly-encountered subset. The authoritative, complete rule set (46 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, PHASE_PARENT_CONTENT, AI_PROTOCOLS, TEMPLATE_HEADERS, SPEC_DOC_INTEGRITY, CONTINUITY_FRESHNESS, SCOPE_ADHERENCE, and strict-only validators) lives in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
 
 ### Placeholder Patterns Detected
 
