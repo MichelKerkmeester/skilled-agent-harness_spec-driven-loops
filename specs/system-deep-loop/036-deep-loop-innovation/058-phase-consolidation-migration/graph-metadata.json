@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/058-phase-consolidation-migration",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/058-phase-consolidation-migration",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "temporary",
+      "implementation",
+      "phase",
+      "execute",
+      "8-group",
+      "consolidation",
+      "tree",
+      "migration"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Consolidation Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Temporary implementation phase: execute the 8-group consolidation of the 036 phase tree.",
+    "created_at": "2026-08-13T20:13:43.387Z",
+    "last_save_at": "2026-08-13T20:13:43.387Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:54ef3e63b59d4d69968c4405f2722e3d936a75e362d9d26964c09f50a655ae43",
+    "source_doc_hashes": {
+      "spec.md": "bd758accaca97373ae17a82df57aa0947432788ab1df1f1f038e12768d1d3f29"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

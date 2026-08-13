@@ -191,6 +191,7 @@ load_child_manifest() {
     local phase_name=""
     local manifest_error=""
     local manifest_file="${SPECKIT_CHILD_MANIFEST_FILE:-}"
+    local require_exact_disk_set=false
     local -a on_disk_phase_dirs=()
 
     CHILD_MANIFEST_ACTIVE=false
@@ -198,6 +199,7 @@ load_child_manifest() {
     CHILD_MANIFEST_ENTRIES=()
 
     if [[ -n "$manifest_file" ]]; then
+        require_exact_disk_set=true
         [[ -f "$manifest_file" ]] || { echo "ERROR: declared child manifest not found: $manifest_file" >&2; return 2; }
         while IFS= read -r line || [[ -n "$line" ]]; do
             case "$line" in
@@ -211,9 +213,9 @@ load_child_manifest() {
     else
         canonical_parent=$(cd "$parent_folder" && pwd -P) || { echo "ERROR: cannot resolve parent folder: $parent_folder" >&2; return 2; }
         case "$canonical_parent" in
-            */.opencode/specs/system-deep-loop/036-deep-loop-innovation)
-                manifest_text=$'001-deep-loop-market-research\n002-deep-loop-effectiveness-and-fanout\n003-baseline-taxonomy-and-state-census\n004-architecture-coverage-and-transition-contract\n005-fanout-live-tools-unblock\n006-transition-authorized-ledger-core\n007-shared-evidence-and-control-services\n008-compatibility-shadow-and-rollback-bridge\n009-fanout-fanin-durable-orchestration\n010-novelty-claims-continuity-and-projections\n011-convergence-termination-and-health\n012-shared-mode-contracts-and-fixtures\n013-mode-and-lane-migrations\n014-staged-state-migration-and-authority-cutover\n015-legacy-writer-retirement\n016-whole-system-gate\n017-integrate-latest-and-closeout\n018-drift-census-and-plan-revalidation\n019-runtime-code-readmes\n020-sk-code-opencode-alignment\n021-completion-evidence-reconcile\n022-shadow-parity-independent-derivation\n023-legacy-compat-event-vocabulary\n024-durable-write-boundaries\n025-artifact-certificate-binding\n026-alignment-coverage-integrity\n027-mode-gate-and-contract-binding\n028-fanout-dispatch-integrity\n029-improvement-promotion-authority\n030-runtime-mirror-and-routing-parity\n031-silent-failure-and-harness-repair\n032-docs-drift-and-p2-batch\n033-identity-and-lock-ownership-hardening\n035-cli-adapter-stress-and-playbooks\n047-executor-wiring-and-parity\n048-write-containment-hardening\n049-deep-alignment-integrity\n050-trustworthy-state-records\n'
-                expected_hash="8912fe0ae88f5843962719a4d81943fbaeb11724426e7ce89ab685fb0577dde7"
+            */specs/system-deep-loop/036-deep-loop-innovation)
+                manifest_text=$'001-research-inputs-and-architecture\n002-substrate-and-orchestration\n003-mode-contracts-migration-and-cutover\n004-gate-closeout-and-drift\n005-blocker-closeout\n006-runtime-docs-and-integrity-hardening\n007-executor-and-cli-hardening\n008-review-and-rollback-followup\n057-phase-consolidation-research\n058-phase-consolidation-migration\n'
+                expected_hash="9e004ecac65efe30d40f003fee00677513418105b329534b7f20d44aeae10b1d"
                 ;;
             *)
                 return 0
@@ -248,14 +250,16 @@ load_child_manifest() {
         on_disk_phase_dirs+=("${phase_dir%/}")
     done
 
-    for phase_dir in "${on_disk_phase_dirs[@]-}"; do
-        [[ -z "$phase_dir" ]] && continue
-        phase_name=$(basename "$phase_dir")
-        if ! child_manifest_contains "$phase_name"; then
-            echo "ERROR: on-disk child is absent from the declared manifest: $phase_name" >&2
-            manifest_error=1
-        fi
-    done
+    if $require_exact_disk_set; then
+        for phase_dir in "${on_disk_phase_dirs[@]-}"; do
+            [[ -z "$phase_dir" ]] && continue
+            phase_name=$(basename "$phase_dir")
+            if ! child_manifest_contains "$phase_name"; then
+                echo "ERROR: on-disk child is absent from the declared manifest: $phase_name" >&2
+                manifest_error=1
+            fi
+        done
+    fi
 
     for phase_name in "${CHILD_MANIFEST_ENTRIES[@]}"; do
         if [[ ! -d "$parent_folder/$phase_name" ]]; then

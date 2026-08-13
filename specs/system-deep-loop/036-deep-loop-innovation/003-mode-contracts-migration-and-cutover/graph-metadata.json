@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/012-shared-mode-contracts-and-fixtures",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/014-staged-state-migration-and-authority-cutover",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/015-legacy-writer-retirement"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mode contracts cutover",
+      "lane migration legacy retirement"
+    ],
+    "key_topics": [
+      "mode",
+      "contracts",
+      "cutover",
+      "lane",
+      "migration",
+      "legacy",
+      "retirement",
+      "shared",
+      "fixtures",
+      "migrations",
+      "staged",
+      "state"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Contracts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cutover Shared",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE DOCUMENTATION MAP",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Shared mode contracts and fixtures, mode and lane migrations, staged state migration and authority cutover, and legacy-writer retirement.",
+    "created_at": "2026-08-13T09:22:31.482Z",
+    "last_save_at": "2026-08-13T17:17:15.647Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2bf6b0f797472525d141503a398bdd0e8a6205a4706798a8b27fea9f4d52a413",
+    "source_doc_hashes": {
+      "spec.md": "fa548bf9b99ec7897c3b23e2eee77ddb393022a22b53247f7752eb3100ad212c"
+    },
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/015-legacy-writer-retirement",
+    "last_active_at": null
+  }
+}

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: system-deep-loop recommendations implementation (evidence-ledger runtime + per-mode migration)"
-description: "Implement the 178 research recommendations from packets 065/001 + 065/002 into the shipped system-deep-loop runtime and its per-mode workstreams. The research established that all 178 recs converge on ONE architecture — an append-only typed event ledger guarded by a fail-closed transition-authorization gateway, with sealed/frozen reference artifacts, versioned replay fingerprints, receipts/certificates, and blinded/counterfactual adjudication — and that the correct program builds the shared substrate ONCE, then gives each mode its own typed schema over it. The load-bearing constraint (from a GPT-5.6-sol ultra design review): the runtime holds in-flight state and cannot be swapped big-bang, so the new substrate lands ADDITIVE + DARK + non-authoritative behind compatibility adapters and shadow-parity, authority cuts over one mode at a time behind a rollback window, and legacy writers retire only after zero-use telemetry. Phase parent for a 17-phase program (001-017): the two research inputs first (001 market research, 002 effectiveness + fan-out); then baseline + taxonomy + state census; the architecture/transition/coverage contract; the early backward-compatible fan-out live-tools unblock; the transition-authorized ledger core; shared evidence/control services; the compatibility + shadow + rollback bridge; durable fan-out/fan-in; novelty/claims/continuity projections; convergence/termination/health; shared mode contracts; the eight per-mode migrations; staged state-migration + authority cutover; legacy-writer retirement; the whole-system gate; and integrate-latest + closeout."
+description: "Implement the 178 research recommendations from packets 065/001 + 065/002 into the shipped system-deep-loop runtime and its per-mode workstreams. The research established that all 178 recs converge on ONE architecture — an append-only typed event ledger guarded by a fail-closed transition-authorization gateway, with sealed/frozen reference artifacts, versioned replay fingerprints, receipts/certificates, and blinded/counterfactual adjudication — and that the correct program builds the shared substrate ONCE, then gives each mode its own typed schema over it. The load-bearing constraint (from a GPT-5.6-sol ultra design review): the runtime holds in-flight state and cannot be swapped big-bang, so the new substrate lands ADDITIVE + DARK + non-authoritative behind compatibility adapters and shadow-parity, authority cuts over one mode at a time behind a rollback window, and legacy writers retire only after zero-use telemetry. Phase parent for a phase parent whose direct children are eight thematic group parents plus the research and migration host packets; the groups hold the original research-to-closeout, remediation, hardening, review, and executor phases. The PHASE DOCUMENTATION MAP is the current child inventory."
 trigger_phrases:
   - "deep-loop recommendations implementation"
   - "implement the 178 deep-loop recs"
@@ -13,7 +13,7 @@ parent: "system-deep-loop"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation"
-    last_updated_at: "2026-07-15T17:00:00Z"
+    last_updated_at: "2026-08-13T14:27:57.000Z"
     last_updated_by: "claude-code"
     recent_action: "Flattened impl program to packet root; renumbered phases to 003-017"
     next_safe_action: "Author phase-003 baseline-taxonomy-and-state-census doc set on a pinned BASE"
@@ -65,6 +65,8 @@ append-only event ledger guarded by a **fail-closed transition-authorization gat
 artifacts** (evaluator capsule, authority capsule, sealed canary, independence batch), **versioned replay
 fingerprints**, **receipts/certificates**, and **blinded/counterfactual adjudication**. The recommended program is not
 178 tweaks: it is to build that substrate **once** and give each of the eight mode workstreams a typed schema over it.
+
+> **Current identity caveat (target vs. runtime):** the transition-authorization gateway is fail-closed for request validity, authority availability, head/epoch staleness, unknown policy, and evaluator/audit-storage failures. Identity verification is **opt-in in the current runtime** — a missing, null, or partial identity resolver does not deny — and is scheduled to become a required dependency at the Phase 014 cutover. See [`033-identity-and-lock-ownership-hardening/decision-record.md`](006-runtime-docs-and-integrity-hardening/033-identity-and-lock-ownership-hardening/decision-record.md).
 
 The load-bearing complication (surfaced by the SOL ultra review): the runtime is **live and holds in-flight state** —
 existing packets are mid-run on the current JSONL shape, and the modes share backends (the three benchmark variants
@@ -118,46 +120,19 @@ recommendations assigned to exactly one phase or explicitly deferred**.
 <!-- ANCHOR:phases -->
 ## PHASE MAP & OUTCOMES
 
-The two research inputs are phases 001-002 (read-only). The implementation is ordered — per the SOL ultra review — so the
-running system stays internally consistent at every commit and the new substrate is additive/dark until it proves parity:
-baseline + taxonomy + a frozen 178-row rec ledger come FIRST; the transition-authorization + event-compatibility contract
-is frozen before any typed writer exists; the substrate lands dark behind adapters + shadow parity + rollback before any
-authority moves; stable identities + durable fan-in + novelty precede convergence (which consumes them); shared mode
-contracts land before the per-mode fan-out; authority cuts over one mode at a time; legacy writers retire last; and a
-whole-system gate reruns after integrate-latest. Every implementation phase carries a blocking SOL verifier contract in
-its `checklist.md`.
+After grouping, the parent has eight thematic group parents (plus the research host packet 057 and this migration phase 058). Per-phase outcomes live in each group parent and its children; the full creation order of every child is in the root `timeline.md`.
 
-| Phase | Child | Kind | Outcome |
-|-------|-------|------|---------|
-| **001** | `001-deep-loop-market-research` | research (input) | The 8 ranked recommendations (R1-R8) and the market/landscape research — a complete, read-only input consumed by the phase-004 ledger. |
-| **002** | `002-deep-loop-effectiveness-and-fanout` | research (input) | The 59 runtime recommendations + the fan-out finding (run 1) and the 111 per-mode recommendations (run 2) — complete, read-only inputs consumed by the phase-004 ledger. |
-| **003** | `003-baseline-taxonomy-and-state-census` | leaf | Pin an immutable BASE. Normalize the taxonomy (workflow families vs registered workflow modes vs the eight research workstreams — packet 033's benchmark set is stale and must be extended). Census the runtime subsystems, every event schema + reader/writer, all persisted in-flight state and backend paths, known-defects-vs-protected-contracts, replay fixtures, and rollback anchors. Everything later is proven against this. |
-| **004** | `004-architecture-coverage-and-transition-contract` | parent | Ratify the one-architecture spine (decision-record). Freeze a **bijective 178-row classified ledger** — mint stable rec IDs, normalize targets, assign every rec exactly one disposition (phase / deferred / eliminated), no "unknown" bucket. Define the canonical event namespace, transition vocabulary, schema-version + replay-compatibility policy, the authority boundary, and the cutover/rollback/disposition policy — **before any writer exists**. |
-| **005** | `005-fanout-live-tools-unblock` | leaf | The operator's most-requested capability, shipped early and **backward-compatibly**: a typed `liveTools.webSearch` policy + capability matrix + per-kind executor adapters + manifest expansion on `fanout-run.cjs`, so automated fan-out can pass codex top-level `--search` per leaf. Changes dispatch only — **no canonical-persistence change** — so it lands independent of the ledger. Reference: the proven `002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs`. |
-| **006** | `006-transition-authorized-ledger-core` | parent | The versioned event envelope, the typed append-only ledger, replay fingerprints, and the **fail-closed transition-authorization gateway** — co-landed so no typed event is ever written without passing the gate. The core is **dark**: it records in parallel; legacy remains authoritative. |
-| **007** | `007-shared-evidence-and-control-services` | parent | The shared services every mode consumes: receipts + effect-recovery gateway (per-effect recovery policy), the sealed/frozen reference-artifact mechanism, the **blinded/counterfactual adjudication service** (the fifth spine primitive), hierarchical typed budgets, incremental stream-fold gauges, locks/fencing, and continuity identities. |
-| **008** | `008-compatibility-shadow-and-rollback-bridge` | parent | The migration safety net: upcasters + dual-read/single-write adapters + legacy projections so old and new coexist; a **shadow-parity** harness proving the dark substrate reproduces legacy behavior; in-flight-state classification (upcast / pin-legacy / fork / migrate / block); and rollback drills. **No authority cutover here.** |
-| **009** | `009-fanout-fanin-durable-orchestration` | parent | Durable orchestration integrated onto the ledger: canonical dispatch receipts, result envelopes, resume + salvage, logical branch IDs, leases, waves, conditional budget-aware fan-in, partial-failure policy (strict/quorum/deadline/progressive), and provenance-balanced reduction. Consumes the 005 unblock + the substrate. |
-| **010** | `010-novelty-claims-continuity-and-projections` | parent | Semantic-community novelty, contradiction + supersession events, claim continuity, next-focus semantics, and deterministic transactional projections/gauges. Depends on stable identities (009) + the ledger. |
-| **011** | `011-convergence-termination-and-health` | parent | Path-covering multi-signal termination, cycle detection, exponential-tail stopping clocks, value-of-computation + adaptive-compute allocation, plus the **generic** health + degeneration harness. Placed AFTER fan-in + novelty + claims because its stop contract consumes them. |
-| **012** | `012-shared-mode-contracts-and-fixtures` | parent | Freeze the shared mode interfaces, hoist every cross-mode closure (deep-improvement common used by its 3 variants; the shared review/alignment loop), build mixed-version fixtures, and produce the **executable dependency + write-set conflict graph** that makes the per-mode fan-out parallel-safe. |
-| **013** | `013-mode-and-lane-migrations` | parent (×8) | The per-mode fan-out: eight workstreams (`001-deep-research` … `008-deep-alignment`), each a **fractal parent** implementing that mode's full run-C behavior — typed ledger schema, reducers, sealed artifacts, certificates, resume adapters, shadow parity, rollback switch — ending in an independent mode gate. **deep-improvement common precedes** agent-improvement / model-benchmark / skill-benchmark. |
-| **014** | `014-staged-state-migration-and-authority-cutover` | parent | Classify + migrate eligible in-flight state; flip authority from legacy to the ledger **one mode at a time**, each behind a rollback window and a cutover certificate proving parity held. |
-| **015** | `015-legacy-writer-retirement` | leaf | Remove the old live emitters + replaced logic **only** after zero-use telemetry + rollback evidence; retain required archival readers (old completed packets must still be readable). |
-| **016** | `016-whole-system-gate` | leaf | The whole-system gate on the frozen SHA: exact-SHA behavior baselines, every mode gate, mixed-version replay, crash-injection, counterfactual + degeneration tests, budget/receipt parity vs 003, a blocking SOL review, and recursive `validate.sh --strict`. Verification mutates no tracked file. |
-| **017** | `017-integrate-latest-and-closeout` | leaf | Integrate the latest origin in a clean worktree; re-census touched contracts and **reopen affected phases on relevant drift**; rerun the entire 016 gate on the exact final SHA; reconcile the 065 "open" items (append-only), changelogs, and packet metadata; parent rollup + merge. |
+| # | Group parent | Theme | Status |
+|---|--------------|-------|--------|
+| 1 | `001-research-inputs-and-architecture` | research inputs + architecture contract | complete |
+| 2 | `002-substrate-and-orchestration` | ledger substrate + orchestration | in_progress |
+| 3 | `003-mode-contracts-migration-and-cutover` | mode contracts + authority cutover | in_progress |
+| 4 | `004-gate-closeout-and-drift` | whole-system gate + closeout + drift | in_progress |
+| 5 | `005-blocker-closeout` | cutover blocker closeouts | in_progress |
+| 6 | `006-runtime-docs-and-integrity-hardening` | runtime docs + integrity hardening | in_progress |
+| 7 | `007-executor-and-cli-hardening` | executor + CLI hardening | in_progress |
+| 8 | `008-review-and-rollback-followup` | review + rollback follow-up | complete |
 
-**Sequencing invariants** (SOL ultra review, folded in):
-1. Baseline, taxonomy, the state corpus, and the frozen 178-row rec set are frozen (003-004) before any architecture or implementation work.
-2. The transition-authority + event-compatibility contract is frozen (004) before any typed event writer lands, and the authorization gateway co-lands with the first writer (006).
-3. The new substrate stays **additive, dark, and non-authoritative** until legacy adapters, shadow parity, and rollback pass (008).
-4. Stable logical identities + durable fan-in (009) precede novelty/claim projections (010); both precede convergence activation (011).
-5. Shared mode contracts + cross-mode closures (012) land before the per-mode fan-out (013).
-6. deep-improvement common services precede the agent-improvement, model-benchmark, and skill-benchmark migrations.
-7. Per-mode gates prove **shadow parity only**; authority changes solely in the cutover phase (014).
-8. Legacy live writers are removed (015) only after state classification, rollback rehearsal, mixed-version replay, and cutover certificates.
-9. Every implementation phase strict-validates independently and produces a blocking SOL receipt bound to its exact commit.
-10. The whole-system gate (016) runs on a frozen SHA and reruns after integrate-latest (017), reopening earlier phases on relevant drift.
 <!-- /ANCHOR:phases -->
 
 <!-- ANCHOR:success-criteria -->
@@ -206,68 +181,17 @@ Deferred to the phase that owns the decision (per the SOL review):
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-> This spec uses phased decomposition. Each phase is an independently executable child spec folder. Phases 001-002 are the read-only research inputs; phases 003-017 are the implementation program. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children; the architecture ADR + the 178-row rec ledger live in 004. Phases 021-032 are the remediation tree for the 166 findings recorded in `016-whole-system-gate/review/`; they are a bounded acceptance set declared in the parent child manifest that phase 021 introduces. Phases 047-050 group the later executor-wiring, write-containment, and deep-alignment packets under themed phase parents (050 is a standalone state-records child).
+Direct children after grouping: eight thematic group parents. The root also holds two host packets — 057 (the grouping research) and 058 (this migration phase) — and the loose 033-dispositions.md file. Each group's own children and the full lineage are in the group parents and `timeline.md`.
 
-| Phase | Folder | Focus | Status |
-|-------|--------|-------|--------|
-| 001 | 001-deep-loop-market-research/ | Market/landscape research + 8 ranked recs (read-only input) | Complete |
-| 002 | 002-deep-loop-effectiveness-and-fanout/ | 59 runtime recs + fan-out finding + 111 per-mode recs (read-only input) | Complete |
-| 003 | 003-baseline-taxonomy-and-state-census/ | Pinned BASE, normalized taxonomy, full state census | Planned |
-| 004 | 004-architecture-coverage-and-transition-contract/ | Architecture ADR + bijective 178-row ledger + transition contract (parent) | Planned |
-| 005 | 005-fanout-live-tools-unblock/ | Early backward-compatible live-tools fan-out unblock | Planned |
-| 006 | 006-transition-authorized-ledger-core/ | Event envelope + typed ledger + replay fingerprints + auth gateway (parent) | Planned |
-| 007 | 007-shared-evidence-and-control-services/ | Receipts, sealed artifacts, adjudication, budgets, gauges, locks (parent) | Planned |
-| 008 | 008-compatibility-shadow-and-rollback-bridge/ | Adapters + shadow parity + state classification + rollback (parent) | Planned |
-| 009 | 009-fanout-fanin-durable-orchestration/ | Durable fan-out/fan-in on the ledger (parent) | Planned |
-| 010 | 010-novelty-claims-continuity-and-projections/ | Novelty + contradiction + claim continuity + projections (parent) | Planned |
-| 011 | 011-convergence-termination-and-health/ | Termination + cycle detection + health/degeneration (parent) | Planned |
-| 012 | 012-shared-mode-contracts-and-fixtures/ | Shared mode contracts + write-set conflict graph (parent) | Planned |
-| 013 | 013-mode-and-lane-migrations/ | The eight per-mode migrations (parent ×8, each fractal) | In Progress |
-| 014 | 014-staged-state-migration-and-authority-cutover/ | Per-mode authority cutover + rollback window (parent) | Planned |
-| 015 | 015-legacy-writer-retirement/ | Gated legacy-writer removal; archival readers retained | Planned |
-| 016 | 016-whole-system-gate/ | Whole-system gate on the frozen SHA | Planned |
-| 017 | 017-integrate-latest-and-closeout/ | Integrate latest, rerun gate, reconcile, close out | Planned |
-| 018 | 018-drift-census-and-plan-revalidation/ | Drift census: revalidate phases 003-017 against current HEAD before execution | In Progress |
-| 019 | 019-runtime-code-readmes/ | Code READMEs for every source folder in the deep-loop runtime (sk-doc create-readme standard) | Planned |
-| 020 | 020-sk-code-opencode-alignment/ | Align the deep-loop runtime code with the sk-code code-opencode surface conventions (behavior-preserving) | Planned |
-| 021 | 021-completion-evidence-reconcile/ | Blocker 4: reconcile migration-program completion claims against the current suites; bound the review manifest and recursive validation | Planned |
-| 022 | 022-shadow-parity-independent-derivation/ | Blocker 1: rebuild six shadow-parity harnesses so both sides derive independently | Planned |
-| 023 | 023-legacy-compat-event-vocabulary/ | Blocker 2: full upcaster coverage for the six live event vocabularies | Planned |
-| 024 | 024-durable-write-boundaries/ | Blocker 3: gateway-only mutation with fencing at the append boundary; the concurrent-write family | Planned |
-| 025 | 025-artifact-certificate-binding/ | Bind sealed artifacts and certificates to the semantic identity they certify | Planned |
-| 026 | 026-alignment-coverage-integrity/ | Make alignment coverage, seal state and lane identity provable, including the three §5 residuals | Planned |
-| 027 | 027-mode-gate-and-contract-binding/ | Close the readiness-gate, rollback-switch and mode-contract conformance boundaries | Planned |
-| 028 | 028-fanout-dispatch-integrity/ | Evidence-derived fan-out fulfillment, durable provenance, uniform containment, safe sink | Planned |
-| 029 | 029-improvement-promotion-authority/ | Bind promotion, rollback and council persistence to authenticated receipts and authorized roots | Planned |
-| 030 | 030-runtime-mirror-and-routing-parity/ | Make runtime-mirror and routing parity gates compare what actually differs | Planned |
-| 031 | 031-silent-failure-and-harness-repair/ | Make invalid input fail loudly; repair the harnesses and playbooks that produce evidence | Planned |
-| 032 | 032-docs-drift-and-p2-batch/ | Documentation and registry drift plus the complete P2 backlog; runs last | Planned |
-| 047 | 047-executor-wiring-and-parity/ | Executor wiring + fan-out parity group: cli-codex read-only leaf, cli-devin wiring, the executor/provider/model parity program, devin allowlist parity/prune (phase parent) | In Progress |
-| 048 | 048-write-containment-hardening/ | Fan-out write-containment guard hardening group: cli-codex containment, sibling-lineage scope, concurrent-writer safety (phase parent) | In Progress |
-| 049 | 049-deep-alignment-integrity/ | Deep-alignment loop integrity group: findings-registry seal state + contained multi-executor (phase parent) | In Progress |
-| 050 | 050-trustworthy-state-records/ | Trustworthy deep-loop state records: append-time stamps + stop-policy event-name fix | Complete |
+| # | Group parent | Status |
+|---|--------------|--------|
+| 1 | `001-research-inputs-and-architecture/` | complete |
+| 2 | `002-substrate-and-orchestration/` | in_progress |
+| 3 | `003-mode-contracts-migration-and-cutover/` | in_progress |
+| 4 | `004-gate-closeout-and-drift/` | in_progress |
+| 5 | `005-blocker-closeout/` | in_progress |
+| 6 | `006-runtime-docs-and-integrity-hardening/` | in_progress |
+| 7 | `007-executor-and-cli-hardening/` | in_progress |
+| 8 | `008-review-and-rollback-followup/` | complete |
 
-### Phase Transition Rules
-- Each phase MUST pass `validate.sh` independently before the next phase begins.
-- Parent spec tracks aggregate progress via this map.
-- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
-- Run `validate.sh --recursive` on this parent to validate all phases as an integrated unit.
-
-### Phase Handoff Criteria
-
-| From | To | Criteria | Verification |
-|------|-----|----------|--------------|
-| 002 | 003 | Research inputs complete and frozen; 178 recs available for the ledger | The three findings-registry files present and read-only |
-| 003 | 004 | BASE pinned; taxonomy normalized; state + schema + behavior baseline captured | Baseline artifacts keyed by BASE; extended packet-033 benchmark recorded |
-| 004 | 005-007 | Architecture ratified; 178-row bijective ledger frozen; transition/compat/cutover policy set | Single-disposition validator green; transition vocabulary + namespace published |
-| 006-007 | 008 | Ledger core + shared services land dark; legacy still authoritative | Auth gate rejects an unauthorized transition; dark-write parity smoke passes |
-| 008 | 009-011 | Adapters + shadow parity + rollback proven; no authority moved | Shadow parity green; a rollback drill restores legacy; in-flight state classified |
-| 009-011 | 012 | Durable fan-in + novelty/claims + convergence land on the ledger (dark) | Deterministic replay under the fingerprint; convergence inputs resolve |
-| 012 | 013 | Shared mode contracts frozen; write-set conflict graph emitted | Parallel-safe lane plan; deep-improvement-common ordered first |
-| 013 | 014 | Every mode migrated + shadow-parity green behind its mode gate | Per-mode gate checklists pass; sealed artifact/certificate emitted per mode |
-| 014 | 015 | Authority flipped per mode behind rollback windows + cutover certificates | Cutover certificate per mode; rollback drill green post-cutover |
-| 015 | 016 | Legacy writers removed after zero-use; archival readers retained | Zero-use telemetry; historical packets still read |
-| 016 | 017 | Whole-system gate green on the pre-integration SHA | `--all` behavior + mode + replay + degeneration parity vs 003 |
-| 021-024 | 014 | The four named cutover blockers are discharged: evidence reconciles (021), shadow parity can fail (022), live vocabularies migrate (023), the append boundary is fenced (024) | Per blocker: reinstated evidence cites test name + suite digest + SHA; a divergence injection fails the rebuilt parity harness; a captured real log replays with zero `blocked:unknown-legacy-record`; a superseded writer with an unexpired proof cannot append |
-| 021-032 | 017 | The whole remediation tree is Complete against the bounded child manifest | `validate.sh --recursive --strict` green over the declared 001-032 manifest; every one of the 166 register findings closed as fixed, REFUTED, ALREADY-FIXED, or dispositioned |
 <!-- /ANCHOR:phase-map -->

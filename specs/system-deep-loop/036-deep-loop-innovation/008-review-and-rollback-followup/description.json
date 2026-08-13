@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
+  "description": "Runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption.",
+  "keywords": [
+    "runtime",
+    "code",
+    "review",
+    "drift",
+    "remediation",
+    "rollback",
+    "candidate",
+    "hash",
+    "hardening",
+    "containment",
+    "exemption"
+  ],
+  "lastUpdated": "2026-08-13T19:59:04.435Z",
+  "specId": "008",
+  "folderSlug": "review-and-rollback-followup",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout",
+  "description": "The cutover blocker closeouts: completion-evidence reconcile, shadow-parity independent derivation, legacy-compat event vocabulary, and durable write",
+  "keywords": [
+    "cutover",
+    "blocker",
+    "closeouts",
+    "completion-evidence",
+    "reconcile",
+    "shadow-parity",
+    "independent",
+    "derivation",
+    "legacy-compat",
+    "event",
+    "vocabulary",
+    "durable",
+    "write"
+  ],
+  "lastUpdated": "2026-08-13T19:59:04.285Z",
+  "specId": "005",
+  "folderSlug": "blocker-closeout",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

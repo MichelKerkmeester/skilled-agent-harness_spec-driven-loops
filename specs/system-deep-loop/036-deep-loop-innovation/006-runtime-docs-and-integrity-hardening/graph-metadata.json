@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/019-runtime-code-readmes",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/020-sk-code-opencode-alignment",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/025-artifact-certificate-binding",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/026-alignment-coverage-integrity",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/027-mode-gate-and-contract-binding",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/028-fanout-dispatch-integrity",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/029-improvement-promotion-authority",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/030-runtime-mirror-and-routing-parity",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/031-silent-failure-and-harness-repair",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/032-docs-drift-and-p2-batch",
+    "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/033-identity-and-lock-ownership-hardening"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime docs integrity hardening",
+      "promotion routing identity lock"
+    ],
+    "key_topics": [
+      "runtime",
+      "docs",
+      "integrity",
+      "hardening",
+      "promotion",
+      "routing",
+      "identity",
+      "lock",
+      "code",
+      "readmes",
+      "sk-code",
+      "alignment"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Docs",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integrity Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Integrity Hardening Runtime",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority, routing-parity, silent-failure, docs-drift, and identity and lock hardening.",
+    "created_at": "2026-08-13T09:22:52.476Z",
+    "last_save_at": "2026-08-13T17:17:16.687Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:10059b2c07459b77613e9e7217b3abb60bcf6bcb02e363be29714bb4d5e696f6",
+    "source_doc_hashes": {
+      "spec.md": "78f051d0e4a35e08b3bdb29e223a8d99c05fc6526363ee6981adc5011640b5f9"
+    },
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/025-artifact-certificate-binding",
+    "last_active_at": null
+  }
+}

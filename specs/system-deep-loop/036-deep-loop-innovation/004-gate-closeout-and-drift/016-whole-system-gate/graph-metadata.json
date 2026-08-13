@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "whole-system gate",
+      "deep-loop phase 016",
+      "exact-SHA deep-loop acceptance",
+      "recursive strict deep-loop validation",
+      "whole-system gate implementation plan",
+      "deep-loop phase 016 implementation plan",
+      "exact-SHA acceptance gate plan",
+      "whole-system gate tasks",
+      "deep-loop phase 016 tasks",
+      "exact-SHA gate tasks",
+      "whole-system gate checklist",
+      "deep-loop phase 016 checklist"
+    ],
+    "key_topics": [
+      "whole-system",
+      "gate",
+      "deep-loop",
+      "phase",
+      "exact-sha",
+      "acceptance",
+      "recursive",
+      "strict",
+      "validation",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "commands",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Execution",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tree",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "candidate",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "behavior",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the final whole-system acceptance gate for the 006 recommendations-implementation program: freeze an exact candidate SHA, run every mode and cross-system parity gate, exercise mixed-version replay and crash recovery, test counterfactual adjudication and degeneration health, obtain a blocking SOL review, and recursively strict-validate the complete packet before closeout.",
+    "created_at": "2026-07-16T03:44:01.219Z",
+    "last_save_at": "2026-08-13T20:13:38.183Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "source_fingerprint": "sha256:633bcb05aee19bf144c57132a11a425461f83eb0aebb73282472888185ce5e70",
+    "source_doc_hashes": {
+      "spec.md": "63416f1e89d72e2b825338f123526836ae6ddbadb7bff9523f485dd2be7d5f8b",
+      "plan.md": "16408ceb0e82993fa9d658c41629cef8eec4ddb658f6a9cefcaeac27e9f938c7",
+      "tasks.md": "963b524f88c9420de4c878232cc26c1efc06fc4157dab3078e2ed1efa3dbe504",
+      "checklist.md": "b9f0b63d7d58a6143c5174f9f1cbaf028bffc92eda674e1a7946103f027e7065"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

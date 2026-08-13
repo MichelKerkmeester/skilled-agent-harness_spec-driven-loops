@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/006-model-benchmark/002-reducers-and-projections",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/006-model-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "model benchmark reducers and projections",
+      "model benchmark scoring matrix migration",
+      "deterministic model benchmark replay",
+      "model benchmark reducers implementation plan",
+      "model benchmark projection plan",
+      "scoring matrix replay plan",
+      "model benchmark reducers tasks",
+      "model benchmark projection tasks",
+      "scoring matrix reducer tasks",
+      "model benchmark reducers checklist",
+      "model benchmark projection verification",
+      "scoring matrix replay verification"
+    ],
+    "key_topics": [
+      "model",
+      "benchmark",
+      "reducers",
+      "projections",
+      "scoring",
+      "matrix",
+      "migration",
+      "deterministic",
+      "replay",
+      "implementation",
+      "plan",
+      "projection"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "uncertainty",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "schema",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define the model-benchmark reducers and projections on top of the deep-improvement-common services from mode 004",
+    "created_at": "2026-07-16T03:43:39.522Z",
+    "last_save_at": "2026-08-13T20:12:56.333Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:84afe612d5b99ddf6262c662328d47f8e21f607a48a45a836511f9fd7ca2a335",
+    "source_doc_hashes": {
+      "spec.md": "74b0fd17be7ee119af8a878d7143764a0b9cc8c526e8e07aa8c0b9857c0aca4b",
+      "plan.md": "e2dd9a6859d0e4feecb2f1437ced7f71c194e36c62e398ae669a653afb75e66b",
+      "tasks.md": "a3e04fe1df15081ae09dde6dcd163fd18f27db919d2a9f6d27f4c3c9e8572b62",
+      "checklist.md": "5a43d1a2c4103e8f443b0769c33608c2fa523873d862643cb58499b4972553d9",
+      "decision-record.md": "ab73f29afe8923c9a4e329b2d74090f7060566a0cb12a80828207b4fdb9feb79",
+      "implementation-summary.md": "6a2a7f3be970766fd5b91abd0766fa2397d9a0872e29f43a62cf3d01db8f9320"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/054-review-drift-remediation",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/054-review-drift-remediation",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review drift remediation",
+      "036 parent metadata drift",
+      "phase documentation map refresh",
+      "legacy 065 child alias cleanup",
+      "review drift remediation plan",
+      "graph-metadata children_ids reconciliation",
+      "phase documentation map maintenance",
+      "review drift remediation tasks",
+      "children_ids reconciliation task",
+      "review drift remediation implementation summary",
+      "036 parent metadata drift closed"
+    ],
+    "key_topics": [
+      "review",
+      "drift",
+      "remediation",
+      "parent",
+      "metadata",
+      "phase",
+      "documentation",
+      "map",
+      "refresh",
+      "legacy",
+      "child",
+      "alias"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Drift Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reconcile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Metadata",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `053-runtime-code-review` deep-review's traceability protocols found parent-level documentation/metadata drift in `036-deep-loop-innovation`: `graph-metadata.json.childrenids` stopped at `050-trustworthy-state-records` (missing six on-disk children, 051-056); the `spec.md` PHASE DOCUMENTATION MAP still described a \"17-phase program (001-017)\" and had per-phase statuses that no longer matched the children's own `graph-metadata.json.derived.status`; ten planned-phase children (`004`, `006`-`014`) still carried legacy `system-deep-loop/065-deep-loop-innovation/...` child-alias duplicates in",
+    "created_at": "2026-08-13T06:44:37.262Z",
+    "last_save_at": "2026-08-13T14:29:05.536Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7432834a6fe2930f460ccaa407424db13fad09d4791ab462a121a866012bd355",
+    "source_doc_hashes": {
+      "spec.md": "02ec57c2e1ca34eb0cf6818de66e415f5f48be239ac9e8f03e25b9b5d1583f21",
+      "plan.md": "82e481e6dbec5842909540467d82daeb62ca8cd1cff4dd14b5d819d7ebc5fa40",
+      "tasks.md": "2b7efd5bb4d85924bd3d1fe870edebdaba2124109b860549d0db373804302251",
+      "implementation-summary.md": "d8e588820918e862e7f869e2b43589b3c729cb3a5cce1af3d27d87e6e69bea17"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

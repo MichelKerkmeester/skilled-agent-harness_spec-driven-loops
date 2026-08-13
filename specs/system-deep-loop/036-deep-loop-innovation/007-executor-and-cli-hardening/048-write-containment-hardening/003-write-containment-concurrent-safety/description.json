@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/048-write-containment-hardening/003-write-containment-concurrent-safety",
+  "description": "The deep-loop codex write-containment guard (`write-containment.ts`) confines a `cli-codex` leaf's writes to its artifact directory by diffing the git",
+  "keywords": [
+    "deep-loop",
+    "codex",
+    "write-containment",
+    "guard",
+    "confines",
+    "cli-codex",
+    "leaf",
+    "writes",
+    "artifact",
+    "directory",
+    "diffing",
+    "git"
+  ],
+  "lastUpdated": "2026-08-13T19:55:47.920Z",
+  "specId": "003",
+  "folderSlug": "write-containment-concurrent-safety",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "048-write-containment-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

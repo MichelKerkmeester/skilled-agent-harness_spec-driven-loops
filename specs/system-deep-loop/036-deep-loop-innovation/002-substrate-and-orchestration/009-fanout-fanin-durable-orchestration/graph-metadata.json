@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/005-partial-failure-policy",
+    "system-deep-loop/065-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
+    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage",
+    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves",
+    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/005-partial-failure-policy",
+    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+    "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation",
+    "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/001-canonical-dispatch-receipts",
+    "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/002-result-envelopes-and-resume-salvage",
+    "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/003-logical-branch-ids-leases-waves",
+    "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/004-conditional-budget-aware-fanin",
+    "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/005-partial-failure-policy",
+    "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+    "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fan-out fan-in durable orchestration",
+      "durable fanout ledger",
+      "resumable provenance-balanced fan-in"
+    ],
+    "key_topics": [
+      "fan-out",
+      "fan-in",
+      "durable",
+      "orchestration",
+      "fanout",
+      "ledger",
+      "resumable",
+      "provenance-balanced",
+      "canonical",
+      "dispatch",
+      "receipts",
+      "result"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Durable Orchestration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "budgets",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make fan-out and fan-in durable over the canonical ledger through dispatch receipts, result envelopes, resumable branch orchestration, budget-aware completion policy, and provenance-balanced reduction.",
+    "created_at": "2026-07-16T03:43:59.417Z",
+    "last_save_at": "2026-08-13T20:13:40.373Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:7e1b855c94e2e8dd25ac79b27bf18c400f3fbbdbf4ca4d185d05443a866bc1a2",
+    "source_doc_hashes": {
+      "spec.md": "999818697a7ac7389649ef9f486a2ac3b3b96c4a2f126bba7d56b1636877f368"
+    },
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/007-fanout-synthesis-lineage-aggregation",
+    "last_active_at": "2026-07-26T08:54:30.416Z"
+  }
+}

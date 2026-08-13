@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/056-review-containment-exemption",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/056-review-containment-exemption",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review containment exemption",
+      "isRegenerableRuntimeState predicate",
+      "write-containment regenerable state exemption",
+      "fan-out review runtime database exempt",
+      "review containment exemption plan",
+      "isRegenerableRuntimeState plan",
+      "write-containment exemption plan",
+      "review containment exemption tasks",
+      "isRegenerableRuntimeState task",
+      "review containment exemption implementation summary",
+      "isRegenerableRuntimeState shipped",
+      "1fb79e0106"
+    ],
+    "key_topics": [
+      "review",
+      "containment",
+      "exemption",
+      "isregenerableruntimestate",
+      "predicate",
+      "write-containment",
+      "regenerable",
+      "state",
+      "fan-out",
+      "runtime",
+      "database",
+      "exempt"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Containment Exemption",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Fan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Predicate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Fan",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fan-out review lineages died because the runtime writes its own git-tracked generated state during a contained lineage: telemetry under `runtime/database/` and the spec memory-index (`descriptions.json` / `description.json`)",
+    "created_at": "2026-08-13T06:44:37.562Z",
+    "last_save_at": "2026-08-13T14:29:06.261Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4e892e22f09c663a8e08dbf5bad1e15c344bf6392f028f0721719701f582be52",
+    "source_doc_hashes": {
+      "spec.md": "37723d3b63e01edd55c4bc9728e567fad856119efcc9933fdc53a4871928b3e4",
+      "plan.md": "d9744bd0986526f7f2fd40901b8092c68b01ef2b1c8fd2ea40bcfee681c3bd89",
+      "tasks.md": "99302b9a49077193b638573f4b6956880332fd660530d29f2fcb2128f50d8223",
+      "implementation-summary.md": "2f3ea8d2833a45251c741287f78ba25d9a583ee26bbac3b9ebb49c87824c7b80"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
