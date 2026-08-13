@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/015-package-into-skill"
-    last_updated_at: "2026-08-13T17:10:00.000Z"
+    last_updated_at: "2026-08-13T19:03:35.000Z"
     last_updated_by: "claude"
     recent_action: "Recorded the completed package relocation into the sk-communication skill."
     next_safe_action: "Preserve the relocation and reference gates when the package or skill docs change."
@@ -60,7 +60,7 @@ The CLI communication projection package now lives inside the sk-communication s
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 15 of 15 |
 | **Predecessor** | `014-code-and-doc-conformance` |
-| **Successor** | Parent packet decision |
+| **Successor** | `016-default-off-and-advisor-exclusion` |
 | **Handoff Criteria** | The package lives at `.opencode/skills/sk-communication/cli-communication-projection` with rename history preserved, all 24 skill documents reference the new path, `npm run check` passes 289 of 289 tests from the new location, and this phase plus the parent pass strict validation with zero errors and warnings. |
 <!-- /ANCHOR:metadata -->
 

@@ -71,3 +71,29 @@ if (report.overallDecision === 'blocked') process.exitCode = 1
 Run it with `node ./operator/run-communication-projection-doctor.mjs`. Treat a
 blocked report as original-only and a degraded report as requiring explicit
 operator review. Refresh dated evidence instead of bypassing a stale finding.
+
+---
+
+## 3. ENABLEMENT
+
+Projection is OFF by default for everyone. Pulling the repository never changes
+anyone's CLI output. Nothing is rewritten until an operator opts in on their own
+machine, and that choice is never committed for other people.
+
+Two opt-in sources decide enablement, checked in this order:
+
+1. The environment variable `COMMUNICATION_PROJECTION_ENABLED`. When it is set to
+   `1`, `true`, or `on`, projection is enabled. Any other set value keeps it off.
+   A set variable always wins, which lets CI and tests force either state.
+2. A git-ignored `enablement.local.json` at the package root, consulted only when
+   the variable is unset. It opts in when it holds `{ "enabled": true }`.
+
+With neither source opting in, enablement is `false`. The committed
+`enablement.local.json.example` template shows the file shape, and the package
+`.gitignore` ignores the real `enablement.local.json` so a private opt-in stays
+local.
+
+Every activation path calls `isProjectionEnabled()` before it projects. When the
+answer is `false`, the path returns the exact original output and no rewrite runs.
+The decision itself is a pure function, `resolveProjectionEnablement(env,
+localOverride)`, so the rule is exhaustively testable without touching the disk.

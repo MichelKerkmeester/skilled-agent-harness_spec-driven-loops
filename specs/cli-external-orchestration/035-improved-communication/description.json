@@ -18,30 +18,19 @@
     "ollama",
     "disk-buffered"
   ],
-  "lastUpdated": "2026-08-12T11:34:17.334Z",
+  "lastUpdated": "2026-08-13T19:13:48.802Z",
   "specId": "035",
   "folderSlug": "improved-communication",
   "parentChain": [
     "cli-external-orchestration"
   ],
-  "memorySequence": 17,
+  "memorySequence": 6,
   "memoryNameHistory": [
     "11-08-26_16-32__phase-002-contracts-and-fixtures-are-complete-and.md",
     "11-08-26_18-01__phases-001-002-and-003-are-complete.md",
     "11-08-26_18-06__phases-001-through-003-are-complete.md",
     "11-08-26_18-07__parent-continuity-is-compact-and-phase-004-is-next.md",
     "11-08-26_18-08__phases-001-through-003-are-complete.md",
-    "11-08-26_20-30__advanced-the-parent-phase-map.md",
-    "12-08-26_12-28__the-stop-hook-is-correct-that-the-literal-done.md",
-    "12-08-26_12-30__i-m-holding-at-the-operator-decision-boundary-and.md",
-    "12-08-26_12-31__merge-readiness-verified-for-the-complete-epic.md",
-    "12-08-26_12-32__confirmed-terminal-state-and-i-need-to-name-the.md",
-    "12-08-26_12-33__nothing-has-changed-and-nothing-can-autonomously.md",
-    "12-08-26_12-33__i-have-nothing-to-add-and-no-permitted-action-to.md",
-    "12-08-26_12-33__blocked-on-you-awaiting-push-land-the-human-study.md",
-    "12-08-26_12-33__blocked-on-operator-push-land-human-study-goal.md",
-    "12-08-26_12-33__blocked-on-operator-push-land-human-study-goal.md",
-    "12-08-26_12-34__blocked-on-operator-push-land-human-study-goal.md",
-    "12-08-26_12-34__blocked-on-operator-push-land-human-study-goal.md"
+    "11-08-26_20-30__advanced-the-parent-phase-map.md"
   ]
 }

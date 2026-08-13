@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/035-improved-communication/015-package-into-skill",
-  "spec_folder": "cli-external-orchestration/035-improved-communication/015-package-into-skill",
+  "packet_id": "cli-external-orchestration/035-improved-communication/016-default-off-and-advisor-exclusion",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/016-default-off-and-advisor-exclusion",
   "parent_id": "cli-external-orchestration/035-improved-communication",
   "children_ids": [],
   "manual": {
@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "package-into-skill",
-      "package into skill",
-      "cli communication projection relocation",
-      "package relocation evidence",
+      "default-off-and-advisor-exclusion",
+      "communication projection default off",
+      "advisor route exclusion",
+      "sk-communication routing exclusion",
       "implementation plan",
-      "package relocation plan",
+      "enablement gate and advisor exclusion plan",
       "tasks",
-      "package relocation tasks",
+      "enablement gate and advisor exclusion tasks",
       "verification checklist",
       "quality gate",
-      "implementation status",
-      "current state"
+      "architecture decision",
+      "activation seam gate and adjustable advisor denylist"
     ],
     "key_topics": [
-      "package-into-skill",
-      "package",
-      "skill",
-      "cli",
+      "default-off-and-advisor-exclusion",
       "communication",
       "projection",
-      "relocation",
-      "evidence",
+      "default",
+      "advisor",
+      "route",
+      "exclusion",
+      "sk-communication",
+      "routing",
       "implementation",
       "plan",
-      "tasks",
-      "verification"
+      "enablement"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -73,6 +74,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -85,7 +92,7 @@
         "source": "derived"
       },
       {
-        "name": "Package Relocation Into Skill",
+        "name": "Advisor Exclusion",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -133,7 +140,7 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Rename",
+        "name": "Pattern Two",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The package lived under a generic `packages/` root even though it is owned and consumed exclusively by the sk-communication skill, unlike system skills (for example, system-spec-kit) that bundle their code inside the skill directory",
-    "created_at": "2026-08-13T17:02:13.812Z",
-    "last_save_at": "2026-08-13T19:03:36.339Z",
+    "causal_summary": "The projection layer was reachable by default, and the advisor could recommend `sk-communication` automatically",
+    "created_at": "2026-08-13T18:51:56.591Z",
+    "last_save_at": "2026-08-13T19:03:36.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,15 +204,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6cfb9de8678c866ec07d2917970d67c32b0b81102b3375fed8592c5a5b466804",
+    "source_fingerprint": "sha256:a49cba35cee91f02ebc7b1b3919d8c9e7b1a9ab3e1716f86f33fcda12f6245a2",
     "source_doc_hashes": {
-      "spec.md": "ac666599dff3e9e4adff88b63521f212ca072bd999baec7fecac5825107710db",
-      "plan.md": "acf033f0830b57489918c3cf69824c68b3e1abdd94daaac69cde3fed7a096cc4",
-      "tasks.md": "b506e3602ad1a50e44b89dbc5bc067ff9926268371be1655461fc86d6aeea956",
-      "checklist.md": "f4f331d5076f9d5a7744b31c502e02b473e733e49812df184c7849e0594af2f9",
-      "implementation-summary.md": "00339861a69011fe947f504459ee7257f850bf8839ab30c56019c679cb4a10a2"
+      "spec.md": "491e9d7e2022f176e2659faee9c9c855f7eb57dc57526a02e26d3a4b3167baa3",
+      "plan.md": "efa54fe6bca703322f96346a7a553fdd75729ed7c6d36f689e947b15d730e80b",
+      "tasks.md": "1d461d4cc9c19612a85eafc12629838a8c08644c52b205ef16286f38e61b5bce",
+      "checklist.md": "0efe5bb0dbd5d330a0b25d6c86c59d802eb1a5ca98cec35f8ac8c4fe1265af69",
+      "decision-record.md": "c2d56536237d2a20a4ff37bf64b2848ba419487aec9a100379b728454a9b21eb",
+      "implementation-summary.md": "3f3a5a6ae28b0a12f368130717f6bd5d4b49fe7ee973a801b0e015955de80957"
     },
     "last_active_child_id": null,
     "last_active_at": null

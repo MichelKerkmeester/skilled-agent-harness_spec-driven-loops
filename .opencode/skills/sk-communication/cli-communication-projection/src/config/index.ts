@@ -1,12 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: Communication Projection Public API
+// MODULE: Configuration Public API
 // ───────────────────────────────────────────────────────────────────
 
-export * from './config/index.js';
-export * from './contracts/index.js';
-export * from './context/index.js';
-export * from './core/index.js';
-export * from './fidelity/index.js';
-export * from './observability/index.js';
-export * from './render/index.js';
-export * from './versioning/index.js';
+export * from './enablement.js';

@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/035-improved-communication/016-default-off-and-advisor-exclusion",
+  "description": "The projection layer was reachable by default, and the advisor could recommend `sk-communication` automatically",
+  "keywords": [
+    "projection",
+    "layer",
+    "reachable",
+    "default",
+    "advisor",
+    "recommend",
+    "sk-communication",
+    "automatically"
+  ],
+  "lastUpdated": "2026-08-13T19:03:35.703Z",
+  "specId": "016",
+  "folderSlug": "default-off-and-advisor-exclusion",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

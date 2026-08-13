@@ -2,6 +2,8 @@
 // MODULE: Archive And Future Handling
 // ───────────────────────────────────────────────────────────────
 
+import { isRouteExcludedSkillId } from '../routing/route-exclusions.js';
+
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
 // ───────────────────────────────────────────────────────────────
@@ -37,8 +39,14 @@ export function routePolicyForPath(filePath: string): IndexRoutePolicy {
   };
 }
 
-export function filterDefaultRoutable<T extends { sourcePath: string }>(entries: readonly T[]): T[] {
-  return entries.filter((entry) => routePolicyForPath(entry.sourcePath).defaultRoutable);
+// An entry stays routable only when its path is lifecycle-active AND its skill
+// id (when the entry carries one) is not on the operator exclusion denylist.
+// Entries without a `skillId` are governed by lifecycle alone, preserving the
+// prior path-only behavior for callers that do not track ids here.
+export function filterDefaultRoutable<T extends { sourcePath: string; skillId?: string }>(entries: readonly T[]): T[] {
+  return entries.filter((entry) =>
+    routePolicyForPath(entry.sourcePath).defaultRoutable
+    && !(entry.skillId !== undefined && isRouteExcludedSkillId(entry.skillId)));
 }
 
 export function filterCorpusStatEligible<T extends { sourcePath: string }>(entries: readonly T[]): T[] {
