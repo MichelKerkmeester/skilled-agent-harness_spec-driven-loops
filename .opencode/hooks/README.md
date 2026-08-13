@@ -171,6 +171,8 @@ Expected result: `HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/git/pre-commit"` �
 
 This matrix is the coverage authority for the intentionally uneven runtime surface. A checkmark means a runtime adapter or plugin covers the concern. `by-design` means the behavior is inherent in another named owner rather than a separately indexed adapter. `n/a` means the runtime exposes no event capable of implementing that concern. `~ partial` means covered for the common case with a known, documented gap. `unverified` means an event may exist but its feasibility for this concern has not been confirmed live, and no adapter is wired.
 
+For the *why* behind each absence — why a runtime has no adapter for a concern — see [`coverage-rationale.md`](./coverage-rationale.md).
+
 | Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi |
 |---|---|---|---|---|---|---|
 | `codex-watchdog` | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | ✓ covered | — by-design: OpenCode plugin audits Codex hook installation |
