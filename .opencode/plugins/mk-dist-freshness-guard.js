@@ -18,7 +18,6 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
-const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 const {
   checkAllFreshness,
   formatCheckError,
@@ -129,7 +128,6 @@ function buildBrief(diagnostics) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default async function MkDistFreshnessGuardPlugin(ctx) {
-  if (!isHookEnabled('dist-freshness')) return {};
   const projectDir = ctx?.directory || join(PLUGIN_DIR, '..', '..');
   const sessionWarned = new Set();
   // Per-instance freshness cache so multiple sessions in one process never share

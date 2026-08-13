@@ -23,7 +23,6 @@
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { validateSpecFolderBinding } from '../../../shared/dist/gate-3-classifier.js';
-import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -45,7 +44,6 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  if (!isHookEnabled('spec-gate')) return allow();
   let payload;
   try {
     payload = JSON.parse(await readStdin());
@@ -54,6 +52,7 @@ async function main() {
   }
 
   const env = process.env;
+  if (env[guardCore.DISABLED_ENV] === '1') return allow();
   if (guardCore.isChildSession(env)) return allow();
 
   // Preserve the session id VERBATIM: the enforce consumer (spec-gate-enforce.mjs)

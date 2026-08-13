@@ -1,8 +1,8 @@
 ---
 title: "Tasks: Hook Feature Flags + Full Hub Index"
-description: "Per-phase task tracking for hook kill-switches, the full hub index, remaining runtime adapters, and the final concern-by-runtime coverage matrix."
+description: "Per-phase task tracking for the shared kill-switch guard, the mcp-route-guard pilot, the hub and skill-owned concern fan-out, the hub symlink index, and the cross-runtime validation sweep."
 status: "in-progress"
-completion_pct: 95
+completion_pct: 15
 importance_tier: "high"
 contextType: "tasks"
 parent: "./spec.md"
@@ -29,42 +29,22 @@ parent: "./spec.md"
 
 ## PHASE 3 — Remaining hub concerns
 
-- [x] dispatch (claude/codex/devin/pi + plugin)
-- [x] post-edit-quality (claude/codex/devin/pi + plugin)
-- [x] task-dispatch (claude/cursor/devin + plugin)
-- [x] goal (cursor/pi + bin + plugin)
+- [ ] dispatch (claude/codex/devin/pi + plugin)
+- [ ] post-edit-quality (claude/codex/devin/pi + plugin)
+- [ ] task-dispatch (claude/cursor/devin + plugin)
+- [ ] goal (cursor/pi + bin + plugin)
 
 ## PHASE 4 — Skill-owned concerns
 
-- [x] skill-advisor · spec-gate · spec-memory · completion
-- [x] session-lifecycle · git-preflight · directive-lifecycle
-- [x] dist-freshness · codex-watchdog · permission-policy
+- [ ] skill-advisor · spec-gate · spec-memory · completion
+- [ ] session-lifecycle · git-preflight · directive-lifecycle
+- [ ] dist-freshness · codex-watchdog · permission-policy
 
 ## PHASE 5 — Full hub index + docs
 
-- [x] Symlink every Phase 4 adapter into `.opencode/hooks/<concern>/<runtime>/` — 58 relative links, all resolved with `readlink -f`
-- [x] Rewrite hub `README.md` + `injection-contract.md` for the full-index model — completed in the review-fix pass (full-index + kill-switch model)
+- [ ] Symlink every skill-owned hook into `.opencode/hooks/<concern>/<runtime>/`
+- [ ] Rewrite hub `README.md` + `injection-contract.md` for the full-index model
 
 ## PHASE 6 — Cross-runtime validation
 
 - [ ] Each runtime loads clean; master-off silences all; per-concern toggles verified; no stray files
-
-## PHASE 7 — Remaining index gaps
-
-- [x] Index Cursor dispatch coverage at `.opencode/hooks/dispatch/cursor/post-tool-use.mjs` [Evidence: relative link resolves to the live Cursor post-tool proxy with `readlink -f`]
-- [x] Index Cursor post-edit-quality coverage at `.opencode/hooks/post-edit-quality/cursor/post-tool-use.mjs` [Evidence: relative link resolves to the same multiplexed proxy with `readlink -f`]
-- [x] Keep Pi directive lifecycle represented by the existing `skill-advisor/pi/prompt-advisor.ts` index rather than adding a duplicate concern alias [Evidence: directive de-dup is embedded in the advisor adapter and is not independently guarded by `directive-lifecycle`]
-- [x] Keep OpenCode session lifecycle represented by the existing owning plugin indexes rather than adding duplicate aliases [Evidence: session events are embedded across guarded `mk-*` plugins and no standalone `session-lifecycle` adapter exists]
-
-## PHASE 8 — Fillable runtime adapters
-
-- [x] Add guarded advisory-only completion coverage for Cursor `afterAgentResponse` [Evidence: current Cursor hook contract exposes final assistant text on this event; the requested `onEnd` event does not exist in `.cursor/hooks.json` or the runtime contract]
-- [x] Add guarded advisory-only completion coverage for Pi `turn_end` [Evidence: native `TurnEndEvent.message` supplies the ending assistant message]
-- [x] Add guarded advisory-only task-dispatch coverage for Pi `tool_call("subagent")` [Evidence: installed `pi-subagents` registers the native `subagent` tool and Pi exposes block-capable `tool_call` before execution; adapter deliberately returns only `reason`]
-- [x] Leave Codex task-dispatch unfilled [Evidence: `.codex/hooks.json` exposes tool hooks for `exec`, `apply_patch`, `edit`, and MCP calls but no Task/subagent event]
-- [x] Load-check every new adapter and prove default-on, concern-off, and master-off behavior [Evidence: Cursor default/concern-off/master-off advisory-log counts `1/0/0`; Pi completion handler/message/log counts `turn_end+1+1/none+0+0/none+0+0`; Pi task default returned advisory `reason` without `block`, both switches registered no handler]
-
-## PHASE 9 — Coverage matrix
-
-- [x] Append a complete concern × runtime coverage matrix to `.opencode/hooks/README.md` [Evidence: 15 concern rows × six runtime columns]
-- [x] Record every intentionally unfilled gap as by-design or unavailable with a one-line reason [Evidence: matrix includes inherent goal surfaces, OpenCode-plugin-only concerns, Devin-only permission policy, embedded lifecycle ownership, and missing Task events]

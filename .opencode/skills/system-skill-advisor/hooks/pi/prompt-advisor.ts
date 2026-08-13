@@ -3,7 +3,6 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 const RAW_INPUT_STORE_KEY = Symbol.for("mk.pi.dispatch.raw-input");
 const MAX_CAPTURED_USER_TEXT = 32_768;
@@ -546,7 +545,6 @@ interface AdvisorEnvelope {
 
 /** Bridges the skill-advisor's UserPromptSubmit recommendation into Pi's input event. Distinct from spec-gate-classify.ts, which only appends the Gate-3 documentation question. */
 export default function promptAdvisor(pi: ExtensionAPI): void {
-  if (!isHookEnabled("skill-advisor")) return undefined;
   pi.on("session_start", async (event, ctx) => {
     const lifecycleEvent = sessionStartLifecycleEvent(event.reason);
     if (!lifecycleEvent) return;

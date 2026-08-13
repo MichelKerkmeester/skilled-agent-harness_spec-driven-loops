@@ -42,19 +42,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs",
-      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machine-wiring.test.cjs",
-      ".opencode/commands/deep/assets/deep-model-benchmark-auto.yaml",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs",
-      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -88,75 +76,9 @@
         "source": "derived"
       },
       {
-        "name": "promote-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "rollback-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sweep-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate-topic.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate-session.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "remediate-hook.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/remediate-hook.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "state-machine-wiring.test.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machine-wiring.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep-model-benchmark-auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep-model-benchmark-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "persist-artifacts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl",
         "source": "derived"
       },
       {
@@ -200,11 +122,77 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Eight",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Eight",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Landed Findings",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier revision can authorize promotion of a newer unscored candidate (`F-017-01`, CONFIRMED-WITH-MITIGATION: the benchmark report is target-bound, which mitigates but does not close it)",
     "created_at": "2026-07-31T01:25:21.136Z",
-    "last_save_at": "2026-08-08T06:14:58.051Z",
+    "last_save_at": "2026-08-11T14:06:21.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b82398882e5e243674fb3b2f900890dfe54bb092f841abf98351a5b78b196966",
+    "source_fingerprint": "sha256:2dedd8e048cba5e56ac0f9a27b68a9c90e82008c4c6c558f412c147204ebdbc1",
     "source_doc_hashes": {
-      "spec.md": "4a48cf8a648f1fe5693c6c7c098027f0ec64c93ff3dee61e0dd85257f524e9f8",
+      "spec.md": "577c63f3b72326cc5391718d9ad443f5dd89ce0f9caff827f9f90d47f624e2c1",
       "plan.md": "21accf727be4dd496b5a710531569a552e644dfb3b2459ff909cc8199b282af1",
-      "tasks.md": "f76aad79ae3d2d4bd68319ade3187047342ecfe7c03e2b8930a06e40c31c67a2",
-      "checklist.md": "24e60ac054fd143c2d0ca666d9eef20e465b4be40bc85f79218fc382c8dcacf6",
+      "tasks.md": "270b4b7bf47c6690ae3dcd60dc7f6e047a9db22afdd5f392d7213c383bc4fcb7",
+      "checklist.md": "a3c1412e7237de100ee90ed40cd79abc181aa1e5bf664158f17ac75ced7270a6",
       "decision-record.md": "c083a8f293b717f97c772deda9a66658c5fabb5a59b36e37ad80b04acdcf712e",
-      "implementation-summary.md": "f8e6baa7ec9bd0f5245b1489d013a988a1ee9ba822d9be37256abd05d947cbfa"
+      "implementation-summary.md": "e9be85bbf440c0af7bf9e01b42fc5da2e43b5d8e2b3991cb3c76e4a2e78db7eb"
     },
     "last_active_child_id": null,
     "last_active_at": null

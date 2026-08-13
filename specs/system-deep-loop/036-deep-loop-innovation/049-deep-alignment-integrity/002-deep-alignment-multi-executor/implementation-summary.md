@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 038-deep-alignment-multi-executor |
+| **Spec Folder** | 002-deep-alignment-multi-executor |
 | **Completed** | 2026-07-23 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

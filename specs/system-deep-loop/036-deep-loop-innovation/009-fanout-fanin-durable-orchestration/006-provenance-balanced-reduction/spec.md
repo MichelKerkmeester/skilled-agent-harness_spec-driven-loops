@@ -30,7 +30,7 @@ _memory:
 
 # Feature Specification: Provenance-Balanced Reduction
 
-> Phase adjacency under the durable-orchestration parent (navigation order, not a runtime dependency): predecessor `005-partial-failure-policy`; successor: none (last sibling).
+> Phase adjacency under the durable-orchestration parent (navigation order, not a runtime dependency): predecessor `005-partial-failure-policy`; successor `007-fanout-synthesis-lineage-aggregation`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

@@ -1,1 +1,0 @@
-../../skills/system-skill-advisor/hooks/skill-advisor-hook.md

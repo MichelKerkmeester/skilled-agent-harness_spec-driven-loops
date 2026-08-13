@@ -41,6 +41,8 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-deep-loop/036-deep-loop-innovation |
+| **Predecessor** | `047-executor-wiring-and-parity` |
+| **Successor** | `049-deep-alignment-integrity` |
 | **Handoff Criteria** | The deep-loop fan-out write-containment guard reverts genuine out-of-scope leaf writes, never destroys unattributable sibling or untracked files, and runs safely on a dirty multi-actor working tree; each child phase strict-validates independently. |
 <!-- /ANCHOR:metadata -->
 

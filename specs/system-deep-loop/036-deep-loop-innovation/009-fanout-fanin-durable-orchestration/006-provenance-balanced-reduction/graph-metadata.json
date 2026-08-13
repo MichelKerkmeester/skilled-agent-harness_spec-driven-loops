@@ -41,11 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/index.ts",
-      ".opencode/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/003-blinded-adjudication-service/spec.md",
-      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -53,30 +48,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/provenance-reduction/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "provenance-reduction.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-prototype.cjs",
-        "kind": "file",
-        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/scratch/fanout-prototype.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "phase-tree.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -196,11 +167,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan a deterministic fan-in reducer that deduplicates surviving leaf results, balances contribution across source/model provenance, preserves every item's lineage, and escalates contested merges without allowing one prolific source to dominate.",
     "created_at": "2026-07-16T03:43:51.149Z",
-    "last_save_at": "2026-07-21T06:50:05.709Z",
+    "last_save_at": "2026-08-11T14:06:17.736Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15c7ea0827e5646028fe08717d03c56b8c56113fd68ef1bf8ffaae44ff22edef",
+    "source_fingerprint": "sha256:6152bc0de9fdd05e70709eb21d099b13a7e5cfa07d61c13a0b06fd63ccd14247",
     "source_doc_hashes": {
-      "spec.md": "e7d217381ea0d3b1a7a7bc3077e7974ac494d885b25d4858fd60c2db9b1d3369",
+      "spec.md": "d101ef0bb86f363598f1780e933bbbffe16c632b425b5515379ee406c13e1740",
       "plan.md": "882c14c8119e95434b9f75cd55e07e98197e5b694619e386cb0b4fcca691955a",
       "tasks.md": "e8c75c3b218ff01cbc9e047877f8108024c4cd5442a6093340ad81b6c27de1c7",
       "checklist.md": "7bae0253328f8cda62783465a46ad09361af5bd11c2f92a77767ee4efd193bfa",

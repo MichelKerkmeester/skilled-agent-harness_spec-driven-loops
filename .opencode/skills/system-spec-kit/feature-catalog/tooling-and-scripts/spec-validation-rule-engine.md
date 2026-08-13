@@ -61,8 +61,6 @@ The implementation extended the strict path beyond the original shell-rule inven
 
 ### Rule Inventory
 
-> **Representative subset.** The table below is an illustrative sample of rule scripts, not the full set. The authoritative, complete rule roster — including `check-ac-coverage.sh` (advisory `AC_COVERAGE`, default-on) and `check-scope-adherence.sh` (advisory `SCOPE_ADHERENCE`, opt-in) — is the registry at `scripts/lib/validator-registry.json`.
-
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh` | Validation rule | Rule script discovered and executed by the orchestrator for the AI protocols domain |

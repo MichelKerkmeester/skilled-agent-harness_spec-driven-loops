@@ -308,6 +308,8 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/
 
 Lane C scoring remains owned by [`scoring-contract.md`](../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md); this completion rule does not restate it.
 
+Every `PASS` uses `--outcome-json`, sets `executionContext.requireDurableEvidence` to `true`, and selects one controlled evidence class: `unit`, `adapter-driven`, `registered-path`, or `native-host-delivered`. Evidence paths must resolve beneath `executionContext.evidenceRoot` through non-symlink regular files; reports record repo-relative paths, byte counts, and SHA-256 values. A `PASS` also records the exact command, runtime plus observed version, sanitized payload fixture or an explicit not-applicable reason, observed executor or reason, and observed model or reason. Corrected runs list prior immutable report folders in `executionContext.supersedes`; the wrapper updates the external supersession manifest. Requested `--executor` and `--model` labels remain requested labels unless the outcome marks them observed.
+
 ### Rules
 
 - The corpus is an input. A run never edits `manual-testing-playbook/`, and gold that needs to change

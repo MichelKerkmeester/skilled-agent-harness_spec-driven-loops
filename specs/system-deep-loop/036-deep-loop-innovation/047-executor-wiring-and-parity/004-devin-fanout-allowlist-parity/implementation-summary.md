@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/004-devin-fanout-allowlist-parity"
-    last_updated_at: "2026-07-30T03:47:10.019Z"
+    last_updated_at: "2026-08-11T14:03:33Z"
     last_updated_by: "implementer"
     recent_action: "Implementation verified; packet docs finalized"
     next_safe_action: "Commit the packet + runtime change to skilled/v4.0.0.0"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 044-devin-fanout-allowlist-parity |
+| **Spec Folder** | 004-devin-fanout-allowlist-parity |
 | **Completed** | 2026-07-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -1,1 +1,0 @@
-../../../skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts

@@ -324,14 +324,14 @@ Every spec folder (Level 1+) MUST contain:
 
 #### Analysis Lenses
 
-| Lens | Focus | Detection Questions |
-| ------| -------| ---------------------|
-| **CLARITY** | Simplicity | Is this the simplest code that solves the problem? Are abstractions earned? |
-| **SYSTEMS** | Dependencies | What does this change touch? What calls this? What are the side effects? |
-| **BIAS** | Wrong problem | Is user solving a symptom? Is this premature optimization? Is the framing correct? |
-| **SUSTAINABILITY** | Maintainability | Will future devs understand this? Is it self-documenting? Tech debt implications? |
-| **VALUE** | Actual impact | Does this change behavior or just refactor? Is it cosmetic or functional? |
-| **SCOPE** | Complexity match | Does solution complexity match problem size? Single-line fix or new abstraction? |
+| Lens               | Focus            | Detection Questions                                                                |
+| --------------------| ------------------| ------------------------------------------------------------------------------------|
+| **CLARITY**        | Simplicity       | Is this the simplest code that solves the problem? Are abstractions earned?        |
+| **SYSTEMS**        | Dependencies     | What does this change touch? What calls this? What are the side effects?           |
+| **BIAS**           | Wrong problem    | Is user solving a symptom? Is this premature optimization? Is the framing correct? |
+| **SUSTAINABILITY** | Maintainability  | Will future devs understand this? Is it self-documenting? Tech debt implications?  |
+| **VALUE**          | Actual impact    | Does this change behavior or just refactor? Is it cosmetic or functional?          |
+| **SCOPE**          | Complexity match | Does solution complexity match problem size? Single-line fix or new abstraction?   |
 
 ---
 

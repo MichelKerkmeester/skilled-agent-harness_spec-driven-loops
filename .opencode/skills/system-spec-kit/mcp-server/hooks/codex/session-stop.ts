@@ -10,10 +10,8 @@ import {
   runClaudeHookAdapter,
   runCodexHook,
 } from './shared.js';
-import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 async function main(): Promise<void> {
-  if (!isHookEnabled('session-lifecycle')) return undefined;
   const input = await readCodexHookInput('Stop', ['session_id']);
   if (!input) return;
 

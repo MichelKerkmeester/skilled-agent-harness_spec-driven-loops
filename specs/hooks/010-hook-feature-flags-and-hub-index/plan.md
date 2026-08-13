@@ -1,8 +1,8 @@
 ---
 title: "Implementation Plan: Hook Feature Flags + Full Hub Index"
-description: "Nine-phase plan: ship the shared hook guard and full index, close remaining index and adapter gaps, then publish an explicit concern-by-runtime coverage matrix."
+description: "Six-phase plan: ship a shared kill-switch guard, pilot it on one concern end-to-end, fan out to all hub and skill-owned concerns across six runtimes, then complete the hub symlink index and validate."
 status: "in-progress"
-completion_pct: 95
+completion_pct: 30
 importance_tier: "high"
 contextType: "plan"
 parent: "./spec.md"
@@ -37,9 +37,6 @@ No other logic changes.
 | 4 | Skill-owned: skill-advisor, spec-gate, completion, session-lifecycle, git-preflight, spec-memory, directive-lifecycle, dist-freshness, codex-watchdog, permission-policy | same |
 | 5 | Symlink every skill-owned hook into `.opencode/hooks/<concern>/<runtime>/`; rewrite hub README + `injection-contract.md` for the full-index model | symlinks resolve; Pi/OpenCode loaders still clean |
 | 6 | Cross-runtime validation sweep | each runtime loads clean; master-off = all silent; toggles verified; no stray files |
-| 7 | Close remaining index gaps for Cursor dispatch/post-edit coverage; classify embedded Pi directive and OpenCode session lifecycle ownership | each new relative symlink resolves with `readlink -f`; embedded coverage is documented without duplicate aliases |
-| 8 | Add fillable Cursor/Pi completion adapters and assess Codex/Pi task-dispatch interception feasibility | adapters load, remain advisory/fail-open, and prove default-on plus concern/master-off behavior; unavailable runtime events are documented rather than invented |
-| 9 | Add a complete concern × runtime coverage matrix to the hook hub README | every concern has an explicit covered, by-design, or unavailable event verdict for all six runtimes |
 
 ## IMPORT-PATH NOTE (settled in Phase 2)
 
@@ -47,4 +44,4 @@ Adapter languages differ: `.cjs` require, `.mjs`/`.js` import, `.ts` (Pi/Claude)
 
 ## STATUS
 
-Phases 1-9 shipped. Phase 7 closed truthful index gaps, Phase 8 added source-direct completion and Pi task-dispatch adapters where real events exist, and Phase 9 made every concern/runtime verdict explicit in the hook hub coverage matrix. Deploy-side dist rebuilding remains outside this worktree task.
+Phases 1-2 shipped. Import-path pattern settled per runtime kind (see implementation-summary). Phase 3 fan-out next.

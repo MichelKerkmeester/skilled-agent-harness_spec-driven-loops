@@ -38,7 +38,7 @@ afterEach(() => {
 function opts(sessionId = 'test-session', runtime = 'pi') {
   return {
     stateDir,
-    scope: { workspace: stateDir, runtime, sessionId },
+    scope: { workspace: process.cwd(), runtime, sessionId },
   };
 }
 

@@ -38,13 +38,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
-      ".opencode/skills/system-spec-kit/templates/stress-test/findings.template.md",
-      ".opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema.md",
-      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
-      ".opencode/skills/cli-external-orchestration/mode-registry.json"
+      "decision-record.md"
     ],
     "entities": [
       {
@@ -75,42 +69,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "findings.template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/templates/stress-test/findings.template.md",
-        "source": "derived"
-      },
-      {
-        "name": "findings-rubric.schema.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema.md",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "codex-dispatch.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
         "source": "derived"
       },
       {
@@ -190,11 +148,41 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The adapter family has a wide failure surface that is not safely covered by one green unit suite",
     "created_at": "2026-08-07T07:50:32Z",
-    "last_save_at": "2026-08-07T08:02:34.951Z",
+    "last_save_at": "2026-08-11T14:06:24.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,9 +192,9 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a235963021dfae8e677e37a8b23e8e0dee868103a0a07a5931d2f379c6cdf05d",
+    "source_fingerprint": "sha256:4b798459f371f9fabf8f71328ecd6a82c03f9416d3031087b8b051c8bbb5996b",
     "source_doc_hashes": {
-      "spec.md": "3b4c28fb38277a80a212380d0b112b83be79f77049d4dd06ff31d24a377025fe",
+      "spec.md": "5d158628c72e6d373977be5772e42d4cd82959354bbd2e9720469cfa855fcc9b",
       "plan.md": "d4bc0db393a6166b0f8f93468cedcd32d146a454e9a6dc33c26b3291e077b48d",
       "tasks.md": "9e4e639c937b84bb5bfa12b6e965d7c4b61f323abc1e6511ae9f39e27f735ee2",
       "checklist.md": "061992cbca84d49a01196ed1737e91178f532edb553a3375fcdd2b4f33d006f4",

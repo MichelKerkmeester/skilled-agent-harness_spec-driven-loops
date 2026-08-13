@@ -11,10 +11,8 @@ import {
   runClaudeHookAdapter,
   runDevinHook,
 } from './shared.js';
-import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 async function main(): Promise<void> {
-  if (!isHookEnabled('skill-advisor')) return undefined;
   const input = await readDevinHookInput('UserPromptSubmit', ['prompt']);
   if (!input) return;
 

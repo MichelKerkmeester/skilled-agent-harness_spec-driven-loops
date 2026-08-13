@@ -111,6 +111,36 @@ Required inventories (run before implementation, record the output):
 
 ---
 
+<!-- ANCHOR:ai-execution-protocol -->
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+
+- Confirm every scoped finding at the frozen candidate SHA before changing an adapter.
+- Capture the pre-change parity and typecheck baselines, including discovered-test counts and exit codes.
+- Enumerate each mode's protected semantic surface from its contract and projection type.
+- Prove the legacy oracle has no direct or transitive dependency on the folded ledger projection.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Execute confirmation and surface enumeration before comparator work; finish the shared comparator before changing per-mode adapters. |
+| TASK-SCOPE | Modify only the six parity adapters, their owned oracle/comparator code, and their named tests; serialize work on shared council reducer files. |
+| TASK-VERIFY | For every confirmed finding, preserve a red-before divergence case and a green-after result at the same candidate SHA; exceptions and omitted modes fail closed. |
+| TASK-EVIDENCE | Record the command, suite-content digest, discovered-test count, exit code, and candidate SHA for every acceptance claim. |
+
+### Status Reporting Format
+
+Report the active task ID, changed files, candidate SHA, verification command and result, confirmed-versus-deferred findings, and the next unblocked task. Never report a parity pass from an exception, an unenumerated surface, or an omitted mode.
+
+### Blocked Task Protocol
+
+Mark the task `BLOCKED` with the exact failing command, observed output, affected finding or mode, evidence owner, and next diagnostic action. Do not continue to the next mode, reinterpret the failure as parity, or weaken the protected-surface inventory.
+<!-- /ANCHOR:ai-execution-protocol -->
+
+---
+
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 

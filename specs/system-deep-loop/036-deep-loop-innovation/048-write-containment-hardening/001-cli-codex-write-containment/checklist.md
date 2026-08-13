@@ -7,6 +7,19 @@ trigger_phrases:
   - "codex write containment"
 importance_tier: "normal"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/001-cli-codex-write-containment"
+    last_updated_at: "2026-08-11T14:05:00Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled moved-packet metadata and strict-validation evidence"
+    next_safe_action: "None; packet complete."
+    blockers: []
+    key_files:
+      - "checklist.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Verification Checklist: codex Write-Containment Guard
 
@@ -31,9 +44,9 @@ contextType: "general"
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] Requirements documented in spec.md
-  - **Evidence**: spec.md §4 lists REQ-001..REQ-009 with acceptance criteria
+  - **Evidence**: `spec.md` §4 lists REQ-001..REQ-009 with acceptance criteria
 - [x] CHK-002 [P0] Technical approach defined in plan.md
-  - **Evidence**: plan.md §3 documents helper API, integration, safety invariants
+  - **Evidence**: `plan.md` §3 documents helper API, integration, safety invariants
 - [x] CHK-003 [P0] Part B (sandbox scoping) viability probed
   - **Evidence**: Live codex probe (spec.md §6) showed `-C <artifactDir>` does NOT contain writes; Part B not applied
 
@@ -46,9 +59,9 @@ contextType: "general"
 - [x] CHK-010 [P0] Modified worker passes syntax check
   - **Evidence**: `node --check runtime/scripts/fanout-run.cjs` exits 0
 - [x] CHK-011 [P0] Comment hygiene: no spec paths / packet ids / task ids in code comments
-  - **Evidence**: Helper and integrations carry durable WHY only
+  - **Evidence**: `write-containment.ts` and the dispatch integrations carry durable WHY only
 - [x] CHK-012 [P1] Helper fails open (never blocks the loop when it cannot reason about git)
-  - **Evidence**: snapshot returns [] on git error / non-worktree artifact dir
+  - **Evidence**: `write-containment.vitest.ts` verifies `snapshotOutOfScopeDirtyPaths` returns [] on git error or a non-worktree artifact directory
 
 <!-- /ANCHOR:code-quality -->
 ---
@@ -74,7 +87,7 @@ contextType: "general"
 - [x] CHK-030 [P0] Root cause addressed structurally, not just by prompt
   - **Evidence**: codex `workspace-write` has no write sub-scoping (probe §6); the post-dispatch git diff + revert is the structural fix
 - [x] CHK-031 [P0] Regression that originally failed (out-of-scope deletion) is now caught + reverted
-  - **Evidence**: detect → revert (checkout HEAD) restores deleted tracked file to ORIGINAL content (case b "deletion")
+  - **Evidence**: `write-containment.vitest.ts` case b "deletion" restores the deleted tracked file to its HEAD content
 
 <!-- /ANCHOR:fix-completeness -->
 ---
@@ -94,9 +107,9 @@ contextType: "general"
 ## Documentation
 
 - [x] CHK-050 [P1] Spec/plan/tasks synchronized
-  - **Evidence**: all three reflect the implemented design
+  - **Evidence**: `spec.md`, `plan.md`, and `tasks.md` all reflect the implemented design
 - [x] CHK-051 [P1] Part B non-application documented with evidence
-  - **Evidence**: spec.md §6 + implementation-summary.md
+  - **Evidence**: `spec.md` §6 and `implementation-summary.md` record the sandbox probe and non-application decision
 
 <!-- /ANCHOR:docs -->
 ---
@@ -107,7 +120,7 @@ contextType: "general"
 - [x] CHK-060 [P1] All changes within the allowed write paths
   - **Evidence**: helper under `lib/deep-loop/`; tests under `tests/unit/`; the 4 dispatch sites only
 - [x] CHK-061 [P1] No files created or modified outside the allowed set
-  - **Evidence**: spec folder + 4 dispatch sites + helper + test only
+  - **Evidence**: `implementation-summary.md` lists only the spec folder, four dispatch sites, helper, and test
 
 <!-- /ANCHOR:file-org -->
 ---

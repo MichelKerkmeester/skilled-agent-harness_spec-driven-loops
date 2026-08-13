@@ -29,7 +29,6 @@
 
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
-import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -96,9 +95,6 @@ function parseShellToolOutput(rawToolOutput) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  // Proxies both dispatch-audit and post-edit-quality; skip only when BOTH are
-  // off (each Claude counterpart still honors its own switch when one is on).
-  if (!isHookEnabled('dispatch') && !isHookEnabled('post-edit-quality')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());
@@ -119,7 +115,6 @@ async function main() {
       session_id: sessionID,
     };
 
-    if (!isHookEnabled('post-edit-quality')) return approve();
     const findings = runChild(
       join(projectDir, CLAUDE_POST_TOOL_USE_RELATIVE),
       claudeShapedPayload,
@@ -142,7 +137,6 @@ async function main() {
       tool_use_id: payload?.tool_use_id,
       tool_response: toolResponse,
     };
-    if (!isHookEnabled('dispatch')) return approve();
     runChild(
       join(projectDir, DISPATCH_AUDIT_RELATIVE),
       dispatchPayload,

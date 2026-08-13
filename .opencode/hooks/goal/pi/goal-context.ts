@@ -3,7 +3,6 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { join } from "node:path";
-import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 import type {
   ExtensionAPI,
@@ -176,7 +175,6 @@ function extractTurnEndText(event: TurnEndEvent): string {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function goalContext(pi: ExtensionAPI): void {
-  if (!isHookEnabled("goal")) return undefined;
   pi.registerCommand("goal-pi", {
     description: "Manage the active goal for this Pi session",
     handler: (args, ctx) => runGoalCommand(pi, args, ctx),

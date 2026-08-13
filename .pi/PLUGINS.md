@@ -33,7 +33,7 @@ Controls OpenAI's GPT service tier (priority/flex/default/auto) for GPT-5.4 / GP
 
 ---
 
-#### pi-intercom (v0.9.3)
+#### pi-intercom (v0.10.0)
 [github.com/nicobailon/pi-intercom](https://github.com/nicobailon/pi-intercom)
 
 Direct 1:1 messaging between pi sessions on the same machine — send context, findings, or requests from one session to another
@@ -61,14 +61,14 @@ Claude Code-compatible command-driven statusline extension
 
 ---
 
-#### pi-subagents (v0.44.0)
+#### pi-subagents (v0.46.0)
 [github.com/nicobailon/pi-subagents](https://github.com/nicobailon/pi-subagents)
 
 Delegating tasks to subagents with chains, parallel execution, and TUI clarification
 
 ---
 
-#### pi-web-access (v0.19.0)
+#### pi-web-access (v0.21.0)
 [github.com/nicobailon/pi-web-access](https://github.com/nicobailon/pi-web-access)
 
 Web search, URL fetching, GitHub repo cloning, PDF extraction, YouTube video understanding, and local video analysis — zero-config Exa search plus many provider backends
@@ -86,6 +86,29 @@ A structured questionnaire the model can put to you when it would otherwise gues
 [github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo)
 
 A todo list for the model, rendered as a live overlay that survives /reload and conversation compaction
+
+---
+
+## Updating packages
+
+Packages install at **two scopes**: user (`~/.pi/agent/npm`) and project
+(`.pi/npm` in any repo whose `.pi/settings.json` lists them). The startup
+"Package Updates Available" banner checks **both** and prefers the project
+scope when the same package is listed twice — a stale project install keeps
+the banner firing even after a plain update.
+
+`pi update --extensions` updates the user scope, but **skips project packages
+unless the project is trusted**. Without `--approve` the CLI does not even
+load project settings, so the project scope is silently skipped and only git
+sources still run. Fix the stale project scope with:
+
+```bash
+cd <repo root with project packages> && pi update --extensions --approve
+```
+
+`--approve` forces the project-trust override for that command. After updating,
+verify the banner check passes: the installed version in
+`.pi/npm/node_modules/<pkg>/package.json` must equal `npm view <pkg> version`.
 
 ---
 

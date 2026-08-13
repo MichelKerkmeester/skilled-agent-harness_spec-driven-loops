@@ -118,7 +118,7 @@ For documentation-only changes, also run the relevant `sk-doc` structure check a
 
 This plugin is the OpenCode-native goal system. Cursor and Pi reach the same passive-goal behavior through a runtime-neutral sibling under `.opencode/hooks/goal/` — not this plugin.
 
-**State model.** `mk-goal` keeps per-OpenCode-session state and native token accounting under `<full-sha256-of-session-id>.json`. Valid files from the earlier reversible hex-key format migrate lazily on active reads, injection, orphan sweeps, and history access; occupied digest targets remain authoritative. The sibling core keys every record by workspace, runtime, and native session id, then stores it as `<runtime>-<full-sha256>.json` with a matching archive namespace. Its legacy `active-goal.json` is diagnostic-only and never supplies prompt injection. Cross-runtime usage accounting remains `turn-count-estimate` because these adapters do not expose OpenCode's native token feed.
+**State model.** `mk-goal` keeps per-OpenCode-session state and native token accounting under `<full-sha256-of-session-id>.json`. Valid files from the earlier reversible hex-key format migrate lazily on active reads, injection, orphan sweeps, and history access; occupied digest targets remain authoritative. The sibling core hashes the unambiguous serialization of repository root, runtime, and native session id into one opaque `<full-sha256>.json` basename with a matching archive namespace. Its legacy `active-goal.json` is diagnostic-only and never supplies prompt injection. Cross-runtime usage accounting remains `turn-count-estimate` because these adapters do not expose OpenCode's native token feed.
 
 **Current support matrix:**
 
@@ -127,7 +127,7 @@ This plugin is the OpenCode-native goal system. Cursor and Pi reach the same pas
 | OpenCode | Native plugin | `/goal-opencode` | Native verifier and guarded continuation |
 | Pi | Native session-bound extension | Native registered `/goal-pi` | `turn_end` heuristic; no forced continuation |
 | Cursor | Session-bound `sessionStart` hook | Unsupported without native command identity | Turn touch only; no continuation |
-| Claude Code | No sibling-core adapter | Runtime-native feature where available | Outside this contract |
+| Claude Code | No sibling-core adapter | No repository command; live native capability unverified here | Outside this contract |
 | Codex | None | None | None |
 
 **Command surface.** Each retained goal-capable runtime uses its own command boundary:

@@ -82,7 +82,7 @@
       "SPECKIT_AC_COVERAGE_ENFORCE",
       "SPECKIT_AC_COVERAGE_FLOOR"
     ],
-    "description": "Default-on advisory (non-blocking) scan for acceptance-criteria traceability coverage; set SPECKIT_AC_COVERAGE=false to opt out."
+    "description": "Opt-in advisory scan for acceptance-criteria traceability coverage."
   },
   {
     "rule_id": "ANCHORS_VALID",
@@ -367,13 +367,5 @@
     "category": "structural",
     "strict_only": true,
     "description": "Re-derives a folder and reports drift between the stored description/causal_summary and the current docs, read-only, error under strict only when the drift-gate flag is on and otherwise grandfather report mode."
-  },
-  {
-    "rule_id": "SCOPE_ADHERENCE",
-    "aliases": [],
-    "script_path": "rules/check-scope-adherence.sh",
-    "severity": "warn",
-    "category": "operational_runtime",
-    "description": "Advises when an explicit packet change-set exceeds its declared paths."
   }
 ]

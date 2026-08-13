@@ -3,7 +3,7 @@
   "theme": "dark",
   "defaultProvider": "opencode-go",
   "defaultModel": "deepseek-v4-flash",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "xhigh",
   "showHardwareCursor": true,
   "autocompleteMaxVisible": 20,
   "steeringMode": "one-at-a-time",

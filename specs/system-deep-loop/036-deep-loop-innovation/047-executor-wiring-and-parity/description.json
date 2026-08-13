@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity",
   "description": "Group the deep-loop CLI fan-out executor work: wiring individual executor kinds and proving every cli/provider/model combination is reachable",
   "keywords": [
@@ -18,7 +19,7 @@
     "combination",
     "reachable"
   ],
-  "lastUpdated": "2026-08-08T07:11:31.053Z",
+  "lastUpdated": "2026-08-08T10:06:53.101Z",
   "specId": "047",
   "folderSlug": "executor-wiring-and-parity",
   "parentChain": [

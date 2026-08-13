@@ -58,5 +58,5 @@ Each run-label folder holds a curated 7-file set: `README.md`, `skill-benchmark-
 |---|---|
 | [`cli-cursor`](../SKILL.md) | The CLI skill under measurement |
 | [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md) | The `CU-027` scenario this tree validates |
-| [`034-goal-hook-playbooks-and-validation`](../../../../specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation) | The spec packet that captured this evidence |
+| [`004-goal-hook-playbooks-and-validation`](../../../../specs/hooks/004-goal-hook-playbooks-and-validation) | The spec packet that captured this evidence |
 | [`skill-benchmark-storage-guide.md`](../../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md) | The storage-shape contract this tree's file naming and 7-file set follow |

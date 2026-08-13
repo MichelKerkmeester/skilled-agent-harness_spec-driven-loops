@@ -7,6 +7,7 @@ trigger_phrases:
   - "alignment convergence mode off"
 importance_tier: "important"
 contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-deep-loop/036-deep-loop-innovation/049-deep-alignment-integrity/002-deep-alignment-multi-executor"
@@ -31,6 +32,8 @@ _memory:
     answered_questions: []
 ---
 # Feature Specification: Deep Alignment Multi-Executor
+
+> Phase adjacency under the `049-deep-alignment-integrity` parent (navigation order, not a runtime dependency): predecessor `001-alignment-registry-sealing`; successor none (last sibling).
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

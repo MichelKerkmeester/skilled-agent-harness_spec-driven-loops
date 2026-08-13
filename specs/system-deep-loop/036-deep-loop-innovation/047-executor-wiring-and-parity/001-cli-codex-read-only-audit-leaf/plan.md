@@ -3,6 +3,19 @@ title: "Implementation Plan: Read-Only cli-codex Deep-Alignment Audit Leaf"
 description: "Architecture and phased plan to run the cli-codex alignment leaf read-only and move iteration-artifact writing to the dispatch wrapper."
 importance_tier: "important"
 contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/001-cli-codex-read-only-audit-leaf"
+    last_updated_at: "2026-08-11T14:05:00Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled the moved packet metadata and strict-validation contract"
+    next_safe_action: "Run the full-budget alignment gate."
+    blockers: []
+    key_files:
+      - "plan.md"
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
 ---
 # Implementation Plan: Read-Only cli-codex Deep-Alignment Audit Leaf
 
@@ -54,10 +67,17 @@ The record schema is copied from the existing OUTPUT CONTRACT so the reducer/con
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-- **Phase 1 — Helper + tests.** Create `leaf-artifact-writer.ts` (parse → author 3 artifacts → route-proof injection → fail-closed) and its vitest. Pure/unit-testable, no YAML dependency.
-- **Phase 2 — Prompt pack.** Add the read-only OUTPUT CONTRACT variant selected for `cli-codex`: the leaf writes nothing and emits the structured final message; native path keeps the Bash-write contract.
-- **Phase 3 — Wire the dispatch.** Rewrite the `deep-alignment-auto.yaml` `if_cli_codex` branch: `--sandbox read-only`, `-o` capture, call the helper, preserve the 038 containment call.
-- **Phase 4 — Verify.** Run the helper vitest + runtime suites; re-run the LUNA hallmark alignment end-to-end and confirm full coverage.
+### Phase 1 — Helper + tests
+Create `leaf-artifact-writer.ts` (parse → author 3 artifacts → route-proof injection → fail-closed) and its vitest. Pure/unit-testable, no YAML dependency.
+
+### Phase 2 — Prompt pack
+Add the read-only OUTPUT CONTRACT variant selected for `cli-codex`: the leaf writes nothing and emits the structured final message; native path keeps the Bash-write contract.
+
+### Phase 3 — Wire the dispatch
+Rewrite the `deep-alignment-auto.yaml` `if_cli_codex` branch: `--sandbox read-only`, `-o` capture, call the helper, and preserve containment.
+
+### Phase 4 — Verify
+Run the helper vitest plus runtime suites; re-run the LUNA hallmark alignment end-to-end and confirm full coverage.
 
 <!-- /ANCHOR:phases -->
 ---

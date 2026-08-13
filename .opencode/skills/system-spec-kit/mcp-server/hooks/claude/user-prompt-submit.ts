@@ -11,7 +11,6 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
-import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -153,7 +152,6 @@ function mergeAdditionalContext(advisorJson: string, section: string): string {
 // ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
-  if (!isHookEnabled('skill-advisor')) return undefined;
   const advisorJson = runShim();
   process.stdout.write(`${advisorJson}\n`);
   process.exit(0);

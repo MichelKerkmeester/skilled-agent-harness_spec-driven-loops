@@ -32,7 +32,7 @@ _memory:
 
 # Feature Specification: sk-code / code-opencode Alignment for the system-deep-loop Runtime
 
-> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `019-runtime-code-readmes`; successor: none (last sibling).
+> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `019-runtime-code-readmes`; successor `021-completion-evidence-reconcile`.
 
 ---
 

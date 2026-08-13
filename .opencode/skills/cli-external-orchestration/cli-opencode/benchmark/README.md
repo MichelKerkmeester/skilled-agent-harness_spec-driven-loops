@@ -1,6 +1,6 @@
 ---
 title: "cli-opencode Benchmark Artifacts"
-description: "Benchmark tree for cli-opencode holding curated goal-hook validation reports derived from packet 034's captured evidence -- a manual-testing-playbook record, not a Lane C skill-benchmark D1-D5 run."
+description: "Benchmark tree for cli-opencode holding curated goal-hook validation reports derived from packet 004's captured evidence -- a manual-testing-playbook record, not a Lane C skill-benchmark D1-D5 run."
 trigger_phrases:
   - "cli-opencode benchmark"
   - "cli-opencode goal hook validation report"
@@ -25,7 +25,7 @@ Every file inside a run-label folder carries the marker `_Derived after the fact
 
 | Run label | Trace mode | Verdict | Scenarios | Source |
 |---|---|---|---|---|
-| [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | live | **SKIP** | 3 (0 PASS, 3 SKIP) | `034-goal-hook-playbooks-and-validation` |
+| [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | live | **SKIP** | 3 (0 PASS, 3 SKIP) | `004-goal-hook-playbooks-and-validation` |
 
 ## 3. STRUCTURE
 
@@ -56,5 +56,5 @@ Each run-label folder holds the seven-file package the storage guide defines:
 |---|---|
 | [`cli-opencode`](../SKILL.md) | The CLI under measurement |
 | [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md) | The `CO-039` scenario this run's headless slice is drawn from |
-| [`034-goal-hook-playbooks-and-validation`](../../../../specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/spec.md) | The spec packet that captured the underlying evidence |
+| [`004-goal-hook-playbooks-and-validation`](../../../../specs/hooks/004-goal-hook-playbooks-and-validation/spec.md) | The spec packet that captured the underlying evidence |
 | [`skill-benchmark-storage-guide.md`](../../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md) | The storage standard this tree follows |

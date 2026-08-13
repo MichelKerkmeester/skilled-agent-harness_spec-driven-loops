@@ -1,10 +1,15 @@
 {
   "specFolder": "hooks",
-  "description": "Track folder for hooks packets — per-prompt injection hooks, advisor-brief/directive rendering, spec-gate, and cross-runtime hook adapters.",
+  "description": "Track folder for hook, plugin, and extension packets — cross-runtime goal lifecycle and isolation, per-prompt injection, Pi caching and latency, advisor directives, spec-gate routing, and runtime adapters.",
   "keywords": [
-    "track"
+    "track",
+    "hooks",
+    "plugins",
+    "extensions",
+    "goal-isolation",
+    "pi"
   ],
-  "lastUpdated": "2026-08-06T00:00:00.000Z",
+  "lastUpdated": "2026-08-11T06:45:00.000Z",
   "specId": "hooks",
   "folderSlug": "hooks",
   "parentChain": [],

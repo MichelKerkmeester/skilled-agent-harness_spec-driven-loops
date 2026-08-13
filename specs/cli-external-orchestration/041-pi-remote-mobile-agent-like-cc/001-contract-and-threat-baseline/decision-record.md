@@ -130,3 +130,70 @@ Pins the live Pi, host, ingress, browser, storage, and extension contracts and f
 **How to roll back**: Discard the baseline artifacts and keep every downstream capability blocked; no production state or Pi session is changed.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
+
+---
+
+<!-- ANCHOR:adr-002 -->
+## ADR-002: Ship an installable PWA (not a native app) on a fixed TypeScript stack
+### Metadata
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted for implementation planning |
+| **Date** | 2026-08-12 |
+| **Deciders** | Operator decision this session; technical verification pending |
+<!-- ANCHOR:adr-002-context -->
+### Context
+The product is a private remote control for the Pi coding agent, used by the operator and possibly a few repository collaborators over a Tailscale tailnet — not a publicly distributed app. Access is: Pi runs locally as a `pi --mode rpc` child; a loopback TypeScript relay supervises it and is exposed tailnet-only via Tailscale Serve; the client reaches it over HTTPS/WSS. The framework and library layer was previously an open question. A UX review found the client also lacks a visual/design layer.
+### Constraints
+- Distribution is personal/small-team over an existing tailnet
+- The browser socket must never be the process/data/authority boundary
+- Accessibility is a stated requirement
+- The phone still depends on the OS-level Tailscale app for tailnet reachability regardless of client type
+<!-- /ANCHOR:adr-002-context -->
+<!-- ANCHOR:adr-002-decision -->
+### Decision
+**We chose**: An installable PWA (service worker, Web App Manifest, Web Push, offline read-only) on a fixed TypeScript stack. Relay: Node + Hono or Fastify + `ws` + better-sqlite3 (single-host durable event ledger). Client: Vite + vite-plugin-pwa + React 19 + Untitled UI React (React Aria + Tailwind CSS, copy-in/own-the-code) + XState (run/approval lifecycle machines) + TanStack Virtual (transcript). Push: web-push/VAPID. Approval step-up: WebAuthn/passkeys. Shared: a platform-agnostic `pi-rpc-protocol` + reducers TS core.
+**How it works**: Repo users open a tailnet URL and add to home screen — no App Store, instant updates, works on desktop too. Untitled UI supplies a polished, accessible design system out of the box (React Aria gives WAI-ARIA keyboard/screen-reader support), retiring the missing-design-layer gap. The shared TS core keeps the protocol/reducers reusable.
+<!-- /ANCHOR:adr-002-decision -->
+<!-- ANCHOR:adr-002-alternatives -->
+### Alternatives Considered
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Chosen approach — installable PWA** | No App Store, instant updates, one codebase for phone + desktop, strong accessibility via React Aria | Weaker iOS Web Push (home-screen install required, no notification actions) | 9/10 |
+| React Native + Expo native app | Reliable iOS push, Secure Enclave keys, native feel | App Store distribution friction for a personal tool; does NOT remove the Tailscale dependency; loses desktop + instant updates | 4/10 |
+| Hybrid Expo shell wrapping the PWA in a WebView | Keeps the PWA codebase; native shell can add iOS push/background capabilities | Extra packaging layer; only needed if iOS push/background becomes load-bearing | 6/10 |
+**Why this one**: Lowest distribution friction for a private tailnet tool, one codebase across phone+desktop, and it converts the open framework question into a decision.
+<!-- /ANCHOR:adr-002-alternatives -->
+<!-- ANCHOR:adr-002-consequences -->
+### Consequences
+**What improves**:
+- Retires the framework + design-layer open questions
+- Strong accessibility for free
+- You own the component code
+**What it costs**:
+- iOS Web Push is weaker (home-screen install required, no notification actions) — mitigation: the hybrid Expo WebView shell is the pre-agreed escape hatch if iOS push/background becomes load-bearing
+**Risks**:
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Untitled UI free tier is single-user and its components are committed into the shared repo | M | Solo development stays within the free tier; budget PRO Studio (one-time, up to 8 devs) only if multiple people co-develop the UI code; end users of the app never consume seats |
+<!-- /ANCHOR:adr-002-consequences -->
+<!-- ANCHOR:adr-002-five-checks -->
+### Five Checks Evaluation
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | An unspecified framework stalls implementation |
+| 2 | **Beyond Local Maxima?** | PASS | Native and hybrid were compared |
+| 3 | **Sufficient?** | PASS | Adds only the decided stack, no extra surface |
+| 4 | **Fits Goal?** | PASS | A private Claude-app-style Pi control client |
+| 5 | **Open Horizons?** | PASS | Shared TS core + escape hatch keep native/other clients cheap later |
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-002-five-checks -->
+<!-- ANCHOR:adr-002-impl -->
+### Implementation
+**What changes**:
+- `apps/pi-remote-web/` adopts Vite + React 19 + Untitled UI + XState + TanStack Virtual
+- `apps/pi-remote-relay/` fixes Node + Hono/Fastify + `ws` + better-sqlite3
+- `packages/pi-rpc-protocol/` hosts the shared reducer core
+**How to roll back**: The stack choice is documentation-only until code exists; revert this ADR with no runtime impact.
+<!-- /ANCHOR:adr-002-impl -->
+<!-- /ANCHOR:adr-002 -->

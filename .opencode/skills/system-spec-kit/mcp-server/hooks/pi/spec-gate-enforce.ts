@@ -3,7 +3,6 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 function projectFilePath(input: Record<string, unknown>): string | undefined {
   for (const key of ["path", "file_path", "filePath"]) {
@@ -14,7 +13,6 @@ function projectFilePath(input: Record<string, unknown>): string | undefined {
 
 /** Blocks a bash/write/edit tool call the shared spec-gate core denies. */
 export default function specGateEnforce(pi: ExtensionAPI): void {
-  if (!isHookEnabled("spec-gate")) return undefined;
   pi.on("tool_call", async (event, ctx) => {
     try {
       if (event.toolName !== "bash" && event.toolName !== "write" && event.toolName !== "edit") return;

@@ -5,12 +5,16 @@ QUIET=false
 SELF_TEST=false
 LEFT=""
 RIGHT=""
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+RUNTIME_MIRROR_SYNC="$SCRIPT_DIR/runtime-mirrors/sync-runtime-mirrors.cjs"
 
 usage() {
   cat <<'EOF'
 Usage: validate-command-tree-parity.sh [--quiet] [--left <dir> --right <dir>] [--self-test]
 
-Checks that the OpenCode and Claude command trees expose byte-identical files.
+Without explicit tree arguments, checks the generated runtime mirrors against
+their authored command-scope policy. With --left and --right, compares two
+arbitrary command trees byte-for-byte.
 EOF
 }
 
@@ -102,9 +106,16 @@ if $SELF_TEST; then
 fi
 
 if [[ -z "$LEFT" || -z "$RIGHT" ]]; then
-  ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
-  LEFT="$ROOT/.opencode/commands"
-  RIGHT="$ROOT/.claude/commands"
+  [[ -f "$RUNTIME_MIRROR_SYNC" ]] || {
+    echo "ERROR: runtime mirror validator not found: $RUNTIME_MIRROR_SYNC" >&2
+    exit 1
+  }
+  if $QUIET; then
+    node "$RUNTIME_MIRROR_SYNC" --check >/dev/null
+  else
+    node "$RUNTIME_MIRROR_SYNC" --check
+  fi
+  exit $?
 fi
 
 compare_trees "$LEFT" "$RIGHT"

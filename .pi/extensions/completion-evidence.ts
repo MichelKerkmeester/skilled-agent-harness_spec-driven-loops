@@ -1,1 +1,0 @@
-../../.opencode/skills/system-spec-kit/mcp-server/hooks/pi/completion-evidence.ts

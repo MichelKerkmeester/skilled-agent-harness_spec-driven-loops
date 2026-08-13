@@ -7,7 +7,6 @@
 
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { isHookEnabled } from '../../../../../../.opencode/hooks/shared/hook-flags.mjs';
 import {
   parseHookStdin, hookLog, formatHookOutput, truncateToTokenBudget,
   withTimeout, HOOK_TIMEOUT_MS, COMPACTION_TOKEN_BUDGET, SESSION_PRIME_TOKEN_BUDGET,
@@ -303,7 +302,6 @@ async function maybeAppendCliWarmFallback(
 // ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
-  if (!isHookEnabled('session-lifecycle')) return undefined;
   ensureStateDir();
 
   const input = await withTimeout(parseHookStdin(), HOOK_TIMEOUT_MS, null);

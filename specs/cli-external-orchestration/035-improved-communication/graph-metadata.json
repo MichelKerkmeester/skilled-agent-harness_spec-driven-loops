@@ -99,7 +99,7 @@
     ],
     "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
     "created_at": "2026-08-11T06:21:47Z",
-    "last_save_at": "2026-08-12T04:19:36.839Z",
+    "last_save_at": "2026-08-12T11:34:17.350Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -109,7 +109,7 @@
     "source_doc_hashes": {
       "spec.md": "fd2a12304fc0f110a15e22c13a8e75dfecaff5c347c4e8b54f1c1d04f7511a32"
     },
-    "last_active_child_id": "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients",
-    "last_active_at": "2026-08-12T04:19:36.839Z"
+    "last_active_child_id": null,
+    "last_active_at": "2026-08-12T11:34:17.350Z"
   }
 }

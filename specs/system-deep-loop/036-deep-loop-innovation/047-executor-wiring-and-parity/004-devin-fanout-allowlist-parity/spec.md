@@ -45,9 +45,9 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-07-29 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | None |
-| **Predecessor** | None |
-| **Successor** | None |
+| **Parent Spec** | `../spec.md` |
+| **Predecessor** | `003-cli-executor-fanout-parity` |
+| **Successor** | `005-devin-allowlist-prune-and-deepseek` |
 | **Handoff Criteria** | Runtime allowlist and default match the curated catalog; both vitest suites pass |
 <!-- /ANCHOR:metadata -->
 

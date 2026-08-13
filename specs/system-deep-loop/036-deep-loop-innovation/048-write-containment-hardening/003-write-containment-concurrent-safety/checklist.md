@@ -10,10 +10,10 @@ parent: "system-deep-loop"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/003-write-containment-concurrent-safety"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the QA checklist recording the shipped fix's verification evidence"
-    next_safe_action: "None; packet complete"
+    last_updated_at: "2026-08-11T14:03:33Z"
+    last_updated_by: "codex"
+    recent_action: "Preserved the shipped evidence while reopening moved-packet metadata closeout"
+    next_safe_action: "Refresh continuity after packet paths are clean."
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0830807b3d225329ce0e2bc1cdc0482191600ca6da04a92779b68fc1268f6acc"
       session_id: "2026-08-06-deep-loop-046"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -132,6 +132,7 @@ _memory:
   - **Evidence**: Comment hygiene preserved per `comment-hygiene.md` - no spec-path/ADR/REQ/CHK ids embedded in code comments; this documentation pass touched no code
 - [x] CHK-042 [P2] README updated (if applicable)
   - **Evidence**: Not applicable - no README documents this internal guard's revert behavior at a level requiring an update
+- [ ] CHK-043 [P0] Moved-packet continuity fingerprints refreshed after packet paths are clean
 <!-- /ANCHOR:docs -->
 
 ---
@@ -152,7 +153,7 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 9/9 |
+| P0 Items | 10 | 9/10 |
 | P1 Items | 10 | 10/10 |
 | P2 Items | 1 | 1/1 |
 

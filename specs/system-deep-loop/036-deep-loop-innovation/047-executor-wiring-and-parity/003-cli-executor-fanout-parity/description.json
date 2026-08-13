@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/003-cli-executor-fanout-parity",
   "description": "The deep-loop fan-out declares seven executor kinds in `EXECUTORKINDS`, but they are not uniformly reachable end-to-end",
   "keywords": [
@@ -13,7 +14,7 @@
     "reachable",
     "end-to-end"
   ],
-  "lastUpdated": "2026-08-08T07:13:28.681Z",
+  "lastUpdated": "2026-08-08T10:06:53.096Z",
   "specId": "003",
   "folderSlug": "cli-executor-fanout-parity",
   "parentChain": [

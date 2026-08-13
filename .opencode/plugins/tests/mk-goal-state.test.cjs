@@ -165,6 +165,16 @@ test('session keys are fixed-length opaque digests and long ids remain persistab
   assert.equal(helpers.goalPathForSession(longSessionID, { stateDir }), join(stateDir, `${sessionKey}.json`));
 }));
 
+test('long session ids clear without probing an impossible legacy filename', async () => withState(async ({ helpers, stateDir }) => {
+  const longSessionID = `session-${'c'.repeat(140)}`;
+  await helpers.setGoal(longSessionID, 'Clear a long native session id', {
+    stateDir,
+    goalIdFactory: () => 'long-clear-goal',
+  });
+  await assert.doesNotReject(() => helpers.clearGoal(longSessionID, { stateDir }));
+  assert.equal(await helpers.readGoal(longSessionID, { stateDir }), null);
+}));
+
 test('valid legacy active state migrates byte-for-byte to the digest path', async () => withState(async ({ helpers, stateDir }) => {
   const sessionID = 'session-legacy-active';
   await helpers.setGoal(sessionID, 'Migrate legacy active state', {
@@ -229,6 +239,24 @@ test('malformed and mismatched legacy state fail closed without deleting the sou
     { code: 'INVALID_GOAL_STATE' },
   );
   assert.equal(await fileExists(mismatchedPath), true);
+}));
+
+test('legacy adoption requires a present embedded session identity', async () => withState(async ({ helpers, stateDir }) => {
+  const sessionID = 'session-legacy-missing-identity';
+  const legacyPath = legacySessionPath(stateDir, sessionID);
+  await writeFile(legacyPath, `${JSON.stringify({
+    goalId: 'missing-identity-goal',
+    objective: 'Do not adopt identity-free legacy state',
+    status: 'active',
+    createdAtMs: 3600,
+    updatedAtMs: 3600,
+  })}\n`, 'utf8');
+  await assert.rejects(
+    helpers.readGoal(sessionID, { stateDir }),
+    { code: 'INVALID_GOAL_STATE' },
+  );
+  assert.equal(await fileExists(legacyPath), true);
+  assert.equal(await fileExists(helpers.goalPathForSession(sessionID, { stateDir })), false);
 }));
 
 test('stored goals drop unknown fields and reject non-numeric token budgets', async () => withState(async ({ helpers, stateDir }) => {

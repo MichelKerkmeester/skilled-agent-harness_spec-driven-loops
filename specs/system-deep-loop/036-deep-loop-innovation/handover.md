@@ -15,21 +15,19 @@ _memory:
     last_updated_at: "2026-08-09T05:14:58Z"
     last_updated_by: "claude-opus"
     recent_action: "014 AUTHORIZED (operator Go); 014/003 cutover-cert built+verified+landed eaf0a79024"
-    next_safe_action: "Build 014/001 migration (running) then 002 flip; per-mode CAS execution = go/no-go"
+    next_safe_action: "Close the goal.md P0 cutover gates."
     blockers:
-      - "014 is AUTHORIZED by operator (Go). DISCOVERY: 014 is a phase parent with 3 UNBUILT children — 003 cutover-cert+rollback (DONE, landed eaf0a79024), 001 in-flight migration (building), 002 per-mode authority flip. Build order 003->001->002, all DARK/additive/reversible. The ONLY irreversible act is 002's CAS moving a mode epoch legacy->new_authoritative, executed per-mode gated by cert + live rollback drill — that step still stops for a per-mode go/no-go. Build worktree: .worktrees/0135-skilled-014-cutover off origin tip. Per-mode preconditions from 016 verdict: (F001) identityResolver opt-in; (F002) captured auth-state; (F005) loop-lock wx window."
-      - "deepseek provider BANNED for this epic (operator directive). Build transport = cli-codex GPT-5.6-LUNA; Sonnet in-process agents (contention-immune) did 033, the tsc-gap fix, the doc-batch, and the 016 validation."
+      - "Per-mode authority cutover remains blocked until the goal.md P0 acceptance gates and a mode-specific rollback drill pass."
+      - "DeepSeek provider is banned for this epic by operator directive."
     key_files:
+      - "goal.md"
+      - "goal-plan-review.md"
       - "016-whole-system-gate/review/pre-014-clearance-verdict.md"
-      - "033-identity-and-lock-ownership-hardening/handover.md"
-      - "024-durable-write-boundaries/review/lineages/luna/review-report.md"
     completion_pct: 95
     open_questions:
-      - "RESOLVED 2026-08-08: 033 corrected + landed (1876f27e97). The docs described a hard-link/linkSync lock design that NEVER shipped; real code is rename+O_EXCL — atomic-state.ts F004 = rename-aside claim + existsSync-guarded renameSync CAS (no linkSync); loop-lock.ts F005 = openSync(lockPath,'wx') create-then-write, partial-record window still OPEN (a 014 precondition). F001/F002/F005 framed as per-mode 014 preconditions; F003/F004 cleared."
-      - "SYSTEMATIC LANDING-GAP — fixed for 026/027/030/032 (@085baf6d29); 028 finalization in progress: the leak-guard lander lands ONLY named paths, so per-child CODE landed but the completed DOCS stayed in the worktree — origin showed 026/027/028/030/032 as stale 'Planned' scaffolds despite landed code. Fix = per un-landed child: validate + ground the cited landed commits + code cross-check the impl-summary, then land. 030 had a real fabrication (reverted F-028-01 sandbox-derivation described as landed) corrected before land. WHEN LANDING A CHILD, name ALL its docs, not just the code."
-      - "Worktree quirk: .opencode/specs is a REAL DIR here but a SYMLINK on origin → land docs at the canonical top-level specs/ path (copy from .opencode/specs/ first), never .opencode/specs/. A fresh clone matching origin's layout avoids this."
+      - "Which exact 014/002 candidate SHA will be frozen for the first mode's acceptance run?"
     answered_questions:
-      - "Spine 001-013 is built and landed; graph-metadata status labels are stale for landed children."
+      - "The additive 014/001-003 implementation exists; live authority movement remains operator-gated."
 ---
 
 # Handover — 036 Deep-Loop-Innovation Epic

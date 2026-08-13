@@ -1,1 +1,0 @@
-../../../skills/system-spec-kit/mcp-server/hooks/claude/completion-evidence-stop.cjs

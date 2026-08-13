@@ -11,10 +11,10 @@ parent: "system-deep-loop"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/048-write-containment-hardening/003-write-containment-concurrent-safety"
-    last_updated_at: "2026-08-06T00:00:00Z"
-    last_updated_by: "opus"
-    recent_action: "Authored the implementation plan recording the shipped preserve-untracked + fatal/advisory split"
-    next_safe_action: "None; packet complete"
+    last_updated_at: "2026-08-11T14:03:33Z"
+    last_updated_by: "codex"
+    recent_action: "Preserved the shipped plan while reopening moved-packet metadata closeout"
+    next_safe_action: "Refresh continuity after packet paths are clean."
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:dc2fbfec4b1f6aec3fcebd172b0a38740d34c213191ef7dcba0041d953229ed9"
       session_id: "2026-08-06-deep-loop-046"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "The fix is additive to the revert-action branch only; no other executor kind or containment trigger changed"
@@ -109,6 +109,9 @@ Guard-and-revert: a post-dispatch git diff classifies out-of-scope paths, then a
 - [x] Add a concurrent-writer regression proving a not-in-HEAD file is preserved as a non-fatal advisory
 - [x] Add a mixed fatal-tracked + advisory-untracked regression case
 - [x] Run the full unit suite and whole-runtime typecheck
+
+### Phase 4: Metadata closeout
+- [ ] Refresh continuity fingerprints after the moved packet's paths are clean.
 <!-- /ANCHOR:phases -->
 
 ---

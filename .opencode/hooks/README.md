@@ -25,15 +25,9 @@ A further AI-runtime concern, [`goal/`](./goal/README.md), is a cross-runtime si
 
 A fifth folder, [`git/`](./git/README.md), holds the git commit-hooks installer (the pre-commit gate) — an unrelated concept from the four AI-runtime concerns above, nested here only because both are "hooks" in the everyday sense and the operator wanted one unified tree rather than two similarly-named sibling directories (`hooks/` and `runtime-hooks/`). **`git/pre-commit` is not standalone**: the repo's real, installed `.git/hooks/pre-commit` is `.opencode/scripts/git-hooks/pre-commit`, which chain-calls `git/pre-commit` by path as its comment-hygiene sub-gate. See [`git/README.md`](./git/README.md) for that installer's own contract, and [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
 
-### Full index + kill-switches
+### Why only these four concerns moved
 
-Beyond those real-code cores, this tree is now the **full browsable index of every repo-authored hook**. Skill-owned hooks whose logic is genuinely their skill's engine still keep their **code** in the owning skill, but each is **symlinked in** here under `<concern>/<runtime>/` (the symlink is the index entry, the code stays local) — so one directory shows every hook the repo installs, organized by concern and runtime.
-
-Every hook is also behind a **kill-switch**. `shared/hook-flags.{cjs,mjs,ts}` exports `isHookEnabled(concern)`: a hook runs unless the master `MK_HOOKS_DISABLED` or its per-concern `MK_<CONCERN>_DISABLED` (or a registered legacy alias) is set. The default is on, so the guard changes nothing until a flag is set, and every runtime adapter of a concern honors the same switch. Compiled hooks that run from a skill's `mcp-server/dist/` need that dist rebuilt for a source-added guard to take effect.
-
-### Why only these four concerns moved their code here
-
-A core only qualifies to keep its **real code** in this tree when it imports nothing but Node builtins (or shells out to an unrelated, unmoved checker script by path) and has no real tie to its owning skill's other content. Verified per core before moving:
+A core only qualifies for this tree when it imports nothing but Node builtins (or shells out to an unrelated, unmoved checker script by path) and has no real tie to its owning skill's other content. Verified per core before moving:
 
 | Concern | Core dependencies | Verdict |
 |---|---|---|
@@ -42,7 +36,7 @@ A core only qualifies to keep its **real code** in this tree when it imports not
 | `post-edit-quality` | Node builtins + `spawnSync` to unmoved checker scripts (invoked by path, never imported) | Portable |
 | `task-dispatch` | Node builtins only | Portable |
 
-Hooks that did **not** move keep their code inside their owning skill because their core logic genuinely is that skill's engine, not a bolt-on guard: `spec-gate-*`, the session-lifecycle hooks, and `completion-evidence-stop` (`system-spec-kit`), the skill-advisor brief (`system-skill-advisor`), and `git-preflight-advisory` (`sk-git`, depends on its own `git-context.mjs`/`git-rule-checks.mjs` rule engine). Their code stays there, but each now has an index symlink under `<concern>/<runtime>/` here (see Full index above) and honors the `isHookEnabled` kill-switch.
+Hooks that did **not** move stay inside their owning skill because their core logic genuinely is that skill's engine, not a bolt-on guard: `spec-gate-*`, the session-lifecycle hooks, and `completion-evidence-stop` (`system-spec-kit`), the skill-advisor brief (`system-skill-advisor`), and `git-preflight-advisory` (`sk-git`, depends on its own `git-context.mjs`/`git-rule-checks.mjs` rule engine).
 
 `hook-adapter-shared.cjs`, a tiny stdin-parsing helper with zero dependencies of its own, has its own local copy at `shared/hook-adapter-shared.cjs`. It used to be a single copy inside `system-spec-kit` that adapters here reached back into — a real cross-tree dependency that contradicted the whole point of this relocation (a user adopting the enforcement layer without the skill would still have pulled in a `system-spec-kit` file). A second, independent ESM sibling lives at `system-spec-kit/mcp-server/hooks/lib/hook-adapter-shared.mjs` for that skill's own four `spec-gate-enforce.mjs` adapters, which are not part of the fully-portable set; the two copies are allowed to drift only in the sense that either could change independently, though in practice this file is small and stable enough that they shouldn't.
 
@@ -67,20 +61,20 @@ hooks/
 |   +-- claude/   dispatch-preflight-lint.mjs, dispatch-audit-posttooluse.mjs
 |   +-- devin/    (same pair)
 |   +-- codex/    (same pair)
-|   +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real file; `.pi/extensions/` symlinks to it)
+|   +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (symlinked from .pi/extensions/)
 |   `-- opencode/ mk-cli-dispatch-audit.js (browsability symlink -> ../../../plugins/)
 +-- mcp-route-guard/                 # native mcp_* call -> Code Mode routing advisory
 |   +-- lib/mcp-route-guard.cjs, mcp-route-guard.test.cjs
 |   +-- claude/, devin/, codex/      mcp-route-guard.cjs
 |   +-- cursor/   mcp-route-guard.mjs
-|   +-- pi/       mcp-route-guard.ts (real file; `.pi/extensions/` symlinks to it)
+|   +-- pi/       mcp-route-guard.ts (symlinked from .pi/extensions/)
 |   `-- opencode/ mk-mcp-route-guard.js (browsability symlink -> ../../../plugins/)
 +-- post-edit-quality/               # comment-hygiene + dist-staleness findings on edit/write
 |   +-- lib/post-edit-router.cjs
 |   +-- claude/   claude-posttooluse.cjs
 |   +-- devin/    post-edit-quality.cjs
 |   +-- codex/    post-edit-quality.cjs
-|   +-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` symlinks to it)
+|   +-- pi/       post-edit-quality.ts (symlinked from .pi/extensions/)
 |   `-- opencode/ mk-post-edit-quality.js (browsability symlink -> ../../../plugins/)
 +-- task-dispatch/                   # Task/subagent dispatch guard + Fable-subagent policy
 |   +-- lib/dispatch-guard.cjs
@@ -92,13 +86,11 @@ hooks/
     +-- lib/goal-core.cjs, goal-core.test.cjs
     +-- bin/goal.cjs                 # scoped management, diagnostics, and explicit legacy quarantine
     +-- cursor/   goal-inject.mjs
-    +-- pi/       goal-context.ts (real file; `.pi/extensions/` symlinks to it)
+    +-- pi/       goal-context.ts (symlinked from .pi/extensions/)
     `-- opencode/ mk-goal.js (browsability symlink -> ../../../plugins/)
 ```
 
-**Skill-owned concerns are indexed here too** — the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill; see "Full index + kill-switches" above): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `spec-memory/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`.
-
-Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `goal/pi/`) — Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.opencode/plugins/` — the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified — the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
+Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `goal/pi/`) — Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.opencode/plugins/` — the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified — the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor has no `dispatch`/`post-edit-quality` wiring today, so those subfolders have no `cursor/` entry.
 
 ---
 
@@ -106,10 +98,10 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 
 | Concern | Real adapters here | Stays in `.opencode/plugins/` (mirrored at `opencode/` via browsability symlink) |
 |---|---|---|
-| `dispatch` | claude, devin, codex, cursor (indexed proxy), pi (symlinked from `.pi/extensions/`) | `mk-cli-dispatch-audit.js` |
+| `dispatch` | claude, devin, codex, pi (symlinked from `.pi/extensions/`) | `mk-cli-dispatch-audit.js` |
 | `mcp-route-guard` | claude, cursor, devin, codex, pi (symlinked) | `mk-mcp-route-guard.js` |
-| `post-edit-quality` | claude, devin, codex, cursor (indexed proxy), pi (symlinked) | `mk-post-edit-quality.js` |
-| `task-dispatch` | claude, cursor, devin, pi (symlinked) | `mk-deep-loop-guard.js` |
+| `post-edit-quality` | claude, devin, codex, pi (symlinked) | `mk-post-edit-quality.js` |
+| `task-dispatch` | claude, cursor, devin | `mk-deep-loop-guard.js` |
 | `goal` | cursor, pi (symlinked); plus `lib/` core + `bin/` manage CLI | `mk-goal.js` |
 
 `mk-git-preflight-advisory.js` and `mk-cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.
@@ -166,25 +158,3 @@ Expected result: `HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/git/pre-commit"` �
 - [`../../.claude/hooks/README.md`](../../.claude/hooks/README.md), [`../../.cursor/hooks/README.md`](../../.cursor/hooks/README.md), [`../../.devin/hooks/README.md`](../../.devin/hooks/README.md), [`../../.codex/hooks/README.md`](../../.codex/hooks/README.md): per-runtime discovery mirrors pointing back into this tree.
 - [`../plugins/README.md`](../plugins/README.md): the OpenCode plugins that import these cores directly.
 - [`../../.pi/extensions/README.md`](../../.pi/extensions/README.md): the Pi extensions that import these cores directly.
-
-## Coverage matrix
-
-This matrix is the coverage authority for the intentionally uneven runtime surface. A checkmark means a runtime adapter or plugin covers the concern. `by-design` means the behavior is inherent in another named owner rather than a separately indexed adapter. `n/a` means the runtime exposes no event capable of implementing that concern. `~ partial` means covered for the common case with a known, documented gap. `unverified` means an event may exist but its feasibility for this concern has not been confirmed live, and no adapter is wired.
-
-| Concern | Claude | Codex | Cursor | Devin | OpenCode | Pi |
-|---|---|---|---|---|---|---|
-| `codex-watchdog` | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | — by-design: OpenCode plugin audits Codex hook installation | ✓ covered | — by-design: OpenCode plugin audits Codex hook installation |
-| `completion` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `directive-lifecycle` | ✓ covered | — by-design: embedded in the shared `user-prompt-submit` lifecycle | — by-design: embedded in the shared `user-prompt-submit` lifecycle | — by-design: embedded in the shared `user-prompt-submit` lifecycle | — by-design: embedded in `mk-skill-advisor` lifecycle state | — by-design: embedded in `prompt-advisor.ts` directive de-dup |
-| `dispatch` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `dist-freshness` | — by-design: OpenCode plugin owns source/dist freshness projection | — by-design: OpenCode plugin owns source/dist freshness projection | — by-design: OpenCode plugin owns source/dist freshness projection | — by-design: OpenCode plugin owns source/dist freshness projection | ✓ covered | — by-design: OpenCode plugin owns source/dist freshness projection |
-| `git-preflight` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `goal` | — by-design: goal state ships only on native session-bound goal surfaces | — by-design: goal state ships only on native session-bound goal surfaces | ✓ covered | — by-design: goal state ships only on native session-bound goal surfaces | ✓ covered | ✓ covered |
-| `mcp-route-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `permission-policy` | — by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | — by-design: permission via `PreToolUse` decision, no dedicated permission-request adapter | — by-design: no dedicated permission-request adapter | ✓ covered | — by-design: no dedicated permission-request adapter | — by-design: no separate approval event beyond `tool_call` |
-| `post-edit-quality` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `session-lifecycle` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | — by-design: session events run inside the owning `mk-*` plugins | ✓ covered |
-| `skill-advisor` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `spec-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
-| `spec-memory` | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | — by-design: OpenCode plugin owns continuity retrieval | ✓ covered | — by-design: OpenCode plugin owns continuity retrieval |
-| `task-dispatch` | ✓ covered | unverified: `PreToolUse` exists but no confirmed agent-spawn tool event; no adapter | ✓ covered | ✓ covered | ✓ covered | ~ partial: intercepts direct `subagent` calls; workflow-nested (`runs.run`) dispatches not yet covered |

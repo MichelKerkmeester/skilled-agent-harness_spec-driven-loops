@@ -36,13 +36,19 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,12 +71,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Two things remain to close the fan-out parity packet",
     "created_at": "2026-07-29T15:59:11.801Z",
-    "last_save_at": "2026-08-08T07:14:07.644Z",
+    "last_save_at": "2026-08-11T14:10:49.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6f502cf9af94ede03223d1a3f68a9927f049763b6bd1552dc96d0f9610e9c4e",
+    "source_fingerprint": "sha256:41d9d08ef9f05d44863348dd69b0910226237ad88db9bbc84463ea036ab1bb2d",
     "source_doc_hashes": {
-      "spec.md": "75c1fb0698213fd21efec853d4555c94c385cccd1f6d63eb6839237eb6a9e5eb",
-      "plan.md": "93670e8d8dff6a0b32b55da64ea24ccb8abdee92ccc57e1fbd9c516eae23e4db",
-      "tasks.md": "e5a742d138da6c12060502f14a053a0842c9707193b9fb88e5e4fe9e289449d4",
-      "checklist.md": "7d62ca1c53c5b13be83ce666918d235205eaf562502eaaf0ee470f9429c6d5c8",
-      "implementation-summary.md": "1bf032b161e4629f77366c0d1df1f5c20c46ecc31f7682f12d4aba71c43c9318"
+      "spec.md": "4a6a9dbab9662f3520c0ae5a964c0a4a9250a18b3bde33a0787601b192e86435",
+      "plan.md": "448095b1453a06583fd669a88b9d6b8ce213dc3b04cb1af45194ab611fa1c170",
+      "tasks.md": "3a47379a1f3cb696f608491f34cf3ae45c85ab5d64a1380e0405b01ce347d76a",
+      "checklist.md": "403d91f498c640578b2c82bb4c7fa8b526067e3ec55e1d9a7fdd6d53706d68a8",
+      "implementation-summary.md": "49db77914b392581a01210e0ee38e13b5979b8cf63260fbeaa279cb48cf198c3"
     },
     "last_active_child_id": null,
     "last_active_at": null

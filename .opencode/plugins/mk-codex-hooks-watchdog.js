@@ -14,10 +14,6 @@ import { appendFileSync, mkdirSync, statSync, truncateSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createRequire } from 'node:module';
-
-const require = createRequire(import.meta.url);
-const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
 const WARN_LOG_RELATIVE = join('.opencode', 'logs', 'codex-hooks-watchdog.log');
@@ -61,7 +57,6 @@ function appendWatchdogLog(projectDir, detail) {
 }
 
 export default async function MkCodexHooksWatchdogPlugin(ctx) {
-  if (!isHookEnabled('codex-watchdog')) return {};
   const projectDir = ctx?.directory || join(PLUGIN_DIR, '..', '..');
   const warned = new Set();
 

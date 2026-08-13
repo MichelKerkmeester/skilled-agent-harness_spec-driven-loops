@@ -4,13 +4,11 @@
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { runClaudeHookAdapter } from "./lib/claude-hook-adapter.ts";
-import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 const TIMEOUT_MS = 10_000;
 
 /** Bridges Claude's session-stop autosave/state-cleanup work into Pi's session_shutdown(reason="quit"). Fire-and-forget: session-stop.js performs side effects, not context injection. */
 export default function sessionStopContext(pi: ExtensionAPI): void {
-  if (!isHookEnabled("session-lifecycle")) return undefined;
   pi.on("session_shutdown", async (event, ctx) => {
     try {
       if (event.reason !== "quit") return;

@@ -13,10 +13,10 @@ parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/029-improvement-promotion-authority"
-    last_updated_at: "2026-08-08T03:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Reconciliation found F-017-04 falsely marked Landed; corrected to 10/13"
-    next_safe_action: "Land F-017-04 (rollback candidate-hash bypass) + F-019-01/F-019-03"
+    last_updated_at: "2026-08-11T13:55:00Z"
+    last_updated_by: "codex"
+    recent_action: "Confirmed the 3-finding tail landed as f6cdf604a2; implementation is 13/13"
+    next_safe_action: "Evidence the checklist and reconcile the ADRs."
     blockers: []
     key_files:
       - "spec.md"
@@ -26,7 +26,7 @@ _memory:
       - "decision-record.md"
     completion_pct: 77
     open_questions:
-      - "F-017-04: shared/rollback-candidate.cjs still accepts either preAcceptTargetHash or candidateHash; 0d1827eef5 never touched this file despite the prior Landed claim"
+      - "Packet closeout remains open even though all 13 implementation findings landed: checklist items and ADR dispositions still require evidence-backed reconciliation"
       - "What is the approval model for autonomous mode: advisory-only, or a candidate-and-target-bound operator receipt?"
       - "Which evaluator identity source replaces candidate frontmatter?"
     answered_questions:
@@ -67,7 +67,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | 13/13 findings landed — F-017-04 (rollback-hash forgery), F-019-01 (council-root traversal), F-019-03 (payload symlink-follow) confirmed-real + closed as `f6cdf604a2` (red-before/green-after). Residual: F-019-01 is a calibrated closure; ADR-003 full config-resolved root remains Proposed |
+| **Status** | In Progress — 13/13 implementation findings landed; the checklist is 0/50 and the ADRs remain Proposed. Tail commit: `f6cdf604a2`. |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

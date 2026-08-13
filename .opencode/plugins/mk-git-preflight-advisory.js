@@ -11,10 +11,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { join } from 'node:path';
-import { createRequire } from 'node:module';
-
-const require = createRequire(import.meta.url);
-const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 import {
   evaluate,
@@ -76,7 +72,6 @@ function formatAdvisory(command, violations) {
  * @returns {Promise<object>} Fail-open hooks for evaluation and context delivery.
  */
 export default async function MkGitPreflightAdvisoryPlugin(ctx) {
-  if (!isHookEnabled('git-preflight')) return {};
   const startDir = typeof ctx?.directory === 'string' && ctx.directory.trim()
     ? ctx.directory
     : process.cwd();

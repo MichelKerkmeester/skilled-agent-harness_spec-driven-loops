@@ -1,1 +1,0 @@
-../../../skills/system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts

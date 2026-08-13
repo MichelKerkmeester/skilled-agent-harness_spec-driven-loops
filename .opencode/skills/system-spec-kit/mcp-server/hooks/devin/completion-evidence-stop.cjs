@@ -24,7 +24,6 @@ const { join } = require('node:path');
 const { tmpdir } = require('node:os');
 
 const sentinelCore = require('../../lib/hooks/completion-evidence-sentinel.cjs');
-const { isHookEnabled } = require('../../../../../../.opencode/hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -68,7 +67,7 @@ function readLastSpecFolder(cwd, sessionId) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  if (!isHookEnabled('completion')) return approve();
+  if (process.env[sentinelCore.KILL_SWITCH_ENV] === '1') return approve();
 
   try {
     sentinelCore.sweepStaleSentinelState(process.cwd(), {});

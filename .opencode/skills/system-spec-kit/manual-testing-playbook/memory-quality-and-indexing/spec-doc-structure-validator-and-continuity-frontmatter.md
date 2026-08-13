@@ -94,7 +94,7 @@ x FRONTMATTER_MEMORY_BLOCK: 3 frontmatter_memory_block issue(s) found
 + COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
 + SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
 + EVIDENCE_CITED: No checklist.md (Level 1 or missing)
-+ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
++ AC_COVERAGE: Acceptance coverage gate disabled (set SPECKIT_AC_COVERAGE=true to enable advisory scan)
 + TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
 + PHASE_LINKS: No phase folders detected (non-phased spec)
 + PHASE_PARENT_CONTENT: Not a phase parent; content-discipline scan skipped

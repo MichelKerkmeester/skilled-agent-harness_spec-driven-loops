@@ -74,16 +74,6 @@ bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh 
 
 > **Note:** Maintainers should use `inline-gate-renderer --level N --out-dir DIR file...` after modifying manifest templates to inspect rendered output before running validation tests.
 
-### Reading a Template (Agents)
-
-**Why render, not open:** A raw manifest `*.md.tmpl` is the full ungated file (hundreds of lines). Rendering it to a level yields only that level's content — much smaller and exactly what the agent needs. Reading the raw file re-introduces the token wall the level gate exists to avoid.
-
-```bash
-bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh --level <1|2|3|3+|phase> <path-to-template.md.tmpl>
-```
-
-Omit `--out-dir` to print the level-rendered content to STDOUT. Do not open raw `*.md.tmpl` files to read their content; render them to the target level instead.
-
 ---
 
 ## 2. TEMPLATE SELECTION BY LEVEL (PROGRESSIVE ENHANCEMENT)

@@ -63,6 +63,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -79,25 +85,19 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Transition Rules",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop fan-out declares seven executor kinds in `EXECUTORKINDS`, but they are not uniformly reachable end-to-end",
     "created_at": "2026-07-29T08:25:06.055Z",
-    "last_save_at": "2026-08-08T07:14:08.568Z",
+    "last_save_at": "2026-08-11T14:06:27.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c47a94fa6d567a202a9a113d1a3a468f2e1e349d906bf49902b6e5434dda5a70",
+    "source_fingerprint": "sha256:b68b5bfe9fb480c7acffdafbee37794c7ccf91ac619a5e5e7b006c80cb04a0d8",
     "source_doc_hashes": {
-      "spec.md": "564140eb0bdb108740debb2620d364a2a1ae07ef68fc4f19810b020e226fb1dd"
+      "spec.md": "1cc4b1e339b5ad0bc7b9652650000e468c3799f70103faf2f45f4b3f7b7da38d"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/003-cli-executor-fanout-parity/006-docs-and-closeout",
     "last_active_at": "2026-07-30T20:20:57.597Z"

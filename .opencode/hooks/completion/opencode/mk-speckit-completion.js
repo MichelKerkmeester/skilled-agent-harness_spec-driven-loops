@@ -1,1 +1,0 @@
-../../../plugins/mk-speckit-completion.js

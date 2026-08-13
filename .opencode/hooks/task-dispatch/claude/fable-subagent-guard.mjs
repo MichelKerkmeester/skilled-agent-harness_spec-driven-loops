@@ -14,7 +14,6 @@
 // legitimate work.
 
 import fs from 'node:fs';
-import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 const ALLOWED = /^(opus|sonnet)$|^claude-(opus|sonnet)\b/;
 const TRANSCRIPT_TAIL_BYTES = 2 * 1024 * 1024;
@@ -56,7 +55,6 @@ function deny(reason) {
 }
 
 function main() {
-  if (!isHookEnabled('task-dispatch')) return; // kill-switch: full no-op
   let payload;
   try {
     payload = JSON.parse(readStdin());

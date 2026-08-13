@@ -21,7 +21,6 @@
 import { readHardRules, evaluate } from '../lib/dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES } from '../lib/dispatch-audit.mjs';
 import path from 'node:path';
-import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -43,7 +42,6 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  if (!isHookEnabled('dispatch')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

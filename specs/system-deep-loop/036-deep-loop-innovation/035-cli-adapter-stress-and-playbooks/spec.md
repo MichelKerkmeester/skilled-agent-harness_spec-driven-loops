@@ -37,6 +37,8 @@ _memory:
 
 # Feature Specification: Stress-Test the Six External CLI Deep-Loop Adapters and Fan-Out Orchestration
 
+> Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `033-identity-and-lock-ownership-hardening`; successor `047-executor-wiring-and-parity`.
+
 > This child is the Planned scaffold for a later execution pass. It authors no stress-test, adapter, or manual-playbook implementation now.
 
 ---

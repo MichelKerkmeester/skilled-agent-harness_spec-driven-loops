@@ -41,6 +41,8 @@ _memory:
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-deep-loop/036-deep-loop-innovation |
+| **Predecessor** | `048-write-containment-hardening` |
+| **Successor** | `050-trustworthy-state-records` |
 | **Handoff Criteria** | The deep-alignment loop marks its findings registry sealed only at terminal synthesis, and can dispatch a contained non-codex leaf with early convergence optionally disabled; each child phase strict-validates independently. |
 <!-- /ANCHOR:metadata -->
 

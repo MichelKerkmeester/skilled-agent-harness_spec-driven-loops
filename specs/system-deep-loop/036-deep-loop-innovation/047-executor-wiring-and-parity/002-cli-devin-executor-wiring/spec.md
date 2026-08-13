@@ -46,10 +46,10 @@ _memory:
 | **Status** | In Progress |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Spec** | None |
-| **Parent Packet** | system-deep-loop |
-| **Predecessor** | 038-deep-alignment-multi-executor |
-| **Successor** | None |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity |
+| **Predecessor** | `001-cli-codex-read-only-audit-leaf` |
+| **Successor** | `003-cli-executor-fanout-parity` |
 | **Handoff Criteria** | A cli-devin lineage dispatches end to end, and the runtime suite is green with the new adapter covered |
 <!-- /ANCHOR:metadata -->
 

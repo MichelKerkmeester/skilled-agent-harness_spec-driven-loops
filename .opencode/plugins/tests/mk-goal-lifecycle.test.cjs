@@ -891,6 +891,21 @@ test('session.deleted archives an existing goal file exactly', async () => withS
   assert.deepEqual(JSON.parse(archiveTargetRaw), JSON.parse(archiveSourceRaw));
 }));
 
+test('session.deleted archives a long session id without probing an impossible legacy filename', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+  const sessionID = `session-${'d'.repeat(140)}`;
+  const archivePlugin = await pluginModule.default({}, { stateDir });
+  await helpers.setGoal(sessionID, 'Archive a long native session id', {
+    stateDir,
+    goalIdFactory: () => 'long-archive-goal',
+  });
+  await assert.doesNotReject(() => archivePlugin.event({
+    event: nativeSessionEvent('session.deleted', sessionID),
+  }));
+  assert.equal(await fileExists(helpers.goalPathForSession(sessionID, { stateDir })), false);
+  const archivePath = join(stateDir, '.archive', `${helpers.sessionKeyForSession(sessionID)}.json`);
+  assert.equal(JSON.parse(await readFile(archivePath, 'utf8')).goalId, 'long-archive-goal');
+}));
+
 test('history migrates a legacy archive and reports an occupied duplicate exactly once', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
   const sessionID = 'session-legacy-archive';
   const archivePlugin = await pluginModule.default({}, { stateDir });

@@ -26,10 +26,6 @@
 // same core. Unlike the deep-loop guard's .cjs core, this core is real ESM
 // (it statically imports the ESM Gate-3 classifier), so it is imported directly.
 import * as guardCore from '../skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs';
-import { createRequire } from 'node:module';
-
-const require = createRequire(import.meta.url);
-const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TRANSPORT HELPERS
@@ -166,10 +162,14 @@ export default async function MkSpecGatePlugin(ctx) {
   const { stateDir } = guardCore.resolveGuardPaths(projectDir);
   const runtimeState = { lastGateSweepAtMs: 0 };
 
+  function disabled() {
+    return process.env[guardCore.DISABLED_ENV] === '1';
+  }
+
   return {
     async event(input = {}) {
       try {
-        if (!isHookEnabled('spec-gate')) return;
+        if (disabled()) return;
         const eventType = eventTypeFrom(input);
         if (eventType === 'session.created') {
           guardCore.sweepStaleGateStates(stateDir, runtimeState);
@@ -194,7 +194,7 @@ export default async function MkSpecGatePlugin(ctx) {
         // Kill-switch checked FIRST -- before reading or mutating `output` at
         // all -- so MK_SPEC_GATE_DISABLED=1 is a genuine full no-op, not just
         // a no-question no-op that still normalizes output.system.
-        if (!isHookEnabled('spec-gate')) return;
+        if (disabled()) return;
         if (!output || typeof output !== 'object') return;
         output.system = Array.isArray(output.system) ? output.system : [];
 
@@ -238,7 +238,7 @@ export default async function MkSpecGatePlugin(ctx) {
 
     async 'tool.execute.before'(input, output) {
       try {
-        if (!isHookEnabled('spec-gate')) return;
+        if (disabled()) return;
         const tool = String(input?.tool || '').toLowerCase();
         if (!guardCore.MUTATING_TOOLS.has(tool) && tool !== 'bash') return;
 
