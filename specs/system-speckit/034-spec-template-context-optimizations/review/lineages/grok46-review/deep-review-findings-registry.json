@@ -1,0 +1,758 @@
+{
+  "sessionId": "fanout-grok46-review-1786566874028-sks2q2",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Packet completion state is internally contradictory",
+      "file": "specs/system-speckit/034-spec-template-context-optimizations/tasks.md",
+      "line": 47,
+      "description": "Mark shipped tasks [x] with evidence or explicitly demote tasks.md as non-authoritative for completion",
+      "findingClass": "spec-code-contradiction",
+      "deltaStatus": null,
+      "scopeProof": "Read tasks.md:47-80 vs checklist.md:48-109 vs spec.md:47; validate.sh --strict exit 0",
+      "affectedSurfaceHints": [
+        "tasks.md",
+        "checklist.md",
+        "spec.md"
+      ],
+      "contentHash": "32152664bc628e58cda7a57158d50d7e50dd332fc645564ad9709533bf36acce",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "implementation-summary reports golden-snapshot failures that do not exist",
+      "file": "specs/system-speckit/034-spec-template-context-optimizations/implementation-summary.md",
+      "line": 87,
+      "description": "Rewrite §5 to match the green vitest output; keep CHK-007 as the verification row",
+      "findingClass": "stale-verification-claim",
+      "deltaStatus": null,
+      "scopeProof": "npx vitest run scaffold-golden-snapshots + research-template-gating → 10 passed",
+      "affectedSurfaceHints": [
+        "implementation-summary.md",
+        "scaffold-golden-snapshots.vitest.ts"
+      ],
+      "contentHash": "bda86f5752fc7e681cbe4b3e690c5a34d530500b29c483d159aed943f0d4cfff",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Status still says uncommitted / awaiting commit after the feat commit landed",
+      "file": "specs/system-speckit/034-spec-template-context-optimizations/spec.md",
+      "line": 47,
+      "description": "Refresh Status and plan.md _memory.continuity to match committed implementation",
+      "findingClass": "stale-current-state",
+      "deltaStatus": null,
+      "scopeProof": "git log -3 --oneline; git status --short on implementation surfaces is clean",
+      "affectedSurfaceHints": [
+        "spec.md",
+        "plan.md",
+        "implementation-summary.md"
+      ],
+      "contentHash": "3396b29f5d2284161d6c8671bf9ffd5ac19026b57913c2383f82a1f7f2c1a833",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "title": "SCOPE_ADHERENCE treats any basename-matching canonical doc as in-scope",
+      "file": ".opencode/skills/system-spec-kit/scripts/rules/check-scope-adherence.sh",
+      "line": 136,
+      "description": "Restrict the canonical-doc exception to paths under $folder",
+      "findingClass": "control-bypass",
+      "deltaStatus": null,
+      "scopeProof": "Read check-scope-adherence.sh:129-137; header comment says packet own docs",
+      "affectedSurfaceHints": [
+        "check-scope-adherence.sh",
+        "REQ-005"
+      ],
+      "contentHash": "d5d3839876c056b68abfd1deb813c06aee8ccd6fad2b9d99cd6404353dc91752",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P1",
+      "title": "REQ-006 still requires shared enforceTokenBudget after ADR-005 rejected sharing",
+      "file": "specs/system-speckit/034-spec-template-context-optimizations/spec.md",
+      "line": 113,
+      "description": "Amend REQ-006 to the search-specific enforcer plus getTokenBudget, or revert to a shared helper",
+      "findingClass": "spec-code-contradiction",
+      "deltaStatus": null,
+      "scopeProof": "Read spec.md:113, decision-record.md:86, memory-search.ts:2384",
+      "affectedSurfaceHints": [
+        "spec.md REQ-006",
+        "decision-record.md ADR-005",
+        "memory-search.ts"
+      ],
+      "contentHash": "474c751706a30ec26371751ef519390e53dcdea3b8eb100bd499e9cea3aa9038",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F013",
+      "severity": "P1",
+      "title": "Open plan/task text still prescribes warn-severity AC_COVERAGE",
+      "file": "specs/system-speckit/034-spec-template-context-optimizations/plan.md",
+      "line": 84,
+      "description": "Rewrite T030 and plan.md Phase 3 to match shipped INFO/advisory behavior, or mark T030 done with an explicit superseded-by-advisory note",
+      "findingClass": "regression-footgun",
+      "deltaStatus": null,
+      "scopeProof": "Read plan.md:84, tasks.md:65, validator-registry.json:78, check-ac-coverage.sh:172",
+      "affectedSurfaceHints": [
+        "plan.md",
+        "tasks.md T030",
+        "validator-registry.json",
+        "check-ac-coverage.sh"
+      ],
+      "contentHash": "d3b47a19a3b8c90820e990c85e525db0fd9edaa9ed98a44e75665aa6ccfff082",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "REQ-001 still cites a 944-line ungated research template",
+      "file": "specs/system-speckit/034-spec-template-context-optimizations/spec.md",
+      "line": 108,
+      "description": "Pin the acceptance metric to a reproducible render command rather than a magic constant",
+      "findingClass": "stale-doc-claim",
+      "deltaStatus": null,
+      "scopeProof": "wc -l research.md.tmpl; inline-gate-renderer.sh --level 1|3 | wc -l",
+      "affectedSurfaceHints": [
+        "spec.md REQ-001",
+        "plan.md quality gates"
+      ],
+      "contentHash": "2f86d0301a5bc513dcddbedaab1d17669f3e133faf4dcfa1ff6d6c1b4c2fc3bb",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "AC_COVERAGE registry copy still says opt-in after default-on",
+      "file": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      "line": 85,
+      "description": "Update the registry description to default-on advisory",
+      "findingClass": "stale-doc-claim",
+      "deltaStatus": null,
+      "scopeProof": "Read validator-registry.json:85 vs check-ac-coverage.sh:11",
+      "affectedSurfaceHints": [
+        "validator-registry.json",
+        "check-ac-coverage.sh"
+      ],
+      "contentHash": "aeb76a2fd9142db179318b43c45ad61ff0a62eb5121a60ebc889de547828e25e",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "Declared-prefix matching uses substring containment",
+      "file": ".opencode/skills/system-spec-kit/scripts/rules/check-scope-adherence.sh",
+      "line": 141,
+      "description": "Match repo-relative prefix only (changed_file == prefix || prefix/)",
+      "findingClass": "over-accept",
+      "deltaStatus": null,
+      "scopeProof": "Read match branches at lines 140-148",
+      "affectedSurfaceHints": [
+        "check-scope-adherence.sh"
+      ],
+      "contentHash": "ad508b9e3a555ec694ea720368dc0179ee86c113a461ef92f0cbbe552097a68d",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "Change-set splitting destroys paths that contain whitespace",
+      "file": ".opencode/skills/system-spec-kit/scripts/rules/check-scope-adherence.sh",
+      "line": 67,
+      "description": "Split on newlines only, or NUL-delimited git -z output",
+      "findingClass": "parser-fragility",
+      "deltaStatus": null,
+      "scopeProof": "Read line 67 tokenizer",
+      "affectedSurfaceHints": [
+        "check-scope-adherence.sh",
+        "MK_SCOPE_CHANGED_FILES"
+      ],
+      "contentHash": "f4d6a9e3dd3142ef717fd32631287c17dd2a54d166464d78c41f36f1d9fd5f28",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "title": "Complete packet has 0/8 AC_COVERAGE evidence",
+      "file": "specs/system-speckit/034-spec-template-context-optimizations/checklist.md",
+      "line": 29,
+      "description": "Add AC-id traceability rows mapping REQ-001..006 to evidence, or mark Manual-infeasible",
+      "findingClass": "ac-coverage-shortfall",
+      "deltaStatus": null,
+      "scopeProof": "Observed validate.sh AC_COVERAGE line; checklist.md has no AC-id table",
+      "affectedSurfaceHints": [
+        "checklist.md",
+        "check-ac-coverage.sh"
+      ],
+      "contentHash": "ddb4e2befe0d86b5c92999ca5a492ac8efce0463a822f5250662c89cffacb34e",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "title": "Under-coverage message says WARNING not INFO",
+      "file": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
+      "line": 223,
+      "description": "Rename the message to AC_COVERAGE advisory/INFO",
+      "findingClass": "spec-precision",
+      "deltaStatus": null,
+      "scopeProof": "Read check-ac-coverage.sh:223 vs spec.md:112",
+      "affectedSurfaceHints": [
+        "check-ac-coverage.sh",
+        "spec.md REQ-004"
+      ],
+      "contentHash": "75e191f1602b85b2e9e0de0515edabe0bb6bfa5f564e884e54a395b7eeb450b2",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F012",
+      "severity": "P2",
+      "title": "implementation-summary still lists REQ-005 contract as an open question",
+      "file": "specs/system-speckit/034-spec-template-context-optimizations/implementation-summary.md",
+      "line": 24,
+      "description": "Clear the open question from continuity frontmatter",
+      "findingClass": "stale-continuity",
+      "deltaStatus": null,
+      "scopeProof": "Read implementation-summary.md:24 vs checklist.md:42 vs check-scope-adherence.sh:8-14",
+      "affectedSurfaceHints": [
+        "implementation-summary.md",
+        "checklist.md CHK-002"
+      ],
+      "contentHash": "1d8a816b193cbf857beb431ec21a5c0b7d1922493d50d8e9863a7564add0f774",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F014",
+      "severity": "P2",
+      "title": "REQ-002 shared ungated core is per-template inline gates, not a shared include",
+      "file": ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
+      "line": 1,
+      "description": "Amend REQ-002/T020 to the achieved per-template gated-copy architecture, or extract a real shared include",
+      "findingClass": "architecture-claim-drift",
+      "deltaStatus": null,
+      "scopeProof": "Glob templates/manifest/*core* empty; Read spec.md.tmpl:1; tasks.md:60 T020 [ ]",
+      "affectedSurfaceHints": [
+        "spec.md.tmpl",
+        "plan.md.tmpl",
+        "tasks.md.tmpl",
+        "implementation-summary.md.tmpl",
+        "tasks.md T020"
+      ],
+      "contentHash": "4f329ea14e0beb95642b4072546b51aef9a66e784a72c924fe7a9317471bbd76",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F015",
+      "severity": "P2",
+      "title": "Continuity fingerprints are the all-zero placeholder across packet docs",
+      "file": "specs/system-speckit/034-spec-template-context-optimizations/spec.md",
+      "line": 24,
+      "description": "Compute real session_dedup fingerprints or omit the field until generate-context.js writes them",
+      "findingClass": "stale-continuity",
+      "deltaStatus": null,
+      "scopeProof": "rg sha256:0000 across the packet docs",
+      "affectedSurfaceHints": [
+        "spec.md",
+        "plan.md",
+        "tasks.md",
+        "checklist.md",
+        "implementation-summary.md",
+        "decision-record.md"
+      ],
+      "contentHash": "c2e6ed1393b3306d0a533e35b6375428d8fede1990125231e6ff39180976df89",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F016",
+      "severity": "P2",
+      "title": "REQ-003 / T022 name a --stdout flag the renderer does not have",
+      "file": "specs/system-speckit/034-spec-template-context-optimizations/tasks.md",
+      "line": 62,
+      "description": "Rename T022 and the REQ-003 example to omit --out-dir, keeping (or equivalent) only if a real --stdout alias is added",
+      "findingClass": "stale-doc-claim",
+      "deltaStatus": null,
+      "scopeProof": "Read tasks.md:62, spec.md:119, template-guide.md:85, inline-gate-renderer.ts:275",
+      "affectedSurfaceHints": [
+        "tasks.md T022",
+        "spec.md REQ-003",
+        "template-guide.md",
+        "inline-gate-renderer.ts"
+      ],
+      "contentHash": "0e51e80fdb564af5e9a26d0c9852529e9f8db1df5db087c79839c816a501406f",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F017",
+      "severity": "P2",
+      "title": "No playbook scenario for SCOPE_ADHERENCE or handleMemorySearch token budget",
+      "file": ".opencode/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 1,
+      "description": "Add a SCOPE_ADHERENCE change-set scenario and a handleMemorySearch budget scenario, or mark the overlays notApplicable with a rationale",
+      "findingClass": "overlay-gap",
+      "deltaStatus": null,
+      "scopeProof": "Glob playbook *scope*; Grep playbook for SCOPE_ADHERENCE (0 hits); catalog only mentions rules in the validation-engine representative subset",
+      "affectedSurfaceHints": [
+        "manual-testing-playbook",
+        "feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md"
+      ],
+      "contentHash": "c583af7d41a3353a122c91aea171d2700ab49f23e082da615f344b7b908a1491",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 11
+  },
+  "openFindingsCount": 17,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.95,
+  "graphConvergenceScore": 0.8699999999999999,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [
+    "max_iterations_not_reached"
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "findingStability": 0.05,
+    "p0ResolutionRate": 1,
+    "evidenceDensity": 1.6,
+    "hotspotSaturation": 0.7
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 0,
+      "partial": 4,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 4,
+          "partial": 6,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "spec.md:47",
+          "spec.md:113",
+          "plan.md:84",
+          "check-scope-adherence.sh:136"
+        ],
+        "findingRefs": [
+          "F001",
+          "F002",
+          "F003",
+          "F006",
+          "F009",
+          "F013"
+        ],
+        "summary": "All six active P1s still hold on adversarial replay"
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "tasks.md:47",
+          "checklist.md:29"
+        ],
+        "findingRefs": [
+          "F001",
+          "F010"
+        ],
+        "summary": "Open tasks vs Complete checklist; AC_COVERAGE 0/8 advisory"
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "spec-folder target"
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "spec-folder target"
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md:64"
+        ],
+        "findingRefs": [
+          "F017"
+        ],
+        "summary": "New rules mentioned; no dedicated memory_search handler-budget feature"
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "manual-testing-playbook"
+        ],
+        "findingRefs": [
+          "F017"
+        ],
+        "summary": "No SCOPE_ADHERENCE change-set or handleMemorySearch budget scenario"
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

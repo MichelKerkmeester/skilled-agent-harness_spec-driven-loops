@@ -55,7 +55,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `LEVEL_DECLARED`     | INFO     | spec.md       | Level explicitly stated in metadata            |
 | `PRIORITY_TAGS`      | WARNING  | checklist.md  | P0/P1/P2 priority tags properly formatted      |
 | `EVIDENCE_CITED`     | WARNING  | checklist.md  | Non-P2 items cite supporting evidence          |
-| `AC_COVERAGE`        | INFO     | checklist.md  | Opt-in advisory acceptance-criteria traceability scan |
+| `AC_COVERAGE`        | INFO     | checklist.md  | Advisory acceptance-criteria traceability scan (on by default) |
 | `CONTINUITY_FRESHNESS` | WARNING | completion claims | Opt-in strict-only completion freshness check |
 | `ANCHORS_VALID`      | ERROR    | spec docs + memory/*.md | ANCHOR pairs properly opened and closed  |
 | `FOLDER_NAMING`      | ERROR    | Folder path   | Folder follows ###-short-name convention       |
@@ -67,16 +67,17 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `PHASE_LINKS`        | WARNING  | Phased specs  | Parent-child phase references valid            |
 | `PHASE_PARENT_CONTENT` | WARNING | Phase parents | Phase-parent `spec.md` avoids consolidation/migration narratives |
 | `CURRENT_STATE_DISCIPLINE` | INFO | implementation summaries | Long-lived summaries avoid migration-history narratives |
+| `SCOPE_ADHERENCE`    | WARNING  | change-set (opt-in) | Advises when a supplied change-set exceeds spec.md "Files to Change" |
 
-> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (37 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
+> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (46 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, SCOPE_ADHERENCE, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
 
 ### Non-Breaking Acceptance Coverage Rollout
 
-`AC_COVERAGE` is intentionally registered at INFO severity and stays disabled unless `SPECKIT_AC_COVERAGE=true`. This preserves existing strict-validation outcomes while making the coverage signal available to operators who opt in. The current rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, and malformed evidence citations without adding strict warnings or errors. The `SPECKIT_AC_COVERAGE_ENFORCE` flag is documented as a future promotion switch; changing validation outcome requires a later severity change backed by adoption evidence.
+`AC_COVERAGE` is registered at INFO severity and runs by default; set `SPECKIT_AC_COVERAGE=false` to opt out. The rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, and malformed evidence citations without adding strict warnings or errors. The `SPECKIT_AC_COVERAGE_ENFORCE` flag is documented as a future promotion switch; changing validation outcome requires a later severity change backed by adoption evidence.
 
 **Rule ID:** `AC_COVERAGE`  
 **Severity:** INFO  
-**Default:** Disabled. Set `SPECKIT_AC_COVERAGE=true` to run the advisory scan.  
+**Default:** Enabled (advisory). Set `SPECKIT_AC_COVERAGE=false` to opt out.  
 **Lifecycle predicate:** Level 2+ only, with `checklist.md` present and `implementation-summary.md` status in-progress or later. Level 1 folders and fresh scaffolds are exempt.  
 **Coverage calculation:** covered acceptance criteria divided by total acceptance criteria must meet `ceil(total * SPECKIT_AC_COVERAGE_FLOOR)`. The default floor is `0.9`; values outside `[0,1]` are clamped.  
 **Escape hatch:** a traceability row classified as Manual-infeasible counts as covered only when it carries a rationale.  
@@ -85,9 +86,23 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | Flag | Default | Effect |
 | --- | --- | --- |
 | `SPECKIT_AC_TRACEABILITY_TEMPLATE` | `false` | Reserved opt-in for future scaffold template rendering of traceability rows. |
-| `SPECKIT_AC_COVERAGE` | `false` | Enables the advisory validation scan. |
+| `SPECKIT_AC_COVERAGE` | `true` | Runs the advisory validation scan by default; set to `false` to opt out. |
 | `SPECKIT_AC_COVERAGE_ENFORCE` | `false` | Reserved promotion switch; current rule remains INFO/advisory. |
 | `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | Sets the advisory coverage floor, clamped to `[0,1]`. |
+
+### Scope Adherence (opt-in change-set audit)
+
+`SCOPE_ADHERENCE` is a no-op unless a change-set is supplied. It compares changed paths against the packet's `spec.md` "Files to Change" section and warns (never errors) on out-of-scope files.
+
+**Rule ID:** `SCOPE_ADHERENCE`  
+**Severity:** WARNING (advisory)  
+**Default:** Inactive. Provide a change-set via the env contract below to activate.  
+**Packet docs:** a packet's own canonical documents (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `research.md`, `resource-map.md`, `handover.md`, `description.json`, `graph-metadata.json`) are always in-scope and never flagged.
+
+| Env var | Effect |
+| --- | --- |
+| `MK_SCOPE_CHANGED_FILES` | Whitespace/newline-separated repo-relative changed paths to audit directly (takes precedence). |
+| `MK_SCOPE_BASE` | A git ref; when `MK_SCOPE_CHANGED_FILES` is empty, the change-set is `git diff --name-only <MK_SCOPE_BASE>`. |
 
 ### Non-Breaking Completion Freshness Rollout
 

@@ -1,0 +1,22 @@
+{
+  "run_id": "1786566874028-sks2q2",
+  "loop_type": "review",
+  "spec_folder": "specs/system-speckit/034-spec-template-context-optimizations",
+  "base_artifact_dir": "specs/system-speckit/034-spec-template-context-optimizations/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 0,
+  "failed": 1,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  }
+}
