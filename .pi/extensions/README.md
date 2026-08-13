@@ -81,7 +81,7 @@ Two devin/cursor hooks have no Pi equivalent because Pi's own architecture does 
 | `permission-request-policy.mjs` (devin) | Composes the same `spec-gate-core.isExemptTargetPath` and `dispatch-rule-checks.evaluate` cores `spec-gate-enforce.ts` and `dispatch-preflight-lint.ts` already call at `tool_call` time. Pi's real, type-confirmed event API (`dist/core/extensions/types.d.ts`) has no separate approval-gate event distinct from the block-capable `tool_call` -- the functional intent is already covered at the same decision point. |
 | `spec-gate-prebind.mjs` (cursor) | Exists only because Cursor does not deliver its prompt-classification event under the CLI, so SessionStart is the only place to establish gate state before the mutation guard runs. Pi's `input` event genuinely is that classification point (already bridged by `spec-gate-classify.ts`), so Pi never had the limitation this hook works around. |
 
-`task-dispatch-guard` and `completion-evidence-stop.cjs` remain deliberately deferred, unchanged from the original hook-extension-layer phase.
+`completion-evidence.ts` and `task-dispatch-guard.ts` are now wired as Pi extensions (the earlier deferral is resolved): completion-evidence runs the completion check on `turn_end`, and task-dispatch-guard is a `~ partial` adapter — it intercepts direct `subagent` tool-calls but not workflow-nested (`runs.run`) dispatches. See the coverage matrix in [`hooks/README.md`](../../.opencode/hooks/README.md).
 
 ---
 
