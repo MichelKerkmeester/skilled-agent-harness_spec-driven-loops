@@ -19,6 +19,23 @@ if [[ -z "$REPO_ROOT" ]]; then
   exit 0
 fi
 
+# --- Mass-deletion guard (blocking) ---
+# A staged snapshot that removes an unusually large number of tracked files is
+# almost always a stale-tree `git add -A` or a runaway deletion, not an intended
+# change — so refuse it here, before it becomes a commit, unless authorized.
+# Runs first because it is the cheapest and most catastrophic thing to catch.
+# Bypass: SPECKIT_ALLOW_MASS_DELETION=1 git commit ...
+MASS_DEL_GUARD="$REPO_ROOT/.opencode/scripts/git-hooks/lib/mass-deletion-guard.sh"
+if [[ -f "$MASS_DEL_GUARD" ]]; then
+  # shellcheck source=/dev/null
+  . "$MASS_DEL_GUARD"
+  _mdg_deleted="$(mass_deletion_staged_count)"
+  if ! mass_deletion_verdict "$_mdg_deleted"; then
+    mass_deletion_report commit "$_mdg_deleted" "(staged deletions)"
+    exit 1
+  fi
+fi
+
 VALIDATOR="$REPO_ROOT/.opencode/skills/sk-doc/scripts/validate-doc-model-refs.js"
 if [[ ! -f "$VALIDATOR" ]]; then
   exit 0
