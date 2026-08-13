@@ -33,6 +33,7 @@
 
 import { spawnSync } from 'node:child_process';
 import { join } from 'node:path';
+import { isHookEnabled } from '../../shared/hook-flags.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -65,6 +66,7 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (!isHookEnabled('task-dispatch')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());

@@ -5,6 +5,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
+import { isHookEnabled } from "../../.opencode/hooks/shared/hook-flags.mjs";
 
 function resultText(findings: unknown[]): string {
   return findings.map((finding) => {
@@ -16,6 +17,7 @@ function resultText(findings: unknown[]): string {
 
 /** Appends post-edit quality findings and staleness banners to an edit/write result. */
 export default function postEditQuality(pi: ExtensionAPI): void {
+  if (!isHookEnabled("post-edit-quality")) return undefined;
   pi.on("tool_result", async (event, ctx) => {
     try {
       if (event.toolName !== "edit" && event.toolName !== "write") return;

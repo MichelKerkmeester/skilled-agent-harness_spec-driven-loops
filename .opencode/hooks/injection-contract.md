@@ -17,6 +17,8 @@ version: 1.0.0.0
 
 Every runtime this repo dispatches to (Claude Code, Cursor, Devin, Codex, OpenCode, Pi) wires the same handful of shared guard cores into its own lifecycle-hook or plugin-hook API. Each core can add text to a session in one of a few distinct ways, and those ways have very different visibility to the human operator. This reference catalogs every injection point by content, not by file, since several files across runtimes point at the same core and inject identical text.
 
+**Kill-switches.** Every hook catalogued here is gated by a shared guard, `.opencode/hooks/shared/hook-flags.{cjs,mjs,ts}` → `isHookEnabled(concern)`. A hook injects nothing when the master `MK_HOOKS_DISABLED` or its per-concern `MK_<CONCERN>_DISABLED` is set (legacy `MK_*_DISABLED` / `SPECKIT_*_DISABLED` names are honored as aliases); default-on otherwise. Concern slugs: `dispatch`, `mcp-route-guard`, `post-edit-quality`, `task-dispatch`, `goal`, `skill-advisor`, `spec-gate`, `spec-memory`, `completion`, `session-lifecycle`, `git-preflight`, `directive-lifecycle`, `dist-freshness`, `codex-watchdog`, `permission-policy`. A guard added to a `.ts` source that runs from a skill's `mcp-server/dist/` needs that dist rebuilt to take effect.
+
 ---
 
 ## 1. OVERVIEW

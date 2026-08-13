@@ -1,0 +1,1 @@
+../../../skills/system-spec-kit/mcp-server/hooks/cursor/spec-gate-classify.mjs

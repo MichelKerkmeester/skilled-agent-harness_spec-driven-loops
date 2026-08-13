@@ -1,0 +1,1 @@
+../../../skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh

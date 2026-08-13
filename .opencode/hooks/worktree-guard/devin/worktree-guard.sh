@@ -1,0 +1,1 @@
+../../../bin/worktree-guard.sh
