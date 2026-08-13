@@ -20,6 +20,8 @@ Canonical continuity save substrate routes canonical saves through contentRouter
 
 This is the writer-side substrate that replaced the older spec-doc record-file assumption. It classifies incoming content, merges only into legal anchors, writes atomically, and keeps the continuity payload compact enough to live inside the spec doc instead of a separate file.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Core Behavior
@@ -41,6 +43,8 @@ The generate-context save lane also refreshes `graph-metadata.json` for the pack
 ### Quality Gates & Validation
 
 The implementation fixed the remaining metadata gap in the generate-context substrate. That workflow refreshes packet metadata instead of skipping the metadata write when the merge looks structurally unchanged, backfills missing iteration-pack metadata during the same workflow, and uses the continuity-freshness validator to warn when `_memory.continuity.last_updated_at` lags the packet metadata write by more than 10 minutes. The writer substrate is therefore responsible for both the canonical spec-doc write and the metadata freshness contract that hangs off it; the raw MCP content-indexing lane advertises when it did not refresh metadata.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -71,6 +75,8 @@ The implementation fixed the remaining metadata gap in the generate-context subs
 | `mcp-server/tests/resume-ladder.vitest.ts` | Automated test | Recovery ladder coverage |
 | `scripts/tests/workflow-canonical-save-metadata.vitest.ts` | Automated test | Metadata-on-every-save regression coverage |
 | `scripts/tests/continuity-freshness.vitest.ts` | Automated test | Continuity freshness warning coverage |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Memory Quality And Indexing

@@ -204,6 +204,8 @@ $ npm exec -- vitest run tests/community-search.vitest.ts
 
 Inspect `mcp-server/lib/search/community-search.ts:searchCommunities` for the word-overlap scorer. Verify the fallback invocation site reads weak-result thresholds correctly. Confirm `SPECKIT_COMMUNITY_SEARCH_FALLBACK` is read at request time.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/community-search-fallback.md](../../feature-catalog/retrieval-enhancements/community-search-fallback.md)

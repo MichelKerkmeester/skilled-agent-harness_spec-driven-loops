@@ -11,6 +11,8 @@ description: "Isolated shadow ledger recording contradiction and supersession re
 
 Additive-dark ledger that tracks how two claims relate, either contradicting each other or one superseding the other, on top of the shared authorized-ledger and event-envelope substrate. The event registry canonicalizes a relationship into an order-independent pair before it can enter the ledger. The projection folds those records into a disposable status view. The replay component rebuilds that view from one immutable reference snapshot for verification.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -24,13 +26,19 @@ Additive-dark ledger that tracks how two claims relate, either contradicting eac
 | `service.ts` | `ContradictionSupersessionService`, the isolated shadow ledger for authorized contradiction and supersession history |
 | `types.ts` | Shared relationship type definitions |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/path-coverage-termination/types.ts`
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/contradiction-supersession.vitest.ts`
+
+---
 
 ## 5. RELATED
 

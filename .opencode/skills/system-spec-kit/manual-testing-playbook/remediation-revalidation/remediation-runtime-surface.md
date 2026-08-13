@@ -121,6 +121,8 @@ mcp-server/tests/handler-checkpoints.vitest.ts:178 'Delete with: checkpoint_dele
 
 Inspect `mcp-server/handlers/memory-save.ts`, `mcp-server/lib/validation/preflight.ts`, `mcp-server/handlers/v-rule-bridge.ts`, `mcp-server/handlers/quality-loop.ts`, `mcp-server/lib/validation/save-quality-gate.ts`, `mcp-server/handlers/checkpoints.ts`, and `mcp-server/handlers/memory-crud-health.ts` if any remediation-stage signal is missing or contradictory
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [remediation-revalidation/category-stub.md](../../feature-catalog/remediation-revalidation/category-stub.md)

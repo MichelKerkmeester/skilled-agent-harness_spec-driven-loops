@@ -129,6 +129,8 @@ Result: all three checked multi-feature files have `4` `// Feature catalog:` ann
 
 Review file implementation scope → Compare against catalog feature boundaries → Add missing annotations
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/feature-catalog-code-references.md](../../feature-catalog/tooling-and-scripts/feature-catalog-code-references.md)

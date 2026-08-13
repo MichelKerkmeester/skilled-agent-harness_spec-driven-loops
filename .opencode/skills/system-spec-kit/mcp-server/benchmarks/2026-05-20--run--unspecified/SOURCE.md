@@ -17,6 +17,8 @@ contextType: "reference"
 
 This benchmark validates the post-016/002/019 corpus state under the ADR-013 nomic default. It is informational rather than authoritative because the cat-24/409 fixture was authored against a different corpus snapshot (May 17 jina-v3 baseline) and three of its ten target memory IDs are out-of-range for the current corpus.
 
+---
+
 ## 2. SOURCE PACKET LOCATIONS
 
 | Packet | Role |
@@ -27,11 +29,15 @@ This benchmark validates the post-016/002/019 corpus state under the ADR-013 nom
 | `.opencode/specs/.../002-spec-memory-stack/018-constitutional-quality-gate-exemption/` | Constitutional sufficiency exemption |
 | `.opencode/specs/.../002-spec-memory-stack/019-lineage-and-metadata-repair-runner/` | Graph-metadata + lineage repair runner |
 
+---
+
 ## 3. WHEN TO READ WHAT
 
 - "What does the current bench say about nomic at 768-dim?" → `benchmark-report.md` Section 2.
 - "Why is the hit rate 0/10?" → `benchmark-report.md` Section 6 plus Section 7 caveats.
 - "Why is the May 17 baseline still cited?" → the retrieval-rescue layer (ADR-010/011) and the jina-v3 production winner ratified by ADR-012 are the prior steady state; this bench measures the post-ADR-013 corpus and is informational.
+
+---
 
 ## 4. EVIDENCE FILE MAP
 
@@ -42,6 +48,8 @@ This benchmark validates the post-016/002/019 corpus state under the ADR-013 nom
 | Single-row aggregate | `results.csv` |
 | Methodology + reproducibility | `benchmark-report.md` (Sections 3, 9) |
 
+---
+
 ## 5. FOLLOW-ON PACKETS
 
 A future packet should:
@@ -49,6 +57,8 @@ A future packet should:
 2. Confirm the retrieval-rescue layer is still default-on under ADR-013.
 3. Re-run the same harness through a shared-connection client to remove per-query launcher spawn cost from latency measurements.
 4. Re-tune the evidence-gap Z-score threshold for the nomic profile if 1.5 turns out to be miscalibrated for the smaller embedding dim.
+
+---
 
 ## 6. WHEN TO UPDATE THIS FILE
 

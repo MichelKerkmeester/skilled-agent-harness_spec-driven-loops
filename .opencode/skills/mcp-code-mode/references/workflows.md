@@ -37,6 +37,8 @@ const result = await call_tool_chain({
 
 Use the returned schema to replace the placeholder arguments before execution. The exact namespace is part of the discovered contract; do not derive it from an old example.
 
+---
+
 ## 2. ENUMERATE A MANUAL
 
 ```typescript
@@ -48,6 +50,8 @@ return manualTools.map((tool) => tool.name ?? tool);
 ```
 
 The configured manual names are listed in [tool-catalog.md](./tool-catalog.md). A zero-result enumeration is an availability or authentication signal, not evidence that a guessed namespace is correct.
+
+---
 
 ## 3. CONFIRMED MOBBIN SEARCH
 
@@ -72,6 +76,8 @@ const result = await call_tool_chain({
 
 The Mobbin packet documents `search_screens`, `search_flows`, and `search_sections`; re-confirm all three with `tool_info()` in a fresh session.
 
+---
+
 ## 4. SEQUENTIAL CHAIN WITH VALIDATION
 
 ```typescript
@@ -92,6 +98,8 @@ return { first, second };
 
 Keep dependent operations in one chain when the second call consumes the first result. Inspect both envelopes before reporting success.
 
+---
+
 ## 5. PARALLEL READ-ONLY WORK
 
 ```typescript
@@ -104,6 +112,8 @@ return { left, right };
 ```
 
 Use parallel execution only for independent reads. Do not parallelize mutations, and do not hide a failed branch inside a successful aggregate.
+
+---
 
 ## 6. ERROR AND PARTIAL-SUCCESS HANDLING
 
@@ -120,6 +130,8 @@ return {
 ```
 
 Report partial success explicitly. A successful call does not prove that a sibling call, manual, or authentication path is healthy.
+
+---
 
 ## 7. STATE AND TIMEOUTS
 

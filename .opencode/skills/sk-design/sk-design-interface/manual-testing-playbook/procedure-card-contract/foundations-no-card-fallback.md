@@ -23,6 +23,8 @@ foundations: answer this narrow semantic-token naming question and state whether
 
 This scenario validates the exact fallback line `Procedure applied: none - baseline interface workflow`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm foundations does not invent or bulk-load procedure cards when no card row matches.
@@ -33,11 +35,15 @@ This scenario validates the exact fallback line `Procedure applied: none - basel
 - Desired user-visible outcome: Narrow foundations advice with explicit no-card fallback.
 - Pass/fail: PASS if exact fallback appears and no procedure card is loaded; FAIL if a private card is invented or all cards are loaded.
 
+---
+
 ## 3. TEST EXECUTION
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | FOUND-PROCCARD-002 | Foundations no-card fallback | Verify exact baseline fallback | `foundations: answer this narrow semantic-token naming question and state whether a private procedure card applies before answering.` | grep fallback in `SKILL.md` -> agent: run exact prompt -> inspect first proof line | Exact fallback appears; static-system workflow continues; no procedure card selected | Transcript and response proof line | PASS if exact fallback appears with no card; FAIL if omitted or wrong | 1. Re-read fallback line; 2. Remove card-trigger vocabulary; 3. Confirm static-system workflow still applies |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -45,6 +51,8 @@ This scenario validates the exact fallback line `Procedure applied: none - basel
 |---|---|
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../SKILL.md` | Exact no-card fallback line |
+
+---
 
 ## 5. SOURCE METADATA
 

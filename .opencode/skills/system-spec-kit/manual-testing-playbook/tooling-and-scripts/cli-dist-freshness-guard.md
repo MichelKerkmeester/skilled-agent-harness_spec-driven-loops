@@ -16,6 +16,8 @@ A SHA256 content hash over the watched source files is written lazily into a sma
 
 The test trips the guard reversibly: it backs up the source file, appends a content change so it is genuinely newer than the dist entry, observes the refusal and the override, then restores the exact original content — no rebuild needed and no lasting host impact. If the restored run still refuses (no matching cache entry for the original content on this host), `touch` the dist entry to clear it without rebuilding. Per-system development overrides (`SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, `SPECKIT_CODE_INDEX_CLI_DEV_ALLOW_STALE=1`, `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`) turn the refusal into pass-through.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the stale-dist refusal (exit 69), the dev-override pass-through, and clean restoration.
@@ -25,6 +27,8 @@ The test trips the guard reversibly: it backs up the source file, appends a cont
 - Expected signals: Exit 69 with `dist is stale` on the tripped run; exit 0 under the override; exit 0 after restore.
 - Desired user-visible outcome: Stale builds are loudly refused with the exact rebuild command, never silently executed.
 - Pass/fail: PASS only when all three phases behave as expected and the source content is restored byte-exact.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -87,6 +91,8 @@ The scenario also has no `### Preconditions` section to satisfy before the write
 
 A restored run that still exits 69 means the restore was not byte-exact — confirm `git diff` on the source file is empty — or another tracked source (for spec-memory: `tool-schemas.ts`, files under `schemas/`) genuinely changed and is newer than the compiled dist output; rebuild instead of restoring. If the diff is clean but the restored run still refuses, the on-disk hash cache next to the dist entry has no matching entry for the restored content yet; `touch` the dist entry (e.g. `dist/spec-memory-cli.js`) so its mtime is newer than the restored source and re-run — no rebuild required. An untripped first run means the content append did not land (source unchanged) or the override env leaked into the shell.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -103,6 +109,8 @@ A restored run that still exits 69 means the restore was not byte-exact — conf
 | `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` | Shared `checkPackageFreshness()` module: mtime comparison, lazy same-session hash cache, `DIST_PACKAGES` registry (7 watched packages) |
 | `.opencode/bin/spec-memory.cjs` | `ensureFreshDist` guard, exit 69, `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE` |
 | `.opencode/bin/skill-advisor.cjs` | Same guard for skill-advisor, `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE` |
+
+---
 
 ## 5. SOURCE METADATA
 

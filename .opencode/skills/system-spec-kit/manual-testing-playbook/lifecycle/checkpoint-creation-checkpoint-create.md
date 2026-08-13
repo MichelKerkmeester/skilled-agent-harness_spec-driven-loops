@@ -58,6 +58,8 @@ Create/list outputs
 
 Validate folder and naming rules
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [lifecycle/checkpoint-creation-checkpointcreate.md](../../feature-catalog/lifecycle/checkpoint-creation-checkpointcreate.md)

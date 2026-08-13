@@ -20,6 +20,8 @@ Completion Verification Workflow is the spec-kit completion gate that decides wh
 
 The workflow is stricter than a plain checkbox counter. It understands inherited priority context from Markdown headings, treats untagged checklist items as blocking, and requires evidence markers on completed P0 and P1 items before the workflow returns a passing status.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Entry Point & Routing
@@ -51,6 +53,8 @@ The human-readable mode prints a colored summary with a per-priority breakdown, 
 
 Exit behavior is intentionally narrow: `0` means completion is allowed, `1` means the checklist exists but the gate failed, and `2` means argument or path errors such as an unknown option or missing spec folder.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -58,6 +62,8 @@ Exit behavior is intentionally narrow: `0` means completion is allowed, `1` mean
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh` | Script | Parses `checklist.md`, derives priority state, enforces evidence rules, and returns human-readable or JSON completion status |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

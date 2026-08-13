@@ -168,6 +168,8 @@ The observed output does not include `Context Recovery` or `/speckit:resume`.
 
 Verify test fixture simulates missing cache state
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/session-start-priming.md](../../feature-catalog/context-preservation/session-start-priming.md)

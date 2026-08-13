@@ -17,6 +17,8 @@ Checkpoint helpers:
 - `create-checkpoint.ts` - creates a point-in-time SQLite checkpoint and metadata sidecar.
 - `restore-checkpoint.ts` - restores a previously captured checkpoint.
 
+---
+
 ## 2. ONE-SHOT DATA MIGRATIONS
 
 Each `.mjs` migration is **dry-run by default** (count-only, mutates nothing) and requires an explicit `--apply` guarded by baseline-count and/or checkpoint-id gates; several also support `--rollback` from recorded audit rows.
@@ -35,6 +37,8 @@ Each `.mjs` migration is **dry-run by default** (count-only, mutates nothing) an
 | `regenerate-legacy-trigger-phrases.mjs` | Regenerates legacy trigger phrases (batched, resumable, and merge-preserving). |
 | `regenerate-placeholder-surrogate-titles.mjs` | Rewrites placeholder "Memory NNNN" surrogate titles from the stored document title. |
 | `retrofix-frontmatter-only-tiers.mjs` | Recomputes `critical`/`important` importance tiers from frontmatter; `--rollback` restores from audit rows. |
+
+---
 
 ## 3. RELATED
 

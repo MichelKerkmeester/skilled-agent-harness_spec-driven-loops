@@ -12,6 +12,8 @@ This scenario verifies the dist-staleness half of `.opencode/skills/sk-code/sk-c
 
 **Gap found while authoring this scenario, since fixed and re-verified**: as originally shipped, `check-dist-staleness.sh` was missing its executable bit (`-rw-r--r--` instead of its sibling `check-comment-hygiene.sh`'s `-rwxr-xr-x`). `claude-posttooluse.sh` invokes the checker via `subprocess.run([checker_path, file_path], ...)`, which requires the target file itself to be executable; without the `+x` bit this raised `PermissionError: [Errno 13] Permission denied` before the checker could run, caught by the hook's broad `except` and surfaced only as a stderr warning instead of the intended banner (the warn-only contract still held -- exit 0, edit never blocked -- but the STALE DIST WARNING banner never reached stdout in a live session). Fixed via `chmod +x .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` and independently re-verified end-to-end (both the negative case -- fresh dist, silent exit 0 -- and the positive case -- stale dist, banner reaches stdout through the full hook path). This scenario documents the incident for future reference; see §3 Failure Triage if the executable bit regresses again (e.g. after a checkout that strips permissions).
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants to confirm that editing a source file whose compiled build is out of date actually surfaces a warning in the session, the same way the existing comment-hygiene warning does.
@@ -29,6 +31,8 @@ Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts 
 - The hook's own stdout wraps that line in blank lines and the process exits 0.
 
 **Desired user-visible outcome**: A stale build a session is about to keep editing on top of gets flagged in-session, without ever blocking the edit itself.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -86,6 +90,8 @@ Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts 
 3. **Hook exits non-zero**: this breaks the warn-only contract and is a regression — inspect `claude-posttooluse.sh`'s outer `try`/`except` around the dist-checker `subprocess.run` call; it must never propagate a checker failure as a hook failure.
 4. **Restore leaves a diff on `orchestrator.ts`**: the restore did not land — re-run `cp "$BAK" "$SOURCE"` from the still-open backup path before doing anything else; never use `git checkout` to "clean" this file, since it may carry unrelated real uncommitted work on the active branch.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` — Dispatches both the comment-hygiene and dist-staleness checkers on every `Write`/`Edit`; always exits 0.
@@ -93,6 +99,8 @@ Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts 
 - `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` — Shared `checkFileFreshness()` / `DIST_PACKAGES` registry the checker calls.
 
 **Related**: `claude-posttooluse.sh` also runs the pre-existing comment-hygiene check (`check-comment-hygiene.sh`, see `references/universal/code-style-guide.md` §4) on the same edit. That checker's hook branch is covered by its own scenario `TH-002` (see `comment-hygiene-hook.md` in this same category).
+
+---
 
 ## 5. SOURCE METADATA
 

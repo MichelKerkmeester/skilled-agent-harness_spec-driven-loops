@@ -12,6 +12,8 @@ Cursor's `sessionStart` payload supplies `session_id`, with `conversation_id` as
 
 Cursor management is intentionally unsupported. The prompt command does not receive the hook's current-session identity, so `.cursor/commands/goal-cursor.md` returns `UNSUPPORTED_SESSION_BINDING` and never invokes the shared CLI.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Prove two Cursor identities receive different goal blocks, missing identity and legacy-only state inject nothing, the registration points to the tracked adapter, and the management prompt cannot bypass native identity.
@@ -23,6 +25,8 @@ Cursor management is intentionally unsupported. The prompt command does not rece
 - Desired user-visible outcome: PASS/FAIL naming injection support and management non-support separately.
 - Pass/fail: PASS when scoped injection is isolated and every ambiguous management or identity path fails closed. A hook response alone is not a claim that a specific Cursor client build made the text model-visible.
 - Failure triage: Check the native payload identity first, then workspace and runtime scope. Treat a command-side CLI call as a fail-closed regression; never repair management by inventing a default session id.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -47,6 +51,8 @@ Set A and B with `node .opencode/hooks/goal/bin/goal.cjs --runtime cursor --sess
 
 Set `MK_GOAL_PLUGIN_DISABLED=1` or remove the Cursor goal registration as one controlled change. Preserve scoped and quarantined state. A disabled adapter must return only `{"permission":"allow"}` and must not increment any goal record.
 
+---
+
 ## 4. SOURCE FILES
 
 || File | Role |
@@ -56,6 +62,8 @@ Set `MK_GOAL_PLUGIN_DISABLED=1` or remove the Cursor goal registration as one co
 || `.cursor/hooks.json` | Registers the tracked adapter under `sessionStart`. |
 || `.cursor/commands/goal-cursor.md` | Explicit unsupported-management response. |
 || `../../../../../hooks/goal/README.md` | Current runtime support matrix. |
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -304,6 +304,8 @@ Comparison against Expected: enabled/default mode did not return any result cont
 
 Inspect `lib/search/hybrid-search.ts` `injectContextualTree`, `lib/search/search-flags.ts` `isContextHeadersEnabled`, and description cache population
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/contextual-tree-injection.md](../../feature-catalog/retrieval-enhancements/contextual-tree-injection.md)

@@ -23,6 +23,8 @@ Sixteen schema-v2 command-behavior rows are contract stubs only, marked
 Read the Skeptic Verification and Capture Provenance sections before quoting any
 latency ratio or pass rate from captured rows.
 
+---
+
 ## 2. BASELINE TABLE
 
 Captured 2026-07-12, all 11 DAB cells, single-sample, host `claude-opus-4-8` via
@@ -88,6 +90,8 @@ The sixteen pending rows are excluded from this distribution.
     the process simply did not terminate inside 900s on the Opus host. This is a
     latency ceiling, not a convergence failure — see Notes.
 
+---
+
 ## 3. SKEPTIC VERIFICATION
 
 Three independent GPT passes (`openai/gpt-5.6-sol-fast --variant high`, read-only)
@@ -108,6 +112,8 @@ two findings:
    `partial` (DAB-004) or a false `pass` (DAB-009). The runner's halt-cell
    classifier should additionally treat an authority-validator invocation inside
    a `question_halt` cell as a `setup_misbind` signal.
+
+---
 
 ## 4. CAPTURE PROVENANCE
 
@@ -130,6 +136,8 @@ two findings:
   and its sqlite contention plausibly added to the autonomous-cell latencies.
   Treat the three `timeout_latency` results as an upper bound on host+contention
   latency, not a clean mode-only latency.
+
+---
 
 ## 5. NOTES
 

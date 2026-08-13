@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/008-pi-caching-like-reasonix/009-fork-attribution-and-changelog",
+  "spec_folder": "hooks/008-pi-caching-like-reasonix/009-fork-attribution-and-changelog",
+  "parent_id": "hooks/008-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fork attribution",
+      "changes from upstream",
+      "pi-cache-optimizer fork notice",
+      "deep-pi fork notice",
+      "fork attribution plan",
+      "fork attribution tasks",
+      "fork attribution checklist",
+      "fork attribution implementation",
+      "pi-cache-optimizer changes from upstream",
+      "deep-pi changes from upstream"
+    ],
+    "key_topics": [
+      "fork",
+      "attribution",
+      "changes",
+      "upstream",
+      "pi-cache-optimizer",
+      "notice",
+      "deep-pi",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "extensions"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fork Attribution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Sibling",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Both",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Every",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dispatch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Both `.pi/extensions/pi-cache-optimizer/README.md` and `.pi/extensions/deep-pi/README.md` read as if they were the unmodified upstream package",
+    "created_at": "2026-08-08T11:49:51.770Z",
+    "last_save_at": "2026-08-11T06:50:07.812Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:212060bdc7f5009eb55f2d939bd0d3ca957a20c104f813af898efcc90a7421b6",
+    "source_doc_hashes": {
+      "spec.md": "8733a7683afd3028f17dfbca016ba29073f75eb80929baea1f1ee83655231f5d",
+      "plan.md": "c68e67078c9e917d6cc93ee9051a93cc295b1d69ab81f62c7217f938efafac88",
+      "tasks.md": "b4a061be05dca8c4724eafe616d1715143075ededd41d3623e586931944bf7b2",
+      "checklist.md": "19b2d57e30811b3a032c9bef69b0ec578c0e7e459b57fb761d4f7a877d9d8aa6",
+      "implementation-summary.md": "b60d65d3671c261b6ea4f1dd6590dc3736fc860a48ffec07585df36ce6735ac9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

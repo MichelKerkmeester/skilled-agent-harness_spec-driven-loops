@@ -131,6 +131,8 @@ The documented save-quality-gate outputs were not observable because the current
 
 Verify isSaveQualityGateExceptionsEnabled() → Confirm flag is not forced off → Check SHORT_CRITICAL_MIN_STRUCTURAL_SIGNALS=2 → Inspect structural signal detection logic → Verify MIN_CONTENT_LENGTH=50 bypass path → Check Layer 1 exception routing
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/save-quality-gate-exceptions.md](../../feature-catalog/memory-quality-and-indexing/save-quality-gate-exceptions.md)

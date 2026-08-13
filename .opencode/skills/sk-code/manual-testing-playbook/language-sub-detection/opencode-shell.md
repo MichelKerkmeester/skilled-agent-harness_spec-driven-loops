@@ -10,6 +10,8 @@ version: 3.5.0.2
 
 Verify language sub-detection for `.sh` / `.bash` files within OPENCODE. Shell ref set loads; TypeScript/Python/Config sets do not.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: Harden a validation script with strict mode and a cleanup trap.
@@ -34,6 +36,8 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 
 **Expected NOT loaded**: any `sk-code-opencode/references/{typescript,python,config}/*`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -57,10 +61,14 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 1. Verify `.sh` and shebang signals (`#!/bin/bash`, `#!/usr/bin/env bash`) in SKILL.md sub-detection table.
 2. Verify `pipefail` is in the SHELL signal keywords list.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
 - `.opencode/skills/sk-code/sk-code-opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`.
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -89,6 +89,8 @@ ls: /tmp/playbook-017-ingest: No such file or directory
 
 Because the fixture path does not exist and this run was not allowed to create files outside `.opencode/skills/system-spec-kit/manual-testing-playbook/governance/governed-ingest-cancel-lifecycle.md`, the required `memory_ingest_start/status/cancel` lifecycle commands were not run.
 
+---
+
 ## 7. PASS/FAIL
 
 BLOCKED - Required temporary fixture `/tmp/playbook-017-ingest` is missing, and creating it is prohibited by the run's allowed write paths.

@@ -18,6 +18,8 @@ _Derived after the fact from this run's stored record, not written at run time._
 | Scenarios | 3 |
 | Outcome tally | 0 PASS, 3 SKIP |
 
+---
+
 ## 2. FILES
 
 | File | Contents |
@@ -28,6 +30,8 @@ _Derived after the fact from this run's stored record, not written at run time._
 | [`failed-runs.md`](./failed-runs.md) | Per-behavior failure detail, or a statement that none was captured |
 | [`findings-and-recommendations.md`](./findings-and-recommendations.md) | Failures and boundaries grouped by their recorded reason |
 | [`source.md`](./source.md) | Where the packet, playbook, and raw evidence live |
+
+---
 
 ## 3. READING THIS FOLDER
 

@@ -61,6 +61,8 @@ Save output for both calls + DB query showing single embedding row + SQL/test ev
 
 Verify SHA-256 hash computation → Check content normalization before hashing → Inspect dedup lookup query shape (`T320-1`, `T320-2`)
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md](../../feature-catalog/bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md)

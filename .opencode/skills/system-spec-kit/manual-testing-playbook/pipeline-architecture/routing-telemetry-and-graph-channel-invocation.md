@@ -77,6 +77,8 @@ Note: Intent classifier returns 'understand' for queries phrased like 'alternati
 
 Verify post-restart MCP is running the new dist (`memory_health.data.routing` exists at all) → confirm `intent-classifier` emits `find_decision`/`find_spec` for the seed queries (`includeTrace: true` on memory_search exposes intent in the trace envelope) → check `entity-density.ts` cache build query against the live `causal_edges` table → confirm `routing-telemetry.recordInvocation` is being called on every routeQuery (look at `tests/query-router.vitest.ts` 012-T3.1 for the canonical assertion shape) → verify the env flag is being read from `process.env` at request time, not module-load time.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

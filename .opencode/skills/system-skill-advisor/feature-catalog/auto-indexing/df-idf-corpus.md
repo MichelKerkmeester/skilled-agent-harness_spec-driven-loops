@@ -17,9 +17,13 @@ version: 0.8.0.13
 
 Feed the lexical lane with corpus-aware statistics so common tokens are discounted and skill-distinctive tokens dominate scoring. The corpus is restricted to active skills to avoid polluting routing with archived or future content.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/corpus/df-idf.ts` computes DF/IDF over the active corpus only (excluding `z_archive/` and `z-future/`). Recomputation is debounced: multiple reindex events within the debounce window collapse into one recompute. The resulting statistics are consumed by the lexical lane in `lib/scorer/lanes/lexical.ts`.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -36,6 +40,8 @@ Feed the lexical lane with corpus-aware statistics so common tokens are discount
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | lexical lane scoring against IDF |
 | `Playbook scenario [AI-004](../../manual-testing-playbook/auto-indexing/corpus-df-idf.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

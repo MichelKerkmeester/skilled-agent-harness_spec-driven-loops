@@ -152,6 +152,8 @@ ReferenceError: Database is not defined
 
 Inspect error handling in pipeline stages; verify filter boundary conditions; check tokenizer for malformed input handling
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/search-pipeline-safety.md](../../feature-catalog/pipeline-architecture/search-pipeline-safety.md)

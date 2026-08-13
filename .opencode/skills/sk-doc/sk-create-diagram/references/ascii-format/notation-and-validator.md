@@ -34,6 +34,8 @@ The validator is lightweight and runs each check across the whole file, not per 
 - **Nesting** — it derives depth from leading-space indentation, so deep indentation, not logical nesting, is what trips the warning.
 - **Size** — it counts total lines, so a long file warns even when the diagram itself is simple.
 
+---
+
 ## 3. BOX WIDTH CONSISTENCY
 
 Width variation is the most common validator failure. Because the validator counts every run of two or more `─` characters and does not understand intent, a decorative line and a real box border both affect the width count.
@@ -56,6 +58,8 @@ Width variation is the most common validator failure. Because the validator coun
 - shorten prose bullets rather than widening one box
 - split the diagram if the only readable version needs many box sizes
 
+---
+
 ## 4. COMMON MISTAKES
 
 | Mistake | Why It Breaks | Correct Fix |
@@ -67,6 +71,8 @@ Width variation is the most common validator failure. Because the validator coun
 | Hiding retries in prose | The diagram omits risky behavior | Draw the loop-back or terminal fallback path |
 | Drawing an infinite loop | Readers cannot tell when work stops | Add blocked, rejected, escalated, or completed terminal states |
 | Treating warnings as harmless polish | Warnings often reflect readability defects | Fix warnings when practical before handoff |
+
+---
 
 ## 5. WHAT THE VALIDATOR CANNOT CHECK
 

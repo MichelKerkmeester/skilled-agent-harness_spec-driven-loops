@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies that `model-benchmark` and `skill-benchmark` are command-bridge modes. They are reached by their commands, not by a bare `deep-improvement` advisor alias.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: An operator checks that the improvement family does not silently route bare benchmark wording into specialized lanes without the command surface.
@@ -41,6 +43,8 @@ Benchmark a skill against routing prompts.
 - Advisor contract evidence: `"command-bridge" = routed by its /deep:* command, not an advisor map entry`.
 
 **Desired user-visible outcome**: The AI either asks the operator to use the explicit command or routes only after the command is present. It must not claim these lanes are selected by a bare `deep-improvement` advisor alias.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -77,10 +81,14 @@ Benchmark a skill against routing prompts.
 2. If a command prompt fails, verify the exact command string matches the registry.
 3. If all bare prompts fold to `agent-improvement`, confirm whether the AI is treating them as generic improvement and not as the specialized command-bridge route.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - command-bridge entries and contract definition.
+
+---
 
 ## 5. SOURCE METADATA
 

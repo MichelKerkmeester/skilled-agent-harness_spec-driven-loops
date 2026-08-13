@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/006-spec-gate-question-noise",
+  "spec_folder": "hooks/006-spec-gate-question-noise",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec folder question noise",
+      "gate 3 re-ask",
+      "spec-gate question every turn",
+      "spec folder question every query",
+      "gate question injection",
+      "spec-gate question noise plan",
+      "gate question fix plan",
+      "spec-gate question noise tasks",
+      "gate question fix tasks",
+      "spec-gate question noise checklist",
+      "gate question verification",
+      "spec-gate question noise summary"
+    ],
+    "key_topics": [
+      "spec",
+      "folder",
+      "question",
+      "noise",
+      "gate",
+      "re-ask",
+      "spec-gate",
+      "every",
+      "turn",
+      "query",
+      "injection",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Compaction Summary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "three",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "receipts",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "UUID",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The SPEC FOLDER QUESTION is injected on nearly every user turn in the pi CLI, and re-asks every turn in every runtime once the gate has opened",
+    "created_at": "2026-08-02T13:16:09.194Z",
+    "last_save_at": "2026-08-11T06:50:09.941Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:f44b884d612ff6da560a8d5e67fce4441d02a3ed14e9b6305cc7c08a2aa6304b",
+    "source_doc_hashes": {
+      "spec.md": "086f154d28f5be1814657bab55414d01dc3ed8fa4c2ae0a68109bc2a1a183511",
+      "plan.md": "9cbcd0b1affca5dfd221344d98b01e2272288aa44b5f8f68b8ade360ce69c5f8",
+      "tasks.md": "6941e972be486d14e8f64e3640300f5b1fda9565dd71e0d7b6934cb6d9636f81",
+      "checklist.md": "4848604e29f95e1c970c6453f7d0efc67d02765e26269fa027afd6488a102081",
+      "implementation-summary.md": "046bfc6e8aaf85d359edf25542083eb619f4c2e84968043fc3080ae19db5a979",
+      "handover.md": "b6a3af5937dfca468ecb7a8e282c928db21e9951984c3ba87366e9a962d40445"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

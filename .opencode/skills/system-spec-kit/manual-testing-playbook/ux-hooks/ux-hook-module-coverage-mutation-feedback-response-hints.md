@@ -68,6 +68,8 @@ exclude:  **/node_modules/**, **/.git/**
 
 Inspect hook exports and fixture payloads if assertion fails
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/dedicated-ux-hook-modules.md](../../feature-catalog/ux-hooks/dedicated-ux-hook-modules.md)

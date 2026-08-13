@@ -14,6 +14,8 @@ trigger_phrases:
 
 `skill-graph/` owns the MCP-facing handler layer for the SQLite-backed skill graph. The handlers parse tool arguments, call the package-local graph library and return redacted response envelopes.
 
+---
+
 ## 2. CONTENTS
 
 | File | Responsibility |
@@ -26,9 +28,13 @@ trigger_phrases:
 | `status.ts` | Reports graph status, schema and validation summaries. |
 | `validate.ts` | Checks graph integrity, derived freshness and sanitizer-version state. |
 
+---
+
 ## 3. BOUNDARIES
 
 Keep MCP response formatting in `response-envelope.ts`. Database and traversal logic belongs in `../../lib/skill-graph/`. Handler modules stay thin and do not write graph tables directly.
+
+---
 
 ## 4. VALIDATION
 
@@ -37,6 +43,8 @@ Run the owning MCP server test command from the repository root:
 ```bash
 npm --prefix .opencode/skills/system-skill-advisor/mcp-server test -- --no-file-parallelism --maxWorkers=1
 ```
+
+---
 
 ## 5. RELATED
 

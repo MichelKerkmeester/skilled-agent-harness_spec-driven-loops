@@ -20,6 +20,8 @@ The single-layer deterministic authority adapter that checks commit-message gram
 
 `sk-git.cjs` wraps real `git` commands plus a line-cited port of `.opencode/scripts/git-hooks/commit-msg`'s structural grammar. It is 100% deterministic (ADR-004) — both checked dimensions are regex/lookup-checkable against live git state with no judgment call, so it has no reasoning-agent layer, unlike sk-doc's two-layer shape.
 
+---
+
 ## 2. HOW IT WORKS
 
 `discover()` for a `branchRange` scope walks commit SHAs over `from..to` (`git log`) and lists live branch names (`git branch --list`, unbounded because a branch name has no range-bounded identity), emitting `{ path, ref, artifactKind }` entries. `standardSource('sk-git')` returns the `SKILL.md` rule anchors, the `commit-msg` hook path, and the exempt-subject prefixes. `check()` re-fetches live git state at check-time (verify-first: `discover()` only returned a SHA, never a cached message) and runs one of two sub-checks. For a commit, it ports the hook's subject grammar (allowed types, non-numeric scope, imperative lowercase summary, vague-summary and trailing-punctuation bans, required-body-when-≥4-paths) — with one deliberate deviation: the body-required rule is applied against the commit's own historical `git diff-tree` file count, not today's staging index the hook reads. For a branch, it flags a name that backs a live worktree but lacks the `wt/` namespace.

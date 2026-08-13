@@ -60,6 +60,8 @@ Edge+node counts + computed ratio + threshold gate activation state
 
 Verify edge/node count queries → Check threshold configuration → Inspect gate activation logic
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/edge-density-measurement.md](../../feature-catalog/graph-signal-activation/edge-density-measurement.md)

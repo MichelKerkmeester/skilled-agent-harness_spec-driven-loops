@@ -267,6 +267,8 @@ This category validates that the Pi extension carries the shared sk-git advisory
 
 - `PI-022`: [Git preflight advisory delivery](git-preflight-advisory/git-preflight-advisory.md)
 
+---
+
 ## 17. CURRENT EXECUTION BOUNDARIES
 
 Provider-backed model turns remain an explicit boundary when credentials are absent. Goal isolation does not depend on that boundary: `/goal-pi` is a registered extension command, and the A/B lifecycle matrix runs against fake native contexts plus explicit-load command canaries. Operators must still isolate `PI_CODING_AGENT_DIR`, session directories, and `MK_GOAL_STATE_DIR` for live probes.

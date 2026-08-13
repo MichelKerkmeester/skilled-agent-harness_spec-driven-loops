@@ -20,6 +20,8 @@ Records the graph-assisted convergence verdict for a review lineage as a persist
 
 The graph convergence event is the gate between "convergence math says STOP" and "the loop actually stops". It carries a typed decision enum and the signal snapshot that produced it, which makes the combined-stop rule auditable and replayable from state alone.
 
+---
+
 ## 2. HOW IT WORKS
 
 Before the inline 3-signal review vote is allowed to finalize STOP, the workflow appends a `graph_convergence` event for the current review lineage. The event carries a `decision` enum (`STOP_ALLOWED`, `STOP_BLOCKED`, or `CONTINUE`), a `signals` object (dimensionCoverage, findingStability, p0ResolutionRate, evidenceDensity, hotspotSaturation), a `blockers` array, and the standard run/timestamp/session/generation lineage fields.

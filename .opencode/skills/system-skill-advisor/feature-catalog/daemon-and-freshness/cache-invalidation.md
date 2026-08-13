@@ -17,9 +17,13 @@ version: 0.8.0.13
 
 Prevent stale cache reads after a graph reindex. Every cache entry is tagged with the generation under which it was computed. A generation bump atomically invalidates affected entries without blowing away the whole cache.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/freshness/cache-invalidation.ts` bumps an internal invalidation epoch whenever the generation advances. Prompt cache entries (`lib/prompt-cache.ts`) carry the generation as part of their key so post-bump hits miss cleanly. The 5-minute TTL still applies, but generation-based invalidation fires earlier when source truly changed. Lane-attribution scoring caches rebuild alongside the next recommendation call.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -36,6 +40,8 @@ Prevent stale cache reads after a graph reindex. Every cache entry is tagged wit
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-prompt-cache.vitest.ts` | Automated test | prompt cache TTL and invalidation |
 | `Playbook scenario [AU-004](../../manual-testing-playbook/auto-update-daemon/generation-publication.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

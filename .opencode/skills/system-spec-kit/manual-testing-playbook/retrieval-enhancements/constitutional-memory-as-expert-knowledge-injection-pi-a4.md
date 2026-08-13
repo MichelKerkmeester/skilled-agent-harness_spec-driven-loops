@@ -285,6 +285,8 @@ Command 3, inspect directive metadata, retrieval auto-surfaced constitutional me
 
 Verify constitutional/ directory contains valid directives; check tier classification logic; inspect enrichment pipeline for directive handling
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md](../../feature-catalog/retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md)

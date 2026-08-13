@@ -85,6 +85,8 @@ Anchor metadata enriched in pipeline; anchor tags visible in query metadata; no 
 
 Verify anchor metadata injection point → Check score isolation → Inspect metadata enrichment pipeline
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/template-anchor-optimization.md](../../feature-catalog/pipeline-architecture/template-anchor-optimization.md)

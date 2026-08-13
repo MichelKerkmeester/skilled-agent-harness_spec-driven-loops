@@ -36,6 +36,8 @@ Compared onboarding-before.md → onboarding-after.md (markdown, tier full)
 
 `+4` added lines, `~5` changed in place, no removals — the additions are the new "First Login" section and expanded bullets; the changes are the reworded sentences, shown with word-level highlights.
 
+---
+
 ## 2. VERIFY THE REPORT
 
 ```bash
@@ -57,6 +59,8 @@ python3 scripts/create_diff.py compare /tmp/doc.md --report /tmp/review.html
 ```
 
 `compare` reads the latest baseline as "before" and the current file as "after". The source (`/tmp/doc.md`) is never written by the tool — only your `cp` changed it.
+
+---
 
 ## 4. JSON FOR AUTOMATION
 

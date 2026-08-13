@@ -60,6 +60,8 @@ Table inspection + flag status + graph query output showing N2 score contributio
 
 Verify N2 migration completed; check feature flag state; inspect graph scoring pipeline for N2 channel integration
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/community-detection.md](../../feature-catalog/graph-signal-activation/community-detection.md)

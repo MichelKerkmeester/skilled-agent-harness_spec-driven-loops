@@ -143,6 +143,8 @@ Final hash/tier check:
 
 Inspect `mcp-server/handlers/memory-crud-update.ts` (`validateConstitutionalEditPreconditions` and its call site), `mcp-server/handlers/memory-crud-types.ts`, and `mcp-server/schemas/tool-input-schemas.ts`. Confirm the self-edit assertion is unconditional and the `expectedHash` compare-and-swap is an additive optional precondition.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

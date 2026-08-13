@@ -17,9 +17,13 @@ version: 0.8.0.13
 
 Guarantee the Python compatibility surface does not regress on hand-curated P0 cases that have been stable since pre-027.
 
+---
+
 ## 2. HOW IT WORKS
 
 `scripts/skill_advisor_regression.py` reads the JSONL dataset at `scripts/fixtures/skill-advisor-regression-cases.jsonl` and exercises the Python scorer against each case. The current baseline is the checked-in cases passing with zero regressions under the ADR-007 parity rules. Exit code is 0 only when every case passes.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -36,6 +40,8 @@ Guarantee the Python compatibility surface does not regress on hand-curated P0 c
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/parity/` | Automated test | Python/TS parity harness consuming the same corpus |
 | `Playbook scenario [PC-004](../../manual-testing-playbook/python-compat/regression-suite.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

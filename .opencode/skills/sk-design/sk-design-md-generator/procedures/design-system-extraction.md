@@ -26,9 +26,13 @@ Private procedure card for applying the existing design-md-generator measured ex
 | Proof gate | Every reported value traces to source evidence or is explicitly labeled absent; gaps and inconsistencies are surfaced instead of silently filled. |
 | Privacy rule | This private card belongs to the existing `design-md-generator` mode and does not add a public extraction skill. |
 
+---
+
 ## 2. TOOL BOUNDARY
 
 `sk-design-md-generator` is the only mutating sk-design mode. It may use its existing extraction pipeline when the mode contract permits. The card does not grant Write, Edit, or Bash to the read-only `sk-design-interface` mode.
+
+---
 
 ## 3. PROCEDURE
 
@@ -37,6 +41,8 @@ Private procedure card for applying the existing design-md-generator measured ex
 3. Keep source names, intended usage, gaps, and inconsistencies visible.
 4. Emit or plan the target reference format that matches the mode's current extraction contract.
 5. Recommend review before future `sk-design-interface` work consumes the extracted system.
+
+---
 
 ## 4. CONFLICT RULE
 

@@ -61,6 +61,8 @@ Scoring path output with per-class/tier decay multipliers + config-validation ou
 
 Verify decay matrix configuration → Check classification assignment → Inspect `validateHalfLifeConfig()` in `memory-types.ts` → Confirm the positive-number-or-null guard
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/classification-based-decay.md](../../feature-catalog/scoring-and-calibration/classification-based-decay.md)

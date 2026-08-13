@@ -65,6 +65,8 @@ Command transcript + output for valid and invalid cases + exit codes
 
 Verify check-phase-links.sh exists and has execute permission; check spec.md contains expected link markers; verify child folder naming matches expected pattern
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)

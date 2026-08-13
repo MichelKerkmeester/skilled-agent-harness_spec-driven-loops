@@ -59,6 +59,8 @@ Full ablation report, focused fts5 report with query-ID warnings, and dashboard 
 
 Validate ground-truth mapping against the active parent-memory DB; inspect missing-query-ID warnings and runtime logs for token-budget truncation if Recall@K collapses
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation/ablation-studies-evalrunablation.md](../../feature-catalog/evaluation/ablation-studies-evalrunablation.md)

@@ -74,6 +74,8 @@ Output:
 
 Identify symlink -> determine if intentional -> replace with canonical import path -> remove symlink -> update imports -> re-verify
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/module-boundary-map.md](../../feature-catalog/tooling-and-scripts/module-boundary-map.md)

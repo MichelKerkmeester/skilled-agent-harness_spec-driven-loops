@@ -61,6 +61,8 @@ Tool validation outputs
 
 Inspect `tool-schemas.ts` memory_delete union schema
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: *(memory_delete confirm schema — covered by `mutation/03`)*

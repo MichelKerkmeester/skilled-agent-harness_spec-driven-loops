@@ -11,6 +11,8 @@ description: "Install, connect, daemon, and read-only diagnostic scripts for the
 
 `scripts/` holds the setup, connect, daemon, and diagnostic scripts for `mcp-figma`, the Figma transport mode of the `mcp-tooling` hub. Every script except `_common.sh` and `print-utcp-snippets.sh` sources `_common.sh` for its color helpers, its `figma_bin` resolver and its daemon paths, so all scripts that resolve `figma-ds-cli` agree on how to find the canonical binary. `print-utcp-snippets.sh` only prints static Code Mode wiring text, so it never needs those helpers. The canonical package is `figma-ds-cli` (the silships tool). A bare `figma` command belongs to the unrelated npm package `unic/figma-cli` and none of these scripts select it.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -24,6 +26,8 @@ description: "Install, connect, daemon, and read-only diagnostic scripts for the
 | `print-utcp-snippets.sh` | Prints the optional Code Mode wiring for the Framelink `figma` MCP manual (`figma-developer-mcp`) and its `.env` token variable. Print only, never edits `.utcp_config.json` or `.env`. |
 | `unpatch.sh` | Rolls back the YOLO patch by running `figma-ds-cli unpatch`, restoring Figma Desktop's original `app.asar`. |
 
+---
+
 ## 3. VALIDATION
 
 Run from the repository root.
@@ -34,6 +38,8 @@ bash .opencode/skills/mcp-tooling/mcp-figma/scripts/install.sh --skip-verify
 ```
 
 Expected result: `doctor.sh` prints a checklist with no red `✗` lines. `install.sh` resolves a `figma-ds-cli` binary and reports its version. `connect-safe.sh`, `connect-yolo.sh`, `daemon.sh`, and `unpatch.sh` require an interactive session or a running Figma Desktop and are not part of automated validation.
+
+---
 
 ## 4. RELATED
 

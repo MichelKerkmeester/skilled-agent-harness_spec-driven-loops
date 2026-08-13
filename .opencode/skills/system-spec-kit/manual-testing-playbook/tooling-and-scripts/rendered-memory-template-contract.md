@@ -75,6 +75,8 @@ No `memory_save({ filePath:"<sandbox-file>", dryRun:true })`, `memory_save({ fil
 
 Inspect `shared/parsing/memory-template-contract.ts`, `scripts/core/workflow.ts`, and `mcp-server/handlers/memory-save.ts`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/session-capturing-pipeline-quality.md](../../feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md)

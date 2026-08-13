@@ -1,0 +1,23 @@
+Act as a read-only verification auditor. Repo root is the current --dir.
+
+CONTEXT: A Phase 3 divider-normalization just ran. A deterministic insert-only fixer added `---` dividers between numbered ALL-CAPS H2 sections across ~993 markdown files under .opencode/skills, .opencode/commands, .opencode/agents. Your job is to INDEPENDENTLY confirm it is correct and non-destructive.
+
+BANNED OPERATIONS (hard): do NOT edit, create, delete, move, or write ANY file. Do NOT run git add/commit/checkout/reset/clean/stash/rm or any mutating command. Do NOT run the fixer. Run ONLY the read-only commands below (python read scans, pytest, git diff/show). If any step would require a write, STOP and report it instead.
+
+RUN THESE EXACT READ-ONLY COMMANDS and paste their output:
+
+1) Fleet divider-gap census (must show TOTAL divider-drift == 0):
+   python3 .opencode/specs/sk-doc/029-doc-divider-and-anchor-standard/scratch/census.py
+
+2) Structure test still green:
+   python3 -m pytest .opencode/skills/sk-doc/scripts/tests/test_structure_validation.py -q
+
+3) Spot-check 5 changed files are PURE `---`/blank insertions (no content removed). For each file below, run `git diff -- <file>` and confirm every removed (`-`) line is blank — no removed non-blank content line:
+   - .opencode/skills/system-spec-kit/mcp-server/utils/README.md
+   - .opencode/skills/system-spec-kit/mcp-server/lib/merge/README.md
+   - .opencode/agents/deep-review.md
+   - .opencode/agents/orchestrate.md
+   - .opencode/skills/sk-doc/sk-create-readme/README.md
+   For each, report: removed-non-blank-content-line-count (must be 0).
+
+VERDICT: End with a single line `AUDIT: PASS` if (1) census divider-drift total is 0, (2) the structure test passes, and (3) all 5 spot-checks removed 0 non-blank content lines. Otherwise `AUDIT: FAIL` with the specific failing check. Do not claim PASS without the pasted evidence.

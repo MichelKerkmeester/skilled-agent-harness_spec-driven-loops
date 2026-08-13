@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/007-fable-governor-pi-hook/006-dispatch-authorization-hardening",
+  "spec_folder": "hooks/007-fable-governor-pi-hook/006-dispatch-authorization-hardening",
+  "parent_id": "hooks/007-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Pi dispatch authorization",
+      "dispatch shape tokenizer",
+      "cli-pi self dispatch",
+      "Pi tool_call enforcement",
+      "user-authored dispatch override",
+      "Pi dispatch hardening plan",
+      "dispatch tokenizer plan",
+      "tool_call integration matrix",
+      "Pi dispatch hardening tasks",
+      "dispatch tokenizer tasks",
+      "Pi tool_call matrix",
+      "Pi dispatch hardening checklist"
+    ],
+    "key_topics": [
+      "dispatch",
+      "authorization",
+      "shape",
+      "tokenizer",
+      "cli-pi",
+      "self",
+      "enforcement",
+      "user-authored",
+      "override",
+      "hardening",
+      "plan",
+      "integration"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Dispatch Authorization Boundary Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview First",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "injected",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "named",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The current working tree contains a partial Pi guard: it denies `cli-pi`, stores an input event, strips known advisor/directive markers, and has a pure helper matrix",
+    "created_at": "2026-08-04T17:57:53Z",
+    "last_save_at": "2026-08-11T06:50:05.724Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:abe65f4010115c791f23f04cafc638432a68533790f92a624248a2e97216edc1",
+    "source_doc_hashes": {
+      "spec.md": "27070ae91f502d3d40ca0f790f90d2252b037879f2ea5630c3069e14434f48f4",
+      "plan.md": "7e9fc97f831eb59c157f18f12a5954e6e660ea0d66fc483abe06b9f8f1362118",
+      "tasks.md": "00e84da0158f6ef2c38aaf2b31d28e92fc9912799ea04dcc643a804971f45b2c",
+      "checklist.md": "db7b3bf7e3880fe1528f12ba84a03959ff4e6234430cc5904c4d6f070c54b63c",
+      "implementation-summary.md": "5b995036b314c6861dceec04fc5c98cafc11eb9b99a6b58623e104554e9adb84"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

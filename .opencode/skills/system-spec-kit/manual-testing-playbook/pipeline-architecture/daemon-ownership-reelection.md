@@ -17,6 +17,8 @@ The check is automated-test-backed. A human runs the launcher syntax check, the 
 
 Reelection is default-on in the launcher code. Set `SPECKIT_DAEMON_REELECTION=0` (or `off`) to revert to the kill-on-disposal behavior.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm daemon-ownership reelection is default-on, that a live secondary keeps transport across owner disposal, and that a fresh session after disposal reaps the released daemon so a single writer remains.
@@ -26,6 +28,8 @@ Reelection is default-on in the launcher code. Set `SPECKIT_DAEMON_REELECTION=0`
 - Expected signals: `node --check` exits cleanly for the launcher. `launcher-daemon-reelection.vitest.ts` passes. `daemon-reelection-adoption-live.vitest.ts` passes all three cases (live secondary survives flag-on, daemon dies flag-off, fresh session after disposal is the single writer). `daemonReelectionEnabled`, `shouldReleaseDaemonForReelection` and `contextServerSpawnIo` appear at their definitions and call sites.
 - Desired user-visible outcome: Closing the owning session leaves other live sessions connected, and reopening later starts a single clean daemon.
 - Pass/fail: PASS only when syntax, both test suites, and the default-on wiring all match expectations.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -118,6 +122,8 @@ Exit status: 0.
 
 If the syntax check fails, inspect the helper placement and the CommonJS exports first. If the live single-writer case fails (two daemons on the database), confirm the stale-lease reclaim branch reaps the recorded child before respawn. If the live-secondary case fails, confirm `shouldReleaseDaemonForReelection` releases rather than kills when a live daemon is present. If grep cannot find the helpers, confirm the definitions and the flag, spawn-io, and release call sites all exist.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -134,6 +140,8 @@ If the syntax check fails, inspect the helper placement and the CommonJS exports
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | Primary implementation anchor |
 | `mcp-server/tests/launcher-daemon-reelection.vitest.ts` | Unit regression anchor |
 | `mcp-server/stress-test/durability/daemon-reelection-adoption-live.vitest.ts` | Live two-session validation anchor |
+
+---
 
 ## 5. SOURCE METADATA
 

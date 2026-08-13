@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements/001-correctness-floor",
+  "spec_folder": "hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements/001-correctness-floor",
+  "parent_id": "hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "correctness floor",
+      "deep-pi cold start bug",
+      "combined host composition test",
+      "correctness floor plan",
+      "correctness floor tasks",
+      "correctness floor checklist",
+      "correctness floor implementation",
+      "pi cache optimizer correctness",
+      "deep-pi correctness floor"
+    ],
+    "key_topics": [
+      "correctness",
+      "floor",
+      "deep-pi",
+      "cold",
+      "start",
+      "bug",
+      "combined",
+      "host",
+      "composition",
+      "test",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Correctness Floor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Fork Improvements",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Same",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Opus",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four P0 defects were found by 007's four-lineage research and re-confirmed against the live source while authoring this spec",
+    "created_at": "2026-08-08T06:50:09.777Z",
+    "last_save_at": "2026-08-11T06:50:03.112Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:66af58bbe9a5e6e0035166d1d960090f0144c998da38b34e602ef46dea1a334d",
+    "source_doc_hashes": {
+      "spec.md": "62eff2da26272291e3bddaeb1063538e9060a4515bb16c3ad69d334e0cc3e75b",
+      "plan.md": "3479f100d09f28d38f10496795a03afd4a388b48cf0a189036384c1bf9ef782d",
+      "tasks.md": "09eaac7668b687e924a97f3704e25eb2866d2a421ca2719daa4d5340ba3027d8",
+      "checklist.md": "a70af82ccf2b482e5bc175446d8326b3c7b56876e1b8ee987362d912dd7ab6ba",
+      "implementation-summary.md": "dc0f9fb39182981515840426980fca6e40dc0f4c4197401acaa3dac1c965e81f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

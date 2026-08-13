@@ -67,6 +67,8 @@ Checksums before/after each run, hook/helper output, memory/index counter snapsh
 
 Inspect `lib/continuity/authored-continuity-snapshot.ts`, PreCompact hook wiring, and `tests/openltm-continuity-resilience.vitest.ts`. Confirm the sandbox contains the authored ladder files before expecting updates.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

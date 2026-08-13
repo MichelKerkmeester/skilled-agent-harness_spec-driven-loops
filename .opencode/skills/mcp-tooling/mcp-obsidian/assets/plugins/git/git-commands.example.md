@@ -21,6 +21,8 @@ Example companion for the git file-layer workflows: the exact read-only command 
 
 The mode inspects a vault repository by running read-only git commands from the vault root (or the `basePath` folder). Every command below changes nothing: it only reads repository state. Anything outside this allowlist counts as state-changing and moves to a throwaway repository.
 
+---
+
 ## 2. COMMAND LIST
 
 | Command | What it proves | How to read the output |
@@ -31,9 +33,13 @@ The mode inspects a vault repository by running read-only git commands from the 
 | `git branch --show-current` | The current branch name | One line with the branch name, empty means detached HEAD |
 | `git diff --stat` | A summary of unstaged changes | Per-file add and delete counts, empty means no unstaged changes |
 
+---
+
 ## 3. USAGE
 
 Run the commands from the repository root so git resolves the vault repository. Combine them with a settings read to answer a user question about backup health: read the settings file first, then run the allowlist, then report version, repo state, identity and conflicts.
+
+---
 
 ## 4. LIMITS
 

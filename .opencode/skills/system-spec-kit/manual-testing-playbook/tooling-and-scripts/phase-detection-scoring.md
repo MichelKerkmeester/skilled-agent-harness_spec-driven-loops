@@ -63,6 +63,8 @@ Command transcript + JSON output snapshot
 
 Verify spec folder path exists and contains spec.md; check script has execute permission; inspect scoring dimension weights for miscalibration
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)

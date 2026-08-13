@@ -60,6 +60,8 @@ Deferred enrichment traces for attempts one through four plus a successful post-
 
 Inspect `mcp-server/lib/enrichment/retry-budget.ts`, `mcp-server/handlers/save/post-insert.ts`, and the retry-budget tests
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [lifecycle/post-insert-retry-budget.md](../../feature-catalog/lifecycle/post-insert-retry-budget.md)

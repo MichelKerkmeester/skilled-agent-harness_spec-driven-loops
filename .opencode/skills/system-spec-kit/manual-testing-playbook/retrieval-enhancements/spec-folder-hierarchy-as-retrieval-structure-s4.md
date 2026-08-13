@@ -166,6 +166,8 @@ data.results[6].score: 0.9298029368443471
 
 Verify nested hierarchy exists; check hierarchy scoring weights; inspect folder-path resolution in retrieval pipeline
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md](../../feature-catalog/retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md)

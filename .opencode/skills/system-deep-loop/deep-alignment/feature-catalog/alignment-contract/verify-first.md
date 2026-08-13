@@ -20,6 +20,8 @@ Invariant 1 of the alignment contract: every finding that claims a drift from li
 
 Pattern-matching alone is never sufficient grounds for a finding. This is the signature invariant that separates a trustworthy conformance finding from a naive linter's false positive, and the engine enforces it rather than leaving it to individual adapters to opt into.
 
+---
+
 ## 2. HOW IT WORKS
 
 The invariant expresses itself two ways across the adapters. In the deterministic sub-checks, the real tool is re-run on every `check()` call and never cached across invocations — sk-doc spawns `validate_document.py`/`extract_structure.py` live, sk-code re-runs `verify_alignment_drift.py`/the Webflow verifiers live, and sk-git re-fetches commit and branch state at check-time because `discover()` only ever returned a SHA, never a cached message. In the reasoning-agent sub-checks, the function never invents a finding: `checkRealityAlignment()` (sk-doc), `checkAuditRubric()` (sk-design), and `checkPatternConformance()` (sk-code) each translate only already-verified, caller-supplied contradictions into findings, and each drops any entry missing its required cited evidence — a reprobe result, a rubric dimension plus citation, or a `path:line`. No evidence in means no finding out.

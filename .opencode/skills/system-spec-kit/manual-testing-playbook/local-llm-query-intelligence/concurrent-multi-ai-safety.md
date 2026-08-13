@@ -164,6 +164,8 @@ Verdict: PASS — 50/50 reads coherent, 10/10 writes succeeded, 0 errors total.
 - PARTIAL is acceptable if a transient duplicate appears once in 50 iterations (WAL checkpoint race) — note it but don't fail unless it happens repeatedly.
 - This is the only scenario in the suite that genuinely stresses the substrate under load. It complements scenario 410 (latency under realistic load) but is concurrency-focused rather than throughput-focused.
 
+---
+
 ## 5. CLEAN-UP
 
 Loop memory_delete over the 15 captured parent_ids (5 pre-seed + 10 writes), then remove on-disk files:

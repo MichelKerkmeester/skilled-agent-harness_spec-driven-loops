@@ -11,6 +11,8 @@ description: "Default-deny authorization gateway and immutable append-only ledge
 
 Fail-closed write substrate for `system-deep-loop` runtime domains. A transition request only reaches the append-only ledger after the authorization gateway independently evaluates it against the ledger head, the authority epoch and a registered policy. Dark-ledger callers such as `DarkLedgerAdapter.recordAfterLegacy()` invoke this authorization after the legacy result is already final and always return that legacy result unchanged, so authorization never compares against or overrides it. The immutable frame store persists each accepted event as an owner-only, single-frame file. The deterministic reducer rebuilds disposable projections by replaying those frames against an exact registered reducer version.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -27,15 +29,21 @@ Fail-closed write substrate for `system-deep-loop` runtime domains. A transition
 | `transition-authorization-gateway.ts` | `TransitionAuthorizationGateway`, the default-deny boundary between validated envelope bytes and a domain append |
 | `transition-policy-registry.ts` | `TransitionPolicyRegistry`, the immutable exact-version registry for deterministic transition policies |
 
+---
+
 ## 3. CONSUMERS
 
 Every ledger-backed `runtime/lib/` domain imports this module to append and replay its own events, including `blinded-adjudication`, `branch-leases-waves`, `claim-continuity`, `contradiction-supersession`, `cycle-detection`, `dispatch-receipts`, `deep-loop/continuity-identity` and `locks-and-fencing/protected-resource-registry.ts`.
+
+---
 
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts`
 - `.opencode/skills/system-deep-loop/runtime/tests/fixtures/authorized-ledger-fixtures.ts`
 - `.opencode/skills/system-deep-loop/runtime/tests/fixtures/authorized-ledger-worker.ts`
+
+---
 
 ## 5. RELATED
 

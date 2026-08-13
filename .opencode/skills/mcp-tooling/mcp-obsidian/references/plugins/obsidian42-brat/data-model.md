@@ -22,6 +22,8 @@ BRAT's persisted file is `<vault>/.obsidian/plugins/obsidian42-brat/data.json`. 
 
 BRAT has two different kinds of persisted policy. `pluginList` is the membership list of GitHub repository paths. `pluginSubListFrozenVersion` is the optional per-repository release policy list; a truthy version other than `latest` is a frozen exact tag and is skipped by update sweeps.
 
+---
+
 ## 2. TOP-LEVEL SETTINGS SCHEMA
 
 The table is the complete top-level key set. Defaults apply when a key is omitted from persisted JSON.
@@ -46,6 +48,8 @@ The table is the complete top-level key set. Defaults apply when a key is omitte
 | `allowIncompatiblePlugins` | boolean | `false` | Allows installation when BRAT's compatibility checks identify an incompatibility. |
 
 The settings and defaults are defined by [`src/settings.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/settings.ts); repository selection, release fetching, installation, and frozen-policy handling are implemented in [`src/features/BetaPlugins.ts`](https://github.com/TfTHacker/obsidian42-brat/blob/main/src/features/BetaPlugins.ts).
+
+---
 
 ## 3. REPOSITORY AND THEME RECORDS
 
@@ -83,6 +87,8 @@ Each theme record has this shape:
 ```
 
 `repo` identifies the GitHub theme repository. `lastUpdate` is BRAT's remembered checksum for the installed theme CSS, allowing a later theme check to detect a changed file. Themes are not plugin records: they are written below `.obsidian/themes/<manifest.name>/` and are not activated through `.obsidian/community-plugins.json`.
+
+---
 
 ## 4. ANNOTATED JSON SKELETON
 
@@ -129,6 +135,8 @@ The following is valid JSON. The moving plugin and frozen plugin demonstrate tha
 
 For a populated example using the two sibling mode plugins, see [`../../../assets/brat-data-entry.example.json`](../../../assets/brat-data-entry.example.json).
 
+---
+
 ## 5. FILE-LAYER MERGE INVARIANTS
 
 When editing BRAT state without running Obsidian:
@@ -141,6 +149,8 @@ When editing BRAT state without running Obsidian:
 6. Re-serialize valid JSON, re-parse it, and verify the three BRAT collections before touching plugin files.
 
 The file is only BRAT's registration and update policy. It does not stage plugin assets and it does not activate a plugin; those are separate file-layer stages described in [`workflows.md`](workflows.md).
+
+---
 
 ## 6. SOURCES AND RELATED RESOURCES
 

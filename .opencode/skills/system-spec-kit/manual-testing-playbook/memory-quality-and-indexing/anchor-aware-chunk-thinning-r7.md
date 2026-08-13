@@ -103,6 +103,8 @@ sh: tsx: command not found
 
 Verify anchor detection logic → Check thinning priority ordering → Inspect minimum retained set size
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/anchor-aware-chunk-thinning.md](../../feature-catalog/memory-quality-and-indexing/anchor-aware-chunk-thinning.md)

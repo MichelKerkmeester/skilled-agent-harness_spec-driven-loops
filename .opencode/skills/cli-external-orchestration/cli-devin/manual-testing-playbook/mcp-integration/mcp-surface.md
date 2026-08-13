@@ -16,6 +16,8 @@ Exercise the non-mutating portions of Devin's native MCP host surface: help and 
 
 MCP management is a real Devin capability and must be distinguished from the repository's external MCP transport. The safe baseline is surface discovery without altering registrations.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm `devin mcp` exposes the documented management verbs and returns the current server list.
@@ -25,6 +27,8 @@ MCP management is a real Devin capability and must be distinguished from the rep
 - Expected signals: Help names `add`, `list`, `get`, `remove`, `login`, `logout`, `enable`, and `disable`; list returns a valid empty or populated result; no config mutation.
 - Desired user-visible outcome: A safe, current MCP surface report.
 - Pass/fail: PASS when help/list work and the working tree/config are unchanged; FAIL on missing verbs or unexpected mutation; SKIP if no authenticated MCP context exists, with that blocker named.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -36,6 +40,8 @@ MCP management is a real Devin capability and must be distinguished from the rep
 | Feature ID | Exact commands | Expected signal | Verdict |
 |---|---|---|---|
 | DV-018 | `devin mcp --help` and `devin mcp list` | Eight verbs documented; list returns; no mutation | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -52,6 +58,8 @@ MCP management is a real Devin capability and must be distinguished from the rep
 | `../../references/devin-tools.md` | Native MCP capability reference |
 | `../../references/cli-reference.md` | `devin mcp` subcommand roster |
 | `../../SKILL.md` | Cross-AI dispatch boundary |
+
+---
 
 ## 5. SOURCE METADATA
 

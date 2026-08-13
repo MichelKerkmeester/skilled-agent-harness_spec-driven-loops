@@ -77,6 +77,8 @@ No `ls -R` transcript or generated `spec.md` excerpts exist for this run because
 
 Check create.sh supports --phase flag; verify --phase-names parsing; inspect the phase-parent contract and child level contract; check folder naming collision with existing specs
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)

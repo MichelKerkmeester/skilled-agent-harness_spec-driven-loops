@@ -1,0 +1,67 @@
+{
+  "topic": "How to further improve the two forked Pi extensions built in packet 008 (pi-cache-optimizer's DeepSeek-guard fork at .pi/extensions/pi-cache-optimizer/, and deep-pi's hardened DeepSeek-direct fork at .pi/extensions/deep-pi/; sibling specs at specs/hooks/008-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer/ and specs/hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/). Find concrete, evidence-based improvement opportunities in correctness, test coverage, telemetry/observability, cost-economics, and maintainability for both forks. Known open limitations to build on rather than re-discover from scratch: deep-pi's /deeppi report still does not surface its full body non-interactively even via pi --mode rpc; deep-pi keeps no persistent stats file unlike pi-cache-optimizer; one live regression check was blocked by a missing opencode credential rather than resolved; pi-cache-optimizer's cold-start cache-write behavior for newly-added models has not been characterized.",
+  "maxIterations": 7,
+  "minIterations": 7,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "telemetry-only",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements",
+  "fanout_lineage_artifact_dir": "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements/research/lineages/luna",
+  "artifactDir": "specs/hooks/008-pi-caching-like-reasonix/007-research-fork-improvements/research/lineages/luna",
+  "createdAt": "2026-08-08T04:30:14Z",
+  "status": "initialized",
+  "executionMode": "detached-fanout",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900,
+    "webSearch": "inherit"
+  },
+  "executorProvenance": {
+    "requested": "cli-codex model=gpt-5.6-luna",
+    "nestedInvocation": "not-run",
+    "reason": "Detached fan-out lineage executes inside the enclosing executor session; same-kind nested dispatch is not used.",
+    "stateProtocol": "executed by the enclosing detached fan-out session"
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1786163355542-f6htbk",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "fanout": true,
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": false,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "reason": "The standard reducer resolves the parent research root and would violate the detached lineage write boundary. Derived outputs are materialized within this bound lineage."
+  },
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  }
+}

@@ -79,6 +79,8 @@ The final report shows an applied status, nonzero graph node count, nonzero or e
 
 If lazy-init is not offered, inspect Phase 0 discovery in `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` for `iteration_folder_count` and `empty_graph` classification. If upsert runs but graph status remains empty, inspect the derived `specFolder`, `loopType`, `sessionId`, node IDs, and edge IDs in the state log before rerunning with `/doctor deep-loop --scope=both`.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

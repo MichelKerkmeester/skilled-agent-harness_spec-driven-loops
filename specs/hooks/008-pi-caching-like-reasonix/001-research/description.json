@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks/008-pi-caching-like-reasonix/001-research",
+  "description": "`lumo.md` asserts specific, uncited figures — Reasonix at a ~99.8% cache-hit rate, a ~$61→$12 single-day cost drop, DeepSeek-native prefix caching —",
+  "keywords": [
+    "lumo",
+    "asserts",
+    "specific",
+    "uncited",
+    "figures",
+    "reasonix",
+    "cache-hit",
+    "rate",
+    "single-day",
+    "cost",
+    "drop",
+    "deepseek-native",
+    "prefix",
+    "caching"
+  ],
+  "lastUpdated": "2026-08-11T06:40:10.396Z",
+  "specId": "001",
+  "folderSlug": "research",
+  "parentChain": [
+    "hooks",
+    "008-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

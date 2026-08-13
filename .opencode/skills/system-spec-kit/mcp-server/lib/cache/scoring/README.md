@@ -14,12 +14,16 @@ This folder is a compatibility boundary. Scoring logic lives in `lib/scoring/`, 
 
 Use this README to route maintainers away from adding cache-local scoring logic. Cache code may consume scoring decisions, but the scoring modules own ranking formulas and weights.
 
+---
+
 ## 2. STRUCTURE
 
 | Path | Role |
 | --- | --- |
 | `./` | Empty compatibility folder. |
 | `../../scoring/` | Canonical scoring implementation. |
+
+---
 
 ## 3. FLOW
 
@@ -41,6 +45,8 @@ Use this README to route maintainers away from adding cache-local scoring logic.
 ╰──────────────────────╯
 ```
 
+---
+
 ## 4. ALLOWED DEPENDENCY DIRECTION
 
 ```text
@@ -54,6 +60,8 @@ Use this README to route maintainers away from adding cache-local scoring logic.
 ```
 
 Cache code may import from `lib/scoring/`. Scoring code should not import from cache folders, because scoring must remain deterministic and independent of cache state.
+
+---
 
 ## 5. RELATED FILES
 

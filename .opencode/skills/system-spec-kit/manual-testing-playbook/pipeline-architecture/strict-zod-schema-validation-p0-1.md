@@ -166,6 +166,8 @@ Source read evidence:
 
 Inspect `tool-schemas.ts` for `.strict()` vs `.passthrough()` branching
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/strict-zod-schema-validation.md](../../feature-catalog/pipeline-architecture/strict-zod-schema-validation.md)

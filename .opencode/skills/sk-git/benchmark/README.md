@@ -24,6 +24,8 @@ Run labels are additive and immutable. Never overwrite or repurpose an existing 
 
 Each run folder has its own README, machine report, rendered report, CSV results, failure details, findings, and source record. The run-local README is authoritative for the files and fields captured by that run.
 
+---
+
 ## 2. ARCHIVE CONVENTION
 
 Benchmark evidence is retained beside the skill it measures. A later execution must use a fresh run-label folder, preserving prior reports for comparison and audit. Existing run labels are never overwritten, renamed for a different execution, or repurposed.

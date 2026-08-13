@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+ux-hooks-directive-lifecycle-dedup,system-spec-kit,,native-host-delivered,manual,,,cursor-native-host-verified,,SKIP,Installed Cursor CLI has no reproducible beforeSubmitPrompt live-fire trigger in this evidence run; registered-path delivery passes but native-host delivery remains dormant and unconfirmed.

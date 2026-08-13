@@ -20,6 +20,8 @@ The first adapter method: turn a lane's scope into an artifact corpus plus cover
 
 ADR-003 locks a three-method adapter contract — `discover(scope)`, `standardSource(authority)`, `check(artifact, rules)` — so the loop itself never branches on which authority it is running. `discover()` is the first method: the authority-agnostic "find the artifacts this lane covers" half, satisfied identically by every adapter phase and any future authority.
 
+---
+
 ## 2. HOW IT WORKS
 
 `discover(scope) -> { artifacts, nodes }` takes exactly the `scope` field of one resolved lane — already validated against the repo root, so an implementation may assume every `paths`/`globs` value is repo-relative and traversal-free. The signature has one parameter and no authority name: the adapter already knows its own authority by virtue of being that authority's module, and passing it again would give the loop a reason to branch, which ADR-003 forbids. No adapter may widen the signature to a second parameter.

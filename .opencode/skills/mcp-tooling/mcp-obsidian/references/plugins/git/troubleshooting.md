@@ -32,6 +32,8 @@ Diagnose the settings file, the repository surface and the app state separately.
 | Source Control view is stale | `refreshSourceControl` off or the refresh timer is very long |
 | Commit identity is wrong | git config `user.name` and `user.email` are unset or stale |
 
+---
+
 ## 2. DIAGNOSIS SEQUENCE
 
 1. Read `.obsidian/plugins/obsidian-git/data.json`. When absent, defaults apply and that is valid state.
@@ -42,6 +44,8 @@ Diagnose the settings file, the repository surface and the app state separately.
 6. Check identity: `user.name` and `user.email` in git config.
 7. Classify the failure: settings, repository, credentials, remote or app state.
 8. Apply the matching recovery, then re-run the named validation checkpoints.
+
+---
 
 ## 3. FAILURE MODES
 
@@ -93,6 +97,8 @@ Empty `user.name` or `user.email` makes commits carry the wrong author. Detectio
 
 `autoBackupAfterFileChange` triggers a backup on every vault change. Large vaults can flood the commit history. Detection reads the key and the commit log depth. Recovery sets the key to `false` and prefers the interval timer.
 
+---
+
 ## 4. SETTINGS LABEL INVERSIONS
 
 Some app labels invert or rename the stored key. Read the key before reporting the value.
@@ -107,6 +113,8 @@ Some app labels invert or rename the stored key. Read the key before reporting t
 | Split timers for automatic commit and sync | `differentIntervalCommitAndPush` | None |
 | Show the count of modified files in the status bar | `changedFilesInStatusBar` | None |
 | Auto refresh source control view | `refreshSourceControl` | None |
+
+---
 
 ## 5. VALIDATION CHECKPOINTS
 
@@ -124,6 +132,8 @@ Run these named checks after any diagnosis or recovery. Each one is a pass or fa
 | Identity | git config values | `user.name` and `user.email` are set |
 | Backup hygiene | Backup copy age | Backup taken before the last write, diff confirms one key |
 
+---
+
 ## 6. RECOVERY
 
 | Problem | Fix |
@@ -137,6 +147,8 @@ Run these named checks after any diagnosis or recovery. Each one is a pass or fa
 | Credentials stale | User re-enters credentials in the app, password is write-only |
 | Stale view | Enable auto refresh or lower the refresh timer |
 | Wrong commit author | Set `user.name` and `user.email` in the app settings |
+
+---
 
 ## 7. LIMITS
 

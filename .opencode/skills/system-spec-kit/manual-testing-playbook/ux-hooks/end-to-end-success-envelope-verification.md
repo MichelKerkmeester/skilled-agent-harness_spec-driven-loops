@@ -60,6 +60,8 @@ Test transcript + key assertion output for success-envelope and token-alignment 
 
 Inspect `context-server.ts`, `hooks/index.ts`, and `hooks/response-hints.ts` if any success-envelope field or final token count regresses
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/end-to-end-success-envelope-verification.md](../../feature-catalog/ux-hooks/end-to-end-success-envelope-verification.md)

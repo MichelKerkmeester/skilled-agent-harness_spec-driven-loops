@@ -66,6 +66,8 @@ node -e "const {validateProfile}=require('./.opencode/skills/system-deep-loop/de
 Expected result: the profile parses as JSON and prints `VALID <profileId>`. A non-empty
 error list means a field violates the validator contract — fix it before dispatch.
 
+---
+
 ## 2. PROFILE SCAFFOLD
 
 ```json
@@ -176,6 +178,8 @@ Field guidance (the enums and hard rules are authoritative in MODES.md and profi
 
   Legacy-only key (single-pass, mode omitted): "targetPath" names the single artifact scored — omit it for every sweep mode.
 -->
+
+---
 
 ## 3. RELATED RESOURCES
 

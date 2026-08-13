@@ -56,6 +56,8 @@ Output + logs
 
 Inspect stage metadata and flags
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/4-stage-pipeline-architecture.md](../../feature-catalog/retrieval/4-stage-pipeline-architecture.md)

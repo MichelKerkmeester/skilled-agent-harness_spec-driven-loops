@@ -19,6 +19,8 @@ This reference documents the profile-selection audit log format and retention po
 
 The profile-selection audit log provides debuggability and auditability for dynamic profile selection in DAI. When a profile is chosen for a candidate, the rationale is logged so operators can understand why a particular profile was selected. The log is append-only and stored in the improvement state directory with per-packet retention.
 
+---
+
 ## 2. PURPOSE
 
 The profile-selection audit log provides debuggability and auditability for dynamic profile selection in DAI. When a profile is chosen for a candidate, the rationale is logged so operators can understand why a particular profile was selected.

@@ -27,6 +27,8 @@ Session capturing pipeline quality is the current reality-alignment feature for 
 7. One shared rendered-memory template contract so malformed ANCHOR/frontmatter output fails before write/index, while successful flows stay free of template-data warning noise.
 8. A refreshed canonical verification, remediation, and manual-testing record that separates automated parity from retained live CLI proof.
 
+---
+
 ## 2. HOW IT WORKS
 
 The shipped session-capture pipeline enforces the following behavior:
@@ -81,6 +83,8 @@ The shipped session-capture pipeline enforces the following behavior:
    - `validate-memory-quality.ts` V11 rule rejects memories with error-dominated descriptions, titles, or trigger phrases
 
 Status: Implemented and strongly verified for the shared runtime contract. The automated scripts lane covers rule metadata, profile-driven contamination handling, structured-input parity, V10 write-and-index behavior, write-only indexing policy, same-minute filename stability, renderer-noise suppression, and the currently supported legacy JS compatibility suites.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -212,6 +216,8 @@ The closure feature consists of these distinct shipped behaviors:
 | `scripts/tests/test-integration.vitest.ts` | Automated test | End-to-end script workflows; legacy `test-integration.js` test file removed |
 | `scripts/tests/workflow-e2e.vitest.ts` | Automated test | Real save-pipeline E2E coverage with temp-repo factory and the failed-embedding harness regression |
 | `scripts/tests/test-memory-quality-lane.js` | Automated test | **[LEGACY]** v2 diagnostic quality and insufficiency regression suite (kept for regression coverage only) |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

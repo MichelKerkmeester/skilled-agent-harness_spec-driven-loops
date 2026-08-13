@@ -59,6 +59,8 @@ Trigger output + cache-refresh logs or instrumentation + query-plan/schema evide
 
 Retry with higher-quality trigger phrase -> inspect trigger-cache clear/reload instrumentation -> verify `idx_trigger_cache_source` exists and the reload query still filters to successful rows with non-empty trigger phrases
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/trigger-phrase-matching-memorymatchtriggers.md](../../feature-catalog/retrieval/trigger-phrase-matching-memorymatchtriggers.md)

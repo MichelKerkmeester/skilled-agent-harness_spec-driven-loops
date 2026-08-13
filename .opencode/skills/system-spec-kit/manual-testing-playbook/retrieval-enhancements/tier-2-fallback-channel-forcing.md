@@ -133,6 +133,8 @@ Regression evidence observed in `mcp-server/tests/hybrid-search.vitest.ts`:
 
 Inspect tier-2 trigger conditions; verify forceAllChannels flag propagation; check channel activation logic
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/tier-2-fallback-channel-forcing.md](../../feature-catalog/retrieval-enhancements/tier-2-fallback-channel-forcing.md)

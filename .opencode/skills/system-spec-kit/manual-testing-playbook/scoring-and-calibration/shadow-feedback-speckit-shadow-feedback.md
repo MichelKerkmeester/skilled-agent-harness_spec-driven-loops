@@ -63,6 +63,8 @@ Helper-created shadow_scoring_log rows + ShadowEvaluationReport output + clean-s
 
 Verify isShadowFeedbackEnabled() → Check initShadowScoringLog() created tables → Inspect selectHoldoutQueries() output for helper replay → Verify logRankDelta() insert count for explicit replay inputs → Confirm scheduled runtime skips when no replayable query text exists → Check PROMOTION_THRESHOLD_WEEKS (2)
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/shadow-feedback-holdout-evaluation.md](../../feature-catalog/scoring-and-calibration/shadow-feedback-holdout-evaluation.md)

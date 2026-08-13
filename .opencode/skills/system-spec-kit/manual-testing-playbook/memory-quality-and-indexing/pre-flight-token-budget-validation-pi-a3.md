@@ -188,6 +188,8 @@ PF021 branch: else if (result.percentage_used >= warning_threshold)
 
 Verify `preflight.ts` token counting math → Check `MCP_CHARS_PER_TOKEN`, `MCP_MAX_MEMORY_TOKENS`, and `MCP_TOKEN_WARNING_THRESHOLD` wiring → Inspect dry-run/save preflight behavior
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/pre-flight-token-budget-validation.md](../../feature-catalog/memory-quality-and-indexing/pre-flight-token-budget-validation.md)

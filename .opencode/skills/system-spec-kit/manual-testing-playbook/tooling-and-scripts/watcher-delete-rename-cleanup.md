@@ -137,6 +137,8 @@ stderr | mcp-server/tests/file-watcher.vitest.ts > file-watcher runtime behavior
 
 Inspect `mcp-server/lib/ops/file-watcher.ts` debounce scheduling, unlink handling, and `removeFn` wiring if stale entries persist or rename paths duplicate
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/watcher-delete-rename-cleanup.md](../../feature-catalog/tooling-and-scripts/watcher-delete-rename-cleanup.md)

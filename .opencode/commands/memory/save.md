@@ -26,6 +26,8 @@ Guardrails:
 - This is a direct-dispatch command with no workflow YAML by design; do not create or modify workflow YAML from this command.
 - Use `/memory:manage retention-sweep` for retention cleanup.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -36,6 +38,8 @@ This is a direct-dispatch command: it routes straight to the memory MCP tools an
 
 Before rendering any prompt, dashboard, or result block, read the presentation asset and follow it as the display source of truth.
 
+---
+
 ## 3. MODE ROUTING
 
 Operating modes:
@@ -43,6 +47,8 @@ Operating modes:
 - Explicit apply/full-auto mode executes the metadata/description/graph-metadata refresh and index handoff.
 
 Route category (chosen during processing): `narrative_progress`, `narrative_delivery`, `decision`, `handover_state`, `research_finding`, `task_update`, `metadata_only`, or `drop`.
+
+---
 
 ## 4. EXECUTION TARGETS
 
@@ -65,6 +71,8 @@ Tool map:
 | Single-file indexing fallback | `mcp__mk_spec_memory__memory_save` |
 | Trigger phrase correction | `mcp__mk_spec_memory__memory_update` |
 
+---
+
 ## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/memory/assets/save-presentation.txt`:
@@ -74,6 +82,8 @@ The following content lives only in `.opencode/commands/memory/assets/save-prese
 - Trigger-edit display, quality-review guidance, follow-up actions, and next-step text.
 
 The router must not invent visible wording for those surfaces; it only resolves routing and tooling.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

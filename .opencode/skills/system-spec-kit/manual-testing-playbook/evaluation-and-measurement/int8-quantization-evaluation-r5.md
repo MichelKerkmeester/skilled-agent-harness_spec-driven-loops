@@ -63,6 +63,8 @@ Threshold metrics summary + go/no-go criteria comparison + documented decision w
 
 Review original no-go rationale; gather updated benchmark data; compare quality degradation thresholds with current acceptable limits
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/int8-quantization-evaluation.md](../../feature-catalog/evaluation-and-measurement/int8-quantization-evaluation.md)

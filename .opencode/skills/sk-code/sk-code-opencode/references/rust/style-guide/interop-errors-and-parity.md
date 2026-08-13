@@ -28,6 +28,8 @@ Provides focused Rust guidance for rust/typescript interop — errors, parity & 
 - Preserving TypeScript interoperability and deterministic behavior
 - Applying the corresponding Rust standards at an implementation boundary
 
+---
+
 ## 2. ERROR STYLE
 
 Core public operations return domain-specific `Result` values backed by `thiserror`.
@@ -61,6 +63,8 @@ Rules:
 - Error messages and codes covered by TypeScript contracts are golden-tested.
 - Panic only for an impossible internal invariant, never for recoverable boundary input.
 
+---
+
 ## 3. EXHAUSTIVE ADAPTER ERROR MAPPING
 
 ```rust
@@ -89,6 +93,8 @@ fn map_ranking_error(error: RankingError) -> JsErrorShape {
 ```
 
 The adapter must also preserve whether the existing TypeScript operation throws synchronously or rejects a Promise.
+
+---
 
 ## 4. PANIC-FREE BOUNDARY VALIDATION
 
@@ -124,6 +130,8 @@ JavaScript-controlled data must not reach:
 - Assertions used as validation
 - `partial_cmp(...).unwrap()`
 
+---
+
 ## 5. DETERMINISTIC IDENTIFIERS
 
 Identifier generation preserves the exact TypeScript preimage contract:
@@ -148,6 +156,8 @@ fn deterministic_id(namespace: &str, name: &str) -> String {
 ```
 
 This example is correct only if the TypeScript oracle uses the same fields, NUL delimiter, UTF-8 bytes, SHA-256, lowercase hexadecimal output, and 24-character truncation. Never infer those details from a semantically similar implementation.
+
+---
 
 ## 6. STABLE SERIALIZATION
 
@@ -187,6 +197,8 @@ struct SearchResult {
 
 Byte-for-byte fixtures remain required even when the Rust structure appears equivalent to the TypeScript object.
 
+---
+
 ## 7. ASYNC AND THREADING
 
 Keep parsing, scoring, ranking, hashing, canonicalization, and serialization preparation synchronous in the core.
@@ -211,6 +223,8 @@ Use Tokio only for genuine Rust-owned asynchronous I/O. Use Rayon only after ben
 Parity-visible floating-point reductions MUST NOT run in nondeterministic parallel order. If parallel reduction is unavoidable, fix the reduction tree and golden-test it across every supported target.
 
 Baseline WASM is single-threaded. Promise bridging does not create CPU parallelism.
+
+---
 
 ## 8. NAPI-RS EXPORT EXAMPLE
 
@@ -248,6 +262,8 @@ pub fn rank_candidates(candidates: Vec<CandidateDto>) -> napi::Result<Vec<Candid
 
 In production, ranking belongs in the pure core and the adapter converts DTOs and errors only. The example shows the JavaScript-visible naming and owned boundary shape.
 
+---
+
 ## 9. WASM-BINDGEN EXPORT EXAMPLE
 
 ```rust
@@ -268,6 +284,8 @@ pub fn normalize_score(value: f64) -> Result<f64, JsValue> {
 
 The exact rounding implementation and error shape require differential fixtures against the TypeScript oracle before release.
 
+---
+
 ## 10. COEXISTENCE AND FALLBACKS
 
 TypeScript retains fallback selection. Rust adapters expose capability; they do not silently choose themselves.
@@ -279,6 +297,8 @@ const result = flags.nativeRanking && nativeAddon !== null
 ```
 
 Both paths must emit identical bytes for the supported input domain. A semantic deep-equality test is useful for diagnosis but does not replace the byte comparison.
+
+---
 
 ## 11. DIFFERENTIAL TEST CONTRACT
 
@@ -310,6 +330,8 @@ Parity fixtures cover:
 - Error codes and exact messages
 - Synchronous throws and Promise rejections
 - Native and WASM artifacts
+
+---
 
 ## 12. RELATED RESOURCES
 

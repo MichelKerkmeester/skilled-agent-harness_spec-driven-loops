@@ -119,6 +119,8 @@ Do NOT modify, create, or delete any file OTHER than the single scenario file na
 .opencode/skills/system-skill-advisor/manual-testing-playbook/operator-h5/quarantined-daemon.md (this file only)
 ```
 
+---
+
 ## 7. PASS/FAIL
 
 BLOCKED - The scenario requires creating and modifying a temporary repository copy, but this run permits writes only to this scenario file.

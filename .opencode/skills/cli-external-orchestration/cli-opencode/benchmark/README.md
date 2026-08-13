@@ -21,11 +21,15 @@ This `benchmark/` tree holds reports **derived after the fact from a manual-test
 
 Every file inside a run-label folder carries the marker `_Derived after the fact from this run's stored record, not written at run time._` for that reason.
 
+---
+
 ## 2. RUN-LABEL INDEX
 
 | Run label | Trace mode | Verdict | Scenarios | Source |
 |---|---|---|---|---|
 | [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | live | **SKIP** | 3 (0 PASS, 3 SKIP) | `004-goal-hook-playbooks-and-validation` |
+
+---
 
 ## 3. STRUCTURE
 
@@ -35,6 +39,8 @@ benchmark/
     +-- README.md                                                  # run index
     `-- 2026-07-29--manual-testing-playbook--goal-hook/       # this run's 7-file package
 ```
+
+---
 
 ## 4. READING THE REPORTS
 
@@ -49,6 +55,8 @@ Each run-label folder holds the seven-file package the storage guide defines:
 | `findings-and-recommendations.md` | Boundaries and findings grouped by cause |
 | `source.md` | Where the packet, playbook, and raw evidence live |
 | `README.md` | Per-run context: verdict, fields, and the file map |
+
+---
 
 ## 5. RELATED RESOURCES
 

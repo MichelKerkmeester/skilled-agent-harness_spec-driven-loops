@@ -74,6 +74,8 @@ The pre-run and post-run causal edge counts are identical because the read-only 
 
 If the report does not mark low coverage, inspect `.opencode/commands/doctor/assets/doctor-causal-graph.yaml` phase 2 recommendation rules and confirm `coverage_percent < 60` maps to an apply recommendation. If the edge count changes, fail immediately with `auto-mode-mutation-violation` and inspect the YAML for any accidental `memory_causal_link`, `DELETE FROM causal_edges`, or `UPDATE causal_edges` path.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

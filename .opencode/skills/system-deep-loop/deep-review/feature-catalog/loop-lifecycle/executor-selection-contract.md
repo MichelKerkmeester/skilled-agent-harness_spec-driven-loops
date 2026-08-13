@@ -20,6 +20,8 @@ Decides whether a review iteration runs on the native `@deep-review` agent or is
 
 The contract lets the same review loop run on different model backends without changing the loop logic. It centralizes dispatch-branch selection and flag validation so an unsupported flag fails fast at config parse time rather than mid-dispatch.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Entry Point & Routing

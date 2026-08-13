@@ -26,9 +26,13 @@ Private procedure card for applying the existing design-interface variation work
 | Proof gate | Each variation differs on meaningful dimensions such as layout, hierarchy, interaction, type, density, copy, or tone; the mode recommends one option rather than treating all options as equal. |
 | Privacy rule | This is private variation guidance inside `design-interface`, not a public variation skill. |
 
+---
+
 ## 2. READ-ONLY COMPATIBILITY
 
 `design-interface` can return variation specs, critique notes, and handoff-ready descriptions without writing implementation files.
+
+---
 
 ## 3. PROCEDURE
 
@@ -37,6 +41,8 @@ Private procedure card for applying the existing design-interface variation work
 3. Order options from conventional to riskier so comparison is legible.
 4. Avoid near-duplicate variants that differ only by accent color or shadows.
 5. End with a direct recommendation and the next follow-up path.
+
+---
 
 ## 4. RELATED CARDS
 

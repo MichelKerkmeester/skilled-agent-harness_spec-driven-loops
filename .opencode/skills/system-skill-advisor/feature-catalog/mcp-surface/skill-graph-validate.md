@@ -24,9 +24,13 @@ lightweight dependency-cycle errors. For schema-v2 nodes it also emits
 `DERIVED-FRESHNESS` warnings when the `derived` payload is invalid or missing,
 has no parseable sync timestamp, or carries a stale `sanitizer_version`.
 
+---
+
 ## 2. HOW IT WORKS
 
 Current runtime behavior is documented in the source files below.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -34,6 +38,8 @@ Current runtime behavior is documented in the source files below.
 |------|------|
 | `system-skill-advisor/mcp-server/tools/skill-graph-tools.ts` | Public MCP descriptor |
 | `system-skill-advisor/mcp-server/handlers/skill-graph/validate.ts` | Handler |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Context Preservation And Code Graph

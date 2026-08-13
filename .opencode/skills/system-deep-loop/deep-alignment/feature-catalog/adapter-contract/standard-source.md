@@ -20,6 +20,8 @@ The second adapter method: resolve where a named authority's own creation standa
 
 `standardSource()` answers "whose standard, and where is it," separately from "find the artifacts" (`discover`) and "check the artifact" (`check`). This separation is what lets the loop stay authority-agnostic: it asks each adapter for its own standard rather than carrying a per-authority branch itself.
 
+---
+
 ## 2. HOW IT WORKS
 
 `standardSource(authority) -> { ...rules, knownDeviations }` returns the concrete, real paths of the authority's own creation standard — its validators, standards docs, and templates — plus that authority's loaded known-deviation list. It reads only the standard, never the artifacts under review. Each adapter rejects any authority name that is not its own with an explicit error, so a mis-wired call fails loudly rather than silently checking against the wrong standard.

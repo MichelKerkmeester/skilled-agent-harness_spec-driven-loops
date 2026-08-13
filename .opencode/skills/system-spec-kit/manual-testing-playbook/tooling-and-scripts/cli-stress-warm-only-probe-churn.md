@@ -15,6 +15,8 @@ This stress scenario is part of the 028 CLI stress set (434-438). It hammers the
 
 This is the prompt-time hot path: hooks fire warm-only probes on every prompt, so a probe that occasionally spawns, wedges, or slows under churn directly degrades the operator's prompt latency.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm N repeated warm-only probes all exit 75 fast with zero spawns while daemon churn runs concurrently.
@@ -24,6 +26,8 @@ This is the prompt-time hot path: hooks fire warm-only probes on every prompt, s
 - Expected signals: 60/60 probes exit 75; no probe takes anywhere near its 3000 ms timeout; launcher delta zero; lifecycle suite green.
 - Desired user-visible outcome: Probe cost stays flat and spawn-free under churn and repetition.
 - Pass/fail: PASS only when every probe exits 75, the spawn delta is zero, and the churn suite passes.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -93,6 +97,8 @@ The final `ls "$SANDBOX/sock" 2>/dev/null || echo "socket dir empty/absent"` com
 
 A sporadic non-75 exit under churn suggests probe-time interference (for example fd exhaustion under load) — capture the failing envelope by rerunning without `>/dev/null`. A growing launcher count is a hard violation of the warm-only contract; bisect with scenario 428's single-shot form.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -109,6 +115,8 @@ A sporadic non-75 exit under churn suggests probe-time interference (for example
 | `mcp-server/spec-memory-cli.ts` | Warm-only probe branch (retryable error, exit 75) |
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | skill-advisor warm-only branch |
 | `mcp-server/tests/spec-memory-cli-lifecycle-hardening.vitest.ts` | Daemon churn driver (reap gating, transparent recycle) |
+
+---
 
 ## 5. SOURCE METADATA
 

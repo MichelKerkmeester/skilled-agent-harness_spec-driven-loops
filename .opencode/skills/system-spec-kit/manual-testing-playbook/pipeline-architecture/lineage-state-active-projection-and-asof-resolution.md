@@ -107,6 +107,8 @@ Observed comparison against Expected: the targeted suite passed with `1 passed (
 
 Re-run `npm test -- --run tests/memory-lineage-state.vitest.ts -t asOf`; inspect `validateTransitionInput()` and `resolveLineageAsOf()` in `lib/storage/lineage-state.ts` and `lib/search/vector-index-schema.ts` if projection or timestamp assertions drift.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../../feature-catalog/pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md)

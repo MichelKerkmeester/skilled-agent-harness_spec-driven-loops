@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/034-opencode-go-flash-qwen-roster",
+  "spec_folder": "cli-external-orchestration/034-opencode-go-flash-qwen-roster",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode-go models",
+      "qwen3.8-max cli-pi",
+      "deepseek-v4-flash opencode-go",
+      "cli-opencode qwen roster",
+      "opencode-go roster plan",
+      "qwen3.8-max fanout",
+      "implementation",
+      "plan",
+      "tasks",
+      "opencode-go roster",
+      "qwen3.8-max",
+      "verification"
+    ],
+    "key_topics": [
+      "opencode-go",
+      "models",
+      "qwen3",
+      "8-max",
+      "cli-pi",
+      "deepseek-v4-flash",
+      "cli-opencode",
+      "qwen",
+      "roster",
+      "plan",
+      "fanout",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Register",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`qwen3.8-max` was absent from cli-pi's enforced deep-loop fan-out roster (`PISUPPORTEDMODELS` and its `fanout-run.cjs` mirror), so a fan-out dispatch of that model was rejected",
+    "created_at": "2026-08-07T13:28:49.214Z",
+    "last_save_at": "2026-08-11T07:17:31.770Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:db2eaecd2022948534f356c567668c2febe4d513d807a8695d51a71a05162ab5",
+    "source_doc_hashes": {
+      "spec.md": "cc242cd5acd11574f986dd398ea04a4e1683690d17af62ff3b5f8bfa84e00773",
+      "plan.md": "7f57246c3d162dfda226000af8c8946cf697a9884f051335bf67009e77a3498a",
+      "tasks.md": "7168b185b53bf6e1429411c62d3f5ee7f0da7a503a354729a0100ff63d7ab0d3",
+      "checklist.md": "013319f9f8f0d12274ac8b721e2f2d5212becc859b260c710116e4973a51866c",
+      "implementation-summary.md": "51591eac9681d401d285bca9c34d75f69a9ea854f20f7f2145c4bad21fce0121"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -17,6 +17,8 @@ version: 0.8.0.15
 
 Drive release-readiness decisions from real measurements. Consolidate corpus, holdout, parity, safety and latency slices behind one tool call, while also exposing the threshold contract and prompt-safe telemetry summaries operators need to interpret the run.
 
+---
+
 ## 2. HOW IT WORKS
 
 `handlers/advisor-validate.ts` runs the bundled validation slices and returns the landed public contract:
@@ -59,6 +61,8 @@ Telemetry is published as prompt-safe rollups rather than raw prompt content:
 
 Default-off feedback calibration is available only when `SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW` is explicitly enabled. In that mode, `advisor_validate` writes bounded JSONL calibration reports from accepted/corrected/ignored outcome records, including proposed-vs-current lane-weight or threshold signals with no automatic promotion. The live recommendation scorer does not read those reports, and byte-identical live scoring is expected with the flag off or on.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -78,6 +82,8 @@ Default-off feedback calibration is available only when `SPECKIT_ADVISOR_FEEDBAC
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/advisor-feedback-calibration.vitest.ts` | Automated test | reducer guardrails and byte-identical live scoring |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/parity/` | Automated test | Python/TS parity harness |
 | `Playbook scenario [NC-003](../../manual-testing-playbook/native-mcp-tools/native-validate-slices.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

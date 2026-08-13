@@ -16,6 +16,8 @@ Exercise the `graphlessFallbackGate` added to the legal-stop decision tree. When
 
 Empty graph CONTINUE has historically meant "no graph data, proceed to inline vote" with no separate proof requirement. After Phase F, a graphless review must explicitly prove fallback coverage. Otherwise an operator can ship a clean PASS without ever searching for bugs the way the v2 contract demands.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm legal-stop decision tree emits `blocked_stop` with `graphlessFallbackGate` in `blocked_gates[]` when `graphCoverageMode: 'graphless_fallback'` is paired with empty `searchLedger` on non-trivial scope.
@@ -23,6 +25,8 @@ Empty graph CONTINUE has historically meant "no graph data, proceed to inline vo
 - Real user request: `Run a standard-scope v2 review iteration with graphCoverageMode set to graphless_fallback and empty searchLedger. Confirm STOP is blocked by graphlessFallbackGate.`
 - Expected signals: blocked_stop event with `blocked_gates[]` containing `graphlessFallbackGate`. Recovery_strategy mentions adding cited fallback ledger rows (direct_read / exact_grep / semantic_search / producer_consumer_trace / negative_test_inspection methods).
 - Pass/fail: PASS if `blocked_gates[]` contains `graphlessFallbackGate` AND the recovery message names fallback methods. FAIL if STOP succeeds OR the gate is reported as a generic graph error.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -50,6 +54,8 @@ With `graphCoverageMode: 'graphless_fallback'` and empty `searchLedger`, the rev
 - The gate does not fire: confirm `searchLedger` is empty and the scope is not `trivial` (trivial+skip exemption bypasses the gate).
 - The rerun still blocks after adding proof: inspect whether the new `searchLedger` row uses a recognized fallback method AND whether its `evidenceRefs` are non-empty.
 
+---
+
 ## 4. SOURCE REFERENCES
 
 - Workflow YAML: `.opencode/commands/deep/assets/deep-review-auto.yaml` (`step_check_convergence` legal-stop decision tree, graphlessFallbackGate branch).
@@ -57,6 +63,8 @@ With `graphCoverageMode: 'graphless_fallback'` and empty `searchLedger`, the rev
 - Schema: `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md` (`graphCoverageMode` enum + fallback-method conventions).
 - Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: complexity-candidate-saturation-gates decision record (see this skill's changelog for provenance).
+
+---
 
 ## 5. SOURCE_METADATA
 

@@ -206,6 +206,8 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
 
 Inspect the M-007 snippet, the session-capturing catalog entry, and the related closure evidence before introducing any alternative scenario wording.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/session-capturing-pipeline-quality.md](../../feature-catalog/tooling-and-scripts/session-capturing-pipeline-quality.md)

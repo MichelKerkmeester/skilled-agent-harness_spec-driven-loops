@@ -20,6 +20,8 @@ Holds the reducer-owned view of active, resolved, repeated, and blocked findings
 
 `deep-review-findings-registry.json` is the reduced state surface for the loop. It condenses raw iteration history into the totals and lists that convergence, dashboards, and synthesis read directly.
 
+---
+
 ## 2. HOW IT WORKS
 
 The findings registry is machine-owned and regenerated after every iteration and lifecycle transition. It stores open and resolved findings, dimension coverage, severity totals, open and resolved counts, convergence score, blocked-stop history, graph convergence fields, repeated or severity-changed findings, and corruption warnings.

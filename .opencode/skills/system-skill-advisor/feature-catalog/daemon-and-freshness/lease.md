@@ -17,9 +17,13 @@ version: 0.8.0.13
 
 Prevent duplicate daemon writers from corrupting the advisor graph by ensuring exactly one daemon holds the workspace lease, with automatic reclaim when the prior owner dies.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/daemon/lease.ts` acquires a SQLite-backed lease keyed by workspace root. A heartbeat row is refreshed at a fixed interval. If the heartbeat ages past the reclaim threshold, a new daemon can acquire the lease. Readers never block on the lease, `advisor_status` and `advisor_recommend` continue to serve cached or source-driven results even when no writer is active. The lease cooperates with `lib/freshness/trust-state.ts` to expose `absent` or `unavailable` trust state when there is no live writer.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -36,6 +40,8 @@ Prevent duplicate daemon writers from corrupting the advisor graph by ensuring e
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | lease acquire, heartbeat and reclaim paths |
 | `Playbook scenario [AU-002](../../manual-testing-playbook/auto-update-daemon/lease-single-writer.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

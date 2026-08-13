@@ -61,6 +61,8 @@ Ranked results before/after boost + hop-depth trace + relation-type weighting ev
 
 Verify seed selection cap and top-result sampling → Inspect relation-type multipliers and edge-strength usage → Check shared causal/session ceiling enforcement → Confirm flag gating in Stage 2 invocation
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/causal-neighbor-boost-and-injection.md](../../feature-catalog/graph-signal-activation/causal-neighbor-boost-and-injection.md)

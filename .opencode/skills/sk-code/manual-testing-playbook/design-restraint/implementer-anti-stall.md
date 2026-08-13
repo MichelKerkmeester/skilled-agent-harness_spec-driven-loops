@@ -14,6 +14,8 @@ When part of the requirement looks unnecessary, the implementer implements the r
 
 The rule is defined in SKILL.md §4 ALWAYS. It is the behavioral guard that keeps the Design Restraint Ladder (DR-001) from turning restraint into hesitation.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer asks for an over-specified retry wrapper around a call that only ever runs once at startup, so most of the requested machinery is plausibly unnecessary.
@@ -33,6 +35,8 @@ Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a p
 - The AI does NOT silently drop any requested part (SCOPE-LOCK held) and does NOT block solely to ask.
 
 **Desired user-visible outcome**: A single response that delivers the requirement and surfaces a "you may want to trim this" amendment, rather than a question that stalls the work.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -74,10 +78,14 @@ Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a p
 2. If scope is silently cut: confirm SCOPE-LOCK is still cited alongside the anti-stall rule.
 3. If no amendment is raised: confirm the rule requires the scope-amendment recommendation in the same response.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — §4 ALWAYS implementer anti-stall bullet and SCOPE-LOCK.
 - `.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md` — Design Restraint Ladder the anti-stall rule complements.
+
+---
 
 ## 5. SOURCE METADATA
 

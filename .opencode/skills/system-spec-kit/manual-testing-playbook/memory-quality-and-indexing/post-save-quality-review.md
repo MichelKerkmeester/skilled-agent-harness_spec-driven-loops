@@ -252,6 +252,8 @@ BLOCKED before execution. The required command was not run because it would exec
 
 Check computeReviewScorePenalty in post-save-review.ts and advisory logging in workflow.ts
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/post-save-quality-review.md](../../feature-catalog/memory-quality-and-indexing/post-save-quality-review.md)

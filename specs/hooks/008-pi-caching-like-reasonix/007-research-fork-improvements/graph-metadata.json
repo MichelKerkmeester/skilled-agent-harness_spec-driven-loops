@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/008-pi-caching-like-reasonix/007-research-fork-improvements",
+  "spec_folder": "hooks/008-pi-caching-like-reasonix/007-research-fork-improvements",
+  "parent_id": "hooks/008-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "improve deep-pi further",
+      "improve pi-cache-optimizer further",
+      "fork improvement research",
+      "fork improvement research plan",
+      "deep-pi pi-cache-optimizer improvement research",
+      "fork improvement research tasks",
+      "fork improvement research checklist",
+      "fork improvement research summary"
+    ],
+    "key_topics": [
+      "improve",
+      "deep-pi",
+      "pi-cache-optimizer",
+      "fork",
+      "improvement",
+      "research",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "packet",
+      "shipped"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Further Improvements",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Twenty",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Iteration Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Design Decisions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 008 shipped two working forks — `pi-cache-optimizer` (003, DeepSeek-guarded) and `deep-pi` (006, hardened DeepSeek-direct telemetry) — both verified live and benchmarked",
+    "created_at": "2026-08-08T04:59:50.930Z",
+    "last_save_at": "2026-08-11T06:50:07.507Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:51f753fa62704fa283ac00c7ad6eb2a071aead5e5dc037dd377aac9b4e6da0fa",
+    "source_doc_hashes": {
+      "spec.md": "eae8ca8da7128e0974be8571e42c06f0f2120603af8868600443436dd1815def",
+      "plan.md": "ecf8c00c1dbde7e959717266fb01ea6f3cd6520446b13c7a5342bfe76908227f",
+      "tasks.md": "9e8329b5b2406df7e3f48640be795ddd5d8e5e736337c99b68769c24943ebc2d",
+      "checklist.md": "244553a422353e8f3ebfe5d2c0a5e0ad4935f6efefe0eed338f76ceb0a363bf8",
+      "implementation-summary.md": "598353c11f35cc06e688eef6b7e07f698eede3531c7baf1b063c9e8db8315626",
+      "research/research.md": "44ecdc956d1ce01bc017ea0cd6034b3f548351d25f779695c02693ed2463cb12"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

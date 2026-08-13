@@ -32,6 +32,8 @@ Maintenance role:
 - Generate and expand ground-truth data.
 - Produce dashboard and shadow-score reports.
 
+---
+
 ## 2. TOPOLOGY
 
 ```text
@@ -51,6 +53,8 @@ Maintenance role:
 │ Baselines, ablations, ground truth, dashboards  │
 └─────────────────────────────────────────────────┘
 ```
+
+---
 
 ## 3. KEY FILES
 
@@ -72,6 +76,8 @@ Maintenance role:
 | `reporting-dashboard.ts` | Sprint and channel reporting dashboard output. |
 | `shadow-scoring.ts` | Read-only comparison and holdout analysis helpers. |
 
+---
+
 ## 4. BOUNDARIES
 
 Owns:
@@ -88,6 +94,8 @@ Does not own:
 - Corpus reindexing, embedding reconciliation or ground-truth ID remapping.
 - Tool handler routing.
 - Test fixtures outside eval data.
+
+---
 
 ## 5. ENTRYPOINTS
 
@@ -112,6 +120,8 @@ Diagnostic snapshots:
 
 When `includeDiagnosticSnapshots` is true, the baseline pass emits `diagnosticSnapshots` with query id, query, request quality, per-result confidence, tier, creation time and `scoreSnapshot`. The same pass emits `corpusMetrics`: `gateVerdict` has true and false counts plus precision, recall and F1, `calibration` has sample count, ECE, Brier score and reliability bins and `coldStart` has cold appearance rate, cold precision and hit counts.
 
+---
+
 ## 6. VALIDATION
 
 Run focused tests when changing this folder:
@@ -126,6 +136,8 @@ Run document validation after README edits:
 ```bash
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp-server/lib/eval/README.md
 ```
+
+---
 
 ## 7. RELATED
 

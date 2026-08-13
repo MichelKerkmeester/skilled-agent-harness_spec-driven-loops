@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies that the three non-improvement workflow families are lexically scored modes, as declared by `advisorRouting.routingClass: "lexical"`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: An operator runs a small advisor battery to confirm lexical routing remains intact for the three named mode families.
@@ -42,6 +44,8 @@ deep-ai-council: run a planning council and converge on a recommendation.
 - `ai-council` registry evidence: `advisorRouting.routingClass: "lexical"`, `legacyAdvisorId: "deep-ai-council"`, and `aliases` includes `"deep-ai-council"`.
 
 **Desired user-visible outcome**: The AI distinguishes lexical mode scoring from alias-fold and command-bridge behavior and resolves each prompt to the expected mode.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -78,10 +82,14 @@ deep-ai-council: run a planning council and converge on a recommendation.
 2. If review loses, inspect `legacyAdvisorId: "deep-review"`.
 3. If ai-council loses, inspect `legacyAdvisorId: "deep-ai-council"` and the `agent: "ai-council"` distinction.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - lexical advisor routing fields.
+
+---
 
 ## 5. SOURCE METADATA
 

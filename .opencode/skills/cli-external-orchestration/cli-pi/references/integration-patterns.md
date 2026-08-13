@@ -34,6 +34,8 @@ Gives the conductor/executor patterns for print, JSON, and RPC dispatch, the val
 - Building the pre-dispatch contract or the post-dispatch validation pipeline
 - Deciding whether Pi or a sibling CLI should validate the other's output
 
+---
+
 ## 2. CONDUCTOR AND EXECUTOR
 
 The calling AI is the conductor. Pi is the delegated executor. The shared deep-loop runtime owns process construction.
@@ -53,6 +55,8 @@ Calling AI
 
 Do not insert a packet-local shell wrapper between the skill and the runtime. That creates a second adapter with a second set of failure semantics.
 
+---
+
 ## 3. PRE-DISPATCH CONTRACT
 
 Every dispatch carries:
@@ -68,6 +72,8 @@ Every dispatch carries:
 | Handback | Summary, files, failures, and open questions |
 
 The prompt should say what Pi may change and what it must not touch. A provider name or model should be explicit when the task depends on it.
+
+---
 
 ## 4. PRINT MODE
 
@@ -90,6 +96,8 @@ HANDOFF
 
 Print mode is not proof of success. The pin observed missing-provider failures with different exit codes. The response text must be classified before the caller reports a result.
 
+---
+
 ## 5. READ-ONLY REVIEW
 
 Pi's installed help exposes a tool allowlist. Use read, grep, find, and ls when the delegated review must not write files.
@@ -108,6 +116,8 @@ Recommended review handback:
 4. Concrete remediation.
 5. Tests that would confirm the remediation.
 
+---
+
 ## 6. JSON EVENT STREAM
 
 Use JSON mode when the caller or an integration needs structured progress. The local pin and [Pi JSON docs](https://pi.dev/docs/latest/json) describe one JSON object per line.
@@ -122,6 +132,8 @@ surface errors without flattening them into final prose
 ~~~
 
 Do not parse JSON mode as one large JSON document. A truncated final event is a transport problem, not a successful empty result.
+
+---
 
 ## 7. RPC INTEGRATION
 
@@ -138,6 +150,8 @@ close stdin and reap the child deliberately
 
 RPC requires a lifecycle owner. The shared runtime must own timeouts, termination, stdout backpressure, stderr capture, and cleanup. If those guarantees are unavailable, use print or JSON instead and escalate the integration gap.
 
+---
+
 ## 8. SESSION CONTINUITY
 
 Pi exposes session-related flags in the installed help, including --continue, --resume, --session, --session-id, --fork, and --session-dir. Use them only when the calling workflow has a stable session identity and a clear handback policy.
@@ -149,6 +163,8 @@ Continuation rules:
 - Do not assume the provider or model remains available.
 - Capture output from every continuation.
 - Re-run verification after any continuation that can edit files.
+
+---
 
 ## 9. NATIVE RESOURCE HANDOFF
 
@@ -162,6 +178,8 @@ When a task needs native resources:
 4. Keep the resource path in the handback.
 5. Separate documented behavior from live evidence.
 
+---
+
 ## 10. COMMUNITY PACKAGE HANDOFF
 
 pi-subagents and pi-mcp-extension are community packages, not first-party Pi CLI modes. See [mcp-and-third-party-packages.md](./mcp-and-third-party-packages.md). A package request must include:
@@ -174,6 +192,8 @@ pi-subagents and pi-mcp-extension are community packages, not first-party Pi CLI
 - Rollback path.
 
 Do not silently turn an optional package into a required dependency of the hub.
+
+---
 
 ## 11. VALIDATION PIPELINE
 
@@ -191,6 +211,8 @@ Use this order for a write-capable dispatch:
 
 The calling AI owns the final acceptance decision. Pi output is evidence, not authority.
 
+---
+
 ## 12. FAILURE RECOVERY
 
 | Failure | Recovery |
@@ -202,6 +224,8 @@ The calling AI owns the final acceptance decision. Pi output is evidence, not au
 | Extension load error | Disable or repair the extension, then revalidate |
 | Trust rejection | Obtain explicit project-local approval |
 | Unexpected file edits | Stop, inspect diff, and roll back only scoped changes |
+
+---
 
 ## 13. HANDBACK FORMAT
 
@@ -221,6 +245,8 @@ open_questions:
 ~~~
 
 The handback must not claim a successful model run when the output only shows a provider failure.
+
+---
 
 ## 14. CROSS-VALIDATION WITH OTHER CLI EXECUTORS
 
@@ -243,6 +269,8 @@ The handback must not claim a successful model run when the output only shows a 
 | **Adversarial review** | A generates, B critiques | Security-critical code |
 | **Provider-diverse opinion** | Sibling generates, Pi reviews through a different provider | When a genuinely different model family's perspective is wanted |
 | **Specialist routing** | Route by strength (table above) | Efficiency optimization |
+
+---
 
 ## 15. ANTI-PATTERNS
 

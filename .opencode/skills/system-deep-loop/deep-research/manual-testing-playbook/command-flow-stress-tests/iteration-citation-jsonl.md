@@ -18,6 +18,8 @@ This scenario enters through `/deep:research:auto` but grades body-level evidenc
 
 The command can dispatch correctly while the agent body still returns success-shaped prose without durable research. This CP tests the leaf-owned artifact contract under the command loop.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence for `CP-050` and grade only concrete artifacts.
@@ -29,6 +31,8 @@ Operators run the exact command sequence for `CP-050` and grade only concrete ar
 - Expected process: seed a spec with a local source reference, run Call A, reset sandbox, run command-flow Call B, then inspect the leaf-written iteration and JSONL.
 - Expected signals: section headings, `[SOURCE:` or `[INFERENCE:`, one `"type":"iteration"`, `noveltyJustification`, `toolsUsed`, `sourcesQueried`, clean diffs.
 - Pass/fail: PASS if all leaf artifact counts are non-zero and exactly one iteration record exists. FAIL if findings stay only in transcript or JSONL is missing required fields.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -89,6 +93,8 @@ diff /tmp/cp-050-pre.txt /tmp/cp-050-post.txt > /tmp/cp-050-tripwire.diff; echo 
 |---|---|---|---|---|---|---|---|---|
 | CP-050 | ITERATION_CITATION_JSONL | Confirm leaf writes cited iteration plus JSONL | `Run one deep-research iteration and prove cited findings plus schema-rich JSONL are written.` | Run the §3 bash block | B field counts all >= 1 | iteration file, state log, diffs | PASS if cited sections and exactly one iteration record exist | 1. If iteration file is missing, inspect leaf dispatch. 2. If citations are absent, repair body citation rule. 3. If JSONL fields are missing, inspect append schema. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Anchor |
@@ -100,6 +106,8 @@ diff /tmp/cp-050-pre.txt /tmp/cp-050-post.txt > /tmp/cp-050-tripwire.diff; echo 
 | `.opencode/agents/deep-research.md:275-287` | output verification |
 | `.opencode/skills/system-deep-loop/deep-research/SKILL.md:450-459` | per-iteration quality gate criteria |
 | `.opencode/commands/deep/assets/deep-research-auto.yaml:794-817` | post-dispatch schema validation |
+
+---
 
 ## 5. SOURCE METADATA
 

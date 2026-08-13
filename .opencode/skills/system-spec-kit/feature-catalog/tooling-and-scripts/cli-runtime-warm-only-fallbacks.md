@@ -20,6 +20,8 @@ A CLI nobody's runtime calls does not close the transport-down incident class, s
 
 OpenCode gained a per-system plugin route: a NEW `mk-spec-memory` plugin (memory access in OpenCode was MCP-only before 028), a REPAIRED `mk-code-graph` bridge that replaced the reverted in-process dist/DB imports with the CLI route and blocks maintenance tools at prompt time, and a CLI fallback route in `mk-skill-advisor` that leaves the primary bridge path untouched. All plugin bridges use CLI/IPC transport only — zero in-process database imports, so the dual-writer hazard that forced the earlier revert cannot return.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Warm-only helpers per system
@@ -33,6 +35,8 @@ Claude adapters `session-prime.ts`, `compact-inject.ts`, and `session-stop.ts` p
 ### Allowlists and guidance
 
 `.opencode/settings.json` allowlists the CLI invocations for OpenCode (the Claude allowlist lives in local-only settings by decision), and `AGENTS.md` carries the transport-down fallback and maintenance-tool policy guidance.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -61,6 +65,8 @@ Claude adapters `session-prime.ts`, `compact-inject.ts`, and `session-stop.ts` p
 |---|---|---|
 | `mcp-server/tests/spec-memory-cli-dual-client-hardening.vitest.ts` | Automated test | MCP and CLI clients concurrently against one daemon |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/skill-advisor-cli-dual-client.vitest.ts` | Automated test | Dual-client MCP + CLI coverage for the advisor daemon |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

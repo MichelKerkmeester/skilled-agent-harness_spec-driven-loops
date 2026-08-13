@@ -215,6 +215,8 @@ lib/search/hybrid-search.ts:1673:      : fuseResultsMulti(fusionLists, { bonusOv
 
 Inspect `lib/search/hybrid-search.ts`, `shared/algorithms/adaptive-fusion.ts`, and `INSTALL-GUIDE.md`; confirm the checked-in docs match the tested source tree and that the live pipeline still falls back to fixed fusion when `SPECKIT_ADAPTIVE_FUSION=false`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../manual-testing-playbook.md)
 - Feature catalog: [implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md](../../feature-catalog/implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md)

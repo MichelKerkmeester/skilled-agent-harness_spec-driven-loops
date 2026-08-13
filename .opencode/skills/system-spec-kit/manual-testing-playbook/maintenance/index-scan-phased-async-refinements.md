@@ -121,6 +121,8 @@ The active-row uniqueness check plus the scan response repair counts.
 
 Inspect migration v28 (`idx_memory_logical_key_active_unique`) in `mcp-server/lib/search/vector-index-schema.ts` if duplicate active rows appear, and the results assembly in `mcp-server/handlers/memory-index.ts` if the repair counts are missing.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - index_scan handler: `mcp-server/handlers/memory-index.ts` (phased-async `deferred`/`pendingVectors`/`complete_with_pending_vectors`, `reconcileMoves`, repair counts)

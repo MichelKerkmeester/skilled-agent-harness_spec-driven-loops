@@ -186,6 +186,8 @@ ls: .opencode/skills/system-spec-kit/mcp-server/database/.db-updated: No such fi
 
 Inspect DB_UPDATED_FILE marker path and detection logic; verify DB reinitialization clears caches; check for stale connection handles
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/cross-process-db-hot-rebinding.md](../../feature-catalog/pipeline-architecture/cross-process-db-hot-rebinding.md)

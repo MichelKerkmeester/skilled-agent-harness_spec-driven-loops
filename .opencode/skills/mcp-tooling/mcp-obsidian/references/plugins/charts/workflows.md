@@ -34,6 +34,8 @@ These recipes edit chart blocks inside notes and the plugin settings file. Every
 - Note edits keep the original block text in a scratch copy until the new block validates.
 - A write is a merge. Unrelated note content and unrelated settings keys stay untouched.
 
+---
+
 ## 2. READ AND VALIDATE A CHART BLOCK
 
 1. Read the note that holds the block.
@@ -100,6 +102,8 @@ After:
 - Wrap the config in a `chartOptions` key when you also want a `width` value beside it. The width key only applies in that wrapper form.
 - Any valid Chart.js 3.x configuration works inside the block.
 
+---
+
 ## 5. POINT A CHART AT A TABLE
 
 Before:
@@ -150,6 +154,8 @@ select: [Sales]
 - The plugin watches the referenced file and reloads the chart when it changes.
 - A malformed table throws a Table malformed notice. Switch `layout` between `columns` and `rows` when a table fails to parse.
 
+---
+
 ## 6. STYLE A CHART DATASET
 
 Edit the styling keys inside an existing block. Each key merges into the chart config.
@@ -181,6 +187,8 @@ tension: 0.4
 - Use `stacked: true` for stacked bar charts.
 - Use `labelColors` and `transparency` for palette-wide fills.
 - Use `bestFit: true` on a line chart to add a line of best fit. The plugin computes the fit at render time.
+
+---
 
 ## 7. EDIT PLUGIN SETTINGS (BACKUP DISCIPLINE)
 
@@ -218,6 +226,8 @@ After:
 - Do not create `data.json` just to mirror defaults.
 - Never replace the whole file when the user changed settings in-app.
 
+---
+
 ## 8. EXPORT A CHART AS AN IMAGE
 
 The Create Image from Chart command performs the export. The AI cannot click it. The file-layer role is prediction and verification.
@@ -226,6 +236,8 @@ The Create Image from Chart command performs the export. The AI cannot click it.
 2. Predict the artifact: `Chart <date>` with the format extension in the vault attachments location.
 3. After the user runs it, verify the file exists and the note holds the markdown image link.
 4. Confirm the image format matches the `imageSettings.format` value.
+
+---
 
 ## 9. VERIFYING
 

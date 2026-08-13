@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies the documented convergence stop contract without running a full loop. The operator asks for the legal stop behavior and confirms the hub routes to the packet that owns convergence math.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: An operator wants to know whether a research loop stops on convergence or runs until manually interrupted.
@@ -41,6 +43,8 @@ For deep research, explain how convergence detection ends the loop and which pac
 - Packet source: deep-research describes iterative research with externalized state and convergence detection, with convergence threshold semantics local to deep-research.
 
 **Desired user-visible outcome**: The AI states that convergence is a stop condition for deep research and that deep-research owns the mode-specific convergence math.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -76,11 +80,15 @@ For deep research, explain how convergence detection ends the loop and which pac
 2. If threshold details are borrowed from a sibling mode, compare against deep-research's local threshold semantics.
 3. If route is wrong, verify the prompt's `deep research` control is intact.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - convergence backend and packet-owned convergence rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `research` runtime loop fields.
 - `.opencode/skills/system-deep-loop/deep-research/SKILL.md` - deep-research convergence semantics.
+
+---
 
 ## 5. SOURCE METADATA
 

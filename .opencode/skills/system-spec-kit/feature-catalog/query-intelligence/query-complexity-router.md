@@ -20,6 +20,8 @@ The query complexity router classifies incoming queries by term count and trigge
 
 Not every question needs the same amount of effort to answer. This feature sizes up your question first, like a triage nurse, and routes simple lookups through a fast path while sending complex research questions through a deeper search. Without it, every question would get the full heavy-duty treatment, wasting time and resources on things that could be answered in seconds.
 
+---
+
 ## 2. HOW IT WORKS
 
 Not all queries need the full 5-channel pipeline. A short trigger-phrase lookup like "memory save rules" is wasted on graph traversal and BM25 scoring.
@@ -29,6 +31,8 @@ The complexity router classifies incoming queries into simple (3 or fewer terms,
 The `SPECKIT_COMPLEXITY_ROUTER` flag is **enabled by default** (graduated Sprint 4, `isComplexityRouterEnabled()` returns `true` unless explicitly set to `"false"`). When the flag is disabled, the classifier returns "complex" as a safe fallback so every query still gets the full pipeline. The minimum 2-channel invariant is enforced at the router level.
 
 The router's classification tier (`routeResult.tier`) is propagated into `traceMetadata.queryComplexity` in hybrid search (CHK-038), making it available in response envelopes when `includeTrace: true`. The formatter reads this via a fallback path from `traceMetadata` when stage metadata is unavailable.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -60,6 +64,8 @@ The router's classification tier (`routeResult.tier`) is propagated into `traceM
 | Flag default is enabled (`raw !== 'false'`) | `query-classifier.ts` `isComplexityRouterEnabled()` | 43-46 |
 | Tier propagated to `traceMetadata.queryComplexity` | `hybrid-search.ts` | CHK-038 |
 | Classification accuracy tests | `query-classifier.vitest.ts` | — |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Query Intelligence

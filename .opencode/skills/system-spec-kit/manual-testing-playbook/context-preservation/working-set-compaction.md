@@ -116,6 +116,8 @@ Test output showing merger sections with tracked file paths
 
 Check compact-inject.ts buildMergedContext() codeGraph input
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/working-set-tracker.md](../../feature-catalog/context-preservation/working-set-tracker.md)

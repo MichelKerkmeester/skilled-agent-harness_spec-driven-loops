@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/032-per-mode-provider-model-reference",
+  "spec_folder": "cli-external-orchestration/032-per-mode-provider-model-reference",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/032-per-mode-provider-model-reference/001-author-per-mode-references",
+    "cli-external-orchestration/032-per-mode-provider-model-reference/002-register-and-wire",
+    "cli-external-orchestration/032-per-mode-provider-model-reference/003-trim-duplicates",
+    "cli-external-orchestration/032-per-mode-provider-model-reference/004-hub-reconcile-and-validate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "032-per-mode-provider-model-reference",
+      "phase parent"
+    ],
+    "key_topics": [
+      "032-per-mode-provider-model-reference",
+      "phase",
+      "parent",
+      "cli-external-orchestration",
+      "hub",
+      "six",
+      "workflow",
+      "modes",
+      "one",
+      "documents",
+      "providers",
+      "models"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `cli-external-orchestration` hub has six workflow modes, and each one documents \"which providers, which models, which personas/effort tiers, how to invoke\" in several places at once — the mode's `SKILL.md` roster, its `references/cli-reference.md` model section, and scattered model pins across `integration-patterns.md`, `assets/prompt-templates.md`, and playbooks",
+    "created_at": "2026-07-29T08:35:28Z",
+    "last_save_at": "2026-08-11T07:16:29.940Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:1bfb4cd1b982aa6b802db642202601b566ff852d8e7ad2ef976998bdda927bd9",
+    "source_doc_hashes": {
+      "spec.md": "e35564ea8a0785f7b6581408b969918a50072c0340d6c90962e1d83ffa81594a"
+    },
+    "last_active_child_id": "cli-external-orchestration/032-per-mode-provider-model-reference/004-hub-reconcile-and-validate",
+    "last_active_at": null
+  }
+}

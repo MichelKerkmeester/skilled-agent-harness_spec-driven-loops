@@ -20,6 +20,8 @@ The JSON-primary deprecation posture for `generate-context.js` is now establishe
 
 The obsolete follow-up workstreams now live in the archived branch for this area.
 
+---
+
 ## 2. HOW IT WORKS
 
 The shipped posture enforces the following behavior:
@@ -28,6 +30,8 @@ The shipped posture enforces the following behavior:
 2. `generate-context.js --json '<data>'` and `generate-context.js --stdin` are the documented and preferred routine-save paths for AI-composed structured input.
 3. Operator-facing guidance in SKILL.md and the save command documents JSON mode as the preferred routine-save contract, not an exclusive removal of positional file input.
 4. The obsolete session-source-validation, outsourced-agent-handback, and multi-cli-parity follow-up workstreams are archived under the retired branch for this area.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -74,6 +78,8 @@ The shipped posture enforces the following behavior:
 |---|---|---|
 | `scripts/tests/generate-context-cli-authority.vitest.ts` | Automated test | `--stdin` / `--json` structured-input precedence, explicit CLI target authority, and positional JSON file support |
 | `scripts/tests/generate-context-cli-authority.vitest.ts` | Automated test | Invalid inline JSON and missing-target failures for structured-input modes |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

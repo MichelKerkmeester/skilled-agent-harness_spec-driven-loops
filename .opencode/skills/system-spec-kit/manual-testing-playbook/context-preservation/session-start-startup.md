@@ -291,6 +291,8 @@ Observed budget value: `SESSION_PRIME_TOKEN_BUDGET = 2000`, so the asserted limi
 
 Check `shared.ts` SESSION_PRIME_TOKEN_BUDGET constant
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/session-start-priming.md](../../feature-catalog/context-preservation/session-start-priming.md)

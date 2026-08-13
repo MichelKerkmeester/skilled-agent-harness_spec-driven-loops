@@ -16,6 +16,8 @@ Exercise reducer-owned persistence of search-coverage state. A v2 review session
 
 A v2 record may validate cleanly and still hide deferred or blocked candidate-search obligations from the operator. The reducer/dashboard/report chain is where "what was searched, what is still owed" becomes durable across review iterations.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm reducer registry exposes `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, `searchCoverage`. Dashboard surfaces `## Search Debt`. Report surfaces `## Search Ledger`.
@@ -23,6 +25,8 @@ A v2 record may validate cleanly and still hide deferred or blocked candidate-se
 - Real user request: `Run the synthetic two-iteration v2 reducer fixture with deferred ledger rows and confirm registry exposure + dashboard Search Debt + report Search Ledger.`
 - Expected signals: reducer registry JSON contains all five new fields. Dashboard markdown contains `## Search Debt`. Report markdown contains `## Search Ledger` before the appendix.
 - Pass/fail: PASS if registry exposure + dashboard section + report section all present. FAIL if any of the three surfaces is missing or empty when the source session has deferred ledger rows.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -52,12 +56,16 @@ The reducer preserves `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `
 - Dashboard lacks `## Search Debt`: rerun reduction and inspect generated output rather than stale files.
 - Report lacks `## Search Ledger`: confirm the report path consumed the reducer registry after the synthetic session.
 
+---
+
 ## 4. SOURCE REFERENCES
 
 - Reducer: `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (registry return shape + dashboard verdict + active-risks rendering).
 - Report compiler: `.opencode/commands/deep/assets/deep-review-auto.yaml` (Search Ledger section in report-output step).
 - Fixture: `.opencode/skills/system-spec-kit/mcp-server/tests/deep-loop/review-depth-reducer.vitest.ts`.
 - ADR: complexity-search-ledger-persistence decision record (see this skill's changelog for provenance).
+
+---
 
 ## 5. SOURCE_METADATA
 

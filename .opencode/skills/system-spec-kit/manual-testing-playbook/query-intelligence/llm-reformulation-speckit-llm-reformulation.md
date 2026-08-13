@@ -230,6 +230,8 @@ Observed result: the repeated `memory_search({ query: "complex multi-faceted que
 
 Verify isLlmReformulationEnabled() → Check LLM_REFORMULATION_ENDPOINT configured → Inspect cheapSeedRetrieve() for FTS5 results → Verify normalizeQuery() cache key → Check REFORMULATION_TIMEOUT_MS (8000)
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/llm-query-reformulation.md](../../feature-catalog/query-intelligence/llm-query-reformulation.md)

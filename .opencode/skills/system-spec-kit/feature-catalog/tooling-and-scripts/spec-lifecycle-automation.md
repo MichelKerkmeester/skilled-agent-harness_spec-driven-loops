@@ -59,6 +59,8 @@ Taken together, the lifecycle tooling currently covers recommendation, creation,
 | `.opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh` | Script | Upgrades existing spec folders to higher levels with backup creation, chained transformations, and rollback on failure |
 | `.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh` | Script | Measures placeholder replacement progress and optional content quality across root spec documents |
 
+---
+
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts
 - Canonical catalog source: `feature-catalog.md`

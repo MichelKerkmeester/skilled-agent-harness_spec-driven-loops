@@ -159,6 +159,8 @@ Observed exit code: 1
 
 Verify the guard script exists and runs with node; confirm the injected link target truly does not resolve against either the file directory or the repository root; confirm the edited file is under a scanned root and not an excluded path segment
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/markdown-link-integrity-guard.md](../../feature-catalog/tooling-and-scripts/markdown-link-integrity-guard.md)

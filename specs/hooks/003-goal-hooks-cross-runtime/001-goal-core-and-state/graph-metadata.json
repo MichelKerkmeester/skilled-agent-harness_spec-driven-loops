@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/003-goal-hooks-cross-runtime/001-goal-core-and-state",
+  "spec_folder": "hooks/003-goal-hooks-cross-runtime/001-goal-core-and-state",
+  "parent_id": "hooks/003-goal-hooks-cross-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal core and state",
+      "shared active goal state",
+      "goal manage cli",
+      "goal-core.cjs",
+      "goal core plan",
+      "shared active goal plan",
+      "goal core tasks",
+      "goal core checklist",
+      "goal core implementation summary"
+    ],
+    "key_topics": [
+      "goal",
+      "core",
+      "state",
+      "shared",
+      "active",
+      "manage",
+      "cli",
+      "goal-core",
+      "cjs",
+      "plan",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Extract",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "User Story",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Implementation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Target",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Concern",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "attribution",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "honest",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode sessions carry a passive session-goal system: `mk-goal.js` injects an `[activegoal:<goalId>]…[/activegoal]` block every turn via `experimental.chat.system.transform`, and `/goal:goal-opencode` is the manage surface",
+    "created_at": "2026-07-28T17:24:37.208Z",
+    "last_save_at": "2026-08-11T06:50:03.647Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:40e8ab9ff244d721f3b5a1951d15786fc97579bd1bccd1908ab4551da435a2cd",
+    "source_doc_hashes": {
+      "spec.md": "dee4010942fd026444cad37086d19a0db0c970bcb43765a0c49f507e16e1e9ee",
+      "plan.md": "556b14f901494a75a3175b6220fff1f00bc508db808e8e83c3e21c34d8555097",
+      "tasks.md": "4e31f2ba1629bee839272af205ae8ae741268d42957705037b92f20f98cff6d3",
+      "checklist.md": "6f57466d627f7c0e84793b2513e2f045d8afffd1bdfa4c9ea93a36f1cbb5aef6",
+      "implementation-summary.md": "91827ca818f91f75a4904b8d2988245381fe889dc0f69ea5b5cbd14f77be2d53"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

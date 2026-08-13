@@ -19,6 +19,8 @@ Current state:
 - Supports `--active-only` when archived paths should be skipped.
 - Supports `--dry-run` for previewing created, refreshed, and flagged packets.
 
+---
+
 ## 2. DIRECTORY TREE
 
 ```text
@@ -26,11 +28,15 @@ graph/
 `-- backfill-graph-metadata.ts
 ```
 
+---
+
 ## 3. KEY FILES
 
 | File | Role |
 |---|---|
 | `backfill-graph-metadata.ts` | Collects spec folders and calls graph metadata derivation or refresh APIs. |
+
+---
 
 ## 4. ENTRYPOINTS
 
@@ -43,9 +49,13 @@ node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata
 
 Use `--root <specs-dir>` to target a specific specs directory.
 
+---
+
 ## 5. BOUNDARIES
 
 The script owns graph metadata refresh only. It should not edit authored spec documents such as `spec.md`, `plan.md`, or `implementation-summary.md`.
+
+---
 
 ## 6. RELATED
 

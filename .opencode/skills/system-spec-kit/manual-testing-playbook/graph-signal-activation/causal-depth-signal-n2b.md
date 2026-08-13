@@ -60,6 +60,8 @@ Depth scoring output across multi-level graph + normalization range verification
 
 Verify normalization formula → Check SCC condensation / longest-path traversal → Inspect graph depth counting
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/causal-depth-signal.md](../../feature-catalog/graph-signal-activation/causal-depth-signal.md)

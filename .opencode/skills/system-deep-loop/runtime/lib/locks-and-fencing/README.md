@@ -11,6 +11,8 @@ description: "Grants leases with monotonic fence tokens and gates ledger and sta
 
 Runtime primitives that stop two concurrent `system-deep-loop` processes from writing the same resource at once. A lease coordinator issues leases with monotonic fence tokens over canonicalized protected resources, durable writers (ledger append, state store, shadow adapter) refuse a write whose fence token is stale. Every acquire and release is recorded as lock lifecycle evidence so a resumed process can rebuild its fencing state instead of guessing it.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -27,6 +29,8 @@ Runtime primitives that stop two concurrent `system-deep-loop` processes from wr
 | `replay-identity.ts` | Derives an opaque resume identity from a verified or freshly derived replay fingerprint |
 | `index.ts` | Public API barrel |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/`
@@ -35,6 +39,8 @@ Runtime primitives that stop two concurrent `system-deep-loop` processes from wr
 - `.opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/`
 - `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/`
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
+
+---
 
 ## 4. TESTS
 

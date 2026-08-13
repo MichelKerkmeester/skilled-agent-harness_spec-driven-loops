@@ -35,6 +35,8 @@ adds no seventh family key to the smart router — it is authored by producing o
 `behavior_benchmark` package and one `conformance_benchmark` package for the
 command surface, then binding them with the matrix manifest below.
 
+---
+
 ## 2. THE MATRIX MANIFEST (COMPOSITION LAYER)
 
 The composition layer is a **bounded matrix manifest** that enumerates every
@@ -73,6 +75,8 @@ or `skip`: its scenario and leg, its sample count, a fixture-hash reference, and
 either a result pointer or a machine-readable `skip`. A cell is either produced
 (with a `resultPointer`) or explicitly skipped — never silently dropped.
 
+---
+
 ## 3. AUTHORING ORDER
 
 1. Author the command-surface **behavior** package (behavior_benchmark guide) — the
@@ -84,6 +88,8 @@ either a result pointer or a machine-readable `skip`. A cell is either produced
    **launcher** (lane-owned). create-benchmark's role ends at the two input
    packages plus this standard; scheduling, running, scoring, and reporting stay
    lane-local.
+
+---
 
 ## 4. RELATED RESOURCES
 

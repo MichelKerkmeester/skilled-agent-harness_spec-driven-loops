@@ -19,15 +19,21 @@ Current state:
 - `computeSemanticTriggerShadow` is the top-level entrypoint: embeds the query, matches and reports lexical/semantic overlap plus threshold-band counts (`atOrAboveThreshold`, `withinMarginBelowThreshold`, `belowMarginBand`) for shadow-mode analysis.
 - `__testables` exposes internal helpers for tests only.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
 |------|---------|
 | `semantic-trigger-matcher.ts` | Shadow-mode semantic trigger cache, matcher and threshold-band statistics. |
 
+---
+
 ## 3. CONSUMERS
 
 - `handlers/memory-triggers.ts`
+
+---
 
 ## 4. TESTS
 
@@ -36,6 +42,8 @@ Current state:
 - `tests/hybrid-trigger-handler.vitest.ts`
 - `tests/trigger-cold-start.vitest.ts`
 - `tests/trigger-threshold-tuning.vitest.ts`
+
+---
 
 ## 5. RELATED
 

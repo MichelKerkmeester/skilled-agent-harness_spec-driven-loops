@@ -108,6 +108,8 @@ Command 2: `cd .opencode/skills/system-spec-kit/mcp-server && node ./node_module
 
 If the source grep misses a symbol, inspect `mcp-server/lib/cognitive/fsrs-scheduler.ts` or `mcp-server/lib/search/search-flags.ts`. If Vitest fails, use `hybrid-decay-policy.vitest.ts` for default-on flag behavior, type classification, Infinity stability, and TM-03 separation, and `fsrs-hybrid-decay.vitest.ts` for the lower-level no-decay multiplier and routing checks.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/hybrid-decay-policy.md](../../feature-catalog/memory-quality-and-indexing/hybrid-decay-policy.md)

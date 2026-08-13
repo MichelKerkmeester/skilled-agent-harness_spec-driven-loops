@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/003-goal-hooks-cross-runtime/002-capability-probes",
+  "spec_folder": "hooks/003-goal-hooks-cross-runtime/002-capability-probes",
+  "parent_id": "hooks/003-goal-hooks-cross-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal capability probes",
+      "devin stop hook blocking probe",
+      "cursor preToolUse refresh probe",
+      "pi turn end event probe",
+      "capability probe plan",
+      "devin stop hook probe",
+      "pi event list probe",
+      "capability probe tasks",
+      "capability probe summary"
+    ],
+    "key_topics": [
+      "goal",
+      "capability",
+      "probes",
+      "devin",
+      "stop",
+      "hook",
+      "blocking",
+      "probe",
+      "cursor",
+      "pretooluse",
+      "refresh",
+      "turn"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Probe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Locate Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 003-005 of the parent packet each need to build a per-runtime goal-hook adapter (devin, cursor, pi), but two of the three verify/continue mechanisms they would rely on are unproven: Devin's `Stop` hook schema visually mirrors Claude's `decision:\"block\"` continuation contract, but this has never been tested against Devin live; Pi's installed `types.d.ts` event surface has not been read to confirm a usable turn-end/agent-loop event exists at all",
+    "created_at": "2026-07-28T17:24:44.734Z",
+    "last_save_at": "2026-08-11T06:50:03.827Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ce87c2cdc4de6a4ae768e97edf1add75ec18f9d2ef109807fa76f66e465e4985",
+    "source_doc_hashes": {
+      "spec.md": "20bcd4c86487d5ed103b5fedbe371c90f214bd553b593e5c50f0d0cb29b45567",
+      "plan.md": "efdd4126d4cdf0eb300c50120d4adf9387032a10ca74db497f4247b1cffed15d",
+      "tasks.md": "a37c37e67c1a7a6bf2c3449b0794335eede06ca0f424977d286dde60a3bd6727",
+      "implementation-summary.md": "d2864206aaf48dee94a0e62fbce896991b1331edc85144ba575104dc35ef7358"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

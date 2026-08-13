@@ -18,6 +18,8 @@ Four-stage retrieval pipeline behind `memory_search`. It turns a query and pipel
 
 Use this folder for retrieval flow changes that need a clear stage boundary. The public entry point is `executePipeline(config)` from `index.ts`.
 
+---
+
 ## 2. STRUCTURE
 
 | File | Role |
@@ -29,6 +31,8 @@ Use this folder for retrieval flow changes that need a clear stage boundary. The
 | `stage3-rerank.ts` | Applies MMR diversity reranking and MPAB chunk collapse. |
 | `stage4-filter.ts` | Filters by state and tier, adds annotations, and checks score immutability. |
 | `types.ts` | Shared data contracts and score invariant helpers. |
+
+---
 
 ## 3. FLOW
 
@@ -62,6 +66,8 @@ Use this folder for retrieval flow changes that need a clear stage boundary. The
 ╰────────────────────────╯
 ```
 
+---
+
 ## 4. ALLOWED DEPENDENCY DIRECTION
 
 ```text
@@ -82,6 +88,8 @@ Use this folder for retrieval flow changes that need a clear stage boundary. The
 
 Stages may depend on lower-level search channels and scoring helpers. Lower-level modules should not call back into pipeline stages or the orchestrator.
 
+---
+
 ## 5. STAGE RULES
 
 | Stage | Rule |
@@ -90,6 +98,8 @@ Stages may depend on lower-level search channels and scoring helpers. Lower-leve
 | Stage 2 | Own score fusion, retrieval-signal score changes, rescue authority, and late validation score changes. |
 | Stage 3 | Own reranking, diversity pruning, and chunk-to-parent aggregation. |
 | Stage 4 | Filter and annotate without changing score fields. |
+
+---
 
 ## 6. KEY INVARIANTS
 
@@ -100,6 +110,8 @@ Stages may depend on lower-level search channels and scoring helpers. Lower-leve
 | Hybrid double-weight guard | Intent weights are skipped in Stage 2 for hybrid search. |
 | Stage 4 immutability | `Stage4ReadonlyRow`, snapshots, and runtime checks block score mutation. |
 | Score resolution | All stages use `resolveEffectiveScore()` from `types.ts`. |
+
+---
 
 ## 7. RELATED FILES
 

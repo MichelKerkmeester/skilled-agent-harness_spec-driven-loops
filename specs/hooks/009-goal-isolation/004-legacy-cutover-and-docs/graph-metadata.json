@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/009-goal-isolation/004-legacy-cutover-and-docs",
+  "spec_folder": "hooks/009-goal-isolation/004-legacy-cutover-and-docs",
+  "parent_id": "hooks/009-goal-isolation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal legacy cutover",
+      "active goal migration",
+      "goal hook documentation parity",
+      "goal cutover plan",
+      "goal docs parity plan",
+      "goal cutover tasks",
+      "goal documentation parity tasks",
+      "goal cutover status"
+    ],
+    "key_topics": [
+      "goal",
+      "legacy",
+      "cutover",
+      "active",
+      "migration",
+      "hook",
+      "documentation",
+      "parity",
+      "plan",
+      "docs",
+      "tasks",
+      "status"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Legacy Cutover",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Documentation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconciled Pi",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The legacy singleton may contain a real objective but has no trustworthy owner",
+    "created_at": "2026-08-10T11:33:31Z",
+    "last_save_at": "2026-08-11T06:50:09.014Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:88e96e82c5a49f6d15ef82ceabc21e5bc455579e17826523c6543ef05dbf46c3",
+    "source_doc_hashes": {
+      "spec.md": "459d2732320810f4f79c3958aeea6a6df6c99ce9547dae06a66b306bf31f5c92",
+      "plan.md": "28c59fbfea97591c11cd9ff01e7be7138848dbf6bdde7d630ebee383624b4059",
+      "tasks.md": "cd7899b25c068b0259bfe74f321eb3c98f79e925298bef520a22d328ce261ffa",
+      "implementation-summary.md": "c679b6cfd30f59a0ae0b23815923044ea1551fe9e793525c826dfd7f975e5b4f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

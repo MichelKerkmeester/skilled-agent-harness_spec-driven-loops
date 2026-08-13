@@ -22,6 +22,8 @@ Operators run the exact prompt and command sequence for `MR-002` and confirm the
 |---|---|---|---|---|---|---|---|---|
 | `MR-002` | CDN Bundle Version Pin | Prove Motion CDN imports use pinned versions and avoid `@latest` | `Audit Motion CDN URLs for @latest, record pinned versions, and verify animate, inView, scroll, and motionValue exports.` | `rg "motion@|dist/motion|cdn.jsdelivr.net/npm/motion" a_nobel_en_zn .opencode/skills/sk-code` -> create `/tmp/skc-MR002-version-pin.txt` -> run sandbox export probe against each pinned version | no production `motion@latest`; pinned URL found; export probe reports expected functions | `/tmp/skc-MR002-version-pin.txt`, `/tmp/skc-MR002-export-probe.txt` | PASS iff all production Motion CDN URLs are pinned and required exports exist for the pinned version | If `@latest` appears, classify path as docs/example vs production; if production, fail and file remediation |
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Prompt

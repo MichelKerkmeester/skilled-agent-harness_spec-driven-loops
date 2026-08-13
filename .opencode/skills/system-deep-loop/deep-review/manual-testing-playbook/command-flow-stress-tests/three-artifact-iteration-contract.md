@@ -18,6 +18,8 @@ This scenario stresses the YAML-owned post-dispatch contract. A valid iteration 
 
 The prompt pack and skill require an iteration markdown file, a canonical `"type":"iteration"` append to `deep-review-state.jsonl`, and a delta file. Missing any one means convergence and synthesis are judging incomplete state.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence and confirm the expected signals without LLM judgment.
@@ -30,6 +32,8 @@ Operators run the exact command sequence and confirm the expected signals withou
 - Expected signals: `iterations/iteration-001.md`, `deep-review-state.jsonl`, `deltas/iter-001.jsonl`, `"type":"iteration"`, `newFindingsRatio`, `findingsSummary`, and post-dispatch validation language or absence of schema-mismatch failure.
 - Desired outcome: PASS verdict showing command-flow dispatch externalized state for reducer consumption.
 - Pass/fail: PASS if all field counts are `1+`. FAIL if the run only explains what it would do or writes `iteration_delta` instead of `iteration`.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -78,6 +82,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 |---|---|---|---|---|---|---|---|---|
 | CP-053 | THREE_ARTIFACT_ITERATION | Prove post-dispatch artifacts exist and are reducer-readable | `Run the three-artifact iteration scenario and prove deep-review writes iteration markdown, state JSONL, and delta JSONL.` | Run §3 exactly | Field counts all `1+` | Transcript, file listing, artifacts, target diff, tripwire diff | PASS if markdown, state JSONL, and delta JSONL exist with canonical labels | If artifact signals are absent, inspect post-dispatch validation. If `iteration_delta` appears, repair prompt-pack schema. If target diff is non-empty, repair read-only boundary. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Lines | Role |
@@ -85,6 +91,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | `.opencode/commands/deep/assets/deep-review-presentation.txt` | 271-278, 396-400 | Workflow outputs and read-only agent model |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 354-356, 414-420 | Executor invariants and quality gates |
 | `.opencode/agents/deep-review.md` | 80-98, 177-195 | Single-iteration sequence and output verification |
+
+---
 
 ## 5. SOURCE_METADATA
 

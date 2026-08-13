@@ -12,6 +12,8 @@ Verify language sub-detection for `.py` files within OPENCODE surface. The Pytho
 
 Sub-detection rules defined in SKILL.md lines 78-90.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: Add a `--json-output` flag to the skill advisor CLI for machine-readable results.
@@ -36,6 +38,8 @@ Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advi
 
 **Expected NOT loaded**: any of `sk-code-opencode/references/{typescript,shell,config}/*`.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Preconditions
@@ -59,10 +63,14 @@ Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advi
 1. If a typescript/* ref leaks: the extension detector is mis-firing on the `.py` extension.
 2. If python signals not detected: verify `argparse`, `pytest`, `def `, docstring patterns in SKILL.md sub-detection table.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
 - `.opencode/skills/sk-code/sk-code-opencode/references/python/{style_guide,quality_standards,quick_reference}.md`.
+
+---
 
 ## 5. SOURCE METADATA
 

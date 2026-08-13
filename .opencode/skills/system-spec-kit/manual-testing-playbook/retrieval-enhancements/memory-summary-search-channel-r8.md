@@ -113,6 +113,8 @@ warm_exit_code=69
 
 Verify corpus size counting logic; check threshold configuration; inspect channel activation gate in stage-1 pipeline
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/memory-summary-search-channel.md](../../feature-catalog/retrieval-enhancements/memory-summary-search-channel.md)

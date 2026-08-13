@@ -63,6 +63,8 @@ Causal boost output + traversal hop count + edge prior values + scoring breakdow
 
 Verify isTypedTraversalEnabled() → Confirm flag is not forced off → Check SPARSE_DENSITY_THRESHOLD=0.5 → Inspect SPARSE_MAX_HOPS=1 enforcement → Verify INTENT_EDGE_PRIORITY mappings → Check scoring formula components
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/typed-traversal.md](../../feature-catalog/graph-signal-activation/typed-traversal.md)

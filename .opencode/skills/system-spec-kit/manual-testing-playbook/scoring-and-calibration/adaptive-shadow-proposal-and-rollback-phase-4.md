@@ -62,6 +62,8 @@ Search output with `adaptiveShadow` payload + before/after flag comparison + sig
 
 Verify adaptive signals were recorded from access/validation → Inspect bounded delta cap → Confirm disable path clears proposal output without schema rollback
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md](../../feature-catalog/scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md)

@@ -143,6 +143,8 @@ PASS: The hook-stop-token-tracking Vitest suite passed with `Tests  8 passed (8)
 
 Check byte offset calculation with `Buffer.byteLength` for UTF-8
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/stop-token-tracking.md](../../feature-catalog/context-preservation/stop-token-tracking.md)

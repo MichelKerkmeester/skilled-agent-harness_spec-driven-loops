@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/008-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer",
+  "spec_folder": "hooks/008-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer",
+  "parent_id": "hooks/008-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi-cache-optimizer deepseek guard",
+      "fork pi-cache-optimizer",
+      "deepseek exclusion patch",
+      "pi-cache-optimizer fork plan",
+      "deepseek guard implementation",
+      "pi-cache-optimizer fork tasks",
+      "pi-cache-optimizer fork checklist",
+      "pi-cache-optimizer fork status"
+    ],
+    "key_topics": [
+      "pi-cache-optimizer",
+      "deepseek",
+      "guard",
+      "fork",
+      "exclusion",
+      "patch",
+      "plan",
+      "implementation",
+      "tasks",
+      "checklist",
+      "status",
+      "installed"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exclusion Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Patch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extension",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Audit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Host",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Non",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`pi-cache-optimizer` v2.8.0 (installed, live stats confirm 89% hit rate / ~87% token-cache rate on `openai-codex/gpt-5.6-luna`) already has an `isDeepSeekLikeModel(model)` predicate (`index.ts:1275`), but it is used only for DeepSeek compat-warning advice",
+    "created_at": "2026-08-07T05:55:42Z",
+    "last_save_at": "2026-08-11T06:50:06.869Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d6823fdd2edd7b6b12f08a10642f8136f31e93fc100255c2b079c3cb9f69be0e",
+    "source_doc_hashes": {
+      "spec.md": "38b147b0eea55018dca846a5b74f70eaf5ed25030f83b7c235765afb330583fc",
+      "plan.md": "89bee424903c0a381b5f3371d83ea24469852ca8eb62a42f74db6ab66508617e",
+      "tasks.md": "ae3e0f1fdd59c92cf1bc0450a8f77880b2c4b35780ed81d84085ac5dc07c7110",
+      "checklist.md": "3dc0ee928bdbd99e8b328b2607cc9ba0b44fb4efa0d92f769f68489f403c4a21",
+      "implementation-summary.md": "fdbadf61fcc5620dde1c74ce1e57fcc51cf3c11a4bcd2452523831cdb70dcf58"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "system-spec-kit",
+    "rootRel": ".opencode/skills/system-spec-kit"
+  },
+  "executor": "vitest",
+  "model": null,
+  "variant": "opencode-adapter-driven-final",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+      "verdict": "PASS",
+      "reason": "OpenCode adapter-driven suite passed lifecycle cadence, ambiguous/conflicting identity rejection, unidentified-boundary invalidation, kill-switch, and state isolation.",
+      "stage": "adapter-driven",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "opencode-adapter-driven-final",
+      "evidence": [
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/tests/advisor-focused-final.log",
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/seam-payload-fixtures.json"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/tests/advisor-focused-final.log",
+          "status": "verified",
+          "bytes": 339,
+          "sha256": "b63c906daddf6eca5c61c29567ed2b44523e401aae6dc3d2e8d8b86ad11a3bf7"
+        },
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/seam-payload-fixtures.json",
+          "status": "verified",
+          "bytes": 306,
+          "sha256": "bfd6f11fcd98eef106cd9e532e14f9607c37829a0aa63ef6aee7da66ea68d94f"
+        }
+      ]
+    }
+  ],
+  "supersedes": [
+    ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks",
+    ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--opencode-test-seam"
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-11T16:58:00.000Z",
+    "evidenceClass": "adapter-driven",
+    "evidenceArtifacts": [
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/tests/advisor-focused-final.log",
+        "status": "verified",
+        "bytes": 339,
+        "sha256": "b63c906daddf6eca5c61c29567ed2b44523e401aae6dc3d2e8d8b86ad11a3bf7"
+      },
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/seam-payload-fixtures.json",
+        "status": "verified",
+        "bytes": 306,
+        "sha256": "bfd6f11fcd98eef106cd9e532e14f9607c37829a0aa63ef6aee7da66ea68d94f"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+    "stage": "adapter-driven",
+    "dispatch": "manual",
+    "evidenceClass": "adapter-driven",
+    "executor": "vitest",
+    "requestedExecutorLabel": "vitest",
+    "variant": "opencode-adapter-driven-final",
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true,
+    "runtime": "opencode-plugin-test-seam",
+    "nodeVersion": "v25.6.1",
+    "hostVersionObservation": "not-observed",
+    "command": "cd .opencode/skills/system-skill-advisor/mcp-server && npx vitest run tests/hooks/directive-lifecycle.vitest.ts tests/hooks/directive-lifecycle-boundary.vitest.ts tests/hooks/claude-user-prompt-submit-hook.vitest.ts tests/mk-skill-advisor-plugin.vitest.ts --sequence.shuffle --sequence.seed=18018",
+    "payloadFixture": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/seam-payload-fixtures.json",
+    "executorObserved": true,
+    "modelNotApplicableReason": "adapter-driven test seam uses deterministic fixtures without a model",
+    "supersedes": [
+      ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks",
+      ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--opencode-test-seam"
+    ]
+  }
+}

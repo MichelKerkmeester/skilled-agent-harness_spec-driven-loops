@@ -17,6 +17,8 @@ Unlike the CLI shims, which are a client convenience, this is a NEW hard backsto
 
 Freshness here is the same pure mtime comparison documented in [429](../../manual-testing-playbook/tooling-and-scripts/cli-dist-freshness-guard.md): newest watched source mtime versus the compiled entry's mtime, with a lazily-written same-session hash cache as a performance short-circuit only. `.opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh` is the existing automated equivalent of this manual scenario — it exercises the identical stale-then-fresh sequence against the same source/dist pair and asserts exit 3 then a non-3 passthrough.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm `validate.sh` fails closed with exit 3 and the rebuild instruction when the compiled validation orchestrator is stale, and passes again once the dist entry is no longer older than the source.
@@ -26,6 +28,8 @@ Freshness here is the same pure mtime comparison documented in [429](../../manua
 - Expected signals: Exit 3 with `ERROR: validate.sh compiled validation orchestrator is stale.` plus the rebuild command on the stale run; a non-3 validation result (0 pass / 1 warnings / 2 rule errors, never 3) on the restored run.
 - Desired user-visible outcome: A stale compiled validator can never silently grade a spec folder — the operator is stopped and told exactly what to rebuild.
 - Pass/fail: PASS only when the stale run exits exactly 3 with the rebuild instruction, and the restored run exits anything other than 3 with no stale-orchestrator error text.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -87,6 +91,8 @@ Shell transcript with both exit codes, the stale-run stderr block, and the resto
 
 If the stale run does not exit 3, confirm `SPECKIT_VALIDATE_LEGACY` and `SPECKIT_RULES` are unset in the shell — both short-circuit `run_node_orchestrator()` before the freshness check runs, per `validate.sh:970-973`. If the restored run still exits 3, the mtime restore likely did not apply — re-run the `python3 os.utime` restore lines, or simply `touch "$DIST"` so its mtime is unambiguously newer than the source, and delete any stray `.dist-freshness-*.json` cache file next to the dist entry. If `git diff` on `orchestrator.ts` is non-empty after the test, the content restore did not land — reapply `cp "$BAK" "$SOURCE"` from the backup before doing anything else.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -105,6 +111,8 @@ If the stale run does not exit 3, confirm `SPECKIT_VALIDATE_LEGACY` and `SPECKIT
 | `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` | Shared `checkPackageFreshness()` module the backstop calls with `--package system-spec-kit/mcp-server --entry validation-orchestrator` |
 | `.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts` | Watched TypeScript source for the compiled orchestrator entry |
 | `.opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh` | Automated equivalent of this manual scenario (stale-then-fresh assertion pair) |
+
+---
 
 ## 5. SOURCE METADATA
 

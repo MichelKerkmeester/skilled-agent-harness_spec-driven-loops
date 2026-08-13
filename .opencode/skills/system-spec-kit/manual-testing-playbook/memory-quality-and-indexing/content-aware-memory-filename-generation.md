@@ -88,6 +88,8 @@ No memory-save command was run, because running the scenario as written would cr
 
 Inspect `preferredMemoryTask` selection in workflow orchestration; verify session candidate precedence; review `generateContentSlug()` normalization/truncation rules; check pathless batch key assignment before slug generation
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/content-aware-memory-filename-generation.md](../../feature-catalog/memory-quality-and-indexing/content-aware-memory-filename-generation.md)

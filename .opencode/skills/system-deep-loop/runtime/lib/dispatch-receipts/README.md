@@ -11,6 +11,8 @@ description: "Records a durable, integrity-checked receipt before a dispatch cro
 
 Launch-boundary substrate for `system-deep-loop` dispatch. The barrier resolves, authorizes and durably appends a receipt before a spawn call is allowed to cross the process boundary. The fingerprint module confirms the receipt still matches the adapter invocation that produced it. The resume projection folds only ledger-verified events into one exact receipt slot so a resumed session can tell whether a launch already happened.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -26,6 +28,8 @@ Launch-boundary substrate for `system-deep-loop` dispatch. The barrier resolves,
 | `resume-projection.ts` | `projectVerifiedDispatchReceipt`, folding only ledger-verified events into one exact dispatch receipt slot |
 | `types.ts` | Shared dispatch receipt type definitions |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/result-envelopes/resume-reducer.ts`
@@ -33,10 +37,14 @@ Launch-boundary substrate for `system-deep-loop` dispatch. The barrier resolves,
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/legacy-compatibility.ts`
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts`
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/post-dispatch-receipt-validator.vitest.ts`
+
+---
 
 ## 5. RELATED
 

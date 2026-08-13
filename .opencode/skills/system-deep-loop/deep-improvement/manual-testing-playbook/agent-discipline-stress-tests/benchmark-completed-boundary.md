@@ -18,6 +18,8 @@ Call B must run or require `materialize-benchmark-fixtures.cjs`, run `run-benchm
 
 Research found that benchmark execution can be an action placeholder. The legal-stop `evidenceGate` depends on a benchmark boundary that is grep-checkable from journal output and file artifacts.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `CP-037` and confirm the expected signals without contradictory evidence.
@@ -41,6 +43,8 @@ Operators run the exact prompt and command sequence for `CP-037` and confirm the
   - **Call B (`/deep:agent-improvement` command flow)**: Contains `benchmark-outputs/report.json`, `status:"benchmark-complete"`, a `benchmark_run` state row, and report-gated `benchmark_completed`; `benchmark_completed` is not accepted unless `report.json` exists first.
 - Desired user-visible outcome: PASS verdict showing benchmark evidence has a real boundary.
 - Pass/fail: PASS if `benchmark-outputs/report.json`, `status:"benchmark-complete"`, `benchmark_run`, and report-gated `benchmark_completed` exist in causal order. FAIL if action prose appears without file-backed report evidence.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -94,6 +98,8 @@ diff /tmp/cp-037-pre.txt /tmp/cp-037-post.txt > /tmp/cp-037-tripwire.diff; echo 
 |---|---|---|---|---|---|---|---|---|
 | CP-037 | BENCHMARK_COMPLETED_BOUNDARY | Confirm benchmark completion is evented and file-backed | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:agent-improvement` from the command-capable sandbox `` | Run the §3 exact command block | B field counts for `benchmark-outputs/report.json`, `status:"benchmark-complete"`, `benchmark_run`, and `benchmark_completed` are >= 1; `BENCHMARK_REPORT_EXISTS=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-037-B-command.txt`, `/tmp/cp-037-B-combined.txt`, `/tmp/cp-037-B-field-counts.txt`, `/tmp/cp-037-report-exit.txt`, `/tmp/cp-037-tripwire.diff` | PASS if report, status, benchmark_run, and report-gated benchmark_completed evidence exist. FAIL if action prose alone is accepted | 1. If report is absent, benchmark runner did not execute or wrote to the wrong path. 2. If event is absent, add report-gated journal emission. 3. If `benchmark_run` is absent, check state-log append. 4. If `benchmark_completed` appears without `report.json`, restore report-gated event ordering. |
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -111,6 +117,8 @@ diff /tmp/cp-037-pre.txt /tmp/cp-037-post.txt > /tmp/cp-037-tripwire.diff; echo 
 | `.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json` | Static benchmark profile |
 | `.opencode/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/*.json` | Static benchmark fixtures |
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` | Fixture materializer |
+
+---
 
 ## 5. SOURCE METADATA
 

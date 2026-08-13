@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "hooks/008-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek",
+  "description": "The operator intends to route more work through DeepSeek going forward",
+  "keywords": [
+    "operator",
+    "intends",
+    "route",
+    "work",
+    "deepseek",
+    "going",
+    "forward"
+  ],
+  "lastUpdated": "2026-08-11T06:40:10.398Z",
+  "specId": "004",
+  "folderSlug": "adopt-deep-pi-deepseek",
+  "parentChain": [
+    "hooks",
+    "008-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

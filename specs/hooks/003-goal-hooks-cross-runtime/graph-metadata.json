@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/003-goal-hooks-cross-runtime",
+  "spec_folder": "hooks/003-goal-hooks-cross-runtime",
+  "parent_id": null,
+  "children_ids": [
+    "hooks/003-goal-hooks-cross-runtime/001-goal-core-and-state",
+    "hooks/003-goal-hooks-cross-runtime/002-capability-probes",
+    "hooks/003-goal-hooks-cross-runtime/003-devin-goal-hooks",
+    "hooks/003-goal-hooks-cross-runtime/004-cursor-goal-hooks",
+    "hooks/003-goal-hooks-cross-runtime/005-pi-goal-hooks",
+    "hooks/003-goal-hooks-cross-runtime/006-dispatch-shape-coverage",
+    "hooks/003-goal-hooks-cross-runtime/007-opencode-plugin-symlinks",
+    "hooks/003-goal-hooks-cross-runtime/008-goal-docs-hygiene"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal hooks cross runtime",
+      "goal hook devin cursor pi",
+      "dispatch shape coverage",
+      "opencode plugin symlinks"
+    ],
+    "key_topics": [
+      "goal",
+      "hooks",
+      "cross",
+      "runtime",
+      "hook",
+      "devin",
+      "cursor",
+      "dispatch",
+      "shape",
+      "coverage",
+      "opencode",
+      "plugin"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Whether Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Whether Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "touches",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Port the OpenCode passive session-goal system to cli-devin, cli-cursor and cli-pi via a runtime-neutral goal hook concern, activate the dormant hard_rules for those CLIs in the dispatch hook, and mirror the OpenCode plugins into the unified hooks tree.",
+    "created_at": "2026-07-28T17:29:36.478Z",
+    "last_save_at": "2026-08-11T06:43:20.548Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:77a8266b36f5092da6241a632c287f91c5f9bf161a6d35aa352c56020f928480",
+    "source_doc_hashes": {
+      "spec.md": "abe8f3f59a387b1a37002bc9c3e841cf170c76aac654177af8377352dff21a95"
+    },
+    "last_active_child_id": "hooks/003-goal-hooks-cross-runtime/008-goal-docs-hygiene",
+    "last_active_at": null
+  }
+}

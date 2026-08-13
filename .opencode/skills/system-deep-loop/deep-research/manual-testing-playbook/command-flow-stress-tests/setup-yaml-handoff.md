@@ -18,6 +18,8 @@ This scenario sends a bounded one-iteration research request through `/deep:rese
 
 The command says Markdown owns setup and YAML must not load until all required inputs are bound. A command-flow CP should therefore grade state files, setup labels and artifacts, not whether the agent body can improvise missing setup.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence for `CP-046` and confirm the expected signals without LLM judgment.
@@ -29,6 +31,8 @@ Operators run the exact command sequence for `CP-046` and confirm the expected s
 - Expected process: create sandbox, seed `/tmp/cp-046-spec/spec.md`, capture repo tripwire, run Call A as generic task, reset sandbox, run Call B through `/deep:research:auto`, then grep artifacts and diffs.
 - Expected signals: config carries `maxIterations` 1, state log records the topic, prompt pack exists, iteration output exists, command transcript or artifacts mention the auto workflow, sandbox target diff is empty, project tripwire is empty.
 - Pass/fail: PASS if every B signal is non-zero and both diffs are clean. FAIL if setup is inferred inside the agent body, YAML starts with unresolved values, or canonical agent files change.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -89,6 +93,8 @@ diff /tmp/cp-046-pre.txt /tmp/cp-046-post.txt > /tmp/cp-046-tripwire.diff; echo 
 |---|---|---|---|---|---|---|---|---|
 | CP-046 | SETUP_YAML_HANDOFF | Confirm command setup binds values before YAML dispatch | `Run one deep-research iteration and prove setup values reach YAML before dispatch.` | Run the §3 bash block | B field counts all >= 1 | `/tmp/cp-046-B-combined.txt`, `/tmp/cp-046-B-field-counts.txt`, diffs | PASS if setup artifacts and clean diffs exist | 1. If config is missing, inspect setup phase. 2. If prompt is missing, inspect YAML pre-dispatch. 3. If canonical diff is non-empty, repair command containment. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Anchor |
@@ -98,6 +104,8 @@ diff /tmp/cp-046-pre.txt /tmp/cp-046-post.txt > /tmp/cp-046-tripwire.diff; echo 
 | `.opencode/commands/deep/assets/deep-research-auto.yaml:143-150` | preflight rejects missing bindings |
 | `.opencode/skills/system-deep-loop/deep-research/SKILL.md:46-64` | command-owned workflow is mandatory |
 | `.opencode/agents/deep-research.md:34-39` | agent body hard-blocks missing state |
+
+---
 
 ## 5. SOURCE METADATA
 

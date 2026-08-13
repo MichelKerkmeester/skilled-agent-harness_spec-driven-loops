@@ -11,6 +11,8 @@ description: "Reduces multiple fan-out candidate results into one source-balance
 
 Runtime primitives that merge multiple fan-out candidate results in `system-deep-loop` without letting one model family or source bucket dominate the merge. Identities are normalized into stable digests. The reducer combines blinded-adjudication verdicts, conditional-fanin candidates and partial-failure results into one fairly weighted outcome. A replay path re-derives that outcome from the ledger to verify it deterministically.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -20,6 +22,8 @@ Runtime primitives that merge multiple fan-out candidate results in `system-deep
 | `replay.ts` | Replays the provenance reduction ledger to verify the result deterministically |
 | `types.ts` | Fleet-bucket status and reduction, identity, scheduler and ledger version and candidate contracts |
 | `index.ts` | Public API barrel |
+
+---
 
 ## 3. TESTS
 

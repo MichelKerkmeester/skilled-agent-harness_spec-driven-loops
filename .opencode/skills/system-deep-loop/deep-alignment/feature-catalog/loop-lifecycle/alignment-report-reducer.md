@@ -22,6 +22,8 @@ The `REPORT`-state reducer that folds the JSONL state log and deltas into a find
 
 `reduce-alignment-state.cjs` is the reducer-owned view over the alignment packet — the source of truth for per-lane and overall verdicts. It lives under `runtime/scripts/` (ADR-010 relocation) so a future loop-wiring pass calls it the same way it calls the sibling deep-review reducer, and it is idempotent: repeated calls with unchanged input produce identical output.
 
+---
+
 ## 2. HOW IT WORKS
 
 It reads the frozen config's lanes, parses the append-only state log (reporting malformed lines as `corruptionWarnings` rather than dropping them), and loads the per-iteration delta findings. For each lane it dedups findings by content-hash or a common-field fallback, counts them by severity (weights P0 10.0 / P1 5.0 / P2 1.0, shared with the deep-review reducer), and derives a verdict: `FAIL` if any P0, `CONDITIONAL` if any P1, `PASS` otherwise, and `NOT_APPLICABLE` for a lane that never ran an iteration or discovered zero artifacts — so a lane with nothing to check is never silently folded into an aggregate PASS. Findings pass through in their raw adapter shapes (only severity is read structurally), because the five adapters' finding shapes are heterogeneous by design.

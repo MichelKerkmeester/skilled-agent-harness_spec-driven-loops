@@ -171,6 +171,8 @@ Output:
 
 Verify MPAB formula implementation → Check child chunk linkage → Inspect aggregation stage-3 entry point
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/mpab-chunk-to-memory-aggregation.md](../../feature-catalog/pipeline-architecture/mpab-chunk-to-memory-aggregation.md)

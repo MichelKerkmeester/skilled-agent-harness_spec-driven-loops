@@ -20,6 +20,8 @@ The Stop hook runs `session-cleanup.sh`, which cleans up a session's descendants
 
 This feature gives that no-session-pid branch a safe job. When enabled, it delegates to the orphan-only `orphan-mcp-sweeper.sh`, which reaps only ownerless MCP daemons that have already reparented away from their original owner. Because it targets only reparented orphans rather than guessing at session membership, it can never touch a live session. The feature is off by default and supports a dry-run mode that logs candidate reaps without mutating, plus a live mode that actually reaps.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### No-session-pid branch as the trigger
@@ -38,6 +40,8 @@ The branch delegates to `orphan-mcp-sweeper.sh`, which reaps only ownerless MCP 
 
 `SPECKIT_ORPHAN_SWEEPER_BIN` overrides the sweeper binary path, defaulting to the sibling `orphan-mcp-sweeper.sh` next to the hook script. Tests point it at a stub so they can assert the delegation and the mode gating without reaping real processes.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -52,6 +56,8 @@ The branch delegates to `orphan-mcp-sweeper.sh`, which reaps only ownerless MCP 
 | File | Type | Role |
 |---|---|---|
 | `mcp-server/tests/launcher-stop-hook-orphan-sweep.vitest.ts` | Automated test | Unit-tests the default-off no-op, dry-run and live mode gating, delegation to the orphan-only sweeper and the test-override sweeper path |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling and Scripts

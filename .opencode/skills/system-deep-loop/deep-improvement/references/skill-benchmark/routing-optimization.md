@@ -31,6 +31,8 @@ The fastest honest score gains usually come from five places:
 
 Treat the benchmark report as a funnel: fix hard structural failures first, then fix scenario gold, then reduce genuine waste.
 
+---
+
 ## 2. D5 ORPHAN REFERENCES
 
 Signal: `D5 orphan_reference`.
@@ -58,6 +60,8 @@ Avoid:
 - Adding keywords copied from the filename instead of user-domain language.
 - Adding every orphan to every intent, which fixes D5 but usually creates D3 waste.
 
+---
+
 ## 3. ALWAYS-TIER FILES NOT IN RESOURCE_MAP
 
 Signal: D5 coverage gaps and D1/D2 under-credit for files that are legitimately loaded as base context.
@@ -74,6 +78,8 @@ Concrete remediation:
 6. Re-run the benchmark and inspect both D5 and D3. A base load should be credited when legitimate, but it should still count as waste when it is unrelated.
 
 Rule of thumb: if the skill would be unsafe or impossible to execute without the file, make it visible in `RESOURCE_MAP`; if it is only occasionally useful, intent-gate it.
+
+---
 
 ## 4. GOLD ALIGNMENT FOR LEGITIMATE BASE LOADS
 
@@ -92,6 +98,8 @@ Concrete remediation:
 
 Gold alignment is not inventing new truth; it is making scorer-only gold match the router contract the skill actually promises.
 
+---
+
 ## 5. GENUINE OVER-ROUTING
 
 Signal: D3 efficiency, computed as wasted routed resources over total routed resources in Mode A and replaced by live calls/tokens-to-first-expected in Mode B.
@@ -108,6 +116,8 @@ Concrete remediation:
 6. Re-run Lane C and verify D3 improves without hurting D1/D2 recall for scenarios that genuinely need the file.
 
 Do not solve D3 by deleting resources from gold or from the skill when they are actually required. Solve it by making the router discriminate.
+
+---
 
 ## 6. PARENT-HUB ROUTING
 
@@ -126,6 +136,8 @@ Concrete remediation:
 
 Parent hubs should make children discoverable, not flatten all child resources into one always-loaded bundle.
 
+---
+
 ## 7. DO NOT GAME THE METRIC
 
 Lane C is useful only if the router, resources, and private gold represent real behavior.
@@ -140,6 +152,8 @@ Do not:
 - Let parent hubs over-claim child routes they cannot safely execute.
 
 Accept lower scores when they describe real ambiguity. Fix the skill, the route map, or the scenario authoring; do not train the benchmark to lie.
+
+---
 
 ## 8. REMEDIATION ORDER
 

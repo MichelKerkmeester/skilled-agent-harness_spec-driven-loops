@@ -15,6 +15,8 @@ trigger_phrases:
 
 `lib/` contains pure libraries used by the create-skill generators and tests. Callers own filesystem access and pass validated data into these modules.
 
+---
+
 ## 2. CONTENTS
 
 | File | Responsibility |
@@ -24,9 +26,13 @@ trigger_phrases:
 | `s-class-config-defaults.json` | Stores defaults for skill-root class configuration. |
 | `skill-root-metadata-contract.cjs` | Classifies skill roots and derives required, forbidden, overlay and generated metadata sets. |
 
+---
+
 ## 3. BOUNDARIES
 
 The modules do not read or write the filesystem. Existence probes and package traversal remain in the caller scripts.
+
+---
 
 ## 4. VALIDATION
 
@@ -36,6 +42,8 @@ Run the library-focused tests from the repository root:
 node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs
 node .opencode/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs
 ```
+
+---
 
 ## 5. RELATED
 

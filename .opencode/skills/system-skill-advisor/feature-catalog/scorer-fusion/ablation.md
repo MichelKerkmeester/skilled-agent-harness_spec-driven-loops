@@ -17,9 +17,13 @@ version: 0.8.0.14
 
 Quantify each lane's contribution to accuracy so lane weights can be reasoned about empirically. Ablation must never mutate live weights.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/scorer/ablation.ts` drives the ablation protocol: it reads the active lane weight configuration, runs the corpus with each non-zero lane set to zero in turn and emits per-lane accuracy deltas. The live `laneWeights` (exposed via `advisor_status`) are unchanged after ablation. Results feed into `advisor_validate` ablation slices.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -36,6 +40,8 @@ Quantify each lane's contribution to accuracy so lane weights can be reasoned ab
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-validate.vitest.ts` | Automated test | ablation slices |
 | `Playbook scenario [SC-005](../../manual-testing-playbook/scorer-fusion/ablation.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

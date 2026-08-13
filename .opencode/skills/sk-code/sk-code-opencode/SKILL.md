@@ -23,6 +23,8 @@ Detection is two-step. First, the surface trigger is work under `.opencode/` (in
 - The active workflow phase needs a language standard, a language-agnostic organization pattern, a hook contract, an alignment-verification procedure, or an authoring checklist.
 - This surface owns edits, tests, and verification through the workflow references; hand off formal findings-first review to `code-review` and author-side quality gates to `code-quality`.
 
+---
+
 ## 2. REFERENCE MAP
 
 Language standards — after `.opencode/` selects this surface, load the exact split resources for the detected language:
@@ -169,6 +171,8 @@ RESOURCE_MAP = {
 - **Alignment drift is a verification gate.** System-code changes re-run all three sk-code drift guards before any completion claim — `assets/scripts/verify_alignment_drift.py` (language integrity; add `--check-router` for dead RESOURCE_MAP routes), `assets/scripts/verify_stack_folders.py` (language reference folders resolve), and the `sk-code-router-sync.vitest.ts` suite (machine router vs filesystem/prose, plus the compiled-destination ↔ leaf-manifest ↔ RESOURCE_MAP bijection) — through the single entry point `scripts/run-all-drift-guards.sh`. See `references/shared/alignment-verification-automation.md`. Interim: the wrapper now scans the whole repository and reports a known pre-existing backlog, so while that backlog is being worked off a completion claim reports its packet-scoped delta against the frozen baseline in the conformance program's directory manifest rather than requiring wrapper rc 0.
 - **Rust preserves the TypeScript contract.** Rust napi-rs, WASM/WASI, and sidecar modules are compatibility implementations, not independent behavior authorities. JS-visible bytes, six-decimal numeric behavior, comparator tie-breaks, deterministic IDs, collection order, DTOs, and error shapes must remain identical to the TypeScript oracle.
 - **Touched-language set, not one-per-task.** Most `.opencode/` tasks touch a single language — keep that slice tight and lean on the shared tier for cross-language rules. An interop task that spans a language pair (a napi-rs / WASM / sidecar Rust module held to its TypeScript oracle) legitimately touches both languages: the router slices to the set the task actually touches and loads both trios plus the shared tier, because you cannot hold Rust byte-identical to TypeScript without seeing both standards.
+
+---
 
 ## 4. ASSETS AND OTHER SURFACE AREAS — ON-DEMAND
 

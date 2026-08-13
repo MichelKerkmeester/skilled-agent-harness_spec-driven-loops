@@ -16,6 +16,8 @@ Audit every `.cursor/agents/*.md` entry for symlink type, target resolution, can
 
 Real files would fork agent instructions and allow Cursor behavior to drift from Claude's canonical roster. The mirror contract is one source of truth, not copied content.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Prove every Cursor agent mirror is a symlink into `.claude/agents/` and no real fork exists.
@@ -25,6 +27,8 @@ Real files would fork agent instructions and allow Cursor behavior to drift from
 - Expected signals: 13 `.cursor/agents/*.md` entries; every `test -L` succeeds; every `readlink -f` target is under `.claude/agents/`; no regular `.md` fork is present.
 - Desired user-visible outcome: A reproducible integrity report with one canonical source per agent.
 - Pass/fail: PASS when all mirrors satisfy the symlink and target-root checks; FAIL on any regular file, broken link, or target outside `.claude/agents/`; SKIP only on Cursor auth/availability blockers for the summary dispatch (the filesystem audit itself can still be PASS).
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -36,6 +40,8 @@ Real files would fork agent instructions and allow Cursor behavior to drift from
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | CU-025 | Symlink audit plus `cursor-agent -p ...` | 13 symlinks, all target `.claude/agents/`, no forks | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -52,6 +58,8 @@ Real files would fork agent instructions and allow Cursor behavior to drift from
 | `../../SKILL.md` | One-source-of-truth agent mirror contract |
 | `../../../../.cursor/agents/` | Mirror directory under test |
 | `../../../../.claude/agents/` | Canonical target directory |
+
+---
 
 ## 5. SOURCE METADATA
 

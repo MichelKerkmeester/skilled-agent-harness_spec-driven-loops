@@ -17,6 +17,8 @@ version: 0.8.0.13
 
 Keep pre-Phase-027 Python consumers working while moving routing to the native advisor. The shim probes the native daemon first, translates native output into the legacy JSON-array shape and falls back to the local Python scorer when native routing is unavailable or explicitly bypassed.
 
+---
+
 ## 2. HOW IT WORKS
 
 `scripts/skill_advisor.py` is the CLI surface. `scripts/skill_advisor_runtime.py` implements the local Python scorer used by `--force-local` and the fallback path. Control flags:
@@ -29,6 +31,8 @@ Keep pre-Phase-027 Python consumers working while moving routing to the native a
 | `--threshold <value>` | Override dual-threshold confidence cutoff (default 0.8). |
 | `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` | Disable advisor invocation entirely. |
 | `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` | Env-level force-local toggle for plugin/script diagnostics. |
+
+---
 
 ## 3. SOURCE FILES
 
@@ -48,6 +52,8 @@ Keep pre-Phase-027 Python consumers working while moving routing to the native a
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/python/` | Automated test | Python unit test |
 | `Playbook scenarios [PC-001](../../manual-testing-playbook/python-compat/stdin-mode.md), [PC-002](../../manual-testing-playbook/python-compat/force-native-force-local.md), [PC-003](../../manual-testing-playbook/python-compat/threshold-flag.md) and [CP-001..CP-004](../../manual-testing-playbook/compat-and-disable).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

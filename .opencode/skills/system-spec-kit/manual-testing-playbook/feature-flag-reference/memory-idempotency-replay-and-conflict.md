@@ -74,6 +74,8 @@ No sandbox file was created, no `memory_save` calls were run, and no vitest comm
 
 Inspect `lib/storage/idempotency-receipts.ts`, save/update handler idempotency wiring, and `tests/memory-idempotency-and-near-duplicate.vitest.ts`. Confirm the test process is using schema v36 or newer.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

@@ -26,6 +26,8 @@ version: "1.2.0.0"
 
 This scenario verifies that an iterative review request resolves to `workflowMode: review` and produces the review route with P0/P1/P2 finding expectations.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants a fresh iterative audit of risky code changes, ordered by severity.
@@ -50,6 +52,8 @@ Run a deep review of the current routing changes, iterate until findings converg
 - Advisor evidence: `advisorRouting.routingClass: "lexical"` and `advisorRouting.legacyAdvisorId: "deep-review"`.
 
 **Desired user-visible outcome**: The AI invokes or describes the `review` lane, names `/deep:review`, `deep-review`, `runtime-loop-type`, and `review/`, and frames output as severity-weighted findings plus verdict.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -90,10 +94,14 @@ Run a deep review of the current routing changes, iterate until findings converg
 2. If the hub picks research, verify the prompt's audit and severity words are preserved.
 3. If the agent is wrong, compare the response against `agent: "deep-review"` in the registry.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule and mode table.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `review` mode source of truth.
+
+---
 
 ## 5. SOURCE METADATA
 

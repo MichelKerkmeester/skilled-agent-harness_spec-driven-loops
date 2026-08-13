@@ -60,6 +60,8 @@ Large-array test output + numeric comparison evidence + error-free execution pro
 
 Verify all Math.max/min spread calls have been replaced; check array size at all call sites; test with progressively larger arrays
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md](../../feature-catalog/bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md)

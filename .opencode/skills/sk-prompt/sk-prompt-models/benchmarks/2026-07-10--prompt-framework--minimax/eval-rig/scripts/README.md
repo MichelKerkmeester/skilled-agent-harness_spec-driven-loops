@@ -11,6 +11,8 @@ description: "Orchestration scripts that validate the eval-rig without live disp
 
 `scripts/` holds the eval-rig's own operational scripts, distinct from the per-fixture scoring checks in `deterministic/`. It covers offline validation of the whole rig, cache-index recovery and the manual approve/reject gate the eval loop calls after its first iteration.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -21,6 +23,8 @@ description: "Orchestration scripts that validate the eval-rig without live disp
 | `deterministic/` | The four deterministic per-fixture scoring checks, documented in its own README |
 | `dry-run-fixtures/` | Canned SWE-output fixtures (`passing.canned.md`, `failing.canned.md`, `parse-error.canned.md`) that `dry-run.cjs` feeds through the deterministic checks and grader stub |
 
+---
+
 ## 3. VALIDATION
 
 ```bash
@@ -28,6 +32,8 @@ node scripts/dry-run.cjs --full
 ```
 
 Runs from `eval-rig/`. Exits 0 only when the cache, deterministic-check, grader-stub and cache-reconstruct subtests all pass. Use `--test-cache`, `--test-deterministic`, `--test-grader-stub` or `--test-cache-reconstruct` to run a single subtest.
+
+---
 
 ## 4. RELATED
 

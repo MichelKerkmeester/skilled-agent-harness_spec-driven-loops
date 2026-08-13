@@ -28,7 +28,7 @@ Unlike every sibling runtime, Pi's guard layer is **native code, not config**: `
 | `extensions/*.ts` + `lib/` | **hand-authored** guard bridges | shared guard cores under `.opencode/**` | Behavioral drift only; no checker |
 | `mcp.json` | **hand-authored** | — | Registers mk-spec-memory, mk_skill_advisor, code_mode, sequential_thinking |
 | `settings.json` | **hand-authored** | — | Pi package configuration |
-| `settings.json`, `modes.json`, `statusline.sh`, `pi-blackhole-config.json` (global) | **symlinked canonicals** | repo `.pi/*` is the source of truth; `~/.pi/agent/*` and `~/.pi/agent/pi-blackhole/pi-blackhole-config.json` are relative symlinks back into the repo | Users pull the latest configs from this repo; the local Mac consumes them via symlink |
+| `settings.json`, `modes.json`, `statusline.sh`, `pi-blackhole-config.json`, `models.json` (global) | **symlinked canonicals** | repo `.pi/*` is the source of truth; `~/.pi/agent/*` and `~/.pi/agent/pi-blackhole/pi-blackhole-config.json` are relative symlinks back into the repo | Users pull the latest configs from this repo; the local Mac consumes them via symlink |
 | `npm/` | operator-local package output | — | not synced |
 | `skills/` | whole-dir symlink | `.opencode/skills` (same mirror as `.claude/skills`) | No |
 | `manual-testing-playbook/` | whole-dir symlink | `.opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook` | No |

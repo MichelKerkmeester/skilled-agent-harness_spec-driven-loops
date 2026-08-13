@@ -1,0 +1,453 @@
+{
+  "schema_version": "1.0",
+  "registry_name": "deep-ai-council-findings-registry",
+  "session_id": "council-011-non-deepseek-findings",
+  "findings": [
+    {
+      "fingerprint": "council:non-deepseek-findings-review:topic-topic-001-non-deepseek-findings-review-final-verdict-test-first-active-sur",
+      "content_hash": "sha256:004bb10008b3f02cd7e3db6039a7bd77bcabd3e80d5391bb92dacb77dbdefcc2",
+      "topic_id": "topic-001-non-deepseek-findings-review",
+      "topic_slug": "non-deepseek-findings-review",
+      "round_id": "round-003",
+      "finding_type": "topic-final-verdict",
+      "claim": "Topic topic-001-non-deepseek-findings-review final verdict: test-first-active-surface-remediation",
+      "stance": "support",
+      "severity": null,
+      "confidence": 0,
+      "evidence": {
+        "final_verdict": {
+          "recommended_option": "test-first-active-surface-remediation",
+          "confidence": 0,
+          "blocking_disagreements": [],
+          "material_risks": [
+            "seat supported with risks"
+          ],
+          "seat_votes": {
+            "pragmatic-lens": "test-first-active-surface-remediation"
+          },
+          "decision_axes": {
+            "seat:pragmatic-lens": "test-first-active-surface-remediation"
+          }
+        },
+        "stability_score": 0.5,
+        "stop_reason": "max_rounds_per_topic",
+        "rounds_completed": 3
+      },
+      "source_iter": "round-003",
+      "source_seat": null,
+      "source_artifacts": [
+        "ai-council/topics/topic-001-non-deepseek-findings-review/rounds/round-003/deliberation.md"
+      ],
+      "introduced_at": "2026-08-09T07:31:36.026Z",
+      "last_seen_at": "2026-08-09T07:31:36.026Z",
+      "superseded_by": null
+    },
+    {
+      "fingerprint": "council:session:session-council-011-non-deepseek-findings-completed-1-topic-s-topics-exhausted",
+      "content_hash": "sha256:94e539b66316a5dc9dfcd9f340468c91ce4808cc5b9a130e86b4d1a170664a5a",
+      "topic_id": "session",
+      "topic_slug": "session",
+      "round_id": null,
+      "finding_type": "session-synthesis",
+      "claim": "Session council-011-non-deepseek-findings completed 1 topic(s): topics_exhausted",
+      "stance": "synthesis",
+      "severity": null,
+      "confidence": null,
+      "evidence": {
+        "completed_topic_ids": [
+          "topic-001-non-deepseek-findings-review"
+        ],
+        "stop_reason": "topics_exhausted",
+        "topic_results": [
+          {
+            "topic_id": "topic-001-non-deepseek-findings-review",
+            "rounds_completed": 3,
+            "final_verdict": {
+              "recommended_option": "test-first-active-surface-remediation",
+              "confidence": 0,
+              "blocking_disagreements": [],
+              "material_risks": [
+                "seat supported with risks"
+              ],
+              "seat_votes": {
+                "pragmatic-lens": "test-first-active-surface-remediation"
+              },
+              "decision_axes": {
+                "seat:pragmatic-lens": "test-first-active-surface-remediation"
+              }
+            },
+            "stability_score": 0.5,
+            "stop_reason": "max_rounds_per_topic",
+            "rounds": [
+              {
+                "round_id": "round-001",
+                "seat_executions": [
+                  {
+                    "seat_id": "analytical-lens",
+                    "status": "rejected",
+                    "started_at_iso": "2026-08-09T07:01:35.154Z",
+                    "completed_at_iso": "2026-08-09T07:11:35.414Z",
+                    "duration_ms": 600260,
+                    "execution_provenance": {
+                      "requested": {
+                        "executor_family": "cli-pi",
+                        "primary_agent": "plan",
+                        "model": "gpt-5.6-sol"
+                      },
+                      "effective": {
+                        "command": "pi",
+                        "primary_agent": "plan",
+                        "model": null
+                      }
+                    },
+                    "error": {
+                      "name": "Error",
+                      "message": "[ai-council] Seat dispatch timed out after 600000ms",
+                      "execution_provenance": {
+                        "requested": {
+                          "executor_family": "cli-pi",
+                          "primary_agent": "plan",
+                          "model": "gpt-5.6-sol"
+                        },
+                        "effective": {
+                          "command": "pi",
+                          "primary_agent": "plan",
+                          "model": null
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "seat_id": "critical-lens",
+                    "status": "fulfilled",
+                    "started_at_iso": "2026-08-09T07:01:35.160Z",
+                    "completed_at_iso": "2026-08-09T07:10:25.044Z",
+                    "duration_ms": 529884,
+                    "execution_provenance": {
+                      "requested": {
+                        "executor_family": "cli-pi",
+                        "primary_agent": "plan",
+                        "model": "gpt-5.6-sol"
+                      },
+                      "effective": {
+                        "command": "pi",
+                        "primary_agent": "plan",
+                        "model": null
+                      }
+                    },
+                    "error": null
+                  },
+                  {
+                    "seat_id": "pragmatic-lens",
+                    "status": "fulfilled",
+                    "started_at_iso": "2026-08-09T07:01:35.164Z",
+                    "completed_at_iso": "2026-08-09T07:10:47.825Z",
+                    "duration_ms": 552661,
+                    "execution_provenance": {
+                      "requested": {
+                        "executor_family": "cli-pi",
+                        "primary_agent": "plan",
+                        "model": "gpt-5.6-sol"
+                      },
+                      "effective": {
+                        "command": "pi",
+                        "primary_agent": "plan",
+                        "model": null
+                      }
+                    },
+                    "error": null
+                  }
+                ],
+                "dispatch_summary": {
+                  "total": 3,
+                  "succeeded": 2,
+                  "failed": 1,
+                  "all_failed": false
+                },
+                "adjudicator_verdict": {
+                  "recommended_option": "narrow-test-first-non-deepseek-remediation",
+                  "confidence": 0,
+                  "blocking_disagreements": [],
+                  "material_risks": [
+                    "seat supported with risks"
+                  ],
+                  "seat_votes": {
+                    "critical-lens": "test-first-guard-preserving-nondeepseek-remediation",
+                    "pragmatic-lens": "narrow-test-first-non-deepseek-remediation"
+                  },
+                  "decision_axes": {
+                    "seat:critical-lens": "test-first-guard-preserving-nondeepseek-remediation",
+                    "seat:pragmatic-lens": "narrow-test-first-non-deepseek-remediation"
+                  }
+                },
+                "verdict_delta_from_previous": null,
+                "verdict_stable": false,
+                "stop_reason": null,
+                "state_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/ai-council/topics/topic-001-non-deepseek-findings-review/rounds/round-001/round-state.jsonl"
+              },
+              {
+                "round_id": "round-002",
+                "seat_executions": [
+                  {
+                    "seat_id": "analytical-lens",
+                    "status": "rejected",
+                    "started_at_iso": "2026-08-09T07:11:35.437Z",
+                    "completed_at_iso": "2026-08-09T07:21:35.705Z",
+                    "duration_ms": 600268,
+                    "execution_provenance": {
+                      "requested": {
+                        "executor_family": "cli-pi",
+                        "primary_agent": "plan",
+                        "model": "gpt-5.6-sol"
+                      },
+                      "effective": {
+                        "command": "pi",
+                        "primary_agent": "plan",
+                        "model": null
+                      }
+                    },
+                    "error": {
+                      "name": "Error",
+                      "message": "[ai-council] Seat dispatch timed out after 600000ms",
+                      "execution_provenance": {
+                        "requested": {
+                          "executor_family": "cli-pi",
+                          "primary_agent": "plan",
+                          "model": "gpt-5.6-sol"
+                        },
+                        "effective": {
+                          "command": "pi",
+                          "primary_agent": "plan",
+                          "model": null
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "seat_id": "critical-lens",
+                    "status": "fulfilled",
+                    "started_at_iso": "2026-08-09T07:11:35.444Z",
+                    "completed_at_iso": "2026-08-09T07:21:34.752Z",
+                    "duration_ms": 599308,
+                    "execution_provenance": {
+                      "requested": {
+                        "executor_family": "cli-pi",
+                        "primary_agent": "plan",
+                        "model": "gpt-5.6-sol"
+                      },
+                      "effective": {
+                        "command": "pi",
+                        "primary_agent": "plan",
+                        "model": null
+                      }
+                    },
+                    "error": null
+                  },
+                  {
+                    "seat_id": "pragmatic-lens",
+                    "status": "rejected",
+                    "started_at_iso": "2026-08-09T07:11:35.448Z",
+                    "completed_at_iso": "2026-08-09T07:21:35.720Z",
+                    "duration_ms": 600272,
+                    "execution_provenance": {
+                      "requested": {
+                        "executor_family": "cli-pi",
+                        "primary_agent": "plan",
+                        "model": "gpt-5.6-sol"
+                      },
+                      "effective": {
+                        "command": "pi",
+                        "primary_agent": "plan",
+                        "model": null
+                      }
+                    },
+                    "error": {
+                      "name": "Error",
+                      "message": "[ai-council] Seat dispatch timed out after 600000ms",
+                      "execution_provenance": {
+                        "requested": {
+                          "executor_family": "cli-pi",
+                          "primary_agent": "plan",
+                          "model": "gpt-5.6-sol"
+                        },
+                        "effective": {
+                          "command": "pi",
+                          "primary_agent": "plan",
+                          "model": null
+                        }
+                      }
+                    }
+                  }
+                ],
+                "dispatch_summary": {
+                  "total": 3,
+                  "succeeded": 1,
+                  "failed": 2,
+                  "all_failed": false
+                },
+                "adjudicator_verdict": {
+                  "recommended_option": "guard-frozen-test-first-nondeepseek-remediation",
+                  "confidence": 0,
+                  "blocking_disagreements": [],
+                  "material_risks": [
+                    "seat supported with risks"
+                  ],
+                  "seat_votes": {
+                    "critical-lens": "guard-frozen-test-first-nondeepseek-remediation"
+                  },
+                  "decision_axes": {
+                    "seat:critical-lens": "guard-frozen-test-first-nondeepseek-remediation"
+                  }
+                },
+                "verdict_delta_from_previous": 0.5,
+                "verdict_stable": false,
+                "stop_reason": null,
+                "state_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/ai-council/topics/topic-001-non-deepseek-findings-review/rounds/round-002/round-state.jsonl"
+              },
+              {
+                "round_id": "round-003",
+                "seat_executions": [
+                  {
+                    "seat_id": "analytical-lens",
+                    "status": "rejected",
+                    "started_at_iso": "2026-08-09T07:21:35.731Z",
+                    "completed_at_iso": "2026-08-09T07:31:36.006Z",
+                    "duration_ms": 600275,
+                    "execution_provenance": {
+                      "requested": {
+                        "executor_family": "cli-pi",
+                        "primary_agent": "plan",
+                        "model": "gpt-5.6-sol"
+                      },
+                      "effective": {
+                        "command": "pi",
+                        "primary_agent": "plan",
+                        "model": null
+                      }
+                    },
+                    "error": {
+                      "name": "Error",
+                      "message": "[ai-council] Seat dispatch timed out after 600000ms",
+                      "execution_provenance": {
+                        "requested": {
+                          "executor_family": "cli-pi",
+                          "primary_agent": "plan",
+                          "model": "gpt-5.6-sol"
+                        },
+                        "effective": {
+                          "command": "pi",
+                          "primary_agent": "plan",
+                          "model": null
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "seat_id": "critical-lens",
+                    "status": "rejected",
+                    "started_at_iso": "2026-08-09T07:21:35.749Z",
+                    "completed_at_iso": "2026-08-09T07:31:36.013Z",
+                    "duration_ms": 600264,
+                    "execution_provenance": {
+                      "requested": {
+                        "executor_family": "cli-pi",
+                        "primary_agent": "plan",
+                        "model": "gpt-5.6-sol"
+                      },
+                      "effective": {
+                        "command": "pi",
+                        "primary_agent": "plan",
+                        "model": null
+                      }
+                    },
+                    "error": {
+                      "name": "Error",
+                      "message": "[ai-council] Seat dispatch timed out after 600000ms",
+                      "execution_provenance": {
+                        "requested": {
+                          "executor_family": "cli-pi",
+                          "primary_agent": "plan",
+                          "model": "gpt-5.6-sol"
+                        },
+                        "effective": {
+                          "command": "pi",
+                          "primary_agent": "plan",
+                          "model": null
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "seat_id": "pragmatic-lens",
+                    "status": "fulfilled",
+                    "started_at_iso": "2026-08-09T07:21:35.754Z",
+                    "completed_at_iso": "2026-08-09T07:30:05.241Z",
+                    "duration_ms": 509487,
+                    "execution_provenance": {
+                      "requested": {
+                        "executor_family": "cli-pi",
+                        "primary_agent": "plan",
+                        "model": "gpt-5.6-sol"
+                      },
+                      "effective": {
+                        "command": "pi",
+                        "primary_agent": "plan",
+                        "model": null
+                      }
+                    },
+                    "error": null
+                  }
+                ],
+                "dispatch_summary": {
+                  "total": 3,
+                  "succeeded": 1,
+                  "failed": 2,
+                  "all_failed": false
+                },
+                "adjudicator_verdict": {
+                  "recommended_option": "test-first-active-surface-remediation",
+                  "confidence": 0,
+                  "blocking_disagreements": [],
+                  "material_risks": [
+                    "seat supported with risks"
+                  ],
+                  "seat_votes": {
+                    "pragmatic-lens": "test-first-active-surface-remediation"
+                  },
+                  "decision_axes": {
+                    "seat:pragmatic-lens": "test-first-active-surface-remediation"
+                  }
+                },
+                "verdict_delta_from_previous": 0.5,
+                "verdict_stable": false,
+                "stop_reason": "max_rounds_per_topic",
+                "state_path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/hooks/008-pi-caching-like-reasonix/011-research-non-deepseek-optimization/ai-council/topics/topic-001-non-deepseek-findings-review/rounds/round-003/round-state.jsonl"
+              }
+            ]
+          }
+        ]
+      },
+      "source_iter": "session-close",
+      "source_seat": null,
+      "source_artifacts": [
+        "ai-council/session-report.md"
+      ],
+      "introduced_at": "2026-08-09T07:31:36.047Z",
+      "last_seen_at": "2026-08-09T07:31:36.047Z",
+      "superseded_by": null
+    }
+  ],
+  "priors_by_topic": {},
+  "priority_reconciliation": {
+    "source": "research/lineages/deepseek-flash/findings-registry.json",
+    "K6": {
+      "priority": "P2",
+      "reason": "Foreign-provider raw usage is masked by Pi-normalized usage and remains evidence-gated."
+    },
+    "K8": {
+      "priority": "P1",
+      "reason": "The duplicated ownership boundary can create immediate overlap or gaps when model ids drift."
+    }
+  },
+  "updated_at": "2026-08-09T07:31:36.047Z"
+}

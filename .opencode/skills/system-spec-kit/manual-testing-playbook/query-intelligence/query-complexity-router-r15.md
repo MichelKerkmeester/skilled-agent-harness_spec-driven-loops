@@ -109,6 +109,8 @@ Observed output excerpts for selected channels and disabled flag fallback:
 
 Verify complexity classification logic → Check channel mapping per class → Inspect feature flag fallback behavior
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/query-complexity-router.md](../../feature-catalog/query-intelligence/query-complexity-router.md)

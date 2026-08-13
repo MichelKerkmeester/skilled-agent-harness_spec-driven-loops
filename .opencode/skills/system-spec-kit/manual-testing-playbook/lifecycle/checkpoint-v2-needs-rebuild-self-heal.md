@@ -93,6 +93,8 @@ Scan transcript showing lease acquisition followed by the repair counts.
 
 Inspect `runCheckpointNeedsRebuildRepairForScan` in `mcp-server/handlers/memory-index.ts` (called after `acquireIndexScanLease`) if the repair never runs or the counts are missing.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Sentinel repair: `mcp-server/lib/storage/checkpoints.ts` (`repairNeedsRebuildSentinel`, `NEEDS_REBUILD_SENTINEL_NAME`)

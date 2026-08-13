@@ -17,9 +17,13 @@ version: 0.8.0.14
 
 Persist derived extraction so the scorer and rebuild-from-source pipeline can both consume it, while keeping the source-of-truth SKILL.md untouched.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/derived/sync.ts` takes the output of `lib/derived/extract.ts`, routes it through `lib/derived/sanitizer.ts` and writes only the `derived` block of each skill's `graph-metadata.json`. Non-derived metadata in the same file is preserved byte-for-byte. Partial writes are avoided by writing through a temp file plus atomic rename. SKILL.md is never touched.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -36,6 +40,8 @@ Persist derived extraction so the scorer and rebuild-from-source pipeline can bo
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | sync correctness and non-derived preservation |
 | `Playbook scenario [AI-001](../../manual-testing-playbook/auto-indexing/derived-extraction.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

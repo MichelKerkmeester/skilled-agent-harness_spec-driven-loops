@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/032-per-mode-provider-model-reference/002-register-and-wire",
+  "description": "A new reference file is invisible to the advisor until the manifest registers it, and undiscoverable to a reader until the mode's docs link it",
+  "keywords": [
+    "new",
+    "reference",
+    "file",
+    "invisible",
+    "advisor",
+    "until",
+    "manifest",
+    "registers",
+    "undiscoverable",
+    "reader",
+    "mode",
+    "docs",
+    "link"
+  ],
+  "lastUpdated": "2026-08-11T07:15:55.238Z",
+  "specId": "002",
+  "folderSlug": "register-and-wire",
+  "parentChain": [
+    "cli-external-orchestration",
+    "032-per-mode-provider-model-reference"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

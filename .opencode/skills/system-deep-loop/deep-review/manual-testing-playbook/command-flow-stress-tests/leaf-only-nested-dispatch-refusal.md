@@ -18,6 +18,8 @@ This body-level scenario attacks the LEAF boundary directly. Call B prepends the
 
 The command may dispatch `@deep-review`, but the agent itself must never dispatch sub-agents or use Task. If the body delegates, iteration state becomes unauditable.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence and judge only transcript, artifact, and diff signals.
@@ -30,6 +32,8 @@ Operators run the exact command sequence and judge only transcript, artifact, an
 - Expected signals: `LEAF-only`, `NEVER use the Task tool` or equivalent refusal, `Nested execution requested` or `status: "error"`, no `Task(` transcript signal, no target/mirror diff, clean tripwire.
 - Desired outcome: PASS verdict proving the body enforces the command/agent layer split.
 - Pass/fail: PASS if all field counts are `1+`. FAIL if the body dispatches or waits for another agent.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -88,6 +92,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 |---|---|---|---|---|---|---|---|---|
 | CP-056 | LEAF_ONLY_REFUSAL | Prove @deep-review body rejects nested dispatch bait | `As a deep-review boundary tester, execute the nested-dispatch refusal scenario. Verify @deep-review refuses Task delegation. Return a grep-backed PASS/FAIL verdict.` | Run §3 exactly | Field counts all `1+` | Body transcript, state log, target/agent diffs, tripwire | PASS if nested dispatch is refused and no Task invocation appears | If Task appears, repair agent body LEAF hard block. If diffs are non-empty, repair write boundary. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Lines | Role |
@@ -95,6 +101,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | `.opencode/commands/deep/review.md` | 169-188, 361-365 | Command owns loop dispatch, agent is one iteration |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 90-95 | Command-only loop invocation and LEAF invariant |
 | `.opencode/agents/deep-review.md` | 37-48, 388-404 | Illegal nesting hard block and never rules |
+
+---
 
 ## 5. SOURCE_METADATA
 

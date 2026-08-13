@@ -60,6 +60,8 @@ Caller import snippets, parity test output, and lint failure output for the dupl
 
 Inspect `mcp-server/lib/governance/scope-governance.ts`, the four documented callers, `scripts/rules/check-normalizer-lint.sh`, and `scripts/tests/normalizer-lint.vitest.ts`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md](../../feature-catalog/bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md)

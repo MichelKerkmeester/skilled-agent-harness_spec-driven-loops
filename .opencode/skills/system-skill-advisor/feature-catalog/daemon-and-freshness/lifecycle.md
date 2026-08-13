@@ -17,11 +17,15 @@ version: 0.8.0.14
 
 Give operators a predictable daemon lifecycle: graceful boot, graceful SIGTERM shutdown and always-available health reporting exposed through `advisor_status`.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/daemon/lifecycle.ts` orchestrates daemon boot by acquiring the workspace lease, starting the watcher, warming freshness state and exposing `trustState` to readers. Shutdown responds to SIGTERM, flushes any pending reindex, releases the lease and drains the watcher. `advisor_status` returns `generation`, `skillCount`, `lastScanAt`, `trustState` and `laneWeights` regardless of whether the daemon has a live writer.
 
 The `mk_skill_advisor` MCP server also participates in the shared launcher idle-timeout guardrail. `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` defaults to `30`, accepts fractional values for tests, and `0` disables the monitor. Stdio and IPC socket connect/data/write activity refresh the idle timer so active secondary clients keep the server alive.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -41,6 +45,8 @@ The `mk_skill_advisor` MCP server also participates in the shared launcher idle-
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | boot and shutdown sequence |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/launcher-idle-timeout.vitest.ts` | Automated test | idle timeout parsing and shutdown behavior |
 | `Playbook scenario [AU-003](../../manual-testing-playbook/auto-update-daemon/daemon-lifecycle-shutdown.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

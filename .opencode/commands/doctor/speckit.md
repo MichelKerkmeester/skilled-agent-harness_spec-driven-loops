@@ -15,12 +15,16 @@ Do not dispatch agents from this Markdown file. Do not edit workflow YAML while 
 
 Load the presentation contract before showing startup questions, setup dashboards, approval prompts, diagnostic dashboards, result summaries, or next-step text.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
 |---------|-------|
 | Route manifest | `.opencode/commands/doctor/_routes.yaml` |
 | Presentation source of truth | `.opencode/commands/doctor/assets/doctor-speckit-presentation.txt` |
+
+---
 
 ## 3. MODE ROUTING
 
@@ -32,6 +36,8 @@ Load the presentation contract before showing startup questions, setup dashboard
 - If any referenced asset is missing, stop and report the missing path.
 - Companion commands are not routed through this file: `/doctor:update` and `/doctor:mcp install|debug` have their own routers.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
+
+---
 
 ## 4. EXECUTION TARGETS
 
@@ -61,6 +67,8 @@ These existing YAML assets are referenced only. The router must not modify them.
 9. Load the resolved workflow YAML from `.opencode/commands/doctor/assets/<yaml>` and execute it step by step.
 10. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
 
+---
+
 ## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/doctor/assets/doctor-speckit-presentation.txt`:
@@ -70,6 +78,8 @@ The following content lives only in `.opencode/commands/doctor/assets/doctor-spe
 - Subsystem manifest display for `list`, `?`, or `--list`.
 - Diagnostic dashboard and result-summary templates.
 - Troubleshooting and next-step display text.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

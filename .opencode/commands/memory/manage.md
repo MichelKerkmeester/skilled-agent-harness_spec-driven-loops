@@ -18,6 +18,8 @@ Guardrails:
 - Learned-trigger expiry and ledger sweeps default to dry-run. Mutation requires an explicit apply/confirmation gate and must report matched/deleted counts for every touched ledger.
 - This is a direct-dispatch command with no workflow YAML by design; do not create or modify workflow YAML from this command.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -27,6 +29,8 @@ Guardrails:
 This is a direct-dispatch command: it routes straight to the memory MCP tools and owns no workflow YAML by design.
 
 Before rendering any dashboard, confirmation prompt, or result block, read the presentation asset and follow it as the display source of truth.
+
+---
 
 ## 3. MODE ROUTING
 
@@ -51,6 +55,8 @@ Recognized modes:
 
 On an unknown mode, return `STATUS=FAIL ERROR="Unknown mode: <mode>"` and list the valid modes.
 
+---
+
 ## 4. EXECUTION TARGETS
 
 Each recognized mode dispatches to the memory MCP tools below and applies the listed confirmation gate:
@@ -73,6 +79,8 @@ Each recognized mode dispatches to the memory MCP tools below and applies the li
 | `checkpoint` | checkpoint tools | Restore/delete require confirmation |
 | `ingest` | ingest tools | Cancel requires explicit job id |
 
+---
+
 ## 5. PRESENTATION BOUNDARY
 
 The following content lives only in `.opencode/commands/memory/assets/manage-presentation.txt`:
@@ -83,6 +91,8 @@ The following content lives only in `.opencode/commands/memory/assets/manage-pre
 - Stats dashboard render contract: `.opencode/commands/memory/assets/manage-presentation.txt` Section 2.
 
 The router must not invent visible wording for those surfaces; it only resolves mode, tooling, and confirmation requirements.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

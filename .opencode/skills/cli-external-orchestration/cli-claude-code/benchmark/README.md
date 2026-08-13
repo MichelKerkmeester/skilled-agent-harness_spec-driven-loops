@@ -21,11 +21,15 @@ The deep-improvement Lane C skill-benchmark harness can benchmark `cli-claude-co
 
 The first entry in this tree is **not** a Lane C harness run. It is a hand-authored, derived-after-the-fact record of manual-testing-playbook scenario `CC-029`: Claude Code ships its own native `/goal` session-goal feature, the cross-runtime goal-hook port at `.opencode/hooks/goal/` deliberately ships no `claude/` adapter directory, and `mk_goal()` is an OpenCode-only plugin tool with no matching Claude Code tool. There is no headless model-turn surface to dispatch against, so the live-validation leg of `CC-029` is a documentation-only **SKIP** by design, not a coverage gap. Full reasoning lives in the run folder's own `README.md` and `findings-and-recommendations.md`.
 
+---
+
 ## 2. RUN-LABEL INDEX
 
 | Run label | Trace mode | Verdict | Status | Notes |
 |---|---|---|---|---|
 | [`2026-07-29--manual-testing-playbook--goal-hook/`](./reports/2026-07-29--manual-testing-playbook--goal-hook/) | doc | SKIP | derived-after-the-fact (hand-authored, not a harness run) | Claude Code's native `/goal` has no cross-runtime adapter and no headless dispatch surface — see `CC-029` |
+
+---
 
 ## 3. RE-RUNNING
 
@@ -41,6 +45,8 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host
 ```
 
 Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` and `skill-benchmark-report.md` in the outputs dir. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add each new run as a fresh sibling run-label folder and a new row in section 2 — never overwrite an existing run-label.
+
+---
 
 ## 4. RELATED RESOURCES
 

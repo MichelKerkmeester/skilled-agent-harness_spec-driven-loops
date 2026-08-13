@@ -11,6 +11,8 @@ description: "Dual-read comparison and versioned upcasting so legacy and dark st
 
 Migration boundary between a legacy read model and a dark, additive replacement. The dual-read adapter reads both stores for one comparison token and records reconciliation evidence, while the state and event upcaster registries route historical bytes through the version chain a schema declares before either side interprets them. The legacy result stays authoritative throughout, this module only observes and reports drift.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -22,14 +24,20 @@ Migration boundary between a legacy read model and a dark, additive replacement.
 | `index.ts` | Public API surface |
 | `state-upcaster-registry.ts` | `StateUpcasterRegistry`, the immutable startup registry for fixture-backed state schemas and adjacent upcasters |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/fixture-corpus.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/compatibility-adapter.ts`
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/compatibility-shadow-adapters.vitest.ts`
+
+---
 
 ## 5. RELATED
 

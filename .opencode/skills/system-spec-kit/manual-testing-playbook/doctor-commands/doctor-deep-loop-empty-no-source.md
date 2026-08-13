@@ -77,6 +77,8 @@ No graph rows are inserted, no snapshot is taken, and no iteration markdown file
 
 If the command tries to remediate, inspect the diagnostic-mode guard in `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` and fail with `auto-mode-upsert-forbidden`. If it reports a source despite the sandbox having no iteration files, inspect the Glob path resolution and verify the command is running from the intended disposable workspace.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

@@ -66,6 +66,8 @@ Validate temporal edge validity and confirm invalidated edges drop out of graph 
 
 Inspect `mcp-server/lib/graph/temporal-edges.ts` for the `invalidateEdge` and `getValidEdges` implementations. Confirm `SPECKIT_TEMPORAL_EDGES` is not disabled in the runtime env. Check `mcp-server/lib/search/causal-boost.ts` for the call site that should filter by `getValidEdges`.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/temporal-edges.md](../../feature-catalog/graph-signal-activation/temporal-edges.md)

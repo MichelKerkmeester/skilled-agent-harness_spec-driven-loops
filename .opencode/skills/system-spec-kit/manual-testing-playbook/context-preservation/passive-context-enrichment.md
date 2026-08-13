@@ -237,6 +237,8 @@ Validate passive context enrichment and confirm tool responses carry constitutio
 
 Inspect `mcp-server/hooks/memory-surface.ts` for the surfacing logic. Check `mcp-server/hooks/response-hints.ts` for token estimation and append step. Verify `mcp-server/hooks/mutation-feedback.ts` is wired into the save/update/delete handlers. Do not use a non-system-spec-kit MCP tool (e.g. `advisor_recommend`) as a probe for this scenario — it is out of scope per the Scope note in Section 1.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/passive-context-enrichment.md](../../feature-catalog/context-preservation/passive-context-enrichment.md)

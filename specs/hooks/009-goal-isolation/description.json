@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "hooks/009-goal-isolation",
+  "description": "The cross-runtime core resolves every Pi and Cursor goal operation to one fixed file, `active-goal.json`",
+  "keywords": [
+    "cross-runtime",
+    "core",
+    "resolves",
+    "every",
+    "cursor",
+    "goal",
+    "operation",
+    "one",
+    "file",
+    "active-goal",
+    "json"
+  ],
+  "lastUpdated": "2026-08-11T06:49:52.699Z",
+  "specId": "009",
+  "folderSlug": "goal-isolation",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

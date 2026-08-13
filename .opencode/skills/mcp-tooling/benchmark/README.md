@@ -16,6 +16,8 @@ version: 1.0.0.0
 
 The deep-improvement Lane C skill-benchmark harness benchmarks `mcp-tooling` — a seven-mode hub (four workflow modes, including mcp-obsidian, plus three transports) — across five dimensions (D1 routing, D2 discovery, D3 efficiency, D4 usefulness, D5 connectivity). This `benchmark/` tree holds one run-label folder per run; the sections below index them.
 
+---
+
 ## 2. VERDICT (LATEST)
 
 | Run | Date | Mode | Verdict | Aggregate | Scenarios | Route gold |
@@ -27,10 +29,14 @@ Baseline captured before mcp-obsidian was registered: six modes (three workflow 
 
 `after-routing-remediation/` is the first run under the route-gold hard gate (`--route-gold auto`, enforced for hub-type skills): every scenario's `expected_intent` and `expected_resources` scored as hard gold under the fallback-only `defaultResource` contract, 13/13 conformant.
 
+---
+
 ## 3. STRUCTURE
 
 - `baseline/` — FROZEN before-snapshot; never regenerated.
 - `<run-label>/` — one sibling folder per subsequent run (e.g. `after_router_tuning/`).
+
+---
 
 ## 4. HOW TO RE-RUN
 

@@ -34,6 +34,8 @@ Distinguishes Pi's built-in tool surface from the community `pi-subagents` packa
 - Understanding how `.opencode/agents/*.md` translates into pi-subagents' 17-field schema
 - Choosing an exploration, review, or implementation child pattern
 
+---
+
 ## 2. CORE BOUNDARY
 
 The installed Pi help exposes built-in tools:
@@ -51,6 +53,8 @@ The installed Pi help exposes built-in tools:
 These tools run in the main Pi session. They do not imply a separate agent process.
 
 Per Pi docs, unconfirmed: Pi's core intentionally does not include built-in sub-agents, plan mode, to-dos, permission popups, or background bash. Extensions and packages can add such workflows. Source: [Using Pi](https://pi.dev/docs/latest/usage).
+
+---
 
 ## 3. COMMUNITY BRIDGE
 
@@ -76,6 +80,8 @@ Project-local Pi agent profiles live at `.pi/agents/**/*.md` as flat files, one 
 
 pi-subagents resolves agents in this order: built-in, installed package, user `~/.pi/agent/agents/**/*.md`, then project `.pi/agents/**/*.md`. Project files win when names collide, so these flat project mirrors are the authoritative local override.
 
+---
+
 ## 4. CONDUCTOR MODEL
 
 When using a community subagent bridge, the calling AI remains the outer conductor:
@@ -94,6 +100,8 @@ Outer calling AI
 ~~~
 
 The outer conductor must not assume that a child package inherits the parent spec folder, worktree policy, or permission boundary. Put those requirements in the prompt and verify the result.
+
+---
 
 ## 5. REQUEST SHAPE
 
@@ -120,6 +128,8 @@ Run no network commands.
 Return a structured handback with verification suggestions.
 ~~~
 
+---
+
 ## 6. EXPLORATION CHILD
 
 Use an exploration child for repository mapping, dependency tracing, or independent research. The child should return paths, symbols, data flow, and unknowns. It should not edit files unless the parent explicitly selects a write-capable path.
@@ -131,6 +141,8 @@ Exploration checklist:
 - Separate evidence from inference.
 - Avoid broad destructive commands.
 - Return a small, searchable handback.
+
+---
 
 ## 7. REVIEW CHILD
 
@@ -145,6 +157,8 @@ Use a review child for adversarial checking of an implementation. Require findin
 
 The calling AI confirms findings against the actual repository before editing. A child report is a hypothesis, not a completion claim.
 
+---
+
 ## 8. IMPLEMENTATION CHILD
 
 Use a write-capable child only when the parent has approved the scope and verification. The prompt must state:
@@ -156,6 +170,8 @@ Use a write-capable child only when the parent has approved the scope and verifi
 - The handback format.
 
 Do not let a package-created child decide the hub's documentation scope or invent an adapter.
+
+---
 
 ## 9. PARALLEL CHILDREN
 
@@ -169,6 +185,8 @@ Prefer:
 
 Avoid parallel writes to settings, registries, or the same source file.
 
+---
+
 ## 10. TRUST AND ROLLBACK
 
 The pin confirmed that pi install can reject an untrusted project and that --approve allows a project-local install. Before installing a community bridge:
@@ -181,6 +199,8 @@ The pin confirmed that pi install can reject an untrusted project and that --app
 6. Remove the package if the contract is not acceptable.
 
 Do not report a package as installed because a prompt claimed it was installed.
+
+---
 
 ## 11. HANDBACK
 

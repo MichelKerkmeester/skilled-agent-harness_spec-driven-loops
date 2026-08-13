@@ -17,6 +17,8 @@ version: 0.8.0.12
 
 Give every consumer (native MCP tools, CLI hooks, plugin bridge, Python shim) a single shared vocabulary for describing whether advisor state is current, aged, missing or unreadable, without ever blocking the reader.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/freshness/trust-state.ts` classifies state into `live`, `stale`, `absent` or `unavailable`. The semantics are:
@@ -29,6 +31,8 @@ Give every consumer (native MCP tools, CLI hooks, plugin bridge, Python shim) a 
 | `unavailable` | Underlying storage is unreadable (corruption, permissions). |
 
 All consumers fail open: a `stale`, `absent` or `unavailable` state never crashes. The caller gets an explicit state and can decide whether to proceed.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -45,6 +49,8 @@ All consumers fail open: a `stale`, `absent` or `unavailable` state never crashe
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/legacy/advisor-freshness.vitest.ts` | Automated test | state transitions |
 | `Playbook scenarios [NC-002](../../manual-testing-playbook/native-mcp-tools/native-status-transitions.md) and [OP-001..OP-003](../../manual-testing-playbook/operator-h5).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

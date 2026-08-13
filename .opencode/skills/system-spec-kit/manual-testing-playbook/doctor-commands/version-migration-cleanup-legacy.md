@@ -74,6 +74,8 @@ The command reads `migration-manifest.json`, detects only manifest-listed legacy
 
 If deletion occurs without a prompt, inspect `doctor-update.yaml` Phase 9 and ADR-008 cleanup policy. If unknown files are targeted, inspect manifest matching and reject heuristic cleanup. If skipped files disappear, treat it as a cleanup safety failure.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

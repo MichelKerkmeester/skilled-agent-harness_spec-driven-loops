@@ -11,6 +11,8 @@ description: "Single-shot CLI scripts implementing each deep-alignment state-mac
 
 Runtime engine for the deep-alignment loop, one script per state-machine step. Each script answers one question once per call and returns. None of them loop or dispatch themselves. The owning command workflow (`/deep:alignment`, via `.opencode/commands/deep/assets/deep-alignment-auto.yaml`) invokes a script, reads its JSON output and decides the next state.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -22,6 +24,8 @@ Runtime engine for the deep-alignment loop, one script per state-machine step. E
 
 Subfolders: `adapters/` holds the per-authority DISCOVER and CHECK adapters, `command-benchmark/` holds the command-behavior-matrix scheduler, `tests/` holds the regression suite for this folder. Each has its own README.
 
+---
+
 ## 3. TESTS
 
 ```bash
@@ -29,6 +33,8 @@ node .opencode/skills/system-deep-loop/deep-alignment/scripts/tests/state-machin
 ```
 
 Drives SCOPE through REMEDIATE against a synthetic fixture and proves the wiring between these scripts. Run any other file under `tests/` the same way.
+
+---
 
 ## 4. RELATED
 

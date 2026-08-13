@@ -62,6 +62,8 @@ Vitest transcript plus the source excerpts showing the retired runtime/write pat
 
 Inspect `lib/eval/shadow-scoring.ts`; confirm the test sandbox DB path is isolated; verify no environment leakage or stale eval DB state is affecting the results
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [implement-and-remove-deprecated-features/shadow-scoring-retirement.md](../../feature-catalog/implement-and-remove-deprecated-features/shadow-scoring-retirement.md)

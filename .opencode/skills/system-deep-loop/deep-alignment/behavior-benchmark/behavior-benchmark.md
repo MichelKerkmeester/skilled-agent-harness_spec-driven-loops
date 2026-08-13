@@ -40,6 +40,8 @@ workflow handoff, semantic subaction binding, direct MCP/plugin dispatch, and
 inline monolithic ownership without changing the shared framework or runner.
 Their baseline cells remain pending until operator-gated live capture occurs.
 
+---
+
 ## 2. SCENARIO TABLE
 
 | ID | Title | Entry | Clarity | Expected | Budget |
@@ -71,6 +73,8 @@ Their baseline cells remain pending until operator-gated live capture occurs.
 | DAB-025 | Direct-tool router: fixture-local continuity save | E1 | C3 | autonomous | 300000 |
 | DAB-026 | Direct-plugin router: goal status | E1 | C3 | autonomous | 180000 |
 | DAB-027 | Monolithic command: bare agent-router halt | E2 | C1 | question_halt | 180000 |
+
+---
 
 ## 3. AXIS COVERAGE
 
@@ -105,6 +109,8 @@ distinctive behaviors are scoping- and invariant-driven, not routing-driven, and
 the generic orchestrate hand-off contract is already covered by the sibling
 packages that share this hub's dispatch path.
 
+---
+
 ## 4. EXECUTION
 
 The runner is `../../shared/behavior-benchmark/behavior-bench-run.cjs`, invoked
@@ -135,6 +141,8 @@ recompute to the `900000` cap itself, so their table value is unchanged. D5
 stays `null` for every cell here: D5 scores an executor leg's `tTerminal`
 *against* this baseline, and no non-baseline executor leg has been captured
 yet.
+
+---
 
 ## 5. RELATED RESOURCES
 

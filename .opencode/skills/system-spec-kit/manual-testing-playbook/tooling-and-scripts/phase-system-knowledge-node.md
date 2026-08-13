@@ -62,6 +62,8 @@ Test transcript, recursive validation output, and direct rule output
 
 Inspect `references/structure/phase-system.md`, `scripts/tests/test-phase-system.sh`, `scripts/spec/validate.sh`, and `scripts/rules/check-phase-links.sh` if the documented model diverges from executable behavior
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/phase-system-knowledge-node.md](../../feature-catalog/tooling-and-scripts/phase-system-knowledge-node.md)

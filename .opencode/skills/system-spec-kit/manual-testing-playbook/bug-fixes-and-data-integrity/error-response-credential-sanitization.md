@@ -60,6 +60,8 @@ Error response JSON showing [REDACTED] replacements + preserved error codes
 
 Check sanitizeErrorField regex patterns; verify sanitizeDetails recursion depth; check for new credential formats not yet covered
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/error-response-credential-sanitization.md](../../feature-catalog/bug-fixes-and-data-integrity/error-response-credential-sanitization.md)

@@ -62,6 +62,8 @@ EXIT 0 regression test output, command transcript, terminal result line, branch 
 
 Inspect the three Speckit command routers first. If they route correctly, inspect `speckit-complete-auto.yaml` for the unattended result schema and branch-preserved failure settings.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

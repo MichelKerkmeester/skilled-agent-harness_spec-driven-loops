@@ -22,6 +22,8 @@ Route-map for create-flowchart overflow guidance. `../../SKILL.md` is the author
 
 The numbered creation workflow, notation rules, pattern-selection table, pattern-specific build rules, and the validator contract all live in `../../SKILL.md`. This reference set is overflow: concrete examples and mechanics an author reaches for when the primary workflow is already clear but the diagram needs deeper shaping. Each concern lives in its own single-concern file.
 
+---
+
 ## 2. REFERENCE MAP
 
 Load the file that matches the current task:

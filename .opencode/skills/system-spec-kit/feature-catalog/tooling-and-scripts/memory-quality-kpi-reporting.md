@@ -22,6 +22,8 @@ This document captures the implemented behavior, source references, and remediat
 
 Although the entry point is Bash, the scan and aggregation logic is implemented through an embedded Node.js program. That split keeps invocation simple while allowing recursive filesystem traversal, YAML-block inspection, regex-based defect detection, and percentage calculation without depending on external shell utilities for parsing.
 
+---
+
 ## 2. HOW IT WORKS
 
 The shipped KPI reporting behavior is:
@@ -35,6 +37,8 @@ The shipped KPI reporting behavior is:
 7. The CLI always exits `0` on successful execution even when defect rates are non-zero. In other words, it is a reporting surface rather than an enforcing quality gate; downstream callers must decide whether any reported rate should fail CI or trigger remediation.
 8. The human-readable terminal summary is written to `stderr` in the form `KPI Summary: files=..., placeholder=...%, fallback=...%, contamination=...%, empty_trigger=...%`, which makes it suitable for shell pipelines that want clean JSON on `stdout` but still need a quick operator-facing status line.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -43,6 +47,8 @@ The shipped KPI reporting behavior is:
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/scripts/kpi/quality-kpi.sh` | CLI + reporting runtime | Scans memory markdown, detects quality defects, computes percentage rates, and prints JSON plus summary output |
 | `.opencode/skills/system-spec-kit/scripts/kpi/README.md` | Documentation | Declares the KPI script contract, usage examples, metric definitions, and output format |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

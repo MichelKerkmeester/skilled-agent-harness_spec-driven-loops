@@ -20,6 +20,8 @@ version: 3.6.0.1
 
 It exists because feature removal, migration, and deprecation edits have deleted snippet files or moved targets without updating the hand-maintained catalog and playbook roots that link to them. Nothing else caught that breakage, so it accumulated silently. The guard scans the whole tree rather than changed files only, because a deleted target breaks links in files that did not themselves change. It complements the wikilink checker (`check-links.sh`), which validates `[[...]]` links.
 
+---
+
 ## 2. HOW IT WORKS
 
 The guard walks a fixed set of documentation roots (`.opencode/skills`, `.opencode/commands`, `.opencode/agents`, plus the `.claude` and `.opencode` agent and command trees). For each markdown file it strips fenced and inline code spans first (code is not link surface), then extracts markdown links and reference definitions. Each target is resolved against two bases — the source file's own directory and the repository root — and counts as valid if either resolves.
@@ -27,6 +29,8 @@ The guard walks a fixed set of documentation roots (`.opencode/skills`, `.openco
 Archived, generated, changelog, and test-fixture paths are excluded by path segment, and a small explicit `(file, ref)` allowlist covers intentional template fill-in placeholders plus one illustrative example. Adding a genuinely new broken link still fails; the allowlist is the only set of waivers. A `--self-test` mode asserts the inline-code handling against synthetic inputs without walking the filesystem, including the cases that must never be hidden: a real link on the same line as inline code, and a link behind escaped backticks.
 
 The guard is wired into CI through `.github/workflows/markdown-link-integrity.yml`, which runs it on pull requests that touch the documentation trees. Exit code 0 means clean; exit code 1 lists each broken link.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -72,6 +76,8 @@ The guard is wired into CI through `.github/workflows/markdown-link-integrity.ym
 - Guard script: `.opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs`
 - CI workflow: `.github/workflows/markdown-link-integrity.yml`
 - Registry entry: `.opencode/skills/system-spec-kit/scripts/scripts-registry.json`
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

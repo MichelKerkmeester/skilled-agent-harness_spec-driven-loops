@@ -479,6 +479,8 @@ The orchestrator uses a two-phase approach with single-hop dispatch only:
 
 This keeps execution depth bounded and eliminates illegal nested delegation chains.
 
+---
+
 ## 5. OUTPUT VERIFICATION
 
 **NEVER accept sub-agent output blindly.** Every sub-agent response MUST be verified before synthesis.

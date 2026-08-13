@@ -170,6 +170,8 @@ MCP error -32001: backend recycled; retry
 @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
 ```
 
+---
+
 ## 4. PASS PREDICATE
 
 A FAIL signal indicates one of:

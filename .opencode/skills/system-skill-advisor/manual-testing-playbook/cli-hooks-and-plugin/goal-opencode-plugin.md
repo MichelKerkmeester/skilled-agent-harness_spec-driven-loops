@@ -506,6 +506,8 @@ Found 11 matches
   Line 184:     assert.equal((sanitizedBlock.match(/\[\/active_goal\]/g) || []).length, 1);
 ```
 
+---
+
 ## 8. PASS/FAIL
 
 PASS

@@ -14,6 +14,8 @@ trigger_phrases:
 
 `stress-test/durability/` load-tests the durability surfaces shipped by the 013 memory-index-scan roadmap (checkpoint-v2 file snapshots, schema-v30 enrichment markers, the single-writer index_scan lease, and the launcher front-proxy recycle path) plus the daemon re-election lifecycle. Where `tests/*` proves these behaviors correct on a single happy path, this domain proves they stay correct under contention, flood, recycle, and owner disposal. Most cases run against throwaway temp/in-memory databases and the proxy's pure-logic helpers. The daemon re-election cases go further and spawn real launchers and a real daemon, but inside a throwaway fake-root with an isolated socket directory and database, so no case ever touches the production DB at `~/.mk-spec-memory` or the live daemon socket.
 
+---
+
 ## 2. SCOPE
 
 | File | Coverage |
@@ -30,6 +32,8 @@ trigger_phrases:
 | `release-cleanup-new-surfaces-stress.vitest.ts` | Covers release-cleanup behavior for newly documented surfaces so stale moved or removed rows do not survive cleanup. |
 | `shard-repair-persistence-stress.vitest.ts` | Validates shard repair persistence across repeated repair passes so repaired state remains durable after reopen. |
 
+---
+
 ## 3. RUN RECIPE
 
 Run the durability gate from `.opencode/skills/system-spec-kit/mcp-server`:
@@ -44,6 +48,8 @@ Run a single case:
 npx vitest run --config vitest.stress.config.ts \
   stress-test/durability/checkpoint-v2-contention-stress.vitest.ts
 ```
+
+---
 
 ## 4. ISOLATION BOUNDARY
 

@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks/008-pi-caching-like-reasonix/007-research-fork-improvements",
+  "description": "Packet 008 shipped two working forks — `pi-cache-optimizer` (003, DeepSeek-guarded) and `deep-pi` (006, hardened DeepSeek-direct telemetry) — both",
+  "keywords": [
+    "packet",
+    "shipped",
+    "two",
+    "working",
+    "forks",
+    "pi-cache-optimizer",
+    "deepseek-guarded",
+    "deep-pi",
+    "hardened",
+    "deepseek-direct",
+    "telemetry"
+  ],
+  "lastUpdated": "2026-08-11T06:40:40.684Z",
+  "specId": "007",
+  "folderSlug": "research-fork-improvements",
+  "parentChain": [
+    "hooks",
+    "008-pi-caching-like-reasonix"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

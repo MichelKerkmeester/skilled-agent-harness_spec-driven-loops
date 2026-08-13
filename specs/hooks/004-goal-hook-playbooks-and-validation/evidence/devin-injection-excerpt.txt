@@ -1,0 +1,23 @@
+=== [active_goal] block found in the Devin transcript (2 occurrence[s]) ===
+[active_goal:goal-a95c0004-3560-4086-a3a6-65c9ca46c713]
+status: active
+objective: GOALCANARY-DV-1255523564: prove the Devin goal hook reaches the model
+goal_prompt:
+Role: Focused Devin execution agent operating under the active session goal.
+Objective: GOALCANARY-DV-1255523564: prove the Devin goal hook reaches the model
+Context: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.
+Method:
+- Restate the concrete completion condition from available evidence before acting.
+- Clarify the concrete completion condition from available context, then execute until it is met or blocked.
+- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.
+Success Criteria:
+- The requested outcome is materially complete, not merely analyzed or partially prepared.
+- Required verification has run, or any inability to run it is reported with the exact blocker.
+- Status output distinguishes confirmed evidence from inference.
+Stop Conditions:
+- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.
+- If blocked, preserve state and name the next safe action.
+last_check: not_evaluated ; reason: none
+usage: tokens n/a/none; time 2s; iteration 0 (source: turn-count-estimate)
+directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.
+[/active_goal]

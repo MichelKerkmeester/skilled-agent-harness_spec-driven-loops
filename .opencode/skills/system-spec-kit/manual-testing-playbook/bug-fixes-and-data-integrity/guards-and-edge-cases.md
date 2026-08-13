@@ -60,6 +60,8 @@ Edge-case trigger output + aggregation verification + fallback path evidence
 
 Identify specific edge cases from Sprint 8 changelog; verify guard condition logic; check aggregation dedup
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/guards-and-edge-cases.md](../../feature-catalog/bug-fixes-and-data-integrity/guards-and-edge-cases.md)

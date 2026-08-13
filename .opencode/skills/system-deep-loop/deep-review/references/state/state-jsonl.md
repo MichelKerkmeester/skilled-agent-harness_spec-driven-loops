@@ -343,6 +343,8 @@ When `activeP2 > 0` on PASS, set `hasAdvisories: true`.
 - `findingsSummary` and `findingsNew` must each contain `P0`, `P1`, `P2` keys
 - `findingDetails` must be an array. Each active item must include `findingClass`, `scopeProof`, and `affectedSurfaceHints`
 
+---
+
 ## 3. REVIEW DEPTH SCHEMA (V2)
 
 `reviewDepthSchemaVersion: 2` is the discriminator for the v2 search-depth contract. Absent values, `null`, or any value other than `2` mean v1 legacy: readers keep today's behavior, and validator hard enforcement applies only when the discriminator is present.

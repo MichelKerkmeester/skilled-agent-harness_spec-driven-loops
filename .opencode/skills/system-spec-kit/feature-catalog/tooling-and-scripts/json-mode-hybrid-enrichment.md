@@ -20,6 +20,8 @@ The structured JSON summary path added support to the session capturing pipeline
 
 The original phase design described a broader file-backed enrichment path, but only the narrower structured-summary contract and hardening fixes shipped.
 
+---
+
 ## 2. HOW IT WORKS
 
 The session capturing pipeline now handles structured JSON summaries as follows:
@@ -33,6 +35,8 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 7. Template assembly preserves explicit session-level message and tool counts when conversation arrays are sparse.
 8. After the spec-doc record file is written (Step 10.5), a post-save quality review validates that JSON payload fields propagated correctly to the saved memory, using both frontmatter and the `## MEMORY METADATA` YAML block before indexing begins.
 9. JSON payload fields `sessionSummary`, `triggerPhrases`, `keyDecisions`, and `contextType` now properly flow through to rendered frontmatter via RC1–RC5 fixes (see §3.4).
+
+---
 
 ## 3. SOURCE FILES
 
@@ -160,6 +164,8 @@ The session capturing pipeline now handles structured JSON summaries as follows:
 | `scripts/tests/workflow-e2e.vitest.ts` | Automated test | End-to-end save pipeline with structured JSON inputs |
 | `mcp-server/tests/embedding-retry-stats.vitest.ts` | Automated test | `embeddingRetry` type and zero-state contract |
 | `mcp-server/tests/retry-manager-health.vitest.ts` | Automated test | Zero-DB `embeddingRetry` snapshot accessor coverage |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

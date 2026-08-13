@@ -16,6 +16,8 @@ Request a deliberately nonexistent profile and record Devin's failure behavior. 
 
 Silent fallback from a missing specialist to a built-in general agent can invalidate an orchestrator's assumptions about permissions, expertise, and output shape.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm a missing profile produces an explicit failure or refusal.
@@ -26,6 +28,8 @@ Silent fallback from a missing specialist to a built-in general agent can invali
 - Desired user-visible outcome: A fail-closed negative result.
 - Pass/fail: PASS when the missing profile is surfaced explicitly; FAIL when a different profile runs without disclosure; SKIP only on auth/availability blockers.
 
+---
+
 ## 3. TEST EXECUTION
 
 1. `devin -p "Use the custom subagent profile definitely-missing-profile to answer with the single word MISSING. If the profile does not exist, report that exact failure and do not substitute another profile." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv013.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv013.txt`
@@ -35,6 +39,8 @@ Silent fallback from a missing specialist to a built-in general agent can invali
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | DV-013 | `devin -p ... definitely-missing-profile ...` | Explicit missing-profile failure; no silent fallback | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -50,6 +56,8 @@ Silent fallback from a missing specialist to a built-in general agent can invali
 |---|---|
 | `../../references/agent-delegation.md` | Profile selection and error handling |
 | `../../SKILL.md` | Custom profile discovery correction |
+
+---
 
 ## 5. SOURCE METADATA
 

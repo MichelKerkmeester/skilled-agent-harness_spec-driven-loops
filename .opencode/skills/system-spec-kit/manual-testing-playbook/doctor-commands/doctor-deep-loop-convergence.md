@@ -169,6 +169,8 @@ $ node .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-
 
 If the convergence call is empty, inspect the state log's inferred `sessionId` and latest iteration mapping. If the packet was not included in the gold battery, inspect `.opencode/commands/doctor/assets/doctor-deep-loop.yaml` Phase 1 candidate selection and Phase 4 `minimum_iterations` handling. If graph rows exist but claims are unsupported, query the packet with `deep_loop_graph_query` and compare nodes against the source iteration markdown.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

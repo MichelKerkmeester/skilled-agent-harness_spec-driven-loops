@@ -27,6 +27,8 @@ This reference routes goal requests to the runtime surface that can prove curren
 identity. It prevents native features, OpenCode plugin tools, and scoped Pi/Cursor state
 from being treated as one interchangeable global goal.
 
+---
+
 ## 2. RULE
 
 When operating as **Claude Code** and the user says "/goal" or asks to set/manage a
@@ -34,6 +36,8 @@ session goal, do not route through the OpenCode `mk-goal` plugin command. The fi
 `.claude/commands` discovery tree must not expose `.opencode/commands/goal-opencode.md`.
 Use a Claude-native goal surface only after the live runtime confirms one exists; this
 repository does not prove that product capability.
+
+---
 
 ## 3. CROSS-RUNTIME ROUTING
 
@@ -57,6 +61,8 @@ diagnostics plus explicit legacy inspect/migrate/archive actions. Full contract:
 [`goal-plugin.md`](../../../hooks/goal/goal-plugin.md) and
 [`README.md`](../../../hooks/goal/README.md).
 
+---
+
 ## 4. WHY
 
 The runtimes expose different identity and lifecycle APIs. Treating all of them as one
@@ -64,6 +70,8 @@ global goal surface previously allowed one session to replace or inject another 
 objective. Runtime-bound routing keeps the identity source explicit: OpenCode owns its
 plugin, Pi supplies a verified extension session id, Cursor supplies identity only to its
 hook, and unsupported or unverified runtimes receive no guessed binding.
+
+---
 
 ## 5. HOW TO APPLY
 
@@ -77,6 +85,8 @@ hook, and unsupported or unverified runtimes receive no guessed binding.
    Cursor, do not bypass `/goal-cursor`'s unsupported response with an unbound shell call.
 4. Never expect a bare `/goal` invocation to reach the OpenCode plugin, and always verify
    the live command and registration paths before relying on remembered documentation.
+
+---
 
 ## 6. FAILURE MODE SIGNAL
 

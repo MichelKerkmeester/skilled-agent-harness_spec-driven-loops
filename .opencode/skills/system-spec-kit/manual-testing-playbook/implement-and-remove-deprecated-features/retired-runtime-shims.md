@@ -209,6 +209,8 @@ $ rg -n "RSF" "mcp-server/lib/search/hybrid-search.ts" "shared/algorithms/adapti
 
 Inspect `shared/embeddings.ts`, `mcp-server/context-server.ts`, `mcp-server/lib/eval/shadow-scoring.ts`, `mcp-server/lib/scoring/composite-scoring.ts`, and `mcp-server/lib/search/hybrid-search.ts` if any deprecated flag appears to change live execution
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [implement-and-remove-deprecated-features/category-stub.md](../../feature-catalog/implement-and-remove-deprecated-features/category-stub.md)

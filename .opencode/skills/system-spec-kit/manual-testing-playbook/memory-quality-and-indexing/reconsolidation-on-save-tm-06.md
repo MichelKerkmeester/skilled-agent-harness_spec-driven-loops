@@ -179,6 +179,8 @@ exclude:  **/node_modules/**, **/.git/**
 
 Verify BM25 error path after commit → Check `setBm25RepairNeededFlag()` execution → Confirm merged row ID is updated instead of predecessor row
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/reconsolidation-on-save.md](../../feature-catalog/memory-quality-and-indexing/reconsolidation-on-save.md)

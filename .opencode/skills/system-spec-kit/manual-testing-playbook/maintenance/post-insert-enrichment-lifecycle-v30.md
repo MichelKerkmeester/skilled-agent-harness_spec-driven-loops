@@ -121,6 +121,8 @@ Scan transcript showing the backfill repaired/failed counts after lease acquisit
 
 Inspect `repairIncompleteMarkers` in `mcp-server/handlers/save/enrichment-state.ts` and its call site in `mcp-server/handlers/memory-index.ts` (after `acquireIndexScanLease`) if the backfill never runs or selects the wrong rows.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Enrichment lifecycle: `mcp-server/handlers/save/enrichment-state.ts` (`markEnrichmentPending`, `recordEnrichmentResult`, `needsEnrichmentRepair`, `repairEnrichmentOnReplay`, `repairIncompleteMarkers`)

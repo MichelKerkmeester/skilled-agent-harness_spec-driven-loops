@@ -175,6 +175,8 @@ Expected comparison: contradiction detection produced output via the passing `T0
 
 Check consolidation trigger mechanism; inspect individual sub-process logs; verify database state before and after cycle
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/lightweight-consolidation.md](../../feature-catalog/retrieval-enhancements/lightweight-consolidation.md)

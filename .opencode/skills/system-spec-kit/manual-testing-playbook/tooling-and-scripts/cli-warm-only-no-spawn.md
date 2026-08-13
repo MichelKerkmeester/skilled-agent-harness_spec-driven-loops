@@ -15,6 +15,8 @@ This scenario verifies the warm-only contract all prompt-time hook integrations 
 
 All three CLIs share the contract (`SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`, `SPECKIT_CODE_INDEX_CLI_WARM_ONLY`, and `MK_SKILL_ADVISOR_CLI_WARM_ONLY` / `SPECKIT_SKILL_ADVISOR_CLI_WARM_ONLY` set the default; `--no-warm-only` re-enables auto-spawn per call).
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm warm-only calls against an absent socket exit 75 fast and spawn nothing.
@@ -24,6 +26,8 @@ All three CLIs share the contract (`SPECKIT_SPEC_MEMORY_CLI_WARM_ONLY`, `SPECKIT
 - Expected signals: Exit 75 from all three calls; JSON error payload contains `backend unavailable`; `$SANDBOX/sock` contains no `daemon-ipc.sock`; launcher process count unchanged.
 - Desired user-visible outcome: Transport-down probes cost a failed connect, not a daemon boot.
 - Pass/fail: PASS only when every warm-only call exits 75 and nothing was spawned.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -87,6 +91,8 @@ drwx------@ 3 michelkerkmeester  wheel  96 Jul  2 22:54 ..
 
 An exit 0 means the call reached a daemon — check that `SPECKIT_IPC_SOCKET_DIR` was exported into the call's environment. A spawn means warm-only resolution failed: confirm the `--warm-only` flag parse and the `defaultWarmOnly()` env resolution in the CLI entrypoint. A hang points at the probe timeout path (`--timeout-ms`).
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -103,6 +109,8 @@ An exit 0 means the call reached a daemon — check that `SPECKIT_IPC_SOCKET_DIR
 | `mcp-server/spec-memory-cli.ts` | `ensureDaemonReady` warm-only branch throwing the retryable error |
 | `.opencode/skills/system-skill-advisor/mcp-server/skill-advisor-cli.ts` | skill-advisor warm-only branch |
 | `mcp-server/hooks/spec-memory-cli-fallback.ts` | Hook helper relying on this contract |
+
+---
 
 ## 5. SOURCE METADATA
 

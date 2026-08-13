@@ -20,9 +20,13 @@ Code standards alignment brought comments, MODULE/COMPONENT headers, import orde
 
 This was a cleanup pass that made the code follow a consistent style across the project. It fixed 45 places where comments, file headers, naming patterns or import ordering did not match the agreed-upon rules. Think of it like an editor going through a document to make sure every chapter uses the same formatting and citation style.
 
+---
+
 ## 2. HOW IT WORKS
 
 All modified files were reviewed against sk-code OPENCODE route standards. At HEAD, the live codebase uses MODULE/COMPONENT headers plus purposeful inline comments where explanation adds value. Legacy AI-intent prefixes (`AI-WHY`, `AI-TRACE`, `AI-GUARD`) are no longer part of the active convention, and `rg "AI-(WHY|TRACE|GUARD):" .opencode/skills/system-spec-kit/mcp-server` returns no matches.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -106,6 +110,8 @@ All modified files were reviewed against sk-code OPENCODE route standards. At HE
 - Script entry points:
   - `mcp-server/package.json` (`lint`, `check`)
   - `package.json` at `system-spec-kit` root (`typecheck`)
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

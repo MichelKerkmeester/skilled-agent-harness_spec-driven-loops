@@ -19,6 +19,8 @@ version: 0.8.0.12
 
 Expose the scorer projection data the advisor needs, including the generated deep-loop routing aliases and the resolved `workflowMode` field callers need for downstream routing.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/scorer/projection.ts` projects the compiled skill graph into `skill_nodes` and `skill_edges` collections shaped for the graph-causal lane. The projection is side-effect-free and does not carry prompt text or raw graph prose. Bounded node counts keep memory usage stable as the corpus grows.
@@ -28,6 +30,8 @@ Expose the scorer projection data the advisor needs, including the generated dee
 `routing-registry-drift-guard.vitest.ts` recomputes the registry hash and compares it with the embedded TypeScript and Python projection hashes. This makes newly added lexical or alias-fold modes fail fast when the projection has not been regenerated.
 
 `advisor_recommend` folds the projection hash into its cache source signature and publishes `workflowMode` on recommendations when a generated deep-loop alias or merged deep-loop prompt resolves to a known mode. The response schema treats the field as optional for compatibility with non-deep skills and strict consumers.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -51,6 +55,8 @@ Expose the scorer projection data the advisor needs, including the generated dee
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/routing-registry-drift-guard.vitest.ts` | Automated test | Registry hash freshness and projection drift guard |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | workflowMode publication on generated deep-loop aliases |
 | `Playbook scenario [SC-002](../../manual-testing-playbook/scorer-fusion/projection.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

@@ -183,6 +183,8 @@ denylist_hits_for_saved_memories
 
 Verify entity extraction pipeline → Check normalization rules → Inspect denylist configuration
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/auto-entity-extraction.md](../../feature-catalog/memory-quality-and-indexing/auto-entity-extraction.md)

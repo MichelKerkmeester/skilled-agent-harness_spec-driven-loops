@@ -539,6 +539,8 @@ Rendered .md frontmatter
 
 Check resolveProjectPhase() in session-extractor.ts and projectPhase propagation in input-normalizer.ts
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/json-mode-hybrid-enrichment.md](../../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md)

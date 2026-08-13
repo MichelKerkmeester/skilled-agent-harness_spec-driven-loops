@@ -177,6 +177,8 @@ AssertionError: expected [ ':auto' ] to deeply equal ArrayContaining{…}
 
 Inspect `mcp-server/lib/context/caller-context.ts`, `mcp-server/context-server.ts`, `mcp-server/handlers/session-resume.ts`, `shared/gate-3-classifier.ts`, and `mcp-server/hooks/shared-provenance.ts`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [governance/session-resume-caller-binding-and-unicode-sanitization.md](../../feature-catalog/governance/session-resume-caller-binding-and-unicode-sanitization.md)

@@ -75,6 +75,7 @@ Validate detect_changes stale/fresh preflight, path-traversal rejection, and 3-f
 
 ### Failure Triage
 
+---
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

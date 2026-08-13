@@ -16,6 +16,8 @@ Dispatch the mirrored `prompt-improver` profile through Devin's custom agent pat
 
 Devin does not auto-discover the repository's `.claude/agents/` directory on its own in the installed version. The mirrored Devin path is what makes the roster usable.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Prove a mirrored roster agent is dispatchable and its body influences the result.
@@ -26,6 +28,8 @@ Devin does not auto-discover the repository's `.claude/agents/` directory on its
 - Desired user-visible outcome: A working mirrored custom-agent dispatch rather than a built-in fallback.
 - Pass/fail: PASS when the mirrored profile is used and returns derived content; FAIL when Devin falls back silently or cannot load the profile; SKIP on auth/availability blockers.
 
+---
+
 ## 3. TEST EXECUTION
 
 1. `test -L .devin/agents/prompt-improver/AGENT.md && readlink .devin/agents/prompt-improver/AGENT.md`
@@ -35,6 +39,8 @@ Devin does not auto-discover the repository's `.claude/agents/` directory on its
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | DV-011 | `devin -p ... prompt-improver ...` | Mirrored agent result and symlink target | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -51,6 +57,8 @@ Devin does not auto-discover the repository's `.claude/agents/` directory on its
 | `../../references/agent-delegation.md` | Custom profile format and dispatch |
 | `../../SKILL.md` | Installed-version correction about `.claude/agents/` discovery |
 | `../../../../.devin/agents/prompt-improver/AGENT.md` | Mirrored profile under test |
+
+---
 
 ## 5. SOURCE METADATA
 

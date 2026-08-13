@@ -81,6 +81,8 @@ No `memory_stats()`, `memory_save()`, or `memory_search()` scenario command was 
 
 Inspect `handlers/memory-save.ts` dryRun and insufficiency branches, `shared/parsing/memory-sufficiency.ts`, `handlers/quality-loop.ts`, and `lib/validation/preflight.ts`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/dry-run-preflight-for-memory-save.md](../../feature-catalog/memory-quality-and-indexing/dry-run-preflight-for-memory-save.md)

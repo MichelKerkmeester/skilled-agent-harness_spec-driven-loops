@@ -95,6 +95,8 @@ PASS — both GAP A and GAP B violations were detected by the Vitest suite, clea
 
 Inspect `scripts/evals/check-architecture-boundaries.ts` import parsing, wrapper signal detection, and package-root resolution if violations are missed or false positives appear
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/architecture-boundary-enforcement.md](../../feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md)

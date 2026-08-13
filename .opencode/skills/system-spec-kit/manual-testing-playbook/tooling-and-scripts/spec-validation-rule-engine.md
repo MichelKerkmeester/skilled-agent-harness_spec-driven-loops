@@ -65,6 +65,8 @@ Validation transcript for the warning-bearing fixture plus JSON output for the c
 
 Inspect `scripts/spec/validate.sh`, `.speckit.yaml` rule ordering, `scripts/validation/*.ts`, and `scripts/rules/check-*.sh` severity mapping if warnings, strict escalation, or recursive phase reporting are inconsistent
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/spec-validation-rule-engine.md](../../feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md)

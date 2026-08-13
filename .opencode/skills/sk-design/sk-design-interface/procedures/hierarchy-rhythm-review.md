@@ -26,9 +26,13 @@ Private procedure card for applying the existing `sk-design-md-generator` hierar
 | Proof gate | The review identifies scan path and scale discipline, labels confirmed versus inferred evidence, and maps each fix to static-system or implementation handoff. |
 | Privacy rule | This is private design-system review guidance, not a public hierarchy skill. |
 
+---
+
 ## 2. READ-ONLY COMPATIBILITY
 
 `sk-design-md-generator` may perform the review using Read, Glob, and Grep evidence plus supplied artifacts. It can report findings and handoff fixes without editing files.
+
+---
 
 ## 3. PROCEDURE
 
@@ -37,6 +41,8 @@ Private procedure card for applying the existing `sk-design-md-generator` hierar
 3. Check size, color, weight, position, and density signals for the hierarchy path.
 4. Check spacing, type scale, repetition, variation, palette discipline, section structure, and alignment for rhythm.
 5. Produce owner-mapped fixes, preferring token and scale corrections over ad hoc styling.
+
+---
 
 ## 4. RELATED CARDS
 

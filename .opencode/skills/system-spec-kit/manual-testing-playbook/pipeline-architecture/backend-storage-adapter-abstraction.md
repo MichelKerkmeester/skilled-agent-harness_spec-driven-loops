@@ -173,6 +173,8 @@ Observed documentation excerpt showing SQLite remains the concrete backend from 
 
 Inspect `mcp-server/lib/storage/ports/index.ts`, the five port implementation files, `mcp-server/tests/fakes/storage-ports.ts`, and `mcp-server/tests/storage-ports-contract.vitest.ts`; if behavior drift appears, check the implementation summary decisions for intentionally unrouted lexical/vector lifecycle exceptions
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/backend-storage-adapter-abstraction.md](../../feature-catalog/pipeline-architecture/backend-storage-adapter-abstraction.md)

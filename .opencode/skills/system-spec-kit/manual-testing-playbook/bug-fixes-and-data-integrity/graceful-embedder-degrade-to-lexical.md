@@ -63,6 +63,8 @@ Baseline and degraded search payloads, the degraded-mode flag fields, and the ty
 
 Inspect `mcp-server/lib/search/pipeline/stage1-candidate-gen.ts`, `mcp-server/lib/search/pipeline/types.ts`, and `mcp-server/handlers/memory-search.ts`. Confirm the unavailable-embedder branch runs lexical candidate generation with `useVector=false` and that the handler plumbs the degraded-mode flags through cache.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

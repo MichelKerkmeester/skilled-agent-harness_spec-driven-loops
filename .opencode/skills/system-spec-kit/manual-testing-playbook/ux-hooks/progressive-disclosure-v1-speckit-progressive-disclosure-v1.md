@@ -171,6 +171,8 @@ Test transcript for `npx vitest run tests/progressive-disclosure.vitest.ts tests
 
 Verify SPECKIT_PROGRESSIVE_DISCLOSURE env → Check DEFAULT_PAGE_SIZE (5) → Inspect SNIPPET_MAX_LENGTH (100) → Verify hashQuery() cursor key → Check DEFAULT_CURSOR_TTL_MS (300000) → Inspect cursorStore map
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/progressive-disclosure.md](../../feature-catalog/ux-hooks/progressive-disclosure.md)

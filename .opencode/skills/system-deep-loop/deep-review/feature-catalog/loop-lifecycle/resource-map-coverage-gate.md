@@ -20,6 +20,8 @@ Reports how well the review covered the artifacts declared in the spec folder's 
 
 The Resource Map Coverage Gate is a conditional synthesis section, not a legal-stop gate. It appears in the review report only when a resource map was present at initialization. It turns "did the review look everywhere the spec said it should" into an explicit, auditable report rather than an implicit assumption.
 
+---
+
 ## 2. HOW IT WORKS
 
 The gate is emitted only when `config.resource_map_present == true` (set when `{spec_folder}/resource-map.md` existed at init). It is inserted as section 8 of the review report, between `Traceability Status` and `Deferred Items`. The section contains exactly three parts: touched entries (resource-map rows the review actually examined), untouched entries split into `expected-by-scope` versus `gap`, and implementation paths the review touched that are absent from the map.

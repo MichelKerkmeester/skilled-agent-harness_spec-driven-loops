@@ -17,9 +17,13 @@ version: 0.8.0.14
 
 Keep lifecycle mutations reversible so operators can experiment with supersession, archival and schema changes without fear of leaving the routing surface in a half-applied state.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/lifecycle/rollback.ts` reverts lifecycle metadata changes atomically. It coordinates with `lib/lifecycle/supersession.ts` and `lib/lifecycle/archive-handling.ts` so that redirect metadata, derived entries and archive classification all snap back together. Readers never observe a partial rollback. Either the rollback commits fully or the prior state remains in effect.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -37,6 +41,8 @@ Keep lifecycle mutations reversible so operators can experiment with supersessio
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | rollback invariants |
 | `Playbook scenario [LC-005](../../manual-testing-playbook/lifecycle-routing/rollback-lifecycle.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

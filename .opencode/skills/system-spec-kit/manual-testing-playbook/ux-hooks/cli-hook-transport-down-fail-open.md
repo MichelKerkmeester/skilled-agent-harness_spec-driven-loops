@@ -15,6 +15,8 @@ This scenario verifies the transport-down behavior of the 028 runtime hook integ
 
 The check drives compiled hook scripts directly with a sandbox socket directory, so the no-socket path is deterministic and host daemons are never contacted.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm hooks exit 0 fast with an absent socket and spawn nothing.
@@ -24,6 +26,8 @@ The check drives compiled hook scripts directly with a sandbox socket directory,
 - Expected signals: Exit 0 from each hook in well under the timeout; launcher count unchanged; empty sandbox socket dir afterward.
 - Desired user-visible outcome: A down transport degrades hook output, never the prompt.
 - Pass/fail: PASS only when every hook exits 0 without spawning anything.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -72,6 +76,8 @@ Shell transcript with both exit codes, the launcher counts, and the socket-dir l
 
 A timeout means the hook attempted a non-warm-only call or the probe timeout regressed — inspect the warm-only helper invocation in the hook adapter. A spawned launcher means the fallback helper lost its warm-only flag. A non-zero exit contradicts the fail-open contract: hooks must degrade output, not fail the prompt.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -91,6 +97,8 @@ A timeout means the hook attempted a non-warm-only call or the probe timeout reg
 | `mcp-server/hooks/claude/session-prime.ts` | Claude session adapter using the warm paths |
 | `.opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Claude advisor hook using the fallback |
 | `.opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs` | OpenCode advisor bridge using the fallback |
+
+---
 
 ## 5. SOURCE METADATA
 

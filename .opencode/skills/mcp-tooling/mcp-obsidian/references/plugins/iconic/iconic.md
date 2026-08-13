@@ -27,6 +27,8 @@ The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebo
 | Version installed | 1.1.10 (all 3 vaults) | Verified on-disk |
 | State file | `<vault>/.obsidian/plugins/iconic/data.json` | The ENTIRE configuration surface |
 
+---
+
 ## 2. WHAT IT DOES
 
 Customizes icons and their colors directly in the Obsidian UI: tabs, files & folders, bookmarks, tags, properties, and ribbon commands. Rules can match by file extension or folder name; per-item overrides exist for individual icons. Rendering happens in-app; the mode touches only the JSON.
@@ -70,6 +72,8 @@ Customizes icons and their colors directly in the Obsidian UI: tabs, files & fol
 - `operator`: `is` / `contains` (per the live vault rulebook).
 - `match`: `any` (any condition matches) — `all` is supported by the schema.
 - `icon`: `lucide-*` names; `color`: hex.
+
+---
 
 ## 5. GOTCHAS
 

@@ -35,6 +35,8 @@ The Git plugin stores configuration in one JSON file. It reads identity from git
 
 `data.json` is a single JSON object. Most keys are flat booleans, numbers or strings. Two keys hold nested objects: `hunks` and `lineAuthor`. The plugin persists the file through the standard Obsidian plugin API, so an invalid JSON file makes the plugin fall back to defaults on load.
 
+---
+
 ## 2. BACKUP AND COMMIT SETTINGS
 
 | Key | Default | Meaning |
@@ -64,6 +66,8 @@ The Git plugin stores configuration in one JSON file. It reads identity from git
 
 The message script receives the same placeholders where documented in the settings UI. The date format follows Moment.js syntax.
 
+---
+
 ## 3. SYNC SETTINGS
 
 | Key | Default | Meaning |
@@ -83,6 +87,8 @@ The message script receives the same placeholders where documented in the settin
 | `syncMethod` | `merge`, `rebase`, `reset` | Yes, reset is the "other sync service" that only moves HEAD |
 | `mergeStrategy` | `none`, `ours`, `theirs` | Yes, ours favors local changes, theirs favors remote changes |
 
+---
+
 ## 4. NOTIFICATION AND STATUS BAR SETTINGS
 
 | Key | Default | Meaning |
@@ -93,6 +99,8 @@ The message script receives the same placeholders where documented in the settin
 | `showStatusBar` | `true` | Show the plugin status bar item, restart required |
 | `showBranchStatusBar` | `true` | Show the branch name in the status bar, restart required |
 | `changedFilesInStatusBar` | `false` | Show the count of modified files in the status bar |
+
+---
 
 ## 5. SOURCE CONTROL VIEW SETTINGS
 
@@ -107,6 +115,8 @@ The message script receives the same placeholders where documented in the settin
 
 `diffStyle` values: `split` (Split) and `git_unified` (Unified). On mobile the view forces the unified variant regardless of the stored value.
 
+---
+
 ## 6. PATH SETTINGS
 
 | Key | Default | Meaning |
@@ -117,6 +127,8 @@ The message script receives the same placeholders where documented in the settin
 | Extra environment | localStorage | Additional PATH entries, one per line, reload required |
 
 On Windows the default git binary constant in the plugin is `C:\Program Files\Git\cmd\git.exe`. Path values use `/` separators in the settings UI.
+
+---
 
 ## 7. HISTORY AND DIFF SETTINGS
 
@@ -151,6 +163,8 @@ On Windows the default git binary constant in the plugin is `C:\Program Files\Gi
 | `lineAuthor.dateTimeTimezone` | `viewer-local` confirmed | Full set VERIFY |
 | `lineAuthor.coloringMaxAge` | `1y` confirmed | Full set VERIFY |
 
+---
+
 ## 8. OTHER ARTIFACTS
 
 ### Conflict list file
@@ -168,6 +182,8 @@ Username, password, hostname and the custom git binary path persist in Obsidian 
 ### Credential helper
 
 The plugin uses an askpass helper script for credential prompts. The script name constant is `.obsidian_askpass.sh`, its location is VERIFY.
+
+---
 
 ## 9. WHAT THE AI MUST NOT DO
 

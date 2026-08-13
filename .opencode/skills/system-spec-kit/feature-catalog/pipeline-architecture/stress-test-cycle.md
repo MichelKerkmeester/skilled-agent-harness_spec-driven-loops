@@ -20,6 +20,8 @@ A stress test cycle is a structured manual evaluation across packets, scored on 
 
 Use this pattern when a release needs evidence that remediations actually improved behavior, when a post-fix rerun must compare against a prior baseline, or when a broad subsystem change might introduce regressions in behavior that automated unit tests do not capture.
 
+---
+
 ## 2. HOW IT WORKS
 
 The pattern emerged from three live system-spec-kit cycles.
@@ -94,6 +96,8 @@ Each cycle compares against the prior version's rubric where possible. The compa
 5. Run Hunter -> Skeptic -> Referee before finalizing any REGRESSION verdict.
 6. Record aggregate delta percent and any non-like-for-like caveat.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Worked Examples
@@ -114,6 +118,8 @@ Each cycle compares against the prior version's rubric where possible. The compa
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings-rubric.schema.md` | Field-by-field schema documentation |
 | `.opencode/skills/system-spec-kit/templates/stress-test/findings.template.md` | Findings narrative skeleton |
 | `.opencode/skills/system-spec-kit/manual-testing-playbook/stress-testing/run-stress-cycle.md` | Operational guide |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture

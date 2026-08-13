@@ -11,6 +11,8 @@ description: "Four deterministic scoring checks (D2, D3, D4, D5) that grade a mo
 
 `deterministic/` holds the eval-rig's regex and rule-based scoring checks. Each check reads a `fixture.json` and an output markdown file and returns a score for one rubric dimension, no model call involved. `bundle-gate.cjs` is the rig's only hard gate. The other three are soft signals folded into the weighted variant score.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -20,6 +22,8 @@ description: "Four deterministic scoring checks (D2, D3, D4, D5) that grade a mo
 | `hallucination-flag.cjs` | D4 Hallucination check (rubric weight 0.15, deterministic primary). Extracts claimed CLI flags and symbols from the output and flags any not present in the fixture's allowlist. The semantic counterpart lives in `../../grader/harness.cjs` |
 | `preplanning-regex.cjs` | D5 Pre-plan structure check (rubric weight 0.10, never a hard gate). Scores a `<pre-plan>` block for presence, step count (three or more numbered steps) and whether each step states both an acceptance criterion and a verification command |
 
+---
+
 ## 3. VALIDATION
 
 ```bash
@@ -27,6 +31,8 @@ node bundle-gate.cjs <fixture.json> <output.md>
 ```
 
 Each check is independently runnable this way from `deterministic/`. `../dry-run.cjs --test-deterministic` runs all four against canned outputs in one pass.
+
+---
 
 ## 4. RELATED
 

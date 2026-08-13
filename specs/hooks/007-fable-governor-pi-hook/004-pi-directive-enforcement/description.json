@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "hooks/007-fable-governor-pi-hook/004-pi-directive-enforcement",
+  "description": "The capsule line (phase 003) is reminder-only: pi can still silently spawn `cursor-agent -p`, `devin -p`, `opencode run`, etc",
+  "keywords": [
+    "capsule",
+    "line",
+    "phase",
+    "reminder-only",
+    "still",
+    "silently",
+    "spawn",
+    "cursor-agent",
+    "devin",
+    "opencode",
+    "run",
+    "etc"
+  ],
+  "lastUpdated": "2026-08-11T06:40:10.381Z",
+  "specId": "004",
+  "folderSlug": "pi-directive-enforcement",
+  "parentChain": [
+    "hooks",
+    "007-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

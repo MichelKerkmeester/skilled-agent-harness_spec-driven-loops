@@ -138,6 +138,8 @@ Because the documented command did not produce a valid `memory_search` result tr
 
 Verify env in runtime
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/5-embedding-and-api.md](../../feature-catalog/feature-flag-reference/5-embedding-and-api.md)

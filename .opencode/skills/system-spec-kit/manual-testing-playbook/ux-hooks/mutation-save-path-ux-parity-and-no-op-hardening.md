@@ -60,6 +60,8 @@ Test transcript + highlighted assertion names or output snippets
 
 Inspect `tests/memory-save-ux-regressions.vitest.ts` and handler save-path wiring
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/duplicate-save-no-op-feedback-hardening.md](../../feature-catalog/ux-hooks/duplicate-save-no-op-feedback-hardening.md)

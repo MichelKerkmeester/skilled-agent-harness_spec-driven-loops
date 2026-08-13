@@ -80,6 +80,8 @@ The example below borrows the decision-tree asset's shape: visible question node
       ╰────────────────────────────────────────────╯
 ```
 
+---
+
 ## 3. WHY THIS EXAMPLE PASSES
 
 The example is not a universal template. It is a compact model for validator-safe decisions; replace its support-triage content with real sourced nodes.

@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies the first tier of backend discrimination: a runtime-backed mode must use `backendKind: runtime-loop-type` and the explicit `runtimeLoopType` from the registry.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: An operator wants to confirm that research convergence is delegated to the runtime loop backend.
@@ -40,6 +42,8 @@ For a deep research run, resolve the mode through the registry and state the bac
 - Hub rule: if `registry[mode].runtimeLoopType !== null`, backend is `convergence.cjs --loop-type <runtimeLoopType>`.
 
 **Desired user-visible outcome**: The AI reports that research uses the runtime-loop backend keyed by `research`, not the improvement host.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -74,10 +78,14 @@ For a deep research run, resolve the mode through the registry and state the bac
 2. If runtime loop type is missing, check `runtimeLoopType: "research"` in the registry.
 3. If improvement-host appears, verify that `research` has no `loopHostMode` field.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - backend routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `research` backend fields.
+
+---
 
 ## 5. SOURCE METADATA
 

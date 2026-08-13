@@ -14,6 +14,8 @@ When OPENCODE is detected, the router proceeds to language sub-detection (handle
 
 Detection markers are defined verbatim in `references/stack-detection.md:39-40` and SKILL.md smart router pseudocode lines 62-64.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer working on the spec-kit MCP server asks the AI to harden a TypeScript scoring lane to handle empty input prompts gracefully.
@@ -45,6 +47,8 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/l
 **Expected agent dispatch**: `@code` (LEAF) for the edit, via `@orchestrate` (Depth: 1 marker), per the orchestrator-only convention in §0 of `.opencode/agents/code.md`.
 
 **Desired user-visible outcome**: The AI applies the edit to `.opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts`, runs `verify_alignment_drift.py` for OPENCODE alignment evidence, and confirms the modification with a TypeScript-aware fix (early-return + console.error).
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -89,6 +93,8 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/l
 3. If sub-language != TYPESCRIPT: verify `.ts` extension is in the TYPESCRIPT extension list in SKILL.md sub-detection table (lines 78-90).
 4. If `sk-code-webflow/references/*` is loaded: the router has a leak — the WEBFLOW markers (motion.dev, GSAP, etc.) MUST NOT match this prompt. Verify the marker grep patterns are anchored correctly.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/SKILL.md` — Smart router + sub-detection table (lines 53-90).
@@ -97,6 +103,8 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/l
 - `.opencode/skills/sk-code/sk-code-opencode/references/shared/` — Expected-loaded shared OPENCODE references.
 - `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` — OPENCODE alignment verifier (run after the edit for evidence).
 - `.opencode/agents/code.md` — @code agent dispatch convention.
+
+---
 
 ## 5. SOURCE METADATA
 

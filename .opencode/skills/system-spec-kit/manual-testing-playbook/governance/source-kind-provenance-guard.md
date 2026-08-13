@@ -79,6 +79,8 @@ No `memory_save`, `memory_list`, `memory_update`, automated writer harness, stor
 
 Inspect `handlers/save/create-record.ts`, `handlers/memory-crud-update.ts`, strict dispatch schemas, and provenance derivation helpers. Confirm the automated writer simulation uses the supported internal context rather than caller-forged input.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

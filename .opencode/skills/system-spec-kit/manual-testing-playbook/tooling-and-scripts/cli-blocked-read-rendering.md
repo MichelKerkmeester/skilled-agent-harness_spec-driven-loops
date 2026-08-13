@@ -14,6 +14,8 @@ expected_leaf_resources: []
 
 The check is suite-driven so it never touches host daemons: the blocked-read vitest builds nine stale-readiness cases inside a sandboxed harness with its own socket and DB directories.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm blocked readiness refusals exit 0 and surface `requiredAction` in JSON and text renderings.
@@ -23,6 +25,8 @@ The check is suite-driven so it never touches host daemons: the blocked-read vit
 - Expected signals: Suite passes all stale cases; source shows the `status:"blocked"` exit-0 policy comment and the `blocked:` / `requiredAction:` text lines.
 - Desired user-visible outcome: A blocked read always tells the operator the exact repair action.
 - Pass/fail: PASS only when the suite is green and the rendering anchors are present.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -80,6 +84,8 @@ Validate code-index CLI blocked-read rendering: exit 0, status blocked, required
 
 A missing `requiredAction` in `data` points at the normalization step that mirrors the action into the payload. A non-zero exit on blocked means the error classifier started treating blocked envelopes as failures — check the blocked-envelope branch before the generic error mapping.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -92,6 +98,8 @@ A missing `requiredAction` in `data` points at the normalization step that mirro
 
 | File | Role |
 |---|---|
+
+---
 
 ## 5. SOURCE METADATA
 

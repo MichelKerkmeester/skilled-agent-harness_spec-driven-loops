@@ -61,6 +61,8 @@ Source code: `hybrid-search.ts` collectRawCandidates, `executeFallbackPlan()`, `
 
 Inspect `collectRawCandidates()` stop-after-fusion behavior, `checkDegradation()` thresholds, `searchWithFallbackTiered()` merge order, and whether enrichment helpers are invoked once or per tier
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/quality-aware-3-tier-search-fallback.md](../../feature-catalog/retrieval/quality-aware-3-tier-search-fallback.md)

@@ -123,6 +123,8 @@ The journal-phase contract from `lib/storage/checkpoints.ts` and the documented 
 
 Inspect the `RestoreJournalPhase` type and `writeRestoreJournal` usage in `lib/storage/checkpoints.ts` if recovery rolls back a completed restore or keeps a half-swapped one.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Checkpoint v2 create/restore: `mcp-server/lib/storage/checkpoints.ts` (`createCheckpointV2`, `restoreCheckpointV2`, `VACUUM ... INTO`, `.restore-journal.json`)

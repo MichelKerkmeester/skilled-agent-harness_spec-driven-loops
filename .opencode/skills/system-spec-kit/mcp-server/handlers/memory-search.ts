@@ -78,10 +78,6 @@ import { validateQuery, requireDb, toErrorMessage } from '../utils/index.js';
 import { createMCPErrorResponse, createMCPSuccessResponse, serializeEnvelopeWithTokenCount } from '../lib/response/envelope.js';
 import { formatSearchResults } from '../formatters/index.js';
 
-// Token budget enforcement
-import * as layerDefs from '../lib/architecture/layer-definitions.js';
-import { estimateTokens } from '../formatters/token-metrics.js';
-
 // Shared handler types
 import type { MCPResponse, IntentClassification } from './types.js';
 
@@ -138,8 +134,10 @@ import type { IntentType, IntentWeights as IntentClassifierWeights } from '../li
 import type { RawSearchResult } from '../formatters/index.js';
 // RoutingResult, WeightedResult — now used internally by lib/search/search-utils.ts
 
-// memory_search performs hybrid (semantic + lexical) retrieval through a
-// 4-stage pipeline with a quality-aware 3-tier fallback.
+// Feature catalog: Semantic and lexical search (memory_search)
+// Feature catalog: Hybrid search pipeline
+// Feature catalog: 4-stage pipeline architecture
+// Feature catalog: Quality-aware 3-tier search fallback
 
 
 /* ───────────────────────────────────────────────────────────────
@@ -844,101 +842,6 @@ function finalizeResponseEnvelope(response: MCPResponse): MCPResponse {
     ...response,
     content: [{ ...state.firstEntry, text: serializeSearchEnvelope(state.envelope) }],
   };
-}
-
-/* ───────────────────────────────────────────────────────────────
-   TOKEN BUDGET ENFORCEMENT
-
-   Mirrors the memory_context handler's enforceTokenBudget pattern:
-   estimates the token count of the serialized response envelope
-   (1 token ≈ 4 chars) and, when over the per-tool budget, drops
-   lowest-score results first until the envelope fits. Under budget
-   the response passes through unchanged with no metadata noise.
-──────────────────────────────────────────────────────────────── */
-
-/**
- * Enforce the memory_search token budget on a final response envelope.
- *
- * Results live under data.results inside content[0].text. Under budget the
- * response is returned unchanged. Over budget, lowest-score results are
- * dropped first and the truncation is surfaced as
- * meta.tokenBudgetEnforcement (same shape as memory_context).
- */
-function enforceSearchTokenBudget(response: MCPResponse, budgetTokens: number): MCPResponse {
-  const parsed = parseResponseEnvelope(response);
-  if (!parsed) {
-    return response;
-  }
-
-  const data = parsed.envelope.data && typeof parsed.envelope.data === 'object'
-    ? parsed.envelope.data as Record<string, unknown>
-    : null;
-  const results = Array.isArray(data?.results)
-    ? data.results as Array<Record<string, unknown>>
-    : null;
-  if (!data || !results || results.length === 0) {
-    return response;
-  }
-
-  const serializeEnvelope = (): string => JSON.stringify(parsed.envelope);
-  const preEnforcementTokens = estimateTokens(serializeEnvelope());
-
-  // Under budget — no enforcement needed
-  if (preEnforcementTokens <= budgetTokens) {
-    return response;
-  }
-
-  const originalResultCount = results.length;
-  const keptResults = [...results];
-
-  // Drop lowest-score results first, mirroring memory_context's
-  // enforceTokenBudget. Results are rank-ordered highest-first; the min-scan
-  // keeps the drop deterministic even when low-score rows were appended later
-  // (e.g. community fallback) and preserves survivor order.
-  const resolveEnforcementScore = (result: Record<string, unknown>): number | null =>
-    finiteNumber(result.score)
-    ?? finiteNumber(result.intentAdjustedScore)
-    ?? finiteNumber(result.rrfScore)
-    ?? finiteNumber(result.similarity)
-    ?? finiteNumber(result.averageSimilarity)
-    ?? finiteNumber(result.finalRankScore);
-
-  while (keptResults.length > 0 && estimateTokens(serializeEnvelope()) > budgetTokens) {
-    let lowestIndex = keptResults.length - 1;
-    let lowestScore = resolveEnforcementScore(keptResults[lowestIndex]);
-    for (let i = 0; i < keptResults.length; i += 1) {
-      const score = resolveEnforcementScore(keptResults[i]);
-      if (score !== null && (lowestScore === null || score < lowestScore)) {
-        lowestScore = score;
-        lowestIndex = i;
-      }
-    }
-    keptResults.splice(lowestIndex, 1);
-    data.results = keptResults;
-    data.count = keptResults.length;
-  }
-
-  const returnedTokens = estimateTokens(serializeEnvelope());
-  const meta = parsed.envelope.meta && typeof parsed.envelope.meta === 'object'
-    ? parsed.envelope.meta as Record<string, unknown>
-    : {};
-  parsed.envelope.meta = {
-    ...meta,
-    tokenBudgetEnforcement: {
-      budgetTokens,
-      preEnforcementTokens,
-      returnedTokens,
-      actualTokens: returnedTokens,
-      enforced: true,
-      truncated: true,
-      originalResultCount,
-      returnedResultCount: keptResults.length,
-    },
-  };
-
-  return finalizeResponseEnvelope(
-    replaceResponseEnvelope(response, parsed.firstEntry, parsed.envelope),
-  );
 }
 
 function prependEvidenceGapWarningToResponse(response: MCPResponse, warning: string | undefined): MCPResponse {
@@ -2378,11 +2281,6 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   // Deferred writes are enqueued only after the response is fully constructed.
   // They run on a later macrotask, so SQLite lock waits cannot delay this return.
   enqueueDeferredDriftSuspects(driftSuspectIdsToQueue);
-
-  // Trim oversized result sets before computing feedback/telemetry, so the
-  // implicit search_shown signal records only the results actually returned.
-  responseToReturn = enforceSearchTokenBudget(responseToReturn, layerDefs.getTokenBudget('memory_search'));
-
   try {
     if (isImplicitFeedbackLogEnabled()) {
       const shownIds = extractResponseResults(responseToReturn).flatMap((result) => {
@@ -2457,7 +2355,6 @@ export const __testables = {
   parseResponseEnvelope,
   replaceResponseEnvelope,
   finalizeResponseEnvelope,
-  enforceSearchTokenBudget,
   prependEvidenceGapWarningToResponse,
   resetResponseEnvelopeSerializationDiagnostics,
   getResponseEnvelopeSerializationDiagnostics,

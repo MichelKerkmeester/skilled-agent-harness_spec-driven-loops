@@ -17,9 +17,13 @@ version: 0.8.0.13
 
 Keep the advisor graph fresh without incurring the cost of watching the whole workspace. The narrow-scope watcher subscribes only to files that can affect routing: each skill's `SKILL.md`, its `graph-metadata.json` and any path declared under `derived.key_files`.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/daemon/watcher.ts` boots a Chokidar watcher at daemon startup (through `lib/daemon/lifecycle.ts`) scoped to per-skill `SKILL.md` and `graph-metadata.json` paths. When a skill declares additional tracked files via `derived.key_files` in its graph metadata, those paths are added dynamically. Unrelated writes under `.opencode/plugins/`, repo source code or other skill subfolders do not trigger a reindex. Daemon hardening added reindex-storm back-pressure so rapid bursts of writes debounce into a single reindex event.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -36,6 +40,8 @@ Keep the advisor graph fresh without incurring the cost of watching the whole wo
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | watcher bring-up, scope assertions, debounce checks |
 | `Playbook scenario [AU-001](../../manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md)` | Manual playbook | manual scope validation |
+
+---
 
 ## 4. SOURCE METADATA
 

@@ -26,6 +26,8 @@ Two trace modes score the same corpus:
 
 The rubric, terminal buckets, and pass thresholds are the deep-improvement Lane C **scoring contract's**, not this index's — see section 4. Where a number here and the scoring contract disagree, the scoring contract prevails.
 
+---
+
 ## 2. RUN-LABEL INDEX
 
 No Lane C skill-benchmark run has been archived for `sk-doc` yet. When the first run lands, add one row per run-label folder (newest first), mark `baseline/` as the frozen anchor, and never overwrite a shipped run-label — each new run is an additive sibling folder.
@@ -33,6 +35,8 @@ No Lane C skill-benchmark run has been archived for `sk-doc` yet. When the first
 | Run label | Trace mode | Verdict | Status | Notes |
 |---|---|---|---|---|
 | _(none archived yet)_ | — | — | — | First run adds the first row |
+
+---
 
 ## 3. RE-RUNNING
 
@@ -47,6 +51,8 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host
 
 Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` and `skill-benchmark-report.md` in the outputs dir. The D5 connectivity gate runs first and hard-fails the run on structural breaks. Add each new run as a fresh sibling run-label folder and a new row in section 2.
 
+---
+
 ## 4. RELATED RESOURCES
 
 | Document | Purpose |
@@ -55,6 +61,8 @@ Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` 
 | [`sk-doc`](../SKILL.md) | The hub under measurement |
 | [`scoring-contract.md`](../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) | The normative Lane C measurement contract every verdict is scored against |
 | [`/deep:skill-benchmark`](../../../commands/deep/skill-benchmark.md) | The command that drives a benchmark run |
+
+---
 
 ## 5. COMPILED-ROUTING ARCHIVE
 

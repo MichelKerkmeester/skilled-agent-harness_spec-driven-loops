@@ -26,9 +26,13 @@ Private procedure card for applying the existing design-interface interaction-st
 | Proof gate | Every interactive element has a visible rest state, keyboard-visible focus, disabled semantics where needed, feedback for actions, and transition timing that fits the motion budget. |
 | Privacy rule | This is private motion guidance and does not create a public interaction-states skill. |
 
+---
+
 ## 2. READ-ONLY COMPATIBILITY
 
 `design-interface` can return a state matrix or handoff. It must not require CSS edits, browser automation, or Bash to apply this card.
+
+---
 
 ## 3. PROCEDURE
 
@@ -37,6 +41,8 @@ Private procedure card for applying the existing design-interface interaction-st
 3. Tie transitions to the register motion budget and keep micro-feedback responsive.
 4. Add action feedback for submission, failure, validation, selection, filters, and async work.
 5. Include reduced-motion alternatives for nonessential movement.
+
+---
 
 ## 4. CONFLICT RULE
 

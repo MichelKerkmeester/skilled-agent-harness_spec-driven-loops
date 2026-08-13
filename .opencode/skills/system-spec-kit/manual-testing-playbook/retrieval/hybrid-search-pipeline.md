@@ -58,6 +58,8 @@ Trace output from the live search plus the passing vitest run for channel suppre
 
 Inspect `hybrid-search.ts` candidate routing and trace fields if graph or degree signals leak into a `useGraph:false` unit run
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/hybrid-search-pipeline.md](../../feature-catalog/retrieval/hybrid-search-pipeline.md)

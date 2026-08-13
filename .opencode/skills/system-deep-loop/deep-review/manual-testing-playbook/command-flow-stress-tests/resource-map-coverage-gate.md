@@ -18,6 +18,8 @@ This scenario stresses a command/skill cross-layer gate: when a spec has `resour
 
 The skill says resource-map coverage changes initialization, strategy context, traceability focus, and synthesis. A run that ignores the map can falsely claim coverage.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence and verify only file and text signals.
@@ -30,6 +32,8 @@ Operators run the exact command sequence and verify only file and text signals.
 - Expected signals: `resource_map_present`, `Resource Map Coverage`, `resource-map.md`, `applied/T-001.md`, `traceability`, clean target diff, clean tripwire.
 - Desired outcome: PASS verdict proving resource map coverage is not silently skipped.
 - Pass/fail: PASS if all field counts are `1+`. FAIL if config says resource map absent or coverage language never appears.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -89,6 +93,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 |---|---|---|---|---|---|---|---|---|
 | CP-054 | RESOURCE_MAP_GATE | Prove map presence changes review state and coverage language | `Run the resource-map coverage scenario and prove map evidence changes deep-review state and coverage output.` | Run §3 exactly | Field counts all `1+` | Resource map, applied task, combined artifacts, diffs | PASS if map presence is persisted and coverage gate is named | If absent, inspect `step_detect_resource_map`. If report omits coverage language, inspect synthesis gate. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Lines | Role |
@@ -96,6 +102,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | `.opencode/commands/deep/review.md` | 186-188, 238-245 | Review packet outputs and YAML handoff |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 233-251, 496-503 | Resource-map coverage behavior and report expectations |
 | `.opencode/agents/deep-review.md` | 245-252, 424-435 | Traceability dimension and pre-delivery verification |
+
+---
 
 ## 5. SOURCE_METADATA
 

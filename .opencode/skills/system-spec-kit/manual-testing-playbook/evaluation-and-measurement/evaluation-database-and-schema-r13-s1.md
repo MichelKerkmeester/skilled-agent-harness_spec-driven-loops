@@ -59,6 +59,8 @@ Eval DB schema dump + retrieval event rows + main DB integrity check
 
 Check eval DB path configuration → Verify schema migration ran → Inspect table isolation boundaries
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/evaluation-database-and-schema.md](../../feature-catalog/evaluation-and-measurement/evaluation-database-and-schema.md)

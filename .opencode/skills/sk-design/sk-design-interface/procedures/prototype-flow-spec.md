@@ -26,9 +26,13 @@ Private procedure card for applying the existing design-interface prototype flow
 | Proof gate | The spec covers navigation, validation, loading, success, error, keyboard, focus, and any state that should survive reload; unresolved fake or simulated behavior is labeled. |
 | Privacy rule | This card does not make `design-interface` a builder mode or public prototype skill. Implementation remains a handoff to `sk-code`. |
 
+---
+
 ## 2. READ-ONLY COMPATIBILITY
 
 The four read-only design modes may cite this card to produce a flow spec or handoff. They must not require writing files, running commands, or creating a working prototype themselves.
+
+---
 
 ## 3. PROCEDURE
 
@@ -37,6 +41,8 @@ The four read-only design modes may cite this card to produce a flow spec or han
 3. Require real feedback states for navigation, forms, async work, success, error, and sub-state changes.
 4. Decide which state should persist across reloads or sessions.
 5. Hand implementation to `sk-code` with a verification checklist for the complete flow.
+
+---
 
 ## 4. CONFLICT RULE
 

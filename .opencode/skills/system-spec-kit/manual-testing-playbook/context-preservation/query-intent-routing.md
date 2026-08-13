@@ -148,6 +148,8 @@ IntentTelemetry envelopes from all three runtimes side-by-side
 
 Inspect `mcp-server/handlers/memory-context.ts` IntentTelemetry serializer and the query-intent-classifier; confirm packet 007 dist marker present across all runtimes
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/query-intent-routing.md](../../feature-catalog/context-preservation/query-intent-routing.md)

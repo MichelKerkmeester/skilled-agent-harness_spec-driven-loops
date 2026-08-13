@@ -245,6 +245,8 @@ sh: tsx: command not found
 
 Verify min-representation algorithm → Check quality floor threshold → Inspect channel priority ordering
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/channel-min-representation.md](../../feature-catalog/query-intelligence/channel-min-representation.md)

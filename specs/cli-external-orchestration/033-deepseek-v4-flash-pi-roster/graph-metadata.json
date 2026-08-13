@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/033-deepseek-v4-flash-pi-roster",
+  "spec_folder": "cli-external-orchestration/033-deepseek-v4-flash-pi-roster",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deepseek v4 flash",
+      "cli-pi deepseek flash",
+      "pi supported models allowlist flash",
+      "deepseek-v4-flash fanout",
+      "deepseek v4 flash plan",
+      "pi allowlist change plan",
+      "deepseek v4 flash tasks",
+      "pi allowlist tasks",
+      "deepseek v4 flash checklist",
+      "pi allowlist verification",
+      "deepseek v4 flash implementation summary",
+      "pi allowlist flash summary"
+    ],
+    "key_topics": [
+      "deepseek",
+      "flash",
+      "cli-pi",
+      "supported",
+      "models",
+      "allowlist",
+      "deepseek-v4-flash",
+      "fanout",
+      "plan",
+      "change",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Flash",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fail",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator asked to add DeepSeek V4 Flash to four cli-external-orchestration modes: cli-cursor, cli-devin, cli-opencode, cli-pi",
+    "created_at": "2026-08-02T05:51:35.282Z",
+    "last_save_at": "2026-08-11T07:17:31.520Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6f256fbd098ee8bba6ccf7d81da3b9aff422e45c8cb1471a82ba3c893834beb3",
+    "source_doc_hashes": {
+      "spec.md": "97237c92d7fe67cb88b9e7c066e4f52726fd22b9145361a490d410f73eaf9929",
+      "plan.md": "0fd2334fed168e5ed99575403c97abe7e4075383691d43ecfcb2b3346c8057a7",
+      "tasks.md": "66977bfeaca117558d6553172e3ae5e48ace8d6be8d0356dc96acc756eebd8cd",
+      "checklist.md": "81eda2fdd0042499e95ac3283c9783130264c601b41b2bb2ac5e67557ed3f632",
+      "implementation-summary.md": "764d6af4afe3843732ccb9ce4c78103c0bc2e5c8bb623228154e7f7dc4c3066d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

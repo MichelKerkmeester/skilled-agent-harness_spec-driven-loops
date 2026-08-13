@@ -26,6 +26,8 @@ version: "1.2.0.0"
 
 This scenario verifies that a multi-seat planning deliberation request resolves to `workflowMode: ai-council` and uses the council runtime loop key.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants multiple AI seats to deliberate on a high-impact implementation plan before work begins.
@@ -50,6 +52,8 @@ Run an AI council planning deliberation with multiple seats to compare implement
 - Advisor evidence: `advisorRouting.routingClass: "lexical"` and `advisorRouting.legacyAdvisorId: "deep-ai-council"`.
 
 **Desired user-visible outcome**: The AI invokes or describes the `ai-council` lane, names `/deep:ai-council`, `ai-council`, `runtimeLoopType: council`, and `ai-council/` artifacts.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -90,10 +94,14 @@ Run an AI council planning deliberation with multiple seats to compare implement
 2. If runtime loop type is wrong, check the registry field `runtimeLoopType: "council"`.
 3. If packet name is wrong, verify the registry's `packet: "deep-ai-council"` and `agent: "ai-council"` distinction.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule and mode table.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-council` mode source of truth.
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+ux-hooks-directive-lifecycle-dedup,system-spec-kit,,native-host,manual,,,cursor-native-host,,SKIP,Installed Cursor CLI does not live-fire beforeSubmitPrompt in the tested build; adapter cadence passes but native-host delivery remains dormant and unconfirmed.

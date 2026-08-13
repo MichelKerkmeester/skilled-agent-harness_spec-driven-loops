@@ -12,6 +12,8 @@ This scenario verifies the comment-hygiene half of `.opencode/skills/sk-code/sk-
 
 **No gap found while authoring this scenario (contrast with TH-001)**: unlike its dist-staleness sibling — which shipped with a missing executable bit that silently suppressed the banner in a live session — `check-comment-hygiene.sh` ships with its executable bit intact (`-rwxr-xr-x`), which is exactly what `claude-posttooluse.sh`'s `subprocess.run([checker_path, file_path], ...)` invocation requires to exec the checker directly. The full hook path therefore fires the `COMMENT HYGIENE WARNING` banner to stdout as intended, verified end-to-end below in both directions: the positive case (forbidden comment present → banner reaches stdout → hook exits 0) and the negative case (comment rewritten as a durable WHY → checker clean → no banner → hook still exits 0). This scenario brings the pre-existing comment-hygiene branch under manual coverage for the first time; see §3 Failure Triage if the executable bit ever regresses (e.g. after a checkout that strips permissions), since that would reproduce the class of gap TH-001 documented for its sibling checker.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants to confirm that editing a source file so it introduces a comment carrying an ephemeral-artifact pointer actually surfaces a warning in the session — the same warn-only way the dist-staleness warning does — and that rewriting the comment as a durable WHY clears it, all without the edit ever being blocked.
@@ -30,6 +32,8 @@ In a /tmp sandbox, add a source file whose comment carries an ephemeral-artifact
 - After the comment is rewritten as a durable WHY (no ephemeral id), the same checker exits 0 with empty stdout, so the hook prints no banner and still exits 0.
 
 **Desired user-visible outcome**: An edit that plants an ephemeral-artifact pointer in a comment is flagged in-session with the durable-WHY guidance, without the edit ever being blocked; rewriting the comment clears the warning on the next run.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -113,6 +117,8 @@ Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line
 3. **Banner missing yet the direct checker returns rc=1**: inspect the hook's `if result.returncode == 1 and result.stdout.strip():` guard in `claude-posttooluse.sh` — both conditions must hold for the banner to print.
 4. **Hook exits non-zero**: this breaks the warn-only contract and is a regression — inspect the outer `try`/`except` around the comment-checker `subprocess.run` call; it must never propagate a checker failure (or a violation rc) as a hook failure. The hook's final `sys.exit(0)` is unconditional by design.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` — Dispatches both the comment-hygiene and dist-staleness checkers on every `Write`/`Edit`; prints the `COMMENT HYGIENE WARNING` banner only when the comment checker returns rc=1 with non-empty stdout; always exits 0.
@@ -120,6 +126,8 @@ Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line
 - `.opencode/skills/sk-code/shared/references/universal/code-style-guide.md` §4 — The forbidden ephemeral-artifact-pointer classes and the durable-WHY convention the checker enforces.
 
 **Related**: `claude-posttooluse.sh` also runs the dist-staleness checker (`check-dist-staleness.sh`) on the same edit; that branch is validated by TH-001 (see `tooling-and-hooks/check-dist-staleness-hook.md`). The `ceiling:` intentional-simplification convention that must pass this same comment-hygiene checker without allow-listing is validated by DR-003 (see `design-restraint/ceiling-comment-convention.md`), which asserts the checker exits 0 on a well-formed ceiling comment; TH-002 is the complementary case, asserting rc=1 (and the banner) on a genuine violation.
+
+---
 
 ## 5. DEEP-REVIEW CONSUMPTION NOTE
 
@@ -130,6 +138,8 @@ The comment-hygiene hook is an **author-side** gate: it runs at edit time inside
 **Where `deep-review` consumes it.** `deep-review` audits four dimensions — correctness, security, **traceability**, and maintainability (`.opencode/skills/system-deep-loop/deep-review/README.md:80`). The comment-hygiene envelope feeds the **traceability** dimension: a comment that still points at a spec path, packet/phase number, or ADR/REQ/task/finding id is exactly the kind of unstable, rot-prone reference the traceability pass is meant to catch, and the author-side envelope tells the reviewer which such references were already flagged, fixed, or deferred. `deep-review` then classifies each surviving finding by blocking severity — P0/P1/P2 (`.opencode/skills/system-deep-loop/deep-review/README.md:84`) — and those severity gates roll up into the release-readiness verdict, PASS / CONDITIONAL / FAIL (`.opencode/skills/system-deep-loop/deep-review/README.md:27`). A comment-hygiene deferral the author labelled low-risk typically lands as a P2 advisory that rides a PASS; one that obscures a real traceability defect can be escalated by the reviewer through its own adversarial re-read.
 
 **The boundary (what this note is NOT).** This consumption path does **not** make `code-quality` a deep-loop mode, and it does **not** make the comment-hygiene hook a review owner. `code-quality` stays the author-side gate that produces evidence; `deep-review` stays the independent reviewer that consumes it, re-derives severity through its own Hunter/Skeptic/Referee self-check, and owns the verdict. The hook's warn-only, always-exit-0 contract — the whole point of this TH-002 scenario — is precisely what keeps it advisory rather than gating: the blocking decision belongs to the reviewer, not to the author-side hook. Nothing here adds a dependency from `code-quality` onto the deep-loop runtime; the envelope is read by `deep-review`, not produced for it.
+
+---
 
 ## 6. SOURCE METADATA
 

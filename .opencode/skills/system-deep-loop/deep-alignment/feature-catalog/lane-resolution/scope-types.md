@@ -20,6 +20,8 @@ The three scope shapes a lane may carry — `paths`, `globs`, `branchRange` — 
 
 A lane's scope answers "where to look." It is the third axis of the scoping tree, and it is the only axis with a security surface: an unvalidated scope value could point a lane outside the workspace before any adapter's `discover()` ever ran, so scope validation is a hard containment boundary, not a formatting nicety.
 
+---
+
 ## 2. HOW IT WORKS
 
 `SCOPE_TYPES` is the frozen set `['paths', 'globs', 'branchRange']`. `validateScope()` requires a scope object whose `type` is one of these. For `paths`/`globs` it requires a non-empty array of non-empty string `values`, and validates every value against the repo root via the shared `validateNamespaceValue()` helper the runtime CLIs already use — rather than re-implementing path-traversal detection — so an absolute path outside the repo or a `..` traversal segment fails the whole lane. For `branchRange` it requires non-empty `from`/`to` strings; those are git refs, not filesystem paths, so they are deliberately not repo-root-checked the same way.

@@ -223,6 +223,8 @@ Import smoke-test equivalent script output consuming only `mcp-server/api/provid
 
 Check `mcp-server/api/providers.ts` for missing or renamed re-exports -> inspect `shared/embeddings.ts` for drift in cache, batching, profile helpers, provider cascade, or local model IDs -> verify retry delay, max retry, and circuit breaker logic in `retry-manager.ts` -> confirm public callers are not forced to import private provider modules directly
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/embeddings-and-retry-api.md](../../feature-catalog/pipeline-architecture/embeddings-and-retry-api.md)

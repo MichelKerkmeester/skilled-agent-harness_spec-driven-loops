@@ -78,6 +78,7 @@ exclude:  mcp-server/tests/memory-save.vitest.ts, mcp-server/tests/archive/**
 
 ### Failure Triage
 
+---
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

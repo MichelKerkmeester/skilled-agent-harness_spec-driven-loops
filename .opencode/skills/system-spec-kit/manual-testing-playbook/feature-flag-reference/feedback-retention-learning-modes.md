@@ -67,6 +67,8 @@ Fixture summary, env state per run, reducer output, `governance_audit` rows, ret
 
 Inspect `lib/feedback/feedback-retention-reducer.ts`, `lib/feedback/edge-tier-basement.ts`, and `tests/feedback-retention-reducer.vitest.ts`. Confirm the fixture produces decisions before treating a no-op as failure.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

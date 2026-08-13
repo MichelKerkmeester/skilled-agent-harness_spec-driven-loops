@@ -73,6 +73,8 @@ Validate graph channel preservation: intent gate, entity-density gate, telemetry
 
 Inspect `mcp-server/lib/search/query-router.ts:shouldPreserveGraph` for the intent and entity-density gates. Check `mcp-server/lib/search/entity-density.ts` cache lifecycle. Verify `mcp-server/lib/search/routing-telemetry.ts:recordInvocation` is being called from `routeQuery`. Confirm `isGraphChannelPreservationEnabled()` reads the env at request time, not module load.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/graph-channel-preservation.md](../../feature-catalog/query-intelligence/graph-channel-preservation.md)

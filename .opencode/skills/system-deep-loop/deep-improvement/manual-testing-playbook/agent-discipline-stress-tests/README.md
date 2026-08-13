@@ -12,6 +12,8 @@ version: 1.17.0.1
 
 Category 08 of the `deep-improvement` manual testing playbook. Each `CP-0xx` scenario sends the same task to a generic implementer (Call A) and to the disciplined `@deep-improvement` path (Call B), then checks whether Call B holds a specific discipline boundary that Call A does not. All scenarios run under `/tmp/cp-0xx-sandbox/` and never touch canonical targets.
 
+---
+
 ## 2. CONTENTS
 
 | File | Scenario |
@@ -23,6 +25,8 @@ Category 08 of the `deep-improvement` manual testing playbook. Each `CP-0xx` sce
 | `improvement-gate-delta.md` | CP-036. Proves an acceptable absolute score does not satisfy `improvementGate` without a baseline delta |
 | `benchmark-completed-boundary.md` | CP-037. Proves `benchmark_completed` requires a real `benchmark-outputs/report.json`, not action prose |
 | `setup-cp-sandbox.sh` | Builds the shared `/tmp/cp-improve-sandbox` fixture tree these scenarios run against |
+
+---
 
 ## 3. RELATED
 

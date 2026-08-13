@@ -16,6 +16,8 @@ Enumerate `.cursor/agents/*.md` and ask a real `cursor-agent -p` dispatch to rep
 
 Cursor agent discovery is convention-based, not a flag shown in `--help`. A complete roster check prevents a partial mirror from being mistaken for parity.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm all 13 repository agents are visible to Cursor.
@@ -26,6 +28,8 @@ Cursor agent discovery is convention-based, not a flag shown in `--help`. A comp
 - Desired user-visible outcome: A 13-agent roster with no duplicates or silent omissions.
 - Pass/fail: PASS when filesystem and live dispatch agree; FAIL on any missing/duplicate name; SKIP only with a named Cursor availability/auth blocker.
 
+---
+
 ## 3. TEST EXECUTION
 
 1. `find .cursor/agents -maxdepth 1 -type l -name '*.md' -print | sed 's#^.cursor/agents/##; s#\.md$##' | sort`
@@ -35,6 +39,8 @@ Cursor agent discovery is convention-based, not a flag shown in `--help`. A comp
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | CU-022 | `cursor-agent -p ... --model composer-2.5 --auto-review --sandbox enabled` | All 13 names, no duplicates | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -51,6 +57,8 @@ Cursor agent discovery is convention-based, not a flag shown in `--help`. A comp
 | `../../SKILL.md` | Cursor agent discovery contract |
 | `../../../../.cursor/agents/` | Cursor-facing roster mirrors |
 | `../../../../.claude/agents/` | Canonical agent bodies |
+
+---
 
 ## 5. SOURCE METADATA
 

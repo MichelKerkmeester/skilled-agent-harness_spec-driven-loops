@@ -191,6 +191,8 @@ Validate concept routing and confirm the d2-concept-routing trace entry appears 
 
 Inspect `mcp-server/lib/search/entity-linker.ts` for noun-phrase extraction and alias matching. Check `mcp-server/lib/search/pipeline/stage1-candidate-gen.ts` for the trace write. Confirm `mcp-server/lib/search/search-flags.ts:isGraphConceptRoutingEnabled` reads `SPECKIT_GRAPH_CONCEPT_ROUTING` at request time.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/graph-concept-routing.md](../../feature-catalog/query-intelligence/graph-concept-routing.md)

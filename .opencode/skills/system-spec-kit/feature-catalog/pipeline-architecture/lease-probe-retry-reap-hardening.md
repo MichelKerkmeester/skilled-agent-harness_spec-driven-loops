@@ -20,6 +20,8 @@ When a sibling launcher considers bridging to an existing daemon, it probes the 
 
 The reap hardening requires multiple consecutive deep liveness-probe failures before `maybeBridgeLeaseHolder` reaps the owner and respawns. Any single alive result short-circuits the retry loop and the sibling bridges to the live owner instead of reaping it. The default budget of one retry, a 1500ms retry timeout, and a 250ms backoff stays comfortably under the 6999ms probe ceiling, and a dead socket still fails fast rather than waiting out the full budget.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Consecutive-failure reap requirement
@@ -38,6 +40,8 @@ The default budget is sized so the worst-case retry sequence stays under the 699
 
 A socket that is already dead fails its probe immediately, so the retry loop does not pay the full timeout budget for an owner that is genuinely gone. The hardening adds patience only for owners that respond slowly, not for owners that do not respond at all.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -51,6 +55,8 @@ A socket that is already dead fails its probe immediately, so the retry loop doe
 | File | Type | Role |
 |---|---|---|
 | `mcp-server/tests/launcher-reap-hardening.vitest.ts` | Automated test | Unit-tests consecutive-failure reaping, alive-result short-circuit, the configurable retry budget and dead-socket fast-fail |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture

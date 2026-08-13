@@ -24,6 +24,8 @@ This scenario validates the runtime-neutral goal core without touching operator 
 
 OpenCode's native `mk-goal` plugin is a separate regression control. Pi is the fully supported cross-runtime path. Cursor is injection-only because its prompt command does not receive the hook's native session id. Codex has no goal adapter. Claude Code has no repository adapter or goal command; any separate live native capability is outside this scenario.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Preconditions: Node is available; the goal core, CLI, Pi adapter, and Cursor adapter exist; every command uses a fresh `MK_GOAL_STATE_DIR`.
@@ -32,6 +34,8 @@ OpenCode's native `mk-goal` plugin is a separate regression control. Pi is the f
 - Expected signals: Session A and B show distinct objectives; all unbound current-session actions fail with `MISSING_SESSION_ID`; `doctor` reports counts but not raw ids; legacy-only scoped reads return no goal; explicit migration binds exactly one empty target and archives the singleton; an occupied target stays unchanged; malformed legacy bytes survive `legacy-archive`; disabled adapters emit no goal block.
 - Desired user-visible outcome: One PASS or FAIL verdict per boundary with the exact envelope lines or file comparisons used as evidence.
 - Pass/fail: PASS only when every boundary above is observed from an isolated final state. Any cross-read, implicit legacy selection, target overwrite, leaked raw id, changed non-owner file, or disabled-state injection is a FAIL.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -150,6 +154,8 @@ node --test \
   .opencode/hooks/goal/cursor/goal-cursor.test.mjs
 ```
 
+---
+
 ## 4. SOURCE FILES
 
 | File | Role |
@@ -159,6 +165,8 @@ node --test \
 | `.opencode/hooks/goal/pi/goal-context.ts` | Pi native identity and `/goal-pi`. |
 | `.opencode/hooks/goal/cursor/goal-inject.mjs` | Cursor session-bound injection. |
 | `.opencode/hooks/goal/README.md` | Current state layout, support matrix, failure contract, and rollback. |
+
+---
 
 ## 5. SOURCE METADATA
 

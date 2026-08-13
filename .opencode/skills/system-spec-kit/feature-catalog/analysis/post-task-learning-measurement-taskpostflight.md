@@ -20,6 +20,8 @@ Covers the postflight tool that computes a Learning Index by comparing post-task
 
 After finishing a task, this tool takes the "after" measurement and compares it against the "before" baseline. It calculates a score that tells you how much you learned. A high score means you gained real new understanding. A low score means you mostly applied what you already knew. A negative score means you discovered that what you thought was true turned out to be wrong.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Learning Index Formula
@@ -39,6 +41,8 @@ You can track gaps closed during the task and new gaps discovered. Both are stor
 ### Re-Correction Support
 
 The handler also supports re-correction runs. It accepts both "preflight" and already-"complete" records, so you can call `task_postflight` again for the same task to recompute the deltas and overwrite the stored postflight values after refining your assessment.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -60,6 +64,8 @@ The handler also supports re-correction runs. It accepts both "preflight" and al
 |---|---|---|
 | `mcp-server/tests/handler-session-learning.vitest.ts` | Automated test | Session learning handler validation |
 | `mcp-server/tests/corrections.vitest.ts` | Automated test | Learning corrections tests |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Analysis

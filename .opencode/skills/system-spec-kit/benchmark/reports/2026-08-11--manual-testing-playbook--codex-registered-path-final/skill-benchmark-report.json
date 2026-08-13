@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "traceMode": "doc",
+  "scoringMethod": "not-applicable-manual-outcome",
+  "targetSkill": {
+    "id": "system-spec-kit",
+    "rootRel": ".opencode/skills/system-spec-kit"
+  },
+  "executor": "node",
+  "model": null,
+  "variant": "codex-registered-path-final",
+  "verdict": "PASS",
+  "aggregateScore": null,
+  "dimensionScores": {
+    "D1inter": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D1intra": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D2": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D3": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D4": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    },
+    "D5": {
+      "score": null,
+      "status": "not-applicable-manual-outcome"
+    }
+  },
+  "runQuality": {
+    "note": "Manual playbook outcome; no Lane C dimension scoring applies.",
+    "scenarioCount": 1
+  },
+  "scenarioRows": [
+    {
+      "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+      "verdict": "PASS",
+      "reason": "Registered Codex path passed native payload/envelope cadence, failure handling, lifecycle bridge, and durable provenance gates.",
+      "stage": "registered-path",
+      "classKind": "manual",
+      "providerModel": null,
+      "variant": "codex-registered-path-final",
+      "evidence": [
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/codex.json",
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/source-hashes.json",
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/payload-fixtures.json",
+        "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/tests/registered-adapters-final.log"
+      ],
+      "evidenceArtifacts": [
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/codex.json",
+          "status": "verified",
+          "bytes": 3176,
+          "sha256": "950a8fb2167250575890663977706bd3dac7957bab6923aa9050be6b68e482d9"
+        },
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
+          "status": "verified",
+          "bytes": 1201,
+          "sha256": "65a60b0846c72fa188118962bf24d9d5d3b80f842b0a9df6323a6f58e91d624a"
+        },
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/source-hashes.json",
+          "status": "verified",
+          "bytes": 1400,
+          "sha256": "cb30b8ef5e0386d623771de757592336e32140a48275e82bcf9d8e4f765b45ca"
+        },
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/payload-fixtures.json",
+          "status": "verified",
+          "bytes": 841,
+          "sha256": "479a9f477d4fb9e02d419e0af0e453896fe1d0ed0959d7c88fd78b85d541abf7"
+        },
+        {
+          "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/tests/registered-adapters-final.log",
+          "status": "verified",
+          "bytes": 324,
+          "sha256": "0c40eae6022b93d2510726846833268deec37b0e5d60e73df84145369bebaaa1"
+        }
+      ]
+    }
+  ],
+  "supersedes": [
+    ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-3",
+    ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--codex-adapter"
+  ],
+  "provenance": {
+    "note": "Manual playbook scenario outcome captured by the canonical wrapper; no benchmark dimensions were scored.",
+    "capturedAt": "2026-08-11T16:58:00.000Z",
+    "evidenceClass": "registered-path",
+    "evidenceArtifacts": [
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/codex.json",
+        "status": "verified",
+        "bytes": 3176,
+        "sha256": "950a8fb2167250575890663977706bd3dac7957bab6923aa9050be6b68e482d9"
+      },
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
+        "status": "verified",
+        "bytes": 1201,
+        "sha256": "65a60b0846c72fa188118962bf24d9d5d3b80f842b0a9df6323a6f58e91d624a"
+      },
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/source-hashes.json",
+        "status": "verified",
+        "bytes": 1400,
+        "sha256": "cb30b8ef5e0386d623771de757592336e32140a48275e82bcf9d8e4f765b45ca"
+      },
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/payload-fixtures.json",
+        "status": "verified",
+        "bytes": 841,
+        "sha256": "479a9f477d4fb9e02d419e0af0e453896fe1d0ed0959d7c88fd78b85d541abf7"
+      },
+      {
+        "path": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/tests/registered-adapters-final.log",
+        "status": "verified",
+        "bytes": 324,
+        "sha256": "0c40eae6022b93d2510726846833268deec37b0e5d60e73df84145369bebaaa1"
+      }
+    ]
+  },
+  "executionContext": {
+    "traceMode": "doc",
+    "scenarioId": "ux-hooks-directive-lifecycle-dedup",
+    "stage": "registered-path",
+    "dispatch": "manual",
+    "evidenceClass": "registered-path",
+    "executor": "node",
+    "requestedExecutorLabel": "node",
+    "variant": "codex-registered-path-final",
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true,
+    "runtime": "codex",
+    "nodeVersion": "v25.6.1",
+    "hostVersionObservation": "not-observed",
+    "command": "node specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/run-registered-adapter-cadence.mjs specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2",
+    "payloadFixture": "specs/hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery/evidence/runtime/2026-08-11-registered-paths-final-2/payload-fixtures.json",
+    "executorObserved": true,
+    "modelNotApplicableReason": "registered-path harness uses a deterministic advisor target without a model",
+    "supersedes": [
+      ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--ux-hooks-3",
+      ".opencode/skills/system-spec-kit/benchmark/reports/2026-08-11--manual-testing-playbook--codex-adapter"
+    ]
+  }
+}

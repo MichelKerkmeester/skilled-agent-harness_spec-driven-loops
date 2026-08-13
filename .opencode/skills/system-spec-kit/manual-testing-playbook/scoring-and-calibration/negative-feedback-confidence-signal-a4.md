@@ -60,6 +60,8 @@ Confidence multiplier values after negatives + floor verification + recovery cur
 
 Verify demotion formula → Check floor configuration → Inspect half-life recovery timer
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/negative-feedback-confidence-signal.md](../../feature-catalog/scoring-and-calibration/negative-feedback-confidence-signal.md)

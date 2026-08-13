@@ -163,6 +163,8 @@ No output was produced by the diff command.
 
 Inspect `handlers/memory-crud-health.ts`, `tests/stale-audit-tool-ownership.vitest.ts`, `tests/tool-ownership-lint-runner.mjs`, and `tests/fixtures/tool-ownership-map.json`. Confirm the fixture contains both archived and deprecated rows before diagnosing missing audit fields.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources

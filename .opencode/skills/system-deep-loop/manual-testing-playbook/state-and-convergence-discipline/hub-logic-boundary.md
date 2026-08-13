@@ -16,6 +16,8 @@ version: "1.2.0.0"
 
 This scenario verifies the architectural boundary of the parent skill. The hub resolves a `workflowMode` through the registry, then loads the selected mode packet. It must not own per-mode convergence, state, synthesis, or artifact behavior.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: An operator asks the hub to explain where mode-specific behavior lives before selecting a route.
@@ -41,6 +43,8 @@ Explain whether the system-deep-loop hub owns convergence, state, synthesis, or 
 - Hub source: ALWAYS keep each mode's convergence/state/artifact contract in its packet; the hub stays logic-free.
 
 **Desired user-visible outcome**: The AI says the hub is routing-only, resolves the review route through `mode-registry.json`, and assigns detailed behavior to `deep-review`.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -76,11 +80,15 @@ Explain whether the system-deep-loop hub owns convergence, state, synthesis, or 
 2. If registry is bypassed, compare the response against `mode-registry.json`.
 3. If route fields drift, verify `packet: "deep-review"`, `command: "/deep:review"`, and `artifactRoot: "review/"`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - routing-only boundary and packet ownership rules.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `review` route fields.
 - `.opencode/skills/system-deep-loop/deep-review/SKILL.md` - review packet behavior ownership.
+
+---
 
 ## 5. SOURCE METADATA
 

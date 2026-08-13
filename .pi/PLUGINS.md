@@ -24,6 +24,23 @@ Unified compaction + observational memory — compresses conversation context wh
 
 Improve Pi prompt/KV cache hit rates — stable prompt ordering, OpenAI-compatible cache keys, proxy-compat warnings, and footer cache stats
 
+**Cache-compat overlay (`.pi/models.json`).** This repo ships a small `models.json`
+that Pi layers on top of its login-provisioned model catalog
+(`~/.pi/agent/models-store.json`, auto-refreshed from the gateway and not a durable
+edit target). It currently sets `sendSessionAffinityHeaders: true` on the
+`opencode-go` channel (the OpenCode Zen gateway that serves DeepSeek V4 Pro / Flash
+over an OpenAI-compatible API), so a Pi session stays pinned to one upstream backend
+and the provider-side prefix cache stays warm. This also silences the extension's
+per-channel "DeepSeek-like … missing compat" startup warning for that channel.
+
+`supportsLongCacheRetention` is deliberately **left off**: DeepSeek's prefix cache is
+automatic and does not need it, and the Zen gateway's support for OpenAI long
+`prompt_cache_retention` is unverified — enabling it blindly risks
+`400 Unsupported parameter: prompt_cache_retention`. Add it per-model only after
+confirming the endpoint accepts it. No credentials live in `models.json`; auth stays
+in `auth.json` / `models-store.json`. The file is a symlinked canonical
+(`~/.pi/agent/models.json` → repo `.pi/models.json`) — see [`SYNC.md`](SYNC.md).
+
 ---
 
 #### pi-gpt-fast-mode (v0.1.2)

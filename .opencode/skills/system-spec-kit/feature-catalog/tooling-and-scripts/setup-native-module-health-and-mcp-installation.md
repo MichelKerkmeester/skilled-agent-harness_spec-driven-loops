@@ -20,6 +20,8 @@ This setup surface combines two neighboring but distinct responsibilities inside
 
 Taken together, these scripts validate the active feature-folder shape, install and build the Spec Kit workspace, probe native Node module health, rebuild ABI-sensitive packages after runtime changes, record a compatibility marker, and register the MCP server in `opencode.json`.
 
+---
+
 ## 2. HOW IT WORKS
 
 The shipped behavior in this slice currently works as follows:
@@ -36,6 +38,8 @@ The shipped behavior in this slice currently works as follows:
 
 For canonical post-rebuild verification, see the four reference docs under packet `008-mcp-daemon-rebuild-protocol/references/`: `mcp-rebuild-restart-protocol.md` documents the rebuild + restart sequence, `live-probe-template.md` defines the live-probe envelope used to confirm a fresh daemon is responding to MCP traffic, `dist-marker-grep-cheatsheet.md` lists the grep patterns for verifying a `dist/` artifact carries the expected source change, and `implementation-verification-checklist.md` is the canonical checklist run after every MCP rebuild.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -47,6 +51,8 @@ For canonical post-rebuild verification, see the four reference docs under packe
 | `.opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh` | Diagnostic probe | Compares recorded versus active Node ABI details and probes native package loadability |
 | `.opencode/skills/system-spec-kit/scripts/setup/rebuild-native-modules.sh` | Repair script | Rebuilds ABI-sensitive modules, optionally clears cache, and refreshes the Node-version marker |
 | `.opencode/skills/system-spec-kit/scripts/setup/record-node-version.js` | Marker writer | Persists the current Node/runtime compatibility snapshot into `.node-version-marker` |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

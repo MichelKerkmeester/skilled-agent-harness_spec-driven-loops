@@ -29,6 +29,8 @@ Diagnose the package, the activation key and the snippet separately. A valid ins
 | User expects settings | Confusion between theme and plugin or a missing companion plugin |
 | Settings panel missing | Companion plugin not installed. The theme alone exposes no settings |
 
+---
+
 ## 2. DIAGNOSIS SEQUENCE
 
 Run these checks in order. Each check is a named validation checkpoint from section 4.
@@ -93,6 +95,8 @@ print('open', s.count('{'), 'close', s.count('}'))
 
 Adjust the filename to the real snippet. Matching counts pass the **Snippet file valid** checkpoint. A snippet with unbalanced braces never applies.
 
+---
+
 ## 3. RECOVERY
 
 | Problem | Fix |
@@ -124,6 +128,8 @@ Snippet files follow the same rule. The backup lives beside the original inside 
 - Re-read `appearance.json` before every conclusion about activation.
 - Ask the user to restart Obsidian after any snippet change before diagnosing a render issue.
 
+---
+
 ## 4. NAMED VALIDATION CHECKPOINTS
 
 Use these named checkpoints in every diagnosis. They are descriptive names, not tracking ids.
@@ -150,6 +156,8 @@ ls /Users/michelkerkmeester/MEGA/Documents/Obsidian/.obsidian/themes/
 ```
 
 Read every output line. A clean sweep shows two theme files, version `9.0.2`, `cssTheme` set to `Minimal` and the theme folders listed. Report each checkpoint as passed only when its output matches.
+
+---
 
 ## 5. LIMITS
 

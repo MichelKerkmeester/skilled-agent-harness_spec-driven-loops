@@ -19,6 +19,8 @@ version: "1.2.0.0"
 
 This scenario verifies that the model benchmark lane is reached by its command bridge, not by a bare advisor alias.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants to benchmark model behavior against a prompt framework.
@@ -44,6 +46,8 @@ This scenario verifies that the model benchmark lane is reached by its command b
 - Advisor evidence: `advisorRouting.routingClass: "command-bridge"` and `advisorRouting.packetSkillName: "deep-improvement"`.
 
 **Desired user-visible outcome**: The AI routes to `model-benchmark` only because the `/deep:model-benchmark` command is present, names `deep-improvement` as the shared packet, and does not claim a legacy advisor alias for this lane.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -79,10 +83,14 @@ This scenario verifies that the model benchmark lane is reached by its command b
 2. If advisor alias behavior is claimed, re-read `advisorRouting.routingClass: "command-bridge"`.
 3. If backend is wrong, compare against `backendKind: "improvement-host"`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `model-benchmark` source of truth.
+
+---
 
 ## 5. SOURCE METADATA
 

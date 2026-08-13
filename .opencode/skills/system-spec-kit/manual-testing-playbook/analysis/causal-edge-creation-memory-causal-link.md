@@ -62,6 +62,8 @@ Link + trace outputs + indexing/processor diagnostics showing batched exact-firs
 
 Validate IDs and relation type -> normalize path references before indexing -> inspect `canonical_file_path` presence in `memory_index` -> confirm only unresolved references reach the fuzzy fallback stage
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [analysis/causal-edge-creation-memorycausallink.md](../../feature-catalog/analysis/causal-edge-creation-memorycausallink.md)

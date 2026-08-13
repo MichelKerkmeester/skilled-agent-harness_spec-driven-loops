@@ -20,6 +20,8 @@ Resolves an interactive or non-interactive deep-alignment run into N alignment l
 
 `deep-alignment` cannot discover a single artifact until it knows three things: what kind of artifact to look at, whose standard to check it against, and where to look. The scoping tree is the structured decision that resolves those three answers into one or more alignment lanes — a `(authority, artifactClass, scope)` tuple each — before the `DISCOVER` state runs. It replaces free-text scoping (rejected by ADR-002) with a small, enumerable tree so the same answers always resolve to the same lanes.
 
+---
+
 ## 2. HOW IT WORKS
 
 The tree is walked once per lane the operator wants: pick one ARTIFACT-CLASS, multi-select the AUTHORITY values valid for that class, name one SCOPE. Each walk expands to one lane per selected authority, and a single session accumulates lanes across as many walks as needed — this is how "sk-code and sk-git and/or sk-design in one pass" resolves as three separate walks in one session. It is not a full cross-product of every class against every authority; only the combinations the operator actually names become lanes.

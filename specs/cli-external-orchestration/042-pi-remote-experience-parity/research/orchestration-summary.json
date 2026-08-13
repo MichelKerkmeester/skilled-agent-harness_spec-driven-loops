@@ -1,0 +1,71 @@
+{
+  "run_id": "1786514481346-vicu2t",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/042-pi-remote-experience-parity",
+  "base_artifact_dir": "specs/cli-external-orchestration/042-pi-remote-experience-parity/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "cli-codex-gpt-56-luna-max",
+      "state_log": "specs/cli-external-orchestration/042-pi-remote-experience-parity/research/lineages/cli-codex-gpt-56-luna-max/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-12T06:01:21.351Z",
+        "end_at_iso": "2026-08-12T06:37:00.782Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 21,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 22
+      },
+      "sample": [
+        {
+          "index": 1,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T12:00:00.000Z",
+          "deltaMs": 19259218
+        },
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T12:15:00.000Z",
+          "deltaMs": 20159218
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T12:30:00.000Z",
+          "deltaMs": 21059218
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T12:45:00.000Z",
+          "deltaMs": 21959218
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-08-12T13:00:00.000Z",
+          "deltaMs": 22859218
+        }
+      ]
+    }
+  ]
+}

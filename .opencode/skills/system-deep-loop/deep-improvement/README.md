@@ -194,6 +194,8 @@ The `feature-catalog/` covers every capability across five categories: evaluatio
 
 `behavior-benchmark/` (IMB scenarios) measures what an executor model actually does at the `/deep:agent-improvement` command surface under realistic vague/concise prompts: whether it runs the evaluator-first loop (scored on a **packet-local candidate + evaluator score**), how it presents, whether it halts or stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
 
+---
+
 ## 9. RELATED DOCUMENTS
 
 | Document | Purpose |

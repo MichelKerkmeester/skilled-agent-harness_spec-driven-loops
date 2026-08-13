@@ -21,6 +21,8 @@ metadata:
 - The active workflow phase needs frontend standards (CSS/HTML/JS), an implementation pattern, a performance remediation, a deployment step, or a browser debugging/verification procedure.
 - This surface owns edits, tests, and verification through the workflow references; hand off formal findings-first review to `code-review` and author-side quality gates to `code-quality`.
 
+---
+
 ## 2. REFERENCE MAP
 
 Language standards (load the detected language's trio; a frontend task legitimately spans all three):

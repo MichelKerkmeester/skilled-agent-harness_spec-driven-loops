@@ -16,6 +16,8 @@ Verify the baseline `devin -p` path from a non-Devin runtime. The scenario is re
 
 Every higher-level route depends on the binary being available, authenticated, non-interactive, and capable of returning a useful response without inheriting stdin or caller defaults.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Produce a concise answer to a bounded repository question through `devin -p`.
@@ -25,6 +27,8 @@ Every higher-level route depends on the binary being available, authenticated, n
 - Expected signals: Exit code 0; output names `.opencode/skills/cli-external-orchestration`; no repository mutation.
 - Desired user-visible outcome: A usable, bounded answer from the default print dispatch.
 - Pass/fail: PASS when all signals are present; FAIL on a non-zero exit, missing path, or unexpected mutation; SKIP only when the global auth or availability precondition is blocked.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -37,6 +41,8 @@ Every higher-level route depends on the binary being available, authenticated, n
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | DV-001 | `devin -p ... --model adaptive --permission-mode normal </dev/null` | Exit 0, correct path, unchanged status | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -52,6 +58,8 @@ Every higher-level route depends on the binary being available, authenticated, n
 |---|---|
 | `../../references/cli-reference.md` | `-p`, model, permission, and output contract |
 | `../../SKILL.md` | Availability, stdin, and explicit-flag rules |
+
+---
 
 ## 5. SOURCE METADATA
 

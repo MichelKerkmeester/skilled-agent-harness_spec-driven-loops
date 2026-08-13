@@ -11,6 +11,8 @@ description: "Codex CLI hook adapters that normalize Codex lifecycle payloads an
 
 `hooks/codex/` adapts Codex CLI's `SessionStart`, `UserPromptSubmit`, `Stop` and `PreCompact` lifecycle events onto the existing Claude hook implementations in `../claude/`. Each adapter reads and validates its own Codex payload, spawns the matching compiled Claude adapter with a normalized input and translates the result back into Codex's hook response envelope. No lifecycle logic is duplicated: state and transcript semantics stay owned by the Claude adapters so the two command transports cannot drift apart.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -22,14 +24,20 @@ description: "Codex CLI hook adapters that normalize Codex lifecycle payloads an
 | `compact-inject.ts` | `PreCompact` adapter. Delegates to `compact-inject.js`. |
 | `completion-evidence-stop.cjs` | Standalone Codex `Stop` sentinel. Reads the last-spec-folder state written by the lifecycle hooks, resolves the active packet and calls `../../lib/hooks/completion-evidence-sentinel.cjs` for an advisory-only completion-evidence check. Never blocks the turn. |
 
+---
+
 ## 3. CONSUMERS
 
 - `.codex/hooks.json` registers the compiled `dist/hooks/codex/*.js` outputs of `session-start.ts`, `user-prompt-submit.ts`, `session-stop.ts` and `compact-inject.ts` against the matching Codex lifecycle events.
 - `completion-evidence-stop.cjs` is a plain, directly runnable `.cjs` file with no build step and is registered the same way for the Codex `Stop` event.
 
+---
+
 ## 4. TESTS
 
 - `tests/hook-completion-evidence-stop.vitest.ts` covers the sentinel path shared with `completion-evidence-stop.cjs`.
+
+---
 
 ## 5. SPEC-GATE (GATE-3) HOOKS
 
@@ -42,6 +50,8 @@ This folder also holds the Codex CLI side of the Gate-3 spec-folder discipline, 
 | `spec-gate-codex.test.mjs` | Co-located tests, run with `node --test`. |
 
 `.codex/hooks.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit` and `spec-gate-enforce.mjs` to the `exec|apply_patch|edit` `PreToolUse` matcher.
+
+---
 
 ## 6. RELATED
 

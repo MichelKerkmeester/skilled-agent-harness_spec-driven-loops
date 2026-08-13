@@ -287,6 +287,8 @@ Observed result: no `HyDEResult`, no `pseudoDocument`, no `Float32Array` embeddi
 
 Verify isHyDEEnabled() → Check LOW_CONFIDENCE_THRESHOLD (0.45) → Inspect baseline result scores → Verify getLlmCache() key → Check HYDE_TIMEOUT_MS (8000) → Verify isHyDEActive() gate
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [query-intelligence/hyde-hypothetical-document-embeddings.md](../../feature-catalog/query-intelligence/hyde-hypothetical-document-embeddings.md)

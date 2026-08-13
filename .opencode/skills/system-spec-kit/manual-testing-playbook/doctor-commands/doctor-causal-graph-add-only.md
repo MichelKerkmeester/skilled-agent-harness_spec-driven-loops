@@ -76,6 +76,8 @@ If `N` new edges are inserted, the post-run edge count is exactly baseline plus 
 
 If any existing edge weight changed or any edge was deleted, fail with `mutation-boundary-violation`. Inspect `.opencode/commands/doctor/assets/doctor-causal-graph.yaml` Phase 3 validation, `candidate_existing_edge_check`, and any observed operation list. Roll back from the emitted snapshot if the command did not already restore the database.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

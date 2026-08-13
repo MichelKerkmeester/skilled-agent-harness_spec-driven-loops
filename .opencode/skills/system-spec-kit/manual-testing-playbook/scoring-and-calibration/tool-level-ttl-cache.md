@@ -164,6 +164,8 @@ Third identical `memory_search` run after waiting past the 60,000 ms TTL:
 
 Verify TTL config and max-entry settings -> Confirm identical tool/input payloads were used -> Inspect cache-key hashing and per-tool scoping -> Check mutation hook invalidation path -> Review expiry cleanup timing and oldest-entry eviction behavior
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/tool-level-ttl-cache.md](../../feature-catalog/scoring-and-calibration/tool-level-ttl-cache.md)

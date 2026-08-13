@@ -59,7 +59,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Documentation levels** | four levels matched to task complexity, from the Level 1 baseline up to the Level 3+ governance set |
 | **Phase parents** | lean parent folders with the control-file trio and named child phase folders |
 | **Packet-local changelogs** | `changelog/` history written beside packet roots and direct child phases at closeout |
-| **Validation** | the 46-rule registry with four strict-only rules gated behind `--strict` |
+| **Validation** | the 45-rule registry with four strict-only rules gated behind `--strict` |
 
 ### The Memory System
 
@@ -128,7 +128,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   specs/[project]/042-my-feature/
 ```
 
-The default validation set runs the non-strict rules from the 46-rule registry. Exit 0 means all rules pass, exit 1 is a user error, exit 2 is a validation error and exit 3 is a system error.
+The default validation set runs the non-strict rules from the 45-rule registry. Exit 0 means all rules pass, exit 1 is a user error, exit 2 is a validation error and exit 3 is a system error.
 
 **Step 6: Verify the memory server is up.**
 
@@ -609,7 +609,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
 | [`mcp-server/README.md`](./mcp-server/README.md) | full MCP architecture, 41-tool API reference, search pipeline and configuration |
 | [`mcp-server/INSTALL-GUIDE.md`](./mcp-server/INSTALL-GUIDE.md) | step-by-step installation with embedding providers and environment setup |
 | [`scripts/spec/create.sh`](./scripts/spec/create.sh) | create spec folders with level-appropriate template files |
-| [`scripts/spec/validate.sh`](./scripts/spec/validate.sh) | run the validation set from the 46-rule registry on any spec folder |
+| [`scripts/spec/validate.sh`](./scripts/spec/validate.sh) | run the validation set from the 45-rule registry on any spec folder |
 | `scripts/dist/memory/generate-context.js` | update packet continuity state from structured JSON |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | complete catalog of implemented features |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | manual scenarios that validate the catalog |
@@ -765,7 +765,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/[proje
 | Script | Purpose |
 |---|---|
 | `create.sh` | create spec folders with level-appropriate templates, `--phase` for parent plus child folders |
-| `validate.sh` | run the validation set from the 46-rule registry, `--strict` for strict-only rules, `--recursive` for phase folders, `--verbose` for details |
+| `validate.sh` | run the validation set from the 45-rule registry, `--strict` for strict-only rules, `--recursive` for phase folders, `--verbose` for details |
 | `upgrade-level.sh` | render additional Level contract sections for a higher level |
 | `recommend-level.sh` | analyze scope and risk to recommend the right level |
 | `calculate-completeness.sh` | calculate spec folder completeness as a percentage |
@@ -822,7 +822,7 @@ The manual testing playbook runs every scenario behind these checks.
 | [`references/workflows/spec-folder-write-recipe.md`](./references/workflows/spec-folder-write-recipe.md) | step-by-step recipe for a spec folder that passes strict validation on the first try |
 | [`references/workflows/spec-folder-authoring-checklist.md`](./references/workflows/spec-folder-authoring-checklist.md) | companion checklist for the Level contract, continuity frontmatter and metadata files |
 | [`references/workflows/rollback-runbook.md`](./references/workflows/rollback-runbook.md) | feature-flag rollback and smoke-test procedures |
-| [`references/validation/validation-rules.md`](./references/validation/validation-rules.md) | validation rule reference, the 46-rule registry is authoritative |
+| [`references/validation/validation-rules.md`](./references/validation/validation-rules.md) | validation rule reference, the 45-rule registry is authoritative |
 | [`references/templates/template-guide.md`](./references/templates/template-guide.md) | template usage and composition rules |
 | [`references/config/environment-variables.md`](./references/config/environment-variables.md) | full environment variable reference |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | complete catalog of implemented features |

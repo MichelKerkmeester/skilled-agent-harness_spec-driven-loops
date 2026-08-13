@@ -29,6 +29,7 @@ Examples:
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path, PurePosixPath
@@ -513,6 +514,85 @@ def _fenced_line_numbers(content: str) -> set:
         if fence_len > 0:
             fenced.add(i)
     return fenced
+
+
+_STRUCTURE_ENFORCEMENT_ENV = 'SKDOC_ENFORCE_STRUCTURE'
+
+
+def _structure_enforcement_enabled() -> bool:
+    """Return whether the staged general structure rules are enabled."""
+    return os.environ.get(_STRUCTURE_ENFORCEMENT_ENV) == '1'
+
+
+def _transparent_structure_line(line: str) -> bool:
+    """Return whether a line is transparent when checking a section boundary."""
+    stripped = line.strip()
+    return not stripped or bool(re.fullmatch(r'<!--.*-->', stripped))
+
+
+def validate_general_structure(content: str, doc_type_rules: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Validate staged divider and navigation rules for the general path."""
+    if not _structure_enforcement_enabled():
+        return []
+
+    errors: List[Dict[str, Any]] = []
+    lines = content.splitlines()
+    fenced_lines = _fenced_line_numbers(content)
+
+    if doc_type_rules.get('h2DividerRequired', False):
+        h2_pattern = re.compile(r'^##\s+(\d+)\.\s+(.+?)\s*$')
+        numbered_h2_lines = []
+        for line_number, line in enumerate(lines, start=1):
+            if line_number in fenced_lines:
+                continue
+            match = h2_pattern.match(line)
+            if match and is_uppercase_section(match.group(2)):
+                numbered_h2_lines.append(line_number)
+
+        for line_number in numbered_h2_lines[1:]:
+            previous = line_number - 1
+            while previous > 0 and _transparent_structure_line(lines[previous - 1]):
+                previous -= 1
+            if previous == 0 or lines[previous - 1].strip() != '---':
+                errors.append({
+                    'type': 'general_h2_separator',
+                    'rule_id': 'general_h2_separator',
+                    'severity': 'blocking',
+                    'message': 'Numbered ALL-CAPS H2 sections must be separated by `---`.',
+                    'line': lines[line_number - 1],
+                    'line_number': line_number,
+                    'fix_hint': 'Add `---` immediately above the numbered H2 section.',
+                })
+
+    outside_body = '\n'.join(
+        line for line_number, line in enumerate(lines, start=1)
+        if line_number not in fenced_lines
+    )
+    if doc_type_rules.get('tocForbidden', False) and re.search(
+        r'(?im)^\s*(?:#{1,6}\s+)?(?:\d+\.\s+)?TABLE OF CONTENTS\b',
+        outside_body,
+    ):
+        errors.append({
+            'type': 'general_no_toc',
+            'rule_id': 'general_no_toc',
+            'severity': 'blocking',
+            'message': 'This document type must not contain a Table of Contents.',
+            'fix_hint': 'Remove the Table of Contents and use numbered H2 sections for navigation.',
+        })
+    if doc_type_rules.get('anchorNavigationForbidden', False) and re.search(
+        r'<!--\s*/?ANCHOR\b',
+        outside_body,
+        re.IGNORECASE,
+    ):
+        errors.append({
+            'type': 'general_no_anchor',
+            'rule_id': 'general_no_anchor',
+            'severity': 'blocking',
+            'message': 'This document type must not contain anchor-comment navigation.',
+            'fix_hint': 'Remove navigation anchor comments and use numbered H2 sections instead.',
+        })
+
+    return errors
 
 
 def validate_h2_headers(content: str, doc_type_rules: Dict[str, Any], rules: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -1396,6 +1476,8 @@ def validate_document(
     all_errors = []
     all_errors.extend(validate_toc(content, doc_type_rules, rules))
     all_errors.extend(validate_h2_headers(content, doc_type_rules, rules))
+    if doc_type != 'code_folder':
+        all_errors.extend(validate_general_structure(content, doc_type_rules))
     all_errors.extend(validate_required_sections(content, doc_type_rules))
     if doc_type == 'feature_catalog':
         all_errors.extend(validate_feature_catalog_table(content, doc_type_rules))

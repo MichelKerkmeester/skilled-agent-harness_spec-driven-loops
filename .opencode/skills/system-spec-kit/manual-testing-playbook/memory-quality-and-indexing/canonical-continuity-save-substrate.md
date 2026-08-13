@@ -14,6 +14,8 @@ expected_leaf_resources: []
 
 This scenario validates canonical continuity save substrate for `202`. It focuses on 8-category routing, anchor merge, atomic save promotion, and the thin `_memory.continuity` block.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 
@@ -85,10 +87,14 @@ The first command requires a real canonical writer save, and commands 7-9 requir
 
 Inspect `mcp-server/lib/routing/content-router.ts`, `mcp-server/lib/merge/anchor-merge-operation.ts`, `mcp-server/handlers/save/atomic-index-memory.ts`, `mcp-server/lib/continuity/thin-continuity-record.ts`, `mcp-server/lib/graph/graph-metadata-parser.ts`, `scripts/core/workflow.ts`, and `scripts/validation/continuity-freshness.ts`
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/canonical-continuity-save-substrate.md](../../feature-catalog/memory-quality-and-indexing/canonical-continuity-save-substrate.md)
 - Source files: `mcp-server/lib/routing/content-router.ts`, `mcp-server/lib/merge/anchor-merge-operation.ts`, `mcp-server/handlers/save/atomic-index-memory.ts`, `mcp-server/lib/continuity/thin-continuity-record.ts`, `mcp-server/lib/resume/resume-ladder.ts`, `mcp-server/lib/graph/graph-metadata-parser.ts`
+
+---
 
 ## 5. SOURCE METADATA
 

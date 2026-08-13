@@ -36,6 +36,8 @@ Note: `deep-improvement` owns the Lane C harness itself, so it benchmarks itself
 | Latest live verdict | PASS · aggregate 90/100 (`live_mode_b`) |
 | D5 connectivity (hard gate) | 100/100 |
 
+---
+
 ## 2. RUN-LABEL INDEX
 
 Every run-label folder on disk holds one run's rendered report pair (`skill-benchmark-report.json` + `.md`). One row per folder; verdicts are read from each folder's report and are not restated as a rubric here.
@@ -46,6 +48,8 @@ Every run-label folder on disk holds one run's rendered report pair (`skill-benc
 | [`live-mode-b/`](./reports/2026-07-10--live-mode-b--live/) | Live-mode (Mode B) `cli-opencode` dispatch run | PASS · 90 (live) | [report](./reports/2026-07-10--live-mode-b--live/skill-benchmark-report.md) |
 
 > Baseline status: this tree does not yet carry a frozen `baseline/` before-anchor. The create-benchmark storage convention (`sk-doc/sk-create-benchmark/SKILL.md` §10) expects a `baseline/` folder as the frozen pre-optimization comparison snapshot, never regenerated. Establishing it is pending a first frozen run; until then the only run-label folders on disk are `router-mode-a/` and `live-mode-b/` above.
+
+---
 
 ## 3. RE-RUNNING
 

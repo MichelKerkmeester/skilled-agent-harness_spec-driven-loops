@@ -58,6 +58,8 @@ Preflight output
 
 Retry with complete fields
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [analysis/epistemic-baseline-capture-taskpreflight.md](../../feature-catalog/analysis/epistemic-baseline-capture-taskpreflight.md)

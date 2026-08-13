@@ -19,6 +19,8 @@ version: 0.8.0.14
 
 Give plugins and the Python shim a stable, versioned public surface to import from the advisor package. No consumer should pin to compiled-handler paths that can move between releases.
 
+---
+
 ## 2. HOW IT WORKS
 
 `compat/index.ts` re-exports the curated public API:
@@ -32,6 +34,8 @@ export { renderAdvisorBrief } from '../lib/render.js';
 ```
 
 The OpenCode plugin bridge imports the compiled equivalent at `dist/mcp-server/compat/index.js`. The Python shim probes the same entrypoint through the daemon-probe helper. Pinning to private paths in `dist/handlers/` is explicitly disallowed.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -49,6 +53,8 @@ The OpenCode plugin bridge imports the compiled equivalent at `dist/mcp-server/c
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/compat/plugin-bridge.vitest.ts` | Automated test | Validation reference |
 | `Playbook scenarios [CL-005](../../manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md) and [CP-001..CP-004](../../manual-testing-playbook/compat-and-disable).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

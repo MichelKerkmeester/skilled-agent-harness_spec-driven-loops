@@ -167,6 +167,8 @@ Observed output does not show duplicate file path removal, `sourceCount`, `merge
 
 Check `deduplicateFilePaths()` and metadata construction
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/compact-merger.md](../../feature-catalog/context-preservation/compact-merger.md)

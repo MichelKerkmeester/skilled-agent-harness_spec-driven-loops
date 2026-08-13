@@ -18,11 +18,15 @@ contextType: "general"
 
 This skill is benchmarked on advisor-routing accuracy: whether a projection-intent prompt (for example "make CLI output readable" or "claudish to english, privacy-first rewrite") routes to `sk-communication` as the advisor's top match. The harness is the skill-advisor scorer (`.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py`); dated capture runs live under `reports/`. The underlying `cli-communication-projection` package is verified separately by its own gate (`npm run check` in `packages/cli-communication-projection/`), not by this harness.
 
+---
+
 ## 2. LAYOUT
 
 | Path | Contents |
 |---|---|
 | [`reports/`](./reports/) | One folder per run, indexed by `reports/README.md` |
+
+---
 
 ## 3. RUNNING A BENCHMARK
 

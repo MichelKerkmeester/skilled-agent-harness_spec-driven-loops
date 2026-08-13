@@ -29,9 +29,13 @@ Private procedure card for applying the existing `sk-design-md-generator` compon
 | Proof gate | The inventory distinguishes repeated patterns from one-offs, names missing variants or states, and traces component styling back to tokens when available. |
 | Privacy rule | This is private design-system guidance and does not add a public component-extract skill. |
 
+---
+
 ## 2. READ-ONLY COMPATIBILITY
 
 The `sk-design-md-generator` mode can return the inventory as advisory content or handoff. It must not require file output, code generation, or command execution.
+
+---
 
 ## 3. PROCEDURE
 
@@ -40,6 +44,8 @@ The `sk-design-md-generator` mode can return the inventory as advisory content o
 3. Group findings by token foundations, atoms, molecules, organisms, and templates.
 4. Record accessibility notes, do/don't guidance, composition dependencies, and missing states.
 5. Recommend token extraction, component implementation, or polish review as the next step.
+
+---
 
 ## 4. CONFLICT RULE
 

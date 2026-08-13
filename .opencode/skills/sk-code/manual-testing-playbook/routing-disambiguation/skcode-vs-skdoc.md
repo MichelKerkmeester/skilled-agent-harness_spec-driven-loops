@@ -12,6 +12,8 @@ This scenario verifies that the skill advisor correctly distinguishes documentat
 
 The risk this scenario guards against: sk-code's broad signal coverage ("opencode", "skill", "typescript", "python") could falsely capture doc-edit prompts that target SKILL.md, README.md, or other markdown files inside `.opencode/skills/` directories.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A skill maintainer wants to clarify the routing model in sk-code's SKILL.md by rewriting the headline section.
@@ -36,6 +38,8 @@ Update the sk-code SKILL.md headline section to clarify the two-axis routing mod
 **Expected behavior if sk-code wins anyway**: This is a misroute. Phase E5 should propose either:
 - Adding "headline", "rewrite section", "documentation update" anti-signals to sk-code's `signals` array, OR
 - Adding boost weight to sk-doc's `signals` for "SKILL.md" / ".md headline".
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -65,11 +69,15 @@ Update the sk-code SKILL.md headline section to clarify the two-axis routing mod
 2. Propose anti-signals: add `negative_keywords: ["headline", "rewrite section", "documentation update"]` to sk-code's graph entry — but DO NOT commit without explicit user approval (Phase E5 gate).
 3. Cross-check with `labeled-prompts.jsonl` golden set — does it have any sk-doc-labeled prompts that look like this one? If yes, why are they labeled correctly there but failing here?
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` — Skill signals for both sk-code and sk-doc.
 - `.opencode/skills/sk-code/SKILL.md` — sk-code routing scope.
 - `.opencode/skills/sk-doc/SKILL.md` — sk-doc routing scope (markdown specialist).
+
+---
 
 ## 5. SOURCE METADATA
 

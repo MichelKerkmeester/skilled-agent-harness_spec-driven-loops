@@ -64,6 +64,8 @@ Direct invocation output or focused test harness output + correction row/history
 
 Confirm `SPECKIT_RELATIONS` is enabled; verify the correction row captured the expected stability snapshots; inspect evidence prefix matching for scoped causal-edge deletion; if deletion is over-broad, review legacy fallback handling and correction-owned edge attribution
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [mutation/correction-tracking-with-undo.md](../../feature-catalog/mutation/correction-tracking-with-undo.md)

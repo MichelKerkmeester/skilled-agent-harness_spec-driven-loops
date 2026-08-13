@@ -60,6 +60,8 @@ Search output with result IDs + dedup count before/after collapse
 
 Check chunk parentId linkage → Verify dedup runs after collapse stage → Inspect includeContent flag behavior
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/chunk-collapse-deduplication.md](../../feature-catalog/bug-fixes-and-data-integrity/chunk-collapse-deduplication.md)

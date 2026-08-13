@@ -1,0 +1,2 @@
+scenario_id,hub_id,tier,stage,class_kind,gold_mode,provider_model,variant,score,verdict,reason
+ux-hooks-directive-lifecycle-dedup,system-spec-kit,,documentation,manual,,sonnet-5,ux-hooks,,PASS,"Live shim cadence via compiled claude target: turn1 full, turn2 route-only, transcript-shrink re-delivers full, kill-switch=0 forces full, no-session fails open full (5/5). Runtime shim .claude/hooks/user-prompt-submit.js resolves and emits the brief."

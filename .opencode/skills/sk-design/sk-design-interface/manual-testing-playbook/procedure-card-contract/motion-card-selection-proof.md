@@ -24,6 +24,8 @@ Define hover, focus, active, loading, selected, disabled, and reduced-motion beh
 
 This scenario validates that the single motion/interaction-state private card `design-interface` owns, `procedures/interaction-states-pass.md`, is selected for state-feedback requests.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm `interface` selects `interaction-states-pass.md` and cites interaction matrix, visible focus, feedback coverage, timing, and reduced motion before guidance.
@@ -34,11 +36,15 @@ This scenario validates that the single motion/interaction-state private card `d
 - Desired user-visible outcome: State-by-state motion plan with proof and reduced-motion path.
 - Pass/fail: PASS if the card is selected and proof appears before guidance; FAIL if omitted or replaced by generic motion advice.
 
+---
+
 ## 3. TEST EXECUTION
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | MOTION-PROCCARD-001 | Motion card selection | Verify interaction-states card selection | `Define hover, focus, active, loading, selected, disabled, and reduced-motion behavior for this toolbar. State the selected private procedure card and proof line first.` | grep table in `SKILL.md` -> agent: run exact prompt -> inspect selected card | Card path `procedures/interaction-states-pass.md`; proof cites states, focus, timing, reduced motion | Transcript, response, proof line | PASS if exact card selected; FAIL if missing/wrong/no proof | 1. Re-read `SKILL.md` row; 2. Confirm prompt uses state-feedback vocabulary; 3. Check tool boundary |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -47,6 +53,8 @@ This scenario validates that the single motion/interaction-state private card `d
 | `../manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../SKILL.md` | Motion procedure table |
 | `../../procedures/interaction-states-pass.md` | Interaction-state procedure card |
+
+---
 
 ## 5. SOURCE METADATA
 

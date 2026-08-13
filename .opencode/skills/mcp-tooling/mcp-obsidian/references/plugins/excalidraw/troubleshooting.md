@@ -45,6 +45,8 @@ Each failure mode names a checkpoint and a fix. Run the named checkpoint before 
 
 - Re-run all four checkpoints. Report pass or fail per checkpoint.
 
+---
+
 ## 2. FRONTMATTER DRIFT
 
 ### Symptoms
@@ -67,6 +69,8 @@ Each failure mode names a checkpoint and a fix. Run the named checkpoint before 
 ### After
 
 - Re-run the three checkpoints. The note must show as a drawing again.
+
+---
 
 ## 3. CORRUPT OR TRUNCATED JSON BODY
 
@@ -92,6 +96,8 @@ Each failure mode names a checkpoint and a fix. Run the named checkpoint before 
 
 - Re-run all four checkpoints. A pass proves file-layer validity only.
 
+---
+
 ## 4. COMPRESSED DRAWING SECTION IS UNREADABLE
 
 ### Symptoms
@@ -114,6 +120,8 @@ Each failure mode names a checkpoint and a fix. Run the named checkpoint before 
 ### After
 
 - Re-run the decompress check. The section must parse as JSON.
+
+---
 
 ## 5. EMBED DOES NOT SHOW
 
@@ -139,6 +147,8 @@ Each failure mode names a checkpoint and a fix. Run the named checkpoint before 
 
 - Re-run all four checkpoints. The last mile is a render in the Obsidian UI, which the file layer cannot prove.
 
+---
+
 ## 6. SCRIPT MISSING FROM THE SCRIPT MENU
 
 ### Symptoms
@@ -162,6 +172,8 @@ Each failure mode names a checkpoint and a fix. Run the named checkpoint before 
 ### After
 
 - Re-run the four checkpoints. Menu appearance is an in-app result the file layer cannot prove.
+
+---
 
 ## 7. SETTINGS CHANGES DO NOT APPLY
 
@@ -187,6 +199,8 @@ Each failure mode names a checkpoint and a fix. Run the named checkpoint before 
 
 - Re-run the four checkpoints. Behavior confirmation needs the app reloaded.
 
+---
+
 ## 8. WRONG FILE EXTENSION
 
 ### Symptoms
@@ -209,6 +223,8 @@ Each failure mode names a checkpoint and a fix. Run the named checkpoint before 
 ### After
 
 - Re-run the three checkpoints. The drawing mark is the durable recognition signal.
+
+---
 
 ## 9. GENERAL REPAIR SEQUENCE
 

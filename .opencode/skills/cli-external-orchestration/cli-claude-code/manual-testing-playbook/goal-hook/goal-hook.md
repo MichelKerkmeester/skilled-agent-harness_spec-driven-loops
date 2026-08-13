@@ -10,6 +10,8 @@ version: 2.0.0.1
 
 The runtime-neutral goal core does not register a Claude Code adapter or command. Claude's repository command tree is a filtered per-file mirror that excludes the OpenCode-only goal router. OpenCode's `mk_goal` tools and the Pi/Cursor sibling core are different systems and must not be invoked as substitutes. This repository boundary does not prove whether a live Claude product version exposes a separate native goal feature.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the filtered Claude command tree, tracked adapter tree, registrations, and runtime matrix exclude the OpenCode-only goal surface.
@@ -23,6 +25,8 @@ The runtime-neutral goal core does not register a Claude Code adapter or command
 - Pass/fail: PASS when the filter, generator, source, config, and docs agree. FAIL if the OpenCode command enters Claude discovery, a Claude adapter/registration appears, or docs claim unverified live support.
 - Failure triage: treat a new adapter or registration as a goal-contract change; treat prose-only disagreement as documentation drift and update it only after source and registration checks.
 
+---
+
 ## 3. TEST EXECUTION
 
 ### Exact Command Sequence
@@ -35,6 +39,8 @@ Run the exact path and mirror checks from the scenario contract, scan `.claude/s
 
 This scenario proves repository discovery only. It does not assert that a specific Claude product version exposes native goal state, where such state would live, or whether a headless invocation can use it.
 
+---
+
 ## 4. SOURCE FILES
 
 || File | Role |
@@ -44,6 +50,8 @@ This scenario proves repository discovery only. It does not assert that a specif
 || `../../../../../hooks/goal/lib/goal-core.cjs` | Scoped core that has no Claude caller. |
 || `../../../../../commands/goal-opencode.md` | OpenCode-only command, not a Claude Code fallback. |
 || `../../../../../skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs` | Filtered Claude command mirror authority. |
+
+---
 
 ## 5. SOURCE METADATA
 

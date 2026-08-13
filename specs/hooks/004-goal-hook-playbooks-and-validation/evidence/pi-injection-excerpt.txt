@@ -1,0 +1,43 @@
+=== INJECTED USER MESSAGE (Pi input-transform appended the block) ===
+What is my active goal?
+
+[active_goal:goal-e7a5eb37-4411-43d6-b032-7fb045150da2]
+status: active
+objective: GOALCANARY-PI-2603128151: prove the Pi goal hook injects into the model turn
+goal_prompt:
+Role: Focused Pi execution agent operating under the active session goal.
+Objective: GOALCANARY-PI-2603128151: prove the Pi goal hook injects into the model turn
+Context: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.
+Method:
+- Restate the concrete completion condition from available evidence before acting.
+- Clarify the concrete completion condition from available context, then execute until it is met or blocked.
+- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.
+Success Criteria:
+- The requested outcome is materially complete, not merely analyzed or partially prepared.
+- Required verification has run, or any inability to run it is reported with the exact blocker.
+- Status output distinguishes confirmed evidence from inference.
+Stop Conditions:
+- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.
+- If blocked, preserve state and name the next safe action.
+last_check: not_evaluated ; reason: none
+usage: tokens n/a/none; time 394s; iteration 13 (source: turn-count-estimate)
+directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.
+[/active_goal]
+
+Advisor: live; use cli-pi 0.95/0.20 pass.
+Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.
+Fable-5 governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.
+
+SPEC FOLDER QUESTION: this turn looks like it will mutate a file. Before any Write/Edit, pick one:
+A) Use an existing spec folder (name it)
+B) Create a new spec folder
+C) Update a related spec folder (name it)
+D) Use a phase folder (e.g. .opencode/specs/<parent>/<NNN-phase>, name it)
+E) Skip (no spec folder needed for this change)
+
+=== MODEL REPLY (offline gpt via openai-codex-responses) ===
+Your active goal is:
+
+**GOALCANARY-PI-2603128151 — Prove that the Pi goal hook injects into the model turn.**
+
+Completion requires verified evidence from the repository/tests or runtime showing the hook’s injection reaches the model turn. Status: **active; not yet evaluated**.

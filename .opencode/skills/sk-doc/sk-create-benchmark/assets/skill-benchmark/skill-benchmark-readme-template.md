@@ -84,6 +84,8 @@ The rubric, terminal buckets, and pass thresholds are the deep-improvement Lane 
 | Latest live verdict | {{VERDICT_OR_NOT_RUN}}, aggregate {{LIVE_AGGREGATE_OR_NA}} |
 | D5 connectivity (hard gate) | {{D5_SCORE}}/100 |
 
+---
+
 ## 2. RUN-LABEL INDEX
 
 <!-- One row per run-label folder in this tree, newest first. Status ∈ {current,
@@ -97,6 +99,8 @@ The rubric, terminal buckets, and pass thresholds are the deep-improvement Lane 
 | `{{RUN_LABEL_2}}` | {{YYYY_MM_DD}} | {{ROUTER_OR_LIVE}} | {{VERDICT}} {{AGGREGATE}} | {{STATUS}} | {{WHAT_THIS_RUN_IS}} |
 | `baseline` | {{YYYY_MM_DD}} | {{ROUTER_OR_LIVE}} | {{VERDICT}} {{AGGREGATE}} | frozen | Frozen pre-optimization snapshot, the before-comparison anchor, not regenerated |
 | `{{ADD_ONE_ROW_PER_FOLDER}}` | {{YYYY_MM_DD}} | {{ROUTER_OR_LIVE}} | {{VERDICT}} {{AGGREGATE}} | {{STATUS}} | {{WHAT_THIS_RUN_IS}} |
+
+---
 
 ## 3. STRUCTURE
 
@@ -116,6 +120,8 @@ benchmark/
 | `{{RUN_LABEL_1}}/` | {{ONE_LINE_PURPOSE}} |
 | `{{RUN_LABEL_2}}/` | {{ONE_LINE_PURPOSE}} |
 | `baseline/` | Frozen before-snapshot, the comparison anchor, not reproducible |
+
+---
 
 ## 4. RE-RUNNING
 
@@ -142,6 +148,8 @@ node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host
 
 Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` and `skill-benchmark-report.md` in the outputs dir. The D5 connectivity gate runs first and hard-fails the run on structural breaks — a non-zero exit (`3`) with verdict `BLOCKED-BY-STRUCTURE` (or `BLOCKED-BY-REGISTRY`), reported inside the same report pair. Add each new run as a fresh sibling run-label folder and a new row in section 2; never overwrite `baseline/`.
 
+---
+
 ## 5. READING THE REPORTS
 
 Each run-label folder holds a matched report pair.
@@ -152,6 +160,8 @@ Each run-label folder holds a matched report pair.
 | `skill-benchmark-report.md` | The same report rendered for reading, generated from the JSON by `build-report.cjs` to avoid drift |
 
 Start with the `.md` file for the verdict and the ranked bottlenecks; open the `.json` file for per-scenario detail. The `.md` is an anti-drift **render**, not an authored document: `build-report.cjs` regenerates it from the run JSON, so never hand-edit it — fix the run or the renderer, then re-render.
+
+---
 
 ## 6. RELATED RESOURCES
 

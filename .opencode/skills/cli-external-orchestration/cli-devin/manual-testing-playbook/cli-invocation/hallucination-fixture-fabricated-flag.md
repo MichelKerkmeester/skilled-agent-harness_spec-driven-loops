@@ -16,6 +16,8 @@ Exercise the known `SWE-1.7` hallucination-fixture class without passing a fabri
 
 The archived prompt-quality work records hallucinated CLI flags, wrong-cwd paths, and bundle-gate bypasses as real failure classes. A good dispatch must verify the surface before presenting a command as runnable.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Determine whether Devin correctly labels a fabricated CLI flag instead of repeating it as valid.
@@ -26,6 +28,8 @@ The archived prompt-quality work records hallucinated CLI flags, wrong-cwd paths
 - Desired user-visible outcome: A safe, evidence-backed correction of a plausible hallucinated flag.
 - Pass/fail: PASS when the fabricated flag is rejected; FAIL if the response states or implies that `--reasoning-effort` is a valid Devin flag; SKIP only when auth or availability is blocked.
 
+---
+
 ## 3. TEST EXECUTION
 
 1. `devin --help > /tmp/cli-devin-dv003-help.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv003-help.txt`
@@ -35,6 +39,8 @@ The archived prompt-quality work records hallucinated CLI flags, wrong-cwd paths
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | DV-003 | `devin -p ... --permission-mode normal` | Fake flag rejected; no unverified command executed | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -50,6 +56,8 @@ The archived prompt-quality work records hallucinated CLI flags, wrong-cwd paths
 |---|---|
 | `../../../../specs/cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/spec.md` | Archived SWE hallucination-failure classes |
 | `../../references/cli-reference.md` | Installed flag reference |
+
+---
 
 ## 5. SOURCE METADATA
 

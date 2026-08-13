@@ -35,6 +35,8 @@ Launcher supervision is not uniform by design. The spec-memory launcher supervis
 
 Because the CLIs already use the same daemon IPC path and expose stable count-locked surfaces, a later evolution could consolidate them as the primary or sole transport, replacing MCP servers without breaking existing MCP workflows. Treat that as a possible direction, not a committed migration plan.
 
+---
+
 ## 2. INVOCATION FORMS
 
 Common form:
@@ -62,6 +64,8 @@ node .opencode/bin/spec-memory.cjs memory_context --json '{"input":"resume previ
 node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"implement cli core"}' --format json --timeout-ms 3000 --warm-only
 ```
 
+---
+
 ## 3. OUTPUT FORMATS
 
 Both CLIs accept `--format json|text|jsonl`.
@@ -74,6 +78,8 @@ Both CLIs accept `--format json|text|jsonl`.
 
 `jsonl` is not streaming JSON Lines. Do not assume one record per tool, one record per result, or incremental output. When passing input with `--json`, pass one complete JSON object as one shell argument; the CLIs do not parse a stream of JSONL records from stdin.
 
+---
+
 ## 4. EXIT-CODE TAXONOMY
 
 | Exit | Meaning | Notes |
@@ -85,6 +91,8 @@ Both CLIs accept `--format json|text|jsonl`.
 | `75` | Retryable daemon/IPC error | Warm-only daemon unavailable, connection refused/reset, timeout, busy database, spawn failure, or retryable backend state. |
 
 Exit `75` is retryable. Treat it as daemon or IPC unavailability, not as user input failure.
+
+---
 
 ## 5. WARM-ONLY POLICY
 
@@ -101,6 +109,8 @@ Warm-only defaults can also come from env flags documented in `../config/environ
 
 Non-prompt contexts such as explicit operator maintenance, CI, cron, or session startup may omit `--warm-only`; then a cold daemon can auto-spawn through the matching `mk-*-launcher.cjs`.
 
+---
+
 ## 6. EXIT 69 RECOVERY
 
 The shims refuse stale or missing dist entrypoints with exit `69`. Rebuild before retrying.
@@ -111,6 +121,8 @@ The shims refuse stale or missing dist entrypoints with exit `69`. Rebuild befor
 | `skill-advisor.cjs` | `Run the skill-advisor TypeScript build.` | `npm --prefix .opencode/skills/system-skill-advisor/mcp-server run build` |
 
 Development-only stale overrides exist for local loops, but should not be used in normal recovery: `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1`, and `MK_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1` or `SPECKIT_SKILL_ADVISOR_CLI_DEV_ALLOW_STALE=1`.
+
+---
 
 ## 7. HELP AND DISCOVERY
 
@@ -140,6 +152,8 @@ node .opencode/bin/cli-offline-smoke.cjs --format json
 
 The smoke check expects `spec-memory=41`, `skill-advisor=9`, and `daemonFree:true` for each result. It is the executable parity check for the live manifests, not a separate tool inventory.
 
+---
+
 ## 8. SAFETY RULES
 
 - Keep MCP as the primary in-session transport today; use the CLIs as additive fallbacks and operator surfaces.
@@ -150,6 +164,8 @@ The smoke check expects `spec-memory=41`, `skill-advisor=9`, and `daemonFree:tru
 - Treat exit `69` as a stale/missing dist or protocol mismatch. Rebuild the matching package before retrying.
 - Skill-advisor CLI calls are untrusted by default. Mutations (`advisor_rebuild`, `skill_graph_scan`, and apply-mode `skill_graph_propagate_enhances`) require `--trusted` or `MK_SKILL_ADVISOR_CLI_TRUSTED=1`.
 - Do not use `jsonl` as a streaming automation contract; it is one complete JSON payload on one line.
+
+---
 
 ## 9. SOURCE ANCHORS
 

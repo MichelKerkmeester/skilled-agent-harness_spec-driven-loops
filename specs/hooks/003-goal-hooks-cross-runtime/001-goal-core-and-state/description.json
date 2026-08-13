@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "hooks/003-goal-hooks-cross-runtime/001-goal-core-and-state",
+  "description": "OpenCode sessions carry a passive session-goal system: `mk-goal.js` injects an `[activegoal:<goalId>]…[/activegoal]` block every turn via",
+  "keywords": [
+    "opencode",
+    "sessions",
+    "carry",
+    "passive",
+    "session-goal",
+    "system",
+    "mk-goal",
+    "injects",
+    "activegoal",
+    "goalid",
+    "block",
+    "every",
+    "turn",
+    "via"
+  ],
+  "lastUpdated": "2026-08-11T06:40:10.370Z",
+  "specId": "001",
+  "folderSlug": "goal-core-and-state",
+  "parentChain": [
+    "hooks",
+    "003-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

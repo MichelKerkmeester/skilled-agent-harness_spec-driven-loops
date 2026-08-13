@@ -136,6 +136,8 @@ Output:
 
 Inspect `capability-flags.ts`; verify dist build is fresh; confirm only the listed env vars are set in each run
 
+---
+
 ## 4. SOURCE FILES
 
 - Feature catalog: feature-flag-reference/memory-roadmap-capability-flags.md

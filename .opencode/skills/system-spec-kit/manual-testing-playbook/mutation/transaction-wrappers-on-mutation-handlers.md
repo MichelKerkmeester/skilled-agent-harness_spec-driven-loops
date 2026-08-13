@@ -61,6 +61,8 @@ Fault injection output + rollback trace + post-rollback DB state verification
 
 Inspect transaction wrapper implementation; verify rollback cleans up all partial writes; check for nested transaction handling
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [mutation/transaction-wrappers-on-mutation-handlers.md](../../feature-catalog/mutation/transaction-wrappers-on-mutation-handlers.md)

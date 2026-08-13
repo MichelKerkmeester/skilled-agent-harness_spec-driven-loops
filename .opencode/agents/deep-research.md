@@ -339,6 +339,8 @@ The orchestrator generates the dashboard and findings registry after each iterat
 
 **Wedged-daemon fallback (NEVER block on a hung MCP call):** the `mk-spec-memory` daemon can flap. If any `mcp__mk_spec_memory__*` call hangs or errors, do not wait — fall back immediately to direct Grep/Read (and this agent's other primary evidence sources), or the warm-daemon CLI front door: `node .opencode/bin/spec-memory.cjs <tool> --json '<args>' --format json --timeout-ms 5000`. Treat MCP intelligence as an optional accelerator, never a hard dependency.
 
+---
+
 ## 3. ITERATION PROTOCOL
 
 ### Focus Selection

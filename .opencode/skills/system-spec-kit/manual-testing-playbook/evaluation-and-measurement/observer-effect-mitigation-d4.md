@@ -59,6 +59,8 @@ Search output during induced logging failure + timing comparison with/without fa
 
 Verify observer pattern is non-blocking → Check try/catch wrapping on eval logger → Inspect async error handling
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [evaluation-and-measurement/observer-effect-mitigation.md](../../feature-catalog/evaluation-and-measurement/observer-effect-mitigation.md)

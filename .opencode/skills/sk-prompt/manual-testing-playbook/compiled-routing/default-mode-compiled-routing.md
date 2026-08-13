@@ -29,6 +29,8 @@ version: 1.0.0.0
 
 Serving-authority focus: sk-prompt is the **only hub with a non-null `defaultMode`** (`prompt-improve`) — a general prompt-craft request resolves to that default rather than through a surface pick, an ordered bundle, or a bundle rule. This scenario proves the compiled engine serves that default-mode decision (`servingAuthority: compiled`) and matches the legacy decision. Distinct rationale versus every other hub: it is the sole coverage of a **default-mode fallthrough** serving decision, the exact class this branch's routing cutover most affects.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Exact prompt**:
@@ -39,6 +41,8 @@ Help me write a better prompt for a customer support chatbot.
 **Expected route**:
 - Mode: `prompt-improve` (default mode)
 - Route shape: `default` — the hub's non-null `defaultMode` resolves the general request.
+
+---
 
 ## 3. COMMAND SEQUENCE
 

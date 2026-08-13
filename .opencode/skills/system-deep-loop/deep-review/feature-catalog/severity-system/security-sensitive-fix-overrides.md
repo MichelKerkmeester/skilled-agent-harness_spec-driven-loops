@@ -20,6 +20,8 @@ Describes the tighter stop contract a review should apply when re-reviewing a fi
 
 This entry documents a target contract rather than shipped behavior. It exists so operators know what manual rigor to apply today and so the next implementation pass has a single authoritative spec to build against.
 
+---
+
 ## 2. HOW IT WORKS
 
 This is a SPEC-ONLY contract. As of the current release, the runtime does NOT auto-detect security sensitivity and does NOT apply these overrides. `requiredClosedFindingReplay` and `requiredFixCompletenessGate` exist in no config, YAML, or reducer surface (verified by grep). Operators running a security-sensitive review must manually tighten thresholds via `--convergence` and `--max-iterations` and manually maintain the closed-gate replay table.

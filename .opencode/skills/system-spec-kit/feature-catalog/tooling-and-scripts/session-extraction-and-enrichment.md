@@ -20,6 +20,8 @@ Session Extraction and Enrichment is the extractor-surface slice that turns raw 
 
 Within the audited source set, that work spans three concrete behaviors: file extraction and semantic cleanup, diagram and phase extraction from conversation content, and session-activity signaling that helps downstream spec-folder selection prefer the folder that the session is actually touching. The local extractor barrel then re-exports those surfaces so callers can consume them as a single module boundary.
 
+---
+
 ## 2. HOW IT WORKS
 
 The shipped extractor behavior in this slice currently works as follows:
@@ -35,6 +37,8 @@ The shipped extractor behavior in this slice currently works as follows:
 9. `session-activity-signal.ts` is an extractor-surface re-export for the shared activity scorer. The underlying builder matches candidate spec-folder tokens against observation paths, git-changed files, and transcript mentions, then computes a capped confidence boost with stronger weights for write tools (`0.3`), lower weights for read-like and inspect-like tools (`0.2` and `0.1`), `0.25` for matching git-changed files, and `0.1` for transcript mentions.
 10. `extractors/index.ts` acts as the barrel boundary for this subsystem. It re-exports the file and diagram extractors, the session-activity signal, and adjacent extractor/helper modules so higher layers can import one stable extractor surface instead of wiring individual modules directly.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -45,6 +49,8 @@ The shipped extractor behavior in this slice currently works as follows:
 | `.opencode/skills/system-spec-kit/scripts/extractors/diagram-extractor.ts` | Extractor | Detects ASCII diagrams, summarizes conversation phases, and generates auto conversation-flow data |
 | `.opencode/skills/system-spec-kit/scripts/extractors/session-activity-signal.ts` | Extractor boundary | Re-exports the shared session-activity signal builder into the extractor surface |
 | `.opencode/skills/system-spec-kit/scripts/extractors/index.ts` | Barrel export | Exposes the extractor-layer API surface, including file, diagram, session, implementation-guide, contamination, quality, and activity-signal modules |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

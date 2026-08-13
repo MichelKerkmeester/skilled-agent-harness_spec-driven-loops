@@ -60,6 +60,8 @@ Query output with score/rank values + before/after comparison where applicable
 
 Inspect scoring formula changes; verify normalization bounds; check for edge-case inputs that produce NaN
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/scoring-and-ranking-corrections.md](../../feature-catalog/scoring-and-calibration/scoring-and-ranking-corrections.md)

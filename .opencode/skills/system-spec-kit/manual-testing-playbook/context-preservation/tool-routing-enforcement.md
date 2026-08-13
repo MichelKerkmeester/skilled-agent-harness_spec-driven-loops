@@ -168,6 +168,8 @@ Grep output showing routing-language lines in the canonical recovery surfaces
 
 Update the canonical recovery docs if one surface fell behind the others
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/tool-routing-enforcement.md](../../feature-catalog/context-preservation/tool-routing-enforcement.md)

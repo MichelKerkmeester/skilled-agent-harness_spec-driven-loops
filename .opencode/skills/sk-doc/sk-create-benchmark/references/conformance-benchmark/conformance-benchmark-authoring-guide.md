@@ -38,6 +38,8 @@ pointer. Deep-alignment still owns the three-method execution contract —
 `discover(scope)`, `standardSource(authority)`, and `check(artifact, rules)` — plus
 partitioning, convergence, reduction, and reporting.
 
+---
+
 ## 2. SHIPPED PACKAGE LAYOUT
 
 Author this shape inside the owning mode-packet:
@@ -83,6 +85,8 @@ package-local, but the fixture *data* it references may live in either place:
 Shipped JSON files contain only the fenced JSON values from their templates. They
 carry no Markdown frontmatter or guidance comments.
 
+---
+
 ## 3. END-TO-END AUTHORING SEQUENCE
 
 Complete these steps in order.
@@ -124,6 +128,8 @@ Complete these steps in order.
     executing phase invokes the existing deep-alignment workflow and stores all
     generated evidence outside the stable package.
 
+---
+
 ## 4. FIXTURE AND ORACLE INDEPENDENCE
 
 The fixture corpus must detect defects in the production adapter, so its expected
@@ -147,6 +153,8 @@ results cannot come from that adapter.
 Known-deviation semantics are also adapter-owned. The manifest may name expected
 unsuppressed findings, but it must not recreate the adapter's suppression rules.
 
+---
+
 ## 5. DEEP-ALIGNMENT INTEGRATION
 
 The lane object uses the existing scoping schema:
@@ -168,6 +176,8 @@ The reference adapter shape is
 `discover` returns artifacts, `standardSource` returns the authority's sources and
 known deviations, and `check` emits findings. A conformance package cross-links
 the peer adapter's definitions but contains none of those methods.
+
+---
 
 ## 6. VALIDATION
 
@@ -199,6 +209,8 @@ An exit-zero parse proves JSON syntax. The scoping command additionally proves t
 authority, artifact class, adapter allowlist, and scope shape are accepted. Neither
 command proves benchmark subject conformance; that requires a valid execution run.
 
+---
+
 ## 7. EVIDENCE BOUNDARY
 
 Stable contracts and fixtures live with the owning mode under
@@ -215,6 +227,8 @@ state. A specialized launcher may also own a run directory such as
 `<spec-folder>/evidence/<benchmark-family>/<run-id>/`. Record the exact accepted
 location in the contract and family README; the executing workflow decides the
 layout.
+
+---
 
 ## 8. WORKED MAPPING: PACKET 066 COMMAND SURFACE
 
@@ -245,6 +259,8 @@ This conformance package is only one axis of packet 066: the behavioral axis —
 executor models handle each command at its invocation surface — is documented in
 [`../behavior-benchmark/behavior-benchmark-guide.md`](../behavior-benchmark/behavior-benchmark-guide.md)
 section 7, and the [`/deep:command-benchmark`](../../../../../commands/deep/command-benchmark.md) launcher composes both without averaging.
+
+---
 
 ## 9. RELATED RESOURCES
 

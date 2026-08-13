@@ -228,6 +228,8 @@ Observed flag-off/no-env result still included `why`:
 
 Verify isResultExplainEnabled() → Inspect extractSignals() for PipelineRow → Check resolveEffectiveScore() → Verify channelAttribution detection → Check SignalLabel types
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/result-explainability.md](../../feature-catalog/ux-hooks/result-explainability.md)

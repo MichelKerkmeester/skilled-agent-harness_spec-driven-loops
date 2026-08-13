@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "hooks/007-fable-governor-pi-hook/005-agents-md-pi-row",
+  "description": "AGENTS.md §8 Runtime Agent Directory Resolution lists Opencode, Claude Code, and Codex CLI — pi is absent, so pi agents resolving their directory have",
+  "keywords": [
+    "agents",
+    "runtime",
+    "agent",
+    "directory",
+    "resolution",
+    "lists",
+    "opencode",
+    "claude",
+    "code",
+    "codex",
+    "cli",
+    "absent",
+    "resolving"
+  ],
+  "lastUpdated": "2026-08-11T06:40:10.381Z",
+  "specId": "005",
+  "folderSlug": "agents-md-pi-row",
+  "parentChain": [
+    "hooks",
+    "007-fable-governor-pi-hook"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

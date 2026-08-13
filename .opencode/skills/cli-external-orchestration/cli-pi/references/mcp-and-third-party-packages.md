@@ -34,6 +34,8 @@ Separates confirmed first-party Pi behavior from community-package behavior, and
 - A request names MCP, pi-mcp-extension, pi-subagents, stdio, streamable HTTP, SSE, or package installation
 - Deciding whether a package claim is confirmed by the local pin or only by the package's own docs
 
+---
+
 ## 2. FIRST-PARTY BOUNDARY
 
 Per Pi docs, unconfirmed: Pi keeps the core small and does not include built-in MCP or sub-agent workflows. Those capabilities can be added through extensions or packages. Source: [Using Pi](https://pi.dev/docs/latest/usage).
@@ -45,6 +47,8 @@ Therefore:
 - A named npm extension is not automatically first-party.
 - A package's README is not a Pi contract.
 - This packet must label package behavior separately.
+
+---
 
 ## 3. PI-SUBAGENTS
 
@@ -67,6 +71,8 @@ The observed failure said the project was not trusted and required --approve. Th
 **Confirmed (phase 012):** beyond the install itself, `.pi/agents/**/*.md` agent-mirroring is live. All 13 canonical `.opencode/agents/*.md` files translate into pi-subagents' 17-field schema via `sync-agents-pi.cjs`, and a live `pi --offline --approve` session loaded all 13 without a schema error. `pi-subagents` also exposed its own tools (`subagent`, `subagent_wait`, `subagent_supervisor`, `intercom`) in that same session.
 
 Do not claim that every pi-subagents command, agent type, or model setting is confirmed by that install — only the install path and the agent-mirroring surface above are.
+
+---
 
 ## 4. PI-MCP-EXTENSION
 
@@ -91,6 +97,8 @@ Treat the package as optional and untrusted until:
 5. A harmless server is tested.
 6. Startup and shutdown are observed.
 
+---
+
 ## 5. MCP TRANSPORT DECISION
 
 Transport terms must not be conflated:
@@ -103,6 +111,8 @@ Transport terms must not be conflated:
 | Pi RPC JSONL | Confirmed as Pi's process protocol | It is not MCP transport |
 
 Pi RPC and MCP are different layers. RPC connects a caller to Pi. MCP connects an extension to a tool server. See [pi-tools.md](./pi-tools.md) §2 for RPC's own sibling-comparison framing.
+
+---
 
 ## 6. CONFIGURATION SCOPE
 
@@ -117,6 +127,8 @@ If testing this behavior:
 - Remove the package and config afterward.
 
 Never copy a production MCP configuration into a delegated prompt.
+
+---
 
 ## 7. INSTALL REVIEW
 
@@ -133,6 +145,8 @@ Before any package install:
 | How is it tested? | Safe server, captured logs, cleanup |
 
 The package source is not an authority over the hub's routing or advisor identity.
+
+---
 
 ## 8. MCP PROMPTS
 
@@ -151,6 +165,8 @@ Rollback: <removal and restore steps>
 
 If version or transport is unknown, stop at documentation and say so.
 
+---
+
 ## 9. SECURITY RULES
 
 - Review community package source before install.
@@ -163,11 +179,15 @@ If version or transport is unknown, stop at documentation and say so.
 - Remove unused packages.
 - Re-run repository validation after settings changes.
 
+---
+
 ## 10. ROUTING RULES
 
 Route to this reference when the request names MCP, pi-mcp-extension, pi-subagents, stdio, streamable HTTP, SSE, or package installation. Route to [agent-delegation.md](./agent-delegation.md) when the request is about child agents. Route to [native-skills-and-extensions.md](./native-skills-and-extensions.md) when the request is about skills, prompt templates, or extension discovery.
 
 The hub still routes the outer task through cli-pi. A package must not create a second workflow mode or a second advisor identity.
+
+---
 
 ## 11. CONFIDENCE CHECKLIST
 

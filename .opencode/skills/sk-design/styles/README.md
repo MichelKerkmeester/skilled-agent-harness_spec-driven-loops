@@ -8,6 +8,8 @@ Each `<slug>/` folder holds the four Extended tabs (`DESIGN.md`, `css-variables.
 original style. The extraction harness + crawl state live in [`scripts/`](scripts/) and
 [`library/bundles/crawl-manifest.json`](library/bundles/crawl-manifest.json).
 
+---
+
 ## 2. STYLES-LIBRARY UTILIZATION
 
 [`lib/engine/style-library.mjs`](lib/engine/style-library.mjs) is the committed retrieval surface over all 1,290 bundles. It supports `build --write`, non-writing `build --check`, `query` and `hydrate`. Query applies deterministic eligibility before lexical ordering and returns compact generation-bound cards. Hydration re-derives the live record, enforces generation and artifact hashes, contains real paths and refuses stale, restricted or escaping requests.

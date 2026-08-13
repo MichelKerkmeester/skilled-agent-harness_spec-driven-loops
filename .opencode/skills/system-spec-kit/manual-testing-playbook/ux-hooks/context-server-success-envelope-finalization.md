@@ -122,6 +122,8 @@ Additional envelope-preservation assertion observed in `tests/context-server.vit
 
 Inspect `context-server.ts` success-path assembly and expected envelope fields
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/context-server-success-hint-append.md](../../feature-catalog/ux-hooks/context-server-success-hint-append.md)

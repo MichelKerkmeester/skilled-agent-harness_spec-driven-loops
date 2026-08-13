@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/007-fable-governor-pi-hook/010-cross-runtime-coverage-and-verification",
+  "spec_folder": "hooks/007-fable-governor-pi-hook/010-cross-runtime-coverage-and-verification",
+  "parent_id": "hooks/007-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "quoted executor dispatch bypass",
+      "R1-P1-001 fix",
+      "cross-runtime coverage verification",
+      "directExecutor quoted guard removal",
+      "quoted executor verification plan",
+      "cross-runtime coverage plan",
+      "R1-P1-001 evidence plan",
+      "quoted executor fix tasks",
+      "cross-runtime coverage tasks",
+      "dispatch inspection verification tasks",
+      "quoted executor fix checklist",
+      "cross-runtime coverage checklist"
+    ],
+    "key_topics": [
+      "quoted",
+      "executor",
+      "dispatch",
+      "bypass",
+      "r1-p1-001",
+      "cross-runtime",
+      "coverage",
+      "verification",
+      "directexecutor",
+      "guard",
+      "removal",
+      "plan"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Coverage",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Executor Dispatch Fix",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A parked deep review of packet 007 (`review/deep-review-findings-registry.json`, session `review-1785915676506`) surfaced finding R1-P1-001: \"Quoted executor forms bypass Pi dispatch inspection.\" The root cause was a blanket guard in `directExecutor()` (`.opencode/hooks/dispatch/lib/dispatch-audit.mjs:186-197`, prior to fix) that returned `null` for any quoted command-position executor",
+    "created_at": "2026-08-05T12:47:41.790Z",
+    "last_save_at": "2026-08-11T06:50:06.343Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fb3449b47af042826d9f95a6faca707346429810d49f0820f89b4a7a45555d16",
+    "source_doc_hashes": {
+      "spec.md": "c3fa16b01dea69dfc6c7727387ffb9b1c5056a7aa99a11751d0733330472092c",
+      "plan.md": "96036b80983fe686bd38b6c1d57798b5db00b8494be8e95876340c7d844d87d1",
+      "tasks.md": "1eec1f5a622374ea68ac54b09242b41fcca4ad2b6ac44f18fea6c4c41da5efa2",
+      "checklist.md": "4797c16f4d3f81455387692a5f52e034f86f3a0e71d6b4482cf41fb986158eab",
+      "implementation-summary.md": "528d27c80068c7b4b15b6b63ef25a449f31c318a14adc5711612d77e9c79b3d7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

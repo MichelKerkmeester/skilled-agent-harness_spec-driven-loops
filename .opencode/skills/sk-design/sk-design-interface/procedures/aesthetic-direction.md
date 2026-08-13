@@ -26,9 +26,13 @@ Private procedure card for applying the existing design-interface aesthetic dire
 | Proof gate | The mode states why existing context is absent, names a non-generic direction, explains how the direction avoids common AI-default looks, and identifies axes that need user sign-off. |
 | Privacy rule | This is private guidance for interface decisions and does not create a public aesthetic-direction skill. |
 
+---
+
 ## 2. READ-ONLY COMPATIBILITY
 
 `design-interface` can use this card by reading available context and returning a direction or handoff. It does not require Write, Edit, Bash, or external transport.
+
+---
 
 ## 3. PROCEDURE
 
@@ -37,6 +41,8 @@ Private procedure card for applying the existing design-interface aesthetic dire
 3. Choose specific type, color, density, radius, component, imagery, and motion decisions instead of broad style labels.
 4. Include at least one deliberate non-median choice tied to the subject matter.
 5. Produce a short review note explaining what should be tested before scaling the direction.
+
+---
 
 ## 4. RELATED CARDS
 

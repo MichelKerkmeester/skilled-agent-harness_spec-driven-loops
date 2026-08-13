@@ -14,6 +14,8 @@ trigger_phrases:
 
 `hooks/pi/` holds the real files behind the `.pi/extensions/` symlinks for this skill's Pi hooks. Pi discovers them through the symlinks and resolves their relative imports against the symlink path, so every import in these files is written for the `.pi/extensions/` base, not this folder.
 
+---
+
 ## 2. WHAT EACH ONE DOES AND INJECTS
 
 | File | Pi event | Behavior and injected text |
@@ -27,6 +29,8 @@ trigger_phrases:
 | `lib/claude-hook-adapter.ts` | (library) | `spawnSync` proxy into this skill's compiled `dist/hooks/claude/*.js` plus the JSON-envelope parser; imported by the session bridges and the advisor's `prompt-advisor.ts`. |
 
 Exact injected strings and per-runtime visibility: [`injection-contract.md`](../../../../../hooks/injection-contract.md).
+
+---
 
 ## 3. RELATED
 

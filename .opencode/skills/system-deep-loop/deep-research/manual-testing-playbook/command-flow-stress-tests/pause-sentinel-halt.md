@@ -18,6 +18,8 @@ This scenario pre-creates the packet-local pause sentinel before Call B. The com
 
 Pause handling belongs to the command workflow, not the leaf agent. A stress test must prove the lifecycle stop is represented in JSONL and does not get treated as a successful research iteration.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence for `CP-049` and confirm expected stop signals.
@@ -29,6 +31,8 @@ Operators run the exact command sequence for `CP-049` and confirm expected stop 
 - Expected process: create sandbox, seed spec and pause sentinel, run Call A, reset sandbox, recreate sentinel, run command-flow Call B, then count stop signals.
 - Expected signals: `.deep-research-pause`, `userPaused`, `stopReason":"userPaused`, no `iteration-001.md`, config/state files, clean diffs.
 - Pass/fail: PASS if the command halts before leaf dispatch and records a pause event. FAIL if an iteration file appears or the pause is reported as convergence.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -92,6 +96,8 @@ diff /tmp/cp-049-pre.txt /tmp/cp-049-post.txt > /tmp/cp-049-tripwire.diff; echo 
 |---|---|---|---|---|---|---|---|---|
 | CP-049 | PAUSE_SENTINEL_HALT | Confirm pause halts before iteration dispatch | `Start deep research in a paused packet and prove it halts before leaf dispatch.` | Run the §3 bash block | B field counts all >= 1 | state log, sentinel, no iteration file, diffs | PASS if pause is recorded and no iteration file exists | 1. If iteration exists, inspect pause check order. 2. If userPaused is missing, inspect stop enum normalization. 3. If config missing, inspect init. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Anchor |
@@ -102,6 +108,8 @@ diff /tmp/cp-049-pre.txt /tmp/cp-049-post.txt > /tmp/cp-049-tripwire.diff; echo 
 | `.opencode/commands/deep/assets/deep-research-auto.yaml:179-195` | lock cleanup applies to halt paths |
 | `.opencode/skills/system-deep-loop/deep-research/SKILL.md:287-309` | packet-local state location and sentinel |
 | `.opencode/agents/deep-research.md:43-55` | leaf agent boundary stays unrelated to pause lifecycle |
+
+---
 
 ## 5. SOURCE METADATA
 

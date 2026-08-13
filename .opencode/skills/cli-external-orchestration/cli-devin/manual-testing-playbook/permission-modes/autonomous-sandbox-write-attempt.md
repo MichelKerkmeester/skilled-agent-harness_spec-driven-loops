@@ -16,6 +16,8 @@ Exercise Devin's separate OS-level sandbox axis. The scenario uses `--sandbox` a
 
 The `autonomous` mode is only valid with `--sandbox`. Confusing it with `accept-edits` or `bypass` would misstate both approval and process-isolation guarantees.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Verify a sandboxed write attempt reports autonomous execution and does not touch the repository.
@@ -25,6 +27,8 @@ The `autonomous` mode is only valid with `--sandbox`. Confusing it with `accept-
 - Expected signals: The command starts in autonomous sandbox mode, the marker is confined to the temp workspace, and the repository is unchanged.
 - Desired user-visible outcome: Evidence that `--sandbox` is the mechanism selecting autonomous execution.
 - Pass/fail: PASS when the sandboxed write and confinement evidence are present; FAIL when autonomous is claimed without `--sandbox` or repository state changes; SKIP when sandbox prerequisites or auth block execution.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -36,6 +40,8 @@ The `autonomous` mode is only valid with `--sandbox`. Confusing it with `accept-
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | DV-006 | `devin --sandbox -p ... --model adaptive` | Autonomous sandbox, isolated marker, clean repo | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -51,6 +57,8 @@ The `autonomous` mode is only valid with `--sandbox`. Confusing it with `accept-
 |---|---|
 | `../../references/cli-reference.md` | `--sandbox` and autonomous mode contract |
 | `../../SKILL.md` | Explicit permission/sandbox dispatch requirements |
+
+---
 
 ## 5. SOURCE METADATA
 

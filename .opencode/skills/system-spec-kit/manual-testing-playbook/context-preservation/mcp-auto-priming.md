@@ -145,6 +145,8 @@ Two MCP response envelopes showing independent primePackage delivery for session
 
 Check `hooks/memory-surface.ts` session-scoped priming set and session identity propagation
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/mcp-auto-priming.md](../../feature-catalog/context-preservation/mcp-auto-priming.md)

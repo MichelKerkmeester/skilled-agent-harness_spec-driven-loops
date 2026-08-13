@@ -67,6 +67,8 @@ Blocking condition: command 3 requires a concrete pre-existing `/tmp/save-contex
 
 Check generate-context.ts argument parsing, loader routing, and structured-input authority
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/json-primary-deprecation-posture.md](../../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md)

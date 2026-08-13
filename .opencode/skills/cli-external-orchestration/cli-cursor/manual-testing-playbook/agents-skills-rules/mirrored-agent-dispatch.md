@@ -16,6 +16,8 @@ Use the mirrored `prompt-improver` profile for a small read-only prompt rewrite.
 
 Roster presence can hide a broken loader. A real subagent result demonstrates that Cursor resolves the mirrored profile and uses its instructions.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Dispatch through `prompt-improver` and receive profile-shaped output.
@@ -26,6 +28,8 @@ Roster presence can hide a broken loader. A real subagent result demonstrates th
 - Desired user-visible outcome: A successful real mirrored-agent dispatch.
 - Pass/fail: PASS when delegation and derived output are evidenced; FAIL on silent fallback, inline-only completion, or mutation; SKIP on Cursor auth/availability blockers.
 
+---
+
 ## 3. TEST EXECUTION
 
 1. `cursor-agent -p "Use the prompt-improver subagent to improve this request: \"Fix auth.\" Return the improved request and the constraints you added. Do not edit files." --model composer-2.5 --auto-review --sandbox enabled --output-format text </dev/null > /tmp/cli-cursor-cu023.txt 2>&1; echo "exit=$?" >> /tmp/cli-cursor-cu023.txt`
@@ -35,6 +39,8 @@ Roster presence can hide a broken loader. A real subagent result demonstrates th
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | CU-023 | `cursor-agent -p ... prompt-improver ...` | Real mirrored-agent result, clean tree | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -51,6 +57,8 @@ Roster presence can hide a broken loader. A real subagent result demonstrates th
 | `../../SKILL.md` | Agent discovery and delegation rules |
 | `../../../../.cursor/agents/prompt-improver.md` | Mirrored profile under test |
 | `../../../../.claude/agents/prompt-improver.md` | Canonical profile body |
+
+---
 
 ## 5. SOURCE METADATA
 

@@ -60,6 +60,8 @@ Concurrent write simulation output + transaction inspection + limit enforcement 
 
 Inspect transaction isolation level; verify session limit enforcement logic; check for race conditions in concurrent write paths
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md](../../feature-catalog/bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md)

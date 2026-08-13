@@ -12,6 +12,8 @@ This scenario verifies the END-TO-END accuracy of sk-code routing via the skill 
 
 Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` (2026-05-03), sk-code accuracy is **50%** (4/8 correct), well below deep-research (88.6%) and deep-review (81.8%). This scenario establishes a fresh accuracy measurement against a curated probe set.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 ### Probe Set Construction Rules
@@ -54,6 +56,8 @@ Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-rout
 **PASS** iff: positive accuracy ≥ 0.80 (≥12 of 15) AND negative false-positive rate == 0 (0 of 5).
 **PARTIAL** iff: positive accuracy ≥ 0.65 (≥10 of 15) AND negative false-positive rate ≤ 0.20 (≤1 of 5).
 **FAIL** iff: positive accuracy < 0.65 OR negative false-positive rate > 0.20.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -106,12 +110,16 @@ If negative FPR > 0:
 1. Identify which negatives sk-code falsely captured. Common pattern: `Update sk-code SKILL.md ...` should go to sk-doc but sk-code wins because of "sk-code" mention.
 2. Propose anti-signals (`negative_keywords`) for sk-code: `["headline", "rewrite section", "SKILL.md update"]`.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` — advisor binary.
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` — sk-code signals + adjacency.
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/labeled-prompts.jsonl` — golden set source (used for P2-P10).
 - `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` — baseline accuracy reference (50% for sk-code as of 2026-05-03).
+
+---
 
 ## 5. SOURCE METADATA
 
@@ -120,6 +128,8 @@ If negative FPR > 0:
 - **Destructive**: No (only reads + measures; any skill-graph.json edits gated on Phase E5 user approval)
 - **Concurrent-safe**: Yes (advisor probes can run in parallel; cap at 5)
 - **Last validated**: 2026-05-04 — see `sa-001-aggregate-results-2026-05-04.md` in this folder.
+
+---
 
 ## 6. RUN HISTORY (2026-05-04)
 

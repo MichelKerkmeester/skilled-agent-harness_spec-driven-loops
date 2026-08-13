@@ -135,6 +135,8 @@ grep: /tmp/mk-spec-memory-daemon.log: No such file or directory
 - Block B distance != 0 at rank 1: vec_memories blob format does not match vec_<dim>. Confirm `to_embedding_buffer(embedding)` is identical for both tables.
 - Block C cascade warning: inspect `shared/embeddings/factory.ts::readActiveOllamaEmbedderFromDb`. Confirm the shard fallback path constructs the correct filename pattern `context-vectors__ollama__<name>__<dim>.sqlite`. Confirm the file exists at the expected location.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md](../../feature-catalog/memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md)

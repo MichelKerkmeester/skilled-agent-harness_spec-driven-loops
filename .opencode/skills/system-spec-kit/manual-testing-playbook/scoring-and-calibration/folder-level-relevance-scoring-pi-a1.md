@@ -60,6 +60,8 @@ Query output showing folder-level ranking + individual result ordering within fo
 
 Verify folder scoring algorithm → Check pre-ranking stage insertion point → Inspect folder metadata availability
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/folder-level-relevance-scoring.md](../../feature-catalog/scoring-and-calibration/folder-level-relevance-scoring.md)

@@ -12,6 +12,8 @@ version: 1.15.0.1
 
 Category 07 of the `deep-research` manual testing playbook, six `CP-0xx` scenarios. Each scenario enters through `/deep:research` or `/deep:research:auto` and checks a command-owned behavior, setup binding, pause handling, spec writeback, resource-map toggling or leaf output contract, rather than research quality. All scenarios run under `/tmp/cp-0xx-sandbox/` and `/tmp/cp-0xx-spec/`.
 
+---
+
 ## 2. CONTENTS
 
 | File | Scenario |
@@ -23,6 +25,8 @@ Category 07 of the `deep-research` manual testing playbook, six `CP-0xx` scenari
 | `iteration-citation-jsonl.md` | CP-050. Proves the leaf writes a cited iteration file and exactly one schema-rich JSONL record |
 | `exhausted-approach-respect.md` | CP-051. Proves a resumed run does not retry a strategy already marked BLOCKED |
 | `setup-cp-sandbox.sh` | Builds the shared `/tmp/cp-deep-research-sandbox` fixture tree these scenarios run against |
+
+---
 
 ## 3. RELATED
 

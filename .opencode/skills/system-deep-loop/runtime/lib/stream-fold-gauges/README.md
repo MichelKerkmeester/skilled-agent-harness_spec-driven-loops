@@ -11,6 +11,8 @@ description: "Deterministic, replay-verifiable streaming metric folds computed f
 
 Turns a stream of ledger events into a deterministic, replay-verifiable metric. A gauge is a versioned fold registered by family, such as progress, cost, novelty disposition or health. Each result can be replayed from the ledger and checked against a replay fingerprint. A comparison helper records the gauge result alongside the legacy dark-run value it is meant to eventually replace.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -23,16 +25,22 @@ Turns a stream of ledger events into a deterministic, replay-verifiable metric. 
 | `stream-fold-gauge-errors.ts` | Fail-closed error codes and phases for gauge boundaries |
 | `stream-fold-gauge-types.ts` | Gauge family, checkpoint and result type contracts |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/transactional-projections/` (bundle registry and engine)
 - `.opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/`
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/`
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/stream-fold-gauges.vitest.ts`
 - Also exercised by `transactional-projections.vitest.ts`.
+
+---
 
 ## 5. RELATED
 

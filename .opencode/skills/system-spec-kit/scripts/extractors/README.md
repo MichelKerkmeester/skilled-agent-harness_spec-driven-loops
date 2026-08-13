@@ -13,6 +13,8 @@ trigger_phrases:
 
 `scripts/extractors/` converts normalized session input into structured conversation, decision, file, implementation, git, and spec-folder data used by template rendering and indexing workflows. `collect-session-data.ts` orchestrates the other extractors into one `SessionData` payload; the focused extractors each own a single signal type.
 
+---
+
 ## 2. SCRIPT IO
 
 | Flow | Input | Output |
@@ -22,6 +24,8 @@ trigger_phrases:
 | Enrichment | Git and spec-folder context | Additional context for generated artifacts |
 | Quality scoring | Extracted data | Quality score and validation signals |
 
+---
+
 ## 3. ENTRYPOINTS
 
 - `collectSessionData()` coordinates loader output, extraction modules, enrichment, and scoring into a single `SessionData` record.
@@ -30,6 +34,8 @@ trigger_phrases:
 - `extractGitContext()` and `extractSpecFolderContext()` enrich captured-session data.
 - `scoreExtractionQuality()` evaluates extracted data before downstream rendering.
 - `index.ts` re-exports the extractor surface used by compiled scripts.
+
+---
 
 ## 4. VALIDATION FROM REPO ROOT
 
@@ -50,6 +56,8 @@ npx vitest run tests/contamination-filter.vitest.ts
 
 The legacy module check (`npm run test:legacy`) additionally runs `tests/test-extractors-loaders.js`. Expected result: the extractor suites pass and the build emits `scripts/dist/extractors/`.
 
+---
+
 ## 5. KEY FILES
 
 | File | Purpose |
@@ -68,11 +76,15 @@ The legacy module check (`npm run test:legacy`) additionally runs `tests/test-ex
 | `spec-folder-extractor.ts` | Reads spec-folder context for capture enrichment. |
 | `index.ts` | Barrel export for extractor modules. |
 
+---
+
 ## 6. BOUNDARIES
 
 - Extractors consume normalized data; source selection and path validation belong to loaders.
 - Extractors do not render markdown, write files, or persist index rows.
 - Runtime imports should use compiled modules under `scripts/dist/extractors/`.
+
+---
 
 ## 7. RELATED
 

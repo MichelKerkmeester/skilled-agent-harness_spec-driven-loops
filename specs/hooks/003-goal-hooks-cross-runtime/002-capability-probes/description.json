@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "hooks/003-goal-hooks-cross-runtime/002-capability-probes",
+  "description": "Phases 003-005 of the parent packet each need to build a per-runtime goal-hook adapter (devin, cursor, pi), but two of the three verify/continue",
+  "keywords": [
+    "phases",
+    "parent",
+    "packet",
+    "need",
+    "per-runtime",
+    "goal-hook",
+    "adapter",
+    "devin",
+    "cursor",
+    "two",
+    "three",
+    "verify",
+    "continue"
+  ],
+  "lastUpdated": "2026-08-11T06:40:40.658Z",
+  "specId": "002",
+  "folderSlug": "capability-probes",
+  "parentChain": [
+    "hooks",
+    "003-goal-hooks-cross-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

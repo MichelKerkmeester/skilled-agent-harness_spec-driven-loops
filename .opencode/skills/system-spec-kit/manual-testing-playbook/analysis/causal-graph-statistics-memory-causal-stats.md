@@ -89,6 +89,8 @@ memory_causal_stats responses for the three corpora highlighting deltaByRelation
 
 Inspect `mcp-server/handlers/causal-graph.ts` balanceStatus computation (`RELATION_INSUFFICIENT_TOTAL` threshold). `insufficient_data` on a sparse corpus is expected; rebuild causal edges only if baseline coverage/edge metrics are also empty.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [analysis/causal-graph-statistics-memorycausalstats.md](../../feature-catalog/analysis/causal-graph-statistics-memorycausalstats.md)

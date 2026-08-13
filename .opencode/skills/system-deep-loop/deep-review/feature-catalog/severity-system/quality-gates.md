@@ -20,6 +20,8 @@ Prevents the review loop from stopping or passing on weak evidence, missing cove
 
 The quality-gate system turns convergence from a simple score threshold into a legal-stop decision. It checks whether the review has enough evidence, enough scope coverage, and enough blocker resolution to justify a stop or a clean verdict.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Quality Gates & Validation

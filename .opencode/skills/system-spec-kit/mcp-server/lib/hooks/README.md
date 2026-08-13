@@ -18,21 +18,29 @@ Current state:
 - The bounded advisory log append is an explicit, adapter-invoked step, mirroring the deep-loop dispatch-guard split between policy and logging.
 - Fails open on any missing payload, timeout or internal error.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
 |------|---------|
 | `completion-evidence-sentinel.cjs` | Runtime-neutral core: completion-claim detection, spec-folder resolution, checklist/implementation-summary evaluation, dedup state, advisory logging and a throttled stale-state sweep. Exports `detectCompletionClaim`, `evaluateCompletionEvidence`, `resolveSentinelPaths`, `appendAdvisoryLog`, `sweepStaleSentinelState` and related constants. |
 
+---
+
 ## 3. CONSUMERS
 
 - `hooks/claude/completion-evidence-stop.cjs` (Claude Stop hook).
 - `hooks/codex/completion-evidence-stop.cjs` (Codex Stop adapter).
 
+---
+
 ## 4. TESTS
 
 - `tests/completion-evidence-sentinel.vitest.ts`
 - `tests/hook-completion-evidence-stop.vitest.ts`
+
+---
 
 ## 5. RELATED
 

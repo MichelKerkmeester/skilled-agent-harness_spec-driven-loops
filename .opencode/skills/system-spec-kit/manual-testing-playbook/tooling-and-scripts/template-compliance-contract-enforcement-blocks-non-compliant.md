@@ -182,6 +182,8 @@ EXIT_CODE=0
 
 Inspect `references/validation/template-compliance-contract.md`, `.opencode/agents/speckit.toml`, `scripts/spec/validate.sh`, and `scripts/tests/test-validation-extended.sh` if strict validation passes broken fixtures or misses contract drift
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/template-compliance-contract-enforcement.md](../../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md)

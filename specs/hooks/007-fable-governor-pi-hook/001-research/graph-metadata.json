@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/007-fable-governor-pi-hook/001-research",
+  "spec_folder": "hooks/007-fable-governor-pi-hook/001-research",
+  "parent_id": "hooks/007-fable-governor-pi-hook",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fable governor research",
+      "governor hook usefulness",
+      "pi subagent directive",
+      "cli-devin glm",
+      "cli-cursor grok",
+      "governor research plan",
+      "iteration protocol",
+      "governor research tasks",
+      "verification",
+      "governor research checklist",
+      "governor research"
+    ],
+    "key_topics": [
+      "fable",
+      "governor",
+      "research",
+      "hook",
+      "usefulness",
+      "subagent",
+      "directive",
+      "cli-devin",
+      "glm",
+      "cli-cursor",
+      "grok",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "evidence/iterations.md",
+      "evidence/synthesis.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "iterations.md",
+        "kind": "doc",
+        "path": "evidence/iterations.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "evidence/synthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fable Governor Hook Usefulness",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Subagent Dispatch Directive",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fable Governor Hook",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Subagent Dispatch Directive",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Governor Hook",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Subagent Directive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Launch Track",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Subagent Directive Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-devin",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-cursor",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fable governor per-turn hook re-states a compact disposition capsule (\"thermostat\") on every turn, while AGENTS.md now carries the durable governor doctrine plus the proof-over-appearance protocol (§Operating Discipline, terminal discipline §4)",
+    "created_at": "2026-08-04T08:24:59Z",
+    "last_save_at": "2026-08-11T06:50:04.939Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:899af1470040952e66cce777fc43a4db62d405e3840d158fbdf1f6374ab27fce",
+    "source_doc_hashes": {
+      "spec.md": "b4dff39812d76caed11c05aeb56ffbcaddffe5d4ad85bd1d61ec82f7021d81ab",
+      "plan.md": "69cae3ccf0dc98abeef788daef4a552cb89e324e6c7316e207c75ff511df54b9",
+      "tasks.md": "f3ee831daae4aef57823edad2d7c1c9e15be3347ce16f856cea26ea8cb2190c7",
+      "checklist.md": "c8eb050a49cfbb8c12e7b052714c1f9d4dddf139e28d3bdae621bff5ad65c8db",
+      "implementation-summary.md": "74f48e17d5d587e953a8f05b9face5c7811bdbcf7cafb6e49c2c41384c40cf9c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

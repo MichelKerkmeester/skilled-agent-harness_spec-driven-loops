@@ -20,6 +20,8 @@ Documents the cross-mode `antiConvergence` contract as it applies to `deep-revie
 
 For review mode, the shipped config sets `antiConvergence.minIterations` to `2`, `convergenceMode` to `default`, and `stopPolicy` to `fail-closed`. This makes a one-pass STOP illegal at the config layer and keeps optimizer changes from tuning past the floor contract.
 
+---
+
 ## 2. HOW IT WORKS
 
 The review config declares the floor in `assets/deep-review-config.json`. Its optimizer-managed block marks `antiConvergence.convergenceMode` and `antiConvergence.stopPolicy` as locked fields while keeping the review loop's ordinary tunables (`convergenceThreshold`, `stuckThreshold`, `maxIterations`) separate.

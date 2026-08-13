@@ -108,6 +108,8 @@ animate(sequence, { defaultTransition: { ease: "easeOut" } });
 
 `defaultTransition` can set default segment timing, and individual segment options can override it (Source: https://motion.dev/docs/animate).
 
+---
+
 ## 5. ANIMATEMINI FOR TREE-SHAKABLE BUNDLES
 
 Motion documents two JavaScript `animate` sizes: the mini version from `motion/mini` for HTML/SVG style animation, and the hybrid version from `motion` for independent transforms, CSS variables, SVG paths, sequences, JavaScript objects, and WebGL (Source: https://motion.dev/docs/animate).
@@ -119,6 +121,8 @@ animateMini(".toast", { opacity: [0, 1], transform: ["translateY(8px)", "transla
 ```
 
 Use the mini import for bundle-sensitive HTML/SVG style animation. Use the hybrid import when you need independent transform axes like `x`, `y`, `rotateZ`, sequence arrays, or non-DOM values (Source: https://motion.dev/docs/animate).
+
+---
 
 ## 6. EXTERNAL/HISTORICAL EXAMPLES
 
@@ -141,6 +145,8 @@ animate(dropdown, { opacity: [0, 1], height: ["0px", `${natural_height}px`] }, {
 ### `motionValue`-driven slider
 
 `a_nobel_en_zn/2_javascript/slider/testimonial.js` ensures `animate` and `motionValue` exist, dynamically imports Motion when needed, and uses a motion value as the draggable loop's position state. The drag release branch uses `type: "inertia"`, `velocity`, and `modifyTarget` to snap to the nearest slide (External/historical example: `a_nobel_en_zn/2_javascript/slider/testimonial.js`; Motion API surface: https://motion.dev/docs/animate).
+
+---
 
 ## 7. REFERENCES AND RELATED RESOURCES
 

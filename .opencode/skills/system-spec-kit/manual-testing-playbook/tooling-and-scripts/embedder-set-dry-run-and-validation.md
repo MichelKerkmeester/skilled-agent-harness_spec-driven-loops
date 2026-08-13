@@ -222,6 +222,8 @@ Registered embedder list after the invalid-name call:
 }
 ```
 
+---
+
 ## 7. PASS/FAIL
 
 BLOCKED - The current repo/tooling does not expose or implement `embedder_set({ dryRun: true })`, `embedder_set` would queue a real reindex for the valid known embedder, `embedder_status({})` is rejected by the registered wrapper without a non-empty `jobId`, and the CLI front door is blocked by stale MCP server dist.

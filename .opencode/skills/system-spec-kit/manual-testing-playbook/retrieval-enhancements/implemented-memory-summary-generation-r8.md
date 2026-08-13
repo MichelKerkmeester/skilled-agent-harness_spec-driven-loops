@@ -70,6 +70,8 @@ The scenario command `save long memory` is a persistence operation. Running a re
 
 Verify summary generation triggers on save; check summary persistence field in schema; inspect scale gate threshold configuration
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval-enhancements/memory-summary-search-channel.md](../../feature-catalog/retrieval-enhancements/memory-summary-search-channel.md)

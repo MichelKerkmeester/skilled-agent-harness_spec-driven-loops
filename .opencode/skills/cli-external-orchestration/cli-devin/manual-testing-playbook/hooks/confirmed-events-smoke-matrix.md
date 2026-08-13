@@ -16,6 +16,8 @@ Verify delivery of `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUs
 
 Hook registration is a lifecycle contract. A command can return a good answer while a guard event silently fails to run, so the evidence must come from the event log rather than the model response alone.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the five print-reachable events fire in an isolated `devin -p` session and record `SessionEnd` separately when an interactive session makes it observable.
@@ -25,6 +27,8 @@ Hook registration is a lifecycle contract. A command can return a good answer wh
 - Expected signals: The print-mode log records `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, and `Stop`, with event payloads and timestamps. It does not need to contain `SessionEnd`.
 - Desired user-visible outcome: A current five-event print-mode delivery matrix, with a separately labeled interactive `SessionEnd` observation when available.
 - Pass/fail: PASS when all five print-reachable events are observed; record `SKIP: SessionEnd is not print-reachable; an interactive session is required` for the supplemental event when it is not run; FAIL when a confirmed print-mode event is absent or the configuration shape is wrong; SKIP when auth or the binary blocks execution.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -50,6 +54,8 @@ Hook registration is a lifecycle contract. A command can return a good answer wh
 |---|---|---|---|---|---|---|---|---|
 | DV-007 | Confirmed hook events smoke matrix | Verify five print-reachable hook events and separate SessionEnd | `In this isolated test workspace, read marker.txt, create second-marker.txt containing hook-test, and report completion. Do not access the parent repository.` | Isolated `.devin/hooks.v1.json` -> `devin -p --model adaptive --permission-mode dangerous -- "..."` -> inspect `probe.log`; interactive SessionEnd is supplemental | `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, and `Stop` are present; `SessionEnd` is not required in print mode | Probe log, event payloads, session id, stdout/stderr, exit code | PASS for all five print events; SKIP with the named interactive-only blocker for SessionEnd when not run; FAIL for a missing print-reachable event or invalid schema | Separate print reachability from interactive lifecycle; verify the canonical permission mode and event registration |
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -66,6 +72,8 @@ Hook registration is a lifecycle contract. A command can return a good answer wh
 | `../../../../specs/cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary.md` | Corrected-schema live event evidence |
 | `../../../../specs/cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/implementation-summary.md` | Adapter registration precedent |
 | `../../SKILL.md` | Devin self-invocation and dispatch rules |
+
+---
 
 ## 5. SOURCE METADATA
 

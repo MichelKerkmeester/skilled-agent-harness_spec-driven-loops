@@ -110,6 +110,8 @@ Executed from `.opencode/skills/system-spec-kit/mcp-server`:
 
 Inspect executeAtomicSave error handling for rename failures; verify pending file cleanup is skipped when dbCommitted=true; check recoverAllPendingFiles scan logic
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/atomic-pending-file-recovery.md](../../feature-catalog/pipeline-architecture/atomic-pending-file-recovery.md)

@@ -17,9 +17,13 @@ version: 0.8.0.13
 
 Ensure the advisor never gets stuck in an unrecoverable state when SQLite storage is corrupted. The rebuild-from-source path reconstructs routable state from the authoritative source files without user intervention.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/freshness/rebuild-from-source.ts` detects a corrupt or unreadable SQLite store via the daemon lifecycle, then walks `.opencode/skills/*/SKILL.md` plus each `graph-metadata.json`, applies the auto-indexing derivation pipeline and republishes a fresh snapshot. Throughout the rebuild, readers see `unavailable` trust state and fail-open responses rather than exceptions. Rebuild is also the canonical recovery path for the H5 operator playbook.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -36,6 +40,8 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | rebuild trigger paths |
 | `Playbook scenario [AU-005](../../manual-testing-playbook/auto-update-daemon/rebuild-from-source.md) and [OP-003](../../manual-testing-playbook/operator-h5/unavailable-daemon.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

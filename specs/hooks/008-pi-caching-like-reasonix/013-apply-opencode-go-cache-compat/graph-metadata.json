@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/008-pi-caching-like-reasonix/013-apply-opencode-go-cache-compat",
+  "spec_folder": "hooks/008-pi-caching-like-reasonix/013-apply-opencode-go-cache-compat",
+  "parent_id": "hooks/008-pi-caching-like-reasonix",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode-go cache compat",
+      "pi models.json overlay",
+      "sendSessionAffinityHeaders opencode",
+      "deepseek-v4-pro compat warning",
+      "pi cache affinity override"
+    ],
+    "key_topics": [
+      "opencode-go",
+      "cache",
+      "compat",
+      "overlay",
+      "session",
+      "affinity",
+      "models.json",
+      "deepseek",
+      "pi-cache-optimizer",
+      "prefix"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Applied a provider-level sendSessionAffinityHeaders overlay for opencode-go so the pi-cache-optimizer DeepSeek compat warning stops and the prefix cache stays warm; long-retention deliberately deferred.",
+    "created_at": "2026-08-13T00:00:00.000Z",
+    "last_save_at": "2026-08-13T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:de6d483fd7ebda0baaa4d6299c8c04ba3d7b594dac21f8c0f24cd0828c9c9812",
+    "source_doc_hashes": {
+      "spec.md": "6e425d3f1cfc21edef77a80766ef29836bf6e7be48d8b75e2790ffe279eec255",
+      "plan.md": "1e5de3c56eb2fb817da9761d69ec9df403d4e207afbd1b77d13b90ef98c07a9f",
+      "tasks.md": "5656095162a8c0a8cef89d9f29110e1f9926eedd3a423d07e0412a1ab26df717",
+      "implementation-summary.md": "3fbfa9a3c0ccbb56eb504582572e954e4b2c4636bfe26bf9707c9e63fb89dd5d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

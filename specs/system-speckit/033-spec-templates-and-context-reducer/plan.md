@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "system-speckit/033-spec-templates-and-context-reducer"
     last_updated_at: "2026-08-12T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Deep-research completed; findings synthesized"
-    next_safe_action: "Findings delivered; implementation scoped as packet 034"
+    recent_action: "Authored launch plan and executor matrix"
+    next_safe_action: "Launch deep-research with 4-lineage matrix"
     blockers: []
     key_files:
       - "specs/system-speckit/033-spec-templates-and-context-reducer/spec.md"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-12-system-speckit-033-templates-context-reducer"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 10
     open_questions: []
     answered_questions: []
 ---
@@ -75,7 +75,7 @@ Mechanics verified against live contracts, not assumed:
 
 ### Launch command (embedded in the goal prompt)
 
-```text
+```
 /deep:research:auto "<research charter — see goal prompt>" \
   --spec-folder=specs/system-speckit/033-spec-templates-and-context-reducer \
   --stop-policy=max-iterations --max-iterations=3 --concurrency=2 \
@@ -91,20 +91,10 @@ Mechanics verified against live contracts, not assumed:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Three phases, mirroring the `tasks.md` breakdown (Setup, Implementation, Verification).
-
-### Phase 1: Setup
-
 1. **Set goal** — operator sets the goal prompt (< 4k chars) as the active objective.
 2. **Launch** — invoke the command above via `/deep:research:auto` (direct invocation; not pasted inline). `:auto` pre-resolves Gate 3 to the bound spec folder.
-
-### Phase 2: Implementation
-
 3. **Monitor** — watch the 4 lineages; confirm each runs its assigned model and no child stalls at 0% CPU. 3 consecutive failures → stuck recovery.
 4. **Synthesis** — the workflow synthesizes `research/research.md`, refreshes `findings-registry.json` + dashboard, and writes the single findings fence into `spec.md`.
-
-### Phase 3: Verification
-
 5. **Review** — operator + a fresh pass review the ranked shortlist and refutation list.
 6. **Next** — if opportunities survive review, `/speckit:plan` scopes a separate implementation packet. This packet does NOT implement.
 <!-- /ANCHOR:phases -->

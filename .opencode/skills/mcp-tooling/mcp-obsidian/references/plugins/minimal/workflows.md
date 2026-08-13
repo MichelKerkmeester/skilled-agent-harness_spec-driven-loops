@@ -33,6 +33,8 @@ These recipes operate the Minimal theme at the file layer. The default posture i
 - Writing `appearance.json` requires explicit approval and a backup.
 - Writing `theme.css` or `manifest.json` is never done in a real vault.
 
+---
+
 ## 2. VERIFY THE THEME IS INSTALLED
 
 ### Steps
@@ -64,6 +66,8 @@ Before, the folder may be absent or partial. After, the folder contains exactly 
 
 Report the version verbatim from the manifest. Never guess the version.
 
+---
+
 ## 3. VERIFY THE THEME IS ACTIVE
 
 ### Steps
@@ -90,6 +94,8 @@ Before, the value may be missing, empty or pointing at another theme folder such
 | Folder matches | `themes/Minimal/` exists with the exact name |
 
 An exact match matters because this vault also holds a `Primary` theme folder.
+
+---
 
 ## 4. PROPOSE A SNIPPET-BASED TWEAK
 
@@ -123,6 +129,8 @@ The variable names come from the installed `theme.css`. Do not propose variables
 ### Enable step
 
 The snippet activates through Settings → Appearance → CSS snippets. The user adds the file there. The exact `appearance.json` key that records enabled snippets follows Obsidian's documented appearance format (VERIFY: this vault has no enabled snippet yet, so the key is not present to confirm on disk).
+
+---
 
 ## 5. APPLY A SNIPPET WITH BACKUP DISCIPLINE
 
@@ -159,6 +167,8 @@ Before, the snippet file does not exist or holds the old content. After, the fil
 
 The backup lives beside the snippet in the vault's `.obsidian` folder. Never place backups inside the vault's content folders.
 
+---
+
 ## 6. VALIDATE AT THE FILE LAYER
 
 ### JSON validation
@@ -192,6 +202,8 @@ For a new snippet, validate in a temporary vault before touching the live one. C
 ### Re-read before concluding
 
 Re-read `appearance.json` and the snippet after any write. The user may have changed settings in-app since the last read. Conclude only from the fresh state.
+
+---
 
 ## 7. NEVER-OPERATIONS
 

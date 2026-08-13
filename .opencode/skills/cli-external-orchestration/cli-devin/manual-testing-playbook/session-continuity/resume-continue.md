@@ -16,6 +16,8 @@ Create one bounded session, list it, continue the most recent session, and resum
 
 `devin -p` is stateless by default. A routing layer must choose `--continue` or `--resume` deliberately when a task depends on prior conversation context.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Verify a second turn can retrieve context from a prior Devin session.
@@ -25,6 +27,8 @@ Create one bounded session, list it, continue the most recent session, and resum
 - Expected signals: `devin list --format json` returns a session; the continue/resume turn can retrieve ALPHA-TEST; no repository mutation.
 - Desired user-visible outcome: Evidence that session continuity is explicit and reproducible.
 - Pass/fail: PASS when context survives the selected operation; FAIL when the tool claims continuation but loses context; SKIP when the build/auth cannot create or list a session.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -37,6 +41,8 @@ Create one bounded session, list it, continue the most recent session, and resum
 | Feature ID | Exact commands | Expected signal | Verdict |
 |---|---|---|---|
 | DV-019 | Initial `-p`, `list --format json`, `-c -p`, optional `-r` | Prior context retrievable | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -52,6 +58,8 @@ Create one bounded session, list it, continue the most recent session, and resum
 |---|---|
 | `../../references/cli-reference.md` | Continue/resume flags and session commands |
 | `../../SKILL.md` | `-p` statelessness and explicit dispatch discipline |
+
+---
 
 ## 5. SOURCE METADATA
 

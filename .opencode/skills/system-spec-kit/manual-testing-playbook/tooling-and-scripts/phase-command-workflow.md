@@ -113,6 +113,8 @@ Execution stopped before Step 4 because the scenario requires `bash .opencode/sk
 
 Run individual steps in isolation to identify failing step; verify script permissions; check for missing dependencies; inspect auto mode decision logic for phase count/naming
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature-catalog/tooling-and-scripts/progressive-validation-for-spec-documents.md)

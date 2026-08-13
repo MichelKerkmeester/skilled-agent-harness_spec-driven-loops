@@ -18,6 +18,8 @@ contextType: "general"
 
 Each row below is one run folder. Rows are written by the benchmark harness at the moment it writes the report, so this table cannot fall behind the folders beside it.
 
+---
+
 ## 2. RUN INDEX
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
@@ -31,6 +33,8 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 | 2026-08-12 | [`2026-08-12--manual-testing-playbook--onboarding-flow/`](./2026-08-12--manual-testing-playbook--onboarding-flow/) | deepseek-v4-flash deepseek/deepseek-v4-flash onboarding-flow | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-12 | [`2026-08-12--manual-testing-playbook--editorial-style-and-connectors/`](./2026-08-12--manual-testing-playbook--editorial-style-and-connectors/) | deepseek-v4-flash deepseek/deepseek-v4-flash editorial-style-and-connectors | 1 PASS | **PASS** | `manual-testing-playbook` |
 | 2026-08-12 | [`2026-08-12--manual-testing-playbook--type-selection-and-routing/`](./2026-08-12--manual-testing-playbook--type-selection-and-routing/) | deepseek-v4-flash deepseek/deepseek-v4-flash type-selection-and-routing | 1 PASS | **PASS** | `manual-testing-playbook` |
+
+---
 
 ## 3. STORAGE RULE
 

@@ -15,6 +15,8 @@ This scenario verifies that the mk-spec-memory launcher writes its log lines to 
 
 The check is automated-test-backed. A human runs the launcher syntax check, the persistent-log unit suite, and a grep that proves the persist and rotation helpers are defined and wired into the log path. Together they confirm the launcher both appends each line and trims the file when it grows too large.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the launcher persists every log line to a durable file and rotates that file once it exceeds the configured maximum size.
@@ -24,6 +26,8 @@ The check is automated-test-backed. A human runs the launcher syntax check, the 
 - Expected signals: `node --check` exits cleanly for the launcher. `launcher-persistent-log.vitest.ts` passes including the append and rotation cases. `persistLauncherLogLine` and `shouldRotateLauncherLog` appear at their definitions and at the logging call site.
 - Desired user-visible outcome: Launcher activity survives session end in a bounded, durable log that an operator can read to explain relaunch and disposal behavior.
 - Pass/fail: PASS only when syntax, unit tests, and helper wiring all match expectations.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -82,6 +86,8 @@ $ rg -n "persistLauncherLogLine|shouldRotateLauncherLog" .opencode/bin/mk-spec-m
 
 If the syntax check fails, inspect the helper placement and the CommonJS exports first. If the append case fails, confirm the launcher writes each line to the persistent file rather than only to stderr. If the rotation case fails, compare the size check in `shouldRotateLauncherLog` against the configured maximum and confirm the rotate branch runs when the file exceeds it. If grep cannot find the helpers, confirm both the definitions and the logging call site exist.
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -97,6 +103,8 @@ If the syntax check fails, inspect the helper placement and the CommonJS exports
 |---|---|
 | `.opencode/bin/mk-spec-memory-launcher.cjs` | Primary implementation anchor |
 | `mcp-server/tests/launcher-persistent-log.vitest.ts` | Regression or validation anchor |
+
+---
 
 ## 5. SOURCE METADATA
 

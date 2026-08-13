@@ -59,6 +59,8 @@ Feature catalog excerpt showing deferred status; repository search output showin
 
 Reconcile documentation drift if implementation exists; update the feature catalog if status changed; if docs are routinely above threshold, confirm whether implementation should move from deferred to active
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/ast-level-section-retrieval-tool.md](../../feature-catalog/retrieval/ast-level-section-retrieval-tool.md)

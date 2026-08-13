@@ -22,6 +22,8 @@ This document captures the implemented behavior, source references, and remediat
 
 The script stays inside the public `../../mcp-server/api` boundary rather than importing internal runtime modules directly, which keeps it aligned with the eval-script import policy documented in `scripts/evals/README.md`. The companion `scripts/evals/map-ground-truth-ids.ts` utility is the operator-side provenance check for making sure the live parent-memory IDs in `ground-truth.json` still match the production DB before you compare runs.
 
+---
+
 ## 2. HOW IT WORKS
 
 The shipped CLI contract is:
@@ -34,6 +36,8 @@ The shipped CLI contract is:
 6. Successful runs call `runAblation(searchFn, { channels })`, persist results through `storeAblationResults(report)`, print the formatted markdown summary from `formatAblationReport(report)`, and append script-level metadata (`scriptElapsedMs`, `productionMemoryCount`, `scriptVersion`) before writing `/tmp/ablation-result.json`. Operators should inspect the run for token-budget-overflow truncation before trusting Recall@K deltas, because a run that returns fewer than `K` candidates is an investigation artifact rather than a clean benchmark.
 7. Failures are explicit and process-ending. Missing enablement, missing production DB, null DB initialization, or a null ablation report all terminate with a non-zero exit code; unhandled errors fall through the `main().catch(...)` fatal path.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -44,6 +48,8 @@ The shipped CLI contract is:
 | `.opencode/skills/system-spec-kit/scripts/evals/map-ground-truth-ids.ts` | Companion CLI | Read-only preview utility that reconciles or audits ground-truth parent-memory IDs against the production DB |
 | `.opencode/skills/system-spec-kit/scripts/evals/README.md` | Documentation | Declares eval-script inventory and the public-API import policy this CLI follows |
 | `.opencode/skills/system-spec-kit/mcp-server/api/index.ts` | Public API | Re-export boundary that supplies eval, search, embedding, and vector-index surfaces to the CLI |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

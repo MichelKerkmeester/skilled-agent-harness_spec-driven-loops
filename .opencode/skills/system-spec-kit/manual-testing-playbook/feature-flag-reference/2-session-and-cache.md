@@ -58,6 +58,8 @@ Search output
 
 Expand query terms
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [feature-flag-reference/2-session-and-cache.md](../../feature-catalog/feature-flag-reference/2-session-and-cache.md)

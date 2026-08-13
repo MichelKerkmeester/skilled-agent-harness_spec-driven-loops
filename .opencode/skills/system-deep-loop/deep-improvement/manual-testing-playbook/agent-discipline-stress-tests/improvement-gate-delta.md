@@ -18,6 +18,8 @@ The baseline is already strong. A candidate can be `candidate-acceptable` by abs
 
 Research found that `score-candidate.cjs` accepted `--baseline` in YAML but ignored it, so `improvementGate` could not be proven. Promotion requires comparative improvement, not only an acceptable absolute score.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact prompt and command sequence for `CP-036` and confirm the expected signals without contradictory evidence.
@@ -41,6 +43,8 @@ Operators run the exact prompt and command sequence for `CP-036` and confirm the
   - **Call B (`/deep:agent-improvement` command flow)**: Contains `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, nested `details.gateResults.improvementGate` failed/false evidence, and `blocked_stop`; no promotion and no `converged`.
 - Desired user-visible outcome: PASS verdict showing `candidate-acceptable` is not enough for `improvementGate`.
 - Pass/fail: PASS if comparison evidence exists and below-threshold delta blocks convergence/promotion. FAIL if acceptable absolute score is treated as promotion-ready.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -84,6 +88,8 @@ grep -Ec 'promoted|stopReason":"converged"' /tmp/cp-036-B-combined.txt | tee /tm
 |---|---|---|---|---|---|---|---|---|
 | CP-036 | IMPROVEMENT_GATE_DELTA | Confirm acceptable absolute score does not pass improvementGate | `` Same task body in §2; Call A wraps with `As @Task:`; Call B invokes `/deep:agent-improvement` from the command-capable sandbox `` | Run the §3 exact command block | B comparison labels include `score-candidate.cjs`, `--baseline`, `baselineScore`, `delta`, `thresholdDelta`, `recommendation`, and `improvementGate`; promotion/converged count = 0; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-036-B-command.txt`, `/tmp/cp-036-B-combined.txt`, `/tmp/cp-036-B-field-counts.txt`, `/tmp/cp-036-B-promotion-or-converged-count.txt`, `/tmp/cp-036-tripwire.diff` | PASS if delta evidence blocks promotion. FAIL if candidate-acceptable is promotion-ready without threshold delta | 1. If `delta` is missing, verify `score-candidate.cjs --baseline` executed. 2. If promotion appears, split acceptable from better. 3. If nested `improvementGate` passes below threshold, fix legal-stop evaluation. |
 
+---
+
 ## 4. SOURCE FILES
 
 ### Playbook Sources
@@ -99,6 +105,8 @@ grep -Ec 'promoted|stopReason":"converged"' /tmp/cp-036-B-combined.txt | tee /tm
 | `.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs` | Baseline/current score comparison |
 | `.opencode/commands/deep/assets/deep-agent-improvement-auto.yaml` | Workflow score invocation |
 | `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` | Improvement gate contract |
+
+---
 
 ## 5. SOURCE METADATA
 

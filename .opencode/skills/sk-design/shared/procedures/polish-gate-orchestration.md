@@ -26,13 +26,19 @@ Shared private procedure card for coordinating the existing final polish review 
 | Proof gate | The report covers accessibility, anti-slop, hierarchy/rhythm, and interaction states; duplicates are merged; P0/P1 issues are surfaced before polish notes. |
 | Privacy rule | This shared private card is internal orchestration only and does not create a public polish-pass skill. |
 
+---
+
 ## 2. PLACEMENT RATIONALE
 
 `design-interface`'s `assets/interface-preflight-card.md` is the binary, mechanical last filter before delivery: it walks hero, bento/grid, eyebrow/meta-label, button/form contrast, breakpoint overflow, real imagery, copy, motion motivation and reduced motion, the AI-tell sweep (Section 11), and the interaction-state matrix (Section 12) box by box, and reaches SHIP only when every box passes. This card coordinates the findings that flow out of that gate to their owning capability: `design-interface` owns hierarchy and rhythm fixes, visual-direction repair, and interaction-state and transition standards (relocated in whole from the retired `motion` mode). Keeping the orchestration shared avoids duplicating the same final-gate routing logic in multiple mode folders while preserving the interface pre-flight card as the single mechanical reviewer.
 
+---
+
 ## 3. READ-ONLY COMPATIBILITY
 
 Read-only modes may cite the shared card to produce a review plan, findings report, or handoff. They must not require Write, Edit, Bash, or file mutation to use it.
+
+---
 
 ## 4. PROCEDURE
 
@@ -42,6 +48,8 @@ Read-only modes may cite the shared card to produce a review plan, findings repo
 4. Deduplicate overlapping findings and order them by release impact.
 5. Route fixes to the owning mode or `sk-code`; do not silently apply them from a read-only review context.
 6. End with a concise verdict and any decisions the user must review.
+
+---
 
 ## 5. RELATED CARDS
 

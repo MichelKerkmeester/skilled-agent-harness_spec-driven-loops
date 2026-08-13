@@ -11,6 +11,8 @@ description: "Derives a deterministic conflict graph over the resources shipped 
 
 Works out which parts of a run can safely happen at the same time. Each shipped mode declares the resources it reads or writes, such as files, state, locks or backends. Aliased identities are canonicalized to one resource id. The graph derivation turns overlapping declarations into conflict edges. A deterministic scheduler then groups the graph into ordered lanes so independent work can run in parallel while conflicting work stays ordered.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -24,13 +26,19 @@ Works out which parts of a run can safely happen at the same time. Each shipped 
 | `stable-digest.ts` | Canonical stringify and sha256 digest helpers with stable key ordering |
 | `types.ts` | Resource kind, edge, schedule and workstream type contracts |
 
+---
+
 ## 3. CONSUMERS
 
 No sibling `runtime/lib` domain imports this yet. It has no cross-domain dependencies beyond Node's `path` module.
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts`
+
+---
 
 ## 5. RELATED
 

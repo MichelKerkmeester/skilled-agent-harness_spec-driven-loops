@@ -30,6 +30,8 @@ The `mcp-obsidian` mode operates this plugin by reading and validating its setti
 | Enabled | Yes | `community-plugins.json` lists `obsidian-outliner` |
 | State file | `<vault>/.obsidian/plugins/obsidian-outliner/data.json` | The only settings surface |
 
+---
+
 ## 2. WHAT IT DOES
 
 Outliner makes list editing behave like Workflowy or RoamResearch. It changes editor interactions: folding and unfolding subtrees, moving list items with their sublists, indenting and outdenting, drag and drop, cursor behavior around bullets and checkboxes, Enter and Tab handling, Vim-mode `o` and `O` bullet insertion, extended select-all, smart Backspace at line content starts, vertical indentation lines and a system info dialog.
@@ -57,6 +59,8 @@ All of these are in-app behaviors. The plugin holds no note format and stores no
 - It does not generate charts, databases or other artifacts.
 - It does not zoom on its own. Zoom behavior needs the separate Zoom plugin.
 
+---
+
 ## 3. FILE-LAYER SURFACE
 
 | Layer | Path or artifact | Operable by AI |
@@ -67,6 +71,8 @@ All of these are in-app behaviors. The plugin holds no note format and stores no
 | Plugin code | `main.js`, `styles.css` | **No** |
 
 The active vault plugin folder contains only `main.js`, `manifest.json` and `styles.css`. There is no `data.json`, so every setting uses its default value.
+
+---
 
 ## 4. SETTINGS AT A GLANCE
 
@@ -86,6 +92,8 @@ The active vault plugin folder contains only `main.js`, `manifest.json` and `sty
 
 Settings live in one file only. The plugin merges loaded values over its defaults, so a partial file is valid. The full schema with value enums lives in `data-model.md`.
 
+---
+
 ## 5. COMMANDS AT A GLANCE
 
 | Command id | Command name | Default hotkey |
@@ -100,6 +108,8 @@ Settings live in one file only. The plugin merges loaded values over its default
 
 `Mod` means Command on macOS and Control on Windows and Linux. These are the plugin defaults read from `main.js`. Users can rebind them in Obsidian hotkey settings, so never assert a hotkey as permanent.
 
+---
+
 ## 6. WHEN TO USE THIS REFERENCE SET
 
 Use this set when the task names Outliner or obsidian-outliner, when a user reports list-editing behavior that the plugin owns, or when the mode must read or change plugin settings.
@@ -112,6 +122,8 @@ Use this set when the task names Outliner or obsidian-outliner, when a user repo
 
 Do not use this set for note content transformations. The plugin does not own a note format, so list edits in notes are plain markdown editing.
 
+---
+
 ## 7. SIBLING REFERENCES
 
 | File | Purpose |
@@ -120,12 +132,16 @@ Do not use this set for note content transformations. The plugin does not own a 
 | `workflows.md` | Numbered read, validate, modify and restore operations |
 | `troubleshooting.md` | Failure modes and named validation checkpoints |
 
+---
+
 ## 8. VERIFY ZONES
 
 - Zoom features need the separate Zoom plugin. The active vault does not have it. Check `community-plugins.json` before claiming zoom behavior (VERIFY per vault).
 - The fold commands need the Obsidian core setting "Fold indent" enabled.
 - Default hotkeys can be rebound by the user (VERIFY per vault).
 - IME composition pauses the Tab and Enter overrides, which users may read as a defect.
+
+---
 
 ## 9. OPERATING BOUNDARY
 
@@ -140,6 +156,8 @@ The mode works at the file layer. In-app interactions are out of reach headlessl
 | Enablement | `community-plugins.json` | Read-only |
 
 Behavior claims need the user to confirm in-app results. The file-layer proof is the JSON round trip.
+
+---
 
 ## 10. GROUND TRUTH PROVENANCE
 

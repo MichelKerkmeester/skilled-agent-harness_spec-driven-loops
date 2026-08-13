@@ -16,6 +16,8 @@ Verify the binary and version probes that precede every routed dispatch. The pro
 
 The skill contract requires `command -v devin` before dispatch and must refuse the route when the binary is absent instead of fabricating a command.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Confirm the installed binary is discoverable and reports a version before a route is considered available.
@@ -25,6 +27,8 @@ The skill contract requires `command -v devin` before dispatch and must refuse t
 - Expected signals: Non-empty path, version output, and a print response only after the preflight succeeds.
 - Desired user-visible outcome: An explicit availability result with no blind dispatch.
 - Pass/fail: PASS when the ordered preflight is recorded and the binary is available; FAIL if a dispatch is constructed before the probe; SKIP if `devin` is not installed.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -36,6 +40,8 @@ The skill contract requires `command -v devin` before dispatch and must refuse t
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | DV-002 | `command -v devin -> devin --version -> devin -p ...` | Ordered preflight, version, bounded response | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -51,6 +57,8 @@ The skill contract requires `command -v devin` before dispatch and must refuse t
 |---|---|
 | `../../SKILL.md` | `devin-availability-required` hard rule |
 | `../../../../system-deep-loop/runtime/scripts/fanout-run.cjs` | Shared execution authority referenced by the skill |
+
+---
 
 ## 5. SOURCE METADATA
 

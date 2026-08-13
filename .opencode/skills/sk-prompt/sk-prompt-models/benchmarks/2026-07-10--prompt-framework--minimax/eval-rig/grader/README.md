@@ -11,6 +11,8 @@ description: "Claude-dispatched grader for the D4 Hallucination dimension, with 
 
 `grader/` is the eval-rig's LLM-judged scoring core. It grades the D4 Hallucination dimension by dispatching Claude Code CLI against a fixture and a model's output, then escalates to a second adversarial call when a grade looks unreliable. This is the semantic counterpart to the deterministic D4 allowlist check in `../scripts/deterministic/hallucination-flag.cjs`.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -20,9 +22,13 @@ description: "Claude-dispatched grader for the D4 Hallucination dimension, with 
 | `prompts/system-grader.md` | System prompt for the primary D4 grader |
 | `prompts/system-skeptic.md` | System prompt for the adversarial second-opinion grader used by `dispute.cjs` |
 
+---
+
 ## 3. WHAT IT GRADES
 
 D4 Hallucination only, one dimension of the eval-rig's rubric. `harness.cjs` never executes the CLI dispatch during the rig's own dry-run gate. The eval loop calls `dispatchReal()` at iteration time, while the dry-run gate exercises `dispatchMock()` to verify the parsing logic in isolation.
+
+---
 
 ## 4. VALIDATION
 
@@ -31,6 +37,8 @@ node grader/harness.cjs <fixture.json> <output.md> mock-default
 ```
 
 Smoke-tests the parse path against a mocked grader response without a live Claude Code dispatch.
+
+---
 
 ## 5. RELATED
 

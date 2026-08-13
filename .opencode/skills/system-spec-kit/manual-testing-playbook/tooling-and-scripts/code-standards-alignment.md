@@ -261,6 +261,8 @@ Command 3, record mismatches:
 
 Inspect code standards definition; verify linter rules cover the standards; check for files missed by alignment pass
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/code-standards-alignment.md](../../feature-catalog/tooling-and-scripts/code-standards-alignment.md)

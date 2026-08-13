@@ -26,12 +26,16 @@ Two trace modes score the same corpus:
 
 The rubric, terminal buckets, and pass thresholds are the deep-improvement Lane C **scoring contract's**, not this index's — see section 5. Where a number here and the scoring contract disagree, the scoring contract prevails.
 
+---
+
 ## 2. RUN-LABEL INDEX
 
 Verdicts are read from each folder's rendered report.
 
 | Run label | Trace mode | Verdict | Status | Notes |
 |---|---|---|---|---|
+
+---
 
 ## 3. STRUCTURE
 
@@ -41,6 +45,8 @@ benchmark/
 +-- live-final/            # Current live run (cli-opencode dispatch)
 `-- compiled-routing/      # Compiled-routing parity archive (see section 6)
 ```
+
+---
 
 ## 4. READING THE REPORTS
 
@@ -53,6 +59,8 @@ Each run-label folder holds a matched pair:
 
 Start with the `.md` file for the verdict and the ranked bottlenecks; open the `.json` file for per-scenario detail. The `.md` is an anti-drift render, never hand-edited.
 
+---
+
 ## 5. RELATED RESOURCES
 
 | Document | Purpose |
@@ -61,6 +69,8 @@ Start with the `.md` file for the verdict and the ranked bottlenecks; open the `
 | [`sk-prompt`](../SKILL.md) | The hub under measurement |
 | [`scoring-contract.md`](../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) | The normative Lane C measurement contract every verdict is scored against |
 | [`/deep:skill-benchmark`](../../../commands/deep/skill-benchmark.md) | The command that drives a benchmark run |
+
+---
 
 ## 6. COMPILED-ROUTING ARCHIVE
 

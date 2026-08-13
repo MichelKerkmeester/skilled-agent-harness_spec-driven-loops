@@ -60,6 +60,8 @@ Query output showing hub vs non-hub score comparison across repeated queries
 
 Check fan-effect divisor formula → Verify degree count accuracy → Inspect co-activation weight cap
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md](../../feature-catalog/bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md)

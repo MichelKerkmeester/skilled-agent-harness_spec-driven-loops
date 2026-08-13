@@ -18,6 +18,8 @@ Current state:
 - Combines rule matches, prototype similarity and optional Tier 3 classification.
 - Produces routing metadata only. It does not edit spec documents.
 
+---
+
 ## 2. ARCHITECTURE
 
 ```text
@@ -37,6 +39,8 @@ RoutingDecision
 merge layer writes the selected doc and anchor
 ```
 
+---
+
 ## 3. DIRECTORY TREE
 
 ```text
@@ -46,12 +50,16 @@ routing/
 `-- README.md                # Folder orientation
 ```
 
+---
+
 ## 4. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `content-router.ts` | Defines routing categories, thresholds, target selection, confidence bands, cache keys and exported router types. |
 | `routing-prototypes.json` | Stores labeled examples that support Tier 2 prototype matching. |
+
+---
 
 ## 5. BOUNDARIES AND FLOW
 
@@ -69,6 +77,8 @@ ContentChunk + RouterContext
     -> RoutingDecision
 ```
 
+---
+
 ## 6. ENTRYPOINTS
 
 | Export | File | Purpose |
@@ -77,6 +87,8 @@ ContentChunk + RouterContext
 | `RoutingDecision` | `content-router.ts` | Result shape consumed by save and merge flows. |
 | Router functions in `content-router.ts` | `content-router.ts` | Classify chunks and build target metadata. |
 
+---
+
 ## 7. VALIDATION
 
 Run from the repository root:
@@ -84,6 +96,8 @@ Run from the repository root:
 ```bash
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp-server/lib/routing/README.md
 ```
+
+---
 
 ## 8. RELATED
 

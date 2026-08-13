@@ -111,6 +111,8 @@ The required sequence could not be completed: command 4 requires restoring a val
 
 Verify embedding_status column exists in schema; check BM25/FTS5 index includes pending memories; inspect reindex retry logic and retry_count tracking
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/deferred-lexical-only-indexing.md](../../feature-catalog/memory-quality-and-indexing/deferred-lexical-only-indexing.md)

@@ -136,6 +136,8 @@ The scenario expected zero V1 pipeline references, but the symbol search found `
 
 Search for V1 symbols across all files; check for conditional V1/V2 routing; verify V2 pipeline handles all former V1 query types
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [pipeline-architecture/legacy-v1-pipeline-removal.md](../../feature-catalog/pipeline-architecture/legacy-v1-pipeline-removal.md)

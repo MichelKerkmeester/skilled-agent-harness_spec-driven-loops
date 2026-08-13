@@ -60,6 +60,8 @@ Conflict output from both branches plus rollback-state evidence after forced fai
 
 Inspect `mcp-server/lib/storage/reconsolidation.ts` and the reconsolidation test harness for transaction and rollback divergence
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [mutation/reconsolidation-conflict-transaction-helper.md](../../feature-catalog/mutation/reconsolidation-conflict-transaction-helper.md)

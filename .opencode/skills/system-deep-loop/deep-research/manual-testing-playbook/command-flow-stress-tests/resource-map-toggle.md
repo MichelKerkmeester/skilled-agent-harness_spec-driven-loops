@@ -18,6 +18,8 @@ This scenario invokes `/deep:research:auto` with `--no-resource-map`. Call B mus
 
 The command exposes resource-map emission as an operator flag. A stress test must prove the flag is not just accepted by the Markdown surface, but also carried into config, state and synthesis behavior.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence for `CP-048` and grade the result through field counts only.
@@ -29,6 +31,8 @@ Operators run the exact command sequence for `CP-048` and grade the result throu
 - Expected process: seed a spec, run generic Call A, reset sandbox, run command-flow Call B with `--no-resource-map`, then check config/state/artifact presence.
 - Expected signals: `"emit":false`, `resource_map.emit` disabled, `research.md`, missing `resource-map.md` as a pass signal, clean canonical diff, clean tripwire.
 - Pass/fail: PASS if disabled resource-map state is visible and no map artifact is emitted. FAIL if resource-map output appears or the loop loses normal research output.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -89,6 +93,8 @@ diff /tmp/cp-048-pre.txt /tmp/cp-048-post.txt > /tmp/cp-048-tripwire.diff; echo 
 |---|---|---|---|---|---|---|---|---|
 | CP-048 | RESOURCE_MAP_TOGGLE | Confirm --no-resource-map suppresses map output | `Run one-iteration deep research with resource-map output suppressed.` | Run the §3 bash block | B field counts all >= 1 | config, state log, research output, diffs | PASS if map output is absent and research output remains | 1. If emit is true, inspect command parsing. 2. If map exists, inspect reducer emit step. 3. If research.md is missing, inspect synthesis. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Anchor |
@@ -98,6 +104,8 @@ diff /tmp/cp-048-pre.txt /tmp/cp-048-post.txt > /tmp/cp-048-tripwire.diff; echo 
 | `.opencode/commands/deep/assets/deep-research-auto.yaml:930-938` | reducer emits map unless disabled |
 | `.opencode/skills/system-deep-loop/deep-research/SKILL.md:443-448` | resource-map is expected unless disabled |
 | `.opencode/agents/deep-research.md:269-274` | progressive research output remains separate |
+
+---
 
 ## 5. SOURCE METADATA
 

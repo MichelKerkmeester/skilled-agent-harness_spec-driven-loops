@@ -62,6 +62,8 @@ ShadowResult output + test transcript showing shadow-only behavior
 
 Verify isLearnedStage2CombinerEnabled() → Check model training succeeded (non-null) → Inspect predict() clamping → Verify FEATURE_NAMES order matches extractFeatureVector()
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/learned-stage2-weight-combiner.md](../../feature-catalog/scoring-and-calibration/learned-stage2-weight-combiner.md)

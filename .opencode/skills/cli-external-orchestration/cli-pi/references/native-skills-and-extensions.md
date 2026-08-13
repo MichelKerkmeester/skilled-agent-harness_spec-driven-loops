@@ -34,6 +34,8 @@ Separates Pi-native skill/prompt-template/extension discovery from this repo's o
 - Checking whether prompt templates or extensions are safe to treat as confirmed before relying on them
 - Planning the remaining native-skill-discovery verification work
 
+---
+
 ## 2. NATIVE SKILLS
 
 Per Pi docs, unconfirmed: Pi implements the Agent Skills standard and loads skills from global, project, package, settings, and explicit CLI locations. See [Pi skills documentation](https://pi.dev/docs/latest/skills).
@@ -43,6 +45,8 @@ Per Pi docs, unconfirmed: directories containing SKILL.md can be discovered recu
 Per Pi docs, unconfirmed: Pi reads a skill's description at startup and loads the full SKILL.md on demand. The documented model is progressive disclosure, but this packet has not live-verified the resulting prompt content in a successful provider session.
 
 Per Pi docs, unconfirmed: explicit --skill paths are additive and can be used with discovery controls. Check the installed help before relying on a flag in a future version.
+
+---
 
 ## 3. REPOSITORY SKILL VERSUS PI SKILL
 
@@ -58,6 +62,8 @@ The repository's cli-pi SKILL.md is an OpenCode skill packet. Pi's native SKILL.
 
 Do not copy this packet into Pi and assume the hub's single advisor identity survives. That bridge belongs to a separate integration.
 
+---
+
 ## 4. PROMPT TEMPLATES
 
 **Confirmed (phases 012/013):** Pi discovers flat, non-recursive markdown files under `.pi/prompts/` and exposes each as a slash command named after the file. This repo mirrors all 36 canonical `.opencode/commands/**/*.md` files this way; `sync-prompts-pi.cjs --check` reports `36 prompts are in sync`. Argument substitution — including `$ARGUMENTS` as a documented alias for `$@` — was live-confirmed in a real generated prompt file during a live session (phase 013, scenario PI-008). See [RPC documentation](https://pi.dev/docs/latest/rpc) for how prompt-template commands surface in `get_commands` output.
@@ -65,6 +71,8 @@ Do not copy this packet into Pi and assume the hub's single advisor identity sur
 Per Pi docs, unconfirmed: full path-precedence rules across every documented discovery location (global, project, package, settings, explicit CLI path) beyond the project-local `.pi/prompts/` location this packet actually populates.
 
 Use [prompt-templates.md](../assets/prompt-templates.md) for caller-side dispatch templates, and see [pi-tools.md](./pi-tools.md) §4 for the sibling-comparison framing of this surface.
+
+---
 
 ## 5. EXTENSIONS
 
@@ -84,6 +92,8 @@ Extension safety rules:
 4. Capture startup errors.
 5. Do not rely on a warning if the session can fail closed.
 
+---
+
 ## 6. CLI RESOURCE FLAGS
 
 The installed help contains these resource controls:
@@ -101,6 +111,8 @@ The installed help contains these resource controls:
 
 The names are confirmed by the local help capture. Their full precedence rules are not all confirmed by the pin.
 
+---
+
 ## 7. SETTINGS AND PACKAGES
 
 Per Pi docs, unconfirmed: package manifests can declare extensions, skills, prompts, and themes, and conventional package directories can be auto-discovered. See [Pi packages](https://pi.dev/docs/latest/packages).
@@ -114,6 +126,8 @@ Treat package resource loading as a trust boundary:
 - A package can add skills that influence model behavior.
 - A package can modify settings.
 - A package can change the effective tool surface.
+
+---
 
 ## 8. DISCOVERY VERIFICATION PLAN
 
@@ -133,6 +147,8 @@ Still open — needs a credentialed provider session:
 6. Start Pi in JSON and RPC modes against a real provider (both remain doc-grounded, not live-executed, for this specific verification plan).
 
 Until the remaining items are done, preserve the phrase documented but unconfirmed for native skill discovery specifically — prompt templates and extensions have moved from that status to confirmed, per §4/§5 above.
+
+---
 
 ## 9. OPERATIONAL CHECKLIST
 

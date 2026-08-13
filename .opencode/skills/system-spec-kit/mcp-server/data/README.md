@@ -17,17 +17,23 @@ Current state:
 - Stores search decision records in JSON Lines format.
 - Keeps data files separate from handlers, libraries, and test helpers.
 
+---
+
 ## 2. KEY FILES
 
 | File | Responsibility |
 |---|---|
 | `search-decisions.jsonl` | Append-oriented records for search decision data. |
 
+---
+
 ## 3. USAGE NOTES
 
 - Preserve JSON Lines format: one complete JSON object per line.
 - Do not place generated databases, logs, or large artifacts here.
 - Prefer a code-owned schema or parser when new data files need runtime validation.
+
+---
 
 ## 4. RELATED RESOURCES
 

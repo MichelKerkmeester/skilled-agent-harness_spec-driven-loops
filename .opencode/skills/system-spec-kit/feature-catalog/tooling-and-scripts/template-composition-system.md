@@ -20,6 +20,8 @@ The Template Composition System is the current Spec Kit document-generation path
 
 Its job is to keep scaffolding and validation on one contract. The same Level contract drives fresh packet creation, phase-parent creation, lazy support documents, and validator expectations, so generated packets and strict validation stay aligned.
 
+---
+
 ## 2. HOW IT WORKS
 
 The shipped behavior currently works as follows:
@@ -31,6 +33,8 @@ The shipped behavior currently works as follows:
 5. Lazy support documents such as `handover.md`, `debug-delegation.md`, `research.md`, `resource-map.md`, and `context-index.md` are rendered from the same template source when their owning workflow needs them.
 6. Validators consume the same Level contract instead of carrying a separate file matrix. Missing-file, section, header, Level-match, and template-source checks therefore evaluate the same document set that scaffolding writes.
 7. The workflow-invariance test protects public surfaces from leaking private implementation taxonomy. Public docs and generated packets keep Level vocabulary, while private maintainer files remain isolated.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -55,6 +59,8 @@ The shipped behavior currently works as follows:
 | `scripts/tests/scaffold-golden-snapshots.vitest.ts` | Automated test | Fresh scaffold snapshots across public Levels |
 | `scripts/tests/template-structure.vitest.ts` | Automated test | Rendered template structure and section expectations |
 | `scripts/tests/workflow-invariance.vitest.ts` | Automated test | Public vocabulary invariance across command, agent, catalog, playbook, and generated-doc surfaces |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

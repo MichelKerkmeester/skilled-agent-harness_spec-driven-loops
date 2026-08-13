@@ -18,6 +18,8 @@ contextType: "general"
 
 Each row below is one run folder. Rows are written by the benchmark harness at the moment it writes the report, so this table cannot fall behind the folders beside it.
 
+---
+
 ## 2. RUN INDEX
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
@@ -31,6 +33,8 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 | 2026-06-01 | [`2026-06-01--live--live/`](./2026-06-01--live--live/) | live | 3 PASS | **CONDITIONAL** 76/100 | not recorded |
 | 2026-06-01 | [`2026-06-01--full--router/`](./2026-06-01--full--router/) | router | 2 FAIL | **CONDITIONAL** 55/100 | not recorded |
 | 2026-06-01 | [`2026-06-01--after--router/`](./2026-06-01--after--router/) | router | 2 PASS | **CONDITIONAL** 69/100 | not recorded |
+
+---
 
 ## 3. STORAGE RULE
 

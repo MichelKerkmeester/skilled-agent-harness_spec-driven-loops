@@ -16,6 +16,8 @@ Exercise the critical safety invariant directly: `PreToolUse` fires under `--per
 
 The naive assumption that bypass disables every hook is false. The spec-gate and dispatch guards remain active in the mode this repository dispatches with; losing this event would create a silent enforcement gap.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Observe a `PreToolUse` event for a real tool call under bypass.
@@ -25,6 +27,8 @@ The naive assumption that bypass disables every hook is false. The spec-gate and
 - Expected signals: The probe records `PreToolUse` with the same session/tool correlation as the write; `PermissionRequest` may be absent, but `PreToolUse` is present.
 - Desired user-visible outcome: Direct evidence that bypass skips approval prompting without disabling guard delivery.
 - Pass/fail: PASS when `PreToolUse` is logged under bypass; FAIL when the write succeeds with no `PreToolUse` event or when the result treats bypass as hook-free; SKIP only on auth/availability blockers.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -36,6 +40,8 @@ The naive assumption that bypass disables every hook is false. The spec-gate and
 | Feature ID | Exact command | Expected signal | Verdict |
 |---|---|---|---|
 | DV-009 | Isolated `devin -p ... --permission-mode bypass` | PreToolUse event present; approval event may be absent | PASS/FAIL/SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -53,6 +59,8 @@ The naive assumption that bypass disables every hook is false. The spec-gate and
 | `../../../../specs/cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/implementation-summary.md` | Explicit statement that PreToolUse remains active under bypass |
 | `../../../../skills/system-spec-kit/mcp-server/hooks/devin/spec-gate-enforce.mjs` | Guard adapter under test |
 | `../../../../../hooks/task-dispatch/claude/task-dispatch-guard.cjs` | Shared dispatch-guard core |
+
+---
 
 ## 5. SOURCE METADATA
 

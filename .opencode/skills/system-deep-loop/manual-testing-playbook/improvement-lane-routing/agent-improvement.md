@@ -26,6 +26,8 @@ version: "1.2.0.0"
 
 This scenario verifies the alias-fold default for the improvement family: a bare agent evaluation request resolves to `workflowMode: agent-improvement`, not to the model, skill, or external AI-system lanes.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants to evaluate and score an agent candidate before promotion.
@@ -52,6 +54,8 @@ Evaluate and score the code agent candidate, compare it against the current base
 - Advisor evidence: `advisorRouting.routingClass: "alias-fold"`, `advisorRouting.legacyAdvisorId: "deep-improvement"`, and `advisorRouting.advisorDefaultMode: true`.
 
 **Desired user-visible outcome**: The AI routes to the agent-improvement lane, names the shared `deep-improvement` packet, and states that this is the alias-fold default for the legacy `deep-improvement` advisor identity.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -91,10 +95,14 @@ Evaluate and score the code agent candidate, compare it against the current base
 2. If backend is wrong, verify `backendKind: "improvement-host"`.
 3. If a runtime loop type is invented, re-read the registry discriminator rule that improvement-host modes use explicit null.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `agent-improvement` source of truth.
+
+---
 
 ## 5. SOURCE METADATA
 

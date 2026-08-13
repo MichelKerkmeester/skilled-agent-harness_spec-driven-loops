@@ -63,6 +63,8 @@ Vitest transcript plus the source excerpts showing inert novelty boost logic and
 
 Inspect `lib/scoring/composite-scoring.ts`, `lib/search/graph-flags.ts`, and `lib/search/search-flags.ts`; confirm test env setup is not leaking rollout variables across cases
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [implement-and-remove-deprecated-features/inert-scoring-flags-and-compatibility-shims.md](../../feature-catalog/implement-and-remove-deprecated-features/inert-scoring-flags-and-compatibility-shims.md)

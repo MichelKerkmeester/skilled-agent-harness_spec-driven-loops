@@ -90,6 +90,8 @@ STEADY    (2nd pass, warm provider):     p50=142 ms  p95=612 ms  p99=1.8 s  qps=
 - No `memory_search` latency samples were collected; no p50/p95/p99/qps values are available.
 - Pass/Fail: BLOCKED — required workload file creation is forbidden by the allowed write path for this run.
 
+---
+
 ## 4. NOTES
 
 This scenario is sensitive to system load. Run it when no other heavy processes are active on the machine. Repeat 3 times and report the median of medians if results are noisy.
@@ -100,6 +102,8 @@ If targets are missed:
 - qps low → likely sequential bottleneck; check concurrent-generation handling.
 
 This is the only scenario in the suite that captures wall-clock performance. The mechanical bench files under `performance/*.bench.ts` measure embedding-only latency at finer granularity; this playbook entry measures the **end-to-end search experience** the operator actually sees.
+
+---
 
 ## 5. CLEANUP
 

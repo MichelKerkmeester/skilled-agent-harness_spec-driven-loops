@@ -18,6 +18,8 @@ Confirm the local CLI knows the `/handoff` surface and document the safe boundar
 
 Handoff is a real Devin capability with meaningful external effects: the cloud session receives conversation context and current git state. The playbook must cover the surface without silently exporting operator work.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Verify the documented `/handoff` contract and record the live transfer as SKIP unless explicitly approved.
@@ -27,6 +29,8 @@ Handoff is a real Devin capability with meaningful external effects: the cloud s
 - Expected signals: The local output/reference names `/handoff`; the scenario verdict for the live transfer is SKIP with the named cloud-transfer blocker.
 - Desired user-visible outcome: A safe handoff decision and explicit opt-in boundary.
 - Pass/fail: PASS for the local documentation inspection; SKIP for live handoff by design; FAIL only if the local surface contradicts the reference or if an unapproved cloud session is created.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -38,6 +42,8 @@ Handoff is a real Devin capability with meaningful external effects: the cloud s
 | Feature ID | Exact commands | Expected signal | Verdict |
 |---|---|---|---|
 | DV-020 | `devin --help` and read-only `devin -p` explanation | Handoff documented; live transfer SKIP by named blocker | PASS + SKIP |
+
+---
 
 ## 4. SOURCE FILES
 
@@ -54,6 +60,8 @@ Handoff is a real Devin capability with meaningful external effects: the cloud s
 | `../../references/cloud-handoff.md` | Handoff mechanics, state transfer, and safety |
 | `../../references/cli-reference.md` | Interactive command listing |
 | `../../SKILL.md` | Cloud escalation boundary |
+
+---
 
 ## 5. SOURCE METADATA
 

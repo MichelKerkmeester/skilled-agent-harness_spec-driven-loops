@@ -17,6 +17,8 @@ version: 0.8.0.2
 
 The 028 MCP-to-CLI program shipped `node .opencode/bin/skill-advisor.cjs` as a CLI-only layer over the existing advisor daemon contract. The CLI exposes 9 commands through a hand-maintained manifest whose schemas are held byte-identical to the server `TOOL_DEFINITIONS` by a dedicated parity suite (`tests/skill-advisor-cli-manifest-parity.vitest.ts`) — drift between the two registries fails tests rather than shipping. `skill-advisor list-tools --format json` returns `{ status: "ok", data: { count: 9 } }` as the runtime parity check. The Python facade `skill_advisor.py` stayed untouched. The OpenCode bridge gained CLI fallback routing with its primary path intact, and the Claude/OpenCode prompt-submit hooks gained the warm-only CLI fallback.
 
+---
+
 ## 2. HOW IT WORKS
 
 ### Fail-closed trusted-mutation gate
@@ -30,6 +32,8 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 ### Scan job semantics
 
 `skill_graph_scan` runs as a job: the CLI captures `advisor_status` before and after the scan so the operator sees the generation move, with rebuild/scan wall-time locked by the job-semantics suite.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -54,6 +58,8 @@ Calls are sent untrusted by default. The mutation set — `advisor_rebuild`, `sk
 | `mcp-server/tests/skill-advisor-launcher-orphan-reaping.vitest.ts` | Automated test | Real-launcher orphan reaping (killed parent, removed worktree, warm adoption) |
 | `mcp-server/tests/tri-daemon-drill.vitest.ts` | Automated test | Env-gated tri-daemon spawn drill (028 program gate, `SPECKIT_RUN_TRI_DAEMON_DRILL=1`) |
 | `mcp-server/tests/handlers/advisor-trust-gate.vitest.ts` | Automated test | Daemon-side trust-gate enforcement including the env grant |
+
+---
 
 ## 4. SOURCE METADATA
 

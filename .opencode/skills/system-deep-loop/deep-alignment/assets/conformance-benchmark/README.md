@@ -33,6 +33,8 @@ accepted, frozen fixture-corpus benchmark run identity is not yet recorded.
 **Owning mode:** `deep-alignment`.
 **Source specification:** `specs/system-deep-loop/035-command-surface-benchmark/`.
 
+---
+
 ## 2. BENCHMARK-ID INDEX
 
 <!-- Add one row per benchmark-id directory. The Authority and Adapter columns
@@ -44,6 +46,8 @@ accepted, frozen fixture-corpus benchmark run identity is not yet recorded.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [`command-surface`](./command-surface/conformance-benchmark.md) | `sk-doc` | `sk-doc-command` | `.opencode/commands` tree (public + held-out fixtures) | Live convergence run complete (FAIL); fixture-run identity pending | `system-deep-loop/035-command-surface-benchmark` | [command](#exec-command-surface) | [`004/alignment/`](../../../../../specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration/alignment) |
 
+---
+
 ## 3. CORPUS
 
 | Benchmark ID | Canonical corpus source | Inclusion boundary | Fixture manifest |
@@ -53,6 +57,8 @@ accepted, frozen fixture-corpus benchmark run identity is not yet recorded.
 The canonical source, not a copied count in this README, decides corpus
 membership. If the source inventory changes, regenerate or re-verify the corpus,
 refresh its recorded hash, and update the affected index row before execution.
+
+---
 
 ## 4. EXECUTION
 
@@ -72,6 +78,8 @@ Expected stable inputs:
 - Lane config: [`command-surface/lane-config.json`](./command-surface/lane-config.json)
 - Fixture manifest: [`command-surface/fixtures/fixture-manifest.json`](./command-surface/fixtures/fixture-manifest.json)
 
+---
+
 ## 5. EVIDENCE LOCATION
 
 The package is the stable authoring surface; it is not the audit trail. Evidence
@@ -80,6 +88,8 @@ for `command-surface` lands at
 in the executing spec phase. That location owns transcripts, deep-alignment state
 and deltas, reduced reports, and any generated scorecard. Update the pointer after
 each accepted run; do not copy those generated artifacts into this package.
+
+---
 
 ## 6. RELATED RESOURCES
 

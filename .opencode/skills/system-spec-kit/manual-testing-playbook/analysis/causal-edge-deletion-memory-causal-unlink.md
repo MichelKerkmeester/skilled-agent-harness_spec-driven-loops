@@ -63,6 +63,8 @@ checkpoint_create output; memory_causal_link edge id; memory_causal_unlink `{ de
 
 Verify the edge id exists (via the memory_causal_link result or memory_drift_why `allEdges[].id`). Restore `pre-ex021-causal-unlink` if the wrong edge was removed. If the tool is not callable, confirm the daemon is running the current dist (registration lives in `tool-schemas.ts` + `tools/causal-tools.ts`).
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [analysis/causal-edge-deletion-memorycausalunlink.md](../../feature-catalog/analysis/causal-edge-deletion-memorycausalunlink.md)

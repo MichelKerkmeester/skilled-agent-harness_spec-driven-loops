@@ -20,6 +20,8 @@ Invariant 2 of the alignment contract: each authority carries its own list of ac
 
 This is the guard against the naive-linter failure mode. A real repo has intentional conventions that technically deviate from a template but are accepted and load-bearing; flagging them would drown a real finding in noise and erode trust. Each authority owns its own list, per ADR-005's per-authority requirement.
 
+---
+
 ## 2. HOW IT WORKS
 
 Each authority's `sk_*_known_deviations.md` reference doc carries a fenced JSON block that is the single source of truth — there is no separate, hand-synced copy in code. Each adapter's `loadKnownDeviations()` parses that block at runtime, and `suppressKnownDeviations()` runs as the final step of `check()`, filtering findings through per-authority match rules (`matchTypes` plus authority-specific qualifiers such as sk-doc's `matchDocTypes`/`requiresValidatorExitZero`, sk-git's `requiresCommitBeforeHookInstall`, and sk-code's `matchSurfaces`). A match suppresses only that one finding, never the whole artifact. Every entry traces to a real prior finding or an explicit repo-wide convention re-probed at authoring time, and the lists honestly distinguish currently-active entries from dormant ones that no wrapped tool can trigger today.

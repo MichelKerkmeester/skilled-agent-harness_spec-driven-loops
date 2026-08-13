@@ -32,6 +32,8 @@ The `mcp-obsidian` mode operates Excalidraw through its **drawing files and sett
 | Desktop only | No | Verified from manifest.json |
 | Settings file | `<vault>/.obsidian/plugins/obsidian-excalidraw-plugin/data.json` | Absent in the vault, defaults apply |
 
+---
+
 ## 2. WHAT IT DOES
 
 Excalidraw renders vector drawings inside Obsidian. The manifest describes the plugin as a sketching surface for "4D Visual PKM". Each drawing lives in its own Markdown note with a YAML frontmatter block and an embedded Excalidraw JSON document in the body. The plugin edits and renders that document in a dedicated view.
@@ -87,6 +89,8 @@ tags: [excalidraw]
 %%
 ~~~
 
+---
+
 ## 5. DATA ARTIFACT QUICK MAP
 
 | Artifact | Path / location | Shape | Full detail |
@@ -97,6 +101,8 @@ tags: [excalidraw]
 | Drawing template | `<templateFilePath>` | A normal drawing note | `data-model.md` section 7 |
 | Shape library | `<libraryFolderPath>/<libraryFileName>.excalidrawLib` | JSON library file, read-only | `data-model.md` section 7 |
 | Embeds | Any Markdown note | `![[...]]` links with block references | `data-model.md` section 6 |
+
+---
 
 ## 6. SETTINGS LOCATION
 
@@ -118,6 +124,8 @@ The settings object has 200+ top-level keys. Documented defaults verified from `
 
 See `data-model.md` section 5 for the full verified setting contract.
 
+---
+
 ## 7. WHEN TO USE THIS REFERENCE SET
 
 Use this reference set when the request involves any of these actions at the file layer.
@@ -131,6 +139,8 @@ Use this reference set when the request involves any of these actions at the fil
 
 Do not use this set for pure UI questions about drawing tools or the canvas. Those are user-facing interactions the AI cannot perform. Do not use this set to author automation scripts without verifying each API call against the official reference. The file layer does not prove that a script runs.
 
+---
+
 ## 8. REFERENCE SET MAP
 
 | File | Purpose |
@@ -138,6 +148,8 @@ Do not use this set for pure UI questions about drawing tools or the canvas. Tho
 | [`data-model.md`](data-model.md) | Exact data artifacts: drawing note structure, frontmatter keys, embedded JSON schema, settings keys, embed syntax, scripts and templates |
 | [`workflows.md`](workflows.md) | Numbered operational workflows: read, validate, create, modify with backup discipline, embed, add scripts |
 | [`troubleshooting.md`](troubleshooting.md) | Failure modes and fixes with named validation checkpoints |
+
+---
 
 ## 9. OPERATING PRINCIPLES
 

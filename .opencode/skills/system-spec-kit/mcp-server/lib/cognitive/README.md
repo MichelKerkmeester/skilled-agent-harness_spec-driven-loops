@@ -16,6 +16,8 @@ Memory lifecycle and attention logic for Spec Kit Memory. This folder turns memo
 
 Use this folder when code needs to classify memories, decay attention, spread activation, track session working memory, or monitor context pressure. It supports retrieval decisions, but canonical recovery still starts with `/speckit:resume` and the continuity chain in spec documents.
 
+---
+
 ## 2. STRUCTURE
 
 | File | Role |
@@ -30,6 +32,8 @@ Use this folder when code needs to classify memories, decay attention, spread ac
 | `pressure-monitor.ts` | Token pressure checks for context-window policy. |
 | `rollout-policy.ts` | Feature-flag rollout helpers. |
 | `adaptive-ranking.ts` | Shadow-mode adaptive ranking with bounded feedback loops, signal aggregation, threshold tuning, and promotion/rollback gates. |
+
+---
 
 ## 3. FLOW
 
@@ -63,6 +67,8 @@ Use this folder when code needs to classify memories, decay attention, spread ac
 ╰──────────────────────╯
 ```
 
+---
+
 ## 4. ALLOWED DEPENDENCY DIRECTION
 
 ```text
@@ -87,6 +93,8 @@ Use this folder when code needs to classify memories, decay attention, spread ac
 
 Allowed imports point inward to shared storage, scoring, configuration, and utilities. This folder should not import MCP tool handlers, command dispatch, or spec-document authoring workflows.
 
+---
+
 ## 5. KEY CONTRACTS
 
 | Contract | Rule |
@@ -96,6 +104,8 @@ Allowed imports point inward to shared storage, scoring, configuration, and util
 | Save decisions | Run prediction-error checks before adding similar memory content. |
 | Session state | Keep working-memory updates scoped to a session identifier. |
 | Continuity | Treat cognitive scores as retrieval evidence, not the source of resume truth. |
+
+---
 
 ## 6. RELATED FILES
 

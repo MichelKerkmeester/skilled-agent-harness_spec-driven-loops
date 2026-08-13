@@ -92,6 +92,8 @@ Grep output with at least one `resource-map.md` match per target surface
 
 Patch whichever documentation or config surface drifted, then rerun the grep to confirm coverage is complete
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [context-preservation/resource-map-template.md](../../feature-catalog/context-preservation/resource-map-template.md)

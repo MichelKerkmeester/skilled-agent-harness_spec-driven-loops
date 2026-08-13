@@ -20,6 +20,8 @@ The `INIT -> SCOPE -> DISCOVER -> ITERATE -> CONVERGE -> REPORT -> [REMEDIATE]` 
 
 The state machine is the orchestration backbone: it names which script each state calls, in what order, and what each state reads and writes under the bound spec folder's `alignment/` directory. Every script it wires is single-shot — it answers one question and returns, never looping or dispatching internally, exactly like the reused runtime primitives.
 
+---
+
 ## 2. HOW IT WORKS
 
 `INIT` acquires `alignment/.deep-alignment.lock` via `loop-lock.cjs`. `SCOPE` runs `scoping.cjs` and freezes the resolved lanes into `deep-alignment-config.json` (`fileProtection: immutable`). `DISCOVER` calls each lane's adapter `discover(scope)`, writes `deep-alignment-corpus.json` (one entry per lane), and seeds `FILE` nodes via `upsert.cjs --seed-source deep-alignment-discover`. `ITERATE`, `CONVERGE`, `REPORT`, and the optional `REMEDIATE` state are each covered by their own feature file. The lock is released after `REPORT`, or after `REMEDIATE` when that optional state runs. The planned `/deep:alignment` command workflow (the phase-009 last-mile deliverable, not yet built) will drive this sequence; `SKILL.md`'s FORBIDDEN INVOCATION PATTERNS already rule out any custom bash/shell dispatcher that would parallelize lanes or iterations.

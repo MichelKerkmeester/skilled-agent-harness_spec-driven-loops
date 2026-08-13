@@ -19,6 +19,8 @@ Current state:
 - Re-exports specs directory discovery helpers.
 - Preserves the dependency boundary between non-core scripts and core config implementation.
 
+---
+
 ## 2. DIRECTORY TREE
 
 ```text
@@ -26,11 +28,15 @@ config/
 `-- index.ts
 ```
 
+---
+
 ## 3. KEY FILES
 
 | File | Role |
 |---|---|
 | `index.ts` | Barrel export for `CONFIG`, specs directory helpers, and config types from `../core/config.js`. |
+
+---
 
 ## 4. BOUNDARIES
 
@@ -42,9 +48,13 @@ Allowed direction:
 extractors/renderers/loaders -> scripts/config -> scripts/core/config
 ```
 
+---
+
 ## 5. VALIDATION
 
 Run the relevant TypeScript or package test command from the repository root after changing exports.
+
+---
 
 ## 6. RELATED
 

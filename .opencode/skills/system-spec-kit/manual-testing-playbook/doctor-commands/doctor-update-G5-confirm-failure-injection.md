@@ -94,6 +94,8 @@ The command loads `doctor-update.yaml`, snapshots the in-scope SQLite DBs, reach
 
 If the failure is not injected, verify the runtime propagates `SPECKIT_FAIL_STEP` into the YAML execution environment. If rollback is not offered, inspect `doctor-update.yaml` `failure_options` and Phase 5 failure policy. If checksums differ, treat it as a rollback failure and inspect snapshot restore ordering for the active resolved profile Memory MCP database and downstream DBs.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

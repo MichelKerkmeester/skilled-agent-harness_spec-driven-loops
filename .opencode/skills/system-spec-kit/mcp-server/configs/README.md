@@ -21,6 +21,8 @@ Runtime scoring rules still live in the modules that execute scoring. This folde
 
 Use this folder when changing static ranking defaults, trigger weight inputs, or cognitive regex environment parsing. Do not add runtime branching here unless the config file is the stable boundary and the caller owns behavior.
 
+---
+
 ## 2. SURFACE
 
 | Surface | Purpose |
@@ -28,6 +30,8 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 | `search-weights.json` | Ranking weights, document-type multipliers and trigger caps used by memory search paths. |
 | `cognitive.ts` | Environment-backed regex config for cognitive co-activation matching. |
 | Environment variables | `SPECKIT_COGNITIVE_COACTIVATION_PATTERN` and `SPECKIT_COGNITIVE_COACTIVATION_FLAGS`. |
+
+---
 
 ## 3. EXPORTS
 
@@ -40,6 +44,8 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 
 `search-weights.json` exports data through normal JSON imports or file reads. Keep the file valid JSON.
 
+---
+
 ## 4. ALLOWED IMPORTS
 
 | Import | Rule |
@@ -49,6 +55,8 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 | Runtime constants | Keep runtime scoring constants in their owning search or scoring modules. |
 | Side effects | Do not add DB, file write, network, or handler execution side effects to this folder. |
 
+---
+
 ## 5. KEY FILES
 
 | File | Responsibility |
@@ -56,6 +64,8 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 | `search-weights.json` | Data-only ranking and trigger configuration for memory search paths. |
 | `cognitive.ts` | Regex config parsing, default values, validation errors and safety checks. |
 | `README.md` | Folder contract for config shape and import rules. |
+
+---
 
 ## 6. BOUNDARIES
 
@@ -66,12 +76,16 @@ Use this folder when changing static ranking defaults, trigger weight inputs, or
 | Runtime safety | Validate environment regex values before exposing them to callers. |
 | Side effects | Keep config loading free of writes, network calls and handler dispatch. |
 
+---
+
 ## 7. ENTRYPOINTS
 
 - Import `COGNITIVE_CONFIG` when a caller needs validated default cognitive matching settings.
 - Call `loadCognitiveConfigFromEnv()` when tests or startup code need explicit environment parsing.
 - Use `safeParseCognitiveConfigFromEnv()` when invalid regex input should return an error object instead of throwing.
 - Read `search-weights.json` from search-ranking code that needs stable scoring inputs.
+
+---
 
 ## 8. VALIDATION
 
@@ -84,6 +98,8 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 ```
 
 Expected result: JSON parsing succeeds, cognitive config tests pass and README validation exits `0` with no HVR issues.
+
+---
 
 ## 9. RELATED
 

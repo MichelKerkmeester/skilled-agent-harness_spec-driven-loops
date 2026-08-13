@@ -15,6 +15,8 @@ CommonJS helpers shared by sibling deep-improvement CLI scripts.
 This directory holds reusable helper modules for the lane scripts under `.opencode/skills/system-deep-loop/deep-improvement/scripts/` (`agent-improvement/`, `model-benchmark/`, `shared/`).
 The modules are consumed by those sibling scripts only and are not a cross-skill import surface.
 
+---
+
 ## 2. LIBRARY CONTENTS
 
 | File | Purpose |
@@ -37,6 +39,8 @@ The lane scripts deliberately keep three separate `parseArgs` dialect families. 
 
 A superset that accepts both forms would change the equals-only family (it would bind space-form values where today they are boolean) and could not reproduce `dispatch-model.cjs`'s positional and allowlist behavior, so unification is recorded as a documented divergence rather than a code change. Keep each script's parser in sync with its own usage and do not copy one dialect into a script that does not already use it.
 
+---
+
 ## 3. USAGE
 
 Require these helpers from lane scripts with relative `../lib/` paths.
@@ -46,6 +50,8 @@ const { makeTypedError } = require('../lib/typed-errors.cjs');
 const { PROMOTION_GATES } = require('../lib/promotion-gates.cjs');
 const { verifyMirrorSync } = require('../lib/mirror-sync-verify.cjs');
 ```
+
+---
 
 ## 4. RELATED RESOURCES
 

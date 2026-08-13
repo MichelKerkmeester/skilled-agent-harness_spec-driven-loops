@@ -18,6 +18,8 @@ This scenario checks the end of the command loop. A deep review run must synthes
 
 The command surface promises `review-report.md`, optional `resource-map.md`, reducer outputs, and continuity routed by `generate-context.js`. Synthesis that only returns a transcript is not durable review output.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 Operators run the exact command sequence and inspect only grep-able transcript and artifact signals.
@@ -30,6 +32,8 @@ Operators run the exact command sequence and inspect only grep-able transcript a
 - Expected signals: `review-report.md`, `deep-review-dashboard.md`, `deep-review-findings-registry.json`, `generate-context.js`, `STATUS=OK` or `STATUS=FAIL`, no `/memory/` directory under the temp spec, clean target diff, clean tripwire.
 - Desired outcome: PASS verdict proving command-flow synthesis is durable and save routing is explicit.
 - Pass/fail: PASS if every field count is `1+`. FAIL if report/dashboard are absent or retired memory files appear.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -79,6 +83,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 |---|---|---|---|---|---|---|---|---|
 | CP-055 | SYNTHESIS_SAVE_BOUNDARY | Prove synthesis artifacts and canonical save routing exist | `Run the synthesis-save boundary scenario and prove review artifacts exist while retired memory files stay absent.` | Run §3 exactly | Field counts all `1+` | Combined artifacts, memory absence file, diffs | PASS if review report/dashboard/registry exist and retired memory files are absent | If report is absent, inspect synthesis phase. If memory files appear, inspect save routing. If target diff is non-empty, repair read-only guard. |
 
+---
+
 ## 4. SOURCE ANCHORS
 
 | File | Lines | Role |
@@ -86,6 +92,8 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 | `.opencode/commands/deep/assets/deep-review-presentation.txt` | 306-322, 345-361 | Success/failure output and memory integration |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 414-420, 430-434 | Loop completion, quality gates, continuity integration |
 | `.opencode/agents/deep-review.md` | 292-297, 503-520 | Reducer boundary and related resources |
+
+---
 
 ## 5. SOURCE_METADATA
 

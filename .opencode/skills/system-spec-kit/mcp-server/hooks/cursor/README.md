@@ -13,6 +13,8 @@ description: "Cursor CLI hook adapters that normalize Cursor lifecycle payloads 
 
 **Blast radius (read before registering `.cursor/hooks.json`).** Unlike `.codex/hooks.json` or `.devin/hooks.v1.json`, Cursor's hook config is NOT tool-private — `.cursor/hooks.json` (project) and `~/.cursor/hooks.json` (user) are the exact same files the Cursor **editor** reads. Registering these adapters in a project `.cursor/hooks.json` also fires them for anyone using the Cursor editor on this repo, not only dispatched `cursor-agent` CLI sessions. Every adapter here fails open (never blocks on malformed/missing stdin), which is the load-bearing mitigation for that shared blast radius — see `decision-record.md` ADR-001 for the full reasoning and rejected alternatives.
 
+---
+
 ## 2. CONFIRMED EVENT DELIVERY (LIVE-VERIFIED, NOT ASSUMED)
 
 A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agent event to a logging probe script, then 3 separate `cursor-agent -p` dispatches (single-turn and a `--continue` second turn) exercising shell commands, file reads, and file writes were run against the installed `cursor-agent 2026.07.23-e383d2b` binary. Results:
@@ -35,6 +37,8 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 
 **Re-verification trigger**: re-run the probe methodology above (temporary `.cursor/hooks.json` + logging script + `cursor-agent -p` dispatches covering shell/read/write, plus a deny-path test) whenever the installed `cursor-agent` build changes, before trusting this table as still accurate.
 
+---
+
 ## 3. CONTENTS
 
 | File | Purpose |
@@ -46,10 +50,14 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `task-dispatch-guard.mjs` | Proxies matched `Task` calls into the shared dispatch guard. |
 | `mcp-route-guard.mjs` | Normalizes split MCP identifiers before calling the shared advisory guard. |
 
+---
+
 ## 4. CONSUMERS
 
 - `.cursor/hooks.json` is the committed registration authority for these adapters and the sibling runtime spec-gate scripts.
 - The file is shared by Cursor CLI and the Cursor editor, so every entry remains fail-open and enforcement remains opt-in.
+
+---
 
 ## 5. SPEC-GATE (GATE-3) HOOKS
 
@@ -63,6 +71,8 @@ Cursor's generic `preToolUse` event covers shell and file-write calls, so `spec-
 | `spec-gate-enforce.mjs` | `preToolUse` hook. Maps Cursor's `Shell`/`Write` tool names onto the core's `bash`/`write` vocabulary, then runs `evaluateMutation()`. | **Active** — the deny path (`{"permission":"deny"}` + exit 2) was live-verified to block a real `cursor-agent` tool call. |
 | `spec-gate-classify.mjs` | `beforeSubmitPrompt` hook. Would surface the bounded Gate-3 question as `agent_message`. | **Registered, delivery unconfirmed** — `beforeSubmitPrompt` did not fire under the tested CLI build. |
 | `spec-gate-prebind.test.mjs` | Co-located tests, run with `node --test`. | — |
+
+---
 
 ## 6. RELATED
 

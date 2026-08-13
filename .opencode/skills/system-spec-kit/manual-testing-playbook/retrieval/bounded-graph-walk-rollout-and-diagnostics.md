@@ -60,6 +60,8 @@ Search outputs for repeated identical runs + trace-envelope comparison
 
 Inspect `mcp-server/formatters/search-results.ts`, `mcp-server/lib/search/hybrid-search.ts`, and `mcp-server/tests/search-results-format.vitest.ts` if the trace envelope no longer carries the bounded graph fields
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [retrieval/semantic-and-lexical-search-memorysearch.md](../../feature-catalog/retrieval/semantic-and-lexical-search-memorysearch.md)

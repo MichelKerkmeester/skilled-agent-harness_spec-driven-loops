@@ -26,6 +26,8 @@ version: "1.2.0.0"
 
 This scenario verifies the hub rule that a mode hint overrides dominant-intent classification. The test uses `research:` on an otherwise audit-flavored prompt and expects `workflowMode: research`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants investigation first, even though the prompt mentions review terms.
@@ -51,6 +53,8 @@ research: Investigate whether our deep review findings are repeating because the
 - Advisor evidence: `advisorRouting.routingClass: "lexical"` and `advisorRouting.legacyAdvisorId: "deep-research"`.
 
 **Desired user-visible outcome**: The AI honors `research:` and routes to `research` even though the prompt contains `deep review`, `audit`, and `verdict` language.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -86,10 +90,14 @@ research: Investigate whether our deep review findings are repeating because the
 2. If the hub asks for clarification, verify the hint uses the exact registered mode key `research`.
 3. If route fields are missing, compare the response against the `research` registry entry.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - mode-hint override rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `research` mode source of truth.
+
+---
 
 ## 5. SOURCE METADATA
 

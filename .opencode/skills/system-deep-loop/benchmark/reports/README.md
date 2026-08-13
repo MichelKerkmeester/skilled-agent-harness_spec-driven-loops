@@ -18,6 +18,8 @@ contextType: "general"
 
 Each row below is one run folder. Rows are written by the benchmark harness at the moment it writes the report, so this table cannot fall behind the folders beside it.
 
+---
+
 ## 2. RUN INDEX
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
@@ -26,6 +28,8 @@ Each row below is one run folder. Rows are written by the benchmark harness at t
 | 2026-07-21 | [`compiled-routing/2026-07-21--verify--luna-high`](./compiled-routing/2026-07-21--verify--luna-high/) | skill-benchmark | complete | PASS | [`source.md`](./compiled-routing/2026-07-21--verify--luna-high/source.md) |
 | 2026-07-21 | [`compiled-routing/2026-07-21--playbook-verify--sonnet`](./compiled-routing/2026-07-21--playbook-verify--sonnet/) | skill-benchmark | complete | UNKNOWN | [`source.md`](./compiled-routing/2026-07-21--playbook-verify--sonnet/source.md) |
 | baseline | [`baseline`](./baseline/) | skill-benchmark | complete | CONDITIONAL | [`source.md`](./baseline/source.md) |
+
+---
 
 ## 3. STORAGE RULE
 

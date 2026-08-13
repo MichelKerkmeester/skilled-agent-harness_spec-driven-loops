@@ -45,6 +45,8 @@ It can run:
 - Validation with `validate.ts` only when `DESIGN.md` already exists.
 - Optional report generation when both source files exist.
 
+---
+
 ## 3. WHAT IT NEVER DOES
 
 - It does not auto-author `DESIGN.md` content.
@@ -52,6 +54,8 @@ It can run:
 - It does not weaken token fidelity.
 - It does not skip `build-write-prompt.ts`.
 - It does not treat missing `DESIGN.md` as validation success.
+
+---
 
 ## 4. NORMAL RUN SHAPE
 
@@ -66,6 +70,8 @@ Expected phases:
 3. Write prompt is saved as `write-prompt.md` in the output path.
 4. If `DESIGN.md` exists, validation runs.
 5. If validation ran and report was requested, report generation runs.
+
+---
 
 ## 5. OPERATOR HANDOFF
 

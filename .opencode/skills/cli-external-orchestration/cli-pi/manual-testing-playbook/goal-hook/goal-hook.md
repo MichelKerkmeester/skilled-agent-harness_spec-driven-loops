@@ -12,6 +12,8 @@ Pi is the fully supported runtime-neutral goal path. `.opencode/hooks/goal/pi/go
 
 The `.pi/prompts/goal-pi.md` file is a fail-closed fallback. If it runs, the native extension command is unavailable and no goal mutation is allowed.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 - Objective: Prove two real Pi session ids can own different active goals, native management and lifecycle injection resolve the same scope, a resumed id restores its goal, a new id starts empty, explicit legacy migration targets only the current id, and disabled discovery produces no unbound fallback.
@@ -23,6 +25,8 @@ The `.pi/prompts/goal-pi.md` file is a fail-closed fallback. If it runs, the nat
 - Desired user-visible outcome: PASS/FAIL with the two objectives, state-file count, and exact error code for every negative boundary.
 - Pass/fail: PASS only if A/B stay isolated through set, read, turn mutation, resume, and completion; migration binds one explicit empty target; and no disabled or missing-id path selects a goal.
 - Failure triage: Verify extension registration first, then inspect appended CLI flags and the native `getSessionId()` value. Never bypass the command with a guessed shell binding or merge isolated state files.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -58,6 +62,8 @@ node --test \
   .opencode/hooks/goal/pi/goal-pi.test.mjs
 ```
 
+---
+
 ## 4. SOURCE FILES
 
 || File | Role |
@@ -67,6 +73,8 @@ node --test \
 || `../../../../../hooks/goal/bin/goal.cjs` | Shared parser and command envelope. |
 || `.pi/prompts/goal-pi.md` | Fail-closed fallback when native command registration is unavailable. |
 || `.pi/settings.json` | Normal discovery enable/disable control. |
+
+---
 
 ## 5. SOURCE METADATA
 

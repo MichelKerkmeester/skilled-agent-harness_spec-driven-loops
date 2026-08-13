@@ -23,6 +23,8 @@ The PASS here is at Cursor's own **recorded-evidence tier**: the `sessionStart` 
 | Scenarios | 1 |
 | Outcome tally | 1 PASS (recorded-evidence tier) |
 
+---
+
 ## 2. FILES
 
 | File | Contents |
@@ -33,6 +35,8 @@ The PASS here is at Cursor's own **recorded-evidence tier**: the `sessionStart` 
 | [`failed-runs.md`](./failed-runs.md) | Per-scenario failure detail, or a statement that none was captured |
 | [`findings-and-recommendations.md`](./findings-and-recommendations.md) | Failures grouped by their recorded reason |
 | [`source.md`](./source.md) | Where the corpus, the gold and the raw evidence live |
+
+---
 
 ## 3. READING THIS FOLDER
 

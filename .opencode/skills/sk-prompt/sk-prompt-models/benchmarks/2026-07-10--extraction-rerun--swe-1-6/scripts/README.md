@@ -11,6 +11,8 @@ description: "Scripts that add markdown-to-disk extraction and a live grader to 
 
 `scripts/` reruns the SWE 1.6 eval loop from `001-swe-1.6-eval-loop/` with two additions: a code-extraction layer that writes SWE 1.6's markdown output to disk and a live grader in place of the mocked one. It also holds a reproducibility check and the analysis scripts that compare the resulting v1, v2 and v3 rankings.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -23,6 +25,8 @@ description: "Scripts that add markdown-to-disk extraction and a live grader to 
 | `synthesize-v2.cjs` | Ranks the v2 (extraction plus live grader) results and compares them against the v1 synthesis |
 | `synthesize-v3.cjs` | Three-way ranking comparison across v1 (text-only, mocked), v2 (extraction plus live grader) and v3 (deeper mutation depth) |
 
+---
+
 ## 3. VALIDATION
 
 Run from `002-swe-1.6-extraction-rerun/`:
@@ -32,6 +36,8 @@ node scripts/confirm-variant.cjs --variant <variant-id> --runs 3 --mock
 ```
 
 This command currently fails before dispatching anything. `confirm-variant.cjs` resolves its eval-loop and rig dependencies to sibling `../003-eval-loop` and `../002-eval-rig` directories, and neither exists at those paths anymore. The eval loop this package reruns is `001-swe-1.6-eval-loop/`, and the shared eval-rig now lives at `003-minimax-prompt-framework/eval-rig/`. Once those module paths resolve, the script is designed to write `state/confirm/confirmation-results.jsonl` plus `confirmation-report.md`.
+
+---
 
 ## 4. RELATED
 

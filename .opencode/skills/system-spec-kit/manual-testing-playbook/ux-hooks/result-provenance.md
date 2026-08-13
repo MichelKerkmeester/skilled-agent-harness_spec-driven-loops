@@ -180,6 +180,8 @@ Validate result provenance and confirm graphEvidence surfaces edge IDs, communit
 
 Inspect `mcp-server/lib/search/pipeline/stage2-fusion.ts` for the `graphEvidence` population step. Verify `mcp-server/formatters/search-results.ts` preserves the field in serialization. Check `mcp-server/lib/search/pipeline/types.ts` for the `graphEvidence` type definition. Confirm `SPECKIT_RESULT_PROVENANCE` is read at request time.
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/result-provenance.md](../../feature-catalog/ux-hooks/result-provenance.md)

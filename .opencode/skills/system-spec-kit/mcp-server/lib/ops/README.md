@@ -30,6 +30,8 @@ Maintenance role:
 - Retry transient SQLite busy errors.
 - Re-index changed spec docs with content-hash deduplication.
 
+---
+
 ## 2. TOPOLOGY
 
 ```text
@@ -47,6 +49,8 @@ Maintenance role:
 └──────────────────────────────────────────────────┘
 ```
 
+---
+
 ## 3. KEY FILES
 
 | File | Role |
@@ -55,6 +59,8 @@ Maintenance role:
 | `job-queue.ts` | SQLite-backed ingestion jobs with queued, parsing, embedding, indexing, complete, failed, and cancelled states. |
 | `job-store.ts` | Kind-agnostic `maintenance_jobs` store: jobId, queued/running/complete/failed/cancelled state machine, progress and error capture, cancel flag, and crash-recovery reset. |
 | `sqlite-busy-retry.ts` | SQLITE_BUSY retry helpers shared across ops modules; lifted from `job-queue.ts` to avoid duplication. |
+
+---
 
 ## 4. BOUNDARIES
 
@@ -72,6 +78,8 @@ Does not own:
 - Embedding provider selection.
 - Spec folder continuity rules.
 
+---
+
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Caller | Notes |
@@ -83,6 +91,8 @@ Does not own:
 | `getIngestJob()` | Ingest status handler | Reads current state and progress. |
 | `cancelIngestJob()` | Ingest cancel handler | Moves eligible jobs to cancelled. |
 | `getIngestProgressPercent()` | Status surfaces | Computes progress from stored counts. |
+
+---
 
 ## 6. VALIDATION
 
@@ -98,6 +108,8 @@ Run document validation after README edits:
 ```bash
 python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp-server/lib/ops/README.md
 ```
+
+---
 
 ## 7. RELATED
 

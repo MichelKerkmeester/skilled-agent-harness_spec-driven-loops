@@ -20,6 +20,8 @@ The static-only hybrid authority adapter that checks DESIGN.md structural confor
 
 `sk-design.cjs` reads files; it never renders, invokes design-md-generator's Playwright extraction pipeline, or drives chrome-devtools. Its own `standardSource` tags it `hybrid` and `static-only-v1` so it cannot overstate static evidence as rendered-surface proof.
 
+---
+
 ## 2. HOW IT WORKS
 
 `discover()` walks the two static-artifact basenames — `DESIGN.md` and `tokens.json` — under a `paths`/`globs` scope. `standardSource('sk-design')` returns the structural-format doc, the token vocabulary, and the audit-rubric doc paths (some marked reasoning-agent-layer-input-only). `check()` runs a deterministic structural layer and a reasoning-agent audit-rubric layer. For a DESIGN.md, the structural layer verifies the H1 header and the eleven hard-required `##` sections from `design-md-format.md`'s section-presence table (missing → P0), a soft imagery-signal check (P2), Quick-Start-to-Tokens color-hex consistency (P1), and banned patterns (extractor-internal var leaks, `Variant-N` placeholder names, raw frequency dumps — all P1). For a tokens.json it confirms well-formed JSON only. The audit-rubric layer mirrors sk-doc's verify-first shape: it translates only caller-supplied, already-judged findings that cite a specific rubric dimension into findings, never inventing a "looks off" verdict.

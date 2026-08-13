@@ -76,6 +76,8 @@ The command reads `migration-manifest.json`, recognizes `3.3.0.0` as a valid sou
 
 If no fixture exists, do not fabricate the scenario; record `UNAUTOMATABLE`. If legacy files are deleted, inspect ADR-008 handling and `doctor-update.yaml` Phase 9 cleanup gating. If the chain omits `3.4.0.0`, inspect `migration-manifest.json` `upgrade_paths` for `3.3.0.0`.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

@@ -21,6 +21,8 @@ This document captures the implemented behavior, source references, and remediat
 
 Unlike `config.jsonc`, this file is loaded directly by the filter implementation rather than the core runtime loader, and its values are actively consumed at runtime.
 
+---
+
 ## 2. HOW IT WORKS
 
 The shipped filter contract is:
@@ -38,6 +40,8 @@ The shipped filter contract is:
 
 The live contract is therefore both file-driven and code-guarded: `filters.jsonc` sets the thresholds operators are expected to tune, while hardcoded patterns and defaults keep the filter operational if the file is absent or malformed.
 
+---
+
 ## 3. SOURCE FILES
 
 ### Implementation
@@ -47,6 +51,8 @@ The live contract is therefore both file-driven and code-guarded: `filters.jsonc
 | `.opencode/skills/system-spec-kit/config/filters.jsonc` | Config Contract | Editable JSONC source for pipeline ordering, stage enablement, and threshold values |
 | `.opencode/skills/system-spec-kit/scripts/lib/content-filter.ts` | Runtime | Loads and merges filter config, applies noise filtering, deduplication, quality scoring, and fallback defaults |
 | `.opencode/skills/system-spec-kit/config/README.md` | Documentation | Describes the three-stage filter pipeline and notes that `filters.jsonc` is loaded directly by the content-filter module |
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Feature Flag Reference

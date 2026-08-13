@@ -56,6 +56,8 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 | `fileRules` | list | 21 rules by file extension |
 | `folderRules` | list | 11 rules by folder name |
 
+---
+
 ## 3. RULEBOOK SCHEMA
 
 ### Rule object
@@ -104,6 +106,8 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 3. **Merge**: change only the requested keys/rules; preserve all other settings and rules; keep rule `id`s stable. When applying the canonical asset, update matching ids and append missing ids only.
 4. **Write** valid JSON; re-parse to verify.
 5. **Never downgrade** the plugin binary when installing (the rulebook is the only thing (re)applied).
+
+---
 
 ## 5. WHAT THE AI MUST NOT DO
 

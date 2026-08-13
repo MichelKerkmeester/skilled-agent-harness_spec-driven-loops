@@ -22,6 +22,8 @@ version: 3.6.0.8
 
 Enable schema-guided entity and relation extraction by providing a domain ontology that validates extracted entity types and relation pairs against allowed patterns.
 
+---
+
 ## 2. HOW IT WORKS
 
 - File: `mcp-server/lib/extraction/ontology-hooks.ts` (5.8KB)
@@ -30,9 +32,13 @@ Enable schema-guided entity and relation extraction by providing a domain ontolo
 - `validateExtraction()` checks entity and relation pairs case-insensitively and enforces optional rule pairs when present
 - No LLM calls - pure schema validation with default-schema fallback
 
+---
+
 ## 3. SOURCE FILES
 
 No source files are listed yet.
+
+---
 
 ## 4. SOURCE METADATA
 - Group: Graph Signal Activation

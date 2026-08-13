@@ -26,6 +26,8 @@ version: "1.2.0.0"
 
 This scenario verifies that an outward web-plus-code investigation request resolves to `workflowMode: research` and does not route to review, ai-council, or an improvement lane.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer wants an iterative investigation into why a recurring routing failure happens, with a research artifact at the end.
@@ -50,6 +52,8 @@ Use deep research to investigate why our advisor sometimes routes iterative inve
 - Advisor evidence: `advisorRouting.routingClass: "lexical"` and `advisorRouting.legacyAdvisorId: "deep-research"`.
 
 **Desired user-visible outcome**: The AI invokes or describes the `research` lane, names `/deep:research`, `deep-research`, `runtime-loop-type`, and `research/`, and states that the mode packet owns the detailed research loop.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -90,10 +94,14 @@ Use deep research to investigate why our advisor sometimes routes iterative inve
 2. If the hub picks review, check whether the prompt accidentally emphasizes audit or findings severity rather than investigation.
 3. If backend is wrong, verify the `research` entry's `runtimeLoopType` is not null.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule and mode table.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `research` mode source of truth.
+
+---
 
 ## 5. SOURCE METADATA
 

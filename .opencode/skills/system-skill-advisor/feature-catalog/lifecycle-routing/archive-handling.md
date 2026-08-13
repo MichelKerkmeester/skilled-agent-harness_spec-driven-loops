@@ -17,6 +17,8 @@ version: 0.8.0.12
 
 Preserve historical and staged skills for inspection (audits, history, pre-activation preview) without letting them surface in live routing recommendations.
 
+---
+
 ## 2. HOW IT WORKS
 
 `lib/lifecycle/archive-handling.ts` classifies skills under `z_archive/` and `z-future/` as indexed-but-not-routed. They appear in inspection surfaces (graph status, catalog, playbook cross-references) but are excluded from:
@@ -24,6 +26,8 @@ Preserve historical and staged skills for inspection (audits, history, pre-activ
 1. `advisor_recommend` recommendations.
 2. DF/IDF corpus statistics (see `lib/corpus/df-idf.ts`).
 3. 5-lane fusion scoring inputs.
+
+---
 
 ## 3. SOURCE FILES
 
@@ -40,6 +44,8 @@ Preserve historical and staged skills for inspection (audits, history, pre-activ
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp-server/tests/scorer/native-scorer.vitest.ts` | Automated test | archived-skill exclusion |
 | `Playbook scenario [LC-003](../../manual-testing-playbook/lifecycle-routing/archive-handling.md).` | Manual playbook | Source reference |
+
+---
 
 ## 4. SOURCE METADATA
 

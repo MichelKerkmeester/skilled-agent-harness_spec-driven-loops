@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/032-per-mode-provider-model-reference/004-hub-reconcile-and-validate",
+  "spec_folder": "cli-external-orchestration/032-per-mode-provider-model-reference/004-hub-reconcile-and-validate",
+  "parent_id": "cli-external-orchestration/032-per-mode-provider-model-reference",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub reconcile provider pointers",
+      "version skew reconcile cli",
+      "stale scripts reference removal",
+      "ci skill root metadata gate",
+      "parent skill check validate",
+      "hub reconcile provider pointers plan",
+      "version skew reconcile plan",
+      "stale scripts reference removal plan",
+      "cli conformance gates approach",
+      "hub reconcile provider pointers tasks",
+      "version skew reconcile task list",
+      "stale scripts reference removal tasks"
+    ],
+    "key_topics": [
+      "hub",
+      "reconcile",
+      "provider",
+      "pointers",
+      "version",
+      "skew",
+      "cli",
+      "stale",
+      "scripts",
+      "reference",
+      "removal",
+      "skill"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Hub",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Reader",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub-level docs do not yet point readers at the new per-mode catalogs",
+    "created_at": "2026-07-29T08:35:30Z",
+    "last_save_at": "2026-08-11T07:17:30.958Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3f1feb5a1cc15a707ac6e39b64a1ee4556d0db0529dd7d3c8150ab4d7a44a753",
+    "source_doc_hashes": {
+      "spec.md": "c0cde8019f31031bf16a0261820e348bf7d43060bf8a8fa13cce8ed9b345dc53",
+      "plan.md": "44e7c48cdcf889a7be1ccf54676262b0c1007f712d52cda5beba3d86d8bbf1f9",
+      "tasks.md": "a3bb0882156c91740b336dd9e634db0656f39c325b33dd3a7d631873f9a22763",
+      "implementation-summary.md": "abfb85596317187e60ad07ebe57f676a47398a9531fc76f58b00763baf9433ce"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

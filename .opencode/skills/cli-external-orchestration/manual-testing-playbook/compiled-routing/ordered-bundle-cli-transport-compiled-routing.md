@@ -32,6 +32,8 @@ version: 1.0.0.0
 
 Serving-authority focus: cli-external-orchestration resolves a **CLI-transport ordering** — a dispatch prompt selects one of `cli-opencode` / `cli-codex` / `cli-claude-code` and assembles that transport's ordered reference set. This scenario proves the compiled engine serves that transport decision (`servingAuthority: compiled`) and matches the legacy decision. Distinct rationale versus the other ordered-bundle hubs: this ordering selects an **external CLI executor transport**, not a design pairing or a deep-loop mode.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Exact prompt**:
@@ -42,6 +44,8 @@ Delegate this to OpenCode and run the ablation suite with full plugin and Spec K
 **Expected route**:
 - Mode: `cli-opencode`
 - Route shape: `orderedBundle` — an ordered CLI-transport reference set.
+
+---
 
 ## 3. COMMAND SEQUENCE
 

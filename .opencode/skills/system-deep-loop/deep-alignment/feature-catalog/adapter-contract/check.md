@@ -20,6 +20,8 @@ The third adapter method: check one artifact against its lane's standard and ret
 
 `check()` is where conformance is actually decided. It takes one artifact and the `standardSource()` output and returns findings, each carrying the severity, type, artifact identity, source tool, and — critically — the layer that produced it, so no finding claims more certainty than the mechanism behind it earns.
 
+---
+
 ## 2. HOW IT WORKS
 
 `check(artifact, rules[, options]) -> findings` runs each authority's sub-checks and concatenates their findings, then applies known-deviation suppression as the final step. Every adapter tags each finding with a `layer`: `deterministic` for findings a real script produced (a wrapped validator's blocking-error, a regex/grammar mismatch, a threshold breach) and `reasoning-agent` for findings that required judgment. This "no false determinism" rule (ADR-005/ADR-008) means an adapter never labels a judgment call as if a script proved it.

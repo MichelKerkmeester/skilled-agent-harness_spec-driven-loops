@@ -296,6 +296,8 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 |--------|-----------------|----------------|
 | `.claude/agents/deep-review.md` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
 
+---
+
 ## 3. REVIEW CONTRACT
 
 This agent loads shared review doctrine from `.opencode/skills/sk-code/sk-code-review/references/review-core.md` for severity definitions, evidence requirements, and baseline check families.

@@ -15,6 +15,8 @@ Route /create:skill to its presentation contract and workflow YAML for creating 
 - Do not split behavior across legacy command definitions.
 - Do not edit workflow YAML while executing this command.
 
+---
+
 ## 2. OWNED ASSETS
 
 | Purpose | Asset |
@@ -22,6 +24,8 @@ Route /create:skill to its presentation contract and workflow YAML for creating 
 | Presentation contract | `.opencode/commands/create/assets/create-skill-presentation.txt` |
 | Auto workflow | `.opencode/commands/create/assets/create-skill-auto.yaml` |
 | Confirm workflow | `.opencode/commands/create/assets/create-skill-confirm.yaml` |
+
+---
 
 ## 3. MODE ROUTING
 
@@ -36,12 +40,16 @@ Route /create:skill to its presentation contract and workflow YAML for creating 
 6. Execute the selected YAML step by step and route to the resolved operation branch.
 7. Use the presentation contract, not this router, for user prompts, setup/status dashboards, and final result display.
 
+---
+
 ## 4. EXECUTION TARGETS
 
 | Mode | Target |
 |------|--------|
 | `:auto` | `.opencode/commands/create/assets/create-skill-auto.yaml` |
 | `:confirm` or omitted mode | `.opencode/commands/create/assets/create-skill-confirm.yaml` |
+
+---
 
 ## 5. PRESENTATION BOUNDARY
 
@@ -50,6 +58,8 @@ The following content lives only in `.opencode/commands/create/assets/create-ski
 - Startup questions, Phase 0 verification, setup dashboard, operation display, status display, completion template, and next-step text.
 
 The router must not invent visible wording for those surfaces; it only resolves operation, execution mode, and workflow selection.
+
+---
 
 ## 6. WORKFLOW SUMMARY
 

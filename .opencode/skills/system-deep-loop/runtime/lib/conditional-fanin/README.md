@@ -11,6 +11,8 @@ description: "Decides when a fan-out wave has collected sufficient branch result
 
 Decision layer for `system-deep-loop` fan-out waves that do not need to wait for every branch. Sufficiency evaluation groups accepted results by provenance and checks them against the configured policy. The decision view builds the accepted-versus-outstanding branch picture at a cut. The disposition and budget-continuation modules resolve what happens to hierarchical budgets tied to the branches that were still running when the cut landed. The shadow adapter runs this candidate decision beside the legacy wait-for-all result without changing it.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -27,6 +29,8 @@ Decision layer for `system-deep-loop` fan-out waves that do not need to wait for
 | `sufficiency.ts` | `evaluateSufficiency`, grouping accepted results by provenance and evaluating sufficiency evidence |
 | `types.ts` | Shared policy, decision and disposition type definitions |
 
+---
+
 ## 3. CONSUMERS
 
 - `.opencode/skills/system-deep-loop/runtime/lib/voc-allocation/fan-in-handoff.ts`
@@ -34,9 +38,13 @@ Decision layer for `system-deep-loop` fan-out waves that do not need to wait for
 - `.opencode/skills/system-deep-loop/runtime/lib/partial-failure-policy/types.ts`
 - `.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/substrate-ports.ts`
 
+---
+
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/conditional-fanin.vitest.ts`
+
+---
 
 ## 5. RELATED
 

@@ -82,6 +82,8 @@ Command 4 was not executed because the scenario command requires writing `/tmp/o
 
 If syntax or plist lint fails, inspect the exact script/template before rerunning. If dry-run mutates anything, block rollout and inspect `log_action`, `remove_tmp_path`, and `terminate_candidates`. If documentation drift appears, update `.opencode/scripts/README.md`, `mcp-server/ENV-REFERENCE.md`, and the affected runtime README before repeating the grep.
 
+---
+
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)

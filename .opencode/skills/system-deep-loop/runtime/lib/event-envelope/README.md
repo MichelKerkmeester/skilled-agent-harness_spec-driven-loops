@@ -11,6 +11,8 @@ description: "Foundational canonical-serialization and event-schema registry sub
 
 Base substrate for the `system-deep-loop` runtime library. Every other `runtime/lib/` domain validates, canonicalizes and reads its events through this module before an authorized write or a replay can happen. Canonical JSON serialization keeps object keys in a deterministic order so a hash never depends on insertion order. The event-type registry rejects any payload that does not match a registered schema and upcaster chain.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -22,14 +24,20 @@ Base substrate for the `system-deep-loop` runtime library. Every other `runtime/
 | `event-type-registry.ts` | `EventTypeRegistry`, the deterministic startup registry for event schemas and adjacent upcasters |
 | `index.ts` | Public API surface |
 
+---
+
 ## 3. CONSUMERS
 
 Every other `runtime/lib/` domain builds on this module for canonical bytes, envelope validation and the schema registry. Direct import sites include `authorized-ledger`, `blinded-adjudication`, `branch-leases-waves`, `claim-continuity`, `compatibility-shadow`, `conditional-fanin`, `contradiction-supersession`, `cross-mode-closures`, `cycle-detection`, `deep-loop/continuity-identity` and `dispatch-receipts`.
+
+---
 
 ## 4. TESTS
 
 - `.opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts`
 - `.opencode/skills/system-deep-loop/runtime/tests/fixtures/event-envelope-producers.ts`
+
+---
 
 ## 5. RELATED
 

@@ -42,6 +42,8 @@ The cross-stack value for sk-code is that Motion can be used in Webflow via CDN 
 - External/historical: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`
 - External/historical: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
 
+---
+
 ## 2. INSTALLATION & IMPORT MODES
 
 ### CDN module import
@@ -82,6 +84,8 @@ import { animate, inView, motionValue, scroll } from "motion";
 
 The current repo also uses a dynamic CDN ESM fallback in `testimonial.js`, importing from a pinned jsDelivr URL and then patching `window.Motion` with `animate`, `inView`, `scroll`, and `motionValue` (External/historical example: `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 
+---
+
 ## 3. CORE API SURFACE
 
 | API | Use | Source |
@@ -94,11 +98,15 @@ The current repo also uses a dynamic CDN ESM fallback in `testimonial.js`, impor
 | `motionValue` | Store and observe animatable values; an external/historical slider example uses it for drag position state | https://motion.dev/docs/quick-start (External/historical: `a_nobel_en_zn/2_javascript/slider/testimonial.js`) |
 | `animateMini` / `motion/mini` | Tree-shakable mini `animate` for HTML/SVG style animations | https://motion.dev/docs/animate |
 
+---
+
 ## 4. WHEN TO USE MOTION.DEV
 
 Use Motion when the current task needs programmatic control, interruptible animations, sequence timing, scroll-linked animation, viewport-triggered behavior, or JS-owned motion values (Sources: https://motion.dev/docs/animate, https://motion.dev/docs/scroll, https://motion.dev/docs/inview).
 
 Prefer CSS first for simple hover/focus states, one-off transitions, and static keyframes that do not need JS state or sequencing. Existing Webflow guidance already encodes this as "CSS first; Motion.dev when you need programmatic control" (Repo: `.opencode/skills/sk-code/sk-code-webflow/references/implementation/animation-workflows/overview-decision-tree-and-css.md`).
+
+---
 
 ## 5. CROSS-STACK NOTES
 
@@ -109,6 +117,8 @@ This directory is intentionally a peer to the Webflow implementation references.
 - SSR stacks should avoid touching `window`, `document`, or DOM targets until the client runtime is active; this is a general DOM constraint, not a Motion-specific export (Source for import mode: https://motion.dev/docs/quick-start).
 
 See [integration-patterns.md](./integration-patterns.md).
+
+---
 
 ## 6. REFERENCES AND RELATED RESOURCES
 

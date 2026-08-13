@@ -11,6 +11,8 @@ description: "Strict package-level validator that checks root-to-leaf bijection,
 
 `sk-create-feature-catalog/scripts/` holds the package-level validator and its paired fixtures. `validate_document.py` checks a single markdown file at a time. `validate_catalog_package.py` proves the invariants that require reading an entire `feature-catalog/` tree at once.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
@@ -18,6 +20,8 @@ description: "Strict package-level validator that checks root-to-leaf bijection,
 | `validate_catalog_package.py` | Presence-based discovery, staged package verdicts, root-to-leaf bijection, source-file existence, prose-path existence, parity, packet-history, shipped-label, volatile-snapshot, workflow-mode, and validation-type checks. |
 | `fixtures/` | Paired positive/negative markdown inputs for each added rule. |
 | `tests/test_validator_fixtures.py` | Exercises each paired fixture, discovery coverage, case-folded roots, exit modes, staging, and JSON determinism. |
+
+---
 
 ## 3. VALIDATION
 
@@ -32,6 +36,8 @@ Discovery is presence-based: every canonical `feature-catalog/` directory under 
 The default is fail-closed for promoted packages. The explicit WARN tier currently contains `system-spec-kit`, `mcp-tooling/mcp-refero`, `mcp-tooling/mcp-click-up`, and `system-deep-loop/deep-research`, which carry the known 104-orphan backlog. Repair work removes a package from that list when its backlog is cleared. `--report-only` always returns zero; `--strict` is retained as an alias for the default.
 
 The enforced package rules are root/leaf bijection, SOURCE FILES path existence, validation taxonomy, workflow-mode parity, phantom root rows, prose paths, root-H3/title parity, normalized description parity, packet-history rejection, dark-vs-shipped labeling, and volatile measurement-snapshot rejection. Structural rosters are derived from links and source tables; measured snapshots do not belong in catalog prose.
+
+---
 
 ## 4. RELATED
 

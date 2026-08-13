@@ -222,6 +222,8 @@ Observed output:
 
 Verify file size thresholds; inspect per-parent merge caps; check overflow promotion to `keep`; inspect token counting accuracy
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md](../../feature-catalog/tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md)

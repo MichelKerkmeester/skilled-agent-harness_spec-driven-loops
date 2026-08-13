@@ -58,6 +58,8 @@ Test transcript + suite summary
 
 Re-run `npm test -- --run tests/startup-checks.vitest.ts -t detectRuntimeMismatch`; inspect `startup-checks.ts` and test expectations if counts or assertions drift
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [maintenance/startup-runtime-compatibility-guards.md](../../feature-catalog/maintenance/startup-runtime-compatibility-guards.md)

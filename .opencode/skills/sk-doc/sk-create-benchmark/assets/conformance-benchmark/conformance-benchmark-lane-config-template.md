@@ -42,6 +42,8 @@ Peer selection requires both the `adapter` field below and a matching entry in
 for the named authority. That registration is engine-owned; this template only
 cross-references the prerequisite.
 
+---
+
 ## 2. LANE CONFIG
 
 ```json
@@ -59,6 +61,8 @@ cross-references the prerequisite.
   }
 ]
 ```
+
+---
 
 ## 3. VALIDATION
 

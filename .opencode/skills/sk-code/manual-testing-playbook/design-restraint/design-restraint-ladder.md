@@ -14,6 +14,8 @@ The ladder is a post-read reflex that runs AFTER surface and intent routing, so 
 
 The ladder is defined in `references/universal/code-quality-standards.md`, and the Phase 0 to 1 gate that requires the laziest viable rung is in `references/phase-detection.md`.
 
+---
+
 ## 2. SCENARIO CONTRACT
 
 **Realistic user request**: A maintainer asks the AI to add a small helper that removes duplicate strings from an array — a task a one-line standard-library expression already solves.
@@ -41,6 +43,8 @@ Add a helper to .opencode/skills/system-spec-kit/mcp-server/lib/util/unique.ts t
 - The Phase 0 to 1 gate records that the laziest viable rung was chosen before any new code.
 
 **Desired user-visible outcome**: The AI names the rung it selected and proposes the one-line standard-library expression instead of a bespoke loop, with surface precedence and the Phase 3 verification requirement untouched.
+
+---
 
 ## 3. TEST EXECUTION
 
@@ -83,11 +87,15 @@ Add a helper to .opencode/skills/system-spec-kit/mcp-server/lib/util/unique.ts t
 2. If the ladder runs before routing: verify the Phase Overview ordering in SKILL.md places the ladder at the Phase 0 to 1 transition.
 3. If surface precedence shifts: confirm the ladder text states it consumes, but does not change, the detected surface.
 
+---
+
 ## 4. SOURCE FILES
 
 - `.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md` — The pre-write Design Restraint Ladder.
 - `.opencode/skills/sk-code/shared/references/phase-detection.md` — Phase 0 to 1 gate requiring the laziest viable rung for implementation intent.
 - `.opencode/skills/sk-code/SKILL.md` — Phase Overview naming the ladder; surface precedence and Iron Law.
+
+---
 
 ## 5. SOURCE METADATA
 

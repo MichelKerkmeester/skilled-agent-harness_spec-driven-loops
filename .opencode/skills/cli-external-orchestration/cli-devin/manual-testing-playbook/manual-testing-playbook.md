@@ -69,6 +69,8 @@ This playbook contains 20 deterministic scenarios across 9 categories. The count
 
 Coverage note (2026-07-27): The scenarios are grounded in Devin 3000.2.17, with `devin` installed and authenticated during the live contract work. They cover the default `devin -p` dispatch, availability and hallucination probes, the `smart` help/runtime mismatch, `normal`/`auto`, `accept-edits`, `dangerous`/`bypass`, and `autonomous`/`--sandbox` permission behavior, six live hook events, the PermissionRequest difference, PreToolUse under bypass, built-in and mirrored subagents, all 13 mirrored agents, the 36 slash-command roster, the unquoted-colon parser defect, Cursor/Claude/Standard rule inheritance, the `devin mcp` surface, session continuation, and document-only `/handoff` coverage. No live result is asserted beyond the verified facts supplied with this phase.
 
+---
+
 ## 2. GLOBAL PRECONDITIONS
 
 1. Run from the repository root and confirm `command -v devin` succeeds.
@@ -79,6 +81,8 @@ Coverage note (2026-07-27): The scenarios are grounded in Devin 3000.2.17, with 
 6. Valid permission values are `normal` (alias `auto`, default), `accept-edits`, `dangerous` (aliases `yolo`, `bypass`), and `autonomous` only with `--sandbox`. The help text's `smart` entry is intentionally tested as a documentation/runtime mismatch; do not treat `smart` as valid.
 7. Any scenario that changes `.devin/hooks.v1.json`, `.devin/skills/`, or another live config MUST create and use an isolated temporary workspace. The repository's real configuration and symlinks are never test fixtures.
 
+---
+
 ## 3. GLOBAL EVIDENCE REQUIREMENTS
 
 - Exact `devin` command, including model, permission mode, sandbox flag, working directory, and `</dev/null` where non-interactive.
@@ -87,6 +91,8 @@ Coverage note (2026-07-27): The scenarios are grounded in Devin 3000.2.17, with 
 - A verdict of PASS, FAIL, or SKIP with the named blocker when skipped.
 - For isolated-config scenarios, the temporary workspace path and proof that the repository's live files were not changed.
 
+---
+
 ## 4. DETERMINISTIC COMMAND NOTATION
 
 - Commands are shown as `devin ...` and should be captured with `2>&1`.
@@ -94,15 +100,21 @@ Coverage note (2026-07-27): The scenarios are grounded in Devin 3000.2.17, with 
 - `->` separates sequential commands.
 - Destructive or cloud-affecting variants are opt-in and require explicit operator approval before execution.
 
+---
+
 ## 5. REVIEW PROTOCOL AND RELEASE READINESS
 
 Each scenario passes only when its preconditions, exact command, expected signal, and evidence are present. PASS means the expected behavior was observed. FAIL means the command or behavior contradicted the contract. SKIP means a named blocker prevented execution; authentication, cloud side effects, and an unavailable binary are valid blockers when recorded.
 
 Release is READY only when all 20 scenario files are represented in this index, no required scenario is FAIL, every SKIP has a still-valid blocker, and the critical baseline scenarios DV-001, DV-002, DV-005, DV-007, and DV-009 are PASS or explicitly blocked by the global authentication precondition.
 
+---
+
 ## 6. SUB-AGENT ORCHESTRATION AND WAVE PLANNING
 
 Run read-only probes first: DV-001..004, DV-007, DV-012, DV-014, DV-017, DV-018, and DV-020. Run write-capable permission and subagent scenarios serially in isolated directories. Run hook mutation scenarios only in their own temporary workspace. The `/handoff` scenario is document-only by default and must not create a cloud session without explicit approval.
+
+---
 
 ## 7. CLI INVOCATION (`DV-001..DV-004`)
 
@@ -111,6 +123,8 @@ Run read-only probes first: DV-001..004, DV-007, DV-012, DV-014, DV-017, DV-018,
 - [DV-003 -- Fabricated-flag hallucination fixture](cli-invocation/hallucination-fixture-fabricated-flag.md)
 - [DV-004 -- `smart` help/runtime mismatch](cli-invocation/smart-permission-doc-runtime-mismatch.md)
 
+---
+
 ## 8. PERMISSION MODES (`DV-005..DV-006`)
 
 This category replaces a Codex-shaped sandbox matrix. Devin permission approval and the OS-level `--sandbox` switch are separate axes; `autonomous` is selected by `--sandbox`, not a fifth ordinary approval mode.
@@ -118,11 +132,15 @@ This category replaces a Codex-shaped sandbox matrix. Devin permission approval 
 - [DV-005 -- Normal/accept-edits/bypass write matrix](permission-modes/write-attempt-mode-matrix.md)
 - [DV-006 -- Autonomous sandbox write attempt](permission-modes/autonomous-sandbox-write-attempt.md)
 
+---
+
 ## 9. HOOKS (`DV-007..DV-009`)
 
 - [DV-007 -- Six confirmed lifecycle events](hooks/confirmed-events-smoke-matrix.md)
 - [DV-008 -- PermissionRequest auto versus bypass](hooks/permission-request-auto-vs-bypass.md)
 - [DV-009 -- PreToolUse still fires under bypass](hooks/pretooluse-still-fires-under-bypass.md)
+
+---
 
 ## 10. SUBAGENTS (`DV-010..DV-013`)
 
@@ -133,6 +151,8 @@ This category replaces a Codex `config.toml` profile-routing test with Devin's r
 - [DV-012 -- Full roster enumeration](subagents/roster-enumeration.md)
 - [DV-013 -- Missing-profile negative case](subagents/missing-profile-negative.md)
 
+---
+
 ## 11. COMMANDS AND SKILLS (`DV-014..DV-016`)
 
 Devin's `skills` subcommand is the slash-command surface. These scenarios verify the 36 registered mirrored commands and the strict-parser regression without inventing a separate `devin commands` system.
@@ -141,25 +161,37 @@ Devin's `skills` subcommand is the slash-command surface. These scenarios verify
 - [DV-015 -- Invoke a mirrored command](commands-and-skills/mirrored-command-invocation.md)
 - [DV-016 -- Unquoted-colon YAML regression](commands-and-skills/unquoted-colon-frontmatter-regression.md)
 
+---
+
 ## 12. RULES (`DV-017`)
 
 - [DV-017 -- Rule paths and loaded inheritance](rules/rules-list-and-paths.md)
+
+---
 
 ## 13. MCP INTEGRATION (`DV-018`)
 
 - [DV-018 -- `devin mcp` surface](mcp-integration/mcp-surface.md)
 
+---
+
 ## 14. SESSION CONTINUITY (`DV-019`)
 
 - [DV-019 -- Continue and resume](session-continuity/resume-continue.md)
+
+---
 
 ## 15. CLOUD HANDOFF (`DV-020`)
 
 - [DV-020 -- `/handoff` document-and-SKIP surface](cloud-handoff/handoff-surface-skip.md)
 
+---
+
 ## 16. AUTOMATED TEST CROSS-REFERENCE
 
 The playbook is manual by design. It has no replacement automated suite for the authenticated CLI, hook delivery, interactive slash commands, or cloud handoff. Structural evidence can be checked locally with `rg`, `find`, and the phase's Spec Kit validator; those checks do not replace executing the scenario commands.
+
+---
 
 ## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
 

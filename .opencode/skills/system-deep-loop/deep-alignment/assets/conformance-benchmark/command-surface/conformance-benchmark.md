@@ -27,6 +27,8 @@ consistency, and presentation ownership, deterministically enough to gate comman
 changes. The contract fixes inputs and interpretation boundaries; it does not
 implement or run the check.
 
+---
+
 ## 2. SCOPE AND CANONICAL CORPUS
 
 | Field | Value |
@@ -42,6 +44,8 @@ implement or run the check.
 The canonical source and selection rule decide membership. A copied artifact
 count is evidence about one revision, not a substitute source of truth.
 
+---
+
 ## 3. LANE BINDING
 
 | Lane field | Value |
@@ -56,6 +60,8 @@ count is evidence about one revision, not a substitute source of truth.
 
 The adapter is a peer selector under an existing authority and artifact class.
 It does not create a new deep-alignment authority or artifact-class value.
+
+---
 
 ## 4. ADAPTER-OWNED DIMENSIONS AND SEVERITIES
 
@@ -83,6 +89,8 @@ doctrine that P0/P1/P2 encode. The adapter contract's section 5 is where each
 command finding code is bound to its dimension and severity. A package update may
 refresh these links but may not substitute local definitions.
 
+---
+
 ## 5. FIXTURE POLICY
 
 - **Manifest:** [`fixtures/fixture-manifest.json`](./fixtures/fixture-manifest.json).
@@ -109,6 +117,8 @@ Expected outcomes come from the independent oracle, never from a production
 adapter run. The stable package may carry oracle provenance and expected outcomes;
 the oracle implementation remains spec- or lane-owned.
 
+---
+
 ## 6. EXECUTION INPUTS
 
 | Input | Location | Required state |
@@ -125,6 +135,8 @@ Execution command:
 ```bash
 /deep:alignment :auto --lane-config .opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/command-surface/lane-config.json --spec-folder .opencode/specs/system-deep-loop/035-command-surface-benchmark/004-command-lane-integration
 ```
+
+---
 
 ## 7. VALIDITY GATES
 
@@ -159,6 +171,8 @@ P0/P1/P2 contracts. A subject pass is no such findings over the complete declare
 corpus. `adapter-error`, incomplete coverage, corrupt evidence, or an oracle
 mismatch is an instrument failure, never a subject finding.
 
+---
+
 ## 8. EVIDENCE LOCATION
 
 Stable inputs live in this mode-owned package. Run evidence lives at
@@ -168,6 +182,8 @@ reports, and generated scorecards. The executing phase already holds a completed
 live convergence run over this lane (overall verdict FAIL, with open findings); a
 formally accepted, frozen fixture-corpus run identity and its input hash are not
 yet recorded (`pending`).
+
+---
 
 ## 9. OWNERSHIP BOUNDARY
 
@@ -184,6 +200,8 @@ It does **not** own or template:
 Those remain with the selected adapter, deep-alignment engine, independent oracle,
 or executing spec phase. Cross-link them; do not copy their implementation or
 measurement contracts here.
+
+---
 
 ## 10. RELATED RESOURCES
 

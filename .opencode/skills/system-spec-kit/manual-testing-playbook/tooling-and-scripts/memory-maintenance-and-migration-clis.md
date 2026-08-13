@@ -220,6 +220,8 @@ Command 6 output:
 
 Inspect `scripts/memory/backfill-frontmatter.ts`, `cleanup-orphaned-vectors.ts`, `ast-parser.ts`, and `rank-memories.ts` if one command fails or returns malformed output
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/memory-maintenance-and-migration-clis.md](../../feature-catalog/tooling-and-scripts/memory-maintenance-and-migration-clis.md)

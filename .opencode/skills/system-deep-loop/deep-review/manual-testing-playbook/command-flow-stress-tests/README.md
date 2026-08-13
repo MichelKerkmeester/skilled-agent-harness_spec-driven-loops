@@ -12,6 +12,8 @@ version: 1.11.0.1
 
 Category 15 of the `deep-review` manual testing playbook, six `CP-0xx` scenarios. Each scenario enters through `/deep:review` and checks a command-owned behavior: setup binding, resource-map coverage, the three-artifact iteration contract, synthesis and save boundaries, nested-dispatch refusal or the write boundary around reducer-owned files. All scenarios run under `/tmp/cp-0xx-sandbox/` and `/tmp/cp-0xx-spec/`.
 
+---
+
 ## 2. CONTENTS
 
 | File | Scenario |
@@ -23,6 +25,8 @@ Category 15 of the `deep-review` manual testing playbook, six `CP-0xx` scenarios
 | `leaf-only-nested-dispatch-refusal.md` | CP-056. Proves the `@deep-review` body refuses a request to spawn another reviewer |
 | `write-boundary-reducer-owned-files.md` | CP-057. Proves `@deep-review` refuses to "fix" the review target or reducer-owned files during review |
 | `setup-cp-sandbox.sh` | Builds the shared `/tmp/cp-deep-review-sandbox` fixture tree these scenarios run against |
+
+---
 
 ## 3. RELATED
 

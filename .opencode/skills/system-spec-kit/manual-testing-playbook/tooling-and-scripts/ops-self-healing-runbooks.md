@@ -190,6 +190,8 @@ RAW_EXIT_CODE=1
 
 Inspect `runbook.sh`, `ops-common.sh`, and the individual `heal-*.sh` runners if a class is missing, misrouted, or emits the wrong payload shape
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/ops-self-healing-runbooks.md](../../feature-catalog/tooling-and-scripts/ops-self-healing-runbooks.md)

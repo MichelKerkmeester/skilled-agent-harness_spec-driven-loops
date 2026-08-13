@@ -127,6 +127,8 @@ Missing expected assertion coverage in the targeted save-path suite: no observed
 
 Inspect `handlers/memory-save.ts`, `handlers/save/response-builder.ts`, `handlers/save/post-insert.ts`, and `context-server.ts` if parity or snapshot behavior regresses
 
+---
+
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/atomic-save-parity-and-partial-indexing-hints.md](../../feature-catalog/ux-hooks/atomic-save-parity-and-partial-indexing-hints.md)
