@@ -27,6 +27,11 @@
 // (it statically imports the ESM Gate-3 classifier), so it is imported directly.
 import * as guardCore from '../skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs';
 
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. TRANSPORT HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -163,7 +168,7 @@ export default async function MkSpecGatePlugin(ctx) {
   const runtimeState = { lastGateSweepAtMs: 0 };
 
   function disabled() {
-    return process.env[guardCore.DISABLED_ENV] === '1';
+    return !isHookEnabled('spec-gate');
   }
 
   return {

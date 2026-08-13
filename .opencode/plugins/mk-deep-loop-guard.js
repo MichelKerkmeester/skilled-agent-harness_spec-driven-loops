@@ -27,6 +27,11 @@
 // same core. A .cjs core is imported here as the ESM default export.
 import guardCore from '../hooks/task-dispatch/lib/dispatch-guard.cjs';
 
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. PLUGIN FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
@@ -65,6 +70,9 @@ export default async function MkDeepLoopGuardPlugin(ctx) {
     },
     async 'tool.execute.before'(input, output) {
       try {
+        // Kill-switch checked FIRST -- before any policy evaluation or denial --
+        // so a disabled guard can never block a dispatch.
+        if (!isHookEnabled('task-dispatch')) return;
         // Normalize tool-name case at the transport boundary (OpenCode emits
         // 'task'; the Claude adapter handles its own 'Task').
         if (!input || String(input.tool).toLowerCase() !== 'task') return;

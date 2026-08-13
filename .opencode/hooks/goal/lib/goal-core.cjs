@@ -33,6 +33,8 @@ const {
 const { dirname, isAbsolute, join, relative, resolve, sep } = require('node:path');
 const { createHash, randomUUID } = require('node:crypto');
 
+const { isHookEnabled } = require('../../shared/hook-flags.cjs');
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -117,7 +119,7 @@ class GoalError extends Error {
 
 /** Fail-open check for the shared kill switch honored by every action. */
 function isPluginDisabled(env = process.env) {
-  return env?.[DISABLED_ENV] === '1';
+  return !isHookEnabled('goal', env);
 }
 
 /**

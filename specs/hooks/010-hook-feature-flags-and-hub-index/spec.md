@@ -2,7 +2,7 @@
 title: "Feature Specification: Hook Feature Flags + Full Hub Index"
 description: "Give every repo-authored runtime hook a per-concern kill-switch honored across all six runtimes, behind one shared guard with a master switch, and complete the .opencode/hooks index so every hook (skill-owned as symlink, global as real file) is browsable in one place."
 status: "in-progress"
-completion_pct: 30
+completion_pct: 70
 trigger_phrases:
   - "hook feature flags"
   - "feature-flag all hooks"
@@ -65,8 +65,8 @@ Two coupled outcomes for the repo's ~90 authored runtime hook adapters across si
 
 ## 6. ROLLBACK
 
-`MK_HOOKS_DISABLED=1` silences the entire enforcement layer instantly. Each per-concern switch is independently reversible. The guard is default-on, so every phase is behavior-neutral until a flag is set.
+Once all concern adapters honor isHookEnabled, MK_HOOKS_DISABLED=1 silences the enforcement layer. Today that is true for mcp-route-guard, the Phase 3 adapters, and (after this change) the OpenCode dispatch / post-edit-quality / task-dispatch / goal / spec-gate / skill-advisor plugins; the remaining skill-owned families (session-lifecycle, git-preflight, spec-memory) are Phase 4.
 
 ## 7. STATUS
 
-**In progress — Phases 1-2 shipped.** Shared guard + master switch (`node --test` 7/7). Pilot: all six `mcp-route-guard` adapters gated and proven (default=advisory, concern-off=silent, master-off=silent; plugin + Pi load clean). Per-runtime import path settled. Phase 3 fan-out next.
+**In progress — Phases 1-3 and 5 shipped; Phase 4 partial.** Shared guard + master switch (`node --test` 7/7). Pilot: all six `mcp-route-guard` adapters gated and proven. Phase 3: every `dispatch`, `post-edit-quality`, `task-dispatch`, `goal` adapter plus the OpenCode plugins now honor `isHookEnabled` (the deep-review gap — plugins missing the guard — is closed, including the Cursor dispatch proxy). Phase 4 partial: OpenCode `spec-gate`/`skill-advisor` plugins and Cursor/Pi `completion` adapters wired; `session-lifecycle`/`git-preflight`/`spec-memory` and the non-OpenCode `skill-advisor`/`spec-gate` adapters remain. Phase 6 cross-runtime validation pending.

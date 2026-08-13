@@ -31,9 +31,13 @@ function isTruthy(value) {
   return v === "1" || v === "true" || v === "yes" || v === "on";
 }
 
-// The canonical per-concern kill-switch env var for a concern slug.
+// The canonical per-concern kill-switch env var for a concern slug. A blank
+// concern has no flag (skipped), so callers never look up "MK__DISABLED".
 function concernFlag(concern) {
-  return "MK_" + String(concern).toUpperCase().replace(/[^A-Z0-9]+/g, "_") + "_DISABLED";
+  if (concern === null || concern === undefined) return null;
+  const slug = String(concern).trim();
+  if (!slug) return null;
+  return "MK_" + slug.toUpperCase().replace(/[^A-Z0-9]+/g, "_") + "_DISABLED";
 }
 
 // True unless the master switch or one of this concern's kill-switches is set.
@@ -41,7 +45,8 @@ function concernFlag(concern) {
 function isHookEnabled(concern, env) {
   const source = env || process.env;
   if (isTruthy(source[MASTER_FLAG])) return false;
-  const keys = [concernFlag(concern)].concat(LEGACY_ALIASES[concern] || []);
+  const flag = concernFlag(concern);
+  const keys = (flag ? [flag] : []).concat(LEGACY_ALIASES[concern] || []);
   for (const key of keys) {
     if (isTruthy(source[key])) return false;
   }

@@ -29,7 +29,7 @@ A fifth folder, [`git/`](./git/README.md), holds the git commit-hooks installer 
 
 Beyond those real-code cores, this tree is now the **full browsable index of every repo-authored hook**. Skill-owned hooks whose logic is genuinely their skill's engine still keep their **code** in the owning skill, but each is **symlinked in** here under `<concern>/<runtime>/` (the symlink is the index entry, the code stays local) — so one directory shows every hook the repo installs, organized by concern and runtime.
 
-Every hook is also behind a **kill-switch**. `shared/hook-flags.{cjs,mjs,ts}` exports `isHookEnabled(concern)`: a hook runs unless the master `MK_HOOKS_DISABLED` or its per-concern `MK_<CONCERN>_DISABLED` (or a registered legacy alias) is set. The default is on, so the guard changes nothing until a flag is set, and every runtime adapter of a concern honors the same switch. Compiled hooks that run from a skill's `mcp-server/dist/` need that dist rebuilt for a source-added guard to take effect.
+Every hook runs behind a **kill-switch** once its adapter is wired to the shared guard. `shared/hook-flags.{cjs,mjs,ts}` exports `isHookEnabled(concern)`: a gated hook runs unless the master `MK_HOOKS_DISABLED` or its per-concern `MK_<CONCERN>_DISABLED` (or a registered legacy alias) is set. The default is on, so the guard changes nothing until a flag is set. Wired today: `mcp-route-guard` and the Phase 3 families (`dispatch`, `post-edit-quality`, `task-dispatch`, `goal`) on every runtime, plus the OpenCode `spec-gate` and `skill-advisor` plugins and the Cursor/Pi `completion-evidence` adapters. The remaining skill-owned families (`session-lifecycle`, `git-preflight`, `spec-memory`) and the non-OpenCode `skill-advisor`/`spec-gate` adapters are Phase 4 — not yet gated. Compiled hooks that run from a skill's `mcp-server/dist/` need that dist rebuilt for a source-added guard to take effect.
 
 ### Why only these four concerns moved their code here
 
@@ -132,7 +132,7 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 ## 5. VALIDATION
 
 ```bash
-node --test .opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs
+node --test .opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs .opencode/hooks/dispatch/lib/dispatch-audit.test.mjs .opencode/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs .opencode/hooks/shared/hook-flags.test.cjs
 ```
 
 Expected result: all suites pass.
