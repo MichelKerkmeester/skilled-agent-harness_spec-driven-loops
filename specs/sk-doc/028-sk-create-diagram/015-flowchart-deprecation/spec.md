@@ -9,7 +9,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-create-diagram/015-flowchart-deprecation"
-    last_updated_at: "2026-08-13T05:55:33.000Z"
+    last_updated_at: "2026-08-13T17:15:00.000Z"
     last_updated_by: "claude"
     recent_action: "Skill deleted; live hub/router/advisor/doc references purged or repointed"
     next_safe_action: "Run packet-wide validate.sh; report to operator"
@@ -45,9 +45,9 @@ _memory:
 | **Created** | 2026-08-13 |
 | **Branch** | `sk-doc/0145-sk-create-diagram` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 15 of 15 |
+| **Phase** | 15 of 16 |
 | **Predecessor** | `../014-review-remediation/spec.md` |
-| **Successor** | None — closes the packet's current phase set |
+| **Successor** | `../016-command-mirror-restoration/spec.md` |
 | **Handoff Criteria** | `sk-create-flowchart` deleted; 0 live references remain outside historical spec docs; advisor rebuilt and validated; `validate.sh --recursive --strict` clean |
 <!-- /ANCHOR:metadata -->
 

@@ -36,7 +36,7 @@
     "entities": [],
     "causal_summary": "Phase 012 merged sk-create-flowchart's ASCII/markdown capability into sk-create-diagram and left the source skill as a redirect stub; this phase deletes it outright and purges every live reference, since sk-create-diagram now fully covers its capability",
     "created_at": "2026-08-13T05:55:33.000Z",
-    "last_save_at": "2026-08-13T05:55:33.000Z",
+    "last_save_at": "2026-08-13T17:15:00.000Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -46,15 +46,15 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:88114088e415e4f236169dcf00756d6d76060c16dcd5476fedb224d36b57a8eb",
+    "source_fingerprint": "sha256:2ccde8b216b905363ecc61ce3e95c0837b085e5b3f85877a5360542b315dba27",
     "source_doc_hashes": {
-      "spec.md": "d6cc9ff89ec6fe3e79322d231269235fa4555c8a14e94dab0adcb1cd89c4808b",
-      "plan.md": "de3556f30a62c32f9577258e448119673398b77b6b988f10480d79e7a72b88e8",
-      "tasks.md": "9c16773f7737d6f21421ca8202adbb99ed0a9e9c8e898d853d698bf3ebbf77df",
-      "checklist.md": "8328ffc73f32693debb88e83684b249da92e95eadf788af6d81b5a5ef58d195f",
-      "implementation-summary.md": "c4c920e31e9a6ca421c0326ab1e8e2d72b78dcc27ca2daa2d99bbbf1ff05d574"
+      "spec.md": "4a2d45e6ebdc263be794fd7ebab7996d51e78daa4cd954867fd427732fad1799",
+      "plan.md": "e6849aeb878efb8fed9e238a0ba023457f5ee92fe359cc58c92dfe06cd70e532",
+      "tasks.md": "b14f5162c881991d7a879fbfcfe7e4748b3b3a91b26c766507fc248e8bdfd2af",
+      "checklist.md": "6d62a5948f1e6190a587fa4b23d517eb79e9bd910e9f47191e5a381efb8d3446",
+      "implementation-summary.md": "cd7f63efc90708048cda28ca0c95230cdb20ab22c79c21bbb99462f46d3c67aa"
     },
     "last_active_child_id": null,
-    "last_active_at": "2026-08-13T05:55:33.000Z"
+    "last_active_at": "2026-08-13T17:15:00.000Z"
   }
 }

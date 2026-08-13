@@ -1,0 +1,23 @@
+{
+  "specFolder": "sk-doc/028-sk-create-diagram/016-command-mirror-restoration",
+  "description": "Restore three symlinks deleted by an unrelated earlier bulk-sync commit and bring /create:diagram to cross-runtime parity with every sibling /create:* command.",
+  "keywords": [
+    "command",
+    "symlink",
+    "restoration",
+    "cross-runtime",
+    "diagram",
+    "mirror",
+    "parity"
+  ],
+  "lastUpdated": "2026-08-13T17:00:20.000Z",
+  "specId": "016",
+  "folderSlug": "command-mirror-restoration",
+  "parentChain": [
+    "sk-doc",
+    "028-sk-create-diagram"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -9,7 +9,7 @@ status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/028-sk-create-diagram/015-flowchart-deprecation"
-    last_updated_at: "2026-08-13T05:55:33.000Z"
+    last_updated_at: "2026-08-13T17:15:00.000Z"
     last_updated_by: "claude"
     recent_action: "Deletion + purge complete, advisor validated clean"
     next_safe_action: "None — phase complete"
