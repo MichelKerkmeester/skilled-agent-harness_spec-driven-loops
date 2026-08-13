@@ -322,3 +322,7 @@ AGENTS_Barter.md
 
 # Local Barter framework export/scratch at the repo root; not part of this repo.
 /BARTER.md
+
+# Compiled-routing live-activation test scratch (per-PID manifest dirs, never tracked)
+.opencode/bin/lib/compiled-routing/*/activation/manifest-race-*/
+.opencode/bin/lib/compiled-routing/*/activation/manifest-test-*/
