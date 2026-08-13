@@ -11,7 +11,12 @@
     "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy",
     "cli-external-orchestration/035-improved-communication/006-runtime-adapters-and-clients",
     "cli-external-orchestration/035-improved-communication/007-evaluation-and-observability",
-    "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening"
+    "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening",
+    "cli-external-orchestration/035-improved-communication/009-prompt-token-contract",
+    "cli-external-orchestration/035-improved-communication/010-adjacent-span-coalescing",
+    "cli-external-orchestration/035-improved-communication/011-meaning-judge-wiring",
+    "cli-external-orchestration/035-improved-communication/012-no-op-rejection",
+    "cli-external-orchestration/035-improved-communication/013-capability-evidence-unblock"
   ],
   "manual": {
     "depends_on": [],
@@ -39,7 +44,7 @@
       "code"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "001-research-strategy/spec.md",
@@ -47,12 +52,26 @@
       "006-runtime-adapters-and-clients/spec.md",
       "006-runtime-adapters-and-clients/handover.md",
       "007-evaluation-and-observability/spec.md",
+      "009-prompt-token-contract/spec.md",
+      "013-capability-evidence-unblock/spec.md",
       "008-packaging-and-release-hardening/handover.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -79,31 +98,19 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Deliver",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
     "created_at": "2026-08-11T06:21:47Z",
-    "last_save_at": "2026-08-12T11:24:19.165Z",
+    "last_save_at": "2026-08-13T04:26:07.202Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5b5647b22142913ede1082a446ab8365781c451a4358030a52bb20056a960585",
+    "source_fingerprint": "sha256:d9feb5a78681d121ae76fcd0b1002cdb40dd3bcb2efcf4574e063a6a297b43d6",
     "source_doc_hashes": {
-      "spec.md": "87f7ffe936739678e756784611acebbddda22f999ad93b53b9a884055d932faa"
+      "spec.md": "6d4cbb3178aed6ef1a6fc3eb75b58fddc56901b8e0028ea3d88f3de33989ae17"
     },
     "last_active_child_id": "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy",
     "last_active_at": "2026-08-12T05:25:21.635Z"

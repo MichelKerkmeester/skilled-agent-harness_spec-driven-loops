@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening",
-  "spec_folder": "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening",
+  "packet_id": "cli-external-orchestration/035-improved-communication/012-no-op-rejection",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/012-no-op-rejection",
   "parent_id": "cli-external-orchestration/035-improved-communication",
   "children_ids": [],
   "manual": {
@@ -11,43 +11,37 @@
   },
   "derived": {
     "trigger_phrases": [
-      "packaging-and-release-hardening",
-      "packaging and release hardening",
-      "portable cli projection",
-      "implementation phase",
+      "no-op-rejection",
+      "no op rejection",
+      "unchanged echo acceptance",
+      "projection quality",
       "implementation plan",
       "tasks",
       "implementation",
       "verification checklist",
-      "quality gate",
-      "architecture decision",
-      "gate release with a dated support matrix and fail-closed compatibility doctor",
-      "implementation status"
+      "quality gate"
     ],
     "key_topics": [
-      "packaging-and-release-hardening",
-      "packaging",
-      "release",
-      "hardening",
-      "portable",
-      "cli",
+      "no-op-rejection",
+      "rejection",
+      "unchanged",
+      "echo",
+      "acceptance",
       "projection",
+      "quality",
       "implementation",
-      "phase",
       "plan",
       "tasks",
-      "verification"
+      "verification",
+      "checklist"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "handover.md",
-      "implementation-summary.md"
+      "checklist.md"
     ],
     "entities": [
       {
@@ -75,37 +69,13 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Release Hardening",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Linked Phase",
+        "name": "Op Rejection",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -129,6 +99,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -141,19 +117,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Package",
+        "name": "Overview Replace",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Quality Gates",
+        "name": "Pattern Post",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Immutable",
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -183,7 +159,7 @@
         "source": "derived"
       },
       {
-        "name": "content-free",
+        "name": "no-improvement",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -193,31 +169,43 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Package the system with explicit provider privacy choices, a tested compatibility matrix, diagnostics, rollback, and six-runtime release gates",
-    "created_at": "2026-08-11T10:04:33Z",
-    "last_save_at": "2026-08-13T04:36:10.333Z",
+    "causal_summary": "The validator short-circuits when `restored.text === sourceText`, accepting the echo without running structure or semantic stages",
+    "created_at": "2026-08-13T04:05:03.668Z",
+    "last_save_at": "2026-08-13T04:23:21.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "handover.md"
+      "checklist.md"
     ],
-    "source_fingerprint": "sha256:c685121b04f19a257ed0d945fc6012f9385ab8266c8813464b8fe434f60b275e",
+    "source_fingerprint": "sha256:9e4695739d5555b6b4617769fc07257c402273bf6e4dbc702ae1f01854d43477",
     "source_doc_hashes": {
-      "spec.md": "074eac4bee7ae0f6c5dce86c362ae435469df1d2fbf3eda8fbbbe41f66f142dc",
-      "plan.md": "a962b7c2294c3db1b0d4c2464a3a8eac95c181a63c69d5bde6cc2e945ec42cd9",
-      "tasks.md": "139c98b721fb2572ce535a37714d3ddcebfcf5e74c40952300484ce8a27a409a",
-      "checklist.md": "78f5d9b6c23b1bfae1c7d93c98541f47031cd185d78e85c65bc15a24ff9a755c",
-      "decision-record.md": "dc8b0daadcc5f0da4310be0c46e75f7fc393eb4c432bf30246acc49670642571",
-      "implementation-summary.md": "e5016ac69cbfd3ba20f2eaabbae1f6734d5e09f2d37e7cd7dbd716d14db95c09",
-      "handover.md": "a22f5e33c1118d10ca8996304183396594a7f867ed5e8fecf2adbb780bf62ce4"
+      "spec.md": "a8d3ee278bb17c61400ab696a9067b73b6269ab1d93773c922a3d631ec75fba1",
+      "plan.md": "db2e0fb126316eb65887ef14299adaf82d1be881cb7c610722254daa080637f2",
+      "tasks.md": "6e8e08da75f7e974e8fd79e69deef7725d242b77f7f49cf7a857dbfe8f8b46a0",
+      "checklist.md": "aebc051ba5c0561747e8000a5736639598812e94418d5b6499aecd46a62fdb2f"
     },
     "last_active_child_id": null,
     "last_active_at": null

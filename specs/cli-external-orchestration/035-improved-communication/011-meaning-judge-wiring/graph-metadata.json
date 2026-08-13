@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening",
-  "spec_folder": "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening",
+  "packet_id": "cli-external-orchestration/035-improved-communication/011-meaning-judge-wiring",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/011-meaning-judge-wiring",
   "parent_id": "cli-external-orchestration/035-improved-communication",
   "children_ids": [],
   "manual": {
@@ -11,43 +11,40 @@
   },
   "derived": {
     "trigger_phrases": [
-      "packaging-and-release-hardening",
-      "packaging and release hardening",
-      "portable cli projection",
-      "implementation phase",
+      "meaning-judge-wiring",
+      "meaning judge wiring",
+      "reject-only meaning gate",
+      "projection quality",
       "implementation plan",
       "tasks",
       "implementation",
       "verification checklist",
       "quality gate",
       "architecture decision",
-      "gate release with a dated support matrix and fail-closed compatibility doctor",
-      "implementation status"
+      "local reject-only judge"
     ],
     "key_topics": [
-      "packaging-and-release-hardening",
-      "packaging",
-      "release",
-      "hardening",
-      "portable",
-      "cli",
+      "meaning-judge-wiring",
+      "meaning",
+      "judge",
+      "wiring",
+      "reject-only",
+      "gate",
       "projection",
+      "quality",
       "implementation",
-      "phase",
       "plan",
       "tasks",
       "verification"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
-      "handover.md",
-      "implementation-summary.md"
+      "decision-record.md"
     ],
     "entities": [
       {
@@ -81,31 +78,13 @@
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Release Hardening",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Linked Phase",
+        "name": "Judge Wiring",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -129,6 +108,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -141,19 +126,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Package",
+        "name": "Overview Compose",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Quality Gates",
+        "name": "Pattern Fail",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Immutable",
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -183,8 +168,8 @@
         "source": "derived"
       },
       {
-        "name": "content-free",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -193,11 +178,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Package the system with explicit provider privacy choices, a tested compatibility matrix, diagnostics, rollback, and six-runtime release gates",
-    "created_at": "2026-08-11T10:04:33Z",
-    "last_save_at": "2026-08-13T04:36:10.333Z",
+    "causal_summary": "No production source connects the candidate to `validateProjectionCandidate`, `evaluateFidelityVeto`, or `runProxyReviewers` outside evaluation",
+    "created_at": "2026-08-13T04:05:03.387Z",
+    "last_save_at": "2026-08-13T04:21:35.422Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,19 +202,15 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "handover.md"
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c685121b04f19a257ed0d945fc6012f9385ab8266c8813464b8fe434f60b275e",
+    "source_fingerprint": "sha256:33fee3236081372fbe73ddf690cb7d002196c4ad8f35afd6def938d6fc01397f",
     "source_doc_hashes": {
-      "spec.md": "074eac4bee7ae0f6c5dce86c362ae435469df1d2fbf3eda8fbbbe41f66f142dc",
-      "plan.md": "a962b7c2294c3db1b0d4c2464a3a8eac95c181a63c69d5bde6cc2e945ec42cd9",
-      "tasks.md": "139c98b721fb2572ce535a37714d3ddcebfcf5e74c40952300484ce8a27a409a",
-      "checklist.md": "78f5d9b6c23b1bfae1c7d93c98541f47031cd185d78e85c65bc15a24ff9a755c",
-      "decision-record.md": "dc8b0daadcc5f0da4310be0c46e75f7fc393eb4c432bf30246acc49670642571",
-      "implementation-summary.md": "e5016ac69cbfd3ba20f2eaabbae1f6734d5e09f2d37e7cd7dbd716d14db95c09",
-      "handover.md": "a22f5e33c1118d10ca8996304183396594a7f867ed5e8fecf2adbb780bf62ce4"
+      "spec.md": "4431efffe52521d235ec865a8eea2278c81c6b655b4ec2c2169e0f21cd1e6d88",
+      "plan.md": "d93fe8271eb28103a573b1b0aff91d0bf42ef379897ad8017a84f7ff54c1348a",
+      "tasks.md": "cd5c9f62ba02e286ef827774f0356d9fda92512cc356c61254d5b086f312bdd1",
+      "checklist.md": "71bee029f976c89c6a4a78a6b0c3bf1be4316421dea12557a02cac4ec6e8f6ba",
+      "decision-record.md": "c1e91622c836da01103fe1611b0c6efb94d07860878cd8af5c88a8e28887fc67"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening",
-  "spec_folder": "cli-external-orchestration/035-improved-communication/008-packaging-and-release-hardening",
+  "packet_id": "cli-external-orchestration/035-improved-communication/010-adjacent-span-coalescing",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/010-adjacent-span-coalescing",
   "parent_id": "cli-external-orchestration/035-improved-communication",
   "children_ids": [],
   "manual": {
@@ -11,43 +11,40 @@
   },
   "derived": {
     "trigger_phrases": [
-      "packaging-and-release-hardening",
-      "packaging and release hardening",
-      "portable cli projection",
-      "implementation phase",
+      "adjacent-span-coalescing",
+      "adjacent span coalescing",
+      "protected marker inflation",
+      "projection quality",
       "implementation plan",
       "tasks",
       "implementation",
       "verification checklist",
       "quality gate",
       "architecture decision",
-      "gate release with a dated support matrix and fail-closed compatibility doctor",
-      "implementation status"
+      "model-facing representation"
     ],
     "key_topics": [
-      "packaging-and-release-hardening",
-      "packaging",
-      "release",
-      "hardening",
-      "portable",
-      "cli",
+      "adjacent-span-coalescing",
+      "adjacent",
+      "span",
+      "coalescing",
+      "protected",
+      "marker",
+      "inflation",
       "projection",
+      "quality",
       "implementation",
-      "phase",
       "plan",
-      "tasks",
-      "verification"
+      "tasks"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
-      "handover.md",
-      "implementation-summary.md"
+      "decision-record.md"
     ],
     "entities": [
       {
@@ -81,31 +78,13 @@
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Release Hardening",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Linked Phase",
+        "name": "Span Coalescing",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -129,6 +108,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -141,19 +126,19 @@
         "source": "derived"
       },
       {
-        "name": "Overview Package",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Quality Gates",
+        "name": "Overview Add",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "Pattern Immutable",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -183,8 +168,8 @@
         "source": "derived"
       },
       {
-        "name": "content-free",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -193,11 +178,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Package the system with explicit provider privacy choices, a tested compatibility matrix, diagnostics, rollback, and six-runtime release gates",
-    "created_at": "2026-08-11T10:04:33Z",
-    "last_save_at": "2026-08-13T04:36:10.333Z",
+    "causal_summary": "`collectProtectedRanges` includes structural blocks, commands, list markers, links, URLs, flags, hashes, variables, numbers, and identifiers; ranges are overlap-filtered but never merged",
+    "created_at": "2026-08-13T04:05:03.213Z",
+    "last_save_at": "2026-08-13T04:18:55.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,19 +202,15 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      "handover.md"
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c685121b04f19a257ed0d945fc6012f9385ab8266c8813464b8fe434f60b275e",
+    "source_fingerprint": "sha256:cd10c6f3bf5ace4539560f0a44625e33554e25bf18b5f098568c7ae93aa9ae76",
     "source_doc_hashes": {
-      "spec.md": "074eac4bee7ae0f6c5dce86c362ae435469df1d2fbf3eda8fbbbe41f66f142dc",
-      "plan.md": "a962b7c2294c3db1b0d4c2464a3a8eac95c181a63c69d5bde6cc2e945ec42cd9",
-      "tasks.md": "139c98b721fb2572ce535a37714d3ddcebfcf5e74c40952300484ce8a27a409a",
-      "checklist.md": "78f5d9b6c23b1bfae1c7d93c98541f47031cd185d78e85c65bc15a24ff9a755c",
-      "decision-record.md": "dc8b0daadcc5f0da4310be0c46e75f7fc393eb4c432bf30246acc49670642571",
-      "implementation-summary.md": "e5016ac69cbfd3ba20f2eaabbae1f6734d5e09f2d37e7cd7dbd716d14db95c09",
-      "handover.md": "a22f5e33c1118d10ca8996304183396594a7f867ed5e8fecf2adbb780bf62ce4"
+      "spec.md": "d46c1d33355e0c45e38186f95be7fb093348bc8be1e604ffb7206b4366b79acb",
+      "plan.md": "c57839cebed464f0830611cab76f8e27158df0f9c2457a05df0ad7d47a8a0c02",
+      "tasks.md": "97810e6180ed217674d12a9d19a84e83cb715489ab75301b134d02d131b4324c",
+      "checklist.md": "8bd1ac39271f174c14bb525ba87990ec00488a67960a5ede0bf2b7d387b2a179",
+      "decision-record.md": "e8bba2da5131e0466885fa2933e260aeaeb5dbc31ce3ce070fb8faf9b36abe66"
     },
     "last_active_child_id": null,
     "last_active_at": null

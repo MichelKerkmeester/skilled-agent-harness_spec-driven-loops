@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "cli-external-orchestration/035-improved-communication"
     last_updated_at: "2026-08-12T04:14:38Z"
     last_updated_by: "codex"
-    recent_action: "Completed and verified all eight implementation phases."
-    next_safe_action: "Supply the operator release prerequisites, then record the release decision."
+    recent_action: "Added five planned projection-quality phases after the eight completed implementation phases."
+    next_safe_action: "Begin Phase 009 planning and preserve the completed Phase 008 release evidence."
     blockers: []
     key_files:
       - "spec.md"
@@ -22,11 +22,13 @@ _memory:
       - "006-runtime-adapters-and-clients/spec.md"
       - "006-runtime-adapters-and-clients/handover.md"
       - "007-evaluation-and-observability/spec.md"
+      - "009-prompt-token-contract/spec.md"
+      - "013-capability-evidence-unblock/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "035-improved-communication-20260811"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 62
     open_questions:
       - "Which runtimes prove atomic replacement under pinned fixtures?"
     answered_questions:
@@ -51,13 +53,13 @@ _memory:
 |-------|-------|
 | **Level** | Phase parent |
 | **Priority** | P0 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-08-11 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | None |
 | **Parent Packet** | `cli-external-orchestration/035-improved-communication` |
 | **Predecessor** | None |
-| **Successor** | All eight phases (`001` through `008`) are implemented and verified. The release decision is operator-gated. |
+| **Successor** | Phases `009` through `013` are planned after the eight implemented and verified phases. |
 | **Handoff Criteria** | Each child passes its own implementation gates and strict validation before the next phase consumes its output |
 <!-- /ANCHOR:metadata -->
 
@@ -111,7 +113,8 @@ Detailed research, architecture, implementation, and verification belong to chil
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
 | `001-research-strategy/` | Create | 001 | Reverse engineering, current-source research, architecture framing, evaluation design, and downstream phase recommendation |
-| `002-contracts-and-fixtures/` through `008-packaging-and-release-hardening/` | Create | 002-008 | Level 3 implementation workstreams derived from the completed research synthesis |
+| `002-contracts-and-fixtures/` through `008-packaging-and-release-hardening/` | Create | 002-008 | Completed implementation workstreams derived from the research synthesis |
+| `009-prompt-token-contract/` through `013-capability-evidence-unblock/` | Create | 009-013 | Planned projection-quality workstreams for prompt tokens, marker burden, meaning judgment, no-op rejection, and capability evidence |
 | `context/claudish-to-english-main/` | Read only | All | Reference behavior and evidence. Never modified by this epic. |
 <!-- /ANCHOR:scope -->
 
@@ -130,8 +133,13 @@ Detailed research, architecture, implementation, and verification belong to chil
 | 6 | `006-runtime-adapters-and-clients/` | Implement Claude, Codex, Pi, OpenCode, Devin, and Cursor adapters with explicit full-projection and safe-native presentation tiers | Complete |
 | 7 | `007-evaluation-and-observability/` | Execute the powered blind parity protocol, aggregate redacted telemetry, and produce operational reports | Complete |
 | 8 | `008-packaging-and-release-hardening/` | Package supported configurations, compatibility doctor, rollback, and release gates | Complete |
+| 9 | `009-prompt-token-contract/` | Make the versioned prompt profile explicitly preserve protected markers while rewriting surrounding prose | Planned |
+| 10 | `010-adjacent-span-coalescing/` | Reduce model-facing marker burden through a locally resolved representation that preserves strict restoration | Planned |
+| 11 | `011-meaning-judge-wiring/` | Compose a local post-restoration reject-only meaning judge into the production path | Planned |
+| 12 | `012-no-op-rejection/` | Reject unchanged and threshold-defined near-echo candidates as no improvement | Planned |
+| 13 | `013-capability-evidence-unblock/` | Supply dated evidence so supported provider controls reach transport while stale facts remain fail closed | Planned |
 
-All seven implementation children exist as Level 3 packets. Phases 002 through 008 have verified code, fixtures and tests. All eight phases are implemented and verified on the branch; the release decision is operator-gated.
+The first eight children remain implemented and verified. Phases 009 through 013 are planned follow-on workstreams and retain zero-percent completion until their own implementation evidence exists.
 ### Phase Transition Rules
 
 - Each phase must pass `validate.sh` independently before its handoff.
@@ -151,6 +159,11 @@ All seven implementation children exist as Level 3 packets. Phases 002 through 0
 | 005 provider adapters and privacy | 006 runtime adapters and clients | OpenCode Go DeepSeek V4 Flash, Ollama, llama.cpp and generic routes pass contracts. Privacy runs before ranking. | Provider stubs, egress negative controls and no implicit local-to-hosted fallback |
 | 006 runtime adapters and clients | 007 evaluation and observability | All six adapters declare a presentation tier and pass pinned fixture replay plus explicit degraded-mode smokes without canonical writes. | Conformance suite, tiered six-runtime smokes and state snapshots |
 | 007 evaluation and observability | 008 packaging and release hardening | Pilot variance, powered blind comparisons, predeclared non-inferiority margins, operational metrics, and redaction canaries produce a conclusive passing report | Versioned report hashes, reviewer randomization checks, confidence-interval gates, and zero-leak telemetry scan |
+| 008 packaging and release hardening | 009 prompt token contract | Preserve the completed release evidence while opening the versioned prompt-profile follow-on | Phase 008 handover plus Phase 009 strict planned-packet validation |
+| 009 prompt token contract | 010 adjacent-span coalescing | Token contract is planned independently; combined marker-burden measurements remain available to the next phase | Fixed-corpus token-contract plan and strict packet validation |
+| 010 adjacent-span coalescing | 011 meaning-judge wiring | Representation and privacy decisions are explicit before production composition consumes candidates | Decision record, fidelity plan, and strict packet validation |
+| 011 meaning-judge wiring | 012 no-op rejection | Meaning-loss and no-change policies remain separate, typed production outcomes | Composition plan and strict packet validation |
+| 012 no-op rejection | 013 capability-evidence unblock | No-improvement policy remains independent from provider capability reachability | Threshold plan and strict packet validation |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -167,7 +180,8 @@ All seven implementation children exist as Level 3 packets. Phases 002 through 0
 
 ## RELATED DOCUMENTS
 
-- **Active child**: none; all phases complete. Release decision pending operator prerequisites.
+- **Active child**: `009-prompt-token-contract/spec.md` (planned; implementation not started)
 - **Completed predecessor handover**: `008-packaging-and-release-hardening/handover.md`
+- **Planned follow-on range**: `009-prompt-token-contract/` through `013-capability-evidence-unblock/`
 - **Reference implementation**: `context/claudish-to-english-main/`
 - **Graph metadata**: `graph-metadata.json`
