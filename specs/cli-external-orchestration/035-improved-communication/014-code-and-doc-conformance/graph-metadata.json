@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-external-orchestration/035-improved-communication/013-capability-evidence-unblock",
-  "spec_folder": "cli-external-orchestration/035-improved-communication/013-capability-evidence-unblock",
+  "packet_id": "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance",
   "parent_id": "cli-external-orchestration/035-improved-communication",
   "children_ids": [],
   "manual": {
@@ -11,37 +11,41 @@
   },
   "derived": {
     "trigger_phrases": [
-      "capability-evidence-unblock",
-      "capability evidence unblock",
-      "control knobs fail-closed",
-      "projection quality",
+      "code-and-doc-conformance",
+      "code and documentation conformance",
+      "cli communication projection documentation",
+      "package conformance evidence",
       "implementation plan",
+      "package documentation conformance",
       "tasks",
-      "implementation",
+      "documentation conformance",
       "verification checklist",
-      "quality gate"
+      "quality gate",
+      "implementation status",
+      "current state"
     ],
     "key_topics": [
-      "capability-evidence-unblock",
-      "capability",
-      "evidence",
-      "unblock",
-      "control",
-      "knobs",
-      "fail-closed",
+      "code-and-doc-conformance",
+      "code",
+      "documentation",
+      "conformance",
+      "cli",
+      "communication",
       "projection",
-      "quality",
+      "package",
+      "evidence",
       "implementation",
       "plan",
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -69,13 +73,19 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Evidence Unblock",
+        "name": "Documentation Conformance",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -99,7 +109,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -117,13 +127,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Capture",
+        "name": "Overview Close",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Evidence",
+        "name": "Pattern Template",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -147,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "evidence",
         "kind": "key_phrase",
         "path": "tasks.md",
@@ -154,12 +170,6 @@
       },
       {
         "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -181,31 +191,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "`compilePromptControls` fails closed unless capability, mapping, freshness, and control evidence are confirmed",
-    "created_at": "2026-08-13T04:05:03.839Z",
-    "last_save_at": "2026-08-13T05:56:57.605Z",
+    "causal_summary": "The implementation was complete, but conformance was not closed until every maintained package folder had a standard README and every operator document passed the reference contract",
+    "created_at": "2026-08-13T05:54:57.670Z",
+    "last_save_at": "2026-08-13T05:56:57.372Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b864873066dd4dc9f702f7fc8c55bd3f9991cdbd0f738fb4c405950687501fe",
+    "source_fingerprint": "sha256:509805bc1c341fa30d7e9e161e5f99ec4a50ffcde7c27acbeb9017bdb31d53dd",
     "source_doc_hashes": {
-      "spec.md": "6b355efb947b98598a98346097dad50cba1686e4cdc4e5db48865121b204860a",
-      "plan.md": "a48b8204584fca494651559c6bfc8b3b3d23e72332b1427dbd5fcdd85e566705",
-      "tasks.md": "3e53d85316333f3f6d2c50c86d01fbc26dfbd714dc93bad79b32c82401642251",
-      "checklist.md": "5a2934e57834a1fc9f70fb9646627ee69fb97bd3b15fa6df80c997356017b068"
+      "spec.md": "a439bc4694cbfdbd373b3ee979931dfc11936fefb96e4aa73eed12295de69e34",
+      "plan.md": "245733111feee834f96cd94530ff7b9b008ae9b3e4a54148b2679f356ad72545",
+      "tasks.md": "d02f5668e3b94e77af35654e53fa845f397fab6599b382fff639b817cc6e18a4",
+      "checklist.md": "5715e09b60ff41246d1b91c323f28d5d9dc6f0a0e15578e8bd51d9b335341610",
+      "implementation-summary.md": "5cc27ecd6739333a78baf6776fd6777e7782058c9f49d272a3ae65aa08c78c6d"
     },
     "last_active_child_id": null,
     "last_active_at": null

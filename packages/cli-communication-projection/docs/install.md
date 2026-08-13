@@ -1,7 +1,13 @@
-# Install and verify
+# Install and Verify
+
+## 1. OVERVIEW
 
 Use Node.js 22 or newer and npm 10 or newer. Install only a reviewed, exact
-package version or tarball; do not install a moving tag in a release workflow.
+package version or tarball. Do not install a moving tag in a release workflow.
+
+---
+
+## 2. PACKAGE ARTIFACT
 
 From this package directory, create and inspect the release artifact:
 
@@ -13,6 +19,10 @@ npm pack --pack-destination /tmp/communication-projection-pack
 npm pack --dry-run
 ```
 
+---
+
+## 3. CONSUMER VERIFICATION
+
 In a clean consumer project, install the exact artifact and exercise every
 public entry point:
 
@@ -23,10 +33,10 @@ node --input-type=module <<'NODE'
 const paths = [
   '', '/contracts', '/versioning', '/doctor', '/release', '/providers',
   '/runtimes', '/privacy', '/evaluation', '/observability',
-];
+]
 for (const path of paths) {
-  const loaded = await import(`@portable-cli/communication-projection${path}`);
-  if (Object.keys(loaded).length === 0) throw new Error(`Empty public module: ${path || '.'}`);
+  const loaded = await import(`@portable-cli/communication-projection${path}`)
+  if (Object.keys(loaded).length === 0) throw new Error(`Empty public module: ${path || '.'}`)
 }
 NODE
 ```
@@ -34,7 +44,9 @@ NODE
 Run the content-free compatibility doctor described in
 [configuration.md](./configuration.md) before enabling a route.
 
-## Upgrade and downgrade
+---
+
+## 4. UPGRADE AND DOWNGRADE
 
 Keep both exact tarballs until the release is accepted:
 

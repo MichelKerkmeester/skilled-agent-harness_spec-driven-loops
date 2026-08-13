@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/013-capability-evidence-unblock"
-    last_updated_at: "2026-08-13T00:00:00.000Z"
+    last_updated_at: "2026-08-13T05:56:32.000Z"
     last_updated_by: "claude"
-    recent_action: "Authored the phase spec from deep-research priority E."
-    next_safe_action: "Plan the capability-evidence capture and its recording against the evaluation strata."
+    recent_action: "Linked the planned capability-evidence phase to completed Phase 014."
+    next_safe_action: "Plan the capability-evidence capture before handing off to Phase 014."
     blockers: []
     key_files:
       - "spec.md"
@@ -53,9 +53,9 @@ The shipped DeepSeek preset marks temperature-control and thinking-control `unkn
 | **Created** | 2026-08-13 |
 | **Branch** | Current worktree |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 13 of 13 |
+| **Phase** | 13 of 14 |
 | **Predecessor** | `012-no-op-rejection` |
-| **Successor** | Parent packet decision |
+| **Successor** | `014-code-and-doc-conformance` |
 | **Handoff Criteria** | Fresh dated evidence makes temperature and thinking controls compile as supported and reach transport, while missing, contradictory, or stale evidence still fails closed before transport. |
 <!-- /ANCHOR:metadata -->
 

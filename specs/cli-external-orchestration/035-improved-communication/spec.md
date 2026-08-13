@@ -10,10 +10,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication"
-    last_updated_at: "2026-08-12T04:14:38Z"
+    last_updated_at: "2026-08-13T05:56:32.000Z"
     last_updated_by: "codex"
-    recent_action: "Added five planned projection-quality phases after the eight completed implementation phases."
-    next_safe_action: "Begin Phase 009 planning and preserve the completed Phase 008 release evidence."
+    recent_action: "Added the completed code and documentation conformance phase."
+    next_safe_action: "Begin Phase 009 planning while preserving the completed Phase 008 and Phase 014 evidence."
     blockers: []
     key_files:
       - "spec.md"
@@ -24,11 +24,12 @@ _memory:
       - "007-evaluation-and-observability/spec.md"
       - "009-prompt-token-contract/spec.md"
       - "013-capability-evidence-unblock/spec.md"
+      - "014-code-and-doc-conformance/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "035-improved-communication-20260811"
       parent_session_id: null
-    completion_pct: 62
+    completion_pct: 64
     open_questions:
       - "Which runtimes prove atomic replacement under pinned fixtures?"
     answered_questions:
@@ -59,7 +60,7 @@ _memory:
 | **Parent Spec** | None |
 | **Parent Packet** | `cli-external-orchestration/035-improved-communication` |
 | **Predecessor** | None |
-| **Successor** | Phases `009` through `013` are planned after the eight implemented and verified phases. |
+| **Successor** | Phases `009` through `013` are planned; Phase `014` records completed code and documentation conformance. |
 | **Handoff Criteria** | Each child passes its own implementation gates and strict validation before the next phase consumes its output |
 <!-- /ANCHOR:metadata -->
 
@@ -115,6 +116,7 @@ Detailed research, architecture, implementation, and verification belong to chil
 | `001-research-strategy/` | Create | 001 | Reverse engineering, current-source research, architecture framing, evaluation design, and downstream phase recommendation |
 | `002-contracts-and-fixtures/` through `008-packaging-and-release-hardening/` | Create | 002-008 | Completed implementation workstreams derived from the research synthesis |
 | `009-prompt-token-contract/` through `013-capability-evidence-unblock/` | Create | 009-013 | Planned projection-quality workstreams for prompt tokens, marker burden, meaning judgment, no-op rejection, and capability evidence |
+| `014-code-and-doc-conformance/` | Create | 014 | Completed package README coverage, operator-reference conformance, package alignment, and review evidence |
 | `context/claudish-to-english-main/` | Read only | All | Reference behavior and evidence. Never modified by this epic. |
 <!-- /ANCHOR:scope -->
 
@@ -138,8 +140,9 @@ Detailed research, architecture, implementation, and verification belong to chil
 | 11 | `011-meaning-judge-wiring/` | Compose a local post-restoration reject-only meaning judge into the production path | Planned |
 | 12 | `012-no-op-rejection/` | Reject unchanged and threshold-defined near-echo candidates as no improvement | Planned |
 | 13 | `013-capability-evidence-unblock/` | Supply dated evidence so supported provider controls reach transport while stale facts remain fail closed | Planned |
+| 14 | `014-code-and-doc-conformance/` | Record complete code-folder README coverage, reference-document conformance, package-gate alignment, and zero-defect review evidence | Complete |
 
-The first eight children remain implemented and verified. Phases 009 through 013 are planned follow-on workstreams and retain zero-percent completion until their own implementation evidence exists.
+The first eight children and Phase 014 are implemented and verified. Phases 009 through 013 are planned follow-on workstreams and retain zero-percent completion until their own implementation evidence exists.
 ### Phase Transition Rules
 
 - Each phase must pass `validate.sh` independently before its handoff.
@@ -164,6 +167,8 @@ The first eight children remain implemented and verified. Phases 009 through 013
 | 010 adjacent-span coalescing | 011 meaning-judge wiring | Representation and privacy decisions are explicit before production composition consumes candidates | Decision record, fidelity plan, and strict packet validation |
 | 011 meaning-judge wiring | 012 no-op rejection | Meaning-loss and no-change policies remain separate, typed production outcomes | Composition plan and strict packet validation |
 | 012 no-op rejection | 013 capability-evidence unblock | No-improvement policy remains independent from provider capability reachability | Threshold plan and strict packet validation |
+| 013 capability-evidence unblock | 014 code and documentation conformance | Capability work remains independent while the completed package documentation and implementation evidence are recorded | Phase 013 strict planned-packet validation plus Phase 014 conformance evidence |
+| 014 code and documentation conformance | Parent packet decision | All code-folder READMEs, operator references, package alignment, review evidence, and strict packet gates are complete | 27 code-folder validations, 6 reference validations, 289/289 tests, zero code defects, and strict validation |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -183,5 +188,6 @@ The first eight children remain implemented and verified. Phases 009 through 013
 - **Active child**: `009-prompt-token-contract/spec.md` (planned; implementation not started)
 - **Completed predecessor handover**: `008-packaging-and-release-hardening/handover.md`
 - **Planned follow-on range**: `009-prompt-token-contract/` through `013-capability-evidence-unblock/`
+- **Completed conformance phase**: `014-code-and-doc-conformance/implementation-summary.md`
 - **Reference implementation**: `context/claudish-to-english-main/`
 - **Graph metadata**: `graph-metadata.json`

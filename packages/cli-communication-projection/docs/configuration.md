@@ -1,7 +1,9 @@
 # Configuration
 
+## 1. OVERVIEW
+
 Choose one privacy mode explicitly. An ineligible or failed route returns the
-exact original; it never selects an undeclared provider.
+exact original. It never selects an undeclared provider.
 
 | Mode | Candidate providers | Egress consent | Fallback |
 | --- | --- | --- | --- |
@@ -12,31 +14,33 @@ exact original; it never selects an undeclared provider.
 Local-only policies should allow only `local-offline` and, when required,
 `local-networked`. Hosted policies must require fresh retention and training-use
 facts. Mixed policies must name every cross-class fallback and set
-`preservePrivacyClass` deliberately; ranking never creates a fallback.
+`preservePrivacyClass` deliberately. Ranking never creates a fallback.
 
-## Compatibility doctor
+---
+
+## 2. COMPATIBILITY DOCTOR
 
 Save the following as `operator/run-communication-projection-doctor.mjs`. It is
-a deterministic local configuration check: the injected reachability result
+a deterministic local configuration check. The injected reachability result
 contains no payload or credential. For a release, replace that injected result
 with the operator's bounded endpoint probe while keeping the same request and
 result types.
 
 ```js
-import { runCompatibilityDoctor } from '@portable-cli/communication-projection/doctor';
-import { createOllamaModelRecord } from '@portable-cli/communication-projection/providers';
-import { RuntimeCapabilityMatrix } from '@portable-cli/communication-projection/runtimes';
+import { runCompatibilityDoctor } from '@portable-cli/communication-projection/doctor'
+import { createOllamaModelRecord } from '@portable-cli/communication-projection/providers'
+import { RuntimeCapabilityMatrix } from '@portable-cli/communication-projection/runtimes'
 
-const now = '2026-08-12T12:00:00.000Z';
-const runtime = RuntimeCapabilityMatrix[0];
-if (!runtime) throw new Error('No supported runtime path is published.');
+const now = '2026-08-12T12:00:00.000Z'
+const runtime = RuntimeCapabilityMatrix[0]
+if (!runtime) throw new Error('No supported runtime path is published.')
 
 const provider = createOllamaModelRecord({
   modelId: 'operator-selected-model',
   privacyClass: 'local-offline',
   observedAt: '2026-08-12T00:00:00.000Z',
   capabilitiesExpireAt: '2026-08-20T00:00:00.000Z',
-});
+})
 
 const report = await runCompatibilityDoctor({
   proposedRuntimes: [{
@@ -58,10 +62,10 @@ const report = await runCompatibilityDoctor({
   perProbeDeadlineMs: 1_000,
   totalDeadlineMs: 2_000,
   now,
-});
+})
 
-console.log(JSON.stringify(report));
-if (report.overallDecision === 'blocked') process.exitCode = 1;
+console.log(JSON.stringify(report))
+if (report.overallDecision === 'blocked') process.exitCode = 1
 ```
 
 Run it with `node ./operator/run-communication-projection-doctor.mjs`. Treat a

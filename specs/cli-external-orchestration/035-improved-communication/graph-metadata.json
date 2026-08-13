@@ -16,7 +16,8 @@
     "cli-external-orchestration/035-improved-communication/010-adjacent-span-coalescing",
     "cli-external-orchestration/035-improved-communication/011-meaning-judge-wiring",
     "cli-external-orchestration/035-improved-communication/012-no-op-rejection",
-    "cli-external-orchestration/035-improved-communication/013-capability-evidence-unblock"
+    "cli-external-orchestration/035-improved-communication/013-capability-evidence-unblock",
+    "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance"
   ],
   "manual": {
     "depends_on": [],
@@ -54,7 +55,9 @@
       "007-evaluation-and-observability/spec.md",
       "009-prompt-token-contract/spec.md",
       "013-capability-evidence-unblock/spec.md",
-      "008-packaging-and-release-hardening/handover.md"
+      "014-code-and-doc-conformance/spec.md",
+      "008-packaging-and-release-hardening/handover.md",
+      "014-code-and-doc-conformance/implementation-summary.md"
     ],
     "entities": [
       {
@@ -102,15 +105,15 @@
     ],
     "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
     "created_at": "2026-08-11T06:21:47Z",
-    "last_save_at": "2026-08-13T04:26:07.202Z",
+    "last_save_at": "2026-08-13T05:56:57.797Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d9feb5a78681d121ae76fcd0b1002cdb40dd3bcb2efcf4574e063a6a297b43d6",
+    "source_fingerprint": "sha256:d15e366efa88b8431be492ae4418f9668d8421cffd71c949bd565223e97e19e2",
     "source_doc_hashes": {
-      "spec.md": "6d4cbb3178aed6ef1a6fc3eb75b58fddc56901b8e0028ea3d88f3de33989ae17"
+      "spec.md": "45183ebf5e24d8b87eae4cdb4f7d5bfe4a05ad586528adea57acf49c09ac2f3d"
     },
     "last_active_child_id": "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy",
     "last_active_at": "2026-08-12T05:25:21.635Z"
