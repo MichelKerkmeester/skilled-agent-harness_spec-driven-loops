@@ -23,15 +23,23 @@
       "groups",
       "phase",
       "consolidation",
-      "deep"
+      "implementation"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "research/research.md",
       "spec.md",
-      "research/research.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -39,9 +47,15 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "research/research.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -51,9 +65,87 @@
         "source": "derived"
       },
       {
-        "name": "Phase Consolidation Research Deep",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Inventory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -85,26 +177,24 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Feasibility And Benefit",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Research whether the 036 phase-parent children can be merged into fewer larger multi-phase groups.",
     "created_at": "2026-08-13T20:13:43.688Z",
-    "last_save_at": "2026-08-13T20:13:43.688Z",
+    "last_save_at": "2026-08-13T20:51:50.464Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f26174e7f0e0b7e6d420f8941c07194f7fcb2011ab4dcb66f2bb3b179c1280af",
+    "source_fingerprint": "sha256:ade401c3392742d610a38a775326de11714bfc3adbb12898444df6d7a17028a2",
     "source_doc_hashes": {
-      "spec.md": "1f50774f40ea92e92b1430055bb4fd9f9e987a1b775e593dd3430ade05fe0956",
+      "spec.md": "3f773cc451455d1a1cf85380252f66ad496d24ab07fbc4f307170380cba36cbf",
+      "plan.md": "a5926c14b9e0721e4b73eb99eaa667a8574d78a4a2f627a4fe37a06ffc686a7a",
+      "tasks.md": "84d850895f6afe626c92531bfbd4b1de75e96b2890234a594c6e65ecad771ceb",
       "research/research.md": "9776ee8bca9bd9603ecf3226fa595e8f12857decd30b582363984dbce546978f"
     },
     "last_active_child_id": null,
