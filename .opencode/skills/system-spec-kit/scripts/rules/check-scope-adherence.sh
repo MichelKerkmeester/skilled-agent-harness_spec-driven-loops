@@ -154,12 +154,15 @@ run_check() {
             continue
         fi
         for declared_prefix in "${declared_prefixes[@]}"; do
+            # Declared paths are repo-relative, so match them anchored at the repo
+            # root (exact file or path-prefix) rather than as a substring that could
+            # match the same segment nested under an unrelated ancestor.
             if [[ "$declared_prefix" == */ ]]; then
-                if [[ "$changed_file" == "$declared_prefix"* || "$changed_file" == *"/$declared_prefix"* ]]; then
+                if [[ "$changed_file" == "$declared_prefix"* ]]; then
                     matched=true
                     break
                 fi
-            elif [[ "$changed_file" == "$declared_prefix" || "$changed_file" == "$declared_prefix/"* || "$changed_file" == *"/$declared_prefix" || "$changed_file" == *"/$declared_prefix/"* ]]; then
+            elif [[ "$changed_file" == "$declared_prefix" || "$changed_file" == "$declared_prefix/"* ]]; then
                 matched=true
                 break
             fi

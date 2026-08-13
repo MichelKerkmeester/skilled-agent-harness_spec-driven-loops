@@ -82,4 +82,12 @@ describe('SCOPE_ADHERENCE rule', () => {
     expect(r.status).toBe('warn');
     expect(r.violations).toBe('other/spec.md');
   });
+
+  it('matches declared prefixes anchored at the repo root, not as a nested substring', () => {
+    // The declared prefix `.opencode/skills/foo/` must not match the same segment
+    // nested under an unrelated ancestor.
+    const r = run({ MK_SCOPE_CHANGED_FILES: 'nested/.opencode/skills/foo/x.ts' });
+    expect(r.status).toBe('warn');
+    expect(r.violations).toBe('nested/.opencode/skills/foo/x.ts');
+  });
 });
