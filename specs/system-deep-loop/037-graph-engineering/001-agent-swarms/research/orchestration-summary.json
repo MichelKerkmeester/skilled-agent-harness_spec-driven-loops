@@ -1,0 +1,71 @@
+{
+  "run_id": "1786644869562-gvk422",
+  "loop_type": "research",
+  "spec_folder": "specs/system-deep-loop/037-graph-engineering/001-agent-swarms",
+  "base_artifact_dir": "specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "agent-swarms-sol-high",
+      "state_log": "specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/lineages/agent-swarms-sol-high/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-13T18:14:29.566Z",
+        "end_at_iso": "2026-08-13T18:32:05.931Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 18,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 23
+      },
+      "sample": [
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-08-13T18:36:00Z",
+          "deltaMs": 114069
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-08-13T18:40:00Z",
+          "deltaMs": 354069
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-08-13T18:44:00Z",
+          "deltaMs": 594069
+        },
+        {
+          "index": 8,
+          "reason": "after_window",
+          "timestamp": "2026-08-13T18:48:00Z",
+          "deltaMs": 834069
+        },
+        {
+          "index": 9,
+          "reason": "after_window",
+          "timestamp": "2026-08-13T18:52:00Z",
+          "deltaMs": 1074069
+        }
+      ]
+    }
+  ]
+}

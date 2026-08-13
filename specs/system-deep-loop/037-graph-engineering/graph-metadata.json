@@ -3,7 +3,10 @@
   "packet_id": "system-deep-loop/037-graph-engineering",
   "spec_folder": "system-deep-loop/037-graph-engineering",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "system-deep-loop/037-graph-engineering/001-agent-swarms",
+    "system-deep-loop/037-graph-engineering/002-graphene-main"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -31,7 +34,7 @@
       "linear"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "research/research.md",
       "research/deep-research-state.jsonl",
@@ -147,7 +150,7 @@
     ],
     "causal_summary": "The system-deep-loop workflows are iteration-based loops with linear dispatch, externalized JSONL state, and convergence detection",
     "created_at": "2026-08-08T14:32:54.230Z",
-    "last_save_at": "2026-08-08T14:32:54.230Z",
+    "last_save_at": "2026-08-13T21:14:44.989Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -159,7 +162,7 @@
       "spec.md": "8d4302ce2c2c265753c5d73b6d5b91249993c7058d17342b4198c5e284553e82",
       "research/research.md": "b793ff079f3843c08e3440e063c033132815ae278042d8fd9a036e2b2f755c3c"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-deep-loop/037-graph-engineering/001-agent-swarms",
     "last_active_at": null
   }
 }

@@ -1,0 +1,71 @@
+{
+  "run_id": "1786648621541-lzda3r",
+  "loop_type": "research",
+  "spec_folder": "specs/system-deep-loop/037-graph-engineering/002-graphene-main",
+  "base_artifact_dir": "specs/system-deep-loop/037-graph-engineering/002-graphene-main/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "graphene-main-sol-high",
+      "state_log": "specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-13T19:17:01.545Z",
+        "end_at_iso": "2026-08-13T20:51:05.831Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 11,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 24
+      },
+      "sample": [
+        {
+          "index": 13,
+          "reason": "after_window",
+          "timestamp": "2026-08-13T21:01:00.000Z",
+          "deltaMs": 474169
+        },
+        {
+          "index": 14,
+          "reason": "after_window",
+          "timestamp": "2026-08-13T21:11:00.000Z",
+          "deltaMs": 1074169
+        },
+        {
+          "index": 15,
+          "reason": "after_window",
+          "timestamp": "2026-08-13T21:21:00.000Z",
+          "deltaMs": 1674169
+        },
+        {
+          "index": 16,
+          "reason": "after_window",
+          "timestamp": "2026-08-13T21:31:00.000Z",
+          "deltaMs": 2274169
+        },
+        {
+          "index": 17,
+          "reason": "after_window",
+          "timestamp": "2026-08-13T21:41:00.000Z",
+          "deltaMs": 2874169
+        }
+      ]
+    }
+  ]
+}

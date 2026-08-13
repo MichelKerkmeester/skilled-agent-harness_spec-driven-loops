@@ -1,0 +1,282 @@
+{
+  "mergedFrom": [
+    "graphene-main-sol-high"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "P1",
+      "status": "answered-exhausted",
+      "repo1Relation": [
+        "REFINE",
+        "EXTEND"
+      ],
+      "decision": "Adopt a purpose-bound, disposable BeliefProjectionV1 over verified events; only non-stale IN premises are usable, and control use requires checked quiescence plus selected 036 authority state and epoch.",
+      "whenNotToUse": [
+        "direct immutable facts",
+        "validated one-pass DAGs",
+        "explanation-only output",
+        "surfaces already decided by existing evidence signals"
+      ],
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/context/graphene-main/crates/graphene-core/src/belief.rs:136-177]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-017.md:9-21]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-020.md:28-32]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "P2",
+      "status": "answered-exhausted",
+      "repo1Relation": [
+        "REFINE",
+        "CONTRADICT_GRAPHENE_COMPACTION"
+      ],
+      "decision": "Use reference-closed independent domain and audit cuts, exact-version or registered no-op reduction, and disposable verified checkpoints; never compact committed authority history.",
+      "whenNotToUse": [
+        "cheap genesis replay",
+        "deliberately domain-only reads",
+        "unknown event, upcaster, reducer, audit-closure, or canonicalizer identity"
+      ],
+      "evidence": [
+        "[SOURCE: .opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/deterministic-reducer.ts:43-135]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/context/graphene-main/crates/graphene-store/src/lib.rs:342-395]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-020.md:34-38]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "P3",
+      "status": "answered-exhausted",
+      "repo1Relation": [
+        "REFINE",
+        "EXTEND"
+      ],
+      "decision": "Compare authorized causal operation prefixes with independent checkpoints, closed normalization, proven partial orders, and manifest-bound mutants; refused prefixes prove zero domain, budget, and effect mutation plus one linked audit denial.",
+      "whenNotToUse": [
+        "UI rendering",
+        "token streaming",
+        "transport throughput",
+        "intentionally non-semantic formatting",
+        "local units with stronger direct oracles"
+      ],
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-016.md:7-33]",
+        "[SOURCE: specs/system-deep-loop/036-deep-loop-innovation/008-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness/spec.md:60-104]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-020.md:40-44]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "P4",
+      "status": "answered-exhausted",
+      "repo1Relation": [
+        "CONFIRM",
+        "REFINE"
+      ],
+      "decision": "Every protected mutation is claimant-addressed and target-complete; claim, authority epoch, idempotency, all fences, all expected versions or heads, and transition rules are revalidated atomically at commit.",
+      "whenNotToUse": [
+        "read-only queries",
+        "immutable content-addressed writes without replacement, append, alias, debit, or external-effect races"
+      ],
+      "evidence": [
+        "[SOURCE: .opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-lease-coordinator.ts:432-488]",
+        "[SOURCE: .opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/fenced-state-store.ts:110-177]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-020.md:46-50]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "P5",
+      "status": "answered-exhausted",
+      "repo1Relation": [
+        "EXTEND",
+        "CONTRADICT_GRAPHENE_UNSAFE_PATHS"
+      ],
+      "decision": "Order semantic supersession by observedAt plus authorizedSequence while replay stays ledger ordered; preview all truth-affecting candidates against one clean base and commit only after prospective fixed-point, successor, cycle, and nogood checks under one serializable belief-admission fence/version.",
+      "whenNotToUse": [
+        "versioned proven closure-disjoint work",
+        "offline quarantined imports",
+        "immutable evidence without truth-affecting relations",
+        "static invariants handled by simpler transactions"
+      ],
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/context/graphene-main/crates/graphene-core/src/time.rs:84-129]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/orientation.md:38-48]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-020.md:52-56]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "P6",
+      "status": "answered-exhausted",
+      "repo1Relation": [
+        "REFINE",
+        "EXTEND"
+      ],
+      "decision": "TransitionRefusalV1 is a versioned authority-none operation outcome linked to the durable audit denial; it is never an event, command, capability, allow proof, effect, or executable repair, and every suggestion requires a fresh authorized request.",
+      "whenNotToUse": [
+        "local parser/input errors without a gateway decision",
+        "presentation-only errors",
+        "transports with an already-complete bounded typed error"
+      ],
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/context/graphene-main/crates/graphene-core/src/refusal.rs:1-78]",
+        "[SOURCE: .opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts:570-618]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-020.md:58-62]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "P7",
+      "status": "answered-exhausted",
+      "repo1Relation": [
+        "REFINE",
+        "EXTEND"
+      ],
+      "decision": "A durable human gate binds exact topology, evidence, belief, principal, capability, version, fence, expiry, timeout, and semantic dependencies; consequence append revalidates all of them, and external effect authorization remains separate.",
+      "whenNotToUse": [
+        "informational acknowledgements",
+        "display-only preferences",
+        "interactions without consequence-bearing edges, mutations, budget changes, or effects"
+      ],
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/context/graphene-main/crates/graphene-exec/src/lib.rs:599-705]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-017.md:51-58]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-020.md:64-68]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F-004",
+      "finding": "Fold-equivalent projection bytes do not justify deleting committed authority history because authorization, audit, replay, and historical reads observe more than final state.",
+      "relation": "CONTRADICT_GRAPHENE_COMPACTION",
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/context/graphene-main/crates/graphene-store/src/lib.rs:363-395]",
+        "[SOURCE: specs/system-deep-loop/036-deep-loop-innovation/006-transition-authorized-ledger-core/003-replay-fingerprints/spec.md:90-100]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "F-003",
+      "finding": "Graphene's four-valued belief model is useful only with purpose/source identity, checked termination, prospective admission, and authority-disposition guards.",
+      "relation": "REFINE",
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/context/graphene-main/crates/graphene-core/src/belief.rs:136-177]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-017.md:9-21]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "F-002",
+      "finding": "Only the governed per-mode 036 authority state and epoch select a control owner; projections, parity, checkpoints, refusals, alerts, and human choices cannot become authority by interpretation.",
+      "relation": "CONFIRM",
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/transition-versioning-and-rollback-policy.md:174-208]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "F-008",
+      "finding": "Refusal advice and human choices are context-bearing outcomes, not capabilities; both must enter a fresh gateway decision before any consequence or effect.",
+      "relation": "EXTEND",
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-017.md:43-58]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "F-001",
+      "finding": "Repo 1 remains the controlling architecture; Graphene contributes seven concrete mechanisms and counterexamples but no replacement authority plane.",
+      "relation": "CONFIRM_AND_EXTEND",
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/research.md:13-95]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-020.md:70-72]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "F-007",
+      "finding": "Semantic observation order and deterministic replay order are distinct; merging them into timestamp order or one synthetic domain/audit sequence destroys evidence.",
+      "relation": "REFINE",
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/context/graphene-main/crates/graphene-core/src/time.rs:84-110]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-017.md:29-42]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "F-005",
+      "finding": "Terminal parity is insufficient; an adapter can reach the same final state through an unauthorized, reordered, refused-but-mutating, or budget/effect-divergent prefix.",
+      "relation": "EXTEND",
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-016.md:14-58]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "F-009",
+      "finding": "The remaining frontier is executable and measured evidence, not another document pass; absence of promotion evidence does not reopen the settled research decisions.",
+      "relation": "REFINE",
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/lineages/graphene-main-sol-high/iterations/iteration-020.md:87-100]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    },
+    {
+      "id": "F-006",
+      "finding": "Worktree or lease isolation is not mutation authority; stale-successor safety exists only when the protected store atomically validates the current fence and expected state during the mutation.",
+      "relation": "CONFIRM_AND_REFINE",
+      "evidence": [
+        "[SOURCE: specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/006-locks-and-fencing/spec.md:91-102]",
+        "[SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md:223-230]"
+      ],
+      "_lineages": [
+        "graphene-main-sol-high"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 0,
+    "resolvedQuestions": 7,
+    "keyFindings": 9,
+    "sourceFindings": 9,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.46,
+    "coverageBySources": {}
+  }
+}
