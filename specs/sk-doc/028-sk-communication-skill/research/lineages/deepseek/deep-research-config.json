@@ -1,0 +1,57 @@
+{
+  "topic": "Deep-research the communication-projection capability (packages/cli-communication-projection/) and the sk-communication skill. Context: it rewrites terse CLI or agent output into plain English by tokenizing protected spans locally (paths, numbers, codes, secrets become opaque tokens), sending only tokenized prose to a model, then restoring real values locally; a fidelity gate fails closed to the exact original if any token is dropped, duplicated, or altered. A live DeepSeek smoke produced only modestly improved rewrites, some barely changed and one with prose artifacts, because aggressive tokenization fragments text into many opaque tokens the model must carry verbatim and no meaning-preservation judge was wired into that path. Investigate three angles and produce concrete, evidence-backed findings grounded in the real source: (1) IMPROVE QUALITY: why the rewrites underwhelm and what specific changes (tokenization granularity and strategy, adjacent-span handling, prompt design, per-model prompt profiles, model tier, wiring the meaning-preservation judge, few-shot examples) would make plain-English projection genuinely better while preserving the fidelity and privacy invariants; (2) ARCHITECTURE: whether local-tokenize then model then restore is the right design, or whether structured or templated rendering, semantic diffing, or a hybrid would yield better readable and safe output; (3) VALUE: whether the capability earns its complexity, where projection genuinely helps users versus simpler deterministic formatting, and which use cases justify it. Cite exact files, functions, and tradeoffs.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-doc/028-sk-communication-skill",
+  "artifactDir": "specs/sk-doc/028-sk-communication-skill/research/lineages/deepseek",
+  "fanout_lineage_artifact_dir": "specs/sk-doc/028-sk-communication-skill/research/lineages/deepseek",
+  "resource_map_present": false,
+  "resource_map": { "emit": true },
+  "createdAt": "2026-08-12T21:10:32.000Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4-pro",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1786568849119-wn6hux",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "deep-research-findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  }
+}
