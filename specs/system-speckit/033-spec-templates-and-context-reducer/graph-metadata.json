@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Two external agent-engineering write-ups landed as context material here (`context/Reducer Engineering.md`, `context/The $1.2M Agent Engineering skill.md`)",
     "created_at": "2026-08-12T05:47:02.666Z",
-    "last_save_at": "2026-08-12T07:16:29.321Z",
+    "last_save_at": "2026-08-13T05:59:18.651Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8de419fa7e9288d1723c6f9c4624f4889fbfb3e40a6b3b4b69b68af2a0230e70",
+    "source_fingerprint": "sha256:3035e2f8f90dc4740aa9b73913c78337036d22c7524b1ba36d0510770f6d67bc",
     "source_doc_hashes": {
-      "spec.md": "4af8272a7c96308dfa2b27d023486507b097e5890e38d91971963f767ca88d82",
-      "plan.md": "50ed104467f47cb0705c34bdeab1b89e52bcfe4f067022892f0d8c2e94edbbed",
-      "tasks.md": "1be84bce56d1e26a4060e76668050b84fd3b17b2b8b5a60d6732d73c68257374",
-      "implementation-summary.md": "78fa72559c4a5bb326ef53a4bc549381a4c7c1ef1ce497ddf59701d51b1462ff",
+      "spec.md": "8299fa3dc1e93f62ccf4768aa17dde5b6d4188ab7a0000b56a12669829db607d",
+      "plan.md": "6ca0f3962f8cf84827e800abbf77082ad964f2d9551c0ed0974107d61f5908a6",
+      "tasks.md": "d5dea35992490f34709e9f12353ed23ad92ee5e494bf31d479230a9e5429b04b",
+      "implementation-summary.md": "c0321efe22efb6094d1238518f2833d558bee1c0022f8933ef1d51ba73bda216",
       "research/research.md": "39e1ae7e73d662b612acee0f90b771e77509094e759782a0e34253bd9c0a57e1"
     },
     "last_active_child_id": null,

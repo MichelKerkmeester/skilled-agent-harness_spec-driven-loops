@@ -61,6 +61,8 @@ The implementation extended the strict path beyond the original shell-rule inven
 
 ### Rule Inventory
 
+> **Representative subset.** The table below is an illustrative sample of rule scripts, not the full set. The authoritative, complete rule roster — including `check-ac-coverage.sh` (advisory `AC_COVERAGE`, default-on) and `check-scope-adherence.sh` (advisory `SCOPE_ADHERENCE`, opt-in) — is the registry at `scripts/lib/validator-registry.json`.
+
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh` | Validation rule | Rule script discovered and executed by the orchestrator for the AI protocols domain |
@@ -83,8 +85,6 @@ The implementation extended the strict path beyond the original shell-rule inven
 | `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` | Validation rule | Rule script discovered and executed by the orchestrator for template-header validation |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-template-source.sh` | Validation rule | Rule script discovered and executed by the orchestrator for template-source validation |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-toc-policy.sh` | Validation rule | Rule script discovered and executed by the orchestrator for table-of-contents policy checks |
-
----
 
 ## 4. SOURCE METADATA
 - Group: Tooling And Scripts

@@ -26,7 +26,11 @@ ROOTS = [".opencode/skills", ".opencode/commands", ".opencode/agents"]
 SKIP = ("z_archive", "/tests/", "node_modules", "/dist/", "test-fixtures", "/scratch/")
 H2 = re.compile(r'^##\s+(\d+)\.\s+(.+?)\s*$')
 
-def is_upper(s): return s == s.upper()
+def is_upper(s):
+    # section heading if the title minus any parenthetical qualifier is uppercase,
+    # so "FILE-LAYER SURFACE (what the AI edits)" counts but title-case headings do not
+    core = re.sub(r'\([^)]*\)', '', s).strip()
+    return bool(core) and core == core.upper()
 def transparent(s): return (not s) or bool(re.fullmatch(r'<!--.*-->', s))
 
 def numbered_caps_h2(lines):

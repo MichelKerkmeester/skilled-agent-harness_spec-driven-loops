@@ -221,12 +221,16 @@ RESOURCE_MAP = {
 }
 ```
 
+---
+
 ## 3. SURFACE STANDARDS (the non-negotiables)
 
 - **CDN runtime reality.** Client scripts ship over a CDN with cache lag; treat every deploy as versioned and verify the minified runtime, not just the source. See `references/deployment/minification-guide/overview-terser-and-patterns.md` and `references/verification/verification-workflows/gate-and-automated-options.md`.
 - **Interaction-gated loading.** Heavy vendors (HLS.js, FilePond, Swiper) load on interaction/visibility, never eagerly. See `references/performance/interaction-gated-loading.md` and `references/implementation/observer-patterns/mutation-and-intersection.md`.
 - **Core Web Vitals are a gate, not a report.** LCP/CLS/INP regressions block; remediate against `references/performance/cwv-remediation.md` and `references/performance/webflow-constraints.md`.
 - **Focus and forms are accessibility-load-bearing.** Focus traps and upload flows follow `references/implementation/focus-management/selector-and-focus-trap.md` and `references/implementation/form-upload-workflows/overview-architecture-and-filepond.md`.
+
+---
 
 ## 4. ASSETS (on-demand, deferred from the first slice)
 

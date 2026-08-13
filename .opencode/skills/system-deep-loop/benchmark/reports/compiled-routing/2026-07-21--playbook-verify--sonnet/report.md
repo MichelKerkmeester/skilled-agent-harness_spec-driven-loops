@@ -12,6 +12,8 @@
 - **Legacy command**: `node .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs --skill .opencode/skills/system-deep-loop --task "<same>"`
 - **Comparison**: compiled `targets[0].workflowMode` (when `action==='route'`, else treated as no-route) vs legacy `intents[0]` (else none); `backendKind` cross-checked where the scenario doc states an expected backend (RB-001/002/003); guard scenarios (AI-003 bare wording, AI-004 plain code-edit) graded on both sides deferring; resources cross-checked against each scenario file's frontmatter `expected_resources`.
 
+---
+
 ## 2. SCENARIO ENUMERATION NOTE (read this before the table)
 
 The root `manual-testing-playbook.md` states "Total scenarios: 20" across 5 categories (`MO-001..005`, `IL-001..003`, `AI-001..004`, `RB-001..004`, `SC-001..004`). The `manual-testing-playbook/` directory tree actually contains a **21st** scenario file not listed in the root's Section 6/8 index: `compiled-routing/ordered-bundle-deep-mode-compiled-routing.md` (id `DL-CR-001`), which carries its own typed YAML frontmatter gold and Pass/Fail Criteria.

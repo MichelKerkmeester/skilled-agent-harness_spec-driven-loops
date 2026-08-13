@@ -1,15 +1,15 @@
 ---
 title: "Implementation Summary: Spec-Kit Template & Context Reducer Research"
-description: "Current state of the research packet: charter + launch plan authored; the multi-model deep-research loop is not yet launched."
+description: "Current state of the research packet: the multi-model deep-research loop completed (10 iters, 4 lineages) and findings are synthesized in research/research.md."
 importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-spec-templates-and-context-reducer"
-    last_updated_at: "2026-08-12T00:00:00Z"
+    last_updated_at: "2026-08-13T05:56:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Research complete; findings synthesized"
-    next_safe_action: "speckit:plan ranks 1,2,4 as an implementation packet"
+    recent_action: "Reconciled completion metadata; refreshed packet metadata"
+    next_safe_action: "Implemented as packet 034; research packet closed"
     blockers: []
     key_files:
       - "specs/system-speckit/033-spec-templates-and-context-reducer/research/research.md"
@@ -81,7 +81,7 @@ The launch mechanics were verified against live contracts before being written i
 
 - `generate-description.js` + graph-metadata backfill ran clean.
 - `validate.sh` targeted at this packet is the structural gate for the planning docs.
-- Research-phase verification (10/10 iterations, quality guards, no-mutation `git status`) is defined in `plan.md` §2 and runs after launch.
+- Research-phase verification (10/10 iterations completed, quality guards satisfied, no-mutation `git status`) ran as defined in `plan.md` §2; the four lineage state logs and `research/research.md` are the evidence.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -89,7 +89,7 @@ The launch mechanics were verified against live contracts before being written i
 <!-- ANCHOR:limitations -->
 ## 6. KNOWN LIMITATIONS
 
-- Research findings are not yet available; the ranked shortlist and refutation list are produced by the loop.
-- Two tier mappings await operator confirmation (non-blocking; sensible defaults taken).
-- Downstream: `/speckit:plan` scopes a separate implementation packet only if opportunities survive review.
+- Report-only: this packet delivers findings (`research/research.md` — verdict, ranked shortlist, refutation list); no runtime code was changed here. Implementation landed in the downstream packet 034.
+- One open question survives (does deep-research consume `research.md.tmpl`?) — answered during 034 (workflow-owned; savings are authoring-only).
+- Downstream: `/speckit:plan` scoped the implementation packet (034) from the surviving opportunities.
 <!-- /ANCHOR:limitations -->

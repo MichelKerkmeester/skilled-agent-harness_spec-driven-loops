@@ -46,6 +46,8 @@ These recipes edit chart blocks inside notes and the plugin settings file. Every
 
 Validation checkpoint names live in troubleshooting.md section 4.
 
+---
+
 ## 3. ADD A BASIC CHART (chart YAML)
 
 Before:
@@ -72,6 +74,8 @@ series:
 - Use the `width` key to size the canvas, for example `width: 80%`.
 - Set `legend: false` when the chart has a single series.
 - Prefer copying a working block from the vault over inventing keys.
+
+---
 
 ## 4. ADD AN ADVANCED CHART (advanced-chart JSON)
 

@@ -14,8 +14,6 @@ expected_leaf_resources: []
 
 This scenario validates the phase 018 spec-doc structure validator for `201`. It focuses on the five fail-closed rules and the thin `_memory.continuity` block.
 
----
-
 ## 2. SCENARIO CONTRACT
 
 
@@ -96,7 +94,7 @@ x FRONTMATTER_MEMORY_BLOCK: 3 frontmatter_memory_block issue(s) found
 + COMMENT_HYGIENE_MARKER: No ephemeral comment-hygiene markers found
 + SCAFFOLD_NEVER_TOUCHED: Spec status is 'In Progress', not Complete; scaffold markers are allowed
 + EVIDENCE_CITED: No checklist.md (Level 1 or missing)
-+ AC_COVERAGE: Acceptance coverage gate disabled (set SPECKIT_AC_COVERAGE=true to enable advisory scan)
++ AC_COVERAGE: Acceptance coverage gate not active for this level or lifecycle state
 + TOC_POLICY: TOC policy passed: no TOC headings in non-research spec documents
 + PHASE_LINKS: No phase folders detected (non-phased spec)
 + PHASE_PARENT_CONTENT: Not a phase parent; content-discipline scan skipped
@@ -136,14 +134,10 @@ BLOCKED: scenario command 4 requires repairing the continuity block in the selec
 
 Inspect `mcp-server/lib/validation/spec-doc-structure.ts` rule dispatch, validate.sh aliases, and the continuity block renderer
 
----
-
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [memory-quality-and-indexing/spec-doc-structure-validator.md](../../feature-catalog/memory-quality-and-indexing/spec-doc-structure-validator.md)
 - Source files: `mcp-server/lib/validation/spec-doc-structure.ts`, `scripts/spec/validate.sh`
-
----
 
 ## 5. SOURCE METADATA
 

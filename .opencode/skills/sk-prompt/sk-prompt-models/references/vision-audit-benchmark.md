@@ -20,6 +20,8 @@ version: 0.9.0.1
 
 This reference records the image-input capability matrix, transport constraints, and benchmark evidence for the small-model rotation. Treat unverified transport claims as operator checks, not as dispatch guarantees.
 
+---
+
 ## 2. CAPABILITY MATRIX (image input)
 
 Source: opencode's `models.dev` cache (`~/.cache/opencode/models.json`, the data opencode
@@ -37,6 +39,8 @@ Takeaway: of the four coding-flagship candidates, **only MiniMax-M3 and Kimi k2.
 vision**. DeepSeek-v4-pro and MiMo-v2.5-pro are text-only — their VL siblings are different
 models. GLM-5.2 is multimodal in practice despite its registry flag.
 
+---
+
 ## 3. TRANSPORT (direct API — opencode `--file` is broken here)
 
 opencode `run --file <image>` does **not** deliver the image to custom OpenAI-compatible
@@ -53,6 +57,8 @@ providers (bug #20802), so vision dispatch must go direct to each provider's HTT
   OpenAI `image_url` data-URI block. Keep `max_tokens` large — thinking is consumed first.
 
 Keys come from `~/.local/share/opencode/auth.json` (`<provider>.key`).
+
+---
 
 ## 4. ACCURACY BENCHMARK (the part that matters)
 

@@ -61,6 +61,8 @@ contextType: implementation
 - Theme: `light` if the page background is light, `dark` if dark, `mixed` if it
   alternates full-bleed light and dark sections.
 
+---
+
 ## 2. INTRO PARAGRAPH (unlabeled, directly under the header)
 
 One paragraph, 4–6 sentences. Characterize the system's voice: canvas, the dominant

@@ -72,9 +72,9 @@ _memory:
 ## Phase 3: Normalize the fleet (dividers DONE; TOC/anchor strip pending)
 
 - [ ] T009 Triage the ~54 `<!-- ANCHOR -->` files into a keep (continuity) vs strip (nav) allowlist
-- [x] T010 [P] Added missing `---` dividers across applicable types via a deterministic insert-only fixer (`scratch/fix_dividers.py`): 993 files / 2,642 gaps closed. Content-preservation proven on 15 clean HEAD copies (0 content lines lost); flag-on validator = 0 remaining divider gaps fleet-wide. Recovery baseline HEAD `bf21ec96d5`.
+- [x] T010 [P] Added missing `---` dividers via a deterministic insert-only fixer (`scratch/fix_dividers.py`): 993 files / 2,642 gaps (strict ALL-CAPS) + 16 files / 26 gaps (ALL-CAPS with lowercase parenthetical qualifier, per operator scope choice) = 1,009 files / 2,668 gaps. Content-preservation proven on clean HEAD copies (0 content lost); deepseek-flash read-only audit confirmed non-destructive. Detection widened via `_section_caps_ignoring_qualifier`. Strict round committed in `947f8a6b58`; widening round on disk, uncommitted.
 - [ ] T011 [P] Strip vestigial TOC (7 files) and nav-anchors; normalize any remaining single-dash slugs per the T003 finding
-- [~] T012 Re-run census: divider gaps = 0 (done). TOC/nav-anchor count pending T009/T011.
+- [~] T012 Re-run census: in-scope divider gaps = 0 (done). 60 genuinely-title-case gaps (e.g. `## 1. first failing stage:`, function-signature headings) intentionally OUT of scope per operator choice. TOC/nav-anchor count pending T009/T011.
 - [ ] T013 After T011, flip `SKDOC_ENFORCE_STRUCTURE` to default-on (blocking) — NOT before, or the un-stripped TOC files fail
 <!-- /ANCHOR:phase-3 -->
 

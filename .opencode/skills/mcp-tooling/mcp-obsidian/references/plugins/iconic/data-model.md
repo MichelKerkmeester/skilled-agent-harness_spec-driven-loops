@@ -36,6 +36,8 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 - Rendering is in-app only; the AI edits the JSON and the app reflects it after reload.
 - Safe-merge discipline (from the Iconic-Setup bundle's `merge_rules.py`): back up `data.json` before any change, merge only what was requested, preserve everything else.
 
+---
+
 ## 2. TOP-LEVEL KEYS (from the live vault rulebook)
 
 | Key | Type | Meaning |
@@ -98,6 +100,8 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 - Merge it by stable rule `id` into a freshly-read vault `data.json`: update rules whose ids already exist, append rules with missing ids, preserve everything else.
 - `assets/plugins/iconic/iconic-rules.full.md` is the template-conformant usage companion: rule-class coverage and the safe-merge contract, with the full JSON as the exact source.
 - `assets/plugins/iconic/iconic-rules.example.json` remains the compact schema sample (2 file + 1 folder rules).
+
+---
 
 ## 4. SAFE-MERGE DISCIPLINE (mandatory)
 

@@ -34,6 +34,8 @@ Renders interactive health visualizations from data files **already in the vault
 
 Chart coverage is shared across platforms for common activity, heart, respiratory/vitals, sleep, mobility, workout, body, nutrition, and hearing fields. Mood/State of Mind and HealthKit-style medication catalog/dose events are iOS-only; Android walking symmetry is partial and Android Stand can use an explicit steps-derived proxy when `standHours` is missing.
 
+---
+
 ## 3. FILE-LAYER SURFACE (what the AI touches)
 
 | Layer | Path / artifact | Safe handling |
@@ -46,6 +48,8 @@ Chart coverage is shared across platforms for common activity, heart, respirator
 | Chart placement | `health-viz` fenced block in a note | Yes — insert the render block |
 | Plugin settings | `.obsidian/plugins/health-md/data.json` | Read the full contract (folder/structure/pattern/format plus theme/palette/appearance, chart dimensions, click behavior); edit only on explicit user request |
 | Enablement | `.obsidian/community-plugins.json` | Yes (Phase 11 done) |
+
+---
 
 ## 4. RENDER BLOCK (quick start)
 
@@ -61,6 +65,8 @@ Block contract, per the plugin's renderer registry:
 - Dates may be ISO dates or datetimes, built-in dynamic variables such as `{{today:YYYY-MM-DD}}`, or frontmatter variables. Raw Templater or Dataview expressions are not a reliable substitute.
 - Appearance keys override global theme, palette, and colors; canvas click behavior can pin the tooltip, open the source file, or open a Daily Note. Some HTML/SVG/Leaflet renderers have no canvas tooltip layer.
 - Prefer copying an existing working block from the vault over inventing keys; unknown block options render nothing.
+
+---
 
 ## 5. VERIFICATION TRAP (bundled mock data)
 

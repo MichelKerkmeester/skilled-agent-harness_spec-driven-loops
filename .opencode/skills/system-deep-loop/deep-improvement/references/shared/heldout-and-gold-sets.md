@@ -39,6 +39,8 @@ The pilot behind spec 143 proved two things about benchmark-driven improvement: 
 
 A gold set anchors the GRADER, not the proposer: a small output set with human-agreed target scores, re-scored whenever the grader model changes. Disagreement beyond ~2 of 25 (or 8 of 100) means recalibrate before trusting new grades. Keep gold outputs and target scores version-locked outside any tree a loop can write.
 
+---
+
 ## 4. GRADER RULES (cross-reference)
 
 - The grader must be a **different model family** from whatever produced the outputs (`scripts/shared/model-family.cjs`; Lane B refuses same-family LLM grading without `--allow-same-family`).
