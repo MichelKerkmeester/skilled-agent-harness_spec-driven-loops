@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The projection layer was reachable by default, and the advisor could recommend `sk-communication` automatically",
     "created_at": "2026-08-13T18:51:56.591Z",
-    "last_save_at": "2026-08-13T19:03:36.182Z",
+    "last_save_at": "2026-08-14T06:15:08.679Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a49cba35cee91f02ebc7b1b3919d8c9e7b1a9ab3e1716f86f33fcda12f6245a2",
+    "source_fingerprint": "sha256:a06a1f9e38c870cbfaafa5c0779749ad69b01476ff8dec612ff2bb0ac2c2399d",
     "source_doc_hashes": {
-      "spec.md": "491e9d7e2022f176e2659faee9c9c855f7eb57dc57526a02e26d3a4b3167baa3",
+      "spec.md": "9360ed2a40d419dc1c716ad15950a781e585b2884a717ccab923fcdf95548f2f",
       "plan.md": "efa54fe6bca703322f96346a7a553fdd75729ed7c6d36f689e947b15d730e80b",
       "tasks.md": "1d461d4cc9c19612a85eafc12629838a8c08644c52b205ef16286f38e61b5bce",
       "checklist.md": "0efe5bb0dbd5d330a0b25d6c86c59d802eb1a5ca98cec35f8ac8c4fe1265af69",
       "decision-record.md": "c2d56536237d2a20a4ff37bf64b2848ba419487aec9a100379b728454a9b21eb",
-      "implementation-summary.md": "3f3a5a6ae28b0a12f368130717f6bd5d4b49fe7ee973a801b0e015955de80957"
+      "implementation-summary.md": "b467fbf9beff71a5048f2a30932f7d754fd0e6fbdcebf642fcd2920c77d61b23"
     },
     "last_active_child_id": null,
     "last_active_at": null

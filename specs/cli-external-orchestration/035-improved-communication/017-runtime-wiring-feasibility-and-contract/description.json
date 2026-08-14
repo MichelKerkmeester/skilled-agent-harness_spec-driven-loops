@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/035-improved-communication/017-runtime-wiring-feasibility-and-contract",
+  "description": "The projection layer must be wired into runtime output, but the runtimes do not share a uniform hook surface",
+  "keywords": [
+    "projection",
+    "layer",
+    "must",
+    "wired",
+    "runtime",
+    "output",
+    "runtimes",
+    "share",
+    "uniform",
+    "hook",
+    "surface"
+  ],
+  "lastUpdated": "2026-08-14T09:36:46.616Z",
+  "specId": "017",
+  "folderSlug": "runtime-wiring-feasibility-and-contract",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

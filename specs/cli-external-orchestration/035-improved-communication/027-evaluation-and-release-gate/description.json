@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/035-improved-communication/027-evaluation-and-release-gate",
+  "description": "The evaluation harness can already produce a blind non-inferiority verdict and the release gate can already block on dated evidence, but the",
+  "keywords": [
+    "evaluation",
+    "harness",
+    "already",
+    "produce",
+    "blind",
+    "non-inferiority",
+    "verdict",
+    "release",
+    "gate",
+    "block",
+    "dated",
+    "evidence"
+  ],
+  "lastUpdated": "2026-08-14T09:22:44.398Z",
+  "specId": "027",
+  "folderSlug": "evaluation-and-release-gate",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/016-default-off-and-advisor-exclusion"
-    last_updated_at: "2026-08-13T19:03:35.000Z"
+    last_updated_at: "2026-08-14T06:14:47.000Z"
     last_updated_by: "claude"
     recent_action: "Recorded the completed default-off enablement gate and advisor route-exclusion."
     next_safe_action: "After landing on main, rebuild the advisor dist, reindex, and re-probe to confirm the exclusion."
@@ -64,7 +64,7 @@ Communication projection is now off by default for everyone, privately opt-in-ab
 | **Parent Spec** | `../spec.md` |
 | **Phase** | 16 of 16 |
 | **Predecessor** | `015-package-into-skill` |
-| **Successor** | Parent packet decision |
+| **Successor** | `017-runtime-wiring-feasibility-and-contract` |
 | **Handoff Criteria** | Projection resolves to off with no opt-in present, the two opt-in sources switch it on with the environment variable winning, the advisor no longer recommends `sk-communication` under a live probe, the package gate passes 296 of 296 tests, the advisor route-exclusion tests pass with zero new failures against the known 41-failure baseline, and this phase plus the parent pass strict validation with zero errors and warnings. |
 <!-- /ANCHOR:metadata -->
 

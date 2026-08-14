@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/035-improved-communication/028-wiring-docs-and-operator-rollout",
+  "description": "Projection is now wired across six runtimes, but the operator has no single, current source of truth for turning it on safely, so the enablement",
+  "keywords": [
+    "projection",
+    "now",
+    "wired",
+    "across",
+    "six",
+    "runtimes",
+    "operator",
+    "single",
+    "current",
+    "source",
+    "truth",
+    "turning",
+    "safely",
+    "enablement"
+  ],
+  "lastUpdated": "2026-08-14T09:04:55.006Z",
+  "specId": "028",
+  "folderSlug": "wiring-docs-and-operator-rollout",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "14-08-26_10-01__manual-context-save.md",
+    "14-08-26_10-04__manual-context-save.md"
+  ]
+}

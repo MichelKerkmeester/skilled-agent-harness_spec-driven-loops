@@ -9,7 +9,7 @@ export {
   assessSupportMatrixFreshness,
   createSupportMatrix,
 } from './support-matrix.js';
-export { evaluateReleaseReadiness } from './release-gate.js';
+export { evaluateReleaseReadiness, evaluateRuntimeRollout } from './release-gate.js';
 export { OriginalOnlyEmergencyMode, planRollback } from './rollback.js';
 export { ReleaseAbortReasonCodes } from './evidence.js';
 
@@ -41,6 +41,10 @@ export type {
   ReleaseReadinessDecision,
   RuntimeSmokeEvidence,
 } from './evidence.js';
+export type {
+  RuntimeRolloutDecision,
+  RuntimeRolloutInput,
+} from './release-gate.js';
 export type {
   DisableProjectionRollbackStep,
   OriginalOnlyEmergencyModeConfig,

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/035-improved-communication/026-capability-and-privacy-gating",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/026-capability-and-privacy-gating",
+  "parent_id": "cli-external-orchestration/035-improved-communication",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "capability-and-privacy-gating",
+      "capability and privacy gating",
+      "compatibility doctor pre-projection gate",
+      "privacy-fact freshness gate",
+      "original-only fail-closed gate",
+      "implementation plan",
+      "tasks",
+      "verification checklist",
+      "quality gate",
+      "architecture decision",
+      "doctor binding gate and fail-closed original selection",
+      "capability and privacy gate implementation"
+    ],
+    "key_topics": [
+      "capability-and-privacy-gating",
+      "capability",
+      "privacy",
+      "gating",
+      "compatibility",
+      "doctor",
+      "pre-projection",
+      "gate",
+      "privacy-fact",
+      "freshness",
+      "original-only",
+      "fail-closed"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Privacy Gating",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Wire",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The projection seams built in Phases 019-025 gate on enablement and fail open to the byte-exact original on error, but none of them yet consult the compatibility doctor before projecting",
+    "created_at": "2026-08-14T05:50:33.697Z",
+    "last_save_at": "2026-08-14T09:26:41.418Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2a6165745c94a401433610d2bb4e1af2f75b727602072681c009e2f23421d9a5",
+    "source_doc_hashes": {
+      "spec.md": "1238d2f2acd0ff66fe83890eccf147e20c30a23d85644b698c4c6c53b659b25b",
+      "plan.md": "a90277f22adafc8f61ee6849569aa5133a4a12aa31b0a30b668ab2abccebe6ab",
+      "tasks.md": "6fea28f6cbb82a51108a9630ad12d1b24d121acb2890afa52d5db2b0af39dced",
+      "checklist.md": "efd77544e09e3dca30f79f74dec8ccae90662bda5770b3efcf4d2c24d99286e2",
+      "decision-record.md": "e62c2846407ac3690521d815fcb73fd7487459cea4bc89571f088273819c20b1",
+      "implementation-summary.md": "4c38a1181a5a4cc39a828daae36d8844e53d91b21e5f3634e4d479e6db0a6f70"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

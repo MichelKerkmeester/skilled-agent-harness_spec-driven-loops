@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/035-improved-communication/023-pi-wrapper",
+  "description": "Pi exposes a `turnend` event that delivers the ending assistant message, but in-repo the event handler only reads that message and injects context",
+  "keywords": [
+    "exposes",
+    "turnend",
+    "event",
+    "delivers",
+    "ending",
+    "assistant",
+    "message",
+    "in-repo",
+    "handler",
+    "only",
+    "reads",
+    "injects",
+    "context"
+  ],
+  "lastUpdated": "2026-08-14T08:40:23.301Z",
+  "specId": "023",
+  "folderSlug": "pi-wrapper",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
