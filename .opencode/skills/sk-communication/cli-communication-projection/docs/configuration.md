@@ -97,3 +97,54 @@ Every activation path calls `isProjectionEnabled()` before it projects. When the
 answer is `false`, the path returns the exact original output and no rewrite runs.
 The decision itself is a pure function, `resolveProjectionEnablement(env,
 localOverride)`, so the rule is exhaustively testable without touching the disk.
+
+### The optional localProvider block
+
+Enablement alone only switches projection on. To name the local model that the
+projection calls, add a `localProvider` object to the same file next to
+`enabled: true`:
+
+```json
+{
+  "enabled": true,
+  "localProvider": {
+    "kind": "ollama",
+    "model": "llama3.2"
+  }
+}
+```
+
+The block takes three fields:
+
+| Field | Type | Required | Meaning |
+| --- | --- | --- | --- |
+| `kind` | string | yes | One of `ollama`, `lmstudio`, `llama.cpp`, or `openai-compatible` |
+| `model` | string | yes | The model id the local server exposes |
+| `endpoint` | string | no | An `http` or `https` URL. Omit it to use the kind default |
+
+The defaults are `http://127.0.0.1:11434/api/chat` for `ollama`,
+`http://127.0.0.1:1234/v1/chat/completions` for `lmstudio`, and
+`http://127.0.0.1:8080/v1/chat/completions` for `llama.cpp` and
+`openai-compatible`. Point `endpoint` at your server when it listens on
+another port or host. An LM Studio server on its default port accepts
+`http://localhost:1234/v1`:
+
+```json
+{
+  "enabled": true,
+  "localProvider": {
+    "kind": "lmstudio",
+    "model": "qwen2.5-7b-instruct",
+    "endpoint": "http://localhost:1234/v1"
+  }
+}
+```
+
+One write is enough. The loader builds the local provider record, the
+local-only privacy policy, the required judge, the local HTTP transport, and
+the shipped copy-editing prompt from that single block. The OpenCode plugin
+and the CLI-output wrapper project automatically from that point on.
+
+A missing or malformed `localProvider` fails closed. The loader returns no
+config, so an enabled entry point emits the byte-exact original rather than
+any partial projection.

@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/030-local-provider-loader"
-    last_updated_at: "2026-08-14T18:00:00.000Z"
+    last_updated_at: "2026-08-14T18:42:57.776Z"
     last_updated_by: "opencode"
     recent_action: "Completed and verified the shared local-provider loader and both entry-point wirings."
     next_safe_action: "Consume the loader from operator rollout documentation when the opt-in story is written."
@@ -64,7 +64,7 @@ The communication projection already ships everything needed to call a local mod
 | **Phase** | 30 of 28 |
 | **Predecessor** | `029-local-llm-easy-config` |
 | **Successor** | none (terminal build phase) |
-| **Handoff Criteria** | A shared loader parses `enablement.local.json` and returns the full projection wiring or null on any absent or malformed input; both the OpenCode plugin and the CLI-output wrapper bin call the loader and project when it returns a config; the null path keeps today's exact-original fallback byte-identical; `npm run check` ends fully green; and this phase passes strict validation with zero errors and warnings. |
+| **Handoff Criteria** | A shared loader parses `enablement.local.json` and returns the full projection wiring or null on any absent or malformed input. Both the OpenCode plugin and the CLI-output wrapper bin call the loader and project when it returns a config. The null path keeps today's exact-original fallback byte-identical. `npm run check` ends fully green, and this phase passes strict validation with zero errors and warnings. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -72,7 +72,7 @@ The communication projection already ships everything needed to call a local mod
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This build phase implements the first-choice design of the Phase 029 deep research on easy local-LLM configuration. The projection engine already contains every network and adapter primitive; the gap is that no entry point constructs the `projectMessage` input from an operator-provided local provider. This phase adds a shared loader and wires the two shipped entry points to it.
+This build phase implements the first-choice design of the Phase 029 deep research on easy local-LLM configuration. The projection engine already contains every network and adapter primitive. The gap is that no entry point constructs the `projectMessage` input from an operator-provided local provider. This phase adds a shared loader and wires the two shipped entry points to it.
 
 **Scope boundary**: The loader, the two entry points, the committed enablement example, and the package tests. Transports, adapters, presets, the reject-only judge, and the privacy router are consumed, never modified.
 
@@ -88,6 +88,7 @@ This build phase implements the first-choice design of the Phase 029 deep resear
 - Both entry points wired to the loader with the exact-original fallback preserved
 - Focused tests: loader unit tests, a plugin/runtime projection test, and a wrapper test
 - The extended committed enablement example and the closed Level-3 packet
+- The follow-up user-facing `localProvider` documentation in `docs/enablement.md` and `docs/configuration.md`, delivered after the packet closed
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -97,7 +98,7 @@ This build phase implements the first-choice design of the Phase 029 deep resear
 
 ### Problem Statement
 
-`createOllamaModelRecord`, `createLlamaCppModelRecord`, the OpenAI-compatible and Ollama-native adapters, and `createLocalHttpTransport` are all shipped and tested, but no entry point builds the `projectMessage` input from them. The OpenCode plugin passes `candidateProviderIds: []`, `judgeMode: 'disabled'`, an empty `policy`, and an empty `systemInstruction`; the wrapper bin records that projection config is caller-supplied and writes captured bytes through. Turning enablement on therefore no-ops both entry points. [SOURCE: `.opencode/plugins/mk-communication-projection.js:254-258` and `bin/cli-output-wrapper.mjs:106-115`]
+`createOllamaModelRecord`, `createLlamaCppModelRecord`, the OpenAI-compatible and Ollama-native adapters, and `createLocalHttpTransport` are all shipped and tested, but no entry point builds the `projectMessage` input from them. The OpenCode plugin passes `candidateProviderIds: []`, `judgeMode: 'disabled'`, an empty `policy`, and an empty `systemInstruction`. The wrapper bin records that projection config is caller-supplied and writes captured bytes through. Turning enablement on therefore no-ops both entry points. [SOURCE: `.opencode/plugins/mk-communication-projection.js:254-258` and `bin/cli-output-wrapper.mjs:106-115`]
 
 ### Purpose
 
@@ -123,11 +124,11 @@ After a person opts in once, a configured local provider must project automatica
 - Any change to transports, wire adapters, provider presets, the reject-only judge, or privacy router behavior.
 - New providers, new judges, new adapters, or hosted defaults.
 - Rank-2 environment-variable overlays (`COMMUNICATION_PROJECTION_LOCAL_*`) beyond v1.
-- Changes to `docs/` or to other phases' folders.
+- Changes to `docs/` other than the follow-up user-facing `localProvider` documentation in `docs/enablement.md` and `docs/configuration.md`, and no changes to other phases' folders.
 
 ### Technical Approach
 
-Add `src/config/local-provider.ts` exporting `parseLocalProjectionConfig(parsed, options)` (pure, testable), `buildLocalProjectionConfig(provider, options)`, and `loadLocalProjectionConfig(options)` (reads the git-ignored file). The plugin's input builder and the wrapper bin call `loadLocalProjectionConfig()`; a non-null result supplies records, policy, judge, prompt, transport, context, and capabilities to the projection input, while a null result leaves the exact-original fallback untouched.
+Add `src/config/local-provider.ts` exporting `parseLocalProjectionConfig(parsed, options)` (pure, testable), `buildLocalProjectionConfig(provider, options)`, and `loadLocalProjectionConfig(options)` (reads the git-ignored file). The plugin's input builder and the wrapper bin call `loadLocalProjectionConfig()`. A non-null result supplies records, policy, judge, prompt, transport, context, and capabilities to the projection input. A null result leaves the exact-original fallback untouched.
 
 ### Files to Change
 
@@ -155,15 +156,15 @@ Add `src/config/local-provider.ts` exporting `parseLocalProjectionConfig(parsed,
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | Provide a shared loader that turns a parsed `localProvider` into the full projection wiring. | `parseLocalProjectionConfig()` returns a config carrying records, candidateProviderIds, policy, judgeMode `required`, prompt, transport, context, and capabilities, with the record built from the shipped presets and the endpoint pointed at the configured value. |
-| REQ-002 | Fail closed on absent or malformed provider config. | A missing `localProvider`, a non-`true` `enabled`, an unknown `kind`, a missing `model`, or an invalid `endpoint` yields null; the caller keeps the exact-original fallback and nothing throws into the session. |
-| REQ-003 | Keep the existing enablement contract intact. | The `enabled` parsing and precedence in `src/config/enablement.ts` are unchanged; env force-off still stops everything and the outer enablement gate still runs before projection. |
+| REQ-002 | Fail closed on absent or malformed provider config. | A missing `localProvider`, a non-`true` `enabled`, an unknown `kind`, a missing `model`, or an invalid `endpoint` yields null. The caller keeps the exact-original fallback and nothing throws into the session. |
+| REQ-003 | Keep the existing enablement contract intact. | The `enabled` parsing and precedence in `src/config/enablement.ts` are unchanged. Env force-off still stops everything and the outer enablement gate still runs before projection. |
 | REQ-004 | Keep privacy local-only. | The loader policy sets `egressConsent: false`, derives allowed privacy classes from the endpoint host, and the default judge is `required` with no accept-only override. |
 
 ### P1 - Required
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | Wire the OpenCode plugin to the loader. | The plugin input builder calls the loader; a non-null result supplies the projection wiring (and a rewrite-without-context context) while a null result keeps the exact-original fallback with empty provider config, snapshot/restore, fail-open, and no stdout/stderr preserved. |
+| REQ-005 | Wire the OpenCode plugin to the loader. | The plugin input builder calls the loader. A non-null result supplies the projection wiring (and a rewrite-without-context context). A null result keeps the exact-original fallback with empty provider config and the snapshot/restore, fail-open, and no-stdout-or-stderr behavior preserved. |
 | REQ-006 | Wire the CLI-output wrapper bin to the loader. | The bin calls the loader after a successful parse and projects when a config is returned, otherwise passes the captured bytes through byte-exactly. |
 | REQ-007 | Make the loader deterministic and testable. | The parse/build core is a pure function of the parsed file and injected options (now, transport), exhaustively testable without network access. |
 
@@ -201,9 +202,9 @@ Add `src/config/local-provider.ts` exporting `parseLocalProjectionConfig(parsed,
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phase 029 research design | High | This build implements the research's first choice; the research is read end to end before implementation. |
+| Dependency | Phase 029 research design | High | This build implements the research's first choice. The research is read end to end before implementation. |
 | Risk | An entry point projects on unsafe provider config | High | REQ-002 and the loader's fail-closed parse keep any absent/malformed/disabled config at the exact original. |
-| Risk | LM Studio naming maps to the wrong family | High | REQ-001 reuses the llama-cpp preset with a per-kind default endpoint; no new adapter is invented. |
+| Risk | LM Studio naming maps to the wrong family | High | REQ-001 reuses the llama-cpp preset with a per-kind default endpoint. No new adapter is invented. |
 | Risk | A capability-confirmed record is required for controls to compile | High | REQ-001 confirms prompt controls on the preset record through the shipped snapshot-merge path, matching the test-helper pattern. |
 | Risk | The plugin seam has no transcript and would always fall back | High | REQ-005 switches the context fallback to rewrite-without-context only when the loader returns a config, keeping the null path byte-identical. |
 <!-- /ANCHOR:risks -->
@@ -217,12 +218,12 @@ Add `src/config/local-provider.ts` exporting `parseLocalProjectionConfig(parsed,
 ### Performance
 
 - **NFR-P01**: Discovery and construction run once per activation (per message for the plugin, per capture for the wrapper), not per token.
-- **NFR-P02**: The loader is synchronous except for the projection pipeline it configures; no new network probe is added.
+- **NFR-P02**: The loader is synchronous except for the projection pipeline it configures. No new network probe is added.
 
 ### Security and Privacy
 
 - **NFR-S01**: Privacy routing runs before any provider call, and everything the loader builds is local (`deploymentMode: 'local'`, `egressConsent: false`).
-- **NFR-S02**: The loader, its diagnostics, and the packet contain no credentials, message content, or protected spans; the configured endpoint is a URL, never a credential.
+- **NFR-S02**: The loader, its diagnostics, and the packet contain no credentials, message content, or protected spans. The configured endpoint is a URL, never a credential.
 
 ### Reliability
 
@@ -234,7 +235,7 @@ Add `src/config/local-provider.ts` exporting `parseLocalProjectionConfig(parsed,
 - `enabled: true` with no `localProvider`: exact original.
 - `enabled: false` with a valid `localProvider`: exact original (no projection).
 - Unknown `kind`, missing `model`, or a non-URL `endpoint`: exact original.
-- A non-loopback endpoint host: policy allows `local-networked` alongside `local-offline`; a loopback host allows `local-offline` only.
+- A non-loopback endpoint host: policy allows `local-networked` alongside `local-offline`. A loopback host allows `local-offline` only.
 - A local endpoint that is down, slow, or truncated: existing provider/timeout paths return the exact original.
 - A poor rewrite: deterministic validators plus the reject-only judge return the exact original.
 - A hosted record present alongside the local easy config: the local-only policy with `egressConsent: false` denies it before any call.
@@ -256,9 +257,9 @@ Add `src/config/local-provider.ts` exporting `parseLocalProjectionConfig(parsed,
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
 | R-001 | An entry point projects on unsafe or malformed provider config | High | Low | Fail-closed parse and the exact-original fallback at both entry points |
-| R-002 | LM Studio wires to the wrong family | High | Low | Per-kind default endpoints over the llama-cpp preset; no new adapter |
+| R-002 | LM Studio wires to the wrong family | High | Low | Per-kind default endpoints over the llama-cpp preset. No new adapter |
 | R-003 | Controls cannot compile on a preset record | High | Low | Shipped snapshot-merge confirms the controls the shipped prompt relies on |
-| R-004 | The no-transcript seam silently no-ops | High | Medium | Rewrite-without-context only on a non-null loader config; null keeps exact-original |
+| R-004 | The no-transcript seam silently no-ops | High | Medium | Rewrite-without-context only on a non-null loader config. Null keeps exact-original |
 
 ## 11. USER STORIES
 

@@ -32,7 +32,7 @@ const CONTENT_TYPE = 'text/markdown; charset=utf-8';
 
 // The chat.message seam exposes only the current message (no transcript), so a
 // projection cannot select bounded context here yet. Fall back to the exact
-// original rather than rewting without context: projection must stay a no-op
+// original rather than rewriting without context: projection must stay a no-op
 // until a later seam supplies the surrounding transcript.
 const NO_CONTEXT_FALLBACK = 'exact-original';
 
