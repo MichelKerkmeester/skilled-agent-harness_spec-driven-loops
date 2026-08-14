@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/035-improved-communication/029-local-llm-easy-config",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/029-local-llm-easy-config",
+  "parent_id": "cli-external-orchestration/035-improved-communication",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "local-llm-easy-config",
+      "local LLM easy configuration",
+      "automatic projection activation",
+      "LM Studio projection setup",
+      "Ollama projection endpoint",
+      "research plan",
+      "deep-research loop design",
+      "local projection design",
+      "tasks",
+      "research loop execution",
+      "verification checklist",
+      "quality gate"
+    ],
+    "key_topics": [
+      "local-llm-easy-config",
+      "local",
+      "llm",
+      "easy",
+      "configuration",
+      "automatic",
+      "projection",
+      "activation",
+      "studio",
+      "setup",
+      "ollama",
+      "endpoint"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Easy Config",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Question Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Shipped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Produce a validated, ranked design recommendation that specifies the operator UX and the activation seam for local LLM easy-config: config-file and environment-variable discovery, provider auto-construction, a judge default that permits local accepts without weakening the reject-only safety contract, privacy defaults that keep traffic local-only, and how the plugin and wrapper automatically pick up the configured provider with no further operator steps",
+    "created_at": "2026-08-14T14:57:53.601Z",
+    "last_save_at": "2026-08-14T17:12:37.412Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:9145c44307424098daaf074631a8e002a34c843459f26c8b15b40cfce2da5c20",
+    "source_doc_hashes": {
+      "spec.md": "c7b4e3da3046a22b9df6d14a7876d11f7b0462b9a468d3d6521c6b9cbaa64092",
+      "plan.md": "f081ea8c2eb3762b950ce543070c86fce669963d1b1d68bd2296362b2b19f3d2",
+      "tasks.md": "ee0bf9f8b9184331eb8d792374bf454f7f8a9dabae2ad5ec8a98c397177afa03",
+      "checklist.md": "2f240bc4cf601cb9bcda64c6536c1fd3db0cc0356751cc7ca8eaa1d1a1de2634",
+      "implementation-summary.md": "0b861a45be5c06d1aa3de9322ab58b778cc4d8b44b6c4cb4db49d03ca9b54591",
+      "research/research.md": "d9b008f553c1945070ecb70b64a1d5be6724ff0bf237ea980132d8f913341af6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
