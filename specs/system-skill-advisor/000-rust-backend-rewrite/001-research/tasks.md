@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/017-rust-backend-rewrite-research/001-research"
+    packet_pointer: "system-skill-advisor/000-rust-backend-rewrite/001-research"
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "gpt-5.6-sol"
     recent_action: "Authored the scoring-core research execution checklist; the loop remains unstarted"

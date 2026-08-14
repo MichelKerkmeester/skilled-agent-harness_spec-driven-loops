@@ -11,19 +11,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/017-rust-backend-rewrite-research"
+    packet_pointer: "system-skill-advisor/000-rust-backend-rewrite"
     last_updated_at: "2026-07-11T00:00:00Z"
     last_updated_by: "claude-code"
-    recent_action: "Authored phase parent over two research children (001 scorer/ranking, 002 embedder/vector/serving) written by a GPT-5.6-sol agent swarm"
+    recent_action: "Authored phase parent over two research children via a GPT-5.6-sol agent swarm"
     next_safe_action: "Human review of both 16-round charters; then launch each child's research via /deep:research"
     blockers: []
     key_files:
       - "spec.md"
       - "001-research/spec.md"
-      - "002-research/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-07-11-skill-advisor-017-rust-backend-rewrite-research-parent"
+      session_id: "2026-07-11-skill-advisor-000-rust-backend-rewrite-parent"
       parent_session_id: null
     completion_pct: 0
     status: "Not Started"
@@ -51,7 +50,7 @@ Use this root `spec.md` as the current phase map. The research subject is **our 
 | **Created** | 2026-07-11 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | `system-skill-advisor` |
-| **Successor** | `../018-advisor-audit-and-state-containment/spec.md` |
+| **Successor** | `../017-advisor-audit-and-state-containment/spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---

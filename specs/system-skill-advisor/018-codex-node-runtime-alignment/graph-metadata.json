@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/019-codex-node-runtime-alignment",
-  "spec_folder": "system-skill-advisor/019-codex-node-runtime-alignment",
+  "packet_id": "system-skill-advisor/018-codex-node-runtime-alignment",
+  "spec_folder": "system-skill-advisor/018-codex-node-runtime-alignment",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Codex launches `mkskilladvisor` with Node 22, whose module ABI is 127",
     "created_at": "2026-08-10T08:28:59Z",
-    "last_save_at": "2026-08-10T08:41:41.770Z",
+    "last_save_at": "2026-08-14T07:52:06.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e9e493390c89a6881b4825be476765fa3b7088189c498a74d2f101fbc48c559",
+    "source_fingerprint": "sha256:3116974c7d9bb839754bfb6c4fce00a0ac0a0b159e426c4457736180665b64e5",
     "source_doc_hashes": {
-      "spec.md": "089a5f9b61515d642fcb860a489280d33f76942e0358e968af118960fbbfe5f9",
-      "plan.md": "a66b9221e29a4d6ecd36189756b0ad0f3dcafdfe137f3f23eda434f87766242c",
-      "tasks.md": "2c257d3150a176c50e5416d450d16dd4bdd60fd960d9efec73820f25365050e1",
-      "implementation-summary.md": "f57eff4b3914e369967092fa1ecebe918a283c9aaf96a9d157d5a8173de10a9c"
+      "spec.md": "54b8580bbecab167eee33832d0c5531d41ed891dbe2b73cbcd76633bb2f983af",
+      "plan.md": "e91e2dc3e6d04d5d5792d42cf7fd8a46375c8b263ed67d2a5f68592bfa24f44a",
+      "tasks.md": "8d18660b1bf314da04a1278b590c2665a6c946d984dc4aae7bd657dc4f08bb11",
+      "implementation-summary.md": "f0644c13f1258c9919af4b90499ddd208f777b9e08055f47bd1c31ddec6f52cd"
     },
     "last_active_child_id": null,
     "last_active_at": null

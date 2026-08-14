@@ -80,6 +80,10 @@ _memory:
   - **Evidence**: The focused completion, watchdog, permission, and directive adapter suites passed 34/34 tests.
 - [x] CHK-021 [P0] Phase 11: verify the full concern, alias, truthy/falsy, shell, and guard matrices. [Test: concerns 20/20, legacy aliases 8/8, shell concerns 6/6, and guard suite 7/7 passed]
   - **Evidence**: The concern matrix passed 20/20; legacy aliases passed 8/8; shell concerns passed 6/6; the guard suite passed 7/7.
+- [x] CHK-022 [P0] Phase 12: verify config-file parsing, precedence, aliases, fail-open behavior, and live path override in the canonical Node resolver. [Test: `node --test` reported tests 13, pass 13, fail 0]
+  - **Evidence**: The extended suite passed all 13 tests: 7 original plus 6 config-file cases covering concern disable, both environment-override directions, master and aliases, comments/quotes/malformed lines, missing-file fail-open, and live `HOOK_FLAGS_CONFIG` changes.
+- [x] CHK-023 [P0] Phase 12: verify the POSIX config-file resolver preserves concern isolation and environment precedence. [Test: 4/4 supplied shell scenarios passed]
+  - **Evidence**: All 4/4 supplied shell scenarios passed: isolated file disable, environment re-enable, master disable from the file, and fail-open behavior when the file was absent.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -107,6 +111,8 @@ _memory:
 
 - [x] CHK-050 [P0] Phase 10: publish one canonical 20-concern README index and align its references and environment guidance. [File: `.opencode/hooks/README.md` is the single index; no `kill-switches.md` was created]
   - **Evidence**: The resolver suite passed 7/7, and `.opencode/hooks/README.md` remains the single 20-concern index.
+- [x] CHK-051 [P0] Phase 12: provide a committed template without persisting personal choices. [File: `.opencode/hooks/hook-flags.env.example` lists the master and all 20 concern flags, all commented; `.opencode/hooks/hook-flags.env` is gitignored]
+  - **Evidence**: The committed `.example` contains the complete commented 21-flag template while the real personal config path remains ignored.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -124,12 +130,12 @@ The packet keeps verification and architecture evidence in the standard Level-3 
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 7 | 7/7 |
+| P0 Items | 10 | 10/10 |
 | P1 Items | 0 | 0/0 |
 | P2 Items | 0 | 0/0 |
 
 **Verification Date**: 2026-08-14
-**Packet State**: Complete. All seven phases shipped and verification passed.
+**Packet State**: Complete. All eight phases shipped and verification passed.
 <!-- /ANCHOR:summary -->
 
 ---

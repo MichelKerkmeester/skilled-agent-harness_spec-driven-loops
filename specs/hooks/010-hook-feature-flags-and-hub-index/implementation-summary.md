@@ -13,9 +13,9 @@ parent: "./spec.md"
 _memory:
   continuity:
     packet_pointer: "hooks/010-hook-feature-flags-and-hub-index"
-    last_updated_at: "2026-08-14T08:08:08Z"
+    last_updated_at: "2026-08-14T10:08:07.426Z"
     last_updated_by: "opencode"
-    recent_action: "Shipped all seven phases and reconciled the complete Level-3 packet"
+    recent_action: "Recorded verified config-file increment"
     next_safe_action: "Retain verification evidence for future review"
     blockers: []
     key_files:
@@ -35,6 +35,8 @@ _memory:
       - "Use one shared concern guard with master and per-concern flags"
       - "Keep MK_SPEC_GATE_ENFORCE separate from generic disable controls"
       - "Keep the hub README as the only canonical kill-switch index"
+      - "Let live environment values override personal config-file defaults"
+      - "Ignore the real config file and commit only the complete commented example"
 ---
 # Implementation Summary: Hook Feature Flags + Full Hub Index
 
@@ -60,7 +62,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Every repo-authored hook concern now follows the same default-on operator contract across runtime, plugin, shell, install, cleanup, freshness, and git surfaces. Operators can silence the full layer with `MK_HOOKS_DISABLED` or isolate one of 20 concerns with its canonical flag while supported legacy aliases continue to work.
+Every repo-authored hook concern now follows the same default-on operator contract across runtime, plugin, shell, install, cleanup, freshness, and git surfaces. Operators can silence the full layer with `MK_HOOKS_DISABLED` or isolate one of 20 concerns with its canonical flag while supported legacy aliases continue to work. They can also persist personal defaults in `.opencode/hooks/hook-flags.env` or an alternate `HOOK_FLAGS_CONFIG` path; live environment values take precedence, and missing or unreadable files fail open.
 
 ### Runtime and Compiled Adapters
 
@@ -73,6 +75,10 @@ The POSIX helper mirrors the Node truthy and default semantics. Worktree, git-ho
 ### Canonical Documentation
 
 `.opencode/hooks/README.md` lists all 20 concerns and their canonical controls. The injection, coverage, and environment references point back to that index, and `SPECKIT_DIST_AUTO_REBUILD` remains documented as a rebuild control rather than a disable alias.
+
+### Personal Config File
+
+The canonical CJS resolver and POSIX mirror load `.opencode/hooks/hook-flags.env`, while the MJS and TypeScript facades inherit the CJS behavior. The real file is gitignored, and the committed `.opencode/hooks/hook-flags.env.example` provides a fully commented template for the master and all 20 concern flags.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -88,7 +94,7 @@ Phases 5-10 wired the remaining runtime, spec-gate, adapter, shell, multiplexed,
 <!-- ANCHOR:final-state -->
 ## Final State
 
-All seven delivery phases shipped with their verified controls intact.
+All eight delivery phases shipped with their verified controls intact.
 
 | Phase | Shipped Result | Verification Evidence |
 |-------|----------------|-----------------------|
@@ -99,6 +105,7 @@ All seven delivery phases shipped with their verified controls intact.
 | 9 | Multiplexed runtime path isolation | `node --check` passed |
 | 10 | Canonical resolver and hub index | Resolver suite passed 7/7 |
 | 11 | Cross-runtime negative controls and reconciliation | Concern matrix passed 20/20 |
+| 12 | Personal config-file defaults with environment precedence | Extended guard suite passed 13/13; shell isolation and override checks passed; committed `.example` lists all 21 flags |
 <!-- /ANCHOR:final-state -->
 
 ---
@@ -113,6 +120,8 @@ All seven delivery phases shipped with their verified controls intact.
 | Keep `MK_SPEC_GATE_ENFORCE` separate | Disabling the hook and scoping deny behavior solve different operator needs |
 | Edit canonical symlink targets | Ownership stays with the skill or global hook that implements the concern |
 | Keep one README index | A separate catalog would create another source of truth that can drift |
+| Let live environment values override config-file values | A session override must beat a persisted personal default |
+| Ignore the real config and commit an `.example` | Personal choices stay local while the complete flag shape remains documented |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -130,6 +139,9 @@ All seven delivery phases shipped with their verified controls intact.
 | Truthy/falsy variants | PASS: `1/true/yes/on` and falsy variants behaved correctly |
 | POSIX shell parity | PASS: 6/6 shell concerns |
 | Shared guard suite | PASS: 7/7 |
+| Extended config-file guard suite | PASS: tests 13, pass 13, fail 0 |
+| POSIX config-file checks | PASS: isolated disable, environment re-enable, master-from-file, and missing-file fail-open |
+| Config-file template | PASS: committed `.example` lists the master and all 20 concern flags, all commented |
 | Node syntax check | PASS: `node --check` |
 <!-- /ANCHOR:verification -->
 

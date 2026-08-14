@@ -48,7 +48,7 @@ _memory:
 
 Every repo-authored runtime hook now uses a predictable kill-switch model across Claude, Codex, Cursor, Devin, OpenCode, and Pi. The implementation keeps hooks enabled by default, supports a master emergency-off and isolated concern flags, and makes `.opencode/hooks/README.md` the single canonical flag index.
 
-**Key Decisions**: Shared concern resolver with a POSIX mirror; independent spec-gate enforcement; one README index.
+**Key Decisions**: Shared concern resolver with a POSIX mirror; independent spec-gate enforcement; one README index; environment-over-file precedence for personal persisted defaults.
 
 **Critical Dependencies**: Canonical symlink ownership and rebuilt compiled distributions.
 
@@ -91,6 +91,7 @@ Provide one default-on, concern-isolated kill-switch contract for every authored
 - Runtime, plugin, shell, install, cleanup, freshness, and git pre-commit consumers.
 - Independent spec-gate disable and deny controls.
 - Canonical hub indexing and environment documentation.
+- Personal persisted defaults through the gitignored `.opencode/hooks/hook-flags.env`, with `HOOK_FLAGS_CONFIG` path override and live environment precedence.
 - Cross-runtime negative-control and isolation verification.
 
 ### Out of Scope

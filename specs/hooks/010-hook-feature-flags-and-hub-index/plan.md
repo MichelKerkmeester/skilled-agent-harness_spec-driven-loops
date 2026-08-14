@@ -76,6 +76,7 @@ Use the CJS concern resolver as the canonical Node implementation, expose compat
 - All 20 concerns pass default-on, master-off, self-flag, and isolation checks.
 - All 8 legacy aliases and 6 shell concerns pass.
 - Focused spec-gate and adapter suites pass.
+- Config-file parsing, precedence, fail-open behavior, shell isolation, and the committed template are verified.
 - Strict packet validation reports zero errors and zero warnings.
 <!-- /ANCHOR:quality-gates -->
 
@@ -166,6 +167,10 @@ Make the hub README the 20-concern index and align the injection, coverage, and 
 ### Phase 11: Negative Controls and Packet Reconciliation
 
 Run the full concern, alias, truthy/falsy, shell, and guard matrices, then reconcile and close the Level-3 packet.
+
+### Phase 12: Config File
+
+Load personal persisted defaults from `.opencode/hooks/hook-flags.env` in the canonical CJS and POSIX resolvers, preserve live environment precedence and fail-open behavior, publish the committed `.example`, and document the operator path.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -180,7 +185,10 @@ Run the full concern, alias, truthy/falsy, shell, and guard matrices, then recon
 | Matrix | Default, master, self-flag, isolation | 20/20 concerns passed |
 | Compatibility | Legacy aliases | 8/8 passed |
 | Portability | POSIX shell concerns | 6/6 passed |
-| Resolver | Truthy/falsy and guard behavior | Guard suite 7/7 passed |
+| Resolver | Truthy/falsy and guard behavior | Original guard suite 7/7 passed |
+| Config file | Node parsing, precedence, aliases, fail-open, and live path override | Extended guard suite 13/13 passed |
+| Config file | POSIX isolation, environment override, master switch, and missing file | All supplied shell checks passed |
+| Config file | Personal-file boundary and operator template | Real file gitignored; committed `.example` lists the master and all 20 concern flags, all commented |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -213,8 +221,8 @@ Run the full concern, alias, truthy/falsy, shell, and guard matrices, then recon
 ## L3: DEPENDENCY GRAPH
 
 ```text
-Phase 5 -> Phase 6 -> Phase 7 -> Phase 8 -> Phase 9 -> Phase 10 -> Phase 11
- source      policy      node       shell      isolate     docs       proof
+Phase 5 -> Phase 6 -> Phase 7 -> Phase 8 -> Phase 9 -> Phase 10 -> Phase 11 -> Phase 12
+ source      policy      node       shell      isolate     docs       proof       config
 ```
 
 | Component | Depends On | Produces | Blocks |
@@ -250,4 +258,5 @@ Phase 5 -> Phase 6 -> Phase 7 -> Phase 8 -> Phase 9 -> Phase 10 -> Phase 11
 | M3 | Concern documentation aligned | README lists all 20 concerns | Verified |
 | M4 | Cross-runtime proof complete | Concern 20/20, aliases 8/8, guard 7/7 | Verified |
 | M5 | Packet reconciled | Strict validator reports `Errors: 0  Warnings: 0` | Complete |
+| M6 | Config-file defaults shipped | Guard suite 13/13, shell checks passed, and `.example` covers all flags | Verified |
 <!-- /ANCHOR:milestones -->

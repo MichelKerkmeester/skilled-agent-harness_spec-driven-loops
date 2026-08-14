@@ -87,6 +87,8 @@ Repo-authored hooks run through different runtime adapters, module formats, shel
 5. `.opencode/hooks/README.md` is the single canonical kill-switch index. No `kill-switches.md` catalog is added.
 6. Changes target canonical files behind skill-owned symlinks, not the hub symlink paths.
 7. Compiled distribution hooks resolve the shared guard with `createRequire`, so source changes become effective after the required rebuild.
+8. Live environment values override values loaded from `.opencode/hooks/hook-flags.env` or the path selected by `HOOK_FLAGS_CONFIG`, so a session override beats a persisted default. Missing or unreadable files fail open.
+9. The real `.opencode/hooks/hook-flags.env` is gitignored and personal. A committed `.opencode/hooks/hook-flags.env.example` documents the master and all 20 concern flags without persisting operator choices.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -113,6 +115,8 @@ Repo-authored hooks run through different runtime adapters, module formats, shel
 - The 20 concerns share master-off, self-flag, isolation, and truthy/falsy behavior.
 - Existing aliases remain usable while the README exposes one canonical flag per concern.
 - Canonical source edits and distribution rebuilds produce the behavior loaded by runtime shims.
+- Persisted personal defaults can be overridden per session without editing the file.
+- The committed template documents the full config shape without sharing personal choices.
 
 **What it costs**:
 - New hook families must select and document a concern slug. Mitigation: keep the canonical matrix in `.opencode/hooks/README.md`.
@@ -126,6 +130,8 @@ Repo-authored hooks run through different runtime adapters, module formats, shel
 | A concern flag disables unrelated work | H | Verify per-concern isolation across all 20 concerns |
 | Spec-gate disable and enforce controls become conflated | H | Keep `MK_SPEC_GATE_ENFORCE` outside the generic disable resolver |
 | Documentation catalogs diverge | M | Keep the hub README as the only canonical index |
+| A persisted default blocks a temporary recovery override | H | Give live environment values precedence over file values |
+| Personal hook choices enter version control | M | Ignore the real file and commit only the commented `.example` |
 <!-- /ANCHOR:adr-001-consequences -->
 
 ---
@@ -153,6 +159,8 @@ Repo-authored hooks run through different runtime adapters, module formats, shel
 - Runtime adapters call `isHookEnabled` before executing concern work.
 - Shell, install, cleanup, freshness, and git paths use the POSIX mirror where appropriate.
 - The hub README and environment reference document the canonical flags and live aliases.
+- The Node and POSIX resolvers load the personal config file with environment-over-file precedence and fail-open file handling.
+- The repository ignores the real config and commits the complete commented `.example` template.
 
 **How to roll back**: Set the master or concern-specific disable flag for immediate operational silence. Revert a concern's canonical source and rebuild its compiled distribution only when removing the integration itself is required.
 <!-- /ANCHOR:adr-001-impl -->

@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-skill-advisor/018-advisor-audit-and-state-containment",
+  "specFolder": "system-skill-advisor/017-advisor-audit-and-state-containment",
   "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
     "broken",
@@ -12,8 +12,8 @@
     "pain",
     "point"
   ],
-  "lastUpdated": "2026-07-27T17:05:48.122Z",
-  "specId": "018",
+  "lastUpdated": "2026-08-14T07:49:15.397Z",
+  "specId": "017",
   "folderSlug": "advisor-audit-and-state-containment",
   "parentChain": [
     "system-skill-advisor"

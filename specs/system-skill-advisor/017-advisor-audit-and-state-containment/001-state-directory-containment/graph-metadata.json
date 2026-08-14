@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/018-advisor-audit-and-state-containment/001-state-directory-containment",
-  "spec_folder": "system-skill-advisor/018-advisor-audit-and-state-containment/001-state-directory-containment",
-  "parent_id": "system-skill-advisor/018-advisor-audit-and-state-containment",
+  "packet_id": "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment",
+  "spec_folder": "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment",
+  "parent_id": "system-skill-advisor/017-advisor-audit-and-state-containment",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Several runtime writers resolve their state directory from the current working directory rather than from the repository root",
     "created_at": "2026-07-27T15:47:30Z",
-    "last_save_at": "2026-07-27T17:05:48.310Z",
+    "last_save_at": "2026-08-14T07:50:01.927Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:486d572840d5767a70b878319ed6b6fef1c031ba17c68dd3a67347b52889847d",
+    "source_fingerprint": "sha256:18d7783b7ac87c0f9a4a5dc6f4f6d9892d74f873d2b0dae54c50e4da807ff10a",
     "source_doc_hashes": {
-      "spec.md": "d691ebdafd9cd3ecac0e7b2860deedef2a739c5ed8f95b2fee72e6e81a05959a",
-      "plan.md": "b09a128215a90c3d4797738888253ed151ece66c0d2d520b7f49ac892780021b",
-      "tasks.md": "0a332c034d87334ef114b0b694a05f1c3f40d2bc28bab1bc5c0681dc0f38d879",
-      "checklist.md": "4c99c845d928fb85bd7cf0269d89454a07dac3acfd3cd0765df7e064ef5bcc94"
+      "spec.md": "54f91a482752cad0473f184a00f3132a32fd38eabff629f06aac3d83c4e97b9e",
+      "plan.md": "5d99b234cc94c0ba2ed79f6792d2987d611d5f8afbf4bfdf663153c8a676e148",
+      "tasks.md": "1a500b71ab436c8875dc089bb8de1f3d2e6842ec5944ebafe1015aac4b81aa26",
+      "checklist.md": "b87048097608548ea31be6284896b4a2b60f3ff42e8a82006eade0c5a159ed13"
     },
     "last_active_child_id": null,
     "last_active_at": null

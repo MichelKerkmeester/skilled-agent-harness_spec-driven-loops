@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/019-codex-node-runtime-alignment"
+    packet_pointer: "system-skill-advisor/018-codex-node-runtime-alignment"
     last_updated_at: "2026-08-10T08:41:19Z"
     last_updated_by: "codex"
     recent_action: "Completed the runtime repair and objective checks"

@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/018-advisor-audit-and-state-containment"
+    packet_pointer: "system-skill-advisor/017-advisor-audit-and-state-containment"
     last_updated_at: "2026-07-27T15:47:29Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"
@@ -49,10 +49,10 @@ FAILURE MODES:
 | **Priority** | [P0/P1/P2] |
 | **Status** | [Draft/In Progress/Review/Complete] |
 | **Created** | 2026-07-27 |
-| **Branch** | `scaffold/018-advisor-audit-and-state-containment` |
+| **Branch** | `scaffold/017-advisor-audit-and-state-containment` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 18 of 18 |
-| **Predecessor** | 017-rust-backend-rewrite |
+| **Predecessor** | 000-rust-backend-rewrite |
 | **Successor** | None |
 | **Handoff Criteria** | [To be defined during planning] |
 <!-- /ANCHOR:metadata -->

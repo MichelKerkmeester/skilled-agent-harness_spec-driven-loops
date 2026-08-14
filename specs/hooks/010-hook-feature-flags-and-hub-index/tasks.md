@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Hook Feature Flags + Full Hub Index"
-description: "Completed task record for verified implementation Phases 5-11 and the final Level-3 packet reconciliation."
+description: "Completed task record for verified implementation Phases 5-12 and the final Level-3 packet reconciliation."
 status: "complete"
 completion_pct: 100
 trigger_phrases:
@@ -88,12 +88,20 @@ _memory:
 
 ---
 
+## Phase 4: Config File
+
+- [x] T012 Add config-file loading and environment-over-file precedence to `.opencode/hooks/shared/hook-flags.cjs` and `.opencode/hooks/shared/hook-flags.sh`; the `.mjs` and `.ts` facades inherit the canonical behavior. [Test: extended `node --test` suite passed 13/13; shell checks passed file isolation, environment re-enable, master-from-file, and missing-file fail-open]
+- [x] T013 Publish and document the personal configuration boundary in `.opencode/hooks/hook-flags.env.example`, `.opencode/hooks/README.md`, and the environment reference. [File: committed `.example` lists the master and all 20 concern flags, all commented; real `.opencode/hooks/hook-flags.env` is gitignored]
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
 - [x] Phases 5-10 implementation tasks are complete with evidence. [Source: verified evidence in `checklist.md`]
 - [x] Phase 11 behavior proof is complete. [Test: full concern, alias, shell, and guard matrices passed]
 - [x] Phase 11 packet reconciliation is complete. [Test: `validate.sh --strict` reports Errors: 0 and Warnings: 0]
+- [x] Phase 12 config-file increment is complete. [Test: guard suite 13/13 and shell config-file checks passed; committed `.example` documents all 21 flags]
 <!-- /ANCHOR:completion -->
 
 ---

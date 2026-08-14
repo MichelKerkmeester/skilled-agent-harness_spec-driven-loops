@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/018-advisor-audit-and-state-containment/001-state-directory-containment"
+    packet_pointer: "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment"
     last_updated_at: "2026-07-27T17:50:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored from research"

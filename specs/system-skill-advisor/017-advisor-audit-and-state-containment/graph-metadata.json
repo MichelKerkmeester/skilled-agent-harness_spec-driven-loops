@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/018-advisor-audit-and-state-containment",
-  "spec_folder": "system-skill-advisor/018-advisor-audit-and-state-containment",
+  "packet_id": "system-skill-advisor/017-advisor-audit-and-state-containment",
+  "spec_folder": "system-skill-advisor/017-advisor-audit-and-state-containment",
   "parent_id": null,
   "children_ids": [
-    "system-skill-advisor/018-advisor-audit-and-state-containment/001-state-directory-containment",
-    "system-skill-advisor/018-advisor-audit-and-state-containment/002-advisor-surface-audit"
+    "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment",
+    "system-skill-advisor/017-advisor-audit-and-state-containment/002-advisor-surface-audit"
   ],
   "manual": {
     "depends_on": [],
@@ -85,17 +85,17 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-07-27T15:47:28Z",
-    "last_save_at": "2026-07-27T17:05:48.430Z",
+    "last_save_at": "2026-08-14T07:50:01.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8c2d186f4c92647baee18fe58dd9f52e558119e0cced8d63a6187fd5fb5c26ef",
+    "source_fingerprint": "sha256:28b4e4f057f5655031d1e77f6b045c18d048f2c082e20a7cbdba8489c8ee079e",
     "source_doc_hashes": {
-      "spec.md": "6bf9aa6e6d2ff6ed365a24fc9400b2fed751d0ca44d922e125647f3ecbc504fc"
+      "spec.md": "ecc208b0681edff30b91b70dbdb177b886087da440b6a7189bc2b78e6e7739fd"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment",
     "last_active_at": null
   }
 }

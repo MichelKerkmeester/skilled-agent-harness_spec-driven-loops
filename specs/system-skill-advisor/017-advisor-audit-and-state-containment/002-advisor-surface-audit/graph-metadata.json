@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/018-advisor-audit-and-state-containment/002-advisor-surface-audit",
-  "spec_folder": "system-skill-advisor/018-advisor-audit-and-state-containment/002-advisor-surface-audit",
-  "parent_id": "system-skill-advisor/018-advisor-audit-and-state-containment",
+  "packet_id": "system-skill-advisor/017-advisor-audit-and-state-containment/002-advisor-surface-audit",
+  "spec_folder": "system-skill-advisor/017-advisor-audit-and-state-containment/002-advisor-surface-audit",
+  "parent_id": "system-skill-advisor/017-advisor-audit-and-state-containment",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The skill-advisor subsystem has never had a systematic sweep of its own code and structure surface",
     "created_at": "2026-07-27T15:47:30Z",
-    "last_save_at": "2026-07-27T17:00:28.566Z",
+    "last_save_at": "2026-08-14T07:50:02.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +195,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:c67acde0167936c568ef1b49cf735cb83dd81edaec3ca33307a0d05b48c64089",
+    "source_fingerprint": "sha256:c3c812e8066341e90bfccec323019ee63fd95457263d82ed7b444e30e9de8347",
     "source_doc_hashes": {
-      "spec.md": "2fb225a18a7b026e48b504eb09cc53056eed451ef0635f749ce05d2dcb32f3a0",
-      "plan.md": "c4cf0a219c0dfa85a2c56fda3cfaf790bcad97ba9d368d81177920b9f5029fd3",
-      "tasks.md": "6ec0f24a9f4e24805274cb9cf9f977af5c2d103453a267cf97bb40f8e6115b8e",
-      "checklist.md": "bbaafcddcaab1e71ec0ff5b97711b925203a0bb89285e0a6bbeb38e5e4dc9389"
+      "spec.md": "4b0bd0394a997b3833e2e58070cf4990cee94415888494b38065b9c48085d722",
+      "plan.md": "c96f6abdfc1a6cfca8c5a03336677f5e33d143d21891d899e7a12756687ae9e9",
+      "tasks.md": "2fc6ab01a9ddf61d5804688ac36c58405e819b314fc531243bb8a09971d11e49",
+      "checklist.md": "efc25eec2d88583fdfde1b240ce5cd7e5dd5037955922dd772afabc93b90479f"
     },
     "last_active_child_id": null,
     "last_active_at": null

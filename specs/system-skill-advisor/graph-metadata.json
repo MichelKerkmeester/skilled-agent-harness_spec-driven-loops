@@ -4,25 +4,9 @@
   "spec_folder": "system-skill-advisor",
   "parent_id": null,
   "children_ids": [
-    "system-skill-advisor/000-migration-from-system-speckit",
-    "system-skill-advisor/001-skill-advisor-refinement",
-    "system-skill-advisor/002-skill-advisor-reindex-and-stress-test",
-    "system-skill-advisor/003-ambiguity-window-confidence-fix",
-    "system-skill-advisor/004-skill-graph",
-    "system-skill-advisor/005-skill-advisor-scoring-engine",
-    "system-skill-advisor/006-skill-advisor-routing-engine",
-    "system-skill-advisor/007-skill-advisor-production-hardening",
-    "system-skill-advisor/008-skill-advisor-documentation",
-    "system-skill-advisor/009-playbook-run-and-remediation",
-    "system-skill-advisor/010-skill-advisor-embedder-stack",
-    "system-skill-advisor/011-skill-advisor-cli",
-    "system-skill-advisor/012-advisor-doc-trigger-harvest",
-    "system-skill-advisor/013-advisor-and-codegraph-migrated-items",
-    "system-skill-advisor/014-skill-advisor-frontmatter-alignment",
-    "system-skill-advisor/015-skill-advisor-phase-parent",
-    "system-skill-advisor/016-skill-advisor-tuning",
-    "system-skill-advisor/017-rust-backend-rewrite-research",
-    "system-skill-advisor/z_archive"
+    "system-skill-advisor/000-rust-backend-rewrite",
+    "system-skill-advisor/017-advisor-audit-and-state-containment",
+    "system-skill-advisor/018-codex-node-runtime-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -111,7 +95,7 @@
     "source_doc_hashes": {
       "spec.md": "b5b81543e503403b3fccb37caa3f9edc04305f2900d64c697bb442717f5ae880"
     },
-    "last_active_child_id": "system-skill-advisor/016-skill-advisor-tuning",
+    "last_active_child_id": "system-skill-advisor/018-codex-node-runtime-alignment",
     "last_active_at": null
   }
 }
