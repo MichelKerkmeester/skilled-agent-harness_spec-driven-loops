@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import * as hookFlags from "../../../../../../.opencode/hooks/shared/hook-flags.mjs";
+import * as hookFlags from "../../.opencode/hooks/shared/hook-flags.mjs";
 import { runClaudeHookAdapter } from "./lib/claude-hook-adapter.ts";
 
 const TIMEOUT_MS = 10_000;

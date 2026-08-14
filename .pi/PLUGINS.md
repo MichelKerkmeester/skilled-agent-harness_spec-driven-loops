@@ -64,10 +64,10 @@ Direct 1:1 messaging between pi sessions on the same machine — send context, f
 
 ---
 
-#### pi-plan (v0.1.1)
-[github.com/zx06/pi-packages/tree/main/packages/plan](https://github.com/zx06/pi-packages/tree/main/packages/plan)
+#### pi-plan-build (v0.1.25)
+[github.com/janvitos/pi-plan-build](https://github.com/janvitos/pi-plan-build)
 
-Plan mode — read-only exploration with plan-then-execute workflow
+Plan safely, approve explicitly, then implement here or in a clean session.
 
 ---
 
