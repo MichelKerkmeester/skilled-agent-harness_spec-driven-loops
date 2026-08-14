@@ -181,7 +181,7 @@ Deferred to the phase that owns the decision (per the SOL review):
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
 
-Direct children after grouping: eight thematic group parents. The root also holds two host packets — 057 (the grouping research) and 058 (this migration phase) — and the loose 033-dispositions.md file. Each group's own children and the full lineage are in the group parents and `timeline.md`.
+Direct children after grouping: eight thematic group parents. The root also holds two host packets — 057 (the grouping research) and 058 (this migration phase) — and the loose dispositions.md file. Each group's own children and the full lineage are in the group parents and `timeline.md`.
 
 | # | Group parent | Status |
 |---|--------------|--------|

@@ -30,8 +30,8 @@ This directory mirrors the full nested phase structure of `036-deep-loop-innovat
 
 | Packet | Purpose | Changelog |
 |---|---|---|
-| `057-phase-consolidation-research` | Research that justified merging the flat children into eight groups | [changelog](./057-phase-consolidation-research/changelog-057-phase-consolidation-research.md) |
-| `058-phase-consolidation-migration` | The migration that executed the consolidation (holds `move-map.tsv`) | [changelog](./058-phase-consolidation-migration/changelog-058-phase-consolidation-migration.md) |
+| `009-phase-consolidation-research` | Research that justified merging the flat children into eight groups | [changelog](./009-phase-consolidation-research/changelog-009-phase-consolidation-research.md) |
+| `010-phase-consolidation-migration` | The migration that executed the consolidation (holds `move-map.tsv`) | [changelog](./010-phase-consolidation-migration/changelog-010-phase-consolidation-migration.md) |
 
 ## Conventions
 

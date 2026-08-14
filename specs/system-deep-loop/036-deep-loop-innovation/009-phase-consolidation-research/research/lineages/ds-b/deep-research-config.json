@@ -1,0 +1,56 @@
+{
+  "topic": "Analyze the 036 phase-parent (specs/system-deep-loop/036-deep-loop-innovation) child phase folders (currently ~50, matching ^[0-9]{3}-). Determine (1) whether merging/grouping them into fewer, larger multi-phase groups is feasible and beneficial for context optimization; (2) HOW - which child folders cluster into which fewer bigger multi-phase parents, by theme/dependency, with optimized names; (3) the full migration plan - renaming, and updating ALL references and JSONs (parent+child graph-metadata children_ids, spec.md phase documentation map, cross-refs, description.json, validate.sh manifest); (4) CRITICAL - a timeline.md design that records which spec folder was worked on first and which came after, so the chronological lineage survives any renumbering (derive order from git history and graph-metadata created/updated timestamps). Ground every proposed grouping in the actual on-disk folders and their metadata; this is research/proposal only - do not restructure anything.",
+  "specFolder": "specs/system-deep-loop/036-deep-loop-innovation/009-phase-consolidation-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "createdAt": "2026-08-13T09:10:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4-flash",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-ds-b-1786604873584-buarjb",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "fanoutLabel": "ds-b"
+  },
+  "fanout_lineage_artifact_dir": "specs/system-deep-loop/036-deep-loop-innovation/009-phase-consolidation-research/research/lineages/ds-b",
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/lineages/ds-b/findings-registry.json",
+    "dashboardFile": "research/lineages/ds-b/deep-research-dashboard.md",
+    "strategyFile": "research/lineages/ds-b/deep-research-strategy.md",
+    "machineOwnedSections": ["key-questions", "answered-questions", "what-worked", "what-failed", "exhausted-approaches", "ruled-out-directions", "divergence-frontier", "next-focus"]
+  },
+  "resource_map": { "emit": false },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/009-phase-consolidation-research",
+  "description": "Research whether the 036 phase-parent children can be merged into fewer larger multi-phase groups.",
+  "keywords": [
+    "research",
+    "whether",
+    "phase-parent",
+    "children",
+    "merged",
+    "fewer",
+    "larger",
+    "multi-phase",
+    "groups"
+  ],
+  "lastUpdated": "2026-08-14T04:47:55.630Z",
+  "specId": "009",
+  "folderSlug": "phase-consolidation-research",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
