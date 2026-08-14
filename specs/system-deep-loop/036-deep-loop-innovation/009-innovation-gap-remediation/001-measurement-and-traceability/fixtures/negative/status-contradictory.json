@@ -1,0 +1,6 @@
+{
+  "category": "status",
+  "expected_exit": "non-zero",
+  "name": "status-contradictory",
+  "runner": "node build-traceability.ts --fixture status-contradictory"
+}

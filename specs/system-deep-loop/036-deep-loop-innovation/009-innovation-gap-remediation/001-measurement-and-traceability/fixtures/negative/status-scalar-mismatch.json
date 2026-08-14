@@ -1,0 +1,6 @@
+{
+  "category": "status",
+  "expected_exit": "non-zero",
+  "name": "status-scalar-mismatch",
+  "runner": "node build-traceability.ts --fixture status-scalar-mismatch"
+}

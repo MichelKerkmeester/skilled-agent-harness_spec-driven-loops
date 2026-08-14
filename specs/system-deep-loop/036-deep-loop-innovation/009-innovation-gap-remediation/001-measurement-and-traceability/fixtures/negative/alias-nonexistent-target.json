@@ -1,0 +1,6 @@
+{
+  "category": "alias",
+  "expected_exit": "non-zero",
+  "name": "alias-nonexistent-target",
+  "runner": "node build-traceability.ts --fixture alias-nonexistent-target"
+}

@@ -1,0 +1,55 @@
+{
+  "$id": "traceability-validation.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "aliases": {
+      "type": "object"
+    },
+    "counts": {
+      "type": "object"
+    },
+    "determinism": {
+      "type": "object"
+    },
+    "frozen_input_preservation": {
+      "type": "object"
+    },
+    "hashes": {
+      "type": "object"
+    },
+    "inherited_contract": {
+      "type": "object"
+    },
+    "negative_fixtures": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "source_digests": {
+      "type": "object"
+    },
+    "status_derivation": {
+      "type": "object"
+    },
+    "verdict": {
+      "const": "PASS"
+    }
+  },
+  "required": [
+    "schema_version",
+    "verdict",
+    "source_digests",
+    "counts",
+    "inherited_contract",
+    "status_derivation",
+    "aliases",
+    "determinism",
+    "negative_fixtures",
+    "frozen_input_preservation",
+    "hashes"
+  ],
+  "title": "Traceability Validation Report",
+  "type": "object"
+}

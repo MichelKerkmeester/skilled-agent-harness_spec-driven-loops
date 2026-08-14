@@ -1,0 +1,4231 @@
+{
+  "canonical_adoptions": {
+    "count": 72,
+    "denominator": 72,
+    "rows": [
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-A-003",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-A-005",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-B-022",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-B-023",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-B-028",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-B-048",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-B-049",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-B-051",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-B-052",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-B-053",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-B-055",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-001",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-003",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-004",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-005",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-006",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-007",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-008",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-011",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-012",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-014",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-015",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-016",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-020",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-023",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-024",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-025",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-028",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-039",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-040",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-041",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-042",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-045",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-046",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-047",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-049",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-050",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-054",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-056",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-057",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-058",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-062",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-063",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-069",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-070",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-071",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-072",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-073",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-074",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-079",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-080",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-082",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-083",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-084",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-085",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-087",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-088",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-089",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-090",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-091",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-093",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-097",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-099",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-100",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-102",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-104",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-106",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-107",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-108",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-109",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-110",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "adopt-as-phase-013",
+        "id": "DLR-C-111",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      }
+    ],
+    "selection": "adopt-as-phase-013"
+  },
+  "inherited_contract": {
+    "frozen_disposition": "adopt-as-phase-006",
+    "frozen_phase": "006",
+    "id": "DLR-B-057",
+    "reclassified_as_phase_013": false,
+    "relation": "inherited_phase_contract"
+  },
+  "merged_lineage": {
+    "count": 48,
+    "counted_in_denominator": false,
+    "rows": [
+      {
+        "chain": [
+          "DLR-B-006",
+          "DLR-B-023"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-023",
+        "id": "DLR-B-006",
+        "resolves_to": "DLR-B-023",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-B-024",
+          "DLR-B-023"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-023",
+        "id": "DLR-B-024",
+        "resolves_to": "DLR-B-023",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-B-029",
+          "DLR-C-046"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-046",
+        "id": "DLR-B-029",
+        "resolves_to": "DLR-C-046",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-B-033",
+          "DLR-C-006"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-006",
+        "id": "DLR-B-033",
+        "resolves_to": "DLR-C-006",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-B-046",
+          "DLR-B-028"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-028",
+        "id": "DLR-B-046",
+        "resolves_to": "DLR-B-028",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-B-050",
+          "DLR-B-052"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-052",
+        "id": "DLR-B-050",
+        "resolves_to": "DLR-B-052",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-002",
+          "DLR-C-004"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-004",
+        "id": "DLR-C-002",
+        "resolves_to": "DLR-C-004",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-009",
+          "DLR-C-004"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-004",
+        "id": "DLR-C-009",
+        "resolves_to": "DLR-C-004",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-010",
+          "DLR-C-004"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-004",
+        "id": "DLR-C-010",
+        "resolves_to": "DLR-C-004",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-013",
+          "DLR-C-016"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-016",
+        "id": "DLR-C-013",
+        "resolves_to": "DLR-C-016",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-017",
+          "DLR-C-024"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-024",
+        "id": "DLR-C-017",
+        "resolves_to": "DLR-C-024",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-018",
+          "DLR-C-015"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-015",
+        "id": "DLR-C-018",
+        "resolves_to": "DLR-C-015",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-019",
+          "DLR-C-016"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-016",
+        "id": "DLR-C-019",
+        "resolves_to": "DLR-C-016",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-021",
+          "DLR-C-015"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-015",
+        "id": "DLR-C-021",
+        "resolves_to": "DLR-C-015",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-022",
+          "DLR-C-016"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-016",
+        "id": "DLR-C-022",
+        "resolves_to": "DLR-C-016",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-026",
+          "DLR-C-016"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-016",
+        "id": "DLR-C-026",
+        "resolves_to": "DLR-C-016",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-027",
+          "DLR-C-015"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-015",
+        "id": "DLR-C-027",
+        "resolves_to": "DLR-C-015",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-029",
+          "DLR-C-041"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-041",
+        "id": "DLR-C-029",
+        "resolves_to": "DLR-C-041",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-030",
+          "DLR-C-039"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-039",
+        "id": "DLR-C-030",
+        "resolves_to": "DLR-C-039",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-031",
+          "DLR-B-022"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-022",
+        "id": "DLR-C-031",
+        "resolves_to": "DLR-B-022",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-032",
+          "DLR-B-051"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-051",
+        "id": "DLR-C-032",
+        "resolves_to": "DLR-B-051",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-033",
+          "DLR-B-023"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-023",
+        "id": "DLR-C-033",
+        "resolves_to": "DLR-B-023",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-034",
+          "DLR-B-049"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-049",
+        "id": "DLR-C-034",
+        "resolves_to": "DLR-B-049",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-035",
+          "DLR-B-051"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-051",
+        "id": "DLR-C-035",
+        "resolves_to": "DLR-B-051",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-036",
+          "DLR-B-048"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-048",
+        "id": "DLR-C-036",
+        "resolves_to": "DLR-B-048",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-037",
+          "DLR-B-055"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-B-055",
+        "id": "DLR-C-037",
+        "resolves_to": "DLR-B-055",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-038",
+          "DLR-C-042"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-042",
+        "id": "DLR-C-038",
+        "resolves_to": "DLR-C-042",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-043",
+          "DLR-C-049"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-049",
+        "id": "DLR-C-043",
+        "resolves_to": "DLR-C-049",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-044",
+          "DLR-C-050"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-050",
+        "id": "DLR-C-044",
+        "resolves_to": "DLR-C-050",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-052",
+          "DLR-C-046"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-046",
+        "id": "DLR-C-052",
+        "resolves_to": "DLR-C-046",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-055",
+          "DLR-C-046"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-046",
+        "id": "DLR-C-055",
+        "resolves_to": "DLR-C-046",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-059",
+          "DLR-C-069"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-069",
+        "id": "DLR-C-059",
+        "resolves_to": "DLR-C-069",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-060",
+          "DLR-C-062"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-062",
+        "id": "DLR-C-060",
+        "resolves_to": "DLR-C-062",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-061",
+          "DLR-C-058"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-058",
+        "id": "DLR-C-061",
+        "resolves_to": "DLR-C-058",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-064",
+          "DLR-C-058"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-058",
+        "id": "DLR-C-064",
+        "resolves_to": "DLR-C-058",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-065",
+          "DLR-C-062"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-062",
+        "id": "DLR-C-065",
+        "resolves_to": "DLR-C-062",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-066",
+          "DLR-C-071"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-071",
+        "id": "DLR-C-066",
+        "resolves_to": "DLR-C-071",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-067",
+          "DLR-C-058"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-058",
+        "id": "DLR-C-067",
+        "resolves_to": "DLR-C-058",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-068",
+          "DLR-C-062"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-062",
+        "id": "DLR-C-068",
+        "resolves_to": "DLR-C-062",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-076",
+          "DLR-C-085"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-085",
+        "id": "DLR-C-076",
+        "resolves_to": "DLR-C-085",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-077",
+          "DLR-C-084"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-084",
+        "id": "DLR-C-077",
+        "resolves_to": "DLR-C-084",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-092",
+          "DLR-C-099"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-099",
+        "id": "DLR-C-092",
+        "resolves_to": "DLR-C-099",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-094",
+          "DLR-C-088"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-088",
+        "id": "DLR-C-094",
+        "resolves_to": "DLR-C-088",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-095",
+          "DLR-C-100"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-100",
+        "id": "DLR-C-095",
+        "resolves_to": "DLR-C-100",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-096",
+          "DLR-C-100"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-100",
+        "id": "DLR-C-096",
+        "resolves_to": "DLR-C-100",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-098",
+          "DLR-C-089"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-089",
+        "id": "DLR-C-098",
+        "resolves_to": "DLR-C-089",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-103",
+          "DLR-C-106"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-106",
+        "id": "DLR-C-103",
+        "resolves_to": "DLR-C-106",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      },
+      {
+        "chain": [
+          "DLR-C-105",
+          "DLR-C-109"
+        ],
+        "composition_root": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "composition_status": "legacy_authoritative",
+        "depends_on_recommendation": {
+          "frozen_disposition": "adopt-as-phase-006",
+          "id": "DLR-B-057",
+          "relation": "inherited_phase_contract"
+        },
+        "disposition": "merge-into-DLR-C-109",
+        "id": "DLR-C-105",
+        "resolves_to": "DLR-C-109",
+        "runtime_symbol": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        },
+        "status": {
+          "authority": "legacy_authoritative",
+          "library": "absent",
+          "shadow": "not_wired"
+        },
+        "test_evidence": {
+          "name": null,
+          "path": null,
+          "presence": "absent",
+          "symbol": null
+        }
+      }
+    ]
+  },
+  "schema_version": "1.0.0",
+  "source": {
+    "ledger_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map/recommendation-ledger.json",
+    "ledger_sha256": "d4395069243de8a15689e4d1ffaeceb187be8694ba24dcc1e481516feb2f9d7a",
+    "report_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map/recommendation-ledger-validation.json",
+    "report_sha256": "2bee2fc125874a71148d83844d2d3ecf0b6049a1b2c6e795091350d77f542160",
+    "report_verdict": "PASS",
+    "source_row_count": 178
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "aliases": {
+    "count": 4,
+    "entries": [
+      {
+        "current_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/research/findings-registry.json",
+        "old_path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/findings-registry.json"
+      },
+      {
+        "current_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/research/research.md",
+        "old_path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/research.md"
+      },
+      {
+        "current_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+        "old_path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json"
+      },
+      {
+        "current_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        "old_path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json"
+      }
+    ]
+  },
+  "counts": {
+    "canonical_adoptions": 72,
+    "denominator": 72,
+    "frozen_source_rows": 178,
+    "lineage_excluded_from_denominator": true,
+    "merged_lineage": 48
+  },
+  "determinism": {
+    "build_1": {
+      "alias_sha256": "847cb4de6458a02e76b9442a25b8a81fe97f6cc15a794701becf924f2159a84c",
+      "schema_sha256": "f124f4c65920acd3161cfb9fc2c59a500aacdafc218b3e54e70ff7804d18bb76",
+      "traceability_sha256": "b927531f1a489a4eb8a7eb05a4ecde5dc4fe23bc4a3bb61d0a02a25419d76624",
+      "validation_schema_sha256": "7520a8b43c153133933f8eddf1b1484a342435602ebdbd3a4e6785c73d417713"
+    },
+    "build_2": {
+      "alias_sha256": "847cb4de6458a02e76b9442a25b8a81fe97f6cc15a794701becf924f2159a84c",
+      "schema_sha256": "f124f4c65920acd3161cfb9fc2c59a500aacdafc218b3e54e70ff7804d18bb76",
+      "traceability_sha256": "b927531f1a489a4eb8a7eb05a4ecde5dc4fe23bc4a3bb61d0a02a25419d76624",
+      "validation_schema_sha256": "7520a8b43c153133933f8eddf1b1484a342435602ebdbd3a4e6785c73d417713"
+    },
+    "builds": 2,
+    "verdict": "PASS"
+  },
+  "frozen_input_preservation": {
+    "ledger_sha256": "d4395069243de8a15689e4d1ffaeceb187be8694ba24dcc1e481516feb2f9d7a",
+    "report_sha256": "2bee2fc125874a71148d83844d2d3ecf0b6049a1b2c6e795091350d77f542160",
+    "unchanged": true,
+    "write_access": "none"
+  },
+  "hashes": {
+    "artifacts": {
+      "consolidation-alias-manifest.json": "847cb4de6458a02e76b9442a25b8a81fe97f6cc15a794701becf924f2159a84c",
+      "consolidation-alias-manifest.schema.json": "8ae2bba98258b8548e922cedb4c55f9e854b282814cd66a850defa4aa2814b5b",
+      "current-tree-inventory.json": "28bfa9cf250b861c0d2dd665ada7c73af8477d79c3b1d5555445b4833fb009bf",
+      "frozen-path-inventory.json": "2f7aa77a113cb21271a5ed6d5101318af61132f22019809acced347a8f6ba8db",
+      "recommendation-traceability.json": "b927531f1a489a4eb8a7eb05a4ecde5dc4fe23bc4a3bb61d0a02a25419d76624",
+      "recommendation-traceability.schema.json": "f124f4c65920acd3161cfb9fc2c59a500aacdafc218b3e54e70ff7804d18bb76",
+      "source-digests.json": "daaddc6d3143b565e976e01c011a70b13e2d05557e9a827a698eb244736a3d87"
+    }
+  },
+  "inherited_contract": {
+    "frozen_disposition": "adopt-as-phase-006",
+    "frozen_phase": "006",
+    "id": "DLR-B-057",
+    "reclassified_as_phase_013": false,
+    "relation": "inherited_phase_contract"
+  },
+  "negative_fixtures": {
+    "cases": [
+      {
+        "category": "selection",
+        "error": "Canonical count is not 72",
+        "name": "selection-wrong-count",
+        "verdict": "rejected"
+      },
+      {
+        "category": "selection",
+        "error": "Canonical IDs are not unique",
+        "name": "selection-duplicate-ids",
+        "verdict": "rejected"
+      },
+      {
+        "category": "selection",
+        "error": "Canonical count is not 72",
+        "name": "selection-extra-row",
+        "verdict": "rejected"
+      },
+      {
+        "category": "selection",
+        "error": "Non-canonical disposition in adoption set: DLR-A-003",
+        "name": "selection-wrong-phase",
+        "verdict": "rejected"
+      },
+      {
+        "category": "merge",
+        "error": "Missing merge target DLR-A-999 from DLR-B-004",
+        "name": "merge-missing-target",
+        "verdict": "rejected"
+      },
+      {
+        "category": "merge",
+        "error": "Self-merge on DLR-B-004",
+        "name": "merge-self-link",
+        "verdict": "rejected"
+      },
+      {
+        "category": "merge",
+        "error": "Merge cycle involving DLR-B-004",
+        "name": "merge-cycle",
+        "verdict": "rejected"
+      },
+      {
+        "category": "merge",
+        "error": "Lineage terminal outside canonical set: DLR-B-006",
+        "name": "merge-terminal-outside-set",
+        "verdict": "rejected"
+      },
+      {
+        "category": "dependency",
+        "error": "Missing inherited dependency on DLR-A-003",
+        "name": "dependency-missing",
+        "verdict": "rejected"
+      },
+      {
+        "category": "dependency",
+        "error": "Inherited relation changed on DLR-A-003",
+        "name": "dependency-changed-relation",
+        "verdict": "rejected"
+      },
+      {
+        "category": "dependency",
+        "error": "Inherited dependency reclassified on DLR-A-003",
+        "name": "dependency-reclassified-phase-013",
+        "verdict": "rejected"
+      },
+      {
+        "category": "evidence",
+        "error": "Verified path does not exist: no/such/runtime-symbol.ts",
+        "name": "evidence-invented-path",
+        "verdict": "rejected"
+      },
+      {
+        "category": "evidence",
+        "error": "Runtime symbol is not declared in .opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/cutover-coordinator.ts",
+        "name": "evidence-invented-symbol",
+        "verdict": "rejected"
+      },
+      {
+        "category": "evidence",
+        "error": "Runtime symbol is not declared in .opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/cutover-coordinator.ts",
+        "name": "evidence-inferred-from-prose",
+        "verdict": "rejected"
+      },
+      {
+        "category": "status",
+        "error": "Invalid library status",
+        "name": "status-invalid-enum",
+        "verdict": "rejected"
+      },
+      {
+        "category": "status",
+        "error": "shadow or authority advancement requires verified symbol, composition root, and test evidence",
+        "name": "status-contradictory",
+        "verdict": "rejected"
+      },
+      {
+        "category": "status",
+        "error": "Invalid composition status",
+        "name": "status-multiple-scalars",
+        "verdict": "rejected"
+      },
+      {
+        "category": "status",
+        "error": "shadow or authority advancement requires verified symbol, composition root, and test evidence",
+        "name": "status-advanced-without-evidence",
+        "verdict": "rejected"
+      },
+      {
+        "category": "status",
+        "error": "composition_status does not match the three status fields",
+        "name": "status-scalar-mismatch",
+        "verdict": "rejected"
+      },
+      {
+        "category": "alias",
+        "error": "Stale pointer is not uniquely resolved: .opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+        "name": "alias-missing",
+        "verdict": "rejected"
+      },
+      {
+        "category": "alias",
+        "error": "Duplicate alias for .opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/findings-registry.json",
+        "name": "alias-duplicate",
+        "verdict": "rejected"
+      },
+      {
+        "category": "alias",
+        "error": "Ambiguous alias for .opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/findings-registry.json",
+        "name": "alias-ambiguous",
+        "verdict": "rejected"
+      },
+      {
+        "category": "alias",
+        "error": "Cyclic alias involving .opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/findings-registry.json",
+        "name": "alias-cyclic",
+        "verdict": "rejected"
+      },
+      {
+        "category": "alias",
+        "error": "Alias path escapes the repository: ../../etc/passwd",
+        "name": "alias-escaping",
+        "verdict": "rejected"
+      },
+      {
+        "category": "alias",
+        "error": "Alias target does not exist: specs/does-not-exist-traceability-alias.md",
+        "name": "alias-nonexistent-target",
+        "verdict": "rejected"
+      },
+      {
+        "category": "source-mutation",
+        "error": "Recorded ledger digest does not match captured frozen bytes",
+        "name": "source-mutation-ledger",
+        "verdict": "rejected"
+      },
+      {
+        "category": "source-mutation",
+        "error": "Recorded report digest does not match captured frozen bytes",
+        "name": "source-mutation-report",
+        "verdict": "rejected"
+      }
+    ],
+    "count": 27,
+    "verdict": "PASS"
+  },
+  "schema_version": "1.0.0",
+  "source_digests": {
+    "after": {
+      "ledger_sha256": "d4395069243de8a15689e4d1ffaeceb187be8694ba24dcc1e481516feb2f9d7a",
+      "report_sha256": "2bee2fc125874a71148d83844d2d3ecf0b6049a1b2c6e795091350d77f542160"
+    },
+    "before": {
+      "captured_at": "before_generation",
+      "ledger_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map/recommendation-ledger.json",
+      "ledger_sha256": "d4395069243de8a15689e4d1ffaeceb187be8694ba24dcc1e481516feb2f9d7a",
+      "report_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map/recommendation-ledger-validation.json",
+      "report_sha256": "2bee2fc125874a71148d83844d2d3ecf0b6049a1b2c6e795091350d77f542160"
+    },
+    "unchanged": true
+  },
+  "status_derivation": {
+    "cut_over_requires_evidence": true,
+    "permitted_combinations": [
+      {
+        "name": "baseline-absent",
+        "scalar": "legacy_authoritative"
+      },
+      {
+        "name": "library-present-unverified",
+        "scalar": "legacy_authoritative"
+      },
+      {
+        "name": "library-test-verified-legacy",
+        "scalar": "legacy_authoritative"
+      },
+      {
+        "name": "shadow-wired-legacy-authority",
+        "scalar": "shadow_wired"
+      },
+      {
+        "name": "cut-over-with-shadow",
+        "scalar": "cut_over"
+      },
+      {
+        "name": "cut-over-without-shadow-label",
+        "scalar": "cut_over"
+      }
+    ],
+    "published_rows_all_legacy_authoritative": true
+  },
+  "verdict": "PASS"
+}

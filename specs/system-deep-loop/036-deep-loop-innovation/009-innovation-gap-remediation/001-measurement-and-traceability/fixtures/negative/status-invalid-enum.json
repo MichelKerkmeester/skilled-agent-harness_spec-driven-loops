@@ -1,0 +1,6 @@
+{
+  "category": "status",
+  "expected_exit": "non-zero",
+  "name": "status-invalid-enum",
+  "runner": "node build-traceability.ts --fixture status-invalid-enum"
+}

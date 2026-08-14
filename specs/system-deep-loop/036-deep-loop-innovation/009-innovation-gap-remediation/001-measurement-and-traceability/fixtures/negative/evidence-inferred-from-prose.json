@@ -1,0 +1,6 @@
+{
+  "category": "evidence",
+  "expected_exit": "non-zero",
+  "name": "evidence-inferred-from-prose",
+  "runner": "node build-traceability.ts --fixture evidence-inferred-from-prose"
+}

@@ -1,0 +1,6 @@
+{
+  "category": "dependency",
+  "expected_exit": "non-zero",
+  "name": "dependency-missing",
+  "runner": "node build-traceability.ts --fixture dependency-missing"
+}

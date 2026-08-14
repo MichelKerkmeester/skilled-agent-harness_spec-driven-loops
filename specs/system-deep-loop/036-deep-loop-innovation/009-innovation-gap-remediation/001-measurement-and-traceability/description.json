@@ -1,8 +1,8 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/001-measurement-and-traceability",
-  "description": "Plan the derived recommendation-to-runtime traceability join, three-field composition status schema, and consolidation alias manifest without",
+  "description": "Derived recommendation-to-runtime traceability join, three-field composition status schema, and consolidation alias manifest without rewriting the frozen ledger",
   "keywords": [
-    "plan",
     "derived",
     "recommendation-to-runtime",
     "traceability",
@@ -14,9 +14,9 @@
     "consolidation",
     "alias",
     "manifest",
-    "without"
+    "measurement"
   ],
-  "lastUpdated": "2026-08-14T12:45:46.441Z",
+  "lastUpdated": "2026-08-14T21:15:00.000Z",
   "specId": "001",
   "folderSlug": "measurement-and-traceability",
   "parentChain": [

@@ -1,0 +1,6 @@
+{
+  "category": "dependency",
+  "expected_exit": "non-zero",
+  "name": "dependency-changed-relation",
+  "runner": "node build-traceability.ts --fixture dependency-changed-relation"
+}

@@ -1,0 +1,50 @@
+{
+  "$id": "consolidation-alias-manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_prefix": {
+      "const": "specs/"
+    },
+    "entries": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "current_path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "old_path": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "old_path",
+          "current_path"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "repository_root_rule": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "stale_prefix": {
+      "const": ".opencode/specs/"
+    }
+  },
+  "required": [
+    "schema_version",
+    "repository_root_rule",
+    "stale_prefix",
+    "canonical_prefix",
+    "entries"
+  ],
+  "title": "Consolidation Alias Manifest",
+  "type": "object"
+}

@@ -1,0 +1,6 @@
+{
+  "category": "merge",
+  "expected_exit": "non-zero",
+  "name": "merge-terminal-outside-set",
+  "runner": "node build-traceability.ts --fixture merge-terminal-outside-set"
+}
