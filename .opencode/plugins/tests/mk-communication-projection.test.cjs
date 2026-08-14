@@ -20,6 +20,11 @@ const { pathToFileURL } = require('node:url');
 const DISABLED_ENV = 'MK_COMMUNICATION_PROJECTION_DISABLED';
 const ENABLE_ENV = 'COMMUNICATION_PROJECTION_ENABLED';
 const pluginUrl = pathToFileURL(path.join(__dirname, '..', 'mk-communication-projection.js')).href;
+const distUrl = pathToFileURL(path.join(
+  __dirname,
+  '..', '..',
+  'skills', 'sk-communication', 'cli-communication-projection', 'dist', 'index.js',
+)).href;
 
 async function loadPlugin() {
   return import(pluginUrl);
@@ -327,4 +332,56 @@ test('the plugin writes nothing to stdout or stderr', async () => {
   const output = { parts: [textPart('a1', 'original text')] };
   const calls = await runTrapped(() => core.chatMessage(makeInput(), output));
   assert.deepEqual(calls, []);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. LOCAL PROVIDER LOADER PATH -- real entrypoint with injected loader config
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('an injected loader config projects the rewritten text through the real plugin', async () => {
+  const dist = await import(distUrl);
+  const now = '2026-08-14T00:00:00.000Z';
+  const transport = async (request) => {
+    const messages = request.body.messages;
+    const user = messages.find((entry) => entry.role === 'user').content;
+    return {
+      status: 200,
+      body: {
+        done: true,
+        message: { content: user.replace('deploy', 'ship').replace(' now', ' today') },
+      },
+    };
+  };
+  const config = dist.parseLocalProjectionConfig(
+    { enabled: true, localProvider: { kind: 'ollama', model: 'llama3.2' } },
+    { now, transport },
+  );
+  assert.ok(config !== null, 'the loader must produce a config for a valid block');
+  const __test = await getTestSurface();
+  const core = __test.createProjectionCore({
+    projectMessage: dist.projectMessage,
+    isProjectionEnabled: () => true,
+    isHookEnabled: () => true,
+    loadProjectionConfig: () => config,
+  });
+  const parts = [textPart('a1', 'deploy the release build now.')];
+  const output = { parts };
+  await withEnv(ENABLE_ENV, '1', () => core.chatMessage(makeInput(), output));
+  assert.equal(output.parts[0].text, 'ship the release build today.');
+});
+
+test('a null loader config keeps the real plugin byte-exact', async () => {
+  const dist = await import(distUrl);
+  const __test = await getTestSurface();
+  const core = __test.createProjectionCore({
+    projectMessage: dist.projectMessage,
+    isProjectionEnabled: () => true,
+    isHookEnabled: () => true,
+    loadProjectionConfig: () => null,
+  });
+  const parts = [textPart('a1', 'deploy the release build now.')];
+  const original = structuredClone(parts);
+  const output = { parts };
+  await withEnv(ENABLE_ENV, '1', () => core.chatMessage(makeInput(), output));
+  assert.deepEqual(output.parts, original);
 });

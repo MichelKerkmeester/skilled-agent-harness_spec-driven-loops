@@ -3,3 +3,4 @@
 // ───────────────────────────────────────────────────────────────────
 
 export * from './enablement.js';
+export * from './local-provider.js';

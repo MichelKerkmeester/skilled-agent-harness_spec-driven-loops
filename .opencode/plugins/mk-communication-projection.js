@@ -17,6 +17,7 @@
 import {
   createExactOriginalRecord,
   isProjectionEnabled,
+  loadLocalProjectionConfig,
   projectMessage,
 } from '../skills/sk-communication/cli-communication-projection/dist/index.js';
 
@@ -214,12 +215,14 @@ function createContext(sessionID, now) {
 /**
  * Build the projectMessage() input from the current message. The exact text
  * bytes become the exact-original record so any non-accept terminal returns
- * them verbatim. Provider and prompt configuration is deliberately empty at
- * this seam: projection only runs once a later seam supplies the transcript
- * and a confirmed provider route, and until then the exact-original fallback
- * is the guaranteed outcome.
+ * them verbatim. When the shared local-provider loader returns a config, that
+ * config supplies the provider, policy, judge, prompt, transport, and a
+ * rewrite-without-context context so a configured local model projects here.
+ * When the loader returns null the provider and prompt configuration stay
+ * empty, the context keeps its exact-original fallback, and the exact-original
+ * outcome is the guaranteed result.
  */
-function buildProjectionInput({ sessionID, messageID, text, now }) {
+function buildProjectionInput({ sessionID, messageID, text, now, config }) {
   const startedAtMs = Date.now();
   const originalId = messageID || `${sessionID}:assistant`;
   const exactOriginal = createExactOriginalRecord(
@@ -242,7 +245,8 @@ function buildProjectionInput({ sessionID, messageID, text, now }) {
     generationId: `${originalId}:generation`,
     attempt: 1,
   });
-  return {
+  const local = config !== undefined ? config : loadLocalProjectionConfig();
+  const input = {
     generation: { key, exactOriginal, startedAtMs },
     events: [{
       key,
@@ -250,15 +254,19 @@ function buildProjectionInput({ sessionID, messageID, text, now }) {
       original: exactOriginal,
       observedAtMs: startedAtMs,
     }],
-    context: createContext(sessionID, now),
-    prompt: PROMPT,
-    records: [],
-    candidateProviderIds: [],
-    policy: POLICY,
-    judgeMode: 'disabled',
-    capabilities: CAPABILITIES,
+    context: local !== null ? local.context : createContext(sessionID, now),
+    prompt: local !== null ? local.prompt : PROMPT,
+    records: local !== null ? local.records : [],
+    candidateProviderIds: local !== null ? local.candidateProviderIds : [],
+    policy: local !== null ? local.policy : POLICY,
+    judgeMode: local !== null ? local.judgeMode : 'disabled',
+    capabilities: local !== null ? local.capabilities : CAPABILITIES,
     now,
   };
+  if (local !== null) {
+    input.transport = local.transport;
+  }
+  return input;
 }
 
 function resolveMessageId(input, parts) {
@@ -285,6 +293,7 @@ function createProjectionCore({
   projectMessage: project,
   isProjectionEnabled: projectionEnabled,
   isHookEnabled: hookEnabled,
+  loadProjectionConfig: loadConfig = loadLocalProjectionConfig,
 }) {
   const snapshots = createSnapshotMap();
 
@@ -319,6 +328,7 @@ function createProjectionCore({
         messageID: messageId,
         text,
         now: new Date().toISOString(),
+        config: loadConfig(),
       }));
 
       if (result?.status === 'projection' && typeof result.text === 'string') {
