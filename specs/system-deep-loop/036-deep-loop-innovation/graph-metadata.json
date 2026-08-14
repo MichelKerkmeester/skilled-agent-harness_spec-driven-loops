@@ -12,8 +12,8 @@
     "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
     "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
-    "system-deep-loop/036-deep-loop-innovation/057-phase-consolidation-research",
-    "system-deep-loop/036-deep-loop-innovation/058-phase-consolidation-migration"
+    "system-deep-loop/036-deep-loop-innovation/009-phase-consolidation-research",
+    "system-deep-loop/036-deep-loop-innovation/010-phase-consolidation-migration"
   ],
   "manual": {
     "depends_on": [],
@@ -134,19 +134,19 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-14T04:28:57.632Z",
+    "last_save_at": "2026-08-14T04:50:07.467Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:c64f4909c2f79dc9f03a07f652ab49a82f75d9b818a51191d21e3efd59158f68",
+    "source_fingerprint": "sha256:366cf40847c34bb900127d7dd02df8faa116bf5635db8b24a97d80c9169eff6e",
     "source_doc_hashes": {
-      "spec.md": "bc68b07a9f16757030d00f67e738637657007fba9e5de29eae7c29d94a98fd31",
+      "spec.md": "95532beeedb1569fc1af4bd647129c828a515642768c5e6ee13b7e6ffcdfeb6b",
       "handover.md": "d1d37a65570ec58323ca26e4fdfaa0a92da567135cc00be2c810564523c27837"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/057-phase-consolidation-research",
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/009-phase-consolidation-research",
     "last_active_at": "2026-08-12T15:23:08.017Z"
   }
 }

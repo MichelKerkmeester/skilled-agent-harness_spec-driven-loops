@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-The 036 epic implements the 178 research recommendations from packets 065/001 and 065/002 into the shipped `system-deep-loop` runtime and its per-mode workstreams. Its phase tree was consolidated from 44 flat children into eight thematic group parents, plus the research host packet `057-phase-consolidation-research` and the migration host packet `058-phase-consolidation-migration`. This changelog directory mirrors the full nested phase structure — one changelog per phase folder at every depth. Chronological identity (which spec folder was worked on first and which came after) is recorded in [`../timeline.md`](../timeline.md).
+The 036 epic implements the 178 research recommendations from packets 065/001 and 065/002 into the shipped `system-deep-loop` runtime and its per-mode workstreams. Its phase tree was consolidated from 44 flat children into eight thematic group parents, plus the research host packet `009-phase-consolidation-research` and the migration host packet `010-phase-consolidation-migration`. This changelog directory mirrors the full nested phase structure — one changelog per phase folder at every depth. Chronological identity (which spec folder was worked on first and which came after) is recorded in [`../timeline.md`](../timeline.md).
 
 ### Included Phases
 
@@ -32,5 +32,5 @@ The 036 epic implements the 178 research recommendations from packets 065/001 an
 | `006-runtime-docs-and-integrity-hardening` — Runtime Docs and Integrity Hardening | 11 | 12 | [`changelog-006-…`](./006-runtime-docs-and-integrity-hardening/changelog-006-runtime-docs-and-integrity-hardening.md) |
 | `007-executor-and-cli-hardening` — Executor and CLI Hardening | 7 | 24 | [`changelog-007-…`](./007-executor-and-cli-hardening/changelog-007-executor-and-cli-hardening.md) |
 | `008-review-and-rollback-followup` — Review and Rollback Follow-up | 4 | 5 | [`changelog-008-…`](./008-review-and-rollback-followup/changelog-008-review-and-rollback-followup.md) |
-| `057-phase-consolidation-research` — Phase Consolidation Research | — | 1 | [`changelog-057-…`](./057-phase-consolidation-research/changelog-057-phase-consolidation-research.md) |
-| `058-phase-consolidation-migration` — Phase Consolidation Migration | — | 1 | [`changelog-058-…`](./058-phase-consolidation-migration/changelog-058-phase-consolidation-migration.md) |
+| `009-phase-consolidation-research` — Phase Consolidation Research | — | 1 | [`changelog-057-…`](./009-phase-consolidation-research/changelog-009-phase-consolidation-research.md) |
+| `010-phase-consolidation-migration` — Phase Consolidation Migration | — | 1 | [`changelog-058-…`](./010-phase-consolidation-migration/changelog-010-phase-consolidation-migration.md) |
