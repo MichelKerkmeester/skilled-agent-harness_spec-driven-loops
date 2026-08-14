@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [
+    "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/001-measurement-and-traceability",
+    "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed",
+    "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/003-pilot-mode-cutover",
+    "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/004-fleet-authority-cutover",
+    "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/005-closeout-and-drift-reconcile"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "innovation gap remediation",
+      "036 cutover remediation",
+      "authority cutover fail-closed gateway"
+    ],
+    "key_topics": [
+      "innovation",
+      "gap",
+      "remediation",
+      "cutover",
+      "authority",
+      "fail-closed",
+      "gateway",
+      "close",
+      "deep-loop-innovation",
+      "gap-analysis",
+      "findings",
+      "substrate"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Innovation Gap Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Innovation Gap Remediation Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Purpose",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE DOCUMENTATION MAP",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Needs Done",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Close the deep-loop-innovation (036) gap-analysis findings: substrate identity fail-closed, per-mode authority cutover, production-boundary verification, and traceability/status reconciliation.",
+    "created_at": "2026-08-14T12:47:57.530Z",
+    "last_save_at": "2026-08-14T12:47:57.530Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:78c6040d01cbe35b0e5b65fbf723e7ca146b214460b19f494b06e8af3f20755a",
+    "source_doc_hashes": {
+      "spec.md": "dec79711e0e642f5a11c0c0b7e96b1af9bd28fcd6c358e9db32b07a2365e4158"
+    },
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/005-closeout-and-drift-reconcile",
+    "last_active_at": null
+  }
+}

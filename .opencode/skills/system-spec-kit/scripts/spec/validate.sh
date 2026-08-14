@@ -214,8 +214,8 @@ load_child_manifest() {
         canonical_parent=$(cd "$parent_folder" && pwd -P) || { echo "ERROR: cannot resolve parent folder: $parent_folder" >&2; return 2; }
         case "$canonical_parent" in
             */specs/system-deep-loop/036-deep-loop-innovation)
-                manifest_text=$'001-research-inputs-and-architecture\n002-substrate-and-orchestration\n003-mode-contracts-migration-and-cutover\n004-gate-closeout-and-drift\n005-blocker-closeout\n006-runtime-docs-and-integrity-hardening\n007-executor-and-cli-hardening\n008-review-and-rollback-followup\n'
-                expected_hash="20a8e97246850976de12b01bf68f991f3e6f2090c6932d8f3936ae66e7315b2b"
+                manifest_text=$'001-research-inputs-and-architecture\n002-substrate-and-orchestration\n003-mode-contracts-migration-and-cutover\n004-gate-closeout-and-drift\n005-blocker-closeout\n006-runtime-docs-and-integrity-hardening\n007-executor-and-cli-hardening\n008-review-and-rollback-followup\n009-innovation-gap-remediation\n'
+                expected_hash="1940b29222495ae77e6cc043b224ced712624ae9421068c290287d337d54f2f9"
                 ;;
             *)
                 return 0

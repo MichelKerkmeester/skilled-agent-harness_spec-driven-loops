@@ -1,0 +1,26 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation",
+  "description": "Close the deep-loop-innovation (036) gap-analysis findings: substrate identity fail-closed, per-mode authority cutover, production-boundary",
+  "keywords": [
+    "close",
+    "deep-loop-innovation",
+    "gap-analysis",
+    "findings",
+    "substrate",
+    "identity",
+    "fail-closed",
+    "per-mode",
+    "authority",
+    "cutover",
+    "production-boundary"
+  ],
+  "lastUpdated": "2026-08-14T12:10:19.104Z",
+  "specId": "009",
+  "folderSlug": "innovation-gap-remediation",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
