@@ -43,7 +43,7 @@ The skill routes a request through the smart router, picks a curated model and a
 
 | Capability | What the skill can operate |
 |---|---|
-| **Multi-model dispatch** | a curated roster of four families (DeepSeek V4 Pro, GLM-5.2, Grok 4.5 and 4.6, and SWE-1.7) chosen per dispatch with `--model` |
+| **Multi-model dispatch** | a curated roster of five families (DeepSeek, GLM-5.2, GPT-5.6 Luna Max, Grok 4.5 and 4.6, and SWE-1.7) chosen per dispatch with `--model` |
 | **Subagent delegation** | read-only and full-access workers through `run_subagent`, plus custom `.devin/agents/<name>/AGENT.md` profiles |
 | **Cloud handoff** | a cloud VM with its own shell, browser and repo access via `/handoff` |
 | **Session management** | continue and resume workflows with `devin -c` and `devin -r <session-id>` |

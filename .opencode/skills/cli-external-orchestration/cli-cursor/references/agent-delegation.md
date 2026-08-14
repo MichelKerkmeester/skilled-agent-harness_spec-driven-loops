@@ -104,7 +104,7 @@ Approval flags (`--auto-review`/`--force`) have no effect in `--mode plan`/`--mo
 | Composer-specific validation | Default agent or `--mode ask` | `composer-2.5`/`composer-2.5-fast` explicitly |
 | Grok/GLM-specific second opinion | Default agent or `--mode ask` | `cursor-grok-4.5-{low,medium,high}[-fast]`, `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]`, or `glm-5.2-{high,max}` explicitly |
 
-All model guidance above is scoped to the enforced 18-id allowlist (SKILL.md §3) — never `auto`, never a model outside this table.
+All model guidance above is scoped to the enforced 20-id allowlist (SKILL.md §3) — never `auto`, never a model outside this table.
 
 ---
 

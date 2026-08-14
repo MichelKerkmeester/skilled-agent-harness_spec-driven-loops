@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-external-orchestration/043-luna-max-deepseek-max-glm-roster",
+  "description": "Four models are live-available for external-CLI dispatch but the enforced rosters (or their docs) do not carry them",
+  "keywords": [
+    "four",
+    "models",
+    "live-available",
+    "external-cli",
+    "dispatch",
+    "enforced",
+    "rosters",
+    "docs",
+    "carry",
+    "them"
+  ],
+  "lastUpdated": "2026-08-14T09:35:33.073Z",
+  "specId": "043",
+  "folderSlug": "luna-max-deepseek-max-glm-roster",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

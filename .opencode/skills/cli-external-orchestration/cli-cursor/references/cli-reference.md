@@ -23,7 +23,7 @@ Comprehensive reference for all Cursor CLI commands, flags, models, configuratio
 
 ### Core Principle
 
-Cursor CLI (`cursor-agent`) is a terminal-based AI coding agent from Cursor, distinct from the Cursor editor but sharing its entire config surface. It dispatches non-interactively via `-p`; this skill defaults dispatch to `composer-2.5` (Cursor's own model) and enforces an 18-id allowlist — Cursor's own `auto` router is deliberately excluded (§5). Unlike sibling CLIs, Cursor has no `--reasoning-effort` flag and no `model[effort=...]` bracket support — effort tiers are baked into the model id itself.
+Cursor CLI (`cursor-agent`) is a terminal-based AI coding agent from Cursor, distinct from the Cursor editor but sharing its entire config surface. It dispatches non-interactively via `-p`; this skill defaults dispatch to `composer-2.5` (Cursor's own model) and enforces a 20-id allowlist — Cursor's own `auto` router is deliberately excluded (§5). Unlike sibling CLIs, Cursor has no `--reasoning-effort` flag and no `model[effort=...]` bracket support — effort tiers are baked into the model id itself.
 
 ### Purpose
 
@@ -101,7 +101,7 @@ cursor-agent logout
 | `-p` / `--print` | (none) | Non-interactive/print mode — required for orchestrated dispatch |
 | `--output-format` | `text`, `json`, `stream-json` | `text` (default, final-answer-only), `json` (structured, includes `session_id`), `stream-json` (message-level progress) |
 | `--stream-partial-output` | (none) | Pairs with `stream-json` for text deltas |
-| `--model` | one of 10 allowed ids (see §5) | Model to use — `auto` and every other Cursor id are rejected by this skill's dispatch layer |
+| `--model` | one of 20 allowed ids (see §5) | Model to use — `auto` and every other Cursor id are rejected by this skill's dispatch layer |
 | `--mode` | `plan`, `ask` | `plan` = read-only planning; `ask` = read-only Q&A; omit for the default read-write agent mode (`--plan` is a shorthand for `--mode plan`) |
 | `--force` / `-f` / `--yolo` | (none) | "Run Everything" — auto-approves unless explicitly denied |
 | `--auto-review` | (none) | "Smart Auto" — auto-runs safe tool calls, prompts for the rest |
@@ -167,7 +167,7 @@ cursor-agent -p "Summarize this module" --output-format json --model composer-2.
 
 ### Supported Models — Enforced Allowlist
 
-Cursor's live roster spans 150+ hosted-frontier ids (GPT/Claude/Gemini/Grok/GLM/Kimi families, `cursor-agent --list-models`), with no per-model prompt-craft data for almost all of them and ids that drift over time. **cli-cursor dispatch is scoped to exactly 18 ids — this is an enforced allowlist, not a reference list.** `auto` (Cursor's own router) is excluded: it can silently resolve to a model outside this set, defeating the point of enforcing one. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`; a hard-rejecting check in both `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed).
+Cursor's live roster spans 150+ hosted-frontier ids (GPT/Claude/Gemini/Grok/GLM/Kimi families, `cursor-agent --list-models`), with no per-model prompt-craft data for almost all of them and ids that drift over time. **cli-cursor dispatch is scoped to exactly 20 ids — this is an enforced allowlist, not a reference list.** `auto` (Cursor's own router) is excluded: it can silently resolve to a model outside this set, defeating the point of enforcing one. Enforced at the runtime layer (`CURSOR_SUPPORTED_MODELS` in `executor-config.ts`; a hard-rejecting check in both `fanout-run.cjs` and `dispatch-model.cjs` before any command is constructed).
 
 Alphabetical by family:
 

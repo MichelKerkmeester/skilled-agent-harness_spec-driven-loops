@@ -33,7 +33,7 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
 
 > **Non-existent flags:** `--reasoning-effort` and the parameterized `model[effort=...]` bracket do NOT exist / are rejected outright by Cursor CLI. Select an effort-suffixed model id (e.g. `cursor-grok-4.6-high`) instead.
 > **Exit code caveat:** `-p` always exits `0`, even on auth failure. Every template below assumes the caller inspects output text, not the exit code.
-> **Enforced allowlist:** `--model` is scoped to 18 ids — `composer-2.5`/`composer-2.5-fast`, 6 Grok 4.5 tiers, 8 Grok 4.6 tiers, `glm-5.2-{high,max}`. `auto` and every other Cursor id are rejected before a command is constructed (SKILL.md §3).
+> **Enforced allowlist:** `--model` is scoped to 20 ids — `composer-2.5`/`composer-2.5-fast`, 6 Grok 4.5 tiers, 8 Grok 4.6 tiers, `glm-5.2-{high,max}`, `gpt-5.6-luna-{max,max-fast}`. `auto` and every other Cursor id are rejected before a command is constructed (SKILL.md §3).
 
 | Flag | Purpose |
 | ---- | ------- |

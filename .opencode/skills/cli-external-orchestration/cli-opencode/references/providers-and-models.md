@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax xiaomi gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -74,11 +74,12 @@ GPT-5.6 via the `openai` provider — three personas (sol/terra/luna) × three s
 
 ### opencode-go
 
-OpenCode Go gateway (subsidized "2x usage" rate); fronts the DeepSeek and Qwen families. Confirm live slugs via `opencode models opencode-go`.
+OpenCode Go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and Qwen families. Confirm live slugs via `opencode models opencode-go`.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `opencode-go/deepseek-v4-flash` | — | Latency-optimized DeepSeek V4 Flash via the Go gateway (2x usage); a live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07 |
+| `opencode-go/glm-5.3` | — | Z.AI GLM 5.3 via the Go gateway; list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
 | `opencode-go/qwen3.8-max` | — | Qwen 3.8 Max via the Go gateway; a live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
 
 ---
