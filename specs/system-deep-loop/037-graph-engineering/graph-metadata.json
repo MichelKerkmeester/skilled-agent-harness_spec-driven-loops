@@ -7,7 +7,8 @@
     "system-deep-loop/037-graph-engineering/001-agent-swarms",
     "system-deep-loop/037-graph-engineering/002-graphene-main",
     "system-deep-loop/037-graph-engineering/003-graph-arch",
-    "system-deep-loop/037-graph-engineering/004-graph-engineering-master"
+    "system-deep-loop/037-graph-engineering/004-graph-engineering-master",
+    "system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory"
   ],
   "manual": {
     "depends_on": [],
@@ -152,7 +153,7 @@
     ],
     "causal_summary": "The system-deep-loop workflows are iteration-based loops with linear dispatch, externalized JSONL state, and convergence detection",
     "created_at": "2026-08-08T14:32:54.230Z",
-    "last_save_at": "2026-08-14T00:05:41.564Z",
+    "last_save_at": "2026-08-14T04:58:30.226Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

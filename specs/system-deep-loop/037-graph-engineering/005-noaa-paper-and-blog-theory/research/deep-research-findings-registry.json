@@ -1,0 +1,1904 @@
+{
+  "mergedFrom": [
+    "noaa-theory-sol-high"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-p1-what-exact-typed-locally-repairable-iterationresult-contract-preserves-replay",
+      "inboxId": null,
+      "text": "P1: What exact typed, locally repairable IterationResult contract preserves replay while separating type validity, semantic acceptance, and authorization?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "question-10-how-does-every-proposed-loop-harness-mechanism-remain-subordinate-to-the-036-aut",
+      "inboxId": null,
+      "text": "How does every proposed loop/harness mechanism remain subordinate to the 036 authority plane?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "question-2-p2-which-merge-abstract-associate-decay-and-forget-operations-improve-memory-wit",
+      "inboxId": null,
+      "text": "P2: Which merge, abstract, associate, decay, and forget operations improve memory without erasing contradiction, provenance, replay, negative knowledge, or authority evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "question-3-p3-what-minimal-read-only-model-callable-context-event-capability-facade-should-",
+      "inboxId": null,
+      "text": "P3: What minimal read-only model-callable context/event capability facade should complement the deterministic prompt pack?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "question-4-p4-which-programmable-tactics-fit-inside-a-fixed-leaf-action-set-and-which-opera",
+      "inboxId": null,
+      "text": "P4: Which programmable tactics fit inside a fixed LEAF action set, and which operations must remain workflow-owned?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "question-5-p5-how-should-return-shape-evidence-trajectory-and-transition-authorization-eval",
+      "inboxId": null,
+      "text": "P5: How should return-shape, evidence/trajectory, and transition-authorization evaluation layers compose, and which mutants prove their independence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "question-6-p6-what-typed-artifact-handle-bounded-preview-and-digest-binding-rules-provide-p",
+      "inboxId": null,
+      "text": "P6: What typed artifact-handle, bounded-preview, and digest-binding rules provide pass-by-reference analogues without unsafe live-object semantics?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "question-7-p7-what-evaluation-corpus-and-mutant-matrix-will-expose-stale-recall-reflection-",
+      "inboxId": null,
+      "text": "P7: What evaluation corpus and mutant matrix will expose stale recall, reflection blur, runaway loops, context pollution, and adjacent harness failures?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "question-8-how-do-the-paper-and-all-twelve-blogs-confirm-refine-extend-or-contradict-studie",
+      "inboxId": null,
+      "text": "How do the paper and all twelve blogs confirm, refine, extend, or contradict studies 1–4 and the live convergence, LEAF, prompt-pack, JSONL, fanout, and loop-lock contracts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "question-9-which-design-decisions-should-system-deep-loop-adopt-defer-or-reject-and-what-ar",
+      "inboxId": null,
+      "text": "Which design decisions should system-deep-loop adopt, defer, or reject, and what are their explicit when-not-to-use boundaries?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-observed-in-paper-confirm-studies-extend-runtime-nooa-explicitly-combines-typed-",
+      "text": "**[OBSERVED-IN-PAPER][CONFIRM studies; EXTEND runtime]** NOOA explicitly combines typed input/output, live-object references, code as action, programmable loops, explicit object state, and model-callable context/event APIs. This confirms the studies' typed-boundary direction but extends the current prompt-only harness surface. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:16-20] [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:26-35]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Paper, orientation, studies 1–4, and live deep-research contract, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-1-2-observed-in-paper-refine-studies-refine-runtime-the-paper-s-loop-is-a-method-loc",
+      "text": "**[OBSERVED-IN-PAPER][REFINE studies; REFINE runtime]** The paper's loop is a method-local call/render/act/update/validate cycle; it is not a sealed multi-agent graph or transition authority. It can refine iteration internals without replacing studies 1–4. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:108-130]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Paper, orientation, studies 1–4, and live deep-research contract, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-1-3-text-claimed-orthogonal-studies-no-acceptance-effect-on-runtime-the-paper-report",
+      "text": "**[TEXT-CLAIMED][ORTHOGONAL studies; no acceptance effect on runtime]** The paper reports 97.9% over 4,400 interface-capability trials and lower performance on a harder stress subset. These are author-reported measurements, not evidence that this repository's harness meets its own invariants. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:243-283] [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:39-39]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Paper, orientation, studies 1–4, and live deep-research contract, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-1-4-confirm-studies-confirm-runtime-studies-1-4-already-settle-graph-proposal-belief",
+      "text": "**[CONFIRM studies; CONFIRM runtime]** Studies 1–4 already settle graph proposal, belief, evidence, admission, replay, and 036 authority boundaries. The remaining legitimate subject is how one bounded iteration obtains context, repairs malformed returns, retains useful continuity, and exposes evidence to outer gates. [SOURCE: specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/research.md:3-21] [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:16-20] [INFERENCE: subtracting settled graph/authority decisions from the paper's method-local features]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Paper, orientation, studies 1–4, and live deep-research contract, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-1-5-contradict-wholesale-adoption-confirm-runtime-containment-nooa-permits-in-proces",
+      "text": "**[CONTRADICT wholesale adoption; CONFIRM runtime containment]** NOOA permits in-process state mutation and model-authored subagent calls, whereas the live runtime uses LEAF dispatch, externalized state, fanout isolation, and a lock. Only bounded tactics and read capabilities are candidates here. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:189-203] [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:69-75]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Paper, orientation, studies 1–4, and live deep-research contract, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-10-1-inference-confirm-studies-extend-runtime-closed-local-actions-read-handle-query-",
+      "text": "**[INFERENCE][CONFIRM studies; EXTEND runtime]** Closed local actions: `read_handle`, `query_events`, `preview_artifact`, `call_declared_tool`, `run_pure_helper`, `transform_local`, `validate_candidate`, `record_observation`, `propose_memory_op`, `propose_next_focus`, and `return_candidate`. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:185-203]",
+      "addedAtIteration": 10,
+      "sources": [
+        "Paper, harness blog, fanout and lock catalogs, study 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-10-2-inference-confirm-runtime-every-action-is-charged-to-tool-time-token-bytes-read-",
+      "text": "**[INFERENCE][CONFIRM runtime]** Every action is charged to tool/time/token/bytes-read budgets and yields a typed observation; actions cannot create new capabilities at runtime. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md:32-50]",
+      "addedAtIteration": 10,
+      "sources": [
+        "Paper, harness blog, fanout and lock catalogs, study 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-10-3-inference-confirm-studies-extend-runtime-escalations-are-data-need-parallel-work",
+      "text": "**[INFERENCE][CONFIRM studies; EXTEND runtime]** Escalations are data: `need_parallel_work`, `need_new_source_scope`, `need_human`, `need_protected_effect`, and `budget_exhausted`. The workflow decides whether any becomes an edge or dispatch. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md:56-66]",
+      "addedAtIteration": 10,
+      "sources": [
+        "Paper, harness blog, fanout and lock catalogs, study 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-10-4-confirm-runtime-contradict-model-ownership-fanout-remains-lineage-isolated-and-c",
+      "text": "**[CONFIRM runtime; CONTRADICT model ownership]** Fanout remains lineage-isolated and command-owned; a local action cannot create or join a lineage. [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:21-35]",
+      "addedAtIteration": 10,
+      "sources": [
+        "Paper, harness blog, fanout and lock catalogs, study 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-10-5-confirm-runtime-contradict-model-ownership-the-loop-lock-remains-harness-owned-s",
+      "text": "**[CONFIRM runtime; CONTRADICT model ownership]** The loop lock remains harness-owned single-writer state with stale detection and owner-scoped release; model tactics cannot refresh, steal, or reinterpret it. [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/state-safety/loop-lock.md:21-47]",
+      "addedAtIteration": 10,
+      "sources": [
+        "Paper, harness blog, fanout and lock catalogs, study 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-10-6-inference-confirm-036-any-helper-with-durable-side-effects-must-issue-an-effect-",
+      "text": "**[INFERENCE][CONFIRM 036]** Any helper with durable side effects must issue an effect intent for external authorization and receipts; otherwise it is excluded from the local set. [SOURCE: specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/research/research.md:5-9]",
+      "addedAtIteration": 10,
+      "sources": [
+        "Paper, harness blog, fanout and lock catalogs, study 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-11-1-observed-in-paper-confirm-studies-refine-runtime-nooa-validates-returns-locally-",
+      "text": "**[OBSERVED-IN-PAPER][CONFIRM studies; REFINE runtime]** NOOA validates returns locally but evaluates interface use and end-to-end tasks separately, confirming that admissible shape and effective behavior are different claims. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:205-207] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:239-307]",
+      "addedAtIteration": 11,
+      "sources": [
+        "Paper, eval blog, validator, convergence, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-11-2-inference-confirm-studies-extend-runtime-layer-a-return-admission-deterministic-",
+      "text": "**[INFERENCE][CONFIRM studies; EXTEND runtime]** Layer A, return admission: deterministic schema, route, artifact existence, digest, and append-discipline checks. Output is `ReturnAdmissionV1`; failure routes to bounded shape repair. [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/validation/post-dispatch-validate.md:19-48]",
+      "addedAtIteration": 11,
+      "sources": [
+        "Paper, eval blog, validator, convergence, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-11-3-inference-confirm-studies-extend-runtime-layer-b-evidence-trajectory-acceptance-",
+      "text": "**[INFERENCE][CONFIRM studies; EXTEND runtime]** Layer B, evidence/trajectory acceptance: citations resolve, claims match sources, question coverage is honest, actions respect scope/budget, negative knowledge is preserved, and evaluator independence is recorded. Output is `IterationEvidenceVerdictV1`; failure routes to targeted research or recovery. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:32-88]",
+      "addedAtIteration": 11,
+      "sources": [
+        "Paper, eval blog, validator, convergence, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-11-4-confirm-runtime-refine-terminology-mode-level-convergence-consumes-accepted-iter",
+      "text": "**[CONFIRM runtime; REFINE terminology]** Mode-level convergence consumes accepted iterations only and applies rolling novelty, MAD, question coverage, quality, and graph blockers. Its output is `StopDecision`, not an iteration-quality verdict. [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md:105-141]",
+      "addedAtIteration": 11,
+      "sources": [
+        "Paper, eval blog, validator, convergence, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-11-5-confirm-studies-confirm-036-layer-c-transition-authorization-036-evaluates-the-e",
+      "text": "**[CONFIRM studies; CONFIRM 036]** Layer C, transition authorization: 036 evaluates the exact request against current authority facts and returns a durable decision/receipt. It never trusts Layer A or B as bearer authorization. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:16-20]",
+      "addedAtIteration": 11,
+      "sources": [
+        "Paper, eval blog, validator, convergence, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-11-6-text-claimed-confirm-runtime-a-judge-verdict-must-cause-a-routing-consequence-ot",
+      "text": "**[TEXT-CLAIMED][CONFIRM runtime]** A judge verdict must cause a routing consequence; otherwise evaluation is decorative. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:50-60]",
+      "addedAtIteration": 11,
+      "sources": [
+        "Paper, eval blog, validator, convergence, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-1-inference-refine-runtime-shape-mutant-a-missing-noveltyjustification-with-excell",
+      "text": "**[INFERENCE][REFINE runtime]** Shape mutant: a missing `noveltyJustification` with excellent evidence must fail Layer A while Layer B would otherwise pass. [SOURCE: .opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:59-69]",
+      "addedAtIteration": 12,
+      "sources": [
+        "Paper stress suite, eval and self-correction blogs, runtime contracts."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-2-inference-refine-runtime-evidence-mutant-a-perfectly-typed-record-cites-a-nonexi",
+      "text": "**[INFERENCE][REFINE runtime]** Evidence mutant: a perfectly typed record cites a nonexistent line or misstates a source. Layer A passes; Layer B must reject. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them.md:112-136]",
+      "addedAtIteration": 12,
+      "sources": [
+        "Paper stress suite, eval and self-correction blogs, runtime contracts."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-3-inference-confirm-studies-trajectory-mutant-the-final-claim-is-correct-but-the-w",
+      "text": "**[INFERENCE][CONFIRM studies]** Trajectory mutant: the final claim is correct, but the worker read forbidden scope, exceeded budget, or silently discarded contradiction. Output-only grading passes; trajectory evaluation fails. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:64-88]",
+      "addedAtIteration": 12,
+      "sources": [
+        "Paper stress suite, eval and self-correction blogs, runtime contracts."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-4-inference-confirm-runtime-convergence-mutant-all-iterations-are-individually-val",
+      "text": "**[INFERENCE][CONFIRM runtime]** Convergence mutant: all iterations are individually valid and supported, but an open key question or graph blocker remains. Layer B passes; STOP is blocked. [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md:105-141]",
+      "addedAtIteration": 12,
+      "sources": [
+        "Paper stress suite, eval and self-correction blogs, runtime contracts."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-5-inference-confirm-036-authority-mutant-accepted-and-converged-evidence-proposes-",
+      "text": "**[INFERENCE][CONFIRM 036]** Authority mutant: accepted and converged evidence proposes a protected write with stale authority epoch. All research gates pass; 036 refuses. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:43-53]",
+      "addedAtIteration": 12,
+      "sources": [
+        "Paper stress suite, eval and self-correction blogs, runtime contracts."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-6-text-claimed-refine-runtime-same-model-blind-spot-mutant-feeds-a-characteristic-",
+      "text": "**[TEXT-CLAIMED][REFINE runtime]** Same-model-blind-spot mutant feeds a characteristic builder error to an identically framed judge; acceptance demonstrates lack of evaluator independence. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them.md:112-136]",
+      "addedAtIteration": 12,
+      "sources": [
+        "Paper stress suite, eval and self-correction blogs, runtime contracts."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-7-text-claimed-orthogonal-acceptance-the-paper-s-84-7-stress-result-despite-strong",
+      "text": "**[TEXT-CLAIMED][ORTHOGONAL acceptance]** The paper's 84.7% stress result despite stronger headline interface fluency motivates failure localization rather than one average. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:267-283]",
+      "addedAtIteration": 12,
+      "sources": [
+        "Paper stress suite, eval and self-correction blogs, runtime contracts."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-13-1-observed-in-paper-extend-studies-extend-runtime-nooa-renders-type-true-length-an",
+      "text": "**[OBSERVED-IN-PAPER][EXTEND studies; EXTEND runtime]** NOOA renders type, true length, and bounded head/tail while keeping the full object available to code. This demonstrates progressive disclosure, not a safe cross-process persistence contract. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:169-193]",
+      "addedAtIteration": 13,
+      "sources": [
+        "Paper pass-by-reference, studies 1/3/4, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-13-2-inference-confirm-studies-extend-runtime-artifacthandlev1-should-carry-artifacti",
+      "text": "**[INFERENCE][CONFIRM studies; EXTEND runtime]** `ArtifactHandleV1` should carry `artifactId`, `kind`, `schemaVersion`, `contentDigest`, `snapshotHead`, `byteLength`, `mediaType`, `ownerScope`, `capabilityScope`, `createdBy`, `retentionClass`, and optional query descriptor. [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:105-105]",
+      "addedAtIteration": 13,
+      "sources": [
+        "Paper pass-by-reference, studies 1/3/4, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-13-3-inference-refine-runtime-artifactpreviewv1-adds-bounded-sample-omitted-region-de",
+      "text": "**[INFERENCE][REFINE runtime]** `ArtifactPreviewV1` adds bounded sample, omitted-region description, completeness=false, and the exact handle/digest. A preview can support navigation but not claims about unseen regions. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:169-181]",
+      "addedAtIteration": 13,
+      "sources": [
+        "Paper pass-by-reference, studies 1/3/4, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-13-4-confirm-studies-extend-runtime-handles-join-trace-input-output-evidence-digests-",
+      "text": "**[CONFIRM studies; EXTEND runtime]** Handles join trace input/output/evidence digests and sealed dependency closure; path strings alone are insufficient because content can change at the same location. [SOURCE: specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/research.md:95-97] [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:43-53]",
+      "addedAtIteration": 13,
+      "sources": [
+        "Paper pass-by-reference, studies 1/3/4, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-13-5-inference-contradict-live-mutability-confirm-replay-dereference-must-either-retu",
+      "text": "**[INFERENCE][CONTRADICT live mutability; CONFIRM replay]** Dereference must either return the pinned bytes/projection or `stale_or_missing`; it must never silently resolve to latest mutable content. [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md:18-34]",
+      "addedAtIteration": 13,
+      "sources": [
+        "Paper pass-by-reference, studies 1/3/4, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-13-6-confirm-036-a-handle-proves-identity-integrity-and-scope-not-authority-to-use-th",
+      "text": "**[CONFIRM 036]** A handle proves identity/integrity and scope, not authority to use the artifact for a protected transition; 036 validates that separately. [SOURCE: specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/research/research.md:5-9]",
+      "addedAtIteration": 13,
+      "sources": [
+        "Paper pass-by-reference, studies 1/3/4, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-1-inference-refine-runtime-stale-reference-mutant-changes-bytes-behind-a-stable-pa",
+      "text": "**[INFERENCE][REFINE runtime]** Stale-reference mutant changes bytes behind a stable path; digest-bound dereference must fail rather than return new content. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:43-53]",
+      "addedAtIteration": 14,
+      "sources": [
+        "Paper, prompt-pack catalog, JSONL, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-2-inference-refine-runtime-preview-trust-mutant-places-the-decisive-contradiction-",
+      "text": "**[INFERENCE][REFINE runtime]** Preview-trust mutant places the decisive contradiction in the omitted middle; evidence acceptance must require a bounded query/full scan result, not a head/tail preview. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:169-181]",
+      "addedAtIteration": 14,
+      "sources": [
+        "Paper, prompt-pack catalog, JSONL, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-3-inference-extend-runtime-cursor-mutant-changes-snapshot-head-between-pages-the-n",
+      "text": "**[INFERENCE][EXTEND runtime]** Cursor mutant changes snapshot head between pages; the next request returns `snapshot_mismatch` and starts a new pinned traversal only by explicit choice. [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md:18-34]",
+      "addedAtIteration": 14,
+      "sources": [
+        "Paper, prompt-pack catalog, JSONL, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-4-inference-confirm-studies-scope-mutant-presents-a-valid-handle-outside-its-capab",
+      "text": "**[INFERENCE][CONFIRM studies]** Scope mutant presents a valid handle outside its capability/owner scope; dereference refuses before content access and records the attempt. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:47-53]",
+      "addedAtIteration": 14,
+      "sources": [
+        "Paper, prompt-pack catalog, JSONL, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-5-inference-extend-runtime-measure-prompt-tokens-bytes-fetched-query-count-p50-p95",
+      "text": "**[INFERENCE][EXTEND runtime]** Measure prompt tokens, bytes fetched, query count, p50/p95 latency, task correctness, citation resolution, stale detections, replay success, unauthorized dereference refusal, and cost per accepted iteration against the current prompt-pack baseline. [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/prompt-rendering/prompt-pack.md:41-47]",
+      "addedAtIteration": 14,
+      "sources": [
+        "Paper, prompt-pack catalog, JSONL, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-6-text-claimed-orthogonal-acceptance-paper-benchmark-efficiency-results-motivate-m",
+      "text": "**[TEXT-CLAIMED][ORTHOGONAL acceptance]** Paper benchmark efficiency/results motivate measurement but do not establish repository benefit; promotion requires paired local traces and mutants. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:301-307]",
+      "addedAtIteration": 14,
+      "sources": [
+        "Paper, prompt-pack catalog, JSONL, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-1-inference-extend-studies-extend-runtime-stale-recall-mutant-injects-a-superseded",
+      "text": "**[INFERENCE][EXTEND studies; EXTEND runtime]** Stale-recall mutant injects a superseded record while current evidence exists; expected result is contradiction-aware retrieval plus explicit source heads, never confident use. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:215-219]",
+      "addedAtIteration": 15,
+      "sources": [
+        "Paper stress/memory sections, JSONL, study 4, harness blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-2-inference-refine-paper-extraction-extend-runtime-reflection-blur-mutant-abstract",
+      "text": "**[INFERENCE][REFINE paper extraction; EXTEND runtime]** Reflection-blur mutant abstracts away a qualifier or source disagreement; expected result is failed coverage/provenance validation and retention of original records. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:217-221]",
+      "addedAtIteration": 15,
+      "sources": [
+        "Paper stress/memory sections, JSONL, study 4, harness blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-3-inference-confirm-runtime-negative-knowledge-loss-mutant-forgets-an-exhausted-ap",
+      "text": "**[INFERENCE][CONFIRM runtime]** Negative-knowledge-loss mutant forgets an exhausted approach and repeats it; rejected-pattern and ruled-out state must block selection. [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md:286-313]",
+      "addedAtIteration": 15,
+      "sources": [
+        "Paper stress/memory sections, JSONL, study 4, harness blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-4-inference-extend-runtime-harness-popularity-mutant-repeatedly-injects-one-memory",
+      "text": "**[INFERENCE][EXTEND runtime]** Harness-popularity mutant repeatedly injects one memory; usage score must not rise without deliberate access, testing the paper's non-reinforcement claim. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:215-215]",
+      "addedAtIteration": 15,
+      "sources": [
+        "Paper stress/memory sections, JSONL, study 4, harness blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-5-inference-extend-runtime-bookkeeping-mutant-loses-an-open-todo-changes-a-questio",
+      "text": "**[INFERENCE][EXTEND runtime]** Bookkeeping mutant loses an open todo, changes a question id, or counts a thought as evidence; reducer/state invariants must detect it. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:267-283]",
+      "addedAtIteration": 15,
+      "sources": [
+        "Paper stress/memory sections, JSONL, study 4, harness blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-6-inference-confirm-studies-provenance-loss-mutant-produces-a-fluent-correct-summa",
+      "text": "**[INFERENCE][CONFIRM studies]** Provenance-loss mutant produces a fluent correct summary with no reconstructable source chain; semantic acceptance fails despite apparent usefulness. [SOURCE: specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/research/research.md:93-101]",
+      "addedAtIteration": 15,
+      "sources": [
+        "Paper stress/memory sections, JSONL, study 4, harness blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-7-text-claimed-confirm-scope-restraint-the-harness-blog-warns-that-more-memory-and",
+      "text": "**[TEXT-CLAIMED][CONFIRM scope restraint]** The harness blog warns that more memory and broader permissions can increase ambiguity, context noise, and risk; corpus promotion must include pollution and permission-escalation negatives. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md:90-104]",
+      "addedAtIteration": 15,
+      "sources": [
+        "Paper stress/memory sections, JSONL, study 4, harness blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-1-text-claimed-confirm-runtime-runaway-mutant-retries-with-no-new-evidence-expecte",
+      "text": "**[TEXT-CLAIMED][CONFIRM runtime]** Runaway mutant retries with no new evidence; expected detection is unchanged evidence handles plus hard iteration/time/cost ceilings. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md:32-50]",
+      "addedAtIteration": 16,
+      "sources": [
+        "Four blog posts plus fanout, lock, and study-3 sources."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-2-text-claimed-confirm-runtime-context-pollution-mutant-gives-verifier-the-worker-",
+      "text": "**[TEXT-CLAIMED][CONFIRM runtime]** Context-pollution mutant gives verifier the worker's conversation; expected result is failed independence metadata, not a valid judge vote. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md:132-155]",
+      "addedAtIteration": 16,
+      "sources": [
+        "Four blog posts plus fanout, lock, and study-3 sources."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-3-inference-extend-runtime-partial-fan-in-mutant-drops-one-failed-lineage-and-synt",
+      "text": "**[INFERENCE][EXTEND runtime]** Partial-fan-in mutant drops one failed lineage and synthesizes a complete-looking report; fan-in must carry expected/received/failed lineage identities and refuse completeness. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering explained: what it is, when to use it and when not to.md:180-188]",
+      "addedAtIteration": 16,
+      "sources": [
+        "Four blog posts plus fanout, lock, and study-3 sources."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-4-inference-confirm-runtime-cross-write-mutant-makes-two-supposedly-independent-wo",
+      "text": "**[INFERENCE][CONFIRM runtime]** Cross-write mutant makes two supposedly independent workers modify one file; containment/write-set checks must expose the hidden edge. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering explained: what it is, when to use it and when not to.md:166-179]",
+      "addedAtIteration": 16,
+      "sources": [
+        "Four blog posts plus fanout, lock, and study-3 sources."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-5-inference-confirm-runtime-lineage-isolation-mutant-shares-executor-state-or-arti",
+      "text": "**[INFERENCE][CONFIRM runtime]** Lineage-isolation mutant shares executor state or artifact directories; fanout must prove distinct sub-packets and state dirs. [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:21-35]",
+      "addedAtIteration": 16,
+      "sources": [
+        "Four blog posts plus fanout, lock, and study-3 sources."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-6-inference-confirm-runtime-lock-mutants-cover-live-holder-double-acquire-dead-hol",
+      "text": "**[INFERENCE][CONFIRM runtime]** Lock mutants cover live-holder double acquire, dead-holder reclaim, stale TTL, wrong owner/nonce refresh, and wrong owner release. [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/state-safety/loop-lock.md:21-47]",
+      "addedAtIteration": 16,
+      "sources": [
+        "Four blog posts plus fanout, lock, and study-3 sources."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-7-text-claimed-refine-runtime-context-collapse-mutant-fans-out-widely-then-dumps-a",
+      "text": "**[TEXT-CLAIMED][REFINE runtime]** Context-collapse mutant fans out widely then dumps all raw outputs into synthesis; layered summaries with source handles must bound fan-in. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md:212-215]",
+      "addedAtIteration": 16,
+      "sources": [
+        "Four blog posts plus fanout, lock, and study-3 sources."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-8-inference-confirm-036-capability-escalation-mutant-asks-a-context-or-local-actio",
+      "text": "**[INFERENCE][CONFIRM 036]** Capability-escalation mutant asks a context or local-action API to widen permission or perform an effect; the call must refuse before any action and cannot be repaired into authority by the model. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:16-20]",
+      "addedAtIteration": 16,
+      "sources": [
+        "Four blog posts plus fanout, lock, and study-3 sources."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-1-text-claimed-confirm-runtime-eval-engineering-separates-schema-task-and-trajecto",
+      "text": "**[TEXT-CLAIMED][CONFIRM runtime] Eval Engineering** separates schema, task, and trajectory gates; warns about judge bias and turns failures into permanent tests. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:54-71] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:105-132]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-10-text-claimed-confirm-budgets-refine-claims-multi-factor-alpha-model-illustrates-",
+      "text": "**[TEXT-CLAIMED][CONFIRM budgets; REFINE claims] Multi-Factor Alpha Model** illustrates persistent state, validators, parallel roles, budgets, max-runs, and scheduled loops; finance claims are promotional and not acceptance evidence. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Use Graph Engineering to Build a Multi-Factor Alpha Model.md:42-60] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Use Graph Engineering to Build a Multi-Factor Alpha Model.md:377-400]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-11-text-claimed-confirm-p1-p3-loop-graph-harness-defines-gather-act-verify-result-s",
+      "text": "**[TEXT-CLAIMED][CONFIRM P1/P3] LOOP→GRAPH→HARNESS** defines gather→act→verify, result-shaped boundaries, clean contexts, filesystem context, and deterministic substrate independence. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/LOOP ⭢ GRAPH ⭢ HARNESS: build the whole pipeline in one sitting.md:34-55] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/LOOP ⭢ GRAPH ⭢ HARNESS: build the whole pipeline in one sitting.md:116-149]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-12-text-claimed-confirm-evidence-caution-orthogonal-loop-mechanics-what-is-graph-en",
+      "text": "**[TEXT-CLAIMED][CONFIRM evidence caution; ORTHOGONAL loop mechanics] What Is Graph Engineering** exposes a fabricated study, missing typed-edge eval, graph limits on simple lookup/cost, and entity-resolution fragility; it reinforces source skepticism and when-not-to-use rules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/What is Graph Engineering.md:1-24] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/What is Graph Engineering.md:220-265]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-2-text-claimed-confirm-boundaries-from-loops-to-graphs-says-simple-low-concurrency",
+      "text": "**[TEXT-CLAIMED][CONFIRM boundaries] From Loops to Graphs** says simple/low-concurrency work remains a loop and routes graph use by complexity/independence. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:163-191]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-3-text-claimed-confirm-studies-orthogonal-p1-p7-graph-engineering-roadmap-reinforc",
+      "text": "**[TEXT-CLAIMED][CONFIRM studies; ORTHOGONAL P1-P7] Graph Engineering Roadmap** reinforces bounded node contracts, free deterministic edges, isolation, and independent verification; its model-side spawning is not adopted inside LEAF. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering Roadmap.md:23-30] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering Roadmap.md:183-196]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-4-text-claimed-confirm-boundaries-graph-engineering-explained-supplies-fresh-verif",
+      "text": "**[TEXT-CLAIMED][CONFIRM boundaries] Graph Engineering explained** supplies fresh-verifier context, hidden shared-resource edges, partial-node failure, and explicit skip-graph rules. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering explained: what it is, when to use it and when not to.md:131-149] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering explained: what it is, when to use it and when not to.md:166-229]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-5-text-claimed-orthogonal-loop-layer-confirm-caution-graph-engineering-replaced-ra",
+      "text": "**[TEXT-CLAIMED][ORTHOGONAL loop layer; CONFIRM caution] Graph Engineering replaced RAG** is primarily knowledge-plane doctrine; its production and cost claims remain unverified here, while its evidence-preserving extraction warnings belong to study 4. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering replaced RAG at Microsoft, Stanford and Anthropic. Here's how it works.md:4-6] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering replaced RAG at Microsoft, Stanford and Anthropic. Here's how it works.md:310-372]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-6-text-claimed-confirm-runtime-refine-hype-graph-engineering-with-claude-supplies-",
+      "text": "**[TEXT-CLAIMED][CONFIRM runtime; REFINE hype] Graph Engineering with Claude** supplies bounded contracts, clean verifier context, dedupe against rejected findings, three hard stop conditions, and fan-in/context-collapse failures. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md:20-26] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md:155-215]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-7-text-claimed-confirm-studies-contradict-model-owned-topology-after-loops-disting",
+      "text": "**[TEXT-CLAIMED][CONFIRM studies; CONTRADICT model-owned topology] After Loops** distinguishes stable organization ownership from ephemeral work, but dynamic spawning remains graph/workflow proposal rather than model authority. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:108-160]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-8-text-claimed-confirm-whole-design-harness-loop-or-graph-gives-the-clearest-layer",
+      "text": "**[TEXT-CLAIMED][CONFIRM whole design] Harness, Loop, or Graph** gives the clearest layer rule: environment, evidence-driven bounded repetition, and wider flow cannot substitute for one another. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md:4-50] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md:90-118]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-9-text-claimed-confirm-p1-p5-p7-self-correcting-loop-requires-structured-builder-j",
+      "text": "**[TEXT-CLAIMED][CONFIRM P1/P5/P7] Self-Correcting Loop** requires structured Builder/Judge/Manager handoffs, independent ground truth, hard stops, and stress tests. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them.md:21-99] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them.md:112-167]",
+      "addedAtIteration": 17,
+      "sources": [
+        "All twelve supplied blog files, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-1-confirm-runtime-three-signal-convergence-plus-legal-graph-gates-already-separate",
+      "text": "**[CONFIRM runtime]** Three-signal convergence plus legal/graph gates already separates STOP nomination from authorization; NOOA return validation must not replace it. [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md:105-141]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Live runtime contracts, paper, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-2-confirm-runtime-leaf-prompt-constraints-three-artifact-output-append-only-jsonl-",
+      "text": "**[CONFIRM runtime]** LEAF prompt constraints, three-artifact output, append-only JSONL, reducer ownership, isolated lineages, write containment, and loop lock already supply the durable harness backbone. [SOURCE: .opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:35-69] [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md:18-34] [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-run.md:21-35] [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/state-safety/loop-lock.md:21-47]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Live runtime contracts, paper, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-3-extend-runtime-gap-1-add-pre-commit-iterationresultv1-shape-repair-keep-post-dis",
+      "text": "**[EXTEND runtime] Gap 1** Add pre-commit `IterationResultV1` shape repair; keep post-dispatch validator as backstop. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:205-207]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Live runtime contracts, paper, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-4-extend-runtime-gap-2-add-reducer-accepted-non-authoritative-memory-proposals-wit",
+      "text": "**[EXTEND runtime] Gap 2** Add reducer-accepted non-authoritative memory proposals with never-forget classes; never replace JSONL. [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/research/lineages/noaa-theory-sol-high/iterations/iteration-006.md:1-40] [INFERENCE: iteration evidence in this lineage defines the proposal]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Live runtime contracts, paper, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-5-extend-runtime-gap-3-add-bounded-read-only-context-event-facade-above-determinis",
+      "text": "**[EXTEND runtime] Gap 3** Add bounded read-only context/event facade above deterministic prompt-pack. [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:83-85]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Live runtime contracts, paper, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-6-refine-runtime-gap-4-5-formalize-the-closed-local-action-vocabulary-and-split-re",
+      "text": "**[REFINE runtime] Gap 4/5** Formalize the closed local action vocabulary and split return admission from evidence/trajectory acceptance. The current LEAF can sequence tools, but the decision types are not first-class. [SOURCE: .opencode/skills/system-deep-loop/deep-research/SKILL.md:267-275] [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:87-89]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Live runtime contracts, paper, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-7-extend-runtime-gap-6-add-digest-bound-artifact-handles-previews-for-large-eviden",
+      "text": "**[EXTEND runtime] Gap 6** Add digest-bound artifact handles/previews for large evidence while retaining paths as human-readable locators. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:169-193]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Live runtime contracts, paper, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-8-extend-runtime-gap-7-add-the-pinned-memory-context-loop-harness-mutant-corpus-be",
+      "text": "**[EXTEND runtime] Gap 7** Add the pinned memory/context/loop/harness mutant corpus before promoting any of Gaps 1–6. [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:103-107]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Live runtime contracts, paper, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-1-confirm-current-runtime-do-not-use-deep-loop-harness-extensions-for-a-simple-one",
+      "text": "**[CONFIRM current runtime]** Do not use deep loop/harness extensions for a simple one-shot question, known solution, implementation task, or research needing fewer than three sources. [SOURCE: .opencode/skills/system-deep-loop/deep-research/SKILL.md:43-49]",
+      "addedAtIteration": 19,
+      "sources": [
+        "Skill, paper limitations, restraint/eval/graph-boundary blogs."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-2-contradict-wholesale-nooa-do-not-adopt-in-process-model-code-live-mutable-object",
+      "text": "**[CONTRADICT wholesale NOOA]** Do not adopt in-process model code, live mutable objects, unrestricted imports, or model-side spawning across trust boundaries; the paper itself requires external sandboxing. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:444-448]",
+      "addedAtIteration": 19,
+      "sources": [
+        "Skill, paper limitations, restraint/eval/graph-boundary blogs."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-3-refine-p1-do-not-add-typed-local-repair-to-trivial-deterministic-calls-or-semant",
+      "text": "**[REFINE P1]** Do not add typed local repair to trivial deterministic calls or semantic failures; use ordinary validation or return to evidence gathering. [INFERENCE: local repair pays only when candidate shape is model-produced and repairable without new evidence]",
+      "addedAtIteration": 19,
+      "sources": [
+        "Skill, paper limitations, restraint/eval/graph-boundary blogs."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-4-refine-p2-do-not-use-curated-memory-as-an-authoritative-database-retention-polic",
+      "text": "**[REFINE P2]** Do not use curated memory as an authoritative database, retention-policy bypass, credential store, or substitute for source retrieval. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md:90-104]",
+      "addedAtIteration": 19,
+      "sources": [
+        "Skill, paper limitations, restraint/eval/graph-boundary blogs."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-5-refine-p3-do-not-add-a-context-facade-when-the-bounded-prompt-already-contains-s",
+      "text": "**[REFINE P3]** Do not add a context facade when the bounded prompt already contains stable, small evidence; API calls add latency, cursor state, and another attack surface. [INFERENCE: complexity must answer measured context pressure]",
+      "addedAtIteration": 19,
+      "sources": [
+        "Skill, paper limitations, restraint/eval/graph-boundary blogs."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-6-refine-p4-do-not-use-model-programmable-loops-for-deterministic-transforms-prote",
+      "text": "**[REFINE P4]** Do not use model-programmable loops for deterministic transforms, protected effects, or work needing new agents/capabilities; use code or graph scheduling. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md:56-66]",
+      "addedAtIteration": 19,
+      "sources": [
+        "Skill, paper limitations, restraint/eval/graph-boundary blogs."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-7-refine-p5-do-not-rely-on-same-model-judging-for-high-impact-truth-or-authority-a",
+      "text": "**[REFINE P5]** Do not rely on same-model judging for high-impact truth or authority, and do not collapse per-gate evidence into a scalar. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:14-32]",
+      "addedAtIteration": 19,
+      "sources": [
+        "Skill, paper limitations, restraint/eval/graph-boundary blogs."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-8-refine-p6-do-not-replace-small-inline-immutable-values-with-handles-indirection-",
+      "text": "**[REFINE P6]** Do not replace small inline immutable values with handles; indirection is justified only by measured context, privacy, reuse, or replay needs. [INFERENCE: handle overhead is needless for bounded values]",
+      "addedAtIteration": 19,
+      "sources": [
+        "Skill, paper limitations, restraint/eval/graph-boundary blogs."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-9-confirm-studies-do-not-fan-out-or-graph-work-without-real-independence-truly-seq",
+      "text": "**[CONFIRM studies]** Do not fan out or graph work without real independence; truly sequential work remains a loop, and topology cannot compensate for unreliable tools or ground truth. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering explained: what it is, when to use it and when not to.md:196-229] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:163-191]",
+      "addedAtIteration": 19,
+      "sources": [
+        "Skill, paper limitations, restraint/eval/graph-boundary blogs."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-2-1-observed-in-paper-confirm-studies-refine-runtime-nooa-validates-a-candidate-agai",
+      "text": "**[OBSERVED-IN-PAPER][CONFIRM studies; REFINE runtime]** NOOA validates a candidate against the Python return annotation and returns field-specific failure to the model before the method can finish. The live runtime currently validates durable outputs after dispatch, so a pre-acceptance local repair stage would refine rather than replace it. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:116-130] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:205-207]",
+      "addedAtIteration": 2,
+      "sources": [
+        "Paper return validation, study 1, prompt pack, validator, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-2-2-inference-confirm-studies-extend-runtime-iterationresultv1-should-contain-iterat",
+      "text": "**[INFERENCE][CONFIRM studies; EXTEND runtime]** `IterationResultV1` should contain `iteration`, `mode`, `status`, `focus`, typed artifact handles, evidence handles, answered/open question ids, negative-knowledge records, proposed graph events, next-focus proposal, novelty evidence, and an optional terminal candidate. This is the smallest envelope covering today's three artifacts without collapsing them into an object. [SOURCE: .opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:53-81] [SOURCE: specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/research.md:61-67]",
+      "addedAtIteration": 2,
+      "sources": [
+        "Paper return validation, study 1, prompt pack, validator, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-2-3-inference-confirm-studies-refine-runtime-the-envelope-is-a-commit-proposal-valid",
+      "text": "**[INFERENCE][CONFIRM studies; REFINE runtime]** The envelope is a commit proposal: validation succeeds only after referenced narrative and delta digests resolve, the state append is prospective, and route proof matches. Durable files remain replay authority; the envelope never replaces them. [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/validation/post-dispatch-validate.md:19-48] [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:73-73]",
+      "addedAtIteration": 2,
+      "sources": [
+        "Paper return validation, study 1, prompt pack, validator, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-2-4-inference-extend-studies-extend-runtime-validation-errors-need-a-closed-code-pat",
+      "text": "**[INFERENCE][EXTEND studies; EXTEND runtime]** Validation errors need a closed code/path/expected/observed structure plus repair-attempt number, so the next turn fixes one local defect rather than receiving opaque redispatch prose. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:205-207]",
+      "addedAtIteration": 2,
+      "sources": [
+        "Paper return validation, study 1, prompt pack, validator, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-2-5-inference-confirm-036-orthogonal-runtime-execution-terminalcandidate-is-advisory",
+      "text": "**[INFERENCE][CONFIRM 036; ORTHOGONAL runtime execution]** `terminalCandidate` is advisory. Neither a type-valid envelope nor resolved artifact digests authorize a protected transition; 036 still evaluates the exact consequence. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:16-20]",
+      "addedAtIteration": 2,
+      "sources": [
+        "Paper return validation, study 1, prompt pack, validator, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-1-adopt-as-proposal-refine-runtime-p1-prototype-iterationresultv1-as-a-pre-commit-",
+      "text": "**[ADOPT-AS-PROPOSAL][REFINE runtime] P1** Prototype `IterationResultV1` as a pre-commit envelope with at most two shape-repair turns, typed diagnostics, and durable artifact/digest verification. Do not replace narrative/state/delta. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:205-207] [INFERENCE: iterations 2-4 establish the local contract]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Full scoped corpus and all prior iteration evidence."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-10-confirm-036-every-proposal-improves-candidate-production-or-evidence-access-only",
+      "text": "**[CONFIRM 036]** Every proposal improves candidate production or evidence access only. It cannot admit a graph, settle authoritative truth, widen capability, append a protected event, execute an effect, select cutover, or bypass a refusal; 036 remains the sole authority plane. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:3-20]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Full scoped corpus and all prior iteration evidence."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-2-adopt-as-proposal-extend-runtime-p2-add-reducer-accepted-memory-operations-over-",
+      "text": "**[ADOPT-AS-PROPOSAL][EXTEND runtime] P2** Add reducer-accepted memory operations over a non-authoritative projection; `forget` means retrieval suppression, and provenance/contradiction/authority/negative-knowledge classes are immutable. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:209-231] [INFERENCE: iterations 5-6 constrain the transfer]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Full scoped corpus and all prior iteration evidence."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-3-adopt-as-proposal-extend-runtime-p3-add-bounded-pinned-audited-read-apis-while-p",
+      "text": "**[ADOPT-AS-PROPOSAL][EXTEND runtime] P3** Add bounded, pinned, audited read APIs while preserving prompt-pack as deterministic bootstrap/fallback. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:132-181] [INFERENCE: iterations 7-8 define the facade]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Full scoped corpus and all prior iteration evidence."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-4-adopt-as-proposal-refine-runtime-p4-formalize-a-closed-local-action-set-and-type",
+      "text": "**[ADOPT-AS-PROPOSAL][REFINE runtime] P4** Formalize a closed local action set and typed escalation proposals; retain workflow ownership of dispatch, fanout, lock, budget, and effects. [SOURCE: .opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:35-48] [INFERENCE: iterations 9-10 define the set]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Full scoped corpus and all prior iteration evidence."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-5-adopt-as-proposal-refine-runtime-p5-implement-named-return-admission-and-evidenc",
+      "text": "**[ADOPT-AS-PROPOSAL][REFINE runtime] P5** Implement named return-admission and evidence/trajectory verdicts before convergence; keep 036 authorization separate. Require single-fault mutants and evaluator versioning. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:54-88] [INFERENCE: iterations 11-12 define the pipeline]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Full scoped corpus and all prior iteration evidence."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-6-defer-pending-measurement-extend-runtime-p6-prototype-artifacthandlev1-only-for-",
+      "text": "**[DEFER pending measurement][EXTEND runtime] P6** Prototype `ArtifactHandleV1` only for large or sensitive evidence, and promote only if paired traces improve tokens/latency without weakening correctness, replay, or refusal. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:169-193] [INFERENCE: iterations 13-14 define contract and measurements]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Full scoped corpus and all prior iteration evidence."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-7-adopt-test-first-extend-runtime-p7-build-the-pinned-mutant-corpus-before-functio",
+      "text": "**[ADOPT test-first][EXTEND runtime] P7** Build the pinned mutant corpus before functional rollout; include stale recall, reflection blur, repeated dead ends, context pollution, same-model bias, runaway retries, partial fan-in, cross-writes, lock faults, and capability escalation. [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:103-107] [INFERENCE: iterations 12, 15, and 16 enumerate cases]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Full scoped corpus and all prior iteration evidence."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-8-confirm-studies-1-4-no-evidence-requires-reopening-graph-proposal-belief-knowled",
+      "text": "**[CONFIRM studies 1–4]** No evidence requires reopening graph proposal, belief, knowledge-plane provenance, admission, replay, fanout, or authority decisions. NOOA supplies inner-loop ideas, not a competing architecture. [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:59-75]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Full scoped corpus and all prior iteration evidence."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-9-reject-reject-wholesale-framework-adoption-in-process-live-object-semantics-acro",
+      "text": "**[REJECT]** Reject wholesale framework adoption, in-process live-object semantics across trust boundaries, model-side lineage spawning, memory-based truth settlement, schema/convergence-as-authorization, and deletion of replay evidence. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:189-219] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:444-448]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Full scoped corpus and all prior iteration evidence."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-3-1-observed-in-paper-confirm-studies-extend-runtime-predict-performs-local-retries-",
+      "text": "**[OBSERVED-IN-PAPER][CONFIRM studies; EXTEND runtime]** Predict performs local retries and CodeAct returns validation errors as observations until a typed value appears. This establishes a useful defect-local feedback pattern. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:116-130] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:205-207]",
+      "addedAtIteration": 3,
+      "sources": [
+        "Paper, YAML, skill, and self-correcting-loop blog, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-3-2-inference-refine-studies-refine-runtime-allow-at-most-two-local-repair-turns-for",
+      "text": "**[INFERENCE][REFINE studies; REFINE runtime]** Allow at most two local repair turns for return-shape defects, charged to the same iteration budget. The first invalid candidate never appends canonical state; each failed candidate emits a packet-local `return_validation_failed` event with candidate digest and diagnostics. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:1294-1312]",
+      "addedAtIteration": 3,
+      "sources": [
+        "Paper, YAML, skill, and self-correcting-loop blog, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-3-3-inference-confirm-studies-confirm-runtime-semantic-evidence-failures-do-not-use-",
+      "text": "**[INFERENCE][CONFIRM studies; CONFIRM runtime]** Semantic evidence failures do not use this repair loop. They return to the workflow's evaluator/research routing because the model must gather or reinterpret evidence, not merely correct a field. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:50-88]",
+      "addedAtIteration": 3,
+      "sources": [
+        "Paper, YAML, skill, and self-correcting-loop blog, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-3-4-inference-confirm-studies-refine-runtime-after-two-shape-failures-close-the-loca",
+      "text": "**[INFERENCE][CONFIRM studies; REFINE runtime]** After two shape failures, close the local call with `invalid_return`, preserve diagnostics, and invoke the existing one-time workflow redispatch. A second mechanical failure becomes the canonical error iteration; no accepted JSONL row is rewritten. [SOURCE: .opencode/commands/deep/assets/deep-research-auto.yaml:1294-1312] [SOURCE: .opencode/skills/system-deep-loop/deep-research/SKILL.md:247-254]",
+      "addedAtIteration": 3,
+      "sources": [
+        "Paper, YAML, skill, and self-correcting-loop blog, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-3-5-text-claimed-confirm-runtime-orthogonal-authority-the-self-correcting-loop-blog-",
+      "text": "**[TEXT-CLAIMED][CONFIRM runtime; ORTHOGONAL authority]** The self-correcting-loop blog requires hard iteration, quality, and budget ceilings as manager logic rather than soft model instructions. That supports a bounded repair counter and contradicts open-ended self-correction. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them.md:63-99]",
+      "addedAtIteration": 3,
+      "sources": [
+        "Paper, YAML, skill, and self-correcting-loop blog, cited above."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-4-1-observed-in-paper-confirm-studies-refine-runtime-nooa-return-validation-checks-c",
+      "text": "**[OBSERVED-IN-PAPER][CONFIRM studies; REFINE runtime]** NOOA return validation checks conformance to a return annotation; the paper separately evaluates capabilities and end-to-end tasks. Its own structure therefore does not equate type validity with task correctness. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:205-207] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:239-249]",
+      "addedAtIteration": 4,
+      "sources": [
+        "Paper, eval blog, convergence references, study 3, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-4-2-text-claimed-confirm-studies-confirm-runtime-eval-doctrine-says-deterministic-ch",
+      "text": "**[TEXT-CLAIMED][CONFIRM studies; CONFIRM runtime]** Eval doctrine says deterministic checks should precede model judges and a verdict must alter execution. This supports a semantic acceptance layer over cited evidence and trajectory, not another formatting check. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:32-88]",
+      "addedAtIteration": 4,
+      "sources": [
+        "Paper, eval blog, convergence references, study 3, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-4-3-inference-confirm-studies-refine-runtime-ordered-pipeline-return-shape-admissibl",
+      "text": "**[INFERENCE][CONFIRM studies; REFINE runtime]** Ordered pipeline: `return-shape admissible` → `artifact/digest integrity` → `evidence and trajectory accepted` → `mode convergence/legal stop` → `036 transition authorization`. Each layer consumes the preceding result but issues a distinct decision type. [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:79-91] [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:16-20]",
+      "addedAtIteration": 4,
+      "sources": [
+        "Paper, eval blog, convergence references, study 3, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-4-4-inference-contradict-collapse-confirm-runtime-a-perfectly-typed-fabricated-citat",
+      "text": "**[INFERENCE][CONTRADICT collapse; CONFIRM runtime]** A perfectly typed fabricated citation passes layer one and fails evidence acceptance; a well-supported iteration can fail mode coverage; a converged research packet can remain unauthorized for any protected effect. These mutants prove non-substitution. [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/convergence/convergence.md:105-141]",
+      "addedAtIteration": 4,
+      "sources": [
+        "Paper, eval blog, convergence references, study 3, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-4-5-inference-confirm-036-refine-runtime-terminology-rename-any-ambiguous-validated-",
+      "text": "**[INFERENCE][CONFIRM 036; REFINE runtime terminology]** Rename any ambiguous `validated` flag by scope (`shapeValid`, `evidenceAccepted`, `stopAllowed`, `transitionAuthorized`) so no boolean leaks authority across layers. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:5-8]",
+      "addedAtIteration": 4,
+      "sources": [
+        "Paper, eval blog, convergence references, study 3, orientation."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-1-observed-in-paper-extend-studies-extend-runtime-nooa-gives-the-model-deliberate-",
+      "text": "**[OBSERVED-IN-PAPER][EXTEND studies; EXTEND runtime]** NOOA gives the model deliberate `remember`, `recall`, `search`, `update_memory`, `forget`, `associate`, and `deref` operations. Current iteration state has no equivalent proposal vocabulary. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:209-215]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Paper memory sections, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-2-observed-in-paper-refine-studies-extend-runtime-a-before-turn-hook-injects-assoc",
+      "text": "**[OBSERVED-IN-PAPER][REFINE studies; EXTEND runtime]** A before-turn hook injects associated memories without reinforcing them; retrieval combines embedding, keywords, activation, and a typed graph. Non-self-reinforcement is an important defense against harness-created popularity loops. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:215-215]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Paper memory sections, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-3-observed-in-paper-extend-studies-extend-runtime-reflection-merges-near-duplicate",
+      "text": "**[OBSERVED-IN-PAPER][EXTEND studies; EXTEND runtime]** Reflection merges near duplicates, may reconcile conflicting values into a current record while archiving predecessors, links related memories, distills episodes, re-scores importance, and prunes decayed records with protected exceptions. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:217-219]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Paper memory sections, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-4-observed-in-paper-confirm-study-4-refine-runtime-one-inspectable-sqlite-source-o",
+      "text": "**[OBSERVED-IN-PAPER][CONFIRM study 4; REFINE runtime]** One inspectable SQLite source of truth backs derived indexes, owner scopes, live references, access recording, and a viewer. This confirms derived-index/replay principles but does not prove its truth semantics fit this repository. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:219-231] [SOURCE: specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/research/research.md:93-101]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Paper memory sections, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-5-inference-contradict-over-adoption-confirm-studies-memory-is-a-retrieval-project",
+      "text": "**[INFERENCE][CONTRADICT over-adoption; CONFIRM studies]** Memory is a retrieval projection, not belief settlement. Reconciliation can designate a current retrieval preference only while contradictory and superseded evidence stays reconstructable under study-2 rules. [SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/research.md:35-43]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Paper memory sections, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-6-text-claimed-orthogonal-acceptance-the-paper-reports-a-11-8-rhae-improvement-aga",
+      "text": "**[TEXT-CLAIMED][ORTHOGONAL acceptance]** The paper reports a +11.8 RHAE improvement against file notes, but the result is author-reported and cannot set local promotion thresholds. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:219-219]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Paper memory sections, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-6-1-inference-extend-studies-extend-runtime-a-leaf-may-propose-remember-revise-proje",
+      "text": "**[INFERENCE][EXTEND studies; EXTEND runtime]** A LEAF may propose `remember`, `revise_projection`, `associate`, `abstract`, `suppress_from_working_set`, and `restore`; the reducer validates references and owns acceptance. This mirrors the live rule that leaves observe ideas while reducers promote them. [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md:247-268] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:213-217]",
+      "addedAtIteration": 6,
+      "sources": [
+        "Paper memory section, JSONL contract, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-6-2-inference-confirm-study-2-refine-paper-extraction-merge-creates-a-new-derived-re",
+      "text": "**[INFERENCE][CONFIRM study 2; REFINE paper extraction]** Merge creates a new derived record referencing all inputs; it never rewrites source assertions. Abstract creates a lossy summary with an explicit coverage list and retained source handles. [SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/research.md:35-43]",
+      "addedAtIteration": 6,
+      "sources": [
+        "Paper memory section, JSONL contract, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-6-3-inference-confirm-studies-extend-runtime-forget-means-retrieval-suppression-acti",
+      "text": "**[INFERENCE][CONFIRM studies; EXTEND runtime]** `forget` means retrieval suppression, activation decay, or derived-index removal. It must not physically delete canonical JSONL, citations, iteration artifacts, or source records. [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md:18-34]",
+      "addedAtIteration": 6,
+      "sources": [
+        "Paper memory section, JSONL contract, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-6-4-inference-confirm-studies-refine-runtime-never-forget-classes-are-source-asserti",
+      "text": "**[INFERENCE][CONFIRM studies; REFINE runtime]** Never-forget classes are source assertions and provenance; contradictions and supersession chains; authoritative requests, decisions, refusals, receipts, fences, effects, and budgets; policy/schema/version digests; rejected approaches and negative knowledge; memory access/reflection decision logs; open todos and unresolved blockers. [SOURCE: specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/research/research.md:5-21] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:217-221]",
+      "addedAtIteration": 6,
+      "sources": [
+        "Paper memory section, JSONL contract, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-6-5-observed-in-paper-refine-runtime-non-reinforcing-spontaneous-injection-should-be",
+      "text": "**[OBSERVED-IN-PAPER][REFINE runtime]** Non-reinforcing spontaneous injection should be retained: harness-selected recall must not increment utility merely because the harness displayed it. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:215-215]",
+      "addedAtIteration": 6,
+      "sources": [
+        "Paper memory section, JSONL contract, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-6-6-inference-contradict-overreach-confirm-036-a-memory-acceptance-decision-can-chan",
+      "text": "**[INFERENCE][CONTRADICT overreach; CONFIRM 036]** A memory acceptance decision can change retrieval ranking but cannot settle belief, close a key question, authorize STOP, or admit a transition. [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:81-91]",
+      "addedAtIteration": 6,
+      "sources": [
+        "Paper memory section, JSONL contract, studies 2 and 4."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-7-1-observed-in-paper-confirm-studies-extend-runtime-nooa-separates-cacheable-static",
+      "text": "**[OBSERVED-IN-PAPER][CONFIRM studies; EXTEND runtime]** NOOA separates cacheable static blocks, append-only typed event history, and re-evaluated dynamic blocks. This is a stronger internal model than one fully rendered prompt. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:132-165]",
+      "addedAtIteration": 7,
+      "sources": [
+        "Paper context section, prompt-pack, JSONL, context-isolation blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-7-2-observed-in-paper-confirm-study-replay-refine-runtime-event-ranges-may-be-collap",
+      "text": "**[OBSERVED-IN-PAPER][CONFIRM study replay; REFINE runtime]** Event ranges may be collapsed for visibility while full history remains searchable. The safe analogue is a summary event pointing to immutable source offsets, never transcript replacement. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:138-140] [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md:18-34]",
+      "addedAtIteration": 7,
+      "sources": [
+        "Paper context section, prompt-pack, JSONL, context-isolation blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-7-3-inference-confirm-runtime-extend-runtime-keep-static-invariants-and-tool-contrac",
+      "text": "**[INFERENCE][CONFIRM runtime; EXTEND runtime]** Keep static invariants and tool contracts in the deterministic prompt prefix; expose event queries and volatile projections through typed calls; bind every response to state-log offsets/digests. [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/prompt-rendering/prompt-pack.md:21-47]",
+      "addedAtIteration": 7,
+      "sources": [
+        "Paper context section, prompt-pack, JSONL, context-isolation blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-7-4-text-claimed-confirm-studies-confirm-runtime-the-blog-argues-that-workers-start-",
+      "text": "**[TEXT-CLAIMED][CONFIRM studies; CONFIRM runtime]** The blog argues that workers start with clean context and return a designed small result rather than inheriting the parent's polluted window. This supports current fresh-iteration isolation. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/LOOP ⭢ GRAPH ⭢ HARNESS: build the whole pipeline in one sitting.md:116-149]",
+      "addedAtIteration": 7,
+      "sources": [
+        "Paper context section, prompt-pack, JSONL, context-isolation blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-7-5-inference-contradict-collapse-refine-runtime-dynamic-blocks-must-not-contain-mut",
+      "text": "**[INFERENCE][CONTRADICT collapse; REFINE runtime]** Dynamic blocks must not contain mutable authority or unpinned summaries; cache efficiency is subordinate to correct freshness and replay. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:163-169]",
+      "addedAtIteration": 7,
+      "sources": [
+        "Paper context section, prompt-pack, JSONL, context-isolation blog."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-8-1-inference-confirm-studies-extend-runtime-minimal-v1-calls-state-summary-recent-e",
+      "text": "**[INFERENCE][CONFIRM studies; EXTEND runtime]** Minimal v1 calls: `state_summary()`, `recent_events(cursor,limit)`, `event(id)`, `open_questions(limit)`, `coverage_gaps(limit)`, `ruled_out(limit)`, `artifact_preview(handle,bounds)`, and `recall_continuity(query,limit)`. [SOURCE: specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/orientation.md:83-85]",
+      "addedAtIteration": 8,
+      "sources": [
+        "Paper context manager, orientation, prompt pack, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-8-2-inference-refine-runtime-every-response-returns-sourcehandle-sourcedigest-snapsh",
+      "text": "**[INFERENCE][REFINE runtime]** Every response returns `sourceHandle`, `sourceDigest`, `snapshotHead`, `nextCursor`, `truncated`, and bounded content. This converts prompt context into verifiable evidence rather than ambient text. [SOURCE: .opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:35-69]",
+      "addedAtIteration": 8,
+      "sources": [
+        "Paper context manager, orientation, prompt pack, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-8-3-observed-in-paper-extend-runtime-nooa-exposes-context-and-event-operations-to-bo",
+      "text": "**[OBSERVED-IN-PAPER][EXTEND runtime]** NOOA exposes context and event operations to both developer and model, including typed event queries. That is the primary transferable design idea. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:138-165]",
+      "addedAtIteration": 8,
+      "sources": [
+        "Paper context manager, orientation, prompt pack, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-8-4-inference-confirm-replay-extend-runtime-each-call-emits-an-append-only-context-r",
+      "text": "**[INFERENCE][CONFIRM replay; EXTEND runtime]** Each call emits an append-only `context_read` audit event containing operation, normalized arguments, returned handles, state head, truncation, and cost. Reads remain replayable without embedding full sensitive payloads. [SOURCE: .opencode/skills/system-deep-loop/deep-research/references/state/state-jsonl.md:18-34]",
+      "addedAtIteration": 8,
+      "sources": [
+        "Paper context manager, orientation, prompt pack, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-8-5-inference-contradict-overreach-confirm-runtime-forbidden-operations-append-canon",
+      "text": "**[INFERENCE][CONTRADICT overreach; CONFIRM runtime]** Forbidden operations: append canonical events, rewrite strategy/registry, acknowledge questions, select graph edges, change convergence, mutate executor/budget, spawn work, dereference outside capability scope, or authorize effects. [SOURCE: .opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:35-48]",
+      "addedAtIteration": 8,
+      "sources": [
+        "Paper context manager, orientation, prompt pack, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-8-6-inference-confirm-runtime-deterministic-prompt-rendering-remains-the-boot-and-de",
+      "text": "**[INFERENCE][CONFIRM runtime]** Deterministic prompt rendering remains the boot and degraded-mode path; the facade is an additive read capability, not a hidden mandatory dependency. [SOURCE: .opencode/skills/system-deep-loop/runtime/feature-catalog/prompt-rendering/prompt-pack.md:41-47]",
+      "addedAtIteration": 8,
+      "sources": [
+        "Paper context manager, orientation, prompt pack, JSONL."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-9-1-observed-in-paper-extend-studies-extend-runtime-codeact-lets-the-model-use-loops",
+      "text": "**[OBSERVED-IN-PAPER][EXTEND studies; EXTEND runtime]** CodeAct lets the model use loops, conditionals, async operations, helpers, libraries, and typed values in a persistent method-local REPL. These tactics compress multi-step computation. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:189-203]",
+      "addedAtIteration": 9,
+      "sources": [
+        "Paper CodeAct and limitations, LEAF contract, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-9-2-observed-in-paper-contradict-runtime-if-copied-the-same-surface-permits-subagent",
+      "text": "**[OBSERVED-IN-PAPER][CONTRADICT runtime if copied]** The same surface permits subagent spawning and mutation reachable through `self`; the paper also acknowledges that in-process execution needs an external sandbox/permission boundary. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:191-203] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/research-paper/NVIDIA-labs-OO-Agents.md:444-448]",
+      "addedAtIteration": 9,
+      "sources": [
+        "Paper CodeAct and limitations, LEAF contract, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-9-3-inference-confirm-studies-refine-runtime-transfer-only-local-calculation-query-s",
+      "text": "**[INFERENCE][CONFIRM studies; REFINE runtime]** Transfer only local calculation, query sequencing, bounded retry, parsing, ranking, batching, and construction of proposed return data. Each action stays within the declared tool/capability set and write boundary. [SOURCE: .opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:35-48]",
+      "addedAtIteration": 9,
+      "sources": [
+        "Paper CodeAct and limitations, LEAF contract, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-9-4-inference-confirm-graph-ownership-contradict-model-spawning-any-need-for-new-par",
+      "text": "**[INFERENCE][CONFIRM graph ownership; CONTRADICT model spawning]** Any need for new parallel work, another model, a wider source scope, or a protected effect becomes a typed escalation proposal to the workflow/graph; the LEAF cannot instantiate it. [SOURCE: .opencode/skills/system-deep-loop/deep-research/SKILL.md:267-275] [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:24-34]",
+      "addedAtIteration": 9,
+      "sources": [
+        "Paper CodeAct and limitations, LEAF contract, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "finding-9-5-inference-confirm-036-programmability-changes-how-a-candidate-is-computed-never-",
+      "text": "**[INFERENCE][CONFIRM 036]** Programmability changes how a candidate is computed, never who authorizes its consequence. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:16-20]",
+      "addedAtIteration": 9,
+      "sources": [
+        "Paper CodeAct and limitations, LEAF contract, study 3."
+      ],
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-4987be49bac5",
+      "text": "Wholesale adoption of NOOA's in-process object and spawning model.",
+      "contentHash": "4987be49bac5",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-ca98b09883f8",
+      "text": "Treating paper benchmarks as local promotion evidence.",
+      "contentHash": "ca98b09883f8",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-12b07df9448e",
+      "text": "Capability acquisition, loop-control mutation, lineage creation, and unreceipted durable effects.",
+      "contentHash": "12b07df9448e",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-88148f4b96e6",
+      "text": "One aggregate score and one component owning all verdicts.",
+      "contentHash": "88148f4b96e6",
+      "addedAtIteration": 11,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-821745ca25e7",
+      "text": "Happy-path-only testing and final-output-only evaluation.",
+      "contentHash": "821745ca25e7",
+      "addedAtIteration": 12,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-591e43b20123",
+      "text": "Live mutable cross-iteration references, path-only handles, and preview-as-value.",
+      "contentHash": "591e43b20123",
+      "addedAtIteration": 13,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-4ed945563e0c",
+      "text": "Token reduction as sufficient proof and implicit latest-version resolution.",
+      "contentHash": "4ed945563e0c",
+      "addedAtIteration": 14,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-15e820fcd54d",
+      "text": "Fluency-based reflection grading and average-only benchmark promotion.",
+      "contentHash": "15e820fcd54d",
+      "addedAtIteration": 15,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-3606cd863b4b",
+      "text": "Retry without evidence, shared judge context, partial fan-in as complete, and model-managed lock recovery.",
+      "contentHash": "3606cd863b4b",
+      "addedAtIteration": 16,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-eb6e907772d4",
+      "text": "Graphs replace loops, topology creates truth, and promotional metrics establish acceptance.",
+      "contentHash": "eb6e907772d4",
+      "addedAtIteration": 17,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-caf6fb1dc3bf",
+      "text": "Replacing JSONL, prompt-pack, convergence, fanout ownership, lock ownership, or 036.",
+      "contentHash": "caf6fb1dc3bf",
+      "addedAtIteration": 18,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-e99f0a607805",
+      "text": "Complexity without measured failure, wholesale NOOA, memory truth, and graph-first narrow work.",
+      "contentHash": "e99f0a607805",
+      "addedAtIteration": 19,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-47528fb1cc82",
+      "text": "Prose-only terminal returns.",
+      "contentHash": "47528fb1cc82",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-6260374cd75e",
+      "text": "Replacing narrative/state/delta with an in-process result object.",
+      "contentHash": "6260374cd75e",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-16976a657a6c",
+      "text": "NOOA as dependency/authority; model-side spawning; mutable live objects across trust boundaries; memory erasure; validation/convergence authorization.",
+      "contentHash": "16976a657a6c",
+      "addedAtIteration": 20,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-736b864f5ff2",
+      "text": "Using local repair to manufacture missing evidence.",
+      "contentHash": "736b864f5ff2",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-a71d31908800",
+      "text": "Unbounded local repair.",
+      "contentHash": "a71d31908800",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-180b7dde195e",
+      "text": "Semantic pass as transition authority.",
+      "contentHash": "180b7dde195e",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-4efc898bd484",
+      "text": "Schema validity as truth.",
+      "contentHash": "4efc898bd484",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-671d71dbcc24",
+      "text": "Convergence as bearer authorization.",
+      "contentHash": "671d71dbcc24",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-8d42656b1e82",
+      "text": "Reflection as authority.",
+      "contentHash": "8d42656b1e82",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-eb455580fa29",
+      "text": "Memory curation as truth admission.",
+      "contentHash": "eb455580fa29",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-6b9f10327b82",
+      "text": "Model-owned merge acceptance.",
+      "contentHash": "6b9f10327b82",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-c86129f29d1f",
+      "text": "Physical deletion of provenance, contradictions, authority events, or negative knowledge.",
+      "contentHash": "c86129f29d1f",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-607f1171d077",
+      "text": "Flat ever-growing transcripts.",
+      "contentHash": "607f1171d077",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-c401f76eb818",
+      "text": "Summary replacing original events.",
+      "contentHash": "c401f76eb818",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-d3d6e3a1e8d9",
+      "text": "Model mutation of state or control.",
+      "contentHash": "d3d6e3a1e8d9",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-e5f89028067d",
+      "text": "Unbounded transcript export.",
+      "contentHash": "e5f89028067d",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-064d0f373fec",
+      "text": "Durable `self` mutation.",
+      "contentHash": "064d0f373fec",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-8e2c4be382be",
+      "text": "Unrestricted Python as the repository harness.",
+      "contentHash": "8e2c4be382be",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-e14e59583566",
+      "text": "Model-side lineage spawning.",
+      "contentHash": "e14e59583566",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "noaa-theory-sol-high"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "keyFindings": 133,
+    "sourceFindings": 133,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.03,
+    "coverageBySources": {}
+  }
+}

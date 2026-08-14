@@ -1,0 +1,65 @@
+{
+  "topic": "Study the LOOP/HARNESS layer of system-deep-loop by extracting ideas from the NVIDIA Object-Oriented Agents paper as the primary subject, plus the 12 graph-engineering blog posts for loop/harness first principles. Ground every iteration in the orientation seed and build on studies 1-4. Frame every finding as confirm, refine, extend, or contradict against both the studies-1-4 graph design and the live runtime. Investigate P1 typed locally repairable IterationResult, P2 agent-curated memory without truth corruption, P3 model-callable read-only context/event APIs, P4 programmable loop engineering inside fixed LEAF boundaries, P5 three-layer evaluation, P6 typed digest-bound artifact handles and bounded previews, and P7 a loop/harness mutant corpus. Treat NOOA as external idea material, never a controlled dependency, and subordinate all proposals to the 036 authority plane.",
+  "maxIterations": 20,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory",
+  "resource_map_present": true,
+  "resource_map": {"emit": true},
+  "createdAt": "2026-08-14T04:15:22.129Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "high",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-noaa-theory-sol-high-1786680785904-4bkmet",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout_lineage_artifact_dir": "specs/system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory/research/lineages/noaa-theory-sol-high",
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": ["key-questions", "answered-questions", "what-worked", "what-failed", "exhausted-approaches", "ruled-out-directions", "divergence-frontier", "next-focus"]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

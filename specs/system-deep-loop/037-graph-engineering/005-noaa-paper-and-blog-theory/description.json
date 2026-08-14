@@ -1,0 +1,28 @@
+{
+  "level": 1,
+  "specFolder": "system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory",
+  "description": "20-iteration loop/harness-layer study (gpt-5.6-sol high; synthesized by gpt-5.6-sol xhigh; independently verified by DeepSeek V4 Pro, PASS-WITH-FIXES applied) of the NVIDIA Object-Oriented Agents (NOOA) research paper plus the 12 graph-engineering blogs. The loop/harness counterpart to the four graph-layer studies: extracts validated typed iteration returns, agent-curated non-authoritative memory, model-callable context APIs, programmable-but-bounded LEAF tactics, a three-layer eval architecture, and a loop/harness mutant corpus for system-deep-loop's own loop engine, all subordinate to the 036 authority plane (which currently runs dark).",
+  "keywords": [
+    "noaa",
+    "nvidia-object-oriented-agents",
+    "loop-harness",
+    "validated-loops",
+    "agent-curated-memory",
+    "deep-loop",
+    "036-authority-plane",
+    "research-paper",
+    "gpt-5.6-sol",
+    "deepseek-v4-pro-verified"
+  ],
+  "lastUpdated": "2026-08-14T02:00:00Z",
+  "specId": "005",
+  "folderSlug": "noaa-paper-and-blog-theory",
+  "parentChain": [
+    "system-deep-loop",
+    "037-graph-engineering"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-14-26_02-00__noaa-paper-loop-harness-20-iteration-study.md"
+  ]
+}
