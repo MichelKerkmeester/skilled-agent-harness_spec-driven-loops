@@ -520,8 +520,11 @@ _STRUCTURE_ENFORCEMENT_ENV = 'SKDOC_ENFORCE_STRUCTURE'
 
 
 def _structure_enforcement_enabled() -> bool:
-    """Return whether the staged general structure rules are enabled."""
-    return os.environ.get(_STRUCTURE_ENFORCEMENT_ENV) == '1'
+    """Whether the general-path structure rules are enforced: a `---` divider between
+    numbered ALL-CAPS H2 sections, no Table of Contents, and no navigation-anchor
+    comments. Enforced by default. Set SKDOC_ENFORCE_STRUCTURE=0 to opt out, e.g. while
+    migrating a doc set whose section structure has not been normalized yet."""
+    return os.environ.get(_STRUCTURE_ENFORCEMENT_ENV, '1') != '0'
 
 
 def _transparent_structure_line(line: str) -> bool:

@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-029-authoring"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions:
       - "Constitutional-memory divider policy (Title-Case H2 class)"
       - "GitHub single-vs-double-dash slug (empirical)"
@@ -46,7 +46,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 029-doc-divider-and-anchor-standard |
-| **Status** | Complete — standard built, normalized + verified across 8,627 files, shipped to origin/v4; enforcement flip (T013) operator-deferred |
+| **Status** | Complete — standard built, normalized across 8,627 files, and enforced default-on (SKDOC_ENFORCE_STRUCTURE, opt out with =0); shipped to origin/v4 + main |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 

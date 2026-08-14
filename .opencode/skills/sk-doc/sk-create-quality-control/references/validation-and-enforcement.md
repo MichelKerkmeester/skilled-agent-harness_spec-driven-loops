@@ -71,6 +71,18 @@ Run: python ../shared/scripts/extract_structure.py <file>
 
 > **Note**: These are manual workflow patterns for the AI agent to follow when violations are detected. They are not automated scripts. `SKILL.md` §4 lists the fix steps; the approval-prompt templates below are the wording to surface to the user.
 
+### Structural enforcement flag
+
+`validate_document.py` enforces the general-path structure rules **by default**: a `---` divider between numbered ALL-CAPS H2 sections, no Table of Contents, and no `<!-- ANCHOR -->` navigation comments (README and skill-doc types). Continuity-doc anchors (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `memory/context.md`) are exempt and never flagged.
+
+To opt out for a single run — for example while migrating a doc set whose sections have not been normalized — set the flag to `0`:
+
+```bash
+SKDOC_ENFORCE_STRUCTURE=0 python3 .opencode/skills/sk-doc/shared/scripts/validate_document.py <file> --type readme
+```
+
+Unset or any value other than `0` keeps enforcement on.
+
 ### Workflow 1: Add Missing Frontmatter
 
 **Detection**: SKILL/Command file, no `---` at line 1
