@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":14,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.31,"status":"complete","focus":"P4 runtime mapping"}
+{"type":"finding","id":"f-014-001","label":"Coverage and relationship graphs remain diagnostic projections","iteration":14,"classification":"confirm","source":"coverage-graph-signals.ts:22-56"}

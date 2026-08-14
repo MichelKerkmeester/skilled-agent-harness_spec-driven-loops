@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":1,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.92,"status":"complete","focus":"orientation and studies 1-3 baseline"}
+{"type":"finding","id":"f-001-001","label":"Knowledge production is the remaining large plane","iteration":1,"classification":"extend","source":"orientation.md:69-84"}
+{"type":"ruled_out","direction":"documentary package as runtime proof","reason":"package has no runnable implementation","iteration":1}

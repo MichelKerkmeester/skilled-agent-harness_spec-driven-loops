@@ -1,0 +1,1310 @@
+{
+  "mergedFrom": [
+    "gem-sol-high"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-canonical-doctrine-is-text-claimed-across-the-teaching-package-and-blog-cor",
+      "inboxId": null,
+      "text": "What canonical doctrine is text-claimed across the teaching package and blog corpus, and which claims are merely inferred?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "question-10-is-the-four-study-program-complete-enough-to-finalize-design-and-what-explicit-w",
+      "inboxId": null,
+      "text": "Is the four-study program complete enough to finalize design, and what explicit when-not-to-use boundaries remain?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "question-2-p1-which-modeling-extraction-fusion-serving-and-evaluation-practices-should-be-a",
+      "inboxId": null,
+      "text": "P1: Which modeling, extraction, fusion, serving, and evaluation practices should be adopted, refined, or rejected per pipeline stage?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "question-3-p2-where-does-entity-resolution-form-a-truth-maintenance-boundary-and-how-does-t",
+      "inboxId": null,
+      "text": "P2: Where does entity resolution form a truth-maintenance boundary, and how does that differ from graphene's four-valued belief?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "question-4-p3-how-should-ontology-act-as-executable-specification-and-versioned-dependency-",
+      "inboxId": null,
+      "text": "P3: How should ontology act as executable specification and versioned dependency without inventing unsupported mechanisms?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "question-5-p4-how-do-knowledge-plane-quality-gates-relate-to-runtime-causal-prefix-parity-c",
+      "inboxId": null,
+      "text": "P4: How do knowledge-plane quality gates relate to runtime causal-prefix parity, coverage-graph, and contradiction-supersession?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "question-6-p5-how-should-temporal-facts-and-gem-s-prefer-newer-heuristic-be-contained-by-pu",
+      "inboxId": null,
+      "text": "P5: How should temporal facts and GEM's prefer-newer heuristic be contained by purpose-bound belief and authority?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "question-7-p6-does-task-graph-doctrine-expose-genuinely-missing-runtime-failure-modes-after",
+      "inboxId": null,
+      "text": "P6: Does task-graph doctrine expose genuinely missing runtime failure modes after studies 1-3?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "question-8-p7-what-staged-rollout-evidence-follows-from-the-curriculum-and-what-gates-shoul",
+      "inboxId": null,
+      "text": "P7: What staged-rollout evidence follows from the curriculum, and what gates should separate stages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "question-9-how-does-each-doctrine-map-onto-the-current-system-deep-loop-runtime-and-the-036",
+      "inboxId": null,
+      "text": "How does each doctrine map onto the current system-deep-loop runtime and the 036 authority plane?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-text-claimed-confirm-study-1-fixes-the-graph-as-a-versioned-execution-projection",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Study 1 fixes the graph as a versioned execution projection over 036: the graph proposes readiness and transitions, while 036 exclusively owns admission, history, effects, receipts, budgets, fences, certificates, and cutover. [SOURCE: specs/system-deep-loop/037-graph-engineering/001-agent-swarms/research/research.md:3-9]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Prior studies 1–3 and orientation seed, cited above."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-1-2-text-claimed-confirm-study-2-strengthens-that-boundary-with-purpose-bound-four-v",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Study 2 strengthens that boundary with purpose-bound four-valued belief and serializable prospective truth admission; truth-affecting writes share a belief-admission head unless disjoint transitive closure is proven. [SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/research.md:275-327]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Prior studies 1–3 and orientation seed, cited above."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-1-3-text-claimed-confirm-study-3-closes-implementation-facing-governance-around-admi",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Study 3 closes implementation-facing governance around admission, sealing, policy, gates, budgets, effects, replay, and causal parity, but explicitly leaves GraphARC memory observational. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:131-143] [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:178-189]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Prior studies 1–3 and orientation seed, cited above."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-1-4-inference-comparing-the-three-inherited-syntheses-with-the-orientation-s-stated-",
+      "text": "**[INFERENCE: comparing the three inherited syntheses with the orientation's stated delta]** The only large untreated plane is upstream knowledge/evidence production: deciding what may enter the non-authoritative evidence projection and how its fitness is measured. [SOURCE: specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/orientation.md:69-84]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Prior studies 1–3 and orientation seed, cited above."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-10-1-text-claimed-confirm-runtime-relationship-evidence-records-distinguish-supportin",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Runtime relationship evidence records distinguish supporting, refuting, and qualifying positions and preserve assertion and withdrawal evidence separately. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/types.ts:19-39] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/types.ts:150-168]",
+      "addedAtIteration": 10,
+      "sources": [
+        "Runtime contradiction/supersession types, registry, projection; study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-10-2-text-claimed-confirm-contradiction-is-symmetric-while-supersession-is-a-directed",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Contradiction is symmetric, while supersession is a directed predecessor-to-successor relation with stable identities; active supersession must remain acyclic. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/event-registry.ts:156-190] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/projection.ts:216-250]",
+      "addedAtIteration": 10,
+      "sources": [
+        "Runtime contradiction/supersession types, registry, projection; study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-10-3-inference-gem-s-merge-confidence-is-evidence-about-identity-not-one-of-in-out-bo",
+      "text": "**[INFERENCE: GEM's merge confidence is evidence about identity, not one of IN/OUT/BOTH/NEITHER]** Identity decisions may change which evidence is grouped, but the settlement engine must recompute purpose-bound belief from the grouped assertions and their contradiction/supersession relations.",
+      "addedAtIteration": 10,
+      "sources": [
+        "Runtime contradiction/supersession types, registry, projection; study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-10-4-text-claimed-refine-gem-s-conflict-preserving-merge-policy-is-compatible-with-bo",
+      "text": "**[TEXT-CLAIMED][REFINE]** GEM's conflict-preserving merge policy is compatible with BOTH/contested belief, but it lacks required-answer blockers, checked quiescence, and prospective nogood admission. [SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/research.md:537-547]",
+      "addedAtIteration": 10,
+      "sources": [
+        "Runtime contradiction/supersession types, registry, projection; study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-11-1-text-claimed-adopt-competency-questions-are-both-ontology-spec-and-test-suite-mi",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Competency questions are both ontology spec and test suite; missing traversals expose missing types or relations. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/modeling.md:30-47]",
+      "addedAtIteration": 11,
+      "sources": [
+        "GEM modeling and fusion references."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-11-2-text-claimed-adopt-the-ontology-declares-precise-relation-verbs-domain-range-car",
+      "text": "**[TEXT-CLAIMED][ADOPT]** The ontology declares precise relation verbs, domain/range, cardinality, canonical-name rules, and minimal hierarchy, and is embedded verbatim in extraction prompts. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/modeling.md:49-59]",
+      "addedAtIteration": 11,
+      "sources": [
+        "GEM modeling and fusion references."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-11-3-text-claimed-refine-llm-induced-schemas-require-evidence-quotes-and-manual-pruni",
+      "text": "**[TEXT-CLAIMED][REFINE]** LLM-induced schemas require evidence quotes and manual pruning; they are proposals, not accepted schema. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/modeling.md:80-86]",
+      "addedAtIteration": 11,
+      "sources": [
+        "GEM modeling and fusion references."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-11-4-inference-the-ontology-governs-extraction-validity-and-evaluation-interpretation",
+      "text": "**[INFERENCE: the ontology governs extraction validity and evaluation interpretation]** Its accepted version is a dependency of every producer, fusion decision, competency test, and serving result; changing it invalidates downstream comparability until re-evaluated.",
+      "addedAtIteration": 11,
+      "sources": [
+        "GEM modeling and fusion references."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-1-text-claimed-confirm-gem-names-one-ontology-file-as-source-of-truth-and-requires",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** GEM names one ontology file as source of truth and requires every extraction prompt to consume it. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/modeling.md:56-59]",
+      "addedAtIteration": 12,
+      "sources": [
+        "GEM modeling; 036 transition/versioning policy."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-2-text-claimed-confirm-036-already-requires-current-writers-registered-adjacent-up",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** 036 already requires current writers, registered adjacent upcasters for supported old events, refusal of unknown/new versions, and no partial projection from incomplete mixed-version replay. [SOURCE: specs/system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/transition-versioning-and-rollback-policy.md:90-119]",
+      "addedAtIteration": 12,
+      "sources": [
+        "GEM modeling; 036 transition/versioning policy."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-3-inference-apply-dependency-discipline-not-event-envelope-identity-to-ontology-th",
+      "text": "**[INFERENCE: apply dependency discipline, not event-envelope identity, to ontology]** The design needs an immutable ontology version/digest referenced by extraction and evaluation artifacts; a schema change must classify affected source mappings, prompts, fusion rules, competency questions, and serving evaluations, then regenerate or explicitly retain old evidence under its original version.",
+      "addedAtIteration": 12,
+      "sources": [
+        "GEM modeling; 036 transition/versioning policy."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-12-4-inference-ontology-compatibility-is-semantic-and-may-not-be-safely-upcast-rename",
+      "text": "**[INFERENCE: ontology compatibility is semantic and may not be safely upcast]** Renames, splits, merges, domain/range changes, and altered canonicalization can change meaning; fail closed on ambiguous mappings instead of mechanically borrowing 036 event upcasters.",
+      "addedAtIteration": 12,
+      "sources": [
+        "GEM modeling; 036 transition/versioning policy."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-13-1-text-claimed-adopt-data-quality-gate-measure-entity-relation-triple-precision-an",
+      "text": "**[TEXT-CLAIMED][ADOPT] Data-quality gate.** Measure entity/relation/triple precision and recall, leakage, confidence intervals, source-family drift, and fusion error. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:148-162]",
+      "addedAtIteration": 13,
+      "sources": [
+        "GEM workflows; study 3 parity synthesis."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-13-2-text-claimed-adopt-retrieval-quality-gate-predeclare-question-families-and-answe",
+      "text": "**[TEXT-CLAIMED][ADOPT] Retrieval-quality gate.** Predeclare question families and answer keys, compare graph/hybrid routes with vector-only baseline, and measure citation fidelity, answer quality, latency, and cost. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:165-179]",
+      "addedAtIteration": 13,
+      "sources": [
+        "GEM workflows; study 3 parity synthesis."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-13-3-text-claimed-confirm-runtime-parity-gate-study-3-requires-causal-observations-co",
+      "text": "**[TEXT-CLAIMED][CONFIRM] Runtime-parity gate.** Study 3 requires causal observations, complete case/mutant manifests, authority/effect suppression, and stage-specific promotion; terminal equality or a certificate alone is insufficient. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:131-143]",
+      "addedAtIteration": 13,
+      "sources": [
+        "GEM workflows; study 3 parity synthesis."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-13-4-inference-the-three-gate-families-compose-but-do-not-substitute-a-perfect-kg-can",
+      "text": "**[INFERENCE: the three gate families compose but do not substitute]** A perfect KG can run through an unsafe scheduler; a perfectly parity-matched runtime can retrieve poisoned evidence; high answer scores can conceal unauthorized effects.",
+      "addedAtIteration": 13,
+      "sources": [
+        "GEM workflows; study 3 parity synthesis."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-1-text-claimed-confirm-the-coverage-graph-already-models-research-question-coverag",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** The coverage graph already models research question coverage, claim verification, contradiction density, source diversity, and evidence depth; convergence profiles keep loop-local semantics explicit. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts:22-56]",
+      "addedAtIteration": 14,
+      "sources": [
+        "Live coverage-graph and contradiction-supersession modules."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-2-text-claimed-confirm-query-helpers-expose-coverage-gaps-contradiction-pairs-prov",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Query helpers expose coverage gaps, contradiction pairs, provenance steps, hot nodes, and same-kind consolidation candidates; consolidation is candidate discovery rather than automatic mutation. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-query.ts:17-82]",
+      "addedAtIteration": 14,
+      "sources": [
+        "Live coverage-graph and contradiction-supersession modules."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-3-text-claimed-confirm-contradiction-supersession-candidates-are-inert-exact-evide",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Contradiction/supersession candidates are inert, exact-evidence-bound, replay-validated, and projected in additive-dark mode. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/types.ts:24-96] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/projection.ts:45-113]",
+      "addedAtIteration": 14,
+      "sources": [
+        "Live coverage-graph and contradiction-supersession modules."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-4-inference-gem-fills-producer-semantics-not-storage-primitives-extend-coverage-me",
+      "text": "**[INFERENCE: GEM fills producer semantics, not storage primitives]** Extend coverage metadata and evaluation inputs with ontology/source/extractor/fusion identities and product-quality results; do not change graph nodes into authoritative truth or automate fuzzy consolidation.",
+      "addedAtIteration": 14,
+      "sources": [
+        "Live coverage-graph and contradiction-supersession modules."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-14-5-inference-the-coverage-graph-is-a-diagnostic-projection-it-can-reveal-low-source",
+      "text": "**[INFERENCE: the coverage graph is a diagnostic projection]** It can reveal low source diversity or unresolved contradictions, but the 036 gateway remains the only transition authority.",
+      "addedAtIteration": 14,
+      "sources": [
+        "Live coverage-graph and contradiction-supersession modules."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-1-text-claimed-adopt-incremental-memory-reuses-the-same-ontology-extraction-fusion",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Incremental memory reuses the same ontology, extraction, fusion, and bounded GraphRAG serving, with periodic fusion and confidence hygiene. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/fusion-and-llm.md:72-86]",
+      "addedAtIteration": 15,
+      "sources": [
+        "GEM memory loop, temporal blog, study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-2-text-claimed-refine-contain-gem-says-keep-conflicting-facts-with-time-provenance",
+      "text": "**[TEXT-CLAIMED][REFINE/CONTAIN]** GEM says keep conflicting facts with time/provenance and prefer newer at retrieval. The corpus provides a richer model: close the old validity interval while retaining when the system learned each fact. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/fusion-and-llm.md:82-85] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/What is Graph Engineering.md:145-158]",
+      "addedAtIteration": 15,
+      "sources": [
+        "GEM memory loop, temporal blog, study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-3-text-claimed-contradict-as-universal-rule-study-2-orders-semantic-successors-by-",
+      "text": "**[TEXT-CLAIMED][CONTRADICT as universal rule]** Study 2 orders semantic successors by `(observed_at, authorized_sequence)`, rejects non-increasing/cyclic/competing successors before append, and forbids last-write-wins repair. [SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/research.md:275-293]",
+      "addedAtIteration": 15,
+      "sources": [
+        "GEM memory loop, temporal blog, study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-15-4-inference-newer-is-at-most-a-purpose-specific-retrieval-policy-valid-time-observ",
+      "text": "**[INFERENCE: “newer” is at most a purpose-specific retrieval policy]** Valid-time, observation-time, source authority, uncertainty, scope, contradiction, and required-answer fitness must participate in settlement. Receipt time cannot silently stand in for observation time.",
+      "addedAtIteration": 15,
+      "sources": [
+        "GEM memory loop, temporal blog, study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-1-text-claimed-confirm-fake-edge-deletion-genuinely-independent-fan-out-separate-v",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Fake-edge deletion, genuinely independent fan-out, separate verifiers, one owned merge, consequence-local human gates, bounded rounds, one writer per file, written routing, and spawn caps all support the existing design. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/task-graphs.md:23-75]",
+      "addedAtIteration": 16,
+      "sources": [
+        "GEM task graphs and task-graph failure blogs."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-2-text-claimed-extend-operational-tests-false-independence-includes-shared-files-w",
+      "text": "**[TEXT-CLAIMED][EXTEND operational tests]** False independence includes shared files, workspaces, rate limits, credentials, budgets, or mutable services even when data dependencies look disjoint. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering explained: what it is, when to use it and when not to.md:165-179]",
+      "addedAtIteration": 16,
+      "sources": [
+        "GEM task graphs and task-graph failure blogs."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-3-text-claimed-extend-operational-tests-hierarchical-fan-in-prevents-context-colla",
+      "text": "**[TEXT-CLAIMED][EXTEND operational tests]** Hierarchical fan-in prevents context collapse; merge nodes must compare received inputs with expected branch cardinality so silent leaf loss cannot masquerade as completeness. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md:213-235]",
+      "addedAtIteration": 16,
+      "sources": [
+        "GEM task graphs and task-graph failure blogs."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-4-text-claimed-refine-scheduling-use-a-barrier-only-when-a-stage-needs-the-complet",
+      "text": "**[TEXT-CLAIMED][REFINE scheduling]** Use a barrier only when a stage needs the complete prior set; otherwise per-item pipelines avoid slowest-node idle time. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md:196-212]",
+      "addedAtIteration": 16,
+      "sources": [
+        "GEM task graphs and task-graph failure blogs."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-16-5-inference-these-are-failure-test-families-not-new-authority-mechanisms-add-share",
+      "text": "**[INFERENCE: these are failure-test families, not new authority mechanisms]** Add shared-resource independence checks, expected-fan-in closure, hierarchical reduction budgets, and barrier-necessity evidence to parity/mutant coverage; 036 ownership remains unchanged.",
+      "addedAtIteration": 16,
+      "sources": [
+        "GEM task graphs and task-graph failure blogs."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-1-text-claimed-confirm-harness-loop-and-graph-own-different-failures-a-graph-canno",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Harness, loop, and graph own different failures; a graph cannot repair broken state, misleading tools, permissions, or unbounded retries. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Harness, Loop, or Graph? Building Reliable Agent Systems at the Right Layer.md:90-116]",
+      "addedAtIteration": 17,
+      "sources": [
+        "Five task/loop/eval corpus posts cited above."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-2-text-claimed-confirm-organizational-graphs-are-stable-policy-role-topology-while",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Organizational graphs are stable policy/role topology, while per-task work graphs may split and merge dynamically; GEM's compact task chapter does not replace this distinction. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering: After Loops, This Is How You Wire Multi-Agent Orgs.md:112-183]",
+      "addedAtIteration": 17,
+      "sources": [
+        "Five task/loop/eval corpus posts cited above."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-3-text-claimed-extend-tests-evaluators-require-versioned-schemas-permanent-regress",
+      "text": "**[TEXT-CLAIMED][EXTEND tests]** Evaluators require versioned schemas, permanent regression cases from failures, and gates that control edges rather than post-hoc dashboards. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:46-54] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Eval Engineering: build the gate that lets your agents merge without you (full 6-step course).md:91-130]",
+      "addedAtIteration": 17,
+      "sources": [
+        "Five task/loop/eval corpus posts cited above."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-4-text-claimed-confirm-self-correcting-loops-need-structured-handoffs-explicit-fai",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Self-correcting loops need structured handoffs, explicit failure routes, hard stop/escalation, and deliberate failure tests before unattended use. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them.md:35-35] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Build a Self-Correcting AI Loop That Catches Its Own Mistakes Before You See Them.md:77-123]",
+      "addedAtIteration": 17,
+      "sources": [
+        "Five task/loop/eval corpus posts cited above."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-17-5-inference-studies-1-3-already-own-these-mechanisms-study-4-contributes-doctrine-",
+      "text": "**[INFERENCE: studies 1–3 already own these mechanisms]** Study 4 contributes doctrine, operator tests, and rollout evidence—not replacement IR, gate, effect, budget, replay, or authority contracts.",
+      "addedAtIteration": 17,
+      "sources": [
+        "Five task/loop/eval corpus posts cited above."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-1-text-claimed-adopt-gem-maps-theory-value-representation-ontology-entity-relation",
+      "text": "**[TEXT-CLAIMED][ADOPT]** GEM maps theory/value → representation → ontology → entity/relation/event extraction → quality → fusion → LLM serving, reflecting acquisition, quality, and application bottlenecks. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/curriculum.md:8-18] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/curriculum.md:76-88]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Curriculum, GEM skill, study 3 rollout."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-2-text-claimed-adopt-process-a-ten-document-pilot-through-all-nine-stages-before-s",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Process a ten-document pilot through all nine stages before scaling; do not skip ontology or fusion; the LLM is machinery inside the pipeline. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/SKILL.md:44-47] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/SKILL.md:92-102]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Curriculum, GEM skill, study 3 rollout."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-3-text-claimed-confirm-studies-1-3-require-deterministic-ir-dark-shadow-execution-",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Studies 1–3 require deterministic IR, dark/shadow execution, negative controls, causal parity, reversible canaries, selected-writer/effect canaries, and a separate 036 cutover. [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:131-143] [SOURCE: specs/system-deep-loop/037-graph-engineering/003-graph-arch/research/research.md:192-207]",
+      "addedAtIteration": 18,
+      "sources": [
+        "Curriculum, GEM skill, study 3 rollout."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-18-4-inference-the-rollout-has-two-orthogonal-maturity-axes-knowledge-product-maturit",
+      "text": "**[INFERENCE: the rollout has two orthogonal maturity axes]** Knowledge-product maturity progresses K0 scope/competency corpus, K1 representation/ontology, K2 source-routed pilot, K3 quality gate, K4 reversible fusion, K5 hybrid serving evaluation, K6 incremental maintenance. Runtime promotion progresses G0–G7 under studies 1–3. A release requires the relevant K and G gates; neither axis substitutes for the other.",
+      "addedAtIteration": 18,
+      "sources": [
+        "Curriculum, GEM skill, study 3 rollout."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-1-text-claimed-confirm-the-task-graph-posts-converge-on-bounded-jobs-real-dependen",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** The task-graph posts converge on bounded jobs, real dependencies, diverse verification, explicit failure handling, and parallelism only for independent work. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/From Loops to Graphs: The Next Paradigm in AI Agent Engineering.md:38-58] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering Roadmap.md:96-203] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/LOOP ⭢ GRAPH ⭢ HARNESS: build the whole pipeline in one sitting.md:112-113]",
+      "addedAtIteration": 19,
+      "sources": [
+        "All twelve files under `context/blog-posts/`; representative anchors cited above and across iterations 2, 6, 8, 15–19."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-2-text-claimed-refine-the-graphrag-replacement-post-usefully-covers-extraction-and",
+      "text": "**[TEXT-CLAIMED][REFINE]** The GraphRAG replacement post usefully covers extraction and contradiction review, but its schema-after-extraction sketch conflicts with GEM's stronger ontology-first pipeline; ontology-first wins. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering replaced RAG at Microsoft, Stanford and Anthropic. Here's how it works.md:279-310] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/SKILL.md:44-69]",
+      "addedAtIteration": 19,
+      "sources": [
+        "All twelve files under `context/blog-posts/`; representative anchors cited above and across iterations 2, 6, 8, 15–19."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-3-text-claimed-bound-the-alpha-model-post-illustrates-parallel-factor-fan-out-and-",
+      "text": "**[TEXT-CLAIMED][BOUND]** The alpha-model post illustrates parallel factor fan-out and persistent orchestration but makes broad operational claims without supplying the governance proof studies 1–3 demand. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Use Graph Engineering to Build a Multi-Factor Alpha Model.md:44-60] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/How to Use Graph Engineering to Build a Multi-Factor Alpha Model.md:116-126]",
+      "addedAtIteration": 19,
+      "sources": [
+        "All twelve files under `context/blog-posts/`; representative anchors cited above and across iterations 2, 6, 8, 15–19."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-4-text-claimed-adopt-do-not-use-a-task-graph-for-small-isolated-work-tight-stepwis",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Do not use a task graph for small/isolated work, tight stepwise oversight, open-ended exploration, or truly sequential work; graphs buy breadth, not judgment. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering explained: what it is, when to use it and when not to.md:193-220] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/Graph Engineering with Claude: How to Stop Running a Line and Start Running a Fleet.md:303-319]",
+      "addedAtIteration": 19,
+      "sources": [
+        "All twelve files under `context/blog-posts/`; representative anchors cited above and across iterations 2, 6, 8, 15–19."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-19-5-inference-all-twelve-posts-now-map-to-an-already-covered-doctrine-family-no-post",
+      "text": "**[INFERENCE: all twelve posts now map to an already covered doctrine family]** No post adds an unclassified authority or runtime mechanism; promotional performance claims remain non-normative.",
+      "addedAtIteration": 19,
+      "sources": [
+        "All twelve files under `context/blog-posts/`; representative anchors cited above and across iterations 2, 6, 8, 15–19."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-2-1-text-claimed-confirm-gem-is-a-markdown-teaching-package-the-readme-inventories-a",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** GEM is a Markdown teaching package: the README inventories a skill, five reference documents, nine prompt workflows, and a packaged archive—not a scheduler or database. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:20-27]",
+      "addedAtIteration": 2,
+      "sources": [
+        "GEM README and WORKFLOWS; all 12 blog files inventoried."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-2-2-text-claimed-refine-its-knowledge-material-is-an-english-distillation-of-a-gradu",
+      "text": "**[TEXT-CLAIMED][REFINE]** Its knowledge material is an English distillation of a graduate KG course, while task-graph material cites external agent-systems work; these are provenance declarations, not reproduced experiments. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:62-70]",
+      "addedAtIteration": 2,
+      "sources": [
+        "GEM README and WORKFLOWS; all 12 blog files inventoried."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-2-3-text-claimed-confirm-the-workflows-are-prompt-specifications-that-chain-outputs-",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** The workflows are prompt specifications that chain outputs; their rigor lies in required artifacts and checks, not executable enforcement. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:1-8]",
+      "addedAtIteration": 2,
+      "sources": [
+        "GEM README and WORKFLOWS; all 12 blog files inventoried."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-2-4-inference-the-blog-corpus-mixes-practical-doctrine-marketing-numbers-and-code-sk",
+      "text": "**[INFERENCE: the blog corpus mixes practical doctrine, marketing numbers, and code sketches without a uniform evidence protocol]** Blog claims can triangulate doctrine and failure warnings, but vendor or author-reported performance must not become production thresholds. The corpus itself warns that author-only evaluations can collapse under independent testing. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/What is Graph Engineering.md:161-180]",
+      "addedAtIteration": 2,
+      "sources": [
+        "GEM README and WORKFLOWS; all 12 blog files inventoried."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-1-inference-synthesis-of-iterations-1-19-and-the-cited-corpus-four-study-verdict-c",
+      "text": "**[INFERENCE: synthesis of iterations 1–19 and the cited corpus] Four-study verdict — COMPLETE FOR DESIGN FINALIZATION, NOT IMPLEMENTATION PROOF.** Studies 1–3 settle executable graph topology, authority, belief, replay, gates, budgets, effects, parity, and rollout; study 4 supplies the missing knowledge/evidence production methodology. No unresolved architectural contradiction remains.",
+      "addedAtIteration": 20,
+      "sources": [
+        "Orientation; studies 1–3; all GEM documents; all 12 blog posts; live coverage-graph and contradiction-supersession runtime; 036 authority/versioning contracts."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-2-text-claimed-extend-the-canonical-production-plane-is-scope-competency-corpus-re",
+      "text": "**[TEXT-CLAIMED][EXTEND]** The canonical production plane is: scope/competency corpus → representation/time/provenance → versioned ontology → source router → separate entity/relation/event candidate extraction → per-source quality gate → reversible identity/schema fusion → purpose-bound belief/contradiction settlement → hybrid serving evaluation → incremental hygiene. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md:40-50] [SOURCE: specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/orientation.md:69-84]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Orientation; studies 1–3; all GEM documents; all 12 blog posts; live coverage-graph and contradiction-supersession runtime; 036 authority/versioning contracts."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-3-inference-authority-mapping-across-studies-and-live-runtime-every-production-pla",
+      "text": "**[INFERENCE: authority mapping across studies and live runtime]** Every production-plane artifact remains non-authoritative evidence. Coverage graph diagnoses coverage; contradiction/supersession records relationships; belief admission determines usable premises; only 036 admits protected transitions and records authoritative history.",
+      "addedAtIteration": 20,
+      "sources": [
+        "Orientation; studies 1–3; all GEM documents; all 12 blog posts; live coverage-graph and contradiction-supersession runtime; 036 authority/versioning contracts."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-4-text-claimed-contradict-contain-prefer-newer-is-not-truth-admission-use-composit",
+      "text": "**[TEXT-CLAIMED][CONTRADICT/CONTAIN]** “Prefer newer” is not truth admission. Use composite semantic time, explicit supersession, contradiction, source/provenance, uncertainty, purpose, and prospective settlement. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/fusion-and-llm.md:82-85] [SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/research.md:275-327]",
+      "addedAtIteration": 20,
+      "sources": [
+        "Orientation; studies 1–3; all GEM documents; all 12 blog posts; live coverage-graph and contradiction-supersession runtime; 036 authority/versioning contracts."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-20-5-inference-negative-control-audit-completion-fails-if-any-stage-lacks-pinned-onto",
+      "text": "**[INFERENCE: negative-control audit]** Completion fails if any stage lacks pinned ontology/source provenance, measured producer quality, reversible fusion, route-baseline evidence, unresolved identity/truth separation, expected fan-in closure, or relevant G-stage parity/authority proof.",
+      "addedAtIteration": 20,
+      "sources": [
+        "Orientation; studies 1–3; all GEM documents; all 12 blog posts; live coverage-graph and contradiction-supersession runtime; 036 authority/versioning contracts."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-3-1-text-claimed-adopt-scope-value-gate-use-a-graph-only-for-recurring-entities-rela",
+      "text": "**[TEXT-CLAIMED][ADOPT] Scope/value gate.** Use a graph only for recurring entities, relationship-centric, multi-hop, temporal, or synthesis questions; use a table for aggregation or simple lookup. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/SKILL.md:44-55] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:47-62]",
+      "addedAtIteration": 3,
+      "sources": [
+        "GEM SKILL, modeling reference, and `/kg-scope` workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-3-2-text-claimed-adopt-representation-decision-choose-property-graph-rdf-or-typed-js",
+      "text": "**[TEXT-CLAIMED][ADOPT] Representation decision.** Choose property graph, RDF, or typed JSON/SQLite before ingestion and decide how every fact carries time and provenance. Retrofitting provenance after fusion is described as effectively impossible. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/SKILL.md:53-55] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/modeling.md:23-28]",
+      "addedAtIteration": 3,
+      "sources": [
+        "GEM SKILL, modeling reference, and `/kg-scope` workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-3-3-text-claimed-adopt-competency-questions-ten-to-twenty-real-questions-are-simulta",
+      "text": "**[TEXT-CLAIMED][ADOPT] Competency questions.** Ten-to-twenty real questions are simultaneously ontology specification and acceptance corpus; every schema path must be walked against them. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/modeling.md:30-47]",
+      "addedAtIteration": 3,
+      "sources": [
+        "GEM SKILL, modeling reference, and `/kg-scope` workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-3-4-text-claimed-refine-minimal-ontology-precise-verb-relations-domain-range-cardina",
+      "text": "**[TEXT-CLAIMED][REFINE] Minimal ontology.** Precise verb relations, domain/range, cardinality, restrained hierarchy, and canonical naming are sound; the numeric type-count guidance is heuristic, not a runtime invariant. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/modeling.md:49-59]",
+      "addedAtIteration": 3,
+      "sources": [
+        "GEM SKILL, modeling reference, and `/kg-scope` workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-3-5-inference-studies-1-3-already-bind-executable-graph-ir-versions-while-gem-only-n",
+      "text": "**[INFERENCE: studies 1–3 already bind executable graph IR versions, while GEM only names an ontology file as source of truth]** Ontology identity must become a versioned evidence dependency for extraction/evaluation, but not be conflated with executable graph IR or 036 policy identity.",
+      "addedAtIteration": 3,
+      "sources": [
+        "GEM SKILL, modeling reference, and `/kg-scope` workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-4-1-text-claimed-adopt-structured-sources-map-deterministically-semi-structured-sour",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Structured sources map deterministically; semi-structured sources use layout parsers with models only for messy cells; unstructured sources use staged entity/relation/event extraction. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/extraction.md:12-21]",
+      "addedAtIteration": 4,
+      "sources": [
+        "GEM extraction reference and `/kg-extract` workflow. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:80-95]"
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-4-2-text-claimed-adopt-closed-vocabularies-use-exact-rules-before-llm-extraction-eve",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Closed vocabularies use exact rules before LLM extraction. Every entity candidate carries surface form, canonical guess, type, source span, and confidence. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/extraction.md:23-41]",
+      "addedAtIteration": 4,
+      "sources": [
+        "GEM extraction reference and `/kg-extract` workflow. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:80-95]"
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-4-3-text-claimed-refine-exact-match-is-deterministic-but-not-universally-100-precise",
+      "text": "**[TEXT-CLAIMED][REFINE]** “Exact match” is deterministic but not universally 100% precise when aliases or reused identifiers exist; treat the stated precision as a closed-vocabulary precondition, not an unconditional guarantee. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/extraction.md:30-36]",
+      "addedAtIteration": 4,
+      "sources": [
+        "GEM extraction reference and `/kg-extract` workflow. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:80-95]"
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-4-4-inference-source-pointers-plus-extraction-configuration-are-necessary-for-replay",
+      "text": "**[INFERENCE: source pointers plus extraction configuration are necessary for replayable evidence production]** Each batch should bind source digest, parser/prompt version, ontology version, extraction time, and confidence rubric; GEM text directly requires the pointer but leaves the other version identities implicit.",
+      "addedAtIteration": 4,
+      "sources": [
+        "GEM extraction reference and `/kg-extract` workflow. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:80-95]"
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-1-text-claimed-adopt-relation-extraction-may-connect-only-entities-already-accepte",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Relation extraction may connect only entities already accepted by the entity pass, must use ontology relations, and must validate domain/range; co-occurrence is not assertion. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/extraction.md:43-57]",
+      "addedAtIteration": 5,
+      "sources": [
+        "GEM extraction reference and event workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-2-text-claimed-adopt-repeated-unmodeled-relations-belong-in-a-side-list-for-delibe",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Repeated unmodeled relations belong in a side list for deliberate ontology review, not coerced into existing types. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/extraction.md:52-57]",
+      "addedAtIteration": 5,
+      "sources": [
+        "GEM extraction reference and event workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-3-text-claimed-adopt-dynamic-domains-require-first-class-event-nodes-with-triggers",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Dynamic domains require first-class event nodes with triggers, typed argument roles, time anchors, and causal/temporal/conditional edges; flattening an n-ary event into pairwise edges loses event identity. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/extraction.md:59-75]",
+      "addedAtIteration": 5,
+      "sources": [
+        "GEM extraction reference and event workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-4-text-claimed-adopt-separate-entity-relation-and-event-passes-prevent-mega-prompt",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Separate entity, relation, and event passes prevent mega-prompt coupling and preserve stage-specific rejection. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/extraction.md:77-98]",
+      "addedAtIteration": 5,
+      "sources": [
+        "GEM extraction reference and event workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-5-5-inference-candidate-quarantine-is-non-authoritative-and-requires-explicit-promot",
+      "text": "**[INFERENCE: candidate quarantine is non-authoritative and requires explicit promotion evidence]** Candidate recurrence may propose ontology change, but cannot silently expand accepted vocabulary or make a truth-bearing claim.",
+      "addedAtIteration": 5,
+      "sources": [
+        "GEM extraction reference and event workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-6-1-text-claimed-adopt-before-fusion-sample-entity-and-relation-outputs-measure-whet",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Before fusion, sample entity and relation outputs, measure whether entities are real/correctly typed and whether source text asserts each edge, repair the producer, and rerun. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/SKILL.md:76-80]",
+      "addedAtIteration": 6,
+      "sources": [
+        "GEM SKILL and `/kg-extract`/`/kg-eval` workflows."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-6-2-text-claimed-refine-the-90-precision-on-50-items-is-a-pedagogical-pilot-threshol",
+      "text": "**[TEXT-CLAIMED][REFINE]** The ≥90% precision on 50 items is a pedagogical pilot threshold, not a universal release criterion; production gates need per-source confidence intervals, risk weighting, and recall/coverage expectations. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:88-94] [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:148-162]",
+      "addedAtIteration": 6,
+      "sources": [
+        "GEM SKILL and `/kg-extract`/`/kg-eval` workflows."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-6-3-text-claimed-adopt-evaluation-must-detect-train-prompt-development-leakage-and-c",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Evaluation must detect train/prompt-development leakage and compare claimed performance against trivial baselines. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:156-162]",
+      "addedAtIteration": 6,
+      "sources": [
+        "GEM SKILL and `/kg-extract`/`/kg-eval` workflows."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-6-4-inference-fusion-multiplies-upstream-false-positives-and-makes-repair-harder-gat",
+      "text": "**[INFERENCE: fusion multiplies upstream false positives and makes repair harder]** Gate each source family and stage independently before cross-source fusion; a global average can hide a poisoned producer.",
+      "addedAtIteration": 6,
+      "sources": [
+        "GEM SKILL and `/kg-extract`/`/kg-eval` workflows."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-7-1-text-claimed-adopt-candidate-blocking-avoids-all-pairs-comparison-matching-layer",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Candidate blocking avoids all-pairs comparison; matching layers string, attributes, neighborhoods, and model adjudication only for the ambiguous band. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/fusion-and-llm.md:20-34]",
+      "addedAtIteration": 7,
+      "sources": [
+        "Fusion reference and `/kg-fuse` workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-7-2-text-claimed-adopt-merge-policy-is-deterministic-retain-canonical-name-aliases-e",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Merge policy is deterministic: retain canonical name, aliases, edges, and conflicting source values with provenance; record `merged_from` for undo. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/fusion-and-llm.md:35-41]",
+      "addedAtIteration": 7,
+      "sources": [
+        "Fusion reference and `/kg-fuse` workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-7-3-text-claimed-adopt-schema-fusion-aligns-types-relations-before-translating-and-m",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Schema fusion aligns types/relations before translating and merging instances. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/fusion-and-llm.md:43-49]",
+      "addedAtIteration": 7,
+      "sources": [
+        "Fusion reference and `/kg-fuse` workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-7-4-text-claimed-refine-an-erroneous-merge-is-treated-as-more-damaging-than-a-missed",
+      "text": "**[TEXT-CLAIMED][REFINE]** An erroneous merge is treated as more damaging than a missed merge; therefore thresholds need explicit auto-merge, review, and reject bands with measured false-merge cost. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:130-146]",
+      "addedAtIteration": 7,
+      "sources": [
+        "Fusion reference and `/kg-fuse` workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-7-5-inference-reversible-provenance-preserving-fusion-requires-immutable-source-asse",
+      "text": "**[INFERENCE: reversible provenance-preserving fusion requires immutable source assertions plus a derived canonical-entity projection]** Do not destroy evidence records when canonical identities change; rebuild the fused projection from recorded decisions.",
+      "addedAtIteration": 7,
+      "sources": [
+        "Fusion reference and `/kg-fuse` workflow."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-8-1-text-claimed-adopt-entity-link-the-query-retrieve-paths-or-a-one-to-two-hop-subg",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Entity-link the query, retrieve paths or a one-to-two-hop subgraph, serialize compact provenance-bearing triples, and use community summaries for corpus themes. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/fusion-and-llm.md:51-63]",
+      "addedAtIteration": 8,
+      "sources": [
+        "Fusion/LLM reference, `/kg-rag`, and benchmark cautions."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-8-2-text-claimed-adopt-route-per-question-type-among-entity-lookup-traversal-subgrap",
+      "text": "**[TEXT-CLAIMED][ADOPT]** Route per question type among entity lookup, traversal, subgraph extraction, and plain vector; prewrite an evaluation set and compare with a vector-only baseline. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/WORKFLOWS.md:165-179]",
+      "addedAtIteration": 8,
+      "sources": [
+        "Fusion/LLM reference, `/kg-rag`, and benchmark cautions."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-8-3-text-claimed-confirm-the-corpus-reports-graph-advantage-for-multi-hop-temporal-s",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** The corpus reports graph advantage for multi-hop/temporal/synthesis questions but vector advantage for simple lookup and cost, and warns against author-only benchmarks. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/blog-posts/What is Graph Engineering.md:161-180]",
+      "addedAtIteration": 8,
+      "sources": [
+        "Fusion/LLM reference, `/kg-rag`, and benchmark cautions."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-8-4-inference-question-routing-is-itself-an-evaluated-classifier-a-production-method",
+      "text": "**[INFERENCE: question routing is itself an evaluated classifier]** A production methodology must measure route accuracy, retrieval sufficiency, citation fidelity, latency, cost, and answer quality by question family; “GraphRAG wins” globally is an invalid claim.",
+      "addedAtIteration": 8,
+      "sources": [
+        "Fusion/LLM reference, `/kg-rag`, and benchmark cautions."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-9-1-text-claimed-adopt-gem-identity-resolution-proposes-same-entity-decisions-using-",
+      "text": "**[TEXT-CLAIMED][ADOPT]** GEM identity resolution proposes same-entity decisions using layered evidence, review bands, aliases, provenance, and reversible merges. [SOURCE: specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/graph-engineering/references/fusion-and-llm.md:24-41]",
+      "addedAtIteration": 9,
+      "sources": [
+        "GEM fusion, runtime contradiction/supersession types, study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-9-2-text-claimed-confirm-the-runtime-explicitly-labels-detector-candidates-inert-and",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** The runtime explicitly labels detector candidates inert and non-authoritative; relationship projections are disposable and `additive-dark`. [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/types.ts:79-96] [SOURCE: .opencode/skills/system-deep-loop/runtime/lib/contradiction-supersession/types.ts:201-206]",
+      "addedAtIteration": 9,
+      "sources": [
+        "GEM fusion, runtime contradiction/supersession types, study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-9-3-inference-identity-equivalence-and-proposition-truth-answer-different-questions-",
+      "text": "**[INFERENCE: identity equivalence and proposition truth answer different questions]** Identity resolution answers whether records denote the same entity; evidence fusion answers what assertions attach; belief settlement answers which propositions are usable for a purpose; 036 admission answers whether a protected transition may occur.",
+      "addedAtIteration": 9,
+      "sources": [
+        "GEM fusion, runtime contradiction/supersession types, study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "finding-9-4-text-claimed-confirm-study-2-requires-truth-candidates-to-preview-to-a-checked-f",
+      "text": "**[TEXT-CLAIMED][CONFIRM]** Study 2 requires truth candidates to preview to a checked fixed point at an exact belief-admission head before sequence allocation. [SOURCE: specs/system-deep-loop/037-graph-engineering/002-graphene-main/research/research.md:291-327]",
+      "addedAtIteration": 9,
+      "sources": [
+        "GEM fusion, runtime contradiction/supersession types, study 2."
+      ],
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-78b8a36e5d1f",
+      "text": "Treating GEM's documentary artifacts as executable proof; its package has no runtime implementation. [SOURCE: specs/system-deep-loop/037-graph-engineering/004-graph-engineering-master/orientation.md:23-36]",
+      "contentHash": "78b8a36e5d1f",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-eab110128af7",
+      "text": "Encoding fusion confidence directly as belief status; overwriting refuted evidence.",
+      "contentHash": "eab110128af7",
+      "addedAtIteration": 10,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-b09b90426ab7",
+      "text": "Auto-accepting induced schemas; treating ontology prompts as free-form context.",
+      "contentHash": "b09b90426ab7",
+      "addedAtIteration": 11,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-d3445f494d46",
+      "text": "Silent in-place ontology edits; claiming event upcasters automatically solve semantic ontology migration.",
+      "contentHash": "d3445f494d46",
+      "addedAtIteration": 12,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-9ccfecca68a7",
+      "text": "One “graph quality” score; using KG precision as causal-prefix parity.",
+      "contentHash": "9ccfecca68a7",
+      "addedAtIteration": 13,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-7688f43dd0fa",
+      "text": "Auto-merging coverage nodes from fuzzy similarity; treating convergence score as authorization.",
+      "contentHash": "7688f43dd0fa",
+      "addedAtIteration": 14,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-f672e012b6df",
+      "text": "Last-write-wins truth; deleting stale facts; receipt-time supersession.",
+      "contentHash": "f672e012b6df",
+      "addedAtIteration": 15,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-1c38db9df31e",
+      "text": "Treating prompt independence as resource independence; partial fan-in as success.",
+      "contentHash": "1c38db9df31e",
+      "addedAtIteration": 16,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-cd8b83c3bd58",
+      "text": "Graphs as universal reliability abstraction; generated work graphs as organization policy.",
+      "contentHash": "cd8b83c3bd58",
+      "addedAtIteration": 17,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-0df3edad9cad",
+      "text": "Big-bang ingestion; production GraphRAG before pilot quality/fusion; using curriculum completion as runtime cutover proof.",
+      "contentHash": "0df3edad9cad",
+      "addedAtIteration": 18,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-b5b2e3b8d14a",
+      "text": "Graphs for simple lookups, static tables, narrow sequential tasks, or unreliable foundations; full governance for harmless local DAGs; graph retrieval without measured advantage.",
+      "contentHash": "b5b2e3b8d14a",
+      "addedAtIteration": 19,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-c7073105f715",
+      "text": "Importing reported benchmark numbers as normative system-deep-loop acceptance criteria.",
+      "contentHash": "c7073105f715",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-a7133aa31f3a",
+      "text": "Graph-only retrieval; topology as authority; fuzzy identity as truth; last-write-wins; vendor metrics as gates; big-bang rollout; graphs for narrow sequential work.",
+      "contentHash": "a7133aa31f3a",
+      "addedAtIteration": 20,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-0e666c4c6d08",
+      "text": "A graph-first mandate for simple lookup or aggregation.",
+      "contentHash": "0e666c4c6d08",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-eced42983ff2",
+      "text": "Running NLP over already structured data; one model path for every source type.",
+      "contentHash": "eced42983ff2",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-b0ce34440809",
+      "text": "Mega-prompt extraction; relation invention of endpoints; event flattening.",
+      "contentHash": "b0ce34440809",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-b0f62e0ce331",
+      "text": "Hand-editing bad outputs; a single aggregate quality score.",
+      "contentHash": "b0f62e0ce331",
+      "addedAtIteration": 6,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-853fafa2676d",
+      "text": "Silent overwrite, model-owned merge policy, instance fusion before schema alignment.",
+      "contentHash": "853fafa2676d",
+      "addedAtIteration": 7,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-126211ee497c",
+      "text": "Whole-graph context dumps; k-hop expansion without reranking; graph-only retrieval.",
+      "contentHash": "126211ee497c",
+      "addedAtIteration": 8,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    },
+    {
+      "id": "ruled-out-00c0a48750dc",
+      "text": "“Same entity” as “same claim”; high match confidence as transition authority.",
+      "contentHash": "00c0a48750dc",
+      "addedAtIteration": 9,
+      "_lineages": [
+        "gem-sol-high"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 20,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "keyFindings": 88,
+    "sourceFindings": 88,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.03,
+    "coverageBySources": {}
+  }
+}

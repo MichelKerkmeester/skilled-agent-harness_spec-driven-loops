@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":5,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.64,"status":"complete","focus":"P1 relations events candidate quarantine"}
+{"type":"finding","id":"f-005-001","label":"Relations and events require separate constrained passes","iteration":5,"classification":"adopt","source":"references/extraction.md:43-98"}

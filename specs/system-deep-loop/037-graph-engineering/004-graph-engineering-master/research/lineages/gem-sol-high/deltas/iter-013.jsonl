@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":13,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.35,"status":"complete","focus":"P4 data retrieval runtime gates"}
+{"type":"finding","id":"f-013-001","label":"Data retrieval and runtime parity are separate conjunctive gates","iteration":13,"classification":"refine","source":"WORKFLOWS.md:148-179"}

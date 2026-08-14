@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":7,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.58,"status":"complete","focus":"P1 fusion pipeline"}
+{"type":"finding","id":"f-007-001","label":"Fusion decisions preserve provenance and are reversible","iteration":7,"classification":"adopt","source":"references/fusion-and-llm.md:20-49"}

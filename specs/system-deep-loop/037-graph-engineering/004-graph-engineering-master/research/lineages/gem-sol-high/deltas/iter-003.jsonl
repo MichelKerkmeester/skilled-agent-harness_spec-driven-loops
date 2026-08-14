@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":3,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.72,"status":"complete","focus":"P1 scope representation modeling"}
+{"type":"finding","id":"f-003-001","label":"Competency questions are ontology specification and acceptance corpus","iteration":3,"classification":"adopt","source":"references/modeling.md:30-47"}

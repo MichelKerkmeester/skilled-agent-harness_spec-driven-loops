@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":16,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.23,"status":"complete","focus":"P6 task-graph failure-mode audit"}
+{"type":"finding","id":"f-016-001","label":"Operational mutants cover shared-resource independence fan-in closure hierarchy and barriers","iteration":16,"classification":"extend","source":"Graph Engineering with Claude.md:196-235"}

@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":8,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.54,"status":"complete","focus":"P1 serving and hybrid retrieval"}
+{"type":"finding","id":"f-008-001","label":"Retrieval routes by question type against vector baseline","iteration":8,"classification":"adopt","source":"WORKFLOWS.md:165-179"}

@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":11,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.43,"status":"complete","focus":"P3 ontology as specification"}
+{"type":"finding","id":"f-011-001","label":"Ontology is a load-bearing knowledge-plane specification","iteration":11,"classification":"adopt","source":"references/modeling.md:30-59"}

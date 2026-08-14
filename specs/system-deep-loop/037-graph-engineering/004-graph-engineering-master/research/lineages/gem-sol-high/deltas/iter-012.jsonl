@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":12,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.39,"status":"insight","focus":"P3 ontology as versioned dependency"}
+{"type":"finding","id":"f-012-001","label":"Ontology versions pin consumers and trigger change-impact evaluation","iteration":12,"classification":"extend","source":"036 transition versioning policy:90-119"}

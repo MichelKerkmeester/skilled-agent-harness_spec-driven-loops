@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":9,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.51,"status":"insight","focus":"P2 identity proposal versus truth maintenance"}
+{"type":"finding","id":"f-009-001","label":"Identity evidence belief and authority are separate layers","iteration":9,"classification":"refine","source":"contradiction-supersession/types.ts:79-96"}

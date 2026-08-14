@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":6,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.60,"status":"complete","focus":"P1 P4 knowledge-plane quality gate"}
+{"type":"finding","id":"f-006-001","label":"Quality gates are per producer stage and source family","iteration":6,"classification":"adopt","source":"WORKFLOWS.md:148-162"}
