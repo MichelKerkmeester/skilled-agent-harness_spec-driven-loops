@@ -7,11 +7,15 @@
 
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 import {
   advanceDirectiveLifecycleBoundary,
   defaultDirectiveLifecycleStore,
   type DirectiveLifecycleState,
 } from '../lib/directive-lifecycle.js';
+
+const __dlRequire = createRequire(import.meta.url);
+function directiveLifecycleEnabled(): boolean { try { const { isHookEnabled } = __dlRequire(fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url))) as { isHookEnabled?: (c: string) => boolean }; return typeof isHookEnabled !== 'function' || isHookEnabled('directive-lifecycle') !== false; } catch { return true; } }
 
 const MAX_INPUT_BYTES = 64 * 1024;
 const IS_CLI_ENTRY = process.argv[1]
@@ -28,6 +32,7 @@ export function handleDirectiveLifecycleBoundary(
   input: DirectiveLifecycleBoundaryInput | null,
   state: DirectiveLifecycleState = defaultDirectiveLifecycleStore(),
 ): boolean {
+  if (directiveLifecycleEnabled() === false) return false;
   return advanceDirectiveLifecycleBoundary(state, input?.session_id);
 }
 

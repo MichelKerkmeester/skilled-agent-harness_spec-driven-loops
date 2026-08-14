@@ -15,6 +15,13 @@ if [[ "${SPECKIT_SKIP_DOC_MODEL_VALIDATE:-0}" = "1" ]]; then
 fi
 
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+
+# shared hook kill-switch (master + per-concern); fail-open if guard absent
+if [ -n "$REPO_ROOT" ] && [ -r "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" ]; then
+  . "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh"
+  hook_enabled git-commit-hooks || exit 0
+fi
+
 if [[ -z "$REPO_ROOT" ]]; then
   exit 0
 fi

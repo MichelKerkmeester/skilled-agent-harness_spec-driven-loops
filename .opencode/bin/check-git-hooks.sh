@@ -27,6 +27,13 @@ set -euo pipefail
 
 [ "${SPECKIT_GIT_HOOKS_GUARD:-on}" = "off" ] && exit 0
 
+# shared hook kill-switch (master + per-concern); fail-open if guard absent
+__hf_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+if [ -n "$__hf_root" ] && [ -r "$__hf_root/.opencode/hooks/shared/hook-flags.sh" ]; then
+  . "$__hf_root/.opencode/hooks/shared/hook-flags.sh"
+  hook_enabled git-hooks-check || exit 0
+fi
+
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 
 # Not a git repo: nothing to guard.

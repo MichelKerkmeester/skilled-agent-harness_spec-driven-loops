@@ -17,9 +17,13 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { evaluate, readHardRules } from '../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs';
+
+const __req = createRequire(import.meta.url);
+function __permPolicyEnabled(){ try { const { isHookEnabled } = __req(fileURLToPath(new URL('../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url))); return typeof isHookEnabled !== 'function' || isHookEnabled('permission-policy') !== false; } catch { return true; } }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -149,6 +153,10 @@ async function readStdin() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (__permPolicyEnabled() === false) {
+    return emitDecision('allow', 'Permission approved: permission policy is disabled.');
+  }
+
   let payload;
   try {
     payload = JSON.parse(await readStdin());

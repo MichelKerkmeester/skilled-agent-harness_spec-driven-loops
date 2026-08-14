@@ -23,6 +23,10 @@ import os from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { isDeepStrictEqual } from 'node:util';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+const __req = createRequire(import.meta.url);
+const { isHookEnabled } = __req('../hooks/shared/hook-flags.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. ARGUMENTS
@@ -358,6 +362,7 @@ function readHooksFile(filePath, label) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 function main() {
+  if (!isHookEnabled('hook-install')) return;
   const args = parseArgs(process.argv.slice(2));
   const moduleDir = path.dirname(fileURLToPath(import.meta.url));
   const repoAbs = path.resolve(args.repo || path.join(moduleDir, '..', '..'));

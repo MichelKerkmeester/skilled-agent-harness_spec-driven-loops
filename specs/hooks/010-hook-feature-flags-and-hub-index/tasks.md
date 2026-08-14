@@ -1,50 +1,109 @@
 ---
 title: "Tasks: Hook Feature Flags + Full Hub Index"
-description: "Per-phase task tracking for the shared kill-switch guard, the mcp-route-guard pilot, the hub and skill-owned concern fan-out, the hub symlink index, and the cross-runtime validation sweep."
-status: "in-progress"
-completion_pct: 70
+description: "Completed task record for verified implementation Phases 5-11 and the final Level-3 packet reconciliation."
+status: "complete"
+completion_pct: 100
+trigger_phrases:
+  - "hook feature flags tasks"
+  - "hook kill-switch phase status"
+  - "packet 010 reconciliation"
 importance_tier: "high"
 contextType: "tasks"
 parent: "./spec.md"
+_memory:
+  continuity:
+    packet_pointer: "hooks/010-hook-feature-flags-and-hub-index"
+    last_updated_at: "2026-08-14T08:08:08Z"
+    last_updated_by: "opencode"
+    recent_action: "Shipped all seven phases and reconciled the complete Level-3 packet"
+    next_safe_action: "Retain verification evidence for future review"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "4654af88-ba88-466a-bd14-2fa43ea87923"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Use one shared concern guard with master and per-concern flags"
+      - "Keep MK_SPEC_GATE_ENFORCE separate from generic disable controls"
+      - "Keep the hub README as the only canonical kill-switch index"
 ---
 # Tasks: Hook Feature Flags + Full Hub Index
 
 <!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 
 ---
 
-## PHASE 1 — Guard + master switch
+<!-- ANCHOR:notation -->
+## Task Notation
 
-- [x] `hook-flags.cjs` canonical resolver (master + per-concern + legacy aliases) — `.opencode/hooks/shared/hook-flags.cjs`
-- [x] `hook-flags.mjs` + `hook-flags.ts` facades (re-export via `createRequire`, zero drift)
-- [x] `hook-flags.test.cjs` — `node --test` 7/7 pass incl. cross-flavor parity
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending or in progress |
+| `[x]` | Completed with evidence |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
 
-## PHASE 2 — Pilot: mcp-route-guard (all 6 runtimes)
+**Task Format**: `T### [P?] Description [Evidence]`
+<!-- /ANCHOR:notation -->
 
-- [x] Guard `mcp-route-guard/{claude,codex,devin}/mcp-route-guard.cjs` — import `../../shared/hook-flags.cjs`
-- [x] Guard `mcp-route-guard/cursor/mcp-route-guard.mjs` — import `../../shared/hook-flags.mjs`
-- [x] Guard `mcp-route-guard/pi/mcp-route-guard.ts` — import `../../.opencode/hooks/shared/hook-flags.mjs` (Pi base settled)
-- [x] Realign `plugins/mk-mcp-route-guard.js` to the shared helper — import `../hooks/shared/hook-flags.cjs`
-- [x] Prove: default=ADVISORY, concern-off=silent, master-off=silent (4 stdin adapters); plugin + pi load OK
+---
 
-## PHASE 3 — Remaining hub concerns
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
 
-- [x] dispatch (claude/codex/devin/pi + cursor proxy + OpenCode plugin)
-- [x] post-edit-quality (claude/codex/devin/pi + cursor proxy + OpenCode plugin)
-- [x] task-dispatch (claude/cursor/devin/pi + OpenCode plugin)
-- [x] goal (cursor/pi + bin + OpenCode plugin)
+- [x] T001 Confirm the re-scoped concern inventory, canonical ownership, and proof boundaries. [Test: concern matrix 20/20, legacy aliases 8/8, shell concerns 6/6, and guard suite 7/7 passed]
+<!-- /ANCHOR:phase-1 -->
 
-## PHASE 4 — Skill-owned concerns
+---
 
-- [~] skill-advisor · spec-gate · spec-memory · completion — OpenCode `skill-advisor`/`spec-gate` plugins and Cursor/Pi `completion` adapters landed; `spec-memory` and the non-OpenCode `skill-advisor`/`spec-gate` runtime adapters pending
-- [ ] session-lifecycle · git-preflight · directive-lifecycle
-- [ ] dist-freshness · codex-watchdog · permission-policy
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
 
-## PHASE 5 — Full hub index + docs
+- [x] T005 Complete Phase 5 skill-advisor gating and distribution rebuild. [Test: compiled master-off hook returned skipped output]
+- [x] T006 Complete Phase 6 spec-gate gating with independent enforcement. [Test: 44/44 passed; master-off mutation evaluation allowed]
+- [x] T007 Complete Phase 7 remaining Node adapter gating and rebuilds. [Test: 34/34 passed]
+- [x] T008 [Test: shell concerns 6/6 passed] Complete Phase 8 POSIX, shell, install, freshness, cleanup, and pre-commit wiring.
+- [x] T009 [Test: concern isolation 20/20 passed] Complete Phase 9 Cursor and Pi branch isolation.
+- [x] T010 Complete Phase 10 canonical hub index and environment documentation. [File: `.opencode/hooks/README.md` lists 20 concerns and no `kill-switches.md` exists]
+<!-- /ANCHOR:phase-2 -->
 
-- [x] Symlink every skill-owned hook into `.opencode/hooks/<concern>/<runtime>/`
-- [x] Rewrite hub `README.md` + `injection-contract.md` for the full-index model (kill-switch coverage qualified shipped-vs-pending)
+---
 
-## PHASE 6 — Cross-runtime validation
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
 
-- [ ] Each runtime loads clean; master-off silences all; per-concern toggles verified; no stray files
+- [x] T011A Run Phase 11 concern, alias, truthy/falsy, shell, and guard proofs. [Test: concerns 20/20, aliases 8/8, shell 6/6, guard 7/7 passed]
+- [x] T011 Reconcile the Level-3 packet and reach strict validation. [Test: `validate.sh --strict` reports Errors: 0 and Warnings: 0]
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [x] Phases 5-10 implementation tasks are complete with evidence. [Source: verified evidence in `checklist.md`]
+- [x] Phase 11 behavior proof is complete. [Test: full concern, alias, shell, and guard matrices passed]
+- [x] Phase 11 packet reconciliation is complete. [Test: `validate.sh --strict` reports Errors: 0 and Warnings: 0]
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`.
+- **Plan**: See `plan.md`.
+- **Checklist**: See `checklist.md`.
+- **Decisions**: See `decision-record.md`.
+- **Implementation evidence**: See `implementation-summary.md`.
+<!-- /ANCHOR:cross-refs -->

@@ -23,6 +23,19 @@ import os
 import subprocess
 import sys
 
+
+def _hook_enabled(concern):
+    def _truthy(v):
+        return str(v or "").strip().lower() in ("1", "true", "yes", "on")
+    if _truthy(os.environ.get("MK_HOOKS_DISABLED")):
+        return False
+    import re
+    flag = "MK_" + re.sub(r"[^A-Z0-9]+", "_", concern.upper()) + "_DISABLED"
+    if _truthy(os.environ.get(flag)):
+        return False
+    return True
+
+
 CHECKER_REL = ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs"
 
 
@@ -117,6 +130,8 @@ def surface_result(payload, repo_root, auto_rebuild=False) -> None:
 
 
 def main() -> None:
+    if not _hook_enabled("dist-freshness"):
+        sys.exit(0)
     if len(sys.argv) < 2:
         sys.exit(0)
 

@@ -21,6 +21,13 @@ set -euo pipefail
 
 [ "${SPECKIT_WORKTREE_GUARD:-on}" = "off" ] && exit 0
 
+# shared hook kill-switch (master + per-concern); fail-open if guard absent
+__hf_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+if [ -n "$__hf_root" ] && [ -r "$__hf_root/.opencode/hooks/shared/hook-flags.sh" ]; then
+  . "$__hf_root/.opencode/hooks/shared/hook-flags.sh"
+  hook_enabled worktree-guard || exit 0
+fi
+
 # Orchestrated children are expected to share the parent's tree — never warn for them.
 [ "${AI_SESSION_CHILD:-}" = "1" ] && exit 0
 
