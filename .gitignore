@@ -268,6 +268,7 @@ _sandbox
 .claude/settings.local.json
 .pi/*.tmp
 .pi/modes.json
+.pi/deep-pi-stats.json*
 
 # ───────────────────────────────────────────
 # Project-specific specs (all providers)
