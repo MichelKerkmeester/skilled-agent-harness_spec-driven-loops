@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":2,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.76,"status":"complete","focus":"corpus and claim-strength audit"}
+{"type":"finding","id":"f-002-001","label":"Documentary doctrine is not empirical runtime proof","iteration":2,"classification":"refine","source":"graph-engineering-master/README.md:20-27"}

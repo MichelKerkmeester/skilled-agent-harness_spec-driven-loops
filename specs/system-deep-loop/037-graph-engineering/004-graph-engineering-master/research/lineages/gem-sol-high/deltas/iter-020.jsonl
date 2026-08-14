@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":20,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.03,"status":"insight","focus":"terminal completeness verdict"}
+{"type":"finding","id":"f-020-001","label":"Four-study program is complete for design finalization not implementation proof","iteration":20,"classification":"confirm","source":"orientation.md:52-84"}
+{"type":"ruled_out","direction":"prefer-newer as truth admission","reason":"must remain purpose-bound retrieval policy behind belief settlement","iteration":20}

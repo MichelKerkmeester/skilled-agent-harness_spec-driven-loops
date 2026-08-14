@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":10,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.47,"status":"complete","focus":"P2 four-valued belief boundary"}
+{"type":"finding","id":"f-010-001","label":"Contradiction and supersession remain evidence-bound disposable projections","iteration":10,"classification":"confirm","source":"contradiction-supersession/types.ts:19-39"}

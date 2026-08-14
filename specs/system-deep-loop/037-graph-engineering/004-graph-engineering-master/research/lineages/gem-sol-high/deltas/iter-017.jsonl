@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":17,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.19,"status":"complete","focus":"P6 cross-layer and organization audit"}
+{"type":"finding","id":"f-017-001","label":"Graphs cannot substitute for harness loop or authority contracts","iteration":17,"classification":"confirm","source":"Harness Loop or Graph.md:90-116"}

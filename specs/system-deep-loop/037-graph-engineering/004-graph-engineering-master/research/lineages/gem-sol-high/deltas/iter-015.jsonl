@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":15,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.27,"status":"insight","focus":"P5 temporal facts and prefer-newer containment"}
+{"type":"finding","id":"f-015-001","label":"Prefer newer is retrieval policy not universal truth admission","iteration":15,"classification":"contradict","source":"references/fusion-and-llm.md:82-85"}

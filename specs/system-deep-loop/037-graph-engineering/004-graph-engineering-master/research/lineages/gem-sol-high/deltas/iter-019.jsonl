@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":19,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.08,"status":"complete","focus":"twelve-post completeness and when-not-use audit"}
+{"type":"finding","id":"f-019-001","label":"All twelve posts map to covered doctrine families and exclusions","iteration":19,"classification":"confirm","source":"context/blog-posts/*.md"}

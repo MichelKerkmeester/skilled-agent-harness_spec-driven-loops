@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":4,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.68,"status":"complete","focus":"P1 source-routed entity extraction"}
+{"type":"finding","id":"f-004-001","label":"Source structure selects deterministic parser or constrained model route","iteration":4,"classification":"adopt","source":"references/extraction.md:12-41"}

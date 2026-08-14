@@ -1,0 +1,2 @@
+{"event":"started","producer":"deep-research-auto","stream":"single-loop-telemetry","status":"running","label":"gem-sol-high","at":"2026-08-13T23:36:00.000Z","loop_type":"research","sessionId":"fanout-gem-sol-high-1786664046140-prtxh9","generation":1}
+{"event":"completed","producer":"deep-research-auto","stream":"single-loop-telemetry","status":"complete","label":"gem-sol-high","at":"2026-08-13T23:49:00.000Z","loop_type":"research","sessionId":"fanout-gem-sol-high-1786664046140-prtxh9","generation":1,"reason":"maxIterationsReached","gauges":{"iterations":20,"score":0.03}}

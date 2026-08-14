@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":18,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.15,"status":"insight","focus":"P7 integrated staged rollout"}
+{"type":"finding","id":"f-018-001","label":"Knowledge maturity and runtime promotion are orthogonal gate axes","iteration":18,"classification":"extend","source":"references/curriculum.md:76-88"}
