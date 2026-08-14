@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory",
+  "spec_folder": "system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory",
+  "parent_id": "system-deep-loop/037-graph-engineering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "noaa paper loop harness",
+      "validated iteration returns deep loop",
+      "agent curated memory deep loop",
+      "loop harness layer system-deep-loop",
+      "noaa loop harness plan",
+      "loop harness deep loop plan",
+      "repo study 5 plan",
+      "noaa loop harness tasks",
+      "loop harness deep loop tasks",
+      "repo study 5 tasks",
+      "noaa loop harness summary",
+      "loop harness deep loop summary"
+    ],
+    "key_topics": [
+      "noaa",
+      "paper",
+      "loop",
+      "harness",
+      "validated",
+      "iteration",
+      "returns",
+      "deep",
+      "agent",
+      "curated",
+      "memory",
+      "layer"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/verification-deepseek-v4-pro.md",
+      "research/deep-research-state.jsonl",
+      "research/findings-plain-language.md",
+      "research/resource-map.md",
+      "research/findings-registry.json",
+      "research/fanout-attribution.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-deepseek-v4-pro.md",
+        "kind": "doc",
+        "path": "research/verification-deepseek-v4-pro.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "findings-plain-language.md",
+        "kind": "doc",
+        "path": "research/findings-plain-language.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repo Study",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Oriented Agents",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Studies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Studies 1–4 covered the GRAPH layer (orchestration, event-sourcing/belief, governance, knowledge doctrine)",
+    "created_at": "2026-08-14T04:58:30.034Z",
+    "last_save_at": "2026-08-14T04:58:30.034Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:8014d244e5f834c69c68abc28d592e170aa48d67a86b0e611c85b6603fb7209b",
+    "source_doc_hashes": {
+      "spec.md": "d10c1f1d31ca27a305813442f15220a7f46e2ae4251b4a58951aaa407e8f10c0",
+      "plan.md": "95bbb24e89939d4ebbc144f1df9267cf58069b69223fb31a593b02c945bbe10a",
+      "tasks.md": "16e2d27d506d6063468e453d2190464f3aae99d54de263395aa9a071d04ad599",
+      "implementation-summary.md": "230b5b9cd94da130fc04754c0382cd5a250ed0e1d695de20f411c008b449d53f",
+      "research/research.md": "594f162133a73e0f56e96021a2258319250184756dc15c4b68de5d45513d2770"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
