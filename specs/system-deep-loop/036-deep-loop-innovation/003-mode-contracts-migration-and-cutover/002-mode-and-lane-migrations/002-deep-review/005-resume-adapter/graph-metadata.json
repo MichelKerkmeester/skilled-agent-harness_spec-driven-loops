@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/005-resume-adapter",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/005-resume-adapter",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review resume adapter",
+      "sealed ledger review resume",
+      "deep-review interruption recovery",
+      "deep review resume adapter implementation plan",
+      "sealed ledger review recovery plan",
+      "deep-review idempotent re-entry",
+      "deep review resume adapter tasks",
+      "sealed ledger recovery tasks",
+      "deep-review replay idempotency tasks",
+      "deep review resume adapter checklist",
+      "sealed frontier resume verification",
+      "deep-review idempotent replay checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "resume",
+      "adapter",
+      "sealed",
+      "ledger",
+      "deep-review",
+      "interruption",
+      "recovery",
+      "implementation",
+      "plan",
+      "idempotent"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Review Resume Adapter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep Review",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "these",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "versioned",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "separate",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Review resume adapter for interruption-safe recovery from the sealed typed event ledger. The adapter folds the shared review-loop history through versioned reducers, maps the continuity ladder from scope through dimension passes, findings, convergence, and review-report, and re-enters idempotently without double-applying, losing, or replaying events.",
+    "created_at": "2026-07-16T03:43:33.197Z",
+    "last_save_at": "2026-08-14T04:28:05.607Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1f873a9bbfe42bac84fb573e7c3e1bd39223b4c86def6902f23dfb501586503a",
+    "source_doc_hashes": {
+      "spec.md": "0ab35116a405f5a2ccb21694820eb5742312ed4a6ca5a9b620044c8b54422b36",
+      "plan.md": "e286aa3c5e822f958ab90a1c50d1d3aa85494fcd52d4908f98eb0b88f1065538",
+      "tasks.md": "9d76143a9c9e8f413a61895abf4df47c05319ce03b39df083803cbe39e16dc8b",
+      "checklist.md": "170ca0f65c4eb19e778fd36d78647e1315fe55f384a728e5eb0dc5be842186f8",
+      "implementation-summary.md": "0953d9b3492ca1ba1e19ae855f58b2f96dc2a1caf64440dea2f3702b33435b0b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

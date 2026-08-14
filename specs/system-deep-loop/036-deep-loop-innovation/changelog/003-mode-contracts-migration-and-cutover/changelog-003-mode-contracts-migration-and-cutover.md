@@ -24,7 +24,7 @@ This phase-parent group groups four related child phases so parent-level context
 
 | Phase | Summary |
 |---|---|
-| `012-shared-mode-contracts-and-fixtures` | Freeze the shared mode boundary before the eight phase-013 migrations: common interfaces, hoisted cross-mode closures, mixed-version fixtures, and an executable dependency plus write-set conflict graph for parallel-safe work. |
-| `013-mode-and-lane-migrations` | The per-mode fan-out of the recommendations-implementation program: eight deep-loop modes each migrate their full run behavior onto the shared typed event-ledger substrate as an independent fractal parent, ending in their own rollback-guarded mode gate. |
-| `014-staged-state-migration-and-authority-cutover` | Classify and migrate eligible in-flight state, then cut authority per mode under shadow-parity, rollback, and certificate gates. |
-| `015-legacy-writer-retirement` | Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed rollback window, and zero-use telemetry. |
+| `001-shared-mode-contracts-and-fixtures` | Freeze the shared mode boundary before the eight phase-013 migrations: common interfaces, hoisted cross-mode closures, mixed-version fixtures, and an executable dependency plus write-set conflict graph for parallel-safe work. |
+| `002-mode-and-lane-migrations` | The per-mode fan-out of the recommendations-implementation program: eight deep-loop modes each migrate their full run behavior onto the shared typed event-ledger substrate as an independent fractal parent, ending in their own rollback-guarded mode gate. |
+| `003-staged-state-migration-and-authority-cutover` | Classify and migrate eligible in-flight state, then cut authority per mode under shadow-parity, rollback, and certificate gates. |
+| `004-legacy-writer-retirement` | Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed rollback window, and zero-use telemetry. |

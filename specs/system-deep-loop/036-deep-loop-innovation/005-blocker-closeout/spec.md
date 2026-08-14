@@ -40,10 +40,10 @@ This phase groups the related child phases below so parent-level context stays a
 
 | Phase | Folder | Status | Adjacency |
 |-------|--------|--------|-----------|
-| 1 | `021-completion-evidence-reconcile` | in_progress | predecessor `none`; successor `022-shadow-parity-independent-derivation` |
-| 2 | `022-shadow-parity-independent-derivation` | in_progress | predecessor `021-completion-evidence-reconcile`; successor `023-legacy-compat-event-vocabulary` |
-| 3 | `023-legacy-compat-event-vocabulary` | complete | predecessor `022-shadow-parity-independent-derivation`; successor `024-durable-write-boundaries` |
-| 4 | `024-durable-write-boundaries` | in_progress | predecessor `023-legacy-compat-event-vocabulary`; successor `none` |
+| 1 | `001-completion-evidence-reconcile` | in_progress | predecessor `none`; successor `002-shadow-parity-independent-derivation` |
+| 2 | `002-shadow-parity-independent-derivation` | in_progress | predecessor `001-completion-evidence-reconcile`; successor `003-legacy-compat-event-vocabulary` |
+| 3 | `003-legacy-compat-event-vocabulary` | complete | predecessor `002-shadow-parity-independent-derivation`; successor `004-durable-write-boundaries` |
+| 4 | `004-durable-write-boundaries` | in_progress | predecessor `003-legacy-compat-event-vocabulary`; successor `none` |
 
 ## What Needs Done
 

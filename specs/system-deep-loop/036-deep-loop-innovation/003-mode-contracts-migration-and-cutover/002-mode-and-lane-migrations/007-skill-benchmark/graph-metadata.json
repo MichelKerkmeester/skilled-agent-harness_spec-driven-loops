@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/002-reducers-and-projections",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/003-sealed-artifacts",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/004-certificates-and-receipts",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/005-resume-adapter",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill benchmark migration",
+      "skill benchmark event ledger",
+      "skill scenario scoring ledger"
+    ],
+    "key_topics": [
+      "skill",
+      "benchmark",
+      "migration",
+      "event",
+      "ledger",
+      "scenario",
+      "scoring",
+      "migrate",
+      "skill-benchmark",
+      "variant",
+      "runs",
+      "onto"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Migrate the skill-benchmark variant's scenario runs and scoring onto the typed event-ledger substrate while reusing the deep-improvement-common backbone and ending in an independent mode gate.",
+    "created_at": "2026-07-16T03:43:56.577Z",
+    "last_save_at": "2026-08-14T04:28:14.356Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:66a33159f29248fada1c2121bd3fd1bcd90645520193c3a72220a61c13db4607",
+    "source_doc_hashes": {
+      "spec.md": "1c6dcbd673f86f8680d1c80ed4e019c7c8be55598292dbd614056787dc629457"
+    },
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/007-skill-benchmark/001-typed-ledger-schema",
+    "last_active_at": null
+  }
+}

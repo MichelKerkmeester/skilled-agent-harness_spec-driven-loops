@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
+  "description": "Implements the Deep Research mode's fail-closed rollback switch and independent migration gate over the typed event-ledger substrate while keeping",
+  "keywords": [
+    "implements",
+    "deep",
+    "research",
+    "mode",
+    "fail-closed",
+    "rollback",
+    "switch",
+    "independent",
+    "migration",
+    "gate",
+    "typed",
+    "event-ledger",
+    "substrate",
+    "while",
+    "keeping"
+  ],
+  "lastUpdated": "2026-08-14T04:22:22.153Z",
+  "specId": "007",
+  "folderSlug": "rollback-and-mode-gate",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "002-mode-and-lane-migrations",
+    "001-deep-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

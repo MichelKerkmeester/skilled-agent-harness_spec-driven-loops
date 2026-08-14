@@ -45,7 +45,7 @@ _memory:
 | **Owner skill** | system-deep-loop |
 | **Origin** | First child of the phase-004 architecture, coverage, and transition-contract parent |
 | **Depends on** | None (`[]`) |
-| **Decision consumers** | 006-transition-authorized-ledger-core; 007-shared-evidence-and-control-services; 008-compatibility-shadow-and-rollback-bridge |
+| **Decision consumers** | 002-transition-authorized-ledger-core; 003-shared-evidence-and-control-services; 004-compatibility-shadow-and-rollback-bridge |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->

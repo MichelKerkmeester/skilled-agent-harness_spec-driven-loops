@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/003-sealed-artifacts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement/003-sealed-artifacts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/005-agent-improvement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent improvement sealed reference artifacts",
+      "agent improvement sealing",
+      "sealed agent proposal artifacts",
+      "agent improvement sealed artifacts implementation plan",
+      "agent improvement AgentIR sealing plan",
+      "agent improvement sealed artifacts tasks",
+      "agent improvement AgentIR sealing tasks",
+      "agent improvement sealed artifacts checklist",
+      "agent improvement tamper evident verification",
+      "agent improvement sealed artifact implementation",
+      "agent improvement artifact binding"
+    ],
+    "key_topics": [
+      "agent",
+      "improvement",
+      "sealed",
+      "reference",
+      "artifacts",
+      "sealing",
+      "proposal",
+      "implementation",
+      "plan",
+      "agentir",
+      "tasks",
+      "checklist"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sealed",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "identical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the sealed reference artifacts for the agent-improvement variant: immutable AgentIR and change inputs, frozen improver and evaluator references, content-addressed proposal and trial outputs, and a tamper-evident read path layered on the deep-improvement-common sealing and evaluator services.",
+    "created_at": "2026-07-16T03:43:38.008Z",
+    "last_save_at": "2026-08-14T04:27:59.608Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9dfa180ee4673a7c24d120145cd32f52778b111176f24b7ae2907d39759ccf0a",
+    "source_doc_hashes": {
+      "spec.md": "887ef8b796b695a63784a0ea02370e1a2e0f4de7915f7039cafd5ddc68634dbb",
+      "plan.md": "a14ca6d71be81096c0dec65deff82737694df0a7191a2385e1a5b3f780fe1c4a",
+      "tasks.md": "aee36d253cb30b228e99feebf20e7939292018da3e6de0889fc20e314c04b140",
+      "checklist.md": "2305a25afa9ab8ad0151cc80266c939dfed67da7405e787f1808e2edc03b493f",
+      "implementation-summary.md": "fb092a0b10b99ba811ea8fcad2473e006ead84877256a962ccc30521abd714c8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -16,7 +16,7 @@
     "cutover",
     "rollback-window"
   ],
-  "lastUpdated": "2026-08-13T19:55:47.673Z",
+  "lastUpdated": "2026-08-14T04:27:29.014Z",
   "specId": "003",
   "folderSlug": "transition-versioning-and-rollback-policy",
   "parentChain": [

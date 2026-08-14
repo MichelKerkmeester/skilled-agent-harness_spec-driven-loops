@@ -1,0 +1,25 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/002-shadow-parity-independent-derivation",
+  "description": "Six shadow-parity harness adapters compare a projection to a near-copy of itself",
+  "keywords": [
+    "six",
+    "shadow-parity",
+    "harness",
+    "adapters",
+    "compare",
+    "projection",
+    "near-copy",
+    "itself"
+  ],
+  "lastUpdated": "2026-08-14T04:22:05.489Z",
+  "specId": "002",
+  "folderSlug": "shadow-parity-independent-derivation",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "005-blocker-closeout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

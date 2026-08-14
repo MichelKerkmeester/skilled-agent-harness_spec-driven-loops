@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/001-completion-evidence-reconcile",
+  "description": "Checked completion items across the 013 migration program cite evidence that cannot be reproduced",
+  "keywords": [
+    "checked",
+    "completion",
+    "items",
+    "across",
+    "migration",
+    "program",
+    "cite",
+    "evidence",
+    "cannot",
+    "reproduced"
+  ],
+  "lastUpdated": "2026-08-14T04:22:05.438Z",
+  "specId": "001",
+  "folderSlug": "completion-evidence-reconcile",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "005-blocker-closeout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

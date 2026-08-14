@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "align deep-loop runtime with sk-code",
+      "code-opencode surface alignment runtime",
+      "runtime code not aligned with sk-code",
+      "sk-code conventions system-deep-loop",
+      "sk-code alignment plan",
+      "code-opencode runtime alignment",
+      "sk-code alignment tasks",
+      "code-opencode runtime verification",
+      "sk-code alignment checklist",
+      "code-opencode runtime QA",
+      "sk-code alignment implementation",
+      "code-opencode runtime alignment complete"
+    ],
+    "key_topics": [
+      "align",
+      "deep-loop",
+      "runtime",
+      "sk-code",
+      "code-opencode",
+      "surface",
+      "alignment",
+      "code",
+      "aligned",
+      "conventions",
+      "system-deep-loop",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolved Border This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "header-only",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "source-level",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "source",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A large share of the system-deep-loop runtime was authored across many independent fan-out build sessions, and that code",
+    "created_at": "2026-07-29T06:45:18.104Z",
+    "last_save_at": "2026-08-14T04:28:35.307Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f97686174d03d9a7e08cba84046f8f2ca8cfca78bf314bc89a8c2bd3b7588841",
+    "source_doc_hashes": {
+      "spec.md": "16ed2c20b5e0406bfd9ddb22a56d7d77ed4f6c98ab175503b67af8bdd24b17f4",
+      "plan.md": "602c1bdcf9181aadc0ece2d43b0f234d37f8403bb400a060b661bdd526f78fe2",
+      "tasks.md": "8b844da19085722828835e6e4ef5303752e1121dbc449f51638aa8051e1d4147",
+      "checklist.md": "f5ac322238fab4240f0a1a3cfc7311c44fcf3fd742f116c0722e9d461c547e14",
+      "implementation-summary.md": "01642284b767ae976767adeab0d36f7f507ac0264e352270a324752d529e3b89"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

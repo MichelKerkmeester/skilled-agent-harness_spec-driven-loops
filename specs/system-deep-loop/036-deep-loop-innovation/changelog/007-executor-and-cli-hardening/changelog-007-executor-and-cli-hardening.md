@@ -24,10 +24,10 @@ This phase parent groups the CLI executor and hardening work under one thematic 
 
 | Phase | Summary |
 |---|---|
-| `035-cli-adapter-stress-and-playbooks` | Planned scaffold defining a deterministic stress-test and manual-testing program for the six external CLI deep-loop adapters and fan-out orchestration. |
-| `047-executor-wiring-and-parity` | Groups wiring individual executor kinds and proving every cli/provider/model combination is reachable end-to-end through the fan-out. |
-| `048-write-containment-hardening` | Groups deep-loop fan-out write-containment guard fixes so a dispatched leaf can never leave, delete, or misattribute out-of-scope writes. |
-| `049-deep-alignment-integrity` | Groups deep-alignment loop integrity fixes: a trustworthy findings-registry seal state and a contained multi-executor path. |
-| `050-trustworthy-state-records` | Stamps deep-loop state records with the time they were appended and stops failing a completed lineage over the event name it chose. |
-| `051-residual-finding-closeouts` | A single planned home to plan, execute, and record evidence for three small deferred residuals from landed siblings 022 / 025 / 028. |
-| `052-cli-devin-executor-repair` | Repairs the cli-devin deep-loop executor adapter so cli-devin lineages run again on the installed devin CLI. |
+| `001-cli-adapter-stress-and-playbooks` | Planned scaffold defining a deterministic stress-test and manual-testing program for the six external CLI deep-loop adapters and fan-out orchestration. |
+| `002-executor-wiring-and-parity` | Groups wiring individual executor kinds and proving every cli/provider/model combination is reachable end-to-end through the fan-out. |
+| `003-write-containment-hardening` | Groups deep-loop fan-out write-containment guard fixes so a dispatched leaf can never leave, delete, or misattribute out-of-scope writes. |
+| `004-deep-alignment-integrity` | Groups deep-alignment loop integrity fixes: a trustworthy findings-registry seal state and a contained multi-executor path. |
+| `005-trustworthy-state-records` | Stamps deep-loop state records with the time they were appended and stops failing a completed lineage over the event name it chose. |
+| `006-residual-finding-closeouts` | A single planned home to plan, execute, and record evidence for three small deferred residuals from landed siblings 022 / 025 / 028. |
+| `007-cli-devin-executor-repair` | Repairs the cli-devin deep-loop executor adapter so cli-devin lineages run again on the installed devin CLI. |

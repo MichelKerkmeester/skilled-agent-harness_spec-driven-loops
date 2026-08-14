@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate",
+  "description": "Plan the Deep Review rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded",
+  "keywords": [
+    "plan",
+    "deep",
+    "review",
+    "rollback",
+    "switch",
+    "independent",
+    "migration",
+    "gate",
+    "typed",
+    "event-ledger",
+    "path",
+    "fail-closed",
+    "authority",
+    "control",
+    "bounded"
+  ],
+  "lastUpdated": "2026-08-14T04:22:21.690Z",
+  "specId": "007",
+  "folderSlug": "rollback-and-mode-gate",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "002-mode-and-lane-migrations",
+    "002-deep-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

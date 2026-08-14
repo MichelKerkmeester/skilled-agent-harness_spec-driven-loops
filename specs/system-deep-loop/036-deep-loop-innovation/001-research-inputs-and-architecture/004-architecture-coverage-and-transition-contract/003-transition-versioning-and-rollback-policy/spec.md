@@ -32,7 +32,7 @@ _memory:
 
 # Feature Specification: Transition, Versioning & Rollback Policy
 
-> Phase adjacency under the architecture-contract parent (navigation, not dependency): predecessor `002-recommendation-ledger-bijective-map`; successor program phase `006-transition-authorized-ledger-core`.
+> Phase adjacency under the architecture-contract parent (navigation, not dependency): predecessor `002-recommendation-ledger-bijective-map`; successor program phase `002-transition-authorized-ledger-core`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA

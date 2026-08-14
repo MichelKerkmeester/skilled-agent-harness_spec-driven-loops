@@ -40,10 +40,10 @@ This phase groups the related child phases below so parent-level context stays a
 
 | Phase | Folder | Status | Adjacency |
 |-------|--------|--------|-----------|
-| 1 | `012-shared-mode-contracts-and-fixtures` | in_progress | predecessor `none`; successor `013-mode-and-lane-migrations` |
-| 2 | `013-mode-and-lane-migrations` | in_progress | predecessor `012-shared-mode-contracts-and-fixtures`; successor `014-staged-state-migration-and-authority-cutover` |
-| 3 | `014-staged-state-migration-and-authority-cutover` | in_progress | predecessor `013-mode-and-lane-migrations`; successor `015-legacy-writer-retirement` |
-| 4 | `015-legacy-writer-retirement` | planned | predecessor `014-staged-state-migration-and-authority-cutover`; successor `none` |
+| 1 | `001-shared-mode-contracts-and-fixtures` | in_progress | predecessor `none`; successor `002-mode-and-lane-migrations` |
+| 2 | `002-mode-and-lane-migrations` | in_progress | predecessor `001-shared-mode-contracts-and-fixtures`; successor `003-staged-state-migration-and-authority-cutover` |
+| 3 | `003-staged-state-migration-and-authority-cutover` | in_progress | predecessor `002-mode-and-lane-migrations`; successor `004-legacy-writer-retirement` |
+| 4 | `004-legacy-writer-retirement` | planned | predecessor `003-staged-state-migration-and-authority-cutover`; successor `none` |
 
 ## What Needs Done
 

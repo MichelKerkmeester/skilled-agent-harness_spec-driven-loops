@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
+  "children_ids": [
+    "system-deep-loop/036-deep-loop-innovation/004-deep-alignment-integrity/001-alignment-registry-sealing",
+    "system-deep-loop/036-deep-loop-innovation/004-deep-alignment-integrity/002-deep-alignment-multi-executor",
+    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing",
+    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/002-deep-alignment-multi-executor"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep alignment integrity",
+      "alignment registry seal and multi executor group",
+      "deep-alignment loop trust fixes"
+    ],
+    "key_topics": [
+      "deep",
+      "alignment",
+      "integrity",
+      "registry",
+      "seal",
+      "multi",
+      "executor",
+      "group",
+      "deep-alignment",
+      "loop",
+      "trust",
+      "trustworthy"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alignment Integrity",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Group the deep-alignment loop integrity fixes: a trustworthy findings-registry seal state and a contained multi-executor path.",
+    "created_at": "2026-08-08T07:14:12.196Z",
+    "last_save_at": "2026-08-14T04:28:31.070Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f5df3ffbb578fc691b01757d505a5045316b9d1b81278a80806bc64973166f87",
+    "source_doc_hashes": {
+      "spec.md": "7f4e5c34b00d8b7e6893f5516f90174c44a2bc689b4c84c7acdd6751a0c81391"
+    },
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/004-deep-alignment-integrity/002-deep-alignment-multi-executor",
+    "last_active_at": null
+  }
+}

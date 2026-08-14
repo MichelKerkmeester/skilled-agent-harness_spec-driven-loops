@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/004-certificates-and-receipts",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/004-certificates-and-receipts",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/002-reducers-and-projections",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/004-certificates-and-receipts",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/006-shadow-parity",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep improvement common services migration",
+      "deep improvement typed event ledger",
+      "shared evaluator canary promotion migration"
+    ],
+    "key_topics": [
+      "deep",
+      "improvement",
+      "common",
+      "services",
+      "migration",
+      "typed",
+      "event",
+      "ledger",
+      "shared",
+      "evaluator",
+      "canary",
+      "promotion"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Migrate the shared deep-improvement evaluator-first loop, candidate generation, scoring, canary, and guarded promotion services onto the typed event-ledger substrate before the agent-improvement, model-benchmark, and skill-benchmark variants consume them.",
+    "created_at": "2026-07-16T03:43:55.766Z",
+    "last_save_at": "2026-08-14T04:28:15.295Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:af0b2c5dc0af89cc7d75c2791ec2f344d8e0d87d4f80b8723a3b1018f2bcaa6e",
+    "source_doc_hashes": {
+      "spec.md": "d57efd34588e0df848ea88510f66c83e41d919fbcddaa9495aac9cbdb5d0ce50"
+    },
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/001-typed-ledger-schema",
+    "last_active_at": null
+  }
+}

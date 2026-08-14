@@ -1,0 +1,32 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/006-fanout-dispatch-integrity",
+  "description": "Fulfillment accepts a lineage when one non-empty top-level report exists, with no validation of state JSONL, iteration records, deltas, findings",
+  "keywords": [
+    "fulfillment",
+    "accepts",
+    "lineage",
+    "one",
+    "non-empty",
+    "top-level",
+    "report",
+    "exists",
+    "validation",
+    "state",
+    "jsonl",
+    "iteration",
+    "records",
+    "deltas",
+    "findings"
+  ],
+  "lastUpdated": "2026-08-14T04:22:31.215Z",
+  "specId": "006",
+  "folderSlug": "fanout-dispatch-integrity",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

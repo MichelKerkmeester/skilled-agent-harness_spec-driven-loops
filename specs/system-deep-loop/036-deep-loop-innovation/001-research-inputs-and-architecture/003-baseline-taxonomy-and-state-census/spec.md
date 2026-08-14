@@ -159,7 +159,7 @@ re-census: that program's compiled-router **live-activation** (its phase-010, ga
 `mode-registry.json` directly. It is dormant today (routing is byte-identical to the prose router) and does **not**
 constrain 036's own registry work — 036 only parses the registry, never writes it — but if it is activated on this
 hub between BASE-pin and the 013/014 authority cutover, treat it as a named external drift event. Full coupling
-record: `018-drift-census-and-plan-revalidation/research/research.md` §9.
+record: `003-drift-census-and-plan-revalidation/research/research.md` §9.
 <!-- /ANCHOR:risks -->
 
 <!-- ANCHOR:questions -->

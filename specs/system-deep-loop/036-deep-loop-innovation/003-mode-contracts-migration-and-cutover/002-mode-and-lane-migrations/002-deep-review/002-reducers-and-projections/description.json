@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/002-deep-review/002-reducers-and-projections",
+  "description": "Plan the pure deterministic reducers and live projections for the Deep Review migration: replay the typed event ledger into iteration/convergence",
+  "keywords": [
+    "plan",
+    "pure",
+    "deterministic",
+    "reducers",
+    "live",
+    "projections",
+    "deep",
+    "review",
+    "migration",
+    "replay",
+    "typed",
+    "event",
+    "ledger",
+    "iteration",
+    "convergence"
+  ],
+  "lastUpdated": "2026-08-14T04:22:21.753Z",
+  "specId": "002",
+  "folderSlug": "reducers-and-projections",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "002-mode-and-lane-migrations",
+    "002-deep-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

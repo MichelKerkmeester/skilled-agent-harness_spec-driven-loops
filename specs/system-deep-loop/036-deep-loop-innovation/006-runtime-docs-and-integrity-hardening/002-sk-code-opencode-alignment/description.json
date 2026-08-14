@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/002-sk-code-opencode-alignment",
+  "description": "A large share of the system-deep-loop runtime was authored across many independent fan-out build sessions, and that code",
+  "keywords": [
+    "large",
+    "share",
+    "system-deep-loop",
+    "runtime",
+    "authored",
+    "across",
+    "many",
+    "independent",
+    "fan-out",
+    "sessions",
+    "code"
+  ],
+  "lastUpdated": "2026-08-14T04:22:31.339Z",
+  "specId": "002",
+  "folderSlug": "sk-code-opencode-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

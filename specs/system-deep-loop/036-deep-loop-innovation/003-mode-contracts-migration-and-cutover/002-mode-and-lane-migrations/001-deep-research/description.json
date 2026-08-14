@@ -1,0 +1,42 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
+  "description": "Migrate the autonomous Deep Research loop from initialization through iterative evidence gathering, convergence, synthesis, and memory-save handoff",
+  "keywords": [
+    "migrate",
+    "autonomous",
+    "deep",
+    "research",
+    "loop",
+    "initialization",
+    "iterative",
+    "evidence",
+    "gathering",
+    "convergence",
+    "synthesis",
+    "memory-save",
+    "handoff"
+  ],
+  "lastUpdated": "2026-08-14T04:22:22.292Z",
+  "specId": "001",
+  "folderSlug": "deep-research",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "002-mode-and-lane-migrations"
+  ],
+  "memorySequence": 10,
+  "memoryNameHistory": [
+    "24-07-26_06-09__on-the-frontier-hook-s-second-point-the-standing.md",
+    "24-07-26_06-50__the-hook-is-correct-that-the-frontier-is.md",
+    "24-07-26_06-51__still-parked-your-killing-those-builds-is-the.md",
+    "24-07-26_06-51__parked-holding-to-your-kill-of-the-builds-i-won-t.md",
+    "24-07-26_06-51__holding-i-won-t-resume-the-frontier-without-your.md",
+    "24-07-26_06-52__holding-no-change-i-won-t-act-without-your-word.md",
+    "24-07-26_06-52__holding-goal-clear-when-you-want-the-auto-prompts.md",
+    "24-07-26_06-52__holding-goal-clear-stops-the-prompts.md",
+    "24-07-26_06-52__holding-goal-clear-stops-the-prompts.md",
+    "27-07-26_22-40__certificates-column-landed-resume-column-underway.md"
+  ]
+}

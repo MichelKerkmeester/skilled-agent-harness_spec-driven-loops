@@ -4,9 +4,9 @@
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift",
   "parent_id": "system-deep-loop/036-deep-loop-innovation",
   "children_ids": [
-    "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate",
-    "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/017-integrate-latest-and-closeout",
-    "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation"
+    "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate",
+    "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/002-integrate-latest-and-closeout",
+    "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation"
   ],
   "manual": {
     "depends_on": [],
@@ -79,17 +79,17 @@
     ],
     "causal_summary": "Whole-system gate, integrate-latest closeout, and drift census and plan revalidation.",
     "created_at": "2026-08-13T09:22:50.245Z",
-    "last_save_at": "2026-08-13T17:17:15.990Z",
+    "last_save_at": "2026-08-14T04:28:44.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ad44dd801e780af7e606a94570a3b462966a0ad7946eae96fe33477a6b84131a",
+    "source_fingerprint": "sha256:486d8ca7c91e428fc2bd10b97a8091a996f6f61505ca800288f386710051d8b0",
     "source_doc_hashes": {
-      "spec.md": "2b7814263053b551f3c92d668ba4279c5e6ea685836aa7e6b075f3ef65519fa7"
+      "spec.md": "f64cb4400ba5ef34752624ed12b00a9e4ffb82c181e2fe2e3fca2a9ae1694c86"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate",
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate",
     "last_active_at": null
   }
 }

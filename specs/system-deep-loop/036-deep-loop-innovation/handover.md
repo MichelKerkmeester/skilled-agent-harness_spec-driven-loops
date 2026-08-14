@@ -22,7 +22,7 @@ _memory:
     key_files:
       - "goal.md"
       - "goal-plan-review.md"
-      - "016-whole-system-gate/review/pre-014-clearance-verdict.md"
+      - "001-whole-system-gate/review/pre-014-clearance-verdict.md"
     completion_pct: 95
     open_questions:
       - "Which exact 014/002 candidate SHA will be frozen for the first mode's acceptance run?"
@@ -56,7 +56,7 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   code level (022/023/024 fully confirmed by reading the code; 021 mechanism done — see below); 025
   certificate-binding present (spot-checked 3/12); a ~28-finding cross-child, cross-P0 sample turned
   up **zero fabrications**; independent `tsc --noEmit` rc 0. Verdict artifact:
-  `016-whole-system-gate/review/pre-014-clearance-verdict-v2.md`. **Subject to operator go-ahead +
+  `001-whole-system-gate/review/pre-014-clearance-verdict-v2.md`. **Subject to operator go-ahead +
   the Stage-B whole-system run, which is itself gated on the still-unmet `015`.**
 - **021 (Blocker 4) — LANDING GAP, now closed.** Its reconcile was done locally 2026-07-31 but never
   landed, so origin still showed the pre-reconcile state (ADRs Proposed, OD-1 unrecorded, spec Planned,
@@ -89,7 +89,7 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
   `f6cdf604a2` (F-017-04 rollback-hash forgery + F-019-01 council-root traversal + F-019-03
   payload symlink-follow — all confirmed-real, red-before/green-after), status doc `ab6aae0a71`.
   Residual: F-019-01 is a calibrated closure; ADR-003 full config-resolved root stays Proposed.
-- **024 build spec is WRITTEN** at `024-durable-write-boundaries/build-spec.md` (grounded at
+- **024 build spec is WRITTEN** at `004-durable-write-boundaries/build-spec.md` (grounded at
   origin `5410a4bfcb`). P0 sets reconciled (complementary; B1-B7 canonical set; 5 findings
   LUNA-REFUTED → T001-gate before any fix — the anti-fabrication guard). Execute it in a FRESH
   worktree at origin tip (this tree is too messy for the atomic migration). Do NOT rush it.
@@ -185,7 +185,7 @@ rollback windows. A **remediation tree (018-033)** was spawned by the validation
 ### Speed & parallelization findings (folded in from the read-only analysis)
 
 **The write-set conflict graph is the WRONG authority for gating 024-era concurrency.** The graph at
-`012-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph/` scopes ONLY the eight **phase-013
+`001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph/` scopes ONLY the eight **phase-013
 MODE migrations** (`001-deep-research` … `008-deep-alignment`) — its `spec.md` §2 says so verbatim
 ("Phase 013 is a fan-out of eight migrations"). It does NOT model the remediation children (018-050) and
 does NOT model 024's write-set. Do not use it to greenlight remediation-child parallelism — it would give
@@ -481,7 +481,7 @@ silent-failure-and-harness-repair · `032` docs-drift-and-p2-batch · then the `
 ## Immediate next action (next session)
 
 Quota-permitting, start with **step 2** (reconcile metadata — gives an accurate completion picture),
-then resume WS1 at **026-alignment-coverage-integrity**, or re-attempt **033** first if you want the
+then resume WS1 at **004-alignment-coverage-integrity**, or re-attempt **033** first if you want the
 hardening closed before the rest. Do NOT start a build on low quota — each child is a full
 build+verify+land cycle and a mid-flight halt just leaves partial state.
 

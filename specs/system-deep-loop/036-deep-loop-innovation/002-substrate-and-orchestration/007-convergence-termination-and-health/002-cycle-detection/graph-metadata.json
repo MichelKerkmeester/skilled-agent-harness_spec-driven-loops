@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/002-cycle-detection",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/002-cycle-detection",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop cycle detection",
+      "repeated claim and focus signatures",
+      "convergence degeneration signal",
+      "cycle detection implementation plan",
+      "deep-loop repeated-state detector plan",
+      "cycle detection tasks",
+      "deep-loop fingerprint history tasks",
+      "cycle detection checklist",
+      "deep-loop cycle verifier contract",
+      "cycle detection decision record",
+      "canonical cycle signatures",
+      "additive-dark cycle evidence"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "cycle",
+      "detection",
+      "repeated",
+      "claim",
+      "focus",
+      "signatures",
+      "convergence",
+      "degeneration",
+      "signal",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cycle Detection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "progress-gated",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "run",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Reporting Report",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "state",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "three-traversal",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Deterministic detection of repeated loop states, claim frontiers, and next-foci over ledger history, with progress-gated health evidence and no stop authority.",
+    "created_at": "2026-07-16T03:43:53.009Z",
+    "last_save_at": "2026-08-14T04:28:18.639Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3ddcfe1b0c79a9f8f9dbd287326b7d66c6be92273aa614d8738d9cbb345711a4",
+    "source_doc_hashes": {
+      "spec.md": "f4c82d3546ebeb320681c6afc00e7fef1e389cfc4a02a50ecc86bc1b221df5a4",
+      "plan.md": "9b51c41a5ab287b2f8e76625ebf1f385047684bc65cd3fd13e30760cb9b6e895",
+      "tasks.md": "49264860799910af3e5f61753c963c285660f65ab5119744ca25f1e879d97721",
+      "checklist.md": "b2369bddf2581c58674f0bce56c57f651664f64adfad8814bfe860ac4e5eae78",
+      "decision-record.md": "1a7fe7240a0a63191a6946efe0f8e44bcc9cf78e2c42ae39c4deac901d2d2bee",
+      "implementation-summary.md": "d8870c2b7b93836c60f92263ff8f19761508ab58d12531fca3dfbe1db1aa526c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

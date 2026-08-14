@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/001-runtime-code-review",
+  "description": "The `system-deep-loop` runtime (CLIs, fan-out executors, ledger/gateway/cutover logic) had no code-targeted deep-review since the 036 innovation",
+  "keywords": [
+    "system-deep-loop",
+    "runtime",
+    "clis",
+    "fan-out",
+    "executors",
+    "ledger",
+    "gateway",
+    "cutover",
+    "logic",
+    "code-targeted",
+    "deep-review",
+    "since",
+    "innovation"
+  ],
+  "lastUpdated": "2026-08-14T04:22:34.083Z",
+  "specId": "001",
+  "folderSlug": "runtime-code-review",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "008-review-and-rollback-followup"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-08-26_06-43__deep-runtime-review-produced-a-partial-fail.md"
+  ]
+}

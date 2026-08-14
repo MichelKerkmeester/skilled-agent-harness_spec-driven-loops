@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/008-runtime-mirror-and-routing-parity",
+  "description": "The Codex `ai-council` conversion runs `sandboxmode = \"workspace-write\"` while the source agent denies Bash and promises never to write outside",
+  "keywords": [
+    "codex",
+    "ai-council",
+    "conversion",
+    "runs",
+    "sandboxmode",
+    "workspace-write",
+    "while",
+    "source",
+    "agent",
+    "denies",
+    "bash",
+    "promises",
+    "never",
+    "write",
+    "outside"
+  ],
+  "lastUpdated": "2026-08-14T04:22:31.330Z",
+  "specId": "008",
+  "folderSlug": "runtime-mirror-and-routing-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

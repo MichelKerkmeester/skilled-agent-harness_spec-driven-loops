@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/006-locks-and-fencing",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/006-locks-and-fencing",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "locks and fencing",
+      "deep-loop fencing tokens",
+      "safe concurrent writers and resume",
+      "locks and fencing implementation plan",
+      "deep-loop fenced writer plan",
+      "locks and fencing tasks",
+      "deep-loop fencing token tasks",
+      "locks and fencing checklist",
+      "deep-loop stale writer verification",
+      "locks and fencing implementation",
+      "deep-loop fencing verification",
+      "stale writer rejection evidence"
+    ],
+    "key_topics": [
+      "locks",
+      "fencing",
+      "deep-loop",
+      "tokens",
+      "safe",
+      "concurrent",
+      "writers",
+      "resume",
+      "implementation",
+      "plan",
+      "fenced",
+      "writer"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy JSONL",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "observable",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fenced",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "independent-process",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the shared concurrency-safety service for ledger append, projections, and per-lineage state: scoped leases allocate durable monotonic fencing tokens, every protected mutation rejects stale holders, and bounded timeout/deadlock policy prevents split-brain across legacy, dark, fan-out, and resumed writers.",
+    "created_at": "2026-07-16T03:43:47.704Z",
+    "last_save_at": "2026-08-14T04:28:24.842Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bcdd1a3c4d8f25629c9cc7c0f46df13d05be282cd577e49acb794a6f677ccb08",
+    "source_doc_hashes": {
+      "spec.md": "19ba9b1cf6920bf4897763087da06284f8462019eea40322e1752bef8a1cb764",
+      "plan.md": "4167877ee484a77f39515034e4242dbd540516a3d67f2d4391784deaec82da77",
+      "tasks.md": "5e8aba985b56a92209897067aab6b2a7c19fbe59456bca81f56078e005970d0e",
+      "checklist.md": "3beaa7d6696725189f5c40928568397d9e4fda6deb421ac4ab6669649716861a",
+      "implementation-summary.md": "f4e3253d77a2b70de7f0781ad356fe433923c245c79f74543086068811f455af"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

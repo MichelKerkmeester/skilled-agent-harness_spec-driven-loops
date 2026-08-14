@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/005-resume-adapter",
+  "description": "Define the Deep Improvement Common Services resume adapter over the sealed typed event ledger: deterministic reducer reconstruction, continuity-ladder",
+  "keywords": [
+    "define",
+    "deep",
+    "improvement",
+    "common",
+    "services",
+    "resume",
+    "adapter",
+    "sealed",
+    "typed",
+    "event",
+    "ledger",
+    "deterministic",
+    "reducer",
+    "reconstruction",
+    "continuity-ladder"
+  ],
+  "lastUpdated": "2026-08-14T04:22:22.050Z",
+  "specId": "005",
+  "folderSlug": "resume-adapter",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "002-mode-and-lane-migrations",
+    "004-deep-improvement-common"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

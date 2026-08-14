@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/001-typed-ledger-schema",
+  "description": "Implements the Model Benchmark variant's additive-dark typed append-only event vocabulary over the shared deep-improvement-common backbone.",
+  "keywords": [
+    "implements",
+    "model",
+    "benchmark",
+    "variant",
+    "additive-dark",
+    "typed",
+    "append-only",
+    "event",
+    "vocabulary",
+    "shared",
+    "deep-improvement-common",
+    "backbone"
+  ],
+  "lastUpdated": "2026-08-14T04:22:22.817Z",
+  "specId": "001",
+  "folderSlug": "typed-ledger-schema",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "002-mode-and-lane-migrations",
+    "006-model-benchmark"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

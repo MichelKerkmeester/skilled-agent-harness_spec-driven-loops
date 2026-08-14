@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/002-legacy-projections",
+  "description": "Plan deterministic folds from the verified dark ledger into byte-identical legacy JSONL and JSON artifacts, preserving every existing reader while",
+  "keywords": [
+    "plan",
+    "deterministic",
+    "folds",
+    "verified",
+    "dark",
+    "ledger",
+    "byte-identical",
+    "legacy",
+    "jsonl",
+    "json",
+    "artifacts",
+    "preserving",
+    "every",
+    "existing",
+    "reader",
+    "while"
+  ],
+  "lastUpdated": "2026-08-14T04:22:10.717Z",
+  "specId": "002",
+  "folderSlug": "legacy-projections",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "002-substrate-and-orchestration",
+    "004-compatibility-shadow-and-rollback-bridge"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

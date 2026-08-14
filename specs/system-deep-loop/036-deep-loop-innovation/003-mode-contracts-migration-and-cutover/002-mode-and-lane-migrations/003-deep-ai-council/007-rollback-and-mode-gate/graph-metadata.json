@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "Deep AI Council rollback and mode gate",
+      "deep-ai-council fail-closed cutover",
+      "deep-ai-council rollback window",
+      "deep-ai-council shadow parity certificate",
+      "Deep AI Council rollback and mode gate implementation plan",
+      "deep-ai-council authority gate plan",
+      "bounded council rollback window",
+      "Deep AI Council rollback and mode gate tasks",
+      "deep-ai-council cutover gate tasks",
+      "council shadow parity rollback tasks",
+      "Deep AI Council rollback and mode gate checklist",
+      "deep-ai-council mode gate verification"
+    ],
+    "key_topics": [
+      "deep",
+      "council",
+      "rollback",
+      "mode",
+      "gate",
+      "deep-ai-council",
+      "fail-closed",
+      "cutover",
+      "window",
+      "shadow",
+      "parity",
+      "certificate"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "decision-record.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "This Planned",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "stable IDs",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "window ID",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implements the additive-dark Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate.",
+    "created_at": "2026-07-16T03:43:35.476Z",
+    "last_save_at": "2026-08-14T04:28:02.681Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:34f413d271398cca4a083ef9672c5b6be652a1c297fd17b0b639bea96addc14f",
+    "source_doc_hashes": {
+      "spec.md": "6c2213c14c3f29016911b8f9040a041ba3ff789a99a77ac06254cba936bc533f",
+      "plan.md": "2be7200593e284f5da469def3bda863fc560fd67d33cc8be05cb37176f89377d",
+      "tasks.md": "c43a7a5ac1805c14b5ac526b71b9b99f431ef7fc06222f8a334ffd7abf2f4ab9",
+      "checklist.md": "c46b1feac10bb3e0072beb9131c0680d2759d7da09ee50b5e80ebb5ae848e022",
+      "decision-record.md": "e51c0e5b7443ab9641beb62ab73867438275cf536bf05477255f5fd9298286a0",
+      "implementation-summary.md": "4c5eaaed10bde9cca2555939b2f6710183053e1d17d30bd6963846d16c330bd4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

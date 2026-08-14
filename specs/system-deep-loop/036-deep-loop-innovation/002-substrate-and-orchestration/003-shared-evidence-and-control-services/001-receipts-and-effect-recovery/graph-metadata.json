@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "receipts and effect recovery",
+      "deep-loop boundary receipts",
+      "idempotent external effect recovery",
+      "receipts and effect recovery implementation plan",
+      "boundary receipt implementation",
+      "receipts and effect recovery tasks",
+      "effect recovery gateway tasks",
+      "receipts and effect recovery checklist",
+      "effect recovery verification",
+      "receipts and effect recovery implementation",
+      "receipt effect candidate report"
+    ],
+    "key_topics": [
+      "receipts",
+      "effect",
+      "recovery",
+      "deep-loop",
+      "boundary",
+      "idempotent",
+      "external",
+      "implementation",
+      "plan",
+      "receipt",
+      "tasks",
+      "gateway"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Effect Recovery",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Implement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "auditable",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "deterministic",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "secret-safe",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan durable boundary receipts and an effect-recovery gateway that records intent before execution, confirms observed outcomes, and reconciles interrupted external effects without unsafe replay.",
+    "created_at": "2026-07-16T03:43:46.431Z",
+    "last_save_at": "2026-08-14T04:28:26.407Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e583035db5d24cc20c6461ab9596cecdd732078f3a766108e2a489f9f5f605f8",
+    "source_doc_hashes": {
+      "spec.md": "c16c7f699201ef940c1fe74f0f99ea9dfbf8fbaf99fcb63d19c207651d205e42",
+      "plan.md": "203f3647b2b741f5024e3326290d63bab8607cff57a377814f389415b223926c",
+      "tasks.md": "e3b4338b68319d97c8b64652ec0b26ed84bedbb17e9dd272927d802a1228d01b",
+      "checklist.md": "dbbcb287830cbbcc9b2f1565ef669cb48eb74feb0d45c404361d3b882b756eb7",
+      "implementation-summary.md": "bbe603cf1055ca5ad52dab8c0abf952d3b5d64fad321823ce33a24512e250ba9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

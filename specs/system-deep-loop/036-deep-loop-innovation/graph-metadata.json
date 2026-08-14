@@ -134,17 +134,17 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-13T20:14:31.931Z",
+    "last_save_at": "2026-08-14T04:28:57.632Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:a34bd73a61a55033be8cc02ccb8ccd0841418908795e137a1d7880f3a23ef229",
+    "source_fingerprint": "sha256:c64f4909c2f79dc9f03a07f652ab49a82f75d9b818a51191d21e3efd59158f68",
     "source_doc_hashes": {
-      "spec.md": "117bc419cef630ee303a023bd13b832ed6325ff1f9af27eb572b24f79884c545",
-      "handover.md": "574f542f18cb7aae3449f8ee2b33e0ee903bef4f85cd4e0f47d1bf62de97c0c5"
+      "spec.md": "bc68b07a9f16757030d00f67e738637657007fba9e5de29eae7c29d94a98fd31",
+      "handover.md": "d1d37a65570ec58323ca26e4fdfaa0a92da567135cc00be2c810564523c27837"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/057-phase-consolidation-research",
     "last_active_at": "2026-08-12T15:23:08.017Z"

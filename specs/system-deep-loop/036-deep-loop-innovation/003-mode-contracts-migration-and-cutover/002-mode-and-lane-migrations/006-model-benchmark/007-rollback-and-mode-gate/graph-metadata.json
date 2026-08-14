@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/006-model-benchmark",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "model benchmark rollback and mode gate",
+      "model benchmark authority rollback switch",
+      "model benchmark migration gate",
+      "model benchmark phase 014 readiness certificate",
+      "model benchmark rollback and mode gate implementation plan",
+      "model benchmark authority switch plan",
+      "model benchmark migration certificate plan",
+      "model benchmark rollback and mode gate tasks",
+      "model benchmark rollback switch tasks",
+      "model benchmark migration gate tasks",
+      "model benchmark rollback and mode gate checklist",
+      "model benchmark migration gate verification"
+    ],
+    "key_topics": [
+      "model",
+      "benchmark",
+      "rollback",
+      "mode",
+      "gate",
+      "authority",
+      "switch",
+      "migration",
+      "phase",
+      "readiness",
+      "certificate",
+      "implementation"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mode Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Model Benchmark",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "This Planned",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Model Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Model Benchmark",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Benchmark Rollback",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the Model Benchmark variant: multi-model runs, scoring matrices, sealed evidence, certificates, and phase-014 readiness over the shared Deep Improvement Common Services backbone.",
+    "created_at": "2026-07-16T03:43:40.820Z",
+    "last_save_at": "2026-08-14T04:27:56.078Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2c6899b0344080fb2fcf386bd416c3adc8f4d84cd5ed4252388856fd46e5a2aa",
+    "source_doc_hashes": {
+      "spec.md": "ce8a42edfec2464e603d4d05ed99b58ca671dd5ec6a96541e30469a1655eb206",
+      "plan.md": "51f22523263a4e52883b208c7e80dd0880a7c7e4d15808f4e9423d151444185a",
+      "tasks.md": "f8550519a8f18ed1127e7d67a2ed03337ebc1d9317da34f43e5f2a0492fc26c0",
+      "checklist.md": "d46a11d8315c0d1d1784833c60bef7b2a065b78a430fa7f9be3502569c5d8ed1",
+      "implementation-summary.md": "47657bfe807c8f8702a19c698035f6bad6ea74020e7845ac886c8c3e56443a1d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

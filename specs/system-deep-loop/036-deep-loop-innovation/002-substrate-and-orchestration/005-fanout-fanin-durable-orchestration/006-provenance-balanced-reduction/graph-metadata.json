@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/006-provenance-balanced-reduction",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "provenance-balanced reduction",
+      "source-balanced fan-in",
+      "deterministic provenance merge",
+      "provenance-balanced reduction implementation plan",
+      "source-balanced fan-in implementation plan",
+      "provenance-balanced reduction tasks",
+      "source-balanced fan-in tasks",
+      "provenance-balanced reduction checklist",
+      "source-balanced fan-in checklist",
+      "provenance-balanced reduction implementation",
+      "source-balanced fan-in implementation",
+      "durable reduction receipt"
+    ],
+    "key_topics": [
+      "provenance-balanced",
+      "reduction",
+      "source-balanced",
+      "fan-in",
+      "deterministic",
+      "provenance",
+      "merge",
+      "implementation",
+      "plan",
+      "tasks",
+      "checklist",
+      "durable"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Balanced Reduction",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "arrival",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Generalize",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "canonical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "hierarchical",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "fail-closed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan a deterministic fan-in reducer that deduplicates surviving leaf results, balances contribution across source/model provenance, preserves every item's lineage, and escalates contested merges without allowing one prolific source to dominate.",
+    "created_at": "2026-07-16T03:43:51.149Z",
+    "last_save_at": "2026-08-14T04:28:21.115Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:369a9d8252300ab0a08de24e831fe4f968ebebb96774884be228200938eeaa70",
+    "source_doc_hashes": {
+      "spec.md": "8a55352e2d23523bfc385b1aa487294c44c47e25b32dc779706d62e75f55e7fc",
+      "plan.md": "0af5d39093597ce8371c31865011a92624b2f2a50121fd2a45c015ed834903c7",
+      "tasks.md": "88e62a447c2765520eed45af37d30ee24b788fdac72fe08d78fed8b25bbf7b2b",
+      "checklist.md": "37cd4709e66c3d37d8d640c8f3d30dabb60b78678ab5be9ff1911c324f888071",
+      "implementation-summary.md": "2a0df46d5e89971c903e2a347bef3b0a70e2b96457945d9ecac921ae3a875cdc"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

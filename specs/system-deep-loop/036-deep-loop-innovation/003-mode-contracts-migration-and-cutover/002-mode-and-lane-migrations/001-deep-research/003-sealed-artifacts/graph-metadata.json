@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research sealed artifacts",
+      "deep-research reference sealing",
+      "deep research tamper-evident read",
+      "deep research sealed artifacts implementation plan",
+      "deep-research seal-on-write plan",
+      "deep research sealed artifacts tasks",
+      "deep-research verified read tasks",
+      "deep research sealed artifacts checklist",
+      "deep-research tamper-evident artifact checklist",
+      "deep research sealed artifacts implementation",
+      "deep-research artifact bindings",
+      "deep research verified sealed reads"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "sealed",
+      "artifacts",
+      "deep-research",
+      "reference",
+      "sealing",
+      "tamper-evident",
+      "read",
+      "implementation",
+      "plan",
+      "seal-on-write"
+    ],
+    "importance_tier": "critical",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mapped Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Third Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Deep Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-gate",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sequenced Deep Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inventory Deep Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Register Deep Research",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Deep Research",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Plan the Deep Research mode binding for immutable, content-addressed reference artifacts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
+    "created_at": "2026-07-16T03:43:30.948Z",
+    "last_save_at": "2026-08-14T04:28:08.398Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:20671e28b26edff2d5898efc1be67f758559e405e2318650e0c730fcc3c3599e",
+    "source_doc_hashes": {
+      "spec.md": "023a3948e992538ddfcb85b49f9868430c8bcd87084efe2ebc83d7926bd510d4",
+      "plan.md": "91e43d85ae2af2af82630e8d36c7bcc49d1cc414bb4a3cab5f43bea336352eea",
+      "tasks.md": "6cddaedea5f5210ae8ad1828ebf6384f00d7a277c8f486cf6b6729bb7c8ab492",
+      "checklist.md": "d04e92ed8ba5a4a72e9ced8b054c74d0043d1312e440722bc420753c22f207e8",
+      "implementation-summary.md": "9df912f2c4173a0121ccef0dc8e9585246583d84cce6bf05bdede3b2a0c0970e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

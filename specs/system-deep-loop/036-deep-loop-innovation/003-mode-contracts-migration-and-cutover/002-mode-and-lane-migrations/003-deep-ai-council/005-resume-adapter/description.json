@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter",
+  "description": "Plan the Deep AI Council resume adapter for the typed event-ledger migration.",
+  "keywords": [
+    "plan",
+    "deep",
+    "council",
+    "resume",
+    "adapter",
+    "typed",
+    "event-ledger",
+    "migration"
+  ],
+  "lastUpdated": "2026-08-14T04:22:23.033Z",
+  "specId": "005",
+  "folderSlug": "resume-adapter",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "002-mode-and-lane-migrations",
+    "003-deep-ai-council"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
