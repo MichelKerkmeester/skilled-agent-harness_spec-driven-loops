@@ -5,9 +5,15 @@
 import { createRequire } from "node:module";
 
 interface HookFlagsModule {
-  isHookEnabled(concern: string, env?: Record<string, string | undefined>): boolean;
-  concernFlag(concern: string): string;
+  isHookEnabled(
+    concern: string,
+    env?: Record<string, string | undefined>,
+    config?: Record<string, string | undefined>,
+  ): boolean;
+  concernFlag(concern: string): string | null;
   isTruthy(value: unknown): boolean;
+  loadConfigFile(filePath: string): Record<string, string>;
+  configPath(): string;
   MASTER_FLAG: string;
   LEGACY_ALIASES: Record<string, readonly string[]>;
 }
@@ -20,4 +26,6 @@ export const concernFlag = flags.concernFlag;
 export const isTruthy = flags.isTruthy;
 export const MASTER_FLAG = flags.MASTER_FLAG;
 export const LEGACY_ALIASES = flags.LEGACY_ALIASES;
+export const loadConfigFile = flags.loadConfigFile;
+export const configPath = flags.configPath;
 export default flags;

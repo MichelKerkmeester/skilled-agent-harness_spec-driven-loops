@@ -24,14 +24,44 @@ import subprocess
 import sys
 
 
+def _hook_flags_config():
+    # Operator config file; env vars still override it. Fail-open on any error.
+    try:
+        override = os.environ.get("HOOK_FLAGS_CONFIG")
+        path = override if override else os.path.join(
+            repo_root_from_script(), ".opencode", "hooks", "hook-flags.env"
+        )
+        cfg = {}
+        with open(path, "r", encoding="utf-8") as fh:
+            for raw in fh:
+                line = raw.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, _, val = line.partition("=")
+                key = key.strip()
+                val = val.strip()
+                if len(val) >= 2 and val[0] == val[-1] and val[0] in ("'", '"'):
+                    val = val[1:-1]
+                if key:
+                    cfg[key] = val
+        return cfg
+    except Exception:
+        return {}
+
+
 def _hook_enabled(concern):
     def _truthy(v):
         return str(v or "").strip().lower() in ("1", "true", "yes", "on")
-    if _truthy(os.environ.get("MK_HOOKS_DISABLED")):
+    cfg = _hook_flags_config()
+
+    def _resolve(key):
+        return os.environ[key] if key in os.environ else cfg.get(key)
+
+    if _truthy(_resolve("MK_HOOKS_DISABLED")):
         return False
     import re
     flag = "MK_" + re.sub(r"[^A-Z0-9]+", "_", concern.upper()) + "_DISABLED"
-    if _truthy(os.environ.get(flag)):
+    if _truthy(_resolve(flag)):
         return False
     return True
 
