@@ -19,7 +19,11 @@
     "trigger_phrases": [
       "innovation gap remediation",
       "036 cutover remediation",
-      "authority cutover fail-closed gateway"
+      "authority cutover fail-closed gateway",
+      "resume 009 innovation gap remediation",
+      "036 authority cutover remediation next steps",
+      "implement fail-closed gateway phase",
+      "036 gap analysis findings"
     ],
     "key_topics": [
       "innovation",
@@ -29,18 +33,25 @@
       "authority",
       "fail-closed",
       "gateway",
-      "close",
-      "deep-loop-innovation",
-      "gap-analysis",
-      "findings",
-      "substrate"
+      "resume",
+      "next",
+      "steps",
+      "implement",
+      "phase"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "handover.md",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -82,19 +93,51 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Two Dependabot",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-1",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Close the deep-loop-innovation (036) gap-analysis findings: substrate identity fail-closed, per-mode authority cutover, production-boundary verification, and traceability/status reconciliation.",
     "created_at": "2026-08-14T12:47:57.530Z",
-    "last_save_at": "2026-08-14T12:47:57.530Z",
+    "last_save_at": "2026-08-14T14:30:48.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:78c6040d01cbe35b0e5b65fbf723e7ca146b214460b19f494b06e8af3f20755a",
+    "source_fingerprint": "sha256:8988640a533d3aada598a5669d0f7ec524773cefc824b864fc79b8a79c5ccd58",
     "source_doc_hashes": {
-      "spec.md": "dec79711e0e642f5a11c0c0b7e96b1af9bd28fcd6c358e9db32b07a2365e4158"
+      "spec.md": "dec79711e0e642f5a11c0c0b7e96b1af9bd28fcd6c358e9db32b07a2365e4158",
+      "handover.md": "8c55e13f833425fbeab25e3e472a8f8d6f0105afe5fe014e3cebd92d2af9a82a"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/005-closeout-and-drift-reconcile",
     "last_active_at": null
