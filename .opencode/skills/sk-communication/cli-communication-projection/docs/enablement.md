@@ -52,6 +52,54 @@ unset.
 The committed `enablement.local.json.example` shows the file shape, and the
 package `.gitignore` ignores the real file so a private opt-in stays local.
 
+### The optional localProvider block
+
+The same file can name a local model for projection to call. Add a
+`localProvider` object next to `enabled: true`, with a `kind`, a `model`,
+and an optional `endpoint`:
+
+```json
+{
+  "enabled": true,
+  "localProvider": {
+    "kind": "ollama",
+    "model": "llama3.2"
+  }
+}
+```
+
+Four kinds are supported: `ollama`, `lmstudio`, `llama.cpp`, and
+`openai-compatible`. Each kind has a default endpoint, so you can omit
+`endpoint` and let the loader use the default for that kind:
+
+- `ollama` defaults to `http://127.0.0.1:11434/api/chat`.
+- `lmstudio` defaults to `http://127.0.0.1:1234/v1/chat/completions`.
+- `llama.cpp` and `openai-compatible` default to
+  `http://127.0.0.1:8080/v1/chat/completions`.
+
+Set `endpoint` explicitly to point at a server that listens elsewhere. For a
+local LM Studio server on its default port, write:
+
+```json
+{
+  "enabled": true,
+  "localProvider": {
+    "kind": "lmstudio",
+    "model": "qwen2.5-7b-instruct",
+    "endpoint": "http://localhost:1234/v1"
+  }
+}
+```
+
+That single write is enough. The loader turns the block into a local provider
+record, a local-only privacy policy, a required judge, a local HTTP transport,
+and the shipped copy-editing prompt. Both entry points then activate on their
+own for the next message or launch.
+
+A missing or malformed `localProvider` fails closed. The loader returns no
+config, and both entry points emit the byte-exact original, exactly as they do
+when enablement is off.
+
 ---
 
 ## 3. PRECEDENCE AND PRIVACY BOUNDARY

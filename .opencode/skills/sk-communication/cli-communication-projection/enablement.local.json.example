@@ -3,5 +3,10 @@
   "localProvider": {
     "kind": "ollama",
     "model": "llama3.2"
+  },
+  "lmStudioExample": {
+    "kind": "lmstudio",
+    "model": "qwen2.5-7b-instruct",
+    "endpoint": "http://localhost:1234/v1"
   }
 }
