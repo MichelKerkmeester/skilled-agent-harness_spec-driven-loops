@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-skill-advisor/017-rust-backend-rewrite-research/001-research",
-  "spec_folder": "system-skill-advisor/017-rust-backend-rewrite-research/001-research",
-  "parent_id": "system-skill-advisor/017-rust-backend-rewrite-research",
+  "packet_id": "system-skill-advisor/000-rust-backend-rewrite/001-research",
+  "spec_folder": "system-skill-advisor/000-rust-backend-rewrite/001-research",
+  "parent_id": "system-skill-advisor/000-rust-backend-rewrite",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "research/deep-research-strategy.md",
-      "research/deep-research-fanout-config.json",
-      "mcp_server/package.json"
+      "research/deep-research-fanout-config.json"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "deep-research-fanout-config.json",
         "kind": "config",
         "path": "research/deep-research-fanout-config.json",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
         "source": "derived"
       },
       {
@@ -172,7 +165,7 @@
     ],
     "causal_summary": "The scorer is the backend's strongest pure-compute rewrite candidate, but even this path crosses native boundaries",
     "created_at": "2026-07-11T06:42:40.921Z",
-    "last_save_at": "2026-07-15T11:59:36.032Z",
+    "last_save_at": "2026-08-14T07:50:01.458Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -180,11 +173,11 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:f8ed58d01e2c96b2dc71f180c69ed4e9551093e1a2fe073eb8a3db4e9b63a74d",
+    "source_fingerprint": "sha256:4a87b965645b2172c6d9ea3c2588d3f2a080775d363e2d308a1d148fdd3d57d0",
     "source_doc_hashes": {
-      "spec.md": "8001a01c663f3c9dae46ae993d5134bc29f94145edc71c937b72fc714e8088a6",
-      "plan.md": "b48116c5babe5ef2511743f16b2d7d9d046a699748f21152cd1219ac52ded328",
-      "tasks.md": "22af193662a3ab16d79be996445ac17130ea24d6630d480571fbfc798e289d65"
+      "spec.md": "f0e94dc50733cf76650c05f11042377e7495b38b432f465a387a5cfd71779951",
+      "plan.md": "2902f0b9a8f32fe12d92e168362b65e588a6eaf701fab21a77796894a7a0a229",
+      "tasks.md": "5d2c245eb0e92bfeaf051c88ef4ac862c1004c97ddc66d57dc4f43648da66be3"
     },
     "last_active_child_id": null,
     "last_active_at": null

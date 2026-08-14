@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/018-advisor-audit-and-state-containment/002-advisor-surface-audit"
+    packet_pointer: "system-skill-advisor/017-advisor-audit-and-state-containment/002-advisor-surface-audit"
     last_updated_at: "2026-07-27T17:40:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored the audit spec from GPT-5.6-SOL research with two findings independently verified"

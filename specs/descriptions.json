@@ -36072,7 +36072,7 @@
       "lastUpdated": "2026-07-21T05:58:28.011Z"
     },
     {
-      "specFolder": "system-skill-advisor/017-rust-backend-rewrite",
+      "specFolder": "system-skill-advisor/000-rust-backend-rewrite",
       "description": "The `system-skill-advisor` backend is ~51K LOC of authored TypeScript across ~268 files (`mcpserver/`), run as a long-lived MCP server (plus a",
       "keywords": [
         "system-skill-advisor",
@@ -36093,7 +36093,7 @@
       "lastUpdated": "2026-07-27T17:01:18.863Z"
     },
     {
-      "specFolder": "system-skill-advisor/017-rust-backend-rewrite/001-research",
+      "specFolder": "system-skill-advisor/000-rust-backend-rewrite/001-research",
       "description": "The scorer is the backend's strongest pure-compute rewrite candidate, but even this path crosses native boundaries",
       "keywords": [
         "scorer",
@@ -36111,7 +36111,7 @@
       "lastUpdated": "2026-07-21T05:58:28.029Z"
     },
     {
-      "specFolder": "system-skill-advisor/018-advisor-audit-and-state-containment",
+      "specFolder": "system-skill-advisor/017-advisor-audit-and-state-containment",
       "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
       "keywords": [
         "broken",
@@ -36126,7 +36126,7 @@
       "lastUpdated": "2026-07-27T17:05:48.122Z"
     },
     {
-      "specFolder": "system-skill-advisor/018-advisor-audit-and-state-containment/001-state-directory-containment",
+      "specFolder": "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment",
       "description": "Several runtime writers resolve their state directory from the current working directory rather than from the repository root",
       "keywords": [
         "several",
@@ -36144,7 +36144,7 @@
       "lastUpdated": "2026-07-27T17:05:48.123Z"
     },
     {
-      "specFolder": "system-skill-advisor/018-advisor-audit-and-state-containment/002-advisor-surface-audit",
+      "specFolder": "system-skill-advisor/017-advisor-audit-and-state-containment/002-advisor-surface-audit",
       "description": "The skill-advisor subsystem has never had a systematic sweep of its own code and structure surface",
       "keywords": [
         "skill-advisor",
@@ -36160,7 +36160,7 @@
       "lastUpdated": "2026-07-27T17:00:18.675Z"
     },
     {
-      "specFolder": "system-skill-advisor/019-codex-node-runtime-alignment",
+      "specFolder": "system-skill-advisor/018-codex-node-runtime-alignment",
       "description": "Codex launches `mkskilladvisor` with Node 22, whose module ABI is 127",
       "keywords": [
         "codex",

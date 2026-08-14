@@ -1727,7 +1727,7 @@ A  .opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors
 ?? .opencode/specs/sk-design/014-template-conformance/009-aesthetics-retirement/
 ?? .opencode/specs/system-code-graph/036-code-graph-decommission/
 ?? .opencode/specs/system-code-graph/spec.md
-?? .opencode/specs/system-skill-advisor/018-advisor-audit-and-state-containment/
+?? .opencode/specs/system-skill-advisor/017-advisor-audit-and-state-containment/
 ?? .opencode/specs/system-skill-advisor/spec.md
 [0m
 Confirmed nine findings across all six categories. Whole-repo searches included `.ts`, `.js`, `.cjs`, `.mjs`, `.md`, `.yaml`, `.yml`, `.json`, and `.sh`; archived spec captures were distinguished from live callers.

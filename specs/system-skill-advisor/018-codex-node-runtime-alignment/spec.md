@@ -9,9 +9,9 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/019-codex-node-runtime-alignment"
-    last_updated_at: "2026-08-10T08:41:19Z"
-    last_updated_by: "codex"
+    packet_pointer: "system-skill-advisor/018-codex-node-runtime-alignment"
+    last_updated_at: "2026-08-14T07:52:06Z"
+    last_updated_by: "claude-code"
     recent_action: "Aligned the Codex advisor runtime and verified MCP initialization"
     next_safe_action: "Start a fresh Codex session and confirm the startup banner is clear"
     blockers: []
@@ -77,7 +77,7 @@ Launch the Codex skill advisor with the Node runtime that matches its installed 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.codex/config.toml` | Modify | Align the skill advisor command with Node ABI 141. |
-| `specs/system-skill-advisor/019-codex-node-runtime-alignment/` | Create | Record scope, proof, and final state. |
+| `specs/system-skill-advisor/018-codex-node-runtime-alignment/` | Create | Record scope, proof, and final state. |
 <!-- /ANCHOR:scope -->
 
 ---

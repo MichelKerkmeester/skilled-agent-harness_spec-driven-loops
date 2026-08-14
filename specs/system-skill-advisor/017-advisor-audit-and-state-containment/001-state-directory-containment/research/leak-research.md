@@ -308,7 +308,7 @@ M .opencode/plugins/tests/mk-skill-advisor.test.cjs
  M .opencode/specs/sk-doc/graph-metadata.json
  M .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/description.json
  M .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/graph-metadata.json
-?? .opencode/specs/system-skill-advisor/018-advisor-audit-and-state-containment/
+?? .opencode/specs/system-skill-advisor/017-advisor-audit-and-state-containment/
 ?? .opencode/specs/system-skill-advisor/spec.md
 [0m
 [0m$ [0mgit ls-files | rg '/\.opencode/(skills/\.(advisor-state|spec-gate-state)/|logs/cli-dispatch-audit\.log)'
@@ -1658,7 +1658,7 @@ M .opencode/plugins/tests/mk-skill-advisor.test.cjs
  M .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/description.json
  M .opencode/specs/system-speckit/028-memory-search-intelligence/001-release-cleanup/017-findings-remediation/graph-metadata.json
 ?? .opencode/skills/system-deep-loop/runtime/tests/unit/trustworthy-state-records.vitest.ts
-?? .opencode/specs/system-skill-advisor/018-advisor-audit-and-state-containment/
+?? .opencode/specs/system-skill-advisor/017-advisor-audit-and-state-containment/
 ?? .opencode/specs/system-skill-advisor/spec.md
 [0m
 [0m$ [0mfind .opencode -type d -name .opencode ! -path .opencode -print | wc -l

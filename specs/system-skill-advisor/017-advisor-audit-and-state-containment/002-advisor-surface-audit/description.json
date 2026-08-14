@@ -1,6 +1,6 @@
 {
   "level": "1",
-  "specFolder": "system-skill-advisor/018-advisor-audit-and-state-containment/002-advisor-surface-audit",
+  "specFolder": "system-skill-advisor/017-advisor-audit-and-state-containment/002-advisor-surface-audit",
   "description": "The skill-advisor subsystem has never had a systematic sweep of its own code and structure surface",
   "keywords": [
     "skill-advisor",
@@ -13,12 +13,12 @@
     "structure",
     "surface"
   ],
-  "lastUpdated": "2026-07-27T17:00:18.675Z",
+  "lastUpdated": "2026-08-14T07:49:15.721Z",
   "specId": "002",
   "folderSlug": "advisor-surface-audit",
   "parentChain": [
     "system-skill-advisor",
-    "018-advisor-audit-and-state-containment"
+    "017-advisor-audit-and-state-containment"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-skill-advisor/019-codex-node-runtime-alignment"
+    packet_pointer: "system-skill-advisor/018-codex-node-runtime-alignment"
     last_updated_at: "2026-08-10T08:41:19Z"
     last_updated_by: "codex"
     recent_action: "Completed the repair and verification tasks"
@@ -51,7 +51,7 @@ _memory:
 
 - [x] T001 Inspect Codex MCP runtime pins (`.codex/config.toml`).
 - [x] T002 Identify the advisor native module ABI and compatible runtime. [evidence: `process.versions.modules` reports 127 under Node 22 and 141 under Node 25.]
-- [x] T003 Create the Level 1 packet (`specs/system-skill-advisor/019-codex-node-runtime-alignment/`).
+- [x] T003 Create the Level 1 packet (`specs/system-skill-advisor/018-codex-node-runtime-alignment/`).
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -71,7 +71,7 @@ _memory:
 - [x] T006 Load the final Codex TOML configuration. [evidence: `codex mcp get mk_skill_advisor --json` resolves `/opt/homebrew/bin/node`.]
 - [x] T007 Verify a live advisor MCP initialize handshake. [evidence: `mk_skill_advisor` v0.1.0 returned initialize PASS.]
 - [x] T008 Verify registered MCP commands and the scoped diff. [evidence: `codex mcp list` loaded all registrations; `git diff -- .codex/config.toml` shows one runtime command change.]
-- [x] T009 Refresh metadata and pass strict packet validation. [evidence: `validate.sh specs/system-skill-advisor/019-codex-node-runtime-alignment --strict` exits 0 with zero warnings.]
+- [x] T009 Refresh metadata and pass strict packet validation. [evidence: `validate.sh specs/system-skill-advisor/018-codex-node-runtime-alignment --strict` exits 0 with zero warnings.]
 <!-- /ANCHOR:phase-3 -->
 
 ---
