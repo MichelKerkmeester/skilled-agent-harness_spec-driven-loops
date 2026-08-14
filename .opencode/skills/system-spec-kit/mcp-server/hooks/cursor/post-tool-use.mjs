@@ -98,9 +98,6 @@ function parseShellToolOutput(rawToolOutput) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  // Kill-switch gate matching the sibling adapters (e.g. the Cursor
-  // mcp-route-guard proxy): a disabled concern makes the whole proxy a no-op.
-  if (!isHookEnabled('dispatch')) return approve();
   let payload;
   try {
     payload = JSON.parse(await readStdin());
@@ -113,6 +110,7 @@ async function main() {
   const sessionID = payload?.session_id;
 
   if (toolName === 'Write') {
+    if (!isHookEnabled('post-edit-quality')) return approve();
     const filePath = payload?.tool_input?.file_path;
     const claudeShapedPayload = {
       tool_name: 'Write',
@@ -130,6 +128,7 @@ async function main() {
   }
 
   if (toolName === 'Shell') {
+    if (!isHookEnabled('dispatch')) return approve();
     const command = payload?.tool_input?.command;
     const toolResponse = parseShellToolOutput(payload?.tool_output);
     // Normalize Shell -> Bash: dispatch-audit-posttooluse.mjs matches

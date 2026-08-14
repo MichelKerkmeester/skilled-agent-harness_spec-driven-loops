@@ -7,6 +7,13 @@ set -euo pipefail
 
 CHECKER=".opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
 REPO_ROOT="$(git rev-parse --show-toplevel)"
+
+# shared hook kill-switch (master + per-concern); fail-open if guard absent
+if [ -n "$REPO_ROOT" ] && [ -r "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" ]; then
+  . "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh"
+  hook_enabled git-commit-hooks || exit 0
+fi
+
 CHECKER_PATH="$REPO_ROOT/$CHECKER"
 
 if [[ ! -x "$CHECKER_PATH" ]]; then

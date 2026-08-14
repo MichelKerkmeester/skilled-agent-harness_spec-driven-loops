@@ -43,6 +43,8 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 import { findRepoRoot } from '../workspace/repo-root.mjs';
 
 // The shared Gate-3 classifier compiles to ESM (`shared/package.json` declares
@@ -84,6 +86,18 @@ export const CHILD_SESSION_ENV = 'AI_SESSION_CHILD';
 export function isChildSession(env) {
   const environment = env && typeof env === 'object' ? env : {};
   return environment[CHILD_SESSION_ENV] === '1';
+}
+
+const specGateGuardRequire = createRequire(import.meta.url);
+function specGateConcernDisabled(environment) {
+  try {
+    const { isHookEnabled } = specGateGuardRequire(
+      fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)),
+    );
+    return typeof isHookEnabled === 'function' && isHookEnabled('spec-gate') === false;
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -1270,7 +1284,7 @@ export function classifyIntent(request) {
   let sessionID;
   try {
     const environment = safeRequest.env || process.env;
-    if (environment[DISABLED_ENV] === '1') return { status: 'closed', question: null };
+    if (environment[DISABLED_ENV] === '1' || specGateConcernDisabled(environment)) return { status: 'closed', question: null };
     // A dispatched/child session is a complete no-op: it has no user turn to
     // answer Gate 3, so it must never open the gate, persist state, or receive
     // the question. Returning before any state read keeps it stateless.
@@ -1397,7 +1411,7 @@ export function evaluateMutation(request) {
 
   try {
     const environment = safeRequest.env || process.env;
-    if (environment[DISABLED_ENV] === '1') return { decision: 'allow', detail: null, wouldDeny: false };
+    if (environment[DISABLED_ENV] === '1' || specGateConcernDisabled(environment)) return { decision: 'allow', detail: null, wouldDeny: false };
     // A dispatched/child session short-circuits to a complete allow before any
     // state read or telemetry: it has no user turn to answer Gate 3, so it must
     // never be denied, advised, or recorded as a would-deny row.

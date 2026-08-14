@@ -27,6 +27,14 @@ descendants=()
 # ownerless (reparented) MCP processes and so can never touch a live sibling session — unlike a PPID
 # guess, which this script deliberately refuses (see header). The sweeper path is overridable for tests.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# shared hook kill-switch (master + per-concern); fail-open if guard absent
+__hf_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+if [ -n "$__hf_root" ] && [ -r "$__hf_root/.opencode/hooks/shared/hook-flags.sh" ]; then
+  . "$__hf_root/.opencode/hooks/shared/hook-flags.sh"
+  hook_enabled session-cleanup || exit 0
+fi
+
 ORPHAN_SWEEP_MODE="${SPECKIT_STOP_HOOK_ORPHAN_SWEEP:-off}"
 ORPHAN_SWEEPER_BIN="${SPECKIT_ORPHAN_SWEEPER_BIN:-$SCRIPT_DIR/orphan-mcp-sweeper.sh}"
 

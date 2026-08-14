@@ -9,6 +9,10 @@ import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+const __dlRequire = createRequire(import.meta.url);
+function directiveLifecycleEnabled(): boolean { try { const { isHookEnabled } = __dlRequire(fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url))) as { isHookEnabled?: (c: string) => boolean }; return typeof isHookEnabled !== 'function' || isHookEnabled('directive-lifecycle') !== false; } catch { return true; } }
 
 const TARGET_REL = 'skills/system-skill-advisor/mcp-server/dist/hooks/claude/directive-lifecycle-boundary.js';
 const MAX_ROOT_WALK_DEPTH = 14;
@@ -40,6 +44,7 @@ function resolveTarget(): string | null {
 
 /** Notify the canonical store; lifecycle delivery remains fail-open on errors. */
 export function notifyDirectiveLifecycleBoundary(input: HostDirectiveLifecycleBoundary): boolean {
+  if (directiveLifecycleEnabled() === false) return false;
   const target = resolveTarget();
   if (!target) return false;
   try {

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/010-hook-feature-flags-and-hub-index",
+  "spec_folder": "hooks/010-hook-feature-flags-and-hub-index",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hook feature flags",
+      "feature-flag all hooks",
+      "hooks hub full index",
+      "MK_HOOKS_DISABLED master switch",
+      "per-concern hook kill-switch",
+      "hook feature flags plan",
+      "hook kill-switch implementation",
+      "cross-runtime hook phases",
+      "hook feature flags tasks",
+      "hook kill-switch phase status",
+      "packet 010 reconciliation",
+      "hook feature flags verification"
+    ],
+    "key_topics": [
+      "hook",
+      "feature",
+      "flags",
+      "feature-flag",
+      "hooks",
+      "hub",
+      "full",
+      "index",
+      "master",
+      "switch",
+      "per-concern",
+      "kill-switch"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Feature Flags",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Hub Index",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Equivalent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Guard Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Complete Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Equivalent hooks used different runtime adapters, module formats, and shell entrypoints",
+    "created_at": "2026-08-13T17:49:26.189Z",
+    "last_save_at": "2026-08-14T08:14:35.822Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ef46a001921fc595c52bece03f40d3e4aef3ecdfef6e3a09d582f94a9f2c2789",
+    "source_doc_hashes": {
+      "spec.md": "12e1c7ea2bd7a32ccad29fc192a4496ba79d7ff3edc14ce66a2e0f6bdb16ce14",
+      "plan.md": "67beeaed2e537ffb1c6f0005a52acd05a5dd0c24b7dd933d76ecce947152dd9e",
+      "tasks.md": "8fbce9c257417c55f957e284123186642f8da570f104f5ff2d277269f19ec1e0",
+      "checklist.md": "cbcadd496aa7cd011fbf16fbfef4c445c9beafadf85cead89b1e70c52ffc5d98",
+      "decision-record.md": "001d77a63a8019ff5077aae66ebf32a685dd2b00567d1198d067c28c5d07acf3",
+      "implementation-summary.md": "ef3f84ccef77799aaf23902fa92ef694290a216ccfcd75d17372e7abb04d8bed",
+      "research/research.md": "77cfbcc380247e02e0efe09a2e9d3d22f9adcd0d9b0e675eca468375e06a6ef2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

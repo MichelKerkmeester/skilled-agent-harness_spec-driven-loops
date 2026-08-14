@@ -14,6 +14,10 @@ import { appendFileSync, mkdirSync, statSync, truncateSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 
 const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
 const WARN_LOG_RELATIVE = join('.opencode', 'logs', 'codex-hooks-watchdog.log');
@@ -63,6 +67,7 @@ export default async function MkCodexHooksWatchdogPlugin(ctx) {
   return {
     async event(input) {
       try {
+        if (!isHookEnabled('codex-watchdog')) return;
         if (eventTypeFrom(input) !== 'session.created') return;
         const sessionId = String(sessionIdFromEvent(input));
         if (warned.has(sessionId)) return;

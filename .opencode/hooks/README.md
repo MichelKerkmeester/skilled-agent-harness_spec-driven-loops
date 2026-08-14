@@ -25,11 +25,40 @@ A further AI-runtime concern, [`goal/`](./goal/README.md), is a cross-runtime si
 
 A fifth folder, [`git/`](./git/README.md), holds the git commit-hooks installer (the pre-commit gate) — an unrelated concept from the four AI-runtime concerns above, nested here only because both are "hooks" in the everyday sense and the operator wanted one unified tree rather than two similarly-named sibling directories (`hooks/` and `runtime-hooks/`). **`git/pre-commit` is not standalone**: the repo's real, installed `.git/hooks/pre-commit` is `.opencode/scripts/git-hooks/pre-commit`, which chain-calls `git/pre-commit` by path as its comment-hygiene sub-gate. See [`git/README.md`](./git/README.md) for that installer's own contract, and [`injection-contract.md`](./injection-contract.md) for what each AI-runtime hook here actually injects and its visibility to the human operator.
 
-### Full index + kill-switches
+### Full index
 
 Beyond those real-code cores, this tree is now the **full browsable index of every repo-authored hook**. Skill-owned hooks whose logic is genuinely their skill's engine still keep their **code** in the owning skill, but each is **symlinked in** here under `<concern>/<runtime>/` (the symlink is the index entry, the code stays local) — so one directory shows every hook the repo installs, organized by concern and runtime.
 
-Every hook runs behind a **kill-switch** once its adapter is wired to the shared guard. `shared/hook-flags.{cjs,mjs,ts}` exports `isHookEnabled(concern)`: a gated hook runs unless the master `MK_HOOKS_DISABLED` or its per-concern `MK_<CONCERN>_DISABLED` (or a registered legacy alias) is set. The default is on, so the guard changes nothing until a flag is set. Wired: `mcp-route-guard`, the Phase 3 families (`dispatch`, `post-edit-quality`, `task-dispatch`, `goal`), `git-preflight`, `session-lifecycle`, and `spec-memory` on every runtime that carries them, plus the OpenCode `spec-gate` and `skill-advisor` plugins and the Cursor/Pi `completion-evidence` adapters. Still ungated (do not rely on a kill-switch there): only the non-OpenCode `skill-advisor`/`spec-gate` runtime adapters. Compiled hooks that run from a skill's `mcp-server/dist/` need that dist rebuilt for a source-added guard to take effect — the `session-lifecycle` hooks resolve the guard at runtime via `createRequire(import.meta.url)` precisely because they run from `dist/`.
+Every concern honors the master `MK_HOOKS_DISABLED` switch and its canonical `MK_<CONCERN>_DISABLED` switch. The default is enabled; truthy disable values are `1`, `true`, `yes`, and `on` (case-insensitive). See the kill-switch index below for the complete concern and alias inventory.
+
+### Kill-switch index
+
+This table is the single source of truth for repo-authored hook kill-switch names. All concerns are wired to the shared resolver or its shell equivalent.
+
+| Concern | Canonical flag (`MK_<CONCERN>_DISABLED`) | Legacy aliases | Default | Effect | Status |
+|---|---|---|---|---|---|
+| `skill-advisor` | `MK_SKILL_ADVISOR_DISABLED` | `MK_SKILL_ADVISOR_HOOK_DISABLED`, `MK_SKILL_ADVISOR_PLUGIN_DISABLED`, `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED` | enabled | inject | wired |
+| `spec-gate` | `MK_SPEC_GATE_DISABLED` | `SPECKIT_SPEC_GATE_DISABLED` | enabled | inject / deny | wired |
+| `completion` | `MK_COMPLETION_DISABLED` | `MK_COMPLETION_SENTINEL_DISABLED`, `MK_SPECKIT_COMPLETION_DISABLED` | enabled | warn | wired |
+| `codex-watchdog` | `MK_CODEX_WATCHDOG_DISABLED` | none | enabled | warn | wired |
+| `permission-policy` | `MK_PERMISSION_POLICY_DISABLED` | none | enabled | deny | wired |
+| `directive-lifecycle` | `MK_DIRECTIVE_LIFECYCLE_DISABLED` | none | enabled | inject cadence | wired |
+| `dispatch` | `MK_DISPATCH_DISABLED` | `MK_CLI_DISPATCH_AUDIT_DISABLED` | enabled | deny / audit | wired |
+| `post-edit-quality` | `MK_POST_EDIT_QUALITY_DISABLED` | none | enabled | warn | wired |
+| `task-dispatch` | `MK_TASK_DISPATCH_DISABLED` | none | enabled | warn / deny | wired |
+| `mcp-route-guard` | `MK_MCP_ROUTE_GUARD_DISABLED` | none | enabled | warn / audit | wired |
+| `goal` | `MK_GOAL_DISABLED` | `MK_GOAL_PLUGIN_DISABLED` | enabled | inject / tool | wired |
+| `git-preflight` | `MK_GIT_PREFLIGHT_DISABLED` | none | enabled | warn | wired |
+| `spec-memory` | `MK_SPEC_MEMORY_DISABLED` | `MK_SPEC_MEMORY_PLUGIN_DISABLED`, `SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED` | enabled | inject | wired |
+| `session-lifecycle` | `MK_SESSION_LIFECYCLE_DISABLED` | none | enabled | inject / teardown | wired |
+| `worktree-guard` | `MK_WORKTREE_GUARD_DISABLED` | `SPECKIT_WORKTREE_GUARD=off` (caller-side) | enabled | warn | wired |
+| `git-hooks-check` | `MK_GIT_HOOKS_CHECK_DISABLED` | `SPECKIT_GIT_HOOKS_GUARD=off` (caller-side) | enabled | warn | wired |
+| `dist-freshness` | `MK_DIST_FRESHNESS_DISABLED` | none | enabled | warn / rebuild | wired |
+| `session-cleanup` | `MK_SESSION_CLEANUP_DISABLED` | none | enabled | teardown | wired |
+| `hook-install` | `MK_HOOK_INSTALL_DISABLED` | none | enabled | install | wired |
+| `git-commit-hooks` | `MK_GIT_COMMIT_HOOKS_DISABLED` | none | enabled | deny | wired |
+
+`MK_SPEC_GATE_ENFORCE` is a separate opt-in control for spec-gate denial, not a kill-switch. `SPECKIT_DIST_AUTO_REBUILD` controls whether a stale dist is rebuilt; it does not disable the freshness check. The `git-commit-hooks` switch is an emergency off switch for the pre-commit chain; with the switch unset, mass-deletion and comment-hygiene checks remain active.
 
 ### Why only these four concerns moved their code here
 

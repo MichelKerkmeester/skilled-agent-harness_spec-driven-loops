@@ -27,6 +27,8 @@ A concern gets an adapter on a runtime only when three things line up: the runti
 
 To scan: read the **bold line** under each concern in Section 3 for the core reason; the sentence after it is the evidence. The per-cell grid lives in [`README.md`](./README.md).
 
+Kill-switch names and wiring status live in the [`README.md` kill-switch index](./README.md#kill-switch-index).
+
 ---
 
 ## 2. THE THREE EXTENSION MODELS
@@ -35,7 +37,7 @@ Almost every asymmetry falls out of which of these a runtime uses:
 
 - **Config-invoked discrete hooks — Claude, Codex, Cursor, Devin.** Named events (`SessionStart`, `Stop`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `PreCompact`; Claude/Devin also `SessionEnd`/`PermissionRequest`) each run one file per matcher. The matcher runs a **shell command**, so every concern — including standalone `.sh` guards — is wired as its own discrete entry. → many small per-concern folders.
 - **In-process event-bus plugins — OpenCode.** One `event` handler per plugin, branching on `eventType`. Concern logic is factored **per plugin** (`mk-spec-memory`, `mk-goal`, …); there are no per-event files. → session work distributed across plugins, few folders.
-- **TS session-bound extensions — Pi.** Extensions register on `session_start`/`session_compact`/`prompt`/`tool_call`/`turn_end` and can shell out via `ctx.exec()`. Pi tends to **bundle** several startup guards into one extension. → few folders.
+- **TS session-bound extensions — Pi.** Extensions register on `session_start`/`session_compact`/`prompt`/`tool_call`/`turn_end` and can shell out via `ctx.exec()`. Pi bundles several SessionStart advisories into one extension, but independently gates `worktree-guard`, `git-hooks-check`, `dist-freshness`, and `hook-install` by their own concerns. → few folders.
 
 ---
 

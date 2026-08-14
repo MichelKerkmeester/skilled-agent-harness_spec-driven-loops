@@ -1,6 +1,6 @@
 ---
 title: "Shared: Hook Adapter Helpers"
-description: "The one helper every CommonJS adapter in this tree shares: stdin collection and fail-open JSON parsing, kept local so the tree has zero out-of-tree dependencies."
+description: "Shared kill-switch resolver APIs and fail-open adapter plumbing, kept local so the tree has zero out-of-tree dependencies."
 trigger_phrases:
   - "hook adapter shared"
   - "hooks shared helpers"
@@ -14,10 +14,17 @@ trigger_phrases:
 
 This folder injects nothing into any AI session — it is pure plumbing for the adapters that do.
 
-`shared/` holds two helper families for the adapters in this tree:
+### Resolver API
 
-1. `hook-flags.{cjs,mjs,ts}` — the canonical kill-switch resolver. `hook-flags.cjs` exports `isHookEnabled(concern, env?)` (default-on; honors the master `MK_HOOKS_DISABLED`, the per-concern `MK_<CONCERN>_DISABLED`, and legacy alias names), plus `concernFlag()`, `isTruthy()`, and the `LEGACY_ALIASES` table. `hook-flags.mjs` and `hook-flags.ts` are zero-drift facades that re-export the same functions via `createRequire`, so `.cjs`, `.mjs`, and TypeScript adapters all share one implementation. `hook-flags.test.cjs` covers the resolver under `node --test`.
-2. `hook-adapter-shared.cjs` — `readStdin()` (bounded stdin collection) and `parseJsonFailOpen()` (JSON parsing that resolves to `null` instead of throwing).
+`hook-flags.cjs` exports `isHookEnabled(concern, env?)` (default-on; honors `MK_HOOKS_DISABLED`, canonical per-concern flags, and registered aliases), plus `concernFlag()`, `isTruthy()`, and `LEGACY_ALIASES`. `hook-flags.mjs` and `hook-flags.ts` are zero-drift facades over that implementation. `hook-flags.sh` exposes the equivalent POSIX `hook_enabled <concern>` helper for shell entrypoints. The dist-freshness Python entrypoint carries the same logic in its local `_hook_enabled()` helper.
+
+### Adapter plumbing
+
+`hook-adapter-shared.cjs` provides `readStdin()` (bounded stdin collection) and `parseJsonFailOpen()` (JSON parsing that resolves to `null` instead of throwing).
+
+### Currently wired consumers
+
+The resolver family currently gates 20 concerns: `skill-advisor`, `spec-gate`, `completion`, `codex-watchdog`, `permission-policy`, `directive-lifecycle`, `dispatch`, `post-edit-quality`, `task-dispatch`, `mcp-route-guard`, `goal`, `git-preflight`, `spec-memory`, `session-lifecycle`, `worktree-guard`, `git-hooks-check`, `dist-freshness`, `session-cleanup`, `hook-install`, and `git-commit-hooks`. Pi's bundled SessionStart adapter calls `isHookEnabled()` separately for each of its four advisory concerns.
 
 Keeping local copies is deliberate — it is what makes every adapter under `.opencode/hooks/` importable with zero dependency outside this tree, which is the point of the tree existing.
 
@@ -34,7 +41,7 @@ A second, independent ESM sibling (`hook-adapter-shared.mjs`) lives in `system-s
 | `hook-flags.test.cjs` | `node --test` suite for the resolver, incl. cross-flavor parity. |
 | `hook-adapter-shared.cjs` | `readStdin()` + `parseJsonFailOpen()`, byte-identical behavior for every consumer. |
 
-`hook-flags` consumers: every runtime adapter and OpenCode plugin gated by a kill-switch concern (`mcp-route-guard`, `dispatch`, `post-edit-quality`, `task-dispatch`, `goal`, `spec-gate`, `skill-advisor`, `completion`, …). `hook-adapter-shared.cjs` consumers (5): `mcp-route-guard/{claude,codex,devin}/mcp-route-guard.cjs` and `task-dispatch/{claude,devin}/task-dispatch-guard.cjs`.
+`hook-adapter-shared.cjs` consumers (5): `mcp-route-guard/{claude,codex,devin}/mcp-route-guard.cjs` and `task-dispatch/{claude,devin}/task-dispatch-guard.cjs`.
 
 ---
 

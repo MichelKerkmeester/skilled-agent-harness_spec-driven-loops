@@ -145,7 +145,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 308, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
+Total unique variables documented: 350, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
 
 ### Data Quality and Generator Hardening (028/005)
 
@@ -196,6 +196,36 @@ the publication guard helpers used by the evaluation dashboard.
 - Rows that fail the publication contract must surface one exclusion reason: `missing_methodology`, `missing_schema_version`, `missing_provenance`, or `unsupported_certainty`.
 - There is no environment variable that bypasses the row gate. Reporting toggles can add supporting evidence, but they cannot upgrade unsupported certainty values or fill in missing provenance.
 - The current dashboard reader remains aggregate-only. Future export or publication surfaces should import the shared gate helper instead of re-encoding eligibility logic in handler-local code.
+
+### Hook kill-switches
+
+All repo-authored hook concerns are enabled by default. Set the master flag or one canonical concern flag to a truthy value (`1`, `true`, `yes`, or `on`, case-insensitive) to disable that surface. Resolver failures are fail-open.
+
+| Variable | Default | Type | Description | Source |
+|----------|---------|------|-------------|--------|
+| `MK_HOOKS_DISABLED` | unset (enabled) | truthy disable flag | Master switch for every concern below. No aliases. | `.opencode/hooks/shared/hook-flags.{cjs,mjs,ts,sh}` |
+| `MK_SKILL_ADVISOR_DISABLED` | unset (enabled) | truthy disable flag | Disables skill-advisor injection. Aliases: `MK_SKILL_ADVISOR_HOOK_DISABLED`, `MK_SKILL_ADVISOR_PLUGIN_DISABLED`, `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED`. | `system-skill-advisor/hooks/claude/user-prompt-submit.ts`, `.opencode/plugins/mk-skill-advisor.js` |
+| `MK_SPEC_GATE_DISABLED` | unset (enabled) | truthy disable flag | Disables spec-gate injection and enforcement. Alias: `SPECKIT_SPEC_GATE_DISABLED`. | `hooks/lib/spec-gate/spec-gate-core.mjs`, `.opencode/plugins/mk-spec-gate.js` |
+| `MK_COMPLETION_DISABLED` | unset (enabled) | truthy disable flag | Disables completion-evidence warnings. Aliases: `MK_COMPLETION_SENTINEL_DISABLED`, `MK_SPECKIT_COMPLETION_DISABLED`. | `hooks/*/completion-evidence*`, `.opencode/plugins/mk-completion-sentinel.js` |
+| `MK_CODEX_WATCHDOG_DISABLED` | unset (enabled) | truthy disable flag | Disables Codex hook-drift warnings. No aliases. | `.opencode/plugins/mk-codex-hooks-watchdog.js` |
+| `MK_PERMISSION_POLICY_DISABLED` | unset (enabled) | truthy disable flag | Disables Devin permission-policy decisions. No aliases. | `hooks/devin/permission-request-policy.mjs` |
+| `MK_DIRECTIVE_LIFECYCLE_DISABLED` | unset (enabled) | truthy disable flag | Disables directive lifecycle boundary handling. No aliases. | `system-skill-advisor/hooks/claude/directive-lifecycle-boundary.ts`, `hooks/claude/directive-lifecycle-boundary.ts` |
+| `MK_DISPATCH_DISABLED` | unset (enabled) | truthy disable flag | Disables dispatch preflight and audit hooks. Alias: `MK_CLI_DISPATCH_AUDIT_DISABLED`. | `.opencode/hooks/dispatch/`, `.opencode/plugins/mk-cli-dispatch-audit.js` |
+| `MK_POST_EDIT_QUALITY_DISABLED` | unset (enabled) | truthy disable flag | Disables post-edit quality warnings. No aliases. | `.opencode/hooks/post-edit-quality/`, `.opencode/plugins/mk-post-edit-quality.js` |
+| `MK_TASK_DISPATCH_DISABLED` | unset (enabled) | truthy disable flag | Disables task-dispatch warnings and denials. No aliases. | `.opencode/hooks/task-dispatch/`, `.opencode/plugins/mk-deep-loop-guard.js` |
+| `MK_MCP_ROUTE_GUARD_DISABLED` | unset (enabled) | truthy disable flag | Disables MCP route warnings and audit records. No aliases. | `.opencode/hooks/mcp-route-guard/`, `.opencode/plugins/mk-mcp-route-guard.js` |
+| `MK_GOAL_DISABLED` | unset (enabled) | truthy disable flag | Disables goal injection and tools. Alias: `MK_GOAL_PLUGIN_DISABLED`. | `.opencode/hooks/goal/`, `.opencode/plugins/mk-goal.js` |
+| `MK_GIT_PREFLIGHT_DISABLED` | unset (enabled) | truthy disable flag | Disables git-preflight advisories. No aliases. | `.opencode/skills/sk-git/scripts/hooks/`, `.opencode/plugins/mk-git-preflight-advisory.js` |
+| `MK_SPEC_MEMORY_DISABLED` | unset (enabled) | truthy disable flag | Disables spec-memory continuity injection. Aliases: `MK_SPEC_MEMORY_PLUGIN_DISABLED`, `SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED`. | `.opencode/plugins/mk-spec-memory.js` |
+| `MK_SESSION_LIFECYCLE_DISABLED` | unset (enabled) | truthy disable flag | Disables session-start, stop, and compaction hook handling. No aliases. | `hooks/{claude,codex,cursor,devin,pi}/session-*` |
+| `MK_WORKTREE_GUARD_DISABLED` | unset (enabled) | truthy disable flag | Disables the worktree warning. Caller-side alias: `SPECKIT_WORKTREE_GUARD=off` (exact `off` grammar). | `.opencode/bin/worktree-guard.sh`, `hooks/pi/session-start-advisories.ts` |
+| `MK_GIT_HOOKS_CHECK_DISABLED` | unset (enabled) | truthy disable flag | Disables the git-hooks installation warning. Caller-side alias: `SPECKIT_GIT_HOOKS_GUARD=off` (exact `off` grammar). | `.opencode/bin/check-git-hooks.sh`, `hooks/pi/session-start-advisories.ts` |
+| `MK_DIST_FRESHNESS_DISABLED` | unset (enabled) | truthy disable flag | Disables dist-freshness checks. No aliases. | `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`, `.opencode/plugins/mk-dist-freshness-guard.js` |
+| `MK_SESSION_CLEANUP_DISABLED` | unset (enabled) | truthy disable flag | Disables session cleanup and teardown. No aliases. | `.opencode/scripts/session-cleanup.sh`, `.opencode/plugins/session-cleanup.js` |
+| `MK_HOOK_INSTALL_DISABLED` | unset (enabled) | truthy disable flag | Disables Codex hook installation and check mode. No aliases. | `.opencode/bin/install-codex-hooks.mjs`, `hooks/pi/session-start-advisories.ts` |
+| `MK_GIT_COMMIT_HOOKS_DISABLED` | unset (enabled) | truthy disable flag | Emergency-off switch for the pre-commit chain. No aliases. Unset keeps the mass-deletion and comment-hygiene gates active. | `.opencode/scripts/git-hooks/pre-commit`, `.opencode/hooks/git/pre-commit` |
+
+`MK_SPEC_GATE_ENFORCE` is an opt-in control for denial, not a kill-switch. **`SPECKIT_DIST_AUTO_REBUILD` is not a disable flag**: it controls rebuild behavior after a freshness check and does not stop the check from running.
 
 ### Hook-level lifecycle flags
 

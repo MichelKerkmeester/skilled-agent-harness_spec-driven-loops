@@ -12,7 +12,8 @@
     "hooks/006-spec-gate-question-noise",
     "hooks/007-fable-governor-pi-hook",
     "hooks/008-pi-caching-like-reasonix",
-    "hooks/009-goal-isolation"
+    "hooks/009-goal-isolation",
+    "hooks/010-hook-feature-flags-and-hub-index"
   ],
   "manual": {
     "depends_on": [],
@@ -30,13 +31,13 @@
     "entities": [],
     "causal_summary": "Track folder consolidating hook, plugin, extension, injection, and goal-lifecycle packets across runtimes.",
     "created_at": "2026-08-06T00:00:00.000Z",
-    "last_save_at": "2026-08-11T06:45:00.000Z",
+    "last_save_at": "2026-08-14T08:14:39.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
     "source_fingerprint": "sha256:40dbf3e5dafb7008021ea6e50acd33ab0d6f32481c256e824554d629f6105028",
     "source_doc_hashes": {},
-    "last_active_child_id": "hooks/009-goal-isolation",
-    "last_active_at": "2026-08-11T06:45:00.000Z"
+    "last_active_child_id": "hooks/010-hook-feature-flags-and-hub-index",
+    "last_active_at": "2026-08-14T08:14:39.687Z"
   }
 }

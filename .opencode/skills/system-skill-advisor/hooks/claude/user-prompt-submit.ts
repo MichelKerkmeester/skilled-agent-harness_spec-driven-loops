@@ -6,6 +6,7 @@
 // envelope for model-visible advisor guidance and fails open on all errors.
 
 import { statSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { performance } from 'node:perf_hooks';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -40,6 +41,18 @@ import {
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
   : false;
+
+const requireFromAdvisor = createRequire(import.meta.url);
+function skillAdvisorHookEnabled(): boolean {
+  try {
+    const { isHookEnabled } = requireFromAdvisor(
+      fileURLToPath(new URL('../../../../../../../.opencode/hooks/shared/hook-flags.cjs', import.meta.url)),
+    ) as { isHookEnabled?: (concern: string) => boolean };
+    return typeof isHookEnabled !== 'function' || isHookEnabled('skill-advisor') !== false;
+  } catch {
+    return true;
+  }
+}
 
 export interface ClaudeUserPromptSubmitInput {
   readonly session_id?: string;
@@ -213,7 +226,7 @@ export async function handleClaudeUserPromptSubmit(
   const writeDiagnostic = dependencies.writeDiagnostic;
 
   try {
-    if (process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1') {
+    if (!skillAdvisorHookEnabled() || process.env.SPECKIT_SKILL_ADVISOR_HOOK_DISABLED === '1') {
       emitDiagnostic({
         workspaceRoot: process.cwd(),
         status: 'skipped',

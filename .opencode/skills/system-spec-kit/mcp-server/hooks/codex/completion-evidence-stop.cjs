@@ -28,6 +28,12 @@ const { tmpdir } = require('node:os');
 
 const sentinelCore = require('../../lib/hooks/completion-evidence-sentinel.cjs');
 
+// Concern-generic kill-switch guard (fails open to enabled when the guard is
+// missing). The legacy sentinelCore.KILL_SWITCH_ENV check below remains as an
+// alias for the pre-convention operator flag.
+let __isHookEnabled = () => true;
+try { __isHookEnabled = require('../../../../../../.opencode/hooks/shared/hook-flags.cjs').isHookEnabled; } catch {}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -70,6 +76,8 @@ function readLastSpecFolder(cwd, sessionId) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
+  if (__isHookEnabled('completion') === false) return approve();
+
   if (process.env[sentinelCore.KILL_SWITCH_ENV] === '1') return approve();
 
   // Best-effort, throttled state sweep. This hook is a short-lived process
