@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Equivalent hooks used different runtime adapters, module formats, and shell entrypoints",
     "created_at": "2026-08-13T17:49:26.189Z",
-    "last_save_at": "2026-08-14T08:14:35.822Z",
+    "last_save_at": "2026-08-14T10:11:56.390Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ef46a001921fc595c52bece03f40d3e4aef3ecdfef6e3a09d582f94a9f2c2789",
+    "source_fingerprint": "sha256:169a62bca8ed43e642fcbce19ef67c98b213023c49619b31afc3298652ee1c15",
     "source_doc_hashes": {
-      "spec.md": "12e1c7ea2bd7a32ccad29fc192a4496ba79d7ff3edc14ce66a2e0f6bdb16ce14",
-      "plan.md": "67beeaed2e537ffb1c6f0005a52acd05a5dd0c24b7dd933d76ecce947152dd9e",
-      "tasks.md": "8fbce9c257417c55f957e284123186642f8da570f104f5ff2d277269f19ec1e0",
-      "checklist.md": "cbcadd496aa7cd011fbf16fbfef4c445c9beafadf85cead89b1e70c52ffc5d98",
-      "decision-record.md": "001d77a63a8019ff5077aae66ebf32a685dd2b00567d1198d067c28c5d07acf3",
-      "implementation-summary.md": "ef3f84ccef77799aaf23902fa92ef694290a216ccfcd75d17372e7abb04d8bed",
+      "spec.md": "e979cb24ba06c19e78ec540e6e56a606e19726ccdc31dba8bd65f2d19eea868e",
+      "plan.md": "1c885c83745098108058554324f4e7aaef68a83e52e865c1236188e740f0ee1f",
+      "tasks.md": "47f7d7ea1acc9554b9bca41aaa9e4f6c059accf719c57d954ac5adccd56d008b",
+      "checklist.md": "76eebd3b2ff6776f29c5fce30b784cc6e8520f0273dbe5a0e456bd9d0b4b205d",
+      "decision-record.md": "bd494acb13081c4e8cdf9235592ce5576752deb7cca1808a8f3b6e2702b5d04a",
+      "implementation-summary.md": "586d24bf383519ceff5941edebe9368bf3b16309289f48afccd229607b242498",
       "research/research.md": "77cfbcc380247e02e0efe09a2e9d3d22f9adcd0d9b0e675eca468375e06a6ef2"
     },
     "last_active_child_id": null,

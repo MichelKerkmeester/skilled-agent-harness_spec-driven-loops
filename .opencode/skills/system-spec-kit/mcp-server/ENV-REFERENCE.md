@@ -201,6 +201,8 @@ the publication guard helpers used by the evaluation dashboard.
 
 All repo-authored hook concerns are enabled by default. Set the master flag or one canonical concern flag to a truthy value (`1`, `true`, `yes`, or `on`, case-insensitive) to disable that surface. Resolver failures are fail-open.
 
+Flags can be set as environment variables **or** in a config file: copy `.opencode/hooks/hook-flags.env.example` to `.opencode/hooks/hook-flags.env` (gitignored) and set the same `KEY=value` names there. A real environment variable always overrides the file, so a persisted default can be flipped back for one session. `HOOK_FLAGS_CONFIG` overrides the config file path.
+
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `MK_HOOKS_DISABLED` | unset (enabled) | truthy disable flag | Master switch for every concern below. No aliases. | `.opencode/hooks/shared/hook-flags.{cjs,mjs,ts,sh}` |

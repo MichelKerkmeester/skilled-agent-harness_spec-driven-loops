@@ -60,6 +60,18 @@ This table is the single source of truth for repo-authored hook kill-switch name
 
 `MK_SPEC_GATE_ENFORCE` is a separate opt-in control for spec-gate denial, not a kill-switch. `SPECKIT_DIST_AUTO_REBUILD` controls whether a stale dist is rebuilt; it does not disable the freshness check. The `git-commit-hooks` switch is an emergency off switch for the pre-commit chain; with the switch unset, mass-deletion and comment-hygiene checks remain active.
 
+### Setting flags
+
+Flags resolve from two places: the live environment, and an optional config file. The environment always wins, so a persisted default can still be overridden for one session.
+
+- **Environment** — set any flag inline (`MK_SKILL_ADVISOR_DISABLED=1 <command>`), for a session (`export MK_SPEC_GATE_DISABLED=1`), or in your shell profile.
+- **Config file** — copy `hook-flags.env.example` to `hook-flags.env` (in this directory) and uncomment the flags you want off. It uses the same `KEY=value` names, is gitignored (personal to you), and is read by every guard variant. Re-enable a file-disabled hook for one session with e.g. `MK_SKILL_ADVISOR_DISABLED=0`.
+
+```bash
+cp .opencode/hooks/hook-flags.env.example .opencode/hooks/hook-flags.env
+# then edit hook-flags.env and uncomment what you want disabled
+```
+
 ### Why only these four concerns moved their code here
 
 A core only qualifies to keep its **real code** in this tree when it imports nothing but Node builtins (or shells out to an unrelated, unmoved checker script by path) and has no real tie to its owning skill's other content. Verified per core before moving:

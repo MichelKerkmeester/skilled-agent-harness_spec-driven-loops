@@ -329,3 +329,6 @@ AGENTS_Barter.md
 # Compiled-routing live-activation test scratch (per-PID manifest dirs, never tracked)
 .opencode/bin/lib/compiled-routing/*/activation/manifest-race-*/
 .opencode/bin/lib/compiled-routing/*/activation/manifest-test-*/
+
+# Operator's local hook kill-switch config (personal; hook-flags.env.example is committed)
+.opencode/hooks/hook-flags.env
