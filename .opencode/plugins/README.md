@@ -23,6 +23,7 @@ The directory inventory is authoritative for the auto-loaded plugin surface. Sha
 |---|---|
 | `mk-cli-dispatch-audit.js` | Records redacted dispatch telemetry after completed CLI calls. |
 | `mk-codex-hooks-watchdog.js` | Watches Codex hook installation and reports drift. |
+| `mk-communication-projection.js` | Projects assistant text through the `chat.message` hook, gated by enablement and a kill-switch, with byte-exact restore. |
 | `mk-completion-sentinel.js` | Checks completion evidence at session lifecycle points. |
 | `mk-deep-loop-guard.js` | Checks deep-loop Task dispatches and repeat handoffs. |
 | `mk-dist-freshness-guard.js` | Reports stale compiled outputs and invalidates diagnostics. |

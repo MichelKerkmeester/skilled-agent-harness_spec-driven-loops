@@ -37,6 +37,7 @@ export {
 } from './fidelity-veto.js';
 export { evaluateDimensionNonInferiority } from './noninferiority.js';
 export { evaluateReleaseGate } from './gate.js';
+export { OfferReasonCodes, evaluateOfferVerdict } from './offer.js';
 export { createReleaseReport } from './report.js';
 export { assertHumanCertifiable } from './types.js';
 
@@ -68,6 +69,10 @@ export type {
   DimensionNonInferiorityResult,
   PairedConfidenceInterval,
 } from './noninferiority.js';
+export type {
+  OfferReasonCode,
+  OfferVerdict,
+} from './offer.js';
 export type {
   CreateReleaseReportInput,
   EvaluationReleaseReport,

@@ -13,7 +13,9 @@ import {
 } from './support-matrix.js';
 
 import type { RuntimeId } from '../contracts/common.js';
+import type { ReleaseGateDecision } from '../evaluation/gate.js';
 import type {
+  DatedReleaseEvidence,
   PrivacyCanaryEvidence,
   ReleaseAbort,
   ReleaseAbortReasonCode,
@@ -93,6 +95,92 @@ export function evaluateReleaseReadiness(
     aborts,
     manifest,
   });
+}
+
+/** Per-runtime evidence required before one runtime is marked rollout-ready. */
+export interface RuntimeRolloutInput {
+  readonly runtime: RuntimeId;
+  readonly evaluation: DatedReleaseEvidence<ReleaseGateDecision>;
+  readonly smoke: RuntimeSmokeEvidence;
+  readonly privacyCanaries: readonly PrivacyCanaryEvidence[];
+}
+
+/** Per-runtime rollout decision that fails closed on any unusable lane. */
+export interface RuntimeRolloutDecision {
+  readonly decisionVersion: 'runtime-rollout/1.0.0';
+  readonly runtime: RuntimeId;
+  readonly overallDecision: 'blocked' | 'rollout-ready';
+  readonly aborts: readonly ReleaseAbort[];
+}
+
+/**
+ * Block a single runtime's rollout unless it holds fresh, human-certifiable
+ * non-inferiority evidence, a passing dated smoke, and zero-leak dated privacy
+ * canaries. Every lane is dated and expires; missing, stale, or failing
+ * evidence blocks the runtime instead of defaulting open.
+ */
+export function evaluateRuntimeRollout(
+  input: RuntimeRolloutInput,
+  now: string,
+): RuntimeRolloutDecision {
+  const evaluatedAt = normalizeTimestamp(now);
+  const aborts: ReleaseAbort[] = [];
+  if (evaluatedAt === null) {
+    aborts.push({
+      inputName: 'release-time',
+      reasonCode: ReleaseAbortReasonCodes.RELEASE_TIME_INVALID,
+    });
+  }
+
+  const smokeResult = evaluateSingleRuntimeSmoke(input.smoke, input.runtime, evaluatedAt);
+  if (smokeResult.abort !== null) {
+    aborts.push(smokeResult.abort);
+  }
+  const canaryResult = evaluatePrivacyCanaries(input.privacyCanaries, evaluatedAt);
+  if (canaryResult.abort !== null) {
+    aborts.push(canaryResult.abort);
+  }
+  const evaluationResult = evaluateEvaluation(input.evaluation, evaluatedAt);
+  if (evaluationResult.abort !== null) {
+    aborts.push(evaluationResult.abort);
+  }
+
+  return deepFreeze({
+    decisionVersion: 'runtime-rollout/1.0.0',
+    runtime: input.runtime,
+    overallDecision: aborts.length === 0 ? 'rollout-ready' : 'blocked',
+    aborts,
+  });
+}
+
+function evaluateSingleRuntimeSmoke(
+  smoke: RuntimeSmokeEvidence,
+  runtime: RuntimeId,
+  evaluatedAt: string | null,
+): EvaluatedEvidence {
+  const referenceFailure = evaluateReferenceFailure('runtime-smokes', smoke, evaluatedAt);
+  if (referenceFailure !== null) {
+    return referenceFailure;
+  }
+  if (smoke.runtime !== runtime) {
+    return blocked(
+      'runtime-smokes',
+      'invalid',
+      ReleaseAbortReasonCodes.RUNTIME_SMOKES_INCOMPLETE,
+      [smoke],
+      1,
+    );
+  }
+  if (smoke.status !== 'pass') {
+    return blocked(
+      'runtime-smokes',
+      'fail',
+      ReleaseAbortReasonCodes.RUNTIME_SMOKE_FAILED,
+      [smoke],
+      1,
+    );
+  }
+  return passed('runtime-smokes', [smoke], 1);
 }
 
 function evaluateSupportMatrix(

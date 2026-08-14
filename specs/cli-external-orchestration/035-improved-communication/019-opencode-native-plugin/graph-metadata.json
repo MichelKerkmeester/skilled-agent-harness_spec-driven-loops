@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/035-improved-communication/019-opencode-native-plugin",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/019-opencode-native-plugin",
+  "parent_id": "cli-external-orchestration/035-improved-communication",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode-native-plugin",
+      "opencode projection plugin",
+      "chat.message hook projection",
+      "mk-communication-projection plugin",
+      "native output-transform runtime",
+      "implementation plan",
+      "chat.message hook projection plan",
+      "mk-communication-projection plugin plan",
+      "tasks",
+      "implementation",
+      "mk-communication-projection plugin tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "opencode-native-plugin",
+      "opencode",
+      "projection",
+      "plugin",
+      "chat",
+      "message",
+      "hook",
+      "mk-communication-projection",
+      "native",
+      "output-transform",
+      "runtime",
+      "implementation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Native Plugin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "OpenCode is the only supported runtime with a native output-transform hook, but no runtime yet consumes the projection core, so the enablement flag gates nothing end-to-end",
+    "created_at": "2026-08-14T05:28:35.233Z",
+    "last_save_at": "2026-08-14T08:01:00.297Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9d7d555c2e4a0cc7ab2d75d9f56f7ca46a07e1f65b82b0513120927e4d6a746c",
+    "source_doc_hashes": {
+      "spec.md": "06e1fbe5eae8f7cf50d5441c420f656553443ff0b801804972727e915758dab8",
+      "plan.md": "d6e06a3e44c4a94f0e8bc4855dde17e5d6b167c5d33cdb02494db77833772810",
+      "tasks.md": "f4b1e7cfc1772be0d064aff5da849d921bd8487b3a71bd8ee589142b7b0772ec",
+      "checklist.md": "ed9e48dec8e08de54e62f419723df6be12dc892ae567fc28a7b78b970195e672",
+      "decision-record.md": "d6c3e4891c81874ce87a6c271e5bb07fc48c87b90cd7929524b8585cddce2ea6",
+      "implementation-summary.md": "0f5cbe4065ae26a7de8616de08e9c7031fd42002ce75cce54928fe664b4483b1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -21,6 +21,7 @@ trigger_phrases:
 |---|---|
 | `claude-task-dispatch-guard.test.cjs` | Tests the Claude adapter over the shared dispatch-guard core. |
 | `mk-completion-sentinel.test.cjs` | Tests completion-sentinel lifecycle behavior. |
+| `mk-communication-projection.test.cjs` | Tests the projection plugin's gate matrix, snapshot restore, and fail-open boundary. |
 | `mk-deep-loop-guard.test.cjs` | Tests deep-loop guard identity, repeat detection and fail-open paths. |
 | `mk-dist-freshness-guard.test.cjs` | Tests freshness detection and terminal-output guarantees. |
 | `mk-goal-capabilities.test.cjs` | Tests goal capability and operator-status reporting. |

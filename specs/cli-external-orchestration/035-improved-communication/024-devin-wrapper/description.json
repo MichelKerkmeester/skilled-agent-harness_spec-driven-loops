@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/035-improved-communication/024-devin-wrapper",
+  "description": "Devin exposes only input, tool, and session-lifecycle hooks, so no hook rewrites the rendered assistant answer; the CLI-output wrapper is the only",
+  "keywords": [
+    "devin",
+    "exposes",
+    "only",
+    "input",
+    "tool",
+    "session-lifecycle",
+    "hooks",
+    "hook",
+    "rewrites",
+    "rendered",
+    "assistant",
+    "answer",
+    "cli-output",
+    "wrapper"
+  ],
+  "lastUpdated": "2026-08-14T08:40:45.068Z",
+  "specId": "024",
+  "folderSlug": "devin-wrapper",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

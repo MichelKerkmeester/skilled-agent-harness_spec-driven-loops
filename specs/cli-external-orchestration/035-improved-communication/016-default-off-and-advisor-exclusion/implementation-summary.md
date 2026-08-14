@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/035-improved-communication/016-default-off-and-advisor-exclusion"
-    last_updated_at: "2026-08-13T19:03:35.000Z"
+    last_updated_at: "2026-08-14T06:14:47.000Z"
     last_updated_by: "claude"
     recent_action: "Completed the default-off and advisor-exclusion evidence packet and parent wiring."
     next_safe_action: "After landing on main, rebuild the advisor dist, reindex, and re-probe to confirm the exclusion."

@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/035-improved-communication/022-codex-wrapper",
+  "description": "Codex exposes only input, tool, and lifecycle hooks, and none of them can rewrite the rendered answer, so there is no native seam to project Codex",
+  "keywords": [
+    "codex",
+    "exposes",
+    "only",
+    "input",
+    "tool",
+    "lifecycle",
+    "hooks",
+    "none",
+    "them",
+    "rewrite",
+    "rendered",
+    "answer",
+    "native",
+    "seam",
+    "project"
+  ],
+  "lastUpdated": "2026-08-14T08:39:57.535Z",
+  "specId": "022",
+  "folderSlug": "codex-wrapper",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

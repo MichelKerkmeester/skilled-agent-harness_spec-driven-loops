@@ -8,8 +8,11 @@ import {
   ContractKinds,
   RuntimeIds,
   SupportedSchemaVersions,
+  applyDisplayPresentation,
+  applySidecarPresentation,
   assertValidContract,
   isContractKind,
+  projectMessage,
   validateContract,
   validateEventStream,
 } from '../../src/index.js';
@@ -34,5 +37,11 @@ describe('public package surface', () => {
     expect(validateContract).toBeTypeOf('function');
     expect(assertValidContract).toBeTypeOf('function');
     expect(validateEventStream).toBeTypeOf('function');
+  });
+
+  it('exports the client presentation functions and runtime entrypoint from the root barrel', () => {
+    expect(applyDisplayPresentation).toBeTypeOf('function');
+    expect(applySidecarPresentation).toBeTypeOf('function');
+    expect(projectMessage).toBeTypeOf('function');
   });
 });

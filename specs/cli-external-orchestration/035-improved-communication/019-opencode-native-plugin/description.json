@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "cli-external-orchestration/035-improved-communication/019-opencode-native-plugin",
+  "description": "OpenCode is the only supported runtime with a native output-transform hook, but no runtime yet consumes the projection core, so the enablement flag",
+  "keywords": [
+    "opencode",
+    "only",
+    "supported",
+    "runtime",
+    "native",
+    "output-transform",
+    "hook",
+    "consumes",
+    "projection",
+    "core",
+    "enablement",
+    "flag"
+  ],
+  "lastUpdated": "2026-08-14T08:00:47.856Z",
+  "specId": "019",
+  "folderSlug": "opencode-native-plugin",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -19,7 +19,19 @@
     "cli-external-orchestration/035-improved-communication/013-capability-evidence-unblock",
     "cli-external-orchestration/035-improved-communication/014-code-and-doc-conformance",
     "cli-external-orchestration/035-improved-communication/015-package-into-skill",
-    "cli-external-orchestration/035-improved-communication/016-default-off-and-advisor-exclusion"
+    "cli-external-orchestration/035-improved-communication/016-default-off-and-advisor-exclusion",
+    "cli-external-orchestration/035-improved-communication/017-runtime-wiring-feasibility-and-contract",
+    "cli-external-orchestration/035-improved-communication/018-projection-runtime-core",
+    "cli-external-orchestration/035-improved-communication/019-opencode-native-plugin",
+    "cli-external-orchestration/035-improved-communication/020-cli-output-wrapper-framework",
+    "cli-external-orchestration/035-improved-communication/021-claude-code-wrapper",
+    "cli-external-orchestration/035-improved-communication/022-codex-wrapper",
+    "cli-external-orchestration/035-improved-communication/023-pi-wrapper",
+    "cli-external-orchestration/035-improved-communication/024-devin-wrapper",
+    "cli-external-orchestration/035-improved-communication/025-cursor-wrapper",
+    "cli-external-orchestration/035-improved-communication/026-capability-and-privacy-gating",
+    "cli-external-orchestration/035-improved-communication/027-evaluation-and-release-gate",
+    "cli-external-orchestration/035-improved-communication/028-wiring-docs-and-operator-rollout"
   ],
   "manual": {
     "depends_on": [],
@@ -50,14 +62,14 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "001-research-strategy/spec.md",
-      "005-provider-adapters-and-privacy/handover.md",
-      "006-runtime-adapters-and-clients/spec.md",
-      "007-evaluation-and-observability/spec.md",
-      "009-prompt-token-contract/spec.md",
-      "014-code-and-doc-conformance/spec.md",
-      "015-package-into-skill/spec.md",
       "016-default-off-and-advisor-exclusion/spec.md",
+      "017-runtime-wiring-feasibility-and-contract/spec.md",
+      "018-projection-runtime-core/spec.md",
+      "019-opencode-native-plugin/spec.md",
+      "020-cli-output-wrapper-framework/spec.md",
+      "026-capability-and-privacy-gating/spec.md",
+      "027-evaluation-and-release-gate/spec.md",
+      "028-wiring-docs-and-operator-rollout/spec.md",
       "008-packaging-and-release-hardening/handover.md",
       "014-code-and-doc-conformance/implementation-summary.md",
       "015-package-into-skill/implementation-summary.md",
@@ -109,17 +121,17 @@
     ],
     "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
     "created_at": "2026-08-11T06:21:47Z",
-    "last_save_at": "2026-08-13T19:13:49.241Z",
+    "last_save_at": "2026-08-14T09:04:56.751Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b31fbdee312a0b3ed3c632e2f3484758c3543d18af2614b5d6fbdbb00e08198c",
+    "source_fingerprint": "sha256:82b3ee2f6a6db2aee97b74a465ac13e92639e918a1aa4f1ab8f5ff31b9038118",
     "source_doc_hashes": {
-      "spec.md": "81a50ec15b803a3b2b06a62ff98e14f4b6800890d75635ec458a795957adbe84"
+      "spec.md": "7005ef43f2dbd7273593e8019df64bc682e1c8382fc84b3a7565445891695403"
     },
-    "last_active_child_id": "cli-external-orchestration/035-improved-communication/005-provider-adapters-and-privacy",
-    "last_active_at": "2026-08-12T05:25:21.635Z"
+    "last_active_child_id": "cli-external-orchestration/035-improved-communication/028-wiring-docs-and-operator-rollout",
+    "last_active_at": "2026-08-14T09:04:56.751Z"
   }
 }
