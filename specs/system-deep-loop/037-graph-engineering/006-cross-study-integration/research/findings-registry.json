@@ -1,0 +1,110 @@
+{
+  "mergedFrom": [
+    "cross-integration-sol-xhigh"
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "F4",
+      "iteration": 4,
+      "question": "P4",
+      "summary": "036 has reusable authority primitives but remains dark; graph governance/projection producers are missing or adapter-owned and form a six-component cutover slice.",
+      "_lineages": [
+        "cross-integration-sol-xhigh"
+      ]
+    },
+    {
+      "id": "F6",
+      "iteration": 6,
+      "question": "P6",
+      "summary": "A seven-stage discriminated state machine preserves each owner's block reason and ends in shadow_recorded or authorized_append.",
+      "_lineages": [
+        "cross-integration-sol-xhigh"
+      ]
+    },
+    {
+      "id": "F1",
+      "iteration": 1,
+      "question": "P1",
+      "summary": "All graph, harness, belief, convergence, policy, and human outputs are typed upstream evidence; only legacy in current mode or 036 authorize-and-append in target mode mutates authority.",
+      "_lineages": [
+        "cross-integration-sol-xhigh"
+      ]
+    },
+    {
+      "id": "F7",
+      "iteration": 7,
+      "question": "P7",
+      "summary": "Five rollout models merge into a thirteen-node dependency DAG with a single isolated parallel wave and rollback assets at every node.",
+      "_lineages": [
+        "cross-integration-sol-xhigh"
+      ]
+    },
+    {
+      "id": "F5",
+      "iteration": 5,
+      "question": "P5",
+      "summary": "LEAF execution is a closed action/escalation algebra; recursive sealed subgraphs narrow capabilities, conserve budgets, and return through parent evaluation.",
+      "_lineages": [
+        "cross-integration-sol-xhigh"
+      ]
+    },
+    {
+      "id": "F3",
+      "iteration": 3,
+      "question": "P3",
+      "summary": "Memory owns locators, knowledge owns evidence-bound assertions, and belief owns deterministic usability settlement; reads are digest-closed and fail closed.",
+      "_lineages": [
+        "cross-integration-sol-xhigh"
+      ]
+    },
+    {
+      "id": "F2",
+      "iteration": 2,
+      "question": "P2",
+      "summary": "Promotion is the conjunction of D/C/G/H/R/M evidence families; earliest causal failure owns remediation and no aggregate can mask a red family.",
+      "_lineages": [
+        "cross-integration-sol-xhigh"
+      ]
+    },
+    {
+      "id": "F9",
+      "iteration": 9,
+      "question": "integration-audit",
+      "summary": "Seven apparent tensions resolve through projection, derived-view, scoped-completeness, separate-lane, and jurisdiction rules; executable no-bypass proof remains open.",
+      "_lineages": [
+        "cross-integration-sol-xhigh"
+      ]
+    },
+    {
+      "id": "F8",
+      "iteration": 8,
+      "question": "P8",
+      "summary": "Seven metric families use provenance-bound denominators; owner disagreements follow jurisdiction, restrictive policy composition, independent rerun, and typed ASK.",
+      "_lineages": [
+        "cross-integration-sol-xhigh"
+      ]
+    },
+    {
+      "id": "F10",
+      "iteration": 10,
+      "question": "capstone-closure",
+      "summary": "The design is integration-settled; empirical unknowns are bound to one mutant-driven, baseline-measured shadow vertical slice.",
+      "_lineages": [
+        "cross-integration-sol-xhigh"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 10,
+    "sourceFindings": 10,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.97,
+    "coverageBySources": {}
+  }
+}

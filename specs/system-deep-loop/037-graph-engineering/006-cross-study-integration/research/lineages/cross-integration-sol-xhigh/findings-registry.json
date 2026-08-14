@@ -1,0 +1,39 @@
+{
+  "sessionId": "fanout-cross-integration-sol-xhigh-1786684659997-imywj5",
+  "generation": 1,
+  "status": "complete",
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 10,
+    "answeredCount": 8,
+    "totalQuestions": 8,
+    "timestamp": "2026-08-14T05:46:00Z"
+  },
+  "keyQuestions": [
+    {"id":"P1","text":"Authority-subordination contract","resolved":true,"resolvedAtIteration":1},
+    {"id":"P2","text":"Unified promotion-evidence model","resolved":true,"resolvedAtIteration":2},
+    {"id":"P3","text":"Memory/knowledge/belief layering","resolved":true,"resolvedAtIteration":3},
+    {"id":"P4","text":"036 capability and ownership gap audit","resolved":true,"resolvedAtIteration":4},
+    {"id":"P5","text":"Graph/subgraph/LEAF boundary","resolved":true,"resolvedAtIteration":5},
+    {"id":"P6","text":"Typed gate/evaluation state machine","resolved":true,"resolvedAtIteration":6},
+    {"id":"P7","text":"Unified rollout and rollback DAG","resolved":true,"resolvedAtIteration":7},
+    {"id":"P8","text":"Measurement and owner-disagreement arbitration","resolved":true,"resolvedAtIteration":8}
+  ],
+  "keyFindings": [
+    {"id":"F1","iteration":1,"question":"P1","summary":"All graph, harness, belief, convergence, policy, and human outputs are typed upstream evidence; only legacy in current mode or 036 authorize-and-append in target mode mutates authority."},
+    {"id":"F2","iteration":2,"question":"P2","summary":"Promotion is the conjunction of D/C/G/H/R/M evidence families; earliest causal failure owns remediation and no aggregate can mask a red family."},
+    {"id":"F3","iteration":3,"question":"P3","summary":"Memory owns locators, knowledge owns evidence-bound assertions, and belief owns deterministic usability settlement; reads are digest-closed and fail closed."},
+    {"id":"F4","iteration":4,"question":"P4","summary":"036 has reusable authority primitives but remains dark; graph governance/projection producers are missing or adapter-owned and form a six-component cutover slice."},
+    {"id":"F5","iteration":5,"question":"P5","summary":"LEAF execution is a closed action/escalation algebra; recursive sealed subgraphs narrow capabilities, conserve budgets, and return through parent evaluation."},
+    {"id":"F6","iteration":6,"question":"P6","summary":"A seven-stage discriminated state machine preserves each owner's block reason and ends in shadow_recorded or authorized_append."},
+    {"id":"F7","iteration":7,"question":"P7","summary":"Five rollout models merge into a thirteen-node dependency DAG with a single isolated parallel wave and rollback assets at every node."},
+    {"id":"F8","iteration":8,"question":"P8","summary":"Seven metric families use provenance-bound denominators; owner disagreements follow jurisdiction, restrictive policy composition, independent rerun, and typed ASK."},
+    {"id":"F9","iteration":9,"question":"integration-audit","summary":"Seven apparent tensions resolve through projection, derived-view, scoped-completeness, separate-lane, and jurisdiction rules; executable no-bypass proof remains open."},
+    {"id":"F10","iteration":10,"question":"capstone-closure","summary":"The design is integration-settled; empirical unknowns are bound to one mutant-driven, baseline-measured shadow vertical slice."}
+  ],
+  "ruledOut": [
+    {"direction":"graph-as-authority","reason":"The graph is a projection and proposal surface; 036 remains the transition authority."},
+    {"direction":"early-convergence-stop","reason":"The run is max-iterations and convergence is telemetry until iteration 10."}
+  ],
+  "metrics": {"iterationsCompleted":10,"keyFindings":10,"openQuestions":0,"resolvedQuestions":8,"convergenceScore":0.97,"coverageBySources":1.0}
+}

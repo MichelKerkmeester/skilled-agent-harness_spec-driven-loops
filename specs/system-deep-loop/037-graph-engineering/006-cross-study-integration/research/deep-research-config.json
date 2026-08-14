@@ -1,0 +1,51 @@
+{
+  "topic": "CROSS-STUDY INTEGRATION: unify studies S1-S5 into one graph-based agent-loop design subordinate to the designated but currently dark 036 authority plane",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 10,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration",
+  "artifactDir": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages/cross-integration-sol-xhigh",
+  "createdAt": "2026-08-14T05:23:27Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 7200
+  },
+  "lineage": {
+    "sessionId": "fanout-cross-integration-sol-xhigh-1786684659997-imywj5",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md"
+  },
+  "resourceMap": {
+    "emit": true,
+    "file": "resource-map.md"
+  },
+  "scope": {
+    "writeBoundary": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages/cross-integration-sol-xhigh",
+    "parentMutationAllowed": false,
+    "memorySaveAllowed": false
+  }
+}

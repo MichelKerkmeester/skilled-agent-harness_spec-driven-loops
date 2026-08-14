@@ -1,0 +1,28 @@
+{
+  "level": 1,
+  "specFolder": "system-deep-loop/037-graph-engineering/006-cross-study-integration",
+  "description": "10-round cross-study integration capstone (gpt-5.6-sol xhigh; synthesized by gpt-5.6-sol xhigh; independently verified by DeepSeek V4 Pro, PASS-WITH-FIXES applied) that welds the five prior studies (S1 agent-swarms, S2 graphene, S3 graph-arch, S4 graph-engineering-master, S5 NOOA + blog theory) into ONE coherent graph-based agent-loop design for system-deep-loop over the designated-but-dark 036 authority plane. Integration, not re-study: a cross-cutting spine, eight proposed unified artifacts (P1 authority contract, P2 promotion-evidence bundle, P3 memory/knowledge/belief layering, P4 036 capability inventory, P5 graph/subgraph/LEAF boundary, P6 typed gate state machine, P7 rollout/rollback DAG, P8 measurement + arbitration), six resolved tensions, one integrated architecture, and one mutant-driven shadow vertical-slice as the next evidence class.",
+  "keywords": [
+    "cross-study-integration",
+    "capstone",
+    "graph-agent-loop",
+    "036-authority-plane",
+    "036-dark",
+    "propose-vs-authorize",
+    "promotion-evidence-bundle",
+    "deep-loop",
+    "gpt-5.6-sol",
+    "deepseek-v4-pro-verified"
+  ],
+  "lastUpdated": "2026-08-14T06:00:00Z",
+  "specId": "006",
+  "folderSlug": "cross-study-integration",
+  "parentChain": [
+    "system-deep-loop",
+    "037-graph-engineering"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "08-14-26_06-00__cross-study-integration-capstone-10-round-study.md"
+  ]
+}
