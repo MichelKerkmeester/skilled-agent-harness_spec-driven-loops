@@ -20,6 +20,7 @@ import {
   enforceWriteContainment,
   buildContainmentViolationEvent,
   classifyViolation,
+  __internals,
 } from '../../lib/deep-loop/write-containment.js';
 import type { DirtyPathEntry } from '../../lib/deep-loop/write-containment';
 
@@ -243,6 +244,31 @@ describe('write-containment — regression case (c): pre-existing dirty file is 
     // And the leaf's new untracked file is ALSO preserved — never irreversibly deleted.
     expect(existsSync(join(root, 'evil-new-file.txt'))).toBe(true);
   });
+
+  it('detects and restores truncation of a pre-existing dirty tracked file by content identity', () => {
+    const { root, artifactDir } = baselineRepo();
+    const outsidePath = join(root, 'tracked-outside.txt');
+
+    writeFileSync(outsidePath, 'PRE_EXISTING_DIRTY\n');
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+    const dirtyEntry = preDispatch.find((entry) => entry.path === 'tracked-outside.txt');
+    expect(dirtyEntry?.hash).toBeTruthy();
+
+    // The path is unchanged, but the leaf replaces the snapshotted content with an empty file.
+    writeFileSync(outsidePath, '');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    expect(result.violations.map((violation) => violation.path)).toEqual(['tracked-outside.txt']);
+    expect(result.revertResult.reverted).toEqual([
+      { path: 'tracked-outside.txt', action: 'restored_from_head', ok: true },
+    ]);
+    expect(readFileSync(outsidePath, 'utf8')).toBe('ORIGINAL_OUTSIDE\n');
+  });
 });
 
 // Regression: on a dirty, multi-actor working tree, files created during the dispatch
@@ -300,6 +326,47 @@ describe('write-containment — concurrent-writer safety (never delete unattribu
   });
 });
 
+describe('write-containment — regenerable runtime state', () => {
+  it('exempts only runtime database files and exact memory-index metadata basenames', () => {
+    expect(__internals.isRegenerableRuntimeState(
+      '.opencode/skills/system-deep-loop/runtime/database/graph.sqlite',
+    )).toBe(true);
+    expect(__internals.isRegenerableRuntimeState('specs/descriptions.json')).toBe(true);
+    expect(__internals.isRegenerableRuntimeState('specs/example/description.json')).toBe(true);
+    expect(__internals.isRegenerableRuntimeState(
+      '.opencode/skills/system-deep-loop/runtime/lib/deep-loop/worker.ts',
+    )).toBe(false);
+    expect(__internals.isRegenerableRuntimeState('specs/example/description.json.bak')).toBe(false);
+    expect(__internals.isRegenerableRuntimeState('other/database/graph.sqlite')).toBe(false);
+  });
+
+  it('preserves tracked runtime database state as a non-fatal advisory', () => {
+    const { root, artifactDir } = baselineRepo();
+    const databaseDir = join(root, '.opencode/skills/system-deep-loop/runtime/database');
+    const databasePath = join(databaseDir, 'observability-events.jsonl');
+    mkdirSync(databaseDir, { recursive: true });
+    writeFileSync(databasePath, '{"event":"baseline"}\n');
+    git(root, ['add', '-f', '.opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl']);
+    git(root, ['commit', '-q', '-m', 'test(containment): add generated runtime state']);
+    const preDispatch = snapshotOutOfScopeDirtyPaths({ repoRoot: root, artifactDir });
+
+    writeFileSync(databasePath, '{"event":"lineage"}\n');
+
+    const result = enforceWriteContainment({
+      repoRoot: root,
+      artifactDir,
+      preDispatchDirtyPaths: preDispatch,
+    });
+
+    expect(result.violations).toEqual([]);
+    expect(result.advisories.map((violation) => violation.path)).toEqual([
+      '.opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl',
+    ]);
+    expect(result.revertResult.reverted).toEqual([]);
+    expect(readFileSync(databasePath, 'utf8')).toBe('{"event":"lineage"}\n');
+  });
+});
+
 describe('write-containment — enforceWriteContainment high-level', () => {
   it('reverts violations, appends a containment_violation event to the state log, and reports them', () => {
     const { root, artifactDir } = baselineRepo();
@@ -348,6 +415,18 @@ describe('write-containment — enforceWriteContainment high-level', () => {
     expect(result.violations).toEqual([]);
     expect(result.revertResult.reverted).toEqual([]);
     expect(result.event).toBeNull();
+  });
+
+  it('throws when the artifact dir resolves outside the git worktree', () => {
+    const { root } = baselineRepo();
+    const externalArtifact = mkdtempSync(join(tmpdir(), 'external-artifact-'));
+    tempRoots.push(externalArtifact);
+
+    expect(() => enforceWriteContainment({
+      repoRoot: root,
+      artifactDir: externalArtifact,
+      preDispatchDirtyPaths: [],
+    })).toThrow(/outside the git worktree/);
   });
 });
 

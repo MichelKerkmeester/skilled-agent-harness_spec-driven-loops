@@ -104,7 +104,7 @@ export interface EnforceInput extends DetectOptions {
 export interface EnforceResult {
   /** In-HEAD out-of-scope breaches reverted from HEAD -- fatal; the caller fails the iteration. */
   violations: ContainmentViolation[];
-  /** Not-in-HEAD out-of-scope paths preserved on disk (unattributable) -- advisory, never fatal. */
+  /** Regenerable state and not-in-HEAD paths preserved on disk -- advisory, never fatal. */
   advisories: ContainmentViolation[];
   revertResult: ContainmentRevertResult;
   event: ContainmentViolationEvent | null;
@@ -292,6 +292,21 @@ function isUnattributable(repoRelativePath: string, unattributableRelPosix: stri
   return unattributableRelPosix.some((dir) => p === dir || p.startsWith(`${dir}/`));
 }
 
+/** True for runtime-owned regenerable telemetry and memory-index state. */
+function isRegenerableRuntimeState(repoRelativePath: string): boolean {
+  const p = toPosix(repoRelativePath);
+  const runtimeDatabase = '.opencode/skills/system-deep-loop/runtime/database';
+  const isRuntimeDatabasePath = p.startsWith(`${runtimeDatabase}/`);
+  const isMemoryIndexMetadata =
+    p === 'description.json' ||
+    p.endsWith('/description.json') ||
+    p === 'descriptions.json' ||
+    p.endsWith('/descriptions.json');
+  // These files are written by the runtime itself, not by a lineage as source output.
+  // Reverting regenerable telemetry or index state must not fail a contained lineage.
+  return isRuntimeDatabasePath || isMemoryIndexMetadata;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. PUBLIC API
 // ─────────────────────────────────────────────────────────────────────────────
@@ -434,9 +449,11 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   if (detected.length === 0) {
     return { violations: [], advisories: [], revertResult: { reverted: [] }, event: null };
   }
+  const exempted = detected.filter((violation) => isRegenerableRuntimeState(violation.path));
+  const guarded = detected.filter((violation) => !isRegenerableRuntimeState(violation.path));
   const revertResult = revertOutOfScopeViolations({
     repoRoot: input.repoRoot,
-    violations: detected,
+    violations: guarded,
     env: input.env,
   });
   // Partition by what the revert actually did: HEAD-restored paths are recoverable breaches
@@ -445,8 +462,8 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
   const preservedPaths = new Set(
     revertResult.reverted.filter((a) => a.action === 'preserved_untracked').map((a) => a.path),
   );
-  const violations = detected.filter((v) => !preservedPaths.has(v.path));
-  const advisories = detected.filter((v) => preservedPaths.has(v.path));
+  const violations = guarded.filter((v) => !preservedPaths.has(v.path));
+  const advisories = [...exempted, ...guarded.filter((v) => preservedPaths.has(v.path))];
   // The logged event carries every detected path (fatal + advisory) for visibility -- an
   // operator reading the state log needs to see preserved advisories too, not just the
   // fatal subset -- while the RETURNED `violations`/`advisories` partition is what the
@@ -469,5 +486,6 @@ export const __internals = {
   resolveArtifactScope,
   parseStatusPorcelain,
   isInsideArtifact,
+  isRegenerableRuntimeState,
   isSubpath,
 };

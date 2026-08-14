@@ -203,23 +203,12 @@ function assertAcceptanceReceipt(acceptanceFilePath, acceptedState) {
   }
 }
 
-function expectedRollbackSourceHashes(acceptedState) {
-  if (!acceptedState) {
-    return [];
-  }
-  return [
-    ['pre-acceptance target', acceptedState.preAcceptTargetHash],
-    ['accepted candidate', acceptedState.candidateHash],
-  ].filter(([, hash]) => typeof hash === 'string' && hash.length > 0);
-}
-
 function assertRollbackHashGuard(acceptedState, target, backup) {
   if (!acceptedState) {
     return;
   }
 
-  const sourceHashes = expectedRollbackSourceHashes(acceptedState);
-  if (sourceHashes.length === 0) {
+  if (!acceptedState.candidateHash) {
     fail('Cannot roll back: acceptance file does not contain a verifiable accepted-state hash');
   }
 
@@ -236,10 +225,10 @@ function assertRollbackHashGuard(acceptedState, target, backup) {
   }
 
   const currentTargetHash = sha256File(target);
-  const matchedState = sourceHashes.find(([, hash]) => hash === currentTargetHash);
-  if (!matchedState) {
-    const expectedLabels = sourceHashes.map(([label]) => label).join(' or ');
-    fail(`Cannot roll back: unexpected canonical target state; expected ${expectedLabels}`);
+  // Rollback must target the promoted candidate so a stale pre-acceptance target
+  // cannot authorize restoration over the wrong canonical state.
+  if (currentTargetHash !== acceptedState.candidateHash) {
+    fail('Cannot roll back: unexpected canonical target state; expected accepted candidate');
   }
 }
 
