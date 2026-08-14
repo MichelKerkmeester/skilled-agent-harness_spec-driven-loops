@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/034-spec-template-context-optimizations",
-  "spec_folder": "system-speckit/034-spec-template-context-optimizations",
+  "packet_id": "system-speckit/033-spec-template-context-optimization",
+  "spec_folder": "system-speckit/033-spec-template-context-optimization",
   "parent_id": null,
   "children_ids": [],
   "manual": {

@@ -5,14 +5,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-template-context-optimizations"
+    packet_pointer: "system-speckit/033-spec-template-context-optimization"
     last_updated_at: "2026-08-13T17:05:00Z"
     last_updated_by: "claude-code"
     recent_action: "Absorbed 033 research into research/; updated refs"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
-      - "specs/system-speckit/034-spec-template-context-optimizations/plan.md"
+      - "specs/system-speckit/033-spec-template-context-optimization/plan.md"
       - ".opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl"
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts"
     session_dedup:

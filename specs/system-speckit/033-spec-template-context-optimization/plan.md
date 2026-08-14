@@ -8,14 +8,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/034-spec-template-context-optimizations"
+    packet_pointer: "system-speckit/033-spec-template-context-optimization"
     last_updated_at: "2026-08-13T04:01:32Z"
     last_updated_by: "claude-code"
     recent_action: "Reconciled plan to shipped state after two deep-reviews"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
-      - "specs/system-speckit/034-spec-template-context-optimizations/spec.md"
+      - "specs/system-speckit/033-spec-template-context-optimization/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-12-system-speckit-034-optimizations"

@@ -35,7 +35,7 @@ expected_leaf_resources: []
 
 ### Commands
 
-1. Pick a packet whose `spec.md` has a "Files to Change" section (declared prefixes), for example `specs/system-speckit/034-spec-template-context-optimizations`.
+1. Pick a packet whose `spec.md` has a "Files to Change" section (declared prefixes), for example `specs/system-speckit/033-spec-template-context-optimization`.
 2. No change-set gives an inactive no-op:
    ```bash
    MK_SCOPE_CHANGED_FILES="" MK_SCOPE_BASE="" \
