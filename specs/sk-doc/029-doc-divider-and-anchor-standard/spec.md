@@ -58,7 +58,7 @@ The deeper cause is a conflict between two authorities that was never reconciled
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Complete (enforcement flip T013 operator-deferred) |
+| **Status** | Complete |
 | **Created** | 2026-08-13 |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
