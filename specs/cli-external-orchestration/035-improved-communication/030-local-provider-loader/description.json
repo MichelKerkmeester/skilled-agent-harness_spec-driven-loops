@@ -1,0 +1,25 @@
+{
+  "level": 3,
+  "specFolder": "cli-external-orchestration/035-improved-communication/030-local-provider-loader",
+  "description": "`createOllamaModelRecord`, `createLlamaCppModelRecord`, the OpenAI-compatible and Ollama-native adapters, and `createLocalHttpTransport` are all",
+  "keywords": [
+    "createollamamodelrecord",
+    "createllamacppmodelrecord",
+    "openai-compatible",
+    "ollama-native",
+    "adapters",
+    "createlocalhttptransport"
+  ],
+  "lastUpdated": "2026-08-14T18:00:03.828Z",
+  "specId": "030",
+  "folderSlug": "local-provider-loader",
+  "parentChain": [
+    "cli-external-orchestration",
+    "035-improved-communication"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "14-08-26_18-53__built-and-closed-the-shared-local-provider-loader.md",
+    "14-08-26_19-00__built-and-closed-the-shared-local-provider-loader.md"
+  ]
+}

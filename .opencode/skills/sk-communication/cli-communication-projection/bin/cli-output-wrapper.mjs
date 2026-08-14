@@ -49,7 +49,7 @@ async function main() {
   const command = separator === -1 ? [] : argv.slice(separator + 1);
 
   const { resolveWrapperRuntime } = await import(DIST_WRAPPER);
-  const { isProjectionEnabled } = await import(DIST_INDEX);
+  const { isProjectionEnabled, loadLocalProjectionConfig } = await import(DIST_INDEX);
 
   const plan = resolveWrapperRuntime(runtime);
   if (plan === null) {
@@ -90,9 +90,10 @@ async function main() {
     process.exit(EXIT_PROTOCOL);
   }
   const { capturedText, exitCode } = captured;
+  const capturedAt = new Date().toISOString();
   const parsed = parseRuntimeStream(runtime, {
     capturedText,
-    capturedAt: new Date().toISOString(),
+    capturedAt,
   });
   if (parsed === null || parsed.status === 'unparsed') {
     const reasonCode = parsed === null ? 'runtime-incapable' : parsed.reasonCode;
@@ -103,15 +104,44 @@ async function main() {
     process.stdout.write(capturedText);
     process.exit(exitCode ?? 1);
   } else {
-    // The stream was captured and parsed into the assistant message. The
-    // projection config (context, provider, policy) is caller-supplied, so the
-    // raw bytes pass through byte-exactly here and projection runs at the
-    // embedding boundary via projectRuntimeStream.
-    process.stderr.write(
-      'cli-output-wrapper: stream captured and parsed; '
-      + 'passing the assistant message through byte-exactly.\n',
-    );
-    process.stdout.write(capturedText);
+    // Projection config comes from the shared local-provider loader so the
+    // wrapper and the OpenCode plugin resolve the same provider. When the
+    // loader returns null (no local provider configured) the captured bytes
+    // pass through byte-exactly; only a non-null config triggers a projection.
+    const local = loadLocalProjectionConfig();
+    if (local === null) {
+      process.stderr.write(
+        'cli-output-wrapper: no local provider configured; '
+        + 'passing the assistant message through byte-exactly.\n',
+      );
+      process.stdout.write(capturedText);
+      process.exit(exitCode ?? 1);
+      return;
+    }
+    const { runWrapperProjection } = await import(DIST_WRAPPER);
+    const result = await runWrapperProjection(plan.adapter, parsed.original, parsed.envelopes, {
+      context: local.context,
+      prompt: local.prompt,
+      records: local.records,
+      candidateProviderIds: local.candidateProviderIds,
+      policy: local.policy,
+      judgeMode: local.judgeMode,
+      capabilities: local.capabilities,
+      transport: local.transport,
+      now: capturedAt,
+    });
+    if (result.status === 'projection') {
+      process.stderr.write(
+        'cli-output-wrapper: projected the assistant message through the configured local provider.\n',
+      );
+      process.stdout.write(result.text);
+    } else {
+      process.stderr.write(
+        'cli-output-wrapper: projection reverted to the exact original ('
+        + `${result.reasonCode}); passing through byte-exactly.\n`,
+      );
+      process.stdout.write(capturedText);
+    }
     process.exit(exitCode ?? 1);
   }
 }
