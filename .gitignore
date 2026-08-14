@@ -266,6 +266,9 @@ _sandbox
 # ───────────────────────────────────────────
 .claude/scheduled_tasks.lock
 .claude/settings.local.json
+.pi/*.tmp
+.pi/modes.json
+.pi/deep-pi-stats.json*
 
 # ───────────────────────────────────────────
 # Project-specific specs (all providers)

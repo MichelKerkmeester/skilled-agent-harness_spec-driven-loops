@@ -1,9 +1,10 @@
 # Pi Plugins
 
-Reference list of all pi plugins installed for this environment. The ten npm
-packages are installed at both user level (`~/.pi/agent/npm`) and project level
-(`.pi/npm`) carrying the same set; `deep-pi` and `pi-cache-optimizer` load from
-local extension directories (`.pi/extensions/`).
+Reference list of all pi plugins installed for this environment. Eight npm
+packages install at both user level (`~/.pi/agent/npm`) and project level
+(`.pi/npm`) carrying the same set; two git-source extensions (`pi-btw`,
+`pi-plan-build`) install the same way under `git/`. `deep-pi` and
+`pi-cache-optimizer` load from local extension directories (`.pi/extensions/`).
 
 #### deep-pi (v1.0.0)
 [github.com/christopherarter/deep-pi](https://github.com/christopherarter/deep-pi)
@@ -57,17 +58,10 @@ Direct 1:1 messaging between pi sessions on the same machine — send context, f
 
 ---
 
-#### pi-omplike-advisor (v1.0.2)
-[github.com/pasky/pi-omplike-advisor](https://github.com/pasky/pi-omplike-advisor)
+#### pi-plan-build (v0.1.25)
+[github.com/janvitos/pi-plan-build](https://github.com/janvitos/pi-plan-build)
 
-`/advisor` — a persistent second model that reviews the main agent's work each turn and injects concise advice inline
-
----
-
-#### pi-plan (v0.1.1)
-[github.com/zx06/pi-packages/tree/main/packages/plan](https://github.com/zx06/pi-packages/tree/main/packages/plan)
-
-Plan mode — read-only exploration with plan-then-execute workflow
+Plan safely, approve explicitly, then implement here or in a clean session.
 
 ---
 
@@ -103,6 +97,13 @@ A structured questionnaire the model can put to you when it would otherwise gues
 [github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo](https://github.com/juicesharp/rpiv-mono/tree/main/packages/rpiv-todo)
 
 A todo list for the model, rendered as a live overlay that survives /reload and conversation compaction
+
+---
+
+#### pi-btw (v0.4.1)
+[github.com/dbachelder/pi-btw](https://github.com/dbachelder/pi-btw)
+
+A pi extension for parallel side conversations with /btw
 
 ---
 

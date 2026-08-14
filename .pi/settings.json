@@ -30,13 +30,13 @@
     "npm:pi-blackhole",
     "npm:pi-gpt-fast-mode",
     "npm:pi-intercom",
-    "npm:pi-plan",
     "npm:pi-statusline",
     "npm:pi-subagents",
     "npm:pi-web-access",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-todo",
-    "git:github.com/dbachelder/pi-btw"
+    "git:github.com/dbachelder/pi-btw",
+    "https://github.com/janvitos/pi-plan-build"
   ],
   "extensions": [],
   "hideThinkingBlock": false,
