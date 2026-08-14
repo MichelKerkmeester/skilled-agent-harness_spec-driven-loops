@@ -54,6 +54,8 @@ FAILURE MODES:
 | **Status** | Complete |
 | **Created** | 2026-08-14 |
 | **Parent** | `system-deep-loop/037-graph-engineering` |
+| **Parent Spec** | [../spec.md](../spec.md) · [../context-index.md](../context-index.md) |
+| **Previous Phase** | [../005-noaa-paper-and-blog-theory/](../005-noaa-paper-and-blog-theory/) |
 <!-- /ANCHOR:metadata -->
 
 ---

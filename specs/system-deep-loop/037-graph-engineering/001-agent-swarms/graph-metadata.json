@@ -126,19 +126,19 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Next Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Produce",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The 037 corpus grew well past what the gen-1 research studied",
     "created_at": "2026-08-13T18:42:57.524Z",
-    "last_save_at": "2026-08-13T18:56:26.205Z",
+    "last_save_at": "2026-08-14T06:23:27.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,9 +210,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:554c41b5f60420a1420b9d10f6dd4d2c101869321c6143526bc1388f475fa46f",
+    "source_fingerprint": "sha256:eadb5eedc884827b74b211fafe0c7c14c814a66ca3acf839a8e87263b67e8bc8",
     "source_doc_hashes": {
-      "spec.md": "7e495251ca647a83a28ff2ddf0f2ceb4a065cb165a31adbb7e545ae809832368",
+      "spec.md": "03b556ed3ce745233e0d14fed0ab572efe74b89744be8a5dfa3104a348870d2d",
       "plan.md": "7e4f18a92533b23b241d0d84b3341a3da8f08d70311e655fef333c194d33ac9e",
       "tasks.md": "4ab6c453b1e8cc3a1e4d71475b6ee8559ab0408dcc949c315d9cf65c4e4b006a",
       "implementation-summary.md": "19231e5283071ce81289085047cbd6b5314ee2638a2e396c0bc1c750f0923dd3",

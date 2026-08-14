@@ -133,19 +133,19 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Studies",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Produce",
+        "name": "Previous Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Next Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Studies 1–4 covered the GRAPH layer (orchestration, event-sourcing/belief, governance, knowledge doctrine)",
     "created_at": "2026-08-14T04:58:30.034Z",
-    "last_save_at": "2026-08-14T04:58:30.034Z",
+    "last_save_at": "2026-08-14T06:23:28.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,9 +211,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8014d244e5f834c69c68abc28d592e170aa48d67a86b0e611c85b6603fb7209b",
+    "source_fingerprint": "sha256:a0f3b0710792dd113aec4e938044e86db4551664c209224eb2e3c2baf8190301",
     "source_doc_hashes": {
-      "spec.md": "d10c1f1d31ca27a305813442f15220a7f46e2ae4251b4a58951aaa407e8f10c0",
+      "spec.md": "8ad506faf312aa8b08336ff705edb467992590d813e184014588da3a85f7c684",
       "plan.md": "95bbb24e89939d4ebbc144f1df9267cf58069b69223fb31a593b02c945bbe10a",
       "tasks.md": "16e2d27d506d6063468e453d2190464f3aae99d54de263395aa9a071d04ad599",
       "implementation-summary.md": "230b5b9cd94da130fc04754c0382cd5a250ed0e1d695de20f411c008b449d53f",

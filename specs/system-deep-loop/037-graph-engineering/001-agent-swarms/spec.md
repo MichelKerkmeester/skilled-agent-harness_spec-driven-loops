@@ -53,6 +53,8 @@ FAILURE MODES:
 | **Status** | Complete |
 | **Created** | 2026-08-13 |
 | **Parent** | `system-deep-loop/037-graph-engineering` |
+| **Parent Spec** | [../spec.md](../spec.md) · [../context-index.md](../context-index.md) |
+| **Next Phase** | [../002-graphene-main/](../002-graphene-main/) |
 <!-- /ANCHOR:metadata -->
 
 ---

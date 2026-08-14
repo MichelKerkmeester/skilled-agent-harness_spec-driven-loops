@@ -53,6 +53,9 @@ FAILURE MODES:
 | **Status** | Complete |
 | **Created** | 2026-08-13 |
 | **Parent** | `system-deep-loop/037-graph-engineering` |
+| **Parent Spec** | [../spec.md](../spec.md) · [../context-index.md](../context-index.md) |
+| **Previous Phase** | [../001-agent-swarms/](../001-agent-swarms/) |
+| **Next Phase** | [../003-graph-arch/](../003-graph-arch/) |
 <!-- /ANCHOR:metadata -->
 
 ---
