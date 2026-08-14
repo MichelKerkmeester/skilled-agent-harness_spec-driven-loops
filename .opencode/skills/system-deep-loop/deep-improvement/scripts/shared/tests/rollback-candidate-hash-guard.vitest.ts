@@ -80,6 +80,55 @@ beforeEach(() => { work = fs.mkdtempSync(path.join(os.tmpdir(), 'shared-rollback
 afterEach(() => { fs.rmSync(work, { recursive: true, force: true }); });
 
 describe('shared/rollback-candidate.cjs acceptance-file authenticity', () => {
+  it('refuses rollback before the accepted candidate is shipped', () => {
+    const p = buildPacket();
+    const candidate = path.join(work, 'candidate.txt');
+    fs.writeFileSync(candidate, 'CANDIDATE BODY\n', 'utf8');
+    const archiveDir = path.join(work, 'archive');
+    const acceptanceFile = path.join(archiveDir, 'accepted.json');
+    const receiptPath = path.join(work, 'approval-receipt.json');
+    writeJson(receiptPath, { candidate, target: p.target, approved: true });
+
+    const benchmarkReport = path.join(work, 'report.json');
+    writeJson(benchmarkReport, {
+      status: 'benchmark-complete',
+      scoringMethod: 'pattern',
+      grader: 'noop',
+      profileId: 'demo-profile',
+      family: 'test',
+      target: p.target,
+      aggregateScore: 92,
+      maxScore: 100,
+      totals: { score: 92, delta: 0.05, pass_rate: 1, fixtures: 2, passed: 2 },
+      recommendation: 'benchmark-pass',
+    });
+    writeJson(path.join(work, 'repeatability.json'), { profileId: 'demo-profile', passed: true });
+
+    const accept = spawnSync('node', [
+      PROMOTE,
+      '--phase=accept',
+      `--candidate=${candidate}`,
+      `--target=${p.target}`,
+      `--benchmark-report=${benchmarkReport}`,
+      `--config=${p.config}`,
+      `--manifest=${p.manifest}`,
+      `--archive-dir=${archiveDir}`,
+      `--acceptance-file=${acceptanceFile}`,
+      `--approve=${receiptPath}`,
+    ], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
+    expect(accept.status, accept.stderr).toBe(0);
+
+    const accepted = readJson(acceptanceFile);
+    expect(accepted.preAcceptTargetHash).not.toBe(accepted.candidateHash);
+    expect(sha256(fs.readFileSync(p.target, 'utf8'))).toBe(accepted.preAcceptTargetHash);
+
+    const result = runRollback(acceptanceFile);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toMatch(/unexpected canonical target state/);
+    expect(fs.readFileSync(p.target, 'utf8')).toBe('CURRENT TARGET BODY\n');
+  });
+
   it('refuses a forged acceptance file with no receipt, even when the OR hash guard would pass', () => {
     const p = buildPacket();
     const maliciousBackup = path.join(work, 'malicious-backup.txt');

@@ -291,7 +291,7 @@ describe('promote-candidate benchmark mode', () => {
     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
   });
 
-  it('allows pre-ship rollback but blocks rollback from unexpected target drift', () => {
+  it('blocks rollback before ship and from unexpected target drift', () => {
     const p = buildBenchmarkPacket({ recommendation: 'benchmark-pass', aggregateScore: 92 });
     const acceptanceFile = path.join(p.archiveDir, 'accepted.json');
     const accepted = runPromote(p, [
@@ -302,7 +302,10 @@ describe('promote-candidate benchmark mode', () => {
     expect(accepted.status, accepted.stderr).toBe(0);
 
     const preShipRollback = runRollback(acceptanceFile);
-    expect(preShipRollback.status, preShipRollback.stderr).toBe(0);
+    // Rollback is authorized only after the accepted candidate becomes the
+    // canonical target; acceptance alone must not authorize restoration.
+    expect(preShipRollback.status).toBe(1);
+    expect(preShipRollback.stderr).toMatch(/unexpected canonical target state/);
     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BODY\n');
 
     fs.writeFileSync(p.target, 'UNEXPECTED TARGET BODY\n', 'utf8');
