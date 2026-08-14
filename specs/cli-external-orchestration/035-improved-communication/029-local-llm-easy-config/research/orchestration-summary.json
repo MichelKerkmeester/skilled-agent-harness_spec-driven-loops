@@ -1,0 +1,22 @@
+{
+  "run_id": "1786720025911-6qn2nd",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/035-improved-communication/029-local-llm-easy-config",
+  "base_artifact_dir": "specs/cli-external-orchestration/035-improved-communication/029-local-llm-easy-config/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 0,
+  "failed": 2,
+  "all_failed": true,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 2
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 2,
+    "salvage_miss": 0
+  }
+}

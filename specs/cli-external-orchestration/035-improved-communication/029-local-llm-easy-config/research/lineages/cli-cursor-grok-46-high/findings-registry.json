@@ -1,0 +1,152 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "Which configuration surface (file, environment variable, or both) minimizes operator friction while staying auditable?",
+      "answeredAtIteration": 1,
+      "origin": "analyst-strategy"
+    },
+    {
+      "id": "q2",
+      "text": "How does a discovered local endpoint auto-construct the provider record used by the plugin and the wrapper, including LM Studio and Ollama OpenAI-compatible cases?",
+      "answeredAtIteration": 2,
+      "origin": "analyst-strategy"
+    },
+    {
+      "id": "q3",
+      "text": "What judge default permits local accepts without weakening the reject-only safety contract for hosted projection?",
+      "answeredAtIteration": 3,
+      "origin": "analyst-strategy"
+    },
+    {
+      "id": "q4",
+      "text": "How do local-only privacy defaults keep local-classified content on the local endpoint and never cascade to hosted services without explicit consent?",
+      "answeredAtIteration": 4,
+      "origin": "analyst-strategy"
+    },
+    {
+      "id": "q5",
+      "text": "How do the plugin and wrapper automatically pick up the configured provider, reconciled with the default-off enablement gate?",
+      "answeredAtIteration": 5,
+      "origin": "analyst-strategy"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "label": "Public config API exports only isProjectionEnabled; no provider discovery exists",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-002",
+      "label": "Enablement-on is still a no-op: plugin empty candidateProviderIds and wrapper never calls runWrapperProjection",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-003",
+      "label": "Simplest auditable surface is extending enablement.local.json; env stays on/off overlay",
+      "iteration": 1
+    },
+    {
+      "id": "f-iter002-001",
+      "label": "LM Studio OpenAI-compatible local must use createLlamaCppModelRecord; GENERIC_HOSTED is hosted-only",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-002",
+      "label": "Operator file needs only kind+model; presets fill credential none:local, no-fallback, protocol",
+      "iteration": 2
+    },
+    {
+      "id": "f-iter003-001",
+      "label": "Reuse createRejectOnlyMeaningJudge with judgeMode required; no new judge",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter003-002",
+      "label": "Plugin judgeMode disabled is not why good rewrites fail; empty candidateProviderIds is",
+      "iteration": 3
+    },
+    {
+      "id": "f-iter004-001",
+      "label": "Loader emits local-offline policy, egressConsent false, fallback none; hosted cannot cascade",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter004-002",
+      "label": "Plugin POLICY.allowedPrivacyClasses [] independently invalidates routing",
+      "iteration": 4
+    },
+    {
+      "id": "f-iter005-001",
+      "label": "Wrapper bin must call shared loader then runWrapperProjection; today it passthroughs",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-002",
+      "label": "Loader must supply shipped copy-editing systemInstruction; plugin PROMPT is empty",
+      "iteration": 5
+    },
+    {
+      "id": "f-iter005-003",
+      "label": "Ranked first choice: extend enablement.local.json with localProvider; shared loader; judgeMode required; local-only policy",
+      "iteration": 5
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Env-only as primary one-time setup",
+      "reason": "No existing reader, not auditable, no committed example",
+      "iteration": 1
+    },
+    {
+      "approach": "Silent localhost port scanning",
+      "reason": "Violates default-off; may send content to whichever local server is up",
+      "iteration": 1
+    },
+    {
+      "approach": "Map LM Studio to GENERIC_HOSTED",
+      "reason": "Family/protocol lock rejects local+generic-hosted",
+      "iteration": 2
+    },
+    {
+      "approach": "New local-accept judge",
+      "reason": "Would authorize candidates deterministic checks rejected",
+      "iteration": 3
+    },
+    {
+      "approach": "judgeMode disabled as easy-config default",
+      "reason": "Skips meaning coverage",
+      "iteration": 3
+    },
+    {
+      "approach": "Mixed local+hosted as easy-config default",
+      "reason": "Would require egressConsent true",
+      "iteration": 4
+    },
+    {
+      "approach": "Wrapper CLI flag for provider config",
+      "reason": "Further manual step",
+      "iteration": 5
+    },
+    {
+      "approach": "Two-file setup as default",
+      "reason": "Recreates enable-without-provider no-op",
+      "iteration": 5
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 12,
+    "convergenceScore": 0.71,
+    "coverageBySources": 0.86
+  },
+  "graphConvergenceScore": 0.82,
+  "graphDecision": "continue-telemetry-only",
+  "graphBlockers": [],
+  "rejectedPatterns": [],
+  "promotedIdeas": []
+}
