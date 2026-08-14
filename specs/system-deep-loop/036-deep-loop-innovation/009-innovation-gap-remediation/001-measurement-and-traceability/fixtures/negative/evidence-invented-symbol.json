@@ -1,0 +1,6 @@
+{
+  "category": "evidence",
+  "expected_exit": "non-zero",
+  "name": "evidence-invented-symbol",
+  "runner": "node build-traceability.ts --fixture evidence-invented-symbol"
+}

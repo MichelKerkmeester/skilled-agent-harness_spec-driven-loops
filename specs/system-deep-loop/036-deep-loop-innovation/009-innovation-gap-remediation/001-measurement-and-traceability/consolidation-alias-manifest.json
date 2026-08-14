@@ -1,0 +1,24 @@
+{
+  "canonical_prefix": "specs/",
+  "entries": [
+    {
+      "current_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/research/findings-registry.json",
+      "old_path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/findings-registry.json"
+    },
+    {
+      "current_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/research/research.md",
+      "old_path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/research.md"
+    },
+    {
+      "current_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+      "old_path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json"
+    },
+    {
+      "current_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+      "old_path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json"
+    }
+  ],
+  "repository_root_rule": "paths are repo-relative POSIX, must resolve inside the repository, and targets must exist",
+  "schema_version": "1.0.0",
+  "stale_prefix": ".opencode/specs/"
+}

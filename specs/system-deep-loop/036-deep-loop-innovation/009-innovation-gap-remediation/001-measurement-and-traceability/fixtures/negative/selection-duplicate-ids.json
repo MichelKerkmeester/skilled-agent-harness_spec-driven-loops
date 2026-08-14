@@ -1,0 +1,6 @@
+{
+  "category": "selection",
+  "expected_exit": "non-zero",
+  "name": "selection-duplicate-ids",
+  "runner": "node build-traceability.ts --fixture selection-duplicate-ids"
+}

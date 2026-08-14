@@ -1,0 +1,7 @@
+{
+  "captured_at": "before_generation",
+  "ledger_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map/recommendation-ledger.json",
+  "ledger_sha256": "d4395069243de8a15689e4d1ffaeceb187be8694ba24dcc1e481516feb2f9d7a",
+  "report_path": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map/recommendation-ledger-validation.json",
+  "report_sha256": "2bee2fc125874a71148d83844d2d3ecf0b6049a1b2c6e795091350d77f542160"
+}

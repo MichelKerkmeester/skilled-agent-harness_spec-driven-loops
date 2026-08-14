@@ -1,0 +1,6 @@
+{
+  "category": "alias",
+  "expected_exit": "non-zero",
+  "name": "alias-missing",
+  "runner": "node build-traceability.ts --fixture alias-missing"
+}

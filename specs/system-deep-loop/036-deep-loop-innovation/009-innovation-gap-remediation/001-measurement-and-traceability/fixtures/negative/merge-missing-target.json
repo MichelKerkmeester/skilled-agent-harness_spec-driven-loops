@@ -1,0 +1,6 @@
+{
+  "category": "merge",
+  "expected_exit": "non-zero",
+  "name": "merge-missing-target",
+  "runner": "node build-traceability.ts --fixture merge-missing-target"
+}

@@ -1,0 +1,46 @@
+{
+  "entries": [
+    {
+      "field": "rows[].companion_evidence.path",
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/findings-registry.json",
+      "stale": true
+    },
+    {
+      "field": "rows[].source_path",
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/research.md",
+      "stale": true
+    },
+    {
+      "field": "source_manifest[].path",
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/research/research.md",
+      "stale": true
+    },
+    {
+      "field": "rows[].source_path",
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+      "stale": true
+    },
+    {
+      "field": "source_manifest[].path",
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry-modes.json",
+      "stale": true
+    },
+    {
+      "field": "rows[].source_path",
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+      "stale": true
+    },
+    {
+      "field": "source_manifest[].path",
+      "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/research/findings-registry.json",
+      "stale": true
+    }
+  ],
+  "fields": [
+    "rows[].source_path",
+    "rows[].companion_evidence.path",
+    "source_manifest[].path",
+    "phase_manifest.path"
+  ],
+  "schema_version": "1.0.0"
+}

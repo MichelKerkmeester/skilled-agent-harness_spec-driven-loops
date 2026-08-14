@@ -1,0 +1,6 @@
+{
+  "category": "status",
+  "expected_exit": "non-zero",
+  "name": "status-advanced-without-evidence",
+  "runner": "node build-traceability.ts --fixture status-advanced-without-evidence"
+}

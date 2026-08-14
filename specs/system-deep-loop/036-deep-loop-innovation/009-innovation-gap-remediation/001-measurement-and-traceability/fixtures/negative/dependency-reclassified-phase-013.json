@@ -1,0 +1,6 @@
+{
+  "category": "dependency",
+  "expected_exit": "non-zero",
+  "name": "dependency-reclassified-phase-013",
+  "runner": "node build-traceability.ts --fixture dependency-reclassified-phase-013"
+}

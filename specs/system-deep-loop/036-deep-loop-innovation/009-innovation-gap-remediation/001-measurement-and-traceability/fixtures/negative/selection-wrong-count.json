@@ -1,0 +1,6 @@
+{
+  "category": "selection",
+  "expected_exit": "non-zero",
+  "name": "selection-wrong-count",
+  "runner": "node build-traceability.ts --fixture selection-wrong-count"
+}

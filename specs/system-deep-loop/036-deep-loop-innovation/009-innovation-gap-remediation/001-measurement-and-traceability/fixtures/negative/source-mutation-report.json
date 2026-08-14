@@ -1,0 +1,6 @@
+{
+  "category": "source-mutation",
+  "expected_exit": "non-zero",
+  "name": "source-mutation-report",
+  "runner": "node build-traceability.ts --fixture source-mutation-report"
+}

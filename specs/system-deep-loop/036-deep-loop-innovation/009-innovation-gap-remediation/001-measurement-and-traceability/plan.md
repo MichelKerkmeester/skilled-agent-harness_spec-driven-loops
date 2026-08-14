@@ -10,13 +10,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediatio
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/001-measurement-and-traceability"
-    last_updated_at: "2026-08-14T00:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Planned the traceability join, status derivation, and aliases"
-    next_safe_action: "Inventory phase-013 rows and frozen path aliases"
+    last_updated_at: "2026-08-14T21:15:00Z"
+    last_updated_by: "cursor"
+    recent_action: "Built the derived 72-row traceability join, aliases, and fail-closed validator"
+    next_safe_action: "Use the measurement baseline in the substrate-identity successor"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - "recommendation-traceability.json"
+      - "build-traceability.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,21 +51,21 @@ and `:125-135`.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Record the frozen ledger and validation-report digests and confirm both inputs are unchanged before implementation
-- [ ] Confirm the validation report's 178-row source bijection and the delivered 72-row phase-013 adoption count
-- [ ] Freeze the closed merge-lineage, dependency-relation, status-field, composition-status, and alias schemas
-- [ ] Define the repository boundary and canonical path rules used by alias resolution
-- [ ] Inventory current runtime and test files before assigning any symbol, composition root, or test evidence
-- [ ] Confirm the implementation writes only phase-local derived artifacts and never opens the frozen ledger for write
+- [x] Record the frozen ledger and validation-report digests and confirm both inputs are unchanged before implementation
+- [x] Confirm the validation report's 178-row source bijection and the delivered 72-row phase-013 adoption count
+- [x] Freeze the closed merge-lineage, dependency-relation, status-field, composition-status, and alias schemas
+- [x] Define the repository boundary and canonical path rules used by alias resolution
+- [x] Inventory current runtime and test files before assigning any symbol, composition root, or test evidence
+- [x] Confirm the implementation writes only phase-local derived artifacts and never opens the frozen ledger for write
 
 ### Definition of Done
-- [ ] Exactly 72 unique canonical phase-013 adoption rows validate
-- [ ] Every merged recommendation resolving into the canonical set remains present as lineage without inflating 72
-- [ ] Every canonical row records `DLR-B-057` with relation `inherited_phase_contract`
-- [ ] Every canonical row has one valid three-field status object and one deterministically derived scalar status
-- [ ] Every stale frozen pre-consolidation pointer resolves uniquely to an existing current path
-- [ ] Negative fixtures fail closed for count, lineage, reference, status, alias, and source-mutation defects
-- [ ] Repeated builds are byte-identical and before-and-after source digests match
+- [x] Exactly 72 unique canonical phase-013 adoption rows validate
+- [x] Every merged recommendation resolving into the canonical set remains present as lineage without inflating 72
+- [x] Every canonical row records `DLR-B-057` with relation `inherited_phase_contract`
+- [x] Every canonical row has one valid three-field status object and one deterministically derived scalar status
+- [x] Every stale frozen pre-consolidation pointer resolves uniquely to an existing current path
+- [x] Negative fixtures fail closed for count, lineage, reference, status, alias, and source-mutation defects
+- [x] Repeated builds are byte-identical and before-and-after source digests match
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

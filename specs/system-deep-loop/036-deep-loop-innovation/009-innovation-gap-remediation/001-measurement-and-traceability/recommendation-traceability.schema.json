@@ -1,0 +1,520 @@
+{
+  "$id": "recommendation-traceability.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_adoptions": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "const": 72
+        },
+        "denominator": {
+          "const": 72
+        },
+        "rows": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "composition_root": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "path": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "presence": {
+                    "enum": [
+                      "absent",
+                      "verified"
+                    ]
+                  },
+                  "symbol": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "presence",
+                  "path",
+                  "symbol",
+                  "name"
+                ],
+                "type": "object"
+              },
+              "composition_status": {
+                "enum": [
+                  "legacy_authoritative",
+                  "shadow_wired",
+                  "cut_over"
+                ]
+              },
+              "depends_on_recommendation": {
+                "additionalProperties": false,
+                "properties": {
+                  "frozen_disposition": {
+                    "const": "adopt-as-phase-006"
+                  },
+                  "id": {
+                    "const": "DLR-B-057"
+                  },
+                  "relation": {
+                    "const": "inherited_phase_contract"
+                  }
+                },
+                "required": [
+                  "id",
+                  "relation",
+                  "frozen_disposition"
+                ],
+                "type": "object"
+              },
+              "disposition": {
+                "const": "adopt-as-phase-013"
+              },
+              "id": {
+                "pattern": "^DLR-[ABC]-[0-9]{3}$",
+                "type": "string"
+              },
+              "runtime_symbol": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "path": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "presence": {
+                    "enum": [
+                      "absent",
+                      "verified"
+                    ]
+                  },
+                  "symbol": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "presence",
+                  "path",
+                  "symbol",
+                  "name"
+                ],
+                "type": "object"
+              },
+              "status": {
+                "additionalProperties": false,
+                "properties": {
+                  "authority": {
+                    "enum": [
+                      "legacy_authoritative",
+                      "cut_over"
+                    ]
+                  },
+                  "library": {
+                    "enum": [
+                      "absent",
+                      "present_unverified",
+                      "test_verified"
+                    ]
+                  },
+                  "shadow": {
+                    "enum": [
+                      "not_wired",
+                      "shadow_wired"
+                    ]
+                  }
+                },
+                "required": [
+                  "library",
+                  "shadow",
+                  "authority"
+                ],
+                "type": "object"
+              },
+              "test_evidence": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "path": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "presence": {
+                    "enum": [
+                      "absent",
+                      "verified"
+                    ]
+                  },
+                  "symbol": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "presence",
+                  "path",
+                  "symbol",
+                  "name"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "id",
+              "disposition",
+              "depends_on_recommendation",
+              "runtime_symbol",
+              "composition_root",
+              "test_evidence",
+              "status",
+              "composition_status"
+            ],
+            "type": "object"
+          },
+          "maxItems": 72,
+          "minItems": 72,
+          "type": "array"
+        },
+        "selection": {
+          "const": "adopt-as-phase-013"
+        }
+      },
+      "required": [
+        "count",
+        "denominator",
+        "selection",
+        "rows"
+      ],
+      "type": "object"
+    },
+    "inherited_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "frozen_disposition": {
+          "const": "adopt-as-phase-006"
+        },
+        "frozen_phase": {
+          "const": "006"
+        },
+        "id": {
+          "const": "DLR-B-057"
+        },
+        "reclassified_as_phase_013": {
+          "const": false
+        },
+        "relation": {
+          "const": "inherited_phase_contract"
+        }
+      },
+      "required": [
+        "id",
+        "relation",
+        "frozen_disposition",
+        "frozen_phase",
+        "reclassified_as_phase_013"
+      ],
+      "type": "object"
+    },
+    "merged_lineage": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "counted_in_denominator": {
+          "const": false
+        },
+        "rows": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "chain": {
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 2,
+                "type": "array"
+              },
+              "composition_root": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "path": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "presence": {
+                    "enum": [
+                      "absent",
+                      "verified"
+                    ]
+                  },
+                  "symbol": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "presence",
+                  "path",
+                  "symbol",
+                  "name"
+                ],
+                "type": "object"
+              },
+              "composition_status": {
+                "enum": [
+                  "legacy_authoritative",
+                  "shadow_wired",
+                  "cut_over"
+                ]
+              },
+              "depends_on_recommendation": {
+                "additionalProperties": false,
+                "properties": {
+                  "frozen_disposition": {
+                    "const": "adopt-as-phase-006"
+                  },
+                  "id": {
+                    "const": "DLR-B-057"
+                  },
+                  "relation": {
+                    "const": "inherited_phase_contract"
+                  }
+                },
+                "required": [
+                  "id",
+                  "relation",
+                  "frozen_disposition"
+                ],
+                "type": "object"
+              },
+              "disposition": {
+                "pattern": "^merge-into-DLR-[ABC]-[0-9]{3}$",
+                "type": "string"
+              },
+              "id": {
+                "pattern": "^DLR-[ABC]-[0-9]{3}$",
+                "type": "string"
+              },
+              "resolves_to": {
+                "pattern": "^DLR-[ABC]-[0-9]{3}$",
+                "type": "string"
+              },
+              "runtime_symbol": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "path": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "presence": {
+                    "enum": [
+                      "absent",
+                      "verified"
+                    ]
+                  },
+                  "symbol": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "presence",
+                  "path",
+                  "symbol",
+                  "name"
+                ],
+                "type": "object"
+              },
+              "status": {
+                "additionalProperties": false,
+                "properties": {
+                  "authority": {
+                    "enum": [
+                      "legacy_authoritative",
+                      "cut_over"
+                    ]
+                  },
+                  "library": {
+                    "enum": [
+                      "absent",
+                      "present_unverified",
+                      "test_verified"
+                    ]
+                  },
+                  "shadow": {
+                    "enum": [
+                      "not_wired",
+                      "shadow_wired"
+                    ]
+                  }
+                },
+                "required": [
+                  "library",
+                  "shadow",
+                  "authority"
+                ],
+                "type": "object"
+              },
+              "test_evidence": {
+                "additionalProperties": false,
+                "properties": {
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "path": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "presence": {
+                    "enum": [
+                      "absent",
+                      "verified"
+                    ]
+                  },
+                  "symbol": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "presence",
+                  "path",
+                  "symbol",
+                  "name"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "id",
+              "disposition",
+              "resolves_to",
+              "chain",
+              "depends_on_recommendation",
+              "runtime_symbol",
+              "composition_root",
+              "test_evidence",
+              "status",
+              "composition_status"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "count",
+        "counted_in_denominator",
+        "rows"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "source": {
+      "additionalProperties": false,
+      "properties": {
+        "ledger_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "ledger_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "report_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "report_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "report_verdict": {
+          "const": "PASS"
+        },
+        "source_row_count": {
+          "const": 178
+        }
+      },
+      "required": [
+        "ledger_path",
+        "ledger_sha256",
+        "report_path",
+        "report_sha256",
+        "report_verdict",
+        "source_row_count"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "source",
+    "canonical_adoptions",
+    "merged_lineage",
+    "inherited_contract"
+  ],
+  "title": "Recommendation Traceability Join",
+  "type": "object"
+}

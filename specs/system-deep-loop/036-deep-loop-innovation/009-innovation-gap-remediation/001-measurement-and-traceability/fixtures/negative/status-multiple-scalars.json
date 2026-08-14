@@ -1,0 +1,6 @@
+{
+  "category": "status",
+  "expected_exit": "non-zero",
+  "name": "status-multiple-scalars",
+  "runner": "node build-traceability.ts --fixture status-multiple-scalars"
+}
