@@ -12,4 +12,6 @@ export const concernFlag = flags.concernFlag;
 export const isTruthy = flags.isTruthy;
 export const MASTER_FLAG = flags.MASTER_FLAG;
 export const LEGACY_ALIASES = flags.LEGACY_ALIASES;
+export const loadConfigFile = flags.loadConfigFile;
+export const configPath = flags.configPath;
 export default flags;
