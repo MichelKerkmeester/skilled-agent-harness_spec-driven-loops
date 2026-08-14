@@ -40,13 +40,13 @@ This phase groups the related child phases below so parent-level context stays a
 
 | Phase | Folder | Status | Adjacency |
 |-------|--------|--------|-----------|
-| 1 | `035-cli-adapter-stress-and-playbooks` | planned | predecessor `none`; successor `047-executor-wiring-and-parity` |
-| 2 | `047-executor-wiring-and-parity` | in_progress | predecessor `035-cli-adapter-stress-and-playbooks`; successor `048-write-containment-hardening` |
-| 3 | `048-write-containment-hardening` | in_progress | predecessor `047-executor-wiring-and-parity`; successor `049-deep-alignment-integrity` |
-| 4 | `049-deep-alignment-integrity` | in_progress | predecessor `048-write-containment-hardening`; successor `050-trustworthy-state-records` |
-| 5 | `050-trustworthy-state-records` | complete | predecessor `049-deep-alignment-integrity`; successor `051-residual-finding-closeouts` |
-| 6 | `051-residual-finding-closeouts` | in_progress | predecessor `050-trustworthy-state-records`; successor `052-cli-devin-executor-repair` |
-| 7 | `052-cli-devin-executor-repair` | complete | predecessor `051-residual-finding-closeouts`; successor `none` |
+| 1 | `001-cli-adapter-stress-and-playbooks` | planned | predecessor `none`; successor `002-executor-wiring-and-parity` |
+| 2 | `002-executor-wiring-and-parity` | in_progress | predecessor `001-cli-adapter-stress-and-playbooks`; successor `003-write-containment-hardening` |
+| 3 | `003-write-containment-hardening` | in_progress | predecessor `002-executor-wiring-and-parity`; successor `004-deep-alignment-integrity` |
+| 4 | `004-deep-alignment-integrity` | in_progress | predecessor `003-write-containment-hardening`; successor `005-trustworthy-state-records` |
+| 5 | `005-trustworthy-state-records` | complete | predecessor `004-deep-alignment-integrity`; successor `006-residual-finding-closeouts` |
+| 6 | `006-residual-finding-closeouts` | in_progress | predecessor `005-trustworthy-state-records`; successor `007-cli-devin-executor-repair` |
+| 7 | `007-cli-devin-executor-repair` | complete | predecessor `006-residual-finding-closeouts`; successor `none` |
 
 ## What Needs Done
 

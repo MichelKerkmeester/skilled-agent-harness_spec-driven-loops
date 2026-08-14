@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/003-sealed-artifacts",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep improvement sealed reference artifacts",
+      "deep improvement common services sealing",
+      "content addressed evaluator capsule",
+      "deep improvement sealed artifacts implementation plan",
+      "deep improvement evaluator capsule plan",
+      "deep improvement sealed artifacts tasks",
+      "deep improvement common sealing tasks",
+      "deep improvement sealed artifacts checklist",
+      "deep improvement tamper evident verification",
+      "embedded artifact reference kind",
+      "evaluator capsule epoch integrity",
+      "mixed epoch promotion rejection"
+    ],
+    "key_topics": [
+      "deep",
+      "improvement",
+      "sealed",
+      "reference",
+      "artifacts",
+      "common",
+      "services",
+      "sealing",
+      "content",
+      "addressed",
+      "evaluator",
+      "capsule"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Improvement Common Services",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sealed Reference Artifacts",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Define",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "seal-on-write",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "sealed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "typed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Successor Contract",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Define the sealed reference-artifact contract for Deep Improvement Common Services",
+    "created_at": "2026-07-16T03:43:36.310Z",
+    "last_save_at": "2026-08-14T04:28:01.720Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8d52f12723b7dd9161c3aab4f026d65b845426ca1e5b1c90ec2d2b41d96cc756",
+    "source_doc_hashes": {
+      "spec.md": "402f15aa5888c76bb6fc945b55fc6c0dd2d5d87ddba7aed0374ae1a4762e9a59",
+      "plan.md": "72c7aa5e1169ba79b6c5053d7707ea7836e3cc7daa3036165516825ed8dd12e8",
+      "tasks.md": "664eae67a0b58d2678d4f41801a793683ea588033c0053fb9c3f34c846c01f19",
+      "checklist.md": "cb1f1ddb89e4635ccc77045499f78a9a7b6c9bbf01e4ecbde85966cbe33673ad",
+      "decision-record.md": "2d12551d8b473aaed88acf2d2dc3a3c30ca8ddd1417ec34b5881dbc9cbb64c8a",
+      "implementation-summary.md": "c212781549ac4128b077a43dd36dd17812398f5d1d39008bb40ddab542dab340"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

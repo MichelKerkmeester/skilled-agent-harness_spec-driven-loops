@@ -1,0 +1,34 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/004-deep-improvement-common/007-rollback-and-mode-gate",
+  "description": "Delivered the fail-closed rollback switch and independent migration gate for the shared Deep Improvement Common Services backbone without moving",
+  "keywords": [
+    "delivered",
+    "fail-closed",
+    "rollback",
+    "switch",
+    "independent",
+    "migration",
+    "gate",
+    "shared",
+    "deep",
+    "improvement",
+    "common",
+    "services",
+    "backbone",
+    "without",
+    "moving"
+  ],
+  "lastUpdated": "2026-08-14T04:22:21.947Z",
+  "specId": "007",
+  "folderSlug": "rollback-and-mode-gate",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "002-mode-and-lane-migrations",
+    "004-deep-improvement-common"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

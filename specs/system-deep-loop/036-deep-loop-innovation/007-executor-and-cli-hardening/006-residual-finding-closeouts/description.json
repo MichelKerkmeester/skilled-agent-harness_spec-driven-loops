@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/006-residual-finding-closeouts",
+  "description": "Three sibling phases under `036-deep-loop-innovation` landed their primary deliverables but each left one small, explicitly-documented residual open",
+  "keywords": [
+    "three",
+    "sibling",
+    "phases",
+    "036-deep-loop-innovation",
+    "landed",
+    "primary",
+    "deliverables",
+    "left",
+    "one",
+    "small",
+    "explicitly-documented",
+    "residual",
+    "open"
+  ],
+  "lastUpdated": "2026-08-14T04:24:16.052Z",
+  "specId": "006",
+  "folderSlug": "residual-finding-closeouts",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

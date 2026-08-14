@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity",
+  "description": "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate.",
+  "keywords": [
+    "plan",
+    "deep",
+    "alignment",
+    "shadow-parity",
+    "harness",
+    "migration",
+    "typed",
+    "event-ledger",
+    "substrate"
+  ],
+  "lastUpdated": "2026-08-14T04:22:22.583Z",
+  "specId": "006",
+  "folderSlug": "shadow-parity",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover",
+    "002-mode-and-lane-migrations",
+    "008-deep-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

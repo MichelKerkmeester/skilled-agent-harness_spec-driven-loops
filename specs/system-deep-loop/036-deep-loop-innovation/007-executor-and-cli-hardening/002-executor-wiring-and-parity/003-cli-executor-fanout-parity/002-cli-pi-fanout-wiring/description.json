@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/003-cli-executor-fanout-parity/002-cli-pi-fanout-wiring",
+  "description": "`buildPiLineageCommand` in `fanout-run.cjs` was a hard stub that threw (\"command construction is unavailable until its headless",
+  "keywords": [
+    "buildpilineagecommand",
+    "fanout-run",
+    "cjs",
+    "hard",
+    "stub",
+    "threw",
+    "command",
+    "construction",
+    "unavailable",
+    "until",
+    "headless"
+  ],
+  "lastUpdated": "2026-08-14T04:24:16.133Z",
+  "specId": "002",
+  "folderSlug": "cli-pi-fanout-wiring",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "002-executor-wiring-and-parity",
+    "003-cli-executor-fanout-parity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

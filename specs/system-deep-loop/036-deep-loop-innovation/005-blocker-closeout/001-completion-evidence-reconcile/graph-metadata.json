@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/001-completion-evidence-reconcile",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/001-completion-evidence-reconcile",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "completion evidence reconcile",
+      "blocker 4 evidence drift",
+      "migration program completion claims",
+      "recursive validation child manifest",
+      "deep loop 021 reconcile",
+      "completion evidence reconcile implementation",
+      "021 reopen set",
+      "013 checklist evidence"
+    ],
+    "key_topics": [
+      "completion",
+      "evidence",
+      "reconcile",
+      "blocker",
+      "drift",
+      "migration",
+      "program",
+      "claims",
+      "recursive",
+      "validation",
+      "child",
+      "manifest"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconcile Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Completion Claims Against",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Suites",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Capture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Checked completion items across the 013 migration program cite evidence that cannot be reproduced",
+    "created_at": "2026-07-30T19:43:41.044Z",
+    "last_save_at": "2026-08-14T04:28:36.921Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:edb9cde0859ad84a9bfa49d3d04addff2ca183a446cfa583ff523480e3b12537",
+    "source_doc_hashes": {
+      "spec.md": "8b9de1cfb6adddc1796860ce63322aac10a22b19b3641bea87ef2b2103aa782b",
+      "plan.md": "4dcca69f2a67eabf935db9132aeacff5c1307d488ca1839339ba9e55433eb157",
+      "tasks.md": "79130bee18a67a649fd415799d6a890fe5b8245e9193ae807e4a591c382099ac",
+      "checklist.md": "0ad1ba4f3a2187ae0d484b425713cde1e7beddd508db8d6f60844ba2d202b853",
+      "decision-record.md": "d51ed272fb18ea40ad01e594b35ed5e8e97b11b0149dce17af3cd1b1423411e9",
+      "implementation-summary.md": "90fc5da2a66a21cba749449cda51c9365f4a2bfbed61142687830c0700171736"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

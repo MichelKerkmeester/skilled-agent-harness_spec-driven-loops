@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "durable write boundaries fencing",
+      "blocker 3 append fencing token",
+      "gateway only mutation ledger",
+      "appendAuthorized internal only",
+      "deep loop 024 fencing",
+      "durable write boundaries implementation",
+      "blocker 3 discharged",
+      "gateway-only ledger mutation",
+      "fence capability append boundary"
+    ],
+    "key_topics": [
+      "durable",
+      "write",
+      "boundaries",
+      "fencing",
+      "blocker",
+      "append",
+      "token",
+      "gateway",
+      "only",
+      "mutation",
+      "ledger",
+      "appendauthorized"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enforce Fencing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Append Boundary Through",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Only Mutation Surface",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Enumerate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Report",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`F-014-01` is CONFIRMED: `appendAuthorized` validates decision, prior head, expiry and authority epoch but contains zero fencing, lease, token or high-water-mark logic, so a superseded writer holding an unexpired proof can append directly while fencing sits in an optional wrapper",
+    "created_at": "2026-07-31T01:25:20.017Z",
+    "last_save_at": "2026-08-14T04:28:35.966Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:3f1f946beae38de9fd2f883e1d9ba5a7e01fd8275279346b41aa15e9a85e1a91",
+    "source_doc_hashes": {
+      "spec.md": "1ac133f8a68a57840e3eecd85e7bbae5fb76b7392fa8a8d05c92c1c9c16c0f27",
+      "plan.md": "f784e9a0f5a68f5658373a8446b9c6f921e2b150879e48b1f6dd7df945a7a8d6",
+      "tasks.md": "f1528e720e401c0dfd2018c2f22f1d45832d5b8c2511b1de36301cedbca97542",
+      "checklist.md": "d369bdf9ceddc50c8bd0a7b5ff77e4021f5b2de3e8857828d93caa31ac00ce0b",
+      "decision-record.md": "b118ef0cd552add3da4c121e39498e33f229693b4a09f9fc709f39c41d66f91f",
+      "implementation-summary.md": "170f53ad4e1cad634eb504d8df1e35b6678b33dd368c826fc80ebb65c58014b9",
+      "handover.md": "09b6648ba5f7b745a2d3a20802a1d85e1b3380a93e622b4b5006e3aeb4885fd2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

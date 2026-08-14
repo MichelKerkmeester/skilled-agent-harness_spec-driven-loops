@@ -66,7 +66,7 @@ artifacts** (evaluator capsule, authority capsule, sealed canary, independence b
 fingerprints**, **receipts/certificates**, and **blinded/counterfactual adjudication**. The recommended program is not
 178 tweaks: it is to build that substrate **once** and give each of the eight mode workstreams a typed schema over it.
 
-> **Current identity caveat (target vs. runtime):** the transition-authorization gateway is fail-closed for request validity, authority availability, head/epoch staleness, unknown policy, and evaluator/audit-storage failures. Identity verification is **opt-in in the current runtime** — a missing, null, or partial identity resolver does not deny — and is scheduled to become a required dependency at the Phase 014 cutover. See [`033-identity-and-lock-ownership-hardening/decision-record.md`](006-runtime-docs-and-integrity-hardening/033-identity-and-lock-ownership-hardening/decision-record.md).
+> **Current identity caveat (target vs. runtime):** the transition-authorization gateway is fail-closed for request validity, authority availability, head/epoch staleness, unknown policy, and evaluator/audit-storage failures. Identity verification is **opt-in in the current runtime** — a missing, null, or partial identity resolver does not deny — and is scheduled to become a required dependency at the Phase 014 cutover. See [`011-identity-and-lock-ownership-hardening/decision-record.md`](006-runtime-docs-and-integrity-hardening/011-identity-and-lock-ownership-hardening/decision-record.md).
 
 The load-bearing complication (surfaced by the SOL ultra review): the runtime is **live and holds in-flight state** —
 existing packets are mid-run on the current JSONL shape, and the modes share backends (the three benchmark variants

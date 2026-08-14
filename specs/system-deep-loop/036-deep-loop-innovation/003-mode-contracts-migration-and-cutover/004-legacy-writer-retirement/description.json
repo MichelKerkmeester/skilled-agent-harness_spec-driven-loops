@@ -1,0 +1,33 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/004-legacy-writer-retirement",
+  "description": "Remove the old live emitters and logic replaced by the evidence-ledger spine only after every mode has a clean phase-014 cutover certificate, a closed",
+  "keywords": [
+    "remove",
+    "old",
+    "live",
+    "emitters",
+    "logic",
+    "replaced",
+    "evidence-ledger",
+    "spine",
+    "only",
+    "every",
+    "mode",
+    "clean",
+    "phase-014",
+    "cutover",
+    "certificate",
+    "closed"
+  ],
+  "lastUpdated": "2026-08-14T04:22:21.652Z",
+  "specId": "004",
+  "folderSlug": "legacy-writer-retirement",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "003-mode-contracts-migration-and-cutover"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

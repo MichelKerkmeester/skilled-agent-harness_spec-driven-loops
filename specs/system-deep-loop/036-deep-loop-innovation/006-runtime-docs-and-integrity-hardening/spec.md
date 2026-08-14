@@ -40,17 +40,17 @@ This phase groups the related child phases below so parent-level context stays a
 
 | Phase | Folder | Status | Adjacency |
 |-------|--------|--------|-----------|
-| 1 | `019-runtime-code-readmes` | complete | predecessor `none`; successor `020-sk-code-opencode-alignment` |
-| 2 | `020-sk-code-opencode-alignment` | complete | predecessor `019-runtime-code-readmes`; successor `025-artifact-certificate-binding` |
-| 3 | `025-artifact-certificate-binding` | in_progress | predecessor `020-sk-code-opencode-alignment`; successor `026-alignment-coverage-integrity` |
-| 4 | `026-alignment-coverage-integrity` | complete | predecessor `025-artifact-certificate-binding`; successor `027-mode-gate-and-contract-binding` |
-| 5 | `027-mode-gate-and-contract-binding` | complete | predecessor `026-alignment-coverage-integrity`; successor `028-fanout-dispatch-integrity` |
-| 6 | `028-fanout-dispatch-integrity` | in_progress | predecessor `027-mode-gate-and-contract-binding`; successor `029-improvement-promotion-authority` |
-| 7 | `029-improvement-promotion-authority` | in_progress | predecessor `028-fanout-dispatch-integrity`; successor `030-runtime-mirror-and-routing-parity` |
-| 8 | `030-runtime-mirror-and-routing-parity` | in_progress | predecessor `029-improvement-promotion-authority`; successor `031-silent-failure-and-harness-repair` |
-| 9 | `031-silent-failure-and-harness-repair` | in_progress | predecessor `030-runtime-mirror-and-routing-parity`; successor `032-docs-drift-and-p2-batch` |
-| 10 | `032-docs-drift-and-p2-batch` | in_progress | predecessor `031-silent-failure-and-harness-repair`; successor `033-identity-and-lock-ownership-hardening` |
-| 11 | `033-identity-and-lock-ownership-hardening` | complete | predecessor `032-docs-drift-and-p2-batch`; successor `none` |
+| 1 | `001-runtime-code-readmes` | complete | predecessor `none`; successor `002-sk-code-opencode-alignment` |
+| 2 | `002-sk-code-opencode-alignment` | complete | predecessor `001-runtime-code-readmes`; successor `003-artifact-certificate-binding` |
+| 3 | `003-artifact-certificate-binding` | in_progress | predecessor `002-sk-code-opencode-alignment`; successor `004-alignment-coverage-integrity` |
+| 4 | `004-alignment-coverage-integrity` | complete | predecessor `003-artifact-certificate-binding`; successor `005-mode-gate-and-contract-binding` |
+| 5 | `005-mode-gate-and-contract-binding` | complete | predecessor `004-alignment-coverage-integrity`; successor `006-fanout-dispatch-integrity` |
+| 6 | `006-fanout-dispatch-integrity` | in_progress | predecessor `005-mode-gate-and-contract-binding`; successor `007-improvement-promotion-authority` |
+| 7 | `007-improvement-promotion-authority` | in_progress | predecessor `006-fanout-dispatch-integrity`; successor `008-runtime-mirror-and-routing-parity` |
+| 8 | `008-runtime-mirror-and-routing-parity` | in_progress | predecessor `007-improvement-promotion-authority`; successor `009-silent-failure-and-harness-repair` |
+| 9 | `009-silent-failure-and-harness-repair` | in_progress | predecessor `008-runtime-mirror-and-routing-parity`; successor `010-docs-drift-and-p2-batch` |
+| 10 | `010-docs-drift-and-p2-batch` | in_progress | predecessor `009-silent-failure-and-harness-repair`; successor `011-identity-and-lock-ownership-hardening` |
+| 11 | `011-identity-and-lock-ownership-hardening` | complete | predecessor `010-docs-drift-and-p2-batch`; successor `none` |
 
 ## What Needs Done
 

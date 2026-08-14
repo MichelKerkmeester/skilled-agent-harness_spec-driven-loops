@@ -40,13 +40,13 @@ This phase groups the related child phases below so parent-level context stays a
 
 | Phase | Folder | Status | Adjacency |
 |-------|--------|--------|-----------|
-| 1 | `005-fanout-live-tools-unblock` | complete | predecessor `none`; successor `006-transition-authorized-ledger-core` |
-| 2 | `006-transition-authorized-ledger-core` | complete | predecessor `005-fanout-live-tools-unblock`; successor `007-shared-evidence-and-control-services` |
-| 3 | `007-shared-evidence-and-control-services` | in_progress | predecessor `006-transition-authorized-ledger-core`; successor `008-compatibility-shadow-and-rollback-bridge` |
-| 4 | `008-compatibility-shadow-and-rollback-bridge` | in_progress | predecessor `007-shared-evidence-and-control-services`; successor `009-fanout-fanin-durable-orchestration` |
-| 5 | `009-fanout-fanin-durable-orchestration` | in_progress | predecessor `008-compatibility-shadow-and-rollback-bridge`; successor `010-novelty-claims-continuity-and-projections` |
-| 6 | `010-novelty-claims-continuity-and-projections` | complete | predecessor `009-fanout-fanin-durable-orchestration`; successor `011-convergence-termination-and-health` |
-| 7 | `011-convergence-termination-and-health` | in_progress | predecessor `010-novelty-claims-continuity-and-projections`; successor `none` |
+| 1 | `001-fanout-live-tools-unblock` | complete | predecessor `none`; successor `002-transition-authorized-ledger-core` |
+| 2 | `002-transition-authorized-ledger-core` | complete | predecessor `001-fanout-live-tools-unblock`; successor `003-shared-evidence-and-control-services` |
+| 3 | `003-shared-evidence-and-control-services` | in_progress | predecessor `002-transition-authorized-ledger-core`; successor `004-compatibility-shadow-and-rollback-bridge` |
+| 4 | `004-compatibility-shadow-and-rollback-bridge` | in_progress | predecessor `003-shared-evidence-and-control-services`; successor `005-fanout-fanin-durable-orchestration` |
+| 5 | `005-fanout-fanin-durable-orchestration` | in_progress | predecessor `004-compatibility-shadow-and-rollback-bridge`; successor `006-novelty-claims-continuity-and-projections` |
+| 6 | `006-novelty-claims-continuity-and-projections` | complete | predecessor `005-fanout-fanin-durable-orchestration`; successor `007-convergence-termination-and-health` |
+| 7 | `007-convergence-termination-and-health` | in_progress | predecessor `006-novelty-claims-continuity-and-projections`; successor `none` |
 
 ## What Needs Done
 

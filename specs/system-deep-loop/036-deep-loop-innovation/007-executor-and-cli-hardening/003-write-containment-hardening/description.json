@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening",
+  "description": "Group the deep-loop fan-out write-containment guard fixes so a dispatched leaf can never leave, delete, or misattribute out-of-scope writes.",
+  "keywords": [
+    "group",
+    "deep-loop",
+    "fan-out",
+    "write-containment",
+    "guard",
+    "dispatched",
+    "leaf",
+    "never",
+    "leave",
+    "delete",
+    "misattribute",
+    "out-of-scope",
+    "writes"
+  ],
+  "lastUpdated": "2026-08-14T04:24:16.204Z",
+  "specId": "003",
+  "folderSlug": "write-containment-hardening",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/009-silent-failure-and-harness-repair",
+  "description": "Twenty-three findings in three lanes share one shape",
+  "keywords": [
+    "twenty-three",
+    "findings",
+    "three",
+    "lanes",
+    "share",
+    "one",
+    "shape"
+  ],
+  "lastUpdated": "2026-08-14T04:22:30.965Z",
+  "specId": "009",
+  "folderSlug": "silent-failure-and-harness-repair",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "006-runtime-docs-and-integrity-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

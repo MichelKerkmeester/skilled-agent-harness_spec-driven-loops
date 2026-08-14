@@ -24,7 +24,7 @@ This group tracks the post-review follow-up on the 036 deep-loop innovation pack
 
 | Phase | Summary |
 |---|---|
-| `053-runtime-code-review` | Host a code-targeted deep-review of the `system-deep-loop` runtime with a 2-lineage SOL fan-out (`sol-high` + `sol-max`) and persist the findings registry and lineage reports under `review/`. |
-| `054-review-drift-remediation` | Reconcile the 036 parent's documentation and metadata drift that the 053 review's traceability check surfaced: incomplete `children_ids`, a stale PHASE DOCUMENTATION MAP, legacy `065` child-alias residue, and a status contradiction in `029`. |
-| `055-rollback-candidate-hash-hardening` | Enforce promoted-candidate-only rollback authority in the deep-improvement rollback path; `rollback-candidate.cjs` now requires the current target to equal the promoted candidate hash exclusively, with pre-ship rollback intentionally removed. |
-| `056-review-containment-exemption` | Exempt the runtime's own generated state (runtime/database telemetry plus `description.json`/`descriptions.json` memory-index metadata) from fatal write-containment reverts so fan-out reviews can run without the runtime's own writes failing the lineage. |
+| `001-runtime-code-review` | Host a code-targeted deep-review of the `system-deep-loop` runtime with a 2-lineage SOL fan-out (`sol-high` + `sol-max`) and persist the findings registry and lineage reports under `review/`. |
+| `002-review-drift-remediation` | Reconcile the 036 parent's documentation and metadata drift that the 053 review's traceability check surfaced: incomplete `children_ids`, a stale PHASE DOCUMENTATION MAP, legacy `065` child-alias residue, and a status contradiction in `029`. |
+| `003-rollback-candidate-hash-hardening` | Enforce promoted-candidate-only rollback authority in the deep-improvement rollback path; `rollback-candidate.cjs` now requires the current target to equal the promoted candidate hash exclusively, with pre-ship rollback intentionally removed. |
+| `004-review-containment-exemption` | Exempt the runtime's own generated state (runtime/database telemetry plus `description.json`/`descriptions.json` memory-index metadata) from fatal write-containment reverts so fan-out reviews can run without the runtime's own writes failing the lineage. |

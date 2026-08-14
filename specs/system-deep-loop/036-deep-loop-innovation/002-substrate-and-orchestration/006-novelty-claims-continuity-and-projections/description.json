@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections",
+  "description": "This phase defines the intelligence layer over the durable deep-loop substrate: concept-level novelty, typed contradiction and supersession, stable",
+  "keywords": [
+    "phase",
+    "defines",
+    "intelligence",
+    "layer",
+    "durable",
+    "deep-loop",
+    "substrate",
+    "concept-level",
+    "novelty",
+    "typed",
+    "contradiction",
+    "supersession",
+    "stable"
+  ],
+  "lastUpdated": "2026-08-14T04:22:11.222Z",
+  "specId": "006",
+  "folderSlug": "novelty-claims-continuity-and-projections",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "002-substrate-and-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

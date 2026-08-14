@@ -40,9 +40,9 @@ This phase groups the related child phases below so parent-level context stays a
 
 | Phase | Folder | Status | Adjacency |
 |-------|--------|--------|-----------|
-| 1 | `016-whole-system-gate` | planned | predecessor `none`; successor `017-integrate-latest-and-closeout` |
-| 2 | `017-integrate-latest-and-closeout` | planned | predecessor `016-whole-system-gate`; successor `018-drift-census-and-plan-revalidation` |
-| 3 | `018-drift-census-and-plan-revalidation` | in_progress | predecessor `017-integrate-latest-and-closeout`; successor `none` |
+| 1 | `001-whole-system-gate` | planned | predecessor `none`; successor `002-integrate-latest-and-closeout` |
+| 2 | `002-integrate-latest-and-closeout` | planned | predecessor `001-whole-system-gate`; successor `003-drift-census-and-plan-revalidation` |
+| 3 | `003-drift-census-and-plan-revalidation` | in_progress | predecessor `002-integrate-latest-and-closeout`; successor `none` |
 
 ## What Needs Done
 

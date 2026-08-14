@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-convergence-termination-and-health/004-value-of-computation-allocation",
+  "description": "Replay-stable value-of-computation scoring and additive-dark adaptive allocation over typed budget pressure.",
+  "keywords": [
+    "replay-stable",
+    "value-of-computation",
+    "scoring",
+    "additive-dark",
+    "adaptive",
+    "allocation",
+    "typed",
+    "budget",
+    "pressure"
+  ],
+  "lastUpdated": "2026-08-14T04:22:11.335Z",
+  "specId": "004",
+  "folderSlug": "value-of-computation-allocation",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "002-substrate-and-orchestration",
+    "007-convergence-termination-and-health"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

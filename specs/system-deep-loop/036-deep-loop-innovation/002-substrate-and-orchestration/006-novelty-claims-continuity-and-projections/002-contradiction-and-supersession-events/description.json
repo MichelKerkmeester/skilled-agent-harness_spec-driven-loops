@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/006-novelty-claims-continuity-and-projections/002-contradiction-and-supersession-events",
+  "description": "Plan first-class contradiction and supersession ledger events that preserve evidence, history, deterministic claim status, and replayable audit",
+  "keywords": [
+    "plan",
+    "first-class",
+    "contradiction",
+    "supersession",
+    "ledger",
+    "events",
+    "preserve",
+    "evidence",
+    "history",
+    "deterministic",
+    "claim",
+    "status",
+    "replayable",
+    "audit"
+  ],
+  "lastUpdated": "2026-08-14T04:22:11.151Z",
+  "specId": "002",
+  "folderSlug": "contradiction-and-supersession-events",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "002-substrate-and-orchestration",
+    "006-novelty-claims-continuity-and-projections"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

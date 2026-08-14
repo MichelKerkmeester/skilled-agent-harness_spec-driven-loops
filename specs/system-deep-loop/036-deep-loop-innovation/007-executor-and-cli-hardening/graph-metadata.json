@@ -4,13 +4,13 @@
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
   "parent_id": "system-deep-loop/036-deep-loop-innovation",
   "children_ids": [
-    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/035-cli-adapter-stress-and-playbooks",
-    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity",
-    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/048-write-containment-hardening",
-    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/049-deep-alignment-integrity",
-    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/050-trustworthy-state-records",
-    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/051-residual-finding-closeouts",
-    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/052-cli-devin-executor-repair"
+    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/001-cli-adapter-stress-and-playbooks",
+    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity",
+    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/003-write-containment-hardening",
+    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity",
+    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/005-trustworthy-state-records",
+    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/006-residual-finding-closeouts",
+    "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/007-cli-devin-executor-repair"
   ],
   "manual": {
     "depends_on": [],
@@ -87,17 +87,17 @@
     ],
     "causal_summary": "CLI adapter stress and playbooks, executor wiring and parity, write-containment hardening, deep-alignment integrity, trustworthy state records, residual finding closeouts, and cli-devin executor repair.",
     "created_at": "2026-08-13T09:22:55.300Z",
-    "last_save_at": "2026-08-13T17:17:17.071Z",
+    "last_save_at": "2026-08-14T04:28:43.993Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a37e026c353c603fc6c8cccf72337bf85204b2e5f86bda946263cb7ec093c335",
+    "source_fingerprint": "sha256:43e314cf6e24f95052be9b140270993493a7959f1c33b1254c4beb084a367993",
     "source_doc_hashes": {
-      "spec.md": "27d5fc4663106c7489d4d8b89193b75e3a46f5397e17fd79bb5c86b2be750f9c"
+      "spec.md": "8c81adafcdb8b3501ee9aca1134b0e273a0762c5923c1bfac30431c93869c619"
     },
-    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/052-cli-devin-executor-repair",
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/007-cli-devin-executor-repair",
     "last_active_at": null
   }
 }

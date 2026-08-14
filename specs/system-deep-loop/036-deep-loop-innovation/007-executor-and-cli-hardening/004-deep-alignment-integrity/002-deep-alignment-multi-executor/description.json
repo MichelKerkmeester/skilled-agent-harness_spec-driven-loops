@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/002-deep-alignment-multi-executor",
+  "description": "`/deep:alignment` has a working cli-codex leaf but no cli-opencode branch, even though the shared executor runtime already supports cli-opencode",
+  "keywords": [
+    "deep",
+    "alignment",
+    "working",
+    "cli-codex",
+    "leaf",
+    "cli-opencode",
+    "branch",
+    "even",
+    "though",
+    "shared",
+    "executor",
+    "runtime",
+    "already",
+    "supports"
+  ],
+  "lastUpdated": "2026-08-14T04:24:16.249Z",
+  "specId": "002",
+  "folderSlug": "deep-alignment-multi-executor",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "004-deep-alignment-integrity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

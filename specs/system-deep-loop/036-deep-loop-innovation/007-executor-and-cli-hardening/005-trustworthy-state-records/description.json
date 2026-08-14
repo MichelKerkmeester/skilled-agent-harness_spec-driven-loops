@@ -1,0 +1,27 @@
+{
+  "level": 2,
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/005-trustworthy-state-records",
+  "description": "Two defects, both surfaced by fan-out runs during unrelated work, both costing completed analysis",
+  "keywords": [
+    "two",
+    "defects",
+    "surfaced",
+    "fan-out",
+    "runs",
+    "unrelated",
+    "work",
+    "costing",
+    "completed",
+    "analysis"
+  ],
+  "lastUpdated": "2026-08-14T04:24:16.226Z",
+  "specId": "005",
+  "folderSlug": "trustworthy-state-records",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

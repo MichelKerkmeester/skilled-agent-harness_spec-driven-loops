@@ -40,10 +40,10 @@ This phase groups the related child phases below so parent-level context stays a
 
 | Phase | Folder | Status | Adjacency |
 |-------|--------|--------|-----------|
-| 1 | `053-runtime-code-review` | complete | predecessor `none`; successor `054-review-drift-remediation` |
-| 2 | `054-review-drift-remediation` | complete | predecessor `053-runtime-code-review`; successor `055-rollback-candidate-hash-hardening` |
-| 3 | `055-rollback-candidate-hash-hardening` | complete | predecessor `054-review-drift-remediation`; successor `056-review-containment-exemption` |
-| 4 | `056-review-containment-exemption` | complete | predecessor `055-rollback-candidate-hash-hardening`; successor `none` |
+| 1 | `001-runtime-code-review` | complete | predecessor `none`; successor `002-review-drift-remediation` |
+| 2 | `002-review-drift-remediation` | complete | predecessor `001-runtime-code-review`; successor `003-rollback-candidate-hash-hardening` |
+| 3 | `003-rollback-candidate-hash-hardening` | complete | predecessor `002-review-drift-remediation`; successor `004-review-containment-exemption` |
+| 4 | `004-review-containment-exemption` | complete | predecessor `003-rollback-candidate-hash-hardening`; successor `none` |
 
 ## What Needs Done
 

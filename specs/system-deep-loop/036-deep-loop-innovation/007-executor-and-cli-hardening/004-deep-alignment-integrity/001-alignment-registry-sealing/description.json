@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/004-deep-alignment-integrity/001-alignment-registry-sealing",
+  "description": "The deep-alignment loop seeds its findings registry FAIL-closed before the first LEAF dispatch (a non-empty-but-unaudited corpus reduces to",
+  "keywords": [
+    "deep-alignment",
+    "loop",
+    "seeds",
+    "findings",
+    "registry",
+    "fail-closed",
+    "first",
+    "leaf",
+    "dispatch",
+    "non-empty-but-unaudited",
+    "corpus",
+    "reduces"
+  ],
+  "lastUpdated": "2026-08-14T04:24:16.239Z",
+  "specId": "001",
+  "folderSlug": "alignment-registry-sealing",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening",
+    "004-deep-alignment-integrity"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations",
+  "children_ids": [
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/006-shadow-parity",
+    "system-deep-loop/065-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/006-shadow-parity",
+    "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/001-typed-ledger-schema",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/002-reducers-and-projections",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/004-certificates-and-receipts",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/005-resume-adapter",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/006-shadow-parity",
+    "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep research migration",
+      "deep-research event ledger",
+      "deep research typed ledger",
+      "deep research mode gate",
+      "deep research shadow parity"
+    ],
+    "key_topics": [
+      "deep",
+      "research",
+      "migration",
+      "deep-research",
+      "event",
+      "ledger",
+      "typed",
+      "mode",
+      "gate",
+      "shadow",
+      "parity",
+      "migrate"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research Migration",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Migrate the autonomous Deep Research loop from initialization through iterative evidence gathering, convergence, synthesis, and memory-save handoff onto the typed event-ledger substrate through seven concern children and an independent mode gate.",
+    "created_at": "2026-07-16T03:43:55.017Z",
+    "last_save_at": "2026-08-14T04:28:16.207Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:89eab023cce256dd4db5ac67f4a830d63d789a128d75132db32dde555b5bba6f",
+    "source_doc_hashes": {
+      "spec.md": "3418e2daad41444836161324d7e937c94947abf71a870b4b9a1d2621c06ff0e8"
+    },
+    "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/007-rollback-and-mode-gate",
+    "last_active_at": "2026-07-27T21:40:58.074Z"
+  }
+}

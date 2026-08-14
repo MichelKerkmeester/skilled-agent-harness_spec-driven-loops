@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/007-cli-devin-executor-repair",
+  "description": "Primary (systemic): the installed `devin 3000.4.16` added a workspace-trust gate",
+  "keywords": [
+    "primary",
+    "systemic",
+    "installed",
+    "devin",
+    "workspace-trust",
+    "gate"
+  ],
+  "lastUpdated": "2026-08-14T04:24:16.018Z",
+  "specId": "007",
+  "folderSlug": "cli-devin-executor-repair",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "007-executor-and-cli-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

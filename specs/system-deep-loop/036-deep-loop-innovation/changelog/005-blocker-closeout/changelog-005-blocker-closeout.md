@@ -24,7 +24,7 @@ This phase-parent groups the cutover blocker closeouts so parent-level context s
 
 | Phase | Summary |
 |---|---|
-| `021-completion-evidence-reconcile` | Blocker 4: reopens every unreproducible completion-evidence claim in the migration program, re-evidences it against the suites at HEAD or strikes it, and repairs the acceptance boundary so the drift cannot recur. |
-| `022-shadow-parity-independent-derivation` | Blocker 1: rebuilds six shadow-parity harness adapters so the ledger side derives from the folded reducer projection and the legacy side is an independent oracle, proving each rebuild with an injected divergence. |
-| `023-legacy-compat-event-vocabulary` | Blocker 2: writes the six live compatibility vocabularies with full upcaster coverage so ordinary lifecycle records never block a log. |
-| `024-durable-write-boundaries` | Blocker 3: enforces fencing at the append boundary through a gateway-only mutation surface where direct `appendAuthorized` becomes internal-only. |
+| `001-completion-evidence-reconcile` | Blocker 4: reopens every unreproducible completion-evidence claim in the migration program, re-evidences it against the suites at HEAD or strikes it, and repairs the acceptance boundary so the drift cannot recur. |
+| `002-shadow-parity-independent-derivation` | Blocker 1: rebuilds six shadow-parity harness adapters so the ledger side derives from the folded reducer projection and the legacy side is an independent oracle, proving each rebuild with an injected divergence. |
+| `003-legacy-compat-event-vocabulary` | Blocker 2: writes the six live compatibility vocabularies with full upcaster coverage so ordinary lifecycle records never block a log. |
+| `004-durable-write-boundaries` | Blocker 3: enforces fencing at the append boundary through a gateway-only mutation surface where direct `appendAuthorized` becomes internal-only. |

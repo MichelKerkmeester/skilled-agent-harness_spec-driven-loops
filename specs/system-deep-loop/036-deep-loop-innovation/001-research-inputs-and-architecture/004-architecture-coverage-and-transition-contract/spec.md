@@ -28,7 +28,7 @@ _memory:
 
 # Feature Specification: Architecture, Coverage & Transition Contract
 
-> Sibling phase adjacency (sorted order under the 036 parent): predecessor `003-baseline-taxonomy-and-state-census`; successor `005-fanout-live-tools-unblock`.
+> Sibling phase adjacency (sorted order under the 036 parent): predecessor `003-baseline-taxonomy-and-state-census`; successor `001-fanout-live-tools-unblock`.
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -44,7 +44,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-deep-loop/036-deep-loop-innovation |
 | **Predecessor** | 003-baseline-taxonomy-and-state-census |
-| **Successor** | 006-transition-authorized-ledger-core |
+| **Successor** | 002-transition-authorized-ledger-core |
 | **Handoff Criteria** | The spine is ratified as an ADR, the 178-row recommendation ledger is proven bijective and single-disposition, and the transition/versioning/rollback policy is frozen — before any writer is built in phase 006. |
 <!-- /ANCHOR:metadata -->
 
