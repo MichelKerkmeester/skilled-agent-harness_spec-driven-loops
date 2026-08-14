@@ -11,7 +11,8 @@
     "system-deep-loop/036-deep-loop-innovation/005-blocker-closeout",
     "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening",
     "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening",
-    "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup"
+    "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup",
+    "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation"
   ],
   "manual": {
     "depends_on": [],
@@ -132,16 +133,16 @@
     ],
     "causal_summary": "Packet 065 established, across 105 research iterations, that the shipped `system-deep-loop` runtime solves its hard",
     "created_at": "2026-07-16T05:25:26.395Z",
-    "last_save_at": "2026-08-14T07:53:55.959Z",
+    "last_save_at": "2026-08-14T12:49:51.606Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:366cf40847c34bb900127d7dd02df8faa116bf5635db8b24a97d80c9169eff6e",
+    "source_fingerprint": "sha256:1cf45bb0a9c2f4fd1cdf943c3a97c5753e0b1f49d6551dd86cead40bd838d5e1",
     "source_doc_hashes": {
-      "spec.md": "95532beeedb1569fc1af4bd647129c828a515642768c5e6ee13b7e6ffcdfeb6b",
+      "spec.md": "a312bdfb68adc6ebfa77f1443984e60c0d952e4fb0ef89b402ebbdd923f1736d",
       "handover.md": "d1d37a65570ec58323ca26e4fdfaa0a92da567135cc00be2c810564523c27837"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration",

@@ -132,6 +132,7 @@ After grouping, the parent has eight thematic group parents (plus the research h
 | 6 | `006-runtime-docs-and-integrity-hardening` | runtime docs + integrity hardening | in_progress |
 | 7 | `007-executor-and-cli-hardening` | executor + CLI hardening | in_progress |
 | 8 | `008-review-and-rollback-followup` | review + rollback follow-up | complete |
+| 9 | `009-innovation-gap-remediation` | gap-analysis remediation: measurement, fail-closed identity, mode cutover | planned |
 
 <!-- /ANCHOR:phases -->
 
@@ -193,5 +194,6 @@ Direct children after grouping: eight thematic group parents. The root also hold
 | 6 | `006-runtime-docs-and-integrity-hardening/` | in_progress |
 | 7 | `007-executor-and-cli-hardening/` | in_progress |
 | 8 | `008-review-and-rollback-followup/` | complete |
+| 9 | `009-innovation-gap-remediation/` | planned |
 
 <!-- /ANCHOR:phase-map -->

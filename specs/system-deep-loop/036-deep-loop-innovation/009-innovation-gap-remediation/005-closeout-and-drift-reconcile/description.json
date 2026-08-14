@@ -1,0 +1,29 @@
+{
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/005-closeout-and-drift-reconcile",
+  "description": "Plan the final documentation and evidence reconciliation that separates library, shadow, and authority status, joins measured composition into the",
+  "keywords": [
+    "plan",
+    "final",
+    "documentation",
+    "evidence",
+    "reconciliation",
+    "separates",
+    "library",
+    "shadow",
+    "authority",
+    "status",
+    "joins",
+    "measured",
+    "composition"
+  ],
+  "lastUpdated": "2026-08-14T12:45:46.443Z",
+  "specId": "005",
+  "folderSlug": "closeout-and-drift-reconcile",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "009-innovation-gap-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
