@@ -26,13 +26,6 @@ This directory mirrors the full nested phase structure of `036-deep-loop-innovat
 | `007-executor-and-cli-hardening` | Executor and CLI Hardening | 7 | 24 | [root](./007-executor-and-cli-hardening/changelog-007-executor-and-cli-hardening.md) |
 | `008-review-and-rollback-followup` | Review and Rollback Follow-up | 4 | 5 | [root](./008-review-and-rollback-followup/changelog-008-review-and-rollback-followup.md) |
 
-## Host packets
-
-| Packet | Purpose | Changelog |
-|---|---|---|
-| `009-phase-consolidation-research` | Research that justified merging the flat children into eight groups | [changelog](./009-phase-consolidation-research/changelog-009-phase-consolidation-research.md) |
-| `010-phase-consolidation-migration` | The migration that executed the consolidation (holds `move-map.tsv`) | [changelog](./010-phase-consolidation-migration/changelog-010-phase-consolidation-migration.md) |
-
 ## Conventions
 
 - **One changelog per phase folder.** A folder that governs `NNN-` child phases uses the `changelog/root.md` template and carries an Included Phases table; a leaf phase uses `changelog/phase.md`.

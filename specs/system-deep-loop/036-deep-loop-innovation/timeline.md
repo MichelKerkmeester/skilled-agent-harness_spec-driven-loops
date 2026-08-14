@@ -52,5 +52,3 @@ Sort: `created_at` (graph-metadata) primary, `git_first_add` cross-check, origin
 | 42 | `review-drift-remediation` | 2026-08-13T06:44:37.262Z | 2026-08-13T08:54:52+02:00 | `054-review-drift-remediation` | complete | confirmed |
 | 43 | `rollback-candidate-hash-hardening` | 2026-08-13T06:44:37.411Z | 2026-08-13T08:54:52+02:00 | `055-rollback-candidate-hash-hardening` | complete | confirmed |
 | 44 | `review-containment-exemption` | 2026-08-13T06:44:37.562Z | 2026-08-13T08:54:52+02:00 | `056-review-containment-exemption` | complete | confirmed |
-| 45 | `phase-consolidation-research` | (new this session) | 2026-08-13T09:56:51+02:00 | `009-phase-consolidation-research` | unknown | inferred |
-| 46 | `phase-consolidation-migration` | (new this session) | unknown | `010-phase-consolidation-migration` | unknown | inferred |
