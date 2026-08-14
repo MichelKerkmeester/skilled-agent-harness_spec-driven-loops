@@ -53,6 +53,9 @@ FAILURE MODES:
 | **Status** | Complete |
 | **Created** | 2026-08-14 |
 | **Parent** | `system-deep-loop/037-graph-engineering` |
+| **Parent Spec** | [../spec.md](../spec.md) · [../context-index.md](../context-index.md) |
+| **Previous Phase** | [../004-graph-engineering-master/](../004-graph-engineering-master/) |
+| **Next Phase** | [../006-cross-study-integration/](../006-cross-study-integration/) |
 <!-- /ANCHOR:metadata -->
 
 ---

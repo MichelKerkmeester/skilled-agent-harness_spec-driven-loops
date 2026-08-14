@@ -127,6 +127,18 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Previous Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement Studies",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -134,18 +146,6 @@
       },
       {
         "name": "Purpose Produce",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Studies 1–5 each produced a 20-iteration synthesis, but each stands alone",
     "created_at": "2026-08-14T06:01:27.366Z",
-    "last_save_at": "2026-08-14T06:01:27.366Z",
+    "last_save_at": "2026-08-14T06:23:28.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,9 +211,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:6d79f2f966087dfbb77b5fb86479f73155cbea16b7c7751e2a102227284066a8",
+    "source_fingerprint": "sha256:d4cce84a5f3939bc3beadf49a7d833dc1b46e39dc20846739ef4474fb1f47aa7",
     "source_doc_hashes": {
-      "spec.md": "f3388253cf9b303b99903e6873e9e8547699bb075dfb4cccbafb91c71ce16e2d",
+      "spec.md": "0dca46576481861987f61b67d61b469fd4063363d70c93a278fd8cb99a14e9b5",
       "plan.md": "4eb2cb4d1fa887ac04cfb99f62eb5124f7bf5816e6618dbc49418eca661ee0f6",
       "tasks.md": "79442d7171b94b1ea8c8e930c5569857031cb8fa8f1e22ae2bd2896a24aea4bd",
       "implementation-summary.md": "12605ac56d83cd86717aae837716fe14f2b4ec19d09631031724634579bf0e09",

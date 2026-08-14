@@ -133,19 +133,19 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Studies",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Produce",
+        "name": "Previous Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Next Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Studies 1 (agent-swarms) and 2 (graphene-main) produced the graph-based deep-loop design and its executable contracts, but neither deeply studied the GOVERNANCE plane — admission, organization policy, approvals, and audit",
     "created_at": "2026-08-13T23:26:39.806Z",
-    "last_save_at": "2026-08-13T23:26:39.806Z",
+    "last_save_at": "2026-08-14T06:23:27.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,9 +211,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:807b10c34668b7300e4ec2d5de8bc71b181be2997bd3945480ee79ec3aafef71",
+    "source_fingerprint": "sha256:e59e230e9e456a05c36a879b54b6f79d3b0cf640a99ab06cfe899ab1c1b21b5e",
     "source_doc_hashes": {
-      "spec.md": "377594832ec3330a57c427189e12435c837f621864e0da07d3e8fee3d0918720",
+      "spec.md": "4e433122cc01182b621cbdc00941645f9bcafad56eb4c355b8de1b227a0a7d64",
       "plan.md": "be10ccd8ac08d09ea8abec33fbc40f5a2e963cb7d9b9dd5bc3a874633afa63a4",
       "tasks.md": "bce25f026f77726f31c4b89959619aaf5b0e9204892e4636d659982e19fe5bee",
       "implementation-summary.md": "e77688e861210616f53c55866e1974063bde6dd0c5fcadf3ecbbe4d7bea50f2b",

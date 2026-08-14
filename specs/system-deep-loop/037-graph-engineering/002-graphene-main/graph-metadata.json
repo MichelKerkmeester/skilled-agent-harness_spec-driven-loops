@@ -133,19 +133,19 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Repo",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Produce",
+        "name": "Previous Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Next Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Repo study 1 (agent-swarms) produced a graph-based deep-loop design but studied a TypeScript product runtime whose weak spots (self-declared loops, best-effort checkpoints, look-alike parity) left the hardest parts under-specified",
     "created_at": "2026-08-13T21:14:44.834Z",
-    "last_save_at": "2026-08-13T21:14:44.834Z",
+    "last_save_at": "2026-08-14T06:21:42.463Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,9 +211,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:327bcbac081a556e9a8cb54685ed148bce2448c0d56f50a1d0b86618c5d7ecbb",
+    "source_fingerprint": "sha256:73878c8d328a8aca6d835a4d1e4cba79f00f098c2f296aca10e36a086af415df",
     "source_doc_hashes": {
-      "spec.md": "6217c2231f713f954cb1408d79261a369effa0b7d73d729517a327efa7d8ac9f",
+      "spec.md": "1c3dfbcdd233a7ba2f8d08dd9951426d09ae6cdf0da5f5a55f09f7e74eabaa9a",
       "plan.md": "a27ae8116e2c8e8ae2e56f95478399a693d9f315bf4f99ef63a1c4bdfb9ced2a",
       "tasks.md": "bfc11c25433358de4b204785dfbc54b7beee4b98f6e27974652eb35b3ccdc9b9",
       "implementation-summary.md": "58970d20ed55223f3d58e1f705fe127536b9c0d9a6b05f34ddf65ce3536bdb37",

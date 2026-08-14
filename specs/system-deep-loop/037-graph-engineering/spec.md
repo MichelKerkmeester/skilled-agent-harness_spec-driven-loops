@@ -151,3 +151,18 @@ Research summary (20 iterations; canonical source: `research/research.md`):
 <!-- /ANCHOR:questions -->
 
 ---
+
+## PHASE DOCUMENTATION MAP
+
+This is a phase parent. For the program map and reading order see [context-index.md](context-index.md); for program state and the next step see [handover.md](handover.md).
+
+| Phase | Focus | Layer | State |
+|-------|-------|-------|-------|
+| [001-agent-swarms](001-agent-swarms/spec.md) | Graph runtime as a projection over 036 | Graph | Complete |
+| [002-graphene-main](002-graphene-main/spec.md) | Event-derived truth and belief settlement | Graph | Complete |
+| [003-graph-arch](003-graph-arch/spec.md) | Governance: admission ≠ authorization | Graph | Complete |
+| [004-graph-engineering-master](004-graph-engineering-master/spec.md) | Knowledge / evidence production doctrine | Graph | Complete |
+| [005-noaa-paper-and-blog-theory](005-noaa-paper-and-blog-theory/spec.md) | Loop / harness layer (NOOA + blog theory) | Loop | Complete |
+| [006-cross-study-integration](006-cross-study-integration/spec.md) | Integration capstone (S1–S5 → one design) | Capstone | Complete |
+
+---

@@ -46,7 +46,8 @@
       "research/deep-research-strategy.md",
       "research/deep-research-dashboard.md",
       "research/resource-map.md",
-      "spec.md"
+      "spec.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -83,6 +84,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -150,21 +157,53 @@
         "kind": "key_phrase",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "Engineering Research Program",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Remains Unproven",
+        "kind": "proper_noun",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current state",
+        "kind": "heading",
+        "path": "handover.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-deep-loop workflows are iteration-based loops with linear dispatch, externalized JSONL state, and convergence detection",
     "created_at": "2026-08-08T14:32:54.230Z",
-    "last_save_at": "2026-08-14T06:01:36.927Z",
+    "last_save_at": "2026-08-14T06:23:28.585Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "research/research.md"
+      "research/research.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:a1412a745e72f9f1fd562b28f1fb96468cc53140044c1c5ebbba580d2220c91c",
+    "source_fingerprint": "sha256:2e8e095e857c7957f9aa2a93941b5eb22a617f088f2c1897c6363901ceadb410",
     "source_doc_hashes": {
-      "spec.md": "8d4302ce2c2c265753c5d73b6d5b91249993c7058d17342b4198c5e284553e82",
-      "research/research.md": "b793ff079f3843c08e3440e063c033132815ae278042d8fd9a036e2b2f755c3c"
+      "spec.md": "74c7673b161eea5ba5d02d5d86a948ca038d3d2d3100844ac42eaa6177c4a1ac",
+      "research/research.md": "b793ff079f3843c08e3440e063c033132815ae278042d8fd9a036e2b2f755c3c",
+      "handover.md": "d9980466885b6169cdf47262c1cb57b1ac155076c3aaffcbc541419152565385"
     },
     "last_active_child_id": "system-deep-loop/037-graph-engineering/001-agent-swarms",
     "last_active_at": null

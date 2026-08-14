@@ -1,20 +1,20 @@
 {
+  "level": 1,
   "specFolder": "system-deep-loop/037-graph-engineering",
-  "description": "The system-deep-loop workflows are iteration-based loops with linear dispatch, externalized JSONL state, and convergence detection",
+  "description": "Phase parent for the graph-engineering research program: six completed deep-research studies on how to evolve the in-house system-deep-loop engine into a graph-based agent-loop system over the designated-but-dark 036 authority plane. Studies 1-4 are the graph layer (agent-swarms runtime, graphene event/belief, graph-arch governance, graph-engineering-master knowledge doctrine); study 5 is the loop/harness layer (NOOA paper + blog theory); study 6 is the cross-study integration capstone that welds them into one design (spine + eight unified artifacts P1-P8 + resolved tensions + one integrated architecture). Program map: context-index.md; handover: handover.md.",
   "keywords": [
+    "graph-engineering",
+    "deep-loop",
+    "graph-based-agent-loop",
+    "036-authority-plane",
+    "propose-vs-authorize",
+    "cross-study-integration",
+    "research-program",
+    "phase-parent",
     "system-deep-loop",
-    "workflows",
-    "iteration-based",
-    "loops",
-    "linear",
-    "dispatch",
-    "externalized",
-    "jsonl",
-    "state",
-    "convergence",
-    "detection"
+    "agent-loop-engine"
   ],
-  "lastUpdated": "2026-08-08T14:32:54.230Z",
+  "lastUpdated": "2026-08-14T06:45:00.000Z",
   "specId": "037",
   "folderSlug": "graph-engineering",
   "parentChain": [
