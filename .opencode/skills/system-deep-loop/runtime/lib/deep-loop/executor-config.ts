@@ -195,6 +195,14 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  * low/medium/high/xhigh, each with a -fast sibling); 4.5 keeps its original
  * 6 (low/medium/high, each with a -fast sibling). All 8 Grok 4.6 ids were
  * live-dispatch-tested end-to-end before being added here.
+ *
+ * GPT-5.6 Luna Max joined this allowlist (2026-08-14): gpt-5.6-luna-max and
+ * gpt-5.6-luna-max-fast — the first GPT-5.6 persona in the curated Cursor
+ * scope. Both ids were confirmed present verbatim in the live
+ * `cursor-agent --list-models` output on 2026-08-14 ("GPT-5.6 Luna 1M Max" /
+ * "GPT-5.6 Luna Max Fast"). Unlike the Grok entries above, these two were
+ * list-verified only, NOT dispatch-tested (operator decision) — no
+ * dispatch-test claim is made for them.
  */
 export const CURSOR_SUPPORTED_MODELS = [
   'composer-2.5',
@@ -215,6 +223,8 @@ export const CURSOR_SUPPORTED_MODELS = [
   'cursor-grok-4.6-xhigh-fast',
   'glm-5.2-high',
   'glm-5.2-max',
+  'gpt-5.6-luna-max',
+  'gpt-5.6-luna-max-fast',
 ] as const;
 export type CursorSupportedModel = typeof CURSOR_SUPPORTED_MODELS[number];
 
@@ -230,10 +240,10 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * Enforced allowlist of devin --model ids. Devin exposes 37 model families and
  * accepts a family slug, an alias, or a full model uid, which is far more
  * surface than deep-loop dispatch needs or has prompt-craft data for. This set
- * is the curated four-family scope: GLM-5.2, SWE-1.7, Grok (4.5 and 4.6), and
- * DeepSeek. Every entry was read from the live `devin models list` — no id
- * here was inferred from documentation. Entries are sorted alphabetically,
- * not grouped by family.
+ * is the curated five-family scope: DeepSeek, GLM-5.2, GPT-5.6 (Luna Max only),
+ * Grok (4.5 and 4.6), and SWE-1.7. Every entry was read from the live `devin
+ * models list` — no id here was inferred from documentation. Entries are
+ * sorted alphabetically, not grouped by family.
  *
  * Tier naming matters and is easy to get wrong: `glm-5-2` is "GLM-5.2 High" and
  * is the free tier, while `glm-5-2-max` is the separate paid "GLM-5.2 Max"
@@ -246,16 +256,29 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * (4 uids: low/medium/high/xhigh); 4.5 keeps its original 3
  * (low/medium/high). All 4 Grok 4.6 uids were live-dispatch-tested
  * end-to-end before being added here.
+ *
+ * Three max-tier additions joined this allowlist (2026-08-14): the DeepSeek
+ * max tiers deepseek-v4-flash-max and deepseek-v4-pro-max, and the first
+ * GPT-5.6 persona uids gpt-5-6-luna-max and gpt-5-6-luna-max-priority (Devin
+ * labels the -priority suffix "…Max Thinking Fast", so it is the Fast variant
+ * of Luna Max). All four were confirmed present verbatim in the live `devin
+ * models list` output on 2026-08-14. Unlike the Grok entries above, these
+ * four were list-verified only, NOT dispatch-tested (operator decision) — no
+ * dispatch-test claim is made for them.
  */
 export const DEVIN_SUPPORTED_MODELS = [
   'deepseek-v4',
+  'deepseek-v4-flash-max',
   'deepseek-v4-pro',
+  'deepseek-v4-pro-max',
   'glm-5-2',
   'glm-5-2-1m',
   'glm-5-2-max',
   'glm-5-2-max-1m',
   'glm-5-2-none',
   'glm-5-2-none-1m',
+  'gpt-5-6-luna-max',
+  'gpt-5-6-luna-max-priority',
   'grok-4-5-high',
   'grok-4-5-low',
   'grok-4-5-medium',

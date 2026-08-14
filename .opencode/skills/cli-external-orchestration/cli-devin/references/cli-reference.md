@@ -23,7 +23,7 @@ Comprehensive reference for all Devin CLI commands, flags, models, configuration
 
 ### Core Principle
 
-Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates four families in scope — DeepSeek V4 Pro, GLM-5.2, Grok (4.5 and 4.6), and SWE-1.7 (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 37-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-1-7-lightning`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
+Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates five families in scope — DeepSeek, GLM-5.2, GPT-5.6 (Luna Max), Grok (4.5 and 4.6), and SWE-1.7 (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 37-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-1-7-lightning`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
 
 ### Purpose
 
@@ -109,7 +109,7 @@ Credentials:
 
 | Flag | Short | Values | Description |
 |------|-------|--------|-------------|
-| `--model` | | `<model-name>` | Model to use — `swe` (default alias → `swe-1-7-lightning`), plus the curated DeepSeek V4 Pro / GLM-5.2 / Grok (4.5 and 4.6) / SWE-1.7 families (see §5) |
+| `--model` | | `<model-name>` | Model to use — `swe` (default alias → `swe-1-7-lightning`), plus the curated DeepSeek / GLM-5.2 / GPT-5.6 Luna Max / Grok (4.5 and 4.6) / SWE-1.7 families (see §5) |
 | `--permission-mode` | | `auto`, `accept-edits`, `smart`, `dangerous` | Permission mode controlling tool auto-approval |
 | `--print` | `-p` | `[<prompt>]` | Non-interactive mode: print response and exit |
 | `--continue` | `-c` | (none) | Continue the most recent session in the current directory |
@@ -184,7 +184,7 @@ devin -- add a login page
 
 Devin dispatches **`swe`** (alias → `swe-1-7-lightning`) at the **`accept-edits`** permission mode by default. The model is switched per-dispatch with `--model <alias>` (short names resolve to the latest version in that family). There is no headless reasoning-effort flag — depth is expressed through the permission mode (autonomy) and the chosen model, not a reasoning flag; interactive REPL sessions cycle thinking depth with `Alt+T` (macOS: `Opt+T`).
 
-**Full curated roster (DeepSeek V4 Pro / GLM-5.2 / Grok (4.5 and 4.6) / SWE-1.7 families) → [providers-and-models.md](./providers-and-models.md).** Devin's native Adaptive router and full 37-family roster are out of this skill's curated scope.
+**Full curated roster (DeepSeek / GLM-5.2 / GPT-5.6 Luna Max / Grok (4.5 and 4.6) / SWE-1.7 families) → [providers-and-models.md](./providers-and-models.md).** Devin's native Adaptive router and full 37-family roster are out of this skill's curated scope.
 
 ### Setting the Model
 

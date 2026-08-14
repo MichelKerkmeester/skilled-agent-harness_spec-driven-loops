@@ -2,7 +2,7 @@
 name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.0.0
+version: 1.4.2.0
 hard_rules:
   - id: stdin-redirect-required
     check: stdin-redirect-required
