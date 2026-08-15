@@ -35,6 +35,8 @@ This checklist is the blocking mode-gate contract for the Deep AI Council resume
 verify agent runs before the adapter is accepted by shadow parity; each report pins the candidate SHA, shared-contract
 fingerprints, sealed-ledger fixture digest, reducer version, and replay decision, and fails on silent fallback, duplicate
 semantic application, missing event, or unexpected authority change.
+
+HEAD closeout evidence for every checked item below: [Commit: `5a7ae9a87c04f29db91d5365c6015f2778602080`]; [File: `.opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/deep-ai-council-resume-adapter.ts:1197`]; [File: `.opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-resume-adapter/deep-ai-council-resume-adapter.ts:1257`]; [Test: `npx --no-install vitest run tests/unit/deep-ai-council-resume-adapter.vitest.ts --configLoader runner` — 10/10 passed in 308.01s]; [Test: `npx --no-install tsc --noEmit --ignoreDeprecations 6.0` — exit 0].
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->

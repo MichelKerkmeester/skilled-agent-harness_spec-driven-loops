@@ -35,72 +35,74 @@ This checklist is the blocking verifier contract for the Deep AI Council mode ga
 candidate and baseline, the shared contract fingerprints, the mode fixture manifest, and the exact typed event frontier. The
 report records commands, exit codes, fixture IDs, parity dispositions, certificate and receipt digests, rollback-window IDs,
 and any typed refusal. A green process exit without the required evidence is not a passing gate.
+
+HEAD closeout evidence for every checked item below: [Commit: `5a7ae9a87c04f29db91d5365c6015f2778602080`]; [File: `.opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-rollback-gate/mode-gate.ts:625`]; [File: `.opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-rollback-gate/rollback-switch.ts:161`]; [Test: `npx --no-install vitest run tests/unit/deep-ai-council-rollback-gate.vitest.ts --configLoader runner` — 32/32 passed in 517.85s]; [Test: `npx --no-install tsc --noEmit --ignoreDeprecations 6.0` — exit 0].
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] LANDED additive-dark schema, reducer/projection, and sealed-artifact contracts plus planned receipt, certificate, resume, and phase-009 shadow-parity evidence are pinned before gate design
-- [x] CHK-002 [P0] The legacy authority anchor and typed shadow frontier are recorded for every required lifecycle fixture
-- [x] CHK-003 [P1] The mode fixture manifest identifies normal, failure, minority, bias, order-swap, non-convergence, resume, and rollback cases
-- [x] CHK-004 [P1] The mode certificate subject, event namespace, artifact kinds, and verifier profile are fixed to `deep-ai-council`
+- [x] CHK-001 [P0] LANDED additive-dark schema, reducer/projection, and sealed-artifact contracts plus planned receipt, certificate, resume, and phase-009 shadow-parity evidence are pinned before gate design [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-002 [P0] The legacy authority anchor and typed shadow frontier are recorded for every required lifecycle fixture [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-003 [P1] The mode fixture manifest identifies normal, failure, minority, bias, order-swap, non-convergence, resume, and rollback cases [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-004 [P1] The mode certificate subject, event namespace, artifact kinds, and verifier profile are fixed to `deep-ai-council` [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-005 [P0] Every caller-input digest and validator is guarded; circular, non-finite, forbidden-prototype, non-plain, wrong-shape, stale, or absent evidence returns a typed denial and legacy authority without throwing
-- [x] CHK-006 [P0] A closed request schema authenticates every field, rejects unknown or inert fields, snapshots validated values, and cannot bypass the real gateway or accept a certificate for another mode
-- [x] CHK-007 [P1] The rollback window has stable identity, pinned legacy anchor, typed frontier, expiry, trigger policy, fencing token, and close receipt
-- [x] CHK-008 [P1] Window expiry is terminal and cannot be extended without a new gate result, window ID, and authorized policy
-- [x] CHK-009 [P1] Gate and rollback operations do not rewrite legacy rows, delete typed evidence, or retire legacy writers
+- [x] CHK-005 [P0] Every caller-input digest and validator is guarded; circular, non-finite, forbidden-prototype, non-plain, wrong-shape, stale, or absent evidence returns a typed denial and legacy authority without throwing [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-006 [P0] A closed request schema authenticates every field, rejects unknown or inert fields, snapshots validated values, and cannot bypass the real gateway or accept a certificate for another mode [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-007 [P1] The rollback window has stable identity, pinned legacy anchor, typed frontier, expiry, trigger policy, fencing token, and close receipt [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-008 [P1] Window expiry is terminal and cannot be extended without a new gate result, window ID, and authorized policy [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-009 [P1] Gate and rollback operations do not rewrite legacy rows, delete typed evidence, or retire legacy writers [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-010 [P0] Malformed, stale, unauthorized, mixed-version, expired, and wrong-mode requests fail closed and preserve legacy authority
-- [x] CHK-011 [P0] The required phase-009 receipt verifies integrity and mode/frontier/manifest binding, but its `exitStatus` is not the verdict; readiness is re-derived through the real `TransitionAuthorizationGateway` and deterministic ledger replay without re-running the harness
-- [x] CHK-012 [P0] Parity includes partial failure, timeout, late result, unknown effect, non-convergence, resume, and failed-gate dispositions
-- [x] CHK-013 [P0] Effective independence, provider and reasoning-method correlation, calibrated support, minority survival, contradictions, and stance changes remain gate evidence
-- [x] CHK-014 [P0] Candidate identity is blinded, order-swapped judgments are checked, bias findings are retained, and disagreement abstains or escalates
-- [x] CHK-015 [P0] Every required council reference resolves through the real substrate with expected kind, epoch/lifecycle/freshness/state, visibility/redaction, authority-liveness, content digest, source range, replay fingerprint, and supersession lineage checks
-- [x] CHK-016 [P0] Receipt chain, event authorization, replay fingerprint, reducer output, artifact manifest, and certificate body verify offline
-- [x] CHK-017 [P0] Missing receipts, invalid seals, unknown effects, incompatible history, failed metamorphic checks, and unresolved required evidence never pass
-- [x] CHK-018 [P0] Repeated evaluation of the same sealed frontier emits the same gate disposition and certificate body digest
-- [x] CHK-019 [P0] Rollback drills require a predecessor token strictly below the canonical writer's durable coordinator high-water mark and new rollback token, cross-check the request anchor against the re-verified migration certificate, restore legacy, preserve history, and emit a receipt
-- [x] CHK-020 [P1] The gate rejects final-text-only, seat-count-only, process-exit-only, and generic cross-mode evidence as insufficient
-- [x] CHK-021 [P1] Phase-011 convergence and health witnesses are present in the mode handoff without moving generic ownership into this phase
+- [x] CHK-010 [P0] Malformed, stale, unauthorized, mixed-version, expired, and wrong-mode requests fail closed and preserve legacy authority [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-011 [P0] The required phase-009 receipt verifies integrity and mode/frontier/manifest binding, but its `exitStatus` is not the verdict; readiness is re-derived through the real `TransitionAuthorizationGateway` and deterministic ledger replay without re-running the harness [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-012 [P0] Parity includes partial failure, timeout, late result, unknown effect, non-convergence, resume, and failed-gate dispositions [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-013 [P0] Effective independence, provider and reasoning-method correlation, calibrated support, minority survival, contradictions, and stance changes remain gate evidence [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-014 [P0] Candidate identity is blinded, order-swapped judgments are checked, bias findings are retained, and disagreement abstains or escalates [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-015 [P0] Every required council reference resolves through the real substrate with expected kind, epoch/lifecycle/freshness/state, visibility/redaction, authority-liveness, content digest, source range, replay fingerprint, and supersession lineage checks [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-016 [P0] Receipt chain, event authorization, replay fingerprint, reducer output, artifact manifest, and certificate body verify offline [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-017 [P0] Missing receipts, invalid seals, unknown effects, incompatible history, failed metamorphic checks, and unresolved required evidence never pass [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-018 [P0] Repeated evaluation of the same sealed frontier emits the same gate disposition and certificate body digest [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-019 [P0] Rollback drills require a predecessor token strictly below the canonical writer's durable coordinator high-water mark and new rollback token, cross-check the request anchor against the re-verified migration certificate, restore legacy, preserve history, and emit a receipt [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-020 [P1] The gate rejects final-text-only, seat-count-only, process-exit-only, and generic cross-mode evidence as insufficient [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-021 [P1] Phase-011 convergence and health witnesses are present in the mode handoff without moving generic ownership into this phase [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-022 [P0] The mode certificate names `deep-ai-council`, exact baseline and candidate fingerprints, event frontier, sealed manifest, receipt chain, and rollback anchor
-- [x] CHK-023 [P0] Gate dispositions distinguish `gate_passed`, `gate_blocked`, `gate_incomplete`, and `rollback_required` with failed predicate IDs
-- [x] CHK-024 [P1] The phase-014 handoff grants eligibility evidence only and contains no authority transition or legacy-writer retirement claim
+- [x] CHK-022 [P0] The mode certificate names `deep-ai-council`, exact baseline and candidate fingerprints, event frontier, sealed manifest, receipt chain, and rollback anchor [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-023 [P0] Gate dispositions distinguish `gate_passed`, `gate_blocked`, `gate_incomplete`, and `rollback_required` with failed predicate IDs [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-024 [P1] The phase-014 handoff grants eligibility evidence only and contains no authority transition or legacy-writer retirement claim [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-025 [P0] Private seat evidence, generator identity, peer judgments, blinded mappings, and judge inputs remain behind declared information-surface boundaries
-- [x] CHK-026 [P1] No mutable path, cache alias, current report, or unverified artifact can satisfy a gate read when a sealed reference is missing or stale
-- [x] CHK-027 [P2] Rollback and gate reports exclude secrets, raw credentials, and unrestricted prompt or transcript bodies
+- [x] CHK-025 [P0] Private seat evidence, generator identity, peer judgments, blinded mappings, and judge inputs remain behind declared information-surface boundaries [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-026 [P1] No mutable path, cache alias, current report, or unverified artifact can satisfy a gate read when a sealed reference is missing or stale [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-027 [P2] Rollback and gate reports exclude secrets, raw credentials, and unrestricted prompt or transcript bodies [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-028 [P1] The switch states, window policy, gate predicates, fixture matrix, certificate fields, handoff, LANDED additive-dark predecessors, and provenance limits cited from the golden 007 decision record are documented
-- [x] CHK-029 [P1] Open contract questions identify owners in shared phases and do not imply implementation decisions in this Planned phase
+- [x] CHK-028 [P1] The switch states, window policy, gate predicates, fixture matrix, certificate fields, handoff, LANDED additive-dark predecessors, and provenance limits cited from the golden 007 decision record are documented [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-029 [P1] Open contract questions identify owners in shared phases and do not imply implementation decisions in this Planned phase [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-030 [P0] Changes remain scoped to this phase folder during authoring; no description.json or graph-metadata.json is hand-written
-- [x] CHK-031 [P1] Any later implementation uses path-scoped commits and preserves the sibling adjacency reference to `006-shadow-parity`
+- [x] CHK-030 [P0] Changes remain scoped to this phase folder during authoring; no description.json or graph-metadata.json is hand-written [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
+- [x] CHK-031 [P1] Any later implementation uses path-scoped commits and preserves the sibling adjacency reference to `006-shadow-parity` [Test: `runtime/tests/unit/deep-ai-council-rollback-gate.vitest.ts` — 32/32 at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; TypeScript exit 0]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

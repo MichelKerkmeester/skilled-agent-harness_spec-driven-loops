@@ -36,6 +36,8 @@ candidate SHA, fixture and input digests, mapping and normalization-profile hash
 canonical projection fingerprints, commands, exit codes, and legacy-authority status. A missing fixture,
 zero executed scenarios, unexpected tracked mutation, unauthorized transition, duplicate effect, or
 unexplained projection difference fails the gate.
+
+HEAD closeout evidence for every checked item below: [Commit: `5a7ae9a87c04f29db91d5365c6015f2778602080`]; [File: `.opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts:1817`]; [File: `.opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-shadow-parity/harness-adapter.ts:2847`]; [Test: `npx --no-install vitest run tests/unit/deep-ai-council-shadow-parity.vitest.ts --configLoader runner` — 41/41 passed in 210.20s]; [Test: `npx --no-install tsc --noEmit --ignoreDeprecations 6.0` — exit 0].
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->

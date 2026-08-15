@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/003-deep-ai-council/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-29T08:10:54Z"
+    last_updated_at: "2026-08-15T13:39:57Z"
     last_updated_by: "opencode"
-    recent_action: "Built and verified the Council rollback gate"
+    recent_action: "Reverified the Council rollback gate at HEAD"
     next_safe_action: "Phase 014 may verify the readiness certificate"
     blockers: []
     key_files:
@@ -44,6 +44,7 @@ _memory:
 | **Spec Folder** | 007-rollback-and-mode-gate |
 | **Completed** | 2026-07-28 |
 | **Level** | 2 |
+| **Status** | Complete |
 | **Runtime Surface** | `.opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-rollback-gate/` |
 | **Authority** | Additive-dark evidence only |
 <!-- /ANCHOR:metadata -->
@@ -108,8 +109,8 @@ Every public entry is fail-closed. Malformed gate inputs and rollback requests, 
 
 | Check | Result |
 |-------|--------|
-| Focused Vitest | PASS evidence recorded by the final serial run |
-| Whole-runtime TypeScript | PASS with zero diagnostics for the new module |
+| Focused Vitest | PASS at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`: 32/32 in 517.85s using the requested runner config |
+| Whole-runtime TypeScript | PASS: `npx --no-install tsc --noEmit --ignoreDeprecations 6.0` exited 0 with zero diagnostics |
 | Verdict re-derivation | PASS for blocked self-report, missing gateway audit anchor, and tampered replay |
 | Complete request binding | PASS for changed and unknown consequential request fields |
 | Rollback window | PASS for minimum days, minimum executions, and connected-identity deduplication |
