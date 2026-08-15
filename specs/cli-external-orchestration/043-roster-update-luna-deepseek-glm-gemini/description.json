@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "description": "The external-CLI orchestration modes enforce curated model rosters: cli-cursor and cli-devin hard-reject any `--model` id outside",
+  "keywords": [
+    "external-cli",
+    "orchestration",
+    "modes",
+    "enforce",
+    "curated",
+    "model",
+    "rosters",
+    "cli-cursor",
+    "cli-devin",
+    "hard-reject",
+    "outside"
+  ],
+  "lastUpdated": "2026-08-15T10:19:03.168Z",
+  "specId": "043",
+  "folderSlug": "roster-update-luna-deepseek-glm-gemini",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

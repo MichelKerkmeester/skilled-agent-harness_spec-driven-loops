@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max",
+  "spec_folder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max",
+  "parent_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deepseek v4 max devin",
+      "deepseek max phase 002",
+      "deepseek max devin plan",
+      "deepseek max phase 002 plan",
+      "deepseek max devin tasks",
+      "deepseek max phase 002 tasks",
+      "deepseek max devin checklist",
+      "deepseek max phase 002 checklist",
+      "deepseek max devin summary",
+      "deepseek max phase 002 summary"
+    ],
+    "key_topics": [
+      "deepseek",
+      "max",
+      "devin",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "live",
+      "roster",
+      "carries",
+      "thinking"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Max Tier Dispatch Support",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Luna Max",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "operator",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Devin's live roster carries DeepSeek V4 max thinking tiers (`deepseek-v4-pro-max`, `deepseek-v4-flash-max`) that `DEVINSUPPORTEDMODELS` does not include, so cli-devin hard-rejects them",
+    "created_at": "2026-08-15T08:28:38.040Z",
+    "last_save_at": "2026-08-15T10:20:36.224Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d9fac8957c36e29a9e4e37118bd27b18a95351ff7a99bbc5addee5c6ba7af507",
+    "source_doc_hashes": {
+      "spec.md": "401ce78d203cb58878c0b428798a3cde313acd0bc68a7620c1696261fcedd4f0",
+      "plan.md": "6cb7d460cf3b6f4d35663966597050e4ad17f12f79e7b91478f2b4151b6642ef",
+      "tasks.md": "5a8fd66c403a253b4e164fbbda5e71961a0658d2e3f23f5c1a5b15b70d1c0269",
+      "checklist.md": "80c59d9e17b3926c3897c6ae884d9823a627e8d79aff0a047a4c46220b7ee6af",
+      "implementation-summary.md": "767c422934efe267f1eac37bb4ba8c791c4219b9cbf5229e8c9600599791ec7f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

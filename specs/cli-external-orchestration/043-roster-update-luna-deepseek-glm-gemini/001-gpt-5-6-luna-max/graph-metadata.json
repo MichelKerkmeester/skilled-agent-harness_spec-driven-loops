@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/001-gpt-5-6-luna-max",
+  "spec_folder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/001-gpt-5-6-luna-max",
+  "parent_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "luna max roster",
+      "gpt-5.6 luna max cursor devin",
+      "luna max phase 001",
+      "luna max roster plan",
+      "luna max phase 001 plan",
+      "luna max roster tasks",
+      "luna max phase 001 tasks",
+      "luna max roster checklist",
+      "luna max phase 001 checklist",
+      "luna max roster summary",
+      "luna max phase 001 summary"
+    ],
+    "key_topics": [
+      "luna",
+      "max",
+      "roster",
+      "gpt-5",
+      "cursor",
+      "devin",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "live-available"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Luna Max Dispatch Support",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Luna Max",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "GPT-5.6 Luna Max is live-available for external-CLI dispatch but neither enforced roster carries a GPT-5.6 persona: cli-cursor's `CURSORSUPPORTEDMODELS` hard-rejects `gpt-5.6-luna-max` and cli-devin's `DEVINSUPPORTEDMODELS` hard-rejects `gpt-5-6-luna-max` / `gpt-5-6-luna-max-priority`",
+    "created_at": "2026-08-15T08:28:37.831Z",
+    "last_save_at": "2026-08-15T10:20:35.956Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ae0db9ad84d8ddc0744379fa480949835381249ddf9dc3a97342635d668e2583",
+    "source_doc_hashes": {
+      "spec.md": "5974c751524c00a22e3088779c9e202a877a2e98f8243d3817a76bf85a529d2c",
+      "plan.md": "69ba4d38fad06f7609b0af96c727181a192885bd93f74b9101d54140d3dfa8dd",
+      "tasks.md": "f4635f473764504883dc68046b5d6afb8c22d54d55f46a954af9101194260094",
+      "checklist.md": "3dc5d04fa24dab3dac149bde5571facefbcbb9e1526d7e649ea6facbe8b068bf",
+      "implementation-summary.md": "752f7eeaba73aa7775b91d53aca76a7af53b5e23fdc97036de077dbc29e3a246"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

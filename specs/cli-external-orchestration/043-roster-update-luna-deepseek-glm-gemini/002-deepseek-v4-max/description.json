@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max",
+  "description": "Devin's live roster carries DeepSeek V4 max thinking tiers (`deepseek-v4-pro-max`, `deepseek-v4-flash-max`) that `DEVINSUPPORTEDMODELS` does not",
+  "keywords": [
+    "devin",
+    "live",
+    "roster",
+    "carries",
+    "deepseek",
+    "max",
+    "thinking",
+    "tiers",
+    "deepseek-v4-pro-max",
+    "deepseek-v4-flash-max",
+    "devinsupportedmodels"
+  ],
+  "lastUpdated": "2026-08-15T10:19:03.168Z",
+  "specId": "002",
+  "folderSlug": "deepseek-v4-max",
+  "parentChain": [
+    "cli-external-orchestration",
+    "043-roster-update-luna-deepseek-glm-gemini"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
