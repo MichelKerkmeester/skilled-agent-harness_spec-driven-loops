@@ -32,7 +32,8 @@
     "cli-external-orchestration/035-improved-communication/026-capability-and-privacy-gating",
     "cli-external-orchestration/035-improved-communication/027-evaluation-and-release-gate",
     "cli-external-orchestration/035-improved-communication/028-wiring-docs-and-operator-rollout",
-    "cli-external-orchestration/035-improved-communication/030-local-provider-loader"
+    "cli-external-orchestration/035-improved-communication/030-local-provider-loader",
+    "cli-external-orchestration/035-improved-communication/031-improvement-research"
   ],
   "manual": {
     "depends_on": [],
@@ -122,7 +123,7 @@
     ],
     "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
     "created_at": "2026-08-11T06:21:47Z",
-    "last_save_at": "2026-08-14T18:00:05.764Z",
+    "last_save_at": "2026-08-15T08:34:12.871Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -132,7 +133,7 @@
     "source_doc_hashes": {
       "spec.md": "7005ef43f2dbd7273593e8019df64bc682e1c8382fc84b3a7565445891695403"
     },
-    "last_active_child_id": "cli-external-orchestration/035-improved-communication/030-local-provider-loader",
-    "last_active_at": "2026-08-14T18:00:05.764Z"
+    "last_active_child_id": "cli-external-orchestration/035-improved-communication/031-improvement-research",
+    "last_active_at": "2026-08-15T08:34:12.871Z"
   }
 }
