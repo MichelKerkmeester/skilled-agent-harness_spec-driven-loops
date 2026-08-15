@@ -1,0 +1,45 @@
+{
+  "assignmentModel": {
+    "value": "flat_pool",
+    "contract": "The shipped scheduler accepts flat_pool and rejects wave activation before dispatch."
+  },
+  "concurrency": {
+    "contract": "The configured cap is a positive integer no greater than eight and the async pool holds at most that many live lineages."
+  },
+  "count": {
+    "contract": "A lineage count expands deterministically into one runnable unit per replica with collision-checked labels."
+  },
+  "iterations": {
+    "contract": "Each lineage carries its own positive iteration cap; the default upper-bound calculation uses twelve when absent."
+  },
+  "timeout": {
+    "contract": "Single dispatches use a bounded spawn timeout with SIGKILL; fan-out computes a bounded lineage timeout and reports signal termination as failure."
+  },
+  "stdin": {
+    "contract": "Codex receives the prompt through stdin and the parent closes the pipe; headless background examples redirect from /dev/null."
+  },
+  "budgets": {
+    "contract": "Aggregate cost is rejected before any lineage spawn and per-lineage cost is rejected inside the worker before provider execution."
+  },
+  "cleanup": {
+    "contract": "Cleanup targets only captured process identifiers and descendants; blanket command-name kills are prohibited."
+  },
+  "artifacts": {
+    "contract": "Each lineage writes into its own artifact directory; missing required reports or iteration files prevents fulfillment."
+  },
+  "completionMarkers": {
+    "contract": "The prompt requests FANOUT_LINEAGE_COMPLETE:<label>, while durable report and iteration artifacts remain the stronger completion evidence."
+  },
+  "recursionGuard": {
+    "contract": "SPECKIT_CLI_DISPATCH_STACK is stamped per dispatch and a same-kind child lineage is rejected before spawn."
+  },
+  "childEnvironment": {
+    "direct": ["MK_SPEC_GATE_ENFORCE=0", "AI_SESSION_CHILD=1"],
+    "fanout": ["MK_SPEC_GATE_DISABLED=1", "AI_SESSION_CHILD=1"]
+  },
+  "incidentVerdicts": {
+    "adapterDefect": "A hermetic invocation reaches the shipped adapter contract and violates an asserted command, process, artifact, or classification invariant.",
+    "dependencySkip": "A gated live-only cell names the unavailable binary, authentication state, recursion signal, dependency realpath, or opt-in switch.",
+    "harnessFailure": "The fixture itself cannot establish its timeout, process ownership, isolated workspace, capture, or cleanup precondition."
+  }
+}
