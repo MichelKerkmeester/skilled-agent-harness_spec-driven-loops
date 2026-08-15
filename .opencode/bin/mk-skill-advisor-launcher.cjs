@@ -1184,6 +1184,15 @@ function buildIfNeeded(actions) {
     throw new Error(`system-skill-advisor not found at ${rel(kitDir)}`);
   }
 
+  // A live test run must never trigger the real `npm ci`, which deletes and
+  // reinstalls node_modules under the real mcp-server and hangs the whole suite.
+  // Tests that need built artifacts pre-stage them in a temp dir via
+  // configureLauncherPathsForTesting; reaching here under a test runner is a
+  // mistake to surface, not a destructive install to run.
+  if (process.env.VITEST) {
+    throw new Error('launcher artifact bootstrap is disabled under vitest; pre-stage build artifacts via configureLauncherPathsForTesting');
+  }
+
   actions.push('installed dependencies and built @spec-kit/system-skill-advisor MCP server');
   const installCommand = exists(path.join(mcpDir, 'package-lock.json')) ? 'ci' : 'install';
   run('npm', [installCommand, '--no-audit', '--no-fund', '--silent'], { cwd: mcpDir });
