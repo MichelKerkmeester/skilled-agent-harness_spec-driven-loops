@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/003-deep-ai-council/004-certificates-and-receipts"
-    last_updated_at: "2026-07-27T19:28:02Z"
+    last_updated_at: "2026-08-15T13:39:57Z"
     last_updated_by: "codex"
-    recent_action: "Shipped council certificates receipts and offline verifier with dependency closure"
+    recent_action: "Reverified certificates receipts and offline verifier at HEAD"
     next_safe_action: "Successor 005-resume-adapter consumes exported evidence contracts"
     blockers: []
     key_files:
@@ -131,6 +131,7 @@ evidence prevents trusted completion and automatic replay.
 |-------|--------|
 | Targeted Vitest | PASS: `deep-ai-council-certificates.vitest.ts` — unverifiable pruned store, dependency closure negatives, forged binding, positive trusted-completion |
 | Substrate imports | Real `AppendOnlyLedger`, `AuthorizedEvidenceWriter`, HMAC certification, `deriveReplayFingerprint`, filesystem sealed store, council reducers |
+| HEAD closeout | PASS at `5a7ae9a87c04f29db91d5365c6015f2778602080`: 16/16 focused tests in 226.11s; whole-runtime TypeScript exit 0 |
 
 `substrateImportsReal: true`. The suite uses real authorized ledger append, sealed artifact store reads, replay
 fingerprint derivation, and council reducer folding without test-local digest or signature substitutes.

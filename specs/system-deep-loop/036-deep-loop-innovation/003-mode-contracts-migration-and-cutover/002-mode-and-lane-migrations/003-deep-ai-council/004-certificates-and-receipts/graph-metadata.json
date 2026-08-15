@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -85,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "Defined Deep",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,6 +104,12 @@
       },
       {
         "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Deep",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep AI Council per-run certificate and per-transition receipt profiles over the typed event-ledger substrate: attestation boundaries, replay-fingerprint inputs, lifecycle coverage, recovery dispositions, and independent offline verification for seats, critique rounds, convergence, council artifacts, and the council test gate.",
     "created_at": "2026-07-16T03:43:34.752Z",
-    "last_save_at": "2026-08-14T04:28:03.610Z",
+    "last_save_at": "2026-08-15T13:40:36.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8c329b057309e1f7f0ee030ec447cb3cfe3c39da9ec196b46d2dae4921b469d",
+    "source_fingerprint": "sha256:b3da49674bffb027d1c8f5a7c8a854c3c5ff588c61c8947c64a1da45c3e3f023",
     "source_doc_hashes": {
-      "spec.md": "8eab2c50e0600df2d67bccd8c00132bc10217711d50c1d716ad5dfbec50babe9",
-      "plan.md": "0f5ea347cb9eb7e6ee8e78e00ac9ec96cd86d2b50aed7e453b366e23e48e6c52",
-      "tasks.md": "6c95ae35579ef42cf31183db951a76a7b2018191b2807806436a9df3df8f6891",
-      "checklist.md": "a5e99c40ab761e38b2b685236a608706e6bd91724fffa67fffafd831894d5e15",
-      "implementation-summary.md": "f9cc268ff9b685b356390fa25d19be6d8bd9b28b12e3111ae422016fa4aa9ed5"
+      "spec.md": "67850c7f5c4bfa9334b2dba9b16aea333ac26a8d90ca8e1ccca745b538b00078",
+      "plan.md": "3dee7da1423e83301f3f074b8f953704dee54c10ed04de685c5c465d3b468b1a",
+      "tasks.md": "2d16b724a1f3e4e0de1cdd99393b85bf411540671cbeac38a8584db4a97e6747",
+      "checklist.md": "81583b6dab35905fdbf84166cf3a7e61429fd90b23e6c38b1f2aec2072cf58d3",
+      "implementation-summary.md": "cb3ce23c56eefee40d97f0929a5c8ffaccba7a65b4a0f5ad07acdfdca6c86672"
     },
     "last_active_child_id": null,
     "last_active_at": null

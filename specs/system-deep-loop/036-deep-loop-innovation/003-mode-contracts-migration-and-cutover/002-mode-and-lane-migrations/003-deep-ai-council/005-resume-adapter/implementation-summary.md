@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/003-deep-ai-council/005-resume-adapter"
-    last_updated_at: "2026-07-27T22:13:59Z"
+    last_updated_at: "2026-08-15T13:39:57Z"
     last_updated_by: "codex"
-    recent_action: "Shipped the offline-verified council resume adapter"
+    recent_action: "Reverified the offline council resume adapter at HEAD"
     next_safe_action: "Shadow parity consumes the closed resume decision"
     blockers: []
     key_files:
@@ -127,7 +127,8 @@ All output is explicitly `dark-evidence-only` or `shadow-only`, with `legacyAuth
 | Fingerprint recomputation | PASS, changed schema, policy, target, tool, model, and judge inputs cannot reuse a stale digest |
 | Certificate lifecycle | PASS, mutated and non-trusted-completion bundles return rebuild-required |
 | Idempotency and darkness | PASS, repeated request returns one decision and dispatch remains off |
-| Whole-runtime TypeScript | Historical claim not rerun here; clean-checkout npm wiring is not reproducible because runtime `package.json` files are ignored |
+| HEAD closeout | PASS at `5a7ae9a87c04f29db91d5365c6015f2778602080`: 10/10 focused tests in 308.01s |
+| Whole-runtime TypeScript | PASS: `npx --no-install tsc --noEmit --ignoreDeprecations 6.0` exited 0 with zero diagnostics |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/003-deep-ai-council/006-shadow-parity"
-    last_updated_at: "2026-07-28T05:02:31Z"
+    last_updated_at: "2026-08-15T13:39:57Z"
     last_updated_by: "codex"
-    recent_action: "Repaired council parity replay"
+    recent_action: "Reverified council parity replay at HEAD"
     next_safe_action: "Consume parity evidence in the successor mode gate"
     blockers: []
     key_files:
@@ -40,7 +40,7 @@ _memory:
 | **Spec Folder** | 006-shadow-parity |
 | **Completed** | 2026-07-28 |
 | **Level** | 2 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Evidence reconciliation** | Reinstated by 021 on 2026-07-31 with fresh suite evidence; implementation claim remains supported. |
 <!-- /ANCHOR:metadata -->
 
@@ -73,8 +73,8 @@ The legacy projection folds council behavior directly from the pinned event voca
 <!-- ANCHOR:verification -->
 ## Verification
 
-- `cd .opencode/skills/system-deep-loop/runtime && ./node_modules/.bin/vitest run --no-coverage tests/unit/deep-ai-council-shadow-parity.vitest.ts`: 39 tests passed; suite sha256 `a88177197553c65ca58f72821014e1bd11cf99ef8598f8fd890a0aca7b54c79b`; candidate SHA `dd07cb1f52ed2ebaca7d152d0a088366b2958b32`.
-- `.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json`: exit 0 with zero diagnostics, including zero diagnostics for `deep-ai-council-shadow-parity`.
+- `cd .opencode/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/deep-ai-council-shadow-parity.vitest.ts --configLoader runner`: 41/41 tests passed in 210.20s at HEAD `5a7ae9a87c04f29db91d5365c6015f2778602080`; suite sha256 `f0140cfd73ffcb1b5e42d45d5ff88b2205af738d981851fadafe538f80405eaf`.
+- `cd .opencode/skills/system-deep-loop/runtime && npx --no-install tsc --noEmit --ignoreDeprecations 6.0`: exit 0 with zero diagnostics.
 - The test surface proves allowlisted volatility with semantic equality, independent raw event IDs, all comparator divergence classes, unexplained-diff blocking, closed council event schemas, real ledger authorization and append behavior, and distinct legacy versus dark executors.
 <!-- /ANCHOR:verification -->
 
