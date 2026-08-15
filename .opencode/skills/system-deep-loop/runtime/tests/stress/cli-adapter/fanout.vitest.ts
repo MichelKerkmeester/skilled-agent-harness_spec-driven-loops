@@ -120,6 +120,36 @@ async function runFanoutConfig(
   return { ...invocation, result };
 }
 
+async function runReviewFanoutConfig(
+  fixture: AdapterShimFixture,
+  suffix: string,
+  config: Record<string, unknown>,
+  options: {
+    readonly stopPolicy?: 'convergence' | 'max-iterations';
+    readonly convergenceThreshold?: number;
+  } = {},
+): Promise<FanoutInvocation> {
+  const specFolder = `specs/fanout-${suffix}`;
+  const baseArtifactDir = join(fixture.root, specFolder, 'review', 'artifacts');
+  mkdirSync(baseArtifactDir, { recursive: true });
+  const args = [
+    '--spec-folder', specFolder,
+    '--loop-type', 'review',
+    '--fanout-config-json', JSON.stringify(config),
+    '--base-artifact-dir', baseArtifactDir,
+  ];
+  if (options.stopPolicy) args.push('--stop-policy', options.stopPolicy);
+  if (options.convergenceThreshold !== undefined) {
+    args.push('--convergence-threshold', String(options.convergenceThreshold));
+  }
+  const result = await spawnCjs(fanoutScript, args, {
+    cwd: fixture.root,
+    env: fixture.env,
+    timeoutMs: 12_000,
+  });
+  return { result, baseArtifactDir, args };
+}
+
 async function runFanoutFromCwd(
   fixture: AdapterShimFixture,
   cwd: string,
@@ -167,6 +197,16 @@ function readJsonLines(filePath: string): readonly Record<string, unknown>[] {
 
 function ledgerEvents(baseArtifactDir: string): readonly Record<string, unknown>[] {
   return readJsonLines(join(baseArtifactDir, 'orchestration-status.log'));
+}
+
+function expectTransportMissingFailure(events: readonly Record<string, unknown>[]): void {
+  const failure = events.find((event) => event.event === 'failed' && event.terminal === true);
+  expect(failure).toMatchObject({
+    error: {
+      message: 'lineage adapter exited with code -2',
+      exit_code: -2,
+    },
+  });
 }
 
 function maximumInFlight(events: readonly Record<string, unknown>[]): number {
@@ -363,6 +403,13 @@ describe.sequential('fan-out scheduler contracts', () => {
     });
     expect(run.result.exitCode).toBe(3);
     expect(readAdapterCaptures(fixture)).toEqual([]);
+    expectTransportMissingFailure(ledgerEvents(run.baseArtifactDir));
+
+    const nonTransportFixture = useShim('auth-denial');
+    const nonTransportRun = await runAdapterFanout(nonTransportFixture, { mode: 'transport-negative-control' });
+    expect(nonTransportRun.result.exitCode).toBe(3);
+    expect(readAdapterCaptures(nonTransportFixture)).toHaveLength(1);
+    expect(() => expectTransportMissingFailure(ledgerEvents(nonTransportRun.baseArtifactDir))).toThrow();
   });
 
   it(FANOUT_TEST_NAMES[8], async () => {
@@ -582,6 +629,37 @@ describe.sequential('fan-out scheduler contracts', () => {
     expect(existsSync(join(run.baseArtifactDir, 'lineages', 'policy', 'research.md'))).toBe(true);
     expect(envelope).toMatchObject({ status: 'ok' });
     expect(envelope.summary).toMatchObject({ total: 1, succeeded: 1, failed: 0 });
+
+    const reviewFixture = useShim('success');
+    const reviewRun = await runReviewFanoutConfig(reviewFixture, 'policy-review', {
+      executors: [{
+        label: 'policy-review',
+        kind: 'cli-opencode',
+        model: 'anthropic/claude-opus-4-8',
+        reasoningEffort: 'high',
+        iterations: 2,
+      }],
+      concurrency: 1,
+      maxRetries: 0,
+    }, {
+      stopPolicy: 'max-iterations',
+      convergenceThreshold: 0.1,
+    });
+    const reviewEnvelope = stdoutEnvelope(reviewRun.result.stdout);
+    const reviewResults = reviewEnvelope.results as Array<{ error: { message: string } }>;
+    expect(reviewRun.result.exitCode).toBe(3);
+    expect(readAdapterCaptures(reviewFixture)).toHaveLength(1);
+    expect(existsSync(join(reviewRun.baseArtifactDir, 'lineages', 'policy-review', 'review-report.md'))).toBe(true);
+    expect(ledgerEvents(reviewRun.baseArtifactDir)).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        event: 'failed',
+        error: expect.objectContaining({
+          message: 'lineage policy-review violated max-iterations stop policy: '
+            + 'missing deep-review-state.jsonl for max-iterations stop-policy validation',
+        }),
+      }),
+    ]));
+    expect(reviewResults[0].error.message).toContain('violated max-iterations stop policy');
   });
 
   it('rejects a zero-exit lineage whose required artifact is absent', async () => {
