@@ -203,6 +203,14 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
  * "GPT-5.6 Luna Max Fast"). Unlike the Grok entries above, these two were
  * list-verified only, NOT dispatch-tested (operator decision) — no
  * dispatch-test claim is made for them.
+ *
+ * Gemini 3.7 Flash High joined this allowlist (2026-08-15):
+ * gemini-3.7-flash-high — the first Gemini id in the curated Cursor scope.
+ * Cursor's display name is just "Gemini 3.7 Flash" but the id carries the
+ * -high suffix; the low and medium sibling tiers stay out of scope.
+ * Confirmed present verbatim in the live `cursor-agent --list-models` output
+ * and dispatch-tested end-to-end (probe dispatch returned a live model
+ * response, exit 0) on 2026-08-15.
  */
 export const CURSOR_SUPPORTED_MODELS = [
   'composer-2.5',
@@ -221,6 +229,7 @@ export const CURSOR_SUPPORTED_MODELS = [
   'cursor-grok-4.6-medium-fast',
   'cursor-grok-4.6-xhigh',
   'cursor-grok-4.6-xhigh-fast',
+  'gemini-3.7-flash-high',
   'glm-5.2-high',
   'glm-5.2-max',
   'gpt-5.6-luna-max',
@@ -240,10 +249,10 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * Enforced allowlist of devin --model ids. Devin exposes 37 model families and
  * accepts a family slug, an alias, or a full model uid, which is far more
  * surface than deep-loop dispatch needs or has prompt-craft data for. This set
- * is the curated five-family scope: DeepSeek, GLM-5.2, GPT-5.6 (Luna Max only),
- * Grok (4.5 and 4.6), and SWE-1.7. Every entry was read from the live `devin
- * models list` — no id here was inferred from documentation. Entries are
- * sorted alphabetically, not grouped by family.
+ * is the curated six-family scope: DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna
+ * Max only), Grok (4.5 and 4.6), and SWE-1.7. Every entry was read from the
+ * live `devin models list` — no id here was inferred from documentation.
+ * Entries are sorted alphabetically, not grouped by family.
  *
  * Tier naming matters and is easy to get wrong: `glm-5-2` is "GLM-5.2 High" and
  * is the free tier, while `glm-5-2-max` is the separate paid "GLM-5.2 Max"
@@ -265,12 +274,21 @@ export function isCursorModelAllowed(model: string): model is CursorSupportedMod
  * models list` output on 2026-08-14. Unlike the Grok entries above, these
  * four were list-verified only, NOT dispatch-tested (operator decision) — no
  * dispatch-test claim is made for them.
+ *
+ * Gemini 3.7 Flash High joined this allowlist (2026-08-15):
+ * gemini-3-7-flash-high — the first Gemini uid in the curated Devin scope
+ * (sixth curated family). Devin labels it "Gemini 3.7 Flash High" with a 1M
+ * context window; the minimal/low/medium sibling tiers stay out of scope.
+ * Confirmed present verbatim in the live `devin models list` output and
+ * dispatch-tested end-to-end (probe dispatch returned a live model response,
+ * exit 0) on 2026-08-15.
  */
 export const DEVIN_SUPPORTED_MODELS = [
   'deepseek-v4',
   'deepseek-v4-flash-max',
   'deepseek-v4-pro',
   'deepseek-v4-pro-max',
+  'gemini-3-7-flash-high',
   'glm-5-2',
   'glm-5-2-1m',
   'glm-5-2-max',

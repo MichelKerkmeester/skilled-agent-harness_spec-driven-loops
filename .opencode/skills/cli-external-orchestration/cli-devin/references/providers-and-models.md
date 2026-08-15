@@ -22,7 +22,7 @@ The single catalog of the models, aliases, defaults, permission-mode lever, and 
 ## 1. OVERVIEW
 
 ### Core Principle
-One place to answer "which model, which uid, which permission mode, how to dispatch" for cli-devin. This mode is backed by **Cognition's Devin CLI** — a single binary that fronts 37 model families through family slugs, aliases, and model uids. This catalog curates the five families kept in scope for cli-devin: DeepSeek, GLM-5.2, GPT-5.6 (Luna Max only), Grok (4.5 and 4.6), and SWE-1.7.
+One place to answer "which model, which uid, which permission mode, how to dispatch" for cli-devin. This mode is backed by **Cognition's Devin CLI** — a single binary that fronts 37 model families through family slugs, aliases, and model uids. This catalog curates the six families kept in scope for cli-devin: DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max only), Grok (4.5 and 4.6), and SWE-1.7.
 
 ### When to Use
 - Choosing a `--model <alias>` for a `devin -p` dispatch
@@ -41,7 +41,7 @@ This file enumerates the model/alias/default facts and the dispatch envelope. It
 
 ## 2. PROVIDERS & MODELS
 
-Devin resolves models through a single backing service (Cognition) that fronts 37 model families. The value passed to `--model` is a family slug, an alias, or a full model uid. This catalog is a **curated subset** — the five families kept in scope for cli-devin. Model uids, context, and tier are read live from `devin models list`.
+Devin resolves models through a single backing service (Cognition) that fronts 37 model families. The value passed to `--model` is a family slug, an alias, or a full model uid. This catalog is a **curated subset** — the six families kept in scope for cli-devin. Model uids, context, and tier are read live from `devin models list`.
 
 ### Cognition
 
@@ -52,6 +52,7 @@ Alphabetical by family, then by model uid within each family.
 | DeepSeek | `deepseek-v4-flash-max` | 1M | DeepSeek V4 Flash, Max thinking tier (added 2026-08-14) |
 | DeepSeek | `deepseek-v4-pro` | 1M | DeepSeek V4 Pro (uid `deepseek-v4`) |
 | DeepSeek | `deepseek-v4-pro-max` | 1M | DeepSeek V4 Pro, Max thinking tier (added 2026-08-14) |
+| Gemini | `gemini-3-7-flash-high` | 1M | Google Gemini 3.7 Flash High thinking tier; family slug `gemini-3.7-flash`, alias `gemini` (added 2026-08-15) |
 | GLM-5.2 | `glm-5-2` | 200K | High — free tier |
 | GLM-5.2 | `glm-5-2-1m` | 1M | High, 1M context |
 | GLM-5.2 | `glm-5-2-max` | 200K | Max (paid) |
@@ -75,8 +76,9 @@ Alphabetical by family, then by model uid within each family.
 - Pass a family slug, alias, or full model uid to `--model` (e.g. `--model swe`, `--model grok-4-6-high`). The `swe` alias currently resolves to `swe-1-7-lightning`; pin the exact uid in scripts for predictability.
 - **Grok 4.6 joins Grok 4.5 (2026-08-12).** Devin's live roster carries both a `grok-4.5` family and a `grok-4.6` family side by side (confirmed via `devin models list`). This skill's curated allowlist adds all 4 4.6 uids alongside the existing 3 4.5 uids — an addition, not a swap. 4.6 ships a fourth tier, `xhigh`, that 4.5 never had. All 4 new uids were dispatch-tested end to end (`devin -p --model grok-4-6-high -- "..."` and `...-xhigh` both returned a live model response) before being added.
 - **DeepSeek Max tiers + GPT-5.6 Luna Max join (2026-08-14).** `deepseek-v4-flash-max` and `deepseek-v4-pro-max` (the Max thinking tier of each DeepSeek V4 family) and `gpt-5-6-luna-max` + `gpt-5-6-luna-max-priority` (the first GPT-5.6 persona in this catalog) were confirmed present verbatim in the live `devin models list` output on 2026-08-14. Devin encodes the "Fast" speed tier as the `-priority` suffix, not `-fast`, so `gpt-5-6-luna-max-priority` is the Fast variant of Luna Max. Unlike the Grok uids above, these four were **list-verified only, not dispatch-tested** (operator decision).
+**Gemini 3.7 Flash High joins (2026-08-15).** `gemini-3-7-flash-high` is the first Gemini uid in this catalog (five families → six). Devin labels it "Gemini 3.7 Flash High" with a 1M context window; the minimal/low/medium sibling tiers stay out of scope. The uid was confirmed present verbatim in the live `devin models list` output and **dispatch-tested end-to-end** on 2026-08-15 (probe dispatch returned a live model response, exit 0).
 - GLM tier suffixes stack: `-max` = Max reasoning, `-1m` = 1M context, `-none` = reasoning disabled; `glm-5-2` (no suffix) is GLM-5.2 High (free tier).
-- This is a curated subset. Devin's full 37-family roster (Claude, GPT, Gemini, Kimi, older SWE, and the `adaptive` router) is available via `devin models list` but is out of this catalog's scope.
+- This is a curated subset. Devin's full 37-family roster (Claude, GPT, other Gemini, Kimi, older SWE, and the `adaptive` router) is available via `devin models list` but is out of this catalog's scope.
 - Subagents dispatched via `run_subagent` take a profile, not a model: `subagent_explore` runs on the cheap default, `subagent_general` inherits the parent model. To pin a model on a write-capable subagent, use a custom `.devin/agents/<name>/AGENT.md` with a `model:` field.
 
 ---
