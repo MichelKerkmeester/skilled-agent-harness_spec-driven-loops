@@ -2,6 +2,8 @@
 // MODULE: Local Provider Loader Unit Tests
 // ───────────────────────────────────────────────────────────────────
 
+import { readFileSync } from 'node:fs';
+
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -20,6 +22,7 @@ import type {
 import type { ProviderTransport } from '../../src/providers/index.js';
 
 const NOW = '2026-08-14T00:00:00.000Z';
+const ENABLEMENT_EXAMPLE_URL = new URL('../../enablement.local.json.example', import.meta.url);
 
 function fullFile(kind: LocalProviderKind = LocalProviderKinds.OLLAMA, model = 'llama3.2', extra = {}) {
   return {
@@ -43,6 +46,34 @@ function expectProjectReady(config: LocalProjectionConfig) {
 }
 
 describe('parseLocalProjectionConfig', () => {
+  it('parses the shipped LM Studio example into project-ready local wiring', () => {
+    const example = JSON.parse(readFileSync(ENABLEMENT_EXAMPLE_URL, 'utf8')) as unknown;
+    const config = parseLocalProjectionConfig(example, { now: NOW });
+
+    expect(example).not.toHaveProperty('lmStudioExample');
+    expect(example).toMatchObject({
+      enabled: true,
+      localProvider: {
+        kind: 'lmstudio',
+        model: 'qwen2.5-7b-instruct',
+        endpoint: 'http://localhost:1234/v1',
+      },
+    });
+    expect(config).not.toBeNull();
+    if (config === null) {
+      throw new Error('Expected the shipped LM Studio example to parse.');
+    }
+    const record = config.records[0];
+    if (record === undefined) {
+      throw new Error('Expected the shipped example to create a provider record.');
+    }
+    expect(record.family).toBe('llama-cpp');
+    expect(record.provider.endpoint).toBe('http://localhost:1234/v1/chat/completions');
+    expect(record.provider.privacyClass).toBe('local-offline');
+    expect(config.policy.allowedPrivacyClasses).toEqual(['local-offline']);
+    expectProjectReady(config);
+  });
+
   it('builds the full wiring for a valid ollama block', () => {
     const config = parseLocalProjectionConfig(fullFile(), { now: NOW });
 
@@ -107,6 +138,17 @@ describe('parseLocalProjectionConfig', () => {
     }
     expect(record.family).toBe('llama-cpp');
     expect(record.provider.endpoint).toBe('http://127.0.0.1:1234/v1/chat/completions');
+  });
+
+  it('preserves an explicit full LM Studio request endpoint', () => {
+    const config = parseLocalProjectionConfig(fullFile(
+      LocalProviderKinds.LM_STUDIO,
+      'model-id',
+      { endpoint: 'http://localhost:1234/v1/chat/completions' },
+    ), { now: NOW });
+
+    expect(config?.records[0]?.provider.endpoint)
+      .toBe('http://localhost:1234/v1/chat/completions');
   });
 
   it('honors an explicit endpoint and derives local-networked for a non-loopback host', () => {

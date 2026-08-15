@@ -128,10 +128,11 @@ export function buildLocalProjectionConfig(
   options: LocalProjectionBuildOptions = {},
 ): LocalProjectionConfig | null {
   const now = options.now ?? new Date().toISOString();
-  const endpoint = provider.endpoint ?? defaultEndpointFor(provider.kind);
-  if (!isHttpUrl(endpoint)) {
+  const configuredEndpoint = provider.endpoint ?? defaultEndpointFor(provider.kind);
+  if (!isHttpUrl(configuredEndpoint)) {
     return null;
   }
+  const endpoint = resolveProviderEndpoint(provider.kind, configuredEndpoint);
   const observedAt = now;
   const expiresAt = new Date(Date.parse(now) + CAPABILITY_EXPIRY_WINDOW_MS).toISOString();
   const privacyClass = isLoopbackHost(endpoint)
@@ -272,6 +273,18 @@ function defaultEndpointFor(kind: LocalProviderKind): string {
     case LocalProviderKinds.OPENAI_COMPATIBLE:
       return 'http://127.0.0.1:8080/v1/chat/completions';
   }
+}
+
+function resolveProviderEndpoint(kind: LocalProviderKind, endpoint: string): string {
+  if (kind !== LocalProviderKinds.LM_STUDIO) {
+    return endpoint;
+  }
+  const url = new URL(endpoint);
+  if (url.pathname === '/v1' || url.pathname === '/v1/') {
+    url.pathname = '/v1/chat/completions';
+    return url.href;
+  }
+  return endpoint;
 }
 
 function isLocalProviderKind(value: unknown): value is LocalProviderKind {

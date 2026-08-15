@@ -11,8 +11,13 @@
   "packageManager": "npm@11.9.0",
   "files": [
     "dist",
-    "docs"
+    "docs",
+    "bin",
+    "enablement.local.json.example"
   ],
+  "bin": {
+    "cli-output-wrapper": "./bin/cli-output-wrapper.mjs"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -57,6 +62,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run --config vitest.config.ts",
     "test:contracts": "vitest run --config vitest.config.ts test/contracts",
