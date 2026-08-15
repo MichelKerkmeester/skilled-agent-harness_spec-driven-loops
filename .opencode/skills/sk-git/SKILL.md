@@ -3,7 +3,7 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.4.0.0
+version: 1.5.0.0
 hard_rules:
   - id: commit-scope-drops-untracked
     check: commit-scope-drops-untracked
