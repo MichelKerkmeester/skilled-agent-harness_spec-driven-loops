@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/016-ai-deploy-and-onboarding",
+  "spec_folder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/016-ai-deploy-and-onboarding",
+  "parent_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi remote ai deploy and onboarding",
+      "pi mobile phase 16",
+      "ai deploy and onboarding"
+    ],
+    "key_topics": [
+      "remote",
+      "deploy",
+      "onboarding",
+      "mobile",
+      "phase",
+      "app",
+      "setup",
+      "runbook",
+      "install",
+      "guide",
+      "deploying",
+      "still"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tailscale Serve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Mobile",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Use",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The app has a setup runbook (phase 008) and an install and onboarding guide (phase 014), but deploying still requires an operator to run many ordered commands by hand: preflight, install, build, relay start, Tailscale Serve setup, enrollment, and instruction handoff",
+    "created_at": "2026-08-14T04:44:41.561Z",
+    "last_save_at": "2026-08-14T04:59:02.118Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:634cd12de1a7b368950b9958a4d419e3ffcac01d3e216bd4033dd0ea05dd1a9c",
+    "source_doc_hashes": {
+      "spec.md": "b2d38d7a149df82b6201147438bfcf9b8be07649d13a0b6aa87c41e0379dd0eb",
+      "plan.md": "854c0ffe849743c68637f491b6673917518f2e34d12621843f797080b57a69cc",
+      "tasks.md": "b9dfaaaffa626921b26177ecad8097e221228ca04901c44865ca2f4c41418ca4",
+      "checklist.md": "fa8d0655470894999de85fc7ddf37962cd6610fa6212e9acd17285786179be97",
+      "implementation-summary.md": "3e51d61abf4b719e75d32f2650cdd052d34b88410a0ccfde100b09347056b998"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

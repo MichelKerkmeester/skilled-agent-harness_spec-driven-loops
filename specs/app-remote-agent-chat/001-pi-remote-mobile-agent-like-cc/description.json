@@ -1,0 +1,28 @@
+{
+  "level": "phase",
+  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc",
+  "description": "Pi CLI exposes a persistent local RPC subprocess, not a secure mobile product",
+  "keywords": [
+    "cli",
+    "exposes",
+    "persistent",
+    "local",
+    "rpc",
+    "subprocess",
+    "secure",
+    "mobile",
+    "product"
+  ],
+  "lastUpdated": "2026-08-14T04:59:01.686Z",
+  "specId": "001",
+  "folderSlug": "pi-remote-mobile-agent-like-cc",
+  "parentChain": [
+    "apps",
+    "pi-remote"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "13-08-26_06-24__deep-review-completed-via-two-lineage-fan-out-sol.md",
+    "13-08-26_08-38__deep-review-completed-fan-out-2-lineages-sol-high.md"
+  ]
+}

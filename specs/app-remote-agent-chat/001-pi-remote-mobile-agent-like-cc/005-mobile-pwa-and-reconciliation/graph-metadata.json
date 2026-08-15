@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
+  "spec_folder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
+  "parent_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi remote mobile pwa and reconciliation",
+      "pi mobile phase 5",
+      "mobile pwa and reconciliation"
+    ],
+    "key_topics": [
+      "remote",
+      "mobile",
+      "pwa",
+      "reconciliation",
+      "phase",
+      "installable",
+      "foreground",
+      "experience",
+      "sessions",
+      "streaming",
+      "work",
+      "reconnect"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Aria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Attention Inbox",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Builds",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Keep",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Dependencies",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Builds the installable foreground mobile experience for sessions, streaming work, reconnect reconciliation, explicit controls, and offline read-only state",
+    "created_at": "2026-08-10T18:28:41Z",
+    "last_save_at": "2026-08-13T16:35:52.488Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8315c6a3503c6441f0febf211441ab5f4daa7e86b7073e0d4a3fbe8f0af10ed9",
+    "source_doc_hashes": {
+      "spec.md": "38f4c97ba9efb2fd2f80431e144b2b4ee78b307e4e2cea679648182ae73378df",
+      "plan.md": "16d9396a36f6e7602048a935cde7e2cfc5bf8a2e712abe87a000d587f49bb57c",
+      "tasks.md": "7210c2c04974292a6a3136986b0eb03b2beac475f125b40bb989a75e10dab4ec",
+      "checklist.md": "452549f56c43c9cc14cdc85af5f540ff2135cf2bc3326d038816523421ad971c",
+      "decision-record.md": "8495d7b9783052d9eee9632f69526b33a2cc82b410e2f7c2194a69df9d729f3b",
+      "implementation-summary.md": "538e131c50c5db925a075753a24b85ec07e35dd1f7a08dce31a61eabd8f49869"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

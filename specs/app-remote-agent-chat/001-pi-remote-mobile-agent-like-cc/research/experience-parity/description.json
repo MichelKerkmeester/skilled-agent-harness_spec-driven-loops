@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-external-orchestration/042-pi-remote-experience-parity",
+  "description": "The 041 Pi remote packet reproduces the engine of the Claude Code + Claude mobile app pairing (local-first relay, cross-device resume,",
+  "keywords": [
+    "remote",
+    "packet",
+    "reproduces",
+    "engine",
+    "claude",
+    "code",
+    "mobile",
+    "app",
+    "pairing",
+    "local-first",
+    "relay",
+    "cross-device",
+    "resume"
+  ],
+  "lastUpdated": "2026-08-12T06:51:52.750Z",
+  "specId": "042",
+  "folderSlug": "pi-remote-experience-parity",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/013-code-standards-alignment",
+  "description": "The built Pi Remote app does not document which `sk-code-opencode` standards it follows, and no audit has measured drift in structure, naming, module",
+  "keywords": [
+    "remote",
+    "app",
+    "document",
+    "sk-code-opencode",
+    "standards",
+    "follows",
+    "audit",
+    "measured",
+    "drift",
+    "structure",
+    "naming",
+    "module"
+  ],
+  "lastUpdated": "2026-08-13T17:48:24.412Z",
+  "specId": "013",
+  "folderSlug": "code-standards-alignment",
+  "parentChain": [
+    "apps",
+    "pi-remote",
+    "001-pi-remote-mobile-agent-like-cc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

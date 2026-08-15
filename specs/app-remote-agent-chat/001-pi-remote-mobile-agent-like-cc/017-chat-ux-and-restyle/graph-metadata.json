@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/017-chat-ux-and-restyle",
+  "spec_folder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/017-chat-ux-and-restyle",
+  "parent_id": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi remote chat ux",
+      "pi remote chat parity",
+      "model switching pi",
+      "effort reasoning switching",
+      "tab to plan mode",
+      "typed commands slash",
+      "pi remote desktop parity chat"
+    ],
+    "key_topics": [
+      "remote",
+      "chat",
+      "parity",
+      "model",
+      "switching",
+      "effort",
+      "reasoning",
+      "tab",
+      "plan",
+      "mode",
+      "typed",
+      "commands"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote Desktop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parity Chat",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Pi Remote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Aria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Pi Remote mobile PWA (installable iPhone PWA, Vite + React 19 + Tailwind 4 + React Aria) remote-controls the Pi coding agent over a Tailscale tailnet",
+    "created_at": "2026-08-15T11:08:23.046Z",
+    "last_save_at": "2026-08-15T11:08:23.046Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:f3bd799b0429b826d107256bdadf754628990e8e52d6cb9683d251466e2ccba9",
+    "source_doc_hashes": {
+      "spec.md": "2887fad67378e3c911f55b4955b2fccb3171aee29fc583e997bf1b258f02b0cf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

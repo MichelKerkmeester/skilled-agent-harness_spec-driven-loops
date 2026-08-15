@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "packet_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/014-onboarding-and-root-readme",
+  "spec_folder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/014-onboarding-and-root-readme",
+  "parent_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi remote onboarding and root readme",
+      "pi mobile phase 14",
+      "onboarding and root readme"
+    ],
+    "key_topics": [
+      "remote",
+      "onboarding",
+      "root",
+      "readme",
+      "mobile",
+      "phase",
+      "apps",
+      "informative",
+      "follow",
+      "sk-create-readme",
+      "general",
+      "shape"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Mobile",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Plans",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Core Principle",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The root `Apps/Pi Mobile/README.md` is informative but does not follow the `sk-create-readme` general README shape (no numbered ALL-CAPS H2 sections, no blockquote tagline, no install-guide separation)",
+    "created_at": "2026-08-13T15:52:26.257Z",
+    "last_save_at": "2026-08-13T17:52:43.884Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2f39e088f3bb81f8a1320b198c8c4542b25092926e4dbef33fd3acc43cae011f",
+    "source_doc_hashes": {
+      "spec.md": "c4058c87979d688645cc6c0e2a59f485326acd69b1fbd7eae958ef2da2f54223",
+      "plan.md": "146de1f5761c8be1abfdea7a3d43af336502054ee7886266df5ba1ec0eb98569",
+      "tasks.md": "46e83b48d89630d19981552ac2336a82cf89c2eaf54cfc28d179f23eaf23077d",
+      "checklist.md": "83b0455168199a6a970b0513667d8e04599c7d2c1d733f11260c24c831d80ca1",
+      "implementation-summary.md": "384ed3d75d58610eebf93673dd59da671d298843c43ca5dc857c116d4fbc7fbd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

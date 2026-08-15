@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "packet_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc",
+  "spec_folder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/004-auth-and-tailnet-boundary",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
+    "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/004-auth-and-tailnet-boundary",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/010-code-readme-coverage",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/011-architecture-reference",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/012-docs-as-skill-references",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/013-code-standards-alignment",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/014-onboarding-and-root-readme",
+    "apps/pi-remote/041-pi-remote-mobile-agent-like-cc/015-doc-quality-and-catalog",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/004-auth-and-tailnet-boundary",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/010-code-readme-coverage",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/011-architecture-reference",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/012-docs-as-skill-references",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/013-code-standards-alignment",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/014-onboarding-and-root-readme",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/015-doc-quality-and-catalog",
+    "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/016-ai-deploy-and-onboarding"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi remote mobile",
+      "pi claude app style remote",
+      "pi rpc relay",
+      "mobile pi agent",
+      "pi remote phase map"
+    ],
+    "key_topics": [
+      "remote",
+      "mobile",
+      "claude",
+      "app",
+      "style",
+      "rpc",
+      "relay",
+      "agent",
+      "phase",
+      "map",
+      "cli",
+      "exposes"
+    ],
+    "importance_tier": "critical",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "001-contract-and-threat-baseline/spec.md",
+      "009-release-verification-and-rollout/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote Mobile Agent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Real Tailscale Serve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Web Push",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pi CLI exposes a persistent local RPC subprocess, not a secure mobile product",
+    "created_at": "2026-08-10T17:46:19.156Z",
+    "last_save_at": "2026-08-14T04:59:02.465Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ea41df4434d0122e9589f3a6a2c83738b5150f71b3eea09edb68a054479d3dd9",
+    "source_doc_hashes": {
+      "spec.md": "86aec4f8c269707d6a034b6d57167b6e99ac908ec4a3ddbdcd361256360e4eb8"
+    },
+    "last_active_child_id": "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
+    "last_active_at": "2026-08-13T07:39:24.617Z"
+  }
+}

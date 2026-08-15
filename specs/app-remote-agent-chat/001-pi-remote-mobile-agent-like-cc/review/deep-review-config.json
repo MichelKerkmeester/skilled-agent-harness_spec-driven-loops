@@ -1,0 +1,74 @@
+{
+  "mode": "review",
+  "sessionId": "2026-08-13T05:37:25.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "reviewTarget": ".pi/pi-remote (Pi Remote: loopback relay + pi-rpc-protocol + installable PWA + approval extension) and its spec packet specs/cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "reviewTargetType": "files",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "reviewScopeFiles": [],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "maxIterations": 20,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "specFolder": "specs/cli-external-orchestration/041-pi-remote-mobile-agent-like-cc",
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-08-13T05:37:25.000Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "config": {
+    "executor": {
+      "type": "native"
+    },
+    "fanout": {
+      "executors": [
+        {
+          "kind": "cli-opencode",
+          "model": "openai/gpt-5.6-sol-fast",
+          "reasoningEffort": "high",
+          "label": "sol-high",
+          "count": 1,
+          "iterations": 20
+        },
+        {
+          "kind": "cli-pi",
+          "model": "deepseek-v4-flash",
+          "label": "deepseek-flash",
+          "count": 1,
+          "iterations": 20
+        }
+      ],
+      "concurrency": 2,
+      "maxRetries": 5
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/011-architecture-reference",
+  "description": "The current `Apps/Pi Mobile/docs/architecture.md` is a prose narrative with runtime-shape and protocol sections",
+  "keywords": [
+    "current",
+    "apps",
+    "mobile",
+    "docs",
+    "architecture",
+    "prose",
+    "narrative",
+    "runtime-shape",
+    "protocol",
+    "sections"
+  ],
+  "lastUpdated": "2026-08-13T17:31:20.343Z",
+  "specId": "011",
+  "folderSlug": "architecture-reference",
+  "parentChain": [
+    "apps",
+    "pi-remote",
+    "001-pi-remote-mobile-agent-like-cc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

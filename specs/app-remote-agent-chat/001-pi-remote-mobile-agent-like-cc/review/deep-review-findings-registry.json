@@ -1,0 +1,1090 @@
+{
+  "mergedFrom": [
+    "deepseek-flash",
+    "sol-high"
+  ],
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "P2-011",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "001 plan.md L3 ARCHITECTURE DECISION RECORD mirrors only ADR-001; accepted ADR-002/ADR-003 untraceable from the plan",
+      "file": "001-contract-and-threat-baseline/plan.md",
+      "line": 259,
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-008",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "005 REQ-008 references the three attention classes without in-phase definition; bounded set needs_input/finished/error only specified in successor 007 REQ-005 (007:35/105/108)",
+      "file": "005-mobile-pwa-and-reconciliation/spec.md:114",
+      "line": 114,
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-010",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "006 REQ-004 redaction boundary enumeration omits telemetry/metrics and diagnostics exports",
+      "file": "006-approval-and-remote-mutation/spec.md:109",
+      "line": 109,
+      "firstSeen": 6,
+      "lastSeen": 8,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-009",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "006 REQ-005 mutation kill switch leaves in-flight execution semantics unspecified",
+      "file": "006-approval-and-remote-mutation/spec.md:110",
+      "line": 110,
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-005",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "008 complexity heading '## L2:' diverges from '## 9. COMPLEXITY ASSESSMENT' pattern in other 8 phases",
+      "file": "008-documentation-and-runbooks/spec.md:164",
+      "line": 164,
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-023",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "008 documentation deliverables drift — protocol.md absent; operator-runbook.md/mobile-guide.md delivered as split/partial equivalents (setup/operations/rollback/incident-playbooks + platform-support); path prefix docs/pi-remote vs live .pi/pi-remote/docs mirrors P2-020 row-3 drift",
+      "file": "",
+      "line": 0,
+      "firstSeen": 19,
+      "lastSeen": 19,
+      "transitions": [
+        {
+          "iteration": 19,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-006",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "008 lacks decision-record.md while 8/9 sibling phases have one; doc-phase architectural decisions have no ADR trace",
+      "file": "008-documentation-and-runbooks/",
+      "line": 0,
+      "firstSeen": 4,
+      "lastSeen": 11,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-012",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "008 REQ-005 incident-guidance enumeration omits compromise response (no explicit suspected-unauthorized-access / credential-compromise trigger linking incident to revoke/rotate)",
+      "file": "008-documentation-and-runbooks/spec.md:107",
+      "line": 107,
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-013",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "009 rollback-drill sequence in tasks.md T011 / plan.md Phase-2 bullet (118) diverges from REQ-004 (spec.md:108) + plan §7 (161)/L2 (206): omits approval drain, revoke sessions/subscriptions, session preservation; restore listed before mutation disablement",
+      "file": "009-release-verification-and-rollout/tasks.md:70",
+      "line": 70,
+      "firstSeen": 9,
+      "lastSeen": 18,
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-014",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "009 SC-001 staged-rollout stage→evidence-subset gating mapping unenumerated (read-only/mutation/push vs REQ-001/002/003/004/007 evidence groups); transition rules unspecified",
+      "file": "009-release-verification-and-rollout/spec.md:128",
+      "line": 128,
+      "firstSeen": 9,
+      "lastSeen": 18,
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-016",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "_memory.continuity.key_files omits checklist.md/decision-record.md/implementation-summary.md in 9/9 phases (001..009 implementation-summary.md:19-22) — continuity pointer misses ADR + checklist-evidence surfaces",
+      "file": "001-contract-and-threat-baseline/implementation-summary.md",
+      "line": 19,
+      "firstSeen": 14,
+      "lastSeen": 14,
+      "transitions": [
+        {
+          "iteration": 14,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "Accept-edits grants survive disablement and restart",
+      "file": ".pi/pi-remote/apps/pi-remote-relay/src/approval/approval-service.ts",
+      "line": 292,
+      "description": "An active accept-edits grant is not revoked by policy disable, service close, epoch invalidation, or restart and requestFromGrant does not re-check current policy before minting a lease.",
+      "findingClass": "algorithmic",
+      "deltaStatus": "active",
+      "scopeProof": "All grant mutations and lifecycle handlers were inventoried.",
+      "affectedSurfaceHints": [
+        "accept-edits grants",
+        "mutation kill switch",
+        "restart reconciliation"
+      ],
+      "contentHash": "7777777777777777777777777777777777777777777777777777777777777777",
+      "dimension": "security",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P1",
+      "title": "Authenticated devices can select any stored session",
+      "file": ".pi/pi-remote/apps/pi-remote-relay/src/http/server.ts",
+      "line": 168,
+      "description": "Any authenticated principal can request any opaque session id present in the relay because authorization never binds the selected session to an allowed workspace/session scope.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Sync, approval, transcript, and AuthService selector paths were cross-read.",
+      "affectedSurfaceHints": [
+        "WebSocket subscription",
+        "approval listing",
+        "transcript pagination",
+        "application authorization"
+      ],
+      "contentHash": "c66e9ace5eb0b41222c38801739c19148ee05523a37ba118da189604fc5e6d67",
+      "dimension": "security",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "category": "unknown",
+      "status": "active",
+      "dimension": "unknown",
+      "title": "Complexity total 81 contradicts component sum 71",
+      "file": "001-contract-and-threat-baseline/spec.md",
+      "line": 180,
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "category": "unknown",
+      "status": "active",
+      "dimension": "unknown",
+      "title": "cross-lineage review-surface contradiction: sol-high reviewed .pi/pi-remote code (verified present, phase 008/009 commits) vs packet no-implementation status",
+      "file": "",
+      "line": 0,
+      "firstSeen": 15,
+      "lastSeen": 20,
+      "transitions": [
+        {
+          "iteration": 15,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-017",
+      "severity": "P2",
+      "category": "unknown",
+      "status": "active",
+      "dimension": "unknown",
+      "title": "description.json memoryNameHistory premature deep-review-completed claim",
+      "file": "",
+      "line": 0,
+      "firstSeen": 15,
+      "lastSeen": 15,
+      "transitions": [
+        {
+          "iteration": 15,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "title": "Device revocation does not revoke leases or grants",
+      "file": ".pi/pi-remote/apps/pi-remote-relay/src/http/server.ts",
+      "line": 340,
+      "description": "Revoking a device does not invalidate its approval leases or accept-edits grants because the HTTP revocation path never calls ApprovalService.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Revocation endpoint, AuthService, and ApprovalService paths were cross-read; no integration exists.",
+      "affectedSurfaceHints": [
+        "device revocation",
+        "approval leases",
+        "accept-edits grants"
+      ],
+      "contentHash": "6666666666666666666666666666666666666666666666666666666666666666",
+      "dimension": "security",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "category": "unknown",
+      "status": "active",
+      "dimension": "unknown",
+      "title": "Duplicate Create ownership of tests/pi-remote/security/ across 001 and 002",
+      "file": "001-contract-and-threat-baseline/spec.md:92",
+      "line": 92,
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Enrolled devices vanish on every relay restart",
+      "file": ".pi/pi-remote/apps/pi-remote-relay/src/auth/enrollment.ts",
+      "line": 40,
+      "description": "Relay restart discards every enrolled device and revocation record because all authentication state is process-memory only.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Auth sources and migrations contain no durable device registry.",
+      "affectedSurfaceHints": [
+        "device registry",
+        "application auth",
+        "PWA enrollment"
+      ],
+      "contentHash": "5555555555555555555555555555555555555555555555555555555555555555",
+      "dimension": "security",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "P2-020",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Files-to-Change path drift 3/7 vs live tree — tests/pi-remote vs tests, deploy/pi-remote vs deploy/containment, docs/pi-remote vs docs (spec.md:102/106/107); 4/7 rows exact; table header :97 delegates exact paths to child plans (conf 0.9)",
+      "file": "spec.md",
+      "line": 102,
+      "firstSeen": 16,
+      "lastSeen": 19,
+      "transitions": [
+        {
+          "iteration": 16,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-015",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Kill-switch trigger path and authentication unspecified: REQ-005 acceptance covers default-off + per-family enablement gating but never names who flips the switch, over what channel, or whether a remote trigger must be authenticated; a remote trigger would ride the P1-001 unowned command channel, local-only control needs no auth",
+      "file": "006-approval-and-remote-mutation/spec.md",
+      "line": 110,
+      "firstSeen": 12,
+      "lastSeen": 12,
+      "transitions": [
+        {
+          "iteration": 12,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P1",
+      "title": "Logout and revocation leave cached transcripts on device",
+      "file": ".pi/pi-remote/apps/pi-remote-web/src/cache.ts",
+      "line": 13,
+      "description": "Offline transcript cache remains readable after logout, device revocation, and epoch change because those paths never delete the localStorage cache key.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "All CACHE_KEY removals and logout/revoke paths were searched and read.",
+      "affectedSurfaceHints": [
+        "offline cache",
+        "logout",
+        "device revocation"
+      ],
+      "contentHash": "8888888888888888888888888888888888888888888888888888888888888888",
+      "dimension": "security",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "title": "Missing Pi silently becomes fixture mode while health remains ok",
+      "file": ".pi/pi-remote/apps/pi-remote-relay/src/rpc/supervisor.ts",
+      "line": 167,
+      "description": "A host without the Pi executable can expose a healthy relay backed only by a recorded fixture because ENOENT activates fixture mode and health omits supervisor state.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Supervisor fallback and health response were read directly; operator docs confirm the limitation.",
+      "affectedSurfaceHints": [
+        "RPC supervisor",
+        "health endpoint",
+        "release gate"
+      ],
+      "contentHash": "4444444444444444444444444444444444444444444444444444444444444444",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Mobile control commands have no live transport",
+      "file": ".pi/pi-remote/apps/pi-remote-relay/src/http/server.ts",
+      "line": 57,
+      "description": "The deployed mobile surface cannot send, steer, follow up, or abort a Pi run because the HTTP/WebSocket server never receives or calls RpcSupervisor.send().",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Relay and web searches found no command route or supervisor.send consumer.",
+      "affectedSurfaceHints": [
+        "HTTP command API",
+        "PWA composer",
+        "RPC supervisor"
+      ],
+      "contentHash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "F015",
+      "severity": "P2",
+      "title": "Mutation authority is modeled as read-only policy",
+      "file": ".pi/pi-remote/apps/pi-remote-relay/src/auth/policy.ts",
+      "line": 1,
+      "description": "Approval decisions and accept-edits grant creation are typed and authorized as read-only actions.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "The complete action union and route mapping were cross-read.",
+      "affectedSurfaceHints": [
+        "authorization taxonomy",
+        "HTTP route policy",
+        "audit naming"
+      ],
+      "contentHash": "9a38af0e4fa26db10eeb0071a4892601fe73fcb5dc873401e83c5d0dad2b35dd",
+      "dimension": "maintainability",
+      "firstSeen": 15,
+      "lastSeen": 15,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 15,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "P2-021",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "mutation-policy docstring claims independently enabled families; implementation enforces single-family",
+      "file": "",
+      "line": 0,
+      "firstSeen": 17,
+      "lastSeen": 17,
+      "transitions": [
+        {
+          "iteration": 17,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "No producer emits the transcript blocks consumed by the API and PWA",
+      "file": ".pi/pi-remote/apps/pi-remote-relay/src/index.ts",
+      "line": 131,
+      "description": "The live relay never produces transcript.block envelopes, so transcript pagination and the PWA discard all stored Pi events.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Repository search found only transcript.block consumers, no producer.",
+      "affectedSurfaceHints": [
+        "Pi event adapter",
+        "transcript store",
+        "PWA reducer"
+      ],
+      "contentHash": "3333333333333333333333333333333333333333333333333333333333333333",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "P0 REQ-006 authenticated command channel unowned in phase-003 dependency closure",
+      "file": "003-relay-protocol-and-state/spec.md:110",
+      "line": 110,
+      "firstSeen": 2,
+      "lastSeen": 20,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "category": "unknown",
+      "status": "active",
+      "dimension": "unknown",
+      "title": "Phase-shared REQ-090..093 IDs create cross-phase citation ambiguity",
+      "file": "001-contract-and-threat-baseline/spec.md:115-118",
+      "line": 115,
+      "firstSeen": 1,
+      "lastSeen": 11,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "PWA auth-session credential storage/erasure surface unowned across 005/007",
+      "file": "005-mobile-pwa-and-reconciliation/spec.md:117",
+      "line": 117,
+      "firstSeen": 6,
+      "lastSeen": 20,
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Relay collapses all work into one hard-coded session and child",
+      "file": ".pi/pi-remote/apps/pi-remote-relay/src/index.ts",
+      "line": 20,
+      "description": "The relay cannot provide isolated persistent children per active session because it creates exactly one hard-coded session, epoch, and RpcSupervisor.",
+      "findingClass": "algorithmic",
+      "deltaStatus": "active",
+      "scopeProof": "Only one RpcSupervisor construction and one fixed SESSION_ID exist in relay source.",
+      "affectedSurfaceHints": [
+        "relay entrypoint",
+        "session catalog",
+        "RPC supervisor"
+      ],
+      "contentHash": "2222222222222222222222222222222222222222222222222222222222222222",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "F011",
+      "severity": "P1",
+      "title": "Release verification reports PASS while every rollout stage is NOT-READY",
+      "file": ".pi/pi-remote/scripts/release-verify.mjs",
+      "line": 63,
+      "description": "The top-level release verification status can be PASS when no rollout stage is READY because rollout PASS means configuration validity rather than readiness.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Release producer, rollout evaluator, evidence output, README, and phase success criteria were compared.",
+      "affectedSurfaceHints": [
+        "release CLI",
+        "evidence schema",
+        "rollout gate",
+        "operator docs"
+      ],
+      "contentHash": "4016e9243856c7ff6b83b3eadbe63cf287970dc45507e00e350b459b49ea4c3f",
+      "dimension": "traceability",
+      "firstSeen": 13,
+      "lastSeen": 13,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 13,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "P2-022",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "release-verify top-level PASS achievable with zero READY stages — evaluateRollout status reflects schema validity only; stage NOT-READY never contributes to failures; overallStatus PASS + exit 0 + evidence JSON status PASS with all stages NOT-READY (check-rollout --require-ready still enforces promotion)",
+      "file": "",
+      "line": 0,
+      "firstSeen": 18,
+      "lastSeen": 18,
+      "transitions": [
+        {
+          "iteration": 18,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-004",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "REQ-008 Serve-to-relay trust anchor left as OR of two mechanisms; pin choice per 006 REQ-009 discipline",
+      "file": "004-auth-and-tailnet-boundary/spec.md:111",
+      "line": 111,
+      "firstSeen": 2,
+      "lastSeen": 19,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-019",
+      "severity": "P2",
+      "category": "unknown",
+      "status": "active",
+      "dimension": "unknown",
+      "title": "research config + orchestration specFolder path typo 041= vs 041-",
+      "file": "",
+      "line": 0,
+      "firstSeen": 15,
+      "lastSeen": 15,
+      "transitions": [
+        {
+          "iteration": 15,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-018",
+      "severity": "P2",
+      "category": "unknown",
+      "status": "active",
+      "dimension": "unknown",
+      "title": "research/ top-level reduction stale (0/20) vs 3 lineage synthesis_complete; parent spec.md:71 source-evidence claim misrepresented at reduced level",
+      "file": "",
+      "line": 0,
+      "firstSeen": 15,
+      "lastSeen": 15,
+      "transitions": [
+        {
+          "iteration": 15,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "P2-007",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "tasks.md Phase-2 label 'Implementation' diverges from plan.md 'Core Implementation' (008:112, 005:112, 001:61)",
+      "file": "008-documentation-and-runbooks/tasks.md:61",
+      "line": 61,
+      "firstSeen": 4,
+      "lastSeen": 10,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "deepseek-flash"
+      ]
+    },
+    {
+      "findingId": "F014",
+      "severity": "P1",
+      "title": "The authoritative whole gate omits required browser, lint, and format checks",
+      "file": ".pi/pi-remote/scripts/release-verify.mjs",
+      "line": 30,
+      "description": "The command presented as the authoritative whole gate does not execute all P0 checks required by phase 009, notably browser behavior and the declared format/lint families.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "All package scripts, release gates, and web test files were inventoried.",
+      "affectedSurfaceHints": [
+        "release runner",
+        "web browser tests",
+        "package scripts",
+        "phase-009 checklist"
+      ],
+      "contentHash": "d406e5e634db807bacd6152f4d50b7627ab9e58f895ff95c8dd803b25e271151",
+      "dimension": "traceability",
+      "firstSeen": 14,
+      "lastSeen": 14,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 14,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    },
+    {
+      "findingId": "F010",
+      "severity": "P1",
+      "title": "The canonical packet still says implementation has not started",
+      "file": "specs/cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/spec.md",
+      "line": 17,
+      "description": "Canonical packet state says product implementation has not started while the product, tests, deployment, docs, and release evidence exist.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Parent and all child implementation summaries were compared with the live product tree and release evidence.",
+      "affectedSurfaceHints": [
+        "parent continuity",
+        "phase status",
+        "checklists",
+        "implementation summaries"
+      ],
+      "contentHash": "7a4ac29306f9f4187381caf470d4e4f694d59d4b87877723ad6e360b660ff137",
+      "dimension": "traceability",
+      "firstSeen": 11,
+      "lastSeen": 11,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 11,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "sol-high"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 15,
+    "P2": 24
+  },
+  "openFindingsCount": 39,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 15,
+  "activeP2": 24
+}
