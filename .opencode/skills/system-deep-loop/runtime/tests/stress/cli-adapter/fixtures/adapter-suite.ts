@@ -126,6 +126,30 @@ function fanoutLog(lineageDir: string): string {
   return existsSync(logPath) ? readFileSync(logPath, 'utf8') : '';
 }
 
+function fanoutLedger(baseArtifactDir: string): readonly Record<string, unknown>[] {
+  const ledgerPath = `${baseArtifactDir}/orchestration-status.log`;
+  if (!existsSync(ledgerPath)) return [];
+  return readFileSync(ledgerPath, 'utf8')
+    .trim()
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line) as Record<string, unknown>);
+}
+
+function maximumInFlight(events: readonly Record<string, unknown>[]): number {
+  let inFlight = 0;
+  let maximum = 0;
+  for (const event of events) {
+    if (event.event === 'started') {
+      inFlight += 1;
+      maximum = Math.max(maximum, inFlight);
+    } else if (event.event === 'completed' || (event.event === 'failed' && event.terminal !== false)) {
+      inFlight -= 1;
+    }
+  }
+  return maximum;
+}
+
 async function waitUntilDead(pids: readonly number[]): Promise<void> {
   const deadline = Date.now() + 1_000;
   while (Date.now() < deadline) {
@@ -206,6 +230,7 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       expect(matrixCells.every((cell) => cell.testStatus === 'implemented' && cell.testName)).toBe(true);
       expect(CLI_ADAPTER_MATRIX_AUDIT).toEqual({
         allAdapterBound: true,
+        allSubjectBound: true,
         forbiddenOverclaims: [],
       });
     });
@@ -257,7 +282,8 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
       const run = await runAdapterFanout(fixture, { mode: 'rate-limit' });
       expect(run.result.exitCode).not.toBe(0);
       expect(fanoutLog(run.lineageDir)).toContain('429 rate limit: throttled');
-      expect(Date.now() - startedAt).toBeLessThan(5_000);
+      expect(readAdapterCaptures(fixture)).toHaveLength(1);
+      expect(Date.now() - startedAt).toBeLessThan(2_000);
     });
 
     it(testName(3), async () => {
@@ -420,20 +446,26 @@ export function defineAdapterStressSuite(kind: AdapterKind): void {
     });
 
     if (kind === 'cli-opencode') {
-      it('bounds two detached opencode replicas at concurrency two and preserves both artifacts', async () => {
+      it('bounds three detached opencode replicas at concurrency two and queues the third', async () => {
         const fixture = useShim('success');
         const run = await runAdapterFanout(fixture, {
           label: 'parallel',
           mode: 'parallel',
-          count: 2,
+          count: 3,
           concurrency: 2,
         });
         const captures = readAdapterCaptures(fixture);
+        const events = fanoutLedger(run.baseArtifactDir);
+        const thirdStarted = events.findIndex((event) => event.event === 'started' && event.label === 'parallel-3');
         expect(run.result.exitCode).toBe(0);
-        expect(captures).toHaveLength(2);
-        expect(new Set(captures.map((capture) => capture.pid)).size).toBe(2);
+        expect(captures).toHaveLength(3);
+        expect(new Set(captures.map((capture) => capture.pid)).size).toBe(3);
+        expect(maximumInFlight(events)).toBe(2);
+        expect(thirdStarted).toBeGreaterThan(0);
+        expect(events.slice(0, thirdStarted).some((event) => event.event === 'completed')).toBe(true);
         expect(existsSync(`${run.baseArtifactDir}/lineages/parallel-1/research.md`)).toBe(true);
         expect(existsSync(`${run.baseArtifactDir}/lineages/parallel-2/research.md`)).toBe(true);
+        expect(existsSync(`${run.baseArtifactDir}/lineages/parallel-3/research.md`)).toBe(true);
       });
     }
 
