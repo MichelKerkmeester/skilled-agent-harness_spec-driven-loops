@@ -1,0 +1,13 @@
+=== 2026-08-15T08:36:48Z cursor-agent --list-models (gemini rows) ===
+gemini-3.7-flash-high - Gemini 3.7 Flash
+gemini-3.7-flash-low - Gemini 3.7 Flash Low
+gemini-3.7-flash-medium - Gemini 3.7 Flash Medium
+
+=== devin models list (Gemini 3.7 Flash family) ===
+Gemini 3.7 Flash (gemini-3.7-flash)
+  aliases: gemini
+  gemini-3-7-flash-medium                Gemini 3.7 Flash Medium  [1048576 context, $0.75 / MTok In · $3.75 / MTok Out, new]
+  gemini-3-7-flash-minimal               Gemini 3.7 Flash Minimal  [1048576 context, $0.75 / MTok In · $3.75 / MTok Out, new]
+  gemini-3-7-flash-low                   Gemini 3.7 Flash Low  [1048576 context, $0.75 / MTok In · $3.75 / MTok Out, new]
+  gemini-3-7-flash-high                  Gemini 3.7 Flash High  [1048576 context, $0.75 / MTok In · $3.75 / MTok Out, new]
+

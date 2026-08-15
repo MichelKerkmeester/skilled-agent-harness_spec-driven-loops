@@ -3,7 +3,12 @@
   "packet_id": "cli-external-orchestration/043-luna-max-deepseek-max-glm-roster",
   "spec_folder": "cli-external-orchestration/043-luna-max-deepseek-max-glm-roster",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "cli-external-orchestration/043-luna-max-deepseek-max-glm-roster/001-gpt-5-6-luna-max",
+    "cli-external-orchestration/043-luna-max-deepseek-max-glm-roster/002-deepseek-v4-max",
+    "cli-external-orchestration/043-luna-max-deepseek-max-glm-roster/003-glm-5-3-opencode-go",
+    "cli-external-orchestration/043-luna-max-deepseek-max-glm-roster/004-gemini-3-7-flash-high"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -12,40 +17,29 @@
   "derived": {
     "trigger_phrases": [
       "luna max roster",
-      "gpt-5.6 luna max cursor devin",
-      "deepseek v4 max devin",
+      "deepseek max devin",
       "glm 5.3 opencode-go",
-      "cli roster additions 043",
-      "luna max roster plan",
-      "deepseek max glm 5.3 plan",
-      "luna max roster tasks",
-      "deepseek max glm 5.3 tasks",
-      "luna max roster checklist",
-      "deepseek max glm 5.3 checklist",
-      "luna max roster summary"
+      "gemini 3.7 flash high cursor devin",
+      "cli roster additions phase parent 043"
     ],
     "key_topics": [
       "luna",
       "max",
       "roster",
-      "gpt-5",
-      "cursor",
-      "devin",
       "deepseek",
+      "devin",
       "glm",
       "opencode-go",
-      "cli",
-      "additions",
-      "plan"
+      "gemini",
+      "flash",
+      "high",
+      "cursor",
+      "cli"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "entities": [
       {
@@ -55,31 +49,13 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Roster Additions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -91,129 +67,37 @@
         "source": "derived"
       },
       {
-        "name": "Roster Additions",
+        "name": "Flash High",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Four",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
+        "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Dual",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Four models are live-available for external-CLI dispatch but the enforced rosters (or their docs) do not carry them",
+    "causal_summary": "The external-CLI orchestration modes enforce curated model rosters: cli-cursor and cli-devin hard-reject any `--model` id outside `CURSORSUPPORTEDMODELS` / `DEVINSUPPORTEDMODELS` (mirrored byte-identical in `fanout-run.cjs`), and cli-opencode's catalog documents the opencode-go gateway's curated scope",
     "created_at": "2026-08-14T08:26:34.014Z",
-    "last_save_at": "2026-08-14T11:37:37.050Z",
+    "last_save_at": "2026-08-15T09:11:17.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:632daedd5debc1bf6ed971018c853bb771ce680960e3e4c031ee77908cf2173e",
+    "source_fingerprint": "sha256:64c1b29b3d94e06c92b8c3ef9e0148d442ec8f16162738e9a84714e00b5a5fe4",
     "source_doc_hashes": {
-      "spec.md": "12ccebfa2371f7e451c2570602a3cf19b2a9e67c43d46c60ff3fcf172bfc4f91",
-      "plan.md": "3f65a5bb154e04daadb695d8c87588074b942417b91a226908b9ed324e329766",
-      "tasks.md": "69919f000b8fe5edc71ec7dc2a354e1f1274fa55a7198bbb31efa0a6145cc239",
-      "checklist.md": "f5d93f4c7e35437652ac4749fce10349f20fd1b56747dc16aa6fdc24ec4e6bbe",
-      "implementation-summary.md": "3998a3c3e60b8c8f9098a5da66fc788f6381be00680c01e156ad7dc196f4c55a"
+      "spec.md": "79e41fe1c8d438ce17261c026f657f46f2d79168d73346c33f65011c3613f6a1"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "cli-external-orchestration/043-luna-max-deepseek-max-glm-roster/003-glm-5-3-opencode-go",
     "last_active_at": null
   }
 }
