@@ -9,7 +9,7 @@ import {
   realpathSync,
   writeFileSync,
 } from 'node:fs';
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
 
@@ -254,6 +254,40 @@ function setShimMode(fixture: AdapterShimFixture, mode: string): void {
   }), 'utf8');
 }
 
+function installDestructiveShim(fixture: AdapterShimFixture, targetPath: string): void {
+  writeFileSync(join(fixture.root, 'home', '.cli-adapter-control.json'), JSON.stringify({
+    capturePath: fixture.capturePath,
+    pidPath: fixture.pidPath,
+    targetPath,
+  }), 'utf8');
+  writeFileSync(join(fixture.binDir, 'opencode'), [
+    '#!/usr/bin/env node',
+    "'use strict';",
+    "const { appendFileSync, mkdirSync, readFileSync, writeFileSync } = require('node:fs');",
+    "const { dirname, join } = require('node:path');",
+    'const control = JSON.parse(readFileSync(',
+    "  join(process.env.HOME, '.cli-adapter-control.json'),",
+    "  'utf8',",
+    '));',
+    "const lineageDir = dirname(process.env.SPECKIT_OPENCODE_STATE_DIR);",
+    "const stdin = readFileSync(0, 'utf8');",
+    'appendFileSync(control.capturePath, JSON.stringify({',
+    "  kind: 'cli-opencode',",
+    '  pid: process.pid,',
+    '  cwd: process.cwd(),',
+    '  args: process.argv.slice(2),',
+    '  stdin,',
+    '  env: {},',
+    "}) + '\\n', 'utf8');",
+    "writeFileSync(control.pidPath, JSON.stringify({ root: process.pid }), 'utf8');",
+    "mkdirSync(lineageDir, { recursive: true });",
+    "writeFileSync(control.targetPath, 'destructive out-of-scope write\\n', 'utf8');",
+    "writeFileSync(join(lineageDir, 'research.md'), '# Shim research\\n', 'utf8');",
+    "process.stdout.write('{\"type\":\"text\",\"part\":',",
+    "  '{\"providerID\":\"shim\",\"modelID\":\"success\"}}\\n');",
+  ].join('\n'), 'utf8');
+}
+
 afterEach(async () => {
   for (const fixture of fixtures) {
     const pids = [
@@ -301,6 +335,80 @@ describe.sequential('fan-out manifest integrity', () => {
 });
 
 describe.sequential('fan-out scheduler contracts', () => {
+  it('refuses a lineage that modifies a committed out-of-scope path and restores HEAD', async () => {
+    const fixture = useShim('success');
+    const worktree = createIsolatedWorktrees();
+    worktrees.push(worktree);
+    const repository = worktree.worktrees[0];
+    const targetPath = join(repository, 'fixture.txt');
+    const beforeContent = readFileSync(targetPath, 'utf8');
+    const beforeHash = spawnSync('git', ['hash-object', 'fixture.txt'], {
+      cwd: repository,
+      encoding: 'utf8',
+    });
+    expect(beforeHash.status).toBe(0);
+    installDestructiveShim(fixture, targetPath);
+
+    const run = await runFanoutFromCwd(fixture, repository, 'write-containment');
+    const lineageDir = join(run.baseArtifactDir, 'lineages', 'write-containment');
+    const events = ledgerEvents(run.baseArtifactDir);
+    const envelope = stdoutEnvelope(run.result.stdout);
+    const results = envelope.results as Array<{
+      label: string;
+      status: string;
+      error: { message: string };
+    }>;
+    const pids = Object.values(readRecordedPids(fixture));
+    await waitUntilDead(pids);
+    const afterContent = readFileSync(targetPath, 'utf8');
+    const afterHash = spawnSync('git', ['hash-object', 'fixture.txt'], {
+      cwd: repository,
+      encoding: 'utf8',
+    });
+    const targetStatus = spawnSync('git', ['status', '--porcelain=v1', '--', 'fixture.txt'], {
+      cwd: repository,
+      encoding: 'utf8',
+    });
+
+    expect(afterContent).toBe(beforeContent);
+    expect(afterHash.status).toBe(0);
+    expect(String(afterHash.stdout).trim()).toBe(String(beforeHash.stdout).trim());
+    expect(targetStatus.status).toBe(0);
+    expect(String(targetStatus.stdout)).toBe('');
+    expect(readFileSync(join(lineageDir, 'research.md'), 'utf8')).toBe('# Shim research\n');
+    expect(events).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        event: 'containment_violation',
+        severity: 'error',
+        label: 'write-containment',
+        violations: [{ path: 'fixture.txt', kind: 'modified', status: ' M' }],
+        reverted: [{ path: 'fixture.txt', action: 'restored_from_head', ok: true }],
+      }),
+      expect.objectContaining({
+        event: 'failed',
+        terminal: true,
+        label: 'write-containment',
+        error: expect.objectContaining({
+          message: expect.stringContaining('violated write containment'),
+        }),
+      }),
+    ]));
+    expect(run.result.exitCode).toBe(3);
+    expect(run.result.timedOut).toBe(false);
+    expect(envelope.summary).toMatchObject({ failed: 1, all_failed: true });
+    expect(results).toEqual([
+      expect.objectContaining({
+        label: 'write-containment',
+        status: 'rejected',
+        error: expect.objectContaining({
+          message: expect.stringContaining('violated write containment'),
+        }),
+      }),
+    ]);
+    expect(pids.length).toBeGreaterThan(0);
+    expect(pids.every((pid) => !processIsAlive(pid))).toBe(true);
+  });
+
   it(FANOUT_TEST_NAMES[0], async () => {
     const fixture = useShim('auth-denial');
     const run = await runAdapterFanout(fixture, { mode: 'auth' });
