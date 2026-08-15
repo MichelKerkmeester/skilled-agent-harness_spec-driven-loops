@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -103,19 +103,25 @@
         "source": "derived"
       },
       {
-        "name": "Defined Model Benchmark",
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "This Planned",
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Model Benchmark",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,6 +145,12 @@
         "source": "derived"
       },
       {
+        "name": "Define Model Benchmark",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -152,6 +164,12 @@
       },
       {
         "name": "The Model Benchmark",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -173,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the Model Benchmark variant: multi-model runs, scoring matrices, sealed evidence, certificates, and phase-014 readiness over the shared Deep Improvement Common Services backbone.",
     "created_at": "2026-07-16T03:43:40.820Z",
-    "last_save_at": "2026-08-14T04:27:56.078Z",
+    "last_save_at": "2026-08-15T15:08:52.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2c6899b0344080fb2fcf386bd416c3adc8f4d84cd5ed4252388856fd46e5a2aa",
+    "source_fingerprint": "sha256:11ef1971e55bb588a38d0379143849a682a79ea34e42270372f8d534ccf75370",
     "source_doc_hashes": {
-      "spec.md": "ce8a42edfec2464e603d4d05ed99b58ca671dd5ec6a96541e30469a1655eb206",
+      "spec.md": "0cf5b00381ebbc979ee019b33a7afcb56f72112b0ad4c9004e9036749e2cd73c",
       "plan.md": "51f22523263a4e52883b208c7e80dd0880a7c7e4d15808f4e9423d151444185a",
-      "tasks.md": "f8550519a8f18ed1127e7d67a2ed03337ebc1d9317da34f43e5f2a0492fc26c0",
-      "checklist.md": "d46a11d8315c0d1d1784833c60bef7b2a065b78a430fa7f9be3502569c5d8ed1",
-      "implementation-summary.md": "47657bfe807c8f8702a19c698035f6bad6ea74020e7845ac886c8c3e56443a1d"
+      "tasks.md": "31686f90ebfd4e14b61af17be1b13ea988232d1440fa677e64abe886242d9680",
+      "checklist.md": "5e8223b58055bfc534aed06e3676ed12531c9fcdc695c4265cbc77d3350e0f17",
+      "implementation-summary.md": "523a406e064dd1baaa3cacc8f1055f35dc9f630b6e4329db6ca61e49964c0058"
     },
     "last_active_child_id": null,
     "last_active_at": null

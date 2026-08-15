@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T21:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped model benchmark attestations to matrix evidence and shared services"
-    next_safe_action: "Freeze matrix fingerprint inputs after sealed artifacts land"
+    last_updated_at: "2026-08-15T15:07:50Z"
+    last_updated_by: "codex"
+    recent_action: "Verified certificate closeout with focused suite 47 of 47 at exit 0"
+    next_safe_action: "Treat this leaf as complete while preserving additive-dark authority"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/004-certificates-and-receipts |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (model-benchmark variant over the deep-improvement-common backbone) |
 | **Origin** | Phase 004 of the model-benchmark mode migration: per-run certificates, per-transition receipts, replay fingerprints, and offline verification |
@@ -56,18 +56,18 @@ identifies model-by-task reversals, candidate-specific judge calibration, contam
 adaptive evaluation after minimum coverage, and the distinction between pairwise rank and operational value as load-bearing
 model-benchmark concerns (`findings-registry-modes.json`, model-benchmark insights from iterations 31-35).
 
-The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but remain additive-dark and
-non-authoritative while this leaf stays Planned. Deep-improvement-common owns the
-evaluator, canary, and guarded-promotion services. This phase plans only the model-benchmark attestation layer over those
+The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED and this certificate leaf is now
+complete, while all remain additive-dark and non-authoritative. Deep-improvement-common owns the
+evaluator, canary, and guarded-promotion services. This phase implements only the model-benchmark attestation layer over those
 contracts. A per-run `CERTIFICATE` must state which model/executor cells were evaluated, which sealed benchmark recipe and
 workload profile governed them, how the scoring matrix was reduced, and what selection claim the evidence supports. A
 per-transition `RECEIPT` must record each benchmark state change or selection-relevant transition without copying the full
 run evidence. Both must bind to a canonical replay fingerprint that an independent verifier can recompute without calling
 any live model, judge, router, or network service.
 
-The phase is planning only. It does not re-implement the shared evaluator, canary, or promotion services, does not make a
-model selection authoritative, and does not move the ledger out of additive-dark operation. The later resume adapter
-consumes the receipt and fingerprint boundary; the later mode gate consumes parity and offline-verification evidence.
+The completed phase does not re-implement the shared evaluator, canary, or promotion services, make a model selection
+authoritative, or move the ledger out of additive-dark operation. The resume adapter consumes the receipt and fingerprint
+boundary; the mode gate consumes parity and offline-verification evidence.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->

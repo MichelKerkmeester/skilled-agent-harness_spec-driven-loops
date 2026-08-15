@@ -12,13 +12,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T23:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined Model Benchmark rollback switch and independent gate boundary"
-    next_safe_action: "Freeze matrix gate predicates and rollback window evidence"
+    last_updated_at: "2026-08-15T15:07:50Z"
+    last_updated_by: "codex"
+    recent_action: "Verified rollback-gate closeout with focused suite 58 of 58 at exit 0"
+    next_safe_action: "Treat this leaf as complete while preserving additive-dark authority"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,13 +38,13 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Model Benchmark mode over the Deep Improvement Common Services backbone) |
 | **Origin** | Final child concern in the phase-013 Model Benchmark migration |
 | **Depends on** | `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` are LANDED as additive-dark, non-authoritative substrate; sibling adjacency remains navigation rather than authority |
-| **Consumes** | Planned certificate/receipt, resume-adapter, and required phase-009 shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
-| **Outcome** | Plan the Model Benchmark rollback switch and independent mode gate for the typed event-ledger migration |
+| **Consumes** | Complete certificate/receipt, resume-adapter, and required shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
+| **Outcome** | Deliver the Model Benchmark rollback switch and independent mode gate for the typed event-ledger migration |
 | **Inputs** | Parent 036 spec, phase-tree manifest, 036/002 findings registries, and the shared transition/versioning/rollback policy |
 <!-- /ANCHOR:metadata -->
 
@@ -59,14 +59,14 @@ single aggregate ranking, one reusable judge calibration, a recent timestamp, or
 false confidence. They also identify a concrete current gap: `dispatch-model.cjs` exposes normalized usage fields while
 `sweep-benchmark.cjs` leaves token and cost fields null and `sweep-reporter.cjs` ranks efficiency by output word count.
 
-The earlier Model Benchmark siblings plan the typed run and trial events, deterministic matrix reducers, sealed reference
+The earlier Model Benchmark siblings define the typed run and trial events, deterministic matrix reducers, sealed reference
 artifacts, certificates and receipts, resume behavior, and the `006-shadow-parity` boundary. Those outputs are necessary
 but not sufficient for a safe migration. Without a mode-scoped rollback switch, a stale writer or unresolved external model
 effect can continue after restoration. Without an independent gate, a plausible matrix score or certificate can be mistaken
 for proof that this mode migrated safely.
 
-The schema, reducer/projection, and sealed-artifact leaves are already LANDED but remain additive-dark and
-non-authoritative. This Planned leaf consumes their contracts and the later receipt, resume, and parity evidence without
+The schema, reducer/projection, sealed-artifact, certificate, resume, and parity leaves are LANDED but remain additive-dark
+and non-authoritative. This completed leaf consumes their contracts and evidence without
 allowing any predecessor output to become an authority decision.
 
 This phase defines the fail-closed authority-cutover toggle, the bounded rollback window, and the Model Benchmark gate that
