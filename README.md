@@ -1120,6 +1120,13 @@ To call a Code Mode tool: `call_tool_chain({ code: "const result = await figma.f
 
 For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the skill at `.opencode/skills/mcp-code-mode/SKILL.md`.
 
+&nbsp;
+#### Git Worktree / Continuous Integration
+
+The repo runs a live-sync loop around the worktree-per-session model. Every launch-wrapper session commits in its own isolated worktree and then auto-publishes each commit to a shared live branch. The main checkout auto-follows that branch, so the IDE always shows the combined state of every concurrent session's committed work.
+
+The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically. Disable the whole loop with `MK_LIVE_SYNC_DISABLED=1`. Finer switches stay available: `SPECKIT_AUTOSYNC=0` for one publish, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, and `MK_LIVE_FOLLOW_DISABLED=1` for the follower. See `sk-git/references/continuous-integration.md` for the full model.
+
 <!-- /ANCHOR:features -->
 
 

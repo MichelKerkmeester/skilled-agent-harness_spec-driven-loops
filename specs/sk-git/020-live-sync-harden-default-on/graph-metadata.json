@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/020-live-sync-harden-default-on",
+  "spec_folder": "sk-git/020-live-sync-harden-default-on",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live sync harden",
+      "live branch default on",
+      "MK_LIVE_SYNC_DISABLED",
+      "autosync self heal",
+      "follower auto start"
+    ],
+    "key_topics": [
+      "live",
+      "sync",
+      "harden",
+      "branch",
+      "default",
+      "autosync",
+      "self",
+      "heal",
+      "follower",
+      "auto",
+      "start",
+      "continuous-integration"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Harden",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Harden",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Follower Hardening",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Publish Primitive Hardening",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Changes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Surface",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The continuous-integration model built by `007-continuous-integration-workflow` publishes every launch-wrapper session commit to a shared live branch and fast-forwards the IDE checkout to follow it",
+    "created_at": "2026-08-15T13:02:56.482Z",
+    "last_save_at": "2026-08-15T13:13:01.679Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:badf282fef08f2ffe8f5c3f63f41d69933a601a05f32847b23dca277c9cb1398",
+    "source_doc_hashes": {
+      "spec.md": "0cc27a66c31dd87307feb8c2a744d6c14be4f272566d908c16d016f01d788eda",
+      "plan.md": "06f0ed233006a7acf73fb2fd1a3982e4dfc8a5b5a7ca386d334b8b3233c2fa6f",
+      "tasks.md": "78ab88798d608f410a1acd3b806c0436fde5520635294e2855492563bff39bf6",
+      "checklist.md": "1033f3a05209de0f79cacb2d1d27f22f1b53e701c7e2dd24c6f7e731080a6ed3",
+      "implementation-summary.md": "9e4164efd1b1667a32e17540ccce7dcd7e4131f3f1dbfd335f0f56d410d4162b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

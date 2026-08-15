@@ -10,16 +10,20 @@
 
 set -euo pipefail
 
-if [[ "${SPECKIT_SKIP_DOC_MODEL_VALIDATE:-0}" = "1" ]]; then
-  exit 0
-fi
-
 REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 
 # shared hook kill-switch (master + per-concern); fail-open if guard absent
 if [ -n "$REPO_ROOT" ] && [ -r "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" ]; then
-  . "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh"
-  hook_enabled git-commit-hooks || exit 0
+  set +e
+  # shellcheck source=/dev/null
+  . "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" 2>/dev/null
+  _hook_flags_rc=$?
+  set -e
+  if [[ "$_hook_flags_rc" -ne 0 ]] || ! command -v hook_enabled >/dev/null 2>&1; then
+    echo "WARNING [gate:hook-flags]: resolver unavailable; commit gates remain enabled." >&2
+  else
+    hook_enabled git-commit-hooks || exit 0
+  fi
 fi
 
 if [[ -z "$REPO_ROOT" ]]; then
@@ -34,37 +38,37 @@ fi
 # Bypass: SPECKIT_ALLOW_MASS_DELETION=1 git commit ...
 MASS_DEL_GUARD="$REPO_ROOT/.opencode/scripts/git-hooks/lib/mass-deletion-guard.sh"
 if [[ -f "$MASS_DEL_GUARD" ]]; then
+  set +e
   # shellcheck source=/dev/null
-  . "$MASS_DEL_GUARD"
-  _mdg_deleted="$(mass_deletion_staged_count)"
-  if ! mass_deletion_verdict "$_mdg_deleted"; then
-    mass_deletion_report commit "$_mdg_deleted" "(staged deletions)"
-    exit 1
+  . "$MASS_DEL_GUARD" 2>/dev/null
+  _mass_guard_rc=$?
+  set -e
+  if [[ "$_mass_guard_rc" -ne 0 ]] || ! command -v mass_deletion_staged_count >/dev/null 2>&1 || ! command -v mass_deletion_verdict >/dev/null 2>&1 || ! command -v mass_deletion_report >/dev/null 2>&1; then
+    echo "WARNING [gate:mass-deletion]: guard unavailable; commit gate failed open." >&2
+  else
+    _mdg_deleted="$(mass_deletion_staged_count)"
+    if ! mass_deletion_verdict "$_mdg_deleted"; then
+      mass_deletion_report commit "$_mdg_deleted" "(staged deletions)"
+      exit 1
+    fi
   fi
 fi
 
 VALIDATOR="$REPO_ROOT/.opencode/skills/sk-doc/scripts/validate-doc-model-refs.js"
-if [[ ! -f "$VALIDATOR" ]]; then
-  exit 0
-fi
+if [[ "${SPECKIT_SKIP_DOC_MODEL_VALIDATE:-0}" != "1" && -f "$VALIDATOR" ]] && command -v node >/dev/null 2>&1; then
+  # Advisory failure must never skip the independent blocking gates below.
+  RC=0
+  OUT="$(node "$VALIDATOR" 2>&1)" || RC=$?
 
-if ! command -v node >/dev/null 2>&1; then
-  exit 0
-fi
-
-# Run validator; capture exit code. Non-zero exit means drift detected.
-# Advisory: warn on stderr but always exit 0 so the commit proceeds.
-RC=0
-OUT="$(node "$VALIDATOR" 2>&1)" || RC=$?
-
-if [[ "$RC" -ne 0 ]]; then
-  echo "" >&2
-  echo "⚠️  doc-model-refs drift detected (advisory; commit not blocked):" >&2
-  echo "$OUT" | head -30 >&2 || true
-  echo "" >&2
-  echo "Bypass next time: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..." >&2
-  echo "Fix: update docs to cite canonical model names from registry.ts" >&2
-  echo "" >&2
+  if [[ "$RC" -ne 0 ]]; then
+    echo "" >&2
+    echo "⚠️  doc-model-refs drift detected (advisory; commit not blocked):" >&2
+    echo "$OUT" | head -30 >&2 || true
+    echo "" >&2
+    echo "Bypass next time: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..." >&2
+    echo "Fix: update docs to cite canonical model names from registry.ts" >&2
+    echo "" >&2
+  fi
 fi
 
 # --- Comment hygiene gate (blocking) ---
@@ -74,7 +78,7 @@ fi
 if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" ]]; then
   COMMENT_CHECKER="${REPO_ROOT}/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
   if [[ ! -x "$COMMENT_CHECKER" ]]; then
-    echo "BLOCKED: comment hygiene checker is missing or not executable." >&2
+    echo "BLOCKED [gate:comment-hygiene]: checker is missing or not executable." >&2
     exit 1
   fi
 
@@ -93,7 +97,7 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" ]]; then
         VIOLATIONS=$((VIOLATIONS + 1))
         ;;
       *)
-        echo "BLOCKED: comment hygiene checker failed for $file (exit $CHECKER_RC)." >&2
+        echo "BLOCKED [gate:comment-hygiene]: checker failed for $file (exit $CHECKER_RC)." >&2
         printf '%s\n' "$CHECKER_OUTPUT" >&2
         exit 1
         ;;
@@ -102,7 +106,7 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" ]]; then
 
   if [[ "$VIOLATIONS" -gt 0 ]]; then
     echo ""
-    echo "BLOCKED: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
+    echo "BLOCKED [gate:comment-hygiene]: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
     echo "See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4"
     echo "Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line."
     exit 1
@@ -124,7 +128,7 @@ if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
     echo "WARNING: node or agent mirror-sync checker unavailable — skipping mirror gate" >&2
   elif ! node "$MIRROR_CHECKER" "${STAGED_AGENTS[@]}"; then
     echo ""
-    echo "BLOCKED: staged agent files desync the .opencode / .claude mirrors."
+    echo "BLOCKED [gate:agent-mirror-sync]: staged agent files desync the .opencode / .claude mirrors."
     echo "Fix: re-sync the mirrors so each agent body matches, then re-stage."
     exit 1
   fi
@@ -142,7 +146,7 @@ if [[ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]]; then
        | grep -Eq '^\.opencode/skills/(cli-[a-z-]+/(SKILL\.md|assets/prompt_quality_card\.md|graph-metadata\.json)|sk-prompt/assets/cli_prompt_quality_card\.md|sk-prompt-models/)'; then
     if ! bash "$CARD_GUARD" "$REPO_ROOT"; then
       echo "" >&2
-      echo "BLOCKED: prompt-knowledge drift guard failed (see FAIL lines above)." >&2
+      echo "BLOCKED [gate:prompt-card-sync]: prompt-knowledge drift guard failed (see FAIL lines above)." >&2
       echo "Fix: keep each fact in its one canonical home and point to it; see" >&2
       echo "     .opencode/skills/sk-prompt-models/references/pattern-index.md." >&2
       echo "Bypass: SPECKIT_SKIP_CARD_SYNC=1 git commit ..." >&2
@@ -164,7 +168,7 @@ if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
        | grep -Eq '^\.opencode/(skills/mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/doctor-mcp-install\.yaml)$'; then
     if ! bash "$MUTCLASS_GUARD" "$REPO_ROOT"; then
       echo "" >&2
-      echo "BLOCKED: MCP mutation-class contract failed (see FAIL lines above)." >&2
+      echo "BLOCKED [gate:mcp-mutation-class]: MCP mutation-class contract failed (see FAIL lines above)." >&2
       echo "Fix: a read-only doctor must not run mutations or unbounded network calls;" >&2
       echo "     declare each script's mutation_class in doctor-mcp-install.yaml." >&2
       echo "Bypass: SPECKIT_SKIP_MCP_MUTATION_CLASS=1 git commit ..." >&2
@@ -179,12 +183,12 @@ fi
 if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" ]]; then
   OWNERSHIP_LINT="${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp-server/tests/tool-ownership-lint-runner.mjs"
   if [[ ! -f "$OWNERSHIP_LINT" ]]; then
-    echo "BLOCKED: tool-ownership lint runner missing." >&2
+    echo "BLOCKED [gate:tool-ownership]: lint runner missing." >&2
     exit 1
   fi
   if ! node "$OWNERSHIP_LINT" >/dev/null; then
     echo "" >&2
-    echo "BLOCKED: tool-ownership drift detected." >&2
+    echo "BLOCKED [gate:tool-ownership]: drift detected." >&2
     echo "Fix: regenerate mcp-server/tests/fixtures/tool-ownership-map.json from TOOL_DEFINITIONS." >&2
     echo "Bypass: SPECKIT_SKIP_TOOL_OWNERSHIP_LINT=1 git commit ..." >&2
     exit 1

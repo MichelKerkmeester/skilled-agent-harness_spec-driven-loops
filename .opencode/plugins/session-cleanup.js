@@ -29,8 +29,9 @@ const PLUGIN_ROOT = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(PLUGIN_ROOT, '..', '..');
 const CLEANUP_SCRIPT = join(REPO_ROOT, '.opencode/scripts/session-cleanup.sh');
 const GUARD_SCRIPTS = [
-  join(REPO_ROOT, '.opencode/bin/worktree-guard.sh'),
-  join(REPO_ROOT, '.opencode/bin/check-git-hooks.sh'),
+  { path: join(REPO_ROOT, '.opencode/bin/worktree-guard.sh'), args: [] },
+  { path: join(REPO_ROOT, '.opencode/bin/check-git-hooks.sh'), args: [] },
+  { path: join(REPO_ROOT, '.opencode/bin/git-live-follow.sh'), args: ['--start'] },
 ];
 const DEFAULT_LOG_PATH = join(
   process.env.HOME || '/tmp',
@@ -112,10 +113,10 @@ export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
   const guardedSessions = new Set();
   let disposed = false;
 
-  function runScript(scriptPath, operation, env = process.env) {
+  function runScript(scriptPath, operation, args = [], env = process.env) {
     let result;
     try {
-      result = runSync('bash', [scriptPath], {
+      result = runSync('bash', [scriptPath, ...args], {
         cwd: projectDir,
         encoding: 'utf8',
         env,
@@ -142,8 +143,8 @@ export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
     guardedSessions.add(sessionId);
 
     const warnings = [];
-    for (const scriptPath of GUARD_SCRIPTS) {
-      const result = runScript(scriptPath, `guard ${scriptPath}`);
+    for (const entry of GUARD_SCRIPTS) {
+      const result = runScript(entry.path, `guard ${entry.path}`, entry.args);
       const output = boundedText(`${result.stdout || ''}\n${result.stderr || ''}`);
       if (output) warnings.push(output);
     }
@@ -152,7 +153,7 @@ export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
   }
 
   function runCleanup() {
-    runScript(CLEANUP_SCRIPT, 'cleanup', {
+    runScript(CLEANUP_SCRIPT, 'cleanup', [], {
       ...process.env,
       SESSION_CLEANUP_LOG_PATH: logPath,
       SESSION_CLEANUP_PID: '',

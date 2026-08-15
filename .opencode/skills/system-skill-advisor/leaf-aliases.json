@@ -471,11 +471,6 @@
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "hooks/skill-advisor-hook.md",
-    "diskPath": "hooks/skill-advisor-hook.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
     "leafResourceId": "references/runtime/daemon-lease-contract.md",
     "diskPath": "references/runtime/daemon-lease-contract.md"
   },

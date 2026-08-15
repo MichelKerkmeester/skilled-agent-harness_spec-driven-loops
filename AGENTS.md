@@ -356,6 +356,7 @@ Every spec folder (Level 1+) MUST contain:
 | **No direct branch creation** | Never create a branch with `git branch`, `git checkout -b`, or `git switch -c`. Branches are created only via `git worktree add -b ...`. |
 | **Ask before every push to a non-allowlisted remote branch** | Local branch/worktree creation stays unrestricted, but `origin` only ever receives `main`, `skilled/v*` release branches, and anything in `remote-branch-allowlist.txt` without asking. Every other push — new branch or update — needs a fresh, in-the-moment go-ahead; an explicit user push instruction counts as that go-ahead, a prior approval for an earlier push does not. Technical backstop: the pre-push hook blocks it unless `SPECKIT_ALLOW_REMOTE_PUSH=1` is set for that invocation. Full contract: `.opencode/skills/sk-git/references/remote-branch-policy.md`. |
 | **Hold the hyphen-case pilot** | sk-git's `references/`, `assets/`, `feature-catalog/`, and `manual-testing-playbook/` trees are intentionally hyphen-case ahead of the repo-wide naming program. Do NOT revert them to snake_case while that program (sk-doc/017) is pending. |
+| **Live-sync auto-publish and auto-follow** | In the main checkout only, commits auto-publish to the live branch and the checkout auto-follows it. Disable the whole loop with `MK_LIVE_SYNC_DISABLED=1`, the publish leg with `SPECKIT_AUTOSYNC=0`, or the follower with `MK_LIVE_FOLLOW_DISABLED=1`. Model: `.opencode/skills/sk-git/references/continuous-integration.md`. |
 
 #### Code Search Decision Tree
 

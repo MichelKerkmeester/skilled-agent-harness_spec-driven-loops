@@ -67,6 +67,7 @@
         "references/quick-reference.md",
         "references/remote-branch-policy.md",
         "references/shared-patterns.md",
+        "references/unstick-dirty-worktree.md",
         "references/worktree-workflows.md"
       ],
       "packet": ".",

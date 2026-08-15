@@ -72,7 +72,16 @@ json_escape() {
 
 # SECURITY: get_feature_paths uses printf %q for shell-safe output
 eval "$(get_feature_paths)"
-check_feature_branch "$CURRENT_BRANCH" "$HAS_GIT" || exit 1
+
+# An explicit SPECIFY_FEATURE override names the target packet directly (including
+# track-nested packets like <track>/<NNN-name>), so the NNN- feature-branch
+# convention no longer applies. Enforcing it here would wrongly reject a release
+# or non-feature branch even though the operator has already pointed at a concrete
+# packet. A wrong or missing target still fails loudly at the directory-existence
+# check below, so skipping branch validation for an explicit override is safe.
+if [[ -z "${SPECIFY_FEATURE:-}" ]]; then
+    check_feature_branch "$CURRENT_BRANCH" "$HAS_GIT" || exit 1
+fi
 
 # ───────────────────────────────────────────────────────────────
 # 3. PATH-ONLY MODE

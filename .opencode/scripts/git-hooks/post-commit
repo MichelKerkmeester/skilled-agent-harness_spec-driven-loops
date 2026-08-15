@@ -22,9 +22,16 @@ if [ -z "$REPO_ROOT" ]; then
 fi
 
 if [ -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" ]; then
+  set +e
   # shellcheck source=/dev/null
-  source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
-  mark_memory_drift_from_diff HEAD || true
+  source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" 2>/dev/null
+  _memory_marker_rc=$?
+  set -e
+  if [ "$_memory_marker_rc" -ne 0 ] || ! command -v mark_memory_drift_from_diff >/dev/null 2>&1; then
+    echo "WARNING [gate:memory-drift-marker]: helper unavailable; continuing to autosync." >&2
+  else
+    mark_memory_drift_from_diff HEAD || true
+  fi
 fi
 
 # Continuous-integration autosync: publish this commit to the shared "live" branch
@@ -34,11 +41,30 @@ fi
 # linked worktree, never the primary checkout. Fully non-fatal: git-sync leaves a
 # blocked commit local and post-commit's exit status never affects the commit.
 if [ "${SPECKIT_AUTOSYNC:-0}" = "1" ] && [ -n "${SPECKIT_LIVE_BRANCH:-}" ]; then
-  _as_git_dir="$(git rev-parse --absolute-git-dir 2>/dev/null || true)"
-  _as_common_dir="$(cd "$(git rev-parse --git-common-dir 2>/dev/null || echo .)" 2>/dev/null && pwd -P || true)"
-  if [ -n "$_as_git_dir" ] && [ -n "$_as_common_dir" ] && [ "$_as_git_dir" != "$_as_common_dir" ]; then
-    _as_sync="$REPO_ROOT/.opencode/bin/git-sync.sh"
-    [ -f "$_as_sync" ] && bash "$_as_sync" --auto --quiet || true
+  # Master live-sync switch: MK_LIVE_SYNC_DISABLED (or the master MK_HOOKS_DISABLED)
+  # stops the whole publish leg with one flag; the finer SPECKIT_AUTOSYNC=0 opt-out
+  # keeps working underneath. Absent resolver means enabled (fail-open).
+  __pc_ls_enabled=1
+  if [ -r "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" ]; then
+    __hf_root="$REPO_ROOT"
+    set +e
+    # shellcheck source=/dev/null
+    . "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" 2>/dev/null
+    __pc_hf_rc=$?
+    set -e
+    if [ "$__pc_hf_rc" -eq 0 ] && command -v hook_enabled >/dev/null 2>&1; then
+      hook_enabled live-sync || __pc_ls_enabled=0
+    else
+      echo "WARNING [gate:hook-flags]: resolver unavailable; continuing with live-sync enabled." >&2
+    fi
+  fi
+  if [ "$__pc_ls_enabled" = "1" ]; then
+    _as_git_dir="$(git rev-parse --absolute-git-dir 2>/dev/null || true)"
+    _as_common_dir="$(cd "$(git rev-parse --git-common-dir 2>/dev/null || echo .)" 2>/dev/null && pwd -P || true)"
+    if [ -n "$_as_git_dir" ] && [ -n "$_as_common_dir" ] && [ "$_as_git_dir" != "$_as_common_dir" ]; then
+      _as_sync="$REPO_ROOT/.opencode/bin/git-sync.sh"
+      [ -f "$_as_sync" ] && bash "$_as_sync" --auto --quiet || true
+    fi
   fi
 fi
 

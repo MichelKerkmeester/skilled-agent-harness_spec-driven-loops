@@ -14,9 +14,14 @@
 #   - When the live branch has moved, rebases the session's commits onto it.
 #     On ANY rebase conflict it ABORTS the rebase (restoring the exact pre-sync
 #     state) and reports the commits as pending — it never asks the caller to
-#     resolve another session's changes mid-hook, and never half-applies.
+#     resolve another session's changes mid-hook, and never half-applies. The
+#     abort is ASSERTED: if rebase state or a dirty tree survives, that is a
+#     critical failure, not a clean pending.
 #   - Non-fatal by default: a blocked publish leaves the commit local and prints
 #     how to finish it manually; the session keeps working.
+#   - Every outcome is appended to a durable log under the git common dir so a
+#     publish history survives process exit and worktree removal without ever
+#     dirtying a tree.
 #
 # Usage:
 #   git-sync.sh [--live <branch>] [--remote <name>] [--auto] [--quiet]
@@ -58,8 +63,79 @@ _bail() { if [ "$AUTO" = "1" ]; then exit 0; else exit "${1:-1}"; fi; }
 log()   { [ "$QUIET" = "1" ] || echo "[git-sync] $*" >&2; }
 warn()  { echo "[git-sync] $*" >&2; }
 
+PUSH_OUTPUT=""
+PUSH_GATE=""
+PUSH_FIX=""
+
+_push_live() {
+  local rc
+  PUSH_OUTPUT=""
+  PUSH_OUTPUT="$(git push "$REMOTE" "HEAD:$LIVE" 2>&1)"
+  rc=$?
+  return "$rc"
+}
+
+_classify_push_gate() {
+  PUSH_GATE=""
+  PUSH_FIX=""
+  case "$PUSH_OUTPUT" in
+    *'[gate:mass-deletion]'*)
+      PUSH_GATE="mass-deletion"
+      PUSH_FIX="After inspection: SPECKIT_ALLOW_MASS_DELETION=1 bash .opencode/bin/git-sync.sh --live $LIVE"
+      ;;
+    *'[gate:skill-root-metadata]'*)
+      PUSH_GATE="skill-root-metadata"
+      PUSH_FIX="node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
+      ;;
+    *'[gate:naming]'*)
+      PUSH_GATE="naming"
+      PUSH_FIX="Use an owner-first branch name; bypass only with SPECKIT_SKIP_PREPUSH_NAMING=1."
+      ;;
+    *'[gate:remote-permission]'*)
+      PUSH_GATE="remote-permission"
+      PUSH_FIX="After explicit approval, retry that one push with SPECKIT_ALLOW_REMOTE_PUSH=1."
+      ;;
+    *'[gate:test-suites]'*)
+      PUSH_GATE="test-suites"
+      PUSH_FIX="Fix the reported test failure or disable enforcement only through the documented operator policy."
+      ;;
+  esac
+  [[ -n "$PUSH_GATE" ]]
+}
+
+_report_push_gate() {
+  _classify_push_gate || return 1
+  [[ -z "$PUSH_OUTPUT" ]] || printf '%s\n' "$PUSH_OUTPUT" >&2
+  warn "AUTOSYNC BLOCKED: pre-push gate '$PUSH_GATE' rejected publication to $REMOTE/$LIVE."
+  warn "Fix: $PUSH_FIX"
+  _record blocked "gate=$PUSH_GATE fix=$PUSH_FIX"
+  return 0
+}
+
+_show_push_output() {
+  [[ -z "$PUSH_OUTPUT" ]] || printf '%s\n' "$PUSH_OUTPUT" >&2
+}
+
 command -v git >/dev/null 2>&1 || { warn "git not found"; _bail 1; }
 git rev-parse --git-dir >/dev/null 2>&1 || { [ "$AUTO" = "1" ] && exit 0; warn "not a git repository"; exit 1; }
+
+# Durable outcome log: append-only file under the git common dir. Resolved once
+# so every branch below shares one sink. A write failure is silently ignored —
+# the log is a trace, never a reason to fail a publish.
+SYNC_LOG=""
+_sync_common="$(git rev-parse --git-common-dir 2>/dev/null || true)"
+if [ -n "$_sync_common" ]; then
+  case "$_sync_common" in
+    /*) SYNC_LOG="$_sync_common/git-sync.log" ;;
+    *) SYNC_LOG="$PWD/$_sync_common/git-sync.log" ;;
+  esac
+fi
+_record() {
+  [ -n "$SYNC_LOG" ] || return 0
+  local ts
+  ts="$(date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo '-')"
+  printf '%s\t%s\tbranch=%s\tlive=%s\t%s\n' "$ts" "$1" "$BRANCH" "$LIVE" "${2:-}" >> "$SYNC_LOG" 2>/dev/null || true
+}
 
 if [ -z "$LIVE" ]; then
   [ "$AUTO" = "1" ] && exit 0
@@ -96,10 +172,15 @@ while :; do
 
   # No remote live branch yet: create it from HEAD (first publisher).
   if [ -z "$REMOTE_TIP" ]; then
-    if git push "$REMOTE" "HEAD:$LIVE" 2>/dev/null; then
+    if _push_live; then
+      _record created "created $REMOTE/$LIVE from $BRANCH"
       log "created $REMOTE/$LIVE from $BRANCH"
       exit 0
     fi
+    if _report_push_gate; then
+      _bail 1
+    fi
+    _show_push_output
     warn "could not create $REMOTE/$LIVE"; _bail 1
   fi
 
@@ -116,12 +197,24 @@ while :; do
   # adds our commits. This is the common single-session / non-overlapping path.
   if git merge-base --is-ancestor "$REMOTE_TIP" "$HEAD_SHA"; then
     ahead="$(git rev-list --count "$REMOTE_TIP..$HEAD_SHA")"
-    if git push "$REMOTE" "HEAD:$LIVE" 2>/dev/null; then
+    if _push_live; then
+      _record published "fast-forward ($ahead commit(s))"
       log "published $ahead commit(s) to $REMOTE/$LIVE (fast-forward)"
       exit 0
     fi
-    # A concurrent push landed between fetch and push: retry the whole loop.
-    if [ "$attempt" -le "$RETRIES" ]; then continue; fi
+    if _report_push_gate; then
+      _bail 1
+    fi
+    # A concurrent push landed between fetch and push: retry the whole loop
+    # after a short jittered backoff, so concurrent sessions never retry in
+    # lockstep and re-race each other forever.
+    if [ "$attempt" -le "$RETRIES" ]; then
+      _record pending "push race (retry $attempt/$RETRIES)"
+      sleep "$(( attempt + RANDOM % 3 ))" 2>/dev/null || sleep 1
+      continue
+    fi
+    _record pending "push race persisted after $RETRIES retries ($ahead commit(s))"
+    _show_push_output
     warn "push race persisted after $RETRIES retries; $ahead commit(s) pending on $BRANCH"; _bail 1
   fi
 
@@ -132,24 +225,48 @@ while :; do
   # refuse the rebase for any session that merely has scratch files, which is the
   # common case right after a scoped commit.
   if ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
+    _record blocked "live branch moved but tracked files dirty"
     warn "$REMOTE/$LIVE moved but there are uncommitted changes to tracked files — cannot rebase."
     warn "commit or stash them, then run: bash .opencode/bin/git-sync.sh --live $LIVE"
     _bail 1
   fi
 
   if git rebase --quiet "$REMOTE_TIP" 2>/dev/null; then
-    if git push "$REMOTE" "HEAD:$LIVE" 2>/dev/null; then
+    if _push_live; then
+      _record published "rebased onto $REMOTE/$LIVE"
       log "rebased onto $REMOTE/$LIVE and published $BRANCH"
       exit 0
     fi
-    if [ "$attempt" -le "$RETRIES" ]; then continue; fi
+    if _report_push_gate; then
+      _bail 1
+    fi
+    if [ "$attempt" -le "$RETRIES" ]; then
+      _record pending "push race after rebase (retry $attempt/$RETRIES)"
+      sleep "$(( attempt + RANDOM % 3 ))" 2>/dev/null || sleep 1
+      continue
+    fi
+    _record pending "push race persisted after $RETRIES retries"
+    _show_push_output
     warn "push race persisted after $RETRIES retries; commits pending on $BRANCH"; _bail 1
   fi
 
   # Rebase hit a conflict: undo it completely and report. The session's branch
   # is byte-identical to before this run; its commits stay local and unpublished.
   git rebase --abort 2>/dev/null || true
+  # Assert the abort actually restored the pre-rebase state. A failed abort
+  # (residual rebase state or a dirty tree) must be surfaced as critical, never
+  # mislabeled as a clean pending — that would strand the session mid-rebase.
+  _rebase_merge="$(git rev-parse --git-path rebase-merge 2>/dev/null || true)"
+  _rebase_apply="$(git rev-parse --git-path rebase-apply 2>/dev/null || true)"
+  if [ -e "$_rebase_merge" ] || [ -e "$_rebase_apply" ] || \
+     ! git diff --quiet 2>/dev/null || ! git diff --cached --quiet 2>/dev/null; then
+    _record conflict "abort-failed (rebase state or tracked changes remain)"
+    warn "CRITICAL: rebase abort did not fully restore the branch — rebase state or tracked changes remain."
+    warn "fix manually: git rebase --abort   then   git status   then run git-sync again"
+    _bail 1
+  fi
   pending="$(git rev-list --count "$REMOTE_TIP..$HEAD_SHA" 2>/dev/null || echo '?')"
+  _record conflict "aborted cleanly ($pending commit(s) pending)"
   warn "auto-publish blocked: $BRANCH conflicts with $REMOTE/$LIVE ($pending commit(s) pending, unpublished)."
   warn "resolve manually: git rebase $REMOTE/$LIVE  (fix conflicts)  then  git push $REMOTE HEAD:$LIVE"
   _bail 1

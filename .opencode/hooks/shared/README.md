@@ -24,7 +24,7 @@ This folder injects nothing into any AI session — it is pure plumbing for the 
 
 ### Currently wired consumers
 
-The resolver family currently gates 20 concerns: `skill-advisor`, `spec-gate`, `completion`, `codex-watchdog`, `permission-policy`, `directive-lifecycle`, `dispatch`, `post-edit-quality`, `task-dispatch`, `mcp-route-guard`, `goal`, `git-preflight`, `spec-memory`, `session-lifecycle`, `worktree-guard`, `git-hooks-check`, `dist-freshness`, `session-cleanup`, `hook-install`, and `git-commit-hooks`. Pi's bundled SessionStart adapter calls `isHookEnabled()` separately for each of its four advisory concerns.
+The resolver family currently gates 22 concerns: `skill-advisor`, `spec-gate`, `completion`, `codex-watchdog`, `permission-policy`, `directive-lifecycle`, `dispatch`, `post-edit-quality`, `task-dispatch`, `mcp-route-guard`, `goal`, `git-preflight`, `spec-memory`, `session-lifecycle`, `worktree-guard`, `git-hooks-check`, `dist-freshness`, `session-cleanup`, `hook-install`, `git-commit-hooks`, `live-sync`, and `live-follow`. Pi's bundled SessionStart adapter calls `isHookEnabled()` separately for each of its five advisory concerns.
 
 Keeping local copies is deliberate — it is what makes every adapter under `.opencode/hooks/` importable with zero dependency outside this tree, which is the point of the tree existing.
 

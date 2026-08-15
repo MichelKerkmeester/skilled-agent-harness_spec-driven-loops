@@ -87,6 +87,32 @@ The launch wrapper wires this up per session: it resolves the live branch from t
 
 The autosync block composes with — it does not replace — the hook's existing code-graph invalidation and memory-drift behavior.
 
+### Gate map
+
+Wrapper sessions inherit `SPECKIT_AUTOSYNC=1` while committing, so commit-time gates run before autosync starts. Push-time gates then run inside `git push origin HEAD:<live>`. A gate rejection is not a push race: `git-sync.sh` captures the hook stderr, identifies the stable `[gate:<name>]` marker, replays the original diagnostics, prints `AUTOSYNC BLOCKED`, and appends a `blocked gate=<name> fix=<guidance>` record to the common-dir `git-sync.log`.
+
+| Lifecycle | Gate | Runs for wrapper autosync work | Exact live-branch behavior | Blocking and visibility |
+|-----------|------|-------------------------------|----------------------------|-------------------------|
+| Pre-commit | Shared hook flags | Yes, before the commit | May disable the commit-hook family; a broken resolver warns and leaves gates enabled | Never blocks by itself |
+| Pre-commit | Mass-deletion ceiling | Yes, before the commit | No exemption | Real violations block loudly and append `mass-deletion-guard.log` |
+| Pre-commit | Doc model references | Yes, when its validator exists | Advisory only | Warns, then later gates still run |
+| Pre-commit | Comment hygiene | Yes | No exemption | Blocks with `[gate:comment-hygiene]` and repair guidance |
+| Pre-commit | Agent mirror sync | When agent mirrors are staged | No exemption | Blocks with `[gate:agent-mirror-sync]` and repair guidance |
+| Pre-commit | Prompt card sync | When prompt-knowledge files are staged | No exemption | Blocks with `[gate:prompt-card-sync]` and repair guidance |
+| Pre-commit | MCP mutation class | When matching doctor/install files are staged | No exemption | Blocks with `[gate:mcp-mutation-class]` and repair guidance |
+| Pre-commit | Tool ownership map | Yes | No exemption | Blocks with `[gate:tool-ownership]` and repair guidance |
+| Post-commit | Memory drift marker | Yes, before publish | Best-effort; a broken helper warns and autosync continues | Never blocks the commit or publish |
+| Post-commit | Live-sync flags and linked-worktree check | Yes | Publishes only when live-sync is enabled and the commit is in a linked worktree | A broken flag resolver warns and keeps the default-on publish behavior |
+| Pre-push | Mass-deletion ceiling | Yes, for updates to every branch | No exemption | Blocks real violations with `[gate:mass-deletion]`; hook and sync logs both persist the reason |
+| Pre-push | New-branch naming | Yes | Exact `$SPECKIT_LIVE_BRANCH` autosync is exempt, including first publication; another destination is not | Other invalid new branches block with `[gate:naming]` |
+| Pre-push | Remote permission | Yes | Exact `$SPECKIT_LIVE_BRANCH` autosync is exempt; another destination is not | Other non-allowlisted pushes block with `[gate:remote-permission]` |
+| Pre-push | Skill-root metadata | When the pushed per-ref range changes `.opencode/skills` | No safety exemption and no hook-side regeneration | Blocks with `[gate:skill-root-metadata]`, the exact `--fix` command, and a durable sync-log record |
+| Pre-push | Discovered tests | Yes when the runner exists | Report-only by default; no autosync exemption when enforcement is enabled | Enforced failures block with `[gate:test-suites]` and a durable sync-log record |
+
+The skill-root gate deliberately does not run `--fix` from `pre-push`. The commit already exists at that point. Regenerating only the working tree would make a re-check green while the stale committed bytes still reach the remote. The safe path is a loud block, run the exact repair command, then include the generated projection in a new commit so normal autosync can publish it.
+
+The naming and remote-permission helpers are one shared dependency. If that helper is absent or malformed, those two gates warn and fail open, but mass-deletion, skill metadata, and tests continue independently. A broken optional helper can no longer suppress unrelated push gates.
+
 ---
 
 ## 4. SAFETY CONTRACT
@@ -100,28 +126,24 @@ The autosync block composes with — it does not replace — the hook's existing
 | Un-committed work is never touched | The publish path only ever moves committed refs; the rebase requires clean tracked files; the follower is fast-forward-only and skips a dirty tree |
 | No `--autostash` orphan risk | The rebase runs only on a clean tracked tree, so nothing is autostashed (see [SKILL.md](../SKILL.md) ALWAYS #14) |
 | Autosync keeps publishing even when the live branch isn't on the remote allowlist | The pre-push permission gate ([remote-branch-policy.md](remote-branch-policy.md)) exempts exactly `$SPECKIT_LIVE_BRANCH` when `SPECKIT_AUTOSYNC=1` — scoped to that one branch, never a blanket bypass |
+| A pre-push rejection cannot look like a push race | Stable gate markers are captured, replayed, classified, and appended to `git-sync.log` before autosync stops retrying |
 
 ---
 
 ## 5. OPERATOR SETUP
 
-1. **Install the git hooks** (once per clone) so autosync fires:
-   ```bash
-   bash .opencode/scripts/install-git-hooks.sh
-   ```
-   `check-git-hooks.sh` warns at SessionStart when the hooks are not installed.
+Live-sync is **on by default** in the main checkout. No setup step is required: SessionStart self-heals the git hook install and backgrounds the follower automatically, and both legs run only in the main checkout, never inside a session worktree.
 
-2. **Follow the live branch in the IDE checkout** — from the primary tree, background the follower:
-   ```bash
-   bash .opencode/bin/git-live-follow.sh &
-   ```
+1. **Nothing to install** - when the hook symlinks are missing, `check-git-hooks.sh` runs the installer itself from the main checkout (self-heal). `MK_LIVE_SYNC_DISABLED=1` stops this leg.
+
+2. **Nothing to start** - the SessionStart chain runs `git-live-follow.sh --start`, which backgrounds one follower per checkout. `MK_LIVE_FOLLOW_DISABLED=1` stops this leg.
 
 3. **Glance at what's outstanding** any time:
    ```bash
    bash .opencode/bin/worktree-status.sh --fetch
    ```
 
-4. **Opt out** of autosync for a single launch with `SPECKIT_AUTOSYNC=0` in the environment; nothing else changes and the session still runs isolated.
+4. **Opt out** - the one master flag `MK_LIVE_SYNC_DISABLED=1` (truthy `1`/`true`/`on`) disables the whole loop: autosync publish, follower auto-start, and self-heal install. It honors the shared hook kill-switch convention, so `MK_HOOKS_DISABLED=1` or a line in `.opencode/hooks/hook-flags.env` also stops it. Finer per-leg switches stay available: `SPECKIT_AUTOSYNC=0` for a single publish and `MK_LIVE_FOLLOW_DISABLED=1` for the follower alone.
 
 ---
 
@@ -129,20 +151,21 @@ The autosync block composes with — it does not replace — the hook's existing
 
 Autosync is runtime-agnostic by construction: it is a git hook plus a wrapper that takes the runtime as an argument, so it fires identically for `claude`, `codex`, and `opencode` sessions.
 
-The two SessionStart guards that make the model observable — `worktree-guard.sh` (warns when a top-level session runs on the shared checkout instead of isolated) and `check-git-hooks.sh` (warns when the hooks are not installed) — run in all three runtimes:
+The two SessionStart guards that make the model observable are `worktree-guard.sh` (warns when a top-level session runs on the shared checkout instead of isolated) and `check-git-hooks.sh` (warns when the hooks are not installed, and self-heals them in the main checkout). Both run in every runtime. The follower auto-start (`git-live-follow.sh --start`) is wired into the same surfaces beside them:
 
 | Runtime | Guard wiring |
 |---------|--------------|
 | Claude | `.claude/settings.json` SessionStart |
 | OpenCode | `.opencode/plugins/session-cleanup.js` (runs both guards on `session.created`) |
 | Codex | `.codex/hooks.json` SessionStart |
+| Pi | `session-start-advisories.ts` advisory chain |
 
 ---
 
 ## 7. LIMITS
 
 - Visibility is at **commit granularity**, never another session's un-committed buffer.
-- Autosync only fires when the git hooks are **installed**; the SessionStart guard warns but does not install them.
+- Autosync only fires when the git hooks are **installed**; with live-sync enabled, the SessionStart guard auto-installs them from the main checkout.
 - A conflicting commit is **not** auto-resolved — it stays local with a printed manual-resolution path, by design.
 - `worktree-status.sh` shows external session worktrees (outside the repo root) with a truncated absolute path; in-repo worktrees show a clean repo-relative path.
 

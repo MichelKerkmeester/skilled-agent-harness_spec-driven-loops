@@ -145,7 +145,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 350, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
+Total unique variables documented: 354, counted as unique backticked names in first table columns (legacy HYDRA aliases removed, dual-stack CLI front-door variables included, see the "CLI front door" section). Recount with that method when adding rows. Multi-variable cells count once per cell here.
 
 ### Data Quality and Generator Hardening (028/005)
 
@@ -226,6 +226,10 @@ Flags can be set as environment variables **or** in a config file: copy `.openco
 | `MK_SESSION_CLEANUP_DISABLED` | unset (enabled) | truthy disable flag | Disables session cleanup and teardown. No aliases. | `.opencode/scripts/session-cleanup.sh`, `.opencode/plugins/session-cleanup.js` |
 | `MK_HOOK_INSTALL_DISABLED` | unset (enabled) | truthy disable flag | Disables Codex hook installation and check mode. No aliases. | `.opencode/bin/install-codex-hooks.mjs`, `hooks/pi/session-start-advisories.ts` |
 | `MK_GIT_COMMIT_HOOKS_DISABLED` | unset (enabled) | truthy disable flag | Emergency-off switch for the pre-commit chain. No aliases. Unset keeps the mass-deletion and comment-hygiene gates active. | `.opencode/scripts/git-hooks/pre-commit`, `.opencode/hooks/git/pre-commit` |
+| `MK_LIVE_SYNC_DISABLED` | unset (enabled) | truthy disable flag | Master switch for the whole live-sync loop: post-commit autosync publish, IDE follower auto-start, and self-heal hook auto-install. No aliases. | `.opencode/scripts/git-hooks/post-commit`, `.opencode/bin/check-git-hooks.sh`, `.opencode/bin/git-live-follow.sh` |
+| `MK_LIVE_FOLLOW_DISABLED` | unset (enabled) | truthy disable flag | Disables the IDE checkout follower auto-start only. The publish and self-heal legs keep running. No aliases. | `.opencode/bin/git-live-follow.sh` |
+| `SPECKIT_AUTOSYNC` | unset (defaults to 1 in wrapper sessions) | truthy flag | Per-launch publish opt-out for the live-sync loop. Wrapper sessions export 1 unless a pre-set 0 overrides it. | `.opencode/bin/worktree-session.sh`, `.opencode/scripts/git-hooks/post-commit` |
+| `SPECKIT_LIVE_BRANCH` | (unset) | string | The live branch a wrapper session publishes its commits to, resolved from the primary checkout. | `.opencode/bin/worktree-session.sh` |
 
 `MK_SPEC_GATE_ENFORCE` is an opt-in control for denial, not a kill-switch. **`SPECKIT_DIST_AUTO_REBUILD` is not a disable flag**: it controls rebuild behavior after a freshness check and does not stop the check from running.
 

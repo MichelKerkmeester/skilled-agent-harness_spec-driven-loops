@@ -33,6 +33,7 @@ interface AdvisoryCheck {
 const CHECKS: AdvisoryCheck[] = [
   { label: "worktree-guard", concern: "worktree-guard", command: "bash", args: [".opencode/bin/worktree-guard.sh"] },
   { label: "check-git-hooks", concern: "git-hooks-check", command: "bash", args: [".opencode/bin/check-git-hooks.sh"] },
+  { label: "live-sync-follow", concern: "live-sync", command: "bash", args: [".opencode/bin/git-live-follow.sh", "--start"] },
   {
     label: "check-dist-staleness",
     concern: "dist-freshness",

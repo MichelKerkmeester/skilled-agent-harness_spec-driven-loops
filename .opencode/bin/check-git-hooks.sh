@@ -11,6 +11,11 @@
 # and the same silent gap that can drop post-merge/post-rewrite drift-marker
 # coverage.
 #
+# Live-sync self-heal: with the live-sync loop enabled (MK_LIVE_SYNC_DISABLED
+# absent), this guard also auto-runs the installer from the MAIN checkout so a
+# fresh clone heals itself without an operator step. It never auto-installs from
+# a linked worktree, and disabling the guard or the live-sync loop stops it.
+#
 # Wire it into any runtime's SessionStart hook chain, e.g. as an extra hook command:
 #   bash /abs/path/.opencode/bin/check-git-hooks.sh
 #
@@ -29,8 +34,11 @@ set -euo pipefail
 
 # shared hook kill-switch (master + per-concern); fail-open if guard absent
 __hf_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+__hook_flags_loaded=0
 if [ -n "$__hf_root" ] && [ -r "$__hf_root/.opencode/hooks/shared/hook-flags.sh" ]; then
+  # shellcheck source=/dev/null
   . "$__hf_root/.opencode/hooks/shared/hook-flags.sh"
+  __hook_flags_loaded=1
   hook_enabled git-hooks-check || exit 0
 fi
 
@@ -99,6 +107,36 @@ done
 if [ "${#INVALID[@]}" -gt 0 ]; then
   JOINED="$(IFS=', '; echo "${INVALID[*]}")"
   printf '%s\n' "[check-git-hooks] Invalid git hook symlink(s): $JOINED. Fix: bash .opencode/scripts/install-git-hooks.sh (silence: SPECKIT_GIT_HOOKS_GUARD=off)" >&2
+
+  # Self-heal: when live-sync is not disabled, repair the symlinks from the MAIN
+  # checkout only. A linked worktree shares the main checkout's hooks dir, so
+  # installing from a session tree would point the shared symlinks at scripts
+  # that vanish when the worktree is removed — never auto-install there.
+  __live_sync_enabled=1
+  if [ "$__hook_flags_loaded" = "1" ]; then
+    hook_enabled live-sync || __live_sync_enabled=0
+  fi
+  if [ "$__live_sync_enabled" = "1" ]; then
+    _self_dir="$(git rev-parse --git-dir 2>/dev/null || true)"
+    _self_common="$(git rev-parse --git-common-dir 2>/dev/null || true)"
+    case "$_self_dir" in
+      /*) ;;
+      *) _self_dir="$REPO_ROOT/$_self_dir" ;;
+    esac
+    case "$_self_common" in
+      /*) ;;
+      *) _self_common="$REPO_ROOT/$_self_common" ;;
+    esac
+    if [ -n "$_self_dir" ] && [ -n "$_self_common" ] && [ "$_self_dir" = "$_self_common" ]; then
+      if [ -f "$REPO_ROOT/.opencode/scripts/install-git-hooks.sh" ]; then
+        if bash "$REPO_ROOT/.opencode/scripts/install-git-hooks.sh" >&2; then
+          printf '%s\n' "[check-git-hooks] auto-installed git hook symlinks (self-heal)" >&2
+        else
+          printf '%s\n' "[check-git-hooks] self-heal install failed; run it manually" >&2
+        fi
+      fi
+    fi
+  fi
 fi
 
 exit 0

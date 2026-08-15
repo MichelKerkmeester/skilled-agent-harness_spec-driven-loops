@@ -326,6 +326,11 @@
   },
   {
     "workflowMode": "sk-git",
+    "leafResourceId": "references/unstick-dirty-worktree.md",
+    "diskPath": "references/unstick-dirty-worktree.md"
+  },
+  {
+    "workflowMode": "sk-git",
     "leafResourceId": "references/worktree-workflows.md",
     "diskPath": "references/worktree-workflows.md"
   }
