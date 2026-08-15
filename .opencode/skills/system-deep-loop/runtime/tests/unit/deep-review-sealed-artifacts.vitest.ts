@@ -15,9 +15,24 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import {
+  AppendOnlyLedger,
+  TransitionAuthorizationGateway,
+  TransitionPolicyRegistry,
+} from '../../lib/authorized-ledger/index.js';
+import {
+  EventTypeRegistry,
+  canonicalBytes,
+  sha256Bytes,
+} from '../../lib/event-envelope/index.js';
+import {
   DEEP_REVIEW_ARTIFACT_KIND_REGISTRY,
   DeepReviewArtifactKinds,
+  bindDeepReviewArtifactSet,
+  canonicalDeepReviewArtifactSetBytes,
+  compareDeepReviewArtifactSets,
   createDeepReviewSealedArtifactStore,
+  deepReviewArtifactSetReplayInput,
+  parseDeepReviewArtifactSet,
   readDeepReviewArtifact,
   sealDeepReviewArtifact,
 } from '../../lib/deep-review-sealed-artifacts/index.js';
@@ -26,11 +41,22 @@ import {
   InitialArtifactKinds,
   SealedArtifactError,
   SealedArtifactErrorCodes,
+  prepareArtifactSealedEvent,
+  readVerifiedArtifactEvidence,
+  recordArtifactEvent,
+  sealedArtifactEventDefinitions,
 } from '../../lib/sealed-reference-artifacts/index.js';
 
 import type {
+  AuthoritySnapshot,
+  PolicyEvaluationInput,
+  PolicyEvaluationResult,
+} from '../../lib/authorized-ledger/index.js';
+import type {
   DeepReviewArtifactKind,
   DeepReviewArtifactMaterial,
+  DeepReviewArtifactSetContext,
+  DeepReviewArtifactSetMemberInput,
   DeepReviewCandidateArtifactMaterial,
   DeepReviewConvergenceArtifactMaterial,
   DeepReviewPassArtifactMaterial,
@@ -40,9 +66,13 @@ import type {
   DeepReviewSynthesisArtifactMaterial,
 } from '../../lib/deep-review-sealed-artifacts/index.js';
 import type {
+  ArtifactAuthorizationContext,
+  ArtifactEventMetadata,
+  ArtifactEventRecorder,
   ArtifactStoreFaultInjection,
   SealedArtifactStore,
   SealedArtifactReference,
+  VerifiedArtifactEvidence,
 } from '../../lib/sealed-reference-artifacts/index.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -56,6 +86,25 @@ const DIGEST_D = 'd'.repeat(64);
 const DIGEST_E = 'e'.repeat(64);
 const DIGEST_NEVER_SEALED = '1'.repeat(64);
 const temporaryRoots: string[] = [];
+
+const AUTHORITY: AuthoritySnapshot = Object.freeze({ state: 'shadowing', epoch: 7 });
+const FIXED_TIME = '2026-07-24T00:00:00.000Z';
+const STATE_DIGEST = sha256Bytes(canonicalBytes({ state: 'deep-review-artifact-set' }));
+const ARTIFACT_SET_CONTEXT: DeepReviewArtifactSetContext = Object.freeze({
+  runId: 'deep-review-run-1',
+  sessionId: 'deep-review-session-1',
+  generation: 1,
+  sourceTailSequence: 21,
+  replayContractDigest: DIGEST_E,
+});
+
+interface ArtifactEvidenceHarness {
+  readonly registry: EventTypeRegistry;
+  readonly ledger: AppendOnlyLedger;
+  readonly store: SealedArtifactStore;
+  readonly recorder: ArtifactEventRecorder;
+  readonly nextMetadata: (label: string) => ArtifactEventMetadata;
+}
 
 const LOCATOR = Object.freeze({
   scheme: 'file' as const,
@@ -268,12 +317,196 @@ function bindingFor(
   };
 }
 
+function evaluateArtifactPolicy(
+  input: Readonly<PolicyEvaluationInput>,
+): PolicyEvaluationResult {
+  return input.capabilityId === 'deep-review-artifact-write'
+    ? { verdict: 'allow', reasonCode: 'allowed', matchedRuleIds: ['artifact-write'] }
+    : { verdict: 'deny', reasonCode: 'policy-denied', matchedRuleIds: ['artifact-write'] };
+}
+
+function createArtifactEvidenceHarness(): ArtifactEvidenceHarness {
+  const rootDirectory = temporaryRoot('evidence-harness');
+  const registry = new EventTypeRegistry(sealedArtifactEventDefinitions());
+  const policies = new TransitionPolicyRegistry([{
+    policyId: 'deep-review-artifact-policy',
+    policyVersion: 1,
+    evaluatorVersion: '1',
+    ruleIds: ['artifact-write'],
+    evaluate: evaluateArtifactPolicy,
+  }]);
+  const ledger = new AppendOnlyLedger({
+    rootDirectory: join(rootDirectory, 'ledger'),
+    ledgerId: 'deep-review-artifact-domain',
+    auditLedgerId: 'deep-review-artifact-audit',
+    authorityProvider: () => AUTHORITY,
+    now: () => new Date(FIXED_TIME),
+  }, registry);
+  const gateway = new TransitionAuthorizationGateway({
+    rootDirectory: join(rootDirectory, 'ledger'),
+    auditLedgerId: 'deep-review-artifact-audit',
+    authorityProvider: () => AUTHORITY,
+    now: () => new Date(FIXED_TIME),
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
+  }, ledger, policies);
+  const store = createDeepReviewSealedArtifactStore({
+    rootDirectory: join(rootDirectory, 'artifacts'),
+    now: () => new Date(FIXED_TIME),
+  });
+  let eventIndex = 0;
+  const nextMetadata = (label: string): ArtifactEventMetadata => {
+    eventIndex += 1;
+    return {
+      eventId: `${label}-${eventIndex}`,
+      streamId: 'deep-review-artifact-stream',
+      streamSequence: eventIndex,
+      occurredAt: FIXED_TIME,
+      recordedAt: FIXED_TIME,
+      producer: { name: 'deep-review-artifact-tests', version: '1' },
+      authorityEpoch: AUTHORITY.epoch,
+      correlationId: `deep-review-artifact-correlation-${eventIndex}`,
+      causationId: null,
+      idempotencyKey: `deep-review-artifact-idempotency-${eventIndex}`,
+    };
+  };
+  const policy = policies.resolve('deep-review-artifact-policy', 1);
+  const recorder: ArtifactEventRecorder = {
+    ledger,
+    gateway,
+    authorizationContext: (event): ArtifactAuthorizationContext => ({
+      requestId: `request-${event.identity.eventId}`,
+      mode: 'review',
+      priorStateVersion: 'deep-review-artifacts@1',
+      priorStateFingerprint: STATE_DIGEST,
+      actorId: 'deep-review-artifact-test-actor',
+      capabilityId: 'deep-review-artifact-write',
+      authorityEpoch: AUTHORITY.epoch,
+      policy: {
+        policyId: policy.policyId,
+        policyVersion: policy.policyVersion,
+        policyDigest: policy.digest,
+      },
+      evidenceDigest: sha256Bytes(canonicalBytes({ event: event.canonicalDigest })),
+    }),
+  };
+  return { registry, ledger, store, recorder, nextMetadata };
+}
+
+async function sealAndRecordModeArtifact(
+  harness: ArtifactEvidenceHarness,
+  artifactKind: DeepReviewArtifactKind,
+  logicalSequence: number,
+  fixtureLabel: string,
+): Promise<DeepReviewArtifactSetMemberInput> {
+  const baseMaterial = await materialFor(harness.store, artifactKind);
+  let material: DeepReviewArtifactMaterial = baseMaterial;
+  if (artifactKind === DeepReviewArtifactKinds.DIMENSION_PASS) {
+    material = {
+      ...baseMaterial as DeepReviewPassArtifactMaterial,
+      passId: `pass-${fixtureLabel}`,
+      eventId: `pass-event-${fixtureLabel}`,
+    };
+  } else if (
+    artifactKind === DeepReviewArtifactKinds.CANDIDATE_EVIDENCE
+    || artifactKind === DeepReviewArtifactKinds.ADJUDICATION_EVIDENCE
+  ) {
+    material = {
+      ...baseMaterial as DeepReviewCandidateArtifactMaterial,
+      candidateId: `candidate-${fixtureLabel}`,
+      eventId: `candidate-event-${fixtureLabel}`,
+    };
+  }
+  const binding = await sealDeepReviewArtifact(
+    harness.store,
+    artifactKind,
+    material,
+  );
+  const artifact = await harness.store.readVerified(binding.reference, artifactKind);
+  const event = prepareArtifactSealedEvent(
+    artifact,
+    harness.registry,
+    harness.nextMetadata(`${artifactKind}-sealed`),
+    'run-retained',
+  );
+  await recordArtifactEvent(harness.recorder, event);
+  const evidence: VerifiedArtifactEvidence = await readVerifiedArtifactEvidence(
+    harness.ledger,
+    harness.store,
+    binding.reference,
+    artifactKind,
+  );
+  const registration = DEEP_REVIEW_ARTIFACT_KIND_REGISTRY.find(
+    (candidate) => candidate.artifactKind === artifactKind,
+  );
+  if (!registration) throw new Error(`Missing registration for ${artifactKind}`);
+  return Object.freeze({
+    iteration: registration.lifecycle === 'scope-init' ? 0 : 1,
+    logicalSequence,
+    binding,
+    evidence,
+  });
+}
+
+async function completeArtifactSetMembers(
+  harness: ArtifactEvidenceHarness,
+): Promise<readonly DeepReviewArtifactSetMemberInput[]> {
+  const members: DeepReviewArtifactSetMemberInput[] = [];
+  const fixtureEntries: ReadonlyArray<readonly [DeepReviewArtifactKind, string]> = [
+    ...DEEP_REVIEW_ARTIFACT_KIND_REGISTRY
+      .filter((entry) => entry.lifecycle === 'scope-init')
+      .map((entry) => [entry.artifactKind, entry.materialFamily] as const),
+    [DeepReviewArtifactKinds.DIMENSION_PASS, 'correctness'],
+    [DeepReviewArtifactKinds.DIMENSION_PASS, 'security'],
+    [DeepReviewArtifactKinds.DIMENSION_PASS, 'performance'],
+    [DeepReviewArtifactKinds.DIMENSION_PASS, 'maintainability'],
+    [DeepReviewArtifactKinds.CANDIDATE_EVIDENCE, 'p0'],
+    [DeepReviewArtifactKinds.CANDIDATE_EVIDENCE, 'p1'],
+    [DeepReviewArtifactKinds.CANDIDATE_EVIDENCE, 'p2'],
+    [DeepReviewArtifactKinds.ADJUDICATION_EVIDENCE, 'p0'],
+    [DeepReviewArtifactKinds.ADJUDICATION_EVIDENCE, 'p1'],
+    [DeepReviewArtifactKinds.ADJUDICATION_EVIDENCE, 'p2'],
+    [DeepReviewArtifactKinds.CONVERGENCE_WITNESS, 'convergence'],
+    [DeepReviewArtifactKinds.SYNTHESIS_VIEW, 'synthesis-view'],
+    [DeepReviewArtifactKinds.SYNTHESIS_REPORT, 'review-report'],
+    [DeepReviewArtifactKinds.RESUME_HANDOFF, 'resume'],
+  ];
+  for (const [index, [artifactKind, fixtureLabel]] of fixtureEntries.entries()) {
+    members.push(await sealAndRecordModeArtifact(
+      harness,
+      artifactKind,
+      index + 1,
+      fixtureLabel,
+    ));
+  }
+  return Object.freeze(members);
+}
+
 async function expectArtifactFailure(
   operation: Promise<unknown>,
   code: string,
 ): Promise<SealedArtifactError> {
   try {
     await operation;
+  } catch (error: unknown) {
+    expect(error).toBeInstanceOf(SealedArtifactError);
+    const typed = error as SealedArtifactError;
+    expect(typed.code).toBe(code);
+    expect(typed).not.toHaveProperty('bytes');
+    return typed;
+  }
+  throw new Error(`Expected artifact failure ${code}`);
+}
+
+function expectSynchronousArtifactFailure(
+  operation: () => unknown,
+  code: string,
+): SealedArtifactError {
+  try {
+    operation();
   } catch (error: unknown) {
     expect(error).toBeInstanceOf(SealedArtifactError);
     const typed = error as SealedArtifactError;
@@ -295,6 +528,17 @@ afterEach(() => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('deep review sealed artifacts', () => {
+  it('publishes the complete ordered artifact-set API', async () => {
+    const api = (await import('../../lib/deep-review-sealed-artifacts/index.js')) as unknown as
+      Record<string, unknown>;
+
+    expect(api.bindDeepReviewArtifactSet).toBeTypeOf('function');
+    expect(api.canonicalDeepReviewArtifactSetBytes).toBeTypeOf('function');
+    expect(api.compareDeepReviewArtifactSets).toBeTypeOf('function');
+    expect(api.deepReviewArtifactSetReplayInput).toBeTypeOf('function');
+    expect(api.parseDeepReviewArtifactSet).toBeTypeOf('function');
+  });
+
   it('registers and seals every Deep Review lifecycle kind through the shared store', async () => {
     const store = createDeepReviewSealedArtifactStore({
       rootDirectory: temporaryRoot('all-kinds'),
@@ -739,6 +983,177 @@ describe('deep review sealed artifacts', () => {
         eventReference: `artifact:sha256:${DIGEST_E}`,
       }),
       SealedArtifactErrorCodes.INVALID_INPUT,
+    );
+  });
+
+  it('builds byte-identical complete review sets and shared replay inputs', async () => {
+    const harness = createArtifactEvidenceHarness();
+    const members = await completeArtifactSetMembers(harness);
+    const first = bindDeepReviewArtifactSet(ARTIFACT_SET_CONTEXT, members);
+    const second = bindDeepReviewArtifactSet(
+      { ...ARTIFACT_SET_CONTEXT },
+      members.map((member) => ({ ...member })),
+    );
+
+    expect(Buffer.from(canonicalDeepReviewArtifactSetBytes(first))).toEqual(
+      Buffer.from(canonicalDeepReviewArtifactSetBytes(second)),
+    );
+    expect(second).toEqual(first);
+    expect(first).not.toHaveProperty('artifactSetDigest');
+    expect(first.orderedMembers.map((member) => member.lifecycle)).toEqual([
+      'scope-init',
+      'scope-init',
+      'scope-init',
+      'scope-init',
+      'scope-init',
+      'scope-init',
+      'scope-init',
+      'dimension-pass',
+      'dimension-pass',
+      'dimension-pass',
+      'dimension-pass',
+      'candidate-adjudication',
+      'candidate-adjudication',
+      'candidate-adjudication',
+      'candidate-adjudication',
+      'candidate-adjudication',
+      'candidate-adjudication',
+      'convergence',
+      'synthesis',
+      'synthesis',
+      'resume-save',
+    ]);
+    expect(first.orderedMembers
+      .filter((member) => member.binding.artifactKind === DeepReviewArtifactKinds.DIMENSION_PASS)
+      .map((member) => member.binding.eventId)).toEqual([
+        'pass-event-correctness',
+        'pass-event-security',
+        'pass-event-performance',
+        'pass-event-maintainability',
+      ]);
+    expect(first.orderedMembers
+      .filter((member) => (
+        member.binding.artifactKind === DeepReviewArtifactKinds.CANDIDATE_EVIDENCE
+        || member.binding.artifactKind === DeepReviewArtifactKinds.ADJUDICATION_EVIDENCE
+      ))
+      .map((member) => member.binding.eventId)).toEqual([
+        'candidate-event-p0',
+        'candidate-event-p1',
+        'candidate-event-p2',
+        'candidate-event-p0',
+        'candidate-event-p1',
+        'candidate-event-p2',
+      ]);
+    const mutableInput = JSON.parse(JSON.stringify(first)) as {
+      referenceSet: { ordered_artifacts: Array<{ sealed_ledger_id: string }> };
+    };
+    const parsedSnapshot = parseDeepReviewArtifactSet(mutableInput);
+    mutableInput.referenceSet.ordered_artifacts[0]!.sealed_ledger_id = 'mutated-ledger';
+    expect(parsedSnapshot).toEqual(first);
+    const replayInput = await deepReviewArtifactSetReplayInput(
+      harness.ledger,
+      harness.store,
+      first,
+      ARTIFACT_SET_CONTEXT,
+    );
+    expect(replayInput.source.kind).toBe('content-addressed');
+    expect(replayInput.source.value).toMatchObject({
+      reference_set_digest: first.referenceSet.reference_set_digest,
+    });
+    expect(compareDeepReviewArtifactSets(first, second)).toEqual({
+      ok: true,
+      referenceSetDigest: first.referenceSet.reference_set_digest,
+    });
+  });
+
+  it('rejects missing, reordered, and unknown lifecycle artifacts', async () => {
+    const harness = createArtifactEvidenceHarness();
+    const members = [...await completeArtifactSetMembers(harness)];
+
+    expectSynchronousArtifactFailure(
+      () => bindDeepReviewArtifactSet(ARTIFACT_SET_CONTEXT, members.slice(0, -1)),
+      SealedArtifactErrorCodes.EVIDENCE_MISSING,
+    );
+
+    [members[0], members[1]] = [members[1]!, members[0]!];
+    expectSynchronousArtifactFailure(
+      () => bindDeepReviewArtifactSet(ARTIFACT_SET_CONTEXT, members),
+      SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
+    );
+
+    const validSet = bindDeepReviewArtifactSet(
+      ARTIFACT_SET_CONTEXT,
+      await completeArtifactSetMembers(createArtifactEvidenceHarness()),
+    );
+    const unknownKind = JSON.parse(JSON.stringify(validSet)) as {
+      orderedMembers: Array<{ binding: { artifactKind: string } }>;
+    };
+    unknownKind.orderedMembers[0]!.binding.artifactKind = 'deep-review-unknown';
+    expectSynchronousArtifactFailure(
+      () => parseDeepReviewArtifactSet(unknownKind),
+      SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
+    );
+  });
+
+  it('rejects a binding that does not match its verified creation evidence', async () => {
+    const harness = createArtifactEvidenceHarness();
+    const members = [...await completeArtifactSetMembers(harness)];
+    const first = members[0];
+    if (!first) throw new Error('Expected a first artifact-set member');
+    members[0] = {
+      ...first,
+      binding: {
+        ...first.binding,
+        eventReference: `artifact:sha256:${DIGEST_E}`,
+      },
+    };
+
+    expectSynchronousArtifactFailure(
+      () => bindDeepReviewArtifactSet(ARTIFACT_SET_CONTEXT, members),
+      SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
+    );
+  });
+
+  it('rejects stale context and post-build corruption during replay', async () => {
+    const harness = createArtifactEvidenceHarness();
+    const members = await completeArtifactSetMembers(harness);
+    const artifactSet = bindDeepReviewArtifactSet(ARTIFACT_SET_CONTEXT, members);
+
+    await expectArtifactFailure(
+      deepReviewArtifactSetReplayInput(
+        harness.ledger,
+        harness.store,
+        artifactSet,
+        { ...ARTIFACT_SET_CONTEXT, sourceTailSequence: 22 },
+      ),
+      SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
+    );
+
+    const changedSessionSet = {
+      ...artifactSet,
+      context: { ...artifactSet.context, sessionId: 'deep-review-session-2' },
+    };
+    expect(compareDeepReviewArtifactSets(artifactSet, changedSessionSet)).toEqual({
+      ok: false,
+      code: SealedArtifactErrorCodes.INPUT_EQUIVALENCE_FAILURE,
+      legacyReferenceSetDigest: artifactSet.referenceSet.reference_set_digest,
+      darkReferenceSetDigest: artifactSet.referenceSet.reference_set_digest,
+      message: 'Parity requires the same verified Deep Review artifact set and order',
+    });
+
+    const last = members.at(-1);
+    if (!last) throw new Error('Expected a final artifact-set member');
+    const paths = harness.store.inspectPaths(last.binding.reference);
+    chmodSync(paths.blobPath, 0o600);
+    writeFileSync(paths.blobPath, Buffer.from('{"tampered":true}'));
+    await expectArtifactFailure(
+      deepReviewArtifactSetReplayInput(
+        harness.ledger,
+        harness.store,
+        artifactSet,
+        ARTIFACT_SET_CONTEXT,
+      ),
+      SealedArtifactErrorCodes.ARTIFACT_CORRUPT,
     );
   });
 });

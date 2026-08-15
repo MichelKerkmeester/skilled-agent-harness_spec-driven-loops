@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep Review Sealed Reference Artifacts"
-description: "Delivered additive-dark Deep Review artifact bindings that validate closed lifecycle capsules and verify every scope material reference against content actually sealed by the landed shared store."
+description: "Delivered additive-dark Deep Review artifact bindings and one complete ordered lifecycle set that delegates identity, sealing, verification, replay input, and parity equivalence to the shared sealed-reference substrate."
 trigger_phrases:
   - "deep review sealed artifacts implementation"
   - "deep-review artifact bindings"
@@ -11,17 +11,18 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/003-sealed-artifacts"
-    last_updated_at: "2026-07-24T04:59:17Z"
+    last_updated_at: "2026-08-15T09:40:08Z"
     last_updated_by: "codex"
-    recent_action: "Documented selector structural-validity boundary"
-    next_safe_action: "Leaf-004 binds named digests in certificates and receipts"
+    recent_action: "Completed and verified the ordered Deep Review lifecycle artifact set"
+    next_safe_action: "Consume the exported set in later separately scoped integration work"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/deep-review-artifact-material.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-review-sealed-artifacts/deep-review-artifact-set.ts"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "deep-review-sealed-artifacts-20260723"
+      session_id: "deep-review-sealed-artifacts-20260815"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
@@ -46,8 +47,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-sealed-artifacts |
-| **Completed** | Requested additive-dark adapter slice, structured-selector hardening, and accepted cross-artifact closure boundary documented on 2026-07-24; broader sibling-owned verifier work remains outside this module |
+| **Completed** | 2026-08-15 |
 | **Level** | 2 |
+| **Status** | Complete |
+| **Posture** | Additive-dark; legacy authority and behavior remain unchanged |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -55,10 +58,24 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Deep Review now exposes a mode-local sealed-artifact binding over the real phase-007 store. Fourteen registered kinds
+Deep Review now exposes a mode-local sealed-artifact binding over the real shared store. Fourteen registered kinds
 cover scope initialization, dimension passes, candidate and adjudication evidence, convergence, synthesis, and resume
 handoff. The binding carries typed Deep Review event identity, authority epoch, dependency references, and the shared
 algorithm-qualified artifact reference; it never embeds mutable source, observation, or report bodies.
+
+### Complete Ordered Artifact Set
+
+`deep-review-artifact-set.ts` binds the complete review lifecycle to the shared `ArtifactReferenceSet`. The canonical
+order is scope initialization, dimension passes, candidate and adjudication evidence, convergence, synthesis, and
+resume/save. A set is usable only when every registered kind is present, each member carries verified store-and-ledger
+creation evidence, logical sequences are unique and ordered, the reference-set entries match the mode bindings, and the
+shared `reference_set_digest` recomputes from the exact ordered entries.
+
+The focused fixture contains 21 members: seven scope inputs, four per-dimension passes, P0/P1/P2 candidate evidence,
+P0/P1/P2 adjudication evidence, one convergence witness, the synthesis view, the review report, and the resume handoff.
+Replay checks the exact run, session, generation, source-tail, and replay-contract context before asking the shared
+substrate to re-resolve every artifact plus its authorized creation event. Parity compares the complete canonical set
+before any behavior comparison. No wrapper digest or mode-local set identity exists.
 
 ### Closed Mode Material
 
@@ -110,9 +127,10 @@ not a residual defect in this additive-dark leaf.
 |------|--------|---------|
 | `runtime/lib/deep-review-sealed-artifacts/deep-review-sealed-artifact-types.ts` | Created | Declares Deep Review artifact kinds, closed material families, dependency references, and verified binding/result types |
 | `runtime/lib/deep-review-sealed-artifacts/deep-review-artifact-material.ts` | Created | Validates and canonicalizes each mode kind for the shared canonicalizer registry |
+| `runtime/lib/deep-review-sealed-artifacts/deep-review-artifact-set.ts` | Created | Orders the complete mode lifecycle, binds shared verified evidence, and gates replay/parity |
 | `runtime/lib/deep-review-sealed-artifacts/deep-review-sealed-artifacts.ts` | Created | Creates the shared store adapter and exposes seal, binding-parse, dependency-check, and verified-read operations |
 | `runtime/lib/deep-review-sealed-artifacts/index.ts` | Created | Publishes the mode artifact API for successor consumers |
-| `runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts` | Created | Drives the real filesystem-backed sealer through positive, deterministic, and fail-closed paths |
+| `runtime/tests/unit/deep-review-sealed-artifacts.vitest.ts` | Created and expanded | Drives the real store, authorization gateway, ledger, evidence reader, replay, parity, deterministic, and fail-closed paths |
 | `decision-record.md` | Created | Records own-material backing and the accepted successor-owned plain-digest closure boundary |
 <!-- /ANCHOR:what-built -->
 
@@ -121,10 +139,17 @@ not a residual defect in this additive-dark leaf.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The module is new and unreferenced by legacy execution, so it remains additive-dark and non-authoritative. Tests use the
+The module is unreferenced by legacy execution, so it remains additive-dark and non-authoritative. Tests use the
 real filesystem-backed `SealedArtifactStore`, its immutable object paths, and its pre-reference-publication fault
 injection. No second digest, descriptor, storage, or verification implementation was added, and no other mode's sealed
 artifact module is imported.
+
+The ordered-set API was driven test-first. The new export contract failed at its intended assertion while the prior
+15 tests remained green. The implementation then mirrored the completed Deep Research structure while retaining Deep
+Review's run/session context, lifecycle ordering, event-bound bindings, four review dimensions, candidate/adjudication
+separation, report synthesis, and resume handoff. Set fixtures authorize real artifact-created events through
+`TransitionAuthorizationGateway`, append them to `AppendOnlyLedger`, resolve `VerifiedArtifactEvidence`, and only then
+bind the shared reference set.
 
 The referential-integrity regression was proved red before the adapter change: the fabricated reference unexpectedly
 sealed, while the genuine shared reference was rejected by the prior Deep Review-only dependency-kind restriction. The
@@ -154,6 +179,10 @@ consumer or leaf-004 responsibility, and selector text is not an authority-beari
 | Verify declared `SealedArtifactReference` dependencies through the shared store before sealing and reading | A parent capsule is not usable when an input it names is absent or corrupt |
 | Require scope material digest/ref equality with one verified dependency | Shape-valid claims are not evidence that referenced content was ever sealed |
 | Delegate shared initial profiles to the landed canonicalizer registry | Deep Review can verify real shared inputs without copying canonicalization or digest logic |
+| Use `reference_set_digest` as the only complete-set identity | A wrapper digest would create a forbidden mode-local identity even if it reused SHA-256 |
+| Require every registered lifecycle kind before replay | Partial scope, finding, convergence, report, or handoff evidence cannot masquerade as a complete review run |
+| Bind freshness to exact run/session context without hashing a second identity | Stale generations or source tails fail closed while artifact identity remains shared-substrate-owned |
+| Keep ordered-set comparison evidence-only | Input equivalence can block parity but cannot authorize publication, rollback, or cutover |
 | Validate selector structural shape and defer semantic span attestation | Real CSS locators remain supported while target-document context and authority stay with downstream consumers |
 | Preserve plain digest fields as immutable shape-validated values | The closed artifact shapes remain stable while their named-artifact closure is owned by the successor certificate leaf |
 | Defer cross-artifact plain-digest closure to leaf 004 | Certificates and receipts can bind named digests to authenticated content, event-ledger evidence, and replay fingerprints |
@@ -167,12 +196,15 @@ consumer or leaf-004 responsibility, and selector text is not an authority-beari
 
 | Check | Result |
 |-------|--------|
-| Targeted Vitest | PASS: 1 file and 15 tests; structural selector regressions failed against the prior validator before the fix |
-| Whole-runtime TypeScript compile | PASS: exit 0; grep for `runtime/lib/deep-review-sealed-artifacts/` is 0 |
-| Strict packet validation | PASS: exit 0, Errors 0, Warnings 0 |
-| Metadata refresh | PASS: scoped description generation and graph backfill completed |
-| Real substrate | PASS: `SealedArtifactStore.seal` creates the control input and `SealedArtifactStore.readVerified` verifies it during both scope seal and read |
-| Substrate imports real | `true`: landed Deep Review ledger schema, phase-007 sealer, and frozen substrate are imported |
+| Test-first negative control | PASS: exit 1 at the intended missing-export assertion; prior 15 tests remained green |
+| Targeted Vitest | PASS: 1 file and 20 tests, exit 0 |
+| Determinism | PASS: two 21-member builds over the same verified evidence are byte-identical; repeated equivalent seals retain the same shared digest reference |
+| Full runtime TypeScript compile | PASS: `npx --no-install tsc --noEmit --ignoreDeprecations 6.0`, exit 0 |
+| Real substrate | PASS: fixtures use `SealedArtifactStore`, `TransitionAuthorizationGateway`, `AppendOnlyLedger`, and `readVerifiedArtifactEvidence` |
+| Shared sealed-artifact substrate | PASS: 1 file and 54 tests, exit 0 |
+| Scoped alignment drift | PASS: 5 scoped runtime and test files scanned with 0 findings, exit 0 |
+| Repository drift guards | Existing repository backlog remains: alignment drift reports 1,245 findings outside this leaf; stack folders and router sync pass, aggregate exit 1 |
+| Strict packet validation | Packet errors 0 and warnings 1; environment exit 2 only for the known nested-depth `METADATA_DISK_PATH_CONSISTENCY` false-positive |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -180,7 +212,8 @@ consumer or leaf-004 responsibility, and selector text is not an authority-beari
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Sibling integration is intentionally absent.** Typed ledger consumers, reducers, projections, replay fingerprints, resume decisions, parity, rollback, and the mode gate must consume these bindings in their owning leaves.
+1. **Consumer wiring remains separately scoped.** Typed ledger consumers, reducers, projections, resume decisions,
+   shadow runners, rollback, and the mode gate may consume the exported set in their owning leaves; none was edited here.
 2. **Certificate and receipt semantics are intentionally absent.** Successor leaf 004 should attest the binding reference,
    expected kind, descriptor digest, content digest, dependency verification, successful shared verified-read result, and
    cross-artifact closure for the named plain-digest fields recorded in ADR-002.

@@ -6,9 +6,11 @@ import type {
   DeepReviewEventStem,
 } from '../deep-review-ledger-schema/index.js';
 import type {
+  ArtifactReferenceSet,
   InitialArtifactKind,
   SealDescriptor,
   SealedArtifactReference,
+  VerifiedArtifactEvidence,
 } from '../sealed-reference-artifacts/index.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -251,3 +253,39 @@ export interface DeepReviewVerifiedSealedArtifact<
   readonly descriptor: SealDescriptor;
   readonly bytes: readonly number[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. ORDERED ARTIFACT SETS
+// ───────────────────────────────────────────────────────────────────
+
+export interface DeepReviewArtifactSetContext {
+  readonly runId: string;
+  readonly sessionId: string;
+  readonly generation: number;
+  readonly sourceTailSequence: number;
+  readonly replayContractDigest: string;
+}
+
+export interface DeepReviewArtifactSetMemberInput {
+  readonly iteration: number;
+  readonly logicalSequence: number;
+  readonly binding: DeepReviewSealedArtifactBinding;
+  readonly evidence: VerifiedArtifactEvidence;
+}
+
+export interface DeepReviewArtifactSetMember {
+  readonly position: number;
+  readonly lifecycle: DeepReviewArtifactLifecycle;
+  readonly iteration: number;
+  readonly logicalSequence: number;
+  readonly binding: DeepReviewSealedArtifactBinding;
+}
+
+export interface DeepReviewArtifactSetCore {
+  readonly artifactSetVersion: 1;
+  readonly context: DeepReviewArtifactSetContext;
+  readonly orderedMembers: readonly DeepReviewArtifactSetMember[];
+  readonly referenceSet: ArtifactReferenceSet;
+}
+
+export type DeepReviewArtifactSet = DeepReviewArtifactSetCore;
