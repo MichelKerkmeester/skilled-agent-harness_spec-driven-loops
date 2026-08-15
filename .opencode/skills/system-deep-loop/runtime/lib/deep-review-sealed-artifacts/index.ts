@@ -9,6 +9,14 @@ export {
   createDeepReviewArtifactCanonicalizerRegistry,
 } from './deep-review-artifact-material.js';
 export {
+  DEEP_REVIEW_ARTIFACT_SET_VERSION,
+  bindDeepReviewArtifactSet,
+  canonicalDeepReviewArtifactSetBytes,
+  compareDeepReviewArtifactSets,
+  deepReviewArtifactSetReplayInput,
+  parseDeepReviewArtifactSet,
+} from './deep-review-artifact-set.js';
+export {
   createDeepReviewSealedArtifactStore,
   parseDeepReviewSealedArtifactBinding,
   readDeepReviewArtifact,
@@ -28,6 +36,11 @@ export type {
   DeepReviewArtifactMaterialByKind,
   DeepReviewArtifactMaterialFamily,
   DeepReviewArtifactReadContext,
+  DeepReviewArtifactSet,
+  DeepReviewArtifactSetContext,
+  DeepReviewArtifactSetCore,
+  DeepReviewArtifactSetMember,
+  DeepReviewArtifactSetMemberInput,
   DeepReviewCandidateArtifactMaterial,
   DeepReviewConvergenceArtifactMaterial,
   DeepReviewConvergenceDecision,
