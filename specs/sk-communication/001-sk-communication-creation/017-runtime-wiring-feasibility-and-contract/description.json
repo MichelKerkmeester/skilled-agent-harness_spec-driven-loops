@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "sk-communication/001-sk-communication-creation/017-runtime-wiring-feasibility-and-contract",
+  "description": "The projection layer must be wired into runtime output, but the runtimes do not share a uniform hook surface",
+  "keywords": [
+    "projection",
+    "layer",
+    "must",
+    "wired",
+    "runtime",
+    "output",
+    "runtimes",
+    "share",
+    "uniform",
+    "hook",
+    "surface"
+  ],
+  "lastUpdated": "2026-08-14T09:36:46.616Z",
+  "specId": "017",
+  "folderSlug": "runtime-wiring-feasibility-and-contract",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

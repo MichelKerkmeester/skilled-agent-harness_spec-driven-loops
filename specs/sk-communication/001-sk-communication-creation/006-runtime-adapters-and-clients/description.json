@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "sk-communication/001-sk-communication-creation/006-runtime-adapters-and-clients",
+  "description": "Integrate the projection core with six CLIs through their safest supported event and presentation boundaries",
+  "keywords": [
+    "integrate",
+    "projection",
+    "core",
+    "six",
+    "clis",
+    "safest",
+    "supported",
+    "event",
+    "presentation",
+    "boundaries"
+  ],
+  "lastUpdated": "2026-08-12T04:16:24.610Z",
+  "specId": "006",
+  "folderSlug": "runtime-adapters-and-clients",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

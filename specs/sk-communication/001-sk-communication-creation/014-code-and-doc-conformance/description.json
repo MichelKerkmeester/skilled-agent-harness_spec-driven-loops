@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-communication/001-sk-communication-creation/014-code-and-doc-conformance",
+  "description": "Record complete code-folder README coverage, reference-document conformance, package-gate alignment, and zero-defect review evidence",
+  "keywords": [
+    "record",
+    "complete",
+    "code-folder",
+    "readme",
+    "coverage",
+    "reference-document",
+    "conformance",
+    "package-gate",
+    "alignment",
+    "zero-defect",
+    "review",
+    "evidence"
+  ],
+  "lastUpdated": "2026-08-13T05:54:57.485Z",
+  "specId": "014",
+  "folderSlug": "code-and-doc-conformance",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

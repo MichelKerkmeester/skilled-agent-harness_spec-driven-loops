@@ -1,0 +1,84 @@
+{
+  "topic": "Design the simplest possible way for a person to configure their own local LLM (for example an LM Studio or Ollama OpenAI-compatible endpoint) for the communication projection, so that after a minimal one-time setup the projection AUTOMATICALLY activates and uses that model as expected, with no further manual steps. Ground every design option in the real shipped gaps: the OpenCode plugin hands projectMessage an empty provider config (so it is a guaranteed no-op today), the default judge is reject-only (so good rewrites are rejected to the exact original), and no shipped entry point (the plugin or bin/cli-output-wrapper.mjs) is pre-wired with a provider, yet a concrete HTTP transport (src/transports/http.ts) plus OpenAI-compatible and Ollama adapters already exist -- so the gap is config-and-glue, not the network layer. Cover: config discovery format, automatic provider-record construction, a judge default that permits local accepts, local-only privacy defaults, and how the plugin and wrappers auto-pick-up the configured provider. Deliver a ranked design recommendation.",
+  "researchTopic": "Design the simplest possible way for a person to configure their own local LLM for the communication projection so that after a minimal one-time setup the projection automatically activates and uses that model.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "divergent": {},
+    "stopPolicy": "max-iterations"
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 30,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-communication/001-sk-communication-creation/029-local-llm-easy-config",
+  "fanout_lineage_artifact_dir": "specs/sk-communication/001-sk-communication-creation/029-local-llm-easy-config/research/lineages/cli-cursor-grok-46-high",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "createdAt": "2026-08-14T15:12:00.000Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-cursor",
+    "executable": "cursor-agent",
+    "model": "cursor-grok-4.6-high",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "webSearch": "inherit",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-cli-cursor-grok-46-high-1786720025911-6qn2nd",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 1,
+    "continuedFromRun": null,
+    "lineageLabel": "cli-cursor-grok-46-high"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

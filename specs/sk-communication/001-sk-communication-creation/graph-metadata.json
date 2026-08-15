@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/001-sk-communication-creation",
+  "spec_folder": "sk-communication/001-sk-communication-creation",
+  "parent_id": "sk-communication",
+  "parent_id_review_required": true,
+  "children_ids": [
+    "sk-communication/001-sk-communication-creation/001-research-strategy",
+    "sk-communication/001-sk-communication-creation/002-contracts-and-fixtures",
+    "sk-communication/001-sk-communication-creation/003-core-normalization-and-assembly",
+    "sk-communication/001-sk-communication-creation/004-protected-spans-fidelity-render",
+    "sk-communication/001-sk-communication-creation/005-provider-adapters-and-privacy",
+    "sk-communication/001-sk-communication-creation/006-runtime-adapters-and-clients",
+    "sk-communication/001-sk-communication-creation/007-evaluation-and-observability",
+    "sk-communication/001-sk-communication-creation/008-packaging-and-release-hardening",
+    "sk-communication/001-sk-communication-creation/009-prompt-token-contract",
+    "sk-communication/001-sk-communication-creation/010-adjacent-span-coalescing",
+    "sk-communication/001-sk-communication-creation/011-meaning-judge-wiring",
+    "sk-communication/001-sk-communication-creation/012-no-op-rejection",
+    "sk-communication/001-sk-communication-creation/013-capability-evidence-unblock",
+    "sk-communication/001-sk-communication-creation/014-code-and-doc-conformance",
+    "sk-communication/001-sk-communication-creation/015-package-into-skill",
+    "sk-communication/001-sk-communication-creation/016-default-off-and-advisor-exclusion",
+    "sk-communication/001-sk-communication-creation/017-runtime-wiring-feasibility-and-contract",
+    "sk-communication/001-sk-communication-creation/018-projection-runtime-core",
+    "sk-communication/001-sk-communication-creation/019-opencode-native-plugin",
+    "sk-communication/001-sk-communication-creation/020-cli-output-wrapper-framework",
+    "sk-communication/001-sk-communication-creation/021-claude-code-wrapper",
+    "sk-communication/001-sk-communication-creation/022-codex-wrapper",
+    "sk-communication/001-sk-communication-creation/023-pi-wrapper",
+    "sk-communication/001-sk-communication-creation/024-devin-wrapper",
+    "sk-communication/001-sk-communication-creation/025-cursor-wrapper",
+    "sk-communication/001-sk-communication-creation/026-capability-and-privacy-gating",
+    "sk-communication/001-sk-communication-creation/027-evaluation-and-release-gate",
+    "sk-communication/001-sk-communication-creation/028-wiring-docs-and-operator-rollout",
+    "sk-communication/001-sk-communication-creation/029-local-llm-easy-config",
+    "sk-communication/001-sk-communication-creation/030-local-provider-loader",
+    "sk-communication/001-sk-communication-creation/031-improvement-research",
+    "sk-communication/001-sk-communication-creation/032-packaging-and-activation-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "portable CLI communication",
+      "claudish to english across CLIs",
+      "improved communication"
+    ],
+    "key_topics": [
+      "portable",
+      "cli",
+      "communication",
+      "claudish",
+      "english",
+      "across",
+      "clis",
+      "improved",
+      "reference",
+      "implementation",
+      "claude",
+      "code"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "028-wiring-docs-and-operator-rollout/spec.md",
+      "029-local-llm-easy-config/spec.md",
+      "030-local-provider-loader/spec.md",
+      "031-improvement-research/spec.md",
+      "032-packaging-and-activation-fixes/spec.md",
+      "014-code-and-doc-conformance/implementation-summary.md",
+      "015-package-into-skill/implementation-summary.md",
+      "016-default-off-and-advisor-exclusion/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered shell processes, and prompt-only fidelity",
+    "created_at": "2026-08-11T06:21:47Z",
+    "last_save_at": "2026-08-15T11:18:12.340Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:625b898b0ad4550349186a3d2aced7b738c465192948e01ee1147365de0f7ea5",
+    "source_doc_hashes": {
+      "spec.md": "6f0f7320fc4603a045ca853a4c3e9655ac257ec6454cde0563723da79b2d0906"
+    },
+    "last_active_child_id": "sk-communication/001-sk-communication-creation/032-packaging-and-activation-fixes",
+    "last_active_at": "2026-08-15T11:18:14.442Z"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-communication/001-sk-communication-creation/020-cli-output-wrapper-framework",
+  "description": "The wrapper-based runtimes have no native output-transform hook, so the Phase 019 plugin cannot be reused; each of Claude Code, Codex, Devin, Cursor,",
+  "keywords": [
+    "wrapper-based",
+    "runtimes",
+    "native",
+    "output-transform",
+    "hook",
+    "phase",
+    "plugin",
+    "cannot",
+    "reused",
+    "claude",
+    "code",
+    "codex",
+    "devin",
+    "cursor"
+  ],
+  "lastUpdated": "2026-08-14T05:40:27.011Z",
+  "specId": "020",
+  "folderSlug": "cli-output-wrapper-framework",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

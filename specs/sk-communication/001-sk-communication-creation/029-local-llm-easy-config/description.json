@@ -1,0 +1,35 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/001-sk-communication-creation/029-local-llm-easy-config",
+  "description": "Produce a validated, ranked design recommendation that specifies the operator UX and the activation seam for local LLM easy-config: config-file and",
+  "keywords": [
+    "produce",
+    "validated",
+    "ranked",
+    "design",
+    "recommendation",
+    "specifies",
+    "operator",
+    "activation",
+    "seam",
+    "local",
+    "llm",
+    "easy-config",
+    "config-file"
+  ],
+  "lastUpdated": "2026-08-14T17:12:37.412Z",
+  "specId": "029",
+  "folderSlug": "local-llm-easy-config",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "14-08-26_18-07__phase-029-is-complete-and-its-canonical-research.md",
+    "14-08-26_18-09__phase-029-is-complete-and-its-canonical-research.md",
+    "14-08-26_18-10__phase-029-is-complete-and-research-research-md.md",
+    "14-08-26_18-11__phase-029-is-complete-and-research-research-md.md",
+    "14-08-26_18-12__phase-029-is-complete-and-research-research-md.md"
+  ]
+}

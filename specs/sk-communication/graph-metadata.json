@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication",
+  "spec_folder": "sk-communication",
+  "parent_id": null,
+  "children_ids": [
+    "sk-communication/001-sk-communication-creation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "cli-external-orchestration"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "communication",
+      "projection",
+      "cli",
+      "output",
+      "rewrite",
+      "provider",
+      "runtime"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Track folder for a provider-neutral CLI-output rewrite layer with local-provider loading, six-runtime wiring, canonical-output preservation, and default-off activation.",
+    "created_at": "2026-08-15T00:00:00.000Z",
+    "last_save_at": "2026-08-15T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_fingerprint": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_doc_hashes": {},
+    "last_active_child_id": "sk-communication/001-sk-communication-creation",
+    "last_active_at": "2026-08-15T00:00:00.000Z"
+  }
+}

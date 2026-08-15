@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/001-sk-communication-creation/013-capability-evidence-unblock",
+  "description": "Supply fresh confirmed capability evidence so provider control knobs are reachable through the shipped path instead of failing closed to exact-original before transport",
+  "keywords": [
+    "capability",
+    "evidence",
+    "control",
+    "temperature",
+    "thinking",
+    "fail-closed",
+    "preset",
+    "reachable",
+    "projection",
+    "quality"
+  ],
+  "lastUpdated": "2026-08-13T00:00:00.000Z",
+  "specId": "013",
+  "folderSlug": "capability-evidence-unblock",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
