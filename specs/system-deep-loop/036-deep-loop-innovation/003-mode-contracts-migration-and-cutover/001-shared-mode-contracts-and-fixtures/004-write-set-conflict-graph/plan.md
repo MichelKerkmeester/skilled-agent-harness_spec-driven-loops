@@ -10,7 +10,7 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
     last_updated_at: "2026-07-21T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Implemented the graph derivation, scheduler, source-drift guard, and adversarial unit fixtures"
@@ -69,7 +69,8 @@ does not move migration or approval authority; its `phase_gate_complete` field r
 ## 3. ARCHITECTURE
 
 - **Graph envelope**: `schema_version`, `base_identity`, `generated_from`, `policy`, `nodes`, `edges`,
-  `independent_assertions`, and `schedule` are persisted as one graph contract with a content digest.
+  `independent_assertions`, and `schedule` are persisted as one graph contract with a content digest. The artifact
+  layer adds all 28 pair classifications and emits stable-key JSON bytes with one trailing newline.
 - **Mode nodes**: one immutable node identity per manifest slug. Each node carries `read_set`, `write_set`,
   `shared_state`, `migration_dependencies`, `contract_refs`, and `source_refs`.
 - **Resource identity**: normalize paths, symlinks, package roots, generated outputs, persisted state stores, backend
@@ -117,8 +118,8 @@ does not move migration or approval authority; its `phase_gate_complete` field r
 - Verify derived edge examples for write-write, write-read, shared backend, hard-order, and review-loop fence cases.
 - Verify that deep-improvement-common precedes all three variants, deep-review and alignment cannot overlap on the shared
   review loop, and research/council remain parallel-safe only under disjoint resource evidence.
-- Run repeated derivation and scheduling with identical inputs; compare graph digest, edge order, lane order, and refusal
-  evidence for determinism.
+- Run repeated derivation and scheduling with identical inputs; compare graph digest, edge order, lane order, refusal
+  evidence, pair classifications, artifact digest, and emitted bytes for determinism.
 - Simulate stale, missing, ambiguous, aliased, contradictory, Unicode-normalization-equivalent, namespace-root, and
   changed write-set inputs; confirm conflict, serial fallback, or blocking behavior without false widened parallelism.
 - Run the leaf Vitest suite, repository-bundled TypeScript compiler, strict leaf validator, comment-hygiene scan, and

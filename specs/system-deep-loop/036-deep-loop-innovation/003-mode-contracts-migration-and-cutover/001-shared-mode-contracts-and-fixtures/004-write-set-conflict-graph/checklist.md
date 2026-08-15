@@ -10,7 +10,7 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
     last_updated_at: "2026-07-21T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Executed the local graph, drift, fence, determinism, and evidence verification suite"
@@ -68,10 +68,10 @@ graph is complete or that the phase gate is green.
 - [x] CHK-013 [P0] Review and alignment are fenced through both canonical review-loop aliases [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:280]
 - [x] CHK-014 [P0] Research/council independence is accepted only while actual mutable sets are disjoint [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:340]
 - [x] CHK-015 [P0] Incomplete, stale, unresolved, contradictory, unknown, or cyclic evidence returns serial fallback or refusal [File: .opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/scheduler.ts:93]
-- [x] CHK-016 [P0] Equivalent reordered sealed inputs produce the same digest and schedule evidence [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:390]
+- [x] CHK-016 [P0] Equivalent reordered sealed inputs produce the same graph, 28-pair classification map, artifact digest, and canonical bytes [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:956]
 - [x] CHK-017 [P0] Changed source digests or declarations reject old graphs before orchestration [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:467]
 - [x] CHK-018 [P0] Every decision records predecessors, conflicts, fences, source digest, class, and reason [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:430]
-- [x] CHK-019 [P1] Incomplete evidence cannot widen parallelism based on distinct node names [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:128]
+- [x] CHK-019 [P1] Incomplete evidence cannot widen parallelism based on distinct node names; every affected pair carries typed failure evidence [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:156]
 - [x] CHK-027 [P0] Trailing-slash-equivalent file writers and readers derive conflict edges, while true prefixes remain conflicting [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:263]
 - [x] CHK-028 [P0] Shared-state access outside `read` or `write` emits a validation issue and global serial fallback [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:333]
 - [x] CHK-029 [P0] Valid shared-state writers and readers still derive write-write and write-read conflicts [File: .opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts:370]

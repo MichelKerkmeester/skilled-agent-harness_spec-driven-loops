@@ -3,6 +3,14 @@
 // ───────────────────────────────────────────────────────────────────
 
 export {
+  PairClassificationFailureCodes,
+  WRITE_SET_CONFLICT_ARTIFACT_SCHEMA_VERSION,
+  buildWriteSetConflictArtifact,
+  buildWriteSetConflictArtifactBytes,
+  createWriteSetConflictArtifact,
+  serializeWriteSetConflictArtifact,
+} from './artifact.js';
+export {
   DEFAULT_ALIAS_GROUPS,
   buildAliasIndex,
   canonicalizeResource,
@@ -31,6 +39,12 @@ export {
   WRITE_SET_GRAPH_SCHEMA_VERSION,
 } from './types.js';
 
+export type {
+  PairClassificationFailure,
+  PairClassificationFailureCode,
+  WorkstreamPairClassification,
+  WriteSetConflictArtifact,
+} from './artifact.js';
 export type {
   AliasGroup,
   CanonicalResource,

@@ -11,7 +11,7 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation/001-shared-mode-contracts-and-fixtures"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
     last_updated_at: "2026-07-15T00:00:00Z"
     last_updated_by: "opencode"
     recent_action: "Defined graph nodes, conflict edges, and phase-013 orchestration fences"

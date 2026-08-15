@@ -10,6 +10,8 @@ import {
   SHIPPED_MODE_CENSUS,
   WriteSetGraphErrorCodes,
   WriteSetGraphValidationError,
+  buildWriteSetConflictArtifact,
+  buildWriteSetConflictArtifactBytes,
   collectRequiredSourcePaths,
   deriveWriteSetConflictGraph,
   stableDigest,
@@ -168,12 +170,18 @@ describe('write-set conflict graph', () => {
       }),
     );
     const graph = buildGraph(declarations);
+    const artifact = buildWriteSetConflictArtifact(buildInput(declarations));
+    const affectedPairs = artifact.pair_classifications.filter((pair) =>
+      pair.left === '001-deep-research' || pair.right === '001-deep-research');
 
     expect(graph.schedule.schedule_class).toBe('serial-single-writer');
     expect(graph.schedule.graph_state).toBe('fallback');
     expect(graph.schedule.phase_gate_complete).toBe(false);
     expect(graph.schedule.missing_evidence.some((issue) => issue.code === 'UNCLASSIFIED_RESOURCE')).toBe(true);
     expect(graph.edges.filter((edge) => edge.edge_origin === 'unknown-widening')).toHaveLength(7);
+    expect(affectedPairs).toHaveLength(7);
+    expect(affectedPairs.every((pair) => pair.classification === 'must-serialize'
+      && pair.failure?.issue_codes.includes('UNCLASSIFIED_RESOURCE'))).toBe(true);
   });
 
   it('derives a write-write conflict without allowing the pair into one lane', () => {
@@ -861,6 +869,109 @@ describe('write-set conflict graph', () => {
     expect(second.edges).toEqual(first.edges);
     expect(second.schedule).toEqual(first.schedule);
     expect(second).toEqual(first);
+  });
+
+  it('emits an explicit must-serialize pair for a fabricated write conflict', () => {
+    const shared = testResource('state:{packet}/adversarial/artifact-conflict.jsonl', 'write');
+    let declarations = replaceDeclaration(
+      SHIPPED_MODE_CENSUS,
+      '001-deep-research',
+      (declaration) => ({ ...declaration, writeSet: [...declaration.writeSet, shared] }),
+    );
+    declarations = replaceDeclaration(
+      declarations,
+      '003-deep-ai-council',
+      (declaration) => ({ ...declaration, writeSet: [...declaration.writeSet, shared] }),
+    );
+    const artifact = buildWriteSetConflictArtifact(buildInput(declarations));
+    const pair = artifact.pair_classifications.find((entry) =>
+      entry.left === '001-deep-research' && entry.right === '003-deep-ai-council');
+
+    expect(artifact.pair_classifications).toHaveLength(28);
+    expect(pair).toEqual(expect.objectContaining({
+      classification: 'must-serialize',
+      failure: expect.objectContaining({
+        code: 'GRAPH_NOT_READY',
+        issue_codes: ['INDEPENDENCE_ASSERTION_CONFLICT'],
+      }),
+      resources: ['state:{packet}/adversarial/artifact-conflict.jsonl'],
+    }));
+  });
+
+  it('rejects a spurious prefix conflict in the explicit pair matrix', () => {
+    let declarations = replaceDeclaration(
+      SHIPPED_MODE_CENSUS,
+      '001-deep-research',
+      (declaration) => ({
+        ...declaration,
+        writeSet: [
+          ...declaration.writeSet,
+          {
+            ...testResource('file:.opencode/adversarial/report', 'write'),
+            kind: ResourceKinds.FILE,
+          },
+        ],
+      }),
+    );
+    declarations = replaceDeclaration(
+      declarations,
+      '003-deep-ai-council',
+      (declaration) => ({
+        ...declaration,
+        writeSet: [
+          ...declaration.writeSet,
+          {
+            ...testResource('file:.opencode/adversarial/report-backup', 'write'),
+            kind: ResourceKinds.FILE,
+          },
+        ],
+      }),
+    );
+    const artifact = buildWriteSetConflictArtifact(buildInput(declarations));
+    const pair = artifact.pair_classifications.find((entry) =>
+      entry.left === '001-deep-research' && entry.right === '003-deep-ai-council');
+
+    expect(pair).toEqual(expect.objectContaining({
+      classification: 'parallel-safe',
+      edge_ids: [],
+      failure: null,
+      resources: [],
+    }));
+  });
+
+  it('marks every pair as a typed failure when source input is missing', () => {
+    const input = buildInput();
+    const artifact = buildWriteSetConflictArtifact({
+      ...input,
+      sourceDigests: input.sourceDigests.slice(1),
+    });
+
+    expect(artifact.pair_classifications).toHaveLength(28);
+    expect(artifact.pair_classifications.every((pair) =>
+      pair.classification === 'must-serialize'
+      && pair.failure?.code === 'GRAPH_NOT_READY'
+      && pair.failure.issue_codes.includes('MISSING_SOURCE_DIGEST'))).toBe(true);
+  });
+
+  it('emits byte-identical canonical artifacts for equivalent reordered builds', () => {
+    const reorderedDeclarations = [...SHIPPED_MODE_CENSUS].reverse().map((declaration) => ({
+      ...declaration,
+      readSet: [...declaration.readSet].reverse(),
+      writeSet: [...declaration.writeSet].reverse(),
+      sharedState: [...declaration.sharedState].reverse(),
+      migrationDependencies: [...declaration.migrationDependencies].reverse(),
+      contractRefs: [...declaration.contractRefs].reverse(),
+      sourceRefs: [...declaration.sourceRefs].reverse(),
+    }));
+    const reorderedInput = buildInput(reorderedDeclarations);
+    const first = buildWriteSetConflictArtifactBytes(buildInput());
+    const second = buildWriteSetConflictArtifactBytes({
+      ...reorderedInput,
+      sourceDigests: [...reorderedInput.sourceDigests].reverse(),
+    });
+
+    expect(Buffer.from(second).equals(Buffer.from(first))).toBe(true);
+    expect(new TextDecoder().decode(first).endsWith('\n')).toBe(true);
   });
 
   it('never presents serial fallback as a completed phase gate', () => {
