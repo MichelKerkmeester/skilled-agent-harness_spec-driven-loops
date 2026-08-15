@@ -2,6 +2,7 @@
   "_comment": "Global blackhole config. Auto-compaction must not fire before 272,000 tokens (compactAfterTokens). Pi's built-in threshold compaction is disabled in settings.json so this threshold is the only auto-compaction trigger.",
   "compaction": "auto",
   "compactionEngine": "blackhole",
+  "midRunCompaction": "resume",
   "tailBehavior": "minimal",
   "memory": true,
   "compactAfterTokens": 272000
