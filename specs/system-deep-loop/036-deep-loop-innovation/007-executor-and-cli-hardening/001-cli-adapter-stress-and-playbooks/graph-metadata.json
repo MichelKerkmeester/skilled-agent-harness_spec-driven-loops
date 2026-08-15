@@ -32,13 +32,14 @@
       "playbook"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -72,6 +73,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -96,13 +103,13 @@
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Critical Dependencies",
+        "name": "Key Decisions",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,7 +189,7 @@
     ],
     "causal_summary": "The adapter family has a wide failure surface that is not safely covered by one green unit suite",
     "created_at": "2026-08-07T07:50:32Z",
-    "last_save_at": "2026-08-14T04:28:32.025Z",
+    "last_save_at": "2026-08-15T17:21:51.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,15 +197,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24814e688ed8486b88e2e87a37a7a9d3a1d799390958e95a7132ea844d9a8232",
+    "source_fingerprint": "sha256:3e20ff05c6b21317859aedc5fe27ecfddd2e4e73b392f951ec369aaf3572f28d",
     "source_doc_hashes": {
-      "spec.md": "f73c086b8230029e4995fbfa180e7595f6c82c2a4ae32919366a22550b01a836",
-      "plan.md": "f4c4263a4db1ec3ef4aa684817cf126c5e4fbc05e41d7471f9b3f41f80ea9947",
-      "tasks.md": "cf83323bf99a30dce824fb04a4fb43041d2949007823723659bb857bbcad0575",
+      "spec.md": "2d22db9eb3588d75dd67299dc3069b882c708936ae3a8c985c9089b051e7abe0",
+      "plan.md": "b0627d5316a3eb26dbe6b4f3f09e2f6afaf9419f2f30b733fa3e720f25a7ea75",
+      "tasks.md": "50fe40ee309b9dadd0f0405ae276d0d4233075e684a43954658f72a62bf25ee7",
       "checklist.md": "ab619e8a7c3074277c004b240044f583cc0b42c4585a477e26cd5fdf306bfcf1",
-      "decision-record.md": "1c2bc9b4c04651b2ddd18354e189db94c2ed78bd6830f641fc9e7bc5afdc4029"
+      "decision-record.md": "1c2bc9b4c04651b2ddd18354e189db94c2ed78bd6830f641fc9e7bc5afdc4029",
+      "implementation-summary.md": "3f54e864a2ea3b902c5c6f5c8885482228990ae5ed964dc4ea532f05390e5fa1"
     },
     "last_active_child_id": null,
     "last_active_at": null

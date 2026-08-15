@@ -39,7 +39,7 @@ _memory:
 
 > Phase adjacency under the `036-deep-loop-innovation` parent (grouping order, not a runtime dependency): predecessor `011-identity-and-lock-ownership-hardening`; successor `002-executor-wiring-and-parity`.
 
-> This child is the Planned scaffold for a later execution pass. It authors no stress-test, adapter, or manual-playbook implementation now.
+> This child is In Progress. Phase 1 implements the shared hermetic foundation and `cli-codex`; the other adapters, fan-out execution, and playbooks remain later phases.
 
 ---
 
@@ -62,14 +62,14 @@ The live executor contract contains six external CLI kinds: `cli-codex`, `cli-op
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | In Progress — phase 1 of 3 |
 | **Created** | 2026-08-07 |
 | **Branch** | Current worktree; no branch created |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |
-| **Wave** | Planned execution follow-up after WS1 |
+| **Wave** | Phase 1 foundation and `cli-codex` execution |
 | **Adapters in scope** | `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`, `cli-devin`, `cli-cursor` |
 | **Fan-out subject** | `runtime/scripts/fanout-run.cjs` multi-lineage orchestration |
-| **Status boundary** | Planning only; implementation is a later phase |
+| **Status boundary** | Foundation plus `cli-codex` only; remaining subjects stay open |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -95,7 +95,7 @@ The phase brief records these as real failures already hit by this program: 401/
 
 ### Purpose
 
-Define the later execution pass that will stress every external CLI adapter and the fan-out orchestrator against the same 14 edge-case rows, produce a test plus a reusable playbook snippet for every adapter/edge-case cell, and record findings with the stress-test templates. This child remains Planned until that execution pass is separately authorized and run.
+Build the stress program in bounded phases. The current phase freezes the seven-subject matrix, creates the hermetic process/worktree foundation, and implements `cli-codex`; later phases add the other adapters, fan-out execution, playbooks, and findings.
 
 ### Calibration
 
@@ -103,7 +103,7 @@ Define the later execution pass that will stress every external CLI adapter and 
 
 ### Non-Goals
 
-- Implementing any stress-test suite, shim, fixture, playbook snippet, or findings artifact in this scaffold pass.
+- Implementing the five remaining adapter suites, fan-out execution, playbook snippets, or findings artifacts in phase 1.
 - Fixing adapter defects discovered by execution; each defect routes to its own remediation packet.
 - The `014` cutover or changing authority, convergence, retry, permission, transport, or adapter behavior.
 - Testing non-CLI executors, provider internals, or unrelated deep-loop workflows.
@@ -168,7 +168,7 @@ Subjects for every row: `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`
 | `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Live enum, flag support, sandbox and model policy | Read-only roster confirmation |
 | `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Fan-out command builders, scheduler, budgets, cleanup, aggregation | Read-only behavior contract |
 | `.opencode/skills/system-deep-loop/runtime/scripts/codex-dispatch.cjs` | Single-shot Codex transport and PID cleanup reference | Read-only behavior contract |
-| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/` | Future stress suite | Create only in later execution |
+| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/` | Phased stress suite | Phase 1 creates shared fixtures, manifests, shims, and `cli-codex` |
 | `.opencode/skills/cli-external-orchestration/cli-*/manual-testing-playbook/stress/` | Future adapter snippets | Create only in later execution |
 | `.opencode/skills/cli-external-orchestration/manual-testing-playbook/fanout-stress/` | Future shared fan-out snippets | Create only in later execution |
 | `.opencode/skills/system-spec-kit/templates/stress-test/` | Findings templates | Read and use in later execution |
@@ -220,7 +220,7 @@ Subjects for every row: `cli-codex`, `cli-opencode`, `cli-pi`, `cli-claude-code`
 - **SC-004**: The stress runner cannot hang indefinitely on stdin, a stalled child, or the full aggregate suite; per-file evidence remains available.
 - **SC-005**: Live dependency gating distinguishes a real adapter result from a specific `SKIP` blocker.
 - **SC-006**: Every finding is authored with the stress-test templates and routed to a separate remediation scope; this child does not fix it.
-- **SC-007**: The 035 scaffold itself remains Planned, contains no implementation-summary, and passes strict packet validation with zero errors and zero warnings.
+- **SC-007**: The leaf remains In Progress until all later phases close; phase 1 does not claim packet completion.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Tasks: Stress-Test the Six External CLI Deep-Loop Adapters and Fan-Out Orchestration"
-description: "Task breakdown for the later execution pass: reconcile the live roster, build a hang-safe harness, exercise six adapters and fan-out across 14 edge-case rows, author paired playbook snippets, and verify the evidence matrix. All tasks remain pending in this scaffold."
+description: "Phased execution task breakdown: phase 1 reconciles the live roster, builds the hang-safe harness, and exercises cli-codex across all 14 edge-case rows; later phases cover the remaining adapters, fan-out, and playbooks."
 trigger_phrases:
   - "cli adapter stress tests"
   - "deep-loop executor adapter coverage"
@@ -70,10 +70,10 @@ _memory:
 
 All tasks in this phase read the live contract and document the real incident surface. They do not edit runtime or CLI adapter behavior.
 
-- [ ] T001 Reconcile `EXECUTOR_KINDS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` with the six `workflowMode` entries in `.opencode/skills/cli-external-orchestration/mode-registry.json`; record exact equality and keep `native` outside the external-adapter set. [1h]
-- [ ] T002 Read `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` and `codex-dispatch.cjs`; record the live contracts for `flat_pool`, concurrency, `count`, `iterations`, timeout, stdin, budgets, cleanup, artifacts, completion markers, and recursion guard. [2h] {deps: T001}
-- [ ] T003 Freeze the 14 edge-case rows and seven subjects in the matrix manifest; assign one test name and one playbook path format to every subject × row cell. [2h] {deps: T001, T002}
-- [ ] T004 Record the operator-provided real failure evidence and the distinction between adapter defect, dependency `SKIP`, and harness failure. [1h] {deps: T002}
+- [x] T001 Reconcile `EXECUTOR_KINDS` in `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` with the six `workflowMode` entries in `.opencode/skills/cli-external-orchestration/mode-registry.json`; record exact equality and keep `native` outside the external-adapter set. [1h]
+- [x] T002 Read `.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` and `codex-dispatch.cjs`; record the live contracts for `flat_pool`, concurrency, `count`, `iterations`, timeout, stdin, budgets, cleanup, artifacts, completion markers, and recursion guard. [2h] {deps: T001}
+- [x] T003 Freeze the 14 edge-case rows and seven subjects in the matrix manifest; assign one test name and one playbook path format to every subject × row cell. [2h] {deps: T001, T002}
+- [x] T004 Record the operator-provided real failure evidence and the distinction between adapter defect, dependency `SKIP`, and harness failure. [1h] {deps: T002}
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -83,15 +83,15 @@ All tasks in this phase read the live contract and document the real incident su
 
 ### Harness and dependency gates [M2]
 
-- [ ] T005 Create `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/` with one stress file per adapter and one fan-out file; configure serial file execution with `fileParallelism:false`. [3h] {deps: T003}
-- [ ] T006 Build shared temporary-process fixtures for bounded timeouts, captured PIDs, descendant cleanup, stdout/stderr capture, and expected lineage artifacts. [4h] {deps: T005}
-- [ ] T007 [P] Add deterministic PATH shims for auth denial, model-not-found/insufficient balance, rate-limit/throttle, and transport-not-installed outcomes. [3h] {deps: T005}
-- [ ] T008 [P] Add stdin-wait, timeout, malformed-output, missing-artifact, and non-zero/signal exit shims; every shim must be bounded and testable without provider access. [3h] {deps: T005}
-- [ ] T009 Add live binary/auth preflight, `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` child-gate setup, fan-out equivalent env assertions, isolated worktree fixtures, and independent `node_modules` realpath checks. [4h] {deps: T006, T007, T008}
+- [x] T005 Create `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/`, establish serial execution, and add the phase-1 `cli-codex` subject; later subject files remain in their named tasks. [3h] {deps: T003}
+- [x] T006 Build shared temporary-process fixtures for bounded timeouts, captured PIDs, descendant cleanup, stdout/stderr capture, and expected lineage artifacts. [4h] {deps: T005}
+- [x] T007 [P] Add deterministic PATH shims for auth denial, model-not-found/insufficient balance, rate-limit/throttle, and transport-not-installed outcomes. [3h] {deps: T005}
+- [x] T008 [P] Add stdin-wait, timeout, malformed-output, missing-artifact, and non-zero/signal exit shims; every shim must be bounded and testable without provider access. [3h] {deps: T005}
+- [x] T009 Add live binary/auth preflight, `MK_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` child-gate setup, fan-out equivalent env assertions, isolated worktree fixtures, and independent `node_modules` realpath checks. [4h] {deps: T006, T007, T008}
 
 ### Adapter stress subjects [M3]
 
-- [ ] T010 [P] Stress `cli-codex` in `runtime/tests/stress/cli-adapter/cli-codex.vitest.ts`: success plus all 14 edge-case rows; assert read-only default, stdin closure, `command -v`, model/effort/tier flags, PID cleanup, and self-invocation guard. [5h] {deps: T009}
+- [x] T010 [P] Stress `cli-codex` in `runtime/tests/stress/cli-adapter/cli-codex.vitest.ts`: success plus all 14 edge-case rows; assert read-only default, stdin closure, `command -v`, model/effort/tier flags, PID cleanup, and self-invocation guard. [5h] {deps: T009}
 - [ ] T011 [P] Stress `cli-opencode` in `runtime/tests/stress/cli-adapter/cli-opencode.vitest.ts`: success plus all 14 edge-case rows; assert full-runtime gate env, detached/parallel process bounds, artifacts, and recursion protection. [5h] {deps: T009}
 - [ ] T012 [P] Stress `cli-pi` in `runtime/tests/stress/cli-adapter/cli-pi.vitest.ts`: success plus all 14 edge-case rows; treat artifact validation as the success signal when exit codes are unreliable and retain provider diagnostics. [5h] {deps: T009}
 - [ ] T013 [P] Stress `cli-claude-code` in `runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts`: success plus all 14 edge-case rows; assert `configDir`, permission mapping, auth gating, timeout, cleanup, and no recursive same-kind dispatch. [5h] {deps: T009}
@@ -126,13 +126,13 @@ All tasks in this phase read the live contract and document the real incident su
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks remain pending until the separate execution pass begins.
-- [ ] The live six-adapter roster is recorded from source, not inferred from the prompt alone.
+- [x] Phase 1 tasks T001-T010 are evidenced; T011 and later remain pending for subsequent phases.
+- [x] The live six-adapter roster is recorded from source, not inferred from the prompt alone.
 - [ ] Every one of the 98 matrix cells (seven subjects × 14 edge cases) has a test and playbook path at execution close.
 - [ ] All fan-out dimensions and completion/partial-failure semantics have named evidence.
 - [ ] Findings use the required templates and route remediation separately.
 - [ ] Full output from serial per-file stress runs and strict packet validation is retained.
-- [ ] `implementation-summary.md` is absent because this child is Planned.
+- [x] `implementation-summary.md` remains absent because the leaf is In Progress and does not claim packet completion.
 - [ ] No commit or push is performed by this phase.
 <!-- /ANCHOR:completion -->
 

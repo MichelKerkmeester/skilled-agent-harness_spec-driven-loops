@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Stress-Test the Six External CLI Deep-Loop Adapters and Fan-Out Orchestration"
-description: "Reconcile the live adapter roster, build a hermetic per-file stress harness, cover the shared fan-out scheduler, and author deterministic playbook snippets for the 14 edge-case rows. This plan is for a later execution pass; the current phase only authors planning documents."
+description: "Reconcile the live adapter roster, build a hermetic per-file stress harness, cover the shared fan-out scheduler, and author deterministic playbook snippets for the 14 edge-case rows. Execution is phased; phase 1 builds the foundation and cli-codex only."
 trigger_phrases:
   - "cli adapter stress tests"
   - "deep-loop executor adapter coverage"
@@ -101,7 +101,7 @@ Hermetic adapter stress plus gated live probes, executed serially per file and r
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-This child plans a verification program, not a production fix. The source runtime is read as the behavior contract; later execution creates only the dedicated stress, playbook, matrix, and finding artifacts.
+This child builds a verification program, not a production fix. The source runtime remains a read-only behavior contract; phase 1 creates only the dedicated stress foundation, matrix, and `cli-codex` artifacts.
 
 | Surface | Current Role | Action in Later Execution | Verification |
 |---------|--------------|---------------------------|--------------|
@@ -422,5 +422,5 @@ Record subject, edge-case row, exact command, environment (redacted), exit/signa
 
 ### Blocked Task Protocol
 
-If WS1 artifacts are missing, a source contract drifts, a target path collides, a child hangs, or a test harness requires adapter behavior changes, stop that workstream, preserve the evidence, and route the blocker or remediation separately. Do not broaden this Planned scaffold.
+If WS1 artifacts are missing, a source contract drifts, a target path collides, a child hangs, or a test harness requires adapter behavior changes, stop that workstream, preserve the evidence, and route the blocker or remediation separately. Do not broaden the active phase.
 <!-- /ANCHOR:ai-execution-protocol -->
