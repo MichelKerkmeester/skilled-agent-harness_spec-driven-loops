@@ -101,7 +101,7 @@ const EXPECTED_HANDLER_FRAGMENTS: Record<(typeof EXPECTED_HOOK_EVENTS)[number], 
 const EXPECTED_HOOK_COUNTS: Record<(typeof EXPECTED_HOOK_EVENTS)[number], number> = {
   UserPromptSubmit: 2,
   PreCompact: 1,
-  SessionStart: 6,
+  SessionStart: 7,
   Stop: 2,
 };
 
