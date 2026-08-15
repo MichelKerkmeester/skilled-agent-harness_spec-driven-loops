@@ -484,6 +484,17 @@ function evaluateArtifactPolicy(
     : { verdict: 'deny', reasonCode: 'policy_denied', matchedRuleIds: ['artifact-write'] };
 }
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 function createArtifactHarness(): ArtifactHarness {
   const rootDirectory = temporaryRoot('sealed');
   const registry = new EventTypeRegistry(sealedArtifactEventDefinitions());
@@ -506,6 +517,7 @@ function createArtifactHarness(): ArtifactHarness {
     auditLedgerId: 'deep-research-parity-artifact-audit',
     authorityProvider: () => AUTHORITY,
     now: () => new Date(TIMESTAMP),
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   const store = new SealedArtifactStore({
     rootDirectory: join(rootDirectory, 'store'),
@@ -645,6 +657,7 @@ function createResumeHarness(label: string): ResumeHarness {
     auditLedgerId: 'resume-parity-audit',
     authorityProvider: () => AUTHORITY,
     now: () => new Date(TIMESTAMP),
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   const effectLedger = new AppendOnlyLedger({
     rootDirectory: join(rootDirectory, 'effects'),

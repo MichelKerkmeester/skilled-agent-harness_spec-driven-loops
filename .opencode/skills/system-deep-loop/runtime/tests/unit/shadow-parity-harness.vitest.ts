@@ -232,6 +232,11 @@ function createArtifactHarness(): ArtifactHarness {
     auditLedgerId: 'artifact-audit',
     authorityProvider: () => ARTIFACT_AUTHORITY,
     now: () => new Date(FIXTURE_TIMESTAMP),
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   const store = new SealedArtifactStore({
     rootDirectory: join(rootDirectory, 'store'),
@@ -436,6 +441,11 @@ async function createLedgerTemplate(options: ExecutorOptions = {}): Promise<stri
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider: () => FIXTURE_AUTHORITY,
     now: () => new Date(FIXTURE_TIMESTAMP),
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   for (let index = 1; index <= 2; index += 1) {
     const event = createFixtureEvent(registry, index, {
@@ -492,6 +502,11 @@ function createExecutor(
       auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
       authorityProvider: () => FIXTURE_AUTHORITY,
       now: () => new Date(FIXTURE_TIMESTAMP),
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
     const componentRegistry = createComponentRegistry(
       context,

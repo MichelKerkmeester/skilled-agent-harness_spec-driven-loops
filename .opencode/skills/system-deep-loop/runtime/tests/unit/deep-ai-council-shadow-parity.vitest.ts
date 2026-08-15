@@ -181,6 +181,7 @@ function createHarness(): Harness {
     rootDirectory,
     auditLedgerId: AUDIT_LEDGER_ID,
     authorityProvider,
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   return { registry, policies, ledger, gateway };
 }
@@ -191,6 +192,17 @@ function evaluateParityArtifactPolicy(
   return input.capabilityId === 'artifact-write'
     ? { verdict: 'allow', reasonCode: 'allowed', matchedRuleIds: ['artifact-write'] }
     : { verdict: 'deny', reasonCode: 'policy_denied', matchedRuleIds: ['artifact-write'] };
+}
+
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
 }
 
 function createParityArtifactHarness(): ParityArtifactHarness {
@@ -215,6 +227,7 @@ function createParityArtifactHarness(): ParityArtifactHarness {
     auditLedgerId: 'deep-ai-council-parity-artifact-audit',
     authorityProvider: () => AUTHORITY,
     now: () => new Date(TIMESTAMP),
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   const store = new SealedArtifactStore({
     rootDirectory: join(rootDirectory, 'store'),

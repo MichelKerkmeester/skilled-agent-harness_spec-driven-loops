@@ -744,11 +744,9 @@ export class TransitionAuthorizationGateway {
         matchedRuleIds: [],
       };
     }
-    if (this.#options.identityResolver) {
-      const { denial, verification } = await this.#checkIdentity(request, context);
-      identityVerification.value = verification;
-      if (denial) return denial;
-    }
+    const { denial, verification } = await this.#checkIdentity(request, context);
+    identityVerification.value = verification;
+    if (denial) return denial;
 
     let policy;
     try {
@@ -764,7 +762,22 @@ export class TransitionAuthorizationGateway {
         Promise.resolve(policy.evaluate(context.evaluationInput)),
         this.#options.evaluatorTimeoutMs,
       );
-      return normalizePolicyResult(result, new Set(policy.ruleIds));
+      const normalized = normalizePolicyResult(result, new Set(policy.ruleIds));
+      if (
+        normalized.verdict === 'allow'
+        && !(
+          identityVerification.value.actorId
+          && identityVerification.value.capabilityId
+          && identityVerification.value.evidenceDigest
+        )
+      ) {
+        return {
+          verdict: 'deny',
+          reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+          matchedRuleIds: ['identity:unverified'],
+        };
+      }
+      return normalized;
     } catch (error: unknown) {
       return {
         verdict: 'deny',
@@ -777,37 +790,96 @@ export class TransitionAuthorizationGateway {
   }
 
   /**
-   * Resolve the deployment's expected identity and deny on any field it pins
-   * that the request does not match. A field the resolver leaves undefined,
-   * or a null resolution, is not checked for a mismatch — but it is also
-   * never reported as verified: only a field the resolver positively pins
-   * and the request matches earns a `true` in the returned verification map.
+   * Resolve actor, capability, and evidence identity independently and deny
+   * unless every field is present and matches the prepared request. A missing
+   * resolver, a thrown resolution, a null result, or any omitted field is
+   * treated as unverified and cannot produce an allow.
    */
   async #checkIdentity(
     request: TransitionAuthorizationRequest,
     context: DecisionContext,
   ): Promise<Readonly<{ denial: DecisionOutcome | null; verification: IdentityVerification }>> {
     const resolver = this.#options.identityResolver;
-    if (!resolver) return { denial: null, verification: UNVERIFIED_IDENTITY };
-    const expected = await resolver({
-      mode: request.mode,
-      authority: context.authority,
-      evaluationInput: context.evaluationInput,
-    });
-    if (!expected) return { denial: null, verification: UNVERIFIED_IDENTITY };
-    if (expected.actorId !== undefined && expected.actorId !== request.actorId) {
+    if (!resolver) {
+      return {
+        denial: {
+          verdict: 'deny',
+          reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+          matchedRuleIds: ['identity:resolver'],
+        },
+        verification: UNVERIFIED_IDENTITY,
+      };
+    }
+    let expected: Awaited<ReturnType<NonNullable<AuthorizationGatewayOptions['identityResolver']>>>;
+    try {
+      expected = await resolver({
+        mode: request.mode,
+        authority: context.authority,
+        evaluationInput: context.evaluationInput,
+      });
+    } catch {
+      return {
+        denial: {
+          verdict: 'deny',
+          reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+          matchedRuleIds: ['identity:resolver'],
+        },
+        verification: UNVERIFIED_IDENTITY,
+      };
+    }
+    if (!isRecord(expected)) {
+      return {
+        denial: {
+          verdict: 'deny',
+          reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+          matchedRuleIds: ['identity:resolution'],
+        },
+        verification: UNVERIFIED_IDENTITY,
+      };
+    }
+    if (!isNonEmptyString(expected.actorId)) {
+      return {
+        denial: {
+          verdict: 'deny',
+          reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+          matchedRuleIds: ['identity:actorId'],
+        },
+        verification: UNVERIFIED_IDENTITY,
+      };
+    }
+    if (!isNonEmptyString(expected.capabilityId)) {
+      return {
+        denial: {
+          verdict: 'deny',
+          reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+          matchedRuleIds: ['identity:capabilityId'],
+        },
+        verification: UNVERIFIED_IDENTITY,
+      };
+    }
+    if (!isNonEmptyString(expected.evidenceDigest)) {
+      return {
+        denial: {
+          verdict: 'deny',
+          reasonCode: AuthorizationReasonCodes.INVALID_INPUT,
+          matchedRuleIds: ['identity:evidenceDigest'],
+        },
+        verification: UNVERIFIED_IDENTITY,
+      };
+    }
+    if (expected.actorId !== request.actorId) {
       return {
         denial: { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:actorId'] },
         verification: UNVERIFIED_IDENTITY,
       };
     }
-    if (expected.capabilityId !== undefined && expected.capabilityId !== request.capabilityId) {
+    if (expected.capabilityId !== request.capabilityId) {
       return {
         denial: { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:capabilityId'] },
         verification: UNVERIFIED_IDENTITY,
       };
     }
-    if (expected.evidenceDigest !== undefined && expected.evidenceDigest !== request.evidenceDigest) {
+    if (expected.evidenceDigest !== request.evidenceDigest) {
       return {
         denial: { verdict: 'deny', reasonCode: AuthorizationReasonCodes.INVALID_INPUT, matchedRuleIds: ['identity:evidenceDigest'] },
         verification: UNVERIFIED_IDENTITY,
@@ -816,9 +888,9 @@ export class TransitionAuthorizationGateway {
     return {
       denial: null,
       verification: Object.freeze({
-        actorId: expected.actorId !== undefined,
-        capabilityId: expected.capabilityId !== undefined,
-        evidenceDigest: expected.evidenceDigest !== undefined,
+        actorId: true,
+        capabilityId: true,
+        evidenceDigest: true,
       }),
     };
   }

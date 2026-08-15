@@ -751,6 +751,11 @@ function createHarness(): Harness {
     rootDirectory,
     auditLedgerId: 'agent-improvement-reducer-audit',
     authorityProvider,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   return { registry: harnessRegistry, policies, ledger, gateway };
 }

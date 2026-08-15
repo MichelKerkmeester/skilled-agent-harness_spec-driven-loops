@@ -2331,6 +2331,17 @@ function evaluateParityPolicy(
     : { verdict: 'deny', reasonCode: 'policy_denied', matchedRuleIds: ['shadow-only-write'] };
 }
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 function createPolicyRegistry(): TransitionPolicyRegistry {
   const authority = createAuthority();
   return new TransitionPolicyRegistry([{
@@ -2375,6 +2386,7 @@ function createLedgerBoundary(rootDirectory: string): Readonly<{
     auditLedgerId: PARITY_AUDIT_LEDGER_ID,
     authorityProvider: () => authority,
     now: () => new Date(PARITY_TIMESTAMP),
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   return Object.freeze({ ledger, gateway, policies, registry });
 }

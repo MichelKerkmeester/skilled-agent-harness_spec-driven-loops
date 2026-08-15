@@ -376,6 +376,11 @@ function createHarness(): LedgerHarness {
     auditLedgerId: AUDIT_LEDGER_ID,
     authorityProvider,
     now: () => new Date(TIMESTAMP),
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   return { rootDirectory, registry, policies, ledger, gateway };
 }

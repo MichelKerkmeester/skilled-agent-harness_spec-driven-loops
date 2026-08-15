@@ -179,6 +179,17 @@ function createDrillEventRegistry(): EventTypeRegistry {
   ]);
 }
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 function createReplayComponents(): ReplayComponentRegistry<RollbackProjection> {
   const replayedEventTypes = [
     ROLLBACK_DRILL_EVENT_TYPE,
@@ -250,6 +261,7 @@ export class RollbackDrillLedgerHarness {
       auditLedgerId: DRILL_AUDIT_LEDGER_ID,
       authorityProvider: options.authorityProvider,
       now: options.now,
+      identityResolver: pinRequestIdentity,
     }, this.ledger, this.policies);
   }
 

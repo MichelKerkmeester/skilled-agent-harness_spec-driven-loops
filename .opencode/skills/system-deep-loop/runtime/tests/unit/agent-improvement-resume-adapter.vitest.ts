@@ -180,6 +180,11 @@ async function authorizedHistory(
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider: () => FIXTURE_AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   const prepared = prepareAgentImprovementEvent(input, registry);
   const request = await createFixtureRequest(

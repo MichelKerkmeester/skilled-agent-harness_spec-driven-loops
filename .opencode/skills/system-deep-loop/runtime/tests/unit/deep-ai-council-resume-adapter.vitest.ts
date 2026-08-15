@@ -599,6 +599,11 @@ async function authorizedLedger(events: readonly DeepAiCouncilLedgerEvent[]) {
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider: () => FIXTURE_AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   for (const [index, event] of events.entries()) {
     const prepared = prepareDeepAiCouncilEvent({
@@ -1301,6 +1306,11 @@ async function resumeHarness(
     rootDirectory: effectRoot,
     auditLedgerId: `effect-audit-${label}`,
     authorityProvider: () => FIXTURE_AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, effectLedger, effectPolicies);
   const replay = councilScenario.verification.replay;
   const adapter = new DeepAiCouncilResumeAdapter({

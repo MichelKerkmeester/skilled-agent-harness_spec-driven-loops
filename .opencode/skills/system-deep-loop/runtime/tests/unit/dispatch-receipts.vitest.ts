@@ -136,6 +136,11 @@ function createHarness(
     rootDirectory,
     auditLedgerId: 'dispatch-receipts-authorization',
     authorityProvider: () => AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,

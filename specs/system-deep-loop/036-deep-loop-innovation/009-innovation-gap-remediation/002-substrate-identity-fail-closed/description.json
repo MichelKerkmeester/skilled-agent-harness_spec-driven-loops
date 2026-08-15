@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed",
   "description": "Plan shared-gateway fail-closed identity resolution and rollback-certificate identity verification before any pilot mode cutover.",
   "keywords": [

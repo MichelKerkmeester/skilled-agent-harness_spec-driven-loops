@@ -260,6 +260,11 @@ function createHarness(
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   return { rootDirectory, registry, policies, ledger, gateway };
 }

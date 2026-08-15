@@ -152,6 +152,17 @@ function evaluateOrchestrationPolicy(
   };
 }
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. HELPERS
 // ───────────────────────────────────────────────────────────────────
@@ -281,6 +292,7 @@ export class DurableBranchOrchestrator {
       auditLedgerId,
       authorityProvider,
       now: this.#options.now,
+      identityResolver: pinRequestIdentity,
     }, this.#ledger, this.#policies);
     this.#coordinator = new FencedLeaseCoordinator({
       rootDirectory: options.rootDirectory,

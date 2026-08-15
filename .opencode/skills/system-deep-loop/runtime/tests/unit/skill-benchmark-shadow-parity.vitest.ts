@@ -593,6 +593,17 @@ function artifactPolicy(input: Readonly<PolicyEvaluationInput>): PolicyEvaluatio
     : { verdict: 'deny', reasonCode: 'policy_denied', matchedRuleIds: ['artifact-write'] };
 }
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 function createArtifactHarness(): ArtifactHarness {
   const root = temporaryRoot('sealed');
   const eventRegistry = new EventTypeRegistry(sealedArtifactEventDefinitions());
@@ -616,6 +627,7 @@ function createArtifactHarness(): ArtifactHarness {
     auditLedgerId: 'skill-parity-artifact-audit',
     authorityProvider: () => authority,
     now: () => new Date(TIMESTAMP),
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   const store = new SealedArtifactStore({ rootDirectory: join(root, 'store') });
   const policy = policies.resolve('artifact-policy', 1);

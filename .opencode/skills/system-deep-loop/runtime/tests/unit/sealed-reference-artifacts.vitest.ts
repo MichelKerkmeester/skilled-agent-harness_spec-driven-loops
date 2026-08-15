@@ -147,6 +147,11 @@ function createHarness(capabilityId = 'artifact-write'): Harness {
     auditLedgerId: 'artifact-audit',
     authorityProvider: () => AUTHORITY,
     now: () => new Date(FIXED_TIME),
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   const store = new SealedArtifactStore({
     rootDirectory: join(rootDirectory, 'artifacts'),

@@ -211,7 +211,7 @@ const REPOSITORY_ROOT = resolve(TEST_DIRECTORY, '../../../../../..');
 const CENSUS_BYTES = readFileSync(join(
   REPOSITORY_ROOT,
   '.opencode/specs/system-deep-loop/036-deep-loop-innovation',
-  '003-baseline-taxonomy-and-state-census/state-backend-census.json',
+  '001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json',
 ));
 const CENSUS = JSON.parse(CENSUS_BYTES.toString('utf8')) as StateBackendCensus;
 const BASE_SHA = '1'.repeat(40);
@@ -666,6 +666,7 @@ async function authorizedLedger(events: readonly DeepAiCouncilLedgerEvent[]) {
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider: () => FIXTURE_AUTHORITY,
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   for (const [index, event] of events.entries()) {
     const prepared = prepareDeepAiCouncilEvent({
@@ -1784,8 +1785,19 @@ async function phase014Evidence(
   };
 }
 
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 async function gatewayHarness(
   authority: AuthoritySnapshot = { state: 'legacy_authoritative', epoch: 1 },
+  omitIdentityResolver = false,
 ) {
   const rootDirectory = temporaryRoot('gateway');
   const eventRegistry = createFixtureEventRegistry();
@@ -1823,6 +1835,7 @@ async function gatewayHarness(
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider,
+    identityResolver: omitIdentityResolver ? undefined : pinRequestIdentity,
   }, ledger, policies);
   return { rootDirectory, eventRegistry, policies, ledger, gateway };
 }
@@ -2214,6 +2227,7 @@ async function genuineGateEvidence(): Promise<Readonly<{
 interface RollbackFixtureClaims {
   readonly staleFenceToken?: number;
   readonly rollbackAnchorDigest?: string;
+  readonly omitIdentityResolver?: boolean;
   readonly transformLease?: (lease: NonNullable<DeepAiCouncilRollbackRequest['staleWriterLease']>) => unknown;
 }
 
@@ -2226,7 +2240,7 @@ async function rollbackRequestFixture(
   coordinator: FencedLeaseCoordinator;
 }>> {
   const authority: AuthoritySnapshot = { state: 'new_authoritative_reversible', epoch: 1 };
-  const harness = await gatewayHarness(authority);
+  const harness = await gatewayHarness(authority, claims.omitIdentityResolver === true);
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory: temporaryRoot('rollback-fencing'),
     operationTimeoutMs: 1_000,
@@ -2608,4 +2622,19 @@ describe('deep AI council non-destructive rollback switch', () => {
       });
     }
   }, 30_000);
+
+  it('emits no rollback certificate and mutates no rollback state when identity is unverified', async () => {
+    const fixture = await rollbackRequestFixture('externally-authorized-recovery', {
+      omitIdentityResolver: true,
+    });
+    const result = await fixture.rollbackSwitch.requestRollback(fixture.input);
+    expect(result).toMatchObject({
+      disposition: 'denied',
+      reasonCode: 'AUTHORIZATION_DENIED',
+      authorityState: 'legacy_authoritative',
+      ledgerAuthority: 'denied',
+      certificate: null,
+    });
+    expect(result.certificate).toBeNull();
+  });
 });

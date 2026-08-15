@@ -19,7 +19,9 @@
       "substrate identity fail closed tasks",
       "rollback identity verification tasks",
       "substrate identity checklist",
-      "rollback identity verification"
+      "rollback identity verification",
+      "substrate identity fail closed implementation summary",
+      "transition authorization fail closed evidence"
     ],
     "key_topics": [
       "substrate",
@@ -36,12 +38,13 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,6 +69,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -129,6 +138,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -139,25 +154,57 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Shared",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Plan shared-gateway fail-closed identity resolution and rollback-certificate identity verification before any pilot mode cutover.",
     "created_at": "2026-08-14T12:47:55.987Z",
-    "last_save_at": "2026-08-14T12:47:55.987Z",
+    "last_save_at": "2026-08-15T05:05:26.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32b9dc24fe988404407baf8de382c659a255e17282daf68bd9adc14012fcf1f9",
+    "source_fingerprint": "sha256:9f66811837c1df97a435955d92b768449a9dccc8b76f02856cd893a19cd1a863",
     "source_doc_hashes": {
-      "spec.md": "6a1175be5273380750fba53366f27ac54b40306388223d9f9348ded9451df94a",
-      "plan.md": "abd279eb54c4c1edded2ca88c8c4fdccdd09f5a0bccfce201ee1887a4edf60a1",
-      "tasks.md": "771967f2b56eaa9f3f8a74f4c3302985cd5e30be1c48a64e13058297098aa9c6",
-      "checklist.md": "d2bb35468e6d0b64ca30ed43442b0e26c7be55cfe8c6b14d41af729df8021fd4"
+      "spec.md": "0a93b1df8b0534317d80961ff194d538df6f55b8ce93ca961d0e98ebc43aedfb",
+      "plan.md": "2c80f947c8a9a59eba0cd1b05d9a9cd260ca33dfcf964c8dd7c56441f9f57c89",
+      "tasks.md": "e69892bc05b2d73214a6f307c4392231c3cfb2b22ff4149e1d4452fd643d39be",
+      "checklist.md": "a5a36eac646ead2528deffa859f63b60fec972eab9b942db7730d7cb63ae87e3",
+      "implementation-summary.md": "49f76fca9165fba4ed5628346d307546c42297e3a9bc2a8ef83948a2e4ea6257"
     },
     "last_active_child_id": null,
     "last_active_at": null

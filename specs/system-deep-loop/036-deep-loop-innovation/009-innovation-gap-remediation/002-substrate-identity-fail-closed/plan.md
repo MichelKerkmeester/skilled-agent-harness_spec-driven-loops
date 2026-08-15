@@ -10,17 +10,19 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediatio
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed"
-    last_updated_at: "2026-08-14T00:00:00.000Z"
-    last_updated_by: "opencode"
-    recent_action: "Planned shared identity denial and rollback trust hardening"
-    next_safe_action: "Use predecessor inventory to select the shared resolver contract"
-    blockers:
-      - "Predecessor 001-measurement-and-traceability must complete"
-    key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Required resolver dependency or fail-closed default resolver?"
-    answered_questions: []
+    last_updated_at: "2026-08-14T23:16:21.000Z"
+    last_updated_by: "cursor"
+    recent_action: "Wired pin-from-request identityResolver at the 13 remaining production gateway sites"
+    next_safe_action: "Keep the gateway dark; successor 003-pilot-mode-cutover supplies live identity wiring"
+    blockers: []
+    key_files:
+      - "../../../../../.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts"
+      - "../../../../../.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/strict-gate-validator.ts"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "T005 selected fail-closed-default: identityResolver stays optional at the type level and denies at runtime."
+      - "Confirmed trust predicate is matchesPreparedAuthorizationDecision."
 ---
 # Implementation Plan: Substrate Identity Fail-Closed
 
@@ -49,19 +51,19 @@ gateway so later consumers cannot bypass it.
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Predecessor `001-measurement-and-traceability` has enumerated every gateway construction site and rollback-certificate consumer
-- [ ] The real rollback-certificate trust predicate and its complete consumer set are confirmed from runtime code
-- [ ] Red controls reproduce allow-on-missing, allow-on-null, allow-on-partial, and certificate-from-unverified-decision behavior
-- [ ] The implementation choice between a required resolver dependency and a shared fail-closed default is recorded with caller-migration impact
-- [ ] Existing identity, mode-contract, rollback-gate, and certificate-trust suites have a captured baseline
+- [x] Predecessor `001-measurement-and-traceability` has enumerated every gateway construction site and rollback-certificate consumer
+- [x] The real rollback-certificate trust predicate and its complete consumer set are confirmed from runtime code
+- [x] Red controls reproduce allow-on-missing, allow-on-null, allow-on-partial, and certificate-from-unverified-decision behavior
+- [x] The implementation choice between a required resolver dependency and a shared fail-closed default is recorded with caller-migration impact
+- [x] Existing identity, mode-contract, rollback-gate, and certificate-trust suites have a captured baseline
 
 ### Definition of Done
-- [ ] Missing, throwing, null, partial, or mismatched identity denies at the shared gateway before policy evaluation
-- [ ] Every allowed authorization decision has all three identity-verification flags set to true
-- [ ] Prepared-decision matching and certificate trust both require all three verified flags
-- [ ] All four typed rollback switches refuse certificate issuance from unverified decisions
-- [ ] The identity-hardening ADR describes the verified before-and-after behavior without overclaim
-- [ ] Focused and affected-caller regression gates pass with no authority mutation or pilot wiring
+- [x] Missing, throwing, null, partial, or mismatched identity denies at the shared gateway before policy evaluation
+- [x] Every allowed authorization decision has all three identity-verification flags set to true
+- [x] Prepared-decision matching and certificate trust both require all three verified flags
+- [x] All four typed rollback switches refuse certificate issuance from unverified decisions
+- [x] The identity-hardening ADR describes the verified before-and-after behavior without overclaim
+- [x] Focused and affected-caller regression gates pass with no authority mutation or pilot wiring
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

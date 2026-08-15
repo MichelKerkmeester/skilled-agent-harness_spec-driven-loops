@@ -422,7 +422,13 @@ async function authorizedCertificateLedger(events: readonly DeepImprovementCommo
   const ledger = new AppendOnlyLedger({ rootDirectory, ledgerId: FIXTURE_LEDGER_ID,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider: () => FIXTURE_AUTHORITY }, registry);
   const gateway = new TransitionAuthorizationGateway({ rootDirectory,
-    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider: () => FIXTURE_AUTHORITY }, ledger, policies);
+    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider: () => FIXTURE_AUTHORITY,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
+    }, ledger, policies);
   for (const [index, event] of events.entries()) {
     const prepared = prepareDeepImprovementCommonEvent({
       stem: event.payload.stem, scope: event.payload.scope,
@@ -548,7 +554,7 @@ async function certificateArtifacts(events: readonly DeepImprovementCommonLedger
     toolConfigurationDigest: digest('baseline-tools'), selectedFixtureManifestDigest: digest('fixture-set'),
     seed: 7, sourceArtifactReferences: [fixture(2)],
     dependencyReferences: [dependency('evaluator', evaluator.reference), dependency('incumbent', fixture(2))],
-    originEvent: origin(events, 'deep_improvement_common.candidate_generated'),
+    originEvent: origin(events, 'deep_improvement_common.run_started'),
     producerVersion: 'baseline-producer@1', locator: locator('baseline'),
   };
   const baseline = await sealDeepImprovementCommonArtifact(
@@ -737,7 +743,13 @@ async function parityEvidence(certificate: CertificateScenario, authorized = tru
   const ledger = new AppendOnlyLedger({ rootDirectory, ledgerId: FIXTURE_LEDGER_ID,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider: () => authority }, registry);
   const gateway = new TransitionAuthorizationGateway({ rootDirectory,
-    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider: () => authority }, ledger, policies);
+    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider: () => authority,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
+    }, ledger, policies);
   const event = createFixtureEvent(registry, 1);
   const attestationDigest = hash('common-parity-attestation');
   if (authorized) {
@@ -1385,7 +1397,13 @@ async function rollbackGatewayHarness(
   const ledger = new AppendOnlyLedger({ rootDirectory, ledgerId: FIXTURE_LEDGER_ID,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider: () => authority }, registry);
   const gateway = new TransitionAuthorizationGateway({ rootDirectory,
-    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider: () => authority }, ledger, policies);
+    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider: () => authority,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
+    }, ledger, policies);
   return { registry, policies, ledger, gateway };
 }
 

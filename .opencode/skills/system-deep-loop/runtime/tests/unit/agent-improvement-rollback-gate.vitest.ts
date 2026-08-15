@@ -165,6 +165,11 @@ async function gatewayHarness(
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   return { rootDirectory, registry, policies, ledger, gateway };
 }
@@ -776,6 +781,11 @@ describe('rollback switch caller boundary', () => {
       rootDirectory,
       auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
       authorityProvider: () => FIXTURE_AUTHORITY,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
     const event = createFixtureEvent(registry, 1);
     const request = await createFixtureRequest(

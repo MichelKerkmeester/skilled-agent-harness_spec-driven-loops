@@ -146,7 +146,8 @@ export function matchesArtifactClaimSet(
 
 /**
  * Returns true only when an allow decision is bound to the prepared request,
- * current authority state, and both deterministic decision digests.
+ * current authority state, both deterministic decision digests, and positively
+ * verified actor, capability, and evidence identity.
  */
 export function matchesPreparedAuthorizationDecision(
   decision: AuthorizationDecisionRecord,
@@ -211,6 +212,9 @@ export function matchesPreparedAuthorizationDecision(
       && decision.correlation_id === request.event.envelope.correlation_id
       && decision.causation_id === request.event.envelope.causation_id
       && decision.idempotency_key_digest === input.idempotencyKeyDigest
+      && decision.actor_id_verified === true
+      && decision.capability_id_verified === true
+      && decision.evidence_digest_verified === true
       && isDigest(decision.request_digest)
       && decision.request_digest === requestDigest
       && isDigest(decision.decision_digest)
