@@ -51,7 +51,7 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `git-preflight` | `MK_GIT_PREFLIGHT_DISABLED` | none | enabled | warn | wired |
 | `spec-memory` | `MK_SPEC_MEMORY_DISABLED` | `MK_SPEC_MEMORY_PLUGIN_DISABLED`, `SPECKIT_SPEC_MEMORY_PLUGIN_DISABLED` | enabled | inject | wired |
 | `session-lifecycle` | `MK_SESSION_LIFECYCLE_DISABLED` | none | enabled | inject / teardown | wired |
-| `worktree-guard` | `MK_WORKTREE_GUARD_DISABLED` | `SPECKIT_WORKTREE_GUARD=off` (caller-side) | enabled | warn | wired |
+| `git-worktree-guard` | `MK_GIT_WORKTREE_GUARD_DISABLED` | `MK_WORKTREE_GUARD_DISABLED`, `SPECKIT_WORKTREE_GUARD=off` (caller-side) | enabled | warn | wired |
 | `git-hooks-check` | `MK_GIT_HOOKS_CHECK_DISABLED` | `SPECKIT_GIT_HOOKS_GUARD=off` (caller-side) | enabled | warn | wired |
 | `live-sync` | `MK_LIVE_SYNC_DISABLED` | none | enabled | publish / follow / install / reconcile | wired |
 | `live-follow` | `MK_LIVE_FOLLOW_DISABLED` | none | enabled | follow | wired |
@@ -241,7 +241,7 @@ Beyond the guard-core concerns above, the hub also indexes every remaining repo-
 
 | Concern | Runtimes | Real home |
 |---|---|---|
-| `worktree-guard` | claude, codex, cursor, devin | `.opencode/bin/worktree-guard.sh` |
+| `git-worktree-guard` | claude, codex, cursor, devin | `.opencode/bin/worktree-guard.sh` |
 | `git-hooks-check` | claude, codex, cursor, devin | `.opencode/bin/check-git-hooks.sh` |
 | `git-primary-reconcile` | claude, codex, pi + opencode plugin | `.opencode/bin/git-primary-reconcile.sh` |
 | `session-cleanup` | claude, codex, cursor, devin + opencode plugin | `.opencode/scripts/session-cleanup.sh`, `.opencode/plugins/session-cleanup.js` |

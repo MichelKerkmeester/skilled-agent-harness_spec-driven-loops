@@ -1,6 +1,6 @@
 ---
 title: "Worktree Guard Hook: Git Worktree Safety"
-description: "Index of the worktree-guard adapters that warn on unsafe git worktree operations across Claude, Codex, Cursor, and Devin."
+description: "Index of the git-worktree-guard adapters that warn on unsafe git worktree operations across Claude, Codex, Cursor, and Devin."
 trigger_phrases:
   - "worktree guard hook"
   - "worktree safety"
@@ -14,7 +14,7 @@ contextType: "reference"
 
 ## 1. OVERVIEW
 
-Index of the worktree-guard concern. Every runtime deploys the same shared script — real code at `.opencode/bin/worktree-guard.sh` — which advises on unsafe git worktree operations (per the sk-git worktree-vs-branch safety rules). The hub holds one relative symlink per runtime so the coverage is browsable by runtime.
+Index of the git-worktree-guard concern. Every runtime deploys the same shared script — real code at `.opencode/bin/worktree-guard.sh` — which advises on unsafe git worktree operations (per the sk-git worktree-vs-branch safety rules). The hub holds one relative symlink per runtime so the coverage is browsable by runtime.
 
 One real file backs all four runtimes; the per-runtime entries are symlinks into `.opencode/bin/`.
 
