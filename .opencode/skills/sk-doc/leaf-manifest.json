@@ -161,11 +161,7 @@
         "references/types/type-swimlane.md",
         "references/types/type-timeline.md",
         "references/types/type-tree.md",
-        "references/types/type-venn.md",
-        "scripts/README.md",
-        "scripts/drawio_extract.py",
-        "scripts/mermaid_extract.py",
-        "scripts/validate-flowchart.sh"
+        "references/types/type-venn.md"
       ],
       "packet": "sk-create-diagram",
       "workflowMode": "sk-create-diagram"
