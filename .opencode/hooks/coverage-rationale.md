@@ -37,7 +37,7 @@ Almost every asymmetry falls out of which of these a runtime uses:
 
 - **Config-invoked discrete hooks — Claude, Codex, Cursor, Devin.** Named events (`SessionStart`, `Stop`, `PreToolUse`, `PostToolUse`, `UserPromptSubmit`, `PreCompact`; Claude/Devin also `SessionEnd`/`PermissionRequest`) each run one file per matcher. The matcher runs a **shell command**, so every concern — including standalone `.sh` guards — is wired as its own discrete entry. → many small per-concern folders.
 - **In-process event-bus plugins — OpenCode.** One `event` handler per plugin, branching on `eventType`. Concern logic is factored **per plugin** (`mk-spec-memory`, `mk-goal`, …); there are no per-event files. → session work distributed across plugins, few folders.
-- **TS session-bound extensions — Pi.** Extensions register on `session_start`/`session_compact`/`prompt`/`tool_call`/`turn_end` and can shell out via `ctx.exec()`. Pi bundles several SessionStart advisories into one extension, but independently gates `worktree-guard`, `git-hooks-check`, `dist-freshness`, and `hook-install` by their own concerns. → few folders.
+- **TS session-bound extensions — Pi.** Extensions register on `session_start`/`session_compact`/`prompt`/`tool_call`/`turn_end` and can shell out via `ctx.exec()`. Pi bundles several SessionStart advisories into one extension, but independently gates `git-worktree-guard`, `git-hooks-check`, `dist-freshness`, and `hook-install` by their own concerns. → few folders.
 
 ---
 
@@ -53,7 +53,7 @@ Only concerns with uneven coverage appear. The six covered everywhere — `compl
 **OpenCode has no per-event files — its session events are already consumed by the concern plugins, so nothing is left to centralize.**
 The others wire one file per boundary (`SessionStart`/`Stop`/`PreCompact`) — that file set *is* session-lifecycle; OpenCode's equivalent is distributed across `mk-spec-memory`, `mk-goal`, etc.
 
-### `worktree-guard` and `git-hooks-check` — folders on **claude, codex, cursor, devin**
+### `git-worktree-guard` and `git-hooks-check` — folders on **claude, codex, cursor, devin**
 **OpenCode and Pi run the same `.sh` guards too — just bundled into one session-start adapter instead of a folder per guard.**
 OpenCode's `session-cleanup` plugin executes `worktree-guard.sh` (`session-cleanup.js:32`); Pi's `session-start-advisories.ts` runs them via `ctx.exec()` (`.pi/extensions/README.md:66`). Not a coverage gap — a factoring artifact.
 
