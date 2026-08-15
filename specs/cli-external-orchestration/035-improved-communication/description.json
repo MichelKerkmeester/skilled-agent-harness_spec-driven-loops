@@ -1,36 +1,36 @@
 {
   "level": "2",
   "specFolder": "cli-external-orchestration/035-improved-communication",
-  "description": "The reference implementation makes Claude Code output easier to read, but its design is bound to Claude-specific hooks, local Ollama, disk-buffered",
+  "description": "Complete phase parent for the portable CLI communication projection, with all 32 phases shipped and landed across the package, six runtimes, local providers, evaluation, documentation, and activation",
   "keywords": [
-    "reference",
-    "implementation",
-    "claude",
-    "code",
-    "output",
-    "easier",
-    "read",
-    "design",
-    "bound",
-    "claude-specific",
-    "hooks",
-    "local",
-    "ollama",
-    "disk-buffered"
+    "complete",
+    "portable",
+    "cli",
+    "communication",
+    "projection",
+    "shipped",
+    "package",
+    "runtimes",
+    "providers",
+    "evaluation",
+    "documentation",
+    "activation"
   ],
-  "lastUpdated": "2026-08-14T06:19:45.774Z",
+  "lastUpdated": "2026-08-15T09:51:37.008Z",
   "specId": "035",
   "folderSlug": "improved-communication",
   "parentChain": [
     "cli-external-orchestration"
   ],
-  "memorySequence": 6,
+  "memorySequence": 8,
   "memoryNameHistory": [
     "11-08-26_16-32__phase-002-contracts-and-fixtures-are-complete-and.md",
     "11-08-26_18-01__phases-001-002-and-003-are-complete.md",
     "11-08-26_18-06__phases-001-through-003-are-complete.md",
     "11-08-26_18-07__parent-continuity-is-compact-and-phase-004-is-next.md",
     "11-08-26_18-08__phases-001-through-003-are-complete.md",
-    "11-08-26_20-30__advanced-the-parent-phase-map.md"
+    "11-08-26_20-30__advanced-the-parent-phase-map.md",
+    "15-08-26_10-45__closed-the-phase-parent-with-all-32-phases.md",
+    "15-08-26_10-51__closed-the-portable-cli-communication-projection.md"
   ]
 }
