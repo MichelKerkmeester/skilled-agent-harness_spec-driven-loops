@@ -57,3 +57,64 @@ export const CLI_ADAPTER_STRESS_MATRIX: readonly MatrixCell[] = EDGE_CASE_ROWS.f
     playbookPath: playbookPath(subject, row.slug),
   }))
 ));
+
+export const PHASE_TWO_ADAPTER_SUBJECTS = [
+  'cli-opencode',
+  'cli-pi',
+  'cli-claude-code',
+  'cli-devin',
+  'cli-cursor',
+] as const satisfies readonly CliAdapterSubject[];
+
+export type PhaseTwoAdapterSubject = typeof PHASE_TWO_ADAPTER_SUBJECTS[number];
+
+function phaseTwoTestNames(subject: PhaseTwoAdapterSubject): readonly string[] {
+  return [
+    `retains ${subject} authentication diagnostics in bounded lineage output`,
+    `retains ${subject} model-or-balance diagnostics in bounded lineage output`,
+    `retains ${subject} rate-limit diagnostics without retry delay`,
+    `times out and terminates the captured ${subject} process`,
+    `closes stdin for the headless ${subject} process`,
+    `passes child gate variables through the full ${subject} runtime`,
+    `forwards the asserted ${subject} sandbox and permission flags`,
+    `fails before ${subject} execution when its transport is unavailable`,
+    `rejects an over-budget ${subject} lineage before process spawn`,
+    `reports a signal-killed ${subject} lineage as failed`,
+    `terminates the captured detached ${subject} process group after timeout`,
+    `runs ${subject} from each isolated worktree cwd`,
+    `preserves independent worktree node_modules boundaries during ${subject} dispatch`,
+    `blocks recursive ${subject} fan-out before process spawn`,
+  ];
+}
+
+export const CLI_ADAPTER_PHASE_TWO_ROWS: readonly MatrixCell[] = PHASE_TWO_ADAPTER_SUBJECTS.flatMap(
+  (subject) => phaseTwoTestNames(subject).map((testName, index) => ({
+    edgeCaseId: EDGE_CASE_ROWS[index].id,
+    subject,
+    testName,
+    testStatus: 'implemented' as const,
+    playbookPath: playbookPath(subject, EDGE_CASE_ROWS[index].slug),
+  })),
+);
+
+const phaseTwoCellsByKey = new Map(
+  CLI_ADAPTER_PHASE_TWO_ROWS.map((cell) => [`${cell.subject}:${cell.edgeCaseId}`, cell]),
+);
+
+export const CLI_ADAPTER_CURRENT_MATRIX: readonly MatrixCell[] = CLI_ADAPTER_STRESS_MATRIX.map((cell) => (
+  phaseTwoCellsByKey.get(`${cell.subject}:${cell.edgeCaseId}`) ?? cell
+));
+
+const adapterSubjects = CLI_ADAPTER_SUBJECTS.filter((subject) => subject !== 'fanout-run');
+const forbiddenOverclaimPattern = /classif(?:y|ies|ication)|reaps? every descendant|full[- ]tree reap/iu;
+
+export const CLI_ADAPTER_MATRIX_AUDIT = Object.freeze({
+  allAdapterBound: adapterSubjects.every((subject) => {
+    const cells = CLI_ADAPTER_CURRENT_MATRIX.filter((cell) => cell.subject === subject);
+    return cells.length === EDGE_CASE_ROWS.length
+      && cells.every((cell) => cell.testStatus === 'implemented' && cell.testName !== null);
+  }),
+  forbiddenOverclaims: CLI_ADAPTER_CURRENT_MATRIX
+    .filter((cell) => cell.testName !== null && forbiddenOverclaimPattern.test(cell.testName))
+    .map((cell) => `${cell.subject}:${cell.edgeCaseId}:${cell.testName}`),
+});
