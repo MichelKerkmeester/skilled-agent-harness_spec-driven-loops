@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "packet_id": "app-remote-agent-chat",
+  "spec_folder": "app-remote-agent-chat",
+  "parent_id": null,
+  "children_ids": [
+    "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "app-remote-agent-chat",
+      "pi-remote",
+      "chat"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Track folder consolidating app-remote-agent-chat packets.",
+    "created_at": "2026-08-15T00:00:00.000Z",
+    "last_save_at": "2026-08-15T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_fingerprint": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source_doc_hashes": {},
+    "last_active_child_id": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc",
+    "last_active_at": "2026-08-15T00:00:00.000Z"
+  }
+}
