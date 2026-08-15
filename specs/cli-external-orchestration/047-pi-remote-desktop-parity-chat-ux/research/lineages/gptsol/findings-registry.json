@@ -1,0 +1,60 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "What does the current Pi Remote implementation already support, and where are the highest-value parity gaps?",
+    "How should phone-first model and effort controls be presented and mapped to Pi RPC state safely?"
+    ,"How should typed commands and a prominent read-only plan-mode toggle work without weakening transport or foreground-authority controls?"
+    ,"Which comparative mobile chat patterns materially improve the transcript and composer?"
+    ,"What phased implementation plan best fits the current stack?"
+  ],
+  "keyFindings": [
+    {"id":"f1-typed-foundation","iteration":1,"title":"Typed transcript blocks are the correct foundation","summary":"Restyle and group typed blocks instead of flattening execution semantics.","sources":["state.ts:106","state.ts:173","prior research:240"]},
+    {"id":"f1-control-plane-gap","iteration":1,"title":"Requested controls require a typed relay control plane","summary":"No current model, effort, command, or plan-mode state/API exists in the web client.","sources":["App.tsx:883","relay.ts:34","relay.ts:46"]},
+    {"id":"f1-composer-gap","iteration":1,"title":"Composer needs a mobile-first interaction contract","summary":"Autosizing, explicit touch send, context chips, pending state, and safe quick actions are absent.","sources":["App.tsx:1078","style.css:1232","prior research:174"]},
+    {"id":"f1-live-edge","iteration":1,"title":"Streaming needs follow-state and jump-to-latest","summary":"Virtualization has no reader-position-aware live edge.","sources":["App.tsx:1119","App.tsx:1136","prior research:206"]},
+    {"id":"f2-pi-rpc-model","iteration":2,"title":"Pi RPC already supports model selection","summary":"Use get_state/get_available_models/set_model with acknowledgement and reconciliation.","sources":["Pi rpc.md:162","Pi rpc.md:217","Pi rpc.md:259"]},
+    {"id":"f2-pi-rpc-effort","iteration":2,"title":"Thinking levels are exact and model-dependent","summary":"Render get_available_thinking_levels and refresh after model changes.","sources":["Pi rpc.md:281","Pi rpc.md:316"]},
+    {"id":"f2-runtime-strip","iteration":2,"title":"Keep runtime settings visible near the composer","summary":"Persistent model and effort chips open host-backed bottom sheets.","sources":["Claude settings","ChatGPT release notes"]},
+    {"id":"f2-protocol-gap","iteration":2,"title":"Extend Pi Remote protocol before UI wiring","summary":"Current types and guards reject Pi model/thinking commands.","sources":["types.ts:63","guards.ts:189"]},
+    {"id":"f3-command-catalog","iteration":3,"title":"Use Pi get_commands as the catalog source","summary":"Project a redacted, policy-filtered live command inventory to the PWA.","sources":["Pi rpc.md:793","Pi usage.md:33","Cursor commands docs"]},
+    {"id":"f3-command-routing","iteration":3,"title":"Extension commands require prompt routing","summary":"Classify commands and preserve Pi's immediate extension-command semantics.","sources":["Pi rpc.md:45","Pi sdk.md:234"]},
+    {"id":"f3-plan-host","iteration":3,"title":"Plan mode is host-enforced","summary":"Use the extension's tool restrictions and /plan toggle, not local prompt decoration.","sources":["Pi plan-mode/index.ts:48","Pi plan-mode README"]},
+    {"id":"f3-plan-projection","iteration":3,"title":"Add authoritative plan-state projection","summary":"Reconcile Build, Plan, and executing-plan state after toggle and reconnect.","sources":["Pi plan-mode/index.ts:95","Pi plan-mode/index.ts:313"]},
+    {"id":"f4-turn-hierarchy","iteration":4,"title":"Group typed blocks by conversational turn","summary":"User bubble and borderless assistant prose lead; execution evidence nests beneath.","sources":["App.tsx:1197","style.css:1351","prior research:240"]},
+    {"id":"f4-live-edge","iteration":4,"title":"Use reader-position-aware live following","summary":"Freeze review position and expose N new / Jump to latest.","sources":["prior research:206","transcript-projection.md:30"]},
+    {"id":"f4-composer-dock","iteration":4,"title":"Build an autosizing mobile control dock","summary":"Explicit touch dispatch, context row, consolidated command affordance, and Send/Steer/Stop state.","sources":["ChatGPT release notes","Claude voice mode","App.tsx:1078"]},
+    {"id":"f4-stream-phase","iteration":4,"title":"Name the current streaming phase","summary":"Stable elapsed-time state replaces generic dot activity and collapses on settlement.","sources":["Claude thinking settings","App.tsx:1164"]},
+    {"id":"f5-runtime-projection","iteration":5,"title":"Add one authoritative RuntimeStateDto","summary":"All control chips and mode labels reconcile against a revisioned relay projection.","sources":["Pi rpc.md:162","transcript-projection.md:30"]},
+    {"id":"f5-ticketed-control","iteration":5,"title":"Use a narrow ticketed runtime.control union","summary":"Validate live catalogs and stale revisions; never expose generic RPC passthrough.","sources":["types.ts:18","policy.ts:3","supervisor.ts:86"]},
+    {"id":"f5-phasing","iteration":5,"title":"Ship authority before controls before transcript polish","summary":"Protocol/service harness, control dock, turn grouping, then physical-iPhone QA.","sources":["guards.ts:189","server.ts:702","App.tsx:1119"]},
+    {"id":"f5-acceptance","iteration":5,"title":"Prove UX and authority together","summary":"Host-state, plan enforcement, safe commands, composer, live-edge, accessibility, and regression checks.","sources":["iterations 1-4"]}
+  ],
+  "ruledOutDirections": [
+    {"iteration":1,"approach":"Flatten typed blocks into generic chat bubbles","reason":"Erases execution semantics."},
+    {"iteration":1,"approach":"Represent host controls as local-only preferences","reason":"Can diverge from Pi state."},
+    {"iteration":1,"approach":"Force-scroll on every transcript delta","reason":"Breaks review position."},
+    {"iteration":2,"approach":"Settings-only or hard-coded runtime controls","reason":"Hide or stale live Pi state."},
+    {"iteration":2,"approach":"Optimistic active-state chips","reason":"Can lie after command failure or reconciliation."},
+    {"iteration":2,"approach":"Lossy three-tier effort mapping","reason":"Obscures exact Pi levels and model capability differences."},
+    {"iteration":3,"approach":"Static or unfiltered client command catalog","reason":"Drifts from Pi and can expose privileged commands or host paths."},
+    {"iteration":3,"approach":"Auto-submit autocomplete selections","reason":"Removes the argument and safety review point."},
+    {"iteration":3,"approach":"Prompt-only or local-only plan mode","reason":"Does not enforce read-only tools or reconcile after reconnect."},
+    {"iteration":3,"approach":"Restart Pi with --plan per request","reason":"Breaks the one-live-session model; /plan is the in-session toggle."},
+    {"iteration":4,"approach":"Equal card treatment for every block","reason":"Destroys conversational hierarchy and overweights low-signal execution detail."},
+    {"iteration":4,"approach":"Forced follow or token animation","reason":"Destroys review position and creates visual churn."},
+    {"iteration":4,"approach":"Plain Enter dispatch on touch","reason":"Causes accidental submission and blocks natural multiline input."},
+    {"iteration":4,"approach":"Permanent composer icon row or decorative rebrand","reason":"Crowds the phone surface and conflicts with restrained one-accent styling."},
+    {"iteration":5,"approach":"Generic raw Pi RPC endpoint","reason":"Weakens validation and exposes a broader remote execution surface."},
+    {"iteration":5,"approach":"Style controls before authoritative projection","reason":"Creates UI that can lie about host state."},
+    {"iteration":5,"approach":"Reuse TUI plan selection unchanged","reason":"RPC mode cannot rely on ctx.ui.select for phone interaction."},
+    {"iteration":5,"approach":"Rewrite transcript storage for visual grouping","reason":"A derived turn view preserves stable typed projection and limits blast radius."}
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 20,
+    "convergenceScore": 0.51,
+    "coverageBySources": {"local-code":18,"local-docs":12,"prior-research":2,"official-product-docs":12}
+  }
+}
