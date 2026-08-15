@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Skill Benchmark resume adapter over the sealed typed event ledger. The adapter rebuilds scenario-cell, skill-exposure, trajectory, and scoring state through reducers, maps the continuity ladder, and defines idempotent re-entry without double-apply, lost events, or unsafe replay. It consumes deep-improvement-common services and adds only Skill Benchmark scenario and scoring logic.",
     "created_at": "2026-07-16T03:43:42.100Z",
-    "last_save_at": "2026-08-14T04:27:54.508Z",
+    "last_save_at": "2026-08-15T15:53:26.958Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea8957b7d67c0b7b09acd85c711d8a432a966f7476df49b927d869e024f00efe",
+    "source_fingerprint": "sha256:924a5a0fd394eec6a5a55be13c0196d9f154a287abf6c21d05f55ef66485c643",
     "source_doc_hashes": {
-      "spec.md": "d0e63f9ed869013624676a2c3519150181c871a29e2ce4d9995de86c477fd545",
+      "spec.md": "4dfb4e665555ca7b5bf14677bbbb2852cecc9f93d3284501342ec18fe2582bdf",
       "plan.md": "16e2d360e11cf8c58a60824750a6640f41a7149d695d358dcfbcbe41cb74d880",
-      "tasks.md": "60fd3cebf3f2f7ccd004e506e2cf450f9677afc2399306046020dafd2f4e4bea",
-      "checklist.md": "ab2068e75f10837f35cf00a489b57ef3cf495e075f24e67d45273d3799838704",
-      "implementation-summary.md": "c1edad77fb7b722804b066f4a7700fbae8d7e2a1509995ceaf0162be9525e03d"
+      "tasks.md": "881acaa1e2e7114e8baa72c418a2b29a92762319dbddeca56ecfd0ec2c48fe24",
+      "checklist.md": "10a0e3cf9dfadfd9c2c2b581e8456b80596a72e0ba385cb1fd6ea07429952d0f",
+      "implementation-summary.md": "4c1631744f1e8e0537f0c7ee5e2224ea1e1314e143dcc2dbfd939bcc96bc1b9a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/006-shadow-parity"
-    last_updated_at: "2026-07-15T21:20:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Sequenced setup, shadow adapter, comparator, and verification tasks"
-    next_safe_action: "Inventory the legacy runner and pin shared service contracts"
+    last_updated_at: "2026-08-15T15:50:59Z"
+    last_updated_by: "codex"
+    recent_action: "Verified HEAD suite and reconciled shadow-parity completion evidence"
+    next_safe_action: "Consume this completed additive-dark leaf in mode-gate verification"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,41 +39,41 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm the phase-014 shadow contract, mode-004 deep-improvement-common versions, local phase-012 shared-contract freeze, and scoped worktree state
-- [ ] T002 Inventory the legacy Skill Benchmark scenario runner, skill loader, emitter, scorer, gold sources, fixtures, and known behavior without changing authority
-- [ ] T003 Freeze stable scenario IDs, treatment arms, executor/environment descriptors, seeds, bundle and registry digests, tool and permission surfaces, and repetition bounds
-- [ ] T004 Define the paired-run identity and canonical event tuple, including the explicit volatile-field allowlist
+- [x] T001 Confirm the phase-014 shadow contract, mode-004 deep-improvement-common versions, local phase-012 shared-contract freeze, and scoped worktree state [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T002 Inventory the legacy Skill Benchmark scenario runner, skill loader, emitter, scorer, gold sources, fixtures, and known behavior without changing authority [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T003 Freeze stable scenario IDs, treatment arms, executor/environment descriptors, seeds, bundle and registry digests, tool and permission surfaces, and repetition bounds [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T004 Define the paired-run identity and canonical event tuple, including the explicit volatile-field allowlist [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:phase-1 -->
 
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 [P] Define versioned Skill Benchmark scenario and treatment schemas over deep-improvement-common contracts
-- [ ] T006 Add the phase-014 shadow adapter that runs legacy and ledger paths against one immutable paired input
-- [ ] T007 Add skill-specific resource canaries, gold policy, causal-stage events, and score projections
-- [ ] T008 Add canonical projection normalization and event-for-event comparison with typed mismatch classes
-- [ ] T009 Add paired parity reports, digest-bound receipts, replay inputs, command and exit-code evidence, and withheld-result handling
-- [ ] T010 Add fail-closed assertions proving shadow evidence cannot change legacy authority or emit a cutover signal
+- [x] T005 [P] Define versioned Skill Benchmark scenario and treatment schemas over deep-improvement-common contracts [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T006 Add the phase-014 shadow adapter that runs legacy and ledger paths against one immutable paired input [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T007 Add skill-specific resource canaries, gold policy, causal-stage events, and score projections [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T008 Add canonical projection normalization and event-for-event comparison with typed mismatch classes [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T009 Add paired parity reports, digest-bound receipts, replay inputs, command and exit-code evidence, and withheld-result handling [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T010 Add fail-closed assertions proving shadow evidence cannot change legacy authority or emit a cutover signal [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:phase-2 -->
 
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Verify the full treatment matrix and negative controls preserve pair identity and bounded repetition rules
-- [ ] T012 Verify event kind, logical ID, causal order, payload digest, status, score contribution, and receipt reference parity
-- [ ] T013 Verify stage-specific scoring, intention-to-treat lift, valid alternative trajectories, and cost/security diagnostics
-- [ ] T014 Verify scored, negative, structural-only, and pending gold behavior, empty-gold blocking, provenance, and mutation sensitivity
-- [ ] T015 Verify missing, extra, reordered, payload, score, gold, cost, receipt, and replay mismatches fail closed and withhold results
-- [ ] T016 Verify deterministic replay and shared-service ownership with no duplicate ledger, receipt, budget, replay, or projection implementation
-- [ ] T017 Verify the phase remains planning/implementation scope only: no resume, rollback, certificate issuance, authority cutover, or sibling concern is included
+- [x] T011 Verify the full treatment matrix and negative controls preserve pair identity and bounded repetition rules [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T012 Verify event kind, logical ID, causal order, payload digest, status, score contribution, and receipt reference parity [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T013 Verify stage-specific scoring, intention-to-treat lift, valid alternative trajectories, and cost/security diagnostics [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T014 Verify scored, negative, structural-only, and pending gold behavior, empty-gold blocking, provenance, and mutation sensitivity [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T015 Verify missing, extra, reordered, payload, score, gold, cost, receipt, and replay mismatches fail closed and withhold results [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T016 Verify deterministic replay and shared-service ownership with no duplicate ledger, receipt, budget, replay, or projection implementation [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] T017 Verify the phase remains planning/implementation scope only: no resume, rollback, certificate issuance, authority cutover, or sibling concern is included [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:phase-3 -->
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks complete
-- [ ] All requirements in spec.md met with evidence
-- [ ] Phase gate green (validate/build/test/replay/parity as applicable)
+- [x] All tasks complete [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] All requirements in spec.md met with evidence [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
+- [x] Phase gate green (validate/build/test/replay/parity as applicable) [Evidence: fresh focused Vitest 20/20; tests/unit/skill-benchmark-shadow-parity.vitest.ts:841; lib/skill-benchmark-shadow-parity/harness-adapter.ts:153]
 <!-- /ANCHOR:completion -->
 
 <!-- ANCHOR:cross-refs -->

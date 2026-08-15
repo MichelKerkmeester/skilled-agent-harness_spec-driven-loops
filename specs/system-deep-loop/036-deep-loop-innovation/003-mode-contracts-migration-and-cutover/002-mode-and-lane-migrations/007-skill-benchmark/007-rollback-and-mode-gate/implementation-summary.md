@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/007-skill-benchmark/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-29T08:09:56Z"
-    last_updated_by: "claude"
-    recent_action: "Verified the Skill Benchmark rollback and mode gate"
-    next_safe_action: "Land the rollback-gate column as an additive-dark wave"
+    last_updated_at: "2026-08-15T15:50:59Z"
+    last_updated_by: "codex"
+    recent_action: "Verified HEAD suite and reconciled rollback-gate completion evidence"
+    next_safe_action: "Use this completed additive-dark leaf as phase-014 gate evidence"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/skill-benchmark-rollback-gate/index.ts"
@@ -99,7 +99,7 @@ caller-input validation site resolves malformed input to a typed fail-closed den
 
 | Gate | Result |
 |---|---|
-| Focused Vitest | PASS with 1 file and 223 tests |
+| Focused Vitest | PASS with 1 file and 80 tests in 2.34s at HEAD |
 | Whole-runtime TypeScript | PASS with zero diagnostics containing `skill-benchmark-rollback` |
 | Shared-base reuse | Confirmed by direct import of the common gate and window evaluator |
 | Real gateway driving | Confirmed by a test that denies a genuine stale-head causal gap at the real gateway |
