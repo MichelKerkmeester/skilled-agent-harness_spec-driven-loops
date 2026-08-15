@@ -9,6 +9,14 @@ export {
   createDeepResearchArtifactCanonicalizerRegistry,
 } from './deep-research-artifact-material.js';
 export {
+  DEEP_RESEARCH_ARTIFACT_SET_VERSION,
+  bindDeepResearchArtifactSet,
+  canonicalDeepResearchArtifactSetBytes,
+  compareDeepResearchArtifactSets,
+  deepResearchArtifactSetReplayInput,
+  parseDeepResearchArtifactSet,
+} from './deep-research-artifact-set.js';
+export {
   createDeepResearchSealedArtifactStore,
   parseDeepResearchSealedArtifactBinding,
   readDeepResearchArtifact,
@@ -27,6 +35,11 @@ export type {
   DeepResearchArtifactMaterial,
   DeepResearchArtifactMaterialByKind,
   DeepResearchArtifactMaterialFamily,
+  DeepResearchArtifactSet,
+  DeepResearchArtifactSetContext,
+  DeepResearchArtifactSetCore,
+  DeepResearchArtifactSetMember,
+  DeepResearchArtifactSetMemberInput,
   DeepResearchConvergenceArtifactMaterial,
   DeepResearchConvergenceDecision,
   DeepResearchInputArtifactMaterial,

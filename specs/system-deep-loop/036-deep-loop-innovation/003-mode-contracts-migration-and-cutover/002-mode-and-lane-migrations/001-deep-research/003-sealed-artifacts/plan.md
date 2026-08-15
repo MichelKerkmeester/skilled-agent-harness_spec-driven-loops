@@ -48,17 +48,17 @@ interfaces; it does not implement shared storage, a second digest scheme, reduce
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-012 shared mode contracts and the executable write-set conflict graph are frozen for the Deep Research lane
-- [ ] The mode artifact matrix names every init, gather, analyze, convergence, synthesis, resume, and memory-save input/output
-- [ ] Each matrix row identifies a shared artifact kind, canonicalization version, media type, and ordered reference role
-- [ ] Seal-on-write and verified-read seams are available without changing the legacy authoritative loop
-- [ ] Replay and shadow-parity consumers accept one ordered verified reference set rather than mode-local digests
-- [ ] Resume source-refresh behavior distinguishes unchanged, changed, missing, and unverifiable evidence
-- [ ] Typed failures, append-only supersession, rollback switch, and handoff rejection behavior are explicit
+- [x] Phase-012 shared mode contracts and the executable write-set conflict graph are frozen for the Deep Research lane
+- [x] The mode artifact matrix names every init, gather, analyze, convergence, synthesis, resume, and memory-save input/output
+- [x] Each matrix row identifies a shared artifact kind, canonicalization version, media type, and ordered reference role
+- [x] Seal-on-write and verified-read seams are available without changing the legacy authoritative loop
+- [x] Replay and shadow-parity consumers accept one ordered verified reference set rather than mode-local digests
+- [x] Resume source-refresh behavior distinguishes unchanged, changed, missing, and unverifiable evidence
+- [x] Typed failures, append-only supersession, rollback switch, and handoff rejection behavior are explicit
 
 ### Definition of Done
-- [ ] Deep Research lifecycle artifacts are sealed and read only through the shared contract, with mode-gate fixtures green
-- [ ] The dark path proves parity over identical verified inputs while legacy execution and authority remain unchanged
+- [x] Deep Research lifecycle artifacts are sealed and read only through the shared contract, with mode-gate fixtures green
+- [x] The dark path proves parity over identical verified inputs while legacy execution and authority remain unchanged
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
