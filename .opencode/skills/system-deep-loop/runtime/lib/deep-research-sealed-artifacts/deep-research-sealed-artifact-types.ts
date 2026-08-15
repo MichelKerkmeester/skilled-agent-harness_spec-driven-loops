@@ -3,8 +3,10 @@
 // ───────────────────────────────────────────────────────────────────
 
 import type {
+  ArtifactReferenceSet,
   SealDescriptor,
   SealedArtifactReference,
+  VerifiedArtifactEvidence,
 } from '../sealed-reference-artifacts/index.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -204,3 +206,39 @@ export interface DeepResearchVerifiedSealedArtifact<
   readonly descriptor: SealDescriptor;
   readonly bytes: readonly number[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. ORDERED ARTIFACT SETS
+// ───────────────────────────────────────────────────────────────────
+
+export interface DeepResearchArtifactSetContext {
+  readonly runId: string;
+  readonly lineageId: string;
+  readonly generation: number;
+  readonly sourceTailSequence: number;
+  readonly replayContractDigest: string;
+}
+
+export interface DeepResearchArtifactSetMemberInput {
+  readonly iteration: number;
+  readonly logicalSequence: number;
+  readonly binding: DeepResearchSealedArtifactBinding;
+  readonly evidence: VerifiedArtifactEvidence;
+}
+
+export interface DeepResearchArtifactSetMember {
+  readonly position: number;
+  readonly lifecycle: DeepResearchArtifactLifecycle;
+  readonly iteration: number;
+  readonly logicalSequence: number;
+  readonly binding: DeepResearchSealedArtifactBinding;
+}
+
+export interface DeepResearchArtifactSetCore {
+  readonly artifactSetVersion: 1;
+  readonly context: DeepResearchArtifactSetContext;
+  readonly orderedMembers: readonly DeepResearchArtifactSetMember[];
+  readonly referenceSet: ArtifactReferenceSet;
+}
+
+export type DeepResearchArtifactSet = DeepResearchArtifactSetCore;

@@ -22,6 +22,7 @@ Callers should use the exported API in `index.ts`. Filesystem, ledger and workfl
 
 | File | Responsibility |
 |---|---|
+| `deep-research-artifact-set.ts` | Canonical lifecycle ordering, shared evidence binding and replay verification. |
 | `deep-research-artifact-material.ts` | Canonical materialization of lane artifact content. |
 | `deep-research-sealed-artifact-types.ts` | Sealed artifact kinds, envelopes and storage contract types. |
 | `deep-research-sealed-artifacts.ts` | Sealing, parsing, storage and verification helpers. |
@@ -36,7 +37,7 @@ Callers should use the exported API in `index.ts`. Filesystem, ledger and workfl
 | Public API | `index.ts` |
 | Primary implementation | `deep-research-sealed-artifacts.ts` |
 
-The barrel re-exports the lane's supported types, constants, parsers and runtime helpers. Sealing, parsing, storage and verification helpers. Direct imports from implementation files bypass the lane contract and should remain limited to internal composition and focused tests.
+The barrel re-exports the lane's supported types, constants, parsers and runtime helpers. Complete run sets retain the shared reference-set digest as their only content identity, reject missing or reordered lifecycle kinds, and re-resolve every artifact plus its authorized creation evidence before replay. Direct imports from implementation files bypass the lane contract and should remain limited to internal composition and focused tests.
 
 ---
 

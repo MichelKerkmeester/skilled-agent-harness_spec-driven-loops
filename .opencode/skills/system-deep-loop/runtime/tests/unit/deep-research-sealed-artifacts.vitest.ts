@@ -15,19 +15,45 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import {
+  AppendOnlyLedger,
+  TransitionAuthorizationGateway,
+  TransitionPolicyRegistry,
+} from '../../lib/authorized-ledger/index.js';
+import {
+  EventTypeRegistry,
+  canonicalBytes,
+  sha256Bytes,
+} from '../../lib/event-envelope/index.js';
+import {
   DEEP_RESEARCH_ARTIFACT_KIND_REGISTRY,
   DeepResearchArtifactKinds,
+  bindDeepResearchArtifactSet,
+  canonicalDeepResearchArtifactSetBytes,
+  compareDeepResearchArtifactSets,
   createDeepResearchSealedArtifactStore,
+  deepResearchArtifactSetReplayInput,
+  parseDeepResearchArtifactSet,
   readDeepResearchArtifact,
   sealDeepResearchArtifact,
 } from '../../lib/deep-research-sealed-artifacts/index.js';
 import {
   SealedArtifactError,
   SealedArtifactErrorCodes,
+  prepareArtifactSealedEvent,
+  readVerifiedArtifactEvidence,
+  recordArtifactEvent,
+  sealedArtifactEventDefinitions,
 } from '../../lib/sealed-reference-artifacts/index.js';
 
 import type {
+  AuthoritySnapshot,
+  PolicyEvaluationInput,
+  PolicyEvaluationResult,
+} from '../../lib/authorized-ledger/index.js';
+import type {
   DeepResearchAnalysisArtifactMaterial,
+  DeepResearchArtifactSetContext,
+  DeepResearchArtifactSetMemberInput,
   DeepResearchArtifactKind,
   DeepResearchArtifactMaterial,
   DeepResearchConvergenceArtifactMaterial,
@@ -38,8 +64,13 @@ import type {
   DeepResearchSynthesisArtifactMaterial,
 } from '../../lib/deep-research-sealed-artifacts/index.js';
 import type {
+  ArtifactAuthorizationContext,
+  ArtifactEventMetadata,
+  ArtifactEventRecorder,
   ArtifactStoreFaultInjection,
   SealedArtifactReference,
+  SealedArtifactStore,
+  VerifiedArtifactEvidence,
 } from '../../lib/sealed-reference-artifacts/index.js';
 
 // ───────────────────────────────────────────────────────────────────
@@ -51,6 +82,25 @@ const DIGEST_B = 'b'.repeat(64);
 const DIGEST_C = 'c'.repeat(64);
 const DIGEST_D = 'd'.repeat(64);
 const temporaryRoots: string[] = [];
+
+const AUTHORITY: AuthoritySnapshot = Object.freeze({ state: 'shadowing', epoch: 1 });
+const FIXED_TIME = '2026-07-22T00:00:00.000Z';
+const STATE_DIGEST = sha256Bytes(canonicalBytes({ state: 'deep-research-artifact-set' }));
+const ARTIFACT_SET_CONTEXT: DeepResearchArtifactSetContext = Object.freeze({
+  runId: 'deep-research-run-1',
+  lineageId: 'deep-research-lineage-1',
+  generation: 1,
+  sourceTailSequence: 23,
+  replayContractDigest: DIGEST_D,
+});
+
+interface ArtifactEvidenceHarness {
+  readonly registry: EventTypeRegistry;
+  readonly ledger: AppendOnlyLedger;
+  readonly store: SealedArtifactStore;
+  readonly recorder: ArtifactEventRecorder;
+  readonly nextMetadata: (label: string) => ArtifactEventMetadata;
+}
 
 const LOCATOR = Object.freeze({
   scheme: 'artifact' as const,
@@ -204,6 +254,135 @@ function bindingFor(
     eventReference: `artifact:${reference.qualified_digest}`,
     reference,
   };
+}
+
+function evaluateArtifactPolicy(
+  input: Readonly<PolicyEvaluationInput>,
+): PolicyEvaluationResult {
+  return input.capabilityId === 'deep-research-artifact-write'
+    ? { verdict: 'allow', reasonCode: 'allowed', matchedRuleIds: ['artifact-write'] }
+    : { verdict: 'deny', reasonCode: 'policy-denied', matchedRuleIds: ['artifact-write'] };
+}
+
+function createArtifactEvidenceHarness(): ArtifactEvidenceHarness {
+  const rootDirectory = temporaryRoot('evidence-harness');
+  const registry = new EventTypeRegistry(sealedArtifactEventDefinitions());
+  const policies = new TransitionPolicyRegistry([{
+    policyId: 'deep-research-artifact-policy',
+    policyVersion: 1,
+    evaluatorVersion: '1',
+    ruleIds: ['artifact-write'],
+    evaluate: evaluateArtifactPolicy,
+  }]);
+  const ledger = new AppendOnlyLedger({
+    rootDirectory: join(rootDirectory, 'ledger'),
+    ledgerId: 'deep-research-artifact-domain',
+    auditLedgerId: 'deep-research-artifact-audit',
+    authorityProvider: () => AUTHORITY,
+    now: () => new Date(FIXED_TIME),
+  }, registry);
+  const gateway = new TransitionAuthorizationGateway({
+    rootDirectory: join(rootDirectory, 'ledger'),
+    auditLedgerId: 'deep-research-artifact-audit',
+    authorityProvider: () => AUTHORITY,
+    now: () => new Date(FIXED_TIME),
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
+  }, ledger, policies);
+  const store = createDeepResearchSealedArtifactStore({
+    rootDirectory: join(rootDirectory, 'artifacts'),
+    now: () => new Date(FIXED_TIME),
+  });
+  let eventIndex = 0;
+  const nextMetadata = (label: string): ArtifactEventMetadata => {
+    eventIndex += 1;
+    return {
+      eventId: `${label}-${eventIndex}`,
+      streamId: 'deep-research-artifact-stream',
+      streamSequence: eventIndex,
+      occurredAt: FIXED_TIME,
+      recordedAt: FIXED_TIME,
+      producer: { name: 'deep-research-artifact-tests', version: '1' },
+      authorityEpoch: AUTHORITY.epoch,
+      correlationId: `deep-research-artifact-correlation-${eventIndex}`,
+      causationId: null,
+      idempotencyKey: `deep-research-artifact-idempotency-${eventIndex}`,
+    };
+  };
+  const policy = policies.resolve('deep-research-artifact-policy', 1);
+  const recorder: ArtifactEventRecorder = {
+    ledger,
+    gateway,
+    authorizationContext: (event): ArtifactAuthorizationContext => ({
+      requestId: `request-${event.identity.eventId}`,
+      mode: 'research',
+      priorStateVersion: 'deep-research-artifacts@1',
+      priorStateFingerprint: STATE_DIGEST,
+      actorId: 'deep-research-artifact-test-actor',
+      capabilityId: 'deep-research-artifact-write',
+      authorityEpoch: AUTHORITY.epoch,
+      policy: {
+        policyId: policy.policyId,
+        policyVersion: policy.policyVersion,
+        policyDigest: policy.digest,
+      },
+      evidenceDigest: sha256Bytes(canonicalBytes({ event: event.canonicalDigest })),
+    }),
+  };
+  return { registry, ledger, store, recorder, nextMetadata };
+}
+
+async function sealAndRecordModeArtifact(
+  harness: ArtifactEvidenceHarness,
+  artifactKind: DeepResearchArtifactKind,
+  logicalSequence: number,
+): Promise<DeepResearchArtifactSetMemberInput> {
+  const binding = await sealDeepResearchArtifact(
+    harness.store,
+    artifactKind,
+    materialFor(artifactKind),
+  );
+  const artifact = await harness.store.readVerified(binding.reference, artifactKind);
+  const event = prepareArtifactSealedEvent(
+    artifact,
+    harness.registry,
+    harness.nextMetadata(`${artifactKind}-sealed`),
+    'run-retained',
+  );
+  await recordArtifactEvent(harness.recorder, event);
+  const evidence: VerifiedArtifactEvidence = await readVerifiedArtifactEvidence(
+    harness.ledger,
+    harness.store,
+    binding.reference,
+    artifactKind,
+  );
+  const registration = DEEP_RESEARCH_ARTIFACT_KIND_REGISTRY.find(
+    (candidate) => candidate.artifactKind === artifactKind,
+  );
+  if (!registration) throw new Error(`Missing registration for ${artifactKind}`);
+  return Object.freeze({
+    iteration: registration.lifecycle === 'init' ? 0 : 1,
+    logicalSequence,
+    binding,
+    evidence,
+  });
+}
+
+async function completeArtifactSetMembers(
+  harness: ArtifactEvidenceHarness,
+): Promise<readonly DeepResearchArtifactSetMemberInput[]> {
+  const members: DeepResearchArtifactSetMemberInput[] = [];
+  for (const [index, registration] of DEEP_RESEARCH_ARTIFACT_KIND_REGISTRY.entries()) {
+    members.push(await sealAndRecordModeArtifact(
+      harness,
+      registration.artifactKind,
+      index + 1,
+    ));
+  }
+  return Object.freeze(members);
 }
 
 async function expectArtifactFailure(
@@ -430,6 +609,113 @@ describe('deep research sealed artifacts', () => {
         eventReference: `artifact:sha256:${DIGEST_D}`,
       }),
       SealedArtifactErrorCodes.INVALID_INPUT,
+    );
+  });
+
+  it('builds byte-identical complete lifecycle sets and replay inputs', async () => {
+    const harness = createArtifactEvidenceHarness();
+    const members = await completeArtifactSetMembers(harness);
+    const first = bindDeepResearchArtifactSet(ARTIFACT_SET_CONTEXT, members);
+    const second = bindDeepResearchArtifactSet(
+      { ...ARTIFACT_SET_CONTEXT },
+      members.map((member) => ({ ...member })),
+    );
+
+    expect(Buffer.from(canonicalDeepResearchArtifactSetBytes(first))).toEqual(
+      Buffer.from(canonicalDeepResearchArtifactSetBytes(second)),
+    );
+    expect(second).toEqual(first);
+    const mutableInput = JSON.parse(JSON.stringify(first)) as {
+      referenceSet: { ordered_artifacts: Array<{ sealed_ledger_id: string }> };
+    };
+    const parsedSnapshot = parseDeepResearchArtifactSet(mutableInput);
+    mutableInput.referenceSet.ordered_artifacts[0]!.sealed_ledger_id = 'mutated-ledger';
+    expect(parsedSnapshot).toEqual(first);
+    const replayInput = await deepResearchArtifactSetReplayInput(
+      harness.ledger,
+      harness.store,
+      first,
+      ARTIFACT_SET_CONTEXT,
+    );
+    expect(replayInput.source.kind).toBe('content-addressed');
+    expect(replayInput.source.value).toMatchObject({
+      reference_set_digest: first.referenceSet.reference_set_digest,
+    });
+    expect(compareDeepResearchArtifactSets(first, second)).toEqual({
+      ok: true,
+      referenceSetDigest: first.referenceSet.reference_set_digest,
+    });
+  });
+
+  it('rejects missing and reordered lifecycle artifacts before binding', async () => {
+    const harness = createArtifactEvidenceHarness();
+    const members = [...await completeArtifactSetMembers(harness)];
+
+    expect(() => bindDeepResearchArtifactSet(
+      ARTIFACT_SET_CONTEXT,
+      members.slice(0, -1),
+    )).toThrowError(expect.objectContaining({
+      code: SealedArtifactErrorCodes.EVIDENCE_MISSING,
+    }));
+
+    [members[0], members[1]] = [members[1]!, members[0]!];
+    expect(() => bindDeepResearchArtifactSet(
+      ARTIFACT_SET_CONTEXT,
+      members,
+    )).toThrowError(expect.objectContaining({
+      code: SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
+    }));
+  });
+
+  it('rejects a binding that does not match its verified creation evidence', async () => {
+    const harness = createArtifactEvidenceHarness();
+    const members = [...await completeArtifactSetMembers(harness)];
+    const first = members[0];
+    if (!first) throw new Error('Expected a first artifact-set member');
+    members[0] = {
+      ...first,
+      binding: {
+        ...first.binding,
+        eventReference: `artifact:sha256:${DIGEST_D}`,
+      },
+    };
+
+    expect(() => bindDeepResearchArtifactSet(
+      ARTIFACT_SET_CONTEXT,
+      members,
+    )).toThrowError(expect.objectContaining({
+      code: SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
+    }));
+  });
+
+  it('rejects stale context and post-build artifact corruption during replay', async () => {
+    const harness = createArtifactEvidenceHarness();
+    const members = await completeArtifactSetMembers(harness);
+    const artifactSet = bindDeepResearchArtifactSet(ARTIFACT_SET_CONTEXT, members);
+
+    await expectArtifactFailure(
+      deepResearchArtifactSetReplayInput(
+        harness.ledger,
+        harness.store,
+        artifactSet,
+        { ...ARTIFACT_SET_CONTEXT, sourceTailSequence: 24 },
+      ),
+      SealedArtifactErrorCodes.EVIDENCE_CONFLICT,
+    );
+
+    const last = members.at(-1);
+    if (!last) throw new Error('Expected a final artifact-set member');
+    const paths = harness.store.inspectPaths(last.binding.reference);
+    chmodSync(paths.blobPath, 0o600);
+    writeFileSync(paths.blobPath, Buffer.from('{"tampered":true}'));
+    await expectArtifactFailure(
+      deepResearchArtifactSetReplayInput(
+        harness.ledger,
+        harness.store,
+        artifactSet,
+        ARTIFACT_SET_CONTEXT,
+      ),
+      SealedArtifactErrorCodes.ARTIFACT_CORRUPT,
     );
   });
 });

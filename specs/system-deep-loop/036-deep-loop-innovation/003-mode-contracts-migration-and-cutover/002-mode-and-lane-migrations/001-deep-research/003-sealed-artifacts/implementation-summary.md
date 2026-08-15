@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Deep Research Sealed Artifacts"
-description: "Delivered additive-dark Deep Research artifact bindings that register closed lifecycle material and delegate sealing, publication, digest verification, and immutable reads to the shared sealed-reference-artifacts store."
+description: "Delivered additive-dark Deep Research artifact bindings and one complete ordered lifecycle set that delegates identity, sealing, verification, replay input, and parity equivalence to the shared sealed-reference substrate."
 trigger_phrases:
   - "deep research sealed artifacts implementation"
   - "deep-research artifact bindings"
@@ -11,22 +11,24 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/001-deep-research/003-sealed-artifacts"
-    last_updated_at: "2026-07-21T17:50:00Z"
+    last_updated_at: "2026-08-15T11:10:00Z"
     last_updated_by: "codex"
-    recent_action: "Implemented and verified the additive-dark shared-sealer mode bindings"
-    next_safe_action: "Leaf 004 can bind certificates and receipts to the exported verified artifact identities"
+    recent_action: "Completed and verified the ordered lifecycle artifact-set binding"
+    next_safe_action: "Use the exported set in later separately scoped consumer integration"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-sealed-artifacts/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-research-sealed-artifacts/deep-research-artifact-set.ts"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-sealed-artifacts.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "deep-research-sealed-artifacts-20260721"
+      session_id: "deep-research-sealed-artifacts-20260815"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Mode material is sealed as closed digest/reference capsules through the shared store"
+      - "The shared reference-set digest remains the sole ordered-set identity"
 ---
 # Implementation Summary
 
@@ -42,8 +44,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-sealed-artifacts |
-| **Completed** | Requested additive-dark adapter slice delivered on 2026-07-21; broader sibling-owned checklist work remains unclaimed |
+| **Completed** | 2026-08-15 |
 | **Level** | 2 |
+| **Status** | Complete |
+| **Posture** | Additive-dark; legacy authority and behavior remain unchanged |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -71,15 +75,31 @@ path parses the closed binding and then invokes `SealedArtifactStore.readVerifie
 unsealed, substituted, partially published, or corrupted artifacts release no bytes and retain the shared typed failure
 contract.
 
+### Ordered Verified Lifecycle Set
+
+`bindDeepResearchArtifactSet` requires every registered kind across initialization, gather, analyze, convergence,
+synthesis, and memory-save. It derives lifecycle roles from the closed registry, requires canonical iteration and
+logical-sequence order, rejects missing or reordered members, and proves that every mode binding matches real authorized
+creation evidence before delegating to the shared reference-set binder. The resulting set retains
+`reference_set_digest` as its sole content identity; no mode-local digest, store, canonicalization fallback, or verifier
+exists.
+
+`deepResearchArtifactSetReplayInput` checks the exact run, lineage, generation, authenticated source tail, and replay
+contract context, then asks the shared substrate to re-read every artifact, recompute its digest, and match its ledger
+evidence before producing replay input. `compareDeepResearchArtifactSets` refuses parity before behavior comparison when
+context, ordering, or shared evidence differs.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `runtime/lib/deep-research-sealed-artifacts/deep-research-sealed-artifact-types.ts` | Created | Declares the kind registry contract, six closed material families, and sealed binding/result types |
+| `runtime/lib/deep-research-sealed-artifacts/deep-research-artifact-set.ts` | Created | Enforces complete lifecycle ordering, authorized-evidence binding, stale-context rejection, replay re-resolution, and parity equivalence |
 | `runtime/lib/deep-research-sealed-artifacts/deep-research-artifact-material.ts` | Created | Validates and canonicalizes each mode kind for the shared store |
 | `runtime/lib/deep-research-sealed-artifacts/deep-research-sealed-artifacts.ts` | Created | Creates the shared store adapter and exposes seal, parse, and verified-read operations |
-| `runtime/lib/deep-research-sealed-artifacts/index.ts` | Created | Publishes the mode artifact API for later consumers |
-| `runtime/tests/unit/deep-research-sealed-artifacts.vitest.ts` | Created | Proves deterministic seals and fail-closed mutable, unsealed, tampered, partial-publication, and substitution paths |
+| `runtime/lib/deep-research-sealed-artifacts/index.ts` | Updated | Publishes the ordered-set API with the existing mode artifact API |
+| `runtime/lib/deep-research-sealed-artifacts/README.md` | Updated | Documents the ordered lifecycle set and sole shared identity |
+| `runtime/tests/unit/deep-research-sealed-artifacts.vitest.ts` | Updated | Proves deterministic repeated builds and fail-closed missing, reordered, stale, tampered, partial-publication, substitution, and corruption paths |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -87,9 +107,11 @@ contract.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The module is new and unreferenced by legacy execution, so it remains dark and non-authoritative. The test suite drives
-the real filesystem-backed `SealedArtifactStore`, including its fault-injection boundary before reference publication,
-instead of replacing shared hashing, storage, or verification with test doubles.
+The module remains export-only and unreferenced by legacy execution. The test suite drives the real filesystem-backed
+store, transition gateway, append-only ledger, artifact creation events, verified evidence reader, reference-set binder,
+and replay-input resolver. Two builder invocations over the same immutable verified evidence emit byte-identical
+canonical sets. Repeated equivalent seals also retain the same shared digest reference. No package, lockfile, shared
+substrate, sibling runtime, writer, cutover switch, or authority state changed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -101,8 +123,11 @@ instead of replacing shared hashing, storage, or verification with test doubles.
 |----------|-----|
 | Seal closed digest/reference capsules rather than mutable report or source bodies | The mode ledger needs stable artifact identities while the shared store remains the only byte-integrity authority |
 | Include the artifact kind in canonical capsule bytes | Identical field values under different lifecycle kinds must not compete for one shared content address |
-| Keep the event reference as `artifact:sha256:<digest>` | Leaf 001 accepts bounded reference tokens, and the full shared reference remains available to verified readers and later receipts |
-| Exclude reducers, projections, replay, resume policy, parity, certificates, receipts, and gates | Those behaviors belong to sibling leaves and would make this adapter authoritative beyond its assigned boundary |
+| Keep the event reference as `artifact:sha256:<digest>` | The typed ledger accepts bounded reference tokens, and the full shared reference remains available to verified readers and later receipts |
+| Use `reference_set_digest` as the only set identity | A wrapper digest would create a forbidden mode-local identity even if it used the same hash algorithm |
+| Require all registered lifecycle kinds before replay | A partial run set cannot masquerade as complete evidence for parity or replay |
+| Bind freshness to exact run context without hashing a second identity | Stale tails fail closed while replay and artifact identity remain owned by the shared substrate |
+| Keep certificate, receipt, and authority decisions outside the adapter | Evidence cannot become authority before a separately gated cutover |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -112,10 +137,15 @@ instead of replacing shared hashing, storage, or verification with test doubles.
 
 | Check | Result |
 |-------|--------|
-| Targeted Vitest | PASS: 1 file and 8 tests |
-| Scoped TypeScript compile | PASS: new public module and transitive dependencies, exit 0 |
-| Full runtime TypeScript compile | PASS: zero errors, exit 0 |
-| Strict packet validation | PASS: zero errors and zero warnings, exit 0 |
+| Test-first negative control | PASS: exit 1 with 4 expected failures because the ordered-set API did not exist |
+| Targeted Vitest | PASS: 1 file and 12 tests, exit 0 |
+| Shared sealed-artifact substrate | PASS: 1 file and 54 tests, exit 0 |
+| Determinism | PASS: two complete-set builds over the same immutable verified evidence are byte-identical; repeated equivalent seals retain the same shared digest reference |
+| Full runtime TypeScript compile | PASS: `npx --no-install tsc --noEmit --ignoreDeprecations 6.0`, exit 0 |
+| Scoped OpenCode alignment | PASS: 5 files scanned, 0 findings, exit 0 |
+| Comment hygiene | PASS: 4 changed TypeScript files, 0 violations |
+| Repository-wide OpenCode alignment | EXPECTED BACKLOG: exit 1; 261 errors and 984 warnings outside the scoped files; stack-folders and router-sync pass |
+| Strict packet validation | Exit 2 with `Errors: 0`, `Warnings: 1`; only generated-metadata disk-path normalization remains, matching the documented environment caveat |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -123,10 +153,12 @@ instead of replacing shared hashing, storage, or verification with test doubles.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Sibling integration is intentionally absent.** Reducers, projections, replay/resume consumers, parity, and the mode
-   gate must consume these bindings in their owning leaves.
-2. **Certificate and receipt semantics are intentionally absent.** The successor should attest the binding reference,
-   expected artifact kind, descriptor digest, content digest, and successful shared verified-read result.
-3. **The broader planning checklist remains unclaimed.** Its reducer, projection, replay/resume, parity, rollback, and
-   mode-gate rows are owned outside this adapter-only sibling scope.
+1. **Consumer wiring remains separately scoped.** This phase exposes replay and parity gates but does not edit completed
+   sibling runtimes or change their authority.
+2. **Certificate and receipt semantics remain externally owned.** They attest shared bindings and verified reads; they do
+   not redefine artifact identity.
+3. **The expanded sibling compatibility probe is not green at this workspace state.** Old parity fixtures lack the newer
+   `ordered_chain_identities` descriptor field, and the typed-ledger placeholder file contains no tests. The frozen scope
+   forbids repairing those sibling/shared surfaces here; the phase-focused suite, shared artifact substrate, and runtime
+   typecheck are green.
 <!-- /ANCHOR:limitations -->
