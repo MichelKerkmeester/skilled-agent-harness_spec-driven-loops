@@ -121,12 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "Mapped Deep Review",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -139,9 +133,9 @@
         "source": "derived"
       },
       {
-        "name": "Enumerated Deep Review",
-        "kind": "proper_noun",
-        "path": "tasks.md",
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -159,6 +153,12 @@
       {
         "name": "Completion Criteria",
         "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "only",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep Review rollback switch and independent migration gate over the typed event-ledger path: fail-closed authority control, a bounded rollback window, shadow-parity acceptance, sealed artifacts, certificate evidence, and the scope-to-report handoff without moving runtime authority.",
     "created_at": "2026-07-16T03:43:33.680Z",
-    "last_save_at": "2026-08-14T04:28:04.965Z",
+    "last_save_at": "2026-08-15T12:32:38.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e35c3e7a979f68c38ae6ff36babe01c312f55cbcd53ef09fde63051a1473048",
+    "source_fingerprint": "sha256:62bb48d92574951ec512076d79bef7bf3e86b9f635fa2b59e02ad867555f4d58",
     "source_doc_hashes": {
-      "spec.md": "d49b83845e69f7c55fb3f8f110c5c6e143fa86bb192bd0e03175ec6916528939",
-      "plan.md": "695c93dbab8aeee217bced63aa32e3efe509e9f693e3aeb17576d42ea0aede9d",
-      "tasks.md": "9a07564897a4c774e2e1528cc830e294824f69de50a0d774d7b4b8430cfa17b0",
-      "checklist.md": "de258990ee3b4fd83398f2b75856336afda7c3db4136e57dea5e9519ef194ba9",
-      "implementation-summary.md": "f5b3943676fd6b829d2f942e9a4e4f35f8e1d7c95b7afa780d4f95bb117b183f"
+      "spec.md": "ea2260a8910a236b23b69076a9c9be626da3709a45fa5f01465e5ddc57f1af29",
+      "plan.md": "27fd82aa495fcd10c78c4759daebf99bf9f079afb4f44707442b7c6e4071f1cc",
+      "tasks.md": "524ad3bc80e7fb2e0b1b2f6fa7f0180216141cb0ebd0995d363068d006ad43ef",
+      "checklist.md": "817a9fd253443c07116261fdb1377a272d3300100cbf93f106e99fe75acbeb02",
+      "implementation-summary.md": "a58d8e1f0588458fc863762a1e976ba74f3f7a66a131bce4f30f34948616a408"
     },
     "last_active_child_id": null,
     "last_active_at": null

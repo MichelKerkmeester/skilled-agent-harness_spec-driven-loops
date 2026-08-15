@@ -12,9 +12,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Implemented receipts, certificates, and offline closure verification"
+    last_updated_at: "2026-08-15T12:22:55Z"
+    last_updated_by: "codex"
+    recent_action: "Reverified receipts, certificates, and offline closure at HEAD"
     next_safe_action: "Successor 005 can consume verified checkpoint evidence"
     blockers: []
     key_files: []
@@ -40,7 +40,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-review |
 | **Origin** | Deep Review mode migration after the shared ledger, sealed-artifact, and review-loop contracts are frozen |
@@ -178,12 +178,14 @@ echo the claimed digest.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact phase-007 primitive represents a run certificate seal, and does the verifier receive a signature, Merkle root, transparency reference, or another typed proof?
-- Which phase-012 transition result, authorization, event-tail, and effect fields are inherited directly by Deep Review receipts?
-- Is the certificate pinned to a finalized ledger frontier, a contiguous event range, or both when late receipts exist after report publication?
-- Which receipt states and compatibility outcomes are canonical for a report that is complete in scope but contains unresolved or blocked findings?
-- Which artifact-reference checks can run entirely offline, and which missing artifact cases must be `blocked` rather than `invalid`?
-- Does the verifier recompute reducer and report input digests only, or does phase 012 expose a deterministic projection contract that can also be replayed offline?
+None. The implementation resolved the contract questions as follows:
 
-These questions are contract-ratification inputs for implementation. They do not authorize a new shared primitive, a Deep Review-only review-loop fork, a resume policy, or an authority decision in this phase.
+- Run and transition attestations use the shared durable receipt-certification substrate and bind their exact verified ledger heads, receipts, replay fingerprint, and sealed artifact set.
+- Deep Review receipts inherit shared authorization, causation, ledger-head, effect, and certification fields; mode-specific facts remain limited to the typed review transition and its artifacts.
+- The certificate pins one contiguous verified ledger range from its start head through its final head, while late evidence remains append-only through successor receipts.
+- Trusted completion requires complete receipt coverage and a terminal trusted lifecycle; incomplete, blocked, unknown-effect, and missing-evidence states remain typed non-success outcomes.
+- Offline artifact reads verify real sealed bytes and exact kinds. Missing bytes return `unverifiable`; contradictory or forged evidence returns `invalid`.
+- Offline verification deterministically refolds the Deep Review projection and recomputes projection, replay, receipt-chain, artifact-set, and named-digest-closure commitments.
+
+These resolutions preserve the additive-dark boundary: the certificate proves recorded process integrity and does not move authority or replace semantic adjudication.
 <!-- /ANCHOR:questions -->

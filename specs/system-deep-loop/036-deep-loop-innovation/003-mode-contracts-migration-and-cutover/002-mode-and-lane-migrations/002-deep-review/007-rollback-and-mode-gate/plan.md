@@ -11,13 +11,14 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T20:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Mapped Deep Review gate inputs and rollback boundaries"
-    next_safe_action: "Define control records, gate fixtures, and certificate fields"
-    blockers: []
+    last_updated_at: "2026-08-15T12:22:55Z"
+    last_updated_by: "codex"
+    recent_action: "Reverified the rollback gate at HEAD; 83 of 84 focused assertions passed"
+    next_safe_action: "Verify parity exit-status independence"
+    blockers:
+      - "Focused rollback-gate suite timed out in the parity exit-status independence probe"
     key_files: []
-    completion_pct: 0
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -52,21 +53,21 @@ contract and deep-alignment fence are consumed as pinned inputs rather than reim
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The parent 036 invariant, phase tree, phase-012 shared review-loop contract, and write-set conflict graph are pinned by digest
-- [ ] The six Deep Review sibling contracts expose their event, projection, seal, certificate, resume, and parity evidence boundaries
-- [ ] The legacy lifecycle is inventoried for scope, every dimension, candidate and adjudication, convergence, report, resume, and handoff
-- [ ] The authority-control record, fail-closed resolver, rollback trigger matrix, and dual-bound window are reviewed
-- [ ] The mode-gate evidence matrix distinguishes required, optional, blocked, and indeterminate evidence without implicit waivers
-- [ ] Gate fixtures freeze BASE, contract versions, target references, input digests, event tails, and expected authority posture
-- [ ] The phase-014 handoff consumer and certificate expiry expectation are named without moving authority in this phase
+- [x] The parent 036 invariant, phase tree, phase-012 shared review-loop contract, and write-set conflict graph are pinned by digest. [Evidence: `runtime/lib/deep-review-rollback-gate/mode-gate.ts:62-128,278-303`; fresh suite 83 passing assertions]
+- [x] The six Deep Review sibling contracts expose their event, projection, seal, certificate, resume, and parity evidence boundaries. [Evidence: `runtime/lib/deep-review-rollback-gate/mode-gate.ts:5-58`; whole-runtime TypeScript exit 0]
+- [x] The legacy lifecycle is inventoried for scope, every dimension, candidate and adjudication, convergence, report, resume, and handoff. [Evidence: `runtime/lib/deep-review-rollback-gate/mode-gate.ts:62-75,555-610`; fresh suite 83 passing assertions]
+- [x] The authority-control record, fail-closed resolver, rollback trigger matrix, and dual-bound window are reviewed. [Evidence: `runtime/lib/deep-review-rollback-gate/mode-gate.ts:649-742`; `rollback-switch.ts:183-396`; fresh suite 83 passing assertions]
+- [x] The mode-gate evidence matrix distinguishes required, optional, blocked, and indeterminate evidence without implicit waivers. [Evidence: `runtime/lib/deep-review-rollback-gate/mode-gate.ts:245-303,743-844`; fresh suite 83 passing assertions]
+- [x] Gate fixtures freeze BASE, contract versions, target references, input digests, event tails, and expected authority posture. [Evidence: `runtime/tests/unit/deep-review-rollback-gate.vitest.ts:1881-3539`; 83 passing assertions]
+- [x] The phase-014 handoff consumer and certificate expiry expectation are named without moving authority in this phase. [Evidence: `runtime/lib/deep-review-rollback-gate/mode-gate.ts:790-844`; fresh suite 83 passing assertions]
 
 ### Definition of Done
-- [ ] Invalid or stale authority control always resolves to legacy authority with a typed refusal
-- [ ] The rollback switch and window record an externally authorized inverse transition, healthy anchor, bounds, triggers, and restoration receipt
-- [ ] Every required Deep Review lifecycle fixture has parity, sealed-reference, receipt, certificate, resume, and gate evidence
-- [ ] The mode gate is independently `PASS`, `BLOCKED`, or `INDETERMINATE`; another mode or aggregate dashboard cannot substitute
-- [ ] `MIGRATED_SHADOW_READY` is emitted only with zero unexplained semantic parity differences and verified certificates
-- [ ] The handoff contains no authority flip, legacy-writer retirement, or shared review-loop fork
+- [x] Invalid or stale authority control always resolves to legacy authority with a typed refusal. [Evidence: `runtime/lib/deep-review-rollback-gate/rollback-switch.ts:183-396`; fresh suite 83 passing assertions]
+- [x] The rollback switch and window record an externally authorized inverse transition, healthy anchor, bounds, triggers, and restoration receipt. [Evidence: `runtime/lib/deep-review-rollback-gate/mode-gate.ts:612-742`; `rollback-switch.ts:183-396`; fresh suite 83 passing assertions]
+- [x] Every required Deep Review lifecycle fixture has parity, sealed-reference, receipt, certificate, resume, and gate evidence. [Evidence: `runtime/lib/deep-review-rollback-gate/mode-gate.ts:305-648`; fresh suite 83 passing assertions]
+- [ ] The mode gate is independently `PASS`, `BLOCKED`, or `INDETERMINATE`; another mode or aggregate dashboard cannot substitute. [OPEN: the fresh parity exit-status independence probe timed out at 30 seconds]
+- [ ] `MIGRATED_SHADOW_READY` is emitted only with zero unexplained semantic parity differences and verified certificates. [OPEN: the focused rollback-gate suite is 83/84, exit 1]
+- [x] The handoff contains no authority flip, legacy-writer retirement, or shared review-loop fork. [Evidence: `runtime/lib/deep-review-rollback-gate/mode-gate.ts:790-844`; fresh suite 83 passing assertions]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

@@ -12,17 +12,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T20:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped the Deep Review rollback switch and independent mode gate"
-    next_safe_action: "Freeze rollback window and gate evidence against shared contracts"
-    blockers: []
+    last_updated_at: "2026-08-15T12:22:55Z"
+    last_updated_by: "codex"
+    recent_action: "Reverified the rollback gate at HEAD; 83 of 84 focused assertions passed"
+    next_safe_action: "Verify parity exit-status independence"
+    blockers:
+      - "Focused rollback-gate suite timed out in the parity exit-status independence probe"
     key_files: []
-    completion_pct: 0
+    completion_pct: 95
     open_questions:
-      - "Which phase-012 control record carries the authoritative cutover arm and rollback window?"
-      - "Which health alarms require immediate rollback instead of a bounded observation period?"
-      - "Which phase-014 consumer names the mode-gate certificate and its expiry policy?"
+      - "Fresh rollback-gate verification remains red because one parity exit-status independence test timed out at 30 seconds"
     answered_questions:
       - "This phase plans the Deep Review switch and gate, not the shared loop backbone"
       - "A malformed or stale authority control resolves to legacy authority"
@@ -45,7 +44,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Implemented |
+| **Status** | Active |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-review |
 | **Origin** | Deep Review mode migration after the typed schema, reducers, sealed artifacts, certificates, resume adapter, and shadow-parity siblings |
@@ -220,12 +219,5 @@ readiness certificate as sufficient.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which phase-012 transition token and authority epoch fields are mandatory for the Deep Review cutover arm and inverse rollback event?
-- Does the shared health witness expose one canonical quarantine trigger, or must the mode gate bind a typed set of health alarm classes?
-- Which logical-operation counter is the rollback-window budget: transitions, effects, review passes, or the shared root lease debit?
-- What exact phase-014 handoff schema consumes `MIGRATED_SHADOW_READY`, and which certificate expiry is checked before a later cutover request?
-- Which rollback fixture proves legacy restoration when an external effect is `unknown` and the legacy checkpoint is available but the ledger tail is not finalized?
-
-These decisions are resolved against the frozen shared contracts and the pinned baseline during implementation planning. They do not
-authorize a local review-loop fork, a fail-open fallback, an unbounded window, an authority change, or legacy-writer retirement.
+The implementation resolves the contract questions through the real transition gateway, verified rollback-drill evidence, the dual-bound rollback window, the closed readiness certificate, and the external fencing coordinator. The remaining closeout blocker is narrower: the fresh focused suite passed 83 of 84 assertions, but `does not adopt the authenticated parity handoff exit status as authority` exceeded Vitest's 30-second per-test timeout. Until that exact independence probe is green, the packet remains Blocked and cannot claim a complete mode gate.
 <!-- /ANCHOR:questions -->

@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Implemented receipts, certificates, and offline closure verification"
+    last_updated_at: "2026-08-15T12:22:55Z"
+    last_updated_by: "codex"
+    recent_action: "Reverified receipts, certificates, and offline closure at HEAD"
     next_safe_action: "Successor 005 can consume verified checkpoint evidence"
     blockers: []
     key_files:
@@ -39,6 +39,8 @@ certificate and receipt schema revisions, fingerprint manifest hash, sealed-refe
 It fails on missing transition receipts, a certificate that overclaims semantic truth, a fingerprint omission, an
 unauthorized or contradictory chain, mutable evidence replacement, an unadjudicated P0/P1/P2 activation, an offline
 verifier dependency on live services, or unexpected tracked mutation.
+
+Every checked item citing `implementation-summary.md` is backed by its fresh `Verification` table: HEAD `b14b87acf2f1333aa8aa6322dcc32fcdcbdf30d7`, suite SHA-256 `c600de204c4659acaf650332eb7c20d47015a9714c0b52b965e76188e9da06db`, targeted Vitest exit 0 with 67/67 tests, and whole-runtime TypeScript exit 0.
 <!-- /ANCHOR:protocol -->
 
 <!-- ANCHOR:pre-impl -->
@@ -49,7 +51,7 @@ verifier dependency on live services, or unexpected tracked mutation.
 - [x] CHK-003 [P0] `001-typed-ledger-schema` publishes the complete Deep Review event union and required cross-event references [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
 - [x] CHK-004 [P1] The current Deep Review lifecycle and receipt-bearing boundaries are inventoried from the mode state, evidence, adjudication, convergence, synthesis, report, and continuity records [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
 - [x] CHK-005 [P1] The receipt ownership matrix names one owner for every shared, mode, effect, certificate, report, and later resume transition [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
-- [x] CHK-006 [P2] The candidate report records the phase revisions, certificate/receipt revisions, fingerprint manifest hash, and trusted offline bundle hash
+- [x] CHK-006 [P2] The candidate report records the phase revisions, certificate/receipt revisions, fingerprint manifest hash, and trusted offline bundle hash [Evidence: `implementation-summary.md#verification`; HEAD `b14b87a`; fresh certificate suite 67/67]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
@@ -103,7 +105,7 @@ verifier dependency on live services, or unexpected tracked mutation.
 ## Documentation
 
 - [x] CHK-032 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist agree on the certificate/receipt ownership boundary and implemented status [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
-- [x] CHK-033 [P2] The phase adjacency line names predecessor `003-sealed-artifacts` and successor `005-resume-adapter` verbatim
+- [x] CHK-033 [P2] The phase adjacency line names predecessor `003-sealed-artifacts` and successor `005-resume-adapter` verbatim [Evidence: `spec.md:33`; `tasks.md:91-92`]
 - [x] CHK-034 [P1] The packet documents the distinction between recorded process integrity, semantic finding truth, and later authority decisions [Evidence: `implementation-summary.md` records the delivered contract and passing verification]
 <!-- /ANCHOR:docs -->
 

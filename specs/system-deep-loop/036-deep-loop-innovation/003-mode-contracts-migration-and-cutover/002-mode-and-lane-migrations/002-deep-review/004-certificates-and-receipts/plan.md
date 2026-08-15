@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Implemented receipts, certificates, and offline closure verification"
+    last_updated_at: "2026-08-15T12:22:55Z"
+    last_updated_by: "codex"
+    recent_action: "Reverified receipts, certificates, and offline closure at HEAD"
     next_safe_action: "Successor 005 can consume verified checkpoint evidence"
     blockers: []
     key_files:
@@ -48,18 +48,18 @@ The typed-ledger sibling supplies event names and payload references. Phase `003
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [x] Phase `003-sealed-artifacts` publishes the receipt primitive, certificate primitive, seal/reference format, and offline verification hooks.
-- [x] Phase 012 publishes the shared review-loop identity, transition result, lineage, causal-link, replay, report-reference, and write-set contracts used by Deep Review and deep-alignment.
-- [x] `001-typed-ledger-schema` publishes the complete Deep Review event union and required cross-event references.
-- [x] The current Deep Review lifecycle is inventoried from its config, state JSONL, iteration, finding, evidence, convergence, adjudication, synthesis, report, and continuity records.
-- [x] The receipt matrix names one receipt owner for each transition and separates shared primitives, mode extensions, and later resume or gate consumers.
-- [x] The target remains limited to attestation schemas, fingerprint inputs, offline verification, and fixtures; no reducer, report, resume, rollback, or authority work is scheduled here.
+- [x] Phase `003-sealed-artifacts` publishes the receipt primitive, certificate primitive, seal/reference format, and offline verification hooks. [Evidence: `implementation-summary.md#verification`; fresh certificate suite 67/67 at HEAD `b14b87a`]
+- [x] Phase 012 publishes the shared review-loop identity, transition result, lineage, causal-link, replay, report-reference, and write-set contracts used by Deep Review and deep-alignment. [Evidence: `runtime/lib/deep-review-certificates/deep-review-certificates.ts:5-68`; fresh certificate suite 67/67]
+- [x] `001-typed-ledger-schema` publishes the complete Deep Review event union and required cross-event references. [Evidence: `runtime/lib/deep-review-certificates/deep-review-certificates.ts:96-202`; fresh certificate suite 67/67]
+- [x] The current Deep Review lifecycle is inventoried from its config, state JSONL, iteration, finding, evidence, convergence, adjudication, synthesis, report, and continuity records. [Evidence: `runtime/lib/deep-review-certificates/deep-review-certificates.ts:96-202`; fresh certificate suite 67/67]
+- [x] The receipt matrix names one receipt owner for each transition and separates shared primitives, mode extensions, and later resume or gate consumers. [Evidence: `runtime/lib/deep-review-certificates/deep-review-certificates.ts:96-202,1460-1533`; fresh certificate suite 67/67]
+- [x] The target remains limited to attestation schemas, fingerprint inputs, offline verification, and fixtures; no reducer, report, resume, rollback, or authority work is scheduled here. [Evidence: `implementation-summary.md#files-changed`; final scoped-diff probe]
 
 ### Definition of Done
-- [x] The run certificate and transition receipt fields are ratified against phases `003-sealed-artifacts` and 009.
-- [x] Replay fingerprints cover immutable identity, behavior, artifact, policy, evaluator, and report input classes with typed mismatch outcomes.
-- [x] Offline verification fixtures prove receipt closure, certificate coverage, append integrity, candidate/adjudication separation, unresolved-state retention, and fail-closed tamper handling.
-- [x] A handoff packet gives the later resume adapter and mode gate stable certificate and receipt references without prescribing their decision algorithms.
+- [x] The run certificate and transition receipt fields are ratified against phases `003-sealed-artifacts` and 009. [Evidence: `runtime/lib/deep-review-certificates/deep-review-certificate-types.ts:102-238`; fresh certificate suite 67/67]
+- [x] Replay fingerprints cover immutable identity, behavior, artifact, policy, evaluator, and report input classes with typed mismatch outcomes. [Evidence: `runtime/lib/deep-review-certificates/deep-review-certificates.ts:1570-1725,1984-2212`; fresh certificate suite 67/67]
+- [x] Offline verification fixtures prove receipt closure, certificate coverage, append integrity, candidate/adjudication separation, unresolved-state retention, and fail-closed tamper handling. [Evidence: `runtime/tests/unit/deep-review-certificates.vitest.ts:1271-1713`; fresh command exit 0, 67/67]
+- [x] A handoff packet gives the later resume adapter and mode gate stable certificate and receipt references without prescribing their decision algorithms. [Evidence: `implementation-summary.md#successor-contract`; `runtime/lib/deep-review-certificates/index.ts:5-25`]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
