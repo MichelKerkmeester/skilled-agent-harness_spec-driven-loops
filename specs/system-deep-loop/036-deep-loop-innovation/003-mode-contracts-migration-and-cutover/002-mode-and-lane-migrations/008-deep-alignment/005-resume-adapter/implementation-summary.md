@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter"
-    last_updated_at: "2026-07-28T03:34:09Z"
+    last_updated_at: "2026-08-15T16:12:18Z"
     last_updated_by: "codex"
-    recent_action: "Implemented certificate-bound alignment resume decisions"
-    next_safe_action: "Shadow parity consumes the closed resume evidence"
+    recent_action: "Verified the cited suite and reconciled closeout evidence"
+    next_safe_action: "No leaf-local closeout action remains"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-resume-adapter/index.ts"
@@ -79,7 +79,7 @@ uncorroborated applied reconciliation remains recovery-required.
 | `runtime/lib/deep-alignment-resume-adapter/deep-alignment-resume-adapter.ts` | Created | Verified reconstruction, compatibility, effect recovery, decision append, and dark dispatch |
 | `runtime/lib/deep-alignment-resume-adapter/index.ts` | Created | Stable public export surface |
 | `runtime/tests/unit/deep-alignment-resume-adapter.vitest.ts` | Created | Matrix, fingerprint, registry, certificate-frontier, checkpoint, effect, and idempotency coverage |
-| Leaf packet docs | Updated | Implemented status and shadow-parity handoff |
+| Leaf packet docs | Updated | Complete status and shadow-parity handoff |
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -112,7 +112,7 @@ movement.
 
 | Check | Result |
 |-------|--------|
-| Target Vitest | PASS with 1 file and 13 tests |
+| Target Vitest | PASS with 1 file and 13/13 tests in 136.98s |
 | Resume matrix | PASS for exact-reuse, compatible, migrate, blocked, and rebuild-required |
 | Forged confirmation | PASS across intent identity, stored intent digest, idempotency key, and postcondition digest |
 | Compatibility ownership | PASS for promoted state-bearing migration and an unauthenticated registry |
@@ -120,7 +120,7 @@ movement.
 | Prior-run integrity | PASS for non-null forged checkpoint, frontier mismatch, causal stream split, and a real offline-verifier rejection |
 | Idempotency and darkness | PASS with one semantic append and zero default dispatches |
 | New-module TypeScript grep | PASS with zero diagnostics under `runtime/lib/deep-alignment-resume-adapter/` |
-| Whole-runtime TypeScript | BLOCKED with exit 2 by an out-of-scope readonly-array mismatch in `skill-benchmark-resume-adapter`; this module has zero diagnostics |
+| Whole-runtime TypeScript | PASS: `tsc --noEmit --ignoreDeprecations 6.0`, exit 0 |
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:successor -->

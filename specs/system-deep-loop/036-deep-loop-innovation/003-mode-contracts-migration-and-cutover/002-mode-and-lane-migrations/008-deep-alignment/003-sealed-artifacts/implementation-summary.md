@@ -17,15 +17,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/003-sealed-artifacts"
-    last_updated_at: "2026-07-24T04:17:18Z"
+    last_updated_at: "2026-08-15T16:12:18Z"
     last_updated_by: "codex"
-    recent_action: "Rejected rolled-back authority capsules across direct and provenance-bound reads"
-    next_safe_action: "Leaf 004 must resolve every deferred plain cross-artifact digest before authority cutover"
+    recent_action: "Verified the cited suite and reconciled closeout evidence"
+    next_safe_action: "No leaf-local closeout action remains"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-sealed-artifacts/index.ts"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-alignment-sealed-artifacts.vitest.ts"
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Deep Alignment material is sealed as closed digest/reference capsules through the real shared store"
@@ -49,8 +49,9 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-sealed-artifacts |
-| **Completed** | Additive-dark adapter slice delivered on 2026-07-23; the plain cross-digest closure boundary and authority-liveness read invariant were accepted on 2026-07-24; sibling-owned integration remains unclaimed |
+| **Completed** | 2026-07-23; closeout reverified 2026-08-15 |
 | **Level** | 2 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -147,8 +148,8 @@ and mode-gate behavior remain with their owning leaves.
 | Check | Result |
 |-------|--------|
 | Regression falsifier | PASS: the two required rolled-back rejection tests failed against the prior adapter while the live-authority finding control passed |
-| Targeted Vitest | PASS: 1 file and 17 tests, including direct authority, finding provenance, governed-exception provenance, and live-authority control coverage |
-| Whole-runtime TypeScript compile | PASS: exit 0; zero diagnostics, including zero errors under `runtime/lib/deep-alignment-sealed-artifacts/` |
+| Targeted Vitest | PASS: 1 file, 17/17 tests, 1.32s on 2026-08-15 |
+| Whole-runtime TypeScript compile | PASS: `tsc --noEmit --ignoreDeprecations 6.0`, exit 0 |
 | Strict packet validation | PASS: exit 0, zero errors and zero warnings |
 | Real sealer path | PASS: `substrateImportsReal === true`; seal, derive/unsealed, recursive dependency reads, fault-injected publication, tampered reference, tampered bytes, and expected-kind reads all use `SealedArtifactStore` |
 | Plain cross-digest boundary review | PASS: every plain scalar/array digest that names another sealed artifact is shape-checked and sealed here without dependency backing; reviewed examples include `CONVERGENCE_SNAPSHOT`'s `orderedInputDigests`, `findingsViewDigest`, `exceptionViewDigest`, `unresolvedFindingDigests`, and `ALIGNMENT_REPORT`'s ordered-input/report digest set; leaf 004 owns existence, kind-match, and freshness closure before authority cutover |
@@ -169,6 +170,6 @@ and mode-gate behavior remain with their owning leaves.
    closure before authority cutover.
 3. **Certificate and receipt semantics are intentionally absent.** Leaf 004 should certify the binding's artifact kind,
    reference, descriptor digest, content digest, authority epoch context, and successful shared verified-read result.
-4. **The broader planning checklist remains unclaimed.** Its cross-leaf integration, report projection, replay/parity,
-   rollback, and mode-gate rows are not implemented by this four-file adapter.
+4. **Cross-leaf authority remains separate.** Certificates, resume, parity, and rollback stay in their owning modules;
+   their fresh suites passed during closeout without moving runtime authority.
 <!-- /ANCHOR:limitations -->

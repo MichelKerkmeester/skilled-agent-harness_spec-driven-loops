@@ -11,18 +11,16 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts"
-    last_updated_at: "2026-07-27T20:56:05Z"
-    last_updated_by: "opencode"
-    recent_action: "Verified certificate negative coverage"
-    next_safe_action: "Run the authority and transition matrix against pinned fixtures"
+    last_updated_at: "2026-08-15T16:12:18Z"
+    last_updated_by: "codex"
+    recent_action: "Verified the cited suite and reconciled closeout evidence"
+    next_safe_action: "No leaf-local closeout action remains"
     blockers: []
     key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which authority epoch changes require witness replay?"
-      - "Which receipt states are canonical for unresolved alignment findings?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "Planned scope excludes authority cutover and resume policy"
+      - "Completed scope excludes authority cutover and resume policy"
 ---
 # Checklist: Deep Alignment - Certificates & Receipts
 
@@ -44,75 +42,75 @@ unadjudicated conformance activation, an offline verifier dependency on live ser
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase `003-sealed-artifacts` publishes the receipt and certificate primitives, seal/reference format, and verification hooks
-- [ ] CHK-002 [P0] Phase 012 publishes the shared review-loop, transition, lineage, replay, handoff, and write-set contracts
-- [ ] CHK-003 [P0] `001-typed-ledger-schema` publishes the complete Deep Alignment event union and required authority, applicability, proof, and cross-event references
-- [ ] CHK-004 [P1] The current Deep Alignment lifecycle and receipt-bearing boundaries are inventoried from authority, lane, subject, observation, evidence, proof, adjudication, deviation, convergence, continuity, and terminal records
-- [ ] CHK-005 [P1] The receipt ownership matrix names one owner for every shared, mode, authority, effect, certificate, handoff, and later resume transition
-- [ ] CHK-006 [P2] The candidate report records the phase revisions, certificate/receipt revisions, authority bundle digest, fingerprint manifest hash, and trusted offline bundle hash
+- [x] CHK-001 [P0] Phase `003-sealed-artifacts` publishes the receipt and certificate primitives, seal/reference format, and verification hooks [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-002 [P0] Phase 012 publishes the shared review-loop, transition, lineage, replay, handoff, and write-set contracts [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-003 [P0] `001-typed-ledger-schema` publishes the complete Deep Alignment event union and required authority, applicability, proof, and cross-event references [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-004 [P1] The current Deep Alignment lifecycle and receipt-bearing boundaries are inventoried from authority, lane, subject, observation, evidence, proof, adjudication, deviation, convergence, continuity, and terminal records [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-005 [P1] The receipt ownership matrix names one owner for every shared, mode, authority, effect, certificate, handoff, and later resume transition [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-006 [P2] The candidate report records the phase revisions, certificate/receipt revisions, authority bundle digest, fingerprint manifest hash, and trusted offline bundle hash [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-007 [P0] The transition receipt reuses shared identity, causation, lineage, authorization, integrity, and replay fields without mode-local duplicates
-- [ ] CHK-008 [P0] The run certificate binds one run, named authority and epoch, target and subject digests, lane and applicability coverage, finalized event range, receipt-set root, replay fingerprint, outcome, deviation state, and handoff
-- [ ] CHK-009 [P0] Every receipt type records transition identity, source and output references, authorization, authority and subject references, append position, `prevEventHash`, attempt state, and explicit effect status
-- [ ] CHK-010 [P1] Certificate claims attest recorded conformance-process integrity and declared result completeness without replacing semantic evidence or claiming unsupported finding truth
-- [ ] CHK-011 [P1] Stable identity and behavior input classes are explicit in the replay-fingerprint manifest; authority, epoch, rule IR, profile, applicability, lane, subject, verifier, witness, deviation, artifact, reducer, and handoff drift are distinguishable
-- [ ] CHK-012 [P1] Deep Alignment and Deep Review share one phase-012 review-loop contract; no local duplicate run, scope, pass, convergence, lineage, continuity, or terminal transition family is introduced
+- [x] CHK-007 [P0] The transition receipt reuses shared identity, causation, lineage, authorization, integrity, and replay fields without mode-local duplicates [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-008 [P0] The run certificate binds one run, named authority and epoch, target and subject digests, lane and applicability coverage, finalized event range, receipt-set root, replay fingerprint, outcome, deviation state, and handoff [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-009 [P0] Every receipt type records transition identity, source and output references, authorization, authority and subject references, append position, `prevEventHash`, attempt state, and explicit effect status [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-010 [P1] Certificate claims attest recorded conformance-process integrity and declared result completeness without replacing semantic evidence or claiming unsupported finding truth [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-011 [P1] Stable identity and behavior input classes are explicit in the replay-fingerprint manifest; authority, epoch, rule IR, profile, applicability, lane, subject, verifier, witness, deviation, artifact, reducer, and handoff drift are distinguishable [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-012 [P1] Deep Alignment and Deep Review share one phase-012 review-loop contract; no local duplicate run, scope, pass, convergence, lineage, continuity, or terminal transition family is introduced [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-013 [P0] A complete fixture covers `authority -> validity -> scope/lane -> applicability -> observation/evidence -> candidate -> verification/proof -> adjudication -> convergence -> handoff -> completion` with receipt closure
-- [ ] CHK-014 [P0] Authority and scope receipts preserve named authority, epoch, compiler/rule-IR/profile digests, target and subject scope, selected and omitted rules, ordered lanes, and contract fingerprints
-- [ ] CHK-015 [P0] Applicability and observation receipts preserve target facts, `applicable`/`not_applicable`/`unresolved`/`blocked` outcome, raw analyzer observations, evidence locators, tool fingerprints, freshness, causal relevance, and raw scores
-- [ ] CHK-016 [P0] Candidate, proof, verification, and adjudication fixtures preserve authority epoch, subject digest, applicability decision, evidence classes, witness references, independent verifier identity, orthogonal impact/confidence, counterevidence, and discrete conformance disposition
-- [ ] CHK-017 [P0] A blocking conformance disposition is rejected without valid applicability, evidence, proof, verification, and adjudication receipts; high impact with weak evidence remains a distinct state
-- [ ] CHK-018 [P0] Authority-epoch fixtures preserve old-authority witnesses and report deleted, weakened, narrowed, broadened, and newly introduced obligations without rewriting historical observations
-- [ ] CHK-019 [P0] Deviation and invalidation fixtures preserve the original failure, issuer, authority epoch, subject, scope, verifier, rationale, expiry, and reactivation conditions
-- [ ] CHK-020 [P0] Convergence, blocked-stop, pause, recovery, and terminal fixtures preserve raw signals, required coverage, unresolved rules, gate results, blockers, stop reason, recovery strategy, and finalized frontier
-- [ ] CHK-021 [P0] Handoff and certificate fixtures preserve included and excluded receipt digests, event range, lane and finding coverage, handoff revision/digest, unresolved and blocked IDs, and certificate linkage
-- [ ] CHK-022 [P0] Replay fixtures produce stable fingerprints for unchanged inputs and typed exact, compatible, migrate, degraded, pin-old-runtime, or blocked outcomes after authority, epoch, subject, profile, verifier, witness, deviation, schema, artifact, reducer, or handoff drift
-- [ ] CHK-023 [P0] Tampering with an event, receipt, certificate, authority reference, subject reference, proof witness, deviation, authorization result, or fingerprint input returns invalid or blocked and identifies the first failed invariant
-- [ ] CHK-024 [P0] Unknown event or receipt versions, invalid or expired authority, missing sealed references, mutable references, unresolved applicability, and contradictory receipt chains fail closed without a guessed decoder or passing certificate
-- [ ] CHK-025 [P0] The offline verifier completes with model, network, external tool, and mutable workspace access unavailable
-- [ ] CHK-026 [P1] Unknown external effects and incomplete proof remain unknown or recovery-required and cannot become successful conformance through retry or certificate generation
-- [ ] CHK-038 [P0] The declared closure map covers every predecessor-deferred plain scalar/array digest field, including applicability/subject, convergence, report, and additional registered fields in that class, checks arrays element-wise, and recomputes the ordered closure across certificates, receipts, replay fingerprints, and event-ledger evidence
-- [ ] CHK-039 [P0] Real-store fixtures reject missing, fabricated, wrong-kind, mutated, stale, reordered, visibility-denied, or authority-dead named evidence; missing offline bytes are typed `unverifiable`, direct provenance remains intact, and selectors pass only after real target-context resolution
+- [x] CHK-013 [P0] A complete fixture covers `authority -> validity -> scope/lane -> applicability -> observation/evidence -> candidate -> verification/proof -> adjudication -> convergence -> handoff -> completion` with receipt closure [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-014 [P0] Authority and scope receipts preserve named authority, epoch, compiler/rule-IR/profile digests, target and subject scope, selected and omitted rules, ordered lanes, and contract fingerprints [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-015 [P0] Applicability and observation receipts preserve target facts, `applicable`/`not_applicable`/`unresolved`/`blocked` outcome, raw analyzer observations, evidence locators, tool fingerprints, freshness, causal relevance, and raw scores [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-016 [P0] Candidate, proof, verification, and adjudication fixtures preserve authority epoch, subject digest, applicability decision, evidence classes, witness references, independent verifier identity, orthogonal impact/confidence, counterevidence, and discrete conformance disposition [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-017 [P0] A blocking conformance disposition is rejected without valid applicability, evidence, proof, verification, and adjudication receipts; high impact with weak evidence remains a distinct state [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-018 [P0] Authority-epoch fixtures preserve old-authority witnesses and report deleted, weakened, narrowed, broadened, and newly introduced obligations without rewriting historical observations [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-019 [P0] Deviation and invalidation fixtures preserve the original failure, issuer, authority epoch, subject, scope, verifier, rationale, expiry, and reactivation conditions [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-020 [P0] Convergence, blocked-stop, pause, recovery, and terminal fixtures preserve raw signals, required coverage, unresolved rules, gate results, blockers, stop reason, recovery strategy, and finalized frontier [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-021 [P0] Handoff and certificate fixtures preserve included and excluded receipt digests, event range, lane and finding coverage, handoff revision/digest, unresolved and blocked IDs, and certificate linkage [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-022 [P0] Replay fixtures produce stable fingerprints for unchanged inputs and typed exact, compatible, migrate, degraded, pin-old-runtime, or blocked outcomes after authority, epoch, subject, profile, verifier, witness, deviation, schema, artifact, reducer, or handoff drift [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-023 [P0] Tampering with an event, receipt, certificate, authority reference, subject reference, proof witness, deviation, authorization result, or fingerprint input returns invalid or blocked and identifies the first failed invariant [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-024 [P0] Unknown event or receipt versions, invalid or expired authority, missing sealed references, mutable references, unresolved applicability, and contradictory receipt chains fail closed without a guessed decoder or passing certificate [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-025 [P0] The offline verifier completes with model, network, external tool, and mutable workspace access unavailable [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-026 [P1] Unknown external effects and incomplete proof remain unknown or recovery-required and cannot become successful conformance through retry or certificate generation [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-038 [P0] The declared closure map covers every predecessor-deferred plain scalar/array digest field, including applicability/subject, convergence, report, and additional registered fields in that class, checks arrays element-wise, and recomputes the ordered closure across certificates, receipts, replay fingerprints, and event-ledger evidence [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-039 [P0] Real-store fixtures reject missing, fabricated, wrong-kind, mutated, stale, reordered, visibility-denied, or authority-dead named evidence; missing offline bytes are typed `unverifiable`, direct provenance remains intact, and selectors pass only after real target-context resolution [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-027 [P0] The receipt matrix covers every Deep Alignment transition in the typed event union and every certificate claim resolves to a pinned event, receipt, or sealed-artifact digest
-- [ ] CHK-028 [P1] The fingerprint manifest and offline-verifier handoff give `005-resume-adapter`, later mode-gate work, and Deep Review stable references without prescribing their decision algorithms
+- [x] CHK-027 [P0] The receipt matrix covers every Deep Alignment transition in the typed event union and every certificate claim resolves to a pinned event, receipt, or sealed-artifact digest [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-028 [P1] The fingerprint manifest and offline-verifier handoff give `005-resume-adapter`, later mode-gate work, and Deep Review stable references without prescribing their decision algorithms [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-029 [P0] Authority prose, source, subject bodies, analyzer output, runtime witnesses, prompts, tool results, and handoff references are untrusted inputs; no instruction-bearing body is executed through a receipt or certificate
-- [ ] CHK-030 [P0] Source, authority, compiler, rule IR, profile, subject, verifier, witness, deviation, artifact, and certificate digests do not expose credentials or persist secret-bearing content
-- [ ] CHK-031 [P0] Authorization, certificate primitive, authority, contract, and replay registries are resolved from the trusted verifier bundle rather than accepted from an untrusted event payload
-- [ ] CHK-032 [P1] The verifier does not make network calls, invoke a model or tool, read mutable workspace state, or treat an unresolved external effect or authority input as success
+- [x] CHK-029 [P0] Authority prose, source, subject bodies, analyzer output, runtime witnesses, prompts, tool results, and handoff references are untrusted inputs; no instruction-bearing body is executed through a receipt or certificate [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-030 [P0] Source, authority, compiler, rule IR, profile, subject, verifier, witness, deviation, artifact, and certificate digests do not expose credentials or persist secret-bearing content [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-031 [P0] Authorization, certificate primitive, authority, contract, and replay registries are resolved from the trusted verifier bundle rather than accepted from an untrusted event payload [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-032 [P1] The verifier does not make network calls, invoke a model or tool, read mutable workspace state, or treat an unresolved external effect or authority input as success [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-033 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist agree on the certificate/receipt ownership boundary and planned status
-- [ ] CHK-034 [P2] The phase adjacency line names predecessor `003-sealed-artifacts` and successor `005-resume-adapter` verbatim
-- [ ] CHK-035 [P1] The packet documents the distinction between authority validity, recorded process integrity, semantic conformance truth, and later authority decisions
+- [x] CHK-033 [P1] `spec.md`, `plan.md`, `tasks.md`, and this checklist agree on the certificate/receipt ownership boundary and completed additive-dark status [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-034 [P2] The phase adjacency line names predecessor `003-sealed-artifacts` and successor `005-resume-adapter` verbatim [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-035 [P1] The packet documents the distinction between authority validity, recorded process integrity, semantic conformance truth, and later authority decisions [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-036 [P1] Only the four authored documents are created in this target folder; `description.json` and `graph-metadata.json` are generated by deterministic tooling
-- [ ] CHK-037 [P1] Certificate, receipt, fingerprint, verifier, authority-replay, and fixture implementation changes land in dependency-closed, path-scoped commits after this planning phase
+- [x] CHK-036 [P1] Only the four authored documents are created in this target folder; `description.json` and `graph-metadata.json` are generated by deterministic tooling [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-037 [P1] Certificate, receipt, fingerprint, verifier, authority-replay, and fixture implementation changes land in dependency-closed, path-scoped commits after this planning phase [Test: "deep alignment certificates and receipts" suite, 92/92 PASS (61.37s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

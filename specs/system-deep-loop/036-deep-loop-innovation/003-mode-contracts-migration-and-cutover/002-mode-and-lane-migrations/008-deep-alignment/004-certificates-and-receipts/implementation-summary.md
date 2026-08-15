@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts"
-    last_updated_at: "2026-07-27T21:33:56Z"
+    last_updated_at: "2026-08-15T16:12:18Z"
     last_updated_by: "codex"
-    recent_action: "Verified certificate negative coverage"
-    next_safe_action: "Successor 005 can consume verified checkpoints"
+    recent_action: "Verified the cited suite and reconciled closeout evidence"
+    next_safe_action: "No leaf-local closeout action remains"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-certificates/index.ts"
@@ -158,12 +158,12 @@ an artifact under audit, or an incomplete lifecycle.
 <!-- ANCHOR:verification -->
 ## Verification
 
-The focused Vitest suite passes `85/85`. It issues a real 20-receipt bundle and exercises all 25 declared closure fields
+The focused Vitest suite passes `92/92` in 61.37s. It issues a real 20-receipt bundle and exercises all 25 declared closure fields
 with wrong-kind and fabricated or missing evidence through `verifyDeepAlignmentCertificateOffline`. It also covers a pruned
 offline store returning `unverifiable`, a forged binding rejected during verified reads, and a genuine incomplete terminal
 disposition rejected by the verifier lifecycle guard.
 
-Whole-runtime TypeScript passes with zero `deep-alignment-certificates` diagnostics. The compile repair added transition input
+Whole-runtime TypeScript passes with `tsc --noEmit --ignoreDeprecations 6.0` at exit 0. The compile repair added transition input
 digests to the internal ownership claim, while the issued-bundle fixture also verified repeated lane and pass receipts,
 completion-input closure ownership, and lane-completion artifact correspondence.
 <!-- /ANCHOR:verification -->

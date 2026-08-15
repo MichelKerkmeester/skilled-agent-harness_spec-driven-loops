@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/006-shadow-parity"
-    last_updated_at: "2026-07-28T12:31:49Z"
-    last_updated_by: "opencode"
-    recent_action: "Verified Deep Alignment shadow parity"
-    next_safe_action: "Hand parity evidence to the successor gate"
+    last_updated_at: "2026-08-15T16:12:18Z"
+    last_updated_by: "codex"
+    recent_action: "Verified the cited suite and reconciled closeout evidence"
+    next_safe_action: "No leaf-local closeout action remains"
     blockers: []
     key_files: []
     completion_pct: 100
@@ -39,59 +39,59 @@ unexpected authority side effect.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] `005-resume-adapter`, the phase-014 shadow framework, and the phase-012 shared review-loop contract are version-pinned in the paired-run manifest [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-002 [P0] Legacy and ledger paths receive identical run, target, authority, verifier, lane, capability, budget, and fixture inputs; any mismatch blocks before execution [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-003 [P1] Deep Alignment event and projection inventories cover every active lane, finding state, applicability outcome, deviation state, authority conflict, terminal state, and public gauge [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-004 [P1] The event pairing key, causal-order rule, projection identities, and unknown-field policy are reviewed; the closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`, each with presence, type, and non-interference checks [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
+- [x] CHK-001 [P0] `005-resume-adapter`, the phase-014 shadow framework, and the phase-012 shared review-loop contract are version-pinned in the paired-run manifest [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-002 [P0] Legacy and ledger paths receive identical run, target, authority, verifier, lane, capability, budget, and fixture inputs; any mismatch blocks before execution [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-003 [P1] Deep Alignment event and projection inventories cover every active lane, finding state, applicability outcome, deviation state, authority conflict, terminal state, and public gauge [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-004 [P1] The event pairing key, causal-order rule, projection identities, and unknown-field policy are reviewed; the closed volatility allowlist is exactly `occurred_at`, `recorded_at`, and `correlation_id`, each with presence, type, and non-interference checks [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [x] CHK-005 [P0] The harness remains additive and shadow-only; legacy remains authoritative and no cutover, rollback, or legacy-writer retirement occurs in this concern [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-006 [P1] Raw findings, observations, deviations, authority conflicts, and receipts remain append-only and visible; no comparator shortcut deletes or rewrites evidence [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-007 [P2] Comparator reports use stable event/projection identities and do not rely on arrival order, aggregate counts, or a terminal verdict as a substitute for semantic parity [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
+- [x] CHK-005 [P0] The harness remains additive and shadow-only; legacy remains authoritative and no cutover, rollback, or legacy-writer retirement occurs in this concern [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-006 [P1] Raw findings, observations, deviations, authority conflicts, and receipts remain append-only and visible; no comparator shortcut deletes or rewrites evidence [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-007 [P2] Comparator reports use stable event/projection identities and do not rely on arrival order, aggregate counts, or a terminal verdict as a substitute for semantic parity [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [x] CHK-008 [P0] Execute legacy and ledger paths from one frozen paired-run manifest and record the exact manifest, authority capsule, verifier, review-loop, and comparator fingerprints [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-009 [P0] Every legacy event has exactly one ledger counterpart by logical identity rather than raw `eventId`, so independent streams still pair; missing, extra, duplicate, and unpaired events fail the gate [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-010 [P0] Paired events match on logical identity, type, lane, subject, authority epoch, causal parent, sequence/barrier position, and terminal transition [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-011 [P0] Canonical event payloads have zero unexplained semantic differences; every tolerated diff has a typed disposition, owner, reason, and proof, while unknown fields, dropped evidence, changed applicability, and changed verdict semantics fail closed [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-012 [P0] Finding lifecycle and public projections match by stable identity, including applicability, evidence bindings, known-deviation disposition, authority conflicts, terminal status, and gauges [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-013 [P0] Both paths use the same valid authority capsule and verifier identity; stale, expired, rolled-back, mixed-version, or unbound authority material returns `PARITY_BLOCKED` [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-014 [P0] Repeated capture and replay produce identical event fingerprints, projection fingerprints, first-divergence location, mismatch class, and parity disposition [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-015 [P0] The fixture matrix covers deterministic runs, concurrent lane arrival, retries, late events, resume/replay, authority epoch changes, applicability, known deviations, and authority conflicts [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-016 [P0] Seeded missing, extra, duplicate, reordered, changed-payload, changed-applicability, and changed-verdict faults traverse the real paired runner, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline and assert exact typed failure classes [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-017 [P1] A green run emits a manifest-bound parity receipt containing exact inputs, comparator version, fixture coverage, event/projection digests, mismatch count, and explicit legacy-authoritative status; the authenticated mode gate re-verifies the binding and does not self-trust computed status [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-023 [P0] Every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks; existence or shape alone cannot pass [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
+- [x] CHK-008 [P0] Execute legacy and ledger paths from one frozen paired-run manifest and record the exact manifest, authority capsule, verifier, review-loop, and comparator fingerprints [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-009 [P0] Every legacy event has exactly one ledger counterpart by logical identity rather than raw `eventId`, so independent streams still pair; missing, extra, duplicate, and unpaired events fail the gate [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-010 [P0] Paired events match on logical identity, type, lane, subject, authority epoch, causal parent, sequence/barrier position, and terminal transition [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-011 [P0] Canonical event payloads have zero unexplained semantic differences; every tolerated diff has a typed disposition, owner, reason, and proof, while unknown fields, dropped evidence, changed applicability, and changed verdict semantics fail closed [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-012 [P0] Finding lifecycle and public projections match by stable identity, including applicability, evidence bindings, known-deviation disposition, authority conflicts, terminal status, and gauges [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-013 [P0] Both paths use the same valid authority capsule and verifier identity; stale, expired, rolled-back, mixed-version, or unbound authority material returns `PARITY_BLOCKED` [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-014 [P0] Repeated capture and replay produce identical event fingerprints, projection fingerprints, first-divergence location, mismatch class, and parity disposition [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-015 [P0] The fixture matrix covers deterministic runs, concurrent lane arrival, retries, late events, resume/replay, authority epoch changes, applicability, known deviations, and authority conflicts [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-016 [P0] Seeded missing, extra, duplicate, reordered, changed-payload, changed-applicability, and changed-verdict faults traverse the real paired runner, authorization, ledger, reducer, projection, receipt, and mode-gate evidence pipeline and assert exact typed failure classes [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-017 [P1] A green run emits a manifest-bound parity receipt containing exact inputs, comparator version, fixture coverage, event/projection digests, mismatch count, and explicit legacy-authoritative status; the authenticated mode gate re-verifies the binding and does not self-trust computed status [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-023 [P0] Every named cross-artifact reference resolves to the declared kind with applicable epoch, lifecycle, freshness, real-state, visibility, role-redaction, and authority-liveness checks; existence or shape alone cannot pass [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [x] CHK-018 [P1] Every Deep Alignment public projection and event family in the reviewed inventory is either compared or explicitly marked diagnostic-only with a documented reason [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
+- [x] CHK-018 [P1] Every Deep Alignment public projection and event family in the reviewed inventory is either compared or explicitly marked diagnostic-only with a documented reason [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-019 [P0] Authority URI/edition/digest, verifier identity, subject digest, applicability, evidence references, and deviation scope are bound into comparison and receipt inputs [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
-- [x] CHK-020 [P1] The harness fails closed on missing authority, missing evidence, unknown event fields, comparator ambiguity, and unsupported schema versions; no inferred pass is emitted [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
+- [x] CHK-019 [P0] Authority URI/edition/digest, verifier identity, subject digest, applicability, evidence references, and deviation scope are bound into comparison and receipt inputs [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-020 [P1] The harness fails closed on missing authority, missing evidence, unknown event fields, comparator ambiguity, and unsupported schema versions; no inferred pass is emitted [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [x] CHK-021 [P1] The parity acceptance matrix and mismatch taxonomy are reflected in the phase docs and are consumable by `007-rollback-and-mode-gate` [Evidence: `implementation-summary.md` and `deep-alignment-shadow-parity.vitest.ts` 8/8]
+- [x] CHK-021 [P1] The parity acceptance matrix and mismatch taxonomy are reflected in the phase docs and are consumable by `007-rollback-and-mode-gate` [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `implementation-summary.md` documents the successor contract.]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-022 [P1] Shadow captures, mismatch reports, and parity receipts are scoped to the phase run and do not mutate the legacy authoritative state or unrelated mode artifacts [Evidence: `deep-alignment-shadow-parity.vitest.ts` 8/8 and `tsc --noEmit`]
+- [x] CHK-022 [P1] Shadow captures, mismatch reports, and parity receipts are scoped to the phase run and do not mutate the legacy authoritative state or unrelated mode artifacts [Test: "Deep Alignment shadow parity" suite, 10/10 PASS (123.77s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

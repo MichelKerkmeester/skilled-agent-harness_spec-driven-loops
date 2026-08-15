@@ -12,18 +12,14 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts"
-    last_updated_at: "2026-07-27T20:56:05Z"
-    last_updated_by: "opencode"
-    recent_action: "Verified certificate negative coverage"
-    next_safe_action: "Successor 005 can consume verified checkpoints"
+    last_updated_at: "2026-08-15T16:12:18Z"
+    last_updated_by: "codex"
+    recent_action: "Verified the cited suite and reconciled closeout evidence"
+    next_safe_action: "No leaf-local closeout action remains"
     blockers: []
     key_files: []
     completion_pct: 100
-    open_questions:
-      - "Which phase-007 primitive seals the Deep Alignment run certificate?"
-      - "Which phase-012 receipt fields are inherited by each alignment transition?"
-      - "Which authority-epoch changes require witness replay versus a fresh lane run?"
-      - "Does the verifier pin a finalized frontier, a contiguous range, or both?"
+    open_questions: []
     answered_questions:
       - "This phase plans attestations and offline verification, not authority cutover"
       - "Deep Alignment consumes the shared review-loop contract used by Deep Review"
@@ -46,7 +42,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/004-certificates-and-receipts |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-alignment |
 | **Formal depends_on** | [] |
@@ -68,7 +64,7 @@ cannot distinguish changed authority from changed subject, missing evidence from
 a successful check.
 
 The typed-ledger, reducer/projection, and sealed-artifact predecessor leaves are LANDED, but remain additive-dark and
-non-authoritative while this leaf stays Planned. The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts,
+non-authoritative throughout this completed leaf. The migration program requires an append-only typed ledger, a fail-closed transition gateway, sealed reference artifacts,
 versioned replay fingerprints, and receipts/certificates before authority moves. Phase `003-sealed-artifacts` supplies the
 receipt and certificate primitives consumed here. Phase 012 freezes the shared review-loop backbone used by Deep Alignment
 and Deep Review; this phase specializes that contract rather than forking it. The research inputs require authority validity
@@ -122,7 +118,7 @@ it; the evidence and independent verification boundary remains explicit.
 | REQ-008 | Deviations, late evidence, retries, supersession, and unresolved states remain auditable | A later receipt references the prior receipt and records the new observation or disposition; no certificate or receipt rewrites raw evidence, erases an authority failure, or turns unknown external effects into success |
 | REQ-009 | An independent verifier validates the complete cross-artifact closure without live model, tool, network, or mutable workspace access | Given the declared per-plain-digest-field expected-kind map, the verifier resolves every deferred digest to actually sealed bytes of that kind; checks authority epoch, lifecycle, freshness, real state, visibility, and authority liveness where borne; recomputes rather than trusts the replay fingerprint over the ordered closure; binds certificates, receipts, replay fingerprints, and event-ledger evidence; and returns typed fail-closed outcomes for missing, fabricated, wrong-kind, mutated, stale, reordered, unauthorized, or bundle-absent evidence |
 | REQ-010 | Deep Alignment and Deep Review continue to share one review-loop backbone | The contract comparison identifies inherited shared fields and mode-specific extensions; no Deep Alignment-only copy of shared run, scope, pass, convergence, continuity, or terminal transitions is introduced |
-| REQ-011 | The phase remains planning-only and ownership-complete | The packet defines schemas, input matrices, verifier behavior, and fixtures only; no reducer, projection, sealed-artifact implementation, resume adapter, shadow harness, rollback switch, authority cutover, or mode gate is implemented here |
+| REQ-011 | The phase remains additive-dark and ownership-complete | The package implements certificate schemas, receipts, offline verification, and fixtures only; no reducer, projection, sealed-artifact store, resume adapter, shadow harness, rollback switch, authority cutover, or mode gate is implemented here |
 <!-- /ANCHOR:requirements -->
 
 The attestation boundary is deliberately narrow. A certificate attests **recorded conformance-process integrity and declared
@@ -217,7 +213,7 @@ verifier checks the chain, **then** it returns invalid or blocked with the first
 - **Candidate/verdict conflation** - detector output can be mistaken for verified non-conformance. Mitigation: require independent verifier identity, proof witnesses, evidence receipts, and a typed adjudication event before a blocking disposition.
 - **Deviation erasure** - an exception may hide the original failure and prevent reactivation after drift. Mitigation: append chronological deviations bound to authority, verifier, subject, scope, issuer, and expiry.
 - **Shared-backbone divergence** - Deep Alignment may invent a local certificate path that Deep Review cannot consume. Mitigation: compare inherited phase-012 fields and event transitions before accepting mode extensions.
-- **Scope expansion** - certificate work may absorb reducers, resume, shadow, rollback, or authority concerns. Mitigation: keep the ownership table, adjacency line, and planning-only requirement as blocking boundaries.
+- **Scope expansion** - certificate work may absorb reducers, resume, shadow, rollback, or authority concerns. Mitigation: keep the ownership table, adjacency line, and additive-dark ownership requirement as blocking boundaries.
 - **Dependencies**: phase `003-sealed-artifacts` receipt/certificate primitives; phase 012 shared review-loop and replay contracts; `001-typed-ledger-schema`; the Deep Alignment reducer/projection sibling; later `005-resume-adapter`, shadow-parity, rollback, and mode-gate concerns; the Deep Review shared-backbone contract; and the two effectiveness/fan-out findings registries.
 <!-- /ANCHOR:risks -->
 

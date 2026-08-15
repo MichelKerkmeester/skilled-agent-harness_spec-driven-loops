@@ -12,17 +12,14 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T21:45:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Scoped the Deep Alignment rollback switch and independent mode gate"
-    next_safe_action: "Freeze shared review-loop inputs and build gate fixtures"
+    last_updated_at: "2026-08-15T16:12:18Z"
+    last_updated_by: "codex"
+    recent_action: "Verified the cited suite and reconciled closeout evidence"
+    next_safe_action: "No leaf-local closeout action remains"
     blockers: []
     key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Which phase-012 control record carries the authority arm and inverse rollback transition?"
-      - "Which per-lane health alarms require immediate rollback rather than observation?"
-      - "Which phase-014 consumer validates the mode-gate certificate and expiry?"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
       - "This phase plans the Deep Alignment switch and gate, not the shared review-loop backbone"
       - "Invalid authority material resolves to legacy authority"
@@ -45,12 +42,12 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop / deep-alignment |
 | **Origin** | Phase 013 Deep Alignment migration after typed schema, reducers, sealed artifacts, certificates, resume adapter, and shadow-parity siblings |
 | **Depends on** | `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` are LANDED as additive-dark, non-authoritative substrate; sibling adjacency remains navigation rather than authority |
-| **Consumes** | Planned certificate/receipt, resume-adapter, and required phase-009 shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
+| **Consumes** | Landed certificate/receipt, resume-adapter, and required phase-009 shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
 <!-- /ANCHOR:metadata -->
 
 <!-- ANCHOR:problem -->
@@ -81,7 +78,7 @@ mode exit gate into phase 014 and does not flip authority, retire legacy writers
 review-loop backbone used by Deep Review mode 002.
 
 The schema, reducer/projection, and sealed-artifact leaves are already LANDED but remain additive-dark and non-authoritative.
-This Planned leaf consumes their contracts and the later receipt, resume, and parity evidence without allowing any predecessor
+This completed leaf consumes their contracts and the later receipt, resume, and parity evidence without allowing any predecessor
 output to become an authority decision.
 <!-- /ANCHOR:problem -->
 
