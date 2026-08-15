@@ -97,12 +97,44 @@ export const CLI_ADAPTER_PHASE_TWO_ROWS: readonly MatrixCell[] = PHASE_TWO_ADAPT
   })),
 );
 
+export const FANOUT_TEST_NAMES = [
+  'retains fan-out authentication diagnostics in the failed lineage log',
+  'retains fan-out model-or-balance diagnostics in the failed lineage log',
+  'rejects a rate-limited fan-out lineage without a retry spawn',
+  'times out and reaps the captured fan-out lineage process',
+  'closes stdin for the headless fan-out lineage process',
+  'propagates the non-interactive spec-gate environment through fan-out',
+  'expands flat-pool lineages while bounding concurrency and queuing overflow',
+  'fails before fan-out execution when the executor transport is unavailable',
+  'rejects lineage and aggregate budgets before provider process spawn',
+  'reports one externally killed lineage without erasing surviving artifacts',
+  'reaps the captured fan-out orphan process group without a blanket sweep',
+  'preserves exclusive ownership when concurrent worktrees collide',
+  'preserves independent node_modules realpaths while fan-out is active',
+  'blocks same-kind recursive fan-out before provider process spawn',
+] as const;
+
+export const CLI_ADAPTER_FANOUT_ROWS: readonly MatrixCell[] = FANOUT_TEST_NAMES.map(
+  (testName, index) => ({
+    edgeCaseId: EDGE_CASE_ROWS[index].id,
+    subject: 'fanout-run',
+    testName,
+    testStatus: 'implemented' as const,
+    playbookPath: playbookPath('fanout-run', EDGE_CASE_ROWS[index].slug),
+  }),
+);
+
 const phaseTwoCellsByKey = new Map(
   CLI_ADAPTER_PHASE_TWO_ROWS.map((cell) => [`${cell.subject}:${cell.edgeCaseId}`, cell]),
 );
+const fanoutCellsByKey = new Map(
+  CLI_ADAPTER_FANOUT_ROWS.map((cell) => [`${cell.subject}:${cell.edgeCaseId}`, cell]),
+);
 
 export const CLI_ADAPTER_CURRENT_MATRIX: readonly MatrixCell[] = CLI_ADAPTER_STRESS_MATRIX.map((cell) => (
-  phaseTwoCellsByKey.get(`${cell.subject}:${cell.edgeCaseId}`) ?? cell
+  phaseTwoCellsByKey.get(`${cell.subject}:${cell.edgeCaseId}`)
+    ?? fanoutCellsByKey.get(`${cell.subject}:${cell.edgeCaseId}`)
+    ?? cell
 ));
 
 const adapterSubjects = CLI_ADAPTER_SUBJECTS.filter((subject) => subject !== 'fanout-run');
@@ -110,6 +142,11 @@ const forbiddenOverclaimPattern = /classif(?:y|ies|ication)|reaps? every descend
 
 export const CLI_ADAPTER_MATRIX_AUDIT = Object.freeze({
   allAdapterBound: adapterSubjects.every((subject) => {
+    const cells = CLI_ADAPTER_CURRENT_MATRIX.filter((cell) => cell.subject === subject);
+    return cells.length === EDGE_CASE_ROWS.length
+      && cells.every((cell) => cell.testStatus === 'implemented' && cell.testName !== null);
+  }),
+  allSubjectBound: CLI_ADAPTER_SUBJECTS.every((subject) => {
     const cells = CLI_ADAPTER_CURRENT_MATRIX.filter((cell) => cell.subject === subject);
     return cells.length === EDGE_CASE_ROWS.length
       && cells.every((cell) => cell.testStatus === 'implemented' && cell.testName !== null);
