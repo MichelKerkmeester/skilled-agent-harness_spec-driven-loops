@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Implemented the shared Deep Improvement Common Services shadow-parity harness with logical event pairing, independent projections, fault injection, and manifest-bound receipts.",
     "created_at": "2026-07-16T03:43:37.046Z",
-    "last_save_at": "2026-08-14T04:28:00.817Z",
+    "last_save_at": "2026-08-15T14:26:00.178Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:828650b663e26f874869f416869df93bc9c7ca582f9375e674b34c3baea5e0a1",
+    "source_fingerprint": "sha256:40ee478089f6e9aa6232636d77f2e3e5226b254e10d837929c5b92f836b94f81",
     "source_doc_hashes": {
-      "spec.md": "b0766d9b90a1b6a1a305376cd8fe5bab8e92fa917d5a2466e2cc1f9c8d503046",
+      "spec.md": "5975b4b911efe214a3e36ad4a32137c6c6eb42073f66bffb70b472d3040c9255",
       "plan.md": "0afeb93c279d757307b88dcfe5688ef439a7e09b08c6245483145473cc989137",
       "tasks.md": "e6503c547ca546fda23bd9967d86eccaaaf0b8e5c53e9af60efe6f8fdff21534",
       "checklist.md": "5212715ecc84bb060b353b7f9ae428ebfaf476438ce028f0847c206ac15cdffd",
-      "implementation-summary.md": "597772abc39dcefad3f9bdb28bbaa3360ca2b85049f04ca11fcb404159590266"
+      "implementation-summary.md": "46f3bd455b77f61252860445e293cd898866e851fd2e5de96ac30f1d12bbf0b0"
     },
     "last_active_child_id": null,
     "last_active_at": null
