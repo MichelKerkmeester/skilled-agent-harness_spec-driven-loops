@@ -328,9 +328,9 @@ describe('deep-ai-council session CLI runner', () => {
     },
     {
       kind: 'cli-devin',
-      model: 'adaptive',
+      model: 'swe',
       command: 'devin',
-      expectedArgs: (prompt: string) => ['-p', prompt, '--model', 'adaptive', '--permission-mode', 'auto'],
+      expectedArgs: (prompt: string) => ['-p', prompt, '--model', 'swe', '--permission-mode', 'auto'],
     },
     {
       kind: 'cli-pi',

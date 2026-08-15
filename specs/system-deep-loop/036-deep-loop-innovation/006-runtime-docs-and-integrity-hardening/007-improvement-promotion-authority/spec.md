@@ -12,27 +12,32 @@ contextType: "planning"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-improvement-promotion-authority"
-    last_updated_at: "2026-08-11T13:55:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
+    last_updated_at: "2026-08-15T08:00:00Z"
     last_updated_by: "codex"
-    recent_action: "Confirmed the 3-finding tail landed as f6cdf604a2; implementation is 13/13"
-    next_safe_action: "Evidence the checklist and reconcile the ADRs."
-    blockers: []
+    recent_action: "Implemented and regression-tested all 13 findings; accepted ADR-001 through ADR-003"
+    next_safe_action: "Independent verification, commit, main validation"
+    blockers:
+      - "Independent verifier not available in this single-actor session"
+      - "Sandbox cannot write the shared git index, so no candidate commit SHA can be created"
+      - "Worktree strict validation cannot complete its command-tree environment check"
     key_files:
       - "spec.md"
       - "plan.md"
       - "tasks.md"
       - "checklist.md"
       - "decision-record.md"
-    completion_pct: 77
+    completion_pct: 88
     open_questions:
-      - "Packet closeout remains open even though all 13 implementation findings landed: checklist items and ADR dispositions still require evidence-backed reconciliation"
-      - "What is the approval model for autonomous mode: advisory-only, or a candidate-and-target-bound operator receipt?"
-      - "Which evaluator identity source replaces candidate frontmatter?"
+      - "REQ-U04 still requires an adversarial pass by a different actor"
+      - "REQ-U05 still requires an immutable candidate commit SHA"
+      - "REQ-U06 still requires strict validation from a complete main-checkout environment"
     answered_questions:
       - "CALIBRATION: these eight P0s are severity-inflated. The actor is the operator or a stale local file, not a remote attacker. Read them as cutover-readiness and robustness risk."
       - "The receipt format and approval model are a design decision requiring a decision record, not a patch"
       - "Promotion copies bytes into canonical targets, so a mistake here overwrites shipped files"
+      - "Autonomous mode is advisory-only under the operator's explicit no-dark-to-live-authority-flip constraint"
+      - "Evaluator identity comes from the target manifest profile, agent name, epoch, and canonical evaluator source"
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
@@ -67,7 +72,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress — 13/13 implementation findings landed; the checklist is 0/50 and the ADRs remain Proposed. Tail commit: `f6cdf604a2`. |
+| **Status** | In Progress — runtime implementation is complete and all 13 findings have named green probes, but verification closeout remains partial: independent verification, immutable candidate-SHA evidence, and main-checkout strict validation are open. |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `system-deep-loop/036-deep-loop-innovation` |

@@ -12,12 +12,15 @@ contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-improvement-promotion-authority"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "All 13 implementation findings landed across 0d1827eef5 and f6cdf604a2"
-    next_safe_action: "Run checklist items with SHA-bound evidence."
-    blockers: []
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
+    last_updated_at: "2026-08-15T08:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "All 13 findings have green named probes; checklist closeout remains evidence-blocked"
+    next_safe_action: "Commit, independent verification, main validation"
+    blockers:
+      - "Sandbox cannot write the shared Git index, so no candidate commit SHA exists"
+      - "Independent verifier not available in this single-actor session"
+      - "Strict validator command-tree environment is incomplete in this worktree"
     key_files:
       - "checklist.md"
     completion_pct: 0
@@ -243,9 +246,20 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 | P1 Items | 22 | 0/22 |
 | P2 Items | 2 | 0/2 |
 
-**Verification Date**: not yet run
-**Verified By**: not yet assigned
-**Status**: Planned — no item may be marked `[x]` without a test name, a suite-content digest, and a candidate SHA.
+**Verification Date**: 2026-08-15 (builder pass only)
+**Verified By**: Codex (builder; not the independent actor required by REQ-U04)
+**Status**: Verification Closeout Partial — the named affected probes are green and ADR-001 through ADR-004 are terminal, but no checklist item is eligible for `[x]` until the working tree has an immutable candidate commit SHA. Independent verification and main-checkout strict validation also remain open.
+
+### Observed Builder Evidence (not yet eligible for checklist credit)
+
+- Affected promotion-authority matrix: 8 files, 52 passed, exit 0.
+- Sweep acceptance/runtime: 2 files, 25 passed, exit 0.
+- Council project: 10 files, 118 passed, exit 0 (baseline: 109 passed, 2 failed, exit 1).
+- REMEDIATE module/CLI plus state-machine wiring: 2 passed, exit 0.
+- TypeScript: `tsc --noEmit --ignoreDeprecations 6.0`, exit 0.
+- Aggregate suite-content SHA-256: `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`.
+- Candidate base: `149742c46260277ae26df6fe6cfe582a9d02454d`; no candidate commit SHA because the sandbox rejected the shared index lock with `Operation not permitted`.
+- Receipt write probe: 100 authenticated exclusive writes in 485.381 ms total, 4.854 ms mean, exit 0. This records current cost only; it is not a before/after promotion benchmark, so CHK-111 remains open.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -255,6 +269,6 @@ Evidence strings must name a **test name + suite-content digest + candidate SHA*
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| Operator | Reserved ADR-004: approval model for autonomous mode (advisory-only vs candidate-and-target-bound operator receipt) | [ ] Approved | |
+| Operator | ADR-004 advisory-only model selected by the explicit no-dark-to-live-authority-flip task constraint | [x] Approved | 2026-08-15 |
 | Independent verifier | REQ-U04 adversarial pass targeted at whether any promotion path still trusts a mutable local file | [ ] Approved | |
 <!-- /ANCHOR:sign-off -->

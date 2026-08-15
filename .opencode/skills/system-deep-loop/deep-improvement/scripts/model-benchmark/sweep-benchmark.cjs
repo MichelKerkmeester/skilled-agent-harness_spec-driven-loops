@@ -45,7 +45,7 @@ const SCRIPTS_ROOT = __dirname;
 const DEFAULT_REGISTRY_PATH = path.resolve(
   SCRIPTS_ROOT,
   '..', '..', '..', '..',
-  'sk-prompt', 'prompt-improve', 'assets', 'framework-registry.json',
+  'sk-prompt', 'sk-prompt-improve', 'assets', 'framework-registry.json',
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -320,10 +320,11 @@ function dispatchCell(cell, promptText, opts) {
     // plain-text executors return the assistant text directly on stdout.
     const stdout = res.stdout || '';
     const assistantText = res.mock ? stdout : extractAssistantText(stdout);
+    const hasAssistantText = typeof assistantText === 'string' && assistantText.trim().length > 0;
 
     return {
       assistantText,
-      dispatch_ok: !!res.ok && assistantText.trim().length > 0,
+      dispatch_ok: !!res.ok && hasAssistantText,
       exit_code: typeof res.exit_code === 'number' ? res.exit_code : -1,
       latency_ms: Date.now() - t0,
       attempts: res.attempts || 0,
@@ -634,6 +635,7 @@ if (require.main === module) main();
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
+  dispatchCell,
   runSweep,
   expandCells,
   loadFixtureIndex,

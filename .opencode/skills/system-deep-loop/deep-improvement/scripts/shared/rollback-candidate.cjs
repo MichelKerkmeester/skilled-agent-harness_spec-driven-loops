@@ -11,6 +11,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
+const { readVerifiedReceipt } = require('./promotion-receipts.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -190,33 +191,30 @@ function assertAcceptanceReceipt(acceptanceFilePath, acceptedState) {
   }
   let receipt;
   try {
-    receipt = readJson(receiptPath);
+    receipt = readVerifiedReceipt(receiptPath, 'promotion-acceptance');
   } catch (error) {
-    fail(`Cannot roll back: acceptance receipt is not valid JSON: ${error.message}`);
+    fail(`Cannot roll back: acceptance receipt is not authentic: ${error.message}`);
     return;
   }
-  if (receipt.acceptanceHash !== sha256File(acceptanceFilePath)) {
+  if (receipt.acceptance?.state?.path !== acceptanceFilePath
+    || receipt.acceptance?.state?.hash !== sha256File(acceptanceFilePath)) {
     fail('Cannot roll back: acceptance file has been modified since the receipt was issued');
   }
-  if (receipt.target !== acceptedState.target || receipt.candidate !== acceptedState.candidate) {
+  if (receipt.binding?.target?.path !== acceptedState.target
+    || receipt.binding?.candidate?.path !== acceptedState.candidate) {
     fail('Cannot roll back: acceptance receipt does not match the acceptance file target/candidate');
   }
+  if (receipt.acceptance?.preAcceptBackup?.path !== acceptedState.preAcceptBackupPath
+    || receipt.acceptance?.preAcceptBackup?.hash !== acceptedState.preAcceptTargetHash
+    || receipt.acceptance?.candidateSnapshot?.path !== acceptedState.candidateSnapshotPath
+    || receipt.acceptance?.candidateSnapshot?.hash !== acceptedState.candidateHash) {
+    fail('Cannot roll back: acceptance receipt does not match the recorded snapshots');
+  }
+  return receipt;
 }
 
-function assertRollbackHashGuard(acceptedState, target, backup) {
-  if (!acceptedState) {
-    return;
-  }
-
-  if (!acceptedState.candidateHash) {
-    fail('Cannot roll back: acceptance file does not contain a verifiable accepted-state hash');
-  }
-
-  if (!acceptedState.preAcceptTargetHash) {
-    fail('Cannot roll back: acceptance file does not contain a pre-acceptance target hash');
-  }
-
-  if (sha256File(backup) !== acceptedState.preAcceptTargetHash) {
+function assertRollbackHashGuard(receipt, target, backup) {
+  if (sha256File(backup) !== receipt.acceptance.preAcceptBackup.hash) {
     fail('Cannot roll back: backup file hash does not match the accepted pre-acceptance target hash');
   }
 
@@ -227,7 +225,7 @@ function assertRollbackHashGuard(acceptedState, target, backup) {
   const currentTargetHash = sha256File(target);
   // Rollback must target the promoted candidate so a stale pre-acceptance target
   // cannot authorize restoration over the wrong canonical state.
-  if (currentTargetHash !== acceptedState.candidateHash) {
+  if (currentTargetHash !== receipt.acceptance.candidateSnapshot.hash) {
     fail('Cannot roll back: unexpected canonical target state; expected accepted candidate');
   }
 }
@@ -239,17 +237,19 @@ function assertRollbackHashGuard(acceptedState, target, backup) {
 function main() {
   const args = parseArgs(process.argv.slice(2));
   const acceptanceFilePath = args['acceptance-file'];
-  const acceptedState = acceptanceFilePath ? readJson(acceptanceFilePath) : null;
-  if (acceptedState) {
-    assertAcceptanceReceipt(acceptanceFilePath, acceptedState);
+  if (!acceptanceFilePath) {
+    process.stderr.write('Usage: node rollback-candidate.cjs --acceptance-file=... [--event-log=...]\n');
+    process.exit(2);
   }
+  const acceptedState = readJson(acceptanceFilePath);
+  const acceptanceReceipt = assertAcceptanceReceipt(acceptanceFilePath, acceptedState);
   const target = args.target || acceptedState?.target;
   const backup = args.backup || acceptedState?.preAcceptBackupPath;
   const configPath = args.config || acceptedState?.configPath;
   const manifestPath = args.manifest || acceptedState?.manifestPath;
 
   if (!target || !backup || !configPath || !manifestPath) {
-    process.stderr.write('Usage: node rollback-candidate.cjs --target=... --backup=... --config=... --manifest=... [--acceptance-file=...] [--event-log=...]\n');
+    process.stderr.write('Usage: node rollback-candidate.cjs --acceptance-file=... [--event-log=...]\n');
     process.exit(2);
   }
 
@@ -277,6 +277,9 @@ function main() {
 
   try {
     assertWithinAllowedRoots(target, config);
+    assertWithinAllowedRoots(backup, config);
+    assertWithinAllowedRoots(acceptanceFilePath, config);
+    if (eventLogPath) assertWithinAllowedRoots(eventLogPath, config);
   } catch (error) {
     fail(error.message);
   }
@@ -285,7 +288,7 @@ function main() {
     fail(`Cannot roll back: backup file not found: ${backup}`);
   }
 
-  assertRollbackHashGuard(acceptedState, target, backup);
+  assertRollbackHashGuard(acceptanceReceipt, target, backup);
 
   ensureParent(target);
   fs.copyFileSync(backup, target);

@@ -2,8 +2,8 @@
 # MODEL BENCHMARK: EVALUATION LOOP (AUTONOMOUS MODE)
 # ─────────────────────────────────────────────────────────────────
 role: Model Benchmark Specialist using deep-improvement model-benchmark mode autonomously
-purpose: Profile-driven model and prompt-framework benchmarking with deterministic fixture scoring and guarded promotion
-action: Resolve a benchmark profile, materialize fixtures, score model variants across fixtures, reduce evidence, and decide keep/reject/promote
+purpose: Profile-driven model and prompt-framework benchmarking with deterministic fixture scoring and advisory recommendations
+action: Resolve a benchmark profile, materialize fixtures, score model variants across fixtures, reduce evidence, and decide keep/reject/recommend
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
@@ -15,7 +15,7 @@ operating_mode:
   approvals: none
   tracking: append_only_jsonl_ledger
   validation: profile_driven_fixture_scoring
-  promotion: guarded_canonical_only
+  promotion: advisory_only
   description: |
     Executes the model benchmark loop without step-by-step approval.
     Each iteration: resolve profile -> run loop-host model-benchmark (materialize then run-benchmark) -> reduce -> decide.
@@ -192,10 +192,9 @@ workflow:
       step_recommendation:
         description: "Recommend continue, promote, or stop based on reducer output and the benchmark report scoringMethod"
         action: "Check experiment-registry.json for the best benchmark record and stopStatus; read scoringMethod from .opencode/skills/sk-prompt/sk-prompt-models/benchmarks/{run_label}/report.json (reviewer runs write reviewer-report.json instead; read that file for reviewer scoring)"
-      step_promote_candidate:
-        description: "Offer optional promotion of the accepted benchmark variant to canonical target (guarded benchmark-mode path, requires benchmark evidence)"
-        promotion_evidence: "Lane B promotes on benchmark evidence. The gate is the benchmark report (report.json, or reviewer-report.json for reviewer runs, under .opencode/skills/sk-prompt/sk-prompt-models/benchmarks/{run_label}/) passed via --benchmark-report. promote-candidate.cjs runs its benchmark-mode path when --score is omitted, reads status, recommendation, target, profileId, and aggregateScore from the report, and refuses promotion unless status is benchmark-complete with a benchmark-pass recommendation and a passing aggregate and repeatability gate. There is no scored agent file and no --score argument in Lane B."
-        command: 'node .opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report=.opencode/skills/sk-prompt/sk-prompt-models/benchmarks/{run_label}/$([ "{scoring_method}" = "reviewer" ] && echo reviewer-report.json || echo report.json) --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target-manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve={spec_folder}/improvement/approval-receipt.json'
+      step_recommend_candidate:
+        description: "Report a promotion recommendation without mutating a canonical target"
+        action: "Emit the candidate path and evidence paths for a separate operator-authorized promotion session. Autonomous benchmark execution must not invoke the promotion helper or create an approval receipt."
       step_report_status:
         description: "Report STATUS with the benchmark outcome and scoring method"
         action: "Report STATUS=benchmark-complete with scoringMethod={scoring_method}, grader={grader}, and the final aggregate score. For reviewer runs, include any REVIEWER_BENCHMARK mismatch lines from reviewer-report.json."

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { mkdtempSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -197,4 +197,22 @@ describe('deep-ai-council topic orchestration', () => {
       });
     });
   });
+
+  it.each(['../escape', 'topic/escape', 'topic\\escape', 'Topic-001', 'topic--001'])(
+    'rejects unsafe topic id %s before creating any topic directory',
+    async (topicId) => {
+      await withTempPacket(async (packetSpecFolder) => {
+        const state = sessionState(packetSpecFolder, 1);
+
+        await expect(orchestrateTopic({
+          topic_id: topicId,
+          session_state: state,
+          executor_config: {
+            dispatchSeat: async () => ({ verdict: baseVerdict }),
+          },
+        })).rejects.toThrow(/topic_id must contain only/);
+        expect(existsSync(join(packetSpecFolder, 'ai-council', 'topics'))).toBe(false);
+      });
+    },
+  );
 });

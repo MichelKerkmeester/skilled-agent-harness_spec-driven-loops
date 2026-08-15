@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join, parse } from 'node:path';
@@ -37,7 +37,7 @@ const {
   writeReport: (packetSpecFolder: string, content: string, options?: Record<string, unknown>) => string;
   parseStateLog: (jsonl: string) => Record<string, unknown>[];
   councilRootFor: (packetSpecFolder: string) => { packetRoot: string; aiCouncilRoot: string };
-  assertMemorySavePayloadOutSafe: (payloadOutPath: string) => string;
+  assertMemorySavePayloadOutSafe: (payloadOutPath: string, packetSpecFolder: string) => string;
 };
 
 const HELPER_PATH = join(dirname(fileURLToPath(import.meta.url)), '../persist-artifacts.cjs');
@@ -443,11 +443,27 @@ Trade-off: the full report sections arrive later, not atomically with the seat.
       }
     });
 
-    it('still accepts a real, non-symlinked out-of-cwd packet root (OS tmpdir), unaffected by the authorization gate', async () => {
+    it('accepts a real packet root under the configured authority root', async () => {
       await withTempPacket(async (packetSpecFolder) => {
         const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
         expect(aiCouncilRoot).toBe(join(packetSpecFolder, 'ai-council'));
       });
+    });
+
+    it('refuses a caller-selected packet root outside configured authority before mkdir', () => {
+      const authorityRoot = mkdtempSync(join(tmpdir(), 'council-authority-root-'));
+      const outsideRoot = mkdtempSync(join(tmpdir(), 'council-outside-root-'));
+      const previous = process.env.DEEP_AI_COUNCIL_AUTHORIZED_SPEC_ROOTS;
+      try {
+        process.env.DEEP_AI_COUNCIL_AUTHORIZED_SPEC_ROOTS = authorityRoot;
+        expect(() => councilRootFor(outsideRoot)).toThrow(/outside configured authorized roots/);
+        expect(existsSync(join(outsideRoot, 'ai-council'))).toBe(false);
+      } finally {
+        if (previous === undefined) delete process.env.DEEP_AI_COUNCIL_AUTHORIZED_SPEC_ROOTS;
+        else process.env.DEEP_AI_COUNCIL_AUTHORIZED_SPEC_ROOTS = previous;
+        rmSync(authorityRoot, { recursive: true, force: true });
+        rmSync(outsideRoot, { recursive: true, force: true });
+      }
     });
   });
 
@@ -455,25 +471,37 @@ Trade-off: the full report sections arrive later, not atomically with the seat.
 
   describe('--memory-save-payload-out refuses to write through a symlink', () => {
     it('assertMemorySavePayloadOutSafe refuses an existing symlink target', () => {
-      const dir = mkdtempSync(join(tmpdir(), 'council-payload-symlink-'));
-      const decoy = join(dir, 'decoy.json');
-      const linkPath = join(dir, 'payload-out.json');
+      const packet = mkdtempSync(join(tmpdir(), 'council-payload-symlink-'));
+      const decoy = join(packet, 'decoy.json');
+      const councilRoot = join(packet, 'ai-council');
+      const linkPath = join(councilRoot, 'payload-out.json');
       try {
+        mkdirSync(councilRoot, { recursive: true });
         writeFileSync(decoy, '{"untouched":true}\n', 'utf8');
         symlinkSync(decoy, linkPath);
-        expect(() => assertMemorySavePayloadOutSafe(linkPath)).toThrow(/symlink/);
+        expect(() => assertMemorySavePayloadOutSafe(linkPath, packet)).toThrow(/symlink/);
         expect(readFileSync(decoy, 'utf8')).toBe('{"untouched":true}\n');
       } finally {
-        rmSync(dir, { recursive: true, force: true });
+        rmSync(packet, { recursive: true, force: true });
       }
+    });
+
+    it('rejects a payload output outside the authorized council root', async () => {
+      await withTempPacket(async (packetSpecFolder) => {
+        const outside = join(tmpdir(), 'council-payload-outside.json');
+        expect(() => assertMemorySavePayloadOutSafe(outside, packetSpecFolder)).toThrow(/OUT_OF_SCOPE_WRITE/);
+        expect(existsSync(outside)).toBe(false);
+      });
     });
 
     it('the CLI refuses to overwrite an attacker-planted symlink through --memory-save-payload-out', () => {
       const packet = mkdtempSync(join(tmpdir(), 'council-payload-cli-'));
       const decoyDir = mkdtempSync(join(tmpdir(), 'council-payload-cli-decoy-'));
       const decoy = join(decoyDir, 'secret.json');
-      const payloadOutLink = join(packet, 'payload-out.json');
+      const councilRoot = join(packet, 'ai-council');
+      const payloadOutLink = join(councilRoot, 'payload-out.json');
       try {
+        mkdirSync(councilRoot, { recursive: true });
         writeFileSync(decoy, '{"untouched":true}\n', 'utf8');
         symlinkSync(decoy, payloadOutLink);
 
@@ -510,10 +538,7 @@ Trade-off: the full report sections arrive later, not atomically with the seat.
           result = spawnError;
         }
 
-        // Partial-write-failure semantics: artifacts still land, but the
-        // payload write is refused and reported (exit 2), and the symlinked
-        // decoy must never be overwritten with council payload content.
-        expect(result.status).toBe(2);
+        expect(result.status).toBe(1);
         expect(result.stderr).toMatch(/symlink/);
         expect(readFileSync(decoy, 'utf8')).toBe('{"untouched":true}\n');
       } finally {

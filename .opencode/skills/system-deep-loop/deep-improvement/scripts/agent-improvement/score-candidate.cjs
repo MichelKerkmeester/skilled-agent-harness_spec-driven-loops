@@ -136,15 +136,32 @@ function loadManifest(manifestPath) {
   }
 }
 
-function inferProfileId(targetPath, explicitProfile, manifest) {
-  if (explicitProfile) {
-    return explicitProfile;
+function resolveEvaluatorAuthority(targetPath, explicitProfile, manifest) {
+  if (!manifest || !Array.isArray(manifest.targets)) {
+    throw new Error('Evaluator authority requires a target manifest');
   }
   const manifestTarget = manifest?.targets?.find((entry) => entry.path === targetPath);
-  if (manifestTarget?.profileId) {
-    return manifestTarget.profileId;
+  if (!manifestTarget) {
+    throw new Error(`Evaluator authority has no manifest entry for target ${targetPath}`);
   }
-  return 'dynamic';
+  const profileId = manifestTarget.profileId;
+  const agentName = manifestTarget.evaluatorAgentName;
+  const epoch = manifestTarget.evaluatorEpoch;
+  const sourcePath = manifestTarget.evaluatorSourcePath || targetPath;
+  for (const [field, value] of [
+    ['profileId', profileId],
+    ['evaluatorAgentName', agentName],
+    ['evaluatorEpoch', epoch],
+    ['evaluatorSourcePath', sourcePath],
+  ]) {
+    if (typeof value !== 'string' || !value.trim() || value === 'dynamic') {
+      throw new Error(`Evaluator authority requires a non-dynamic ${field}`);
+    }
+  }
+  if (explicitProfile && explicitProfile !== profileId) {
+    throw new Error(`Explicit profile ${explicitProfile} does not match manifest evaluator profile ${profileId}`);
+  }
+  return { profileId, agentName, epoch, sourcePath };
 }
 
 function inferFamily(profileId, manifest, targetPath) {
@@ -169,7 +186,7 @@ const DIMENSION_WEIGHTS = {
 
 const RUBRIC_VERSION = 'dynamic-5d/p126-reproducibility-v1';
 
-// F-P1-11: scope the score cache under a packet-local directory rather than a shared,
+// Scope the score cache under a packet-local directory rather than a shared,
 // world-writable os.tmpdir() location whose contents are trusted before rescoring.
 // Prefer the --output directory (the canonical packet-local outputs dir), then the
 // candidate's own directory; only fall back to os.tmpdir() when neither is available.
@@ -196,7 +213,7 @@ function cachePathFor(cacheDir, inputHash) {
   return path.join(cacheDir, `${inputHash}.json`);
 }
 
-// F017-P2-10 (017 review): the filename is the only thing binding a cache entry to its
+// The filename is the only thing binding a cache entry to its
 // inputHash. Treat the embedded blob as untrusted on read: require cached.inputHash to
 // equal the recomputed inputHash AND a scored status. Any mismatch (tampered or stale
 // blob, wrong-key file dropped into the cache dir, parse failure) is a cache MISS so the
@@ -312,7 +329,7 @@ function scoreDimIntegration(agentName, integrationReport) {
   const summary = report.summary;
   let mirrorScore = 100;
   for (const m of report.surfaces?.mirrors || []) {
-    // F017-P2-06 (017 review): read mirror.status || mirror.syncStatus so this
+    // Read mirror.status || mirror.syncStatus so this
     // lane normalizes the same field run-benchmark.cjs scoreIntegration does. The
     // scan-integration scanner emits syncStatus, so for every real input m.status
     // is undefined and this is byte-identical to reading m.syncStatus directly; the
@@ -359,8 +376,7 @@ function scoreDimOutputQuality(profile, content) {
   return { score: Math.max(0, raw - placeholderPenalty), details, maxPossible, placeholders };
 }
 
-// F017-P2-13b (017 review): command/skill refs come from candidate-derived profile
-// content, then get interpolated into fs.existsSync paths below. Without a charset guard
+// Evaluator resource refs are interpolated into filesystem paths below. Without a charset guard
 // a hostile ref (e.g. a skill "../../etc" or a command "/../../secret") turns
 // resource-refs-valid into a traversal-based existence oracle and perturbs the score.
 // Restrict each ref segment to a basename charset (mirrors run-benchmark SAFE_FIXTURE_ID)
@@ -532,7 +548,21 @@ function main() {
     });
   }
 
-  const profile = runScript('generate-profile.cjs', [`--agent=${candidatePath}`]);
+  let evaluatorAuthority;
+  try {
+    evaluatorAuthority = resolveEvaluatorAuthority(targetPath, args.profile, manifest);
+  } catch (error) {
+    emitInfraFailure(outputPath, {
+      profileId: null,
+      family: null,
+      target: targetPath,
+      candidate: candidatePath,
+      error: error.message,
+      failureModes: ['evaluator-authority-failure'],
+    });
+  }
+
+  const profile = runScript('generate-profile.cjs', [`--agent=${evaluatorAuthority.sourcePath}`]);
   if (!profile || !profile.id) {
     emitInfraFailure(outputPath, {
       target: targetPath,
@@ -543,10 +573,9 @@ function main() {
     });
   }
 
-  const manifestProfileId = inferProfileId(targetPath, args.profile, manifest);
-  const resolvedProfileId = manifestProfileId !== 'dynamic' ? manifestProfileId : profile.id;
+  const resolvedProfileId = evaluatorAuthority.profileId;
   const family = inferFamily(resolvedProfileId, manifest, targetPath);
-  const agentName = manifestProfileId !== 'dynamic' ? manifestProfileId : profile.id;
+  const agentName = evaluatorAuthority.agentName;
 
   // Accept optional --weights=<json> to override DIMENSION_WEIGHTS
   let weightsOverride = null;
@@ -581,30 +610,18 @@ function main() {
       });
     }
 
-    baselineProfile = runScript('generate-profile.cjs', [`--agent=${baselinePath}`]);
-    if (!baselineProfile || !baselineProfile.id) {
-      emitInfraFailure(outputPath, {
-        target: targetPath,
-        candidate: candidatePath,
-        baseline: baselinePath,
-        error: baselineProfile?.message || 'Failed to generate dynamic profile for baseline',
-        errorType: baselineProfile?.errorType || 'UNKNOWN',
-        failureModes: [`baseline-profile-generation-${(baselineProfile?.errorType || 'failure').toLowerCase()}`],
-      });
-    }
-
-    baselineIntegrationReport = runScript('scan-integration.cjs', [`--agent=${baselineProfile.id}`]);
+    baselineProfile = profile;
+    baselineIntegrationReport = candidateIntegrationReport;
   }
 
   const effectiveWeights = weightsOverride || DIMENSION_WEIGHTS;
   const inputHash = computeInputHash({
     rubricVersion: RUBRIC_VERSION,
-    // F-P1-12: bind candidate identity into the cache key. Previously the hash covered
+    // Bind candidate identity into the cache key. Previously the hash covered
     // candidateContent + targetPath but not the candidate/baseline paths, so a stale
     // cache entry for one candidate could be served for a different candidate whose
     // content/profile happened to hash the same. Keying on the paths makes a mismatch
-    // miss the cache and rescore. Score/dimension outputs for a given candidate path are
-    // unchanged (paths are part of the key, not the scoring math).
+    // miss the cache and rescore. Paths are part of the key, not the scoring math.
     candidatePath,
     baselinePath: baselinePath || null,
     candidateContent,
@@ -612,6 +629,7 @@ function main() {
     targetPath,
     manifest: manifest || null,
     profile: stripVolatileFields(profile),
+    evaluatorAuthority,
     baselineProfile: stripVolatileFields(baselineProfile),
     dimensionConfig: {
       weights: effectiveWeights,
@@ -638,7 +656,7 @@ function main() {
   const dynamicResult = scoreDynamic(candidateContent, agentName, profile, weightsOverride, candidateIntegrationReport);
 
   if (baselinePath) {
-    baselineResult = scoreDynamic(baselineContent, baselineProfile.id, baselineProfile, weightsOverride, baselineIntegrationReport);
+    baselineResult = scoreDynamic(baselineContent, agentName, baselineProfile, weightsOverride, baselineIntegrationReport);
     baselineScore = baselineResult.weightedScore;
     delta = {
       total: dynamicResult.weightedScore !== null && baselineResult.weightedScore !== null
@@ -667,6 +685,11 @@ function main() {
     rubricVersion: RUBRIC_VERSION,
     inputHash,
     profileId: resolvedProfileId,
+    evaluatorProfileId: evaluatorAuthority.profileId,
+    evaluatorAgentName: evaluatorAuthority.agentName,
+    evaluatorEpoch: evaluatorAuthority.epoch,
+    evaluatorSourcePath: evaluatorAuthority.sourcePath,
+    evaluatorSourceHash: crypto.createHash('sha256').update(readUtf8(evaluatorAuthority.sourcePath)).digest('hex'),
     family: family || profile.family,
     evaluationMode: 'dynamic-5d',
     mode: 'agent-improvement',

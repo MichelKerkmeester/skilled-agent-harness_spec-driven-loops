@@ -12,15 +12,18 @@ contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-improvement-promotion-authority"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored the implementation plan from the WS1 phase-tree proposal"
-    next_safe_action: "Capture both vitest baselines before any edit"
-    blockers: []
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
+    last_updated_at: "2026-08-15T08:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed phases 2 through 5 and accepted the three implementation ADRs"
+    next_safe_action: "Independent verification, commit, main validation"
+    blockers:
+      - "No independent verifier in this single-actor session"
+      - "Sandbox cannot write the shared git index"
+      - "Strict validator command-tree environment is incomplete in this worktree"
     key_files:
       - "plan.md"
-    completion_pct: 0
+    completion_pct: 88
     open_questions: []
     answered_questions: []
 ---
@@ -45,6 +48,8 @@ _memory:
 
 ### Overview
 Design the acceptance receipt before touching promotion, because everything else binds to it. Capture baselines for both vitest projects first, since a red baseline is known to be possible in this area. Then bind promotion, ship and rollback to the receipt, replace candidate-controlled evaluator identity, contain every write boundary, and confine council persistence.
+
+**Current state (2026-08-15)**: Phases 2-5 are implemented and their affected suites are green. Phase 6 remains partial because the original full improvement-project baseline was not captured, an independent actor has not verified the result, the sandbox cannot create an immutable candidate commit, and strict validation must be repeated from a complete main checkout.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -55,13 +60,13 @@ Design the acceptance receipt before touching promotion, because everything else
 ### Definition of Ready
 - [ ] `021`'s hashed-child-manifest boundary has landed, so this child can be scaffolded without widening the parent recursive glob
 - [ ] Baselines captured for both the improvement and council vitest projects
-- [ ] The receipt contents fixed in ADR-001
-- [ ] The evaluator identity authority chosen
+- [x] The receipt contents fixed in ADR-001
+- [x] The evaluator identity authority chosen
 
 ### Definition of Done
-- [ ] Promotion, ship and rollback bound to the receipt
-- [ ] Every write boundary contained; council persistence confined to an authorized root
-- [ ] Non-finite and absent numerics fail closed
+- [x] Promotion, ship and rollback bound to the receipt
+- [x] Every write boundary contained; council persistence confined to an authorized root
+- [x] Non-finite and absent numerics fail closed
 - [ ] Whole gate re-run and reported as a delta against the captured baseline
 - [ ] Independent adversarial verification pass complete
 - [ ] `validate.sh --strict` exits 0 for this child
@@ -83,7 +88,7 @@ Authenticated append-only receipt plus containment at every write boundary
 - **Authorized packet root**: Council persistence confined to a root the caller cannot redirect, with topic IDs validated before any `mkdir`
 
 ### Data Flow
-Scoring -> authenticated acceptance receipt (append-only) -> promotion verifies candidate, target and input hash against the receipt -> contained copy into the canonical target -> rollback reads the recorded pre-promotion hash from the same receipt. Council persistence resolves an authorized root, validates the topic ID, and only then creates directories.
+Scoring emits evidence -> an operator-authorized issuer creates an authenticated approval receipt with exclusive creation -> promotion verifies candidate, target and input hash -> acceptance creates an authenticated receipt binding the snapshot and preimage -> contained ship copies the snapshot -> rollback verifies the accepted-candidate and backup bindings. Council persistence resolves a configured authorized root, validates the topic ID, and only then creates directories.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -120,31 +125,31 @@ Required inventories (run before implementation, record the output):
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Confirm, baseline and design
-- [ ] T001 classification of all 13 findings at HEAD
+- [x] T001 classification of all 13 findings at HEAD
 - [ ] Capture baselines for both the improvement and council vitest projects
-- [ ] Fix the receipt contents in ADR-001
-- [ ] Choose the evaluator identity authority
+- [x] Fix the receipt contents in ADR-001
+- [x] Choose the evaluator identity authority
 
 ### Phase 2: Acceptance receipt
-- [ ] Implement the authenticated append-only acceptance receipt
-- [ ] Bind promotion to candidate, target and input hash
-- [ ] Bind ship verification to the receipt rather than the mutable acceptance JSON
+- [x] Implement the authenticated append-only acceptance receipt
+- [x] Bind promotion to candidate, target and input hash
+- [x] Bind ship verification to the receipt rather than the mutable acceptance JSON
 
 ### Phase 3: Rollback and evaluator identity
-- [ ] Rollback accepts only the recorded promoted-candidate hash
-- [ ] Direct rollback records a pre-promotion hash
-- [ ] Evaluator identity from the chosen authority; the candidate cannot select it
+- [x] Rollback accepts only the recorded promoted-candidate hash
+- [x] Direct rollback records a pre-promotion hash
+- [x] Evaluator identity from the chosen authority; the candidate cannot select it
 
 ### Phase 4: Containment and approval
-- [ ] Contain candidate, archive, acceptance, event log and state write boundaries
-- [ ] Autonomous mode advisory-only or receipt-bound; flag presence is not approval
-- [ ] REMEDIATE authorization at both the CLI and module boundary
+- [x] Contain candidate, archive, acceptance, event log and state write boundaries
+- [x] Autonomous mode advisory-only or receipt-bound; flag presence is not approval
+- [x] REMEDIATE authorization at both the CLI and module boundary
 
 ### Phase 5: Council persistence and parse gates
-- [ ] Authorized packet root; topic IDs validated before any `mkdir`
-- [ ] Confine `--memory-save-payload-out`
-- [ ] Non-finite and absent numerics fail closed
-- [ ] A text-less event stream is unscorable
+- [x] Authorized packet root; topic IDs validated before any `mkdir`
+- [x] Confine `--memory-save-payload-out`
+- [x] Non-finite and absent numerics fail closed
+- [x] A text-less event stream is unscorable
 
 ### Phase 6: Delta and gate
 - [ ] Re-run both vitest projects; report deltas against the captured baselines
@@ -246,10 +251,10 @@ Phase 4 (Containment + approval) ──► Phase 5 (Council + parse gates)
 
 ### Pre-implementation Checklist
 - [ ] Baseline captured for every runner this child touches, at a named SHA
-- [ ] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
+- [x] Work runs in an isolated git worktree (a concurrent session moved the review target mid-run)
 - [ ] Both vitest project baselines captured before any change
-- [ ] Fixture target trees in place, so no test writes to a real canonical target
-- [ ] The receipt contents fixed in ADR-001 before implementation
+- [x] Fixture target trees in place, so no test writes to a real canonical target
+- [x] The receipt contents fixed in ADR-001 before implementation
 
 ### Rollback Procedure
 1. Identify which commit blocked the legitimate operation.
@@ -330,9 +335,9 @@ Phase 4 (Containment + approval) ──► Phase 5 (Council + parse gates)
 
 | ADR | Decision | Status |
 |-----|----------|--------|
-| ADR-001 | An authenticated append-only acceptance receipt binds every promotion | Proposed |
-| ADR-002 | Evaluator identity comes from an authority the candidate does not control | Proposed |
-| ADR-003 | Every write boundary is contained, and council persistence is confined to an authorized root | Proposed |
+| ADR-001 | An authenticated append-only acceptance receipt binds every promotion | Accepted |
+| ADR-002 | Evaluator identity comes from an authority the candidate does not control | Accepted |
+| ADR-003 | Every write boundary is contained, and council persistence is confined to an authorized root | Accepted |
 
 Full context, alternatives, and consequences: `decision-record.md`.
 <!-- /ANCHOR:l3-adr-summary -->

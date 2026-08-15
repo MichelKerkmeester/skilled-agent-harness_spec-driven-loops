@@ -3,9 +3,9 @@
 // Runtime-owned SQLite projection for AI Council graph state. This is a
 // derived index: packet-local ai-council artifacts remain source-of-truth.
 
-import Database from 'better-sqlite3';
 import { mkdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { DatabaseSync, type SQLInputValue } from 'node:sqlite';
 import { fileURLToPath } from 'node:url';
 
 // ───── TYPE DEFINITIONS ─────
@@ -178,10 +178,59 @@ const SCHEMA_SQL = `
 
 // ───── DATABASE LIFECYCLE ─────
 
-let db: Database.Database | null = null;
+interface CouncilStatement {
+  get(...params: unknown[]): unknown;
+  all(...params: unknown[]): unknown[];
+  run(...params: unknown[]): { changes: number | bigint; lastInsertRowid: number | bigint };
+}
+
+class CouncilDatabase {
+  readonly raw: DatabaseSync;
+
+  constructor(filePath: string) {
+    this.raw = new DatabaseSync(filePath);
+  }
+
+  exec(sql: string): void {
+    this.raw.exec(sql);
+  }
+
+  pragma(statement: string): void {
+    this.raw.exec(`PRAGMA ${statement}`);
+  }
+
+  prepare(sql: string): CouncilStatement {
+    const statement = this.raw.prepare(sql);
+    return {
+      get: (...params: unknown[]) => statement.get(...params as SQLInputValue[]),
+      all: (...params: unknown[]) => statement.all(...params as SQLInputValue[]),
+      run: (...params: unknown[]) => statement.run(...params as SQLInputValue[]),
+    };
+  }
+
+  transaction<T>(operation: () => T): () => T {
+    return () => {
+      this.raw.exec('BEGIN IMMEDIATE');
+      try {
+        const result = operation();
+        this.raw.exec('COMMIT');
+        return result;
+      } catch (error) {
+        this.raw.exec('ROLLBACK');
+        throw error;
+      }
+    };
+  }
+
+  close(): void {
+    this.raw.close();
+  }
+}
+
+let db: CouncilDatabase | null = null;
 let dbPath: string | null = null;
-let statementDb: Database.Database | null = null;
-const preparedStatements = new Map<string, Database.Statement>();
+let statementDb: CouncilDatabase | null = null;
+const preparedStatements = new Map<string, CouncilStatement>();
 
 /**
  * Initialize (or get) the council graph database.
@@ -192,13 +241,13 @@ const preparedStatements = new Map<string, Database.Statement>();
  * @param dbDir - Directory for the database file.
  * @returns The initialized Database instance.
  */
-export function initDb(dbDir: string = COUNCIL_GRAPH_STORAGE_DIR): Database.Database {
+export function initDb(dbDir: string = COUNCIL_GRAPH_STORAGE_DIR): CouncilDatabase {
   if (db) return db;
 
   try {
     mkdirSync(dbDir, { recursive: true });
     dbPath = join(dbDir, DB_FILENAME);
-    db = new Database(dbPath);
+    db = new CouncilDatabase(dbPath);
     db.pragma('journal_mode = WAL');
     db.pragma('foreign_keys = ON');
     db.exec(SCHEMA_SQL);
@@ -228,7 +277,7 @@ export function initDb(dbDir: string = COUNCIL_GRAPH_STORAGE_DIR): Database.Data
  *
  * @returns The Database instance.
  */
-export function getDb(): Database.Database {
+export function getDb(): CouncilDatabase {
   if (!db) initDb(COUNCIL_GRAPH_STORAGE_DIR);
   return db!;
 }
@@ -257,7 +306,7 @@ export function getDbPath(): string | null {
 
 // ───── HELPERS ─────
 
-function prepareStatement(sql: string): Database.Statement {
+function prepareStatement(sql: string): CouncilStatement {
   const currentDb = getDb();
   if (statementDb !== currentDb) {
     preparedStatements.clear();
@@ -697,9 +746,9 @@ export function cleanupNamespace(ns: CouncilNamespace): number {
   const { clause, params } = buildNamespaceWhere(ns);
   const d = getDb();
   const tx = d.transaction(() => {
-    const deletedEdges = prepareStatement(`DELETE FROM council_edges WHERE ${clause}`).run(...params).changes;
-    const deletedSnapshots = prepareStatement(`DELETE FROM council_snapshots WHERE ${clause}`).run(...params).changes;
-    const deletedNodes = prepareStatement(`DELETE FROM council_nodes WHERE ${clause}`).run(...params).changes;
+    const deletedEdges = Number(prepareStatement(`DELETE FROM council_edges WHERE ${clause}`).run(...params).changes);
+    const deletedSnapshots = Number(prepareStatement(`DELETE FROM council_snapshots WHERE ${clause}`).run(...params).changes);
+    const deletedNodes = Number(prepareStatement(`DELETE FROM council_nodes WHERE ${clause}`).run(...params).changes);
     return deletedEdges + deletedSnapshots + deletedNodes;
   });
   return tx();

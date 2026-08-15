@@ -22,6 +22,10 @@ const {
   inferAgentNameFromPath,
   verifyMirrorSync,
 } = require('../lib/mirror-sync-verify.cjs');
+const {
+  issueReceipt,
+  readVerifiedReceipt,
+} = require('./promotion-receipts.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -37,6 +41,7 @@ const DEFAULT_BRANCH_PRESERVATION_POLICY = 'preserve-on-failure';
 
 const ALLOWED_ARCHIVE_ROOTS = Object.freeze([
   '.opencode/specs',
+  'specs',
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -80,6 +85,23 @@ function writeJson(filePath, data) {
   fs.writeFileSync(filePath, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
 }
 
+function writeJsonExclusive(filePath, data) {
+  ensureParent(filePath);
+  let descriptor;
+  try {
+    descriptor = fs.openSync(filePath, 'wx', 0o600);
+    fs.writeFileSync(descriptor, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
+    fs.fsyncSync(descriptor);
+  } catch (error) {
+    if (error?.code === 'EEXIST') {
+      throw new Error(`Cannot promote: acceptance state already exists and cannot be replaced: ${filePath}`);
+    }
+    throw error;
+  } finally {
+    if (descriptor !== undefined) fs.closeSync(descriptor);
+  }
+}
+
 function appendJsonl(filePath, data) {
   ensureParent(filePath);
   fs.appendFileSync(filePath, `${JSON.stringify(data)}\n`, 'utf8');
@@ -102,25 +124,28 @@ function finiteOrFail(value, label, failGate) {
   return value;
 }
 
-function scoreMatchesIdentity(score, candidate, target, benchmarkReportPath) {
-  if (!score) return true;
+function scoreMatchesIdentity(score, candidate, target, approvalReceipt) {
   const mismatches = [];
-  if (score.candidate && score.candidate !== candidate) {
+  if (score.candidate !== candidate) {
     mismatches.push(`score.candidate (${score.candidate}) != requested candidate (${candidate})`);
   }
-  if (score.target && score.target !== target) {
+  if (score.target !== target) {
     mismatches.push(`score.target (${score.target}) != requested target (${target})`);
   }
-  if (score.inputHash && typeof score.inputHash === 'string') {
-    const actualInputHash = sha256File(benchmarkReportPath);
-    if (score.inputHash !== actualInputHash) {
-      mismatches.push(`score.inputHash (${score.inputHash}) != benchmark report hash (${actualInputHash})`);
+  const authority = approvalReceipt.authority;
+  const scoreBinding = approvalReceipt.binding.score;
+  if (score.inputHash !== scoreBinding?.inputHash) {
+    mismatches.push(`score.inputHash (${score.inputHash}) != approved score input hash (${scoreBinding?.inputHash})`);
+  }
+  for (const field of ['evaluatorProfileId', 'evaluatorAgentName', 'evaluatorEpoch']) {
+    if (score[field] !== authority[field]) {
+      mismatches.push(`score.${field} (${score[field]}) != approved ${field} (${authority[field]})`);
     }
   }
   return mismatches.length === 0 ? true : mismatches;
 }
 
-function requireApprovalReceipt(approveArg, candidate, target, failGate) {
+function requireApprovalReceipt(approveArg, context, failGate) {
   if (approveArg === true || approveArg === 'true') {
     failGate('Cannot promote: --approve requires a receipt path binding candidate and target, not a bare flag', {
       errorType: 'approval_requires_receipt',
@@ -138,49 +163,58 @@ function requireApprovalReceipt(approveArg, candidate, target, failGate) {
   }
   let receipt;
   try {
-    receipt = readJson(approveArg);
+    receipt = readVerifiedReceipt(approveArg, 'promotion-approval');
   } catch (err) {
-    failGate(`Cannot promote: approval receipt is not valid JSON: ${err.message}`, {
+    failGate(`Cannot promote: approval receipt is not authentic: ${err.message}`, {
       errorType: 'approval_receipt_invalid',
     });
   }
-  if (receipt.candidate !== candidate || receipt.target !== target) {
-    failGate(`Cannot promote: approval receipt does not bind this candidate (${candidate}) to this target (${target})`, {
+  const expectedArtifacts = [
+    ['candidate', context.candidate, 'hash'],
+    ['target', context.target, 'preimageHash'],
+    ['benchmarkReport', context.benchmarkReportPath, 'hash'],
+    ['repeatabilityReport', context.repeatabilityReportPath, 'hash'],
+    ['config', context.configPath, 'hash'],
+    ['manifest', context.manifestPath, 'hash'],
+  ];
+  if (context.scorePath) expectedArtifacts.push(['score', context.scorePath, 'hash']);
+  if (!context.scorePath && receipt.binding.score !== null) {
+    failGate('Cannot promote: benchmark-mode approval unexpectedly binds a score file', {
       errorType: 'approval_receipt_mismatch',
     });
+  }
+  for (const [field, filePath, hashField] of expectedArtifacts) {
+    const binding = receipt.binding[field];
+    if (binding?.path !== filePath || binding?.[hashField] !== sha256File(filePath)) {
+      failGate(`Cannot promote: approval receipt ${field} binding does not match ${filePath}`, {
+        errorType: 'approval_receipt_mismatch',
+        field,
+      });
+    }
   }
   return receipt;
 }
 
-function createAcceptanceReceipt(acceptedState, acceptanceFile) {
+function createAcceptanceReceipt(acceptedState, acceptanceFile, approvalReceipt) {
   const receiptPath = `${acceptanceFile}.receipt.json`;
   const receipt = {
-    acceptanceFile,
-    acceptedAt: acceptedState.acceptedAt,
-    acceptanceHash: sha256File(acceptanceFile),
-    target: acceptedState.target,
-    candidate: acceptedState.candidate,
-    candidateSnapshotPath: acceptedState.candidateSnapshotPath,
-    candidateHash: acceptedState.candidateHash,
-    preAcceptBackupPath: acceptedState.preAcceptBackupPath,
-    preAcceptTargetHash: acceptedState.preAcceptTargetHash,
-    archiveDir: acceptedState.archiveDir,
-    scorePath: acceptedState.scorePath,
-    benchmarkReportPath: acceptedState.benchmarkReportPath,
-    repeatabilityReportPath: acceptedState.repeatabilityReportPath,
-    configPath: acceptedState.configPath,
-    manifestPath: acceptedState.manifestPath,
+    receiptType: 'promotion-acceptance',
+    receiptId: crypto.randomUUID(),
+    issuedAt: acceptedState.acceptedAt,
+    authority: approvalReceipt.authority,
+    binding: approvalReceipt.binding,
+    acceptance: {
+      state: { path: acceptanceFile, hash: sha256File(acceptanceFile) },
+      candidateSnapshot: { path: acceptedState.candidateSnapshotPath, hash: acceptedState.candidateHash },
+      preAcceptBackup: { path: acceptedState.preAcceptBackupPath, hash: acceptedState.preAcceptTargetHash },
+    },
   };
-  writeJson(receiptPath, receipt);
+  issueReceipt(receiptPath, receipt);
   return receipt;
 }
 
-function assertArchiveContained(archiveDir, config, failGate) {
-  const absolute = realpathOrPlanned(archiveDir);
-  const configuredRoots = Array.isArray(config?.promotion?.allowedTargetRoots)
-    ? config.promotion.allowedTargetRoots
-    : [];
-  const allRoots = [...ALLOWED_ARCHIVE_ROOTS, ...configuredRoots].map((root) => {
+function resolveRoots(roots) {
+  return roots.map((root) => {
     const absoluteRoot = path.resolve(root);
     try {
       return fs.realpathSync(absoluteRoot);
@@ -188,11 +222,48 @@ function assertArchiveContained(archiveDir, config, failGate) {
       return absoluteRoot;
     }
   });
-  const contained = allRoots.some((root) => absolute === root || absolute.startsWith(`${root}${path.sep}`));
+}
+
+function assertContainedPath(candidatePath, roots, label) {
+  const absolute = realpathOrPlanned(candidatePath);
+  const resolvedRoots = resolveRoots(roots);
+  const contained = resolvedRoots.some((root) => absolute === root || absolute.startsWith(`${root}${path.sep}`));
   if (!contained) {
-    failGate(`Cannot promote: archive dir ${archiveDir} is outside allowed roots`, {
-      errorType: 'archive_boundary_violation',
-    });
+    const boundary = label === 'target' ? 'resolves outside the allowed target roots' : 'is outside allowed roots';
+    throw new Error(`Cannot promote: ${label} ${candidatePath} ${boundary}`);
+  }
+}
+
+function assertAllBoundaries(context) {
+  const configuredTargetRoots = Array.isArray(context.config?.promotion?.allowedTargetRoots)
+    ? context.config.promotion.allowedTargetRoots
+    : [];
+  const configuredArtifactRoots = Array.isArray(context.config?.promotion?.allowedArtifactRoots)
+    ? context.config.promotion.allowedArtifactRoots
+    : [];
+  const targetRoots = [...DEFAULT_ALLOWED_TARGET_ROOTS, ...configuredTargetRoots];
+  const artifactRoots = [...ALLOWED_ARCHIVE_ROOTS, ...configuredTargetRoots, ...configuredArtifactRoots];
+  const evidenceRoots = [...targetRoots, ...artifactRoots];
+
+  assertContainedPath(context.target, targetRoots, 'target');
+  for (const [label, filePath] of [
+    ['candidate', context.candidate],
+    ['score', context.scorePath],
+    ['benchmark report', context.benchmarkReportPath],
+    ['repeatability report', context.repeatabilityReportPath],
+    ['config', context.configPath],
+    ['manifest', context.manifestPath],
+    ['approval receipt', context.approveReceipt],
+  ]) {
+    if (filePath) assertContainedPath(filePath, evidenceRoots, label);
+  }
+  assertContainedPath(context.archiveDir, artifactRoots, 'archive directory');
+  for (const [label, filePath] of [
+    ['acceptance file', context.acceptanceFile],
+    ['event log', context.eventLogPath],
+    ['state file', context.stateFilePath],
+  ]) {
+    if (filePath) assertContainedPath(filePath, artifactRoots, label);
   }
 }
 
@@ -283,8 +354,8 @@ function createAcceptanceState(context) {
   const candidateSnapshotPath = path.join(context.archiveDir, `${candidateBase}.${timestamp}.accepted`);
   const acceptanceFile = resolveAcceptanceFilePath(context.args, context.archiveDir, context.target, timestamp);
 
-  fs.copyFileSync(context.target, preAcceptBackupPath);
-  fs.copyFileSync(context.candidate, candidateSnapshotPath);
+  fs.copyFileSync(context.target, preAcceptBackupPath, fs.constants.COPYFILE_EXCL);
+  fs.copyFileSync(context.candidate, candidateSnapshotPath, fs.constants.COPYFILE_EXCL);
 
   const acceptedState = {
     status: 'accepted',
@@ -305,8 +376,8 @@ function createAcceptanceState(context) {
     manifestPath: context.manifestPath,
     acceptedAt: new Date().toISOString(),
   };
-  writeJson(acceptanceFile, acceptedState);
-  createAcceptanceReceipt(acceptedState, acceptanceFile);
+  writeJsonExclusive(acceptanceFile, acceptedState);
+  createAcceptanceReceipt(acceptedState, acceptanceFile, context.approvalReceipt);
   return { acceptanceFile, acceptedState };
 }
 
@@ -325,19 +396,21 @@ function assertShipPreconditions(acceptedState, context, failGate) {
   }
   let receipt;
   try {
-    receipt = readJson(receiptPath);
+    receipt = readVerifiedReceipt(receiptPath, 'promotion-acceptance');
   } catch (err) {
-    failGate(`Cannot ship: acceptance receipt is not valid JSON: ${err.message}`, {
+    failGate(`Cannot ship: acceptance receipt is not authentic: ${err.message}`, {
       errorType: 'acceptance_receipt_invalid',
     });
   }
   const currentAcceptanceHash = sha256File(context.acceptanceFile);
-  if (receipt.acceptanceHash !== currentAcceptanceHash) {
+  if (receipt.acceptance?.state?.path !== context.acceptanceFile
+    || receipt.acceptance?.state?.hash !== currentAcceptanceHash) {
     failGate('Cannot ship: acceptance file has been modified since receipt was issued', {
       errorType: 'acceptance_receipt_mismatch',
     });
   }
-  if (receipt.target !== acceptedState.target || receipt.candidate !== acceptedState.candidate) {
+  if (receipt.binding?.target?.path !== acceptedState.target
+    || receipt.binding?.candidate?.path !== acceptedState.candidate) {
     failGate('Cannot ship: acceptance receipt does not match the acceptance state target/candidate', {
       errorType: 'acceptance_receipt_mismatch',
     });
@@ -373,7 +446,9 @@ function assertShipPreconditions(acceptedState, context, failGate) {
     });
   }
 
-  if (acceptedState.candidateHash && sha256File(shipCandidate) !== acceptedState.candidateHash) {
+  if (receipt.acceptance?.candidateSnapshot?.path !== shipCandidate
+    || receipt.acceptance?.candidateSnapshot?.hash !== acceptedState.candidateHash
+    || sha256File(shipCandidate) !== acceptedState.candidateHash) {
     failGate('Cannot ship: accepted candidate snapshot hash changed after acceptance', {
       errorType: 'accepted_candidate_changed',
     });
@@ -557,6 +632,7 @@ function main() {
     ? readAcceptanceState(args['acceptance-file'])
     : null;
   const candidate = args.candidate || acceptedState?.candidateSnapshotPath || acceptedState?.candidate;
+  const approvedCandidate = phase === PROMOTION_PHASES.ship ? acceptedState?.candidate : candidate;
   const target = args.target || acceptedState?.target;
   const scorePath = args.score || acceptedState?.scorePath;
   const benchmarkReportPath = args['benchmark-report'] || acceptedState?.benchmarkReportPath;
@@ -580,20 +656,14 @@ function main() {
   // definition mirror sync) apply to both modes.
   const benchmarkMode = !scorePath;
 
-  if (!candidate || !target || !benchmarkReportPath || !configPath || !manifestPath || !archiveDir || !approveReceipt) {
+  if (!candidate || !target || !benchmarkReportPath || !configPath || !manifestPath || !archiveDir
+    || (phase !== PROMOTION_PHASES.ship && !approveReceipt)) {
     process.stderr.write('Usage (Lane A / agent): node promote-candidate.cjs --phase=accept|ship --candidate=... --target=... --score=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve=<receipt> [--acceptance-file=...] [--event-log=...] [--allow-hurt-fixtures] [--no-baseline-ok]\n');
     process.stderr.write('Usage (Lane B / benchmark): node promote-candidate.cjs --phase=accept|ship --candidate=... --target=... --benchmark-report=... [--repeatability-report=...] --config=... --manifest=... --archive-dir=... --approve=<receipt> [--acceptance-file=...] [--event-log=...] [--allow-hurt-fixtures] [--no-baseline-ok]\n');
     process.exit(2);
   }
 
   const score = benchmarkMode ? null : readJson(scorePath);
-  if (!benchmarkMode && score) {
-    const identityResult = scoreMatchesIdentity(score, candidate, target, benchmarkReportPath);
-    if (identityResult !== true) {
-      process.stderr.write(`Cannot promote: score does not match candidate or target:\n${identityResult.join('\n')}\n`);
-      process.exit(1);
-    }
-  }
   const benchmarkReport = readJson(benchmarkReportPath);
   const resolvedRepeatabilityReportPath = repeatabilityReportPath || path.join(path.dirname(benchmarkReportPath), 'repeatability.json');
   const repeatabilityReport = readOptionalJson(resolvedRepeatabilityReportPath);
@@ -602,6 +672,26 @@ function main() {
   const preservedBranch = resolvePreservedBranch(args, config, acceptedState);
   const eventLogPath = resolveEventLogPath(args, config);
   const mirrorStateFilePath = args['state-file'] || config?.promotion?.mirrorSyncStateFile || null;
+  try {
+    assertAllBoundaries({
+      candidate,
+      target,
+      scorePath,
+      benchmarkReportPath,
+      repeatabilityReportPath: resolvedRepeatabilityReportPath,
+      configPath,
+      manifestPath,
+      approveReceipt: phase === PROMOTION_PHASES.ship ? null : approveReceipt,
+      archiveDir,
+      acceptanceFile: args['acceptance-file'] || null,
+      eventLogPath,
+      stateFilePath: mirrorStateFilePath,
+      config,
+    });
+  } catch (error) {
+    process.stderr.write(`${error.message}\n`);
+    process.exit(1);
+  }
   const blockedContext = {
     phase,
     target,
@@ -615,7 +705,34 @@ function main() {
     process.stderr.write(`${message}\n`);
     process.exit(1);
   };
-  requireApprovalReceipt(approveReceipt, candidate, target, failGate);
+  let approvalReceipt;
+  if (phase === PROMOTION_PHASES.ship) {
+    try {
+      approvalReceipt = readVerifiedReceipt(`${args['acceptance-file']}.receipt.json`, 'promotion-acceptance');
+    } catch (error) {
+      failGate(`Cannot ship: acceptance receipt is not authentic: ${error.message}`, {
+        errorType: 'acceptance_receipt_invalid',
+      });
+    }
+  } else {
+    approvalReceipt = requireApprovalReceipt(approveReceipt, {
+      candidate: approvedCandidate,
+      target,
+      scorePath,
+      benchmarkReportPath,
+      repeatabilityReportPath: resolvedRepeatabilityReportPath,
+      configPath,
+      manifestPath,
+    }, failGate);
+  }
+  if (phase !== PROMOTION_PHASES.ship && !benchmarkMode && score) {
+    const identityResult = scoreMatchesIdentity(score, approvedCandidate, target, approvalReceipt);
+    if (identityResult !== true) {
+      failGate(`Cannot promote: score identity is incomplete or mismatched:\n${identityResult.join('\n')}`, {
+        errorType: 'score_identity_mismatch',
+      });
+    }
+  }
   let allowedCanonicalTarget;
   try {
     allowedCanonicalTarget = resolveAllowedCanonicalTarget(manifestPath);
@@ -643,6 +760,10 @@ function main() {
 
   if (config?.targetProfile && benchmarkReport.profileId !== config.targetProfile) {
     failGate(`Cannot promote: benchmark profile ${benchmarkReport.profileId} does not match runtime config target profile ${config.targetProfile}`, { errorType: 'benchmark_gate_failed' });
+  }
+
+  if (benchmarkMode && benchmarkReport.profileId !== approvalReceipt.authority.evaluatorProfileId) {
+    failGate(`Cannot promote: benchmark profile ${benchmarkReport.profileId} does not match approved evaluator profile ${approvalReceipt.authority.evaluatorProfileId}`, { errorType: 'approval_receipt_mismatch' });
   }
 
   if (benchmarkReport.status !== 'benchmark-complete') {
@@ -723,8 +844,6 @@ function main() {
   } catch (error) {
     failGate(error.message, { errorType: 'boundary_gate_failed' });
   }
-
-  assertArchiveContained(archiveDir, config, failGate);
 
   // The agent scored-file gates (candidate-better
   // recommendation, weighted score gate, 5-dimension gates, score delta) only
@@ -822,6 +941,7 @@ function main() {
       manifestPath,
       preservedBranch,
       branchPreservationPolicy,
+      approvalReceipt,
     });
     const result = {
       status: 'accepted',

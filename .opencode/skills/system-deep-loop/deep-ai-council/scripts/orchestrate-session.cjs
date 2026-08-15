@@ -17,9 +17,9 @@ const { buildLineageCommand } = require('../../runtime/scripts/fanout-run.cjs');
 const { appendRoundStateRecord } = require('../../runtime/lib/council/round-state-jsonl.cjs');
 const { evaluateCouncilCostGuards, normalizeCostGuards } = require('../../runtime/lib/council/cost-guards.cjs');
 const { validateSessionStateHierarchy } = require('../../runtime/lib/council/session-state-hierarchy.cjs');
-const { orchestrateTopic } = require('./orchestrate-topic.cjs');
+const { normalizeTopicId, orchestrateTopic } = require('./orchestrate-topic.cjs');
 const { appendFinding, getCrossTopicPriors } = require('./lib/findings-registry.cjs');
-const { persistSeatStepwise } = require('./lib/persist-artifacts.cjs');
+const { councilRootFor, persistSeatStepwise } = require('./lib/persist-artifacts.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -511,7 +511,7 @@ function resolvePacketSpecFolder(sessionState, executorConfig) {
   if (typeof configured !== 'string' || configured.trim() === '') {
     throw new TypeError('packet spec folder is required on executor_config or session_state.session.spec_folder');
   }
-  return path.resolve(configured);
+  return councilRootFor(configured).packetRoot;
 }
 
 function sessionStatePath(packetSpecFolder) {
@@ -682,10 +682,7 @@ async function orchestrateSession(options = {}) {
   for (let index = 0; index < sessionState.topics.length; index += 1) {
     const topicNumber = index + 1;
     const topic = sessionState.topics[index];
-    if (typeof topic.topic_id === 'string' && topic.topic_id.includes('..')) {
-      skippedTopicIds.push(topic.topic_id);
-      continue;
-    }
+    normalizeTopicId(topic.topic_id);
     const maxTopicDecision = evaluateCouncilCostGuards({
       topicNumber,
       guards,
@@ -774,7 +771,9 @@ async function main(argv = process.argv.slice(2), options = {}) {
         );
       }
     }
-    const packetSpecFolder = path.resolve(args.packetSpecFolder || resolvePacketSpecFolder(sessionState, executorConfig));
+    const packetSpecFolder = councilRootFor(
+      args.packetSpecFolder || resolvePacketSpecFolder(sessionState, executorConfig),
+    ).packetRoot;
     const councilConfig = options.councilConfig || loadCouncilConfig(options.configPath);
     const promptTemplate = options.promptTemplate || loadPromptTemplate(options.promptPath);
     const runtimeExecutorConfig = {

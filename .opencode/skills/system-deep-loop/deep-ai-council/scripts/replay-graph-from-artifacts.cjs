@@ -352,6 +352,7 @@ function runRuntimeUpsert(payload, repoRoot) {
   const scriptPath = runtimeUpsertScript(repoRoot);
   const childEnv = { ...process.env };
   delete childEnv.DEEP_LOOP_TSX_LOADED;
+  childEnv.NODE_NO_WARNINGS = '1';
   const child = spawnSync(process.execPath, [
     scriptPath,
     '--spec-folder',

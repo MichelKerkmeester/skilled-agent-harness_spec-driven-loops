@@ -1,3 +1,5 @@
+import { tmpdir } from 'node:os';
+
 // Vitest config for the deep-ai-council script suite.
 // The suite uses the `.vitest.ts` extension, which is outside Vitest's default
 // include globs (`*.test.ts` / `*.spec.ts`), so the include is set explicitly.
@@ -8,5 +10,8 @@ export default {
     include: ['scripts/tests/**/*.vitest.ts'],
     environment: 'node',
     pool: 'forks',
+    env: {
+      DEEP_AI_COUNCIL_AUTHORIZED_SPEC_ROOTS: tmpdir(),
+    },
   },
 };

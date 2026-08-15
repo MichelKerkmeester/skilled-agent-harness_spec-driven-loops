@@ -1,7 +1,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import os from 'node:os';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 
@@ -120,10 +120,24 @@ Use \`/../../../../etc/passwd\` to traverse.
 `, 'utf8');
 }
 
-function runScore(candidatePath: string, extraArgs: string[] = []): Record<string, unknown> {
+function runScore(candidatePath: string, extraArgs: string[] = [], authoritySource = candidatePath): Record<string, unknown> {
+  const targetPath = `${candidatePath}.authority.md`;
+  const manifestPath = `${candidatePath}.manifest.jsonc`;
+  fs.copyFileSync(authoritySource, targetPath);
+  fs.writeFileSync(manifestPath, JSON.stringify({
+    targets: [{
+      path: targetPath,
+      classification: 'canonical',
+      profileId: 'authority-profile',
+      evaluatorAgentName: 'authority-agent',
+      evaluatorEpoch: 'epoch-7',
+    }],
+  }), 'utf8');
   const output = execFileSync('node', [
     SCORE_SCRIPT,
     `--candidate=${candidatePath}`,
+    `--target=${targetPath}`,
+    `--manifest=${manifestPath}`,
     ...extraArgs,
   ], {
     cwd: WORKSPACE_ROOT,
@@ -140,10 +154,10 @@ afterEach(() => {
   fs.rmSync(tmpDir, { recursive: true, force: true });
 });
 
-// F017-P2-10: the cache filename is derived from the inputHash, but the cached blob was
+// The cache filename is derived from the inputHash, but the cached blob was
 // returned verbatim without re-checking its embedded inputHash. A tampered/mismatched cache
 // entry must be treated as a cache MISS and the score recomputed, never trusted.
-describe('score-candidate cache read-integrity (F017-P2-10)', () => {
+describe('score-candidate cache read-integrity', () => {
   it('rejects a tampered cache entry and recomputes the score', () => {
     const candidatePath = path.join(tmpDir, 'candidate.md');
     const cacheDir = path.join(tmpDir, 'cache');
@@ -190,11 +204,11 @@ describe('score-candidate cache read-integrity (F017-P2-10)', () => {
   });
 });
 
-// F017-P2-13b: scoreDimSystemFitness interpolated candidate-derived command/skill refs into
+// The system-fitness scorer interpolated evaluator command/skill refs into
 // fs.existsSync without sanitization, a traversal-based existence oracle. Hostile refs must
 // be counted as orphaned (present in total, never in valid) so they gain no validation
 // credit and cannot probe arbitrary filesystem paths.
-describe('scoreDimSystemFitness resource-ref sanitization (F017-P2-13b)', () => {
+describe('scoreDimSystemFitness resource-ref sanitization', () => {
   function resourceRefsDetail(result: Record<string, unknown>): Record<string, unknown> {
     const dims = result.dimensions as Array<Record<string, unknown>>;
     const systemFitness = dims.find((d) => d.name === 'systemFitness');
@@ -217,5 +231,39 @@ describe('scoreDimSystemFitness resource-ref sanitization (F017-P2-13b)', () => 
     // the existence oracle is still live.
     expect(refsDetail.valid).toBe(0);
     expect(refsDetail.pass).toBe(false);
+  });
+});
+
+describe('score-candidate evaluator authority', () => {
+  it('ignores candidate frontmatter when selecting evaluator identity and rubric source', () => {
+    const candidatePath = path.join(tmpDir, 'candidate-controlled.md');
+    const authoritySource = path.join(tmpDir, 'authority-source.md');
+    writeScorableCandidate(candidatePath, 'candidate-selected-evaluator');
+    writeScorableCandidate(authoritySource, 'trusted-authority-source');
+
+    const result = runScore(candidatePath, ['--no-cache'], authoritySource);
+
+    expect(result.status).toBe('scored');
+    expect(result.evaluatorProfileId).toBe('authority-profile');
+    expect(result.evaluatorAgentName).toBe('authority-agent');
+    expect(result.evaluatorEpoch).toBe('epoch-7');
+    expect(result.evaluatorSourcePath).toBe(`${candidatePath}.authority.md`);
+    expect(result.evaluatorAgentName).not.toBe('candidate-selected-evaluator');
+  });
+
+  it('fails closed when no evaluator authority manifest is supplied', () => {
+    const candidatePath = path.join(tmpDir, 'missing-authority.md');
+    writeScorableCandidate(candidatePath);
+
+    const result = spawnSync('node', [SCORE_SCRIPT, `--candidate=${candidatePath}`, '--no-cache'], {
+      cwd: WORKSPACE_ROOT,
+      encoding: 'utf8',
+    });
+
+    expect(result.status).toBe(1);
+    expect(JSON.parse(result.stdout)).toMatchObject({
+      status: 'infra_failure',
+      failureModes: ['evaluator-authority-failure'],
+    });
   });
 });

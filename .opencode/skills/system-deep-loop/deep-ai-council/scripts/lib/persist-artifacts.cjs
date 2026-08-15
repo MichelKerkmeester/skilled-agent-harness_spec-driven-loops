@@ -531,11 +531,9 @@ function writeFileScoped(aiCouncilRoot, relativePath, content, options = {}) {
 
 // aiCouncilRoot is always path.resolve(packetRoot, 'ai-council'), so
 // assertInside(packetRoot, aiCouncilRoot) alone can never fail — it proves
-// nothing about what packetRoot itself is allowed to be. This closes the two
-// concretely reachable degenerate cases before any mkdir: a root with no
-// parent directory (the filesystem root) and a root that is itself a
-// symlink, either of which lets a caller-chosen positional argument redirect
-// every council write.
+// nothing about what packetRoot itself is allowed to be. The root must also
+// be a non-symlink descendant of a configured specs authority before any
+// mkdir, so a caller-chosen positional argument cannot redirect council writes.
 function assertAuthorizedPacketRoot(packetSpecFolder, packetRoot) {
   const parent = path.dirname(packetRoot);
   if (parent === packetRoot) {
@@ -543,6 +541,15 @@ function assertAuthorizedPacketRoot(packetSpecFolder, packetRoot) {
   }
   if (fs.existsSync(packetRoot) && fs.lstatSync(packetRoot).isSymbolicLink()) {
     throw new Error(`[ai-council] packet spec folder is a symlink, refusing to write through it: ${packetSpecFolder}`);
+  }
+  const configured = process.env.DEEP_AI_COUNCIL_AUTHORIZED_SPEC_ROOTS;
+  const authorizedRoots = (configured
+    ? configured.split(path.delimiter).filter(Boolean)
+    : [path.resolve(process.cwd(), 'specs'), path.resolve(process.cwd(), '.opencode/specs')])
+    .map(canonicalizeExistingPrefix);
+  const canonicalPacketRoot = canonicalizeExistingPrefix(packetRoot);
+  if (!authorizedRoots.some((root) => isContainedPath(root, canonicalPacketRoot))) {
+    throw new Error(`[ai-council] packet spec folder is outside configured authorized roots: ${packetSpecFolder}`);
   }
 }
 
@@ -984,7 +991,7 @@ function readInput(inputFile) {
 // artifacts are. The write must still refuse to follow an existing symlink
 // at the target or its parent directory, or a planted symlink silently
 // redirects the payload write onto a file the caller never named.
-function assertMemorySavePayloadOutSafe(payloadOutPath) {
+function assertMemorySavePayloadOutSafe(payloadOutPath, packetSpecFolder) {
   const resolved = path.resolve(payloadOutPath);
   if (fs.existsSync(resolved) && fs.lstatSync(resolved).isSymbolicLink()) {
     throw new Error(`[ai-council] --memory-save-payload-out refuses to write through an existing symlink: ${resolved}`);
@@ -993,6 +1000,8 @@ function assertMemorySavePayloadOutSafe(payloadOutPath) {
   if (fs.existsSync(parentDir) && fs.lstatSync(parentDir).isSymbolicLink()) {
     throw new Error(`[ai-council] --memory-save-payload-out parent directory is a symlink: ${parentDir}`);
   }
+  const { aiCouncilRoot } = councilRootFor(packetSpecFolder);
+  assertInside(aiCouncilRoot, resolved);
   return resolved;
 }
 
@@ -1006,6 +1015,10 @@ function main(argv = process.argv.slice(2)) {
   let args;
   try {
     args = parseArgs(argv);
+    councilRootFor(args.packetSpecFolder);
+    const payloadOutPath = args.memorySavePayloadOut
+      ? assertMemorySavePayloadOutSafe(args.memorySavePayloadOut, args.packetSpecFolder)
+      : null;
     const markdown = readInput(args.inputFile);
     if (!normalizeText(markdown)) throw new Error('[ai-council] No council report input provided');
 
@@ -1043,7 +1056,6 @@ function main(argv = process.argv.slice(2)) {
     if (args.memorySavePayloadOut) {
       try {
         const payload = buildMemorySavePayload(parsed, args.packetSpecFolder);
-        const payloadOutPath = assertMemorySavePayloadOutSafe(args.memorySavePayloadOut);
         fs.mkdirSync(path.dirname(payloadOutPath), { recursive: true });
         fs.writeFileSync(payloadOutPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
       } catch (payloadError) {

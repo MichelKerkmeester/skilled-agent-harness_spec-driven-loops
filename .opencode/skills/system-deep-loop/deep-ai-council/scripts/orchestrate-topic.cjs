@@ -16,6 +16,7 @@ const { appendRoundStateRecord } = require('../../runtime/lib/council/round-stat
 const { scoreVerdictDelta } = require('../../runtime/lib/council/adjudicator-verdict-scoring.cjs');
 const { normalizeCostGuards } = require('../../runtime/lib/council/cost-guards.cjs');
 const { validateSessionStateHierarchy } = require('../../runtime/lib/council/session-state-hierarchy.cjs');
+const { councilRootFor } = require('./lib/persist-artifacts.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -32,6 +33,7 @@ const COUNCIL_ROUTE_FIELDS = Object.freeze({
   depth_aware: true,
   do_not_switch_mode: true,
 });
+const SAFE_TOPIC_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -50,8 +52,8 @@ function normalizeTopicId(value) {
     throw new TypeError('topic_id must be a non-empty string');
   }
   const trimmed = value.trim();
-  if (trimmed.includes('..')) {
-    throw new TypeError('topic_id must not contain path traversal patterns');
+  if (!SAFE_TOPIC_ID.test(trimmed)) {
+    throw new TypeError('topic_id must contain only lowercase alphanumeric hyphen-delimited segments');
   }
   return trimmed;
 }
@@ -109,7 +111,7 @@ function resolvePacketSpecFolder(sessionState, executorConfig) {
   if (typeof configured !== 'string' || configured.trim() === '') {
     throw new TypeError('packet spec folder is required on executor_config or session_state.session.spec_folder');
   }
-  return path.resolve(configured);
+  return councilRootFor(configured).packetRoot;
 }
 
 function roundIdFor(roundNumber) {
@@ -399,6 +401,7 @@ async function orchestrateTopic(options = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
+  normalizeTopicId,
   orchestrateTopic,
   roundIdFor,
   roundStatePath,
