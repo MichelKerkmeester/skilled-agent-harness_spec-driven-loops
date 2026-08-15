@@ -33,12 +33,13 @@ The continuous-integration workflow resolves this by giving the operator one **l
 
 ---
 
-## 2. THE THREE SCRIPTS
+## 2. THE FOUR SCRIPTS
 
 | Script | Role | Runs where |
 |--------|------|-----------|
 | `.opencode/bin/git-sync.sh` | Publish a session's commits to the live branch | Each session (via the `post-commit` hook, or manually) |
 | `.opencode/bin/git-live-follow.sh` | Fast-forward the IDE checkout as the live branch advances | The operator's primary checkout |
+| `.opencode/bin/git-primary-reconcile.sh` | Reconcile clean primary-checkout drift at SessionStart | The operator's primary checkout, backgrounded by each runtime |
 | `.opencode/bin/worktree-status.sh` | Glance dashboard of every worktree's ahead / behind / dirty state | Anywhere (read-only) |
 
 ### `git-sync.sh` — the publish primitive
@@ -64,6 +65,14 @@ git-live-follow.sh [--live <branch>] [--interval <sec>] [--once]
 ```
 
 Polls the live branch and fast-forwards the checkout **only** when the local tip is an ancestor of the remote tip and the working tree is clean. A diverged branch or a dirty tree is reported, never overwritten — an in-progress edit in the IDE is never clobbered by an incoming commit. Run it once per IDE session (e.g. backgrounded), or `--once` for a manual "catch me up."
+
+### `git-primary-reconcile.sh` - the SessionStart convergence step
+
+Every runtime backgrounds the same script at SessionStart, so primary-checkout correctness does not depend on a long-running follower surviving between sessions. The script acts only when `git-dir` and `git-common-dir` resolve to the same path and the checkout is on the resolved live branch. Linked worktrees, detached HEADs, and intentional feature branches are zero-exit no-ops.
+
+Tracked changes are the hard safety boundary. If either the working tree or index contains tracked changes, the script logs one loud skip before fetch and never merges, rebases, or pushes. Untracked build output is intentionally ignored. A clean behind-only checkout fast-forwards without pushing. Clean unpublished local commits are rebased onto `origin/<live>` and published through the normal non-force push plus existing pre-push gates. A conflict aborts and asserts the original HEAD and clean tracked state; a rejected push classifies the stable `[gate:<name>]` marker and leaves the local commit preserved but unpublished.
+
+The common-dir single-flight lock prevents concurrent SessionStarts from racing and treats a short-TTL stale lock as free. Fetch and push are time-bounded. Skips, advances, publications, and blocks append to `git-primary-reconcile.log`; every internal outcome exits zero so SessionStart cannot be blocked.
 
 ### `worktree-status.sh` — the dashboard
 
@@ -123,7 +132,7 @@ The naming and remote-permission helpers are one shared dependency. If that help
 | A conflicting commit never half-applies | Any rebase conflict aborts cleanly, restoring the exact pre-sync branch and tree; the commit stays local |
 | Autosync never breaks a commit | `--auto` returns `0` on every path; the hook is non-fatal |
 | The primary checkout never autosyncs | The triple gate is satisfied only by wrapper-launched sessions in a linked worktree |
-| Un-committed work is never touched | The publish path only ever moves committed refs; the rebase requires clean tracked files; the follower is fast-forward-only and skips a dirty tree |
+| Un-committed work is never touched | The publish and reconcile paths require clean tracked files; the reconciler checks before fetch; the follower is fast-forward-only and skips a dirty tree |
 | No `--autostash` orphan risk | The rebase runs only on a clean tracked tree, so nothing is autostashed (see [SKILL.md](../SKILL.md) ALWAYS #14) |
 | Autosync keeps publishing even when the live branch isn't on the remote allowlist | The pre-push permission gate ([remote-branch-policy.md](remote-branch-policy.md)) exempts exactly `$SPECKIT_LIVE_BRANCH` when `SPECKIT_AUTOSYNC=1` — scoped to that one branch, never a blanket bypass |
 | A pre-push rejection cannot look like a push race | Stable gate markers are captured, replayed, classified, and appended to `git-sync.log` before autosync stops retrying |
@@ -132,18 +141,18 @@ The naming and remote-permission helpers are one shared dependency. If that help
 
 ## 5. OPERATOR SETUP
 
-Live-sync is **on by default** in the main checkout. No setup step is required: SessionStart self-heals the git hook install and backgrounds the follower automatically, and both legs run only in the main checkout, never inside a session worktree.
+Live-sync is **on by default** in the main checkout. No setup step is required: SessionStart self-heals the git hook install, backgrounds a bounded reconcile, and backgrounds the optional follower. All three legs are primary-checkout gated and never reconcile a linked session worktree.
 
 1. **Nothing to install** - when the hook symlinks are missing, `check-git-hooks.sh` runs the installer itself from the main checkout (self-heal). `MK_LIVE_SYNC_DISABLED=1` stops this leg.
 
-2. **Nothing to start** - the SessionStart chain runs `git-live-follow.sh --start`, which backgrounds one follower per checkout. `MK_LIVE_FOLLOW_DISABLED=1` stops this leg.
+2. **Nothing to start** - the SessionStart chain backgrounds `git-primary-reconcile.sh` for reliable convergence and runs `git-live-follow.sh --start` for near-real-time following. `MK_PRIMARY_RECONCILE_DISABLED=1` stops only the reconcile leg; `MK_LIVE_FOLLOW_DISABLED=1` stops only the follower.
 
 3. **Glance at what's outstanding** any time:
    ```bash
    bash .opencode/bin/worktree-status.sh --fetch
    ```
 
-4. **Opt out** - the one master flag `MK_LIVE_SYNC_DISABLED=1` (truthy `1`/`true`/`on`) disables the whole loop: autosync publish, follower auto-start, and self-heal install. It honors the shared hook kill-switch convention, so `MK_HOOKS_DISABLED=1` or a line in `.opencode/hooks/hook-flags.env` also stops it. Finer per-leg switches stay available: `SPECKIT_AUTOSYNC=0` for a single publish and `MK_LIVE_FOLLOW_DISABLED=1` for the follower alone.
+4. **Opt out** - the one master flag `MK_LIVE_SYNC_DISABLED=1` (truthy `1`/`true`/`on`) disables the whole loop: autosync publish, SessionStart reconcile, follower auto-start, and self-heal install. It honors the shared hook kill-switch convention, so `MK_HOOKS_DISABLED=1` or a line in `.opencode/hooks/hook-flags.env` also stops it. Finer per-leg switches stay available: `SPECKIT_AUTOSYNC=0` for a single publish, `MK_PRIMARY_RECONCILE_DISABLED=1` for SessionStart reconciliation, and `MK_LIVE_FOLLOW_DISABLED=1` for the follower alone.
 
 ---
 
@@ -151,12 +160,12 @@ Live-sync is **on by default** in the main checkout. No setup step is required: 
 
 Autosync is runtime-agnostic by construction: it is a git hook plus a wrapper that takes the runtime as an argument, so it fires identically for `claude`, `codex`, and `opencode` sessions.
 
-The two SessionStart guards that make the model observable are `worktree-guard.sh` (warns when a top-level session runs on the shared checkout instead of isolated) and `check-git-hooks.sh` (warns when the hooks are not installed, and self-heals them in the main checkout). Both run in every runtime. The follower auto-start (`git-live-follow.sh --start`) is wired into the same surfaces beside them:
+The two SessionStart guards that make the model observable are `worktree-guard.sh` (warns when a top-level session runs on the shared checkout instead of isolated) and `check-git-hooks.sh` (warns when the hooks are not installed, and self-heals them in the main checkout). Every runtime also backgrounds `git-primary-reconcile.sh`; the follower auto-start remains beside it as an optional low-latency leg:
 
 | Runtime | Guard wiring |
 |---------|--------------|
 | Claude | `.claude/settings.json` SessionStart |
-| OpenCode | `.opencode/plugins/session-cleanup.js` (runs both guards on `session.created`) |
+| OpenCode | `.opencode/plugins/session-cleanup.js` (runs guards and detached reconcile on `session.created`) |
 | Codex | `.codex/hooks.json` SessionStart |
 | Pi | `session-start-advisories.ts` advisory chain |
 

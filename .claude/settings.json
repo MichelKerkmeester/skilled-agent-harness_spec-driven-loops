@@ -124,6 +124,11 @@
           },
           {
             "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/git-primary-reconcile.sh >/dev/null 2>&1 &'",
+            "timeout": 3
+          },
+          {
+            "type": "command",
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/git-live-follow.sh --start'",
             "timeout": 3
           },

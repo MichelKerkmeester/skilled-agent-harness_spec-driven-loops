@@ -10,7 +10,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import {
   appendFileSync,
   copyFileSync,
@@ -33,6 +33,7 @@ const GUARD_SCRIPTS = [
   { path: join(REPO_ROOT, '.opencode/bin/check-git-hooks.sh'), args: [] },
   { path: join(REPO_ROOT, '.opencode/bin/git-live-follow.sh'), args: ['--start'] },
 ];
+const PRIMARY_RECONCILE_SCRIPT = join(REPO_ROOT, '.opencode/bin/git-primary-reconcile.sh');
 const DEFAULT_LOG_PATH = join(
   process.env.HOME || '/tmp',
   '.local/share/session-cleanup.log',
@@ -93,12 +94,13 @@ function appendPluginLog(logPath, maxBytes, detail) {
  * factory that returns lifecycle hooks.
  *
  * @param {{ directory?: string, worktree?: string }} [input] - Plugin context.
- * @param {{ spawnSync?: Function, writeDiagnostic?: Function }} [overrides] - Test seams.
+ * @param {{ spawn?: Function, spawnSync?: Function, writeDiagnostic?: Function }} [overrides] - Test seams.
  * @returns {Promise<Object>} Hooks object for the OpenCode plugin loader.
  */
 export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
   const projectDir = input.worktree || input.directory || REPO_ROOT;
   const runSync = overrides.spawnSync || spawnSync;
+  const runAsync = overrides.spawn || spawn;
   const logPath = process.env.SESSION_CLEANUP_LOG_PATH
     || process.env.CLAUDE_SESSION_CLEANUP_LOG_PATH
     || DEFAULT_LOG_PATH;
@@ -143,6 +145,20 @@ export default async function sessionCleanupPlugin(input = {}, overrides = {}) {
     guardedSessions.add(sessionId);
 
     const warnings = [];
+    try {
+      const child = runAsync('bash', [PRIMARY_RECONCILE_SCRIPT], {
+        cwd: projectDir,
+        detached: true,
+        env: process.env,
+        stdio: 'ignore',
+      });
+      child?.once?.('error', (error) => {
+        writeDiagnostic(`[session-cleanup] primary reconcile launch failed: ${error?.message || error}`);
+      });
+      child?.unref?.();
+    } catch (error) {
+      writeDiagnostic(`[session-cleanup] primary reconcile launch failed: ${error?.message || error}`);
+    }
     for (const entry of GUARD_SCRIPTS) {
       const result = runScript(entry.path, `guard ${entry.path}`, entry.args);
       const output = boundedText(`${result.stdout || ''}\n${result.stderr || ''}`);

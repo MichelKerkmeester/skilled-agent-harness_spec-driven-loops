@@ -20,6 +20,11 @@
           },
           {
             "type": "command",
+            "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/git-primary-reconcile.sh >/dev/null 2>&1 &'",
+            "timeout": 3
+          },
+          {
+            "type": "command",
             "command": "bash -c 'cd \"${CODEX_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/git-live-follow.sh --start || printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"SessionStart\\\",\\\"additionalContext\\\":\\\"mk codex hook could not resolve; re-run the codex hooks installer with --check\\\"}}\"'",
             "timeout": 3
           }

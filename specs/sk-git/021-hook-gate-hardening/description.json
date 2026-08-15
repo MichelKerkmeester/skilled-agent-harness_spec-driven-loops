@@ -10,17 +10,20 @@
     "push",
     "stderr"
   ],
-  "lastUpdated": "2026-08-15T13:54:51.302Z",
+  "lastUpdated": "2026-08-15T15:02:21.396Z",
   "specId": "021",
   "folderSlug": "hook-gate-hardening",
   "parentChain": [
     "sk-git"
   ],
-  "memorySequence": 4,
+  "memorySequence": 7,
   "memoryNameHistory": [
     "15-08-26_14-50__every-blocking-gate-now-emits-a-stable-gate.md",
     "15-08-26_14-53__final-packet-documentation-now-matches-the-level.md",
     "15-08-26_14-54__all-p0-evidence-markers-now-satisfy-the-strict.md",
-    "15-08-26_14-54__the-completed-packet-passed-strict-validation.md"
+    "15-08-26_14-54__the-completed-packet-passed-strict-validation.md",
+    "15-08-26_15-59__completed-and-verified-sessionstart-primary.md",
+    "15-08-26_16-00__sessionstart-primary-reconcile-autosync-gate.md",
+    "15-08-26_16-02__sessionstart-primary-reconcile-autosync-gate.md"
   ]
 }
