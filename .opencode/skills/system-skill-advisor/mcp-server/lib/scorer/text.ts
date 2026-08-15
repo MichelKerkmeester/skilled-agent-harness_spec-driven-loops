@@ -49,7 +49,8 @@ export function phraseVariants(value: string): string[] {
   ].filter(Boolean));
 }
 
-export function skillNameVariants(skillId: string): string[] {
+export function skillNameVariants(skillId: string | null | undefined): string[] {
+  if (typeof skillId !== 'string' || skillId.trim().length === 0) return [];
   const base = skillId.toLowerCase();
   return unique([
     base,

@@ -29,12 +29,13 @@
       "spec",
       "gate",
       "advisor-018-001",
-      "several"
+      "writers"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "implementation-summary.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
@@ -44,6 +45,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -89,13 +96,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Several",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
+        "name": "Purpose Route",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -119,13 +126,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview Land",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Verify",
+        "name": "Pattern Reproduce",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -177,31 +184,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Several runtime writers resolve their state directory from the current working directory rather than from the repository root",
+    "causal_summary": "The advisor's state writers resolved their root from the current working directory instead of the repository root",
     "created_at": "2026-07-27T15:47:30Z",
-    "last_save_at": "2026-08-14T07:50:01.927Z",
+    "last_save_at": "2026-08-15T13:30:28.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18d7783b7ac87c0f9a4a5dc6f4f6d9892d74f873d2b0dae54c50e4da807ff10a",
+    "source_fingerprint": "sha256:e4f24b7c5eb9d945d714a88d4f025e123458d909ef3240d6267cc370681dd2a7",
     "source_doc_hashes": {
-      "spec.md": "54f91a482752cad0473f184a00f3132a32fd38eabff629f06aac3d83c4e97b9e",
-      "plan.md": "5d99b234cc94c0ba2ed79f6792d2987d611d5f8afbf4bfdf663153c8a676e148",
-      "tasks.md": "1a500b71ab436c8875dc089bb8de1f3d2e6842ec5944ebafe1015aac4b81aa26",
-      "checklist.md": "b87048097608548ea31be6284896b4a2b60f3ff42e8a82006eade0c5a159ed13"
+      "spec.md": "4dfb89b821997b9878814a3f857549a26c18100aa4aa96ba2f4622123d9b615e",
+      "plan.md": "e365a4e56e749986d2b85be50c5a1ffe95a6a9ea3f64ee0e7d980ae2f9841e52",
+      "tasks.md": "d74b1931afc6f6b4f809df3382840e007d1296272e576a628a06430818268be2",
+      "checklist.md": "025e004919b166a0a01e9057ffb5d4660920684a1f93f78d56ea6290be6d8beb",
+      "implementation-summary.md": "2a86bb6112738cc4c9bc4f7f2cf8e525da5c45ddf46959023bc0f48b73a42f76"
     },
     "last_active_child_id": null,
     "last_active_at": null

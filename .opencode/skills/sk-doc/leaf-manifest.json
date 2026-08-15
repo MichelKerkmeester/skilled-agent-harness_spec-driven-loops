@@ -270,7 +270,8 @@
         "references/shared/skill-root-metadata-contract.md",
         "references/shared/validation-and-packaging.md",
         "references/skill/creation-workflow.md",
-        "references/skill/examples-and-maintenance.md"
+        "references/skill/examples-and-maintenance.md",
+        "references/skill/upgrading-a-skill-to-v4.md"
       ],
       "packet": "sk-create-skill",
       "workflowMode": "sk-create-skill"
@@ -309,7 +310,8 @@
         "references/shared/skill-root-metadata-contract.md",
         "references/shared/validation-and-packaging.md",
         "references/skill/creation-workflow.md",
-        "references/skill/examples-and-maintenance.md"
+        "references/skill/examples-and-maintenance.md",
+        "references/skill/upgrading-a-skill-to-v4.md"
       ],
       "packet": "sk-create-skill",
       "workflowMode": "sk-create-skill-parent"

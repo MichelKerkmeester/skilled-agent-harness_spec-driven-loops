@@ -20,7 +20,7 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   branch: [['sk-git', 0.45]],
   browser: [['sk-code', 0.55]],
   checklist: [['system-spec-kit', 0.55]],
-  chrome: [['mcp-chrome-devtools', 0.95]],
+  chrome: [['mcp-tooling', 0.95]],
   commit: [['sk-git', 0.65]],
   commonjs: [['sk-code', 0.75]],
   context: [['system-spec-kit', 0.65]],
@@ -30,7 +30,7 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   dashboard: [['sk-code', 0.35]],
   deliberation: [['system-deep-loop', 0.8]],
   debug: [['sk-code', 0.25]],
-  devtools: [['mcp-chrome-devtools', 1]],
+  devtools: [['mcp-tooling', 1]],
   docs: [['sk-doc', 0.8]],
   documentation: [['sk-doc', 0.85]],
   findings: [['sk-code', 0.85]],
@@ -38,7 +38,7 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   git: [['sk-git', 1]],
   github: [['sk-git', 0.95]],
   gitkraken: [['sk-git', 0.9]],
-  har: [['mcp-chrome-devtools', 0.75]],
+  har: [['mcp-tooling', 0.75]],
   html: [['sk-code', 0.55]],
   javascript: [['sk-code', 0.65]],
   json: [['sk-code', 0.4]],
@@ -64,7 +64,7 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   routing: [['system-spec-kit', 0.25]],
   save: [['system-spec-kit', 0.6]],
   shell: [['sk-code', 0.55]],
-  staging: [['mcp-chrome-devtools', 0.35]],
+  staging: [['mcp-tooling', 0.35]],
   style: [['sk-code', 0.4]],
   taxonomy: [['sk-doc', 0.45]],
   tests: [['sk-code', 0.35]],
@@ -139,18 +139,18 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   'model benchmark': [['deep-model-benchmark', 1.4], ['system-deep-loop', -0.4]],
   'benchmark fixtures': [['deep-model-benchmark', 1.3]],
   'prompt framework benchmark': [['deep-model-benchmark', 1.5], ['system-deep-loop', -0.4]],
-  'chrome devtools': [['mcp-chrome-devtools', 1]],
+  'chrome devtools': [['mcp-tooling', 1]],
   'gitlens launchpad': [['sk-git', 0.85]],
-  'staging url': [['mcp-chrome-devtools', 0.65]],
-  'staging site': [['mcp-chrome-devtools', 0.65]],
-  'staging website': [['mcp-chrome-devtools', 0.65]],
-  'live site': [['mcp-chrome-devtools', 0.65]],
-  'live website': [['mcp-chrome-devtools', 0.65]],
-  'live url': [['mcp-chrome-devtools', 0.65]],
-  'production site': [['mcp-chrome-devtools', 0.65]],
-  'production website': [['mcp-chrome-devtools', 0.65]],
-  'production url': [['mcp-chrome-devtools', 0.65]],
-  'browser console': [['mcp-chrome-devtools', 0.75]],
+  'staging url': [['mcp-tooling', 0.65]],
+  'staging site': [['mcp-tooling', 0.65]],
+  'staging website': [['mcp-tooling', 0.65]],
+  'live site': [['mcp-tooling', 0.65]],
+  'live website': [['mcp-tooling', 0.65]],
+  'live url': [['mcp-tooling', 0.65]],
+  'production site': [['mcp-tooling', 0.65]],
+  'production website': [['mcp-tooling', 0.65]],
+  'production url': [['mcp-tooling', 0.65]],
+  'browser console': [['mcp-tooling', 0.75]],
   'cleaner prompt': [['sk-prompt', 1]],
   'code review': [['sk-code', 1]],
   'review the routing': [['sk-code', 0.6]],
@@ -313,19 +313,21 @@ export function scoreExplicitLane(
   }
 
   for (const skill of projection.skills) {
-    for (const variant of skillNameVariants(skill.id)) {
+    const skillId: unknown = skill.id;
+    if (typeof skillId !== 'string' || skillId.trim().length === 0) continue;
+    for (const variant of skillNameVariants(skillId)) {
       if (matchesPhraseBoundary(lower, variant)) {
-        push(scores, skill.id, 1, `explicit:${variant}`);
+        push(scores, skillId, 1, `explicit:${variant}`);
       }
     }
     for (const phrase of [...skill.intentSignals, ...skill.keywords]) {
       if (matchesPhraseBoundary(lower, phrase)) {
         push(
           scores,
-          skill.id,
+          skillId,
           phraseSpecificity(phrase),
           `author:${phrase}`,
-          options.includeProducerIdentity ? skill.id : undefined,
+          options.includeProducerIdentity ? skillId : undefined,
         );
       }
     }

@@ -82,13 +82,13 @@ export const HARDER_INTENT_PROMPT_CORPUS: ReadonlyArray<HarderIntentEntry> = [
   },
   {
     prompt: 'Open the local interface, reproduce the broken interaction, and capture the page evidence from the runtime.',
-    expectedSkill: 'mcp-chrome-devtools',
+    expectedSkill: 'mcp-tooling',
     category: 'lexical-mis-route',
     reason: 'Runtime page evidence implies browser tooling, but broken interaction can route to sk-code.',
   },
   {
     prompt: 'Inspect what the rendered page actually did after the click, including network and visual proof.',
-    expectedSkill: 'mcp-chrome-devtools',
+    expectedSkill: 'mcp-tooling',
     category: 'lexical-mis-route',
     reason: 'Avoids Chrome/DevTools/console while using page/network terms that overlap frontend code work.',
   },

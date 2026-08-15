@@ -54,22 +54,13 @@
     {
       "id": "harder:eb10a4b1b288",
       "corpus": "harder",
+      "prompt": "Inspect what the rendered page actually did after the click, including network and visual proof.",
+      "gold": "mcp-tooling",
       "promptHash": "sha256:eb10a4b1b288817423b6525eba5e74b846d7b38d972992d359b1a04111a92eaf",
-      "gold": "mcp-chrome-devtools",
-      "localTop": "mcp-chrome-devtools",
+      "localTop": "mcp-tooling",
       "nativeTop": "none",
-      "reason": "baseline divergence captured 2026-06-13: native abstains at strict thresholds where local routes to mcp-chrome-devtools",
-      "approvedAt": "2026-06-13"
-    },
-    {
-      "id": "rr-iter2-002",
-      "corpus": "labeled",
-      "promptHash": "sha256:2aa5916b83bf92a26396573e441330a477e3a4515f27527bac57379cf0c191c8",
-      "gold": "sk-doc",
-      "localTop": "sk-design",
-      "nativeTop": "sk-doc",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-design, native=sk-doc)",
-      "approvedAt": "2026-07-06"
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter2-003",
@@ -132,16 +123,6 @@
       "approvedAt": "2026-07-06"
     },
     {
-      "id": "rr-iter2-020",
-      "corpus": "labeled",
-      "promptHash": "sha256:39fd549fe242bc996fa82a066ec1496e2b5a5ddf9b1015e707022b47c74d9a72",
-      "gold": "sk-code",
-      "localTop": "sk-code",
-      "nativeTop": "sk-doc",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=sk-doc)",
-      "approvedAt": "2026-07-06"
-    },
-    {
       "id": "rr-iter2-025",
       "corpus": "labeled",
       "promptHash": "sha256:43de25b4b33d11bd03e6b36e3746b74b10bd684481affb9622d9ebba8633f2ee",
@@ -162,16 +143,6 @@
       "approvedAt": "2026-06-15"
     },
     {
-      "id": "rr-iter2-030",
-      "corpus": "labeled",
-      "promptHash": "sha256:2993a157cc6bda8dd0047ea3e087ce51d537a35f37fccb66bc72875889171077",
-      "gold": "system-spec-kit",
-      "localTop": "sk-git",
-      "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-git, native=system-spec-kit)",
-      "approvedAt": "2026-06-13"
-    },
-    {
       "id": "rr-iter2-032",
       "corpus": "labeled",
       "promptHash": "sha256:ffdf67ac1f92b74a771a7a1c9e98f7b63056c271493a027cbce3aa5a5c1657f1",
@@ -179,16 +150,6 @@
       "localTop": "none",
       "nativeTop": "system-spec-kit",
       "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to system-spec-kit",
-      "approvedAt": "2026-06-13"
-    },
-    {
-      "id": "rr-iter2-034",
-      "corpus": "labeled",
-      "promptHash": "sha256:bd885aa14cb0efe12135a0005a7a8fbd4cb452edcf3d299227f832eb9c51d58c",
-      "gold": "system-spec-kit",
-      "localTop": "mcp-chrome-devtools",
-      "nativeTop": "sk-prompt",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=sk-prompt)",
       "approvedAt": "2026-06-13"
     },
     {
@@ -284,12 +245,13 @@
     {
       "id": "rr-iter3-064",
       "corpus": "labeled",
-      "promptHash": "sha256:22d0fa600312e45254025ad120cd45a6e98b8f514bd0917993b0d9e0053f62ed",
+      "prompt": "Generate a replacement `gate3-baseline.json` fixture for the first 100 prompts.",
       "gold": "sk-code",
-      "localTop": "none",
+      "promptHash": "sha256:22d0fa600312e45254025ad120cd45a6e98b8f514bd0917993b0d9e0053f62ed",
+      "localTop": "sk-prompt",
       "nativeTop": "sk-code",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
-      "approvedAt": "2026-06-13"
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-066",
@@ -314,12 +276,13 @@
     {
       "id": "rr-iter3-069",
       "corpus": "labeled",
-      "promptHash": "sha256:194dfc374d0a19713238047e9c4970dd8d3e012b0055a222ef472e355b99d31f",
+      "prompt": "Rename `gate3-baseline-notes.md` to `gate3-eval-notes.md` and sweep the local references.",
       "gold": "system-spec-kit",
+      "promptHash": "sha256:194dfc374d0a19713238047e9c4970dd8d3e012b0055a222ef472e355b99d31f",
       "localTop": "none",
-      "nativeTop": "sk-code",
-      "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
-      "approvedAt": "2026-06-13"
+      "nativeTop": "mcp-tooling",
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-070",
@@ -334,12 +297,13 @@
     {
       "id": "rr-iter3-071",
       "corpus": "labeled",
-      "promptHash": "sha256:5b42cb697cf98b9e824fb24ab71a0205dcedcf07d6fcc869679cd4f5471c74a7",
+      "prompt": "Change the corpus source-mix note so paraphrased prompts are tracked explicitly.",
       "gold": "sk-doc",
-      "localTop": "sk-prompt",
+      "promptHash": "sha256:5b42cb697cf98b9e824fb24ab71a0205dcedcf07d6fcc869679cd4f5471c74a7",
+      "localTop": "none",
       "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=system-spec-kit)",
-      "approvedAt": "2026-06-13"
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-073",
@@ -364,12 +328,13 @@
     {
       "id": "rr-iter3-076",
       "corpus": "labeled",
-      "promptHash": "sha256:433b2a8def53d97bc86523b18cd64dd722c3001fb57b7620b548884d4b1e26df",
+      "prompt": "Could you update the routing packet plan so it says iteration 4 covers full-corpus Gate 3 scoring?",
       "gold": "system-spec-kit",
-      "localTop": "sk-design",
+      "promptHash": "sha256:433b2a8def53d97bc86523b18cd64dd722c3001fb57b7620b548884d4b1e26df",
+      "localTop": "none",
       "nativeTop": "system-spec-kit",
-      "reason": "divergence re-baselined 2026-07-08: local now routes to sk-design where native routes to system-spec-kit (previously local abstained)",
-      "approvedAt": "2026-07-08"
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-078",
@@ -444,12 +409,13 @@
     {
       "id": "rr-iter3-092",
       "corpus": "labeled",
-      "promptHash": "sha256:dc230c27fb610442238bdbce3065bab2034495d47daa5f335f45aabc3e3dda2c",
+      "prompt": "Inspect `gate-3-classifier.ts` and show me the read-only disqualifier list.",
       "gold": "none",
-      "localTop": "mcp-chrome-devtools",
+      "promptHash": "sha256:dc230c27fb610442238bdbce3065bab2034495d47daa5f335f45aabc3e3dda2c",
+      "localTop": "none",
       "nativeTop": "sk-code",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=sk-code)",
-      "approvedAt": "2026-06-13"
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-094",
@@ -464,22 +430,24 @@
     {
       "id": "rr-iter3-097",
       "corpus": "labeled",
-      "promptHash": "sha256:0669d4430dca4d0911007ecc7149587d7c07e129e065bafce6dd350d58bdc9dc",
+      "prompt": "Inspect the corpus file and list the current source-type mix.",
       "gold": "none",
-      "localTop": "mcp-chrome-devtools",
+      "promptHash": "sha256:0669d4430dca4d0911007ecc7149587d7c07e129e065bafce6dd350d58bdc9dc",
+      "localTop": "none",
       "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=system-spec-kit)",
-      "approvedAt": "2026-06-13"
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-099",
       "corpus": "labeled",
-      "promptHash": "sha256:bce428e713650d8b3a47bf4ebd48806cf17c7cee1764558e31bccc9de045e7db",
+      "prompt": "Explain why deep-loop prompts belong in the same corpus as ordinary file-write prompts.",
       "gold": "system-deep-loop",
-      "localTop": "sk-prompt",
+      "promptHash": "sha256:bce428e713650d8b3a47bf4ebd48806cf17c7cee1764558e31bccc9de045e7db",
+      "localTop": "system-deep-loop",
       "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=system-spec-kit)",
-      "approvedAt": "2026-06-13"
+      "reason": "current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-110",
@@ -498,7 +466,7 @@
       "gold": "system-deep-loop",
       "localTop": "none",
       "nativeTop": "sk-code",
-      "reason": "system-deep-loop rename re-baseline 2026-07-08: native top-1 for this resume-state prompt shifted from system-deep-loop to sk-code post-rename (pre-existing miss vs gold both before and after \u2014 net accuracy unchanged); recorded as approved local-vs-native divergence",
+      "reason": "system-deep-loop rename re-baseline 2026-07-08: native top-1 for this resume-state prompt shifted from system-deep-loop to sk-code post-rename (pre-existing miss vs gold both before and after — net accuracy unchanged); recorded as approved local-vs-native divergence",
       "approvedAt": "2026-07-08"
     },
     {
@@ -544,12 +512,13 @@
     {
       "id": "rr-iter3-130",
       "corpus": "labeled",
-      "promptHash": "sha256:e3498c3f9db52c87e103b3849099a967c04a0a024315abc307c78da9c48a1336",
+      "prompt": "Inspect the first-100 predictions and rename any rows whose ids are malformed.",
       "gold": "system-spec-kit",
-      "localTop": "mcp-chrome-devtools",
+      "promptHash": "sha256:e3498c3f9db52c87e103b3849099a967c04a0a024315abc307c78da9c48a1336",
+      "localTop": "none",
       "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=system-spec-kit)",
-      "approvedAt": "2026-06-13"
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-131",
@@ -584,32 +553,35 @@
     {
       "id": "rr-iter3-137",
       "corpus": "labeled",
-      "promptHash": "sha256:d1da320b251bba4aa5991b8f74257213485fdbb9b304e398dc10d811835e8196",
+      "prompt": "Inspect the skill-routing bucket and generate five new examples if connector coverage is missing.",
       "gold": "system-spec-kit",
-      "localTop": "mcp-chrome-devtools",
+      "promptHash": "sha256:d1da320b251bba4aa5991b8f74257213485fdbb9b304e398dc10d811835e8196",
+      "localTop": "none",
       "nativeTop": "sk-code",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=sk-code)",
-      "approvedAt": "2026-06-13"
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-141",
       "corpus": "labeled",
-      "promptHash": "sha256:25b24661dcba212b7241b8a32d2171b9b7c402161de1c6ca8af43a3617683572",
+      "prompt": "Analyze the continuation prompts and rewrite the weak ones if you find any.",
       "gold": "system-spec-kit",
-      "localTop": "sk-prompt",
+      "promptHash": "sha256:25b24661dcba212b7241b8a32d2171b9b7c402161de1c6ca8af43a3617683572",
+      "localTop": "none",
       "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=sk-prompt, native=system-spec-kit)",
-      "approvedAt": "2026-06-13"
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-147",
       "corpus": "labeled",
-      "promptHash": "sha256:9bd34b2be5a2f78514534b7087437a8864ab03d2ffb24ac68b483d099b220ef1",
+      "prompt": "Inspect the corpus ids and update the broken prefix if a mismatch shows up.",
       "gold": "system-spec-kit",
-      "localTop": "mcp-chrome-devtools",
+      "promptHash": "sha256:9bd34b2be5a2f78514534b7087437a8864ab03d2ffb24ac68b483d099b220ef1",
+      "localTop": "none",
       "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=mcp-chrome-devtools, native=system-spec-kit)",
-      "approvedAt": "2026-06-13"
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-149",
@@ -674,12 +646,13 @@
     {
       "id": "rr-iter3-168",
       "corpus": "labeled",
-      "promptHash": "sha256:5249917554f1290d938ac3c8f25a9a88d10403495e7d245adfcfe2e9e19ff50b",
+      "prompt": "Run `/deep:research :auto --max-iterations=8` on the routing packet.",
       "gold": "system-deep-loop",
+      "promptHash": "sha256:5249917554f1290d938ac3c8f25a9a88d10403495e7d245adfcfe2e9e19ff50b",
       "localTop": "deep-research",
-      "nativeTop": "system-deep-loop",
-      "reason": "deep-loop merge re-baseline: legacy deep-* skills folded into system-deep-loop shifted native top-1; recorded as approved local-vs-native divergence; promptHash re-approved 2026-07-08 for the WU11 dead-id migration (/deep:start-*-loop -> /deep:*)",
-      "approvedAt": "2026-06-15"
+      "nativeTop": "system-spec-kit",
+      "reason": "current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub",
+      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-170",
@@ -704,12 +677,123 @@
     {
       "id": "rr-iter3-188",
       "corpus": "labeled",
-      "promptHash": "sha256:959dd2d64f24612870f28b1039bc0aef1b622448b90d5eb7ab626f439cc180f3",
+      "prompt": "Use the code-review skill to audit this packet for blocking issues only.",
       "gold": "sk-code",
-      "localTop": "sk-git",
+      "promptHash": "sha256:959dd2d64f24612870f28b1039bc0aef1b622448b90d5eb7ab626f439cc180f3",
+      "localTop": "none",
       "nativeTop": "sk-code",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-git, native=sk-code)",
-      "approvedAt": "2026-07-06"
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-iter2-009",
+      "corpus": "labeled",
+      "prompt": "Configure `.vscode/mcp.json` to mirror the current code graph server inputs.",
+      "gold": "sk-code",
+      "promptHash": "sha256:ade3e22f93c9ec8825f5b03d05f70817ee71945745262c33398dcf65ea38b839",
+      "localTop": "mcp-code-mode",
+      "nativeTop": "sk-code",
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-iter2-029",
+      "corpus": "labeled",
+      "prompt": "Use `/memory:save` to capture the current blockers and next focus.",
+      "gold": "memory:save",
+      "promptHash": "sha256:32571abd1e4ea9076cfab6da355a992aae4c45be4fe113060b898124c4d74723",
+      "localTop": "system-spec-kit",
+      "nativeTop": "memory:save",
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-iter3-075",
+      "corpus": "labeled",
+      "prompt": "Delete the stale scratch note about the old 50-row sanity check plan.",
+      "gold": "system-spec-kit",
+      "promptHash": "sha256:5dd774b30a9b773f8d4500167e041647f80ca0c677c0f24ddf4d275e8270d352",
+      "localTop": "none",
+      "nativeTop": "system-spec-kit",
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-iter3-100",
+      "corpus": "labeled",
+      "prompt": "Audit the prompt IDs and confirm they stay stable across iterations.",
+      "gold": "sk-code",
+      "promptHash": "sha256:3a853ab7f72c2d60716485de9640be97c216ac090ea39777719e3bb9157ebe25",
+      "localTop": "sk-prompt",
+      "nativeTop": "sk-code",
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-iter3-117",
+      "corpus": "labeled",
+      "prompt": "/memory:save this routing baseline before the overnight worker exits.",
+      "gold": "memory:save",
+      "promptHash": "sha256:d66a5602ba0eafaacbe59c15b67b3ddfec7150220aa884ffa2e765dcfcdaaf44",
+      "localTop": "system-spec-kit",
+      "nativeTop": "memory:save",
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-iter3-128",
+      "corpus": "labeled",
+      "prompt": "Audit the packet docs, then generate a corrected `iteration-004.md` stub.",
+      "gold": "system-spec-kit",
+      "promptHash": "sha256:ec64d18b9a73bede3e46ef06c6e61447a685eac1b8819c8266d8abe9b43f8c58",
+      "localTop": "sk-code",
+      "nativeTop": "sk-doc",
+      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
+      "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-iter3-151",
+      "corpus": "labeled",
+      "prompt": "Kick off another deep-review wave for the packet docs and keep the iteration history in the same folder.",
+      "gold": "system-deep-loop",
+      "promptHash": "sha256:0775864f3a2b1f244a249656d35b1d6e8cb20061a207e594c2eda43240f33664",
+      "localTop": "system-spec-kit",
+      "nativeTop": "system-deep-loop",
+      "reason": "current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub",
+      "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-iter3-156",
+      "corpus": "labeled",
+      "prompt": "Run a fresh deep-research pass focused on prompt-routing false positives.",
+      "gold": "system-deep-loop",
+      "promptHash": "sha256:c99adb87f667ccacfc40154ddcae1ba6a56d7865169f19b8b77a96735c28a593",
+      "localTop": "sk-prompt",
+      "nativeTop": "system-deep-loop",
+      "reason": "current-state capture after the deep-loop skill consolidation; legacy mode aliases remain represented by the current hub",
+      "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-hub6-204",
+      "corpus": "labeled",
+      "prompt": "Run an agentic browser session with aside mcp through Code Mode and save the screenshots.",
+      "gold": "mcp-tooling",
+      "promptHash": "sha256:33cdf36f2e5e6bfc4519399de41a6b53ff8ea200217a799fb5164c125d40b70b",
+      "localTop": "mcp-tooling",
+      "nativeTop": "mcp-code-mode",
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-08-15"
+    },
+    {
+      "id": "rr-hub6-207",
+      "corpus": "labeled",
+      "prompt": "Use the Mobbin MCP through code mode to collect screen examples of paywall designs.",
+      "gold": "mcp-tooling",
+      "promptHash": "sha256:c0c89cbb409585b5caf50bb7445fa5689006e5149bc294d2c5d77a1b6c7b26a6",
+      "localTop": "mcp-tooling",
+      "nativeTop": "mcp-code-mode",
+      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
+      "approvedAt": "2026-08-15"
     }
   ]
 }

@@ -74,6 +74,7 @@ describe('mk-skill-advisor launcher bootstrap', () => {
   it('filters parent environment before spawning npm or the advisor server', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
+    const socketDir = dirname(memoryDbPath);
     expect(launcher.createChildEnv({
       PATH: '/bin',
       HOME: '/tmp/home',
@@ -85,12 +86,14 @@ describe('mk-skill-advisor launcher bootstrap', () => {
       HOME: '/tmp/home',
       MK_SKILL_ADVISOR_DB_DIR: '/tmp/db',
       MEMORY_DB_PATH: memoryDbPath,
+      SPECKIT_IPC_SOCKET_DIR: socketDir,
     });
   });
 
   it('passes the committed daemon trust default through to the advisor child env', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
+    const socketDir = dirname(memoryDbPath);
     const opencodeConfig = JSON.parse(sourceText('../../../../../opencode.json')) as {
       mcp?: { mk_skill_advisor?: { environment?: Record<string, string> } };
     };
@@ -104,12 +107,14 @@ describe('mk-skill-advisor launcher bootstrap', () => {
     })).toEqual({
       MK_SKILL_ADVISOR_TRUST_DEFAULT: 'trusted',
       MEMORY_DB_PATH: memoryDbPath,
+      SPECKIT_IPC_SOCKET_DIR: socketDir,
     });
   });
 
   it('passes advisor shadow feature flags through to the child env', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();
+    const socketDir = dirname(memoryDbPath);
     expect(launcher.createChildEnv({
       SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
       SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',
@@ -118,6 +123,7 @@ describe('mk-skill-advisor launcher bootstrap', () => {
       SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW: 'true',
       SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW: 'true',
       MEMORY_DB_PATH: memoryDbPath,
+      SPECKIT_IPC_SOCKET_DIR: socketDir,
     });
   });
 

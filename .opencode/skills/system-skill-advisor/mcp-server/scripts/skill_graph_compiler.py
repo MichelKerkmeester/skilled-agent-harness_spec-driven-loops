@@ -31,6 +31,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 SKILLS_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "..", ".."))
 DEFAULT_OUTPUT = os.path.join(SCRIPT_DIR, "skill-graph.json")
+ROUTE_EXCLUSIONS_DIR = os.path.join(SCRIPT_DIR, "..", "config")
 
 COMPILED_SCHEMA_VERSION = 1
 ALLOWED_METADATA_SCHEMA_VERSIONS = {1, 2}
@@ -78,6 +79,28 @@ AFFORDANCE_ALLOWED_FIELDS = {
     "skillId", "skill_id", "name", "triggers", "category",
     *AFFORDANCE_RELATION_FIELDS.keys(),
 }
+
+
+def load_route_excluded_skill_ids() -> Set[str]:
+    """Load the advisor's committed route exclusions for graph compilation.
+
+    A route-excluded skill remains on disk for its own package, but it is not
+    part of the advisor graph. Excluding it before topology validation keeps
+    the compiled graph and the runtime route-policy seam on the same current
+    skill set; malformed or missing config remains fail-open for compilation.
+    """
+    local_path = os.path.join(ROUTE_EXCLUSIONS_DIR, "route-exclusions.local.json")
+    committed_path = os.path.join(ROUTE_EXCLUSIONS_DIR, "route-exclusions.json")
+    source_path = local_path if os.path.isfile(local_path) else committed_path
+    try:
+        with open(source_path, "r", encoding="utf-8") as handle:
+            parsed = json.load(handle)
+    except (OSError, ValueError, json.JSONDecodeError):
+        return set()
+    raw_ids = parsed.get("excludedSkillIds") if isinstance(parsed, dict) else None
+    if not isinstance(raw_ids, list):
+        return set()
+    return {entry for entry in raw_ids if isinstance(entry, str) and entry}
 # Broadened prompt-injection denylist. Mirrors the TS-side
 # `INSTRUCTION_PATTERN` in `affordance-normalizer.ts` so both compile-
 # time (Python) and score-time (TypeScript) input paths reject the
@@ -1054,7 +1077,16 @@ def main() -> int:
 
     # Discover
     all_metadata = discover_graph_metadata(SKILLS_DIR)
-    print(f"Discovered {len(all_metadata)} skill graph-metadata.json files")
+    discovered_count = len(all_metadata)
+    excluded_ids = load_route_excluded_skill_ids()
+    if excluded_ids:
+        all_metadata = [
+            entry for entry in all_metadata
+            if entry[2].get("skill_id", entry[0]) not in excluded_ids
+        ]
+    print(f"Discovered {discovered_count} skill graph-metadata.json files")
+    if excluded_ids:
+        print(f"Excluded {discovered_count - len(all_metadata)} route-excluded skill graph-metadata.json file(s)")
 
     if not all_metadata:
         print("ERROR: No graph-metadata.json files found", file=sys.stderr)

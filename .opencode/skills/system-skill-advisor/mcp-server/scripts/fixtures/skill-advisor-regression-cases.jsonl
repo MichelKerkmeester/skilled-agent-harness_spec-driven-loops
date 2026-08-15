@@ -2,8 +2,8 @@
 {"id":"P0-GIT-002","priority":"P0","prompt":"resolve merge conflict and rebase branch","confidence_only":false,"expect_result":true,"expected_top_any":["sk-git"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P0-MEM-001","priority":"P0","prompt":"save this conversation context to memory","confidence_only":false,"expect_result":true,"expected_top_any":["system-spec-kit"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P0-SPEC-001","priority":"P0","prompt":"create a new spec folder with plan and tasks","confidence_only":false,"expect_result":true,"expected_top_any":["system-spec-kit"],"expect_kind":"skill","allow_command_bridge":false}
-{"id":"P0-CHROME-001","priority":"P0","prompt":"debug console errors in chrome devtools","confidence_only":false,"expect_result":true,"expected_top_any":["mcp-chrome-devtools"],"expect_kind":"skill","allow_command_bridge":false}
-{"id":"P0-CHROME-002","priority":"P0","prompt":"inspect network waterfall in browser","confidence_only":false,"expect_result":true,"expected_top_any":["mcp-chrome-devtools"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P0-CHROME-001","priority":"P0","prompt":"debug console errors in chrome devtools","confidence_only":false,"expect_result":true,"expected_top_any":["mcp-tooling"],"expect_kind":"skill","allow_command_bridge":false}
+{"id":"P0-CHROME-002","priority":"P0","prompt":"inspect network waterfall in browser","confidence_only":false,"expect_result":true,"expected_top_any":["mcp-tooling"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P0-UNC-001","priority":"P0","prompt":"api chain mcp","confidence_only":false,"expect_result":false,"expected_top_any":[],"allow_command_bridge":false}
 {"id":"P0-UNC-002","priority":"P0","prompt":"api chain mcp","confidence_only":true,"expect_result":true,"expected_top_any":["mcp-code-mode"],"expect_kind":"skill","allow_command_bridge":false}
 {"id":"P0-CMD-001","priority":"P0","prompt":"save this conversation context to memory","confidence_only":false,"expect_result":true,"expected_top_any":["system-spec-kit"],"expect_kind":"skill","allow_command_bridge":false}

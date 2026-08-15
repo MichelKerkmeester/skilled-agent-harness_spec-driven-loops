@@ -63,10 +63,10 @@
       "branch": "negative-guard"
     },
     {
-      "id": "suppressed-codex-abstain",
+      "id": "direct-alias-cli-codex",
       "prompt": "delegate to codex",
-      "expectedTop": "none",
-      "branch": "suppressed-abstain"
+      "expectedTop": "cli-codex",
+      "branch": "direct-alias"
     }
   ]
 }

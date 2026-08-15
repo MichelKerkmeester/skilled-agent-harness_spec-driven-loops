@@ -60922,7 +60922,7 @@
         "mobile",
         "product"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.697Z"
+      "lastUpdated": "2026-08-15T11:38:55.899Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/001-contract-and-threat-baseline",
@@ -60942,7 +60942,7 @@
         "production",
         "implementation"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.618Z"
+      "lastUpdated": "2026-08-15T11:38:55.835Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
@@ -60962,7 +60962,7 @@
         "fails",
         "closed"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.721Z"
+      "lastUpdated": "2026-08-15T11:38:55.837Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
@@ -60982,7 +60982,7 @@
         "reconciliation",
         "core"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.661Z"
+      "lastUpdated": "2026-08-15T11:38:55.839Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/004-auth-and-tailnet-boundary",
@@ -61001,7 +61001,7 @@
         "remote",
         "api"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.601Z"
+      "lastUpdated": "2026-08-15T11:38:55.841Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
@@ -61021,7 +61021,7 @@
         "offline",
         "read-only"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.573Z"
+      "lastUpdated": "2026-08-15T11:38:55.843Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
@@ -61038,7 +61038,7 @@
         "remote",
         "mutation"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.747Z"
+      "lastUpdated": "2026-08-15T11:38:55.845Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/007-push-and-platform-hardening",
@@ -61059,7 +61059,7 @@
         "mobile",
         "platforms"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.634Z"
+      "lastUpdated": "2026-08-15T11:38:55.847Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/008-documentation-and-runbooks",
@@ -61079,7 +61079,7 @@
         "rollback",
         "documentation"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.563Z"
+      "lastUpdated": "2026-08-15T11:38:55.849Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
@@ -61098,7 +61098,7 @@
         "staged",
         "release"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.588Z"
+      "lastUpdated": "2026-08-15T11:38:55.853Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/010-code-readme-coverage",
@@ -61119,7 +61119,7 @@
         "src",
         "store"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.637Z"
+      "lastUpdated": "2026-08-15T11:38:55.855Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/011-architecture-reference",
@@ -61136,7 +61136,7 @@
         "protocol",
         "sections"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.585Z"
+      "lastUpdated": "2026-08-15T11:38:55.857Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/012-docs-as-skill-references",
@@ -61153,7 +61153,7 @@
         "reference",
         "structure"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.697Z"
+      "lastUpdated": "2026-08-15T11:38:55.859Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/013-code-standards-alignment",
@@ -61172,7 +61172,7 @@
         "naming",
         "module"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.664Z"
+      "lastUpdated": "2026-08-15T11:38:55.860Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/014-onboarding-and-root-readme",
@@ -61191,7 +61191,7 @@
         "all-caps",
         "sections"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.694Z"
+      "lastUpdated": "2026-08-15T11:38:55.862Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/015-doc-quality-and-catalog",
@@ -61210,7 +61210,7 @@
         "live",
         "capabilities"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.560Z"
+      "lastUpdated": "2026-08-15T11:38:55.864Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/016-ai-deploy-and-onboarding",
@@ -61231,7 +61231,7 @@
         "many",
         "ordered"
       ],
-      "lastUpdated": "2026-08-15T10:58:15.723Z"
+      "lastUpdated": "2026-08-15T11:38:55.866Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/017-chat-ux-and-restyle",
@@ -61251,7 +61251,7 @@
         "agent",
         "tailscale"
       ],
-      "lastUpdated": "2026-08-15T10:58:35.704Z"
+      "lastUpdated": "2026-08-15T11:38:55.867Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/research/experience-parity",
@@ -61271,7 +61271,7 @@
         "cross-device",
         "resume"
       ],
-      "lastUpdated": "2026-08-12T06:51:52.750Z"
+      "lastUpdated": "2026-08-15T11:38:55.883Z"
     },
     {
       "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/research/phase-gap",

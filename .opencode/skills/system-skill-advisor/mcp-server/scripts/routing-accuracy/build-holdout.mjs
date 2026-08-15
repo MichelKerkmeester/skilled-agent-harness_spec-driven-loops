@@ -54,6 +54,9 @@ export async function buildHoldout() {
   const pool = [];
 
   for (const entry of harderMod.HARDER_INTENT_PROMPT_CORPUS) {
+    if (typeof entry.expectedSkill !== 'string' || entry.expectedSkill.trim().length === 0) {
+      continue;
+    }
     pool.push({
       id: `harder:${sha12(entry.prompt)}`,
       prompt: entry.prompt,

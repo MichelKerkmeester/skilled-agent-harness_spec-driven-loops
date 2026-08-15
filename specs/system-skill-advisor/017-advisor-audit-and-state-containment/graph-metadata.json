@@ -35,7 +35,7 @@
       "specific"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -85,7 +85,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-07-27T15:47:28Z",
-    "last_save_at": "2026-08-14T07:50:01.722Z",
+    "last_save_at": "2026-08-15T13:29:00.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

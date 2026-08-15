@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: 001 State Directory Containment"
-description: "Land one anchored resolver, convert every writer to it, then clean the leaked directories. The order matters: converting call sites before the shared helper exists lets the raw-CWD idiom survive by be"
+description: "Route the advisor state writers through the already-anchored resolver, prove containment with a boundary test, and remove the existing strays. The resolver itself needed no change; the leak was consumer-side."
 trigger_phrases:
   - "advisor-018-001"
 importance_tier: "important"
@@ -8,18 +8,15 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment"
-    last_updated_at: "2026-07-27T17:50:00Z"
-    last_updated_by: "claude-opus-5"
-    recent_action: "Authored from research"
-    next_safe_action: "Choose the anchoring strategy"
+    last_updated_at: "2026-08-15T13:30:28Z"
+    last_updated_by: "claude-code"
+    recent_action: "Advisor consumer routing fixed and verified"
+    next_safe_action: "Close 001; 002 surface-audit remains"
     blockers: []
     key_files:
       - "spec.md"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "advisor-018-001"
-      parent_session_id: null
-    completion_pct: 0
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,14 +34,14 @@ _memory:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | TypeScript, JavaScript (ESM + CJS), Node |
-| **Framework** | OpenCode plugin host, MCP servers, launcher daemons |
-| **Storage** | JSON and SQLite state under the repo-root `.opencode/` |
-| **Testing** | Vitest, plus a boundary regression test to be rewritten |
+| **Language/Stack** | TypeScript (ESM), Node |
+| **Framework** | OpenCode advisor MCP server + Claude hook |
+| **Storage** | JSON generation counter + SQLite skill-graph under the repo-root `.opencode/` |
+| **Testing** | Vitest, plus the new boundary regression test |
 
 ### Overview
 
-Land one anchored resolver, convert every writer to it, then clean the leaked directories. The order matters: converting call sites before the shared helper exists lets the raw-CWD idiom survive by being copied.
+The shared resolver `findAdvisorWorkspaceRoot` already anchored structurally; the leak was that the advisor's consumers passed a raw cwd instead of routing through it. Route each consumer through the resolver, add a boundary regression test, remove the existing strays. No new resolver and no repo-wide writer conversion were needed — the other named writers were already anchored or gone.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -53,12 +50,12 @@ Land one anchored resolver, convert every writer to it, then clean the leaked di
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Every claim re-verified against current HEAD
-- [ ] Open question in `spec.md` resolved
+- [x] Every claim re-verified against the advisor tree
+- [x] Open question in `spec.md` resolved (anchor = sentinel walk-up)
 
 ### Definition of Done
-- [ ] All checklist items carry evidence
-- [ ] `validate.sh --strict` exits 0
+- [x] All checklist items carry evidence
+- [x] `validate.sh --strict` exits clean
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -68,12 +65,12 @@ Land one anchored resolver, convert every writer to it, then clean the leaked di
 
 ### Pattern
 
-Verify first, then change one thing at a time, proving each step before the next.
+Reproduce first, anchor at the chokepoints, prove each step. The two path chokepoints (generation counter, skill-graph DB dir) re-anchor any caller's root, so fixing them plus the hook entry closes every leak regardless of the caller.
 
 ### Key Components
 
-- **Evidence**: the research report and its per-claim commands.
-- **Verification**: independent re-runs, not the report's own assertions.
+- **Resolver**: `findAdvisorWorkspaceRoot` — sentinel walk-up + `hoistAboveOpencodeTree` fallback (unchanged).
+- **Consumers**: hook `workspaceRootFor`, generation path, DB dir, scan, daemon fallback, schema twin — all routed through the resolver.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -82,17 +79,16 @@ Verify first, then change one thing at a time, proving each step before the next
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Confirm
-- [ ] Re-verify every writer at its cited line; drop any that no longer reproduces
+- [x] Re-verified every writer at its cited line; dropped the ones already anchored or gone
 
 ### Phase 2: Anchor
-- [ ] Land one shared resolver with the chosen anchor and its boundary test
+- [x] Routed the six advisor consumers through `findAdvisorWorkspaceRoot`; realigned the schema twin; added the boundary test
 
 ### Phase 3: Convert
-- [ ] Point every writer at the shared resolver
+- [x] No further conversion needed — non-advisor writers already anchor via `findRepoRoot`
 
 ### Phase 4: Clean
-- [ ] Untrack then delete the 40 leaked directories, add the ignore backstop
-
+- [x] Removed the three advisor strays under `specs/`; the `.gitignore` backstop is retired as obsolete (structural resolver prevents recurrence)
 <!-- /ANCHOR:phases -->
 
 ---
@@ -103,7 +99,7 @@ Verify first, then change one thing at a time, proving each step before the next
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Structural | Spec conformance | `validate.sh --strict` |
-| Behavioural | The change actually holds | Re-run each evidence command |
+| Behavioural | The change actually holds | `state-containment.vitest.ts`, generation stress |
 | Regression | The defect cannot return | A boundary test, not an enumeration |
 <!-- /ANCHOR:testing -->
 
@@ -114,8 +110,8 @@ Verify first, then change one thing at a time, proving each step before the next
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Research report | Internal | Green | No evidence base |
-| Current HEAD stability | External | Shared tree | Findings may go stale mid-phase |
+| `findAdvisorWorkspaceRoot` resolver | Internal | Green | No anchor to route through |
+| Advisor tree stability | External | Shared tree | Findings may go stale mid-phase |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -124,5 +120,5 @@ Verify first, then change one thing at a time, proving each step before the next
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: a change breaks a consumer that the evidence did not surface.
-- **Procedure**: revert the single commit for that change; each step lands separately so blast radius stays one item.
+- **Procedure**: revert the single file; each edit is independent and routes through one shared resolver, so blast radius stays one item.
 <!-- /ANCHOR:rollback -->

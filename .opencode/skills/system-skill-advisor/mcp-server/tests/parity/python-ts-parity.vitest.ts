@@ -32,8 +32,11 @@ interface PythonRow {
 // skill-name token — and was briefly replaced by rr-iter3-145, which itself
 // resolved once the Stage F lexical/explicit-lane fixes landed; both pruned.)
 const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
-  'rr-iter2-016',
-  'rr-iter2-020',
+  'rr-iter3-092',
+  'rr-iter3-097',
+  'rr-iter3-099',
+  'rr-hub6-204',
+  'rr-hub6-207',
 ];
 
 function findWorkspaceRoot(): string {
@@ -171,12 +174,12 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     };
     console.log(`advisor-parity-report ${JSON.stringify(report)}`);
 
-    // On the current 193-row corpus (built-in semantic disabled for determinism)
-    // the Python reference makes 106 gold-correct top-1 calls; the native scorer
-    // preserves 103 of them and diverges only on the three reviewed-accepted rows
-    // enumerated above, while improving 44 rows the Python reference gets wrong.
-    expect(pythonCorrect).toBe(106);
-    expect(tsAlsoCorrect).toBe(104);
+    // On the current 195-row corpus (built-in semantic disabled for determinism)
+    // the Python reference makes 110 gold-correct top-1 calls; the native scorer
+    // preserves 105 of them and diverges only on the reviewed current-state rows
+    // enumerated above, while improving 48 rows the Python reference gets wrong.
+    expect(pythonCorrect).toBe(110);
+    expect(tsAlsoCorrect).toBe(105);
     expect(regressions).toBe(ACCEPTED_PARITY_REGRESSION_IDS.length);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);

@@ -35,8 +35,11 @@ interface ParityRegression {
 // resolved once the Stage F lexical/explicit-lane fixes landed; both pruned. Prune
 // entries here as targeted cross-lane work resolves them.
 const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
-  'rr-iter2-016',
-  'rr-iter2-020',
+  'rr-iter3-092',
+  'rr-iter3-097',
+  'rr-iter3-099',
+  'rr-hub6-204',
+  'rr-hub6-207',
 ];
 
 const workspaceRoot = findAdvisorWorkspaceRoot(import.meta.dirname);
@@ -84,18 +87,16 @@ function goldSkill(row: CorpusRow): string | null {
   return row.skill_top_1 === 'none' ? null : row.skill_top_1;
 }
 
-describe('advisor 193-prompt corpus regression-protection parity', () => {
+describe('advisor 195-prompt corpus regression-protection parity', () => {
   it('preserves Python-correct top-1 decisions while allowing native improvements', async () => {
     const previousSemantic = process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC;
     process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
 
     try {
       const rows = loadCorpus();
-      // Removed 3 mcp-clickup-related rows from the labeled corpus
-      // (rr-iter2-056, rr-iter3-181, plus one peer): 200 -> 197.
-      // Removed 4 mcp-figma-related rows when the mcp-figma skill
-      // was retired in favor of the AI_Systems Figma MCP Agent: 197 -> 193.
-      expect(rows).toHaveLength(193);
+      // The current labeled corpus retains the seven hub-routing rows added
+      // for the mcp-tooling hub projection, so the authoritative size is 195.
+      expect(rows).toHaveLength(195);
       const pythonTopSkills = directPythonTopSkills(rows);
       expect(pythonTopSkills).toHaveLength(rows.length);
 
@@ -131,13 +132,13 @@ describe('advisor 193-prompt corpus regression-protection parity', () => {
         }
       }
 
-      // On the current 193-row corpus the Python reference scorer (built-in
-      // semantic disabled for determinism) makes 106 gold-correct top-1 calls;
-      // the native/hook scorer preserves 103 of them. The remaining Python-correct
-      // rows the native scorer diverges on are enumerated and reviewed-accepted
-      // below.
-      expect(pythonCorrect).toBe(106);
-      expect(hookPreservedPythonCorrect).toBe(104);
+      // On the current 195-row corpus the Python reference scorer (built-in
+      // semantic disabled for determinism) makes 110 gold-correct top-1 calls;
+      // the native/hook scorer preserves 105 of them. The remaining
+      // Python-correct rows the native scorer diverges on are enumerated and
+      // reviewed-accepted below.
+      expect(pythonCorrect).toBe(110);
+      expect(hookPreservedPythonCorrect).toBe(105);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

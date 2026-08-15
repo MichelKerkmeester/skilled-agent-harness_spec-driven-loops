@@ -8,18 +8,15 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment"
-    last_updated_at: "2026-07-27T17:50:00Z"
-    last_updated_by: "claude-opus-5"
-    recent_action: "Authored from research"
-    next_safe_action: "Choose the anchoring strategy"
+    last_updated_at: "2026-08-15T13:30:28Z"
+    last_updated_by: "claude-code"
+    recent_action: "Advisor consumer routing fixed and verified"
+    next_safe_action: "Close 001; 002 surface-audit remains"
     blockers: []
     key_files:
       - "spec.md"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "advisor-018-001"
-      parent_session_id: null
-    completion_pct: 0
+      - "implementation-summary.md"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,16 +45,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Re-verify each writer at its cited file:line against current HEAD
-- [ ] T002 Decide the anchor: marker walk-up, git toplevel, or launcher env var
-- [ ] T003 Write the boundary test first, asserting no leak into ANY subtree
-- [ ] T004 Land the shared anchored resolver
-- [ ] T005 Convert workspace-root.ts to the shared resolver
-- [ ] T006 Convert mk-spec-gate.js and mk-cli-dispatch-audit.js
-- [ ] T007 Convert the launcher and remaining writers named in the research
-- [ ] T008 Prove a writer run from inside a skill folder no longer leaks
-- [ ] T009 Untrack the 160 tracked files, then delete the 40 directories
-- [ ] T010 Add the .gitignore backstop and prove the root .opencode/ is unaffected
+- [x] T001 Re-verify each named writer at its cited file:line against the advisor tree — resolver already anchored; `mk-cli-dispatch-audit.js` / `mk-spec-gate.js`→`resolveGuardPaths` / launcher already anchor via `findRepoRoot`; three named writers no longer exist
+- [x] T002 Confirm the anchor is settled: sentinel walk-up via `findAdvisorWorkspaceRoot` (no new resolver needed)
+- [x] T003 Write the boundary test first, asserting no leak into any subtree (`tests/state-containment.vitest.ts`) — watched it fail on the two chokepoints
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -65,7 +55,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] Execute the approved dispositions one at a time
+- [x] T004 Anchor the hook entry `workspaceRootFor` via `findAdvisorWorkspaceRoot` (`hooks/claude/user-prompt-submit.ts`)
+- [x] T005 Anchor the generation-counter path (`lib/freshness/generation.ts`) and skill-graph DB dir (`lib/skill-graph/skill-graph-db.ts`)
+- [x] T006 Anchor the scan cwd (`handlers/skill-graph/scan.ts`) and daemon fallback (`advisor-server.ts`)
+- [x] T007 Realign the schema allowlist twin to `hoistAboveOpencodeTree` (`schemas/advisor-tool-schemas.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -73,8 +66,10 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] Re-run every evidence command and record the result
-- [ ] `validate.sh --strict` exits 0
+- [x] T008 Prove a writer run from a specs/ cwd no longer leaks: `state-containment.vitest.ts` `4/4`; generation stress `7/7`; typecheck `exit 0`
+- [x] T009 Remove the advisor strays under `specs/`: `find specs -type d -name .advisor-state` returns zero
+- [x] T010 Baseline the full suite via `git stash`: 36 failed / 839 passed confirmed pre-existing (unrelated scorer/parity), zero new failures from this change
+- [x] T011 `validate.sh --strict` exits clean on this packet and the 017 parent
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -82,8 +77,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The `.gitignore` backstop and repo-wide 40-dir cleanup are retired as obsolete (see spec REQ-007); non-advisor writers verified already-anchored
 <!-- /ANCHOR:completion -->
 
 ---

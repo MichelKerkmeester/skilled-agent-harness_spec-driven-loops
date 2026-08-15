@@ -1,21 +1,20 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment",
-  "description": "Several runtime writers resolve their state directory from the current working directory rather than from the repository root",
+  "description": "The advisor's state writers resolved their root from the current working directory instead of the repository root",
   "keywords": [
-    "several",
-    "runtime",
-    "writers",
-    "resolve",
+    "advisor",
     "state",
-    "directory",
+    "writers",
+    "resolved",
+    "root",
     "current",
     "working",
-    "rather",
-    "repository",
-    "root"
+    "directory",
+    "instead",
+    "repository"
   ],
-  "lastUpdated": "2026-08-14T07:49:15.454Z",
+  "lastUpdated": "2026-08-15T13:30:28.469Z",
   "specId": "001",
   "folderSlug": "state-directory-containment",
   "parentChain": [

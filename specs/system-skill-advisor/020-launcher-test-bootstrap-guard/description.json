@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "system-skill-advisor/020-launcher-test-bootstrap-guard",
+  "description": "`mk-skill-advisor-launcher.cjs buildIfNeeded()` runs `npm ci` when advisor build artifacts look stale",
+  "keywords": [
+    "mk-skill-advisor-launcher",
+    "cjs",
+    "buildifneeded",
+    "runs",
+    "npm",
+    "advisor",
+    "artifacts",
+    "look",
+    "stale"
+  ],
+  "lastUpdated": "2026-08-15T15:19:29.734Z",
+  "specId": "020",
+  "folderSlug": "launcher-test-bootstrap-guard",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

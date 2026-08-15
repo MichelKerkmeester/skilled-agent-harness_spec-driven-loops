@@ -157,5 +157,6 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | [`assets/skill/skill-readme-template.md`](./assets/skill/skill-readme-template.md) | Standalone skill README scaffold, the template this file was written from |
 | [`assets/parent-skill/parent-skill-hub-template.md`](./assets/parent-skill/parent-skill-hub-template.md) | Parent hub `SKILL.md` scaffold |
 | [`references/README.md`](./references/README.md) | Route map into the `skill/` and `parent-skill/` reference groups |
+| [`references/skill/upgrading-a-skill-to-v4.md`](./references/skill/upgrading-a-skill-to-v4.md) | Adopter guide: reconcile a customized skill to the v4 parent-hub format |
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Scaffold helper for new standalone or parent-hub folders |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validation and packaging helper |

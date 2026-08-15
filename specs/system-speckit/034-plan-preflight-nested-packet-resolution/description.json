@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/034-plan-preflight-nested-packet-resolution",
+  "description": "The `/speckit:plan` Step-5 prerequisite helper (`check-prerequisites.sh`) derives the feature directory from the current git branch via `common.sh`,",
+  "keywords": [
+    "speckit",
+    "plan",
+    "step-5",
+    "prerequisite",
+    "helper",
+    "check-prerequisites",
+    "derives",
+    "feature",
+    "directory",
+    "current",
+    "git",
+    "branch",
+    "via",
+    "common"
+  ],
+  "lastUpdated": "2026-08-15T13:28:53.037Z",
+  "specId": "034",
+  "folderSlug": "plan-preflight-nested-packet-resolution",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

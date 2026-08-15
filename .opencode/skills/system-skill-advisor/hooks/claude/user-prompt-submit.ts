@@ -10,6 +10,7 @@ import { createRequire } from 'node:module';
 import { performance } from 'node:perf_hooks';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { findAdvisorWorkspaceRoot } from '../../mcp-server/lib/utils/workspace-root.js';
 import {
   buildSkillAdvisorBrief,
   type AdvisorHookResult,
@@ -135,10 +136,15 @@ function normalizePrompt(value: unknown): string | null {
   return value.slice(0, low);
 }
 
-function workspaceRootFor(input: ClaudeUserPromptSubmitInput): string {
-  return typeof input.cwd === 'string' && input.cwd.trim().length > 0
-    ? input.cwd
-    : process.cwd();
+export function workspaceRootFor(input: ClaudeUserPromptSubmitInput): string {
+  const start =
+    typeof input.cwd === 'string' && input.cwd.trim().length > 0
+      ? input.cwd
+      : process.cwd();
+  // Anchor to the real repo root. A raw session cwd inside a specs/<packet>
+  // directory would otherwise become the "workspace root", and the advisor's
+  // state writers materialize a stray .advisor-state tree under it.
+  return findAdvisorWorkspaceRoot(start);
 }
 
 function skillLabelFor(result: AdvisorHookResult): string | null {
