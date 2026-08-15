@@ -10,6 +10,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const { readVerifiedReceipt } = require('../shared/promotion-receipts.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
@@ -34,6 +35,10 @@ function readJson(filePath) {
 function readJsonc(filePath) {
   const raw = fs.readFileSync(filePath, 'utf8');
   return JSON.parse(raw.replace(/^\s*\/\/.*$/gm, ''));
+}
+
+function sha256File(filePath) {
+  return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex');
 }
 
 function resolveAllowedCanonicalTarget(manifestPath) {
@@ -116,14 +121,22 @@ function main() {
   const backup = args.backup;
   const configPath = args.config;
   const manifestPath = args.manifest;
+  const receiptPath = args.receipt;
 
-  if (!target || !backup || !configPath || !manifestPath) {
-    process.stderr.write('Usage: node rollback-candidate.cjs --target=... --backup=... --config=... --manifest=...\n');
+  if (!target || !backup || !configPath || !manifestPath || !receiptPath) {
+    process.stderr.write('Usage: node rollback-candidate.cjs --target=... --backup=... --config=... --manifest=... --receipt=...\n');
     process.exit(2);
   }
 
   const config = readJson(configPath);
   const allowedCanonicalTarget = resolveAllowedCanonicalTarget(manifestPath);
+  let receipt;
+  try {
+    receipt = readVerifiedReceipt(receiptPath, 'promotion-acceptance');
+  } catch (error) {
+    process.stderr.write(`Cannot roll back: acceptance receipt is not authentic: ${error.message}\n`);
+    process.exit(1);
+  }
 
   if (config?.target && target !== config.target) {
     process.stderr.write(`Cannot roll back: target ${target} does not match runtime config target ${config.target}\n`);
@@ -137,6 +150,10 @@ function main() {
 
   try {
     assertWithinAllowedRoots(target, config);
+    assertWithinAllowedRoots(backup, config);
+    assertWithinAllowedRoots(configPath, config);
+    assertWithinAllowedRoots(manifestPath, config);
+    assertWithinAllowedRoots(receiptPath, config);
   } catch (error) {
     process.stderr.write(`${error.message}\n`);
     process.exit(1);
@@ -147,9 +164,29 @@ function main() {
     process.exit(1);
   }
 
-  const preRestoreHash = fs.existsSync(target)
-    ? crypto.createHash('sha256').update(fs.readFileSync(target)).digest('hex')
-    : null;
+  if (receipt.binding?.target?.path !== target
+    || receipt.acceptance?.preAcceptBackup?.path !== backup
+    || receipt.binding?.config?.path !== configPath
+    || receipt.binding?.manifest?.path !== manifestPath) {
+    process.stderr.write('Cannot roll back: rollback arguments do not match authenticated receipt\n');
+    process.exit(1);
+  }
+  if (receipt.binding.config.hash !== sha256File(configPath)
+    || receipt.binding.manifest.hash !== sha256File(manifestPath)) {
+    process.stderr.write('Cannot roll back: config or manifest changed after approval\n');
+    process.exit(1);
+  }
+  if (receipt.acceptance.preAcceptBackup.hash !== sha256File(backup)) {
+    process.stderr.write('Cannot roll back: backup hash does not match authenticated receipt\n');
+    process.exit(1);
+  }
+  if (!fs.existsSync(target)
+    || receipt.acceptance.candidateSnapshot.hash !== sha256File(target)) {
+    process.stderr.write('Cannot roll back: canonical target is not the authenticated accepted candidate\n');
+    process.exit(1);
+  }
+
+  const preRestoreHash = sha256File(target);
 
   fs.copyFileSync(backup, target);
   process.stdout.write(`${JSON.stringify({ status: 'rolled_back', target, backup, preRestoreHash }, null, 2)}\n`);

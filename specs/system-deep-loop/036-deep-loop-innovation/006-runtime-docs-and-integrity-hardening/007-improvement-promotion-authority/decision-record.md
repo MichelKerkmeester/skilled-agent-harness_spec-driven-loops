@@ -12,12 +12,14 @@ contextType: "general"
 parent: "system-deep-loop/036-deep-loop-innovation"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/007-improvement-promotion-authority"
-    last_updated_at: "2026-07-30T00:00:00Z"
-    last_updated_by: "claude"
-    recent_action: "Authored ADR-001, ADR-002 and ADR-003 from the WS1 phase-tree proposal"
-    next_safe_action: "Operator accepts or rejects ADR-001 through ADR-003"
-    blockers: []
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/007-improvement-promotion-authority"
+    last_updated_at: "2026-08-15T08:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Accepted ADR-001 through ADR-003 after implementation and regression verification"
+    next_safe_action: "Independent verification and main validation"
+    blockers:
+      - "Independent verifier not available in this single-actor session"
+      - "Worktree strict validator environment cannot complete its command-tree check"
     key_files:
       - "decision-record.md"
     completion_pct: 0
@@ -39,9 +41,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-07-30 |
-| **Deciders** | Packet owner, operator (approval model) |
+| **Status** | Accepted |
+| **Date** | 2026-08-15 |
+| **Deciders** | Packet owner; operator selected advisory-only autonomous mode through the task's fail-closed constraint |
 
 ---
 
@@ -64,7 +66,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 
 **We chose**: An authenticated append-only acceptance receipt binding all evidence digests, paths, target preimage, candidate snapshot, evaluator epoch and approval identity, verified by promotion, ship and rollback alike.
 
-**How it works**: Scoring emits a receipt. Promotion verifies the receipt binds this candidate to this target with this input hash. Ship verifies against the receipt rather than the mutable acceptance JSON. Rollback reads the recorded pre-promotion hash from the same receipt.
+**How it works**: An operator-authorized issuer creates an HMAC-SHA256 approval receipt with exclusive creation. Promotion verifies its authentication and exact candidate, target-preimage, score-input, benchmark, repeatability, configuration, manifest and evaluator-authority bindings. Acceptance creates an independently authenticated receipt binding the immutable candidate snapshot, pre-accept target backup and acceptance state. Ship and both rollback paths verify that acceptance receipt rather than trusting caller-supplied JSON.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -125,7 +127,9 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 
 **What changes**:
 - `promote-candidate.cjs` and both `rollback-candidate.cjs` scripts.
-- A new append-only receipt artifact.
+- `promotion-receipts.cjs`, which authenticates receipts, rejects replacement and requires every decided authority field.
+
+**Acceptance evidence**: `promotion receipt authority > authenticates the decided authority fields and evidence bindings`, `fails closed when a signed receipt is modified`, and `uses exclusive creation so an issued receipt cannot be replaced`; promotion/ship/rollback integration is exercised by `ships an accepted snapshot and rolls back to the pre-acceptance target`, `refuses a forged acceptance file with no receipt, even when the OR hash guard would pass`, and `refuses an acceptance file that drifted from its issued receipt`. The affected authority matrix passed on 2026-08-15; aggregate suite-content SHA-256 `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`.
 
 **How to roll back**: Revert the receipt-binding commits; the prior acceptance-JSON checks return. Record that `F-017-01`, `F-017-03` and `F-017-04` re-open.
 <!-- /ANCHOR:adr-001-impl -->
@@ -140,8 +144,8 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-07-30 |
+| **Status** | Accepted |
+| **Date** | 2026-08-15 |
 | **Deciders** | Packet owner |
 
 ---
@@ -164,7 +168,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 
 **We chose**: Evaluator profile and `agentName` come from an authority outside the candidate; candidate frontmatter is ignored for evaluator selection.
 
-**How it works**: The scorer resolves the evaluator identity from the chosen authority and records it in the acceptance receipt, so the score is bound to an evaluator the candidate did not pick.
+**How it works**: The target manifest is the authority. Each target entry must supply a non-dynamic `profileId`, `evaluatorAgentName`, `evaluatorEpoch`, and optionally `evaluatorSourcePath` (otherwise the canonical target). Missing authority fails closed. Candidate frontmatter cannot provide a fallback, and the scorer records the resolved identity and source hash for receipt binding.
 <!-- /ANCHOR:adr-002-decision -->
 
 ---
@@ -225,6 +229,8 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 - `agent-improvement/score-candidate.cjs` evaluator resolution.
 - The acceptance receipt evaluator-epoch field.
 
+**Acceptance evidence**: `ignores candidate frontmatter when selecting evaluator identity and rubric source` and `fails closed when no evaluator authority manifest is supplied`; both passed in the affected authority matrix on 2026-08-15, suite-content SHA-256 `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`.
+
 **How to roll back**: Revert the resolution commit; candidate frontmatter is honoured again. Record that `F-017-05` re-opens.
 <!-- /ANCHOR:adr-002-impl -->
 <!-- /ANCHOR:adr-002 -->
@@ -238,8 +244,8 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 
 | Field | Value |
 |-------|-------|
-| **Status** | Proposed |
-| **Date** | 2026-07-30 |
+| **Status** | Accepted |
+| **Date** | 2026-08-15 |
 | **Deciders** | Packet owner |
 
 ---
@@ -262,7 +268,7 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 
 **We chose**: Every write boundary is contained against an enumerated authorized root set, and every caller-supplied path component is validated before any directory is created.
 
-**How it works**: Each script declares its authorized roots. Every write resolves against them, and any component derived from caller input is validated first. Council persistence resolves its root from configuration rather than from a positional argument.
+**How it works**: Promotion and rollback validate candidate, target, archive, approval, acceptance, event-log, state and backup boundaries against enumerated roots before any write. Council persistence resolves the authority roots from `DEEP_AI_COUNCIL_AUTHORIZED_SPEC_ROOTS` (defaulting to repository `specs` and `.opencode/specs`), requires the packet root to be inside one of them, rejects symlinks, validates strict topic IDs, and confines payload output to the resulting council root before any `mkdir`.
 <!-- /ANCHOR:adr-003-decision -->
 
 ---
@@ -324,14 +330,20 @@ Eight P0 findings share one mechanism: mutable local JSON is treated as authorit
 - `persist-artifacts.cjs` root resolution and payload output.
 - `orchestrate-{topic,session}.cjs` topic-ID validation.
 
+**Acceptance evidence**: `rejects an uncontained %s before creating output` covers candidate, archive, acceptance, event-log and state boundaries; `refuses a caller-selected packet root outside configured authority before mkdir`, `rejects a payload output outside the authorized council root`, and the unsafe-topic matrix verify council containment. The authority matrix and council project passed on 2026-08-15; suite-content SHA-256 `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`.
+
 **How to roll back**: Revert the containment commits per script. Record that `F-017-02` and the three `F-019-*` findings re-open.
 <!-- /ANCHOR:adr-003-impl -->
 <!-- /ANCHOR:adr-003 -->
 
 ---
 
-## RESERVED DECISIONS
+## ADR-004: Autonomous improvement remains advisory-only
 
-**The approval model for autonomous mode (ADR-004) is an OPERATOR-DECISION.**
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-15 |
+| **Decider** | Operator task constraint: "no dark->live authority flip" |
 
-`F-021-01` records that the autonomous model-benchmark workflow declares `approvals: none` yet unconditionally invokes `promote-candidate.cjs --approve`, and the script treats flag presence as approval. Two models close it: autonomous mode becomes advisory-only (it proposes, an operator promotes), or it requires a candidate-and-target-bound operator receipt issued ahead of the run. Advisory-only is the safe default this child implements if no answer arrives; the receipt-bound model preserves autonomy and is the better outcome if the operator wants it. Record the chosen model as ADR-004, scaffolded from `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl`. Do not infer it from the default.
+The autonomous benchmark may produce recommendations and evidence, but it cannot invoke canonical promotion. Promotion remains a separate operator-authorized session using an authenticated, candidate-and-target-bound approval receipt. This is not inferred from a default: it follows the explicit additive-dark constraint in the completion task. `autonomous promotion authority > is advisory-only and cannot invoke a canonical promotion command` passed in the affected authority matrix; suite-content SHA-256 `0505321f555e3edab1a3145da4e5acce74cb4b022408b10c2f49867d1a1fa265`.

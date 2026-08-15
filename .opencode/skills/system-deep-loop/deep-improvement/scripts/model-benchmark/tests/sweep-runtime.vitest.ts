@@ -196,6 +196,27 @@ describe('sweep matrix expansion: pure config, one code path', () => {
   });
 });
 
+describe('sweep dispatch output authority', () => {
+  it('marks a successful textless JSONL stream unscorable without throwing', () => {
+    const result = sweep.dispatchCell(
+      { executor: 'cli-opencode', modelId: 'test-model', variant: null },
+      'test prompt',
+      {
+        _dispatch: () => ({
+          ok: true,
+          exit_code: 0,
+          attempts: 1,
+          mock: false,
+          stdout: `${JSON.stringify({ type: 'step_finish', timestamp: 1 })}\n`,
+        }),
+      },
+    );
+
+    expect(result.dispatch_ok).toBe(false);
+    expect(result.assistantText).toBe('');
+  });
+});
+
 describe('sweep mock end-to-end: saturation scenario', () => {
   const bakeoff = readJson(path.join(PROFILE_DIR, 'framework-bakeoff.json'));
   const correctResponder = (cell: any) => CORRECT_BY_FN[cell.fixture.fn_name];

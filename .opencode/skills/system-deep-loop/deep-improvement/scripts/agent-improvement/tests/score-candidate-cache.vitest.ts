@@ -63,9 +63,23 @@ Read files first and then validate evidence.
 }
 
 function runScore(candidatePath: string, cacheDir: string): Record<string, unknown> {
+  const targetPath = `${candidatePath}.authority.md`;
+  const manifestPath = `${candidatePath}.manifest.jsonc`;
+  fs.copyFileSync(candidatePath, targetPath);
+  fs.writeFileSync(manifestPath, JSON.stringify({
+    targets: [{
+      path: targetPath,
+      classification: 'canonical',
+      profileId: 'authority-profile',
+      evaluatorAgentName: 'authority-agent',
+      evaluatorEpoch: 'epoch-7',
+    }],
+  }), 'utf8');
   const output = execFileSync('node', [
     SCORE_SCRIPT,
     `--candidate=${candidatePath}`,
+    `--target=${targetPath}`,
+    `--manifest=${manifestPath}`,
     `--cache-dir=${cacheDir}`,
   ], {
     cwd: WORKSPACE_ROOT,
@@ -96,7 +110,7 @@ describe('score-candidate cache reproducibility', () => {
     expect(second.dimensions).toEqual(first.dimensions);
   });
 
-  // F-P1-12: the cache key must bind candidate identity (path), so two different
+  // The cache key must bind candidate identity, so two different
   // candidates can never collide on a single cache entry even with a shared cache dir.
   it('never shares a cache hit between two different candidates', () => {
     const cacheDir = path.join(tmpDir, 'shared-cache');

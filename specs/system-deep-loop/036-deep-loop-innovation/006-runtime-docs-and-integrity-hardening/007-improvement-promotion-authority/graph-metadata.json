@@ -18,7 +18,7 @@
       "deep loop 029 promotion",
       "improvement promotion authority implementation",
       "acceptance receipt binding evidence",
-      "deep loop 029 implementation summary"
+      "deep loop promotion integrity"
     ],
     "key_topics": [
       "improvement",
@@ -178,13 +178,13 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built Eight",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Landed Findings",
+        "name": "What Was Built Promotion",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier revision can authorize promotion of a newer unscored candidate (`F-017-01`, CONFIRMED-WITH-MITIGATION: the benchmark report is target-bound, which mitigates but does not close it)",
     "created_at": "2026-07-31T01:25:21.136Z",
-    "last_save_at": "2026-08-14T04:28:33.597Z",
+    "last_save_at": "2026-08-15T07:58:58.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7ab31d9d4b128844227f3af6e753ac4be10ecab18d75594f5f5be2a2002c6438",
+    "source_fingerprint": "sha256:c506c4dde3844794a2270907d43877c828b17e34a8f3f39ec73c74e5a2aba76f",
     "source_doc_hashes": {
-      "spec.md": "070686f1e57a0c4be3a59fe43ad7d832075518b9f9ea6df774e3bdbee72156a5",
-      "plan.md": "87899b58fb76f03727a48bacbe4df909458dd56d1d508dce7278e2a5d6350ff7",
-      "tasks.md": "0e59e71b1e8135560e3c5067f608b9e198c64138f34bbb5826f3fd15e80b2156",
-      "checklist.md": "edad5d027ffd22a6ea22664c4ce88762961e7a46b873339b67f12d5bd2aa8ab3",
-      "decision-record.md": "63bd88edcd6e5c4fef7df89dc19dc086dc34a00759963f47ac194c98b00620f6",
-      "implementation-summary.md": "b9953c65e1860bbbba784ea320d5470a3ff9d7210190a0ac573c86aebed82f0d"
+      "spec.md": "cf17c4e554aa9a05d2a0b579e2d42209b59b8a8f7723669853a1def3946ec0e6",
+      "plan.md": "f5361075f7f06eb18e6f895e8c91f35f7fddf1f80fae98381c1ab5fe4e9a7add",
+      "tasks.md": "0f31ef895d52bbd870931ff0f23b881c9bf2f440c084d9ddf51d3d9d68454713",
+      "checklist.md": "60c3de19a56b881fdd512f814f97abcf800491b5612ed66067c50ad11c42576b",
+      "decision-record.md": "497d11f6fce6e488099928aaba868c39e396daf42b262d86de422578af50f328",
+      "implementation-summary.md": "76e6a7a1ea69117c73d87539cebf78eeb86250d018bbdbb1694c903d01a3403f"
     },
     "last_active_child_id": null,
     "last_active_at": null

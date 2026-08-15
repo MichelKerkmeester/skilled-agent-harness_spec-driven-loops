@@ -11,6 +11,7 @@ import path from 'node:path';
 import fs from 'node:fs';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 
@@ -18,6 +19,11 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../../../');
 const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/system-deep-loop/deep-improvement/scripts');
 const PROMOTE = path.join(SCRIPTS, 'shared/promote-candidate.cjs');
+const require = createRequire(import.meta.url);
+const { issueApprovalReceipt } = require('../promotion-receipts.cjs') as {
+  issueApprovalReceipt: (filePath: string, options: Record<string, unknown>) => void;
+};
+const RECEIPT_KEY = 'test-only-promotion-authority-key-32-bytes-minimum';
 
 const AGENT_NAME = 'mirror-sync-promote-fixture';
 
@@ -111,12 +117,23 @@ function buildAgentPacket(opts: { driftClaudeBody?: string } = {}) {
     `// agent target manifest\n${JSON.stringify({ targets: [{ path: target, classification: 'canonical' }] }, null, 2)}\n`,
   );
 
-  return { target, candidate, benchmarkReport, config, manifest, archiveDir };
+  return { target, candidate, benchmarkReport, repeatability, config, manifest, archiveDir };
 }
 
 function runPromote(p: ReturnType<typeof buildAgentPacket>) {
   const receiptPath = path.join(work, 'approval-receipt.json');
-  writeJson('approval-receipt.json', { candidate: p.candidate, target: p.target, approved: true, approvedAt: new Date().toISOString() });
+  issueApprovalReceipt(receiptPath, {
+    candidatePath: p.candidate,
+    targetPath: p.target,
+    benchmarkReportPath: p.benchmarkReport,
+    repeatabilityReportPath: p.repeatability,
+    configPath: p.config,
+    manifestPath: p.manifest,
+    approvalIdentity: 'operator:test',
+    evaluatorProfileId: 'demo-profile',
+    evaluatorAgentName: 'model-benchmark',
+    evaluatorEpoch: 'test-epoch',
+  });
   return spawnSync(
     'node',
     [
@@ -136,8 +153,16 @@ function runPromote(p: ReturnType<typeof buildAgentPacket>) {
 // realpathSync resolves the macOS /var -> /private/var symlink so the temp
 // root matches the spawned child's process.cwd(); otherwise path.relative()
 // yields a ../ path and isAgentDefinitionTarget() never fires.
-beforeEach(() => { work = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'promote-mirror-'))); });
-afterEach(() => { fs.rmSync(work, { recursive: true, force: true }); });
+beforeEach(() => {
+  work = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'promote-mirror-')));
+  process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY = RECEIPT_KEY;
+  process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY_ID = 'test-authority';
+});
+afterEach(() => {
+  delete process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY;
+  delete process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY_ID;
+  fs.rmSync(work, { recursive: true, force: true });
+});
 
 describe('promote-candidate 2-runtime mirror-sync gate', () => {
   it('promotes a candidate when every runtime mirror is in sync with the current canonical', () => {

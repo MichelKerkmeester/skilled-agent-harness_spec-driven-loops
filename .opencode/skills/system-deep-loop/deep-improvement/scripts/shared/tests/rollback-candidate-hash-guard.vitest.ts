@@ -19,6 +19,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 
@@ -32,6 +33,11 @@ const PROMOTE = path.join(
   WORKSPACE_ROOT,
   '.opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs',
 );
+const require = createRequire(import.meta.url);
+const { issueApprovalReceipt } = require('../promotion-receipts.cjs') as {
+  issueApprovalReceipt: (filePath: string, options: Record<string, unknown>) => void;
+};
+const RECEIPT_KEY = 'test-only-promotion-authority-key-32-bytes-minimum';
 
 let work: string;
 
@@ -76,8 +82,37 @@ function runRollback(acceptanceFile: string) {
   });
 }
 
-beforeEach(() => { work = fs.mkdtempSync(path.join(os.tmpdir(), 'shared-rollback-hash-guard-')); });
-afterEach(() => { fs.rmSync(work, { recursive: true, force: true }); });
+function issueBenchmarkApproval(
+  p: ReturnType<typeof buildPacket>,
+  candidate: string,
+  benchmarkReport: string,
+  repeatabilityReport: string,
+  receiptPath: string,
+) {
+  issueApprovalReceipt(receiptPath, {
+    candidatePath: candidate,
+    targetPath: p.target,
+    benchmarkReportPath: benchmarkReport,
+    repeatabilityReportPath: repeatabilityReport,
+    configPath: p.config,
+    manifestPath: p.manifest,
+    approvalIdentity: 'operator:test',
+    evaluatorProfileId: 'demo-profile',
+    evaluatorAgentName: 'model-benchmark',
+    evaluatorEpoch: 'test-epoch',
+  });
+}
+
+beforeEach(() => {
+  work = fs.mkdtempSync(path.join(os.tmpdir(), 'shared-rollback-hash-guard-'));
+  process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY = RECEIPT_KEY;
+  process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY_ID = 'test-authority';
+});
+afterEach(() => {
+  delete process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY;
+  delete process.env.DEEP_LOOP_PROMOTION_RECEIPT_KEY_ID;
+  fs.rmSync(work, { recursive: true, force: true });
+});
 
 describe('shared/rollback-candidate.cjs acceptance-file authenticity', () => {
   it('refuses rollback before the accepted candidate is shipped', () => {
@@ -87,8 +122,6 @@ describe('shared/rollback-candidate.cjs acceptance-file authenticity', () => {
     const archiveDir = path.join(work, 'archive');
     const acceptanceFile = path.join(archiveDir, 'accepted.json');
     const receiptPath = path.join(work, 'approval-receipt.json');
-    writeJson(receiptPath, { candidate, target: p.target, approved: true });
-
     const benchmarkReport = path.join(work, 'report.json');
     writeJson(benchmarkReport, {
       status: 'benchmark-complete',
@@ -102,7 +135,9 @@ describe('shared/rollback-candidate.cjs acceptance-file authenticity', () => {
       totals: { score: 92, delta: 0.05, pass_rate: 1, fixtures: 2, passed: 2 },
       recommendation: 'benchmark-pass',
     });
-    writeJson(path.join(work, 'repeatability.json'), { profileId: 'demo-profile', passed: true });
+    const repeatabilityReport = path.join(work, 'repeatability.json');
+    writeJson(repeatabilityReport, { profileId: 'demo-profile', passed: true });
+    issueBenchmarkApproval(p, candidate, benchmarkReport, repeatabilityReport, receiptPath);
 
     const accept = spawnSync('node', [
       PROMOTE,
@@ -168,8 +203,6 @@ describe('shared/rollback-candidate.cjs acceptance-file authenticity', () => {
     const archiveDir = path.join(work, 'archive');
     const acceptanceFile = path.join(archiveDir, 'accepted.json');
     const receiptPath = path.join(work, 'approval-receipt.json');
-    writeJson(receiptPath, { candidate, target: p.target, approved: true });
-
     // Lane B (benchmark) needs a passing report before accept runs.
     const benchmarkReport = path.join(work, 'report.json');
     writeJson(benchmarkReport, {
@@ -184,7 +217,9 @@ describe('shared/rollback-candidate.cjs acceptance-file authenticity', () => {
       totals: { score: 92, delta: 0.05, pass_rate: 1, fixtures: 2, passed: 2 },
       recommendation: 'benchmark-pass',
     });
-    writeJson(path.join(work, 'repeatability.json'), { profileId: 'demo-profile', passed: true });
+    const repeatabilityReport = path.join(work, 'repeatability.json');
+    writeJson(repeatabilityReport, { profileId: 'demo-profile', passed: true });
+    issueBenchmarkApproval(p, candidate, benchmarkReport, repeatabilityReport, receiptPath);
 
     const accept = spawnSync('node', [
       PROMOTE,
