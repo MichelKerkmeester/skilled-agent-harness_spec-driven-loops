@@ -171,7 +171,7 @@ done < input.jsonl
 
 ## 5. MODEL SELECTION STRATEGY
 
-**cli-cursor dispatch is scoped to an enforced 20-id allowlist — Composer, GLM 5.2, Grok (4.5 and 4.6), and GPT-5.6 Luna Max only. Choose based on task type; never dispatch a model outside this set.**
+**cli-cursor dispatch is scoped to an enforced 21-id allowlist — Composer, Gemini 3.7 Flash High, GLM 5.2, GPT-5.6 Luna Max, and Grok (4.5 and 4.6) only. Choose based on task type; never dispatch a model outside this set.**
 
 ### Decision Matrix
 
@@ -209,7 +209,7 @@ cursor-agent -p "Review the authentication architecture for security gaps" \
 
 - Omitting `--model` defaults to `composer-2.5`, never `auto` — the runtime layer rejects `auto` outright since it can silently resolve outside the allowlist
 - Explicit specification ensures reproducible behavior in scripts and CI/CD pipelines
-- The allowlist is fixed at 20 ids (`executor-config.ts`'s `CURSOR_SUPPORTED_MODELS`) — do not query `cursor-agent --list-models` to justify dispatching an id outside it; that command lists Cursor's full roster, not this skill's scope
+- The allowlist is fixed at 21 ids (`executor-config.ts`'s `CURSOR_SUPPORTED_MODELS`) — do not query `cursor-agent --list-models` to justify dispatching an id outside it; that command lists Cursor's full roster, not this skill's scope
 
 ---
 

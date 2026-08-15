@@ -727,7 +727,7 @@ describe('resolveCursorApprovalMode', () => {
 });
 
 describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
-  it('is exactly the 20-id enforced allowlist (Grok 4.5 and 4.6, plus GPT-5.6 Luna Max), with auto excluded', () => {
+  it('is exactly the 21-id enforced allowlist (Gemini 3.7 Flash High, GPT-5.6 Luna Max, plus Grok 4.5 and 4.6), with auto excluded', () => {
     expect([...CURSOR_SUPPORTED_MODELS].sort()).toEqual([
       'composer-2.5',
       'composer-2.5-fast',
@@ -745,6 +745,7 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
       'cursor-grok-4.6-medium-fast',
       'cursor-grok-4.6-xhigh',
       'cursor-grok-4.6-xhigh-fast',
+      'gemini-3.7-flash-high',
       'glm-5.2-high',
       'glm-5.2-max',
       'gpt-5.6-luna-max',
@@ -765,6 +766,7 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
     expect(isCursorModelAllowed('auto')).toBe(false);
     expect(isCursorModelAllowed('gpt-5.6-sol-high-fast')).toBe(false);
     expect(isCursorModelAllowed('claude-opus-4-8-xhigh')).toBe(false);
+    expect(isCursorModelAllowed('gemini-3.7-flash-low')).toBe(false);
   });
 });
 

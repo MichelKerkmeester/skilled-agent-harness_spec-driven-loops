@@ -52,7 +52,7 @@ per-mode references, it is not part of the first slice.
   Composer + the enforced model allowlist) and the integration-pattern guide a
   request to dispatch a Cursor-Composer coding session loads.
 - **cli-devin leaves** — the Devin CLI command reference (`devin -p`, the curated
-  DeepSeek / GLM-5.2 / GPT-5.6 Luna Max / Grok (4.5 and 4.6) / SWE-1.7 roster, permission modes) and the
+  DeepSeek / Gemini / GLM-5.2 / GPT-5.6 Luna Max / Grok (4.5 and 4.6) / SWE-1.7 roster, permission modes) and the
   integration-pattern guide a request to dispatch a Cognition-backed autonomous
   SWE session or cloud handoff loads.
 - **cli-pi leaves** — the Pi CLI command reference (headless print mode, the

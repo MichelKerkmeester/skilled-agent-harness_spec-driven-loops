@@ -1096,6 +1096,7 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
       'cursor-grok-4.6-low', 'cursor-grok-4.6-low-fast',
       'cursor-grok-4.6-medium', 'cursor-grok-4.6-medium-fast',
       'cursor-grok-4.6-xhigh', 'cursor-grok-4.6-xhigh-fast',
+      'gemini-3.7-flash-high',
       'glm-5.2-high', 'glm-5.2-max',
       'gpt-5.6-luna-max', 'gpt-5.6-luna-max-fast',
     ];
@@ -1109,7 +1110,7 @@ describe('fanout-run.cjs — cli-cursor adapter', () => {
     const binDir = makeTempDir('fanout-run-cursor-rejected-model-');
     writeStubBinary(binDir, 'cursor-agent');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    for (const model of ['auto', 'gpt-5.6-sol-high-fast', 'claude-opus-4-8-xhigh']) {
+    for (const model of ['auto', 'gpt-5.6-sol-high-fast', 'claude-opus-4-8-xhigh', 'gemini-3.7-flash-medium']) {
       expect(() => buildLineageCommand({ kind: 'cli-cursor', model }, 'p', 'workspace-write', 'default', opts))
         .toThrow(/not in the enforced allowlist/);
     }
@@ -1231,6 +1232,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const allowed = [
       'deepseek-v4', 'deepseek-v4-flash-max', 'deepseek-v4-pro', 'deepseek-v4-pro-max',
+      'gemini-3-7-flash-high',
       'glm-5-2', 'glm-5-2-1m', 'glm-5-2-max', 'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
       'gpt-5-6-luna-max', 'gpt-5-6-luna-max-priority',
       'grok-4-5-high', 'grok-4-5-low', 'grok-4-5-medium',
@@ -1247,7 +1249,7 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
     const binDir = makeTempDir('fanout-run-devin-rejected-model-');
     writeStubBinary(binDir, 'devin');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
-    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.6-high', 'adaptive', 'opus']) {
+    for (const model of ['kimi-k3-high', 'gpt-5-6-sol-high', 'cursor-grok-4.6-high', 'adaptive', 'opus', 'gemini-3-7-flash-low']) {
       expect(() => buildLineageCommand({ kind: 'cli-devin', model }, 'p', 'workspace-write', 'default', opts))
         .toThrow(/not in the enforced allowlist/);
     }
