@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.openai.internal/shadow-parity/certificate-verification-response.v1.schema.json",
+  "title": "Shadow parity certificate verification response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ok"],
+  "properties": {
+    "ok": { "type": "boolean" },
+    "certificateDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "refusal": { "type": "object" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "ok": { "const": true } } },
+      "then": { "required": ["certificateDigest"] },
+      "else": { "required": ["refusal"] }
+    }
+  ]
+}

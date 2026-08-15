@@ -17,6 +17,7 @@ import type {
   ParityBaselineRow,
   ParityCaseDefinition,
   ParityCaseManifest,
+  ParityCoverageInventory,
   ParityObservationClass,
 } from './shadow-parity-types.js';
 
@@ -123,11 +124,88 @@ function immutableCase(definition: ParityCaseDefinition): ParityCaseDefinition {
     );
   }
   definition.projectionIds.forEach((entry) => requireIdentity(entry, 'projectionId'));
+  if (definition.workstreamId !== undefined) {
+    requireIdentity(definition.workstreamId, 'workstreamId');
+  }
+  for (const [field, values] of [
+    ['stateSurfaceId', definition.stateSurfaceIds ?? []],
+    ['readerId', definition.readerIds ?? []],
+    ['effectId', definition.effectIds ?? []],
+  ] as const) {
+    if (new Set(values).size !== values.length) {
+      throw new ShadowParityError(
+        ShadowParityErrorCodes.INVALID_INPUT,
+        `Parity cases require unique ${field} values`,
+        { caseId: definition.caseId },
+      );
+    }
+    values.forEach((entry) => requireIdentity(entry, field));
+  }
   return Object.freeze({
     ...definition,
     requiredObservations: Object.freeze([...definition.requiredObservations]),
     projectionIds: Object.freeze([...definition.projectionIds]),
+    ...(definition.stateSurfaceIds === undefined ? {} : {
+      stateSurfaceIds: Object.freeze([...definition.stateSurfaceIds]),
+    }),
+    ...(definition.readerIds === undefined ? {} : {
+      readerIds: Object.freeze([...definition.readerIds]),
+    }),
+    ...(definition.effectIds === undefined ? {} : {
+      effectIds: Object.freeze([...definition.effectIds]),
+    }),
   });
+}
+
+function sortedUnique(values: readonly string[]): string[] {
+  return Array.from(new Set(values)).sort((left, right) => left.localeCompare(right));
+}
+
+function compileCoverage(cases: readonly ParityCaseDefinition[]): ParityCoverageInventory {
+  return Object.freeze({
+    modeIds: Object.freeze(sortedUnique(cases.map((entry) => entry.mode))) as unknown as string[],
+    workstreamIds: Object.freeze(sortedUnique(cases.flatMap(
+      (entry) => entry.workstreamId === undefined ? [] : [entry.workstreamId],
+    ))) as unknown as string[],
+    observationIds: Object.freeze(sortedUnique(cases.flatMap(
+      (entry) => [...entry.requiredObservations],
+    ))) as unknown as string[],
+    stateSurfaceIds: Object.freeze(sortedUnique(cases.flatMap(
+      (entry) => [...(entry.stateSurfaceIds ?? [])],
+    ))) as unknown as string[],
+    readerIds: Object.freeze(sortedUnique(cases.flatMap(
+      (entry) => [...(entry.readerIds ?? [])],
+    ))) as unknown as string[],
+    effectIds: Object.freeze(sortedUnique(cases.flatMap(
+      (entry) => [...(entry.effectIds ?? [])],
+    ))) as unknown as string[],
+    projectionIds: Object.freeze(sortedUnique(cases.flatMap(
+      (entry) => [...entry.projectionIds],
+    ))) as unknown as string[],
+  });
+}
+
+function normalizeCoverage(inventory: ParityCoverageInventory): ParityCoverageInventory {
+  const normalized = Object.freeze({
+    modeIds: sortedUnique(inventory.modeIds),
+    workstreamIds: sortedUnique(inventory.workstreamIds),
+    observationIds: sortedUnique(inventory.observationIds),
+    stateSurfaceIds: sortedUnique(inventory.stateSurfaceIds),
+    readerIds: sortedUnique(inventory.readerIds),
+    effectIds: sortedUnique(inventory.effectIds),
+    projectionIds: sortedUnique(inventory.projectionIds),
+  });
+  for (const [field, values] of Object.entries(normalized)) {
+    if (values.length === 0) {
+      throw new ShadowParityError(
+        ShadowParityErrorCodes.MANIFEST_GAP,
+        'Parity coverage inventory contains an empty required class',
+        { field },
+      );
+    }
+    values.forEach((entry) => requireIdentity(entry, field));
+  }
+  return normalized;
 }
 
 function rejectDuplicate(
@@ -156,6 +234,7 @@ export function compileParityCaseManifest(input: Readonly<{
   baseSha: string;
   baselineRows: readonly ParityBaselineRow[];
   cases: readonly ParityCaseDefinition[];
+  requiredCoverage?: ParityCoverageInventory;
 }>): ParityCaseManifest {
   if (!BASE_SHA_PATTERN.test(input.baseSha)) {
     throw new ShadowParityError(
@@ -219,12 +298,35 @@ export function compileParityCaseManifest(input: Readonly<{
     }
   }
 
+  const coverage = compileCoverage(cases);
+  if (input.requiredCoverage !== undefined) {
+    const requiredCoverage = normalizeCoverage(input.requiredCoverage);
+    for (const field of Object.keys(requiredCoverage) as (keyof ParityCoverageInventory)[]) {
+      if (digest(requiredCoverage[field]) !== digest(coverage[field])) {
+        throw new ShadowParityError(
+          ShadowParityErrorCodes.MANIFEST_GAP,
+          'Parity cases do not close the required census coverage inventory',
+          { field },
+        );
+      }
+    }
+  }
+  const modeCaseIds = Object.fromEntries(coverage.modeIds.map((mode) => [
+    mode,
+    Object.freeze(cases
+      .filter((entry) => entry.mode === mode)
+      .map((entry) => entry.caseId)),
+  ]));
+
   const core = Object.freeze({
     schemaVersion: SHADOW_PARITY_SCHEMA_VERSION,
     baseSha: input.baseSha,
     baselineRows: Object.freeze(baselineRows),
     cases: Object.freeze(cases),
     caseCount: cases.length,
+    modeCaseIds: Object.freeze(modeCaseIds),
+    coverage,
+    coverageDigest: digest(coverage),
   });
   return Object.freeze({
     ...core,

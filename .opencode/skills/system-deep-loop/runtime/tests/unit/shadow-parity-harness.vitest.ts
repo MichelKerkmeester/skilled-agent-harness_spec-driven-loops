@@ -4,12 +4,17 @@
 
 import {
   cpSync,
+  existsSync,
+  mkdirSync,
   mkdtempSync,
+  readdirSync,
   readFileSync,
   rmSync,
+  writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 import {
@@ -30,6 +35,7 @@ import {
   canonicalBytes,
   sha256Bytes,
 } from '../../lib/event-envelope/index.js';
+import { LEGACY_PROJECTION_MANIFEST } from '../../lib/legacy-projections/index.js';
 import {
   ReplayComponentRegistry,
   createReplayFingerprintVersionRegistry,
@@ -50,9 +56,12 @@ import {
 } from '../../lib/sealed-reference-artifacts/index.js';
 import {
   ShadowParityErrorCodes,
+  SHADOW_PARITY_SCHEMA_FILES,
   TRANSITION_ROLLBACK_MINIMUM_DAYS,
   TRANSITION_ROLLBACK_MINIMUM_SUCCESSFUL_RUNS,
   compileParityCaseManifest,
+  closeParityDivergence,
+  createParityInvalidationIdentityRegistry,
   issueParityCertificate,
   runShadowParityCase,
   verifyParityCertificate,
@@ -91,6 +100,7 @@ import type {
   ParityCaseCapsule,
   ParityCaseDefinition,
   ParityCertificateBindings,
+  ParityCertificateInvalidationBindings,
   ParityCertificate,
   ParityExecutionContext,
   ParityObservationClass,
@@ -126,6 +136,8 @@ interface SealedFixture {
 }
 
 interface ExecutorOptions {
+  readonly delayMs?: number;
+  readonly effectTarget?: string;
   readonly eventValueOffset?: number;
   readonly projectionOffset?: number;
   readonly storedVariant?: boolean;
@@ -133,6 +145,7 @@ interface ExecutorOptions {
   readonly omitObservation?: ParityObservationClass;
   readonly projectionBytes?: string;
   readonly projectionReaderResult?: JsonValue;
+  readonly projectionIds?: readonly string[];
   readonly observationOverride?: Readonly<{
     observation: ParityObservationClass;
     value: JsonValue | ((context: ParityExecutionContext) => JsonValue);
@@ -149,6 +162,17 @@ interface BehaviorBaseline {
   readonly baseSha: string;
   readonly existingScenarios: readonly BehaviorScenario[];
   readonly addedScenarios: readonly BehaviorScenario[];
+  readonly workstreamAssertions: readonly Readonly<{
+    workstream: string;
+    scenarioId: string;
+  }>[];
+}
+
+interface CensusRows {
+  readonly rows: readonly Readonly<{
+    id: string;
+    readers?: readonly string[];
+  }>[];
 }
 
 interface DefectLedgerRow {
@@ -163,8 +187,12 @@ interface DefectLedger {
 const REPOSITORY_ROOT = fileURLToPath(new URL('../../../../../..', import.meta.url));
 const CENSUS_ROOT = join(
   REPOSITORY_ROOT,
-  '.opencode/specs/system-deep-loop/036-deep-loop-innovation',
-  '003-baseline-taxonomy-and-state-census',
+  'specs/system-deep-loop/036-deep-loop-innovation',
+  '001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census',
+);
+const SHADOW_PARITY_SCHEMA_ROOT = join(
+  REPOSITORY_ROOT,
+  '.opencode/skills/system-deep-loop/runtime/lib/shadow-parity/schemas',
 );
 const BASE_SHA = 'fe6ca3030917073f3b478bc044e10034dcc4394b';
 const CONTRACT_DIGEST = sha256Bytes(canonicalBytes({ contract: 'shadow-parity' }));
@@ -473,15 +501,18 @@ function createExecutor(
   return async (context): Promise<{
     verification: Parameters<typeof deriveReplayFingerprint<CountProjection>>[0];
     observations: Readonly<Partial<Record<ParityObservationClass, JsonValue>>>;
-    projections: readonly [{
+    projections: readonly Readonly<{
       artifactId: string;
       bytes: Uint8Array;
       readerResult: JsonValue;
       publicationBoundary: string;
       watermarkDigest: string;
       integrityDigest: string;
-    }];
+    }>[];
   }> => {
+    if (options.delayMs) {
+      await new Promise((resolveDelay) => setTimeout(resolveDelay, options.delayMs));
+    }
     const templateRoot = await template;
     rmSync(context.executionRoot, { recursive: true, force: true });
     cpSync(templateRoot, context.executionRoot, {
@@ -562,7 +593,7 @@ function createExecutor(
 
     context.effectSink.record({
       operation: 'notify',
-      target: 'shadow-only',
+      target: options.effectTarget ?? 'shadow-only',
       payload_digest: sha256Bytes(canonicalBytes({ value: 3 })),
     });
     const observations: Partial<Record<ParityObservationClass, JsonValue>> = {
@@ -581,19 +612,28 @@ function createExecutor(
       observations[options.observationOverride.observation] =
         typeof override === 'function' ? override(context) : override;
     }
-    const projectionText = options.projectionBytes ?? '{"count":3}\n';
-    const projectionBytes = Uint8Array.from(Buffer.from(projectionText, 'utf8'));
+    const projectionIds = options.projectionIds ?? ['legacy-state'];
     return {
       verification,
       observations,
-      projections: [Object.freeze({
-        artifactId: 'legacy-state',
-        bytes: projectionBytes,
-        readerResult: options.projectionReaderResult ?? { count: 3 },
-        publicationBoundary: 'lifecycle',
-        watermarkDigest: sha256Bytes(canonicalBytes({ sequence: 2 })),
-        integrityDigest: sha256Bytes(projectionBytes),
-      })],
+      projections: projectionIds.map((artifactId) => {
+        const manifestEntry = LEGACY_PROJECTION_MANIFEST.find(
+          (entry) => entry.surfaceId === artifactId,
+        );
+        const defaultText = manifestEntry?.format === 'jsonl'
+          ? `${JSON.stringify({ artifactId, count: 3 })}\n`
+          : `${JSON.stringify({ artifactId, count: 3 }, null, 2)}\n`;
+        const projectionText = options.projectionBytes ?? defaultText;
+        const projectionBytes = Uint8Array.from(Buffer.from(projectionText, 'utf8'));
+        return Object.freeze({
+          artifactId,
+          bytes: projectionBytes,
+          readerResult: options.projectionReaderResult ?? { artifactId, count: 3 },
+          publicationBoundary: manifestEntry?.refreshBoundary ?? 'lifecycle',
+          watermarkDigest: sha256Bytes(canonicalBytes({ artifactId, sequence: 2 })),
+          integrityDigest: sha256Bytes(projectionBytes),
+        });
+      }),
     };
   };
 }
@@ -713,10 +753,13 @@ function oneCaseManifest(mode = 'research') {
 }
 
 function certificateBindings(
-  overrides: Readonly<Partial<ParityCertificateBindings>> = {},
-): ParityCertificateBindings {
+  overrides: Readonly<Partial<ParityCertificateInvalidationBindings>> = {},
+): ParityCertificateInvalidationBindings {
   return {
+    candidate_code_digest: sha256Bytes(canonicalBytes({ identity: 'candidate-code' })),
     candidate_build_digest: sha256Bytes(canonicalBytes({ identity: 'candidate' })),
+    seal_registry_digest: sha256Bytes(canonicalBytes({ identity: 'seal-registry' })),
+    upcaster_digest: sha256Bytes(canonicalBytes({ identity: 'upcaster' })),
     harness_digest: sha256Bytes(canonicalBytes({ identity: 'harness' })),
     comparator_digest: sha256Bytes(canonicalBytes({ identity: 'comparator' })),
     replay_contract_digest: sha256Bytes(canonicalBytes({ identity: 'replay' })),
@@ -774,6 +817,18 @@ async function realFailure(
   return result;
 }
 
+function expectCertificateRefusal(failure: ShadowParityCaseFailure): void {
+  expect(failure.authorityMutation).toBe(false);
+  expect(failure.divergence.owner.length).toBeGreaterThan(0);
+  expect(failure.divergence.message.length).toBeLessThanOrEqual(320);
+  expect(issueParityCertificate({
+    manifest: oneCaseManifest(),
+    mode: 'research',
+    caseResults: [failure],
+    bindings: certificateBindings(),
+  })).toMatchObject({ ok: false, refusal: { code: 'OPEN_DIVERGENCE' } });
+}
+
 afterEach(() => {
   while (temporaryRoots.length > 0) {
     const root = temporaryRoots.pop();
@@ -786,6 +841,20 @@ afterEach(() => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('shadow parity manifest closure', () => {
+  it('publishes strict versioned schemas for every protocol artifact', () => {
+    expect(SHADOW_PARITY_SCHEMA_FILES).toHaveLength(5);
+    for (const fileName of SHADOW_PARITY_SCHEMA_FILES) {
+      const schema = JSON.parse(readFileSync(
+        join(SHADOW_PARITY_SCHEMA_ROOT, fileName),
+        'utf8',
+      )) as Record<string, unknown>;
+      expect(schema.$schema).toBe('https://json-schema.org/draft/2020-12/schema');
+      expect(schema.$id).toMatch(/shadow-parity\/.+\.v1\.schema\.json$/);
+      expect(schema.additionalProperties).toBe(false);
+      expect(schema.required).toEqual(expect.any(Array));
+    }
+  });
+
   it('closes all fifty-six census scenarios without normalizing known defects', () => {
     const baseline = JSON.parse(readFileSync(
       join(CENSUS_ROOT, 'behavior-baseline.json'),
@@ -795,25 +864,55 @@ describe('shadow parity manifest closure', () => {
       join(CENSUS_ROOT, 'contract-defect-ledger.json'),
       'utf8',
     )) as DefectLedger;
+    const stateCensus = JSON.parse(readFileSync(
+      join(CENSUS_ROOT, 'state-backend-census.json'),
+      'utf8',
+    )) as CensusRows;
+    const eventCensus = JSON.parse(readFileSync(
+      join(CENSUS_ROOT, 'event-schema-census.json'),
+      'utf8',
+    )) as CensusRows;
     const knownDefectScenarios = new Set(
       defectLedger.rows
         .filter((row) => row.classification === 'known_defect')
         .flatMap((row) => row.scenarioOrFixture.match(/[A-Z]{2,3}B-\d{3}/g) ?? []),
     );
     const scenarios = [...baseline.existingScenarios, ...baseline.addedScenarios];
+    const workstreamByScenario = new Map(baseline.workstreamAssertions.map(
+      (entry) => [entry.scenarioId, entry.workstream],
+    ));
+    const stateSurfaceIds = stateCensus.rows.map((row) => row.id);
+    const readerIds = Array.from(new Set([
+      ...stateCensus.rows,
+      ...eventCensus.rows,
+    ].flatMap((row) => row.readers ?? []).map(
+      (reader) => `reader-${sha256Bytes(canonicalBytes(reader)).slice(0, 16)}`,
+    )));
+    const effectIds = eventCensus.rows.map((row) => row.id);
+    const projectionIds = LEGACY_PROJECTION_MANIFEST
+      .filter((entry) => entry.disposition === 'project')
+      .map((entry) => entry.surfaceId);
     const baselineRows: ParityBaselineRow[] = scenarios.map((scenario) => ({
       scenarioId: scenario.id,
       mode: scenario.mode,
       contractDigest: scenario.contractDigest,
       disposition: knownDefectScenarios.has(scenario.id) ? 'known-defect' : 'protected',
     }));
-    const cases = scenarios.map((scenario): ParityCaseDefinition => ({
+    const cases = scenarios.map((scenario, index): ParityCaseDefinition => ({
       caseId: scenario.id,
       scenarioId: scenario.id,
       mode: scenario.mode,
       contractDigest: scenario.contractDigest,
       requiredObservations: REQUIRED_OBSERVATIONS,
-      projectionIds: ['behavior-result'],
+      projectionIds: index === 0 ? projectionIds : ['behavior-benchmark-output'],
+      ...(workstreamByScenario.has(scenario.id)
+        ? { workstreamId: String(workstreamByScenario.get(scenario.id)) }
+        : {}),
+      ...(index === 0 ? {
+        stateSurfaceIds,
+        readerIds,
+        effectIds,
+      } : {}),
       timeoutMs: 180_000,
       terminationPolicy: 'behavior-benchmark',
     }));
@@ -822,9 +921,22 @@ describe('shadow parity manifest closure', () => {
       baseSha: baseline.baseSha,
       baselineRows,
       cases,
+      requiredCoverage: {
+        modeIds: Array.from(new Set(scenarios.map((scenario) => scenario.mode))),
+        workstreamIds: baseline.workstreamAssertions.map((entry) => entry.workstream),
+        observationIds: [...REQUIRED_OBSERVATIONS],
+        stateSurfaceIds,
+        readerIds,
+        effectIds,
+        projectionIds,
+      },
     });
     expect(manifest.caseCount).toBe(56);
     expect(manifest.cases).toHaveLength(56);
+    expect(manifest.coverage.workstreamIds).toHaveLength(8);
+    expect(manifest.coverage.stateSurfaceIds).toHaveLength(stateCensus.rows.length);
+    expect(manifest.coverage.effectIds).toHaveLength(eventCensus.rows.length);
+    expect(manifest.coverage.projectionIds).toHaveLength(projectionIds.length);
     expect(manifest.baselineRows.filter(
       (row) => row.disposition === 'known-defect',
     ).map((row) => row.scenarioId)).toEqual(expect.arrayContaining(['IMB-007', 'IMB-008']));
@@ -881,6 +993,28 @@ describe('shadow parity execution', () => {
     expect(result.authorityMutation).toBe(false);
   });
 
+  it('matches every declared projectable legacy shape byte and reader result', async () => {
+    const sealed = await createSealedFixture();
+    const projectionIds = LEGACY_PROJECTION_MANIFEST
+      .filter((entry) => entry.disposition === 'project')
+      .map((entry) => entry.surfaceId);
+    const executors = createExecutorPair(
+      { projectionIds },
+      { projectionIds },
+    );
+    const result = await runShadowParityCase(parityInput(sealed, {
+      caseDefinition: caseDefinition({ projectionIds }),
+      executeLegacy: executors.legacy,
+      executeDark: executors.dark,
+    }));
+    expect(result.ok).toBe(true);
+    if (!result.ok) throw new Error('Expected complete legacy-shape parity');
+    expect(projectionIds).toHaveLength(22);
+    expect(result.runs.every((run) => (
+      run.legacyProjectionDigest === run.darkProjectionDigest
+    ))).toBe(true);
+  });
+
   it('blocks reordered sealed references before either executor starts', async () => {
     const sealed = await createSealedFixture();
     let executionCount = 0;
@@ -900,12 +1034,14 @@ describe('shadow parity execution', () => {
     if (result.ok) throw new Error('Expected sealed-input divergence');
     expect(result.divergence.class).toBe('input-inequivalent');
     expect(executionCount).toBe(0);
+    expectCertificateRefusal(result);
   });
 
   it.each([
     ['BASE', { baseDigest: sha256Bytes(canonicalBytes({ changed: 'base' })) }],
     ['initial state', { initialStateDigest: sha256Bytes(canonicalBytes({ changed: 'state' })) }],
     ['configuration', { configurationDigest: sha256Bytes(canonicalBytes({ changed: 'config' })) }],
+    ['timeout contract', { timeoutMs: 9_999 }],
   ] as const)('blocks altered %s identity before execution', async (_label, capsuleChange) => {
     const sealed = await createSealedFixture();
     let executed = false;
@@ -948,26 +1084,31 @@ describe('shadow parity execution', () => {
     if (result.ok) throw new Error('Expected isolation failure');
     expect(result.divergence.class).toBe('harness-invalid');
     expect(executed).toBe(false);
+    expectCertificateRefusal(result);
   });
 
-  it('fails when a required observation is absent instead of comparing a subset', async () => {
-    const failure = await realFailure({
-      omitObservation: 'effect-receipts',
-    });
-    expect(failure.divergence.class).toBe('missing-observation');
-    expect(failure.divergence.earliest.component).toBe('effect-receipts');
-  });
+  it.each(REQUIRED_OBSERVATIONS)(
+    'fails when required observation %s is absent instead of comparing a subset',
+    async (observation) => {
+      const failure = await realFailure({ omitObservation: observation });
+      expect(failure.divergence.class).toBe('missing-observation');
+      expect(failure.divergence.earliest.component).toBe(observation);
+      expectCertificateRefusal(failure);
+    },
+  );
 
   it('refuses a path that has no stored replay attestation', async () => {
     const failure = await realFailure({ omitAttestation: true });
     expect(failure.divergence.class).toBe('replay-contract-drift');
     expect(failure.divergence.earliest.component).toBe('attestation');
+    expectCertificateRefusal(failure);
   });
 
   it('detects a verified event divergence even when the dark path attests itself', async () => {
     const failure = await realFailure({ eventValueOffset: 1 });
     expect(failure.divergence.class).toBe('effective-event');
     expect(['stored', 'effective-event']).toContain(failure.divergence.earliest.component);
+    expectCertificateRefusal(failure);
   });
 
   it('detects a stored-ledger divergence before equal reducer output can mask it', async () => {
@@ -980,6 +1121,62 @@ describe('shadow parity execution', () => {
     const failure = await realFailure({ projectionOffset: 1 });
     expect(failure.divergence.class).toBe('projection-semantic');
     expect(failure.divergence.earliest.component).toBe('projection');
+    expectCertificateRefusal(failure);
+  });
+
+  it('classifies terminal behavior mismatch as execution-outcome', async () => {
+    const failure = await realFailure({
+      observationOverride: {
+        observation: 'terminal-status',
+        value: 'halted',
+      },
+    });
+    expect(failure.divergence.class).toBe('execution-outcome');
+    expectCertificateRefusal(failure);
+  });
+
+  it('classifies differing suppressed effect intent as a side-effect divergence', async () => {
+    const failure = await realFailure({ effectTarget: 'different-shadow-target' });
+    expect(failure.divergence.class).toBe('side-effect');
+    expect(failure.divergence.owner).toBe('effect-adapter-owner');
+    expectCertificateRefusal(failure);
+  });
+
+  it('classifies a bounded timeout as timing-termination and refuses certification', async () => {
+    const sealed = await createSealedFixture();
+    const executors = createExecutorPair({}, { delayMs: 40 });
+    const boundedCase = caseDefinition({ timeoutMs: 10 });
+    const result = await runShadowParityCase(parityInput(sealed, {
+      caseDefinition: boundedCase,
+      legacyCapsule: capsule(sealed.forward, { timeoutMs: 10 }),
+      darkCapsule: capsule(sealed.forward, { timeoutMs: 10 }),
+      executeLegacy: executors.legacy,
+      executeDark: executors.dark,
+    }));
+    expect(result.ok).toBe(false);
+    if (result.ok) throw new Error('Expected timing divergence');
+    expect(result.divergence.class).toBe('timing-termination');
+    expect(issueParityCertificate({
+      manifest: oneCaseManifest(),
+      mode: 'research',
+      caseResults: [result],
+      bindings: certificateBindings(),
+    })).toMatchObject({ ok: false, refusal: { code: 'OPEN_DIVERGENCE' } });
+  });
+
+  it('removes both isolated execution roots and records cleanup evidence', async () => {
+    const sealed = await createSealedFixture();
+    const root = temporaryRoot('cleanup');
+    const shadowRoot = join(root, 'shadow');
+    const result = await runShadowParityCase(parityInput(sealed, {
+      shadowRootDirectory: shadowRoot,
+      protectedRoots: [join(root, 'authoritative')],
+    }));
+    expect(result.ok).toBe(true);
+    if (!result.ok) throw new Error('Expected parity pass');
+    expect(existsSync(shadowRoot)).toBe(true);
+    expect(readdirSync(shadowRoot)).toEqual([]);
+    expect(result.runs.every((run) => run.cleanupReceipt?.removed === true)).toBe(true);
   });
 
   it('compares exact legacy bytes instead of accepting matching semantic claims', async () => {
@@ -988,6 +1185,7 @@ describe('shadow parity execution', () => {
     });
     expect(failure.divergence.class).toBe('legacy-byte');
     expect(failure.divergence.earliest.component).toBe('legacy-state');
+    expectCertificateRefusal(failure);
   });
 
   it('classifies a changed dark rerun as nondeterministic before cross-path comparison', async () => {
@@ -999,6 +1197,60 @@ describe('shadow parity execution', () => {
     });
     expect(failure.divergence.class).toBe('nondeterministic');
     expect(failure.divergence.earliest.component).toBe('dark-rerun');
+    expectCertificateRefusal(failure);
+  });
+
+  it('derives the same platform-neutral commitment in independent Node processes', () => {
+    const material = {
+      baseSha: BASE_SHA,
+      components: ['effective-event', 'projection', 'legacy-bytes'],
+      identities: certificateBindings(),
+    };
+    const script = [
+      "import { createHash } from 'node:crypto';",
+      'const sort = (value) => Array.isArray(value)',
+      '  ? value.map(sort)',
+      '  : value && typeof value === "object"',
+      '    ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, sort(value[key])]))',
+      '    : value;',
+      'const bytes = Buffer.from(JSON.stringify(sort(JSON.parse(process.argv[1]))));',
+      'process.stdout.write(createHash("sha256").update(bytes).digest("hex"));',
+    ].join('\n');
+    const run = () => spawnSync(
+      process.execPath,
+      ['--input-type=module', '-e', script, JSON.stringify(material)],
+      { encoding: 'utf8' },
+    );
+    const first = run();
+    const second = run();
+    expect(first.status).toBe(0);
+    expect(second.status).toBe(0);
+    expect(first.stdout).toBe(second.stdout);
+    expect(first.stdout).toBe(sha256Bytes(canonicalBytes(material)));
+  });
+
+  it('preserves protected authority bytes across positive and negative runs', async () => {
+    const sealed = await createSealedFixture();
+    const root = temporaryRoot('authority-snapshot');
+    const authorityRoot = join(root, 'authoritative');
+    const authorityFile = join(authorityRoot, 'legacy-authority.json');
+    mkdirSync(authorityRoot, { recursive: true });
+    writeFileSync(authorityFile, '{"authority":"legacy"}\n', 'utf8');
+    const before = readFileSync(authorityFile);
+    const pass = await runShadowParityCase(parityInput(sealed, {
+      shadowRootDirectory: join(root, 'shadow-pass'),
+      protectedRoots: [authorityRoot],
+    }));
+    const executors = createExecutorPair({}, { projectionBytes: '{ "count": 3 }\n' });
+    const mismatch = await runShadowParityCase(parityInput(sealed, {
+      shadowRootDirectory: join(root, 'shadow-fail'),
+      protectedRoots: [authorityRoot],
+      executeLegacy: executors.legacy,
+      executeDark: executors.dark,
+    }));
+    expect(pass.ok).toBe(true);
+    expect(mismatch.ok).toBe(false);
+    expect(readFileSync(authorityFile)).toEqual(before);
   });
 });
 
@@ -1007,6 +1259,31 @@ describe('shadow parity execution', () => {
 // ───────────────────────────────────────────────────────────────────
 
 describe('shadow parity certificates', () => {
+  it('registers every invalidating identity in one deterministic commitment', async () => {
+    const pass = await realPass();
+    const manifest = oneCaseManifest();
+    const bindings = certificateBindings();
+    const registry = createParityInvalidationIdentityRegistry({
+      manifest,
+      caseResults: [pass],
+      bindings,
+    });
+    expect(Object.keys(registry.identities).sort()).toEqual([
+      'adapter',
+      'base',
+      'build',
+      'code',
+      'comparator',
+      'harness',
+      'projection',
+      'reducer',
+      'replay',
+      'seal',
+      'upcaster',
+    ]);
+    expect(registry.registry_digest).toMatch(/^[a-f0-9]{64}$/);
+  });
+
   it('issues one idempotent shadow-only certificate for the complete green mode set', async () => {
     const pass = await realPass();
     const manifest = oneCaseManifest();
@@ -1060,6 +1337,37 @@ describe('shadow parity certificates', () => {
     expect(issuance).not.toHaveProperty('certificate');
   });
 
+  it('closes immutable divergence evidence only after a complete green rerun', async () => {
+    const divergence = await realFailure({ eventValueOffset: 1 });
+    const pass = await realPass();
+    expect(closeParityDivergence({
+      divergence: divergence.divergence,
+      requiredCaseIds: [divergence.caseId],
+      rerunResults: [divergence],
+    })).toMatchObject({ ok: false, refusal: { code: 'OPEN_DIVERGENCE' } });
+    const closure = closeParityDivergence({
+      divergence: divergence.divergence,
+      requiredCaseIds: [pass.caseId],
+      rerunResults: [pass],
+    });
+    expect(closure).toMatchObject({ ok: true, closure: { status: 'closed' } });
+    expect(divergence.divergence.status).toBe('open');
+  });
+
+  it('rejects conflicting duplicate evidence for one case identity', async () => {
+    const pass = await realPass();
+    const conflicting = Object.freeze({
+      ...pass,
+      evidenceDigest: sha256Bytes(canonicalBytes({ conflicting: true })),
+    });
+    expect(issueParityCertificate({
+      manifest: oneCaseManifest(),
+      mode: 'research',
+      caseResults: [pass, conflicting],
+      bindings: certificateBindings(),
+    })).toMatchObject({ ok: false, refusal: { code: 'DUPLICATE_CONFLICT' } });
+  });
+
   it('refuses zero-discovery and partial mode closures', async () => {
     const pass = await realPass();
     const manifest = oneCaseManifest();
@@ -1084,7 +1392,10 @@ describe('shadow parity certificates', () => {
   });
 
   it.each([
+    'candidate_code_digest',
     'candidate_build_digest',
+    'seal_registry_digest',
+    'upcaster_digest',
     'harness_digest',
     'comparator_digest',
     'replay_contract_digest',
@@ -1118,6 +1429,34 @@ describe('shadow parity certificates', () => {
       ok: false,
       refusal: { code: 'STALE_EVIDENCE' },
     });
+  });
+
+  it('rejects certificate drift in the immutable BASE identity', async () => {
+    const pass = await realPass();
+    const manifest = oneCaseManifest();
+    const bindings = certificateBindings();
+    const issuance = issueParityCertificate({
+      manifest,
+      mode: 'research',
+      caseResults: [pass],
+      bindings,
+    });
+    if (!issuance.ok) throw new Error('Expected certificate issuance');
+    const changedDefinition = caseDefinition();
+    const changedManifest = compileParityCaseManifest({
+      baseSha: 'a'.repeat(40),
+      baselineRows: [{
+        scenarioId: changedDefinition.scenarioId,
+        mode: changedDefinition.mode,
+        contractDigest: changedDefinition.contractDigest,
+        disposition: 'protected',
+      }],
+      cases: [changedDefinition],
+    });
+    expect(verifyParityCertificate(
+      issuance.certificate,
+      certificateExpectation(issuance.certificate, changedManifest, bindings),
+    )).toMatchObject({ ok: false, refusal: { code: 'STALE_EVIDENCE' } });
   });
 
   it('rejects missing, wrong-mode, and tampered certificates', async () => {

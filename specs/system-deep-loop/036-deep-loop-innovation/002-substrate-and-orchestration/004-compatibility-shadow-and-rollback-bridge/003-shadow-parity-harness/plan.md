@@ -6,17 +6,17 @@ trigger_phrases:
   - "legacy dark parity protocol plan"
 importance_tier: "critical"
 contextType: "planning"
-parent: "system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness"
+parent: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness"
-    last_updated_at: "2026-07-15T00:00:00Z"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/004-compatibility-shadow-and-rollback-bridge/003-shadow-parity-harness"
+    last_updated_at: "2026-08-15T05:44:00Z"
     last_updated_by: "codex"
-    recent_action: "Defined the parity protocol, divergence taxonomy, and gate sequence"
-    next_safe_action: "Implement the manifest-driven harness in shadow-only roots"
+    recent_action: "Completed the planned parity protocol and final verification gate"
+    next_safe_action: "Preserve shadow-only consumption at downstream mode gates"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,20 +46,20 @@ only after the complete case set is green. The certificate is evidence for phase
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The executed phase-003 baseline exposes stable scenario IDs, protected observables, initial-state fixtures, and BASE digests for every required mode/workstream
-- [ ] Phase-006 exposes one registered verification API and component-level replay evidence without comparison bypasses
-- [ ] Phase-007 sealed artifacts can verify the exact ordered input set before releasing bytes
-- [ ] Sibling-002 projection rows define exact legacy bytes, refresh boundaries, watermarks, and unchanged-reader checks
-- [ ] Shadow roots and effect sinks are proven incapable of resolving to live authoritative paths
-- [ ] The closed case-manifest schema, divergence taxonomy, and certificate schema are versioned and reviewed
+- [x] The executed phase-003 baseline exposes stable scenario IDs, protected observables, initial-state fixtures, and BASE digests for every required mode/workstream [evidence: `implementation-summary.md`.]
+- [x] Phase-006 exposes one registered verification API and component-level replay evidence without comparison bypasses [evidence: `implementation-summary.md`.]
+- [x] Phase-007 sealed artifacts can verify the exact ordered input set before releasing bytes [evidence: `implementation-summary.md`.]
+- [x] Sibling-002 projection rows define exact legacy bytes, refresh boundaries, watermarks, and unchanged-reader checks [evidence: `implementation-summary.md`.]
+- [x] Shadow roots and effect sinks are proven incapable of resolving to live authoritative paths [evidence: `implementation-summary.md`.]
+- [x] The closed case-manifest schema, divergence taxonomy, and certificate schema are versioned and reviewed [evidence: `implementation-summary.md`.]
 
 ### Definition of Done
-- [ ] Every required case proves sealed-input equivalence and executes in isolated roots
-- [ ] Every declared replay component and legacy-shaped artifact compares exactly
-- [ ] Deterministic reruns reproduce results and zero open divergences remain
-- [ ] Every mode receives a complete, immutable, freshness-bound parity certificate
-- [ ] Negative fixtures prove phase 014 rejects missing, partial, wrong-mode, unverifiable, and stale certificates
-- [ ] No harness execution changes legacy authority, authoritative files, or live external effects
+- [x] Every required case proves sealed-input equivalence and executes in isolated roots [evidence: `implementation-summary.md`.]
+- [x] Every declared replay component and legacy-shaped artifact compares exactly [evidence: `implementation-summary.md`.]
+- [x] Deterministic reruns reproduce results and zero open divergences remain [evidence: `implementation-summary.md`.]
+- [x] Every mode receives a complete, immutable, freshness-bound parity certificate [evidence: `implementation-summary.md`.]
+- [x] Negative fixtures prove phase 014 rejects missing, partial, wrong-mode, unverifiable, and stale certificates [evidence: `implementation-summary.md`.]
+- [x] No harness execution changes legacy authority, authoritative files, or live external effects [evidence: `implementation-summary.md`.]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

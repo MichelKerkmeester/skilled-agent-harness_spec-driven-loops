@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.openai.internal/shadow-parity/parity-certificate.v1.schema.json",
+  "title": "Shadow parity certificate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mode",
+    "base_sha",
+    "manifest_digest",
+    "case_ids",
+    "case_evidence_digests",
+    "reference_set_digests",
+    "attestation_final_digests",
+    "bindings",
+    "identity_registry",
+    "evidence_digest",
+    "open_divergence_count",
+    "authority_state",
+    "authority_mutation",
+    "rollback_minimum_days",
+    "rollback_minimum_successful_runs",
+    "certificate_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "mode": { "type": "string", "minLength": 1 },
+    "base_sha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "manifest_digest": { "$ref": "#/$defs/digest" },
+    "case_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+    "case_evidence_digests": { "$ref": "#/$defs/digests" },
+    "reference_set_digests": { "$ref": "#/$defs/digests" },
+    "attestation_final_digests": { "$ref": "#/$defs/digests" },
+    "bindings": { "type": "object" },
+    "identity_registry": { "type": "object" },
+    "evidence_digest": { "$ref": "#/$defs/digest" },
+    "open_divergence_count": { "const": 0 },
+    "authority_state": { "const": "legacy_authoritative" },
+    "authority_mutation": { "const": false },
+    "rollback_minimum_days": { "type": "integer", "minimum": 1 },
+    "rollback_minimum_successful_runs": { "type": "integer", "minimum": 1 },
+    "certificate_digest": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "digests": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/digest" } }
+  }
+}

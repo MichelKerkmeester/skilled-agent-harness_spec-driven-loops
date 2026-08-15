@@ -11,6 +11,9 @@ export {
   issueParityCertificate,
   verifyParityCertificate,
 } from './parity-certificates.js';
+export { createParityInvalidationIdentityRegistry } from './parity-identity-registry.js';
+export { closeParityDivergence } from './parity-divergence-closure.js';
+export { SHADOW_PARITY_SCHEMA_FILES } from './parity-schemas.js';
 export {
   createShadowEffectSink,
   runShadowParityCase,
@@ -29,17 +32,23 @@ export type {
   ParityCaseCapsule,
   ParityCaseDefinition,
   ParityCaseManifest,
+  ParityCleanupReceipt,
   ParityCertificate,
   ParityCertificateBindings,
+  ParityCertificateInvalidationBindings,
   ParityCertificateIssuanceResult,
   ParityCertificateRefusal,
   ParityCertificateRefusalCode,
   ParityCertificateVerificationResult,
+  ParityCoverageInventory,
   ParityDivergenceClass,
+  ParityDivergenceClosure,
+  ParityDivergenceClosureResult,
   ParityDivergenceLocation,
   ParityDivergenceRecord,
   ParityExecutionContext,
   ParityFingerprintEvidence,
+  ParityInvalidationIdentityRegistry,
   ParityObservationClass,
   ParityPathExecution,
   ParityPathExecutor,
@@ -54,3 +63,4 @@ export type {
   ShadowParityCaseResult,
   VerifiedParityCaseCapsule,
 } from './shadow-parity-types.js';
+export type { ShadowParitySchemaFile } from './parity-schemas.js';

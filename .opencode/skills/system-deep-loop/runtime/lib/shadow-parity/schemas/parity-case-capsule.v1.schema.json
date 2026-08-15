@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.openai.internal/shadow-parity/parity-case-capsule.v1.schema.json",
+  "title": "Shadow parity case capsule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "baseSha",
+    "baseDigest",
+    "initialStateDigest",
+    "configurationDigest",
+    "canonicalizationVersions",
+    "artifactReferenceSet",
+    "timeoutMs",
+    "terminationPolicy"
+  ],
+  "properties": {
+    "baseSha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "baseDigest": { "$ref": "#/$defs/digest" },
+    "initialStateDigest": { "$ref": "#/$defs/digest" },
+    "configurationDigest": { "$ref": "#/$defs/digest" },
+    "canonicalizationVersions": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "type": "string", "minLength": 1, "maxLength": 128 }
+    },
+    "artifactReferenceSet": { "type": "object" },
+    "timeoutMs": { "type": "integer", "minimum": 1, "maximum": 86400000 },
+    "terminationPolicy": { "type": "string", "minLength": 1, "maxLength": 128 }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}
