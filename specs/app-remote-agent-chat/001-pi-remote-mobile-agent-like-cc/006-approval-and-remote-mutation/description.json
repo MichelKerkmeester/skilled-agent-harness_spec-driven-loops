@@ -1,6 +1,6 @@
 {
   "level": "3+",
-  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
+  "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/006-approval-and-remote-mutation",
   "description": "Introduces the final-boundary Pi approval extension, containment, shared redaction, and evidence-gated remote mutation",
   "keywords": [
     "introduces",
@@ -14,12 +14,11 @@
     "remote",
     "mutation"
   ],
-  "lastUpdated": "2026-08-13T16:35:49.383Z",
+  "lastUpdated": "2026-08-15T10:58:15.747Z",
   "specId": "006",
   "folderSlug": "approval-and-remote-mutation",
   "parentChain": [
-    "apps",
-    "pi-remote",
+    "app-remote-agent-chat",
     "001-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

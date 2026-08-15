@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
+  "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/005-mobile-pwa-and-reconciliation",
   "description": "Builds the installable foreground mobile experience for sessions, streaming work, reconnect reconciliation, explicit controls, and offline read-only",
   "keywords": [
     "installable",
@@ -17,12 +17,11 @@
     "offline",
     "read-only"
   ],
-  "lastUpdated": "2026-08-13T16:35:48.763Z",
+  "lastUpdated": "2026-08-15T10:58:15.573Z",
   "specId": "005",
   "folderSlug": "mobile-pwa-and-reconciliation",
   "parentChain": [
-    "apps",
-    "pi-remote",
+    "app-remote-agent-chat",
     "001-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

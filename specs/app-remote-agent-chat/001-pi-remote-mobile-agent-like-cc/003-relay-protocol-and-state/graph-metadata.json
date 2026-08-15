@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
-  "spec_folder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
-  "parent_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc",
+  "packet_id": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
+  "spec_folder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
+  "parent_id": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Implements the host-local Pi RPC supervisor, durable replay, session catalog, mutation ledger, and crash-safe reconciliation core",
     "created_at": "2026-08-10T18:28:40Z",
-    "last_save_at": "2026-08-13T16:35:51.466Z",
+    "last_save_at": "2026-08-15T11:27:05.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

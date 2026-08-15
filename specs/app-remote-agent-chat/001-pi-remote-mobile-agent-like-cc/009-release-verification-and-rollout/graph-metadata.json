@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
-  "spec_folder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
-  "parent_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc",
+  "packet_id": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+  "spec_folder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/009-release-verification-and-rollout",
+  "parent_id": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Runs the independent whole-system, security, performance, device, accessibility, rollback, and sign-off gates for staged release",
     "created_at": "2026-08-10T18:28:44Z",
-    "last_save_at": "2026-08-13T16:35:54.876Z",
+    "last_save_at": "2026-08-15T11:27:07.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

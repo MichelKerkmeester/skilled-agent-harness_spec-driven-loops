@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/015-doc-quality-and-catalog",
+  "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/015-doc-quality-and-catalog",
   "description": "The app documentation produced across phases 010-014 has no single quality measurement and no inventory that maps the app's live capabilities to their",
   "keywords": [
     "app",
@@ -16,12 +16,11 @@
     "live",
     "capabilities"
   ],
-  "lastUpdated": "2026-08-14T04:14:59.633Z",
+  "lastUpdated": "2026-08-15T10:58:15.560Z",
   "specId": "015",
   "folderSlug": "doc-quality-and-catalog",
   "parentChain": [
-    "apps",
-    "pi-remote",
+    "app-remote-agent-chat",
     "001-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

@@ -1,6 +1,6 @@
 {
   "level": "3+",
-  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/004-auth-and-tailnet-boundary",
+  "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/004-auth-and-tailnet-boundary",
   "description": "Adds private HTTPS/WSS ingress, application authentication, default-deny authorization, revocation, and a read-only remote API",
   "keywords": [
     "private",
@@ -16,12 +16,11 @@
     "remote",
     "api"
   ],
-  "lastUpdated": "2026-08-13T16:35:48.902Z",
+  "lastUpdated": "2026-08-15T10:58:15.601Z",
   "specId": "004",
   "folderSlug": "auth-and-tailnet-boundary",
   "parentChain": [
-    "apps",
-    "pi-remote",
+    "app-remote-agent-chat",
     "001-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

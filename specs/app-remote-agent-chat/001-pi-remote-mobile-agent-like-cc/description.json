@@ -1,6 +1,6 @@
 {
   "level": "phase",
-  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc",
+  "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc",
   "description": "Pi CLI exposes a persistent local RPC subprocess, not a secure mobile product",
   "keywords": [
     "cli",
@@ -13,12 +13,11 @@
     "mobile",
     "product"
   ],
-  "lastUpdated": "2026-08-14T04:59:01.686Z",
+  "lastUpdated": "2026-08-15T10:58:15.697Z",
   "specId": "001",
   "folderSlug": "pi-remote-mobile-agent-like-cc",
   "parentChain": [
-    "apps",
-    "pi-remote"
+    "app-remote-agent-chat"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [
