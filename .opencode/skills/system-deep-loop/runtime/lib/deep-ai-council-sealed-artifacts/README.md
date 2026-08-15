@@ -12,9 +12,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder canonicalizes, seals and reads lane-owned evidence artifacts for the Deep Ai Council runtime lane. It keeps lane-specific contracts beside the shared ledger, event-envelope and replay primitives, then publishes the supported surface through the public barrel.
+This folder canonicalizes, seals and reads lane-owned evidence artifacts for the Deep AI Council runtime lane. It keeps lane-specific contracts beside the shared ledger, event-envelope and replay primitives, then publishes the supported surface through the public barrel.
 
-The module is documentation-only at this boundary. Callers should use the exported API in `index.ts` and leave filesystem, ledger and migration ownership to the shared runtime services.
+Callers should use the exported API in `index.ts` and leave filesystem, ledger and migration ownership to the shared runtime services.
 
 ---
 
@@ -22,6 +22,7 @@ The module is documentation-only at this boundary. Callers should use the export
 
 | File | Responsibility |
 |---|---|
+| `deep-ai-council-artifact-set.ts` | Canonical lifecycle ordering, shared evidence binding and replay verification. |
 | `deep-ai-council-artifact-material.ts` | Canonical artifact material and kind registration. |
 | `deep-ai-council-sealed-artifact-types.ts` | Lane-specific types, constants and contract values. |
 | `deep-ai-council-sealed-artifacts.ts` | artifact materialization, sealing, binding parsing and reads |
@@ -36,13 +37,13 @@ The module is documentation-only at this boundary. Callers should use the export
 | Public API | `index.ts` | Re-exports the lane's supported types, constants, parsers and runtime helpers. |
 | Primary implementation | `deep-ai-council-sealed-artifacts.ts` | artifact materialization, sealing, binding parsing and reads. |
 
-Consumers import from the barrel. Direct imports from private implementation files bypass the lane contract and should remain limited to tests or internal composition.
+Consumers import from the barrel. Complete council sets retain the shared reference-set digest as their only content identity, reject missing or reordered lifecycle kinds, and re-resolve every artifact plus its authorized creation evidence before replay. Direct imports from private implementation files bypass the lane contract and should remain limited to tests or internal composition.
 
 ---
 
 ## 4. SPINE ROLE
 
-turns reducer and run evidence into immutable artifacts consumed by certificates and resume. The shared authorized ledger owns append authorization, event-envelope owns common event shape, replay-fingerprint binds deterministic replay and sealed-reference-artifacts owns the cross-lane artifact boundary.
+This module turns reducer and run evidence into immutable artifacts consumed by certificates and resume. The shared authorized ledger owns append authorization, event-envelope owns common event shape, replay-fingerprint binds deterministic replay and sealed-reference-artifacts owns the cross-lane artifact boundary.
 
 The durable flow is:
 
@@ -50,7 +51,7 @@ The durable flow is:
 event envelope -> lane ledger schema -> lane reducer -> sealed artifact -> certificate -> resume evidence -> parity or rollback decision
 ```
 
-This folder owns the sealed artifacts step for Deep Ai Council. It does not replace the shared substrate or decide consumer-facing workflow policy.
+This folder owns the sealed artifacts step for Deep AI Council. It does not replace the shared substrate or decide consumer-facing workflow policy.
 
 ---
 

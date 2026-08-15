@@ -11,13 +11,15 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/003-deep-ai-council/003-sealed-artifacts"
-    last_updated_at: "2026-07-15T22:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Separated seal manifests from reducer-owned artifact indexes"
-    next_safe_action: "Map council inputs and outputs to shared seal primitives"
+    last_updated_at: "2026-08-15T13:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the shared-evidence ordered council artifact set"
+    next_safe_action: "Keep consumer wiring in its separately scoped successor work"
     blockers: []
-    key_files: []
-    completion_pct: 0
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/deep-ai-council-artifact-set.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-sealed-artifacts.vitest.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,18 +50,18 @@ phase consumes the sealed manifest for certificates and receipts, but this phase
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase-007 sealing primitives and phase-012 shared identity, artifact-reference, replay, receipt, authorization, and write-set contracts are frozen read-only inputs.
-- [ ] The predecessor `002-reducers-and-projections` artifact-index boundary is explicit; this phase seals objects and does not own projection folds.
-- [ ] The council lifecycle and artifact inventory identify immutable inputs, derived outputs, private scopes, blinded scopes, and required gate evidence.
-- [ ] Legacy `ai-council/**` artifacts, state rows, replay fixtures, and protected-vs-known-defect decisions are pinned for shadow comparison.
-- [ ] The implementation boundary excludes certificates, mode-gate authority, cutover, rollback switching, and any second seal format.
+- [x] Phase-007 sealing primitives and phase-012 shared identity, artifact-reference, replay, receipt, authorization, and write-set contracts are frozen read-only inputs.
+- [x] The predecessor `002-reducers-and-projections` artifact-index boundary is explicit; this phase seals objects and does not own projection folds.
+- [x] The council lifecycle and artifact inventory identify immutable inputs, derived outputs, private scopes, blinded scopes, and required gate evidence.
+- [x] Legacy `ai-council/**` artifacts, state rows, replay fixtures, and protected-vs-known-defect decisions are pinned for shadow comparison.
+- [x] The implementation boundary excludes certificates, mode-gate authority, cutover, rollback switching, and any second seal format.
 
 ### Definition of Done
-- [ ] A shared-contract map covers every seal and verification field without local duplicate identity or digest semantics.
-- [ ] The seal-on-write sequence is idempotent, append-only, atomic at the shared boundary, and content-addressed.
-- [ ] The tamper-evident read contract checks digest, manifest, scope, replay fingerprint, and access surface before returning bytes.
-- [ ] Resume fixtures distinguish compatible reuse, re-execution, compensation, quarantine, and rejection without overwriting history.
-- [ ] Shadow fixtures prove typed sealed references preserve legacy artifact identity and required content while authority stays unchanged.
+- [x] A shared-contract map covers every seal and verification field without local duplicate identity or digest semantics.
+- [x] The seal-on-write sequence is idempotent, append-only, atomic at the shared boundary, and content-addressed.
+- [x] The tamper-evident read contract checks digest, manifest, scope, replay fingerprint, and access surface before returning bytes.
+- [x] Resume fixtures reject stale run context and re-resolve every shared reference without overwriting history.
+- [x] Shadow fixtures prove typed sealed references preserve ordered shared identity while authority stays unchanged.
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->

@@ -9,8 +9,10 @@ import type {
   ProposalObservedData,
 } from '../deep-ai-council-ledger-schema/index.js';
 import type {
+  ArtifactReferenceSet,
   SealDescriptor,
   SealedArtifactReference,
+  VerifiedArtifactEvidence,
 } from '../sealed-reference-artifacts/index.js';
 
 export const DeepAiCouncilArtifactKinds = Object.freeze({
@@ -174,3 +176,39 @@ export interface DeepAiCouncilArtifactReadExpectations {
   readonly allowedVisibility?: readonly DeepAiCouncilArtifactVisibility[];
   readonly requiredDependencyReferences?: readonly SealedArtifactReference[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. ORDERED ARTIFACT SETS
+// ───────────────────────────────────────────────────────────────────
+
+export interface DeepAiCouncilArtifactSetContext {
+  readonly runId: string;
+  readonly parityCaseId: string;
+  readonly generation: number;
+  readonly sourceTailSequence: number;
+  readonly replayContractDigest: string;
+}
+
+export interface DeepAiCouncilArtifactSetMemberInput {
+  readonly round: number;
+  readonly logicalSequence: number;
+  readonly binding: DeepAiCouncilSealedArtifactBinding;
+  readonly evidence: VerifiedArtifactEvidence;
+}
+
+export interface DeepAiCouncilArtifactSetMember {
+  readonly position: number;
+  readonly lifecycle: DeepAiCouncilArtifactLifecycle;
+  readonly round: number;
+  readonly logicalSequence: number;
+  readonly binding: DeepAiCouncilSealedArtifactBinding;
+}
+
+export interface DeepAiCouncilArtifactSetCore {
+  readonly artifactSetVersion: 1;
+  readonly context: DeepAiCouncilArtifactSetContext;
+  readonly orderedMembers: readonly DeepAiCouncilArtifactSetMember[];
+  readonly referenceSet: ArtifactReferenceSet;
+}
+
+export type DeepAiCouncilArtifactSet = DeepAiCouncilArtifactSetCore;

@@ -9,6 +9,14 @@ export {
   createDeepAiCouncilArtifactCanonicalizerRegistry,
 } from './deep-ai-council-artifact-material.js';
 export {
+  DEEP_AI_COUNCIL_ARTIFACT_SET_VERSION,
+  bindDeepAiCouncilArtifactSet,
+  canonicalDeepAiCouncilArtifactSetBytes,
+  compareDeepAiCouncilArtifactSets,
+  deepAiCouncilArtifactSetReplayInput,
+  parseDeepAiCouncilArtifactSet,
+} from './deep-ai-council-artifact-set.js';
+export {
   createDeepAiCouncilSealedArtifactStore,
   parseDeepAiCouncilSealedArtifactBinding,
   readDeepAiCouncilArtifact,
@@ -27,6 +35,11 @@ export type {
   DeepAiCouncilArtifactMaterialByKind,
   DeepAiCouncilArtifactMaterialFamily,
   DeepAiCouncilArtifactReadExpectations,
+  DeepAiCouncilArtifactSet,
+  DeepAiCouncilArtifactSetContext,
+  DeepAiCouncilArtifactSetCore,
+  DeepAiCouncilArtifactSetMember,
+  DeepAiCouncilArtifactSetMemberInput,
   DeepAiCouncilArtifactScopeDescriptor,
   DeepAiCouncilArtifactSourceEventRange,
   DeepAiCouncilArtifactVisibility,
