@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/020-live-sync-harden-default-on",
+  "description": "The continuous-integration model built by `007-continuous-integration-workflow` publishes every launch-wrapper session commit to a shared live branch",
+  "keywords": [
+    "continuous-integration",
+    "model",
+    "007-continuous-integration-workflow",
+    "publishes",
+    "every",
+    "launch-wrapper",
+    "session",
+    "commit",
+    "shared",
+    "live",
+    "branch"
+  ],
+  "lastUpdated": "2026-08-15T13:13:01.679Z",
+  "specId": "020",
+  "folderSlug": "live-sync-harden-default-on",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "15-08-26_14-02__a-unified-master-disable-flag-and-document-it-for.md",
+    "15-08-26_14-07__a-unified-master-disable-flag-and-document-it-for.md",
+    "15-08-26_14-11__a-unified-master-disable-flag-and-document-it-for.md",
+    "15-08-26_14-13__a-unified-master-disable-flag-and-document-it-for.md"
+  ]
+}

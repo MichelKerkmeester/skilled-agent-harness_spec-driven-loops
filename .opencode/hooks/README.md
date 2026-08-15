@@ -53,6 +53,8 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `session-lifecycle` | `MK_SESSION_LIFECYCLE_DISABLED` | none | enabled | inject / teardown | wired |
 | `worktree-guard` | `MK_WORKTREE_GUARD_DISABLED` | `SPECKIT_WORKTREE_GUARD=off` (caller-side) | enabled | warn | wired |
 | `git-hooks-check` | `MK_GIT_HOOKS_CHECK_DISABLED` | `SPECKIT_GIT_HOOKS_GUARD=off` (caller-side) | enabled | warn | wired |
+| `live-sync` | `MK_LIVE_SYNC_DISABLED` | none | enabled | publish / follow / install | wired |
+| `live-follow` | `MK_LIVE_FOLLOW_DISABLED` | none | enabled | follow | wired |
 | `dist-freshness` | `MK_DIST_FRESHNESS_DISABLED` | none | enabled | warn / rebuild | wired |
 | `session-cleanup` | `MK_SESSION_CLEANUP_DISABLED` | none | enabled | teardown | wired |
 | `hook-install` | `MK_HOOK_INSTALL_DISABLED` | none | enabled | install | wired |

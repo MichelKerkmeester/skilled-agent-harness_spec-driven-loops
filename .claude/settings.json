@@ -124,6 +124,11 @@
           },
           {
             "type": "command",
+            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .opencode/bin/git-live-follow.sh --start'",
+            "timeout": 3
+          },
+          {
+            "type": "command",
             "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh --all'",
             "timeout": 5
           },
