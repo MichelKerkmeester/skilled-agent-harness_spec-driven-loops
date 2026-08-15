@@ -26,7 +26,7 @@ Current state:
 - Shared launcher behavior (model-server supervision, stdio-to-socket bridging, sidecar env allowlist) lives in `lib/`. The CLI shims' dist entrypoints reuse `lib/launcher-ipc-bridge.cjs` for socket-path resolution and warm-daemon probes.
 - A second family serves and publishes **compiled routing**. `compiled-route.cjs` is the runtime front door a hub calls to ask whether the compiled router is authoritative for it, falling back to legacy routing when it is not. `compiled-route-status.cjs` reports per-hub serving state with a cause code that separates expected drift from breakage. `compiled-route-guard.cjs` is the gate: it fails when a hub's activation manifest no longer matches what its routing inputs compile to, or when the promoted runtime and its authored source disagree. `compiled-route-sync.cjs` publishes a new closure by tracing, staging, verifying, swapping and then finalizing or reverting. `compiled-route-manifest.cjs` is a thin CLI over the activation-manifest library in `lib/`.
 - `check-no-spec-imports.cjs` proves the durable invariant behind that family: nothing under `bin/` reaches into `specs/` (or its `.opencode/specs` compat alias) at runtime, so the serving path cannot break when the authored tree moves.
-- The remaining files are repository tooling. `worktree-*.sh` launch, prune, guard and report on per-session git worktrees. `git-sync.sh` and `git-live-follow.sh` back the continuous-integration workflow. `check-git-hooks.sh` warns at session start when git hooks are missing or drifted, and `install-codex-hooks.mjs` merges the versioned Codex hook set into the user-global config.
+- The remaining files are repository tooling. `worktree-*.sh` launch, prune, guard and report on per-session git worktrees. `git-sync.sh` and `git-live-follow.sh` back the continuous-integration workflow, and `git-primary-reconcile.sh` converges the primary checkout onto its live branch at session start without touching a dirty tree. `check-git-hooks.sh` warns at session start when git hooks are missing or drifted, `relink-local-specs.sh` restores the machine-local spec symlinks after a clean, and `install-codex-hooks.mjs` merges the versioned Codex hook set into the user-global config.
 
 ---
 
@@ -78,6 +78,8 @@ bin/
 +-- git-sync.sh                    # Autosync helper for the git continuous-integration workflow
 +-- git-live-follow.sh             # Live-follow watcher for the same workflow
 +-- check-git-hooks.sh             # SessionStart guard warning on missing or drifted git hooks
++-- git-primary-reconcile.sh       # SessionStart reconcile: converge the primary checkout onto its live branch
++-- relink-local-specs.sh          # Restore machine-local spec symlinks after a destructive clean
 +-- install-codex-hooks.mjs        # Merges the versioned Codex hook set into the user-global config
 +-- speckit-completion.cjs         # Completion-state CLI over the runtime-neutral core
 +-- compiled-route.cjs             # Runtime front door: is the compiled router authoritative for a hub
