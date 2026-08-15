@@ -64,7 +64,7 @@ mass_deletion_report() {
   threshold="$(_mdg_threshold)"
   {
     echo ""
-    echo "🛑 BLOCKED ($mode): removes $deleted tracked files (ceiling: $threshold). $detail"
+    echo "🛑 BLOCKED [gate:mass-deletion] ($mode): removes $deleted tracked files (ceiling: $threshold). $detail"
     echo "   A snapshot this destructive is usually a stale-tree \`git add -A\` or a runaway"
     echo "   deletion, not an intended change."
     echo "   Intended? authorize this operation:  SPECKIT_ALLOW_MASS_DELETION=1 git $mode ..."

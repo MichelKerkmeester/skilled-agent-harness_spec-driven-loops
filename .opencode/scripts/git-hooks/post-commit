@@ -22,9 +22,16 @@ if [ -z "$REPO_ROOT" ]; then
 fi
 
 if [ -f "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" ]; then
+  set +e
   # shellcheck source=/dev/null
-  source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
-  mark_memory_drift_from_diff HEAD || true
+  source "$REPO_ROOT/.opencode/scripts/git-hooks/lib/memory-drift-marker.sh" 2>/dev/null
+  _memory_marker_rc=$?
+  set -e
+  if [ "$_memory_marker_rc" -ne 0 ] || ! command -v mark_memory_drift_from_diff >/dev/null 2>&1; then
+    echo "WARNING [gate:memory-drift-marker]: helper unavailable; continuing to autosync." >&2
+  else
+    mark_memory_drift_from_diff HEAD || true
+  fi
 fi
 
 # Continuous-integration autosync: publish this commit to the shared "live" branch
@@ -40,9 +47,15 @@ if [ "${SPECKIT_AUTOSYNC:-0}" = "1" ] && [ -n "${SPECKIT_LIVE_BRANCH:-}" ]; then
   __pc_ls_enabled=1
   if [ -r "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" ]; then
     __hf_root="$REPO_ROOT"
+    set +e
     # shellcheck source=/dev/null
-    if . "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" 2>/dev/null; then
+    . "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" 2>/dev/null
+    __pc_hf_rc=$?
+    set -e
+    if [ "$__pc_hf_rc" -eq 0 ] && command -v hook_enabled >/dev/null 2>&1; then
       hook_enabled live-sync || __pc_ls_enabled=0
+    else
+      echo "WARNING [gate:hook-flags]: resolver unavailable; continuing with live-sync enabled." >&2
     fi
   fi
   if [ "$__pc_ls_enabled" = "1" ]; then

@@ -27,7 +27,7 @@ Two layers answer it:
 - **Agent behavior** (sk-git's own MANDATORY rule, [SKILL.md](../SKILL.md) §3 "Remote Push Permission Enforcement"): Claude asks the operator before pushing a non-allowlisted branch, unless the operator already gave an in-turn instruction to push it.
 - **Technical check** (the [pre-push hook](../../../scripts/git-hooks/pre-push)): checks any push — new branch or update — to a non-allowlisted branch unless `SPECKIT_ALLOW_REMOTE_PUSH=1` is set for that invocation. This applies uniformly whether the push came from an agent or a human at a real terminal, since a git hook cannot tell the two apart.
 
-> **Safety limitation — fail-open enforcement.** The pre-push hook is not a guaranteed backstop. If `worktree-naming.sh` is missing, cannot be sourced, lacks its validators, or returns an internal error, the hook exits successfully and allows the push. Treat the hook as advisory enforcement; guaranteed enforcement requires the validator and hook installation to be healthy. The hook behavior is intentionally unchanged by this documentation repair.
+> **Safety limitation — concern-local fail-open enforcement.** If `worktree-naming.sh` is missing, cannot be sourced, lacks its validators, or returns an internal error, the naming and permission concerns warn and fail open. Mass-deletion, skill-root metadata, and test gates still run. Treat naming and permission as advisory enforcement unless the validator and hook installation are healthy.
 
 ---
 
@@ -67,7 +67,11 @@ SPECKIT_AUTOSYNC=1  AND  branch being pushed == $SPECKIT_LIVE_BRANCH
 
 Both conditions must hold. `SPECKIT_AUTOSYNC=1` alone does **not** exempt an arbitrary branch — only the exact live branch the wrapper resolved at session start.
 
+The same exact predicate exempts the destination from the new-branch naming gate. This matters on the first publication of a live branch: the source is a local `work/<runtime>/<slug>` wrapper branch, but the remote ref is the operator-selected live branch. The source branch remains local-only. No wrapper ref is pushed. A push to any other new remote branch still receives the owner-first naming check.
+
 **Why this branch is different**: it was already an explicit operator choice — the primary checkout's own branch — made before any session existed to autosync into it. `git-sync.sh`'s documented contract is "never asks the caller mid-hook" and "non-fatal by default" ([continuous-integration.md](continuous-integration.md)); blocking its publish would silently strand every wrapper session's commits and regress a separately documented feature.
+
+This exception does not apply to safety or consistency gates. The mass-deletion ceiling always blocks a destructive range. Skill-root metadata still blocks stale committed metadata. Enforced test failures still block. `git-sync.sh` captures those hook messages, classifies their `[gate:<name>]` markers, prints the original diagnostics plus a loud `AUTOSYNC BLOCKED` line, and records the gate name and fix in the common-dir `git-sync.log`.
 
 ---
 
@@ -96,6 +100,8 @@ If the operator has approved THIS push, retry with:
 ```
 
 This applies identically whether the push was issued by Claude or typed at a real terminal — the hook cannot tell the two apart, so both get the same safety net and the same one-line fix.
+
+An autosync block adds a durable publisher record. For example, stale skill metadata records `blocked`, `gate=skill-root-metadata`, and the exact `ci-skill-root-metadata.cjs --fix` command. Mass deletion records `gate=mass-deletion` and retains the separate deletion-count audit log. Known gate blocks stop immediately and are never retried or mislabeled as generic `pending` push races.
 
 ---
 

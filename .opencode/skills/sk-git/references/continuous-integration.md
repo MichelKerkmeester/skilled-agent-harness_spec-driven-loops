@@ -87,6 +87,32 @@ The launch wrapper wires this up per session: it resolves the live branch from t
 
 The autosync block composes with — it does not replace — the hook's existing code-graph invalidation and memory-drift behavior.
 
+### Gate map
+
+Wrapper sessions inherit `SPECKIT_AUTOSYNC=1` while committing, so commit-time gates run before autosync starts. Push-time gates then run inside `git push origin HEAD:<live>`. A gate rejection is not a push race: `git-sync.sh` captures the hook stderr, identifies the stable `[gate:<name>]` marker, replays the original diagnostics, prints `AUTOSYNC BLOCKED`, and appends a `blocked gate=<name> fix=<guidance>` record to the common-dir `git-sync.log`.
+
+| Lifecycle | Gate | Runs for wrapper autosync work | Exact live-branch behavior | Blocking and visibility |
+|-----------|------|-------------------------------|----------------------------|-------------------------|
+| Pre-commit | Shared hook flags | Yes, before the commit | May disable the commit-hook family; a broken resolver warns and leaves gates enabled | Never blocks by itself |
+| Pre-commit | Mass-deletion ceiling | Yes, before the commit | No exemption | Real violations block loudly and append `mass-deletion-guard.log` |
+| Pre-commit | Doc model references | Yes, when its validator exists | Advisory only | Warns, then later gates still run |
+| Pre-commit | Comment hygiene | Yes | No exemption | Blocks with `[gate:comment-hygiene]` and repair guidance |
+| Pre-commit | Agent mirror sync | When agent mirrors are staged | No exemption | Blocks with `[gate:agent-mirror-sync]` and repair guidance |
+| Pre-commit | Prompt card sync | When prompt-knowledge files are staged | No exemption | Blocks with `[gate:prompt-card-sync]` and repair guidance |
+| Pre-commit | MCP mutation class | When matching doctor/install files are staged | No exemption | Blocks with `[gate:mcp-mutation-class]` and repair guidance |
+| Pre-commit | Tool ownership map | Yes | No exemption | Blocks with `[gate:tool-ownership]` and repair guidance |
+| Post-commit | Memory drift marker | Yes, before publish | Best-effort; a broken helper warns and autosync continues | Never blocks the commit or publish |
+| Post-commit | Live-sync flags and linked-worktree check | Yes | Publishes only when live-sync is enabled and the commit is in a linked worktree | A broken flag resolver warns and keeps the default-on publish behavior |
+| Pre-push | Mass-deletion ceiling | Yes, for updates to every branch | No exemption | Blocks real violations with `[gate:mass-deletion]`; hook and sync logs both persist the reason |
+| Pre-push | New-branch naming | Yes | Exact `$SPECKIT_LIVE_BRANCH` autosync is exempt, including first publication; another destination is not | Other invalid new branches block with `[gate:naming]` |
+| Pre-push | Remote permission | Yes | Exact `$SPECKIT_LIVE_BRANCH` autosync is exempt; another destination is not | Other non-allowlisted pushes block with `[gate:remote-permission]` |
+| Pre-push | Skill-root metadata | When the pushed per-ref range changes `.opencode/skills` | No safety exemption and no hook-side regeneration | Blocks with `[gate:skill-root-metadata]`, the exact `--fix` command, and a durable sync-log record |
+| Pre-push | Discovered tests | Yes when the runner exists | Report-only by default; no autosync exemption when enforcement is enabled | Enforced failures block with `[gate:test-suites]` and a durable sync-log record |
+
+The skill-root gate deliberately does not run `--fix` from `pre-push`. The commit already exists at that point. Regenerating only the working tree would make a re-check green while the stale committed bytes still reach the remote. The safe path is a loud block, run the exact repair command, then include the generated projection in a new commit so normal autosync can publish it.
+
+The naming and remote-permission helpers are one shared dependency. If that helper is absent or malformed, those two gates warn and fail open, but mass-deletion, skill metadata, and tests continue independently. A broken optional helper can no longer suppress unrelated push gates.
+
 ---
 
 ## 4. SAFETY CONTRACT
@@ -100,6 +126,7 @@ The autosync block composes with — it does not replace — the hook's existing
 | Un-committed work is never touched | The publish path only ever moves committed refs; the rebase requires clean tracked files; the follower is fast-forward-only and skips a dirty tree |
 | No `--autostash` orphan risk | The rebase runs only on a clean tracked tree, so nothing is autostashed (see [SKILL.md](../SKILL.md) ALWAYS #14) |
 | Autosync keeps publishing even when the live branch isn't on the remote allowlist | The pre-push permission gate ([remote-branch-policy.md](remote-branch-policy.md)) exempts exactly `$SPECKIT_LIVE_BRANCH` when `SPECKIT_AUTOSYNC=1` — scoped to that one branch, never a blanket bypass |
+| A pre-push rejection cannot look like a push race | Stable gate markers are captured, replayed, classified, and appended to `git-sync.log` before autosync stops retrying |
 
 ---
 
