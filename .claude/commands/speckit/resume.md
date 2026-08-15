@@ -1,0 +1,1 @@
+../../../.opencode/commands/speckit/resume.md
