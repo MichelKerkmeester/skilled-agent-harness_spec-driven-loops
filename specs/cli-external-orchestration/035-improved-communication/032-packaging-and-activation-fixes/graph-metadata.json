@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/035-improved-communication/032-packaging-and-activation-fixes",
+  "spec_folder": "cli-external-orchestration/035-improved-communication/032-packaging-and-activation-fixes",
+  "parent_id": "cli-external-orchestration/035-improved-communication",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "packaging-and-activation-fixes",
+      "communication projection packaging",
+      "LM Studio enablement example",
+      "implementation plan",
+      "communication projection prepare script",
+      "tasks",
+      "communication projection package activation",
+      "verification checklist",
+      "communication projection package gate",
+      "architecture decision",
+      "LM Studio endpoint normalization",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "packaging-and-activation-fixes",
+      "communication",
+      "projection",
+      "packaging",
+      "studio",
+      "enablement",
+      "example",
+      "implementation",
+      "plan",
+      "prepare",
+      "script",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Activation Fixes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Observable Result",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make communication projection build on install, ship its operator entry points, and provide a loader-valid LM Studio example.",
+    "created_at": "2026-08-15T09:21:20.673Z",
+    "last_save_at": "2026-08-15T09:26:33.239Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:26920dbd5cab5d281428de418c90103242f8b8647303daf82c199c5152ed6a4e",
+    "source_doc_hashes": {
+      "spec.md": "91a99e25ad892c5f2c438b60fea84e15b1f5f75ad4d57475bfe2607adf00cb24",
+      "plan.md": "6ac9d85e6e83e25a7013da41b7b7f38a72bd34eb2c3accc52adbb8ba841b4b61",
+      "tasks.md": "67f7ec7030ff98440e80ab09bc62c1529ba3c531648b4c741964b844ac61e8ef",
+      "checklist.md": "12c75f98ed4aefc6ef3e8dbc907916311ca434a8dad215bbda6165cdf1d2572d",
+      "decision-record.md": "a5cb91b5a220e53fa1e893a536f9ebbf6dee5b8c22132e72b10b55f56d510211",
+      "implementation-summary.md": "c161a33bc7c2edabcfd162cefc3e0c64f4965fbb8bcdd25d7e011fb16bf48007"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

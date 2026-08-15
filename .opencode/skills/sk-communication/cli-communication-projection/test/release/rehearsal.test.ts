@@ -44,11 +44,19 @@ interface PackageExportTarget {
 interface PackageManifest {
   readonly name: string;
   readonly version: string;
+  readonly files: readonly string[];
+  readonly bin: Readonly<Record<string, string>>;
+  readonly scripts: Readonly<Record<string, string>>;
   readonly exports: Readonly<Record<string, PackageExportTarget>>;
+}
+
+interface PackedFile {
+  readonly path: string;
 }
 
 interface PackResult {
   readonly filename: string;
+  readonly files: readonly PackedFile[];
 }
 
 interface InstalledReleaseState {
@@ -83,6 +91,24 @@ describe('release rehearsals', () => {
     await withTemporaryDirectory(async (temporaryDirectory) => {
       const manifest = await readPackageManifest(PACKAGE_ROOT);
       const tarball = packPackage(PACKAGE_ROOT, temporaryDirectory);
+      const packedPaths = tarball.files.map((file) => file.path);
+
+      expect(manifest.files).toEqual([
+        'dist',
+        'docs',
+        'bin',
+        'enablement.local.json.example',
+      ]);
+      expect(manifest.bin).toEqual({
+        'cli-output-wrapper': './bin/cli-output-wrapper.mjs',
+      });
+      expect(manifest.scripts.prepare).toBe('npm run build');
+      expect(packedPaths).toContain('bin/cli-output-wrapper.mjs');
+      expect(packedPaths).toContain('enablement.local.json.example');
+      expect(packedPaths.some((path) => path.startsWith('src/'))).toBe(false);
+      expect(packedPaths.some((path) => path.startsWith('test/'))).toBe(false);
+      expect(packedPaths.some((path) => path.startsWith('node_modules/'))).toBe(false);
+
       const consumerDirectory = join(temporaryDirectory, 'clean-consumer');
       await initializeConsumer(consumerDirectory);
       installTarball(consumerDirectory, join(temporaryDirectory, tarball.filename));
@@ -315,13 +341,19 @@ function installTarball(consumerDirectory: string, tarballPath: string): void {
   });
 }
 
-function packPackage(packageDirectory: string, destination: string): PackResult {
-  const output = execFileSync('npm', [
+function packPackage(
+  packageDirectory: string,
+  destination: string,
+  ignoreScripts = false,
+): PackResult {
+  const args = [
     'pack',
     '--json',
     '--pack-destination',
     destination,
-  ], {
+    ...(ignoreScripts ? ['--ignore-scripts'] : []),
+  ];
+  const output = execFileSync('npm', args, {
     cwd: packageDirectory,
     encoding: 'utf8',
     env: {
@@ -353,7 +385,7 @@ async function createVersionedTarball(
     ...manifest,
     version,
   }, null, 2), 'utf8');
-  const packed = packPackage(stagingDirectory, artifactDirectory);
+  const packed = packPackage(stagingDirectory, artifactDirectory, true);
   return join(artifactDirectory, packed.filename);
 }
 
