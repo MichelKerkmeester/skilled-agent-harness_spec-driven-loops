@@ -1,0 +1,26 @@
+{
+  "level": 2,
+  "specFolder": "sk-git/021-hook-gate-hardening",
+  "description": "The live-sync publisher discards `git push` stderr",
+  "keywords": [
+    "live-sync",
+    "publisher",
+    "discards",
+    "git",
+    "push",
+    "stderr"
+  ],
+  "lastUpdated": "2026-08-15T13:54:51.302Z",
+  "specId": "021",
+  "folderSlug": "hook-gate-hardening",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "15-08-26_14-50__every-blocking-gate-now-emits-a-stable-gate.md",
+    "15-08-26_14-53__final-packet-documentation-now-matches-the-level.md",
+    "15-08-26_14-54__all-p0-evidence-markers-now-satisfy-the-strict.md",
+    "15-08-26_14-54__the-completed-packet-passed-strict-validation.md"
+  ]
+}

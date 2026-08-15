@@ -63,6 +63,59 @@ _bail() { if [ "$AUTO" = "1" ]; then exit 0; else exit "${1:-1}"; fi; }
 log()   { [ "$QUIET" = "1" ] || echo "[git-sync] $*" >&2; }
 warn()  { echo "[git-sync] $*" >&2; }
 
+PUSH_OUTPUT=""
+PUSH_GATE=""
+PUSH_FIX=""
+
+_push_live() {
+  local rc
+  PUSH_OUTPUT=""
+  PUSH_OUTPUT="$(git push "$REMOTE" "HEAD:$LIVE" 2>&1)"
+  rc=$?
+  return "$rc"
+}
+
+_classify_push_gate() {
+  PUSH_GATE=""
+  PUSH_FIX=""
+  case "$PUSH_OUTPUT" in
+    *'[gate:mass-deletion]'*)
+      PUSH_GATE="mass-deletion"
+      PUSH_FIX="After inspection: SPECKIT_ALLOW_MASS_DELETION=1 bash .opencode/bin/git-sync.sh --live $LIVE"
+      ;;
+    *'[gate:skill-root-metadata]'*)
+      PUSH_GATE="skill-root-metadata"
+      PUSH_FIX="node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs --fix"
+      ;;
+    *'[gate:naming]'*)
+      PUSH_GATE="naming"
+      PUSH_FIX="Use an owner-first branch name; bypass only with SPECKIT_SKIP_PREPUSH_NAMING=1."
+      ;;
+    *'[gate:remote-permission]'*)
+      PUSH_GATE="remote-permission"
+      PUSH_FIX="After explicit approval, retry that one push with SPECKIT_ALLOW_REMOTE_PUSH=1."
+      ;;
+    *'[gate:test-suites]'*)
+      PUSH_GATE="test-suites"
+      PUSH_FIX="Fix the reported test failure or disable enforcement only through the documented operator policy."
+      ;;
+  esac
+  [[ -n "$PUSH_GATE" ]]
+}
+
+_report_push_gate() {
+  _classify_push_gate || return 1
+  [[ -z "$PUSH_OUTPUT" ]] || printf '%s\n' "$PUSH_OUTPUT" >&2
+  warn "AUTOSYNC BLOCKED: pre-push gate '$PUSH_GATE' rejected publication to $REMOTE/$LIVE."
+  warn "Fix: $PUSH_FIX"
+  _record blocked "gate=$PUSH_GATE fix=$PUSH_FIX"
+  return 0
+}
+
+_show_push_output() {
+  [[ -z "$PUSH_OUTPUT" ]] || printf '%s\n' "$PUSH_OUTPUT" >&2
+}
+
 command -v git >/dev/null 2>&1 || { warn "git not found"; _bail 1; }
 git rev-parse --git-dir >/dev/null 2>&1 || { [ "$AUTO" = "1" ] && exit 0; warn "not a git repository"; exit 1; }
 
@@ -119,11 +172,15 @@ while :; do
 
   # No remote live branch yet: create it from HEAD (first publisher).
   if [ -z "$REMOTE_TIP" ]; then
-    if git push "$REMOTE" "HEAD:$LIVE" 2>/dev/null; then
+    if _push_live; then
       _record created "created $REMOTE/$LIVE from $BRANCH"
       log "created $REMOTE/$LIVE from $BRANCH"
       exit 0
     fi
+    if _report_push_gate; then
+      _bail 1
+    fi
+    _show_push_output
     warn "could not create $REMOTE/$LIVE"; _bail 1
   fi
 
@@ -140,10 +197,13 @@ while :; do
   # adds our commits. This is the common single-session / non-overlapping path.
   if git merge-base --is-ancestor "$REMOTE_TIP" "$HEAD_SHA"; then
     ahead="$(git rev-list --count "$REMOTE_TIP..$HEAD_SHA")"
-    if git push "$REMOTE" "HEAD:$LIVE" 2>/dev/null; then
+    if _push_live; then
       _record published "fast-forward ($ahead commit(s))"
       log "published $ahead commit(s) to $REMOTE/$LIVE (fast-forward)"
       exit 0
+    fi
+    if _report_push_gate; then
+      _bail 1
     fi
     # A concurrent push landed between fetch and push: retry the whole loop
     # after a short jittered backoff, so concurrent sessions never retry in
@@ -154,6 +214,7 @@ while :; do
       continue
     fi
     _record pending "push race persisted after $RETRIES retries ($ahead commit(s))"
+    _show_push_output
     warn "push race persisted after $RETRIES retries; $ahead commit(s) pending on $BRANCH"; _bail 1
   fi
 
@@ -171,10 +232,13 @@ while :; do
   fi
 
   if git rebase --quiet "$REMOTE_TIP" 2>/dev/null; then
-    if git push "$REMOTE" "HEAD:$LIVE" 2>/dev/null; then
+    if _push_live; then
       _record published "rebased onto $REMOTE/$LIVE"
       log "rebased onto $REMOTE/$LIVE and published $BRANCH"
       exit 0
+    fi
+    if _report_push_gate; then
+      _bail 1
     fi
     if [ "$attempt" -le "$RETRIES" ]; then
       _record pending "push race after rebase (retry $attempt/$RETRIES)"
@@ -182,6 +246,7 @@ while :; do
       continue
     fi
     _record pending "push race persisted after $RETRIES retries"
+    _show_push_output
     warn "push race persisted after $RETRIES retries; commits pending on $BRANCH"; _bail 1
   fi
 
