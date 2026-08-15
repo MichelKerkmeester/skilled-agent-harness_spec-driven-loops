@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/012-docs-as-skill-references",
-  "spec_folder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/012-docs-as-skill-references",
-  "parent_id": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc",
+  "packet_id": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/012-docs-as-skill-references",
+  "spec_folder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/012-docs-as-skill-references",
+  "parent_id": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -180,7 +180,7 @@
     ],
     "causal_summary": "The `docs/.md` runbooks in `Apps/Pi Mobile/` are prose documents without a consistent reference structure",
     "created_at": "2026-08-13T15:52:25.431Z",
-    "last_save_at": "2026-08-13T17:34:34.503Z",
+    "last_save_at": "2026-08-15T11:27:09.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

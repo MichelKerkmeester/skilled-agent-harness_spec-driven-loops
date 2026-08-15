@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/016-ai-deploy-and-onboarding",
+  "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/016-ai-deploy-and-onboarding",
   "description": "The app has a setup runbook (phase 008) and an install and onboarding guide (phase 014), but deploying still requires an operator to run many ordered",
   "keywords": [
     "app",
@@ -18,12 +18,11 @@
     "many",
     "ordered"
   ],
-  "lastUpdated": "2026-08-14T04:59:01.676Z",
+  "lastUpdated": "2026-08-15T10:58:15.723Z",
   "specId": "016",
   "folderSlug": "ai-deploy-and-onboarding",
   "parentChain": [
-    "apps",
-    "pi-remote",
+    "app-remote-agent-chat",
     "001-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

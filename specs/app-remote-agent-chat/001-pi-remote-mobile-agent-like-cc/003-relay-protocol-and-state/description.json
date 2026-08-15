@@ -1,6 +1,6 @@
 {
   "level": "3+",
-  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
+  "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/003-relay-protocol-and-state",
   "description": "Implements the host-local Pi RPC supervisor, durable replay, session catalog, mutation ledger, and crash-safe reconciliation core",
   "keywords": [
     "implements",
@@ -17,12 +17,11 @@
     "reconciliation",
     "core"
   ],
-  "lastUpdated": "2026-08-13T16:35:49.077Z",
+  "lastUpdated": "2026-08-15T10:58:15.661Z",
   "specId": "003",
   "folderSlug": "relay-protocol-and-state",
   "parentChain": [
-    "apps",
-    "pi-remote",
+    "app-remote-agent-chat",
     "001-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

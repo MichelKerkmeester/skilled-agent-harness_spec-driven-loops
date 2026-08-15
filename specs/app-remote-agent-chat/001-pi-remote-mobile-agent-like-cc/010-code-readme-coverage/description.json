@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/010-code-readme-coverage",
+  "specFolder": "app-remote-agent-chat/001-pi-remote-mobile-agent-like-cc/010-code-readme-coverage",
   "description": "The built Pi Remote monorepo has code folders with no developer orientation: a new agent or contributor landing in `apps/pi-remote-relay/src/store/`",
   "keywords": [
     "remote",
@@ -18,12 +18,11 @@
     "src",
     "store"
   ],
-  "lastUpdated": "2026-08-13T17:23:08.276Z",
+  "lastUpdated": "2026-08-15T10:58:15.637Z",
   "specId": "010",
   "folderSlug": "code-readme-coverage",
   "parentChain": [
-    "apps",
-    "pi-remote",
+    "app-remote-agent-chat",
     "001-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,
