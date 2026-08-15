@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/005-resume-adapter"
-    last_updated_at: "2026-07-27T21:58:58Z"
+    last_updated_at: "2026-08-15T12:22:55Z"
     last_updated_by: "codex"
-    recent_action: "Implemented certificate-bound deterministic resume decisions"
+    recent_action: "Reverified certificate-bound deterministic resume decisions at HEAD"
     next_safe_action: "Shadow parity can consume the closed resume evidence"
     blockers: []
     key_files:
@@ -40,6 +40,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 005-resume-adapter |
 | **Completed** | 2026-07-27 |
+| **Closeout verified** | 2026-08-15 at HEAD `b14b87acf2f1333aa8aa6322dcc32fcdcbdf30d7` |
 | **Level** | 2 |
 | **Status** | Complete |
 | **Evidence reconciliation** | Reinstated by 021 on 2026-07-31 with fresh suite evidence; completion remains supported. |
@@ -115,15 +116,15 @@ production completion.
 
 | Check | Result |
 |-------|--------|
-| Target Vitest suite | PASS with 1 file and 12 tests; suite sha256 `1eec9d35355da517a42385a1960293567b16af19d7ce4e113e1c4bcc0ad33917`; candidate SHA `dd07cb1f52ed2ebaca7d152d0a088366b2958b32` |
+| Target Vitest suite | PASS with 1 file and 12 tests; exit 0; 91.11s; suite SHA-256 `ad91c078454a6a4ec867e286569cb9d5ee27bca17601fdd6b412fd3f348fdf4e`; HEAD `b14b87acf2f1333aa8aa6322dcc32fcdcbdf30d7` |
 | Resume matrix | PASS for exact reuse, compatible, migrate, blocked, and rebuild-required |
 | Forged confirmation | PASS with unknown application state and blocked recovery |
 | Compatibility ownership | PASS for promoted state-bearing migration and rejected unauthenticated registry |
 | Fingerprint recomputation | PASS for tool, model, policy, target, and schema changes |
 | Idempotency and dark posture | PASS with one semantic append and zero default dispatches |
-| New-module TypeScript grep | PASS with zero diagnostics under `runtime/lib/deep-review-resume-adapter/` |
-| Whole-runtime TypeScript | Historical claim not rerun here; clean-checkout npm wiring is not reproducible because runtime `package.json` files are ignored |
-| Strict packet validation | Recorded in the delivery handoff |
+| Runtime code probes | PASS: closed request and fingerprints at `runtime/lib/deep-review-resume-adapter/deep-review-resume-adapter.ts:335-435`; continuity and recovery decisions at `:558-970`; verified adapter path at `:1119-1462` |
+| Whole-runtime TypeScript | PASS: `npx --no-install tsc --noEmit --ignoreDeprecations 6.0`; exit 0; zero diagnostics |
+| Strict packet validation | PASS at the packet level: `validate.sh <folder> --strict` reported `Errors: 0`, `Warnings: 1`; command exit 2 is solely the accepted `METADATA_DISK_PATH_CONSISTENCY` environment warning |
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

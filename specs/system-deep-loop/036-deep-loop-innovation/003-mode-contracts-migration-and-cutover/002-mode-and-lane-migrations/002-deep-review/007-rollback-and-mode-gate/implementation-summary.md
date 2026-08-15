@@ -11,17 +11,18 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-28T15:09:11Z"
-    last_updated_by: "claude"
-    recent_action: "Verified the Deep Review rollback and mode gate"
-    next_safe_action: "Land the rollback-gate column as an additive-dark wave"
-    blockers: []
+    last_updated_at: "2026-08-15T12:22:55Z"
+    last_updated_by: "codex"
+    recent_action: "Reverified the rollback gate at HEAD; 83 of 84 focused assertions passed"
+    next_safe_action: "Verify parity exit-status independence"
+    blockers:
+      - "Focused rollback-gate suite timed out in the parity exit-status independence probe"
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-review-rollback-gate/index.ts"
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-review-rollback-gate/mode-gate.ts"
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-review-rollback-gate/rollback-switch.ts"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-rollback-gate.vitest.ts"
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "The gate re-derives its verdict through the real authorization gateway and ledger replay"
@@ -43,7 +44,8 @@ _memory:
 | **Spec Folder** | 007-rollback-and-mode-gate |
 | **Completed** | 2026-07-28 |
 | **Level** | 2 |
-| **Status** | Complete |
+| **Status** | In Progress |
+| **Closeout checked** | 2026-08-15 at HEAD `b14b87acf2f1333aa8aa6322dcc32fcdcbdf30d7` |
 | **Posture** | Additive-dark with legacy authority unchanged |
 <!-- /ANCHOR:metadata -->
 
@@ -96,18 +98,20 @@ uncaught throw. The golden leaf's documented substrate-handle boundaries are mir
 
 | Gate | Result |
 |---|---|
-| Focused Vitest | PASS with 1 file and 81 tests |
-| Whole-runtime TypeScript | PASS with zero diagnostics containing `deep-review-rollback-gate` |
-| Strict leaf validation | PASS with zero errors and zero warnings |
+| Focused Vitest | BLOCKED: 1 file, 84 tests; 83 passed, 1 timed out at 30s; exit 1; 118.39s; suite SHA-256 `be054b3de4c76bd841797ed5e23e5715d1ba37ff776b27e8c8fd92ed76ebf769` |
+| Timed-out probe | `independent parity authentication > does not adopt the authenticated parity handoff exit status as authority` at `runtime/tests/unit/deep-review-rollback-gate.vitest.ts:2083` |
+| Whole-runtime TypeScript | PASS: `npx --no-install tsc --noEmit --ignoreDeprecations 6.0`; exit 0; zero diagnostics |
+| Runtime code probes | PASS: gate evidence and issuance at `runtime/lib/deep-review-rollback-gate/mode-gate.ts:62-844`; rollback authorization and fencing at `runtime/lib/deep-review-rollback-gate/rollback-switch.ts:183-396` |
+| Strict leaf validation | Packet structure passes: `validate.sh <folder> --strict` reported `Errors: 0`, `Warnings: 1`; command exit 2 is solely the accepted `METADATA_DISK_PATH_CONSISTENCY` environment warning and does not override the red focused runtime gate |
 | Real gateway driving | Confirmed by direct authorization-gateway and audit reads |
 
 Focused command:
 
-`cd .opencode/skills/system-spec-kit/mcp-server && node_modules/.bin/vitest run --no-coverage ../../system-deep-loop/runtime/tests/unit/deep-review-rollback-gate.vitest.ts`
+`cd .opencode/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/deep-review-rollback-gate.vitest.ts --configLoader runner`
 
 TypeScript command:
 
-`.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json`
+`cd .opencode/skills/system-deep-loop/runtime && npx --no-install tsc --noEmit --ignoreDeprecations 6.0`
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:nfr-verify -->
@@ -132,5 +136,5 @@ and defer their real enforcement to the cutover phase.
 <!-- ANCHOR:deviations -->
 ## Deviations from Plan
 
-None. The leaf follows the golden rollback-gate contract adapted to Deep Review transitions.
+The implementation follows the golden rollback-gate contract adapted to Deep Review transitions. Closeout remains blocked by the fresh 30-second timeout in the parity exit-status independence probe; no runtime code was changed during this closeout.
 <!-- /ANCHOR:deviations -->

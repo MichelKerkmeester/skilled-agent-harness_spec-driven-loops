@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/005-resume-adapter"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Implemented the certificate-bound resume adapter"
+    last_updated_at: "2026-08-15T12:22:55Z"
+    last_updated_by: "codex"
+    recent_action: "Reverified the certificate-bound resume adapter at HEAD"
     next_safe_action: "Shadow parity can consume the closed resume evidence"
     blockers: []
     key_files: []
@@ -43,18 +43,18 @@ The adapter will rebuild Deep Review from a sealed ledger frontier rather than f
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The phase-012 shared review-loop contract is frozen and names the event frontier, reducer versions, and terminal semantics consumed by modes
-- [ ] Phase 015 has published the mode interface, write ownership, and executable conflict graph
-- [ ] Deep Review sibling concerns expose the typed event, reducer, proof, and certificate contracts needed by the adapter
-- [ ] Every interruption boundary and external-effect state has a defined recovery outcome
-- [ ] The continuity ladder and re-entry decision algebra are written as testable invariants
-- [ ] The adapter has one authoritative ledger read path and no mutable-summary fallback
+- [x] The phase-012 shared review-loop contract is frozen and names the event frontier, reducer versions, and terminal semantics consumed by modes. [Evidence: `runtime/lib/deep-review-resume-adapter/deep-review-resume-adapter.ts:1-97,441-557`; fresh adapter suite 12/12]
+- [x] Phase 015 has published the mode interface, write ownership, and executable conflict graph. [Evidence: `runtime/lib/deep-review-resume-adapter/deep-review-resume-adapter.ts:1119-1462`; fresh adapter suite 12/12]
+- [x] Deep Review sibling concerns expose the typed event, reducer, proof, and certificate contracts needed by the adapter. [Evidence: `runtime/lib/deep-review-resume-adapter/deep-review-resume-adapter.ts:1-73`; whole-runtime TypeScript exit 0]
+- [x] Every interruption boundary and external-effect state has a defined recovery outcome. [Evidence: `runtime/lib/deep-review-resume-adapter/deep-review-resume-adapter.ts:123-199,760-877`; fresh adapter suite 12/12]
+- [x] The continuity ladder and re-entry decision algebra are written as testable invariants. [Evidence: `runtime/lib/deep-review-resume-adapter/deep-review-resume-adapter.ts:123-199,558-759,878-970`; fresh adapter suite 12/12]
+- [x] The adapter has one authoritative ledger read path and no mutable-summary fallback. [Evidence: `runtime/lib/deep-review-resume-adapter/deep-review-resume-adapter.ts:1119-1211`; fresh adapter suite 12/12]
 
 ### Definition of Done
-- [ ] A sealed-frontier fold reconstructs Deep Review state deterministically
-- [ ] Re-entry decisions are idempotent for duplicate requests and fail closed for missing, conflicting, or incompatible evidence
-- [ ] Crash-injection and replay tests cover scope, dimension, finding, proof, convergence, and report boundaries
-- [ ] The adapter consumes the shared loop backbone without a Deep Review-specific fork
+- [x] A sealed-frontier fold reconstructs Deep Review state deterministically. [Evidence: `runtime/tests/unit/deep-review-resume-adapter.vitest.ts:645-913`; fresh command exit 0, 12/12]
+- [x] Re-entry decisions are idempotent for duplicate requests and fail closed for missing, conflicting, or incompatible evidence. [Evidence: `runtime/tests/unit/deep-review-resume-adapter.vitest.ts:827-913`; fresh command exit 0, 12/12]
+- [x] Crash-injection and replay tests cover scope, dimension, finding, proof, convergence, and report boundaries. [Evidence: `runtime/tests/unit/deep-review-resume-adapter.vitest.ts:645-913`; fresh command exit 0, 12/12]
+- [x] The adapter consumes the shared loop backbone without a Deep Review-specific fork. [Evidence: `runtime/lib/deep-review-resume-adapter/deep-review-resume-adapter.ts:1-73,1119-1462`; whole-runtime TypeScript exit 0]
 <!-- /ANCHOR:quality-gates -->
 
 <!-- ANCHOR:architecture -->
@@ -117,5 +117,5 @@ The adapter depends on the phase-012 shared review-loop contract for lifecycle t
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-This phase is planning only and changes no runtime authority. If implementation reveals a contract mismatch, disable the adapter at its boundary, preserve the sealed ledger and all immutable events, and return the lineage to the existing non-authoritative or legacy recovery path without deleting or rewriting history. Revert only the adapter implementation and its tests; retain migration evidence so the corrected contract can be re-run against the same sealed fixtures. A resume request with an unknown external effect remains blocked for reconciliation rather than being rolled back as if the effect never occurred.
+The implementation is additive-dark and changes no runtime authority. Rollback removes the adapter package and its focused test, preserves the sealed ledger and immutable events, and returns the lineage to the existing recovery path without rewriting history. A resume request with an unknown external effect remains blocked for reconciliation rather than being treated as if the effect never occurred.
 <!-- /ANCHOR:rollback -->

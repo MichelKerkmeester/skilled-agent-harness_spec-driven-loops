@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/005-resume-adapter"
-    last_updated_at: "2026-07-15T20:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Implemented the sealed-certificate resume decision layer"
+    last_updated_at: "2026-08-15T12:22:55Z"
+    last_updated_by: "codex"
+    recent_action: "Reverified the sealed-certificate resume decision layer at HEAD"
     next_safe_action: "Shadow parity can consume the closed resume evidence"
     blockers: []
     key_files: []
@@ -38,7 +38,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/005-resume-adapter |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (deep-review mode migration) |
 | **Origin** | Phase 013 deep-review fan-out; resume-adapter concern from the typed ledger migration |
@@ -131,9 +131,11 @@ Dependencies are contract-level rather than sibling runtime dependencies: phase 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which exact sealed-frontier marker and chain-integrity receipt does phase 012 expose to mode adapters?
-- Does the shared reducer contract return a typed continuity ladder directly, or does this adapter publish the Deep Review-specific projection from shared reducer primitives?
-- Which replay-fingerprint mismatch outcomes are `pin-old-runtime`, `migrate`, `reconcile`, or `reject` for each proof and report effect?
-- What minimum event set is required before `review-report` can be materialized, and which incomplete state is retained when a required proof remains contested?
-- How does the phase-012 write-set graph serialize concurrent resume requests for the same review lineage while allowing independent lineages to proceed?
+None. The implementation resolved the contract questions as follows:
+
+- The adapter authenticates the certificate-pinned verified ledger head and exact covered event range before folding.
+- The shared reducer returns the canonical Deep Review projection; the adapter publishes the mode continuity ladder from those reducer-owned fields.
+- Compatibility derives `exact`, `compatible`, `migrate`, `pin-old-runtime`, or `blocked`; pass and effect planners then choose reuse, re-execution, reconciliation, compensation, or rejection without accepting caller verdicts.
+- Report reuse requires the folded sealed frontier and its projection identity; contested or incomplete proof state remains an open obligation and cannot become a completed report path.
+- Idempotent resume identity and the real authorization/fencing path serialize one lineage, while independent lineage identities remain separate.
 <!-- /ANCHOR:questions -->

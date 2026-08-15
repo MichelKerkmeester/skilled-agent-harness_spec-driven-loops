@@ -11,9 +11,9 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/002-deep-review/004-certificates-and-receipts"
-    last_updated_at: "2026-07-27T19:35:04Z"
+    last_updated_at: "2026-08-15T12:22:55Z"
     last_updated_by: "codex"
-    recent_action: "Implemented receipts, certificates, and offline closure verification"
+    recent_action: "Reverified receipts, certificates, and offline closure at HEAD"
     next_safe_action: "Successor 005 can consume verified checkpoint evidence"
     blockers: []
     key_files:
@@ -45,6 +45,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 004-certificates-and-receipts |
 | **Completed** | 2026-07-27 |
+| **Closeout verified** | 2026-08-15 at HEAD `b14b87acf2f1333aa8aa6322dcc32fcdcbdf30d7` |
 | **Level** | 2 |
 | **Status** | Complete |
 | **Authority** | Additive-dark evidence only; legacy writers and authority are unchanged |
@@ -166,25 +167,25 @@ decision.
 
 | Check | Result |
 |-------|--------|
-| Targeted Vitest | PASS: 1 file, 58 tests |
+| Targeted Vitest | PASS: 1 file, 67 tests; exit 0; 135.83s; suite SHA-256 `c600de204c4659acaf650332eb7c20d47015a9714c0b52b965e76188e9da06db` |
 | Per-field closure negatives | PASS: 24 fabricated or missing and 24 wrong-kind verifier cases |
 | Missing offline bytes | PASS: separate pruned store returns `unverifiable` |
 | Receipt-chain negatives | PASS: mutation, reordering, forged authorization, and broken predecessor link fail closed |
 | Artifact negatives | PASS: forged binding, mutation, stale epoch, unauthorized provenance, and wrong kind fail closed |
-| Runtime TypeScript compile | PASS: pinned TypeScript 5.9.3, exit 0, zero module diagnostics |
-| Comment hygiene and diff check | PASS |
-| Strict packet validation | PASS: external primary runner, exit 0, zero errors |
+| Runtime TypeScript compile | PASS: `npx --no-install tsc --noEmit --ignoreDeprecations 6.0`; exit 0; zero diagnostics |
+| Runtime code probes | PASS: transition order and cardinality at `runtime/lib/deep-review-certificates/deep-review-certificates.ts:96`; 24 closure rules at `:228`; issuance at `:1340` and `:1570`; offline verification at `:1984` |
+| Comment hygiene and scoped diff | PASS for task-authored changes: `git diff --check` exited 0 and the closeout changed only this program's three authorized leaf folders; the worktree separately contains unrelated tracked deletions at `.claude/commands` and `.cursor/hooks/completion-evidence-response.mjs`, which were not touched |
+| Strict packet validation | PASS at the packet level: `validate.sh <folder> --strict` reported `Errors: 0`, `Warnings: 1`; command exit 2 is solely the accepted `METADATA_DISK_PATH_CONSISTENCY` environment warning |
 
 `substrateImportsReal: true`. Runtime imports include the landed `deep-review-ledger-schema`,
 `deep-review-reducers`, and `deep-review-sealed-artifacts` packages plus the real `authorized-ledger`,
 `event-envelope`, `replay-fingerprint`, `sealed-reference-artifacts`, and
 `receipts-and-effect-recovery` substrate. The module imports no other mode's certificate package.
 
-The pinned TypeScript 5.9.3 launcher and type roots were resolved from the primary checkout because this worktree omits
-the corresponding dependency links. The targeted Vitest package was run directly with its runner config loader because
-`.bin` is absent and the default loader cannot create a cache directory through the read-only dependency symlink.
-The prescribed in-worktree validation launcher hit the documented `@spec-kit/shared` linked-worktree dependency gap;
-the primary checkout's same validator then checked this worktree's absolute packet path. No packages were installed.
+Fresh closeout commands ran from `.opencode/skills/system-deep-loop/runtime` without installing packages:
+
+- `npx --no-install vitest run tests/unit/deep-review-certificates.vitest.ts --configLoader runner`
+- `npx --no-install tsc --noEmit --ignoreDeprecations 6.0`
 <!-- /ANCHOR:verification -->
 
 ---
