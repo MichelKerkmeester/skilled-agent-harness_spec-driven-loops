@@ -66,6 +66,7 @@ import {
   replayFingerprintAttestationEventDefinition,
 } from '../replay-fingerprint/index.js';
 import { SEALED_ARTIFACT_REPLAY_INPUT_KEY } from '../sealed-reference-artifacts/index.js';
+import { parseParityCertificateIdentityRegistry } from '../shadow-parity/parity-identity-registry.js';
 import {
   compileParityCaseManifest,
   issueParityCertificate,
@@ -2109,6 +2110,21 @@ function parseModeBinding(
   }) as ModelBenchmarkModeCertificateBinding;
 }
 
+function parseEmbeddedParityCertificate(
+  input: unknown,
+): NonNullable<ModelBenchmarkParityReceipt['parityCertificate']> {
+  if (!isRecord(input) || !hasExactKeys(input, [
+    'schema_version', 'mode', 'base_sha', 'manifest_digest', 'case_ids',
+    'case_evidence_digests', 'reference_set_digests', 'attestation_final_digests',
+    'bindings', 'identity_registry', 'evidence_digest', 'open_divergence_count',
+    'authority_state', 'authority_mutation', 'rollback_minimum_days',
+    'rollback_minimum_successful_runs', 'certificate_digest',
+  ])) throw new TypeError('parityCertificate must use the closed certificate shape');
+  return parseParityCertificateIdentityRegistry(input) as NonNullable<
+    ModelBenchmarkParityReceipt['parityCertificate']
+  >;
+}
+
 function verifyGenericCertificate(
   receipt: ModelBenchmarkParityReceipt,
   manifest: ParityCaseManifest,
@@ -2183,6 +2199,9 @@ export function parseModelBenchmarkParityReceipt(
   }
   const modeBinding = input.modeCertificateBinding === null
     ? null : parseModeBinding(input.modeCertificateBinding, manifest);
+  const parityCertificate = input.parityCertificate === null
+    ? null
+    : parseEmbeddedParityCertificate(input.parityCertificate);
   if (
     input.baseSha !== manifest.baseSha
     || input.runManifestDigest !== manifest.manifestDigest
@@ -2197,13 +2216,13 @@ export function parseModelBenchmarkParityReceipt(
     || input.cutoverCertificate !== false
   ) throw new TypeError('Parity receipt cannot carry authority mutation');
   const issued = input.certificateStatus === 'issued'
-    && input.parityCertificate !== null
+    && parityCertificate !== null
     && input.parityCertificateDigest !== null
     && modeBinding !== null
     && input.certificateEvidenceBindings.length > 0
     && input.certificateRefusalCode === null;
   const refused = input.certificateStatus === 'refused'
-    && input.parityCertificate === null
+    && parityCertificate === null
     && input.parityCertificateDigest === null
     && modeBinding === null
     && input.certificateEvidenceBindings.length === 0
@@ -2215,6 +2234,7 @@ export function parseModelBenchmarkParityReceipt(
     ...(input as unknown as ModelBenchmarkParityReceipt),
     diffDispositions: Object.freeze(diffs),
     modeCertificateBinding: modeBinding,
+    parityCertificate,
   });
   verifyGenericCertificate(receipt, manifest);
   const evidenceGreen = receipt.legacyStreamDigest === receipt.ledgerStreamDigest

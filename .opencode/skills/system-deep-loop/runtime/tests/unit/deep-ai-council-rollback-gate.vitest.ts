@@ -1961,7 +1961,10 @@ async function parityFixture(authorized: boolean): Promise<Readonly<{
         replayContractDigest: digest('parity-replay-contract'),
         sealedInputDigest: digest('parity-sealed'),
         attestationSequence: runIndex,
-        descriptor: {} as never,
+        descriptor: {
+          upcaster_registry_digest: digest('parity-upcaster-registry'),
+          ordered_chain_identities: [],
+        } as never,
       },
       dark: {
         finalDigest: attestationDigest,
@@ -1972,7 +1975,10 @@ async function parityFixture(authorized: boolean): Promise<Readonly<{
         replayContractDigest: digest('parity-replay-contract'),
         sealedInputDigest: digest('parity-sealed'),
         attestationSequence: runIndex,
-        descriptor: {} as never,
+        descriptor: {
+          upcaster_registry_digest: digest('parity-upcaster-registry'),
+          ordered_chain_identities: [],
+        } as never,
       },
       observationDigest: digest('parity-observation'),
       legacyProjectionDigest: digest('parity-projection'),

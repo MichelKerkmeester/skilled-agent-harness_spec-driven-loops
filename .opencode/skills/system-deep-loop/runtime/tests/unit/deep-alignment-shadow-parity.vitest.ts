@@ -628,6 +628,18 @@ describe('Deep Alignment shadow parity', () => {
       },
     };
     expect(() => parseDeepAlignmentParityReceipt(tampered, manifest)).toThrow();
+    const malformedIdentityRegistry = {
+      ...outcome.receipt,
+      parityCertificate: {
+        ...outcome.receipt.parityCertificate,
+        identity_registry: {
+          ...outcome.receipt.parityCertificate?.identity_registry,
+          unexpected: true,
+        },
+      },
+    };
+    expect(() => parseDeepAlignmentParityReceipt(malformedIdentityRegistry, manifest))
+      .toThrow(/closed identity-registry shape/);
   }, 30_000);
 
   it('uses a distinct legacy model and keeps the successor input non-authoritative', async () => {
