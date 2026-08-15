@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-29T07:32:57Z"
-    last_updated_by: "claude"
-    recent_action: "Verified the Deep Alignment rollback and mode gate"
-    next_safe_action: "Finish the skill-benchmark lane then land the rollback column"
+    last_updated_at: "2026-08-15T16:12:18Z"
+    last_updated_by: "codex"
+    recent_action: "Verified the cited suite and reconciled closeout evidence"
+    next_safe_action: "No leaf-local closeout action remains"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-alignment-rollback-gate/index.ts"
@@ -68,7 +68,7 @@ reverified certificate before honoring any rollback.
 | `runtime/lib/deep-alignment-rollback-gate/types.ts` | Created | Closed request, verdict, window, and denial contracts |
 | `runtime/lib/deep-alignment-rollback-gate/index.ts` | Created | Stable public exports |
 | `runtime/tests/unit/deep-alignment-rollback-gate.vitest.ts` | Created | Re-derivation, field-binding, forged-evidence, window, supersession, and never-throw tests |
-| Leaf packet docs | Updated | Implemented status and verification evidence |
+| Leaf packet docs | Updated | Complete status and verification evidence |
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->
@@ -99,8 +99,8 @@ of an uncaught throw. The golden leaf's documented substrate-handle boundaries a
 
 | Gate | Result |
 |---|---|
-| Focused Vitest | PASS with 1 file and 86 tests |
-| Whole-runtime TypeScript | PASS with zero diagnostics containing `deep-alignment-rollback` |
+| Focused Vitest | PASS with 1 file and 87/87 tests in 101.73s |
+| Whole-runtime TypeScript | PASS: `tsc --noEmit --ignoreDeprecations 6.0`, exit 0 |
 | Shared-primitive reuse | Confirmed by direct import of the shared review and substrate modules |
 | Real gateway driving | Confirmed by direct authorization-gateway and ledger-replay reads |
 

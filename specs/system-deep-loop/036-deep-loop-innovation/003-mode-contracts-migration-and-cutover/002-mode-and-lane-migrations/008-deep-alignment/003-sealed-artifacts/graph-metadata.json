@@ -39,7 +39,7 @@
       "seal"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -104,12 +104,6 @@
         "source": "derived"
       },
       {
-        "name": "Scoped Deep Alignment",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Third Deep Alignment",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -117,6 +111,12 @@
       },
       {
         "name": "Deep Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -146,12 +146,6 @@
         "source": "derived"
       },
       {
-        "name": "Sequenced Deep Alignment",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -159,6 +153,12 @@
       },
       {
         "name": "Register Deep Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Alignment mode binding for immutable, content-addressed reference artifacts across authority resolution, lane discovery, verify-first findings, conformance convergence, alignment reports, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:43.383Z",
-    "last_save_at": "2026-08-14T04:27:52.933Z",
+    "last_save_at": "2026-08-15T16:16:55.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fa6c4f84f29a7ff714df9ba2926a029f68249d765326ebea8975516f5ce629c",
+    "source_fingerprint": "sha256:0448ab1a9bc442c98fcdea35752bad300714fdb48b0728a4a6cba3e309052aa6",
     "source_doc_hashes": {
-      "spec.md": "c50ccb683bcf809146f0018ad022b3bcdc18e5b19719dd9d17e2f239068b5381",
+      "spec.md": "a948b59fafac1c2bca5ac162ca5e9897370ac6e7e48f8b3b1c8cab1b5f22653e",
       "plan.md": "fb0eb318a6f1008cf3a9fc689f8d11e919372fbe8dd542ac4d9b2ccca1f59468",
-      "tasks.md": "792864b8c29d31d7f929967049130971399b1d7ce4994b385dcce88584d722a3",
-      "checklist.md": "aadb2722c8fb7d126a9799627e29a13ac241143bc61049b3ba91b87bcdbaa398",
+      "tasks.md": "c02e411dbaa303859a44ed91a26e4720a5b53e93e0facc2b3ce293d136dbc396",
+      "checklist.md": "4311adc7037f103c0eebe1655054bea54c38f58c548b29f249c828e31cfbcba0",
       "decision-record.md": "feeaf0d76bf032729dff9aa2bf2fdf7d7e31c704d4a56638f3a2750764b75a4f",
-      "implementation-summary.md": "fb9c9eaab475c64a60a907f44c4fc76a943faa9b1464ef9db22c3870d3aa93cf"
+      "implementation-summary.md": "ce78a1f6eb9630cbe7fc8196809b996d946734c3f5f4027274d76fdaee22ac12"
     },
     "last_active_child_id": null,
     "last_active_at": null

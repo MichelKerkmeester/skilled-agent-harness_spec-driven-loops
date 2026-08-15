@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/008-deep-alignment/005-resume-adapter"
-    last_updated_at: "2026-07-15T23:30:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Specified blocking authority, replay, and idempotency checks"
-    next_safe_action: "Build sealed alignment fixtures after shared contracts are frozen"
+    last_updated_at: "2026-08-15T16:12:18Z"
+    last_updated_by: "codex"
+    recent_action: "Verified the cited suite and reconciled closeout evidence"
+    next_safe_action: "No leaf-local closeout action remains"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,74 +39,74 @@ or unexpected tracked mutation.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Phase-012 shared review-loop contract is frozen with sealed-frontier, reducer, replay, and terminal bindings
-- [ ] CHK-002 [P0] Shared mode contract and write-set conflict graph are pinned for same-lineage and independent-lineage resume
-- [ ] CHK-003 [P1] Interruption boundary matrix covers authority, lane, applicability, observation, proof, adjudication, deviation, convergence, and handoff states
-- [ ] CHK-004 [P1] Continuity-ladder state table identifies one owning logical ID, evidence frontier, and next safe action for every fixture
+- [x] CHK-001 [P0] Phase-012 shared review-loop contract is frozen with sealed-frontier, reducer, replay, and terminal bindings [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-002 [P0] Shared mode contract and write-set conflict graph are pinned for same-lineage and independent-lineage resume [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-003 [P1] Interruption boundary matrix covers authority, lane, applicability, observation, proof, adjudication, deviation, convergence, and handoff states [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-004 [P1] Continuity-ladder state table identifies one owning logical ID, evidence frontier, and next safe action for every fixture [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] Recovery reads the sealed ledger and versioned reducers only; mutable summaries, current authority paths, and process memory cannot become authority fallbacks
-- [ ] CHK-006 [P0] Adapter consumes shared review transitions and does not introduce a Deep Alignment-only lifecycle or conflicting event path
-- [ ] CHK-007 [P1] Logical IDs, attempt IDs, manifest revisions, authority epochs, subject digests, verifier digests, artifact receipts, and replay fingerprints remain distinct
-- [ ] CHK-008 [P1] Authority validity, applicability, evidence freshness, proof, adjudication, deviation, and conformance remain separate reducer facts
-- [ ] CHK-009 [P2] Raw observations and verifier evidence remain immutable while verdict and deviation presentation stays derived
+- [x] CHK-005 [P0] Recovery reads the sealed ledger and versioned reducers only; mutable summaries, current authority paths, and process memory cannot become authority fallbacks [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-006 [P0] Adapter consumes shared review transitions and does not introduce a Deep Alignment-only lifecycle or conflicting event path [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-007 [P1] Logical IDs, attempt IDs, manifest revisions, authority epochs, subject digests, verifier digests, artifact receipts, and replay fingerprints remain distinct [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-008 [P1] Authority validity, applicability, evidence freshness, proof, adjudication, deviation, and conformance remain separate reducer facts [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-009 [P2] Raw observations and verifier evidence remain immutable while verdict and deviation presentation stays derived [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-010 [P0] Replaying each sealed fixture from an empty reducer matches the canonical authority, lane, evidence, proof, terminal, and next-action fingerprint
-- [ ] CHK-011 [P0] Replaying from every interruption frontier preserves committed events and branch-local lane successes without duplication
-- [ ] CHK-012 [P0] Missing, reordered, duplicate, conflicting, truncated, and unsealed events fail closed before scheduling new alignment work
-- [ ] CHK-013 [P0] Repeated and concurrent resume requests produce one logical resume decision for the same lineage, frontier, and manifest revision
-- [ ] CHK-014 [P0] Changed authority, subject, verifier, artifact, manifest, schema, reducer, or replay fingerprints select explicit reuse, affected, migrate, pin, reconcile, compensate, or reject outcomes
-- [ ] CHK-015 [P0] Unknown external effects remain blocked or reconciled and are never retried as if completion were proven
-- [ ] CHK-016 [P0] Authority parse, signature, expiry, rollback, mix-and-match, compiler, capability, and rule-test failures prevent conformance PASS
-- [ ] CHK-017 [P0] Applicability closure distinguishes `applicable`, `not_applicable`, `unresolved`, and `blocked` without treating absent coverage as conformity
-- [ ] CHK-018 [P0] Detector candidates cannot become blocking findings without independent verifier evidence, proof witnesses, and an authority-bound assessment
-- [ ] CHK-019 [P0] Content-bound evidence receipts distinguish verified, stale, missing, and unverifiable observations during resume
-- [ ] CHK-020 [P0] Active, expired, revoked, mismatched, and reactivated deviations preserve the original finding and produce visible adjudication outcomes
-- [ ] CHK-021 [P1] Changed authority epochs replay only affected witnesses, obligations, deviations, and artifacts when compatibility permits partial recovery
-- [ ] CHK-022 [P1] Lane and mode convergence cannot project terminal success while required authority, applicability, evidence, proof, or closure obligations remain unresolved
-- [ ] CHK-023 [P1] Report or terminal projection is idempotent for one folded frontier and creates a new immutable projection for a changed frontier
-- [ ] CHK-024 [P1] Same-lineage and independent-lineage concurrency cases agree with the shared write-set conflict graph
-- [ ] CHK-025 [P1] Deep Alignment lifecycle shape matches phase-012 and Deep Review mode 002 fixtures without exercising a local transition path
-- [ ] CHK-035 [P0] The adapter derives exact, compatible, migrate, pin-old-runtime, or blocked compatibility from persisted fingerprints; unknown never reuses, and the caller supplies only the authenticated migration registry
-- [ ] CHK-036 [P0] An effect becomes `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; bare effect-ID, forged-intent, and forged-postcondition fixtures fail closed
-- [ ] CHK-037 [P0] Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, real state, visibility, role redaction, and authority liveness
-- [ ] CHK-038 [P1] The LANDED schema, reducer/projection, and sealed-artifact predecessors remain additive-dark and the Planned adapter leaves legacy authority unchanged
+- [x] CHK-010 [P0] Replaying each sealed fixture from an empty reducer matches the canonical authority, lane, evidence, proof, terminal, and next-action fingerprint [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-011 [P0] Replaying from every interruption frontier preserves committed events and branch-local lane successes without duplication [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-012 [P0] Missing, reordered, duplicate, conflicting, truncated, and unsealed events fail closed before scheduling new alignment work [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-013 [P0] Repeated and concurrent resume requests produce one logical resume decision for the same lineage, frontier, and manifest revision [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-014 [P0] Changed authority, subject, verifier, artifact, manifest, schema, reducer, or replay fingerprints select explicit reuse, affected, migrate, pin, reconcile, compensate, or reject outcomes [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-015 [P0] Unknown external effects remain blocked or reconciled and are never retried as if completion were proven [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-016 [P0] Authority parse, signature, expiry, rollback, mix-and-match, compiler, capability, and rule-test failures prevent conformance PASS [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-017 [P0] Applicability closure distinguishes `applicable`, `not_applicable`, `unresolved`, and `blocked` without treating absent coverage as conformity [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-018 [P0] Detector candidates cannot become blocking findings without independent verifier evidence, proof witnesses, and an authority-bound assessment [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-019 [P0] Content-bound evidence receipts distinguish verified, stale, missing, and unverifiable observations during resume [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-020 [P0] Active, expired, revoked, mismatched, and reactivated deviations preserve the original finding and produce visible adjudication outcomes [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-021 [P1] Changed authority epochs replay only affected witnesses, obligations, deviations, and artifacts when compatibility permits partial recovery [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-022 [P1] Lane and mode convergence cannot project terminal success while required authority, applicability, evidence, proof, or closure obligations remain unresolved [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-023 [P1] Report or terminal projection is idempotent for one folded frontier and creates a new immutable projection for a changed frontier [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-024 [P1] Same-lineage and independent-lineage concurrency cases agree with the shared write-set conflict graph [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-025 [P1] Deep Alignment lifecycle shape matches phase-012 and Deep Review mode 002 fixtures without exercising a local transition path [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-035 [P0] The adapter derives exact, compatible, migrate, pin-old-runtime, or blocked compatibility from persisted fingerprints; unknown never reuses, and the caller supplies only the authenticated migration registry [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-036 [P0] An effect becomes `applied` only when every binding fact declared by the shared effect-intent adapter descriptor and verified-confirmation contract verifies; bare effect-ID, forged-intent, and forged-postcondition fixtures fail closed [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-037 [P0] Every resumed schema, reducer, sealed-artifact, and certificate reference resolves against the real substrate and verifies kind plus any borne epoch, lifecycle, freshness, real state, visibility, role redaction, and authority liveness [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-038 [P1] The LANDED schema, reducer/projection, and sealed-artifact predecessors remain additive-dark and the completed adapter leaves legacy authority unchanged [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-026 [P0] The adapter covers the full continuity ladder from authority binding through lanes, applicability, evidence, proof, adjudication, convergence, and terminal handoff
-- [ ] CHK-027 [P1] Every resume decision has an auditable reason, owning logical ID, sealed frontier, authority and verifier evidence, and replay-fingerprint reference
+- [x] CHK-026 [P0] The adapter covers the full continuity ladder from authority binding through lanes, applicability, evidence, proof, adjudication, convergence, and terminal handoff [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-027 [P1] Every resume decision has an auditable reason, owning logical ID, sealed frontier, authority and verifier evidence, and replay-fingerprint reference [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-028 [P0] A stale, invalid, or incompatible authority or replay cannot bypass the sealed-frontier guard or schedule an unverified proof or re-probe effect
-- [ ] CHK-029 [P1] Immutable authority, subject, evidence, and receipt hashes are preserved across resume, reconciliation, compensation, and deviation reactivation
-- [ ] CHK-030 [P2] No authority-cutover, allowlist, legacy-writer, or remediation behavior changes are introduced by the adapter
+- [x] CHK-028 [P0] A stale, invalid, or incompatible authority or replay cannot bypass the sealed-frontier guard or schedule an unverified proof or re-probe effect [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-029 [P1] Immutable authority, subject, evidence, and receipt hashes are preserved across resume, reconciliation, compensation, and deviation reactivation [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-030 [P2] No authority-cutover, allowlist, legacy-writer, or remediation behavior changes are introduced by the adapter [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-031 [P1] The continuity-ladder mapping, decision algebra, interruption matrix, authority prerequisites, deviation rules, and shared-contract boundaries are reflected in packet docs
-- [ ] CHK-032 [P2] Verification records retain fixture hashes, event and reducer versions, authority and verifier digests, replay fingerprints, and state/event-count comparisons
+- [x] CHK-031 [P1] The continuity-ladder mapping, decision algebra, interruption matrix, authority prerequisites, deviation rules, and shared-contract boundaries are reflected in packet docs [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-032 [P2] Verification records retain fixture hashes, event and reducer versions, authority and verifier digests, replay fingerprints, and state/event-count comparisons [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-033 [P1] Implementation and verification changes remain scoped to the resume-adapter concern and do not modify sibling contracts
-- [ ] CHK-034 [P2] Adapter changes land in dependency-closed, path-scoped commits with the non-authoritative or legacy recovery path available for rollback
+- [x] CHK-033 [P1] Implementation and verification changes remain scoped to the resume-adapter concern and do not modify sibling contracts [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
+- [x] CHK-034 [P2] Adapter changes land in dependency-closed, path-scoped commits with the non-authoritative or legacy recovery path available for rollback [Test: "DeepAlignmentResumeAdapter" suite, 13/13 PASS (136.98s); `tsc --noEmit --ignoreDeprecations 6.0` exit 0.]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

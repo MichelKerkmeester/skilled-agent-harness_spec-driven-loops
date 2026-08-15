@@ -91,12 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "Verified Deep Alignment",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Deep Alignment Shadow Parity",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -115,7 +109,19 @@
         "source": "derived"
       },
       {
+        "name": "Resolved Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Deep Alignment",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -145,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -163,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Every Deep Alignment",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -173,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate. The harness runs the new ledger path beside the legacy emitter, compares canonical events and public projections event-for-event, and blocks any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green. It consumes the phase-014 shadow framework and reuses the shared review-loop contract frozen in phase 012.",
     "created_at": "2026-07-16T03:43:44.129Z",
-    "last_save_at": "2026-08-14T04:27:51.989Z",
+    "last_save_at": "2026-08-15T16:17:09.766Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52b320fc5f186b15f62f9ac1d493bced75facf2e92c226a800c09afd538fdadf",
+    "source_fingerprint": "sha256:657cbf487a803d0361333c562e35e33039df5b30667a1411a78c29c6b62c6dd1",
     "source_doc_hashes": {
-      "spec.md": "948d1ffd07ec0b5d060fcd1b6a3d43f1c705f6bfe07310dd20afea3362c8ac35",
+      "spec.md": "78e7ba94298e640b21596dfbd9d1f87e5cf6c6ad5df20e7814cabfa5ef3aa4e3",
       "plan.md": "d9c1b236ed84697c568586b8cda01524ca2dccc33cf16d0c84bc6eba4c5613f9",
-      "tasks.md": "15b5bb2d5b07364ead733a6ad33c54e3d168eb8a03e1163395bf5574dd1b5e1f",
-      "checklist.md": "44db2a3441ad096cfd09ad218a0e34e5fa9b82a3d16e74be1c38ca1fba98561b",
-      "implementation-summary.md": "434d3f607187340703a2bcb1299cb916dffe07ab2809207d9f0fb17454612308"
+      "tasks.md": "f065631c951649c0d1f3671e1b51052ca90d35c6543f4205f4d62a05b598daaa",
+      "checklist.md": "c197f76e98926f8ecdbc71cec3a95144a435cc982c93b160dba2453d8e80358c",
+      "implementation-summary.md": "72a5b837bad9c1555f99bcb5807067cd91b599d048974e0bcb8d3d2ab46dd68d"
     },
     "last_active_child_id": null,
     "last_active_at": null
