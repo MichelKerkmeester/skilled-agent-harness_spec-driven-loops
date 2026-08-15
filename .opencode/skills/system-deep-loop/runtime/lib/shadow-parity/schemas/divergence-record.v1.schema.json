@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.openai.internal/shadow-parity/divergence-record.v1.schema.json",
+  "title": "Shadow parity divergence record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "divergenceId",
+    "caseId",
+    "mode",
+    "class",
+    "owner",
+    "runIndex",
+    "baseSha",
+    "referenceSetDigest",
+    "expectedDigest",
+    "actualDigest",
+    "earliest",
+    "message",
+    "status"
+  ],
+  "properties": {
+    "divergenceId": { "$ref": "#/$defs/digest" },
+    "caseId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "mode": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "class": {
+      "enum": [
+        "input-inequivalent",
+        "harness-invalid",
+        "replay-contract-drift",
+        "execution-outcome",
+        "effective-event",
+        "projection-semantic",
+        "legacy-byte",
+        "side-effect",
+        "timing-termination",
+        "missing-observation",
+        "nondeterministic"
+      ]
+    },
+    "owner": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "runIndex": { "type": "integer", "minimum": 0 },
+    "baseSha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "referenceSetDigest": { "anyOf": [{ "$ref": "#/$defs/digest" }, { "type": "null" }] },
+    "expectedDigest": { "anyOf": [{ "$ref": "#/$defs/digest" }, { "type": "null" }] },
+    "actualDigest": { "anyOf": [{ "$ref": "#/$defs/digest" }, { "type": "null" }] },
+    "earliest": { "type": "object" },
+    "message": { "type": "string", "maxLength": 320 },
+    "status": { "const": "open" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

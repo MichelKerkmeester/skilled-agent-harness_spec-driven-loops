@@ -7,6 +7,7 @@ import {
   mkdirSync,
   mkdtempSync,
   realpathSync,
+  rmSync,
 } from 'node:fs';
 import {
   basename,
@@ -37,6 +38,7 @@ import type { JsonObject, JsonValue } from '../event-envelope/index.js';
 import type { VerifiedReplayFingerprint } from '../replay-fingerprint/index.js';
 import type {
   ParityCaseCapsule,
+  ParityCleanupReceipt,
   ParityDivergenceClass,
   ParityDivergenceRecord,
   ParityExecutionContext,
@@ -69,6 +71,8 @@ const DivergenceOwners: Readonly<Record<ParityDivergenceClass, string>> = Object
   'effective-event': 'ledger-transition-owner',
   'projection-semantic': 'projection-owner',
   'legacy-byte': 'legacy-projection-owner',
+  'side-effect': 'effect-adapter-owner',
+  'timing-termination': 'mode-runtime-owner',
   'missing-observation': 'observation-boundary-owner',
   nondeterministic: 'first-differing-path-owner',
 });
@@ -154,6 +158,7 @@ function failure(
     openDivergenceCount: 1,
     authorityState: 'legacy_authoritative',
     authorityMutation: false,
+    cleanupReceipt: null,
   });
 }
 
@@ -237,6 +242,39 @@ function createIsolationRoots<TState extends JsonObject>(
     );
   }
   return Object.freeze({ legacy, dark });
+}
+
+function cleanupIsolationRoots(roots: IsolationRoots): ParityCleanupReceipt {
+  let removed = true;
+  for (const root of [roots.legacy, roots.dark]) {
+    try {
+      rmSync(root, { recursive: true, force: true });
+    } catch {
+      removed = false;
+    }
+    if (existsSync(root)) removed = false;
+  }
+  const core = Object.freeze({
+    receipt_version: 1 as const,
+    legacy_root_digest: digest(roots.legacy),
+    dark_root_digest: digest(roots.dark),
+    independent_roots: true as const,
+    removed,
+  });
+  return Object.freeze({
+    ...core,
+    receipt_digest: digest(core),
+  });
+}
+
+function attachCleanupReceipt(
+  result: ShadowParityCaseFailure,
+  roots: IsolationRoots,
+): ShadowParityCaseFailure {
+  return Object.freeze({
+    ...result,
+    cleanupReceipt: cleanupIsolationRoots(roots),
+  });
 }
 
 /** Create a process-local sink that records canonical intent without dispatching an effect. */
@@ -626,9 +664,11 @@ function observationDivergenceClass(
   ) {
     return 'projection-semantic';
   }
+  if (observation === 'effect-receipts') {
+    return 'side-effect';
+  }
   if (
     observation === 'ordered-transitions'
-    || observation === 'effect-receipts'
     || observation === 'budgets'
   ) {
     return 'effective-event';
@@ -856,16 +896,17 @@ export async function runShadowParityCase<TState extends JsonObject>(
         }, preflight.capsule.timeoutMs),
       ]);
     } catch (error: unknown) {
-      return failure(
+      const message = boundedMessage(error);
+      return attachCleanupReceipt(failure(
         asGenericInput(input),
-        'execution-outcome',
+        message.includes('exceeded') ? 'timing-termination' : 'execution-outcome',
         runIndex,
         preflight.capsule.referenceSetDigest,
         'execution',
         null,
-        digest(boundedMessage(error)),
-        `Parity path failed or timed out: ${boundedMessage(error)}`,
-      );
+        digest(message),
+        `Parity path failed or timed out: ${message}`,
+      ), roots);
     }
 
     const [legacyResult, darkResult] = await Promise.all([
@@ -886,10 +927,14 @@ export async function runShadowParityCase<TState extends JsonObject>(
         preflight.capsule,
       ),
     ]);
-    if (legacyResult.failure) return legacyResult.failure;
-    if (darkResult.failure) return darkResult.failure;
+    if (legacyResult.failure) {
+      return attachCleanupReceipt(legacyResult.failure, roots);
+    }
+    if (darkResult.failure) {
+      return attachCleanupReceipt(darkResult.failure, roots);
+    }
     if (!legacyResult.verified || !darkResult.verified) {
-      return failure(
+      return attachCleanupReceipt(failure(
         asGenericInput(input),
         'harness-invalid',
         runIndex,
@@ -898,14 +943,14 @@ export async function runShadowParityCase<TState extends JsonObject>(
         null,
         null,
         'Harness produced neither trusted evidence nor a typed failure',
-      );
+      ), roots);
     }
 
     if (
       priorLegacyDigest !== null
       && priorLegacyDigest !== legacyResult.verified.pathEvidenceDigest
     ) {
-      return failure(
+      return attachCleanupReceipt(failure(
         asGenericInput(input),
         'nondeterministic',
         runIndex,
@@ -914,13 +959,13 @@ export async function runShadowParityCase<TState extends JsonObject>(
         priorLegacyDigest,
         legacyResult.verified.pathEvidenceDigest,
         'Legacy path changed across identical sealed-case reruns',
-      );
+      ), roots);
     }
     if (
       priorDarkDigest !== null
       && priorDarkDigest !== darkResult.verified.pathEvidenceDigest
     ) {
-      return failure(
+      return attachCleanupReceipt(failure(
         asGenericInput(input),
         'nondeterministic',
         runIndex,
@@ -929,7 +974,7 @@ export async function runShadowParityCase<TState extends JsonObject>(
         priorDarkDigest,
         darkResult.verified.pathEvidenceDigest,
         'Dark path changed across identical sealed-case reruns',
-      );
+      ), roots);
     }
     priorLegacyDigest = legacyResult.verified.pathEvidenceDigest;
     priorDarkDigest = darkResult.verified.pathEvidenceDigest;
@@ -941,7 +986,26 @@ export async function runShadowParityCase<TState extends JsonObject>(
       runIndex,
       preflight.capsule.referenceSetDigest,
     );
-    if (comparisonFailure) return comparisonFailure;
+    if (comparisonFailure) {
+      return attachCleanupReceipt(comparisonFailure, roots);
+    }
+
+    const cleanupReceipt = cleanupIsolationRoots(roots);
+    if (!cleanupReceipt.removed) {
+      return Object.freeze({
+        ...failure(
+          asGenericInput(input),
+          'harness-invalid',
+          runIndex,
+          preflight.capsule.referenceSetDigest,
+          'cleanup',
+          digest(true),
+          digest(false),
+          'Harness could not remove both disposable execution roots',
+        ),
+        cleanupReceipt,
+      });
+    }
 
     const evidenceCore = {
       run_index: runIndex,
@@ -950,6 +1014,7 @@ export async function runShadowParityCase<TState extends JsonObject>(
       observation_digest: legacyResult.verified.observationDigest,
       legacy_projection_digest: legacyResult.verified.projectionDigest,
       dark_projection_digest: darkResult.verified.projectionDigest,
+      cleanup_receipt_digest: cleanupReceipt.receipt_digest,
     };
     runEvidence.push(Object.freeze({
       runIndex,
@@ -959,6 +1024,7 @@ export async function runShadowParityCase<TState extends JsonObject>(
       legacyProjectionDigest: legacyResult.verified.projectionDigest,
       darkProjectionDigest: darkResult.verified.projectionDigest,
       runEvidenceDigest: digest(evidenceCore),
+      cleanupReceipt,
     }));
   }
 

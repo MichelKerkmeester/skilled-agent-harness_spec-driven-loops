@@ -50,8 +50,23 @@ export interface ParityCaseDefinition {
   readonly contractDigest: string;
   readonly requiredObservations: readonly ParityObservationClass[];
   readonly projectionIds: readonly string[];
+  readonly workstreamId?: string;
+  readonly stateSurfaceIds?: readonly string[];
+  readonly readerIds?: readonly string[];
+  readonly effectIds?: readonly string[];
   readonly timeoutMs: number;
   readonly terminationPolicy: string;
+}
+
+/** Closed inventory whose exact set equality prevents census rows from disappearing. */
+export interface ParityCoverageInventory extends JsonObject {
+  readonly modeIds: string[];
+  readonly workstreamIds: string[];
+  readonly observationIds: string[];
+  readonly stateSurfaceIds: string[];
+  readonly readerIds: string[];
+  readonly effectIds: string[];
+  readonly projectionIds: string[];
 }
 
 /** Closed, mode-addressable case set committed to one immutable baseline. */
@@ -61,6 +76,9 @@ export interface ParityCaseManifest {
   readonly baselineRows: readonly ParityBaselineRow[];
   readonly cases: readonly ParityCaseDefinition[];
   readonly caseCount: number;
+  readonly modeCaseIds: Readonly<Record<string, readonly string[]>>;
+  readonly coverage: ParityCoverageInventory;
+  readonly coverageDigest: string;
   readonly manifestDigest: string;
 }
 
@@ -172,6 +190,8 @@ export type ParityDivergenceClass =
   | 'effective-event'
   | 'projection-semantic'
   | 'legacy-byte'
+  | 'side-effect'
+  | 'timing-termination'
   | 'missing-observation'
   | 'nondeterministic';
 
@@ -200,6 +220,22 @@ export interface ParityDivergenceRecord {
   readonly status: 'open';
 }
 
+/** Separate closure receipt preserves the original immutable open divergence. */
+export interface ParityDivergenceClosure extends JsonObject {
+  readonly schema_version: typeof SHADOW_PARITY_SCHEMA_VERSION;
+  readonly divergence_id: string;
+  readonly case_id: string;
+  readonly mode: string;
+  readonly required_case_ids: string[];
+  readonly rerun_evidence_digests: string[];
+  readonly status: 'closed';
+  readonly closure_digest: string;
+}
+
+export type ParityDivergenceClosureResult =
+  | { readonly ok: true; readonly closure: ParityDivergenceClosure }
+  | { readonly ok: false; readonly refusal: ParityCertificateRefusal };
+
 /** Independently verified path descriptor retained without treating it as the peer oracle. */
 export interface ParityFingerprintEvidence {
   readonly finalDigest: string;
@@ -222,6 +258,17 @@ export interface ParityRunEvidence {
   readonly legacyProjectionDigest: string;
   readonly darkProjectionDigest: string;
   readonly runEvidenceDigest: string;
+  readonly cleanupReceipt?: ParityCleanupReceipt;
+}
+
+/** Path-redacted proof that both disposable execution roots were removed. */
+export interface ParityCleanupReceipt extends JsonObject {
+  readonly receipt_version: 1;
+  readonly legacy_root_digest: string;
+  readonly dark_root_digest: string;
+  readonly independent_roots: true;
+  readonly removed: boolean;
+  readonly receipt_digest: string;
 }
 
 export interface ShadowParityCasePass {
@@ -245,6 +292,7 @@ export interface ShadowParityCaseFailure {
   readonly openDivergenceCount: 1;
   readonly authorityState: 'legacy_authoritative';
   readonly authorityMutation: false;
+  readonly cleanupReceipt?: ParityCleanupReceipt | null;
 }
 
 /** Failed cases have no pass evidence and cannot be relabeled by callers. */
@@ -268,6 +316,32 @@ export interface ParityCertificateBindings extends JsonObject {
   readonly policy_version: string;
 }
 
+/** Explicit identities added by the closed parity protocol while old consumers migrate. */
+export type ParityCertificateInvalidationBindings = ParityCertificateBindings & Readonly<{
+  candidate_code_digest: string;
+  seal_registry_digest: string;
+  upcaster_digest: string;
+}>;
+
+/** Complete invalidation registry consumed by certificate freshness checks. */
+export interface ParityInvalidationIdentityRegistry extends JsonObject {
+  readonly schema_version: typeof SHADOW_PARITY_SCHEMA_VERSION;
+  readonly identities: {
+    readonly code: string;
+    readonly build: string;
+    readonly base: string;
+    readonly seal: string;
+    readonly replay: string;
+    readonly upcaster: string;
+    readonly reducer: string;
+    readonly projection: string;
+    readonly adapter: string;
+    readonly comparator: string;
+    readonly harness: string;
+  };
+  readonly registry_digest: string;
+}
+
 /** Immutable mode-scoped parity evidence; it carries no authority mutation capability. */
 export interface ParityCertificate extends JsonObject {
   readonly schema_version: typeof SHADOW_PARITY_SCHEMA_VERSION;
@@ -279,6 +353,7 @@ export interface ParityCertificate extends JsonObject {
   readonly reference_set_digests: string[];
   readonly attestation_final_digests: string[];
   readonly bindings: ParityCertificateBindings;
+  readonly identity_registry: ParityInvalidationIdentityRegistry;
   readonly evidence_digest: string;
   readonly open_divergence_count: 0;
   readonly authority_state: 'legacy_authoritative';

@@ -11,6 +11,7 @@ import {
   TRANSITION_ROLLBACK_MINIMUM_DAYS,
   TRANSITION_ROLLBACK_MINIMUM_SUCCESSFUL_RUNS,
 } from './shadow-parity-types.js';
+import { createParityInvalidationIdentityRegistry } from './parity-identity-registry.js';
 
 import type { JsonObject, JsonValue } from '../event-envelope/index.js';
 import type {
@@ -38,6 +39,7 @@ interface ParityCertificateCore {
   readonly reference_set_digests: string[];
   readonly attestation_final_digests: string[];
   readonly bindings: ParityCertificateBindings;
+  readonly identity_registry: ParityCertificate['identity_registry'];
   readonly evidence_digest: string;
   readonly open_divergence_count: 0;
   readonly authority_state: 'legacy_authoritative';
@@ -83,6 +85,10 @@ function certificateCore(
       ...certificate.attestation_final_digests,
     ]) as unknown as string[],
     bindings: Object.freeze({ ...certificate.bindings }),
+    identity_registry: Object.freeze({
+      ...certificate.identity_registry,
+      identities: Object.freeze({ ...certificate.identity_registry.identities }),
+    }),
     evidence_digest: certificate.evidence_digest,
     open_divergence_count: 0,
     authority_state: 'legacy_authoritative',
@@ -221,6 +227,11 @@ export function issueParityCertificate(input: Readonly<{
     reference_set_digests: referenceSetDigests,
     attestation_final_digests: attestationFinalDigests,
   });
+  const identityRegistry = createParityInvalidationIdentityRegistry({
+    manifest: input.manifest,
+    caseResults: passes,
+    bindings: input.bindings,
+  });
   const core = certificateCore({
     schema_version: SHADOW_PARITY_SCHEMA_VERSION,
     mode: input.mode,
@@ -231,6 +242,7 @@ export function issueParityCertificate(input: Readonly<{
     reference_set_digests: referenceSetDigests,
     attestation_final_digests: attestationFinalDigests,
     bindings: Object.freeze({ ...input.bindings }),
+    identity_registry: identityRegistry,
     evidence_digest: evidenceDigest,
     open_divergence_count: 0,
     authority_state: 'legacy_authoritative',
@@ -260,6 +272,7 @@ export function verifyParityCertificate(
     caseEvidenceDigests: readonly string[];
     referenceSetDigests: readonly string[];
     attestationFinalDigests: readonly string[];
+    identityRegistry?: ParityCertificate['identity_registry'];
   }>,
 ): ParityCertificateVerificationResult {
   if (!certificate) {
@@ -329,11 +342,14 @@ export function verifyParityCertificate(
     base_sha: expected.manifest.baseSha,
     manifest_digest: expected.manifest.manifestDigest,
     bindings: expected.bindings,
+    identity_registry_digest: expected.identityRegistry?.registry_digest
+      ?? certificate.identity_registry.registry_digest,
   };
   const actualFreshness: JsonObject = {
     base_sha: certificate.base_sha,
     manifest_digest: certificate.manifest_digest,
     bindings: certificate.bindings,
+    identity_registry_digest: certificate.identity_registry.registry_digest,
   };
   const expectedDigest = digest(expectedFreshness);
   const actualDigest = digest(actualFreshness);
@@ -360,6 +376,11 @@ export function verifyParityCertificate(
     });
   }
   if (
+    digest({
+      schema_version: certificate.identity_registry.schema_version,
+      identities: certificate.identity_registry.identities,
+    }) !== certificate.identity_registry.registry_digest
+    ||
     certificate.open_divergence_count !== 0
     || certificate.authority_mutation
     || certificate.authority_state !== 'legacy_authoritative'
