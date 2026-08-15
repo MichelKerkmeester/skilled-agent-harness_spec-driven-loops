@@ -1,20 +1,21 @@
 ---
 title: "Tasks: git hook gate hardening"
-description: "Task list for gate auditing, autosync-aware repair and diagnostics, documentation, and non-Git verification."
+description: "Task list for gate hardening and safe SessionStart reconciliation of the primary live checkout."
 trigger_phrases:
   - "git hook gate hardening"
   - "autosync gate rejection"
   - "skill root metadata self heal"
   - "durable pre-push failure log"
+  - "session start primary reconcile"
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-git/021-hook-gate-hardening"
-    last_updated_at: "2026-08-15T13:52:00Z"
+    last_updated_at: "2026-08-15T14:57:27Z"
     last_updated_by: "opencode"
-    recent_action: "Completed runtime, documentation, and behavioral tasks"
-    next_safe_action: "Confirm strict packet validation remains green"
+    recent_action: "Completed the second work item and all task-scoped verification"
+    next_safe_action: "Review the scoped diff; no real repository push was performed"
 ---
 # Tasks: git hook gate hardening
 
@@ -77,12 +78,32 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] All P0 and P1 tasks have direct command or file evidence.
-- [x] No true safety gate has been weakened or bypassed.
-- [x] The final audit table accounts for every gate.
-- [x] Strict packet validation reports zero errors and zero warnings.
+- [x] All P0 and P1 tasks across both work items have direct command or file evidence. [Evidence: T001-T028 inline receipts]
+- [x] No true safety gate has been weakened or bypassed. [Evidence: dirty, conflict, and classified push-block sandbox paths]
+- [x] The final audit table accounts for every gate. [Evidence: `continuous-integration.md` lifecycle gate map]
+- [x] Strict packet validation reports zero errors and zero warnings after SessionStart reconciliation is complete. [Evidence: final `validate.sh --strict` output]
 
 <!-- /ANCHOR:completion -->
+---
+
+<!-- ANCHOR:work-item-2 -->
+## Work Item 2: SessionStart Primary Reconcile
+
+- [x] T016 Reopen and extend the packet as In Progress without removing prior evidence (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) [20m] [Evidence: second-work-item sections and pending rows]
+- [x] T017 Read sibling live-sync scripts, the shared flag resolver, all four runtime startup surfaces, and named references [25m] [Evidence: `.opencode/bin/git-sync.sh:1-273`, `.opencode/bin/git-live-follow.sh:1-206`, and `hook-flags.sh:1-48`]
+- [x] T018 Implement the always-zero primary reconciler (`.opencode/bin/git-primary-reconcile.sh`) [45m] [Evidence: primary/live/dirty/lock/timeout/rebase/push/log control flow plus ShellCheck clean]
+- [x] T019 Add thin background SessionStart calls (`.claude/settings.json`, `.codex/hooks.json`, `.opencode/plugins/session-cleanup.js`, Pi advisories) [25m] [Evidence: JSON parse passes, detached OpenCode spawn, Pi background shell]
+- [x] T020 Document reconcile behavior and `MK_PRIMARY_RECONCILE_DISABLED` (`continuous-integration.md`, `ENV-REFERENCE.md`) [20m] [Evidence: four-script model and hook kill-switch row]
+- [x] T021 Validate shell and JSON syntax [10m] [Evidence: `bash -n` and both `JSON.parse` commands exit 0]
+- [x] T022 Prove tracked-dirty skip preserves the complete local and remote state in a scratch repository [15m] [Evidence: HEAD `01281b5`, file hash, remote `b1a9764`, and stale tracking ref all unchanged]
+- [x] T023 Prove clean behind-only state fast-forwards without pushing in a scratch repository [10m] [Evidence: local reached remote `4ed6b47`; remote unchanged; untracked artifact preserved]
+- [x] T024 Prove clean local commits rebase and publish to the scratch remote [15m] [Evidence: local `2bb7686` rebased to `4adc7fa`; bare remote advanced from `4f6b8b5` to `4adc7fa`]
+- [x] T025 Prove a rebase conflict aborts cleanly, preserves the local commit, and leaves the scratch remote unchanged [15m] [Evidence: local `ae2a51b` and remote `0c43bd9` unchanged; tracked-clean yes; rebase-state none]
+- [x] T026 Prove linked-worktree and `MK_LIVE_SYNC_DISABLED=1` paths are zero-exit no-ops [10m] [Evidence: linked path silent at `6237ea3`; disabled HEAD/tracking `3e6e4ac` unchanged while remote stayed `d1d396e`; per-concern flag also silent]
+- [x] T027 Run scoped runtime/code-quality verification and inspect the final diff [20m] [Evidence: ShellCheck and comment hygiene clean; plugin 13/13; TypeScript typecheck pass; stack-folders pass; router-sync 10/10]
+- [x] T028 Finalize packet evidence, regenerate metadata, and pass strict validation [20m] [Evidence: `generate-context.js` completed and strict validator reported Errors 0 / Warnings 0]
+
+<!-- /ANCHOR:work-item-2 -->
 ---
 
 <!-- ANCHOR:cross-refs -->

@@ -1,20 +1,21 @@
 ---
 title: "Implementation Summary: git hook gate hardening"
-description: "Hardened commit and push gate independence, made autosync gate rejections loud and durable, and preserved all real safety blocks."
+description: "Hardened live-sync gates and records the in-progress SessionStart primary-checkout reconciliation work item."
 trigger_phrases:
   - "git hook gate hardening"
   - "autosync gate rejection"
   - "skill root metadata self heal"
   - "durable pre-push failure log"
+  - "session start primary reconcile"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/021-hook-gate-hardening"
-    last_updated_at: "2026-08-15T13:52:00Z"
+    last_updated_at: "2026-08-15T14:57:27Z"
     last_updated_by: "opencode"
-    recent_action: "Delivered and verified hook gate hardening"
-    next_safe_action: "Review the scoped changes without running Git operations"
+    recent_action: "Delivered and verified SessionStart primary reconciliation"
+    next_safe_action: "Review the scoped diff; no real repository push was performed"
 ---
 # Implementation Summary
 
@@ -29,9 +30,10 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 021-hook-gate-hardening |
-| **Completed** | 2026-08-15 |
+| **Completed** | Work Item 1 and Work Item 2: 2026-08-15 |
 | **Level** | 2 |
 | **Status** | Complete |
+| **Completion** | 100% |
 
 <!-- /ANCHOR:metadata -->
 ---
@@ -119,3 +121,52 @@ The implementation used the smallest concern-local changes. No safety verdict wa
 | Prefer skill metadata self-heal if safe | Kept the gate blocking with loud and durable repair guidance | Hook-side regeneration cannot alter the commit being pushed and would produce a false-green re-check |
 
 <!-- /ANCHOR:deviations -->
+---
+
+<!-- ANCHOR:work-item-2 -->
+## Work Item 2: SessionStart Primary Reconcile
+
+### Status
+
+Complete. The implementation and all Git mutations were verified against temporary local repositories and a bare local remote. No command pushed to or rewrote history in the real repository.
+
+### Deliverable
+
+The second work item replaces reliance on a long-running primary-checkout follower with a bounded SessionStart reconcile step. `.opencode/bin/git-primary-reconcile.sh` is the sole owner of checkout, branch, dirty-tree, disable, lock, fetch, rebase, push, conflict-abort, classification, and durable-log behavior. Runtime wiring only backgrounds that script.
+
+The main-checkout gate compares canonical `git-dir` and `git-common-dir` paths before flags, logs, locks, or fetches. The script then resolves the shared live-sync and primary-reconcile flags, acquires an atomic common-dir lock, requires the current branch to match the live branch, and checks tracked unstaged plus staged changes before network access. Clean behind-only state fast-forwards. Clean local commits rebase and publish non-force. Conflicts abort and assert original HEAD plus clean tracked state. Push rejection reuses the stable gate markers from `git-sync.sh` and preserves the local commit.
+
+Claude and Codex use background shell commands with closed stdio. OpenCode uses a detached, unref'd child with an asynchronous error listener. Pi uses its existing SessionStart advisory surface to launch the same script in the background. The optional follower remains available for low-latency updates, but correctness now has a reliable SessionStart boundary.
+
+### Files Changed
+
+| File | Purpose |
+|------|---------|
+| `.opencode/bin/git-primary-reconcile.sh` | Always-zero primary reconcile source of truth and durable log owner |
+| `.claude/settings.json` | Background reconcile at Claude SessionStart |
+| `.codex/hooks.json` | Background reconcile at Codex SessionStart |
+| `.opencode/plugins/session-cleanup.js` | Detached reconcile on OpenCode `session.created` |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/pi/session-start-advisories.ts` | Background reconcile at Pi SessionStart |
+| `.opencode/skills/sk-git/references/continuous-integration.md` | Four-script model, tracked-only safety, publication, conflict, and opt-out behavior |
+| `.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md` | Master-loop update and `MK_PRIMARY_RECONCILE_DISABLED` row |
+| `AGENTS.md` | One-line live-sync summary updated for startup reconcile |
+
+### Verification
+
+| Check | Result |
+|-------|--------|
+| Shell syntax and JSON validity | PASS: `bash -n`; both `JSON.parse` commands exited 0 |
+| Shell quality | PASS: ShellCheck and comment hygiene reported no findings |
+| Tracked-dirty skip | PASS: HEAD `01281b5`, file hash, remote `b1a9764`, and stale tracking ref unchanged |
+| Clean behind fast-forward | PASS: local reached `4ed6b47`, remote unchanged, untracked artifact preserved |
+| Clean local commit rebase and publish | PASS: local `2bb7686` rebased to `4adc7fa`; bare remote advanced from `4f6b8b5` to `4adc7fa` |
+| Rebase conflict abort and preservation | PASS: local `ae2a51b` and remote `0c43bd9` unchanged; tracked clean; no rebase state |
+| Linked-worktree no-op | PASS: primary, linked, and remote remained `6237ea3`; silent output |
+| Master and concern disable no-op | PASS: HEAD/tracking `3e6e4ac` unchanged while remote remained `d1d396e`; both outputs silent |
+| Classified pre-push rejection | PASS: `[gate:test-suites]` became `BLOCK [test-suites]`; local `c8bdfd1` preserved; remote `3e6e4ac` unchanged |
+| OpenCode plugin lifecycle | PASS: 13 tests passed, 0 failed |
+| MCP server TypeScript typecheck | PASS: `tsc --noEmit --composite false -p tsconfig.json` |
+| sk-code drift wrapper | PARTIAL: stack-folders passed and router-sync passed 10/10; alignment-drift remained red on unrelated repository-wide malformed benchmark JSON, archived scratch strict-mode debt, and dead routes outside the scoped files |
+| Metadata refresh and strict packet validation | PASS: generated metadata refreshed; Errors 0 / Warnings 0 |
+
+<!-- /ANCHOR:work-item-2 -->

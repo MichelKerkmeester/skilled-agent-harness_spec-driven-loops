@@ -14,7 +14,8 @@
       "git hook gate hardening",
       "autosync gate rejection",
       "skill root metadata self heal",
-      "durable pre-push failure log"
+      "durable pre-push failure log",
+      "session start primary reconcile"
     ],
     "key_topics": [
       "git",
@@ -77,7 +78,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "Problem Statement Work Item",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Work Item",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -90,12 +97,6 @@
       },
       {
         "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Running Git",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -161,20 +162,14 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "Primary Reconcile",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
+        "name": "In Progress",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -183,11 +178,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The live-sync publisher discards `git push` stderr",
+    "causal_summary": "Work Item 1 addressed silent live-sync gate failures: the publisher discarded `git push` stderr, misreported policy rejections as races, and lacked a complete autosync-aware gate map",
     "created_at": "2026-08-15T13:50:44.038Z",
-    "last_save_at": "2026-08-15T13:54:51.302Z",
+    "last_save_at": "2026-08-15T15:02:21.396Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6423047c12537a6c2b5cefa49f2fc675a913ef5126c58c85e149fa9dc1fbab9",
+    "source_fingerprint": "sha256:fc4b30fba538dc365022cdc06cb9f838cdeb2a6ac95f0129f86020d50260dcd5",
     "source_doc_hashes": {
-      "spec.md": "6965955d53b40f44abbf12dbad10c5298ac898a1a3a1b1b7eb4f6f9c86bbee98",
-      "plan.md": "9063d9d18e72aba0007c7d51d720320e94e6b7d906c5709926cb9204293fb78a",
-      "tasks.md": "a08e4588b412ef885d443fff162d6bd71bd59beb5026641e7694fbf6a3470395",
-      "checklist.md": "995ab72198c7a6f2cfe4c6fe4221d12f09ed5f7cc89eacc30c89b143b072df77",
-      "implementation-summary.md": "c44a5f32d0c6b5e86ff492b17ad9f0bdd454ae77919540eeb42a8c8ebbd85b33"
+      "spec.md": "21bb807e067909adf6e21c4e8ac4c4b63a3c88f73e4c3af4b1ba8df7f32a5861",
+      "plan.md": "2966289cf8c3b2e79e64feca08095643f5972ea9c35e173c5090d183ad207de3",
+      "tasks.md": "0210ccf98c0731931a10f25e5a5393a2986b5778c0b85157261a4dd7e3d07bb1",
+      "checklist.md": "3cb554cd1e1289606acd5af1f119784c802dac6c8fba1385e34a56e37dfcbf0b",
+      "implementation-summary.md": "ee443d081c62dc104f1fd66c4843ffab30d8ba6254a67b57c6e36c739eb93292"
     },
     "last_active_child_id": null,
     "last_active_at": null

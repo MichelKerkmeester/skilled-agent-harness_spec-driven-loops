@@ -1,20 +1,21 @@
 ---
 title: "Feature Specification: git hook gate hardening"
-description: "Make every commit and pre-push gate explicit under live-sync, self-heal safe generated metadata drift, and durably classify blocked autosync publishes."
+description: "Make live-sync gate failures explicit and reconcile the primary live checkout safely at SessionStart."
 trigger_phrases:
   - "git hook gate hardening"
   - "autosync gate rejection"
   - "skill root metadata self heal"
   - "durable pre-push failure log"
+  - "session start primary reconcile"
 importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-git/021-hook-gate-hardening"
-    last_updated_at: "2026-08-15T13:52:00Z"
+    last_updated_at: "2026-08-15T14:57:27Z"
     last_updated_by: "opencode"
-    recent_action: "Completed hook gate hardening and behavioral verification"
-    next_safe_action: "Review the scoped changes without running Git operations"
+    recent_action: "Delivered and verified SessionStart primary-checkout reconciliation"
+    next_safe_action: "Review the scoped diff; no real repository push was performed"
 ---
 # Feature Specification: git hook gate hardening
 
@@ -41,10 +42,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The live-sync publisher discards `git push` stderr. A pre-push hook can therefore reject an autosync publish with a precise reason while `git-sync.sh` records only a generic pending push race. The skill-root metadata gate can also block an autosync publish over safely regenerable stale projections, stranding a wrapper session even though the gate has a deterministic repair. The full commit and push gate set has not been documented as one autosync-aware map.
+Work Item 1 addressed silent live-sync gate failures: the publisher discarded `git push` stderr, misreported policy rejections as races, and lacked a complete autosync-aware gate map. Work Item 2 addresses primary-checkout drift: the long-running follower is not a reliable startup dependency, so direct commits in the primary checkout remain unpublished while other sessions' published commits remain unseen. New sessions then encounter a diverged live checkout.
 
 ### Purpose
-Preserve every real safety block while making autosync gate failures impossible to miss. Safe generated projection drift should self-heal and re-check during an exact live-branch autosync. Any remaining gate rejection must be classified from captured stderr, printed loudly, and written to the durable sync log with the gate name and repair guidance.
+Preserve every real safety block while making autosync failures observable and making SessionStart the reliable reconciliation boundary. A clean primary checkout may fast-forward, rebase unpublished local commits, and non-force publish them. A primary checkout with tracked changes must never be fetched, rebased, merged, or pushed by the reconciler.
 
 <!-- /ANCHOR:problem -->
 ---
@@ -60,11 +61,15 @@ Preserve every real safety block while making autosync gate failures impossible 
 - Confirm naming and permission behavior for the exact autosync live branch.
 - Document the complete gate map in the two named sk-git references.
 - Verify behavior through non-Git command simulations and shell syntax checks.
+- Add a non-fatal, primary-checkout-only SessionStart reconciler with tracked-only cleanliness, single-flight locking, bounded network operations, clean rebase-and-publish behavior, conflict abort assertions, classified push blocks, and a durable common-dir log.
+- Background the reconciler from the Claude, Codex, OpenCode, and Pi SessionStart surfaces without duplicating its gates.
+- Document SessionStart reconciliation and `MK_PRIMARY_RECONCILE_DISABLED`.
+- Prove dirty, behind, ahead, conflicting, linked-worktree, and disabled behavior against a local scratch remote.
 
 ### Out of Scope
 - Weakening or bypassing mass-deletion, remote-permission, naming, or enforced test safety.
-- Editing hook installation, package manifests, lockfiles, unrelated scripts, or runtime configuration.
-- Running Git commands, creating commits, or pushing branches.
+- Editing package manifests, lockfiles, unrelated hooks, or unrelated runtime configuration.
+- Mutating history or pushing in the real repository; all behavioral Git mutations and pushes are confined to a throwaway local sandbox.
 
 ### Files to Change
 
@@ -77,7 +82,13 @@ Preserve every real safety block while making autosync gate failures impossible 
 | `.opencode/bin/git-sync.sh` | Modify | Capture, classify, print, and durably log hook stderr |
 | `.opencode/skills/sk-git/references/continuous-integration.md` | Modify | Full gate map and autosync outcome contract |
 | `.opencode/skills/sk-git/references/remote-branch-policy.md` | Modify | Naming and permission behavior for autosync |
-| `specs/sk-git/021-hook-gate-hardening/` | Create | Planning, evidence, and completion records |
+| `.opencode/bin/git-primary-reconcile.sh` | Create | SessionStart primary-checkout reconciliation source of truth |
+| `.claude/settings.json` | Modify | Background the reconciler at SessionStart |
+| `.codex/hooks.json` | Modify | Background the reconciler at SessionStart |
+| `.opencode/plugins/session-cleanup.js` | Modify | Background the reconciler on OpenCode session creation |
+| `.opencode/skills/system-spec-kit/mcp-server/hooks/pi/session-start-advisories.ts` | Modify | Background the reconciler at Pi session start |
+| `.opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md` | Modify | Document the per-concern disable flag |
+| `specs/sk-git/021-hook-gate-hardening/` | Modify | Reopened planning, evidence, and completion records |
 
 <!-- /ANCHOR:scope -->
 ---
@@ -105,6 +116,15 @@ Preserve every real safety block while making autosync gate failures impossible 
 | REQ-009 | The two sk-git references contain the full gate map and repair behavior | Both docs distinguish chores from real safety violations |
 | REQ-010 | Modified shell scripts remain syntax-clean | `bash -n` exits zero for every modified shell file |
 | REQ-011 | Packet metadata is generated through `generate-context.js` | `description.json` and `graph-metadata.json` exist and strict validation reports zero warnings and errors |
+| REQ-012 | SessionStart reconciliation acts only in the primary checkout on the resolved live branch | Linked worktrees and non-live branches exit zero without changing refs or files |
+| REQ-013 | Tracked changes block every reconcile mutation while untracked files do not | Dirty tracked simulation preserves HEAD, index, worktree bytes, and remote tip |
+| REQ-014 | Clean behind-only state fast-forwards without publishing | The local primary reaches the remote tip and the remote tip is unchanged |
+| REQ-015 | Clean unpublished primary commits are rebased and non-force published | A clean ahead/diverged simulation leaves the local and bare remote tips equal |
+| REQ-016 | Rebase conflicts abort completely and preserve unpublished commits | Original HEAD is restored, tracked state is clean, remote is unchanged, and a loud manual path is printed and logged |
+| REQ-017 | Reconcile execution is non-fatal, single-flight, bounded, and observable | Every path exits zero; lock contention skips; fetch/push are time-bounded; durable log records skips, advances, publishes, and blocks |
+| REQ-018 | Shared and concern-specific disable flags stop reconciliation | `MK_LIVE_SYNC_DISABLED=1` and `MK_PRIMARY_RECONCILE_DISABLED=1` produce a zero-exit no-op through the shared resolver |
+| REQ-019 | Every supported SessionStart surface backgrounds the same script | Claude, Codex, OpenCode, and Pi wiring contains no duplicated Git gating logic |
+| REQ-020 | Reconcile documentation and runtime configuration remain valid | Named docs describe the behavior and flag; shell syntax and both JSON files validate |
 
 <!-- /ANCHOR:requirements -->
 ---
@@ -117,6 +137,8 @@ Preserve every real safety block while making autosync gate failures impossible 
 - **SC-003**: A clean autosync simulation reaches the existing published outcome without altered semantics.
 - **SC-004**: Every modified shell script passes `bash -n`.
 - **SC-005**: Strict packet validation reports `Errors: 0` and `Warnings: 0`.
+- **SC-006**: Six local-sandbox scenarios prove the tracked-dirty, behind, ahead, conflict, linked-worktree, and master-disable invariants without contacting the real remote.
+- **SC-007**: Every SessionStart call site backgrounds one shared script and remains non-blocking.
 
 <!-- /ANCHOR:success-criteria -->
 ---
@@ -130,6 +152,9 @@ Preserve every real safety block while making autosync gate failures impossible 
 | Risk | Auto-fixing authored metadata | Could invent policy or identity | `--fix` is limited to generated projections and the gate must re-check afterward |
 | Risk | Captured stderr is hidden during retries | A block could remain silent | Print classified blocks immediately and append them to the common-dir log |
 | Dependency | `ci-skill-root-metadata.cjs --fix` | Supplies deterministic generated projection repair | Confirmed to write only generated manifest and alias projections |
+| Risk | Reconcile runs in a linked worktree or on an intentional feature branch | Could move a branch owned by another session | Compare canonical git-dir/common-dir paths and require current branch equality with the resolved live branch |
+| Risk | Rebase conflict leaves partial state | Could strand the primary checkout mid-operation | Abort, assert original HEAD and tracked cleanliness, then emit a loud preserved-but-unpublished warning |
+| Risk | SessionStart waits on a remote | Could delay every runtime | Background the script and bound fetch/push duration inside it |
 
 <!-- /ANCHOR:risks -->
 ---
@@ -140,6 +165,8 @@ Preserve every real safety block while making autosync gate failures impossible 
 ### Reliability
 - **NFR-R01**: No blocking exit may lose its gate identity or repair guidance.
 - **NFR-R02**: Self-heal must be bounded to exact live-branch autosync and followed by a full re-check.
+- **NFR-R03**: Reconciliation must always exit zero and never block SessionStart.
+- **NFR-R04**: The critical dirty-tree predicate must inspect tracked unstaged and staged changes only.
 
 ### Security
 - **NFR-S01**: Captured diagnostics and durable logs must not record credentials or environment secrets.
@@ -154,6 +181,10 @@ Preserve every real safety block while making autosync gate failures impossible 
 - A manual push with `SPECKIT_AUTOSYNC=1` targeting any branch other than `$SPECKIT_LIVE_BRANCH` receives no autosync exemption.
 - A skill gate whose failure remains after `--fix` must stay blocked and name the authored repair path.
 - Unknown push failures retain bounded retry behavior and are not mislabeled as a known gate.
+- An untracked build artifact does not block a clean fast-forward or rebase.
+- A stale lock older than the short TTL may be replaced; an active lock causes an immediate zero-exit skip.
+- A missing or broken flag resolver warns once and fails open to reconciliation.
+- A rejected post-rebase push preserves the local commit and reports the classified pre-push gate plus repair command.
 
 <!-- /ANCHOR:edge-cases -->
 ---
@@ -163,10 +194,10 @@ Preserve every real safety block while making autosync gate failures impossible 
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 13/25 | Three lifecycle hooks, shared helpers, sync publisher, and two references |
-| Risk | 18/25 | Changes affect every wrapper-session publish and several blocking gates |
-| Research | 12/20 | Requires full gate inventory and controlled failure simulations |
-| **Total** | **43/70** | **Level 2** |
+| Scope | 18/25 | Two live-sync work items spanning shell, four runtime surfaces, and references |
+| Risk | 21/25 | Reconcile may move and publish the primary live branch, with dirty-tree safety as a hard invariant |
+| Research | 16/20 | Requires gate inventory plus six real local-remote Git simulations |
+| **Total** | **55/70** | **Level 2 with expanded verification** |
 
 <!-- /ANCHOR:complexity -->
 ---
@@ -174,7 +205,7 @@ Preserve every real safety block while making autosync gate failures impossible 
 <!-- ANCHOR:questions -->
 ## 9. OPEN QUESTIONS
 
-- None. Scope, safety constraints, packet location, and no-Git verification are operator-selected.
+- None. Scope, safety constraints, packet location, and local-scratch-remote verification are operator-selected.
 
 <!-- /ANCHOR:questions -->
 ---
