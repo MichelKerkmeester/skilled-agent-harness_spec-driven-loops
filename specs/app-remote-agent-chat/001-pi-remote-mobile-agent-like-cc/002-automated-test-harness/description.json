@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "apps/pi-remote/001-pi-remote-mobile-agent-like-cc/002-automated-test-harness",
+  "description": "Builds the recorded, live, integration, security, browser, and crash harness that proves the remote control plane fails closed",
+  "keywords": [
+    "recorded",
+    "live",
+    "integration",
+    "security",
+    "browser",
+    "crash",
+    "harness",
+    "proves",
+    "remote",
+    "control",
+    "plane",
+    "fails",
+    "closed"
+  ],
+  "lastUpdated": "2026-08-13T16:35:49.292Z",
+  "specId": "002",
+  "folderSlug": "automated-test-harness",
+  "parentChain": [
+    "apps",
+    "pi-remote",
+    "001-pi-remote-mobile-agent-like-cc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,80 @@
+{
+  "topic": "Adversarially find what the planned Pi Remote packet MISSES. Read the nine phase specs under specs/cli-external-orchestration/041-pi-remote-mobile-agent-like-cc/ (001 contract+threat baseline and its ADR-002 stack decision, 002 test harness, 003 relay-protocol-and-state incl. the versioned typed event envelope + sync.delta/snapshot/gap, 004 auth-and-tailnet-boundary incl. QR device enrollment + authenticated Serve identity, 005 mobile-pwa-and-reconciliation incl. the Vite/React 19/Untitled UI stack + four-surface IA Home/Session/Review/Attention-Inbox + typed-block transcript, 006 approval-and-remote-mutation incl. typed approval.requested/decide/result events + bounded accept-edits grants, 007 push-and-platform-hardening incl. the bounded needs_input/finished/error attention class + Attention Inbox, 008 documentation, 009 release). The product is a private installable PWA remote-controlling the Pi coding agent over a Tailscale tailnet, aiming to match and exceed the Claude Code + mobile pairing without weakening a loopback-relay/tailnet-only/foreground-authority/redaction posture. For EACH phase identify: (a) missing or absent requirements, (b) underspecified mechanisms (named but not defined \u2014 e.g. the containment primitive, the Serve identity signal, the SQLite/migration choice, the diff-truth model, reconnection reconciliation corner cases), (c) internal contradictions or cross-phase inconsistencies, (d) untestable or unfalsifiable acceptance criteria (no thresholds, no objective check), (e) unhandled edge cases and failure modes (crash points, races/TOCTOU, offline/stale, multi-device, revocation, key rotation, push platform limits especially iOS), and (f) security or privacy holes. Rank the gaps by severity, map each to its phase, and propose a concrete remediation (a REQ or ADR to add). Prefer gaps grounded in the actual spec text; cite the phase and requirement you are critiquing.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.02,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "minIdeaObservations": 2,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/cli-external-orchestration/043-pi-remote-phase-gap-research",
+  "fanout_lineage_artifact_dir": "specs/cli-external-orchestration/043-pi-remote-phase-gap-research/research/lineages/cli-pi-deepseek-v4-flash",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-08-12T12:45:04Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "type": "cli-pi",
+    "kind": "cli-pi",
+    "model": "deepseek-v4-flash",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-cli-pi-deepseek-v4-flash-1786538556326-03f2d8",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}
