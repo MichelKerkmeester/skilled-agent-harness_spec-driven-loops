@@ -1,0 +1,1768 @@
+{
+  "sessionId": "62836e1f-705d-4d35-b0f1-de74f57a4289",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-which-interaction-patterns-from-leading-mobile-coding-agent-and-terminal-clie",
+      "inboxId": null,
+      "text": "Q1: Which interaction patterns from leading mobile coding-agent and terminal clients (Claude mobile, Warp, Termius, Blink Shell, GitHub mobile, Vercel/Netlify mobile, Replit mobile) transfer directly to Pi Remote's session-list, transcript, compose, review, and inbox surfaces, and which are mobile-PWA-specific adaptions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-what-information-architecture-and-navigation-patterns-make-multi-surface-mobi",
+      "inboxId": null,
+      "text": "Q2: What information architecture and navigation patterns make multi-surface mobile agent control (home sessions, live session, review queue, attention inbox) feel coherent and low-effort, especially under foreground authority and push hinting?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-which-transcript-and-streaming-patterns-block-types-streaming-affordances-act",
+      "inboxId": null,
+      "text": "Q3: Which transcript and streaming patterns (block types, streaming affordances, action visibility, collapse/expand, error and usage surfacing) improve readability and steerability of a long-running agent transcript on a phone?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-q4-how-should-mutation-approval-approve-deny-accept-edits-and-redaction-be-prese",
+      "inboxId": null,
+      "text": "Q4: How should mutation approval (approve/deny/accept-edits) and redaction be presented so safety stays explicit and fast, matching the trust pattern of review apps without slowing the flow?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-which-compose-box-affordances-send-steer-turn-taking-quick-actions-keyboard-h",
+      "inboxId": null,
+      "text": "Q5: Which compose-box affordances (send/steer, turn-taking, quick actions, keyboard handling, multi-line editing, undo/stop) lower friction for steering a coding agent from an iPhone keyboard?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-q6-what-attention-notification-and-inbox-patterns-keep-the-operator-informed-nee",
+      "inboxId": null,
+      "text": "Q6: What attention, notification, and inbox patterns keep the operator informed (needs_input, finished, error) without becoming noisy or content-leaking, given content-free push hints and foreground authority?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-which-interaction-patterns-from-leading-mobile-coding-agent-and-terminal-clie",
+      "inboxId": null,
+      "text": "Q1: Which interaction patterns from leading mobile coding-agent and terminal clients (Claude mobile, Warp, Termius, Blink Shell, GitHub mobile, Vercel/Netlify mobile, Replit mobile) transfer directly to Pi Remote's session-list, transcript, compose, review, and inbox surfaces, and which are mobile-PWA-specific adaptions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-what-information-architecture-and-navigation-patterns-make-multi-surface-mobi",
+      "inboxId": null,
+      "text": "Q2: What information architecture and navigation patterns make multi-surface mobile agent control (home sessions, live session, review queue, attention inbox) feel coherent and low-effort, especially under foreground authority and push hinting?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-which-transcript-and-streaming-patterns-block-types-streaming-affordances-act",
+      "inboxId": null,
+      "text": "Q3: Which transcript and streaming patterns (block types, streaming affordances, action visibility, collapse/expand, error and usage surfacing) improve readability and steerability of a long-running agent transcript on a phone?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-how-should-mutation-approval-approve-deny-accept-edits-and-redaction-be-prese",
+      "inboxId": null,
+      "text": "Q4: How should mutation approval (approve/deny/accept-edits) and redaction be presented so safety stays explicit and fast, matching the trust pattern of review apps without slowing the flow?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-which-compose-box-affordances-send-steer-turn-taking-quick-actions-keyboard-h",
+      "inboxId": null,
+      "text": "Q5: Which compose-box affordances (send/steer, turn-taking, quick actions, keyboard handling, multi-line editing, undo/stop) lower friction for steering a coding agent from an iPhone keyboard?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q6-what-attention-notification-and-inbox-patterns-keep-the-operator-informed-nee",
+      "inboxId": null,
+      "text": "Q6: What attention, notification, and inbox patterns keep the operator informed (needs_input, finished, error) without becoming noisy or content-leaking, given content-free push hints and foreground authority?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q6: Define foreground suppression, unread state, stale hints, and notification preference behavior.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: Validate transcript hierarchy, live-edge behavior, collapse defaults, and error/usage prominence.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Specify touch-keyboard, external-keyboard, steer, queue, retry, and stop behavior for compose.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Product-coverage caveat: Termius and Vercel/Netlify remain unvalidated as named comparators; revisit only if later questions require a pattern not covered by the stronger primary sources above.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Define the coherent navigation and information architecture across Home, Session, Review, and Attention Inbox.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: Refine exact-action review flows without weakening mutation approval or redaction.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6: Define foreground suppression, unread state, stale hints, and notification preferences.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Define navigation among Home, Session, Review, and Attention Inbox, including approval counts and return paths.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Contract gap: confirm whether accept-edits settles, includes, or only authorizes retry of the visible approval, and confirm the PWA revocation contract.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: Specify touch-keyboard, external-keyboard, steer, queue, retry, and stop behavior.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 contract gap: confirm accept-edits inclusion and revocation semantics.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 implementation dependency: expose Pi RPC follow-up, queue-update, abort, and agent-settled semantics through the relay before presenting those controls as authoritative.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 device validation: verify installed-PWA keyboard occlusion, focus retention, dictation, IME composition, and hardware shortcuts on the supported physical iPhone/iOS matrix.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2: Define coherent navigation and information architecture across Home, Session, Review, and Attention Inbox.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q6: Define foreground notification suppression windows, server-side unread and settled semantics, stale-item retention, badge counts, and preference defaults.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: Validate transcript hierarchy, live-edge behavior, collapse defaults, and error and usage prominence.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Product-coverage caveat: Termius and Vercel or Netlify remain unvalidated as named comparators.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 implementation validation: determine which privacy-safe scope and impact descriptors can be produced without weakening canonical redaction policy.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 implementation detail: choose the exact typed descriptor schema and preflight invalidation mechanism during planning; the current `ApprovalAction` and `ApprovalCardDto` contracts do not contain them.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Accept-edits inclusion and revocation semantics remain a separate contract gap from descriptor safety.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Planning must define whether revocation also aborts grant-derived one-action leases that are approved but not yet consumed; the current grant terminal transition alone does not establish that cascade.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Planning must choose bounded count and duration presets and add active-grant list/status plus revoke protocol and HTTP contracts.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Implementation planning must choose a status refresh transport and retention window for recently terminal grant receipts; the required authority semantics do not depend on polling versus a sync event.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Physical iPhone testing must validate the sheet copy, radio-card density, countdown legibility, and the proposed 3-edit / 5-minute default.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Product-coverage caveat: Termius and Vercel/Netlify remain unvalidated as named comparators; no claim in this iteration depends on them.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Physical iPhone testing must validate dynamic-height anchoring with the keyboard open, VoiceOver announcement cadence, disclosure expansion above the viewport, safe-area placement of `Jump to latest`, and the threshold used to enter or leave `following`.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The relay/projector must confirm that settled `blockId` and `sequence` identities survive snapshot reconciliation and transcript compaction. If they do not, the protocol needs a non-content stable sequence before the return contract can be implemented.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Planning must define the receipt and device-acknowledgement protocol, private dedupe-key derivation, settlement source for each class, and cleanup job.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Termius and Vercel/Netlify remain unvalidated named comparators; no Q6 conclusion depends on them.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Physical installed-iPhone testing must validate visibility and pagehide lease release, focus-existing-client behavior, notification replacement by tag, OS/app badge support, typing-window timing, and VoiceOver announcement cadence across the supported iOS matrix.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The existing Q2 route-model replacement remains a prerequisite for canonical notification and inbox navigation.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: Which interaction patterns from leading mobile coding-agent and terminal clients (Claude mobile, Warp, Termius, Blink Shell, GitHub mobile, Vercel/Netlify mobile, Replit mobile) transfer directly to Pi Remote's session-list, transcript, compose, review, and inbox surfaces, and which are mobile-PWA-specific adaptions?",
+    "Q2: What information architecture and navigation patterns make multi-surface mobile agent control (home sessions, live session, review queue, attention inbox) feel coherent and low-effort, especially under foreground authority and push hinting?",
+    "Q3: Which transcript and streaming patterns (block types, streaming affordances, action visibility, collapse/expand, error and usage surfacing) improve readability and steerability of a long-running agent transcript on a phone?",
+    "Q4: How should mutation approval (approve/deny/accept-edits) and redaction be presented so safety stays explicit and fast, matching the trust pattern of review apps without slowing the flow?",
+    "Q5: Which compose-box affordances (send/steer, turn-taking, quick actions, keyboard handling, multi-line editing, undo/stop) lower friction for steering a coding agent from an iPhone keyboard?",
+    "Q6: What attention, notification, and inbox patterns keep the operator informed (needs_input, finished, error) without becoming noisy or content-leaking, given content-free push hints and foreground authority?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-36-adapt-controls-to-the-active-input-method-touch-sized-actions-with-the-software-",
+      "text": "Adapt controls to the active input method: touch-sized actions with the software keyboard, discoverable shortcuts with a hardware keyboard.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-12-add-a-jump-to-latest-control-and-a-new-block-count-when-the-reader-has-scrolled-",
+      "text": "Add a \"Jump to latest\" control and a new-block count when the reader has scrolled away from the live edge; do not force-scroll during review.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-29-add-unread-and-errors-filters-a-mark-all-read-action-and-stable-unread-counts",
+      "text": "Add Unread and Errors filters, a mark-all-read action, and stable unread counts.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-11-add-visible-filter-chips-or-a-sheet-for-all-messages-tools-changes-and-errors-in",
+      "text": "Add visible filter chips or a sheet for All, Messages, Tools, Changes, and Errors instead of relying on swipe-only panes.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-38-do-not-add-terminal-modifier-rows-pinch-to-resize-or-raw-shell-gestures-to-pi-re",
+      "text": "Do not add terminal modifier rows, pinch-to-resize, or raw shell gestures to Pi Remote's semantic agent UI.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-20-do-not-copy-claude-s-file-attachments-or-path-autocomplete-under-the-current-red",
+      "text": "Do not copy Claude's file attachments or path autocomplete under the current redaction contract.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-5-do-not-copy-path-or-prompt-derived-remote-titles-use-an-operator-assigned-device",
+      "text": "Do not copy path- or prompt-derived remote titles. Use an operator-assigned device-local alias or a safe ordinal such as \"Session 3\" alongside the opaque ID.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-34-do-not-promise-replit-style-ios-live-activities-from-a-pwa-use-the-in-app-inbox-",
+      "text": "Do not promise Replit-style iOS Live Activities from a PWA. Use the in-app inbox, Web Push, and optional app badge only where browser support is verified.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-10-expose-stable-working-blocked-complete-and-error-states-outside-the-scroll-strea",
+      "text": "Expose stable working, blocked, complete, and error states outside the scroll stream.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-1-f-001-make-the-session-list-a-status-first-resume-surface",
+      "text": "F-001: Make the session list a status-first resume surface",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-7-f-002-preserve-typed-transcript-blocks-but-add-mobile-reading-controls",
+      "text": "F-002: Preserve typed transcript blocks, but add mobile reading controls",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-14-f-003-split-compose-behavior-into-steer-now-and-queue-next",
+      "text": "F-003: Split compose behavior into \"steer now\" and \"queue next\"",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-21-f-004-review-should-be-exact-staged-and-reversible-not-merely-confirmatory",
+      "text": "F-004: Review should be exact, staged, and reversible, not merely confirmatory",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-28-f-005-pi-remote-s-attention-taxonomy-already-matches-the-market",
+      "text": "F-005: Pi Remote's attention taxonomy already matches the market",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-35-f-006-borrow-mobile-input-ergonomics-not-a-terminal-emulator",
+      "text": "F-006: Borrow mobile input ergonomics, not a terminal emulator",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-39-if-horizontal-session-switching-is-added-make-it-optional-and-provide-visible-pr",
+      "text": "If horizontal session switching is added, make it optional and provide visible Previous/Next or session-picker controls.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-3-keep-a-persistent-state-label-relative-update-time-and-unread-attention-marker-o",
+      "text": "Keep a persistent state label, relative update time, and unread/attention marker on every row.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-13-keep-a-visible-control-alternative-for-every-gesture-because-ios-edge-swipes-com",
+      "text": "Keep a visible control alternative for every gesture because iOS edge swipes compete with browser/PWA navigation and are not discoverable to screen-reader or keyboard users.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-24-keep-deny-approve-once-and-bounded-accept-edits-semantically-distinct-show-submi",
+      "text": "Keep Deny, Approve once, and bounded accept-edits semantically distinct; show submitted, host-verified, expired, revoked, and failed outcomes in place.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-9-keep-low-signal-detail-such-as-thinking-successful-tool-output-and-usage-collaps",
+      "text": "Keep low-signal detail such as thinking, successful tool output, and usage collapsible while leaving errors, plans, and pending approvals prominent.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-32-keep-notification-title-body-content-free-only-class-and-generic-action-language",
+      "text": "Keep notification title/body content-free; only class and generic action language belong outside the authenticated foreground app.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-22-keep-the-exact-action-and-its-diff-input-in-the-same-review-card-as-the-decision",
+      "text": "Keep the exact action and its diff/input in the same review card as the decision.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-15-make-the-submission-mode-explicit-while-the-agent-is-busy-steer-now-versus-queue",
+      "text": "Make the submission mode explicit while the agent is busy: \"Steer now\" versus \"Queue next.\"",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-4-make-the-whole-row-tappable-while-keeping-a-permanently-visible-disclosure-affor",
+      "text": "Make the whole row tappable while keeping a permanently visible disclosure affordance.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-27-never-adopt-warp-s-always-allow-or-auto-apply-option-because-pi-remote-s-mutatio",
+      "text": "Never adopt Warp's \"Always allow\" or auto-apply option because Pi Remote's mutation contract is approval-gated.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-18-on-touch-keyboards-return-should-insert-a-newline-and-the-visible-send-button-sh",
+      "text": "On touch keyboards, Return should insert a newline and the visible Send button should submit. External keyboards can use a documented Command+Enter shortcut.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-30-open-each-hint-into-the-authoritative-current-session-review-state-and-mark-it-r",
+      "text": "Open each hint into the authoritative current session/review state and mark it read only after resolution succeeds.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-26-present-the-three-edit-grant-as-a-secondary-visibly-broader-permission-with-its-",
+      "text": "Present the three-edit grant as a secondary, visibly broader permission with its remaining count and expiry adjacent to the action.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-37-preserve-drafts-and-current-session-position-when-moving-between-sessions",
+      "text": "Preserve drafts and current session position when moving between sessions.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-17-preserve-the-draft-and-queue-when-sync-fails-and-require-review-before-resuming-",
+      "text": "Preserve the draft and queue when sync fails, and require review before resuming a paused queue.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-8-retain-semantic-blocks-rather-than-flattening-the-transcript-into-chat-bubbles",
+      "text": "Retain semantic blocks rather than flattening the transcript into chat bubbles.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-16-show-queued-items-immediately-above-the-composer-with-edit-remove-and-send-now-a",
+      "text": "Show queued items immediately above the composer with edit, remove, and send-now actions.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-2-sort-and-group-by-actionable-state-needs-input-running-then-recent-idle",
+      "text": "Sort and group by actionable state: Needs input, Running, then Recent/Idle.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-23-structure-long-changes-by-file-and-hunk-with-a-summary-first-and-explicit-expans",
+      "text": "Structure long changes by file and hunk, with a summary first and explicit expansion into the complete redacted payload before approval.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-31-suppress-redundant-push-while-pi-remote-is-foregrounded-following-claude-s-prese",
+      "text": "Suppress redundant push while Pi Remote is foregrounded, following Claude's presence-aware notification behavior.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-6-treat-cached-offline-state-as-a-first-class-row-state-not-only-a-global-freshnes",
+      "text": "Treat cached/offline state as a first-class row state, not only a global freshness annotation.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-33-treat-stale-lookup-ids-as-resolved-expired-inbox-state-rather-than-a-generic-glo",
+      "text": "Treat stale lookup IDs as resolved/expired inbox state rather than a generic global error.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-25-use-a-sticky-safe-area-aware-action-bar-after-the-complete-action-has-been-expos",
+      "text": "Use a sticky safe-area-aware action bar after the complete action has been exposed, rather than desktop arrow-key navigation or hover controls.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-1-19-use-the-platform-s-dictation-keyboard-rather-than-building-a-custom-microphone-p",
+      "text": "Use the platform's dictation keyboard rather than building a custom microphone path unless a later requirement justifies new audio permissions and redaction work.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote `App.tsx`, `attention.ts`, and `style.css` at the absolute source pointers recorded in the strategy.",
+        "Claude Code Remote Control: https://docs.anthropic.com/en/docs/claude-code/remote-control",
+        "Warp agent conversations: https://docs.warp.dev/agents/local-agents/interacting-with-agents/",
+        "Warp prompt queueing: https://docs.warp.dev/agents/local-agents/interacting-with-agents/prompt-queueing/",
+        "Warp code diffs: https://docs.warp.dev/agents/local-agents/code-diffs/",
+        "Warp notifications: https://docs.warp.dev/agents/capabilities/agent-notifications/",
+        "GitHub Mobile: https://docs.github.com/en/get-started/using-github/github-mobile",
+        "Replit Mobile: https://docs.replit.com/platforms/mobile-app",
+        "Blink Shell: https://docs.blink.sh/",
+        "Failed retrievals: https://termius.com/documentation/terminal and https://termius.com/features (404)."
+      ]
+    },
+    {
+      "id": "finding-2-7-card-header-protected-action-expiry-session-safe-identity",
+      "text": "Card header: Protected action, expiry, session-safe identity.",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-8-decision-synopsis-exact-tool-verb-typed-redacted-target-effect-change-count",
+      "text": "Decision synopsis: exact tool/verb, typed-redacted target, effect/change count.",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-1-f-007-use-a-decision-synopsis-over-the-canonical-payload-not-instead-of-it",
+      "text": "F-007: Use a decision synopsis over the canonical payload, not instead of it",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-2-f-008-exact-approval-and-accept-edits-are-different-authorization-products",
+      "text": "F-008: Exact approval and accept-edits are different authorization products",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-3-f-009-make-redaction-typed-structural-and-non-revealable",
+      "text": "F-009: Make redaction typed, structural, and non-revealable",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-4-f-010-treat-stale-and-submitted-states-as-part-of-the-flow",
+      "text": "F-010: Treat stale and submitted states as part of the flow",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-5-f-011-optimize-the-queue-for-triage-then-exact-review",
+      "text": "F-011: Optimize the queue for triage, then exact review",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-12-in-place-receipt-submitted-host-verified-denied-expired-changed-consumed-revoked",
+      "text": "In-place receipt: submitted, host-verified, denied, expired, changed, consumed, revoked, or failed.",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-9-inspectable-body-grouped-diff-or-canonical-arguments-typed-redaction-markers-low",
+      "text": "Inspectable body: grouped diff or canonical arguments, typed redaction markers, low-prominence digest.",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-6-queue-header-pending-count-current-position-refresh-authority-state",
+      "text": "Queue header: pending count, current position, refresh/authority state.",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-11-separate-authority-disclosure-allow-similar-edits-scoped-confirmation-and-persis",
+      "text": "Separate authority disclosure: Allow similar edits..., scoped confirmation, and persistent revokeable grant status.",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-2-10-sticky-immediate-actions-deny-and-approve-this-action",
+      "text": "Sticky immediate actions: Deny and Approve this action.",
+      "addedAtIteration": 2,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620`.",
+        "Pi Remote `relay.ts`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/relay.ts:74-131` and `:213-224`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:916-1062`.",
+        "GitHub review: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+        "OWASP transaction authorization: https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "OWASP logging/redaction: https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+        "Failed retrieval: https://developer.apple.com/design/human-interface-guidelines/alerts returned only a JavaScript-required shell."
+      ]
+    },
+    {
+      "id": "finding-3-12-external-keyboard-command-enter-or-control-enter-dispatches-enter-inserts-newlin",
+      "text": "External keyboard: Command+Enter or Control+Enter dispatches; Enter inserts newline; composition never dispatches.",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-1-f-012-derive-the-primary-action-from-agent-state-and-expose-turn-destination",
+      "text": "F-012: Derive the primary action from agent state and expose turn destination",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-2-f-013-let-touch-return-create-lines-make-dispatch-a-visible-touch-action",
+      "text": "F-013: Let touch Return create lines; make dispatch a visible touch action",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-3-f-014-use-one-safe-external-keyboard-shortcut-and-respect-text-composition",
+      "text": "F-014: Use one safe external-keyboard shortcut and respect text composition",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-4-f-015-keep-drafting-available-while-one-submission-is-in-flight",
+      "text": "F-015: Keep drafting available while one submission is in flight",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-5-f-016-undo-retry-and-stop-must-describe-what-the-host-can-still-change",
+      "text": "F-016: Undo, retry, and stop must describe what the host can still change",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-6-f-017-quick-actions-should-fill-a-draft-never-silently-execute",
+      "text": "F-017: Quick actions should fill a draft, never silently execute",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-13-failure-exact-draft-restored-retry-only-under-known-safe-idempotency-semantics-d",
+      "text": "Failure: exact draft restored; retry only under known-safe idempotency semantics; delivery-unknown never auto-retries.",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-10-host-queue-visible-destination-and-count-edit-remove-only-while-host-reports-pen",
+      "text": "Host queue: visible destination and count; edit/remove only while host reports pending.",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-7-idle-multiline-draft-plus-send",
+      "text": "Idle: multiline draft plus `Send`.",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-9-pending-submit-editor-remains-writable-dispatch-controls-wait-for-host-acceptanc",
+      "text": "Pending submit: editor remains writable; dispatch controls wait for host acceptance; pending snapshot is immutable.",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-14-running-control-separate-stop-agent-then-stopping-then-host-confirmed-stopped-no",
+      "text": "Running control: separate `Stop agent`, then `Stopping`, then host-confirmed `Stopped`; no rollback claim.",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-8-running-multiline-draft-plus-primary-steer-and-secondary-later",
+      "text": "Running: multiline draft plus primary `Steer` and secondary `Later`.",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-15-stale-offline-preserve-draft-label-it-not-sent-and-disable-all-dispatch-queue-st",
+      "text": "Stale/offline: preserve draft, label it `Not sent`, and disable all dispatch/queue/stop mutations until foreground authority is live.",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-3-11-touch-keyboard-return-inserts-newline-visible-button-dispatches",
+      "text": "Touch keyboard: Return inserts newline; visible button dispatches.",
+      "addedAtIteration": 3,
+      "sources": [
+        "Pi Remote `App.tsx`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:859-1115`.",
+        "Pi Remote `style.css`: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1297`.",
+        "Pi Remote architecture: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/architecture.md:302-367`.",
+        "Pi Remote security: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md:102-106`.",
+        "Pi Remote compose catalog: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md:19-35`.",
+        "Pi RPC mode: https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/rpc.md",
+        "MDN `enterkeyhint`: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/enterkeyhint",
+        "MDN VirtualKeyboard API: https://developer.mozilla.org/en-US/docs/Web/API/VirtualKeyboard_API",
+        "React Aria TextField/TextArea: https://react-spectrum.adobe.com/react-aria/TextField.html"
+      ]
+    },
+    {
+      "id": "finding-5-1-f-018-keep-two-persistent-roots-and-make-session-and-review-route-addressable-de",
+      "text": "F-018: Keep two persistent roots and make Session and Review route-addressable details",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-f-019-replace-independent-booleans-with-one-url-first-route-state-contract",
+      "text": "F-019: Replace independent booleans with one URL-first route state contract",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-f-020-treat-an-attention-url-as-a-resolver-never-as-the-authoritative-destinatio",
+      "text": "F-020: Treat an attention URL as a resolver, never as the authoritative destination",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-f-021-define-warm-and-cold-return-behavior-independently-from-cached-content",
+      "text": "F-021: Define warm and cold return behavior independently from cached content",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-changeshape-validated-added-removed-line-counts-only-for-a-normalized-patch-whos",
+      "text": "`changeShape`: validated added/removed line counts only for a normalized patch whose application semantics and base-state precondition are known; otherwise omit it.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-operationclass-a-server-owned-enum-such-as-edit-write-process-or-network-derived",
+      "text": "`operationClass`: a server-owned enum such as `edit`, `write`, `process`, or `network`, derived from the admitted tool family rather than user text.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-redactionsummary-count-plus-reason-enums-emitted-by-the-same-canonical-redaction",
+      "text": "`redactionSummary`: count plus reason enums emitted by the same canonical redaction pass, with no original keys, values, path fragments, or offsets.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-targetcount-a-validated-integer-or-bounded-bucket-such-as-1-2-9-or-10-use-exact-",
+      "text": "`targetCount`: a validated integer or bounded bucket such as `1`, `2-9`, or `10+`; use exact small counts only when the tool schema proves target cardinality.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-targetrelation-workspace-outside-workspace-or-unknown-outside-workspace-remains-",
+      "text": "`targetRelation`: `workspace`, `outside-workspace`, or `unknown`; outside-workspace remains a denial condition, not an approvable badge.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-targetstateatreview-existing-file-missing-target-non-file-or-unknown-explicitly-",
+      "text": "`targetStateAtReview`: `existing-file`, `missing-target`, `non-file`, or `unknown`, explicitly labeled as an observation unless execution enforces it as a precondition.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-10-action-fact-writes-1-target",
+      "text": "Action fact: \"Writes 1 target.\"",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-13-enforced-change-shape-14-3-lines-only-when-the-host-computes-it-from-the-exact-n",
+      "text": "Enforced change shape: \"+14/-3 lines\" only when the host computes it from the exact normalized patch and binds the base-state fingerprint or equivalent precondition to the approval lifecycle.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-12-enforced-impact-creates-1-workspace-file-only-when-lease-consumption-revalidates",
+      "text": "Enforced impact: \"Creates 1 workspace file\" only when lease consumption revalidates a non-existence and containment precondition and rejects or reissues the approval when it changed.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-f-019-the-current-wire-contract-cannot-carry-trustworthy-scope-or-impact-descrip",
+      "text": "F-019: The current wire contract cannot carry trustworthy scope or impact descriptors",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-f-020-use-an-explicit-allowlist-of-non-content-descriptor-types",
+      "text": "F-020: Use an explicit allowlist of non-content descriptor types",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-f-021-separate-action-facts-from-host-state-observations",
+      "text": "F-021: Separate action facts from host-state observations",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-14-f-022-redaction-metadata-should-come-from-one-pass-not-a-second-scan",
+      "text": "F-022: Redaction metadata should come from one pass, not a second scan",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-11-observation-at-review-target-does-not-exist-in-workspace",
+      "text": "Observation: \"At review: target does not exist in workspace.\"",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-f-023-grant-creation-must-be-future-only-and-leave-the-visible-approval-pending",
+      "text": "F-023: Grant creation must be future-only and leave the visible approval pending",
+      "addedAtIteration": 7,
+      "sources": [
+        "Pi Remote web Review and relay client: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620` and `src/relay.ts:89-131`.",
+        "Pi Remote approval service and tests: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-relay/src/approval/approval-service.ts:240-455` and `tests/approval.test.ts:231-305`.",
+        "Pi Remote HTTP and protocol contracts: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-relay/src/http/server.ts:526-557` and `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/packages/pi-rpc-protocol/src/types.ts:349-383`.",
+        "OWASP Authorization Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "RFC 7009 token revocation, used as a revocation-semantics analogy: https://www.rfc-editor.org/rfc/rfc7009"
+      ]
+    },
+    {
+      "id": "finding-7-2-f-024-scope-is-a-server-owned-conjunction-not-a-descriptive-label",
+      "text": "F-024: Scope is a server-owned conjunction, not a descriptive label",
+      "addedAtIteration": 7,
+      "sources": [
+        "Pi Remote web Review and relay client: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620` and `src/relay.ts:89-131`.",
+        "Pi Remote approval service and tests: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-relay/src/approval/approval-service.ts:240-455` and `tests/approval.test.ts:231-305`.",
+        "Pi Remote HTTP and protocol contracts: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-relay/src/http/server.ts:526-557` and `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/packages/pi-rpc-protocol/src/types.ts:349-383`.",
+        "OWASP Authorization Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "RFC 7009 token revocation, used as a revocation-semantics analogy: https://www.rfc-editor.org/rfc/rfc7009"
+      ]
+    },
+    {
+      "id": "finding-7-3-f-025-exact-denial-has-precedence-but-only-before-grant-consumption",
+      "text": "F-025: Exact denial has precedence, but only before grant consumption",
+      "addedAtIteration": 7,
+      "sources": [
+        "Pi Remote web Review and relay client: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620` and `src/relay.ts:89-131`.",
+        "Pi Remote approval service and tests: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-relay/src/approval/approval-service.ts:240-455` and `tests/approval.test.ts:231-305`.",
+        "Pi Remote HTTP and protocol contracts: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-relay/src/http/server.ts:526-557` and `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/packages/pi-rpc-protocol/src/types.ts:349-383`.",
+        "OWASP Authorization Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "RFC 7009 token revocation, used as a revocation-semantics analogy: https://www.rfc-editor.org/rfc/rfc7009"
+      ]
+    },
+    {
+      "id": "finding-7-4-f-026-one-tap-revocation-requires-new-authenticated-list-status-and-revoke-apis",
+      "text": "F-026: One-tap revocation requires new authenticated list/status and revoke APIs",
+      "addedAtIteration": 7,
+      "sources": [
+        "Pi Remote web Review and relay client: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620` and `src/relay.ts:89-131`.",
+        "Pi Remote approval service and tests: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-relay/src/approval/approval-service.ts:240-455` and `tests/approval.test.ts:231-305`.",
+        "Pi Remote HTTP and protocol contracts: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-relay/src/http/server.ts:526-557` and `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/packages/pi-rpc-protocol/src/types.ts:349-383`.",
+        "OWASP Authorization Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "RFC 7009 token revocation, used as a revocation-semantics analogy: https://www.rfc-editor.org/rfc/rfc7009"
+      ]
+    },
+    {
+      "id": "finding-7-5-f-027-active-authority-must-be-globally-visible-without-becoming-an-approval-sho",
+      "text": "F-027: Active authority must be globally visible without becoming an approval shortcut",
+      "addedAtIteration": 7,
+      "sources": [
+        "Pi Remote web Review and relay client: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:455-620` and `src/relay.ts:89-131`.",
+        "Pi Remote approval service and tests: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-relay/src/approval/approval-service.ts:240-455` and `tests/approval.test.ts:231-305`.",
+        "Pi Remote HTTP and protocol contracts: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-relay/src/http/server.ts:526-557` and `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/packages/pi-rpc-protocol/src/types.ts:349-383`.",
+        "OWASP Authorization Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "RFC 7009 token revocation, used as a revocation-semantics analogy: https://www.rfc-editor.org/rfc/rfc7009"
+      ]
+    },
+    {
+      "id": "finding-8-4-get-api-accept-edits-status-active-returns-only-grants-owned-by-the-authenticate",
+      "text": "`GET /api/accept-edits?status=active` returns only grants owned by the authenticated principal. An optional `sessionId` filter must remain conjoined with that principal; the client never supplies a principal.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-post-api-accept-edits-grantid-revoke-authenticates-the-principal-applies-the-ide",
+      "text": "`POST /api/accept-edits/{grantId}/revoke` authenticates the principal, applies the idempotency key, performs the terminal transition and lease cascade in one host transaction, and returns `200` only with authoritative status.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-a-timeout-network-failure-or-5xx-leaves-the-ui-at-active-revoke-not-confirmed-wi",
+      "text": "A timeout, network failure, or `5xx` leaves the UI at `Active · revoke not confirmed` with Retry. RFC 7009 is an analogy, not the Pi protocol: it supports immediate host invalidation and explicitly requires a client to assume authority still exists after `503`. [SOURCE: https://www.rfc-editor.org/rfc/rfc7009#section-2.1] [SOURCE: https://www.rfc-editor.org/rfc/rfc7009#section-2.2.1]",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-f-028-use-three-bundled-presets-and-default-to-3-edits-5-minutes",
+      "text": "F-028: Use three bundled presets and default to 3 edits / 5 minutes",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-f-029-status-needs-host-time-not-client-arithmetic",
+      "text": "F-029: Status needs host time, not client arithmetic",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-f-030-add-principal-scoped-list-status-and-idempotent-revoke-http-contracts",
+      "text": "F-030: Add principal-scoped list/status and idempotent revoke HTTP contracts",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-f-031-revoke-must-cancel-grant-derived-leases-that-are-approved-but-not-consumed",
+      "text": "F-031: Revoke must cancel grant-derived leases that are approved but not consumed",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-repeating-revoke-for-the-same-principal-owned-terminal-grant-returns-200-with-al",
+      "text": "Repeating revoke for the same principal-owned terminal grant returns `200` with `alreadyTerminal: true`. Unknown and foreign-principal IDs return the same non-revealing `404` response.",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-f-009-001-make-a-turn-the-primary-reading-unit-while-retaining-typed-blocks-insi",
+      "text": "F-009-001: Make a turn the primary reading unit, while retaining typed blocks inside it",
+      "addedAtIteration": 9,
+      "sources": [
+        "Pi Remote `App.tsx` transcript and compose implementation at the absolute source pointer recorded in the strategy.",
+        "Iterations 1, 3, and 5 for the typed-block, compose, and warm/cold navigation contracts.",
+        "MDN ARIA live-region guidance: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions"
+      ]
+    },
+    {
+      "id": "finding-9-2-f-009-002-apply-signal-based-collapse-defaults-not-one-rule-for-every-block-type",
+      "text": "F-009-002: Apply signal-based collapse defaults, not one rule for every block type",
+      "addedAtIteration": 9,
+      "sources": [
+        "Pi Remote `App.tsx` transcript and compose implementation at the absolute source pointer recorded in the strategy.",
+        "Iterations 1, 3, and 5 for the typed-block, compose, and warm/cold navigation contracts.",
+        "MDN ARIA live-region guidance: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions"
+      ]
+    },
+    {
+      "id": "finding-9-3-f-009-003-model-the-live-edge-as-explicit-following-and-paused-states",
+      "text": "F-009-003: Model the live edge as explicit `following` and `paused` states",
+      "addedAtIteration": 9,
+      "sources": [
+        "Pi Remote `App.tsx` transcript and compose implementation at the absolute source pointer recorded in the strategy.",
+        "Iterations 1, 3, and 5 for the typed-block, compose, and warm/cold navigation contracts.",
+        "MDN ARIA live-region guidance: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions"
+      ]
+    },
+    {
+      "id": "finding-9-4-f-009-004-restore-a-content-free-block-anchor-never-a-pixel-only-or-content-deri",
+      "text": "F-009-004: Restore a content-free block anchor, never a pixel-only or content-derived position",
+      "addedAtIteration": 9,
+      "sources": [
+        "Pi Remote `App.tsx` transcript and compose implementation at the absolute source pointer recorded in the strategy.",
+        "Iterations 1, 3, and 5 for the typed-block, compose, and warm/cold navigation contracts.",
+        "MDN ARIA live-region guidance: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions"
+      ]
+    },
+    {
+      "id": "finding-9-5-f-009-005-separate-persistent-error-visibility-from-low-noise-streaming-announce",
+      "text": "F-009-005: Separate persistent error visibility from low-noise streaming announcements",
+      "addedAtIteration": 9,
+      "sources": [
+        "Pi Remote `App.tsx` transcript and compose implementation at the absolute source pointer recorded in the strategy.",
+        "Iterations 1, 3, and 5 for the typed-block, compose, and warm/cold navigation contracts.",
+        "MDN ARIA live-region guidance: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions"
+      ]
+    },
+    {
+      "id": "finding-10-6-after-the-typing-window-show-at-most-one-content-free-foreground-banner-input-ne",
+      "text": "After the typing window, show at most one content-free foreground banner: `Input needed`, `Run error`, or `Run finished`, with `Open Attention` as navigation only.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-f-010-001-separate-authoritative-attention-receipts-from-best-effort-push-delive",
+      "text": "F-010-001: Separate authoritative attention receipts from best-effort push delivery",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-f-010-002-replace-the-foreground-boolean-with-a-short-device-lease-and-suppress-",
+      "text": "F-010-002: Replace the foreground boolean with a short device lease and suppress duplicate in-app cues while typing",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-f-010-003-derive-two-indicators-because-unread-and-unresolved-answer-different-q",
+      "text": "F-010-003: Derive two indicators because unread and unresolved answer different questions",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-f-010-004-group-by-operator-consequence-deduplicate-at-two-layers-and-retain-sta",
+      "text": "F-010-004: Group by operator consequence, deduplicate at two layers, and retain stale receipts briefly",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-f-010-005-make-notification-preferences-per-device-delivery-policy-not-inbox-fil",
+      "text": "F-010-005: Make notification preferences per-device delivery policy, not inbox filters",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-if-the-canonical-target-is-already-visible-update-its-local-state-and-suppress-a",
+      "text": "If the canonical target is already visible, update its local state and suppress a duplicate banner.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-keep-errors-and-input-needs-as-persistent-root-markers-until-settled-never-use-a",
+      "text": "Keep errors and input needs as persistent root markers until settled. Never use assertive announcements, force navigation, or place an approval action in the banner.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-otherwise-update-the-attention-root-indicators-immediately-without-moving-focus",
+      "text": "Otherwise update the Attention root indicators immediately without moving focus.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-while-an-ime-composition-is-active-the-composer-contains-a-focused-non-empty-dra",
+      "text": "While an IME composition is active, the composer contains a focused non-empty draft, a submit is in flight, or the last typing event was less than eight seconds ago, defer transient banners and coalesce them by class.",
+      "addedAtIteration": 10,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 6,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 31,
+    "keyFindings": 112,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.64,
+    "coverageBySources": {
+      "code": 31,
+      "other": 3
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0147-skilled-pi-remote-experience/specs/cli-external-orchestration/044-pi-mobile-ui-ux-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": []
+}

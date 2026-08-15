@@ -1,0 +1,88 @@
+{
+  "run_id": "1786777562169-s2n1hh",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/047-pi-remote-desktop-parity-chat-ux",
+  "base_artifact_dir": "specs/cli-external-orchestration/047-pi-remote-desktop-parity-chat-ux/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "grok45",
+      "state_log": "specs/cli-external-orchestration/047-pi-remote-desktop-parity-chat-ux/research/lineages/grok45/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-15T07:06:02.173Z",
+        "end_at_iso": "2026-08-15T07:11:32.925Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 6,
+        "unparseable": 0,
+        "total": 8
+      },
+      "sample": [
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-08-15T07:30:00.000Z",
+          "deltaMs": 987075
+        }
+      ]
+    },
+    {
+      "label": "gptsol",
+      "state_log": "specs/cli-external-orchestration/047-pi-remote-desktop-parity-chat-ux/research/lineages/gptsol/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-15T07:06:18.709Z",
+        "end_at_iso": "2026-08-15T07:30:13.103Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 4,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-08-15T07:34:00Z",
+          "deltaMs": 106897
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-08-15T07:45:00Z",
+          "deltaMs": 766897
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-08-15T07:56:00Z",
+          "deltaMs": 1426897
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-08-15T08:02:00Z",
+          "deltaMs": 1786897
+        }
+      ]
+    }
+  ]
+}

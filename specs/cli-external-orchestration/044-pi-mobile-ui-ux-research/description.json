@@ -1,0 +1,32 @@
+{
+  "specFolder": "cli-external-orchestration/044-pi-mobile-ui-ux-research",
+  "description": "The Pi Remote mobile PWA (installable iPhone PWA, Vite + React 19 + Tailwind 4 + React Aria) remote-controls the Pi coding agent over a Tailscale",
+  "keywords": [
+    "remote",
+    "mobile",
+    "pwa",
+    "installable",
+    "iphone",
+    "vite",
+    "react",
+    "tailwind",
+    "aria",
+    "remote-controls",
+    "coding",
+    "agent",
+    "tailscale"
+  ],
+  "lastUpdated": "2026-08-14T07:11:44.671Z",
+  "specId": "044",
+  "folderSlug": "pi-mobile-ui-ux-research",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "14-08-26_08-07__deep-research-complete-10-iterations-stop.md",
+    "14-08-26_08-08__deep-research-complete-10-iterations-stop.md",
+    "14-08-26_08-11__deep-research-complete-10-iterations-stop.md"
+  ],
+  "level": "1"
+}

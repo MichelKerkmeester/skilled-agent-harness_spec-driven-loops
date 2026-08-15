@@ -1,0 +1,30 @@
+{
+  "specFolder": "cli-external-orchestration/047-pi-remote-desktop-parity-chat-ux",
+  "description": "The Pi Remote mobile PWA (installable iPhone PWA, Vite + React 19 + Tailwind 4 + React Aria) remote-controls the Pi coding agent over a Tailscale",
+  "keywords": [
+    "remote",
+    "mobile",
+    "pwa",
+    "installable",
+    "iphone",
+    "vite",
+    "react",
+    "tailwind",
+    "aria",
+    "remote-controls",
+    "coding",
+    "agent",
+    "tailscale"
+  ],
+  "lastUpdated": "2026-08-15T07:35:52.909Z",
+  "specId": "047",
+  "folderSlug": "pi-remote-desktop-parity-chat-ux",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-08-26_08-35__deep-research-complete-fan-out-run-2-cli-lineages.md"
+  ],
+  "level": "1"
+}

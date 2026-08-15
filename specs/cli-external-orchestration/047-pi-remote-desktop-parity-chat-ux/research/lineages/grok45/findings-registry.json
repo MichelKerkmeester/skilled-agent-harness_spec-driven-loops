@@ -1,0 +1,1189 @@
+{
+  "sessionId": "fanout-grok45-1786777562169-s2n1hh",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "Q1",
+      "inboxId": null,
+      "text": "How should Pi Remote expose in-session model switching on iPhone (placement, active-model visibility, relay/RPC wiring) without breaking desktop-parity full-access mode or redaction?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "Q2",
+      "inboxId": null,
+      "text": "How should effort / thinking-level switching be presented (segmented control vs menu) and mapped to pi thinking levels with clear active state?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "Q3",
+      "inboxId": null,
+      "text": "How should typed slash commands / quick actions be discoverable and auto-completed while mapping safely to pi commands (no weaker safety boundary)?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "Q4",
+      "inboxId": null,
+      "text": "How should a fast plan-mode toggle (--plan / plan-mode extension) be presented so active mode is always obvious, including exit back to agent mode?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "Q5",
+      "inboxId": null,
+      "text": "Which Claude/GPT (and peer) chat UI/UX visual patterns transfer to Pi Remote's restrained-token, one-accent, light/dark, prefers-reduced-motion design?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-6-q1-how-should-pi-remote-expose-in-session-model-switching-on-iphone-placement-ac",
+      "inboxId": null,
+      "text": "Q1: How should Pi Remote expose in-session model switching on iPhone (placement, active-model visibility, relay/RPC wiring) without breaking desktop-parity full-access mode or redaction?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-7-q2-how-should-effort-thinking-level-switching-be-presented-segmented-control-vs-",
+      "inboxId": null,
+      "text": "Q2: How should effort / thinking-level switching be presented (segmented control vs menu) and mapped to pi thinking levels with clear active state?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-8-q3-how-should-typed-slash-commands-quick-actions-be-discoverable-and-auto-comple",
+      "inboxId": null,
+      "text": "Q3: How should typed slash commands / quick actions be discoverable and auto-completed while mapping safely to pi commands (no weaker safety boundary)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-9-q4-how-should-a-fast-plan-mode-toggle-plan-plan-mode-extension-be-presented-so-a",
+      "inboxId": null,
+      "text": "Q4: How should a fast plan-mode toggle (`--plan` / plan-mode extension) be presented so active mode is always obvious, including exit back to agent mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-10-q5-which-claude-gpt-and-peer-chat-ui-ux-visual-patterns-layout-streaming-typogra",
+      "inboxId": null,
+      "text": "Q5: Which Claude/GPT (and peer) chat UI/UX visual patterns (layout, streaming, typography, input bar, empty states, motion) transfer to Pi Remote's restrained-token, one-accent, light/dark, prefers-reduced-motion design?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "Q1",
+      "inboxId": null,
+      "text": "How should Pi Remote expose in-session model switching on iPhone (placement, active-model visibility, relay/RPC wiring) without breaking desktop-parity full-access mode or redaction?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "Q2",
+      "inboxId": null,
+      "text": "How should effort / thinking-level switching be presented (segmented control vs menu) and mapped to pi thinking levels with clear active state?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "Q3",
+      "inboxId": null,
+      "text": "How should typed slash commands / quick actions be discoverable and auto-completed while mapping safely to pi commands (no weaker safety boundary)?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "Q4",
+      "inboxId": null,
+      "text": "How should a fast plan-mode toggle (--plan / plan-mode extension) be presented so active mode is always obvious, including exit back to agent mode?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "Q5",
+      "inboxId": null,
+      "text": "Which Claude/GPT (and peer) chat UI/UX visual patterns transfer to Pi Remote's restrained-token, one-accent, light/dark, prefers-reduced-motion design?",
+      "origin": "analyst-strategy",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-6-q1-how-should-pi-remote-expose-in-session-model-switching-on-iphone-placement-ac",
+      "inboxId": null,
+      "text": "Q1: How should Pi Remote expose in-session model switching on iPhone (placement, active-model visibility, relay/RPC wiring) without breaking desktop-parity full-access mode or redaction?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-7-q2-how-should-effort-thinking-level-switching-be-presented-segmented-control-vs-",
+      "inboxId": null,
+      "text": "Q2: How should effort / thinking-level switching be presented (segmented control vs menu) and mapped to pi thinking levels with clear active state?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-8-q3-how-should-typed-slash-commands-quick-actions-be-discoverable-and-auto-comple",
+      "inboxId": null,
+      "text": "Q3: How should typed slash commands / quick actions be discoverable and auto-completed while mapping safely to pi commands (no weaker safety boundary)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-9-q4-how-should-a-fast-plan-mode-toggle-plan-plan-mode-extension-be-presented-so-a",
+      "inboxId": null,
+      "text": "Q4: How should a fast plan-mode toggle (`--plan` / plan-mode extension) be presented so active mode is always obvious, including exit back to agent mode?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-10-q5-which-claude-gpt-and-peer-chat-ui-ux-visual-patterns-layout-streaming-typogra",
+      "inboxId": null,
+      "text": "Q5: Which Claude/GPT (and peer) chat UI/UX visual patterns (layout, streaming, typography, input bar, empty states, motion) transfer to Pi Remote's restrained-token, one-accent, light/dark, prefers-reduced-motion design?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "How should Pi Remote expose in-session model switching on iPhone (placement, active-model visibility, relay/RPC wiring) without breaking desktop-parity full-access mode or redaction?",
+    "How should effort / thinking-level switching be presented (segmented control vs menu) and mapped to pi thinking levels with clear active state?",
+    "How should typed slash commands / quick actions be discoverable and auto-completed while mapping safely to pi commands (no weaker safety boundary)?",
+    "How should a fast plan-mode toggle (--plan / plan-mode extension) be presented so active mode is always obvious, including exit back to agent mode?",
+    "Which Claude/GPT (and peer) chat UI/UX visual patterns transfer to Pi Remote's restrained-token, one-accent, light/dark, prefers-reduced-motion design?",
+    "Q1: How should Pi Remote expose in-session model switching on iPhone (placement, active-model visibility, relay/RPC wiring) without breaking desktop-parity full-access mode or redaction?",
+    "Q2: How should effort / thinking-level switching be presented (segmented control vs menu) and mapped to pi thinking levels with clear active state?",
+    "Q3: How should typed slash commands / quick actions be discoverable and auto-completed while mapping safely to pi commands (no weaker safety boundary)?",
+    "Q4: How should a fast plan-mode toggle (`--plan` / plan-mode extension) be presented so active mode is always obvious, including exit back to agent mode?",
+    "Q5: Which Claude/GPT (and peer) chat UI/UX visual patterns (layout, streaming, typography, input bar, empty states, motion) transfer to Pi Remote's restrained-token, one-accent, light/dark, prefers-reduced-motion design?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-20-apply-concrete-stack",
+      "text": "**Apply (concrete stack):**",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-5-apply-add-a-compose-adjacent-control-that-always-shows-the-active-model-short-la",
+      "text": "**Apply:** Add a compose-adjacent control that always shows the *active* model short label (provider + id nick), not buried in Settings.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-15-apply-for-pi-remote-always-show-model-nick-as-the-closed-button-label-put-effort",
+      "text": "**Apply:** For Pi Remote, always show **model nick as the closed-button label**; put effort in a sibling chip or nested submenu — never replace the model name with only “High/Medium/Low”.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-10-apply-prefer-claude-style-composer-adjacent-button-menu-react-aria-over-a-settin",
+      "text": "**Apply:** Prefer Claude-style **composer-adjacent** `Button`/`Menu` (React Aria) over a Settings-only path. Label shows current model nick; menu lists `get_available_models` results. Do not clear transcript on switch.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-29-do-instead-in-composer-picker-optional-settings-for-defaults-scoped-favorites-la",
+      "text": "**Do instead:** In-composer picker + optional Settings for defaults/scoped favorites later.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-3-pattern-current-session-chrome-shows-back-freshness-compact-session-id-agent-run",
+      "text": "**Pattern (current):** Session chrome shows Back, freshness, compact session id, agent running/idle state, and a single textarea + Send. No model name, no picker, no settings chip.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-8-pattern-claude-model-name-button-beside-the-send-field-opens-a-menu-model-effort",
+      "text": "**Pattern:** Claude: model-name button beside the send field opens a menu (model + effort + thinking). ChatGPT mobile: picker at top of conversation / composer; options increasingly named Instant/Medium/High rather than raw model SKUs. Switch applies to *next* turn; chat history remains.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-13-pattern-cursor-s-newer-picker-opens-on-high-medium-low-effort-first-model-list-i",
+      "text": "**Pattern:** Cursor’s newer picker opens on High/Medium/Low effort first; model list is a secondary row. Users complain when the active model name disappears.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-18-pattern-headless-pi-accepts-type-set-model-provider-modelid-and-get-available-mo",
+      "text": "**Pattern:** Headless pi accepts `{\"type\":\"set_model\",\"provider\":\"...\",\"modelId\":\"...\"}` and `get_available_models`. Pi Remote’s `PiRpcCommand` union today is only prompt/steer/follow_up/abort/read-state/get_entries — no model commands. Phone→relay path is `prompt.submit` only.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-2-source-source-file-users-michelkerkmeester-mega-development-code-environment-app",
+      "text": "**Source:** [SOURCE: file:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:1050-1114] [SOURCE: file:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/pwa/compose-box.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-12-source-source-https-forum-cursor-com-t-bug-report-the-model-dropdown-is-showing-",
+      "text": "**Source:** [SOURCE: https://forum.cursor.com/t/bug-report-the-model-dropdown-is-showing-the-wrong-list-high-low-medium-instead-of-the-models/167238]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-17-source-source-https-github-com-earendil-works-pi-blob-main-packages-coding-agent",
+      "text": "**Source:** [SOURCE: https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/rpc.md] (`set_model`, `get_available_models`, `get_state`) [SOURCE: file:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/packages/pi-rpc-protocol/src/types.ts:63-69]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-7-source-source-https-usingclaude-com-en-guides-features-claude-app-model-effort-t",
+      "text": "**Source:** [SOURCE: https://usingclaude.com/en/guides/features/claude-app-model-effort-thinking-settings] [SOURCE: https://suneelmaghani.com/how-to-switch-claude-ai-models/] [SOURCE: https://help.openai.com/en/articles/11909943-gpt-5-] [SOURCE: https://www.tonyreviewsthings.com/chatgpt-model-picker-simplified/]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-27-source-claude-chatgpt-place-picker-in-chat-044-research-already-stressed-action-",
+      "text": "**Source:** Claude/ChatGPT place picker in-chat; 044 research already stressed action-first session UX. [SOURCE: file:specs/cli-external-orchestration/044-pi-mobile-ui-ux-research/research/research.md]",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-14-why-it-helps-negative-lesson-effort-first-without-a-persistent-model-label-hurts",
+      "text": "**Why it helps (negative lesson):** Effort-first without a persistent model label hurts glanceability.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-9-why-it-helps-one-thumb-reach-always-visible-active-selection-mid-conversation-ch",
+      "text": "**Why it helps:** One-thumb reach, always-visible active selection, mid-conversation change without restart.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-19-why-it-helps-wiring-is-an-allowlisted-relay-rpc-forward-not-a-new-agent-capabili",
+      "text": "**Why it helps:** Wiring is an allowlisted relay RPC forward, not a new agent capability.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-4-why-it-matters-operators-cannot-see-or-change-which-model-is-answering-desktop-p",
+      "text": "**Why it matters:** Operators cannot see or change which model is answering; desktop-parity full-access mode still needs phone-visible model identity for trust and task matching.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-28-why-ruled-out-settings-only-hides-the-active-model-during-steering-and-adds-navi",
+      "text": "**Why ruled out:** Settings-only hides the active model during steering and adds navigation cost on a one-handed PWA.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-21-extend-pi-rpc-protocol-with-phone-relay-dtos-model-list-model-set-opaque-ids-onl",
+      "text": "Extend `pi-rpc-protocol` with phone→relay DTOs: `model.list`, `model.set` (opaque ids only; never embed API keys).",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-1-f-001-pi-remote-has-no-model-control-surface-today",
+      "text": "F-001: Pi Remote has no model control surface today",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-6-f-002-leading-apps-put-the-model-control-next-to-the-send-field-and-keep-history",
+      "text": "F-002: Leading apps put the model control next to the send field and keep history intact on switch",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-11-f-003-cursor-separates-model-identity-from-effort-keep-model-name-visible",
+      "text": "F-003: Cursor separates model identity from effort — keep model name visible",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-16-f-004-pi-rpc-already-exposes-model-selection-pi-remote-protocol-does-not-forward",
+      "text": "F-004: Pi RPC already exposes model selection; Pi Remote protocol does not forward it",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-26-f-005-ruled-out-settings-only-model-page-as-primary-affordance",
+      "text": "F-005: Ruled out — Settings-only model page as primary affordance",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-25-keep-mutation-approval-path-unchanged-model-switch-is-session-config-not-a-host-",
+      "text": "Keep mutation approval path unchanged — model switch is session config, not a host mutation.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-23-project-active-model-from-get-state-or-set-model-response-into-session-card-sess",
+      "text": "Project active model from `get_state` (or set_model response) into session card / session chrome as redacted labels (provider + model nick), no paths/secrets.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-22-relay-supervisor-forwards-to-child-get-available-models-set-model-on-the-existin",
+      "text": "Relay supervisor forwards to child `get_available_models` / `set_model` on the existing serialized write chain.",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-1-24-ui-react-aria-menu-from-composer-footer-disable-while-awaitingsnapshot-or-non-li",
+      "text": "UI: React Aria `Menu` from composer footer; disable while `awaitingSnapshot` or non-live connection (same guards as compose-box).",
+      "addedAtIteration": 1,
+      "sources": [
+        "Pi Remote: `App.tsx`, `relay.ts`, `types.ts`, compose-box.md, prompt-steering-transport.md",
+        "Prior: 044 research.md (compose Send/Steer patterns)",
+        "External: usingclaude model/effort guide; Claude mobile switch guides; OpenAI GPT-5.6 help; ChatGPT picker simplification; Cursor forum model-picker layout; pi `rpc.md`"
+      ]
+    },
+    {
+      "id": "finding-2-5-apply-composer-footer-modelnick-effort-medium-plan-send-effort-control-is-a-reac",
+      "text": "**Apply:** Composer footer: `[ModelNick ▾] [Effort: Medium ▾] [Plan] [Send]`. Effort control is a React Aria `Select` or segmented control when ≤4 levels available.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-20-apply-keep-thinking-block-disclosure-defaults-from-044-do-not-couple-them-to-eff",
+      "text": "**Apply:** Keep thinking-block Disclosure defaults from 044; do not couple them to effort chip.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-apply-react-aria-menu-with-selectionmode-single-do-not-rely-on-shift-tab-as-the-",
+      "text": "**Apply:** React Aria `Menu` with `selectionMode=\"single\"`; do not rely on Shift+Tab as the only path.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-apply-relay-endpoints-thinking-list-thinking-set-on-model-set-success-refresh-le",
+      "text": "**Apply:** Relay endpoints `thinking.list` / `thinking.set`; on `model.set` success, refresh levels and clamp current level into the new set. Show short labels: Off / Min / Low / Med / High / XHigh / Max.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-pattern-claude-nests-effort-inside-the-model-menu-but-keeps-the-closed-control-l",
+      "text": "**Pattern:** Claude nests Effort inside the model menu but keeps the closed control labeled with the model name. ChatGPT increasingly names tiers Instant/Medium/High. Cursor’s effort-first closed state loses glanceable model identity.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-pattern-do-not-hardcode-a-fixed-five-segment-control-call-get-available-thinking",
+      "text": "**Pattern:** Do not hardcode a fixed five-segment control. Call `get_available_thinking_levels` after model change; hide the effort chip when only `[\"off\"]`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-pattern-effort-changes-how-hard-the-model-works-disclosure-collapse-is-a-reading",
+      "text": "**Pattern:** Effort changes how hard the model works; Disclosure collapse is a reading preference.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-pattern-mobile-primary-visible-menu-with-current-level-checked-optional-hardware",
+      "text": "**Pattern:** Mobile primary = visible menu with current level checked; optional hardware-keyboard cycle as progressive enhancement only.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-source-source-https-github-com-earendil-works-pi-blob-main-packages-coding-agent",
+      "text": "**Source:** [SOURCE: https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/rpc.md] (`set_thinking_level`, `get_available_thinking_levels`, `cycle_thinking_level`; levels `off|minimal|low|medium|high|xhigh|max`)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-source-source-https-usingclaude-com-en-guides-features-claude-app-model-effort-t",
+      "text": "**Source:** [SOURCE: https://usingclaude.com/en/guides/features/claude-app-model-effort-thinking-settings] [SOURCE: https://forum.cursor.com/t/bug-report-the-model-dropdown-is-showing-the-wrong-list-high-low-medium-instead-of-the-models/167238] [SOURCE: iteration-001 F-003]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-source-claude-distinguishes-effort-from-extended-thinking-toggle-pi-remote-alrea",
+      "text": "**Source:** Claude distinguishes Effort from Extended Thinking toggle; Pi Remote already renders `thinking` blocks via Disclosure. [SOURCE: file:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:1205-1218] [SOURCE: https://usingclaude.com/en/guides/features/claude-app-model-effort-thinking-settings]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-source-pi-tui-uses-shift-tab-cycle-cursor-cmd-shift-cycle-is-brittle-on-mobile-h",
+      "text": "**Source:** Pi TUI uses Shift+Tab cycle; Cursor `Cmd+Shift+/` cycle is brittle on mobile/hardware keyboards. [SOURCE: https://forum.cursor.com/t/model-thinking-effort-selection-is-missing/158529]",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-19-why-it-helps-avoid-conflating-privacy-reading-ux-with-model-compute",
+      "text": "**Why it helps:** Avoid conflating privacy/reading UX with model compute.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-why-it-helps-avoids-offering-unsupported-tiers-claude-hides-effort-when-model-la",
+      "text": "**Why it helps:** Avoids offering unsupported tiers (Claude hides Effort when model lacks it).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-why-it-helps-cycles-hide-destination-phone-users-need-explicit-selection",
+      "text": "**Why it helps:** Cycles hide destination; phone users need explicit selection.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-why-it-helps-operators-change-effort-more-often-than-model-still-must-always-kno",
+      "text": "**Why it helps:** Operators change effort more often than model; still must always know *which* model.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-f-006-present-effort-as-a-sibling-chip-not-a-replacement-for-the-model-label",
+      "text": "F-006: Present effort as a sibling chip, not a replacement for the model label",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-f-007-map-ui-tiers-to-pi-thinkinglevel-dynamically-from-the-child",
+      "text": "F-007: Map UI tiers to pi `ThinkingLevel` dynamically from the child",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-f-008-prefer-discrete-select-over-silent-cycle-on-phone",
+      "text": "F-008: Prefer discrete select over silent cycle on phone",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-f-009-separate-show-thinking-transcript-from-effort-level",
+      "text": "F-009: Separate “show thinking transcript” from “effort level”",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-apply",
+      "text": "**Apply:**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-apply",
+      "text": "**Apply:**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-apply-relay-commands-list-cache-in-session-state-names-descriptions-only-redact-",
+      "text": "**Apply:** Relay `commands.list` → cache in session state (names+descriptions only, redact paths in `sourceInfo` if any). Typing `/` at start of compose opens filtered list; selecting inserts `/name ` or submits `/name` for zero-arg extension commands.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-27-defer-mid-input-detection-to-a-later-pass",
+      "text": "**Defer:** Mid-input `/` detection to a later pass.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-pattern-all-slash-invocations-still-go-through-prompt-submit-ticket-single-fligh",
+      "text": "**Pattern:** All slash invocations still go through `prompt.submit` + ticket + single-flight. Do not add a separate “execute command” HTTP verb that skips projection/redaction.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-pattern-claude-code-mobile-users-report-does-nothing-must-memorize-names-request",
+      "text": "**Pattern:** Claude Code mobile users report `/` does nothing — must memorize names. Requests: searchable dropdown on `/`, plus optional quick-action tiles/FAB for frequent commands.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-pattern-commands-have-name-description-source-extension-prompt-skill-phone-shoul",
+      "text": "**Pattern:** Commands have `name`, `description`, `source` (`extension`|`prompt`|`skill`). Phone should list only what RPC returns — never invent a parallel command catalog.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-source-source-file-users-michelkerkmeester-mega-development-code-environment-app",
+      "text": "**Source:** [SOURCE: file:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/feature-catalog/command-and-push/prompt-steering-transport.md] [SOURCE: file:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/docs/security.md] (redaction + foreground authority) [SOURCE: rpc.md note that TUI-only builtins won’t execute]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-source-source-https-github-com-anthropics-claude-code-issues-32051-source-https-",
+      "text": "**Source:** [SOURCE: https://github.com/anthropics/claude-code/issues/32051] [SOURCE: https://github.com/anthropics/claude-code/issues/56204] [SOURCE: https://github.com/anthropics/claude-code/issues/60167]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-source-source-https-github-com-earendil-works-pi-blob-main-packages-coding-agent",
+      "text": "**Source:** [SOURCE: https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/rpc.md] (`get_commands`; invoke with `/name` through `prompt`; extension commands run even during streaming; skills/templates expand before queue)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-25-source-mid-input-slash-is-a-desktop-power-user-request-mobile-claude-gaps-focus-",
+      "text": "**Source:** Mid-input slash is a desktop power-user request; mobile Claude gaps focus on start-of-input. [SOURCE: https://github.com/anthropics/claude-code/issues/44488]",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-why-it-helps-phone-keyboards-make-slash-long-name-entry-costly-discoverability-i",
+      "text": "**Why it helps:** Phone keyboards make slash+long-name entry costly; discoverability is the feature.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-why-it-helps-prevents-a-second-weaker-command-authority-on-the-phone",
+      "text": "**Why it helps:** Prevents a second, weaker command authority on the phone.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-why-it-helps-single-source-of-truth-stays-with-the-pi-child-desktop-and-phone-st",
+      "text": "**Why it helps:** Single source of truth stays with the pi child; desktop and phone stay in parity.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-26-why-ruled-out-for-v1-complex-caret-math-on-ios-safari-start-of-input-covers-exte",
+      "text": "**Why ruled out for v1:** Complex caret math on iOS Safari; start-of-input covers extension toggles (`/plan`) and templates.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-19-allowlist-ui-presentation-of-extension-prompt-skill-from-get-commands-only",
+      "text": "Allowlist UI presentation of `extension`/`prompt`/`skill` from `get_commands` only.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-23-document-that-tui-only-commands-absent-from-get-commands-are-intentionally-unava",
+      "text": "Document that TUI-only commands absent from `get_commands` are intentionally unavailable on phone.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-empty-state-of-new-session-can-show-the-same-chips-044-empty-state-guidance",
+      "text": "Empty-state of new session can show the same chips (044 empty-state guidance).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-f-010-inventory-commands-via-get-commands-invoke-via-existing-prompt-channel",
+      "text": "F-010: Inventory commands via `get_commands`; invoke via existing prompt channel",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-f-011-mobile-needs-typeahead-quick-action-chips-typing-alone-fails",
+      "text": "F-011: Mobile needs typeahead + quick-action chips; typing alone fails",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-f-012-safety-treat-slash-as-prompt-text-through-the-same-ticketed-path-allowlist",
+      "text": "F-012: Safety — treat slash as prompt text through the same ticketed path; allowlist dangerous families",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-24-f-013-ruled-out-free-form-mid-prompt-slash-autocomplete-as-v1",
+      "text": "F-013: Ruled out — free-form mid-prompt slash autocomplete as v1",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-21-if-a-command-would-trigger-host-mutation-tools-existing-approval-card-remains-th",
+      "text": "If a command would trigger host mutation tools, existing approval card remains the gate — slash does not auto-approve.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-22-never-surface-raw-filesystem-paths-from-sourceinfo-in-the-pwa-redact-to-location",
+      "text": "Never surface raw filesystem paths from `sourceInfo` in the PWA (redact to location tier: user/project).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-on-value-startswith-show-react-aria-listbox-combobox-overlay-above-composer-max-",
+      "text": "On `value.startsWith('/')`, show React Aria `ListBox`/`ComboBox` overlay above composer (max ~6 rows, filter by prefix).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-pin-2-4-quick-actions-derived-from-allowlisted-high-frequency-names-e-g-plan-tod",
+      "text": "Pin 2–4 “quick actions” derived from allowlisted high-frequency names (e.g. `/plan`, `/todos` when present) as chips above the textarea — chips fill draft or submit; never bypass relay.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-20-show-source-badge-in-autocomplete-extension-prompt-skill",
+      "text": "Show `source` badge in autocomplete (Extension / Prompt / Skill).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-15-apply-composer-chrome-plan-toggle-long-press-or-menu-still-exposes-plan-and-todo",
+      "text": "**Apply:** Composer chrome: `Plan` toggle. Long-press or `/` menu still exposes `/plan` and `/todos`. Do not implement a three-way permission cycle on mobile v1 — binary Plan vs Agent is enough for the pi extension’s model.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-apply-confirm-plan-mode-extension-is-installed-in-the-relay-s-pi-child-profile-f",
+      "text": "**Apply:** Confirm plan-mode extension is installed in the relay’s pi child profile for desktop-parity. Expose a dedicated **Plan** toggle that submits `/plan` (or a future allowlisted `extension.invoke` if added). Reflect mode from status/events, not from optimistic UI alone.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-20-apply-toggle-off-sends-plan-again-extension-toggle-keep-warning-pill-until-relay",
+      "text": "**Apply:** Toggle off sends `/plan` again (extension toggle). Keep warning pill until relay/session state confirms tools restored. If confirmation fails, show inline alert — never assume.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-apply-when-plan-mode-is-on-session-title-row-shows-a-persistent-pill-plan-read-o",
+      "text": "**Apply:** When plan mode is on, session title row shows a persistent pill: `Plan · read-only` using `--warning` token (already in `style.css`). Composer placeholder changes to “Describe what to plan…” vs “Send a prompt or steer…”. Toggle button is pressed/selected via React Aria `ToggleButton`.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-pattern-claude-code-shows-an-explicit-status-badge-cursor-uses-a-named-mode-pick",
+      "text": "**Pattern:** Claude Code shows an explicit status badge; Cursor uses a named mode picker. Both use Shift+Tab as accelerator, not as the only signal.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-pattern-extension-registers-plan-flag-plan-command-optional-shortcut-toggles-act",
+      "text": "**Pattern:** Extension registers `--plan` flag, `/plan` command, optional shortcut; toggles active tools to read-only set; `ctx.ui.setStatus(\"plan-mode\", …)` for footer; persists via `appendEntry`.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-13-pattern-phone-cannot-depend-on-shift-tab-prefer-a-durable-control-next-to-model-",
+      "text": "**Pattern:** Phone cannot depend on Shift+Tab. Prefer a durable control next to model/effort chips.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-18-pattern-same-control-turns-plan-off-banner-remains-until-host-confirms",
+      "text": "**Pattern:** Same control turns Plan off; banner remains until host confirms.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-source-source-https-code-claude-com-docs-en-permission-modes-status-bar-labels-l",
+      "text": "**Source:** [SOURCE: https://code.claude.com/docs/en/permission-modes] (status bar labels like `⏸ plan mode on`) [SOURCE: https://www.learncursor.dev/learn/cursor-agents/agent-plan-mode] [SOURCE: https://handbook.reopt.ai/en/books/claude-code-advanced/plan-mode]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-source-source-https-github-com-earendil-works-pi-blob-main-packages-coding-agent",
+      "text": "**Source:** [SOURCE: https://github.com/earendil-works/pi/blob/main/packages/coding-agent/examples/extensions/plan-mode/index.ts] [SOURCE: https://cdn.jsdelivr.net/npm/@oh-my-pi/pi-coding-agent@17.2.12/examples/extensions/plan-mode.ts] [SOURCE: https://pi.dev/docs/latest/extensions]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-17-source-claude-cursor-require-explicit-exit-cycle-away-build-github-issues-show-s",
+      "text": "**Source:** Claude/Cursor require explicit exit (cycle away / Build). GitHub issues show stuck plan mode when toggled after skip-permissions. [SOURCE: https://automatelab.tech/blog/ai-coding/how-claude-code-plan-mode-works/]",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-source-same-as-f-015-pi-extension-uses-ctrl-alt-p-shift-p-variants",
+      "text": "**Source:** Same as F-015; Pi extension uses Ctrl+Alt+P / Shift+P variants.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-14-why-it-helps-one-thumb-certainty-avoids-overshooting-multi-mode-cycles",
+      "text": "**Why it helps:** One-thumb certainty; avoids overshooting multi-mode cycles.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-why-it-helps-operators-must-never-wonder-whether-writes-are-allowed-especially-u",
+      "text": "**Why it helps:** Operators must never wonder whether writes are allowed — especially under full-access desktop-parity where the default is powerful.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-why-it-helps-phone-can-toggle-by-submitting-plan-through-existing-prompt-path-f-",
+      "text": "**Why it helps:** Phone can toggle by submitting `/plan` through existing prompt path (F-010) without new mutation RPC — *if* the extension is loaded in the supervised child.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-19-why-it-helps-under-full-access-mode-silent-exit-would-be-dangerous-stuck-on-is-a",
+      "text": "**Why it helps:** Under full-access mode, silent exit would be dangerous; stuck-on is also dangerous.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-22-why-ruled-out-pi-remote-is-single-live-session-spawning-another-child-breaks-the",
+      "text": "**Why ruled out:** Pi Remote is single live session; spawning another child breaks the product model. Use in-session `/plan` toggle instead; `--plan` is for cold start only (ops/boot), not per-turn phone UX.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-f-014-plan-mode-is-an-extension-command-status-not-a-separate-rpc-verb",
+      "text": "F-014: Plan mode is an extension command + status, not a separate RPC verb",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-f-015-always-visible-mode-chrome-badge-beats-hidden-cycle",
+      "text": "F-015: Always-visible mode chrome — badge beats hidden cycle",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-f-016-touch-primary-labeled-toggle-keyboard-cycle-is-optional",
+      "text": "F-016: Touch primary = labeled toggle; keyboard cycle is optional",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-16-f-017-exit-clarity-returning-to-agent-mode-must-be-as-obvious-as-enter",
+      "text": "F-017: Exit clarity — returning to agent mode must be as obvious as enter",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-21-f-018-ruled-out-starting-a-second-session-with-plan-for-every-plan-request",
+      "text": "F-018: Ruled out — starting a second session with `--plan` for every plan request",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-15-apply-empty-transcript-becomes-a-quiet-card-on-surface-with-kicker-chips-no-illu",
+      "text": "**Apply:** `empty-transcript` becomes a quiet card on `--surface` with kicker + chips; no illustrations that fight the one-accent system.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-25-apply-css-transitions-on-opacity-transform-only-media-prefers-reduced-motion-red",
+      "text": "**Apply:** CSS transitions on opacity/transform only; `@media (prefers-reduced-motion: reduce)` → instant state swaps.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-apply-extend-prompt-composer-footer-into-a-two-row-strip-on-narrow-widths-row1-m",
+      "text": "**Apply:** Extend `.prompt-composer-footer` into a two-row strip on narrow widths: row1 = model/effort/plan chips; row2 = hint + Send. Keep `--radius-control`, `--accent` for Send only.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-10-apply-increase-inter-turn-gap-via-space-6-keep-tool-usage-collapsed-defaults-fro",
+      "text": "**Apply:** Increase inter-turn gap via `--space-6`; keep tool/usage collapsed defaults from 044; live edge = following vs “N new · Jump to latest” (044 F). Streaming caret/opacity pulse only under `@media (prefers-reduced-motion: no-preference)` using `--duration-fast`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-20-apply-user-text-blocks-slightly-raised-surface-raised-stronger-weight-assistant-",
+      "text": "**Apply:** User text blocks: slightly raised `--surface-raised` + stronger weight; assistant: flat surface; meta (usage/tool): `--ink-muted`. Keep single `--accent` for focus, Send, and active Plan/Model selection rings only.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-23-pattern-2-3-intentional-motions-1-composer-focus-ring-2-plan-pill-appear-disappe",
+      "text": "**Pattern:** 2–3 intentional motions: (1) composer focus ring, (2) plan-pill appear/disappear, (3) jump-to-latest button fade. No continuous glow, no purple gradients, no emoji.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-pattern-claude-gpt-show-user-bubbles-vs-assistant-prose-pi-remote-should-keep-ty",
+      "text": "**Pattern:** Claude/GPT show user bubbles vs assistant prose; Pi Remote should keep typed-block semantics but borrow spacing rhythm: more air between turns, denser inside tool disclosures.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-18-pattern-gpt-claude-use-clear-user-vs-assistant-contrast-pi-can-use-weight-size-n",
+      "text": "**Pattern:** GPT/Claude use clear user vs assistant contrast; Pi can use weight/size, not a second brand color.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-13-pattern-replace-no-transcript-blocks-with-short-guidance-3-chips-e-g-plan-this-t",
+      "text": "**Pattern:** Replace “No transcript blocks…” with short guidance + 3 chips: e.g. Plan this task, Review last change, What’s the agent doing — chips only fill drafts or send allowlisted `/` commands.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-pattern-safe-area-padded-dock-growing-textarea-trailing-primary-send-leading-sec",
+      "text": "**Pattern:** Safe-area padded dock; growing textarea; trailing primary Send; leading/secondary chips for model/effort/plan.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-17-source-source-file-users-michelkerkmeester-mega-development-code-environment-app",
+      "text": "**Source:** [SOURCE: file:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1-66] — already has canvas/surface/ink/accent OKLCH tokens, light/dark, mono for code.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-source-source-file-specs-cli-external-orchestration-044-pi-mobile-ui-ux-research",
+      "text": "**Source:** [SOURCE: file:specs/cli-external-orchestration/044-pi-mobile-ui-ux-research/research/research.md] (turn-oriented typed blocks; two-state live edge) [SOURCE: file:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/App.tsx:1119-1170] [SOURCE: style.css thinking/plan block styles]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-source-claude-chatgpt-mobile-keep-input-docked-above-the-home-indicator-controls",
+      "text": "**Source:** Claude/ChatGPT mobile keep input docked above the home indicator; controls sit in a thin strip by Send. [SOURCE: https://usingclaude.com/en/guides/features/claude-app-model-effort-thinking-settings] [SOURCE: file:/Users/michelkerkmeester/MEGA/Development/Code_Environment/Apps/Pi Mobile/apps/pi-remote-web/src/style.css:1232-1295] [SOURCE: 044 research compose Send/Steer]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-12-source-claude-gpt-empty-chats-offer-starter-prompts-claude-code-mobile-requests-",
+      "text": "**Source:** Claude/GPT empty chats offer starter prompts; Claude Code mobile requests quick-action chips. [SOURCE: iteration-003 F-011] [SOURCE: App.tsx empty-transcript]",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-22-source-style-css-duration-fast-duration-state-044-reduced-motion-guidance-react-",
+      "text": "**Source:** style.css `--duration-fast`/`--duration-state`; 044 reduced-motion guidance; React Aria disclosures.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-19-why-it-helps-feels-app-like-while-staying-restrained",
+      "text": "**Why it helps:** Feels “app-like” while staying restrained.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-14-why-it-helps-first-run-teachability-for-model-effort-plan-controls",
+      "text": "**Why it helps:** First-run teachability for model/effort/plan controls.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-9-why-it-helps-long-agent-transcripts-need-scannability-without-party-colored-card",
+      "text": "**Why it helps:** Long agent transcripts need scannability without party-colored cards.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-24-why-it-helps-matches-modern-ai-app-feel-without-violating-prefers-reduced-motion",
+      "text": "**Why it helps:** Matches “modern AI app” feel without violating prefers-reduced-motion or design constraints.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-why-it-helps-one-thumb-reach-matches-modern-ai-apps-without-dashboard-chrome",
+      "text": "**Why it helps:** One-thumb reach; matches modern AI apps without dashboard chrome.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-27-why-ruled-out-conflicts-with-one-accent-token-system-and-044-anti-clutter-would-",
+      "text": "**Why ruled out:** Conflicts with one-accent token system and 044 anti-clutter; would make tool/plan/thinking blocks harder to parse.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-f-019-composer-as-a-sticky-bottom-dock-with-control-strip",
+      "text": "F-019: Composer as a sticky bottom dock with control strip",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-f-020-turn-hierarchy-calm-streaming-not-neon-tokens",
+      "text": "F-020: Turn hierarchy + calm streaming, not neon tokens",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-11-f-021-empty-state-as-capability-runway-not-a-blank-void",
+      "text": "F-021: Empty state as capability runway, not a blank void",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-16-f-022-typography-and-color-deepen-hierarchy-without-new-accents",
+      "text": "F-022: Typography and color — deepen hierarchy without new accents",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-21-f-023-motion-presence-not-decoration",
+      "text": "F-023: Motion — presence, not decoration",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-26-f-024-ruled-out-multi-color-message-bubbles-glassmorphism-floating-promo-chips",
+      "text": "F-024: Ruled out — multi-color message bubbles / glassmorphism / floating promo chips",
+      "addedAtIteration": 5,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-4d2e51e6c732",
+      "text": "Effort-only closed button that hides model name — fails F-003.",
+      "contentHash": "4d2e51e6c732",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-53dfd6e6223b",
+      "text": "Hardcoded High/Medium/Low only — discards pi’s richer level set and model-specific availability.",
+      "contentHash": "53dfd6e6223b",
+      "addedAtIteration": 2
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 10,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 125,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.72,
+    "coverageBySources": {
+      "code": 3
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0147-skilled-pi-remote-experience/specs/cli-external-orchestration/047-pi-remote-desktop-parity-chat-ux/research/lineages/grok45/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": []
+}
