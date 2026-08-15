@@ -1,0 +1,1005 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-doc/027-playbook-snippet-template-migration"
+# PACKET: specs/sk-doc/027-playbook-snippet-template-migration
+
+---
+title: "Implementation Summary — sk-doc manual-testing-playbook snippet template migration"
+description: "Packet 027 implementation summary."
+trigger_phrases:
+  - "packet 027 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/027-playbook-snippet-template-migration"
+    last_updated_at: "2026-08-06T10:00:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Migration and template edit committed; packet docs authored"
+    next_safe_action: "Run validate.sh --strict"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-027-playbook-snippet-template-migration"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary — sk-doc manual-testing-playbook snippet template migration
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 027-playbook-snippet-template-migration |
+| **Completed** | 2026-08-06 |
+| **Level** | 2 |
+| **Status** | In Progress |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 32 routing-gold snippet files under `manual-testing-playbook/` were migrated to the per-feature scaffold: numbered `OVERVIEW` / `SCENARIO CONTRACT` / `TEST EXECUTION` / `SOURCE FILES` / `SOURCE METADATA`, prose test execution instead of the 9-column table, `description` and `stage` frontmatter added, and the dead `category` / `created` / `expected_token_range_*` fields removed. A reviewable migration script drove the transform across four shapes (18 full-old, 8 minimal, 5 minimal-purpose, 1 variant). The snippet template gained the routing-gold fields it had omitted, so a corpus file can match the template without breaking the topology gate.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+A field-consumer analysis established which frontmatter is load-bearing, so the frontmatter transform is a blacklist that preserves the topology and compiled-routing contract fields and drops only proven-dead keys. The migration script was dry-run on one file per shape, corrected for embedded H3 handling, then applied to all 32 and staged plus committed in tight succession because a concurrent process was deleting files in the working tree. The 13 minimal files received sections but no invented commands or evidence; their test execution states prompt-only.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Rationale |
+|----------|-----------|
+| Blacklist frontmatter drop, not whitelist | The compiled-routing variant carries `evidence_*` and `route_shape` fields a whitelist would have destroyed |
+| Keep `expected_workflow_mode` / `expected_leaf_resources` | The topology gate requires them; the template omitted them, so the template was edited instead |
+| `stage: routing` on stage-less files | Matches the loader's absent-default, so no benchmark scoring changed |
+| No invented content for minimal files | Fabricated commands and evidence are unverifiable and no gate requires them |
+| Commit incrementally in a hostile tree | A concurrent process deleted `migrate.mjs` and `spec.md` mid-run; staging and committing fast made the work durable |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result | Evidence |
+|-------|--------|----------|
+| Topology gate | Pass | `verdict=PASS valid=32 blocked=0` after migration |
+| Package validator | Pass | `SKIP ... scenarios=32 ... violations=0 warnings=0` |
+| Frontmatter map | Pass | `description`/`stage` 32/32; `category`/`created`/`expected_token_range_*` 0/32 |
+| Section shape | Pass | `## 4. SOURCE FILES` and `## 5. SOURCE METADATA` 32/32; 9-column table 0/32 |
+| Content preserved | Pass | `skill-creation.md` Commands carries the original Setup block; variant keeps `evidence_*` |
+| No invention | Pass | 13 minimal files carry a prompt-only note |
+| Bijection | Pass | 32/32 files referenced by the root index, 0 orphans |
+| Packet validation | Pass | `validate.sh --strict` Errors 0 |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Completion fingerprint** — `completion_pct` stays 0 while the spec-memory daemon is down.
+2. **Minimal files stay minimal** — the 13 prompt-only holdout files carry no execution detail, by design; the routing-gold gate scores them from the prompt and frontmatter.
+3. **Hostile working tree** — a concurrent process deletes files between tool calls; this packet's files were committed to survive it.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/028-sk-communication-skill"
+# PACKET: specs/sk-doc/028-sk-communication-skill
+
+---
+title: "Implementation Status: sk-communication skill"
+description: "The sk-communication standalone skill is authored, validated, and advisor-routable."
+trigger_phrases:
+  - "sk-communication implementation status"
+importance_tier: "standard"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-communication-skill"
+    last_updated_at: "2026-08-12T17:49:00Z"
+    last_updated_by: "claude"
+    recent_action: "Applied deep-review remediation to the skill docs and packet"
+    next_safe_action: "Optionally clear the deferred P2 review advisories"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "spec.md"
+      - ".opencode/skills/sk-communication/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-communication-skill-20260812"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The skill is a validated, advisor-routable wrapper for the communication-projection package."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Implementation Status: sk-communication skill
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 028-sk-communication-skill |
+| **Status** | Complete |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A standalone skill at `.opencode/skills/sk-communication/`. Its `SKILL.md` routes a request to the correct subsystem of the communication-projection package and enforces the invariants: canonical bytes stay unchanged, privacy runs before ranking, every runtime path declares a full-projection or safe-native tier, failures return the exact original, telemetry is content-free, and a release needs human-certified non-inferiority evidence. `graph-metadata.json` carries real projection domains and intent signals with sibling edges to `sk-code`, `sk-design`, and `sk-doc`.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The skill was scaffolded with the create-skill initializer, then `SKILL.md` and `graph-metadata.json` were authored by hand, the manifest and aliases were generated, and the canonical validators plus an advisor smoke test confirmed the result.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Standalone skill, not a parent hub | One identity with one contract; there is no multi-mode dispatch to justify a hub. |
+| Point at the package rather than duplicate it | The package is the single source of truth; the skill routes to it and enforces its invariants. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Skill-root metadata | PASS: `ci-skill-root-metadata` class-S 12/12, 0 failed |
+| Package validation | PASS: `validate_skill_package.py` clean |
+| Advisor routing | PASS: sk-communication is the top recommendation for the projection intent |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Bundled with an unmerged package**: the skill and the `packages/cli-communication-projection/` package it points at both live on the `skilled/0143-provider-adapters-privacy` branch and land to a release branch together.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/028-sk-create-diagram"
+# PACKET: specs/sk-doc/028-sk-create-diagram (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-create-diagram — editorial HTML/SVG diagram mode for sk-doc"
+description: "Phase parent for forking the external diagram-design plugin (27 diagram types, self-contained HTML/SVG output) into a new sk-create-diagram nested workflow packet under the sk-doc parent hub."
+trigger_phrases:
+  - "sk-create-diagram"
+  - "editorial HTML diagram skill"
+  - "fork diagram-design plugin"
+  - "27 diagram types skill"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram"
+    last_updated_at: "2026-08-13T17:15:00.000Z"
+    last_updated_by: "claude"
+    recent_action: "All 16 phases complete; packet closed"
+    next_safe_action: "None — packet complete and closed"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "001-inventory-and-skill-contract/decision-record.md"
+      - "015-flowchart-deprecation/implementation-summary.md"
+      - "016-command-mirror-restoration/implementation-summary.md"
+      - "../../../.opencode/skills/sk-doc/sk-create-diagram/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The source material lives at context/ (an untracked, already-forked copy of the cathrynlavery/diagram-design plugin) and is the canonical input for every phase."
+      - "The new skill is a nested sk-doc workflow packet, not a standalone hub — one advisor identity (sk-doc) already exists."
+      - "Implementation phases dispatch to Deepseek v4 Flash via cli-opencode; the orchestrating session plans, dispatches, and verifies."
+      - "The icon set ships in v1 — pure reference content, no runtime dependency risk, and richer diagram types need it (decision-record.md §5)."
+      - "Onboarding stays agent-mediated guidance, not a packet script — no sibling sk-doc mode's toolSurface declares a network-fetch tool (decision-record.md §5)."
+      - "manual-testing-playbook/ and feature-catalog/ ship as packet-local subdirectories (mirroring sk-create-diff), not entries in sk-doc's shared master indexes (007/decision-record.md)."
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+## 001-inventory-and-skill-contract/implementation-summary.md
+---
+title: "Implementation Summary: Inventory and skill-contract mapping"
+description: "Final state of phase 001 — the resource inventory and decision record phases 002-005 execute against."
+trigger_phrases:
+  - "diagram inventory summary"
+importance_tier: "important"
+contextType: "implementation"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/001-inventory-and-skill-contract"
+    last_updated_at: "2026-08-12T05:53:36.000Z"
+    last_updated_by: "claude"
+    recent_action: "Completed inventory, resource map, and decision record; child strict validation pending"
+    next_safe_action: "Run validate.sh on this child, then start phase 002"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "decision-record.md"
+      - "resource-map.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-inventory-and-skill-contract |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+An inventory of the forked `context/` source and a frozen decision record that phases 002-005 execute against, so nobody re-litigates scope per file while building the skill.
+
+### Inventory and decisions
+
+Sized every one of the 37 `references/*.md` files, confirmed both extraction scripts import stdlib only, and sized the 100-file, 1.4M `assets/` gallery. Decided the skill identity (`sk-create-diagram`, a nested `sk-doc` workflow packet), the scope boundary against `sk-create-flowchart` (no overlap — that packet already excludes SVG/HTML), the command surface (one `/create:diagram` command, natural-language-routed sub-intents), the content-trim manifest (keep all 27 diagram types and the icon primitive, keep one canonical example per type instead of the full multi-variant gallery), and the section-order mapping from the source's 12-section `SKILL.md` to the required `sk-create-skill` contract order.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 002-skill-scaffold-and-design-system/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram scaffold and design system"
+description: "Final state of phase 002 — SKILL.md and the shared design-system references, dispatched to Deepseek v4 Flash and independently verified by the orchestrator."
+trigger_phrases:
+  - "diagram scaffold summary"
+importance_tier: "important"
+contextType: "implementation"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/002-skill-scaffold-and-design-system"
+    last_updated_at: "2026-08-12T06:10:45.000Z"
+    last_updated_by: "claude"
+    recent_action: "Verified executor output, fixed one content defect, ran strict validation"
+    next_safe_action: "Start phase 003"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "../../../../.opencode/skills/sk-doc/sk-create-diagram/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-skill-scaffold-and-design-system |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`.opencode/skills/sk-doc/sk-create-diagram/` now exists as a real, strict-validated nested workflow packet: a restructured `SKILL.md` (4,878 words, all 5 mandatory connector rules intact) plus the 7 shared design-system references and 5 base assets that every one of the later 27 diagram types will build on.
+
+### SKILL.md restructure
+
+Remapped the source plugin's 12-section `SKILL.md` into the required `WHEN TO USE / SMART ROUTING / HOW IT WORKS / RULES / SUCCESS CRITERIA / REFERENCES` order, per phase 001's `decision-record.md` §6 mapping table. Every mandatory connector rule (orthogonal-only connectors, label-gap, no-overlap, fan attach points, non-endpoint routing) survived the restructuring word-for-word in substance.
+
+### Design system references
+
+Ported `style-guide.md`, `onboarding.md` (trimmed to agent-mediated guidance — no packet script claims a network fetch, since this packet's toolSurface has none), `output-spec.md`, and the four primitive references (`primitive-annotation.md`, `primitive-sketchy.md`, `primitive-terminal.md`, `primitive-icons.md`), each with the full skill-reference-template.md frontmatter block.
+
+### Base assets
+
+## 003-diagram-type-reference-library/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram type reference library"
+description: "Final state of phase 003 — all 27 diagram-type references and their example assets, dispatched in two Deepseek v4 Flash batches and independently verified."
+trigger_phrases:
+  - "diagram type library summary"
+importance_tier: "important"
+contextType: "implementation"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/003-diagram-type-reference-library"
+    last_updated_at: "2026-08-12T06:31:38.000Z"
+    last_updated_by: "claude"
+    recent_action: "Verified both batches, ran strict validation"
+    next_safe_action: "Start phase 004"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-diagram-type-reference-library |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 27 diagram types the skill promises now have a real reference file and a canonical example — the packet went from "design system with nothing to draw" to "27 working diagram types" in this phase.
+
+### Two-batch port
+
+Split into 14 types (batch 1: architecture, bar, data-flow, dp-integration, dp-security-matrix, er, flowchart, gantt, high-level, it-state, layers, line, loop, medallion) and 13 types (batch 2: nested, org-chart, process, pyramid, quadrant, radar, scatter, sequence, state, swimlane, timeline, tree, venn) plus 7 special-pattern examples (consultant 2x2, terminal loop variant, OAuth sequence in three variants, and the two import-fidelity examples), each independently verified before the next batch started.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-doc/sk-create-diagram/references/type-*.md` (27 files) | Created | Layout conventions, anti-patterns, complexity budgets per type |
+| `.opencode/skills/sk-doc/sk-create-diagram/assets/example-*.html` (34 files) | Created | 27 canonical + 7 special-pattern examples |
+
+## 004-import-export-tooling/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram import/export tooling"
+description: "Final state of phase 004 — the extraction scripts, import/export references, and SKILL.md routing, plus a documentation-quality fix the executor correctly flagged rather than silently expanding scope for."
+trigger_phrases:
+  - "diagram import export summary"
+importance_tier: "important"
+contextType: "implementation"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/004-import-export-tooling"
+    last_updated_at: "2026-08-12T06:38:42.000Z"
+    last_updated_by: "claude"
+    recent_action: "Verified executor output, fixed 4 stale references, ran strict validation"
+    next_safe_action: "Start phase 005"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-import-export-tooling |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The packet can now redraw an existing draw.io or Mermaid diagram and export a generated one — the second half of the source skill's value, alongside phase 003's from-scratch generation.
+
+### Extraction scripts and references
+
+Copied `drawio_extract.py` and `mermaid_extract.py` byte-for-byte (both already stdlib-only, no restructuring needed), and ported `import-drawio.md`, `import-mermaid.md`, `export.md` with cross-references updated to point at this packet's own files instead of the source repo's.
+
+### SKILL.md routing
+
+Three surgical edits removed the "ships in a later phase" placeholders in the import/export routing sections now that the files they point at actually exist.
+
+### Files Changed
+
+
+## 005-command-and-hub-wiring/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram command and hub wiring"
+description: "Final state of phase 005 — sk-create-diagram is registered in the sk-doc hub, /create:diagram resolves, and the packet has its full README and changelog."
+trigger_phrases:
+  - "diagram hub wiring summary"
+importance_tier: "important"
+contextType: "implementation"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/005-command-and-hub-wiring"
+    last_updated_at: "2026-08-12T06:52:26.000Z"
+    last_updated_by: "claude"
+    recent_action: "Completed hub wiring, verified structurally, reverted an out-of-scope incidental fleet touch"
+    next_safe_action: "Start phase 006"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-command-and-hub-wiring |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`sk-create-diagram` went from a complete but invisible packet to a fully registered `sk-doc` mode reachable through `/create:diagram` — the thirteenth mode in the hub.
+
+### Hub registration
+
+Added the `sk-create-diagram` entry to `mode-registry.json` (workflow packet, template-scaffold backend, the fleet-standard `toolSurface`), the router signal and vocabulary class to `hub-router.json`, and the command entry to `command-metadata.json` — each pattern-matched against `sk-create-flowchart`'s existing entry, the closest structural sibling.
+
+### `/create:diagram` command
+
+Built the router (`diagram.md`) plus presentation contract and auto/confirm workflow YAML, modeled on `create-flowchart`'s direct-content-authoring pattern rather than `create-diff`'s CLI-engine-wrapper pattern, since `sk-create-diagram` draws directly rather than shelling out to a portable engine. The workflow covers all three request shapes (generate / import / export) and ends every path at the SKILL.md §9 taste gate.
+
+### Packet documentation
+
+
+## 006-validation-and-quality-gate/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram validation and quality gate"
+description: "Final state of phase 006 — every gate the framework requires run and passing, packet 028 closed honestly with two documented deferrals."
+trigger_phrases:
+  - "diagram validation summary"
+importance_tier: "important"
+contextType: "verification"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/006-validation-and-quality-gate"
+    last_updated_at: "2026-08-12T18:40:07.000Z"
+    last_updated_by: "claude"
+    recent_action: "Ran the full gate chain and residue sweep, closed packet 028"
+    next_safe_action: "Hand back to the user for review/merge decision on the worktree"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-validation-and-quality-gate |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Nothing new — this phase ran every gate the framework requires before a completion claim and found nothing left to fix. Packet 028 closes with `sk-create-diagram` a real, registered, strict-validated `sk-doc` mode.
+
+### Gate chain
+
+Ran `validate_skill_package.py --check --strict` on the finished packet, `ci-skill-root-metadata.cjs` for hub class-H integrity, `validate.sh --strict` across the phase-parent and all 6 children, and a residue sweep of the full worktree diff.
+
+### Residue found and reverted
+
+The sweep surfaced two unrelated automatic side effects that had to be reverted to keep the diff scoped: `.opencode/package.json`/`package-lock.json` picked up an `@opencode-ai/plugin` version bump from the `opencode run` dispatches' own environment sync (1.15.12 → 1.18.11, unrelated to this packet), and an earlier fleet-wide `ci-skill-root-metadata.cjs --fix` run (phase 005) had touched 3 unrelated hubs' generated files. Both were reverted with `git checkout --`.
+
+### Files Changed
+
+
+## 007-adherence-audit-and-artifact-completion/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram adherence audit and artifact completion"
+description: "Final state of phase 007 — template/code audit fixed 26 real deviations, manual-testing-playbook and feature-catalog now exist and pass every validator."
+trigger_phrases:
+  - "diagram adherence audit summary"
+importance_tier: "important"
+contextType: "verification"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion"
+    last_updated_at: "2026-08-12T18:40:07.000Z"
+    last_updated_by: "claude"
+    recent_action: "Ran 3 dispatches, fixed the gap dispatch 3 left, verified every gate independently"
+    next_safe_action: "Hand back to the user for review/merge decision on the worktree"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-adherence-audit-and-artifact-completion |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Two things: a literal template/code-standards adherence audit of the already-shipped packet, and the two artifact packages phase 001 deferred or never addressed.
+
+### Audit findings (dispatch 1)
+
+47 files checked against `sk-create-skill`'s templates and `sk-code-opencode`'s standards: SKILL.md, all 37 references, both Python extraction scripts, and the config/YAML/command surfaces. 26 real deviations found and fixed — 21 references had unnumbered H2 sections, `SKILL.md` had `SUCCESS CRITERIA` before `REFERENCES` (template order violation), and both Python scripts were missing Google-style docstrings. 21 files were already clean. Registry/command files carried no deviations.
+
+### manual-testing-playbook/ (dispatch 2)
+
+10 files: root `manual-testing-playbook.md` plus 9 per-feature scenario files across 3 categories (`diagram-generation`, `import-export`, `command-and-hub-integration`), covering `DIA-001`..`004`, `IMP-001`..`003`, `CMD-001`..`002`.
+
+### feature-catalog/ (dispatch 3 + orchestrator completion)
+
+
+## 008-resource-reorganization-and-code-alignment/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram resource reorganization and code alignment"
+description: "Final state of phase 008 — references/ and assets/ split into domain subfolders, both Python scripts closed against sk-code-opencode, scripts/README.md added."
+trigger_phrases:
+  - "diagram reorg summary"
+importance_tier: "important"
+contextType: "verification"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/008-resource-reorganization-and-code-alignment"
+    last_updated_at: "2026-08-12T18:40:07.000Z"
+    last_updated_by: "claude"
+    recent_action: "Reorganized references/assets, closed the Python alignment gap, added 7 READMEs, verified"
+    next_safe_action: "Hand back to the user for review/merge decision on the worktree"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-resource-reorganization-and-code-alignment |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Three things, per the operator's request: `references/` and `assets/` split into domain subfolders, a deeper Python alignment pass on the 2 extraction scripts, and a code README for `scripts/`.
+
+### Reorganization
+
+75 files moved via `git mv`: 37 references into `types/` (27), `primitives/` (4), `import-export/` (3), `foundations/` (3); 38 assets into `examples/` (34) and `templates/` (4), with `icons.html` staying at the `assets/` root as the one remaining singleton. Every cross-reference this broke was rewritten across 59 citing files — `SKILL.md`'s resource-domain table and per-type routing table, `README.md`, `changelog/v1.0.0.0.md`, both `manual-testing-playbook/` and `feature-catalog/` SOURCE FILES tables, and the `/create:diagram` command's router markdown and both workflow YAML files (which carried absolute paths to the old flat locations).
+
+### Code alignment
+
+An AST-based audit (not the line-based grep heuristic phase 007 used) found both scripts already had full type-hint coverage — a grep false positive had earlier suggested 11 missing return hints in `mermaid_extract.py`, disproven before any fix was attempted. The real gap: 5 nested closures (`resolve`, `visit` ×2, `name_of`, `name`) missing docstrings, now fixed with one-line Google-style docstrings each.
+
+### scripts/README.md
+
+
+## 009-manual-playbook-execution/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram manual playbook execution"
+description: "Final state of phase 009 — all 9 manual-testing-playbook scenarios executed for real via deepseek/deepseek-v4-flash, results gathered through the canonical wrapper."
+trigger_phrases:
+  - "diagram playbook execution summary"
+importance_tier: "important"
+contextType: "verification"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/009-manual-playbook-execution"
+    last_updated_at: "2026-08-12T18:40:07.000Z"
+    last_updated_by: "claude"
+    recent_action: "Ran all 9 scenarios, verified independently, gathered results, evaluated release readiness"
+    next_safe_action: "Hand back to the user for a commit decision"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-manual-playbook-execution |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 9 scenarios in `manual-testing-playbook.md` were run for real against the shipped, reorganized packet, using `deepseek/deepseek-v4-flash` via the direct DeepSeek API (not the `opencode-go` proxy earlier phases used), and every result was gathered through the canonical `run-manual-playbook-scenario.cjs` wrapper.
+
+### Results
+
+| Scenario | Verdict | What was produced |
+|---|---|---|
+| DIA-001 Type selection and routing | PASS | `docs/checkout-architecture.html` |
+| DIA-002 Editorial style and connectors | PASS | `docs/support-handoff.html` |
+| DIA-003 Onboarding flow | PASS | Correctly refused to write without approval; `style-guide.md` untouched |
+| DIA-004 Primitive variants | PASS | `docs/compounding-loop.html` |
+| IMP-001 draw.io import | PASS | `docs/system-redrawn.html`; source checksum unchanged |
+| IMP-002 Mermaid import | PASS | `docs/onboarding-flow.html`; source checksum unchanged |
+
+## 010-benchmark-artifact-embedding/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram benchmark artifact embedding"
+description: "Final state of phase 010 — 7 real scenario outputs copied into their benchmark report folders, 2 no-output scenarios documented."
+trigger_phrases:
+  - "diagram benchmark artifact summary"
+importance_tier: "important"
+contextType: "verification"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/010-benchmark-artifact-embedding"
+    last_updated_at: "2026-08-12T18:40:07.000Z"
+    last_updated_by: "claude"
+    recent_action: "7 artifacts copied and verified, 9 source.md files updated"
+    next_safe_action: "Move to phase 011 reference template alignment"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-benchmark-artifact-embedding |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Every `benchmark/reports/` folder now self-documents its own artifact story, matching `create-benchmark`'s copied-artifact contract ("Raw artifacts are copied or intentionally omitted with a documented reason").
+
+7 scenarios that produced a real diagram now carry a byte-identical `artifact.<ext>` copy inside their own report folder:
+
+| Folder | Artifact |
+|---|---|
+| `type-selection-and-routing` | `artifact.html` (8376 bytes) |
+| `drawio-import` | `artifact.html` (8192 bytes) |
+| `editorial-style-and-connectors` | `artifact.html` (9641 bytes) |
+| `export-guidance` | `artifact.svg` (6708 bytes) |
+| `mermaid-import` | `artifact.html` (7160 bytes) |
+| `primitive-variants` | `artifact.html` (7763 bytes) |
+
+## 011-reference-template-alignment/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram reference template alignment"
+description: "Final state of phase 011 — 4 files fixed for dividers/casing, 3 files' intro tightened, 3 files confirmed already conformant, 5 files share a documented out-of-scope gap."
+trigger_phrases:
+  - "diagram reference alignment summary"
+importance_tier: "important"
+contextType: "verification"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/011-reference-template-alignment"
+    last_updated_at: "2026-08-12T18:40:07.000Z"
+    last_updated_by: "claude"
+    recent_action: "Both dispatch streams verified; 5-file overview-section gap documented as follow-up"
+    next_safe_action: "Move to phase 012 flowchart capability merge"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-fork"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-reference-template-alignment |
+| **Completed** | 2026-08-12 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 10 named files were audited against `sk-create-skill`'s literal reference template and `validate_document.py --type reference`. Results, independently verified against real diffs and validator output, not trusted from either dispatch's self-report:
+
+| File | Result |
+|---|---|
+| `primitive-icons.md` | FIXED — 13 dividers inserted, 14 headers uppercased |
+| `export.md` | FIXED — 7 dividers inserted, 7 headers uppercased |
+| `import-mermaid.md` | FIXED — 8 dividers inserted, 11 headers uppercased |
+| `import-drawio.md` | FIXED — 7 dividers inserted, 11 headers uppercased |
+| `primitive-annotation.md` | FIXED — intro tightened to remove overlap with Section 1 |
+| `style-guide.md` | FIXED — intro tightened |
+| `onboarding.md` | FIXED — intro tightened |
+| `primitive-sketchy.md` | PASS — audited, no defect found |
+
+## 012-flowchart-capability-merge/implementation-summary.md
+---
+title: "Implementation Summary: sk-create-diagram flowchart capability merge"
+description: "Final implementation state, evidence, and remaining validation blockers for the ASCII/markdown flowchart capability merge."
+trigger_phrases:
+  - "diagram flowchart capability merge summary"
+  - "ascii markdown diagram implementation"
+importance_tier: "important"
+contextType: "verification"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/028-sk-create-diagram/012-flowchart-capability-merge"
+    last_updated_at: "2026-08-13T05:55:33.000Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed implementation; all validation blockers resolved"
+    next_safe_action: "None — phase complete"
+    blockers: []
+    key_files:
+      - "SKILL.md"
+      - "hub-router.json"
+      - "mode-registry.json"
+      - "leaf-manifest.json"
+      - "checklist.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-create-diagram-flowchart-merge"
+      parent_session_id: "sk-create-diagram-fork"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 012-flowchart-capability-merge |
+| **Completed** | Implementation complete; all validation blockers resolved |
+| **Level** | 3 |
+| **Status** | Complete |
+| **Output formats** | `html-svg` default; `ascii-markdown` flowchart path |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`sk-create-diagram` now owns both HTML/SVG diagrams and ASCII/markdown flowcharts through an explicit output-format dial. The existing HTML/SVG `type-flowchart.md` remains a type reference. The new ASCII resources live under `references/ascii-format/` and `assets/ascii-patterns/`, and the copied validator remains byte-identical to the source validator.
+
+`sk-create-flowchart` was redirected rather than deleted at the time this phase shipped. Its source references, assets, and validator remained in place, and `/create:flowchart` passed through to `/create:diagram` with `ascii-markdown` pre-selected. Phase 015 later completed the deprecation: the redirect skill and command were deleted outright.
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

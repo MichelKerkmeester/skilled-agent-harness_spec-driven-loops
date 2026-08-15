@@ -1,0 +1,9 @@
+### MCP Tooling
+- Design reference research gained two read-only CLI transports — **mcp-refero** (styles, screens, flows) and **mcp-mobbin** (screens, flows, sections) — both pairing with sk-design for judgment; Mobbin needs only a browser OAuth handshake, while Refero requires a paid plan.
+- A new **mcp-aside-devtools** skill drives the Aside AI browser via the aside CLI (agent tasks or deterministic REPL) or the Aside MCP through Code Mode, with a doctor, installer, and 15-scenario playbook.
+- A new **mcp-obsidian** mode manages vaults and notes from AI sessions, combining the headless notesmd-cli, the app-backed obsidian CLI, and MCP at the file layer, with feature routing and plugin reference guidance.
+- The new **mcp-click-up** skill gives agents a structured, safe ClickUp interface — cupt CLI for daily ops, the official MCP for advanced features, a one-command installer, and safety invariants like dry-run before batch changes.
+- All six MCP bridges now route through a unified **mcp-tooling hub**, and the router sends every tested prompt to the correct skill (13/13 hub-wide, 49/49 across modes), with benchmarks now blocking wrong-route verdicts instead of silently passing.
+- Semantic code search — a CocoIndex-backed `search` tool working across all six CLI configs — lets you ask by intent ("find the auth middleware"), runs fully local and private, and typically cuts token usage 10-50x versus Grep-Read-Filter.
+- Every MCP skill now ships consistent install and diagnostic tooling under a single `/doctor:mcp` command, plus manual-testing playbooks (75 scenarios across 19 categories) and READMEs that list the full tool set.
+**Breaking:** Figma MCP work moved to a new **Figma MCP Agent** (published in AI_Systems/Barter and a sanitized copy in AI_Systems/Public), replacing the old mcp-figma skill; existing figma-developer-mcp tooling still works here.

@@ -1,0 +1,1 @@
+{"type":"iteration","iteration":16,"mode":"research","target_agent":"deep-research","resolved_route":"cli-opencode/opencode-go/deepseek-v4-flash","agent_definition_loaded":true,"folders":["hooks__004-goal-hook-playbooks-and-validation", "hooks__005-pi-input-hook-latency", "hooks__006-spec-gate-question-noise"],"timestamp":"2026-08-14T18:27:49Z"}

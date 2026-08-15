@@ -1,0 +1,103 @@
+
+
+Let me start by finding the skill-advisor code structure.
+
+The sandbox is a git worktree — let me find the actual code in the main repo and check the sandbox structure.
+
+Good, the directory exists. Let me explore the MCP server and hooks subdirectories.
+
+
+
+Now let me read the critical hook files and find the Python skill_advisor script.
+
+Now let me read the critical files that handle state directory resolution.
+
+
+
+Now let me read the main `skill_advisor.py` and the Python directive lifecycle store.
+
+
+
+
+
+Now I need to find the `skill-advisor-brief` module and look for where the advisor writes state directories. Let me also search for where `.opencode` or `.advisor-state` directories are created in the code.
+
+
+
+Let me now read the `freshness.ts` module which uses `workspaceRoot` and the `subprocess.ts` module which also passes it along.
+
+
+
+
+
+Let me read the `generation.ts` module which manages advisor generation state — this is likely where `.advisor-state` is written.
+
+
+
+
+
+The critical path resolution is in `getSkillGraphGenerationPath`. Let me find and read that module.
+
+
+
+
+
+
+
+Excellent! Found the critical path. Now let me verify the actual leaked directories and look for additional write paths.
+
+
+
+
+
+Let me verify the contents of these leaked directories to confirm they contain advisor-generated state.
+
+
+
+Let me read a few leaked generation files to confirm they're advisor-generated, and also check the `skill-advisor-cli-fallback.ts` for additional leak paths.
+
+
+
+
+
+Let me check one more write path — the metrics module that persists diagnostics, and also confirm the `pi/prompt-advisor.ts` hook.
+
+
+
+
+
+
+
+
+
+
+
+```json
+{
+  "iteration": 2,
+  "lineage": "deepseek-v4-pro-max",
+  "focus_summary": "Traced the full workspaceRoot → generation-counter path: the advisor resolves state relative to cwd, not the repo root, and auto-creates .opencode/skills/.advisor-state/ inside whatever directory the hook fires from.",
+  "findings": [
+    "ROOT CAUSE — workspaceRoot = cwd, not repo root: user-prompt-submit.ts:138-142 `workspaceRootFor(input)` returns `input.cwd ?? process.cwd()`. When a Claude Code / OpenCode session runs from inside a specs/ subdirectory, cwd points there. This is the entry point of the entire leak chain.",
+    "CRITICAL RESOLVER — hardcoded relative path joined to workspaceRoot: freshness/generation.ts:12 defines `GENERATION_RELATIVE_PATH = join('.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json')`. Line 29-31 `getSkillGraphGenerationPath(workspaceRoot)` = `join(resolve(workspaceRoot), GENERATION_RELATIVE_PATH)`. This blindly joins the hardcoded path to whatever workspaceRoot it receives — no repo-root walk-up, no canonicalization.",
+    "DIRECTORY AUTO-CREATION on write: generation.ts:109-110 `writeGenerationAtomic` calls `mkdirSync(dirname(filePath), { recursive: true })`. Same pattern in freshness/generation.ts:46 `writeJsonAtomic`. Any write to the generation counter creates the full .opencode/skills/.advisor-state/ tree under workspaceRoot.",
+    "FIRST-TIME TRIGGER: generation.ts:184-198 `readAdvisorGeneration` — when the file is absent (ENOENT, which is always true when workspaceRoot is inside specs/ since specs/ dirs don't have a .opencode/skills/ tree), it calls `setGeneration(workspaceRoot, filePath, 0)`. This writes generation=0 with reason='LEGACY_ADVISOR_GENERATION_BUMP', creating the nested dirs. Confirmed: all 3 leaked generation.json files in specs/ show exactly this payload.",
+    "FULL CALL CHAIN: buildSkillAdvisorBrief (skill-advisor-brief.ts:401) → getAdvisorFreshness(workspaceRoot) (freshness.ts:330) → readAdvisorGeneration(workspaceRoot) (generation.ts:184) → getAdvisorGenerationPath(workspaceRoot) (generation.ts:179) → getSkillGraphGenerationPath(resolve(workspaceRoot)) (freshness/generation.ts:29) → join(workspaceRoot, '.opencode/skills/.advisor-state/skill-graph-generation.json'). Every hop passes workspaceRoot through unchanged.",
+    "EXISTING FIX PATTERN ALREADY IN CODEBASE: skill-advisor-cli-fallback.ts:176-198 `findCliFallbackPaths(workspaceRoot)` walks UP from workspaceRoot (up to 14 levels) looking for `.opencode/bin/skill-advisor.cjs` to find the real repo root. This pattern should be replicated for the generation-counter resolver instead of trusting the raw workspaceRoot.",
+    "SUBPROCESS ALSO USES workspaceRoot AS cwd: subprocess.ts:310 spawns the Python advisor with `cwd: options.workspaceRoot`. While the Python script resolves its own REPO_ROOT from its file location (skill_advisor.py:43-45), any relative path operations inside the Python process would also resolve against the wrong base.",
+    "METRICS MODULE USES /tmp CORRECTLY: metrics.ts:178 stores diagnostics at `join(tmpdir(), 'speckit-skill-advisor-metrics')` — this is the correct pattern. The generation counter should similarly use an absolute, repo-root-anchored path.",
+    "DIRECTIVE LIFECYCLE STORE ALSO USES /tmp BY DEFAULT: directive-lifecycle-file-store.ts:46-48 defaults to `join(tmpdir(), 'speckit-advisor')` unless overridden by `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR` env var. This path is safe."
+  ],
+  "answered": [
+    "Where exactly does the advisor resolve its state directory? → freshness/generation.ts:29-31 `getSkillGraphGenerationPath(workspaceRoot)` joins `.opencode/skills/.advisor-state/skill-graph-generation.json` to the raw workspaceRoot.",
+    "Why can this resolve inside specs/ instead of the repo root? → user-prompt-submit.ts:138-142 passes `cwd` or `process.cwd()` as workspaceRoot; if the session runs from a specs/ subdirectory, the entire chain inherits that wrong root.",
+    "What creates the actual directories on disk? → generation.ts:109-110 `mkdirSync(dirname(filePath), { recursive: true })` in `writeGenerationAtomic`, triggered when `readAdvisorGeneration` hits ENOENT (generation.ts:194-195)."
+  ],
+  "open_questions": [
+    "What specific user action causes cwd to be inside specs/ when the hook fires? (Likely: opening Claude Code / OpenCode from a spec directory, or using worktrees checked out inside specs/)",
+    "Are there other runtime writers (beyond the advisor hook) that also use workspaceRoot=cwd and create .opencode dirs in specs/?",
+    "Should the fix use a walk-up pattern like findCliFallbackPaths, or a fixed repo-root derivation from the script location like the Python skill_advisor.py does?"
+  ],
+  "confidence": 0.92
+}
+```

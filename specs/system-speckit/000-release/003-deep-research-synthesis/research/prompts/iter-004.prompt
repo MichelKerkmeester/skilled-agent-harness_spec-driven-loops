@@ -1,0 +1,1114 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/cli-external-orchestration/031-cli-pi-creation"
+# PACKET: specs/cli-external-orchestration/031-cli-pi-creation (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: cli-pi creation"
+description: "Coordinate the phased integration of Pi CLI (pi.dev, earendil-works' open-source multi-provider coding agent) into cli-external-orchestration and full skill/agent/command/plugin parity with this repo's .opencode/.claude surface, including executor support, skill packet, native skill/prompt-template/extension bridges, third-party MCP and sub-agent package integration, model registry, playbook, and governance closeout."
+trigger_phrases: ["cli-pi creation", "Pi CLI integration", "Pi CLI executor", "pi.dev", "earendil-works pi-coding-agent"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation"
+    last_updated_at: "2026-07-27T20:30:34Z"
+    last_updated_by: "claude-code"
+    recent_action: "All 15 phases landed; 015 closed the devin/cursor hook-coverage gap the operator flagged"
+    next_safe_action: "None -- packet complete"
+    blockers: []
+    key_files: ["001-pi-contract-pin/implementation-summary.md", "007-pi-mcp-host-integration/implementation-summary.md", "012-pi-runtime-compatibility/implementation-summary.md", "013-pi-manual-testing-playbook-authoring/implementation-summary.md", "014-pi-devin-cursor-parity-alignment/implementation-summary.md", "015-pi-hook-coverage-parity/implementation-summary.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-creation-scaffold"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Pi (pi.dev) confirmed real: open-source multi-provider agent by earendil-works, unaffiliated with Anthropic"
+      - "Pi documents a .pi/ repo-root config dir analogous to .claude/.cursor, settings.json merge"
+      - "Skills/prompt-templates/extensions are native; sub-agents and MCP are third-party packages"
+      - "Pi's SKILL.md discovery: phase 004 live-probed the shape; hub-respecting behavior stayed accepted-deferred pending provider credentials."
+      - "pi-mcp-extension DOES support local stdio transport, confirmed live in phase 007 (sequential_thinking + mk-spec-memory both connected)."
+      - "Pi's headless dispatch is --print/-p + --mode text/json/rpc; failure exit codes are confirmed unreliable (0 then 1 across identical runs)."
+      - "Pi's extension API exposes 32 real lifecycle events (type-confirmed in phase 008); 7 guard-cores bridged live in phase 012, all fail-open."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT -->
+# Feature Specification: cli-pi creation
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+| Field | Value |
+|---|---|
+| **Level** | 2 phased packet |
+
+## 001-pi-contract-pin/implementation-summary.md
+---
+title: "Implementation Summary: Pi CLI contract pin"
+description: "Pi CLI is installed and live-verified: real headless dispatch syntax, a genuine cursor-agent-class exit-code gotcha, an active extension-validation gate, and a confirmed third-party install-verb all converted from documented-but-unconfirmed to fact."
+trigger_phrases:
+  - "pi cli contract pin results"
+  - "pi live verification findings"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/001-pi-contract-pin"
+    last_updated_at: "2026-07-27T09:35:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Installed Pi CLI and executed the live verification tasks in tasks.md"
+    next_safe_action: "Phase 002 may now design buildPiLineageCommand against these confirmed facts"
+    blockers: ["No provider API key configured on this machine - a successful-path model dispatch could not be observed"]
+    key_files: ["spec.md", "tasks.md", "checklist.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-creation-authoring"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions: ["Skills-flattening question for phase 004 remains unconfirmed", "Successful-path dispatch exit code remains unobserved without provider credentials"]
+    answered_questions: ["Headless dispatch is --print/-p combined with --mode text/json/rpc", "Pi shares the cursor-agent-class exit-0-on-failure gotcha", "pi install npm:<pkg> -l --approve is the confirmed install verb"]
+---
+# Implementation Summary: Pi CLI contract pin
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-pi-contract-pin |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Pi CLI is now installed on this machine and its whole contract has been live-tested rather than taken from documentation. Six of eight REQs converted from "documented, unconfirmed" to confirmed fact; two remain genuinely open because completing them needs either provider credentials this machine doesn't have, or a debug surface Pi doesn't expose. The single most load-bearing finding: **Pi shares the exact `cursor-agent -p` exit-code gotcha the 030 packet already learned the hard way** — a failed dispatch returned exit 0 on the very first invocation and exit 1 on every subsequent one, so phase 002's dispatch guard must never key success/failure detection on exit code alone.
+
+### Install and Binary Contract (REQ-001)
+`npm install -g --ignore-scripts @earendil-works/pi-coding-agent` succeeded (132 packages, ~2s). `pi --version` returns `0.82.1`. Full `--help` captured: default provider is `google` (not Anthropic), config directory defaults to `~/.pi/agent` (`PI_CODING_AGENT_DIR` env override), built-in tools are `read`/`bash`/`edit`/`write`/`grep`/`find`/`ls`, and 30+ provider API-key env vars are recognized (Anthropic, OpenAI, Gemini, Groq, Bedrock, and many more).
+
+### Config Directory and Settings Merge (REQ-002, partial)
+`.pi/` is **not** auto-scaffolded by a bare invocation — a failed headless dispatch in an empty scratch directory left no `.pi/` behind. It only exists once a file is deliberately placed under it. A related but different merge behavior was confirmed instead: `pi install ... -l` read-modify-wrote the existing `.pi/settings.json`, adding a `"packages"` array while preserving unrelated keys already present — Pi's settings writer merges, it does not clobber. The specific "project overrides global on a colliding nested key" claim from the docs could not be observed end to end, because doing so needs a successful dispatch this machine's missing credentials block.
+
+### Extension Discovery and Validation (REQ-005)
+This is the most concrete unplanned finding. Dropping an invalid `.pi/extensions/probe.ts` (`export default {}`) did not silently skip — it failed the **entire session** with `Error: Failed to load extension "...": Extension does not export a valid factory function`, exit 1, plus the exact remediation hint `pi -ne` to disable extensions. Fixing the stub to `export default function probeExtension() { return {} }` made that specific error disappear. Conclusion: extensions are actively discovered under `.pi/extensions/*.ts`, validated against a real contract (must export a callable factory), and a bad one is fail-**closed** for the whole session, not fail-open with a warning.
+
+### Auth/Provider Surface and the Exit-Code Gotcha (REQ-006, REQ-007)
+
+## 002-deep-loop-executor-support/implementation-summary.md
+---
+title: "Implementation Summary: Pi deep-loop executor support"
+description: "cli-pi is now the 6th typed deep-loop ExecutorKind - fail-closed, tested, and independently reviewed - with its command-construction body deliberately stubbed until Pi's real invocation syntax is confirmed."
+trigger_phrases:
+  - "cli-pi executor support results"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/002-deep-loop-executor-support"
+    last_updated_at: "2026-07-27T11:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implemented via LUNA, re-verified independently, reviewed by GLM-5.2"
+    next_safe_action: "Commit; phase 003 builds the skill packet on this widened union"
+    blockers: ["Command-construction body stubbed - real Pi invocation syntax unconfirmed"]
+    key_files: ["spec.md", "tasks.md", "checklist.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-creation-authoring"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: ["Real command-construction body needs a confirmed Pi headless invocation contract"]
+    answered_questions: ["cli-pi is the 6th ExecutorKind, fail-closed by design, GLM-5.2 independently approved"]
+---
+# Implementation Summary: Pi deep-loop executor support
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-deep-loop-executor-support |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-loop runtime now recognizes `cli-pi` as a real, dispatchable executor kind alongside `native`, `cli-codex`, `cli-claude-code`, `cli-opencode`, and `cli-cursor`. Every new code path fails closed: an absent `pi` binary is caught before any subprocess spawns, and the actual command-construction body is a documented stub rather than a guessed flag, because Pi's real headless invocation syntax still is not confirmed end to end (phase 001 installed Pi and probed its contract, but never completed a successful model dispatch — see that phase's own limitations).
+
+### Executor union widened to 6 members
+`EXECUTOR_KINDS` in `executor-config.ts` now includes `cli-pi`. It gets the same confirmed-safe flag set as `cli-cursor` (`model`, `timeoutSeconds`, `liveTools` only — no `sandboxMode`, since Pi documents no sandbox/permission flag), a `PiSupportedModel`/`PI_SUPPORTED_MODELS`/`isPiModelAllowed()` triple that rejects every model while the allowlist is empty, and a matching row in the web-search capability matrix (`inherit: true`, everything else `false`).
+
+### Fail-closed dispatch scaffolding
+`executor-audit.ts` gains `cli-pi` rows in the three maps that don't need live confirmation (binary name, state-dir env var, default home dir `.pi`) and deliberately omits the two that do (session-env var, env-var prefix) — nothing was invented to fill the gap. `fanout-run.cjs` gains `isPiBinaryAvailable()` (mirrors the Codex/Cursor checks exactly) and `buildPiLineageCommand`, which runs that preflight first and throws a clear "invocation contract not yet confirmed" error rather than emitting a guessed argv. `dispatch-model.cjs` and `profile-validator.cjs` (the model-benchmark path) get the same treatment.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Modified | 6th ExecutorKind, flag matrix, model allowlist scaffold |
+
+## 003-cli-pi-skill-packet/implementation-summary.md
+---
+title: "Implementation Summary: cli-pi skill packet"
+description: "cli-pi is now the cli-external-orchestration hub's 6th mode - built to the cli-cursor/cli-devin structural precedent, independently reviewed by GLM-5.2, with 4 real findings fixed before commit."
+trigger_phrases:
+  - "cli-pi skill packet results"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/003-cli-pi-skill-packet"
+    last_updated_at: "2026-07-27T12:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Built via LUNA, reviewed by GLM-5.2, 4 findings fixed"
+    next_safe_action: "Commit; phase 004 builds the skill-discovery bridge on this mode"
+    blockers: ["Compiled-routing readiness stays a known, out-of-scope pre-existing gap"]
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-packet-authoring"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: ["Whether to eventually fix the compiled-routing compile-error, owned by sk-doc/019-skill-routing-refactor, not this packet"]
+    answered_questions: ["cli-pi is registered as the hub's 6th mode; parent-skill-check.cjs passes 0 warnings at 6 modes"]
+---
+# Implementation Summary: cli-pi skill packet
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-cli-pi-skill-packet |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`cli-pi` is now a real, registered mode inside the `cli-external-orchestration` hub, sitting alongside `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, and `cli-devin`. The hub advisor still resolves one identity; `mode-registry.json` and `hub-router.json` pick the mode. Building this phase surfaced a real, unrelated fact worth recording: this worktree had drifted behind the main branch (`cli-devin` had been merged into `skilled/v4.0.0.0` after this worktree branched), which the first build attempt correctly caught and refused to guess past — a rebase onto the current tip fixed it before any wrong assumption shipped.
+
+### New packet: `cli-external-orchestration/cli-pi/`
+`SKILL.md` (routing contract, a `hard_rules` triad including a self-invocation guard and a `command -v pi` probe), `README.md`, 5 `references/*.md` files (CLI reference, integration patterns, agent delegation, Pi's own native skills/extensions surface, and the third-party MCP/subagent packages), 2 `assets/*.md` files (a thin prompt-quality-card delegator and prompt templates), `changelog/v1.0.0.0.md`, and a scaffolded `manual-testing-playbook/` (content lands in phase 010).
+
+### Hub registration
+`mode-registry.json` gained a 6th `modes[]` entry with 5 multi-word aliases (no bare `"pi"` — it collides with the math constant). `hub-router.json` gained a `routerSignals.cli-pi` entry, two new vocabulary classes, and an extended 6-element `tieBreak`. The hub's own `description.json`, `SKILL.md`, and `graph-metadata.json` were updated to reflect six modes instead of five. `leaf-manifest.json` was regenerated and matches the tree byte for byte. No `cli-pi/graph-metadata.json` or `cli-pi/description.json` was created — the hub keeps a single advisor identity.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `cli-external-orchestration/cli-pi/**` (11 files) | Created | New skill packet |
+
+## 004-pi-skill-discovery-bridge/implementation-summary.md
+---
+title: "Implementation Summary: Pi skill-discovery bridge"
+description: "Design-verified 4-candidate .pi/settings.json discovery strategy and an 8-step live-verification protocol; live probe reached Pi's provider-credential gate and stopped there, same as phase 001."
+trigger_phrases:
+  - "pi skill discovery summary"
+  - "pi settings.json skills implementation"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/004-pi-skill-discovery-bridge"
+    last_updated_at: "2026-07-27T09:53:30Z"
+    last_updated_by: "claude-code"
+    recent_action: "Live probe blocked on credentials; Candidate A accepted"
+    next_safe_action: "Commit phase 004; start phase 005"
+    blockers: ["Discovery-shape confirmation needs provider credentials this machine lacks"]
+    key_files: ["spec.md", "plan.md", "checklist.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-creation-authoring"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: ["Does discovery flatten the 39 nested-mode SKILL.md files? Still UNKNOWN pending credentials."]
+    answered_questions: ["Candidate A's settings.json shape parses and is accepted by Pi with no syntax error, confirmed live"]
+---
+# Implementation Summary: Pi skill-discovery bridge
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-pi-skill-discovery-bridge |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase designs, and hands off, the answer to one open question the earlier phases could not settle on their own: when Pi's native `SKILL.md` discovery is pointed at this repo's `.opencode/skills/` tree, does it respect the 12-hub single-advisor-identity architecture, or does it flatten all 39 nested-mode files into independently-invokable skills? The design work — 4 candidate configurations, an 8-step verification protocol, and a decision framework — was already substantively drafted during the packet's initial scaffolding pass. This phase's job was to close it out honestly: attempt the live probe for real, and record exactly how far it got instead of assuming either outcome.
+
+### Discovery-surface inventory
+
+The inventory this phase's design reasons about: `find .opencode/skills -iname SKILL.md | wc -l` returns 51 total `SKILL.md` files in the full dependency-installed environment (12 hub-level identities + 39 nested-mode files, including 2 unrelated vendor files inside `sk-design/design-md-generator/backend/node_modules/playwright-core/`). In this specific worktree checkout the same command returns 48 (the vendor files are absent because their `node_modules` is gitignored and not installed here) — both numbers are cited honestly rather than picking whichever looks better, since `find .opencode/skills -maxdepth 2 -iname SKILL.md` (the 12 hub-root paths that actually matter to this phase's design) returns 12 in both environments.
+
+### Live-verification attempt
+
+I built a scratch `.pi/settings.json` (`{"skills": [".opencode/skills"]}`, Candidate A: Whole-Tree Pointer) in an isolated scratch directory and ran `pi --offline --approve -p "list every skill you have discovered, one per line"` against it. The config parsed and was accepted with no syntax error — a real signal, since an invalid `.pi/extensions/*.ts` is known (from phase 001) to fail the whole session. The dispatch then reached Pi's provider-credential gate and stopped there, identically to phase 001's finding ("No API key found"), before any skill-list response could be observed. This confirms the config shape itself is well-formed; it does not confirm whether discovery is hub-respecting or flattened.
+
+### Files Changed
+
+
+## 005-pi-command-layer/implementation-summary.md
+---
+title: "Implementation Summary: Pi command layer"
+description: "Design-verified flattening of 36 invokable .opencode/commands/*.md files into a collision-free Pi prompt-template naming convention, plus a 5-pattern $ARGUMENTS translation table, re-derived live with zero drift."
+trigger_phrases:
+  - "pi command layer summary"
+  - "pi prompt templates implementation"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/005-pi-command-layer"
+    last_updated_at: "2026-07-27T10:01:30Z"
+    last_updated_by: "claude-code"
+    recent_action: "Design re-verified live, zero drift; phase complete"
+    next_safe_action: "Commit phase 005; start phase 006"
+    blockers: []
+    key_files: ["spec.md", "plan.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-creation-authoring-005"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: ["Where the persisted doctrine file eventually lives in cli-pi/references/ - filename TBD"]
+    answered_questions: ["36 flattened names re-derived live at closeout, zero collisions, zero drift from the authored worklist"]
+---
+# Implementation Summary: Pi command layer
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-pi-command-layer |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase answers a question 029 (Devin) and 030 (Cursor) never had to ask: how do this repo's 36 invokable slash commands, organized as nested Markdown under 8 groups with Claude Code's colon-namespace convention, port into Pi's flat, non-recursive `.pi/prompts/*.md` prompt-template format? The design work — a collision-free flattening convention, a 5-pattern argument-translation table, and a frontmatter-key disposition table — was already substantively drafted during the packet's initial scaffolding pass. This phase's job was closeout: re-verify every claim against the live repo tree instead of trusting the authoring-time snapshot, and record real evidence in place of the doc's own placeholder self-assessment.
+
+### Flattening convention, re-verified live
+
+`grep -rl "^argument-hint:" .opencode/commands --include="*.md" | wc -l` still returns 36 (out of 49 total `.md` files under `.opencode/commands/`), matching the authoring-time count exactly. I re-derived all 36 flattened `<group>-<name>.md` names directly from the live file list using the stated convention and diffed the result against `plan.md`'s worklist: zero drift, zero collisions (`sort -u | wc -l` returns 36).
+
+### Translation table and frontmatter disposition
+
+Unchanged from authoring: the 5-pattern `$ARGUMENTS` → `$1`/`$2`/`$@`/`${1:-default}` table and the frontmatter-key disposition table (`allowed-tools`, `argument-hint`, `skill`, `title`/`version`, `description`) needed no revision — they were derived from the commands' own frontmatter and argument-hint grammar, which has not changed since authoring.
+
+### Files Changed
+
+
+## 006-pi-agent-bridge/implementation-summary.md
+---
+title: "Implementation Summary: Pi agent bridge"
+description: "Design-verified translation plan mapping all 13 real .claude/agents/*.md files onto the third-party pi-subagents schema, a 4-tier translation order, and a 5-behavior disposition table, re-derived live with zero drift."
+trigger_phrases:
+  - "pi agent bridge summary"
+  - "pi-subagents translation implementation"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/006-pi-agent-bridge"
+    last_updated_at: "2026-07-27T10:08:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Design re-verified live, zero drift; planning phase complete"
+    next_safe_action: "Commit phase 006; start phase 007"
+    blockers: []
+    key_files: ["spec.md", "plan.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-creation-phase-006"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: ["Does pi-subagents support nested subagent-of-subagent dispatch, needed for Tier 4 (ai-council, orchestrate)? - routed to a future execution phase"]
+    answered_questions: ["13-agent count and tools:-scoped 11/13 MCP-dependency tally re-verified live at closeout, zero drift"]
+---
+# Implementation Summary: Pi agent bridge
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-pi-agent-bridge |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase plans how this repo's 13 real `.claude/agents/*.md` role files translate onto Pi's own multi-agent surface — which, unlike Pi's native `SKILL.md` support, exists only through a third-party community package, `pi-subagents`. The design work — a per-agent inventory tiered by MCP-dependency and cross-agent-dispatch coupling, a 17-field frontmatter mapping table, and a 5-behavior disposition table for Claude-only runtime conventions with no confirmed Pi equivalent — was already substantively drafted during the packet's initial scaffolding pass. This phase's job was closeout: re-verify every count against the live repo tree, refresh dependency-status rows that had gone stale as earlier phases landed, and record honest evidence in place of placeholder self-assessment.
+
+### Agent inventory and MCP-dependency tally, re-verified live
+
+`find .claude/agents -name '*.md' | wc -l` still returns 13, matching the authoring-time snapshot exactly. Re-checking the MCP-dependency tally surfaced a real methodology nuance worth recording: a naive whole-file `grep -l 'mcp__' .claude/agents/*.md` returns 12 of 13 (only `prompt-improver.md` has zero occurrences), which looks like a drift from `plan.md`'s stated "11 of 13." Scoping the grep to only the `tools:` frontmatter line (the field that actually grants capability, matching `plan.md`'s own stated citation method) resolves the apparent discrepancy: `deep-improvement.md` mentions `mcp__mk_spec_memory__*`/`mcp__mk_code_index__*` in a body-prose fallback-guidance paragraph but carries no MCP tool in its `tools:` frontmatter. `plan.md`'s tools:-scoped 11/13 figure is the correct one for translation purposes — the frontmatter is what actually gets ported, not incidental prose mentions.
+
+### Frontmatter mapping and disposition tables
+
+Unchanged from authoring: the 17-field Claude-to-`pi-subagents` mapping table and the 5-behavior Claude-only-runtime-convention disposition table needed no revision — they were derived from the agents' own real frontmatter and `pi-subagents`' documented schema (live-fetched 2026-07-27), neither of which has changed since authoring.
+
+### Files Changed
+
+
+## 007-pi-mcp-host-integration/implementation-summary.md
+---
+title: "Implementation Summary: Pi MCP-host integration"
+description: "pi-mcp-extension installed and live-verified: stdio transport genuinely connects, the deny-by-default enforcement point is Pi core's --tools/--exclude-tools flags (not the extension itself), and a two-tier .pi/mcp.json is committed with 2 of 5 servers live-confirmed connecting in this bare worktree."
+trigger_phrases:
+  - "pi mcp host integration summary"
+  - "pi-mcp-extension implementation status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/007-pi-mcp-host-integration"
+    last_updated_at: "2026-07-27T14:20:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Extension installed, stdio live-confirmed, two-tier config committed, phase Complete"
+    next_safe_action: "None -- re-verify 3 servers from a provisioned environment later"
+    blockers: []
+    key_files: ["spec.md", ".pi/mcp.json"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-creation-phase-007-planning"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Stdio transport CONFIRMED WORKING live (not just documented).", "Deny-by-default enforcement point is Pi core's --tools/--exclude-tools, not pi-mcp-extension itself.", "Tier 2 needs no separate file -- lifecycle:lazy inside the same committed .pi/mcp.json suffices.", "3 of 5 servers' non-connection in this worktree is a diagnosed missing-build-artifact gap, confirmed present in the main tree -- not a config or extension defect."]
+---
+# Implementation Summary: Pi MCP-host integration
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-pi-mcp-host-integration |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase was originally authored planning-only, closed once (2026-07-27 morning) with its primary go/no-go gate (does pi-mcp-extension's stdio transport actually work?) honestly left open, since installing third-party software crossed this phase's own Hard Constraint. Later the same day, the operator explicitly asked to install the extension and then approved continuing into this phase's full live verification. This closeout documents that real execution.
+
+### The install
+
+`pi install npm:pi-mcp-extension -l --approve` succeeded: exit 0, 94 packages added (`@modelcontextprotocol/*`, `express`, `hono`, `zod`, and their transitive deps) into `.pi/npm/node_modules/pi-mcp-extension`, gated by npm's own `.pi/npm/.gitignore`. `.pi/settings.json` was created fresh (`{"packages": ["npm:pi-mcp-extension"]}`) — the first time any real `.pi/` state has existed in this packet. `pi list --approve` confirmed the package resolved to a real installed path. No provider API key was needed for any of this — installing a package is a local npm operation, independent of Pi's model-dispatch credential gate.
+
+### The stdio-transport go/no-go (REQ-002), resolved
+
+A single-entry `.pi/mcp.json` (`sequential_thinking`, `transport: "stdio"`, `lifecycle: "eager"`, `command`/`args` copied verbatim from `.mcp.json`) made `mcp_sequential_thinking_sequentialthinking` appear in `pi --offline --approve -p "list your available tools"`'s live tool listing. This is real, positive, live evidence: the MCP server was spawned as a subprocess, its tool was discovered via the extension's `tools/list` handshake, and it was bridged into Pi's own tool namespace with the exact `<prefix>_<server>_<tool>` naming its bundled README documents. This happened in `--offline` mode with no provider credentials configured — confirming MCP connection/discovery is a purely local process operation, independent of the LLM-provider gate every other phase in this packet has been blocked by.
+
+### Expanding to all 5 native servers
+
+
+## 008-pi-hook-extension-layer/implementation-summary.md
+---
+title: "Implementation Summary: Pi hook extension layer"
+description: "Pre-work closeout for a still-Blocked phase: a live docs re-fetch found pi's Extensions page now fully documents the registration model and confirms block-capable tool interception, resolving this phase's two most central open questions at the docs level. The live-session probe itself is out of this planning phase's own scope."
+trigger_phrases:
+  - "pi hook extension summary"
+  - "pi extension layer implementation status"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/008-pi-hook-extension-layer"
+    last_updated_at: "2026-07-27T10:34:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Docs re-fetched live; pre-work closed out; phase stays Blocked"
+    next_safe_action: "Commit as Blocked; phase 009 proceeds independently"
+    blockers:
+      - "Live-session probing (T002-T010) requires running an actual pi session, out of this planning phase's own Hard Constraint; deferred to a future execution phase"
+    key_files:
+      - "spec.md"
+      - "plan.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-creation-authoring"
+      parent_session_id: null
+    completion_pct: 55
+    open_questions:
+      - "Does the now-documented pi.on(event, handler) registration and tool_call block-capability behave as documented in a real live session? - requires installing/running pi, deferred"
+      - "Single consolidated extension module vs one file per guard core - which fits Pi's discovery model?"
+    answered_questions:
+      - "Extensions export ExtensionFactory = (pi: ExtensionAPI) => void, using pi.on(event, handler) - type-confirmed via types.d.ts:1078, 850-882"
+      - "tool_call fires pre-execution with ToolCallEventResult {block?, reason?} - type-confirmed deny-capability, types.d.ts:772-776"
+      - "Real narrow tool names are bash/read/edit/write/grep/find/ls plus a custom-tool catch-all, types.d.ts:646-721"
+      - "All 8 runtime-neutral guard core file paths re-confirmed live, unchanged"
+      - "pi 0.82.1 is now installed (phase 001 landed); no .pi/ directory exists yet"
+---
+# Implementation Summary: Pi hook extension layer
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-pi-hook-extension-layer |
+| **Completed** | N/A — phase stays Blocked, see Known Limitations |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase plans a bridge from this repo's 8 runtime-neutral guard cores into Pi's native `.pi/extensions/*.ts` system, so a dispatched Pi executor session gets the same scope-lock/spec-folder/quality/completion-evidence enforcement that Claude, Codex, Devin, and Cursor already have. Like phase 007, this phase's own spec.md puts the one action that would resolve its central open question — running a real Pi session to probe the extension lifecycle API — explicitly out of scope for this planning phase. This closeout does everything achievable short of that: re-verifies every fact the design rests on, and found a very significant update.
+
+
+## 009-pi-model-registry-and-routing/implementation-summary.md
+---
+title: "Implementation Summary: Pi model registry and routing"
+description: "Fail-closed PI_SUPPORTED_MODELS allowlist populated with the operator's own live-confirmed 7-model Pi roster, sk-prompt/prompt-models registry rows added to the 3 already-profiled models, and a new TBD-marked entry for a genuinely new variant - implemented via LUNA in two dispatch passes after an operator correction, reviewed by GLM-5.2."
+trigger_phrases:
+  - "pi model registry summary"
+  - "cli-pi allowlist implementation"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/009-pi-model-registry-and-routing"
+    last_updated_at: "2026-07-27T11:26:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implemented via LUNA (2 passes), reviewed by GLM-5.2, all findings addressed"
+    next_safe_action: "Commit phase 009; start phase 010"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "checklist.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-creation-authoring"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: ["Pi's own dispatch-time CLI flag/parameter names for reasoning effort and service tier remain unconfirmed - no live pi session was run this phase"]
+    answered_questions: ["Branch B resolved twice: a generic pi.dev/models fetch (1,106+ models, 40+ providers, no house model) then stronger operator-supplied evidence (a live configured Pi model picker naming the exact 7-model roster)", "PI_DEFAULT_MODEL is deepseek-v4-pro, a judgment call documented as such"]
+---
+# Implementation Summary: Pi model registry and routing
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-pi-model-registry-and-routing |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase gives `cli-pi` a fail-closed model allowlist and a real prompt-craft registry contribution, so a Pi dispatch can never carry an unvetted `--model` value and every allowlisted model has the same prompt-craft guidance every other executor's models get. Unlike phases 004-008, this phase does real code and config work — it mirrors the exact pattern this repo already proved for `cli-cursor` (`CURSOR_SUPPORTED_MODELS`/`CURSOR_DEFAULT_MODEL`/`isCursorModelAllowed()`), and folds the fail-closed hardening into this same phase rather than deferring it to a later hardening pass the way the Cursor precedent originally did.
+
+### Branch resolution, twice
+
+Open Question 1 (does Pi have a native/house model, or is it pure provider pass-through) was resolved via a live fetch of `pi.dev/models`: Pi lists roughly 1,106 models across 40+ providers with no documented default — Branch B. Mid-implementation, the operator supplied stronger, more specific evidence: a screenshot of their own live, configured Pi session's model picker, naming exactly 7 dispatchable ids grouped by provider (`deepseek-v4-pro` [deepseek], `MiniMax-M3` [minimax], `gpt-5.6-luna`/`gpt-5.6-sol`/`gpt-5.6-terra` [openai-codex], `mimo-v2.5-pro-ultraspeed`/`mimo-v2.5-pro` [xiaomi]). This is direct, first-party confirmation of exactly which models this repo's own Pi setup reaches, superseding the generic public catalog. The first LUNA implementation pass (built against the generic catalog) was corrected in a second pass to use this real roster.
+
+### Registry additions, grounded not fabricated
+
+Of the 7 models, `deepseek-v4-pro`, `minimax-m3`, and `mimo-v2.5-pro` already had full sk-prompt/prompt-models profiles (the small-model rotation also used by `cli-opencode`) — each gained a `cli-pi` executor row alongside its existing `cli-opencode` row, reusing that model's existing provider/quota_pool strings rather than inventing new ones. `mimo-v2.5-pro-ultraspeed` is a genuinely new variant with no prior profile anywhere in the repo; rather than copy `mimo-v2.5-pro`'s specs onto it, every unconfirmed field (context length, capability flags, strengths, weaknesses, recommended framework) is explicitly `null`/`"TBD"`/`"unconfirmed"`. The 3 GPT-5.6 models deliberately received **no** sk-prompt profile: `references/models/_index.md` already declares frontier models (including `gpt-5.6-sol-*`) out of scope for this registry, a pre-existing, deliberate boundary this phase respected rather than overrode. Their dispatch documentation instead lives in a new `cli-pi/references/model-dispatch-gpt-5.6.md`, which cites this repo's own `cli-codex/SKILL.md` for the real reasoning-effort ceilings (`gpt-5.6-luna`/`gpt-5.6-terra` up to `max`, `gpt-5.6-sol` up to `ultra`, the only one reaching it) while explicitly flagging Pi's own dispatch-flag syntax for effort/service-tier as unconfirmed — no Pi CLI syntax was invented.
+
+### Files Changed
+
+
+## 010-pi-manual-testing-playbook/implementation-summary.md
+---
+title: "Implementation Summary: Pi manual-testing playbook (planning)"
+description: "Scenario Coverage Plan re-verified against phases 001-009's real landed facts (exit-code semantics, stdio-transport docs update, type-confirmed 32-event lifecycle set, 7-model roster); the actual playbook files stay unauthored, deferred to a future execution phase per this phase's own Hard Constraint."
+trigger_phrases:
+  - "pi manual testing playbook summary"
+  - "cli-pi playbook planning status"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/010-pi-manual-testing-playbook"
+    last_updated_at: "2026-07-27T11:36:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Coverage plan re-verified against phases 001-009's real facts; phase complete for its own scope"
+    next_safe_action: "Commit phase 010; start phase 011"
+    blockers: ["The actual playbook files remain unauthored - out of this planning phase's own scope, deferred to a future execution phase"]
+    key_files: ["spec.md", "plan.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-pi-creation-planning"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: ["Pi's actual self-invocation-guard signal remains unresolved - not surfaced by phase 001"]
+    answered_questions: ["Real repo counts re-verified live: 13 agents, 36 invokable commands, 5 native MCP servers - zero drift from this phase's authoring-time figures"]
+---
+# Implementation Summary: Pi manual-testing playbook (planning)
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-pi-manual-testing-playbook |
+| **Completed** | 2026-07-27 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase plans an 8-category, 19-scenario (`PI-001`..`PI-019`) manual-testing playbook for `cli-pi`, mirroring the sk-doc `create-manual-testing-playbook` conventions already proven by `cli-codex`/`cli-cursor`/`cli-devin`. Its own spec.md puts actually authoring the playbook files out of scope for this planning phase — the same Hard Constraint as phases 004/005/006/008/010's own predecessors in this packet. This closeout's job was to re-verify the plan against real, now-landed facts from phases 001-009, since all 9 had reached at least a Blocked-with-real-findings state by the time this phase closed.
+
+### Coverage plan upgraded from routed-UNKNOWN to real findings
+
+Four rows in the Scenario Coverage Plan (`spec.md` §9) originally routed an open question to a predecessor phase with no resolution available at authoring time. All four now cite real evidence:
+- `PI-002` (headless exit-code semantics): phase 001 confirmed the exit code is genuinely unreliable on failure (0 then 1 across identical runs) — worse than the `cursor-agent` precedent this packet already knew about.
+- `PI-011` (stdio MCP transport): phase 007's live docs re-fetch found stdio IS now documented (a material update since this phase's authoring), narrowing but not resolving the question — phase 007 itself stayed Blocked since installing the package was out of its own scope.
+- `PI-015` (extension lifecycle events): phase 008's direct read of the installed package's `types.d.ts` found the real 32-event set, including block-capable `tool_call` — TYPE-CONFIRMED, a materially stronger evidence class than an assumed list, still short of a live-session capture.
+- `PI-017`/`PI-018` (model dispatch): phase 009 landed the real, operator-confirmed 7-model roster in a fail-closed allowlist with no `"auto"` default.
+
+### Real repo counts re-verified, zero drift
+
+
+## 011-docs-agents-governance-and-closeout/implementation-summary.md
+---
+title: "Implementation Summary: Pi docs, agents, governance, and closeout"
+description: "cli-pi added to every roster/governance/hub-doc surface where a majority of its siblings already appeared, with an opportunistic cli-devin backfill since the hub's own registry files already fully documented devin; a pre-existing leaf-manifest.json byte-drift was fixed via mechanical regeneration; whole-packet validate.sh --recursive --strict and parent-skill-check.cjs both clean, GLM-5.2 APPROVEd the diff."
+trigger_phrases:
+  - "cli-pi closeout summary"
+  - "pi governance docs summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/031-cli-pi-creation/011-docs-agents-governance-and-closeout"
+    last_updated_at: "2026-07-27T16:50:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Implemented via LUNA, reviewed by GLM-5.2 APPROVE, leaf-manifest fixed, validate clean"
+    next_safe_action: "None -- terminal phase; commit and report the packet as closed"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    session_
+[...truncated 45KB...]
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/032-per-mode-provider-model-reference"
+# PACKET: specs/cli-external-orchestration/032-per-mode-provider-model-reference (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Per-mode providers, models and invocation reference files for the cli-external-orchestration hub, plus de-duplication of scattered provider/model docs"
+description: "Phase parent for Per-mode providers, models and invocation reference files for the cli-external-orchestration hub, plus de-duplication of scattered provider/model docs"
+trigger_phrases:
+  - "032-per-mode-provider-model-reference"
+  - "phase parent"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/032-per-mode-provider-model-reference"
+    last_updated_at: "2026-04-11T00:00:00Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize phase-parent continuity block"
+    next_safe_action: "Plan or resume a child phase folder"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: Per-mode providers, models and invocation reference files for the cli-external-orchestration hub, plus de-duplication of scattered provider/model docs
+
+## 001-author-per-mode-references/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1 — author per-mode providers-and-models references"
+description: "Each of the six cli modes now has a dedicated references/providers-and-models.md catalog listing its providers, models, effort tiers, and dispatch shapes."
+trigger_phrases:
+  - "cli providers and models reference"
+  - "per-mode provider model catalog"
+  - "providers-and-models.md authored"
+  - "cli mode model roster reference"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/032-per-mode-provider-model-reference/001-author-per-mode-references"
+    last_updated_at: "2026-08-11T07:16:29.084Z"
+    last_updated_by: "implementer"
+    recent_action: "Authored six per-mode providers-and-models.md catalogs"
+    next_safe_action: "Register the new leaves and wire pointers (phase 002)"
+    blockers: []
+    key_files:
+      - "cli-opencode/references/providers-and-models.md"
+      - "cli-codex/references/providers-and-models.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "impl-033-001"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-author-per-mode-references |
+| **Completed** | 2026-07-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Every one of the six cli modes now has a single dedicated file that answers "which providers, which models, which effort tiers, how to dispatch." Before this, that knowledge was scattered across each mode's SKILL.md roster, its cli-reference.md model section, and prompt-template pins.
+
+### Per-mode providers-and-models.md catalogs
+
+Each mode gained `references/providers-and-models.md` with a uniform 7-section shape (Overview, Providers & Models, Defaults & Quick Invocation, Reasoning-Effort/Thinking Lever, How to Invoke, Enforcement & Profiles, Related). cli-opencode is the multi-provider master (deepseek default, plus kimi/glm/minimax/xiaomi/OpenAI GPT-5.6). The single-provider modes each carry their own family: cli-codex (GPT-5.5/5.6 + `-c model_reasoning_effort=` ladder), cli-claude-code (Anthropic ids + `--effort`), cli-cursor (Composer + the enforced 10-id allowlist mirrored with an enforcement link), cli-devin (adaptive + sub-model roster), cli-pi (multi-provider passthrough + `--thinking`, no fixed default).
+
+### Files Changed
+
+
+## 002-register-and-wire/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2 — register leaves + wire pointers + fix smart-routing"
+description: "The six new catalogs are registered as advisor-routable leaves and the stale 3-mode surface router now covers all six modes."
+trigger_phrases:
+  - "leaf manifest regenerated cli"
+  - "smart-routing six modes"
+  - "cli catalog leaf registration"
+  - "surface router version bump"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/032-per-mode-provider-model-reference/002-register-and-wire"
+    last_updated_at: "2026-08-11T07:16:29.255Z"
+    last_updated_by: "implementer"
+    recent_action: "Regenerated leaf-manifest and expanded smart-routing to six modes"
+    next_safe_action: "Trim duplicated enumerations (phase 003)"
+    blockers: []
+    key_files:
+      - "leaf-manifest.json"
+      - "shared/references/smart-routing.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "impl-033-002"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-register-and-wire |
+| **Completed** | 2026-07-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The six new catalogs are now discoverable by both the advisor and human readers, and the hub's surface router — which had silently covered only three of the six modes — now covers all six.
+
+### Leaf registration
+
+`leaf-manifest.json` was regenerated through the canonical generator so each mode's `references/providers-and-models.md` registers as a routable leaf (six new leaves, one per mode).
+
+### Surface-router repair
+
+
+## 003-trim-duplicates/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3 — trim duplicated provider/model enumerations"
+description: "Redundant model enumerations were trimmed from each mode's cli-reference.md and SKILL.md to a compact residue plus a pointer, while every mode stayed self-sufficient and advisor routing tokens were preserved."
+trigger_phrases:
+  - "trim cli reference model tables"
+  - "compact residue plus pointer"
+  - "self-sufficiency dispatch gate"
+  - "advisor routing tokens preserved"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/032-per-mode-provider-model-reference/003-trim-duplicates"
+    last_updated_at: "2026-08-11T07:16:29.438Z"
+    last_updated_by: "implementer"
+    recent_action: "Trimmed duplicated enumerations across six modes, preserved routing JSON"
+    next_safe_action: "Hub reconcile + adjacent fixes + validate (phase 004)"
+    blockers: []
+    key_files:
+      - "cli-opencode/references/cli-reference.md"
+      - "cli-cursor/references/cli-reference.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "impl-033-003"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-trim-duplicates |
+| **Completed** | 2026-07-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Now that each mode has a dedicated catalog, the exhaustive model enumerations that used to be copied into each mode's cli-reference.md model section and SKILL.md roster are gone. In their place is a compact residue — the mode's own default, its effort mechanism, and a prominent pointer to the catalog — plus the mode-specific mechanics that are not pure enumeration.
+
+### Per-mode trim
+
+Each mode's `cli-reference.md` model section and `SKILL.md` roster were trimmed to a compact residue plus a pointer. Mode-specific mechanics were kept inline: opencode's provider auth pre-flight and operational caveats, codex's `-c model_reasoning_effort=` config detail, and — critically — cursor's full 10-id allowlist (dispatching an off-list id hard-fails, so the safety contract stays readable inline). The pointer links promised in phase 002 were delivered here as the trim residue.
+
+### Files Changed
+
+
+## 004-hub-reconcile-and-validate/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4 — hub reconcile + adjacent fixes + validate"
+description: "Hub docs now point at the per-mode catalogs, the three approved adjacent defects are fixed, and the full conformance battery is green."
+trigger_phrases:
+  - "hub reconcile provider pointers"
+  - "version skew reconciled cli"
+  - "stale scripts reference removed"
+  - "cli conformance gates green"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/032-per-mode-provider-model-reference/004-hub-reconcile-and-validate"
+    last_updated_at: "2026-08-11T07:16:29.607Z"
+    last_updated_by: "implementer"
+    recent_action: "Reconciled hub docs, fixed adjacent defects, ran conformance battery"
+    next_safe_action: "Optional /memory:save to stamp continuity fingerprints and close the packet"
+    blockers: []
+    key_files:
+      - "SKILL.md"
+      - "README.md"
+      - "hub-router.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "impl-033-004"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-hub-reconcile-and-validate |
+| **Completed** | 2026-07-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The hub-level documentation now points readers at the per-mode catalogs, three long-standing adjacent defects are fixed, and the whole hub still conforms.
+
+### Hub reconcile + adjacent fixes
+
+The parent SKILL.md §5 and README.md gained a pointer to the per-mode `providers-and-models.md` catalogs. The three operator-approved adjacent defects were fixed: the surface router now covers all six modes (phase 002); `hub-router.json` and `README.md` were aligned from 1.1.0.0 to 1.2.0.0, matching SKILL.md / mode-registry.json / description.json; and the phantom `cli-opencode/scripts/` directory was removed from the SKILL.md layout tree and the README §2 prose (it does not exist on disk).
+
+### Files Changed
+
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/033-deepseek-v4-flash-pi-roster"
+# PACKET: specs/cli-external-orchestration/033-deepseek-v4-flash-pi-roster
+
+---
+title: "Implementation Summary: DeepSeek V4 Flash in the cli-pi enforced roster"
+description: "deepseek-v4-flash now lands in the enforced pi roster so fanout dispatch accepts the model the cli-pi docs already advertised."
+trigger_phrases:
+  - "deepseek v4 flash implementation summary"
+  - "pi allowlist flash summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/033-deepseek-v4-flash-pi-roster"
+    last_updated_at: "2026-08-11T07:16:30.106Z"
+    last_updated_by: "implementer"
+    recent_action: "Add deepseek-v4-flash to pi enforced roster"
+    next_safe_action: "Packet complete; optional follow-up sk-prompt-models Flash profile"
+    blockers: []
+    key_files:
+      - "system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+      - "system-deep-loop/runtime/scripts/fanout-run.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "impl-035-deepseek-v4-flash"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 033-deepseek-v4-flash-pi-roster |
+| **Completed** | 2026-08-02 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A fanout `cli-pi` dispatch that names `deepseek-v4-flash` is now accepted instead of rejected. The cli-pi docs already advertised the model, but the enforced allowlist omitted it, so any fanout dispatch failed the fail-closed gate. This packet closes that divergence and leaves the two providers that do not offer the model untouched.
+
+### DeepSeek V4 Flash on cli-pi
+
+You can now route a fanout pi lineage to `deepseek-v4-flash` for latency-optimized turns. The id was live-confirmed on the pi install before it was added, so the roster's "read from live, never fabricated" contract holds. cli-opencode already exposed the model and needed no change; cli-cursor and cli-devin were left alone because their providers serve no DeepSeek V4 Flash id at all.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `system-deep-loop/runtime/lib/deep-loop/executor-config.ts` | Modified | `PI_SUPPORTED_MODELS` gains `deepseek-v4-flash` (source of truth) |
+| `system-deep-loop/runtime/scripts/fanout-run.cjs` | Modified | `PI_ALLOWED_MODELS` gains Flash; `PI_MODEL_PROVIDERS` maps `deepseek-v4-flash → deepseek` |
+| `system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Modified | Roster assertion seven→eight; Flash added to the sorted expected list |
+| `system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modified | Provider-map coverage test gains `deepseek-v4-flash → deepseek` |
+| `cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md` | Modified | PI-017 count seven→eight, Flash enumerated, stale `sed` range refreshed |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Availability was probed live on all four CLIs first, then the id was added to the TS source and its CJS mirror together so the alignment guard stays green. Confidence comes from `vitest` (`188 passed` across executor-config, fanout-run, and combo-matrix), a clean `npm run typecheck`, and `validate.sh --strict`. The change is additive only, so it permits a previously-rejected model without altering any existing dispatch path.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Skipped cli-cursor and cli-devin | Live rosters have no DeepSeek V4 Flash (`cursor-agent --list-models` shows 0 DeepSeek; `devin models list` shows only `deepseek-v4-pro`); adding an id would fabricate a nonexistent model and break the allowlist contract |
+| Fixed code + docs for cli-pi (not docs-only) | Docs-only would leave fanout dispatch still rejecting Flash; the enforced allowlist had to change to match the doc claim |
+| Inserted Flash after `deepseek-v4-pro` | Keeps `PI_SUPPORTED_MODELS[0]` = Pro so the combo-matrix first-model representative check is unaffected |
+| No sk-prompt-models profile for Flash | That is a separate skill's governance; Flash inherits the `deepseek-v4-pro` prompt-craft profile |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `vitest` executor-config + fanout-run + combo-matrix | PASS, `188 passed (188)` |
+| `npm run typecheck` (`tsc --noEmit`) | PASS, exit 0, no output |
+| `validate.sh --strict` | PASS |
+| Live probe cli-opencode / cli-pi | PASS, `deepseek-v4-flash` present on both |
+| Live probe cli-cursor / cli-devin | Confirmed absent, left unchanged |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **cli-cursor / cli-devin unchanged.** DeepSeek V4 Flash is not offered by those providers, so the request cannot be satisfied there without fabricating a model id. Documented, not worked around.
+2. **Flash reasoning behavior on pi unverified.** Flash is latency-optimized; the fanout builder still forwards `--thinking` when a reasoningEffort is set. No evidence this errors (`models-store.json` tags `thinkingFormat: deepseek`), so no special-casing was added.
+3. **No dedicated prompt-craft profile.** Flash inherits the `deepseek-v4-pro` sk-prompt-models profile; a Flash-specific profile is an optional follow-up.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

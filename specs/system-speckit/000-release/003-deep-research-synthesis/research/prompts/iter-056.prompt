@@ -1,0 +1,1974 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/035-command-surface-benchmark"
+# PACKET: specs/system-deep-loop/035-command-surface-benchmark (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: command-surface benchmark — a two-axis deep-alignment benchmark measuring command-family effectiveness and adherence"
+description: "Phase parent for a new benchmark hosted in the deep-alignment mode that measures the OpenCode command surface on two non-averaged axes: a deterministic full-corpus peer adapter (sk-doc-command) auditing structural command integrity across the full command corpus (36 baseline, 37 after the launcher ships), and a sampled behavioral DAB suite (DAB-012–027 on the shared behavior-benchmark framework v2) that actually invokes commands and scores adherence. A bounded model matrix (Claude baseline + gpt-5.6-sol + gpt-5.6-luna-fast) measures executor variance only, not the benchmark itself. Evaluator-first: create-benchmark authors inputs and reports; scoring stays lane-local."
+status: planned
+trigger_phrases:
+  - "command surface benchmark"
+  - "command effectiveness adherence benchmark"
+  - "deep-alignment command benchmark"
+  - "sk-doc-command peer adapter"
+  - "command behavior DAB suite"
+importance_tier: "important"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark"
+    last_updated_at: "2026-07-14T20:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Scaffolded phase parent plus nine-child decomposition from a three-model design congregation"
+    next_safe_action: "Author child 000 command-benchmark-contract, then fan out children 001 through 008"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc.cjs"
+      - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      - ".opencode/commands/scripts/validate-command-references.cjs"
+      - ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
+    completion_pct: 3
+    open_questions:
+      - "Exact GPT-5.6 registry slugs and effort names must be revalidated when the matrix phase runs"
+      - "Whether provider event streams need per-provider normalization before direct-dispatch evidence is trustworthy"
+    answered_questions:
+      - "Two non-averaged axes: a deterministic sk-doc peer adapter plus a sampled DAB behavioral suite; the model matrix measures executor variance only (three-model design congregation, 2026-07-14)"
+      - "Host inside deep-alignment as a peer adapter and an extension of the existing DAB behavior_benchmark package — no new authority or artifact class, and no new behavior package or DAB prefix; conformance inputs ship as one deterministic conformance_benchmark package authored through create-benchmark (2026-07-14)"
+      - "New packet under system-deep-loop as 066, distinct from the 033 behavior-benchmark framework and the 059/015 model-matrix hardening it reuses (operator, 2026-07-14)"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+
+## 000-command-benchmark-contract/implementation-summary.md
+---
+title: "Implementation Summary: command-benchmark contract"
+description: "Phase 000 now gives every downstream command-benchmark phase one reproducible 36-command census, a complete four-topology classification, separate verdict axes, stable package and evidence layouts, and explicit handoff gates."
+trigger_phrases:
+  - "command benchmark contract implementation"
+  - "command benchmark phase 000 summary"
+  - "command census taxonomy evidence"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/000-command-benchmark-contract"
+    last_updated_at: "2026-07-15T06:01:53Z"
+    last_updated_by: "codex"
+    recent_action: "Froze the command census, topology taxonomy, verdict boundary, layouts, and phase gates"
+    next_safe_action: "Start phase 001 against the frozen conformance package and G001 handoff contract"
+    blockers: []
+    key_files:
+      - "census-snapshot.md"
+      - "topology-taxonomy.md"
+      - "verdict-and-ownership.md"
+      - "contract-layout.md"
+      - "handoff-gates.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The live baseline is 36 canonical sources and 36 generated mirrors"
+      - "The taxonomy is 28 workflow, 2 subaction, 5 direct-tool/plugin, and 2 monolithic commands"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 000-command-benchmark-contract |
+| **Completed** | 2026-07-15 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Every downstream phase now has one frozen contract surface instead of re-deriving the command corpus, topology, result vocabulary, or output paths. The live baseline is `36` canonical command sources and `36` generated Codex mirrors, and every source has exactly one topology assignment.
+
+### Frozen Contract Set
+
+The contract set records the exact source-to-mirror inventory, classifies the corpus as 28 workflow routers, 2 subaction routers, 5 direct-tool/plugin routers, and 2 monolithic commands, separates deterministic P-level verdicts from behavioral D1-D5 results, and keeps instrument validity independent from subject conformance.
+
+The layout contract reuses the live `create-benchmark` `conformance_benchmark` templates. It fixes `command-surface` under the deep-alignment mode, keeps stable inputs separate from run evidence, and reserves the only packet-local census change for the phase-009 launcher and generated mirror.
+
+### Files Changed
+
+## 001-create-benchmark-conformance-family/implementation-summary.md
+---
+title: "Implementation Summary: create-benchmark conformance_benchmark family"
+description: "The live create-benchmark skill now routes and authors deterministic conformance packages while preserving its MCP-promotion path and stopping before all lane-owned execution."
+status: complete
+trigger_phrases:
+  - "create-benchmark conformance implementation"
+  - "conformance benchmark family complete"
+  - "peer adapter authoring branch"
+  - "benchmark family parity test"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/001-create-benchmark-conformance-family"
+    last_updated_at: "2026-07-15T06:28:57Z"
+    last_updated_by: "codex"
+    recent_action: "Completed conformance family routing, command authoring, and verification"
+    next_safe_action: "Orchestrator refreshes description and graph metadata"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
+      - ".opencode/skills/sk-doc/create-benchmark/README.md"
+      - ".opencode/commands/create/benchmark.md"
+      - ".opencode/skills/sk-doc/scripts/tests/test_create_benchmark_family_registry.py"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The command adds only conformance_benchmark beside the existing MCP path; other family command branches remain outside scope."
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-create-benchmark-conformance-family |
+| **Completed** | 2026-07-15 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`create-benchmark` now recognizes `conformance_benchmark` as its fifth authored
+family. The live skill, hub projections, and `/create:benchmark` surface all use
+the same trigger vocabulary and family key. The authoring branch fills the family
+index, benchmark contract, lane config, and fixture manifest, validates the
+authored package, and stops before any peer-adapter or deep-alignment execution.
+
+The package also has a fail-closed registry test. It reconciles the runtime
+`FAMILIES` list with asset and reference directories, the SKILL family table, and
+
+## 002-deterministic-fixtures-oracle/implementation-summary.md
+---
+title: "Implementation Summary: deterministic fixtures and independent reference oracle"
+description: "The command-surface benchmark now has a reproducible 13-tree fixture corpus, a CLI-only independent oracle, frozen per-fixture expectations, and a consuming manifest that production adapter code may not import from or invoke."
+status: complete
+trigger_phrases:
+  - "command fixture oracle implementation"
+  - "deterministic command fixtures complete"
+  - "command surface frozen expectations"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle"
+    last_updated_at: "2026-07-15T06:49:12Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the independent oracle, deterministic fixture corpus, and frozen expectations"
+    next_safe_action: "Refresh generated metadata, then let phase 003 consume expectations without oracle imports"
+    blockers: []
+    key_files:
+      - "oracle/reference-oracle.cjs"
+      - "fixtures/mutation-manifest.json"
+      - "fixtures/build-fixtures.cjs"
+      - "expectations/index.json"
+      - ".opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/fixtures/fixture-manifest.json"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The compound held-out fixture combines mirror drift, missing workflow reachability, and duplicated presentation ownership."
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-deterministic-fixtures-oracle |
+| **Completed** | 2026-07-15 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deterministic command axis now has ground truth that predates and cannot be
+shared with the future production adapter. One clean command tree contains
+representatives of all four frozen topologies and is transformed into eight public
+defect fixtures, four held-out fixtures, and a clean control; the independent
+oracle freezes each exact code, severity, dimension, and location.
+
+### Independent Oracle and Corpus
+
+
+## 003-command-contract-adapter/implementation-summary.md
+---
+title: "Implementation Summary: command contract adapter"
+description: "The production command peer adapter now audits structural command integrity across all four execution topologies and reproduces the frozen deterministic outcomes without importing the independent classifier."
+trigger_phrases:
+  - "sk-doc-command implementation"
+  - "command adapter fixture proof"
+  - "command reference topology coverage"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/003-command-contract-adapter"
+    last_updated_at: "2026-07-15T07:22:15Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified the command contract adapter"
+    next_safe_action: "Refresh generated metadata, then register the peer adapter in the successor phase"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
+      - ".opencode/commands/scripts/validate-command-references.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/sk-doc-command-adapter.test.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/references/adapters/sk_doc_command_adapter.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Hermetic topology coverage now lives in the shared reference-checker self-test"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-command-contract-adapter |
+| **Completed** | 2026-07-15 |
+| **Level** | 1 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The command surface now has a production peer adapter that audits mirror identity, target reachability, route integrity, capability and safety consistency, and presentation ownership. It uses the live command canon and shared inventory tools while keeping generic command document validation under its existing owner.
+
+### Adapter And Shared Checks
+
+`sk-doc-command.cjs` implements the deep-alignment `discover`, `standardSource` and `check` methods. The shared reference checker now inventories and classifies workflow, subaction, direct-tool/plugin and monolithic commands without changing its existing default CLI report or exit contract.
+
+### Files Changed
+
+| File | Action | Purpose |
+
+## 004-command-lane-integration/implementation-summary.md
+---
+title: "Implementation Summary: command lane integration"
+description: "Registers the command peer adapter, routes its prompt pack by selected adapter, adds an isolated benchmark lane, fixes the adapter's finding shape for reducer dedup, and proves full-corpus convergence with exact raw-delta/reducer agreement."
+trigger_phrases:
+  - "command lane integration"
+  - "sk-doc-command lane registration"
+  - "command adapter convergence run"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/004-command-lane-integration"
+    last_updated_at: "2026-07-15T08:45:00Z"
+    last_updated_by: "claude"
+    recent_action: "Completed lane registration, the reducer-compatibility fix, and the converged full-corpus run"
+    next_safe_action: "Proceed to 005-command-behavior-evaluator"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/sk-doc-command.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/lane-config.json"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-command-lane-integration |
+| **Completed** | 2026-07-15 |
+| **Status** | Complete |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The command peer adapter now resolves as a valid `sk-doc` lane without changing the default `sk-doc` path, and it runs to convergence over the whole command corpus with the reducer agreeing exactly with the raw iteration deltas.
+
+Delivered in two parts because of a plan-workflow lock (see How It Was Delivered):
+
+**Part A — lane registration (source, config, tests).** `sk-doc-command` is allowlisted for the `sk-doc` authority. The prompt-pack router resolves adapter-spec and known-deviation documents by the selected adapter, so the command lane receives its own contract and deviation list while an ordinary docs lane keeps the generic pair. One isolated benchmark lane over `.opencode/commands` was authored, and the scoping and partition tests were extended to cover peer selection, fail-closed rejection, and adapter propagation into the next slice.
+
+**Reducer-compatibility fix.** The converged run surfaced a real integration gap: the adapter's findings carried only `{code, severity, dimension, location}`, but the deep-alignment reducer's fallback dedup key reads `severity|type|artifactPath|message`. Distinct same-severity findings therefore collapsed to one open finding, which would have broken raw-delta/reducer agreement in any real run. Following the five peer adapters' convention, `makeFinding` was extended to also emit `type` (= code), `artifactPath` (= the location's file), and `message` (embedding the code and full location), preserving the four original fields the oracle and fixtures compare. The adapter test now projects to the core fields for the frozen-oracle comparison and separately asserts the reducer-compatible fields and three distinct dedup keys.
+
+**Part B — the converged run.** The command adapter ran as a lane over all 36 canonical commands and converged, with the reducer's deduped registry matching the raw deltas exactly on the adapter's verbatim output.
+
+### Files Changed
+
+## 005-command-behavior-evaluator/implementation-summary.md
+---
+title: "Implementation Summary: command behavior evaluator"
+description: "Delivered the shared behavior-benchmark schema v2 with direct-dispatch, postcondition, and boundary evidence while preserving every frozen DAB v1 result."
+status: complete
+trigger_phrases:
+  - "command behavior evaluator implementation"
+  - "behavior benchmark schema v2 complete"
+  - "DAB v1 golden regression"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/005-command-behavior-evaluator"
+    last_updated_at: "2026-07-15T09:13:11Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the shared behavior-benchmark schema v2 upgrade"
+    next_safe_action: "Proceed to the command topology pilot"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md"
+      - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs"
+      - ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-command-behavior-evaluator |
+| **Completed** | 2026-07-15 |
+| **Level** | 1 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The shared behavior-benchmark runner now supports an opt-in schema v2 without changing the v1 path or result shape. Schema v2 adds direct-dispatch target evidence, four fail-closed postcondition probes, setup-binding failures, structured fixture-boundary evidence, and the `boundary_violation` terminal bucket. The stable runner CLI and versioned output contract are now normative framework documentation.
+
+The DAB golden regression is the REQ-002 proof: the pre-edit runner produced an 11-entry map, and the post-edit runner reproduced the same file byte for byte with the same SHA-256 digest. The hermetic CLI coverage also produced scored schema-v2 single-sample and aggregate results while the existing v1 smoke result retained `schemaVersion: 1` and no v2 keys.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md` | Modified | Published schema versioning, direct dispatch, probes, boundary taxonomy, and stable CLI contract |
+| `.opencode/skills/system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs` | Modified | Added v2-gated evaluation, scoring, classification, result sections, and exports |
+| `.opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs` | Modified | Added v1 golden, v2 unit, boundary, probe, single-run, and aggregate coverage |
+
+## 006-command-topology-pilot/implementation-summary.md
+---
+title: "Implementation Summary: command topology pilot authoring"
+description: "Four schema-v2 command-topology contracts and dedicated fixtures are authored and hermetically verified; live dual-driver capture remains deferred."
+status: in_progress
+trigger_phrases:
+  - "command topology pilot implementation"
+  - "pilot scenario authoring status"
+  - "deferred command capture"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/006-command-topology-pilot"
+    last_updated_at: "2026-07-15T10:01:39Z"
+    last_updated_by: "codex"
+    recent_action: "Authored and hermetically verified four schema-v2 topology contracts and fixtures"
+    next_safe_action: "Capture Claude and GPT pilot legs after operator green-light"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-012-workflow-router-deep-review.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-013-subaction-router-doctor-parent-skill.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-014-direct-tool-router-memory-search.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-015-monolithic-prompt-improve.md"
+    completion_pct: 40
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+## 1. OVERVIEW
+
+Four command-topology contracts and their isolated fixtures are authored and hermetically verified. Live Claude and GPT capture remains operator-gated, so the phase stays in progress at 40% completion.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-command-topology-pilot |
+| **Completed** | Not complete; live capture and calibration are deferred |
+| **Level** | 1 |
+| **Completion** | 40% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The pilot now has one schema-v2 contract and one dedicated fixture for each command topology. Authoring is complete and hermetically verified. The Claude baseline, GPT driver runs, result reconciliation, and environment-status calibration remain deferred, so this phase is partially complete rather than closed.
+
+### Scenario and fixture inventory
+
+
+## 007-command-scenario-rollout/behavior_benchmark/fixtures/dab-025-memory-save-apply/src/save-packet/implementation-summary.md
+---
+title: Save fixture continuity
+description: Minimal continuity seed for the memory-save behavior cell.
+trigger_phrases:
+  - save fixture continuity
+importance_tier: normal
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: src/save-packet
+    recent_action: Preserve MEMORY_SAVE_SENTINEL
+    next_safe_action: Refresh fixture metadata
+    completion_pct: 20
+---
+# Implementation Summary
+
+MEMORY_SAVE_SENTINEL
+
+## 007-command-scenario-rollout/implementation-summary.md
+---
+title: "Implementation Summary: command scenario rollout"
+description: "Authoring record for DAB-016 to 027, command-suite reconciliation, and the deferred live Claude baseline."
+status: in_progress
+trigger_phrases:
+  - "command scenario rollout implementation"
+  - "DAB-016 to 027 authoring"
+  - "command benchmark baseline deferred"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/007-command-scenario-rollout"
+    last_updated_at: "2026-07-15T11:35:00Z"
+    last_updated_by: "claude"
+    recent_action: "Authored DAB-016 to 027; fixed 6 sentinels + direct_dispatch min_task_events"
+    next_safe_action: "Capture the sixteen live Claude baseline cells after operator green-light"
+    blockers:
+      - "Live Claude baseline capture is deferred pending operator green-light"
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/command-scenario-rollout.test.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/behavior_benchmark.md"
+    completion_pct: 80
+---
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+| --- | --- |
+| **Spec Folder** | 007-command-scenario-rollout |
+| **Completed** | Not complete; live baseline deferred |
+| **Level** | 1 |
+| **Status** | In Progress |
+| **Completion** | 80% |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The rollout adds twelve schema-v2 scenarios and dedicated fixture roots to the four pilots already authored in DAB-012 to 015. The resulting command suite is exactly DAB-012 through DAB-027. The package index, pending Claude ledger, marker-source hashes, topology evidence, fixture boundaries, and frozen v1 scoring are reconciled by the phase-owned test.
+
+### Command coverage
+
+| ID | Command | Topology | Evidence kind | Expected interaction |
+| --- | --- | --- | --- | --- |
+| DAB-016 | `create/benchmark` | workflow router | `task_dispatch` | autonomous |
+| DAB-017 | `design/audit` | workflow router | `task_dispatch` | autonomous |
+| DAB-018 | `doctor/mcp install` | subaction router | `task_dispatch` | question_halt |
+| DAB-019 | `doctor/mcp debug` | subaction router | `task_dispatch` | autonomous |
+| DAB-020 | `doctor/mcp install --fix` | subaction router | `task_dispatch` | fail_fast |
+| DAB-021 | `memory/learn list` | direct-tool/plugin router | `direct_dispatch` | autonomous |
+
+## 008-bounded-command-matrix/implementation-summary.md
+---
+title: "Implementation Summary: bounded command matrix machinery"
+description: "A hermetically verified 52-cell scheduler and manifest now gate deferred command-surface capture."
+status: in-progress
+trigger_phrases:
+  - "bounded command matrix implementation"
+  - "command behavior matrix scheduler"
+  - "command matrix reconciliation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/008-bounded-command-matrix"
+    last_updated_at: "2026-07-15T11:58:18Z"
+    last_updated_by: "codex"
+    recent_action: "Built bounded scheduler, 52-cell manifest, and hermetic reconciliation gate"
+    next_safe_action: "Run operator-approved live driver cells, then contested reruns"
+    blockers:
+      - "Live capture requires operator green-light"
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs"
+      - ".opencode/skills/system-deep-loop/deep-alignment/assets/command_benchmark/command_benchmark_matrix.json"
+      - ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/command-behavior-matrix.test.cjs"
+    completion_pct: 65
+    open_questions:
+      - "Which live GPT registry slugs and effort names are available at capture time?"
+    answered_questions:
+      - "Alignment fan-out is absent from ACTIVE_FANOUT_LOOP_TYPES."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-bounded-command-matrix |
+| **Status** | In progress; live capture deferred |
+| **Completed** | Not complete; live capture deferred |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The command-surface benchmark now has a bounded, machine-reconciled execution plan that is fully testable without a model. The production manifest freezes 52 required cells across DAB-012..027: 48 driver cells from three legs over 16 scenarios, plus four representative alignment leaf sentinels. Every cell carries its scenario, leg, sample count, fixture hash reference, and either a result pointer or a machine-readable skip.
+
+### Scheduler and manifest
+
+The scheduler exposes only `--matrix` and `--out-dir`. Before accounting for a cell, it parses the scenario contract and recomputes the same recursive per-file SHA-256 map as the frozen runner. Runnable cells restore and recheck their fixture, invoke the runner as a child process, preserve retryable exit 75, and require the declared result file to reconcile. Skipped cells never spawn an executor.
+
+### Fan-out gap decision
+
+
+## 009-command-benchmark-command/implementation-summary.md
+---
+title: "Implementation Summary: /deep:command-benchmark launcher"
+description: "The two-axis launcher, owned assets, alignment alias, generated Codex mirror, and hermetic smoke are complete and G009-verified."
+status: complete
+trigger_phrases:
+  - "command benchmark launcher implementation"
+  - "deep command-benchmark smoke"
+  - "command benchmark instrument validity"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/009-command-benchmark-command"
+    last_updated_at: "2026-07-15T13:01:42Z"
+    last_updated_by: "claude"
+    recent_action: "Generated Codex mirror (37/37) and verified all G009 gates"
+    next_safe_action: "Proceed to phase 010 scorecard and closeout"
+    blockers: []
+    key_files:
+      - ".opencode/commands/deep/command-benchmark.md"
+      - ".opencode/commands/deep/assets/deep_command-benchmark_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_command-benchmark_confirm.yaml"
+      - ".opencode/commands/scripts/smoke-command-benchmark.cjs"
+      - ".opencode/skills/system-deep-loop/mode-registry.json"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The launcher is an alignment alias, not a workflow mode."
+      - "Subject failure remains publishable under INSTRUMENT=VALID."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-command-benchmark-command |
+| **Status** | Complete |
+| **Completed** | 7 of 7 tasks; launcher, assets, alias, generated Codex mirror, and hermetic smoke all G009-verified |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The command surface now has one workflow-YAML router that binds an explicit spec folder, immutable run ID, mode, and axis, then composes the two existing benchmark engines. The router has the canonical six numbered sections and keeps every visible setup, checkpoint, terminal, error, and next-step string in its presentation asset.
+
+The conformance target loads the existing alignment workflow asset with the command-surface lane config, parsed lanes, and executing spec folder already bound. It never shells through a nested command and does not copy the alignment loop. The behavioral target invokes the shipped matrix scheduler through its frozen `--matrix` and `--out-dir` interface.
+
+The terminal envelope treats instrumentation as orthogonal to subject results. `STATUS=FAIL` is reserved for invalid or failed instrumentation; a valid subject failure remains `STATUS=OK INSTRUMENT=VALID`. The two subject axes are copied from their owners and never averaged.
+
+### Files Changed
+
+## 011-create-benchmark-completeness-remediation/implementation-summary.md
+---
+title: "Implementation Summary: create-benchmark completeness remediation"
+description: "The dual-review P1/P2 fixes (T003-T013) and the Sol Ultra Fast re-review (T014) shipped; the re-review's confirmed regressions are closed, and its deeper structural findings (T016) are escalated to the operator as beyond doc-remediation scope."
+status: in_progress
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/035-command-surface-benchmark/011-create-benchmark-completeness-remediation"
+    last_updated_at: "2026-07-16T04:35:00Z"
+    last_updated_by: "claude"
+    recent_action: "Closed all T016 structural findings as doc/template edits; strict validate 0/0"
+    next_safe_action: "Ship the T016 fixes; then 066 phase-010 closeout remains"
+    completion_pct: 90
+    blockers:
+      - "T016 structural P1s (command_benchmark FAMILIES key, reviewer-profile template, Lane C corpus scaffold, conformance fixture-location doctrine) exceed doc-remediation scope and await an operator decision"
+    key_files:
+      - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
+      - ".opencode/skills/system-deep-loop/deep-alignment/assets/conformance_benchmark/command-surface/conformance_benchmark.md"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-create-benchmark-completeness-remediation |
+| **Status** | In progress |
+| **Completed** | Setup + finding archival (T001–T002); fix groups and re-review pending |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+So far, the remediation scaffold: this child folded into packet 066, a full spec/plan/tasks/checklist doc set mapping every verified dual-review finding to a scoped task, and the two review reports (Fable 5 and GPT-5.6 Sol Ultra) archived verbatim under `evidence/` as the finding source of truth.
+
+The fixes themselves (T003–T013) are behavior-preserving documentation and template edits plus one router-fallback string, executed in three scoped groups and gated by an independent GPT-5.6 Sol Ultra Fast re-review.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The remediation was scoped from two independent completeness reviews rather than a single opinion: Fable 5 and GPT-5.6 Sol Ultra each audited create-benchmark against the live `system-deep-loop` benchmark surfaces, and their agreements were treated as high-confidence findings while their one divergence (behavior-template expressiveness) was resolved by reading the actual template. Fixes are authored directly from the reviews' exact file:line targets, in three scoped groups, each edit validated at author time, then verified by an independent Sol Ultra Fast re-review before ship.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/036-deep-loop-innovation"
+# PACKET: specs/system-deep-loop/036-deep-loop-innovation (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: system-deep-loop recommendations implementation (evidence-ledger runtime + per-mode migration)"
+description: "Implement the 178 research recommendations from packets 065/001 + 065/002 into the shipped system-deep-loop runtime and its per-mode workstreams. The research established that all 178 recs converge on ONE architecture — an append-only typed event ledger guarded by a fail-closed transition-authorization gateway, with sealed/frozen reference artifacts, versioned replay fingerprints, receipts/certificates, and blinded/counterfactual adjudication — and that the correct program builds the shared substrate ONCE, then gives each mode its own typed schema over it. The load-bearing constraint (from a GPT-5.6-sol ultra design review): the runtime holds in-flight state and cannot be swapped big-bang, so the new substrate lands ADDITIVE + DARK + non-authoritative behind compatibility adapters and shadow-parity, authority cuts over one mode at a time behind a rollback window, and legacy writers retire only after zero-use telemetry. Phase parent for a phase parent whose direct children are eight thematic group parents plus the research and migration host packets; the groups hold the original research-to-closeout, remediation, hardening, review, and executor phases. The PHASE DOCUMENTATION MAP is the current child inventory."
+trigger_phrases:
+  - "deep-loop recommendations implementation"
+  - "implement the 178 deep-loop recs"
+  - "evidence-ledger runtime for system-deep-loop"
+  - "per-mode migration deep-loop"
+  - "transition-authorized ledger core"
+importance_tier: "critical"
+contextType: "planning"
+parent: "system-deep-loop"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation"
+    last_updated_at: "2026-08-13T14:27:57.000Z"
+    last_updated_by: "claude-code"
+    recent_action: "Flattened impl program to packet root; renumbered phases to 003-017"
+    next_safe_action: "Author phase-003 baseline-taxonomy-and-state-census doc set on a pinned BASE"
+    blockers: []
+    key_files: []
+    completion_pct: 0
+    open_questions: []
+    answered_questions:
+      - "Placement = the implementation program is the 065 packet itself; research packets 001-002 stay pure inputs and are phases 001-002; implementation is phases 003-017"
+      - "Scope = comprehensive; all 178 recs (8 + 59 + 111) map bijectively to exactly one phase or an explicit deferral"
+      - "Architecture = the single cross-mode spine: typed event ledger + transition-authorization + sealed artifacts + replay fingerprints + receipts + blinded adjudication"
+      - "Migration model = additive-dark substrate -> shadow parity -> staged per-mode authority cutover -> legacy retirement (no big-bang swap)"
+      - "GPT-5.6-sol (ultra) design review returned REQUESTED_CHANGES; this decomposition folds in every P0/P1"
+      - "Fan-out split: the backward-compatible live-tools unblock ships early (005); durable fan-in integrates later (009)"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; mechanics live in each child's plan.md, the architecture + rec-ledger decisions in 004's children (`001-spine-architecture-adr/plan.md`, `002-recommendation-ledger-bijective-map/`). -->
+
+# Feature Specification: system-deep-loop Recommendations Implementation
+
+<!-- ANCHOR:metadata -->
+
+## 001-research-inputs-and-architecture/001-deep-loop-market-research/implementation-summary.md
+---
+title: "Implementation Summary: Deep-Loop Market Research (Loop-Engineering Landscape)"
+description: "Final state of the 45-iteration non-converging research run: 216 catalogued repos, 174 insights, 134 contradictions, all 13 subsystems mapped, research.md synthesized; executed via a manual Shape-B driver because the fanout codex executor lacks live --search."
+trigger_phrases:
+  - "deep loop market research summary"
+  - "phase 001 implementation summary"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research"
+    last_updated_at: "2026-07-17T13:30:51Z"
+    last_updated_by: "claude-code"
+    recent_action: "Packet renumbered 034->036; description.json/graph-metadata.json regenerated"
+    next_safe_action: "Operator review + phase-002 ranking/mapping from research.md §17"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/findings-registry.json"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "065-001-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "ADR-002 shape: Shape B, realized manually (fanout codex lacks --search)."
+      - "GLM provider: zai-coding-plan/glm-5.2, --variant max, live search via opencode WebFetch."
+---
+# Implementation Summary: Deep-Loop Market Research (Loop-Engineering Landscape)
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-deep-loop-market-research |
+| **Completed** | 2026-07-15 — run complete (45/45 iterations); deliverable synthesized |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A full-depth, non-converging (broadening) research run over the loop-engineering landscape, producing a subsystem-mapped synthesis to feed the phases 002/003 improvement pipeline.
+
+**Outcomes (45 iterations, 0 parse failures):**
+- **216 deduplicated, URL-verified GitHub repos** catalogued (target ≥10), each with a transferable lesson; by lineage: LUNA 121, SOL 45, GLM 50.
+- **222 insights** and **134 evidence-backed contradictions** captured; confidence 176 high / 34 med / 6 low.
+- **All 13 `system-deep-loop` subsystems** mapped (target ≥6): the 5 modes (deep-research/review/ai-council/improvement/alignment) + 8 runtime subsystems (convergence, state-jsonl-checkpointing, fan-out-fan-in, dedup-novelty, budget-cost, gauges-observability, locks-recovery, continuity-threading).
+- **`research/research.md`** — 17-section synthesis incl. the mandatory Eliminated Alternatives (§16) and ranked recommendations for system-deep-loop (§17), plus a §18 Sources & Provenance appendix.
+
+## 001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/implementation-summary.md
+---
+title: "Implementation Summary: Deep-Loop Effectiveness & Fan-out Automation (targeted follow-on)"
+description: "Final state of the 20-iteration non-converging SOL-xhigh follow-on: 74 new repos, 83 insights, 59 recommendations, 64 contradictions, 14 subsystems mapped, research.md synthesized; a live 3-model scratch prototype proves automated multi-model + --search fanout is feasible; zero shipped-runtime changes."
+trigger_phrases:
+  - "deep loop effectiveness summary"
+  - "phase 005 implementation summary"
+  - "fan-out prototype result"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout"
+    last_updated_at: "2026-07-17T13:30:51Z"
+    last_updated_by: "claude-code"
+    recent_action: "Packet renumbered 034->036; description.json/graph-metadata.json regenerated"
+    next_safe_action: "Operator review both runs; phase 002 ranking from run-1 + run-2"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/findings-registry.json"
+      - "scratch/fanout-prototype-result.json"
+      - "research/research-modes.md"
+      - "research/findings-registry-modes.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "065-005-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Fan-out automation is a SMALL scoped change (live-tool policy + capability matrix + adapters + manifest compiler), not a rewrite; the prototype proves it."
+      - "Single-lineage SOL xhigh for all 20 research iters; LUNA/GLM only in the scratch prototype."
+---
+# Implementation Summary: Deep-Loop Effectiveness & Fan-out Automation (targeted follow-on)
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-deep-loop-effectiveness-and-fanout |
+| **Completed** | 2026-07-15 — run-1 (20/20) + run-2 (40/40) complete; both deliverables synthesized |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A 20-iteration TARGETED, non-converging (deepening) research run over three operator-chosen threads, seeded from 001's 216-repo registry so a single SOL lineage went past survey depth into mechanisms — reference implementations, event schemas, and file-level change targets for `system-deep-loop`.
+
+**Outcomes (20 iterations, 0 parse failures):**
+- **74 new, URL-verified GitHub repos** catalogued (target ≥10, beyond 001's 216), each with a transferable mechanism; full index in `research/findings-registry.json`.
+
+## 001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/implementation-summary.md
+---
+title: "Implementation Summary: baseline taxonomy and state census"
+description: "Immutable BASE evidence for deep-loop taxonomy, runtime subsystems, event and persistence ownership, behavior contracts, and temporary-copy recovery."
+trigger_phrases:
+  - "baseline taxonomy state census implementation"
+  - "deep-loop baseline evidence bundle"
+  - "phase 004 census handoff"
+importance_tier: "critical"
+contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-baseline-taxonomy-and-state-census"
+    last_updated_at: "2026-07-20T20:33:41Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Rebuilt census from independently discovered BASE runtime evidence"
+    next_safe_action: "Consume the hashed architecture handoff"
+    blockers: []
+    key_files:
+      - "base-manifest.json"
+      - "taxonomy-census.json"
+      - "subsystem-census.json"
+      - "event-schema-census.json"
+      - "state-backend-census.json"
+      - "behavior-baseline.json"
+      - "phase-004-handoff-manifest.json"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Baseline taxonomy and state census
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-baseline-taxonomy-and-state-census |
+| **Completed** | 2026-07-20 |
+| **Status** | Complete |
+| **Level** | 2 |
+| **Immutable BASE** | `fe6ca3030917073f3b478bc044e10034dcc4394b` |
+| **Declared Ref** | `origin/skilled/v4.0.0.0` |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The migration now has a reproducible evidence boundary pinned to one immutable Git object. It records the 5/7/8 taxonomy, exactly eight runtime subsystem lenses, 22 event surfaces, 46 persisted-state surfaces, a 9 protected-contract / 9 known-defect ledger, the existing 53-scenario semantic corpus, and three executed additive improvement scenarios.
+
+The recovery bundle uses 22 sanitized, serializer-shaped event fixtures plus SQLite, lock, pause, directory, loop-guard, and output fixtures. Static validation invokes shipped pure reducers and validators without creating a temporary directory. The explicit execution mode materializes the ledgers in a temporary root, exercises the shipped council round-state reader, restores two SQLite snapshots, rebuilds both databases, and recreates control surfaces without touching tracked runtime state.
+
+### Files Changed
+
+| File or group | Action | Purpose |
+|---------------|--------|---------|
+| `base-manifest.json` and `pre-existing-kebab-renames.json` | Corrected | Pin provenance, explicit `EMPTY` submodule state, source/artifact digests, router commits, and all 869 pre-existing rename rows |
+
+## 001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr/implementation-summary.md
+---
+title: "Implementation Summary: Spine Architecture ADR"
+description: "Completion evidence for ratifying the six-primitive cross-mode spine without runtime or authority changes."
+trigger_phrases:
+  - "spine architecture ADR completion"
+  - "six-primitive spine ratification evidence"
+  - "architecture ADR implementation summary"
+importance_tier: "critical"
+contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/001-spine-architecture-adr"
+    last_updated_at: "2026-07-20T18:56:56Z"
+    last_updated_by: "codex"
+    recent_action: "Completed six-primitive spine ratification"
+    next_safe_action: "Use the accepted ADR as the architecture input for phases 006, 007, and 008"
+    blockers: []
+    key_files:
+      - "decision-record.md"
+      - "tasks.md"
+      - "checklist.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Spine Architecture ADR
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-spine-architecture-adr |
+| **Completed** | 2026-07-20 |
+| **Level** | 2 |
+| **Status** | Complete |
+| **Change class** | Documentation-only architecture ratification |
+| **Runtime effect** | None |
+| **Authority effect** | None |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The existing planning architecture is now an accepted, source-traced decision. The record binds every mode to one six-primitive spine, makes default-deny and additive-dark sequencing mandatory, rejects every route back to per-mode authority, mutable truth, unversioned replay, optional proof, or self-scoring, and assigns preservation responsibilities to phases 006, 007, and 008.
+
+### Ratified spine
+
+| Primitive | Primary consumer | Phase 008 preservation obligation |
+|-----------|------------------|-----------------------------------|
+| Typed append-only versioned event ledger | Phase 006 | Preserve through adapters, shadow parity, and rollback |
+| Fail-closed transition-authorization gateway (default-deny) | Phase 006 | No compatibility bypass |
+| Sealed/frozen reference artifacts (digest-referenced) | Phase 007 | Preserve digest identity across old and new paths |
+| Versioned replay fingerprints | Phase 006 | Preserve mixed-version replay identity |
+| Receipts/certificates | Phase 007 | Preserve portable proof during shadow and rollback |
+
+## 001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map/implementation-summary.md
+---
+title: "Implementation Summary: Recommendation Ledger Bijective Map"
+description: "Execution evidence for the immutable 178-row deep-loop recommendation ledger, its deterministic projections, and its fail-closed validator."
+trigger_phrases:
+  - "recommendation ledger implementation summary"
+  - "178 row ledger evidence"
+importance_tier: "critical"
+contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/002-recommendation-ledger-bijective-map"
+    last_updated_at: "2026-07-20T19:16:25Z"
+    last_updated_by: "codex"
+    recent_action: "Corrected literal locator uniqueness and adopted the counterfactual replay recommendation"
+    next_safe_action: "Use the immutable ledger as the downstream phase ownership source"
+    blockers: []
+    key_files:
+      - "recommendation-ledger.json"
+      - "recommendation-ledger-validation.json"
+      - "validate-ledger.cjs"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Recommendation Ledger Bijective Map
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-recommendation-ledger-bijective-map |
+| **Completed** | 2026-07-20 |
+| **Level** | 2 |
+| **Status** | Complete |
+| **Base Commit** | `fe6ca3030917073f3b478bc044e10034dcc4394b` |
+| **Classification Reviewer** | Codex, acting under the leaf's conservative safety-first triage authority |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The program now has one immutable row for every research recommendation. The canonical JSON keeps the original source
+text and evidence alongside a normalized taxonomy target and one disposition, while the CSV and validation report make
+the classification reviewable without weakening the source-to-row bijection.
+
+Two independent review findings were amended without changing or renumbering any DLR ID. Every `source_locator` is now
+run-qualified (`run-a:...`, `run-b:...`, or `run-c:...`), so the field itself has 178 literal unique values; the raw
+per-run rank or JSON pointer remains intact after the qualifier. `DLR-C-087` is now adopted in phase 013 because its
+primary counterfactual-replay mechanism belongs to the `agent-improvement` lane; budgeted Shapley attribution remains
+an optional escalation inside that adopted recommendation rather than grounds to defer the primary mechanism.
+
+## 001-research-inputs-and-architecture/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy/implementation-summary.md
+---
+title: "Implementation Summary: Transition, Versioning & Rollback Policy"
+description: "Ratification evidence for the policy that binds typed-event versioning, authorization, per-mode authority and rollback across program phases 006 through 015."
+trigger_phrases:
+  - "transition policy implementation summary"
+  - "typed event policy ratification evidence"
+  - "rollback policy completion receipt"
+importance_tier: "critical"
+contextType: "general"
+parent: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/004-architecture-coverage-and-transition-contract/003-transition-versioning-and-rollback-policy"
+    last_updated_at: "2026-07-20T19:09:21Z"
+    last_updated_by: "codex"
+    recent_action: "Ratified the transition and rollback policy"
+    next_safe_action: "Phase 006 implements the first writer against the ratified policy"
+    blockers: []
+    key_files:
+      - "transition-versioning-and-rollback-policy.md"
+      - "checklist.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-07-20-transition-policy"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The rollback window closes only after both minimums are complete."
+      - "Rejection receipts remain outside domain history."
+---
+# Implementation Summary: Transition, Versioning & Rollback Policy
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-transition-versioning-and-rollback-policy |
+| **Completed** | 2026-07-20 |
+| **Level** | 2 |
+| **Status** | Complete |
+| **Requested base** | `fe6ca3030917073f3b478bc044e10034dcc4394b` |
+| **Source candidate** | `401c7c0ac35bd81c2fdb75a63e30beb8da579593` |
+| **Change class** | Documentation-only ratification |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Program phases 006 through 015 now inherit one frozen transition, versioning and rollback policy before the first typed-event writer exists. The policy makes the append gateway mandatory, fixes one canonical event envelope, defines asymmetric compatibility and pure adjacent upcasters, limits authority to one mode at a time and keeps rollback open until both minimums are complete.
+
+## 002-substrate-and-orchestration/001-fanout-live-tools-unblock/implementation-summary.md
+---
+title: "Implementation Summary: fan-out live-tools unblock"
+description: "The shipped fan-out scheduler now resolves live-tool policy per executor, rejects unproven combinations before dispatch, fingerprints resolved invocations without secrets, and compiles deterministic Cartesian manifests without changing canonical persistence."
+trigger_phrases:
+  - "fan-out live-tools implementation"
+  - "fanout live search shipped"
+  - "fanout manifest compiler complete"
+importance_tier: "high"
+contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/001-fanout-live-tools-unblock"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-fanout-live-tools-unblock"
+    last_updated_at: "2026-07-20T19:48:41Z"
+    last_updated_by: "codex"
+    recent_action: "Completed and verified the dispatch-only live-tools and Cartesian manifest runtime change"
+    next_safe_action: "Use adapter outputs in later durable-receipt work"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+      - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Fan-out Live-Tools Unblock
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-fanout-live-tools-unblock |
+| **Completed** | 2026-07-20 |
+| **Level** | 2 |
+| **Prompt Base** | `fe6ca3030917073f3b478bc044e10034dcc4394b` |
+| **Execution Base** | `952060126baa2758ac6048049af2828985b9a8f8` |
+| **Dependency** | Phase 004 child contracts complete at `2429f4c`, `64eb3a9`, and `9520601` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Fan-out dispatch can now request proven live web search without replacing the scheduler. The config boundary normalizes omitted policy to `inherit`, exposes all four typed values, and rejects unsupported kind-policy cells before the pool, subprocess spawn, or persistence writes. Every executor kind resolves through a named adapter that returns the legacy command/input contract plus an effective config and a deterministic invocation fingerprint.
+
+The manifest form accepts explicit models, branches, and replicas. It expands in model, branch, replica order into the existing single-lineage shape, preserves the legacy 256-lineage ceiling, rejects unsafe or colliding IDs, and then enters the unchanged budget, retry, lineage-directory, artifact-validation, and `runCappedPool` path.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 002-substrate-and-orchestration/002-transition-authorized-ledger-core/001-versioned-event-envelope/implementation-summary.md
+---
+title: "Implementation Summary: Versioned Event Envelope"
+description: "Canonical fourteen-field event envelope, deterministic type/version registry, current-only write preflight, and fail-closed adjacent-upcaster read boundary."
+trigger_phrases:
+  - "versioned event envelope implementation"
+  - "event type registry implementation"
+  - "adjacent upcaster verification"
+importance_tier: "critical"
+contextType: "implementation"
+status: "complete"
+parent: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/001-versioned-event-envelope"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/001-versioned-event-envelope"
+    last_updated_at: "2026-07-20T23:57:37Z"
+    last_updated_by: "codex"
+    recent_action: "Hardened registry digest ordering against host locale drift"
+    next_safe_action: "Let the typed-ledger and authorization siblings consume the frozen preflight contracts"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/event-envelope/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The ratified policy's non-null correlation identity is enforced over the leaf's looser nullable wording"
+---
+# Implementation Summary: Versioned Event Envelope
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-versioned-event-envelope |
+| **Completed** | 2026-07-21 |
+| **Level** | 2 |
+| **Pinned BASE / branch tip** | `576a7401b1d2f8b328b7713ead428599894a03d4` |
+| **Transition-policy SHA-256** | `329ad7ad1c4f8eaedb531887b00ed29c3413fef00e7c8532941ad07f033b634d` |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Future spine events now have one strict wire shape and one compatibility boundary. The new runtime surface validates and canonicalizes current writes without appending them, then reads stored bytes once and exposes a current effective event only after every historical payload and adjacent upcast hop passes fail-closed validation. No legacy writer imports or calls this code.
+
+### Module List
+
+| Module | Purpose |
+|--------|---------|
+| `canonical-json.ts` | Bounded JSON validation, sorted-key serialization, immutable byte arrays, UTF-8 checks, and SHA-256 digests |
+| `event-envelope-errors.ts` | Stable typed error hierarchy and machine-readable error vocabulary |
+| `event-envelope.ts` | Closed fourteen-field envelope, producer contract, namespace grammar, timestamp and scalar validation |
+| `event-type-registry.ts` | Deep-frozen event-type registry, validator-bound per-version schema digests, startup graph/behavior validation, immutable inspection clones, and internal-only upcaster chains |
+| `event-envelope-boundary.ts` | Current-only write preflight and parse-once read/upcast boundary with stored/effective separation |
+| `index.ts` | Sole public import surface for later gateway, ledger, replay, and mode consumers |
+| `event-envelope-producers.ts` | Five dark producer-family fixtures copied from the pinned census shapes |
+
+## 002-substrate-and-orchestration/002-transition-authorized-ledger-core/002-typed-append-only-ledger/implementation-summary.md
+---
+title: "Implementation Summary: Typed Append-Only Ledger"
+description: "Immutable authorized ledger frames, proof-required append, verified replay, deterministic reduction, torn-tail recovery, and dark legacy isolation."
+trigger_phrases:
+  - "typed append-only ledger implementation"
+  - "authorized ledger verification"
+  - "dark ledger core"
+importance_tier: "critical"
+contextType: "implementation"
+status: "complete"
+parent: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/002-typed-append-only-ledger"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/002-typed-append-only-ledger"
+    last_updated_at: "2026-07-21T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the typed append-only ledger leaf under the accepted focused co-landing gate"
+    next_safe_action: "Keep the substrate dark until a later integration phase explicitly wires legacy boundaries"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Typed Append-Only Ledger
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-typed-append-only-ledger |
+| **Completed** | 2026-07-21 |
+| **Level** | 2 |
+| **Candidate SHA** | `6c579941fa09d140010d9380b84babe8fcd0412a` plus the scoped dirty candidate |
+| **Authority posture** | Additive-dark; legacy writers remain authoritative and unchanged |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The dark ledger now accepts a domain event only through a proof-required append boundary, persists immutable hash-linked frames, and yields typed data only after full verification. Exact retries are idempotent, conflicting identities fail closed, projections rebuild deterministically, and damaged tail bytes remain preserved as recovery evidence.
+
+### Authorized Ledger Modules
+
+| Module | Purpose |
+|--------|---------|
+| `authorized-ledger-types.ts` | Shared frame, receipt, proof, authorization, replay, reducer, and storage contracts |
+| `authorized-ledger-errors.ts` | Stable typed failure codes and bounded error details |
+| `immutable-frame-store.ts` | Owner-only immutable frame storage, locking, chain verification, and torn-tail quarantine |
+
+## 002-substrate-and-orchestration/002-transition-authorized-ledger-core/003-replay-fingerprints/implementation-summary.md
+---
+title: "Implementation Summary: Replay Fingerprints"
+description: "Implementation and verification receipts for deterministic replay fingerprints over closed authorized-ledger ranges."
+trigger_phrases:
+  - "replay fingerprints implementation summary"
+  - "replay fingerprint verification receipts"
+importance_tier: "critical"
+contextType: "implementation"
+status: "complete"
+parent: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/003-replay-fingerprints"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/003-replay-fingerprints"
+    last_updated_at: "2026-07-20T23:57:37Z"
+    last_updated_by: "codex"
+    recent_action: "Hardened replay-input provenance and platform-neutral fingerprints"
+    next_safe_action: "Integrate the verified-result API only when downstream dark consumers are implemented"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/replay-fingerprint.vitest.ts"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+# Implementation Summary: Replay Fingerprints
+
+<!-- ANCHOR:metadata -->
+## 1. Metadata
+
+| Field | Value |
+|---|---|
+| Packet | `system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/003-replay-fingerprints` |
+| Status | Complete |
+| Runtime surface | Shipped OpenCode/Node deep-loop TypeScript runtime |
+| Delivery mode | Additive and dark; no authority transfer |
+| Verified worktree base | `e2776ed165df938892840edefaab9ed301aa1392` |
+| Covered test fixture | Ledger `ledger-main`, inclusive sequence range `1..3`, attestation at sequence `4` |
+| Fingerprint contract | Current version `1`, SHA-256, `deep-loop.replay-fingerprint.canonical.v1` |
+| Replay contract | Registered envelope/upcaster/reducer/projection identities exercised by the unit matrix |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## 2. What Was Built
+
+The new `runtime/lib/replay-fingerprint/` boundary contains eight additive modules:
+
+| Module | Ownership |
+|---|---|
+| `replay-fingerprint-types.ts` | Descriptor, attestation, consumer result, and typed failure contracts |
+| `canonical-descriptor.ts` | Explicit binary canonical serializer, validation, parsing, and SHA-256 final commitment |
+| `fingerprint-version-registry.ts` | Independent positive version registry, derived serializer implementation identity, determinism/field-coverage self-probe, current writer selection, and retained historical resolution |
+| `replay-component-registry.ts` | Registered reducer, projection schema, immutable content/ledger replay-input sources, and controlled reducer binding contract |
+| `derive-replay-fingerprint.ts` | Streaming derivation from the authorized ledger's verified ascending reader, including source resolution and digest recomputation before reduction |
+| `replay-fingerprint-attestation.ts` | Typed after-range attestation preparation, lookup, idempotency, conflict refusal, and separate bytes/metadata/digest binding diagnostics |
+
+## 002-substrate-and-orchestration/002-transition-authorized-ledger-core/004-transition-authorization-gateway/implementation-summary.md
+---
+title: "Implementation Summary: Transition-Authorization Gateway"
+description: "Default-deny transition authorization, typed decision audit, exact single-use allow linkage, replay verification, and dark legacy isolation."
+trigger_phrases:
+  - "transition authorization gateway implementation"
+  - "default deny gateway verification"
+  - "authorization decision replay"
+importance_tier: "critical"
+contextType: "implementation"
+status: "complete"
+parent: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/004-transition-authorization-gateway"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-transition-authorized-ledger-core/004-transition-authorization-gateway"
+    last_updated_at: "2026-07-21T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Completed the transition-authorization gateway leaf under the accepted focused co-landing gate"
+    next_safe_action: "Await scoped dark-boundary integration"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Transition-Authorization Gateway
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-transition-authorization-gateway |
+| **Completed** | 2026-07-21 |
+| **Level** | 2 |
+| **Candidate SHA** | `6c579941fa09d140010d9380b84babe8fcd0412a` plus the scoped dirty candidate |
+| **Authority posture** | Authoritative only over dark-ledger admission; legacy runtime behavior remains authoritative |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Every dark typed transition now passes one default-deny gateway before the ledger can allocate a domain sequence. The gateway records typed allow and deny decisions in a separate audit stream, binds an allow to one exact event and ledger identity, and leaves durable but unapplied allows visible after a crash instead of inventing domain history.
+
+### Gateway Modules
+
+| Module | Purpose |
+|--------|---------|
+| `transition-authorization-gateway.ts` | Canonical request validation, authority/policy evaluation, default-deny normalization, typed audit append, and allow-proof creation |
+| `transition-policy-registry.ts` | Immutable policy ID/version/evaluator registry with stable implementation and policy digests |
+| `authorization-decision-event.ts` | Closed `authorization.decision.recorded@1` payload contract and event registry |
+
+## 002-substrate-and-orchestration/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery/implementation-summary.md
+---
+title: "Implementation Summary: Receipts & Effect Recovery"
+description: "Candidate evidence for dark certified boundary receipts and replay-safe external-effect recovery."
+trigger_phrases:
+  - "receipts and effect recovery implementation"
+  - "receipt effect candidate report"
+importance_tier: "critical"
+contextType: "implementation"
+parent: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-shared-evidence-and-control-services/001-receipts-and-effect-recovery"
+    last_updated_at: "2026-07-21T02:08:42Z"
+    last_updated_by: "codex"
+    recent_action: "Closed execution-ownership and confirmation-integrity failures with adversarial coverage"
+    next_safe_action: "Consume the dark service from a later authority-migration phase"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/index.ts"
+      - ".opencode/skills/system-deep-loop/runtime/tests/unit/receipts-and-effect-recovery.vitest.ts"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Receipts & Effect Recovery
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| **Spec Folder** | 001-receipts-and-effect-recovery |
+| **Completed** | 2026-07-21 |
+| **Level** | 2 |
+| **Status** | Complete (additive-dark) |
+| **Candidate base SHA** | `d1a3f0323c3635f24c3560feaeda839522ececf0` |
+| **Authority** | Legacy paths remain canonical until a later migration phase |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The runtime can now certify every registered phase and mode boundary after its exact durable result, and it can recover interrupted external effects without guessing whether they already happened. The service stays dark: existing writers, production effect selection, and legacy recovery authority do not import or select it.
+
+### Runtime Modules
+
+| Module | Contract |
+|---|---|
+| `errors.ts` | Stable typed fail-closed error codes and phases. |
+| `types.ts` | Closed receipt, certification, intent, confirmation, adapter, claim, recovery, operator-resolution, and fenced-writer contracts. |
+| `event-contracts.ts` | Twelve registered phase/mode boundaries plus seven validator-bound ledger event types and full intent-to-confirmation binding. |
+| `authorized-writer.ts` | The single service-owned route from transition authorization through fenced expected-head append to verified read-back. |
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/037-graph-engineering"
+# PACKET: specs/system-deep-loop/037-graph-engineering (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Graph-Engineering-Based Deep Loops"
+description: "Research packet 037: assess the current system-deep-loop status and the 036-deep-loop-innovation changes, then define how to evolve our deep-loop workflows into graph-engineering-based loops aligned with the GraphARC, graph-engineering-master, and LangChain reference corpus. This spec was seeded by the deep-research workflow (DR-SEED) and is completed by the research synthesis."
+trigger_phrases:
+  - "graph engineering deep loops"
+  - "graph-based deep loop"
+  - "deep loop graph architecture"
+  - "graph engineering research"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/037-graph-engineering"
+    last_updated_at: "2026-08-08T12:02:10Z"
+    last_updated_by: "deep-research-init"
+    recent_action: "Seeded Level 1 spec from deep-research topic (DR-SEED markers on Requirements and Scope)"
+    next_safe_action: "Complete this spec from research/research.md synthesis"
+    blockers: []
+    key_files:
+      - "research/research.md"
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Feature Specification: Graph-Engineering-Based Deep Loops
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!--
+SELF-CHECK:
+- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
+- Remove placeholders, stale status, and claims that are not backed by a check.
+FAILURE MODES:
+- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
+-->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+## 001-agent-swarms/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Completion summary for the research-only agent-swarms → graph-based deep-loop study (repo study 1 of 037)."
+trigger_phrases:
+  - "agent-swarms graph summary"
+  - "graph-based deep loop summary"
+  - "repo study 1 summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/037-graph-engineering/001-agent-swarms"
+    last_updated_at: "2026-08-13T20:00:00Z"
+    last_updated_by: "gpt-5.6-sol"
+    recent_action: "Completed 20-iteration deep-research loop and synthesized graph-based deep-loop design"
+    next_safe_action: "Proceed to repo study 2 (graphene-main) or plan a shadow-prototype implementation packet"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "research/research.md"
+      - "research/deep-research-state.jsonl"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "fanout-agent-swarms-sol-high-1786644869562-gvk422"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The graph runtime must be a projection over the 036 authority plane, adopted via a deterministic IR and shadow parity before any per-mode authority cutover."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-agent-swarms |
+| **Completed** | 2026-08-13 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet produced a research-only design for evolving system-deep-loop into a graph-based agent-loop, grounded in the agent-swarms reference implementation and the 12 graph-engineering blog posts. It did not modify runtime code. It created a gpt-5.6-sol orientation seed, ran a 20-iteration fan-out deep-research loop (cli-codex gpt-5.6-sol high/fast), and synthesized a versioned graph-IR design layered over the 036 authority plane.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 002-graphene-main/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Completion summary for the research-only graphene-main → graph-based deep-loop study (repo study 2 of 037)."
+trigger_phrases:
+  - "graphene graph summary"
+  - "graph-based deep loop summary 2"
+  - "repo study 2 summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/037-graph-engineering/002-graphene-main"
+    last_updated_at: "2026-08-13T21:00:00Z"
+    last_updated_by: "gpt-5.6-sol"
+    recent_action: "Completed 20-iter research; SOL-xhigh synthesis verified by DeepSeek V4 Pro"
+    next_safe_action: "Proceed to repo study 3 (graph-arch) or plan a shadow-prototype implementation packet"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "research/research.md"
+      - "research/verification-deepseek-v4-pro.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "fanout-graphene-main-sol-high-1786648621541-lzda3r"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Graphene supplies executable contracts (belief projection, ledger fold, causal-prefix parity, claim-fence) that extend repo 1 without replacing the 036 authority plane."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-graphene-main |
+| **Completed** | 2026-08-13 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet produced a research-only design that extends the repo-1 graph-based deep-loop with executable contracts drawn from graphene-main (a Rust event-sourced graph engine with a belief/truth-maintenance layer). It did not modify runtime code. It ran a 20-iteration fan-out deep-research loop (cli-codex gpt-5.6-sol high/fast), synthesized the authoritative `research.md` with a gpt-5.6-sol xhigh pass, and independently verified that synthesis with DeepSeek V4 Pro.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 003-graph-arch/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Completion summary for the research-only graph-arch (GraphARC) governance study (repo study 3 of 037)."
+trigger_phrases:
+  - "grapharc governance summary"
+  - "graph-based deep loop summary 3"
+  - "repo study 3 summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/037-graph-engineering/003-graph-arch"
+    last_updated_at: "2026-08-14T00:00:00Z"
+    last_updated_by: "gpt-5.6-sol"
+    recent_action: "Completed 20-iter research; SOL-xhigh synthesis, DeepSeek REWORK fixes applied"
+    next_safe_action: "Proceed to repo study 4 (graph-engineering-master) or plan a shadow-prototype packet"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "research/research.md"
+      - "research/verification-deepseek-v4-pro.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "fanout-graph-arch-sol-high-1786656633113-zhqpv7"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "GraphARC contributes a governance layer but proves admission is a precondition, not authorization; 036 must independently re-validate."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-graph-arch |
+| **Completed** | 2026-08-14 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet produced a research-only design that extends the studies-1+2 graph-based deep-loop with a governance layer drawn from GraphARC (a Python governance-wrapper over LangGraph). It did not modify runtime code. It ran a 20-iteration fan-out deep-research loop (cli-codex gpt-5.6-sol high/fast), synthesized the authoritative `research.md` with a gpt-5.6-sol xhigh pass, and independently verified that synthesis with DeepSeek V4 Pro (verdict REWORK; all fixes applied).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 004-graph-engineering-master/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Completion summary for the research-only documentary completeness study of graph-engineering-master (repo study 4, final, of 037)."
+trigger_phrases:
+  - "graph engineering master summary"
+  - "graph-based deep loop summary 4"
+  - "repo study 4 summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/037-graph-engineering/004-graph-engineering-master"
+    last_updated_at: "2026-08-14T01:00:00Z"
+    last_updated_by: "gpt-5.6-sol"
+    recent_action: "Completed 20-iter research; SOL-xhigh synthesis, DeepSeek fixes applied (final study)"
+    next_safe_action: "Program complete at doctrine level; plan a shadow-prototype implementation packet"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "research/research.md"
+      - "research/verification-deepseek-v4-pro.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "fanout-gem-sol-high-1786664046140-prtxh9"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "GEM (documentary) adds no new contradiction and fills the knowledge/evidence-production gap; 036 authority and plane separation are unchanged."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-graph-engineering-master |
+| **Completed** | 2026-08-14 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet produced a research-only DOCUMENTARY completeness study of graph-engineering-master (a teaching/skill package with no runnable code), the final of four reference studies. It did not modify runtime code. It ran a 20-iteration fan-out deep-research loop (cli-codex gpt-5.6-sol high/fast), synthesized `research.md` with a gpt-5.6-sol xhigh pass, and independently verified that synthesis with DeepSeek V4 Pro (verdict PASS-WITH-FIXES; all fixes applied). The study confirms the studies-1–3 design has no new contradiction, fills the knowledge/evidence-production gap, and states an honest program completeness verdict.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 005-noaa-paper-and-blog-theory/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Completion summary for the research-only loop/harness-layer study of the NVIDIA NOOA paper + the 12 blogs (repo study 5 of 037)."
+trigger_phrases:
+  - "noaa loop harness summary"
+  - "loop harness deep loop summary"
+  - "repo study 5 summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/037-graph-engineering/005-noaa-paper-and-blog-theory"
+    last_updated_at: "2026-08-14T02:00:00Z"
+    last_updated_by: "gpt-5.6-sol"
+    recent_action: "Completed 20-iter loop/harness research; SOL-xhigh synthesis, DeepSeek fixes applied"
+    next_safe_action: "Plan a mutant-driven shadow-prototype packet (P7 test corpus first)"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "research/research.md"
+      - "research/verification-deepseek-v4-pro.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "fanout-noaa-theory-sol-high-1786680785904-4bkmet"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The loop/harness layer (NOOA + blogs) adds validated typed returns, agent-curated memory, and bounded LEAF tactics; all stay subordinate to the 036 authority plane, which currently runs dark."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-noaa-paper-and-blog-theory |
+| **Completed** | 2026-08-14 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet produced a research-only loop/harness-layer study — the counterpart to the four graph-layer studies — drawn from the NVIDIA Object-Oriented Agents (NOOA) research paper plus the 12 graph-engineering blogs. It did not modify runtime code. It ran a 20-iteration fan-out deep-research loop (cli-codex gpt-5.6-sol high/fast), synthesized `research.md` with a gpt-5.6-sol xhigh pass, and independently verified that synthesis with DeepSeek V4 Pro (verdict PASS-WITH-FIXES; all fixes applied). The output is six additive, 036-subordinate loop/harness deltas for system-deep-loop.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 006-cross-study-integration/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Completion summary for the cross-study integration capstone (Study 6 of 037): a 10-round gpt-5.6-sol xhigh integration of studies S1-S5 into one graph-based agent-loop design."
+trigger_phrases:
+  - "cross study integration summary"
+  - "capstone integration summary"
+  - "study 6 summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/037-graph-engineering/006-cross-study-integration"
+    last_updated_at: "2026-08-14T06:00:00Z"
+    last_updated_by: "gpt-5.6-sol"
+    recent_action: "Completed 10-round xhigh integration; SOL-xhigh synthesis, DeepSeek fixes applied"
+    next_safe_action: "Plan a mutant-driven shadow vertical-slice packet (freeze corpus + legacy build first)"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "research/research.md"
+      - "research/verification-deepseek-v4-pro.md"
+      - "research/findings-plain-language.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "fanout-cross-integration-sol-xhigh-1786684659997-imywj5"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Studies S1-S5 describe one system: a graph decides eligible work and order, a bounded loop does each unit, typed evidence stacks, and only 036 (currently dark) may authorize a protected mutation."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-cross-study-integration |
+| **Completed** | 2026-08-14 |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This packet produced the research-only **capstone** of the graph-engineering program: a cross-study integration that welds the five prior studies (S1 agent-swarms, S2 graphene, S3 graph-arch, S4 graph-engineering-master, S5 NOOA + blog theory) into ONE coherent design for evolving `system-deep-loop` into a graph-based agent-loop engine over the 036 authority plane. It did not modify runtime code. It ran a 10-round fan-out integration loop (cli-codex gpt-5.6-sol xhigh/fast, stop-policy=max-iterations), synthesized `research.md` with a gpt-5.6-sol xhigh pass, and independently verified that synthesis with DeepSeek V4 Pro (verdict PASS-WITH-FIXES; all fixes applied). The output is one integrated architecture built from a cross-cutting spine, eight interconnection artifacts (P1–P8), six resolved tensions, and a single mutant-driven shadow vertical-slice as the next evidence class.
+
+### Files Changed
+
+| File | Action | Purpose |
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

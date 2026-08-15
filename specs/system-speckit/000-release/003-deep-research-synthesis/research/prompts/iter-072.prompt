@@ -1,0 +1,1056 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-skill-advisor/z_archive/014-skill-advisor-frontmatter-alignment"
+# PACKET: specs/system-skill-advisor/z_archive/014-skill-advisor-frontmatter-alignment
+
+---
+title: "Implementation Summary: Phase 21: system-skill-advisor Frontmatter Alignment"
+description: "All 15 system-skill-advisor references now conform to the canonical contract; the contract-owner skill models its own rules."
+trigger_phrases:
+  - "system-skill-advisor frontmatter summary"
+  - "advisor doc contract evidence"
+  - "phase 21 frontmatter complete"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/014-skill-advisor-frontmatter-alignment"
+    last_updated_at: "2026-06-11T09:31:00Z"
+    last_updated_by: "claude-fable"
+    recent_action: "Phase complete: 15 docs conform and smoke passed"
+    next_safe_action: "Campaign continues in sibling phases"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-11-009-021-system-skill-advisor"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 014-skill-advisor-frontmatter-alignment |
+| **Completed** | 2026-06-11 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+system-skill-advisor's 15 reference docs now carry exactly the canonical frontmatter contract. This skill owns both the checker and the doc-harvest consumer, so its own references are the largest single slice of the campaign and the one where drift would be most embarrassing: before this phase every doc lacked `contextType`, 8 lacked `importance_tier`, the hook operator contract had no trigger phrases at all, and five docs sat at `important` tier without meeting the contract's formal-contract criterion.
+
+### Net-new authoring
+
+`hooks/skill_advisor_hook.md` carried title+description only. It now declares 5 trigger phrases drawn from its runtime matrix and shared-behavior sections (`user prompt submit hook`, `advisor hook fail-open`, `copilot next-prompt freshness`, plus two more), tier `important` because the doc names itself an operator contract, and contextType `implementation`.
+
+### Tier policy application
+
+The contract reserves `important` for formal contract/invariant docs. Five docs qualify: the db path policy, daemon lease contract, freshness contract, legacy tool bridge (tool ids are the stated compatibility contract) and the hook operator contract. Five previously `important` docs do not — the deferred-decisions history, the drift-reconciliation runbook, the query cookbook, the tuning guide and the validation baselines — so they moved to `normal`, dampening their doc signal relative to the true contracts.
+
+### contextType assignment
+
+12 docs document runtime, scoring or graph mechanics and got `implementation`. Three exceptions: the extraction roadmap is `planning`, the validation baselines are `research`, and the deferred-decisions history is `general`.
+
+### Phrase repair
+
+The extraction roadmap carried the single-token phrase `lib/skill-graph` and the generic `skill graph database`; both were replaced with distinctive multi-word phrases (`skill graph library ownership`, `skill graph migration status`).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-skill-advisor/references/hooks/skill_advisor_hook.md` | Modified | Full detailed block authored (phrases, tier `important`, contextType) |
+| `.opencode/skills/system-skill-advisor/references/config/db_path_policy.md` | Modified | Tier `important` + contextType added |
+| `.opencode/skills/system-skill-advisor/references/runtime/{daemon_lease_contract,freshness_contract}.md` | Modified | contextType added (tier already `important`) |
+| `.opencode/skills/system-skill-advisor/references/runtime/legacy_tool_bridge.md` | Modified | Tier `important` + contextType added |
+| `.opencode/skills/system-skill-advisor/references/runtime/{standalone_mcp_shape,tool_ids_reference}.md` | Modified | Tier `normal` + contextType added |
+| `.opencode/skills/system-skill-advisor/references/graph/{propagate_enhances}.md` | Modified | Tier `normal` + contextType added |
+| `.opencode/skills/system-skill-advisor/references/graph/{skill_graph_drift,skill_graph_query_cookbook}.md` | Modified | Tier demoted to `normal`; contextType added |
+| `.opencode/skills/system-skill-advisor/references/graph/skill_graph_extraction_plan.md` | Modified | Phrases repaired; tier `normal` + contextType `planning` added |
+| `.opencode/skills/system-skill-advisor/references/decisions/deferred_decisions.md` | Modified | Tier demoted to `normal`; contextType `general` added |
+| `.opencode/skills/system-skill-advisor/references/scoring/advisor_scorer.md` | Modified | Tier `normal` + contextType added |
+| `.opencode/skills/system-skill-advisor/references/scoring/{lane_weight_tuning,validation_baselines}.md` | Modified | Tier demoted to `normal`; contextType added |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Frontmatter-only in-place patches, verified by the contract checker in coverage mode and a Python local-mode advisor smoke that needs no live daemon.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Demote 5 docs from `important` to `normal` | The contract reserves `important` for formal contract/invariant docs. A decisions history, a reconciliation runbook, a query cookbook, a tuning guide and SHA-pinned baseline numbers are operational references, not contracts; keeping them at `important` would dilute the tier's meaning inside the skill that defines it. Git history preserves the prior values. |
+| `legacy_tool_bridge.md` promoted to `important` | The doc states the invariant directly: server namespaces may move, public `advisor_*`/`skill_graph_*` ids stay stable unless an ADR changes them. That is a compatibility contract, the same class as the lease and freshness contracts. |
+| `validation_baselines.md` gets contextType `research` | The campaign maps analysis/baseline content to `research`; the doc is baseline metrics plus a troubleshooting playbook pinned to a remediation SHA, not runtime mechanics. |
+| Smoke via Python local mode, not the live daemon | The live daemon adopts the doc-trigger flag only after a session cycle (packet 145 T025); the Python path reads the same files under the same flag and proves routing now. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `check-skill-doc-frontmatter.sh --skill system-skill-advisor --coverage` | PASS — docs=15, carrying-detailed-block=15, violations=0 |
+| Python local-mode smoke ("advisor hook fail-open", flag on) | PASS — system-skill-advisor first at 0.95 with `!advisor hook fail-open(signal)` in the match reason |
+| Diff hygiene | PASS — git diff shows only frontmatter hunks in the 15 files (36 insertions, 7 deletions) |
+| Live daemon `matchedDocs` smoke | DEFERRED — rides packet 145 T025 (session-cycle daemon adoption) |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Live-daemon verification is campaign-level, not per-phase.** The running advisor daemon predates the launcher allowlist fix, so `matchedDocs` cannot be observed live until every advisor-attached session ends and a fresh session respawns it (tracked as packet 145 T025).
+2. **Tier demotions are judgment calls.** The five demoted docs were deliberately `important` before the campaign fixed the tier criterion; if a consumer weighted on the old values, restore via git history and re-run the coverage check.
+<!-- /ANCHOR:limitations -->
+
+---
+
+<!--
+CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
+Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+-->
+FOLDER
+
+<<<FOLDER id="specs/system-skill-advisor/z_archive/015-skill-advisor-phase-parent"
+# PACKET: specs/system-skill-advisor/z_archive/015-skill-advisor-phase-parent (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Skill Advisor Phase Parent"
+description: "Phase parent for 8 Skill Advisor implementation plans derived from packet 028 research."
+trigger_phrases:
+  - "028 skill advisor implementation parent"
+  - "skill advisor child phase map"
+  - "advisor implementation planning"
+  - "028 skill advisor candidate tail"
+  - "skill advisor research to implementation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/015-skill-advisor-phase-parent"
+    last_updated_at: "2026-06-19T06:45:00Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Wired Skill Advisor as a phase parent with 8 implementation sub-phases"
+    next_safe_action: "Use the child map to implement PENDING advisor candidates after the shared RRF foundation"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "research/research.md"
+      - "001-hard-rule-and-dispatch-preflight-hardening/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-002-skill-advisor-parent"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The skill-advisor research child now routes to 8 implementation child folders."
+      - "Packet 030 remains the Wave-0 shipped evidence record for DONE rows."
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Skill Advisor Phase Parent
+
+<!-- ANCHOR:metadata -->
+
+## 001-hard-rule-and-dispatch-preflight-hardening/implementation-summary.md
+---
+title: "Implementation Summary: hardening core shipped (Wave D + A′ + B2) [template:level_2/implementation-summary.md]"
+description: "The hardening design was implemented on-branch 2026-07-05 (Q2=300000ms): Wave D stall-detector defaults + exit-truth (deep-loop-runtime) and A′+B2 hard_rules dispatch linter (cli-opencode). Both acceptance tests met; B1 + burn-in are follow-up."
+trigger_phrases:
+  - "hardening plan implementation summary"
+  - "dispatch linter design status"
+importance_tier: "high"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/015-skill-advisor-phase-parent/001-hard-rule-and-dispatch-preflight-hardening"
+    last_updated_at: "2026-07-06T18:49:53.017Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Shipped Wave D + A′+B2; both acceptance tests met"
+    next_safe_action: "Operator resolves 6 open questions in decision-record"
+    blockers: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Hard-rule enforcement + dispatch reliability hardening
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Core implementation SHIPPED (Wave D + A′ + B2); both acceptance tests met; B1 + burn-in are follow-up |
+| **Level** | 2 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Deliverable** | Shipped code: stall-detector defaults + exit-truth (deep-loop-runtime); hard_rules dispatch linter (cli-opencode) |
+| **Date** | 2026-07-05 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The design was implemented on `system-speckit/028-memory-search-intelligence` (2026-07-05, Q2=300000ms).
+Both acceptance tests are satisfied.
+
+**Wave D — deep-loop stall reliability (AC-2):**
+- Stall detection defaults flipped ON: `lagCeilingMs` 0→300000, `progressHeartbeatSeconds` 0→60
+  (`executor-config.ts`) + the `stallWatchdogMs` raw-alias default 0→300000 (`fanout-run.cjs`, the
+  schema-bypass reader — all three together) — commit `5bc0a3037c`.
+- Abnormal-exit classification widened: any non-SIGTERM signal-kill now fails loud instead of being
+  masked as exit-0 success (`fanout-run.cjs`) — commit `37c9eed7b4`.
+- Loud-signal: `stall_detected`/`orphan_requeued`/`aborted` mirrored to stderr
+  (`observability-events.cjs`) — commit `3ad2c5e52c`.
+
+**Wave A′ + B2 — skill-advisor dispatch enforcement (AC-1):** commit `015a18437a`
+- `hard_rules:` frontmatter on `cli-opencode` + `cli-claude-code` SKILL.md.
+- `dispatch-rule-checks.mjs` (dependency-free parser + pure checks) + `dispatch-preflight-lint.mjs`
+  (PreToolUse(Bash) hook — warn-first, fail-open) + `.claude/settings.json` wiring + a `node --test` suite.
+
+**Verification:** deep-loop-runtime targeted suites 49/49 (incl. the existing `stall_detected` test); the
+dispatch linter 6/6 (`node:test`) incl. the AC-1 both-directions mutation guard and a CI unknown-check
+
+FOLDER
+
+<<<FOLDER id="specs/system-skill-advisor/z_archive/016-skill-advisor-tuning"
+# PACKET: specs/system-skill-advisor/z_archive/016-skill-advisor-tuning (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: skill-advisor scorer tuning"
+description: "Group the shared advisor-scorer program as nested phases: the saturation-class root fix and its workstreams (executor-delegation resolver, graph-causal visited-guard, eval hardening, semantic_shadow prove-or-freeze) plus the advisor runtime, RRF-fusion, and penalty-contract packets."
+trigger_phrases:
+  - "skill advisor scorer tuning"
+  - "advisor scorer root fix"
+  - "advisor scorer workstreams"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning"
+    last_updated_at: "2026-07-07T17:49:35.000Z"
+    last_updated_by: "claude-opus"
+    recent_action: "WU-1 reconciled 001/002/003/004 spec honesty (WS1 falsified, RRF row, guard ledger truthed)"
+    next_safe_action: "WU-2 read-only assets (012/009); gated WU-3 vocab+reindex, WU-4 guard del, WU-5 penalty"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + sub-phase list + outcome only; no merge/migration/consolidation history; heavy docs live in children. -->
+
+# Feature Specification: skill-advisor scorer tuning
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | phase |
+| **Priority** | P1 |
+| **Status** | In Progress |
+| **Created** | 2026-07-07 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+| **Parent Spec** | `system-skill-advisor` |
+| **Parent Packet** | `system-skill-advisor` |
+| **Handoff Criteria** | Each child phase validates independently; parent validates under recursive phase-parent policy |
+<!-- /ANCHOR:metadata -->
+
+---
+
+## 001-scorer-saturation-root-fix/implementation-summary.md
+---
+title: "Implementation Summary: Advisor-Scorer Saturation-Class Root Fix (WS1–WS6) + Advisor Projection Vocab"
+description: "Pre-implementation summary for the shared advisor-scorer saturation-class root fix and Layer 1b projection vocabulary. Not yet implemented; this packet is the forward-looking spec, GATED on the live advisor-TS lane standing down and a fresh 193-row re-baseline."
+trigger_phrases:
+  - "advisor scorer root fix summary"
+  - "post-cap demotion summary"
+  - "pre-implementation advisor scorer"
+importance_tier: "high"
+contextType: "implementation"
+status: "Closed"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/001-scorer-saturation-root-fix"
+    last_updated_at: "2026-07-07T17:37:00.000Z"
+    last_updated_by: "opus-4.8"
+    recent_action: "Pre-implementation spec authored"
+    next_safe_action: "Await advisor-lane standdown, then execute WS3→WS1→re-run→WS2/4/5/6"
+    blockers:
+      - "GATED on the live advisor-TS lane (lib/scorer/*.ts, the 009 dispatch-hardening + 40-iteration alignment audit) standing down"
+      - "GATED on a fresh 193-row re-baseline captured after Layer 1b metadata lands"
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "implementation-summary.md"
+      - "research/scorer-fix-recommendation.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "system-skill-advisor-001-preimpl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - question: "WS1 Design A vs Design B?"
+        answer: "Start with Design A (post-cap demotion); escalate to Design B (first-class disambiguation channel) only if the scorer must rank by negative evidence, pending the corpus re-run evidence."
+    answered_questions:
+      - question: "Where does this advisor-scorer work live?"
+        answer: "Under .claude/specs/system-skill-advisor as Layer 2 + Layer 1b of the sk-code routing + shared-advisor-scorer program; Layer 1 shipped separately as packet 024."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-scorer-saturation-root-fix |
+| **Status** | Closed — WS1 falsified / superseded |
+| **Level** | 2 |
+| **Actual Effort** | Not yet implemented — this packet is the pre-implementation spec |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+
+## 002-skill-advisor-runtime/001-rrf-determinism-spine/implementation-summary.md
+---
+title: "Implementation Summary: RRF Determinism Spine (Skill Advisor)"
+description: "Implementation closeout for the advisor RRF determinism-spine sub-phase: C3 import, C2 folded deterministic order and the conflict-suppression carrier are implemented default-off behind SPECKIT_ADVISOR_RRF_FUSION. The live/default flip remains gated on routing-agreement benchmark acceptance."
+trigger_phrases:
+  - "implementation summary advisor rrf determinism spine"
+  - "skill advisor fuseResultsMulti import closeout"
+  - "advisor rrf spine pending candidates"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine"
+    last_updated_at: "2026-07-06T16:57:21.016Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Implemented default-off RRF import + deterministic rank order + conflict carrier with unit tests"
+    next_safe_action: "Capture live top-1/top-3 routing-agreement benchmark before enabling RRF by default"
+    blockers:
+      - "Live MCP benchmark/reindex/scan was out of scope for this pass"
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-003-rrf-determinism-spine"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/001-rrf-determinism-spine |
+| **Authored** | 2026-06-19 |
+| **Level** | 2 |
+| **Scope** | Advisor RRF determinism spine: C3 (import) + C2 (folded) + conflict-suppression carrier - implemented default-off |
+| **Branch** | system-speckit/027-xce-research-based-refinement |
+| **Shipped via** | Commit `ce858fa165` (feat 028 build 003-skill-advisor/001-rrf-determinism-spine, touched `fusion.ts` + `graph-causal.ts` + the rrf-determinism-spine vitest). No packet 030 changes. Dependency commit `65cfcea513` remains the Memory-side `fuseResultsMulti` API extension |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This pass implements the Skill Advisor RRF spine **default-off**. The default weighted-sum scorer remains byte-stable unless `SPECKIT_ADVISOR_RRF_FUSION=true`, the opt-in path imports Memory's already-shipped `fuseResultsMulti`, adapts scorer lanes into fixed-order `RankedList`s, passes advisor-specific `ADVISOR_RRF_K = 8` and uses the shared RRF order plus an RRF rank map as the final post-bonus tiebreak. The graph_causal signed-score conflict suppression is preserved by splitting graph output into combined/positive/conflict matches and applying conflict mass as a post-fusion comparator demotion.
+
+The live/default flip is **not accepted yet**. Packet 030 remains untouched. The required top-1/top-3 routing-agreement benchmark was explicitly out of scope for this pass and remains the gate before enabling RRF by default.
+
+
+## 002-skill-advisor-runtime/002-runtime-lane-health-degrade/implementation-summary.md
+---
+title: "Implementation Summary: Skill Advisor - Runtime Lane-Health & Graceful Lane-Degrade (C5/C5a/AMB)"
+description: "Implementation record for the advisor graceful-degradation unit. Runtime lane-health, C5, C5a and AMB shipped in this 028 sub-phase, packet 030 untouched."
+trigger_phrases:
+  - "advisor lane health degrade implementation summary"
+  - "C5 C5a AMB status"
+  - "advisor graceful degrade impl summary"
+  - "runtime degraded lane elision status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/002-runtime-lane-health-degrade"
+    last_updated_at: "2026-07-06T16:57:20.332Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Implemented runtime lane-health degrade unit and recorded verification evidence"
+    next_safe_action: "Run final strict validation and keep packet 030 untouched"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-003-002-runtime-lane-health-degrade"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/002-runtime-lane-health-degrade |
+| **Status** | complete |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase built the runtime lane-health degrade path in the Skill Advisor MCP scorer. The scorer now distinguishes a degraded-empty lane from a lane that ran and matched nothing, elides only degraded-empty lanes from the confidence denominator and surfaces the degraded-lane condition through metrics, prompt-safe handler output, warnings and abstention explanations.
+
+The baseline fixture is now measured, not asserted. For prompt `alpha routing surface nearby neutral words`, with `graph_causal` degraded-empty, confidence moves from `0.6060` to `0.6189` (`+0.0129`) and `liveNormalized` for the scored fixture moves from `0.1600` to `0.1839`. The all-healthy path remains byte-identical to the default path.
+
+
+## 002-skill-advisor-runtime/003-embedding-staleness-signal/implementation-summary.md
+---
+title: "Implementation Summary: Embedding-Staleness Signal (Skill Advisor SA8)"
+description: "Implementation closeout for the advisor SA8 embedding-staleness signal: the projection now carries an embedder signature/staleness verdict, semantic_shadow degrades on stale vectors and status health reports the stale-vector condition. The Memory-010 idempotent-async rebuild reuse remains pending/gated."
+trigger_phrases:
+  - "implementation summary advisor embedding staleness"
+  - "SA8 projection signature closeout"
+  - "advisor embedding staleness pending candidates"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/003-embedding-staleness-signal"
+    last_updated_at: "2026-07-06T16:57:20.679Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Implemented and verified T002-T007 staleness signal"
+    next_safe_action: "Wire T008-T009 rebuild reuse once Memory-010 lands the primitive"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-003-embedding-staleness-signal"
+      parent_session_id: null
+    completion_pct: 80
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/003-embedding-staleness-signal |
+| **Authored** | 2026-06-19 |
+| **Level** | 2 |
+| **Status** | complete |
+| **Scope** | Advisor SA8 embedding-staleness: the staleness signal (signature capture + compare-on-load + `semantic_shadow` lane degrade) implemented, Memory-010 idempotent-async rebuild reuse pending |
+| **Branch** | system-speckit/027-xce-research-based-refinement |
+| **Shipped via** | Commit `f038ff140e` in `system-skill-advisor/mcp_server` (projection + semantic-shadow lane + staleness vitest). Packet 030 untouched |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The staleness signal is implemented. The SQLite projection now computes an `AdvisorEmbeddingSignature` plus `AdvisorEmbeddingStalenessVerdict` from persisted vector model rows, compares that stored identity against the active embedder pointer and keeps `generatedAt` as a back-compatible sibling field. Matching stored vectors yield `stale:false`, mismatched/mixed/missing model ids yield `stale:true` with a reason. Empty projections remain not-stale because there are no vectors to trust or serve.
+
+The `semantic_shadow` lane now fails closed on a stale projection verdict. Fusion also turns that verdict into runtime-degraded lane health so stale vectors are omitted from confidence normalization, not merely returned as an empty match set. `advisor_status` semantic health reports `projection_embedding_stale` and disables the lane when the same verdict is stale.
+
+
+## 002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior/implementation-summary.md
+---
+title: "Implementation Summary: Skill Advisor C4 Shadow Seam + Beta Posterior"
+description: "Closeout for the advisor C4 shadow-seam + Beta-posterior sub-phase. The 9-candidate reliability-weighted-learning build shipped shadow-only and default-off (shared Beta posterior, promoter integration points in feedback-calibration/lane-registry, two-gate, held-out attestation, cold-start prior, decay un-promotion, content-addressed fold, asymmetric deltas). The standalone shadow-weight-promoter module was committed in 10c5b61493 as 339 lines alongside beta-reliability.ts and deleted in 8efcde0e6b with outcome-weighted-rerank, its only consumer. Two integration tasks stay pending (daemon reload T006, D2 coordination T010) and the live flip is NO-GO until a micro-benchmark."
+trigger_phrases:
+  - "implementation summary advisor c4 shadow seam"
+  - "skill advisor beta posterior closeout"
+  - "advisor reliability weighted learning pending candidates"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior"
+    last_updated_at: "2026-07-06T16:57:20.003Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Documented commit and deletion hashes"
+    next_safe_action: "Resolve Q-002 to unblock T006, coordinate D2 shared module (T010)"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-003-004-c4-shadow-seam"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/004-c4-shadow-seam-beta-posterior |
+| **Authored** | 2026-06-19 |
+| **Level** | 3 |
+| **Status** | complete (CHK-120 rollback satisfied by store deletion at 8efcde0e6b) |
+| **Scope** | Advisor reliability-weighted learning: C4-seam + Beta posterior + aionforge promotion-gate family + Phase-0 foundation, shipped shadow-only and default-off |
+| **Branch** | system-speckit/027-xce-research-based-refinement |
+| **Shipped via** | Commit `10c5b61493` (default-off shadow). T006 daemon reload and T010 D2 coordination remain pending |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This sub-phase shipped the advisor reliability-weighted-learning build shadow-only and default-off. The Skill Advisor already ships an end-to-end *shadow* feedback pipeline (durable outcome capture, a bounded delta estimator, a parallel shadow-weight channel), but the estimator's proposal was written to a JSONL that no out-of-process consumer ever read back, so the loop never closed. This sub-phase built the missing seam (a cron/maintenance promoter), the reliability math (a shared Beta posterior that turns raw acceptance frequency into a flood-immune number) and the aionforge attestation-and-promotion gate family that decides, conservatively and shadow-only, whether a lane weight should ever move. It is net-new throughout: 027 shipped no lane attribution and the live estimator carried zero Beta math, so this was a BUILD, not a graduation.
+
+
+## 002-skill-advisor-runtime/005-conflict-rerank-query-routing/implementation-summary.md
+---
+title: "Implementation Summary: Skill Advisor - Conflict Re-rank, Query-Class Routing & Semantic Exact-Rerank (C1/QCR/C6)"
+description: "Default-off Skill Advisor scorer seams implemented for C1 conflict demotion, QCR query-class lane weighting and C6 top-K exact semantic rerank. Live/default promotion remains gated by conflict-edge and benchmark evidence."
+trigger_phrases:
+  - "advisor conflict rerank routing summary"
+  - "C1 QCR C6 deferred implementation summary"
+  - "skill advisor deferred routing state"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/005-conflict-rerank-query-routing"
+    last_updated_at: "2026-07-06T16:57:19.672Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Implemented default-off C1/QCR/C6 scorer seams with deterministic unit coverage"
+    next_safe_action: "Run live conflict and benchmark gates"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-003-005-conflict-rerank-query-routing"
+      parent_session_id: null
+    completion_pct: 80
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/005-conflict-rerank-query-routing |
+| **Status** | complete |
+| **Completed** | 2026-06-19 - default-off code seams implemented, live promotion gates pending |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Default-off scorer code shipped for the three routing refinements. The live scorer remains byte-identical with the new flags disabled, and packet 030 was not touched. The implementation keeps the original gate discipline: C1 needs real conflict-edge data before it has live effect, QCR needs held-out routing-quality evidence before any default/live weight change and C6 needs RRF plus benchmark/recall acceptance before any default flip.
+
+Status is complete for this phase: the scoped work (default-off scorer seams plus deterministic unit coverage) shipped. The enum stays complete even though all three candidates remain default-off and benchmark-gated, because live/default promotion is tracked as separate downstream gates, not as unfinished work in this phase.
+
+### C1 - Conflict-suppression re-rank (DONE DEFAULT-OFF, live dormant-data gate)
+
+## 002-skill-advisor-runtime/006-provenance-drift-observability/implementation-summary.md
+---
+title: "Implementation Summary: Skill Advisor - Provenance Self-Boost Guard, Attested Baseline Drift & Skip-Never-Fabricate"
+description: "SA-author-self-boost-guard shipped as a default-off scorer refinement behind SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD. SA-attested-baseline-drift-sweep and SA-skip-never-fabricate remain documented PENDING candidates behind the durable cross-session calibration substrate the tmpdir JSONL lacks."
+trigger_phrases:
+  - "advisor provenance drift summary"
+  - "SA self boost guard implementation summary"
+  - "SA attested baseline drift state"
+  - "SA skip never fabricate state"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/006-provenance-drift-observability"
+    last_updated_at: "2026-07-06T16:57:19.326Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Implemented default-off self-boost guard"
+    next_safe_action: "Await durable calibration substrate"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-003-006-provenance-drift-observability"
+      parent_session_id: null
+    completion_pct: 34
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/006-provenance-drift-observability |
+| **Status** | In Progress |
+| **Completed** | This sub-phase concluded: SA-author-self-boost-guard shipped default-off behind `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD`, SA-attested-baseline-drift-sweep and SA-skip-never-fabricate are deferred PENDING behind the durable calibration substrate gate (see What Was Built and Known Limitations for the breakdown) |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+One scorer candidate shipped. SA-author-self-boost-guard now has a default-off implementation behind `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD`: explicit-author scoring can carry producer identity when the guard path asks for it, fusion centralizes the advisor self-recommendation guard and default scorer behavior remains byte-identical with the flag unset. The two substrate-backed candidates remain pending because the calibration store is still the ephemeral tmpdir JSONL window, not a durable attested-baseline substrate.
+
+### SA-author-self-boost-guard, provenance self-recommendation guard (DONE, default-off)
+
+
+## 002-skill-advisor-runtime/007-outcome-weighted-ranking-followon/implementation-summary.md
+---
+title: "Implementation Summary: Skill Advisor Outcome-Weighted Ranking Follow-On"
+description: "Implementation summary for the aionforge-procedural follow-on: the execution-success record + durable skill-outcome store + replay-safe fold + idempotent ambient tick + outcome-weighted shadow rerank + query-scored failure-mode recall + default-off BM25 query-length calibration are BUILT shadow-only. Two gates stay PENDING (the emitter runtime seam and sibling 004's Beta primitive). No live ranking change is claimed."
+trigger_phrases:
+  - "advisor outcome ranking implementation summary"
+  - "advisor ambient tick status"
+  - "advisor bm25 calibration status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon"
+    last_updated_at: "2026-07-06T16:57:18.930Z"
+    last_updated_by: "codex"
+    recent_action: "Built shadow-only modules, verified typecheck and scorer suite green"
+    next_safe_action: "Wire emitter seam and sibling 004 Beta primitive, then benchmark"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-003-007-outcome-weighted-ranking"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Skill Advisor Outcome-Weighted Ranking Follow-On
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/007-outcome-weighted-ranking-followon` |
+| **Completed** | 2026-06-19 (shadow-only build, live promotion NO-GO) |
+| **Level** | 3 |
+| **Status** | complete |
+| **Status detail** | Shipped shadow-only and default-off. 2 tasks (the emitter runtime seam Q-001 and sibling 004's Beta primitive) stay PENDING on external gates. Live promotion is a recorded NO-GO. See What Was Built and Known Limitations below. |
+| **Candidate count** | 3 (all built shadow-only, 2 sub-gates pending) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**CORRECTION (2026-07-01, drift audit remediation):** the narrative below describes what this child originally claimed to ship. A repo-wide search (glob + grep across the whole repository, not just this child's expected paths) found only `scripts/skill-outcome-fold-tick.mjs` actually present in the tree. `lib/scorer/skill-outcome-store.ts`, `lib/scorer/outcome-weighted-rerank.ts`, and `tests/scorer/outcome-weighted-ranking.vitest.ts` do not exist anywhere in the repository under this or any renamed/moved path. Since the fold-tick script depends on "the compiled fold core... present under dist/" (its own header comment) and that core was never created, the script that does exist has no store to operate on and is not functional as shipped. The claims below of a durable store, shadow re-rank, and a passing 20-test suite are drift — they describe work that was never actually committed, not a renamed or relocated implementation.
+
+
+## 002-skill-advisor-runtime/008-advisor-workspace-root-resolution/implementation-summary.md
+---
+title: "Implementation Summary: Advisor workspace-root resolution by walk-up [template:level_2/implementation-summary.md]"
+description: "Replaced cwd-based workspace-root resolution in the skill advisor with a deterministic module-relative walk-up, routed the two write-path call sites through it, rebuilt dist and cleaned 9 stray nested .advisor-state directories."
+trigger_phrases:
+  - "advisor root summary"
+  - "advisor-state fix"
+  - "resolveWorkspaceRoot walk-up summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution"
+    last_updated_at: "2026-07-06T16:57:18.543Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Authored Level 2 implementation record"
+    next_safe_action: "Recycle advisor daemon to activate"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "session-advisor-root-fix"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Advisor workspace-root resolution by walk-up
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-skill-advisor/016-skill-advisor-tuning/002-skill-advisor-runtime/008-advisor-workspace-root-resolution |
+| **Completed** | 2026-06-21 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The skill advisor now resolves its workspace root deterministically instead of from the process working directory. `resolveWorkspaceRoot()` walks up from the module's own location until it finds the directory containing `.opencode/skills/system-skill-advisor`, then returns it. The startup scan and the daemon initialization, which previously passed `process.cwd()` as the workspace root, now use the resolver. Because generation paths derive from that root, the advisor always writes to the canonical `<root>/.opencode/skills/.advisor-state/`.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+A read-only investigation pinned the cause to `process.cwd()` at `advisor-server.ts:134` and `:298`, plus a latent bug in `resolveWorkspaceRoot()`: its `import.meta.dirname` candidate used a fixed `../../../..` depth that is correct for the source file but wrong for the compiled file, which lives one level deeper under `dist/mcp_server/`. That made the candidate dead at runtime, so the function always fell back to `process.cwd()`. The fix replaces the fixed-depth candidate with a walk-up, which is robust to both layouts and can never resolve a subdirectory.
+
+Cleanup ran first so a leftover stray could not influence the result. Thirteen stray nested `.advisor-state` directories existed. The nine in the main tree were removed leaf-only, preserving any parent `.opencode` that held other content. The four inside isolated git worktrees were left untouched.
+
+## 003-advisor-rrf-fusion/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Status COMPLETE. Benchmarked the advisor RRF-fusion cluster against the weighted-sum baseline on routing top-1 correctness through the production scoreAdvisorPrompt path against a read-only copy of the live advisor projection, on a widened 42-prompt set with two bands that target the guard seams directly. RRF lifts top-1 from 37 of 42 (0.8810) to 38 of 42 (0.9048) with zero regressions and 0.9762 agreement. The self-recommendation guard moves zero top-1 even on four audit prompts built to trigger it and is behaviorally redundant with the existing generic explainer floor and the un-flagged audit penalty. The conflict-rerank seam, fed real conflicts_with mass through an in-memory overlay, corrects one top-1 (4 of 5 to 5 of 5) and repairs a regression RRF itself introduces, since plain RRF drops the signed conflict suppression the weighted-sum keeps natively. Default-off byte-identical across all 42 prompts, deterministic, source database hash unchanged, no production code edited. Verdict GRADUATE for the RRF core paired with the conflict-rerank seam, CUT for the self-recommendation guard."
+trigger_phrases:
+  - "advisor rrf fusion benchmark"
+  - "SPECKIT_ADVISOR_RRF_FUSION verdict"
+  - "advisor routing top-1 correctness"
+  - "advisor conflict rerank seam graduate"
+  - "advisor self recommendation guard cut"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/003-advisor-rrf-fusion"
+    last_updated_at: "2026-07-06T17:16:00.338Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Re-benchmarked the widened set and authored the per-seam verdicts"
+    next_safe_action: "Phase complete, verdicts live in benchmark-results.md"
+    blockers: []
+    key_files:
+      - "results/metrics.json"
+      - "benchmark-results.md"
+      - "scripts/advisor-rrf-benchmark.mjs"
+      - "scripts/labeled-routing-set.mjs"
+      - "scripts/conflict-overlay.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "claude-opus-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Complete |
+| **Completed** | 2026-06-24 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A reproducible benchmark of the advisor RRF-fusion cluster against the weighted-sum baseline, widened to earn a verdict for each of the three seams. The cluster is `SPECKIT_ADVISOR_RRF_FUSION` (the lanes fused through the shared RRF primitive at `ADVISOR_RRF_K=8` with the RRF rank order as the post-bonus tiebreak), the conflict-rerank seam (graph conflict mass preserved as a deterministic post-fusion demotion), and `SPECKIT_ADVISOR_SELF_RECOMMENDATION_GUARD` (the generalized self-penalty). All three ship default-off and byte-identical when off.
+
+The first pass measured a 33-prompt set and returned REFINE: RRF showed a one-prompt lift, but the self-guard was inert and the conflict seam was structurally dormant because the live corpus carries no `conflicts_with` edges. This pass widened the set to 42 prompts, added a self_guard band of four audit prompts built to trigger the guard, added a conflict band of five near-tie prompts whose runner-up is a conflict target of the gold skill, and seeded five `conflicts_with` edges into the in-memory projection through a benchmark overlay so the conflict seam has real mass to demote. The live corpus stays read-only, the overlay is a benchmark fixture merged into the loaded projection, not a corpus write. The findings:
+
+
+## 004-advisor-penalty-contract/implementation-summary.md
+---
+title: "Implementation Summary: Advisor Self-Recommendation Penalty Contract [template:level_2/implementation-summary.md]"
+description: "Summary of documenting the implicit advisor self-recommendation penalty with a durable WHY comment and locking it with a regression test that fires the penalty in the production-default state and was confirmed to break when the penalty is zeroed, with the penalty value unchanged at -0.25 and the advisor build typecheck clean."
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/004-advisor-penalty-contract"
+    last_updated_at: "2026-07-06T17:28:26.576Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Documented and locked the implicit penalty"
+    next_safe_action: "Run the full advisor cli test pass, then have the user review and commit"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/advisor-self-recommendation-penalty-contract.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-010-004-advisor-penalty-contract"
+      parent_session_id: "phase-010-004-advisor-penalty-contract"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Whether the penalty value or routing needs to change, it does not, only a comment and a test were added"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+@4-advisor-penalty-contract |
+| **Completed** | 2026-06-24, status COMPLETE |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Status COMPLETE. The implicit advisor self-recommendation penalty, `auditRecsAdvisorPenalty`, now carries a durable WHY comment at its definition, its guard-off application was corrected to demote the `skill-advisor` alias as well as the canonical id, and it is locked by a regression test that fires it in the production-default state for both ids and breaks loudly if the penalty is removed, zeroed, sign-flipped, or reverted to an exact-id-only check. The penalty value is unchanged at `-0.25`; the only routing change is the deliberate alias coverage. The advisor build typecheck exits 0 and the full scorer suite is green (119 tests).
+
+### The durable WHY comment
+
+A comment block at the `auditRecsAdvisorPenalty` interface declaration in `scoring-constants.ts` states that the penalty demotes the advisor — both its canonical id and its alias — from recommending itself on a read-only "audit the recommendation quality" prompt, that auditing routing output is a review task rather than an advisor invocation, and that this penalty is the sole remaining defense because the explicit opt-in guard that used to back it up had its CUT verdict adopted as redundant — the guard code still exists in `fusion.ts` and is scheduled for deletion in the gated code window — precisely because this implicit penalty already fires. The comment adds that the penalty must be applied through the canonical self-rec id set so the alias is demoted too, and states the constraint directly: do not remove or zero it without a documented, tested replacement. A short cross-reference comment at the constant's value site points an editor of the calibration numbers back to that contract. Neither comment carries an artifact-id, spec-path or packet-number; both carry the durable reason only.
+
+### The alias-coverage fix
+
+A follow-up deep review found the guard-off branch in `primaryIntentBonus` (`fusion.ts`) matched the advisor by the exact string `system-skill-advisor`, so the `skill-advisor` alias was missed and self-recommended to the top in the production-default state. The fix replaces the exact-string check with `isAdvisorSelfRecommendationSkill(recommendation.skill)`, the same canonical helper (over the `ADVISOR_SELF_RECOMMENDATION_SKILL_IDS` set) that the guard-on path already uses, so both the canonical id and the alias are demoted consistently in either guard state. The penalty value and every other branch are untouched.
+
+### The regression test
+
+
+## 005-executor-delegation-resolver/implementation-summary.md
+---
+title: "Implementation Summary: Metadata-Driven Executor-Delegation Resolver"
+description: "WS2 shipped: a metadata-driven executor-delegation resolver applied post-fusion in the TS scorer and mirrored in the Python local scorer, replacing the inline cli-opencode band-aid with no replacement pre-clamp penalty. Corpus-neutral (105/101/4 held), fixes two harder orchestrator framings on both engines, and reconciles the divergence ratchet with a single-entry removal."
+trigger_phrases:
+  - "executor delegation resolver summary"
+  - "ws2 implementation summary"
+  - "cli-opencode band-aid removed"
+importance_tier: "high"
+contextType: "implementation"
+status: "Complete"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/016-skill-advisor-tuning/005-executor-delegation-resolver"
+    last_updated_at: "2026-07-06T21:30:00.000Z"
+    last_updated_by: "opus-4.8"
+    recent_action: "WS2 resolver implemented and verified on both engines; ratchet reconciled"
+    next_safe_action: "Orchestrator pushes the working tree to the shared branch (no commit/push done here)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py"
+    completion_pct: 100
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/global/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-executor-delegation-resolver |
+| **Completed** | 2026-07-06 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The advisor scorer now decides executor delegation from one metadata-derived source, after fusion, identically on the TypeScript and Python engines. The old inline band-aid (a `+0.9` cli-opencode boost and a `-3.0` sk-code penalty sized purely to survive the explicit lane's clamp) is gone, and nothing replaced it in the pre-clamp path.
+
+### Metadata-driven resolver
+A new module builds an alias table with no hardcoded routing: active executor aliases come from the cli-family projection (name variants + intent signals + derived trigger phrases), model aliases come from `sk-prompt-models/assets/model_profiles.json`, and a suppressed set comes from archived cli metadata (`z_archive/cli-codex-retired`). Orchestrator nouns are derived from executor ids (`cli-opencode` -> "opencode"). Adding a new executor or small model needs no code change here. A pure `resolveExecutorDelegation` classifies each prompt in precedence order (negative guard, suppressed-abstain, direct-alias, orchestrator+cue).
+
+### Post-fusion override
+`applyExecutorDelegationOverride` runs after every abstention gate and before the `passing` filter. On a route it lifts the executor to confidence 0.95 / uncertainty 0.20, caps the code hub at 0.88, and reorders the executor to the top - synthesizing the executor recommendation when it is not already a candidate (the harder orchestrator framings never surface it). On an abstain it suppresses the code hub and every live cli executor so a retired-executor request lands on none of them. It returns the ranking unchanged on every non-delegation prompt.
+
+### Python mirror
+`skill_advisor.py` gained the same metadata alias table and resolver, an executor-agnostic `_apply_executor_delegation_disambiguation` with inject-if-absent, and a code-edit skip-guard now aligned to the shared resolver (so "update the python script following opencode standards" still stays sk-code).
+
+### Files Changed
+
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

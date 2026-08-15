@@ -1,0 +1,1710 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-speckit/z_archive/023-hybrid-rag-fusion-refinement"
+# PACKET: specs/system-speckit/z_archive/023-hybrid-rag-fusion-refinement (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: ESM Module Compliance"
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+description: "Feature Specification: ESM Module Compliance"
+trigger_phrases:
+  - "esm module compliance"
+  - "mcp_server esm refactor"
+  - "system-spec-kit esm migration"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement"
+    last_updated_at: "2026-04-29T11:10:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Backfill _memory.continuity per Tier 4 sk-doc template alignment"
+    next_safe_action: "Refresh on next packet edit"
+    blockers: []
+    completion_pct: 100
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase manifest: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: ESM Module Compliance
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+
+## 001-shared-esm-migration/implementation-summary.md
+---
+title: "Implementation [system-spec-kit/023-hybrid-rag-fusion-refinement/001-shared-esm-migration/implementation-summary]"
+description: "Phase 1 migrated @spec-kit/shared to native ESM so downstream packages can import stable .js-specifier exports without CommonJS fallbacks."
+trigger_phrases:
+  - "implementation summary"
+  - "shared esm migration"
+  - "phase 1 closeout"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/001-shared-esm-migration"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-shared-esm-migration |
+| **Completed** | 2026-03-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase converted `@spec-kit/shared` into a native ESM package so the rest of the system can rely on consistent ESM import resolution. The migration removed extensionless relative imports, switched compiler output to NodeNext ESM semantics, and exposed ESM-safe package exports.
+
+### Shared package ESM contract
+
+`shared/package.json` now declares `"type": "module"`, publishes ESM-oriented `main`/`exports`, and keeps the Node engine floor aligned to the ESM/runtime requirements used by downstream packages.
+
+### TypeScript emit alignment
+
+`shared/tsconfig.json` was moved to `module: "nodenext"` + `moduleResolution: "nodenext"` with `verbatimModuleSyntax: true` so TypeScript preserves the ESM import surface instead of rewriting to CommonJS patterns.
+
+### Import/re-export specifier compliance
+
+Relative imports and re-exports in `shared/**/*.ts` were normalized to `.js` specifiers to satisfy Node ESM resolution rules at runtime.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `shared/package.json` | Modified | Mark package as ESM and publish ESM entrypoints |
+
+## 002-mcp-server-esm-migration/implementation-summary.md
+---
+title: "Implementation [system-spec-kit/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration/implementation-summary]"
+description: "Phase 2 migrated @spec-kit/mcp-server to native ESM and removed CommonJS runtime assumptions from production server paths."
+trigger_phrases:
+  - "implementation summary"
+  - "mcp server esm migration"
+  - "phase 2 closeout"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/002-mcp-server-esm-migration"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-mcp-server-esm-migration |
+| **Completed** | 2026-03-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase migrated the MCP server package from CommonJS assumptions to a native ESM runtime surface. The change set covered package metadata, compiler config, import specifiers, CommonJS globals, and dynamic-loading paths used by handlers.
+
+### Package/runtime ESM conversion
+
+`mcp_server/package.json` now exposes ESM entrypoints (`main`, `exports`, `bin`) and declares `"type": "module"`. Runtime constraints were aligned to Node `>=20.11.0`.
+
+### TypeScript and import hygiene
+
+The package compiler profile moved to NodeNext ESM with `verbatimModuleSyntax`, and relative imports/re-exports were rewritten to explicit `.js` specifiers. Cross-package sibling hops were replaced with package imports (`@spec-kit/shared/...`).
+
+### CommonJS global and loader cleanup
+
+Production code replaced `__dirname`/`__filename` usage with `import.meta.dirname` / `import.meta.filename` and converted remaining bare `require()` call sites to ESM-safe loading patterns.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `mcp_server/package.json` | Modified | Publish ESM entrypoints and runtime floor |
+
+## 003-scripts-interop-refactor/implementation-summary.md
+---
+title: "Implementation [system-spec-kit/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor/implementation-summary]"
+description: "Phase 3 stabilized scripts-side CommonJS to ESM interop and hardened the memory-save pipeline for mixed-runtime operation."
+trigger_phrases:
+  - "implementation summary"
+  - "scripts interop refactor"
+  - "memory-save hardening"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/003-scripts-interop-refactor"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-scripts-interop-refactor |
+| **Completed** | 2026-03-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase kept `@spec-kit/scripts` on CommonJS while making it interoperable with newly ESM-migrated sibling packages. In parallel, the memory-save pipeline was hardened so structured and fallback save paths continue to work through migration-era edge cases.
+
+### Scripts interop boundary
+
+Scripts-side imports that previously depended on direct `require()` access to ESM siblings were updated to use an explicit interop path compatible with Node 25 `require(esm)` behavior and async import boundaries.
+
+### Module-sensitive test alignment
+
+Module-boundary and integration suites were updated to assert runtime-truth behavior for the new interop model rather than historical CommonJS assumptions.
+
+### Memory-save hardening tranche
+
+`workflow.ts` was decoupled from direct server-runtime imports, V8 descendant phase detection was expanded for valid phase references, and manual fallback save handling was added for structured-save recovery scenarios.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `scripts/core/workflow.ts` | Modified | Remove brittle direct runtime coupling and improve fallback handling |
+
+## 004-verification-and-standards/implementation-summary.md
+---
+title: "Implementation [system-spec-kit/023-hybrid-rag-fusion-refinement/004-verification-and-standards/implementation-summary]"
+description: "Completion summary for Phase 4 — highest-risk retests, full verification matrix, standards doc sync, and parent packet closure."
+trigger_phrases:
+  - "phase 4 summary"
+  - "verification summary"
+  - "023 phase 4 implementation"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/004-verification-and-standards"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-verification-and-standards |
+| **Completed** | 2026-03-30 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 4 closed the ESM migration by running the research-defined verification matrix against all high-risk runtime surfaces, then syncing standards docs from the verified ESM state.
+
+### Highest-Risk Retests
+
+All 7 surfaces identified by research as highest regression risk were retested and confirmed passing: `memory-save.ts`, `memory-index.ts`, `shared-memory.ts`, `vector-index-store.ts`, `session-manager.ts`, `generate-context.ts`, and `workflow.ts`.
+
+### Verification Matrix
+
+The full verification matrix passed: root gates (typecheck, test:cli), workspace builds and tests (mcp-server 8997+, scripts 483/483), module-sensitive Vitest suites, runtime smokes (`node dist/context-server.js`, `node scripts/dist/memory/generate-context.js --help`), and scripts interop tests.
+
+### Standards-Doc Sync
+
+Updated `sk-code-opencode` and related standards surfaces to describe the verified ESM runtime state. README surfaces aligned. The 30-iteration deep review findings were absorbed, and MCP tool schema compatibility was fixed by removing `superRefine` from affected schemas.
+
+### Packet Closure
+
+Parent `implementation-summary.md` updated with all phase verification results. All P0 (9/9) and P1 (8/8) checklist items marked with evidence. Parent spec status set to Complete.
+<!-- /ANCHOR:what-built -->
+
+
+## 005-test-and-scenario-remediation/implementation-summary.md
+---
+title: "Implementati [system-spec-kit/023-hybrid-rag-fusion-refinement/005-test-and-scenario-remediation/implementation-summary]"
+description: "Phase 5 summary for the final remediation sweep that fixed the remaining test regressions, aligned manual playbook truth, and ended with a 100 percent pass rate across mcp_server and scripts."
+trigger_phrases:
+  - "implementation summary"
+  - "phase 5 remediation summary"
+  - "100 percent pass rate"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/005-test-and-scenario-remediation"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-test-and-scenario-remediation |
+| **Completed** | 2026-03-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 5 turned the ESM migration from "runtime complete but still noisy" into a clean closeout. The phase first removed the 8 pre-existing failures that were still blocking trust in the branch, then replaced the remaining skipped and todo coverage with executable tests so the final state was a real 100 percent pass rate instead of a paper-green run.
+
+### Sweep 1: fix the 8 pre-existing failures
+
+The first sweep resolved the remaining test drift that was unrelated to the ESM flip itself but still blocked release confidence. That included updating causal-graph and error-recovery expectations to the live handler contract, creating per-test DB fixtures for the stats and recovery suites, skipping broken-symlink ENOENT noise in stdio logging safety, raising the modularization guard to the current `db-state.js` size, and truth-syncing the manual playbook and hydra roadmap flag references instead of deferring them again.
+
+### Sweep 2: remove skipped and todo coverage gaps
+
+The final sweep converted the last soft failures into real passing coverage. It fixed the remaining scripts test failures, implemented sparse-first graph tests that had been skipped, turned the crash-recovery todos into real tests, and stabilized the DB-dependent and API-key-dependent suites with targeted mocks. After that pass, both test packages were fully green with no skipped cases left behind.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts` | Modified | Align expected error codes with the shipped handler contract |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/integration-error-recovery.vitest.ts` | Modified | Accept the structured error response format now returned by the handler |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/learning-stats-filters.vitest.ts` | Modified | Create deterministic per-test DB fixtures |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts` | Modified | Fix recovery coverage to run against explicit DB fixtures |
+
+## 006-review-remediation/implementation-summary.md
+---
+title: "Implementation Summary [system-spec-kit/023-hybrid-rag-fusion-refinement/006-review-remediation/implementation-summary]"
+description: "Completion summary for Phase 6 — all 18 findings from the 10-iteration GPT-5.4 deep review remediated across 4 workstreams."
+trigger_phrases:
+  - "phase 6 summary"
+  - "review remediation summary"
+  - "023 phase 6 implementation"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/006-review-remediation"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-review-remediation |
+| **Completed** | 2026-03-30 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A 10-iteration deep review using GPT-5.4 agents via codex CLI produced 18 findings across 7 dimensions (14 P1, 4 P2). All findings were remediated in 4 parallel implementation workstreams plus documentation truth-sync and final verification.
+
+### Phase A: Runtime Correctness
+
+Fixed 3 P1 and 1 P2 finding. Replaced residual `__dirname` usage in 2 ESM wrapper scripts (`map-ground-truth-ids.ts`, `reindex-embeddings.ts`) with `import.meta.dirname`. Guarded `main()` in `context-server.ts` behind an entrypoint check so importing the package no longer starts the server. Aligned `engines.node >= 20.11.0` across all 4 package.json files. Fixed `shared/package.json` root export to point at `dist/index.js` with a separate `./embeddings` subpath.
+
+### Phase B: Security Hardening
+
+Fixed 4 P1 findings. Added trusted-transport warnings for shared-memory admin operations. Made the V-rule bridge fail-closed when the validation module is unavailable, with a `SPECKIT_VRULE_OPTIONAL` env var bypass. Added workspace boundary validation to `shared/paths.ts` using `findNearestSpecKitWorkspaceRoot()` that locates the monorepo root by its `workspaces` array. Threaded governed scope (tenant/user/agent/shared-space) into the duplicate preflight query and added cross-scope metadata redaction.
+
+### Phase C: Reliability and Maintainability
+
+Fixed 2 P1 and 1 P2 finding. Added typed warnings in `response-builder.ts` that detect `[file-persistence-failed]` prefixes instead of flattening all warnings to "anchor issues". Consolidated 3 dynamic-import degradation patterns in `workflow.ts` into a single `tryImportMcpApi` helper. Documented the barrel width in `api/index.ts` as intentional (legitimate external consumers in scripts/).
+
+### Phase D: Performance
+
+Fixed 2 P2 findings. Added a module-level cached lazy loader for hot-path vector-index imports in `vector-index-store.ts`. Deferred heavy imports in `cli.ts` behind per-command handlers so `--help` and lightweight commands avoid loading the DB stack.
+
+### Phase E: Documentation Truth-Sync
+
+## 007-hybrid-search-null-db-fix/implementation-summary.md
+---
+title: "Implementation [system-spec-kit/023-hybrid-rag-fusion-refinement/007-hybrid-search-null-db-fix/implementation-summary]"
+description: "Fixed two bugs in the Spec Kit Memory search pipeline that silently filtered ALL search results to zero: scope enforcement defaulting ON and TRM state filtering against a nonexistent column."
+trigger_phrases: ["hybrid search fix", "search pipeline 0 results", "scope enforcement bug", "trm state unknown filter", "minstate warm bug", "isscopeenforcementenabled"]
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/007-hybrid-search-null-db-fix"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary: Hybrid Search Pipeline Fix
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-hybrid-search-null-db-fix |
+| **Completed** | 2026-03-30 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The Spec Kit Memory search pipeline was completely broken — every query returned 0 results regardless of content. With 999 memories in the database (996 with embeddings, 999 in FTS5), the trigger system and memory_list worked fine, but `memory_search` and `memory_context` produced nothing. Two independent filtering bugs were silently discarding all candidates at different pipeline stages.
+
+### Bug 1: Scope Enforcement Rejecting All Unscoped Queries (Stage 1)
+
+`isScopeEnforcementEnabled()` in `scope-governance.ts` defaulted to `true` via `isDefaultOnFlagEnabled()`, which returns `true` when no environment variable is set. When scope enforcement is active and no scope parameters (tenantId, userId, agentId) are provided in the query, `createScopeFilterPredicate` returns `() => false` — rejecting every result. This was an intentional security fix ("BUG-001 fix: empty scope under enforcement means no access"), but it broke all non-governed searches in a single-user system.
+
+**Fix**: Changed `isScopeEnforcementEnabled()` from default-ON to opt-in. It now explicitly checks for `SPECKIT_MEMORY_SCOPE_ENFORCEMENT=true` environment variable instead of using the default-true helper.
+
+### Bug 2: TRM State Filter Removing All Memories (Stage 4)
+
+The `memory_search` handler defaults `minState` to `'WARM'` (priority 4 in the state hierarchy). Stage 4's `filterByMemoryState` compares each result's `memoryState` against this threshold. However, the `memoryState` column does not exist in the database schema — it was designed for the TRM state machine but never materialized. Every memory resolves to `'UNKNOWN'` (priority 0), failing the `priority >= minPriority` check. The `memory_context` handler had the same issue with two hardcoded `minState: 'WARM'` values.
+
+**Fix**: Removed the `'WARM'` default from `memory_search` handler and removed both hardcoded `minState: 'WARM'` values from `memory_context` handler. `minState` is now `undefined` (no state filtering) until the memoryState column is implemented.
+
+### Investigation Method
+
+Used Sequential Thinking (12 steps) to systematically rule out hypotheses: missing data, embedding failures, ESM module duplication, stale database connections, WAL issues. Added diagnostic logging at each pipeline stage to trace where candidates were lost. Direct module testing confirmed search channels returned 5+5 results (vector+FTS5) but the pipeline reported 0 after filtering.
+
+### Files Changed
+
+| File | Change Type | Description |
+|------|-------------|-------------|
+
+## 008-spec-memory-compliance-audit/implementation-summary.md
+---
+title: "Implementatio [system-spec-kit/023-hybrid-rag-fusion-refinement/008-spec-memory-compliance-audit/implementation-summary]"
+description: "Comprehensive compliance audit execution across 186 spec folders, 135 memory files, and full database rebuild."
+trigger_phrases:
+  - "compliance audit results"
+  - "spec audit summary"
+  - "memory cleanup results"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/008-spec-memory-compliance-audit"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
+
+# Implementation Summary: Spec & Memory Compliance Audit
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-spec-memory-compliance-audit |
+| **Date** | 2026-03-31 |
+| **Duration** | ~3 hours |
+| **Approach** | Hybrid: automated scripts + 8 GPT-5.4 copilot agent dispatches + direct orchestration |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Phase 1: Discovery & Baseline (T001-T007) — COMPLETE
+- Scanned all 186 spec folders (122 active + 65 archived + phase children)
+- **97/122 active folders** had validation errors (20% pass rate)
+- **65/65 archived folders** had errors (0% pass rate)
+- Top errors: TEMPLATE_HEADERS (54+), SPEC_DOC_INTEGRITY (48+), ANCHORS_VALID (41+)
+- Memory scan: 135 files, 46 hard-block violations (V8: 23, V12: 20, mixed: 3)
+- DB health: healthy, 1004 memories, 2 orphaned vectors
+- Deliverables: `research/discovery-summary.md`, `research/hard-block-memories.txt`
+
+### Phase 2: Spec Document Fixes (T008-T196) — COMPLETE
+Automated fixes applied across all 186+ folders:
+1. **Frontmatter normalization**: 2,081 files via `backfill-frontmatter.js --apply` (95% of all files)
+2. **Anchor insertion**: 4,291 anchor markers added across 341 folders via custom `fix-anchors.py`
+3. **Unclosed anchor repair**: 105 unclosed anchors fixed in 69 files
+4. **Header renames**: 10 old-style impl-summary headers normalized
+5. **Old anchor cleanup**: 60 duplicate legacy anchors removed from 26 files
+6. **Known Limitations sections**: Added to 135 implementation-summary files
+
+
+## 009-reindex-validator-false-positives/implementation-summary.md
+---
+title: "Implemen [system-spec-kit/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives/implementation-summary]"
+description: "Fixed false-positive validation rules blocking legitimate memory/spec files from bulk reindex, plus contextType migration from decision/discovery to planning/general across the full stack."
+trigger_phrases:
+  - "implementation summary"
+  - "009 reindex validator"
+  - "false positive fix summary"
+  - "contexttype migration"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-reindex-validator-false-positives |
+| **Completed** | 2026-04-01 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Bulk reindex went from rejecting 1,106 files to accepting all of them. Two validation rules (V8 cross-spec contamination, V12 topical coherence) were producing false positives because the batch pipeline lacked per-file context. The fix threads file path context through validation, skips unnecessary checks on memory and spec doc files, and corrects a cascading frontmatter bug that was silently reverting `contextType` values across every backfill run.
+
+### Core Fixes (Phase 2, 16 items)
+
+1. **V8 cross-spec contamination**: Extract spec folder from file path as fallback when frontmatter `spec_folder` is empty. Single-level spec paths now also resolve correctly.
+2. **V12 topical coherence**: Skip check for `*/memory/` directory files and spec doc files that define the spec itself.
+3. **Template contract**: Force reindex uses `warn-only` quality gate mode.
+4. **File path threading**: Pass `filePath` through `v-rule-bridge.ts` and `memory-save.ts` validation bridge.
+5. **Frontmatter source of truth**: Added `"planning"` to VALID_CONTEXT_TYPES, fixed DOC_DEFAULT_CONTEXT mappings, reversed `normalizeContextType` alias from `decision->planning`.
+6. **MCP parser**: Fixed CONTEXT_TYPE_MAP (`decision->planning`, `discovery->general`), added `"planning"` to ContextType union.
+7. **DB schema**: Added `"planning"` to CHECK constraint on `context_type` column.
+8. **Retroactive backfill**: 828 files updated across all specs including z_archive.
+9. **DB migration**: 2,006 `decision->planning`, 3 `discovery->general` direct UPDATEs.
+10. **DB dedup**: Removed 13,211 duplicate rows from force reindex accumulation.
+11. **Runtime consumers**: Updated session-extractor, intent-classifier, save-quality-gate, fsrs-scheduler, and memory-state-baseline.
+
+### Deep Review Remediation (Phase 3, 9 items)
+
+
+## 010-search-retrieval-quality-fixes/implementation-summary.md
+---
+title: "Implementat [system-spec-kit/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes/implementation-summary]"
+description: "Structured summary of the six retrieval quality fixes in memory context/search pipelines."
+trigger_phrases:
+  - "search retrieval implementation summary"
+  - "retrieval quality fixes summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-search-retrieval-quality-fixes |
+| **Completed** | 2026-04-01 (implementation pass), 2026-04-02 (structural doc alignment) |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase implemented six retrieval-quality fixes across context routing, folder discovery behavior, token budget handling, and intent classification. The changes targeted false zero-result outcomes and low-quality intent auto-detection paths.
+
+### Retrieval Quality Remediation
+
+The implementation updated strategy intent propagation, added recovery for over-narrow folder scope, introduced adaptive truncation behavior, wired folder boost scoring metadata, added two-tier metadata/content response behavior, and added a confidence floor that defaults weak auto-detections to `understand`.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `mcp_server/handlers/memory-context.ts` | Modified | Intent propagation, folder recovery, adaptive truncation, two-tier behavior |
+| `mcp_server/handlers/memory-search.ts` | Modified | Folder boost application + intent confidence floor |
+| `mcp_server/lib/search/folder-discovery.ts` | Modified | Folder discovery support for scoring signal integration |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+## 011-indexing-and-adaptive-fusion/001-wire-promotion-gate/implementation-summary.md
+---
+title: "...kit/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/001-wire-promotion-gate/implementation-summary]"
+description: "Wired PromotionGate outcomes to adaptive threshold tuning so successful shadow evaluations can adjust thresholds automatically."
+trigger_phrases:
+  - "implementation summary"
+  - "promotion gate wiring"
+  - "adaptive tuning trigger"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/001-wire-promotion-gate"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-wire-promotion-gate |
+| **Completed** | 2026-04-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase connected shadow-evaluation outcomes to adaptive threshold tuning so threshold adjustments can execute automatically when promotion criteria are met.
+
+### PromotionGate to tuning action wiring
+
+`shadow-evaluation-runtime.ts` now imports and invokes `tuneAdaptiveThresholdsAfterEvaluation` behind explicit gate and mode checks, preventing accidental tuning when gate conditions fail or adaptive mode is disabled.
+
+### Test coverage for decision paths
+
+Three decision-path tests were added/updated to prove behavior for: gate pass + adaptive enabled, gate fail, and adaptive disabled.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `mcp_server/lib/feedback/shadow-evaluation-runtime.ts` | Modified | Invoke adaptive tuning only when PromotionGate and mode conditions pass |
+| `mcp_server/tests/shadow-evaluation-runtime.vitest.ts` | Modified | Verify pass/fail/no-op decision branches |
+<!-- /ANCHOR:what-built -->
+
+---
+
+## 011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds/implementation-summary.md
+---
+title: "...23-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds/implementation-summary]"
+description: "Phase 011/002 persisted adaptive ranking threshold overrides in SQLite with cache-aware read/write paths and regression coverage."
+trigger_phrases:
+  - "implementation summary"
+  - "persist tuned thresholds"
+  - "adaptive ranking thresholds"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds"
+    last_updated_at: "2026-04-24T14:55:00Z"
+    last_updated_by: "copilot-gpt-5-4"
+    recent_action: "Backfilled memory block"
+    next_safe_action: "Revalidate packet docs"
+    key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-persist-tuned-thresholds |
+| **Completed** | 2026-04-02 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase moved adaptive threshold overrides from process-only memory into durable SQLite storage so threshold tuning survives process restarts and cache misses. The resulting flow keeps the fast WeakMap warm-path while adding a reliable persisted source of truth.
+
+### SQLite persistence layer
+
+`adaptive_thresholds` singleton table support was added to adaptive-ranking table setup. `setAdaptiveThresholdOverrides()` now performs `INSERT OR REPLACE` writes, including JSON serialization for `signal_weights`.
+
+### Cache-aware read path
+
+`getAdaptiveThresholdConfig()` now follows a two-tier strategy: return WeakMap entry on cache hit, otherwise read row `id=1` from SQLite, merge with compiled defaults, and repopulate cache.
+
+### Verification additions
+
+Round-trip and cold-cache tests were added in `mcp_server/tests/adaptive-ranking.vitest.ts` to prove persisted values are returned correctly after cache invalidation and that empty-table fallback remains deterministic.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `mcp_server/lib/cognitive/adaptive-ranking.ts` | Modified | Persist threshold overrides and hydrate config from DB on cache miss |
+
+FOLDER
+
+<<<FOLDER id="specs/system-speckit/z_archive/024-compact-code-graph"
+# PACKET: specs/system-speckit/z_archive/024-compact-code-graph (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Hybrid Context Injection — Hook + Tool Architecture"
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+description: "Spec: Hybrid Context Injection — Hook + Tool Architecture"
+trigger_phrases:
+  - "spec"
+  - "hybrid"
+  - "context"
+  - "injection"
+  - "hook"
+  - "024"
+  - "compact"
+  - "plan"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/024-compact-code-graph"
+    last_updated_at: "2026-04-29T11:10:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Backfill _memory.continuity per Tier 4 sk-doc template alignment"
+    next_safe_action: "Refresh on next packet edit"
+    blockers: []
+    completion_pct: 100
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase manifest: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: Hybrid Context Injection — Hook + Tool Architecture
+
+## 001-precompact-hook/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation Summary: PreCompact [system-spec-kit/024-compact-code-graph/001-precompact-hook/implementation-summary]"
+description: "Two-step compaction context injection: PreCompact precomputes critical context, SessionStart(compact) injects cached context into the new conversation."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "precompact"
+  - "implementation summary"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/001-precompact-hook"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:how-delivered -->
+Template compliance shim anchor for how-delivered.
+<!-- /ANCHOR:how-delivered -->
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:limitations -->
+Template compliance shim anchor for limitations.
+<!-- /ANCHOR:limitations -->
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+
+## 002-session-start-hook/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation Summary [system-spec-kit/024-compact-code-graph/002-session-start-hook/implementation-summary]"
+description: "Auto-prime every new Claude Code session with source-aware context routing across startup, resume, clear, and compact lifecycle events."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "002"
+  - "session"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/002-session-start-hook"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:how-delivered -->
+Template compliance shim anchor for how-delivered.
+<!-- /ANCHOR:how-delivered -->
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:limitations -->
+Template compliance shim anchor for limitations.
+<!-- /ANCHOR:limitations -->
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+
+## 003-stop-hook-tracking/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation Summary: Stop [system-spec-kit/024-compact-code-graph/003-stop-hook-tracking/implementation-summary]"
+description: "Implemented async Stop hook for session-end token tracking and context auto-save, with streaming transcript parser and incremental offset-based parsing."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "stop"
+  - "implementation summary"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/003-stop-hook-tracking"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+### Metadata
+| Field | Value |
+|-------|-------|
+
+## 004-cross-runtime-fallback/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation Summary [system-spec-kit/024-compact-code-graph/004-cross-runtime-fallback/implementation-summary]"
+description: "Implemented runtime detection, tool-based compaction recovery for all runtimes, and Claude-specific recovery instructions. 15/15 checklist items verified."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "004"
+  - "cross"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/004-cross-runtime-fallback"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+### Metadata
+| Field | Value |
+|-------|-------|
+
+## 005-command-agent-alignment/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation Summary [system-spec-kit/024-compact-code-graph/005-command-agent-alignment/implementation-summary]"
+description: "Updated commands and agent definitions across all 4 runtimes for hook awareness, profile-based resume, and double-save prevention. 14/14 checklist items verified."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "005"
+  - "command"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/005-command-agent-alignment"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+### Metadata
+| Field | Value |
+|-------|-------|
+
+## 007-testing-validation/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation Summary: Testing [system-spec-kit/024-compact-code-graph/007-testing-validation/implementation-summary]"
+description: "Implemented 242 automated tests across 16 files covering hook lifecycle, runtime routing, cross-runtime fallback, token snapshots, and edge cases. Manual playbook testing was replaced by programmatic verification."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "testing"
+  - "implementation summary"
+  - "007"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/007-testing-validation"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+### Metadata
+| Field | Value |
+|-------|-------|
+
+## 014-hook-durability-auto-enrichment/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation [system-spec-kit/024-compact-code-graph/014-hook-durability-auto-enrichment/implementation-summary]"
+description: "Fixed 6 P1 hook reliability/security bugs and implemented 8 P2 auto-enrichment features. MCP first-call priming, injection fencing, SHA-256 session hashing, tool auto-enrichment."
+trigger_phrases:
+  - "implementation"
+  - "implementation summary"
+  - "014"
+  - "hook"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/014-hook-durability-auto-enrichment"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+### Metadata
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 014-hook-durability-auto-enrichment |
+
+## 018-non-hook-auto-priming/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation Summary [system-spec-kit/024-compact-code-graph/018-non-hook-auto-priming/implementation-summary]"
+description: "MCP first-call auto-priming with PrimePackage and session_health tool for traffic-light session monitoring."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "018"
+  - "non"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/018-non-hook-auto-priming"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+### Metadata
+| Field | Value |
+|-------|-------|
+
+## 021-cross-runtime-instruction-parity/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation [system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity/implementation-summary]"
+description: "No Hook Transport tables in all instruction files and @context-prime agent for OpenCode."
+trigger_phrases:
+  - "implementation"
+  - "implementation summary"
+  - "021"
+  - "cross"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/021-cross-runtime-instruction-parity"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+### Metadata
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 021-cross-runtime-instruction-parity |
+
+## 022-gemini-hook-porting/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation Summary: Gemini [system-spec-kit/024-compact-code-graph/022-gemini-hook-porting/implementation-summary]"
+description: "Full Gemini CLI hook suite: SessionStart, PreCompress, BeforeAgent, SessionEnd with shared utilities."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "gemini"
+  - "implementation summary"
+  - "022"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/022-gemini-hook-porting"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+### Metadata
+| Field | Value |
+|-------|-------|
+
+## 023-context-preservation-metrics/implementation-summary.md
+<!-- SPECKIT_TEMPLATE_SOURCE: system-spec-kit templates | v2.2 -->
+---
+title: "Implementation [system-spec-kit/024-compact-code-graph/023-context-preservation-metrics/implementation-summary]"
+description: "In-memory session metrics collection with 4-factor quality scoring wired into session_health."
+trigger_phrases:
+  - "implementation"
+  - "implementation summary"
+  - "023"
+  - "context"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "024-compact-code-graph/023-context-preservation-metrics"
+    last_updated_at: "2026-04-24T15:33:48Z"
+    last_updated_by: "claude-opus-4-7-spec-audit-2026-04-24"
+    recent_action: "Spec audit + path reference remediation (Pass 1-3)"
+    next_safe_action: "Continue systematic remediation or reindex"
+    blockers: []
+
+---
+# Implementation Summary
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- SPECKIT_TEMPLATE_SHIM_END -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+### Metadata
+| Field | Value |
+|-------|-------|
+
+## 024-hookless-priming-optimization/implementation-summary.md
+---
+title: "Implementation [system-spec-kit/024-compact-code-graph/024-hookless-priming-optimization/implementation-summary]"
+description: "All 10 items implemented to optimize session bootstrap for hookless runtimes."
+trigger_phrases:
+  - "implementation"
+  - "implementation summary"
+  - "024"
+  - "hookless"
+importance_tier: "normal"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/024-compact-code-graph/024-hookless-priming-optimization"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Phase 024 — Hookless Priming Optimization
+
+
+<!-- SPECKIT_TEMPLATE_SHIM_START -->
+<!-- Auto-generated compliance shim to satisfy required template headers/anchors. -->
+## Metadata
+Template compliance shim section. Legacy phase content continues below.
+
+## What Was Built
+Template compliance shim section. Legacy phase content continues below.
+
+## How It Was Delivered
+Template compliance shim section. Legacy phase content continues below.
+
+## Key Decisions
+Template compliance shim section. Legacy phase content continues below.
+
+## Verification
+Template compliance shim section. Legacy phase content continues below.
+
+## Known Limitations
+Template compliance shim section. Legacy phase content continues below.
+
+<!-- ANCHOR:metadata -->
+Template compliance shim anchor for metadata.
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:what-built -->
+Template compliance shim anchor for what-built.
+<!-- /ANCHOR:what-built -->
+<!-- ANCHOR:how-delivered -->
+Template compliance shim anchor for how-delivered.
+<!-- /ANCHOR:how-delivered -->
+<!-- ANCHOR:decisions -->
+Decision details are documented in the Key Decisions section above.
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
+Template compliance shim anchor for verification.
+<!-- /ANCHOR:verification -->
+
+FOLDER
+
+<<<FOLDER id="specs/system-speckit/z_archive/025-nested-changelog-per-spec"
+# PACKET: specs/system-speckit/z_archive/025-nested-changelog-per-spec
+
+---
+title: "Implementation Summary: Nested Changelog Per [system-spec-kit/025-nested-changelog-per-spec/implementation-summary]"
+description: "Packet-local changelog generation now ships with system-spec-kit, so packet roots and child phases can keep chronological history beside their implementation summaries."
+trigger_phrases:
+  - "implementation summary"
+  - "nested changelog"
+  - "phase changelog"
+  - "025"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/025-nested-changelog-per-spec"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 025-nested-changelog-per-spec |
+| **Completed** | 2026-04-03 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Packet-local changelog generation now lives beside the existing implementation summary workflow. You can generate a changelog for a packet root or a nested phase folder without inventing filenames or hand-assembling markdown, and the result lands in the parent packet's `changelog/` directory with a consistent naming rule.
+
+### Nested changelog generator
+
+The new `nested-changelog.ts` script handles the heavy lifting. It resolves approved spec folders, detects whether the target is a packet root or a child phase, reads packet documents such as `spec.md`, `implementation-summary.md`, `tasks.md`, and `checklist.md`, and derives the summary, change buckets, verification bullets, and follow-up notes that appear in the final changelog.
+
+Root packet output writes to `<spec-root>/changelog/changelog-<packet>-root.md`. Child phase output writes to `<spec-root>/changelog/changelog-<packet>-<phase-folder>.md`, which keeps the packet history centralized instead of scattering changelog files across phase folders.
+
+### Canonical templates for packet history
+
+System Spec Kit now has dedicated changelog templates for packet roots and phase children. `.opencode/skills/system-spec-kit/templates/changelog/root.md` is tuned for packet-level rollups, including included-phase summaries, while `.opencode/skills/system-spec-kit/templates/changelog/phase.md` focuses on the specific phase and points back to the parent packet. This replaces the previous situation where packet changelog files existed but had no single source-of-truth template.
+
+### Command and workflow alignment
+
+`/create:changelog` now supports two concepts cleanly: the existing global release-note flow and the new nested spec/phase mode. `/spec_kit:implement` and `/spec_kit:complete` now instruct packet-aware workflows to create a nested changelog in addition to `implementation-summary.md` when the target is a packet root or child phase.
+
+The skill, template, validation, phase-structure, and workflow reference docs were updated in the same pass. That keeps the runtime contract, the packet-writing guidance, and the command surfaces saying the same thing, which is the real value of this packet.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The work started by analyzing packet `024-compact-code-graph`, which already had nested changelog examples but not a canonical workflow. From there, the generator and templates were added first, the command/skill/reference surfaces were aligned second, and the packet was closed only after fixing the first test failure caused by template path resolution.
+
+Verification stayed narrow and honest. The scripts workspace build was rerun after the generator fix, and a focused Vitest suite now covers both packet-root and phase-child output behavior. Packet `025` was then added to document the shipped scope and keep the workflow change auditable.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Keep nested changelog additive to `implementation-summary.md` | The implementation summary still owns the narrative closeout story. The changelog adds chronological packet history without breaking the existing completion contract. |
+| Use one generator with root/phase modes | Path resolution and naming rules are the fragile part of the feature. Centralizing them in one tested script reduces drift and keeps command docs simple. |
+| Update commands and references in the same packet | A packet-local workflow is only useful if the command surfaces, templates, and docs all point at the same behavior. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `cd .opencode/skills/system-spec-kit/scripts && npm run build` | PASS |
+| `npx vitest run tests/nested-changelog.vitest.ts --config ../mcp_server/vitest.config.ts --root .` | PASS |
+| Root output path contract | PASS - focused test asserts `changelog-<packet>-root.md` |
+| Phase output path contract | PASS - focused test asserts parent-packet `changelog-<packet>-<phase-folder>.md` output |
+| Command/workflow alignment review | PASS - `/create:changelog`, `/spec_kit:implement`, `/spec_kit:complete`, skill docs, templates, and references updated together |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Nested changelog generation is workflow-aware, not a universal validator gate.** This packet teaches the commands when to create packet changelogs, but it does not force every packet in the repository to have one.
+2. **Generated quality depends on packet document quality.** If `implementation-summary.md`, `tasks.md`, or `checklist.md` are sparse, the changelog will fall back to simpler derived bullets.
+3. **Historical packet changelogs remain mixed.** This packet standardizes the forward-looking workflow; it does not retroactively normalize older packet changelog files.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

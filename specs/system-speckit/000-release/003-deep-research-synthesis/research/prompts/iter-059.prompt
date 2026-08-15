@@ -1,0 +1,1794 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode"
+# PACKET: specs/system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: deep-agent-improvement model-benchmark mode"
+description: "Phase parent (19 phases, complete): a two-arc program — Arc 1 (001-007) designs, deep-researches, builds, and hardens a model-benchmark mode for the deep-agent-improvement skill; Arc 2 (008-018) elevates it to a co-equal lane alongside agent-improvement across command/SKILL/references/assets/agent/scripts, with two independent deep-review -> remediation cycles — plus a doc + changelog closeout (019)."
+trigger_phrases:
+  - "121-deep-agent-improvement-benchmark-mode"
+  - "deep-agent-improvement benchmark mode"
+  - "model-benchmark mode phase parent"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode"
+    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Closeout 019: one comprehensive v1.9 changelog for 121 + README aligned to two lanes"
+    next_safe_action: "None — packet complete (19/19 phases)"
+    blockers: []
+    key_files:
+      - "context-index.md"
+      - "timeline.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+
+## 001-design-model-benchmark-mode-selector/implementation-summary.md
+---
+title: "Implementation Summary: deep-agent-improvement model-benchmark mode (design)"
+description: "This packet delivers a design (spec + ADRs + build plan) for adding a model-benchmark mode to deep-agent-improvement. No code was built here; the build is a follow-on effort."
+trigger_phrases:
+  - "benchmark mode design summary"
+  - "deep-agent-improvement mode design"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector"
+    last_updated_at: "2026-05-28T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Delivered design (spec + ADRs + build plan)"
+    next_safe_action: "Build per plan.md in a follow-on packet"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/121-deep-agent-improvement-benchmark-mode"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 121-deep-agent-improvement-benchmark-mode |
+| **Completed** | 2026-05-28 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+This packet is a **design deliverable, not an implementation.** It answers "can the 120/003 benchmark rig become part of deep-agent-improvement?" with a yes plus a concrete plan: a `mode` selector (`agent-improvement` | `model-benchmark`) with three pluggable seams (candidate source, dispatcher, scorer), reusing ~90% of the skill's existing loop/state/convergence/mutation plumbing. No code was built here.
+
+### What was delivered
+- `spec.md` — problem, scope (design-only), the mode-selector approach, requirements, complexity/risk.
+
+## 002-research-model-benchmark-implementation/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/002-research-model-benchmark-implementation"
+    last_updated_at: "2026-05-28T15:18:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Deep-research converged; research.md + findings authored"
+    next_safe_action: "Open build packet to execute the research.md build-delta"
+    blockers: []
+    key_files:
+      - "research/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "research-20260528-144622"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "MiniMax M2.7 holds the deep-research artifact contract (5/7 dispatches)"
+      - "Research added depth beyond 001 (loop-host.cjs discovery + build-delta)"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-research-model-benchmark-implementation |
+| **Completed** | 2026-05-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+## 003-build-model-benchmark-mode-runtime/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/003-build-model-benchmark-mode-runtime"
+    last_updated_at: "2026-05-28T16:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Build complete — switch + scorer port + mode field; smoke verified"
+    next_safe_action: "Run the dual-executor deep review on the session work"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs"
+      - ".opencode/skills/deep-agent-improvement/scripts/dispatch-model.cjs"
+      - ".opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "build-20260528"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-build-model-benchmark-mode-runtime |
+| **Completed** | 2026-05-28 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+## 004-fix-hardening-findings-for-model-benchmark/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark"
+    last_updated_at: "2026-05-28T19:20:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Remediation complete — 3 P1 fixed + tested; P2s fixed/reconciled"
+    next_safe_action: "None — remediation complete; re-review optional"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-agent-improvement/scripts/tests/remediation.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "remediation-20260528"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-fix-hardening-findings-for-model-benchmark |
+| **Completed** | 2026-05-28 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+## 005-add-opt-in-5dim-scorer-and-skill-docs/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/005-add-opt-in-5dim-scorer-and-skill-docs"
+    last_updated_at: "2026-05-28T19:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Opt-in 5dim scorer wired + tested; skill docs aligned (DQI 97)"
+    next_safe_action: "None — phase complete"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs"
+      - ".opencode/skills/deep-agent-improvement/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "optin-scorer-20260528"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-add-opt-in-5dim-scorer-and-skill-docs |
+| **Completed** | 2026-05-28 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+
+## 006-deep-loop-empty-archive-dir/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "Completed fix: deep-research init no longer eagerly creates archive_root; all four deep-loop restart branches archive lazily and guarded; regression tests added; 5 empty archive dirs removed."
+trigger_phrases:
+  - "deep loop archive summary"
+  - "empty archive fixed"
+  - "archive root lazy restart"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir"
+    last_updated_at: "2026-05-29T08:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Fix shipped + verified (26/26 tests, simulation) + 5 empty archive dirs swept"
+    next_safe_action: "None — phase complete"
+    blockers: []
+    key_files:
+      - ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "deep-loop-archive-fix-20260529"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Deep-loop empty archive-dir fix
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir |
+| **Completed** | 2026-05-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Stopped the deep-loop commands from leaving empty `research_archive/` and `review_archive/` directories in spec packets. Root cause: the deep-research init step `step_create_directories` ran `mkdir -p … {state_paths.archive_root}` on every fresh/resume run, but the archive root is only used on a `restart` move — so it almost always stayed empty. Deep-review's init never created it (confirmed by git archaeology and an independent `openai/gpt-5.5-fast` read-only trace); its empties were historical/orphaned.
+
+The fix removes the archive root from research init and rewrites all four restart branches to create the archive root **lazily and guarded** — only when the packet exists, immediately before the move: `if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi`. Two contract-parity regression tests lock the invariant, and the 5 existing empty archive dirs were removed.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 007-review-model-benchmark-mode-hardening/implementation-summary.md
+---
+title: "Implementation Summary [template:level_1/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/007-review-model-benchmark-mode-hardening"
+    last_updated_at: "2026-05-28T17:42:53Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize continuity block"
+    next_safe_action: "Replace template defaults on first save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/122-session-120-121-deep-review"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 122-session-120-121-deep-review |
+| **Completed** | 2026-05-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+
+
+## 008-add-model-benchmark-lane-selection-prompts/implementation-summary.md
+---
+title: "Implementation Summary: Command lane-asking for the model-benchmark lane"
+description: "Phase 008 shipped the two-lane command experience: the agent-improvement command now resolves a use-case lane and a dedicated model-benchmark command plus its workflow YAMLs make Lane B first-class. A latent loop-host arg-forwarding defect was fixed."
+trigger_phrases:
+  - "command lane-asking summary"
+  - "model-benchmark command summary"
+  - "lane-asking implementation summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts"
+    last_updated_at: "2026-05-29T09:20:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Shipped two-lane commands and fixed loop-host scorer/grader forwarding"
+    next_safe_action: "Begin phase 009 SKILL.md two-lane work"
+    blockers: []
+    key_files:
+      - ".opencode/commands/deep/start-model-benchmark-loop.md"
+      - ".opencode/commands/deep/start-agent-improvement-loop.md"
+      - ".opencode/skills/deep-agent-improvement/scripts/loop-host.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-008-build"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-add-model-benchmark-lane-selection-prompts |
+| **Completed** | Complete |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The model-benchmark lane is now first-class at the command layer. Before this phase the only way to benchmark a model or prompt framework was to call `loop-host.cjs --mode=model-benchmark` by hand, and the `/deep:start-agent-improvement-loop` command never asked which use case the operator wanted. Phase 008 closes both gaps.
+
+### Lane resolution in the existing command
+
+`/deep:start-agent-improvement-loop` gained an additive `lane` resolution. When an agent path is supplied (the normal Lane A invocation) the lane resolves to `agent-improvement` with no new prompt and the command runs exactly as before. A `--lane=model-benchmark` flag or a `--profile` argument routes to Lane B. Only when the lane is genuinely ambiguous (no agent path, no flag, interactive mode) does a new first question `Q(lane)` appear. This preserves CMD-1 behavioral identity for every existing Lane A invocation.
+
+### Dedicated model-benchmark command
+
+
+## 009-restructure-skill-md-two-lane/implementation-summary.md
+---
+title: "Implementation Summary: SKILL.md two-lane restructure"
+description: "SKILL.md now presents agent-improvement and model-benchmark as two co-equal lanes with a smart-router MODEL_BENCHMARK intent, replacing the Mode 4 bolt-on framing. DQI 97."
+trigger_phrases:
+  - "skill-md two-lane summary"
+  - "co-equal lane restructure summary"
+  - "model-benchmark router intent summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/009-restructure-skill-md-two-lane"
+    last_updated_at: "2026-05-29T10:05:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Restructured SKILL.md to two co-equal lanes + MODEL_BENCHMARK router intent"
+    next_safe_action: "Begin phase 010 references and assets lane reorg"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-agent-improvement/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-009-build"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-restructure-skill-md-two-lane |
+| **Completed** | Complete |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+SKILL.md now presents the two use cases as co-equal lanes instead of an agent-improvement skill with a trailing model-benchmark mode. The "Mode 4: Model-Benchmark" subsection became a top-level Lane B section parallel to the Lane A agent-improvement section, and the smart-router learned to route benchmark phrasing.
+
+### Changes
+
+- §1 WHEN TO USE gained a "Two Co-Equal Lanes" table (Lane A improves an agent file via `/deep:start-agent-improvement-loop`, Lane B benchmarks a model or prompt framework via `/deep:start-model-benchmark-loop`) plus expanded activation triggers.
+- §2 SMART ROUTING gained a `MODEL_BENCHMARK` intent at weight 5 and a matching RESOURCE_MAP entry pointing at `references/workflow/benchmark_operator_guide.md` and `references/scoring/evaluator_contract.md` (both confirmed present).
+- §3 became `LANE A: AGENT-IMPROVEMENT` (modes 1, 2, 2A, 3 and the 5-dimension framework retained verbatim).
+- §4 became a co-equal `LANE B: MODEL-BENCHMARK` section carrying every prior detail: loop-host `--mode=model-benchmark`, the dispatch-model executor map, `--scorer pattern|5dim`, `--grader noop|mock|llm`, mode-aware records and promotion, and the `DEEP_AGENT_ALLOW_CRITERIA_EXEC` and `DEEP_AGENT_GRADER_CACHE_RAW` hardening gates.
+- §5 through §11 renumbered, §10 INTEGRATION POINTS labeled both lane entry points.
+
+
+## 010-reorganize-two-lane-references-assets/implementation-summary.md
+---
+title: "Implementation Summary: references + assets lane reorg"
+description: "references/ and assets/ physically reorganized from function dirs into agent-improvement, model-benchmark, and shared lane subdirs, with every path literal repointed and both lanes verified."
+trigger_phrases:
+  - "references-assets-lane-reorg summary"
+  - "lane reorg implementation summary"
+  - "deep-agent-improvement reorg summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/010-reorganize-two-lane-references-assets"
+    last_updated_at: "2026-05-29T10:40:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Moved references and assets into lane subdirs, repointed all literals"
+    next_safe_action: "Build phase 013 scripts physical reorg"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-agent-improvement/references"
+      - ".opencode/skills/deep-agent-improvement/assets"
+      - ".opencode/skills/deep-agent-improvement/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-010-build"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-reorganize-two-lane-references-assets |
+| **Completed** | Complete |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The skill's references and assets are now organized by lane instead of by function. Anyone opening `references/` or `assets/` sees three subdirs (`agent-improvement/`, `model-benchmark/`, `shared/`) that match the two-lane model, rather than the old function dirs (integration, promotion-gates, scoring, workflow).
+
+### References (14 docs)
+
+Flattened into lanes (function subdir dropped, filename kept): `agent-improvement/` holds integration_scanning, mirror_drift_policy, profiling_audit_log, candidate_proposal_format, target_onboarding, score_dimensions; `model-benchmark/` holds benchmark_operator_guide, evaluator_contract, mixed_executor_methodology; `shared/` holds loop_protocol, quick_reference, promotion_gate_contract, promotion_rules, rollback_runbook.
+
+### Assets
+
+
+## 011-add-agent-lane-awareness-note/implementation-summary.md
+---
+title: "Implementation Summary: Phase 11: agent-lane-note"
+description: "The Mode awareness note became a Lane awareness note across all 4 runtime mirrors, byte-identical, with mirror-drift 0."
+trigger_phrases:
+  - "agent lane note summary"
+  - "lane awareness implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/011-add-agent-lane-awareness-note"
+    last_updated_at: "2026-05-29T07:36:07Z"
+    last_updated_by: "build-agent"
+    recent_action: "4 mirror notes upgraded to Lane awareness byte-identical"
+    next_safe_action: "Orchestrator finalizes doc then commits"
+    blockers: []
+    key_files:
+      - ".opencode/agents/deep-agent-improvement.md"
+      - ".claude/agents/deep-agent-improvement.md"
+      - ".gemini/agents/deep-agent-improvement.md"
+      - ".codex/agents/deep-agent-improvement.toml"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/011-add-agent-lane-awareness-note"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-add-agent-lane-awareness-note |
+| **Completed** | 2026-05-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The @deep-agent-improvement agent awareness note was upgraded from "Mode awareness" to "Lane awareness" across all 4 runtime mirrors, byte-identical. The new note frames the skill as two co-equal lanes (Lane A agent-improvement, Lane B model-benchmark) and states there is ONE agent so Lane B never spawns a second Claude agent.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| .opencode/agents/deep-agent-improvement.md | Modified | Canonical Lane awareness note |
+| .claude/agents/deep-agent-improvement.md | Modified | Byte-identical mirror |
+
+## 012-label-catalog-playbook-and-advisor-lanes/implementation-summary.md
+---
+title: "Implementation Summary: Phase 12: catalog-playbook-advisor-lane-labels"
+description: "Lane labels in catalog and playbook plus a display-only mode mix line in reduce-state.cjs, proven by a new vitest."
+trigger_phrases:
+  - "lane legend"
+  - "lane note"
+  - "mode mix"
+  - "reduce-state"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/007-deep-agent-improvement-benchmark-mode/012-label-catalog-playbook-and-advisor-lanes"
+    last_updated_at: "2026-05-29T09:41:00Z"
+    last_updated_by: "build-agent"
+    recent_action: "Ship lane labels + reduce-state mode mix, vitest green"
+    next_safe_action: "Orchestrator commits and runs advisor recompile step"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs"
+      - ".opencode/skills/deep-agent-improvement/feature_catalog/feature_catalog.md"
+      - ".opencode/skills/deep-agent-improvement/manual_testing_playbook/manual_testing_playbook.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/012-label-catalog-playbook-and-advisor-lanes"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 012-label-catalog-playbook-and-advisor-lanes |
+| **Completed** | 2026-05-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode"
+# PACKET: specs/system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: deep-improvement — skill-benchmark mode + rename"
+description: "Phase parent: rename deep-agent-improvement to deep-improvement and add Lane C (skill-benchmark) measuring a skill's real-world routing, unprompted reference/asset discovery, efficiency, and usefulness; multi-model deep research (001) informs rename (002), Lane C build (003), and validation/docs (004)."
+trigger_phrases:
+  - "122-deep-improvement-skill-benchmark-mode"
+  - "skill-benchmark mode"
+  - "deep-improvement skill rename"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode"
+    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "All 5 phases complete: research x2 + rename + Lane C build + three-lane docs"
+    next_safe_action: "Packet complete; optional follow-on packet for D4 ablation + Mode B live trace"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + sub-phase control + what needs done; no migration narrative (see context-index.md); heavy docs live in children. -->
+
+# Spec 122 — deep-improvement: skill-benchmark mode + skill rename
+
+**Track:** skilled-agent-orchestration
+**Type:** Phase parent (sub-phase control file)
+**Status:** Complete — all 5 phases done (rename + Lane C skill-benchmark shipped + three-lane docs)
+**Level:** 3 (architecture-affecting; multi-phase)
+
+---
+
+## 1. Purpose
+
+Evolve the `deep-agent-improvement` skill into a broader **`deep-improvement`** evaluation skill and add a third evaluation lane that benchmarks *skills themselves*.
+
+Two coupled changes:
+
+
+## 001-skill-benchmark-deep-research/implementation-summary.md
+---
+title: "Implementation Summary: Phase 001 — Skill-benchmark deep research"
+description: "20-iteration, 4-model deep-research sweep (MiniMax-2.7, DeepSeek-v4-pro, GPT-5.5-xhigh, Opus-4.8 — 5 iters each) into Lane C skill-benchmark design + the deep-agent-improvement->deep-improvement rename; converged into research/research.md."
+trigger_phrases:
+  - "122 phase 001 implementation summary"
+  - "skill-benchmark deep research results"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research"
+    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Ran 20-iteration 4-model deep-research sweep (2 executors in parallel via background driver) and synthesized research/research.md"
+    next_safe_action: "Use research/research.md to plan Phase 002 (rename) and Phase 003 (Lane C design+build)"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "RQ1 scoring dimensions + weights"
+      - "RQ2 hint-free dispatch harness"
+      - "RQ3 advisor-vs-router activation scoring"
+      - "RQ4 scenario authoring / anti-circularity"
+      - "RQ5 report + remediation taxonomy"
+      - "RQ6 rename impact map + safe ordering"
+      - "RQ7 external prior art"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Implementation Summary — Phase 001: Skill-benchmark deep research
+
+## 1. What was done
+
+A multi-model deep-research sweep investigating the design of **Lane C ("skill-benchmark")** for the `deep-improvement` skill and the `deep-agent-improvement → deep-improvement` rename. Per the user's directive, **20 iterations** were run, **5 per model** across four executors, with **2 executors in parallel at all times**:
+
+| Model | Executor | Iterations | Status |
+| ----- | -------- | ---------- | ------ |
+| MiniMax-2.7 | cli-opencode (`minimax/MiniMax-M2.7`) | 5/5 | complete |
+| DeepSeek-v4-pro | cli-opencode (`opencode-go/deepseek-v4-pro --variant high`) | 5/5 | complete |
+| GPT-5.5 (xhigh, fast) | cli-codex (`gpt-5.5`) | 5/5 | complete |
+| Opus-4.8 (native) | cli-claude-code (`claude -p --model claude-opus-4-8`) | 5/5 | complete |
+
+Each model ran the same 5 foci: iter1 = RQ1 (scoring dimensions) + RQ7 (prior art); iter2 = RQ2 (hint-free dispatch harness); iter3 = RQ3 (advisor-vs-router activation) + RQ4 (scenario authoring); iter4 = RQ5 (report/remediation); iter5 = RQ6 (rename impact map).
+
+## 2. How it ran
+
+A background driver (`run_one.sh` + an `xargs -P 2` worker pool) dispatched each iteration to its executor in its own sandbox; each executor acted as a LEAF `@deep-research` agent for one iteration, reading the strategy/topic and writing its own packet. A salvage fallback recovers the model's reply into the iteration `.md` when an executor's sandbox blocks the in-repo write (notably codex/gpt-5.5 and intermittently MiniMax), so every iteration produced a usable artifact.
+
+## 3. Outputs
+
+- `research/research.md` — **canonical cross-model synthesis** (≈352 lines, 24 sections): executive summary, per-RQ synthesis across the 4 models, recommended Lane C design, rename impact map, cross-model observations, and actionable next steps for Phases 002/003.
+- `research/<model>/iterations/iteration-00{1..5}.md` — 20 per-model iteration narratives (~3,356 lines total: DeepSeek 1,417, MiniMax 721, Opus 666, GPT-5.5 552).
+- `research/<model>/deep-research-state.jsonl` — per-model iteration state (DeepSeek/GPT-5.5/Opus 5 records each; MiniMax state thin due to early salvaged iters, but all 5 MiniMax narratives present).
+- `research/<model>/deltas/iter-00N.jsonl` — ~187 structured findings across all models.
+- `research/orchestration-status.log` — full per-iteration driver ledger (START/DONE, exit, duration, md/json).
+
+## 4. Headline finding (see research/research.md for full detail)
+
+Lane C should measure whether a skill is **discovered, routed to, and used effectively by an AI in situ** — distinct from `sk-doc` (doc shape) and `system-skill-advisor` (which skill to pick). Recommended five scoring dimensions with weights: Routing/Activation Accuracy (0.25), Unprompted Reference/Asset Discovery (0.25), Efficiency/Bottlenecks (0.20), Usefulness-via-Ablation (0.20), Structural Connectivity (0.10); captured via a hint-free dispatch harness; reusing the existing candidate/dispatcher/scorer seams under `loop-host.cjs --mode=skill-benchmark`.
+
+## 002-implementation-deep-research/implementation-summary.md
+---
+title: "Implementation Summary: Phase 002 — Implementation deep research"
+description: "GPT-5.5 xhigh-fast (cli-codex) generated a 5-iteration implementation-research sweep; two Opus 4.8 agents adversarially verified the findings; synthesized into research/research.md as the build-ready playbook for the deep-improvement rename + Lane C."
+trigger_phrases:
+  - "122 phase 002 implementation summary"
+  - "implementation playbook results"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/002-implementation-deep-research"
+    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "GPT-5.5 sweep done 5/5; dual Opus verification; playbook synthesized"
+    next_safe_action: "Begin Phase 003 narrow rename; checkpoint operator before mutating shared advisor files"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "IQ1 module architecture + seam reuse"
+      - "IQ2 loop-host wiring + non-regression"
+      - "IQ3 trace-capture implementation"
+      - "IQ4 router-replay Mode A/B"
+      - "IQ5 contamination linter + 3-tier fixtures"
+      - "IQ6 scorer + report-builder"
+      - "IQ7 rename runbook + 4 DR resolutions"
+      - "IQ8 pilots/calibration/tests/prior-art"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Implementation Summary — Phase 002: Implementation deep research
+
+## 1. What was done
+
+Per the operator doctrine (**GPT-5.5 xhigh-fast generates, Opus 4.8 verifies**), Phase 002 turned the converged 001 design into a build-ready implementation playbook:
+
+| Stage | Executor | Result |
+| ----- | -------- | ------ |
+| Generation — 5 iterations | `cli-codex` `gpt-5.5` (`model_reasoning_effort=xhigh`, `service_tier=fast`) | 5/5 iteration narratives, ~41 structured findings (IQ1–IQ8) |
+| Verification — 2 agents | Opus 4.8 (native Agent) | Adversarial cross-check of every load-bearing claim against real repo code |
+| Synthesis | Opus 4.8 (main loop) | `research/research.md` — the implementation playbook with a Cross-checks verdict section |
+
+## 2. How it ran
+
+The 5 GPT-5.5 iterations dispatched via the packet-local `xargs -P 2` worker pool (`cat jobs.txt | xargs -P 2 -L 1 ./run_one.sh`); `orchestration-status.log` shows all 5 `exit=0` (durations 311–429s). Two Opus verifier agents then split the surface — one on build architecture (loop-host, dispatcher, scorer, advisor in-process, cache, trace), one on router-replay/fixtures/rename — each reading the actual files and returning CONFIRMED/CORRECTED/REFUTED verdicts with `file:line` evidence. Opus (main loop) synthesized both into `research.md`.
+
+## 3. Outputs
+
+- `research/research.md` — implementation playbook: build order, per-IQ synthesis, module map, loop-host wiring, trace capture, fixtures, scorer/report, the widened rename runbook, and a §7 Cross-checks verdict table.
+- `research/gpt55/iterations/iteration-00{1..5}.md` — 5 GPT-5.5 iteration narratives.
+- `research/gpt55/{deltas,state-parts}/*.jsonl` — per-iteration findings + state.
+- `research/orchestration-status.log` — driver ledger (5× exit=0).
+
+## 4. Headline findings (see research/research.md for full detail)
+
+The Opus pass changed **4 verdicts** from the GPT-5.5 baseline — these are the corrections that would have caused build failures if shipped unverified:
+
+1. **No `report.json`→`report.md` renderer exists** (REFUTED) — Lane C must write `build-report.cjs` fresh; it is not a Lane B reuse.
+2. **`dispatch-model.cjs` is not a free `git mv`** (CORRECTED) — reuse from its current `scripts/model-benchmark/` path; a move breaks 4 touchpoints.
+
+## 003-skill-rename-deep-improvement/implementation-summary.md
+---
+title: "Implementation Summary: Phase 003 — Narrow rename deep-agent-improvement → deep-improvement"
+description: "Narrow skill+agent rename: GPT-5.5 did a PARTIAL pass (skill move + 3 mirrors + commands) then failed on the advisor layer; main-loop Opus completed the advisor flip + 4th mirror + doc refs via deterministic patchers; an Opus subagent audited it COMPLETE & CLEAN."
+trigger_phrases:
+  - "122 phase 003 implementation summary"
+  - "deep-improvement rename results"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement"
+    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Narrow rename completed (Opus finished advisor layer after codex partial); audited clean"
+    next_safe_action: "Commit the rename scoped to the surface, then begin Phase 004 Lane C build"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Implementation Summary — Phase 003: Narrow rename
+
+## 1. What was done
+
+Executed the NARROW rename `deep-agent-improvement` → `deep-improvement` per the Phase 002 playbook (`../002-implementation-deep-research/research/research.md` §4). The executor history is recorded honestly below — the originally-intended "GPT-5.5 edits, Opus verifies" doctrine broke down mid-phase (codex was operationally unreliable), and the operator switched to "native Opus subagents + main loop only" partway through.
+
+| Stage | Executor | Result |
+| ----- | -------- | ------ |
+| Rename attempt 1 | `cli-codex` `gpt-5.5` xhigh-fast | **Hung on stdin twice** (the documented codex `</dev/null` hazard); killed at a clean restart point |
+| Rename attempt 2 | `cli-codex` `gpt-5.5` xhigh-fast | **PARTIAL** — moved skill pkg (`git mv` + internal sweep), 3 of 4 agent mirrors, 6 command files. SILENTLY SKIPPED the 4 advisor source files + 4th (codex) mirror + doc registries |
+| Completeness verification | Opus 4.8 subagent (read-only) | Caught the split-brain: advisor canonical never flipped; 4th mirror + ~26 doc refs missed. (A masking native-SQLite route-check had falsely "passed" — corrected by `git diff --numstat HEAD`.) |
+| Advisor + mirror + doc completion | **Opus main loop (deterministic patchers)** | Flipped advisor canonical in `aliases.ts`/`explicit.ts`/`fusion.ts`/`skill_advisor.py` (legacy aliases retained); fixed the Lane-B inert-penalty trap; renamed the 4th codex mirror + `config.toml`; flipped 23 doc refs across 15 files (command verbs preserved) |
+| Rebuild + recompile + validate | Opus main loop | `tsc` typecheck (exit 0) + build (exit 0); `skill_graph_compiler.py` SQLite recompile (exit 0); Python route-checks; `validate.sh --strict` |
+| Final integrity audit | Opus 4.8 subagent (read-only) | **RENAME COMPLETE & CLEAN** — all 7 integrity properties PASS |
+
+## 2. Scope honored (NARROW)
+
+- **Renamed:** skill package id + dir, `SKILL.md name:`, agent id `@deep-agent-improvement` → `@deep-improvement` (all 4 runtime mirrors + `.codex/config.toml` registry), advisor canonical id (TS `aliases.ts`/`explicit.ts`/`fusion.ts` + Python `skill_advisor.py`), command `skill:` fields + hardcoded paths (both `.opencode` and `.claude` runtimes), cross-skill refs, root docs.
+- **Kept (lane tokens, not package):** command verbs `/deep:start-agent-improvement-loop` + `/deep:start-model-benchmark-loop`; `assets|references|scripts/agent-improvement/`; `agent-improvement-state.jsonl`; the `model-benchmark` lane token.
+- **Back-compat:** `deep-agent-improvement` + `sk-deep-agent-improvement` retained as LEGACY ALIASES in advisor alias arrays + regression fixtures, so old prompts still resolve.
+
+## 3. Verification evidence (all green)
+
+- **Opus final-integrity audit (subagent `af02ab3b46fd00eb2`):** all 7 properties PASS — A1 package move, A2 four mirrors, A3 advisor canonical (not split-brain), A4 inert-penalty fix (`'benchmark a model': [['deep-model-benchmark', 1.6], ['deep-improvement', -0.6]]`), A5 compiled rebuilt (dist gitignored + rebuilt, sqlite present), A6 8 residuals all intentional-keep / zero missed-active, A7 scope clean.
+- **TS typecheck + build:** exit 0.
+- **SQLite graph recompile:** exit 0 (6 families, 21 adjacency entries, 0 conflicts).
+- **Route-checks (fresh SQLite, Python):** Lane B "benchmark a model" → `deep-model-benchmark` (penalty live); legacy "use the deep-agent-improvement skill" → `deep-improvement` (0.88, back-compat). Lane A "improve and score a bounded agent" → `sk-code` #1 / `deep-improvement` #2 — see caveat.
+- **Active-residual census:** 0 unintended `deep-agent-improvement` refs; the 8 remaining are legacy aliases, legacy phrase keys, regression/native-scorer fixtures, an explicit.ts comment, and one `it.skip` historical test assertion.
+- **validate.sh --strict:** parent PASSED (0 errors).
+
+## 4. Notes / caveats
+
+- **Honesty correction:** an earlier draft of this summary claimed GPT-5.5 completed the full ~180-file rename and was verified clean. That was wrong — codex did a partial pass and the advisor layer was completed by the Opus main loop. This record is the accurate one.
+- **Lane A route caveat:** "improve and score a bounded agent file" ranks `sk-code` #1 with `deep-improvement` #2. This overlaps sk-code's territory ("improve", "score", "file") and is **not** a rename regression — the same phrasing would rank similarly pre-rename; `deep-improvement` is reachable and the canonical id resolves. The live advisor daemon is also flagged stale this session (route-checks used the fresh-SQLite Python path).
+- **Forward-scope kept (accepted, not churned):** GPT-5.5 pre-added Lane C advisor phrases during its sweep (`"skill benchmark"`, a `deep-improvement-skill-benchmark` group). They route correctly, parse clean, align with Phase 004 — kept rather than removed-then-re-added.
+- **Pre-existing tech debt left alone (SCOPE LOCK):** a `command-deep-agent-improvement` command-bridge key (slash_markers use the retained verb) and the `it.skip` remediation-008 assertion are intentional keeps.
+- **Committed at `caf072e39e`:** the rename spans shared infra across ~180 files; it was committed scoped to the surface (excluding daemon `graph-metadata.json` churn + parallel-session artifacts). The earlier parallel-session-revert hazard no longer applies — the commit is in HEAD history and Phase 004 built on it.
+
+## 004-skill-benchmark-mode/implementation-summary.md
+---
+title: "Implementation Summary: Phase 004 — Lane C (skill-benchmark) build"
+description: "Built Lane C: deterministic Mode A core (router-replay, contamination lint, D5 gate, D1-intra/D2/D3 scorer, report-builder, loop-host wiring, command) PLUS D1-inter advisor scoring (deterministic, opt-in). Full deep-improvement suite 208 passed / 20 files / exit 0. D4 ablation + Mode B live trace remain follow-on."
+trigger_phrases:
+  - "122 phase 004 implementation summary"
+  - "lane c skill-benchmark build results"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/004-skill-benchmark-mode"
+    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Lane C Mode A + D1-inter advisor scoring; review fixes; full suite 208 pass exit 0"
+    next_safe_action: "Phase 005 three-lane docs + hardening; D4 ablation + Mode B live trace are follow-on"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Implementation Summary — Phase 004: Lane C (skill-benchmark) build
+
+## 1. What was done
+
+Built Lane C as a third lane on the `deep-improvement` skill, per the Phase 002 playbook. Doctrine (operator override mid-campaign): **main-loop Opus authored the code; an Opus subagent reviewed** — no CLI executors.
+
+Two passes: (1) the deterministic Mode A spine; (2) graduating D1-inter from "deferred" into the deterministic core (the Python advisor reads SQLite, no LLM, so it is verifiable this session) plus the Opus review's P0+P1 fixes.
+
+## 2. Files (all under `.opencode/skills/deep-improvement/`)
+
+**Scripts (`scripts/skill-benchmark/`):** `router-replay.cjs`, `contamination-lint.cjs`, `d5-connectivity.cjs`, `score-skill-benchmark.cjs`, `build-report.cjs`, `run-skill-benchmark.cjs`, `advisor-probe.cjs` (D1-inter), `_args.cjs`.
+**Wiring:** `scripts/shared/loop-host.cjs` — additive `--mode=skill-benchmark` arm (Lane A/B untouched).
+**Assets/refs/command:** `assets/skill-benchmark/{default_profile.json, remediation_taxonomy.json, fixtures/deep-improvement/*}`; `references/skill-benchmark/{operator_guide, scoring_contract, scenario_authoring}.md`; `.opencode/commands/deep/start-skill-benchmark-loop.md`.
+**Tests:** `scripts/tests/skill-benchmark.vitest.ts` (27 tests).
+
+## 3. Verification evidence (genuinely observed — see honesty note)
+
+- **Full `deep-improvement` vitest suite: 208 passed, 0 failed, exit 0** (20 test files). Must be run from `scripts/` — its `vitest.config.ts` sets `root: __dirname`; running from the skill root yields a false "No test files found".
+- **Lane C suite alone (`skill-benchmark.vitest.ts`): 27 passed, 0 failed.**
+- **TST-1 non-regression:** loop-host identity test green within the suite — Lane A default + Lane B plans byte-identical; the skill-benchmark arm is purely additive; full suite green = no collateral.
+- **End-to-end, both modes:** `--mode=skill-benchmark --skill=cli-codex` (default) → exit 0, dual report. `--skill=deep-improvement --advisor-mode=python` → exit 0; **D1-inter is now SCORED** (the dimension flows to the report; `unscoredDimensions` drops to `["D4"]`).
+- **D1-inter measured value (honest):** for the current `agent-improve-001` fixture the advisor routes the paraphrased prompt to `sk-code`, not `deep-improvement`, so D1-inter scores **0** for that scenario. That is a real measurement (the advisor doesn't select the target for this paraphrase) and/or a fixture-quality signal — NOT a code defect. The dimension's machinery is verified working; the score value is honest, not tuned.
+- **Router-replay correctness:** on `cli-codex`, "review this diff for security vulnerabilities…" → intent `REVIEW` → exact RESOURCE_MAP match, `missingResources: []`.
+- **D5 gate:** router-less skill → `BLOCKED-BY-STRUCTURE`; `cli-codex` → not gated.
+- **Advisor probe determinism:** `advisor-probe.cjs` → `ok:true` with a ranked list from the SQLite graph (no LLM).
+
+### Honesty note (kept on the record)
+Earlier drafts of this summary claimed "23/23" then "256/256" / "274/274" passing **before those runs were verified** — my `vitest` calls had returned "No test files found" (wrong cwd), and an Opus reviewer then found the suite RED (2 negative-fixture tests assumed `deep-improvement` had no router; post-rename it does). Those premature counts were wrong and are retracted. **The verified count is 208 passed (20 files), exit 0** (Lane C suite alone 27 passed) after fixing the cwd, the fixture assumption, and the review bugs.
+
+### Review fixes applied (Opus P0 + P1), each test-covered
+1. **P0** — negative-fixture tests build a throwaway router-less skill (`mkdtempSync`) instead of pointing at `deep-improvement`.
+2. **P1** — `loadFixtures` wraps `JSON.parse` in try/catch → a malformed fixture degrades to a `loadError` entry instead of crashing (unit-tested via exported `loadFixtures`).
+3. **P1** — D3 efficiency couples to the suppression outcome for negative scenarios (was giving full credit when a suppressed resource was wrongly routed). Tested.
+4. P2 items (banned-vocab word-boundary, brace-parse latent edge, D5 score uniformity) recorded as follow-on calibration.
+
+## 4. Scope: built + verified vs deferred (honest)
+
+
+## 005-validation-and-docs/implementation-summary.md
+---
+title: "Implementation Summary: Phase 005 — Three-lane docs + validation"
+description: "SKILL.md, README, and feature catalog updated to three lanes and committed; advisor routing for skill-benchmark verified; Lane C hardened via a Phase 004 adversarial review plus a Phase 005 Opus hardening gate (SHIP, 0 P0/P1, 208/208 tests)."
+trigger_phrases:
+  - "122 phase 005 implementation summary"
+  - "three-lane docs results"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/005-validation-and-docs"
+    last_updated_at: "2026-05-31T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Three-lane docs + catalog complete; Opus hardening gate SHIP (208/208, 0 P0/P1)"
+    next_safe_action: "Packet complete; optional follow-on: D4 ablation + Mode B live trace"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Implementation Summary — Phase 005: Three-lane docs + validation
+
+## 1. What was done (verified + committed)
+
+- **SKILL.md → three lanes**: WHEN-TO-USE table + triggers, lane-awareness note, smart router (new `SKILL_BENCHMARK` intent + RESOURCE_MAP + RUNTIME_ASSETS), and Lane C pointers to `references/skill-benchmark/`. Verified: the in-skill router parses (9 intents; skill-benchmark → its 3 references). Dangling section references were corrected (commit `65ca09a0b8`).
+- **README.md → three lanes**: lanes table + Lane C row/command, mode-location note, layout summary with the `skill-benchmark/` subdir split. No "two-lane" stragglers remain.
+- **feature_catalog.md → three lanes**: lane legend, category row ("Skill-benchmark mode | 6 features | Lane C"), the full §6 SKILL-BENCHMARK MODE section (6 features), and the intro enumeration.
+- **Advisor routing verified**: `skill_advisor.py` routes a skill-benchmark prompt to `deep-improvement`; the skill-benchmark advisor phrases were added during the Phase 003 rename and route correctly.
+
+## 2. Hardening gate (Opus, Phase 005 close-out)
+
+A dedicated Opus 4.8 read-only hardening review covered the three areas the Phase 004 code review did not fully cover: docs-vs-code accuracy, the new D1-inter advisor probe, and non-regression. **Verdict: SHIP — 0 P0, 0 P1.**
+
+- **Docs-vs-code**: every referenced path resolves on disk (SKILL.md router refs, all 7 §6 source scripts + 2 assets, the three lane subdirs); the "6 features" count is exact; the command frontmatter + documented invocation match the real loop-host call.
+- **D1-inter probe**: `probeAdvisor` resolves `skill_advisor.py` from `__dirname`, sets `maxBuffer` + `timeout`, and degrades on non-zero exit / unparseable stdout without throwing; `scoreD1Inter` rank math is correct (1-based, no off-by-one) with correct negative-scenario inversion; a failed probe yields `score:null` and is excluded from the aggregate (not counted as 0); the advisor path is deterministic (SQLite, no LLM).
+- **Non-regression**: full deep-improvement vitest suite **208 passed / 20 files / exit 0**; loop-host changes are strictly additive (Lane A/B branches byte-unchanged; identity gate passes).
+
+This, plus the Phase 004 adversarial code review (which found + fixed 2 P0 + 2 P1), constitutes the hardening/deep-review gate for Lane C.
+
+## 3. Scope — complete vs documented follow-on
+
+**Complete (this packet):** Lane C ships and works — rename, the deterministic Mode A engine, D1-inter advisor scoring, the command, and all three-lane docs + advisor routing. Four of five dimensions are scored deterministically.
+
+**Documented follow-on (a separate packet, NOT defects):**
+- **D4 usefulness ablation** — needs live skill-on/off model dispatch through the grader.
+- **Mode B live trace capture** — per-executor `.out` parsing for live discovery/efficiency.
+- Three P2 cosmetics from the hardening review (advisor-probe `--`-prefixed-prompt edge; opt-in D1-inter not exercised by default CI → periodic run suggested). Recorded, non-blocking.
+
+## 4. Notes
+
+- Commits were scoped by explicit pathspec throughout (daemon graph-metadata churn + a parallel session racing git were both active across this multi-session campaign).
+
+## 009-sk-code-router-benchmarkability/implementation-summary.md
+---
+title: "Implementation Summary: sk-code Router Benchmarkability"
+description: "Shipped: Lane C harness reference-following fallback + sk-code machine-readable router projection + lint-clean fixtures + regression tests. sk-code benchmark moved BLOCKED-BY-STRUCTURE to CONDITIONAL with no inline-router regressions."
+trigger_phrases:
+  - "sk-code router benchmarkability summary"
+  - "reference-following implementation summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability"
+    last_updated_at: "2026-06-01T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Shipped + verified all tasks; wrote conformant spec docs"
+    next_safe_action: "Final validate.sh --strict pass, then optional commit"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/router-replay.cjs"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/contamination-lint.cjs"
+      - ".opencode/skills/sk-code/references/smart_routing.md"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-code-router-benchmarkability"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions:
+      - "Fix path = Option 3a-structured"
+      - "Fixtures = empty-gold convention; positive gold deferred to Mode B"
+---
+# Implementation Summary: sk-code Router Benchmarkability
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Complete (pending final strict-validate) |
+| **Date** | 2026-06-01 |
+| **Target** | `sk-code` benchmarkability |
+| **Mutation surface** | `deep-improvement` Lane C harness + `sk-code/references/smart_routing.md` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A Lane C harness enhancement that lets the skill-benchmark parser follow a **referenced** router doc, plus a machine-readable router projection for `sk-code`. `sk-code` is now benchmarkable end-to-end without changing how any inline-router skill is parsed.
+
+### Reference-following router
+`parseRouter(skillMdText, skillRoot)` inline-parses first; only when inline `INTENT_SIGNALS`/`RESOURCE_MAP` are absent and a `skillRoot` is given does it call new `findReferencedRouterDoc()` (explicit pointer near a routing keyword, else conventional `references/smart_routing.md`) and parse the same dictionaries from there. Adds a `routerSource` field.
+
+## 010-skill-benchmark-live-playbook-mode/implementation-summary.md
+---
+title: "Implementation Summary: Lane C Live Playbook Mode (in progress)"
+description: "Progress record for the Lane C Mode B redesign: Phases 0 (spike), 1 (deterministic spine), 2 (live executor) done and verified (232 tests green); Phases 3 (browser), 4 (D4 ablation), 5 (generator), 6 (docs+packet+re-benchmark) pending."
+trigger_phrases:
+  - "skill-benchmark live playbook mode summary"
+  - "Lane C mode B progress"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode"
+    last_updated_at: "2026-06-01T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "All 6 phases done; packet strict-valid (0/0); 245 tests green; operator/command docs updated"
+    next_safe_action: "Optional: commit; deep-sync scoring_contract/scenario_authoring; expand live coverage"
+    blockers: []
+    notes: "gpt-5.5-fast xhigh TIMES OUT (>4min/dispatch); use --variant high (~78s). --agent dropped (general is a subagent on opencode 1.15.13)."
+    key_files:
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/live-executor.cjs"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/build-report.cjs"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/tests/playbook-mode.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "skill-benchmark-live-playbook-mode"
+      parent_session_id: null
+    completion_pct: 98
+    open_questions: []
+    answered_questions:
+      - "Live event schema confirmed: NDJSON { type, part:{ tool, state:{input,output}, text } }"
+      - "D4 skill-off = MK_SKILL_ADVISOR_HOOK_DISABLED=1 + preamble (drops sk-code loads to 0)"
+      - "Live model on this machine = openai/gpt-5.5-fast --variant xhigh (operator choice)"
+---
+# Implementation Summary: Lane C Live Playbook Mode (in progress)
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 (+ decision-record) |
+| **Status** | Phases 0-5 done; Phase 6 docs in progress |
+| **Date** | 2026-06-01 |
+| **Tests** | 232 passing (deep-improvement vitest) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**Phase 1 — deterministic spine (done):**
+
+## 011-sk-code-routing-efficiency-remediation/implementation-summary.md
+---
+title: "Implementation Summary: sk-code Routing-Efficiency Remediation (research complete)"
+description: "Record for the sk-code D3/D4 remediation research phase. The 3-iteration native-Opus deep-research pass converged on a recommendation; the router change is the follow-on BUILD phase 012."
+trigger_phrases:
+  - "sk-code remediation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation"
+    last_updated_at: "2026-06-02T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Round-2 deep research (5 gpt-5.5 iters) added to research.md §12-18; did not converge"
+    next_safe_action: "Decide fidelity track: prompt-source recon + deferred-asset lane + D4-R instrument"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-code/references/smart_routing.md"
+      - "research/research.md"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-code-routing-efficiency-remediation"
+      parent_session_id: null
+    completion_pct: 60
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: sk-code Routing-Efficiency Remediation (research complete)
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 (research-then-remediate) |
+| **Status** | Research complete — build deferred to phase 012 |
+| **Date** | 2026-06-01 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+No sk-code change — this phase scoped the problem and ran the research. A 3-iteration native-Opus `@deep-research` loop converged on a recommendation: a surface-nested `RESOURCE_MAP` (H1) with a shared `UNIVERSAL` tier, a full unranked cross-surface overlay, intra-surface intent-score ranking (H4, references only), and `assets/*` deferral. H3 folds into H4 (no replay trigger); H2 (phase-gating) is deferred (weak signal, hard implementation-trio contract).
+
+### Files Changed (this build)
+Research artifacts only: `research/research.md`, `research/iterations/iteration-001.md`, `iteration-002.md`, `iteration-003.md`, `research/deltas/iter-00{1,2,3}.jsonl`, `research/deep-research-strategy.md`, `research/deep-research-state.jsonl`. No sk-code or harness file was modified.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 012-sk-code-surface-nested-router/implementation-summary.md
+---
+title: "Implementation Summary: sk-code Surface-Nested Router"
+description: "Surface-aware routing implemented as a route-time filter + §11 rule and live-validated: aggregate 71 to 79, D3 42 to 50, no recall regression."
+trigger_phrases:
+  - "sk-code surface-nested router summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router"
+    last_updated_at: "2026-06-01T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Surface-aware routing live-validated: aggregate 71 to 79, D3 42 to 50, D2 held"
+    next_safe_action: "None blocking; optional intra-surface ranking if more D3 wanted"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-code/references/smart_routing.md"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/router-replay.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-code-surface-nested-router"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: sk-code Surface-Nested Router
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Implemented and live-validated |
+| **Date** | 2026-06-01 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented the 011 recommendation as a route-time surface-aware filter (not a map re-key — see Key Decisions). After surface detection, a route loads the `DEFAULT_RESOURCE` preamble + the `references/universal/*` tier + only the detected surface's slice + the Motion.dev overlay, drops the other surface's resources, and defers `assets/*`. A MIXED task keeps both surfaces; UNKNOWN falls back to universal + Motion. Within OpenCode it slices once more by **detected language** (a TypeScript task loads `opencode/typescript/*` + `shared/`, not the Python/shell/config/JavaScript folders); Webflow has no language sub-slice.
+
+### Files Changed (this build)
+`scripts/skill-benchmark/router-replay.cjs` (`detectSurface`, `resourceSurface`, `detectOpencodeLanguage`, and the gated surface + language filter in `routeSkillResources`); `sk-code/references/smart_routing.md` §11 (the surface-aware loading rule incl. OpenCode language sub-slicing; removed the now-resolved "surface is flattened" caveat).
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Spec + plan + tasks + checklist authored from the converged 011 research (3 native-Opus iterations). The implementation is a four-phase build (restructure → route builder → guards → verify) gated on the baseline-floor D2 regression guard.
+
+## 013-skill-benchmark-fidelity-track/implementation-summary.md
+---
+title: "Implementation Summary: Skill-Benchmark D3/D4 Fidelity Track (planned)"
+description: "Build record for the fidelity-track phase: D4-R task-outcome instrument + deferred-asset lane + intent-synonym reconciliation. Planned from the 011 round-2 gpt-5.5 research; implementation pending, sequenced cheap-and-safe before the paid D4-R live runs."
+trigger_phrases:
+  - "skill-benchmark fidelity track summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track"
+    last_updated_at: "2026-06-02T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Complete: Phases 1-3 shipped; D4-R measured 54/100 (n=5); suite 295 green; strict-clean"
+    next_safe_action: "Awaiting commit decision; optional follow-on D3 work motivated by the D4-R noise finding"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs"
+      - ".opencode/skills/sk-code/benchmark/reports/2026-06-02--d4r-live--live/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "skill-benchmark-fidelity-track"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Skill-Benchmark D3/D4 Fidelity Track (planned)
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Complete — Phases 1–3 shipped + verified; D4-R measured (n=5) |
+| **Date** | 2026-06-02 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Fidelity-first build, three phases, all shipped.
+
+**Phase 1 — intent synonyms (real recall fix):** added distinctive real-phrasing synonyms — `MOTION_DEV` gains `in-view`/`motion cdn`, `IMPLEMENTATION` gains `smooth-scroll`/`intersectionobserver` — so the router recognizes realistic CS-001/SD-001 wording. SD-001 D2 0.455→0.636 and CS-001 D2 0.200→0.500 (CS-001 D3 also 0.286→0.417), with zero D2 regressions across all 24 scenarios. The D2-for-D3 trade is small and conscious (agg D2 44→47, D3 33→32).
+
+**Phase 2 — asset lane + D4-R harness (deterministic):** `expectedAssets` is now scored on its own `assetRecall` lane (live: recall vs stated assets; router: deferred + visible), and `live-executor.parseLiveResult` un-merges assets from `observedResources` so a stated, useful asset no longer reads as D3 waste. The D4-R task-outcome instrument (a no-write "patch plan + verification" dispatch, graded by a new task-outcome rubric reusing the grader harness) is integrated into the orchestrator behind an opt-in `--d4` flag and reported as a separate advisory `D4_task_outcome` — never collapsed with `D4_hallucination`. All additive (report schema v1 preserved).
+
+**Phase 3 — D4-R measured (paid live, n=5):** ran the task-outcome ablation on LS-001/002/003/004 + SD-002 with gpt-5.5-fast (skill on/off) graded by claude-sonnet. Result: **D4_task_outcome aggregate 54/100**, replacing the meaningless hallucination-proxy 49. Per scenario: LS-001 0.685 (on .72/off .35), LS-004 0.61 (.44/.22), LS-003 0.55 (.80/.70), LS-002 0.435 (.72/.85), SD-002 0.41 (.27/.45). The finding: **the skill helps most where the base model is weak and can hurt where it is already strong** (over-routing noise) — the n=2 round-1 hypothesis confirmed at n=5 with a real instrument. Base-live on the 5 was strong (agg 88, D2 100, D3 60); `assetRecall` 90.
+
+### Files Changed (this build)
+`sk-code/references/smart_routing.md` (§11 INTENT_SIGNALS + §2 table — synonyms; `router-replay.cjs` parses §11 directly). `scripts/skill-benchmark/live-executor.cjs` (separate `observedAssets` channel), `score-skill-benchmark.cjs` (`assetRecall` lane + advisory aggregates), `d4-ablation.cjs` (`buildTaskOutcomePrompt`/`gradeTaskOutcome`/`runD4RAblation`), `run-skill-benchmark.cjs` (opt-in `--d4` → `augmentWithD4R`), `build-report.cjs` (advisory-signals section), `scripts/skill-benchmark/tests/playbook-mode.vitest.ts` (+5 tests, 1 updated), new `scripts/model-benchmark/scorer/grader/prompts/system-grader-task-outcome.md`. Live result artifact: `sk-code/benchmark/reports/2026-06-02--d4r-live--live/`.
+<!-- /ANCHOR:what-built -->
+
+## 014-d4r-grader-fidelity-remediation/implementation-summary.md
+---
+title: "Implementation Summary: D4-R Grader Fidelity + Doc Reconciliation Remediation"
+description: "Build record for applying all 28 MiMo deep-review findings to skill:deep-improvement. Fixes drafted by gpt-5.5-fast (high) in wt/0007; reviewed integration into main + full-suite + drift-guard validation."
+trigger_phrases:
+  - "d4r remediation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/014-d4r-grader-fidelity-remediation"
+    last_updated_at: "2026-06-02T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "All 28 fixes integrated to main; suite 358/358 + drift 4/4 green; worktree removed"
+    next_safe_action: "Awaiting commit decision (uncommitted on main: 014 packet + 11 deep-improvement files)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/live-executor.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "d4r-grader-fidelity-remediation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: D4-R Grader Fidelity + Doc Reconciliation Remediation
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Complete — all 28 findings fixed + integrated to main; suite 358/358 + drift 4/4 green |
+| **Date** | 20
+[...truncated 45KB...]
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/009-deep-loop-parallel-fanout"
+# PACKET: specs/system-deep-loop/z_archive/009-deep-loop-parallel-fanout (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: deep-loop native fan-out parallel multi-executor"
+description: "Phase parent: add an opt-in fan-out layer above the existing single-executor sequential loop so /deep:start-research-loop and /deep:start-review-loop can run N executor lineages concurrently (capped), each in an isolated sub-packet, then a consumer-specific cross-lineage merge. Single-executor stays the default and byte-identical. Generalizes the proven manual pattern from packet 122."
+trigger_phrases:
+  - "123-deep-loop-parallel-fanout"
+  - "deep-loop fan-out parallel"
+  - "parallel multi-executor deep-research deep-review"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/009-deep-loop-parallel-fanout"
+    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Phases 001-002 done (171/171); wrote handover.md for Phases 003-006"
+    next_safe_action: "Phase 003: resolve spawn-mechanism decision (handover 4.A), then spawn + YAML override"
+    blockers: ["Phase 003 needs design decision 4.A resolved (no headless loop binary)"]
+    completion_pct: 33
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + sub-phase control + what needs done; heavy docs live in children. -->
+
+# Spec 123 — deep-loop native fan-out parallel multi-executor
+
+## 1. Purpose
+
+Add an **opt-in fan-out layer ABOVE the existing single-executor sequential loop** for both `/deep:start-research-loop` and `/deep:start-review-loop` (which share the `deep-loop-runtime` peer skill). N executor "lineages" run concurrently with a concurrency cap; each lineage runs the **existing loop verbatim** in its own isolated sub-packet; a consumer-specific cross-lineage merge produces the canonical output (`research.md` / `review-report.md`).
+
+This generalizes the pattern proven manually in packet `122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research` (a `xargs -P 2` worker pool ran 5×4 models into per-model sub-packets, with a salvage fallback and a status ledger, then a cross-model synthesis). The prototype to mine: `…/122-…/001-skill-benchmark-deep-research/research/run_one.sh`.
+
+**Single-executor remains the recommended default and byte-identical to today** — fan-out is opt-in via `--executors`/`--concurrency`; when absent, the existing single-executor path runs unchanged.
+
+## 2. Decisions (approved)
+
+- Full native feature (not just docs/asset).
+- Single-executor default; fan-out opt-in; default path byte-identical (hard parity gate).
+- Per-lineage execution = **Option B**: orchestrator shells the existing command per lineage into an isolated sub-packet (`{artifact_dir}/lineages/{label}/`) via a new `--artifact-dir-override`, so the YAML loop runs verbatim. Option A (re-implement the loop in JS) rejected — divergence risk.
+
+## 001-schema-config-plumbing/implementation-summary.md
+---
+title: "Implementation Summary: Phase 001 — Fan-out schema + config plumbing"
+description: "Added opt-in multi-executor fan-out config schema (lineageExecutorSchema, fanoutConfigSchema, parseFanoutConfig, expandLineages) to deep-loop-runtime executor-config.ts + optional lineageId in executor-audit (buildExecutorAuditRecord + input type + record type); single-executor path unchanged; deep-loop-runtime unit suite 161/161 green (1 pre-existing loop-lock cross-process flake, unrelated)."
+trigger_phrases:
+  - "123 phase 001 implementation summary"
+  - "fanout schema done"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/001-schema-config-plumbing"
+    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase 001 complete: fan-out schema + audit lineageId + 9 tests; suite 161/161 green"
+    next_safe_action: "Phase 002: author scripts/fanout-pool.cjs runCappedPool + status ledger"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary — Phase 001: Fan-out schema + config plumbing
+
+> Process honesty note: an earlier draft of this file claimed numbers ("163/163", "+9 tests",
+> "lineageId 4 refs") from edits that had SILENTLY FAILED to apply (wrong anchor strings, masked by a
+> flaky shell transport). The edits were then re-applied with verified anchors and the numbers below are
+> grep/git/test-run verified.
+
+## What changed (verified on disk + by test run)
+
+1. **`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts`** (git: +118 lines):
+   - `lineageExecutorSchema` = `executorConfigSchema.extend({ label (dir-safe /^[a-z0-9][a-z0-9-]*$/), count (int≥1, default 1), iterations (int≥1|null, default null) })`.
+   - `fanoutConfigSchema` = `{ executors: lineageExecutorSchema[] (min 1), concurrency: int≥1 (default 2) }`.
+   - `parseFanoutConfig(raw)` — validates the array, routes each entry's executor subset through the EXISTING `parseExecutorConfig` (reuses all kind/model/flag rules), enforces unique labels + non-colliding expanded labels.
+   - `expandLineages(config)` — count→labels (count 1 keeps base; count N → `label-1…label-N`, each single-replica, count reset to 1).
+   - `executorConfigSchema` / `parseExecutorConfig` / `resolveExecutorConfig` **untouched**. (6 fan-out exports confirmed by grep.)
+
+2. **`.opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts`** (optional `lineageId`, 3 refs confirmed):
+   - `lineageId?: string` added to `RunAuditedExecutorCommandInput`.
+   - `buildExecutorAuditRecord(executor, lineageId?)` conditionally spreads `lineageId` only when provided ⇒ **records byte-identical when absent**.
+   - NOTE: field DEFINED here, first CONSUMED in Phase 003 (spawn) / Phase 005 (merge attribution). No call site passes it yet.
+
+3. **`.opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts`** (36 `it()` confirmed = 27 original + 9 new):
+   - +7 `parseFanoutConfig` cases (parse+defaults; concurrency/count/iterations; cli-codex model reuse; cli-gemini flag reuse; empty-array reject; non-dir-safe-label reject; duplicate-label reject).
+   - +2 `expandLineages` cases (count-1 base; count>1 numbered).
+
+## Backward-compat rule
+Config carries EITHER `config.executor` (single, default, unchanged) OR `config.fanout` (multi). No call site writes both yet; the both-present guard lands with the command surface in Phase 006.
+
+## Verification (observed, clean runs)
+- `executor-config.vitest.ts`: **36/36 pass** (isolated).
+- `executor-config` + `executor-audit` together: **60/60 pass**.
+- Full `deep-loop-runtime/tests/unit/`: **161/161 pass** (EXIT 0). Parity preserved — pre-existing single-executor tests unchanged and green.
+- One UNRELATED flake observed in a later full-suite run: `loop-lock.vitest.ts > allows exactly one fresh cross-process acquire to win` (a cross-process timing test). Confirmed flaky — passed 7/7 in one isolated run, failed 1/7 in another; `loop-lock.ts` is NOT in this phase's diff (git-verified). Not caused by Phase 001.
+
+## Scope (git)
+Exactly 3 files changed under `deep-loop-runtime/`: `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts`, `tests/unit/executor-config.vitest.ts`.
+
+
+## 002-capped-pool-status-ledger/implementation-summary.md
+---
+title: "Implementation Summary: Phase 002 — Capped worker pool + status ledger"
+description: "New scripts/fanout-pool.cjs implementing runCappedPool (concurrency-capped generalization of council multi-seat-dispatch with never-throws per-item settlement + ordered results) plus settleItem, buildPoolSummary, appendStatusLedger, writeOrchestrationSummary. 10/10 new unit tests pass."
+trigger_phrases:
+  - "123 phase 002 implementation summary"
+  - "fanout-pool capped pool done"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/002-capped-pool-status-ledger"
+    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Phase 002 complete: fanout-pool.cjs + 10 tests; full suite 171/171 green"
+    next_safe_action: "Phase 003: spawn worker + --artifact-dir-override YAML branch"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary — Phase 002: Capped worker pool + status ledger
+
+## What changed (verified)
+
+1. **`.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs`** (NEW):
+   - `runCappedPool({ items, concurrency, worker, now?, onEvent? })` — runs items through an async `worker` with at most `concurrency` in flight (clamped >=1). Generalizes council `dispatchCouncilSeats` by adding the concurrency cap (the `xargs -P K` shape) while keeping its never-throws settlement + ordered results. Returns `{ results: [...ordered], summary: { total, succeeded, failed, all_failed } }`. Empty pool => `all_failed:false`.
+   - `settleItem(...)` — per-item settlement that never throws (worker rejection captured as a `rejected` result with normalized `{name,message}`), mirroring council `settleSeat`; emits optional `started`/`completed`/`failed` ledger events via `onEvent`.
+   - `buildPoolSummary(results)` — ordered-results + summary envelope.
+   - `appendStatusLedger(path, entry)` — append one JSONL lifecycle event (generalizes packet-122 `orchestration-status.log`).
+   - `writeOrchestrationSummary(path, summary)` — pretty-JSON run summary.
+   - The `worker` is INJECTED (pure primitive); the real per-lineage spawn worker + the CLI entry (arg parse / JSON-out / exit codes via `cli-guards.cjs`) are Phase 003.
+
+2. **`.opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts`** (NEW, 10 tests):
+   - `runCappedPool`: cap-not-exceeded (deterministic gated worker via macrotask flush + entered/in-flight tracking), input-order preserved under out-of-order completion, single-failure isolation, all-failed summary, empty pool, concurrency<1 clamps to 1, per-item ledger events (started+completed / started+failed), invalid-args TypeErrors.
+   - status ledger: JSONL append (incl. mkdir of nested dir), pretty-JSON summary write (round-trips via tmpdir).
+
+## Note on a fixed test bug
+The cap-not-exceeded test first FAILED (9/10) due to a races-the-pump assertion (counted microtask ticks). Fixed the TEST (not the pool): switched to a macrotask `flush()` and asserted on an append-only `entered` list + live `inFlight` set. The pool code was correct throughout. Re-run: 10/10 pass.
+
+## Verification
+- `fanout-pool.vitest.ts`: 10/10 pass.
+- Full `deep-loop-runtime/tests/unit/`: **171/171 pass, 18 files, 0 failures** (EXIT 0) — no regressions; the `loop-lock` cross-process flake did not recur in this run. `fanout-pool.cjs` is a new standalone module no existing file imports; only it + its new test changed.
+
+## Out of scope (Phase 003+)
+Per-lineage spawn worker (Option B: shell the existing command into `{artifact_dir}/lineages/{label}/`); `--artifact-dir-override` YAML branch; salvage; coverage-graph per-sessionId; consumer merges; command flags; docs.
+
+## 007-native-per-iteration-model-schedule/implementation-summary.md
+---
+title: "Implementation Summary: Phase 007 — Native per-iteration model schedule for deep-loop fan-out"
+description: "Design-only phase: no code shipped. Captures the planned design for a per-iteration model schedule (iterationPlan flag) modeled as ordered single-executor lineages over existing fan-out, the candidate entry points it must desugar into, and the open design questions to resolve during T2 front-loaded research before any build."
+trigger_phrases:
+  - "123 phase 007 implementation summary"
+  - "model schedule design status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule"
+    last_updated_at: "2026-05-31T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Scaffolded design-only phase docs; no code written yet"
+    next_safe_action: "T1 confirm sibling convention then T2 front-load fan-out API research"
+    blockers: []
+    completion_pct: 5
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary — Phase 007: Native per-iteration model schedule for deep-loop fan-out
+
+> Status: DESIGN PHASE — spec only. No code has been written or changed. This file records the
+> planned design and the verification the future build must satisfy; it makes no completion or
+> test-pass claims because nothing has been implemented.
+
+## What changed (so far)
+Documentation scaffold only. Five canonical Level-2 docs authored under this phase folder
+(spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md) plus description.json and
+graph-metadata.json. No files outside this phase folder were touched. No source, YAML, or SKILL
+files were modified.
+
+## Planned design (to be specified by T2-T9, built later)
+1. **iterationPlan flag (a.k.a. model-schedule)** — ordered bands (from-to or count; executor
+   kind and model; optional focus/dimensions; optional dependsOn/order) that desugar one-to-one
+   into the existing `executors` fan-out lineage array. Reuse-first: no parallel dispatcher.
+2. **Desugaring target (candidate entry points, to be confirmed in T2):**
+   `executor-config.ts` (lineage schema / count / iterations), `step_fanout_spawn` and
+   `step_fanout_spawn_cli` in both auto YAMLs, `fanout-pool.cjs` (concurrency cap + status
+   ledger), `fanout-run.cjs` (CLI lineage driver + per-lineage artifact-dir override),
+   `fanout-salvage.cjs`, and `fanout-merge.cjs`.
+3. **Ordered/sequential bands** — minimal `dependsOn`/`order` extension so band B runs only
+   after band A completes, with optional seed-context handoff, inside the existing pool driver.
+4. **Per-band focus/dimensions** — optional fields threaded into existing per-iteration prompt
+   construction for both review and research, with a default when omitted.
+5. **Audit/attribution** — band and model attribution in the JSONL state log, deltas, and
+   findings registry.
+6. **Merge precedence** — ordered band-priority list in `fanout-merge.cjs` for conflict
+   resolution, with severity rollup preserved as an invariant above band priority.
+
+## Backward-compat intent
+All new fields opt-in/absent-by-default. Single-executor and existing homogeneous fan-out must
+remain byte-identical when the plan is unset. The future build must prove this as a parity gate.
+
+## Verification (for the future build, NOT yet performed)
+- Confirm every desugaring entry point against the real interfaces (T2) before implementing.
+- Prove byte-identical single-executor and homogeneous fan-out output when iterationPlan is
+
+## 009-fanout-remediation/implementation-summary.md
+---
+title: "Implementation Summary: Deep-loop fan-out remediation (009)"
+description: "Scaffold status — design + planned fixes recorded, not yet implemented. Captures the 14 findings, the reuse targets, and the verification the build must satisfy."
+trigger_phrases:
+  - "123 phase 009 implementation summary"
+  - "fanout remediation status"
+  - "fanout fix summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/009-fanout-remediation"
+    last_updated_at: "2026-05-31T00:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Scaffolded design-phase docs; no code written yet"
+    next_safe_action: "Start T101 C-02 fail-closed; then T110 C-01 async spawn"
+    blockers: []
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Deep-loop fan-out remediation (009)
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
+
+> Status: PLANNED — spec/design only. No code has been written or changed. This file records the
+> planned fixes and the verification the future build must satisfy; it makes NO completion or
+> test-pass claims because nothing has been implemented.
+
+---
+
+<!-- ANCHOR:metadata -->
+## METADATA
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-fanout-remediation |
+| **Status** | Planned (not implemented) |
+| **Level** | 3 |
+| **Estimated Effort** | ~26 hours |
+| **Estimated LOC** | ~400 code + tests |
+| **Source review** | `../008-deep-review/review/review-report.md` |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:exec-summary -->
+## EXECUTIVE SUMMARY
+
+This phase will fix the 14 verified findings from the packet-123 deep review (2 P0, 1 latent-P0, 8 P1, 3 P2). The headline fixes make CLI fan-out genuinely concurrent (C-01) and the review gate fail-closed (C-02), backed by the two tests the original 72-test suite lacked. No code is written yet — this scaffold records the design and the verification gates the future build must satisfy.
+
+<!-- /ANCHOR:exec-summary -->
+---
+
+<!-- ANCHOR:what-built -->
+## WHAT WAS BUILT
+
+NOTHING YET — documentation scaffold only. Six Level-3 docs + `description.json` + `graph-metadata.json` + `resource-map.md` authored under this folder; parent wiring updated. No source/YAML/test files modified.
+
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

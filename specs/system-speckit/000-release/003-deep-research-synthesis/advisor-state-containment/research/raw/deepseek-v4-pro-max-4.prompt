@@ -1,0 +1,102 @@
+You are deep-research iteration 4 (of 5) for lineage "deepseek-v4-pro-max", investigating one issue in this repository. Use Read, Grep and Bash (git) — read only, DO NOT modify any files. Ground every claim in file:line or command output.
+
+ISSUE
+The skill-advisor (and other runtime writers) leak nested .opencode / .advisor-state directories INTO specs/ instead of keeping advisor state at the repo root. Live symptom (HEAD): 23 nested .opencode dirs under specs/, plus .advisor-state under specs/hooks/008-pi-caching-like-reasonix/..., specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/, and specs/system-deep-loop/z_archive/026-goal-opencode-plugin/... . The packet meant to fix this, specs/system-skill-advisor/017-advisor-audit-and-state-containment, is Draft at 0% completion.
+
+FINDINGS SO FAR (prior iterations of this lineage; build on them, do not repeat):
+
+# deepseek-v4-pro-max iteration 1 — PARSE FAIL
+
+
+
+The `find_file_by_name` tool only matches files, not directories. Let me search for files inside `.opencode` and `.advisor-state` directories to confirm their existence and contents.
+
+Let me read the full overflow file and also search more specifically for `.advisor-state` and `.opencode` directories that might be advisor leaks rather than fixtures.
+
+
+
+Let me search more broadly for `.opencode` directories that aren't just test fixtures, and also look for `.advisor-state` in other locations.
+
+The `find_file_by_name` tool only matches files, not directories. Let me use a targeted approach to find `.opencode` and `.advisor-state` directories across specs.
+
+Interesting - 16 of 17 `.opencode` dirs are test fixtures, but one is not. Let me investigate the non-fixture one and also look for `.advisor-state` more broadly, plus check the fix packet.
+
+
+
+Key findings emerging. Let me check the git worktree situation, read the fix packet, and look at the nested `.opencode` directory contents more carefully.
+
+
+
+Now let me check the main repo (not the sandbox) for the full extent of the problem, and read the phase 001 child spec.
+
+
+
+Excellent findings from the main repo. Let me now do a comprehensive enumeration across the entire repo (not just specs/) and verify the content of each stray directory.
+
+
+
+
+
+
+
+
+
+Now I have the full enumeration. Let me verify that the stray dirs contain advisor-written state and check git tracking.
+# deepseek-v4-pro-max — iteration 2: Traced the full workspaceRoot → generation-counter path: the advisor resolves state relative to cwd, not the repo root, and auto-creates .opencode/skills/.advisor-state/ inside whatever directory the hook fires from.
+
+## Findings
+- ROOT CAUSE — workspaceRoot = cwd, not repo root: user-prompt-submit.ts:138-142 `workspaceRootFor(input)` returns `input.cwd ?? process.cwd()`. When a Claude Code / OpenCode session runs from inside a specs/ subdirectory, cwd points there. This is the entry point of the entire leak chain.
+- CRITICAL RESOLVER — hardcoded relative path joined to workspaceRoot: freshness/generation.ts:12 defines `GENERATION_RELATIVE_PATH = join('.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json')`. Line 29-31 `getSkillGraphGenerationPath(workspaceRoot)` = `join(resolve(workspaceRoot), GENERATION_RELATIVE_PATH)`. This blindly joins the hardcoded path to whatever workspaceRoot it receives — no repo-root walk-up, no canonicalization.
+- DIRECTORY AUTO-CREATION on write: generation.ts:109-110 `writeGenerationAtomic` calls `mkdirSync(dirname(filePath), { recursive: true })`. Same pattern in freshness/generation.ts:46 `writeJsonAtomic`. Any write to the generation counter creates the full .opencode/skills/.advisor-state/ tree under workspaceRoot.
+- FIRST-TIME TRIGGER: generation.ts:184-198 `readAdvisorGeneration` — when the file is absent (ENOENT, which is always true when workspaceRoot is inside specs/ since specs/ dirs don't have a .opencode/skills/ tree), it calls `setGeneration(workspaceRoot, filePath, 0)`. This writes generation=0 with reason='LEGACY_ADVISOR_GENERATION_BUMP', creating the nested dirs. Confirmed: all 3 leaked generation.json files in specs/ show exactly this payload.
+- FULL CALL CHAIN: buildSkillAdvisorBrief (skill-advisor-brief.ts:401) → getAdvisorFreshness(workspaceRoot) (freshness.ts:330) → readAdvisorGeneration(workspaceRoot) (generation.ts:184) → getAdvisorGenerationPath(workspaceRoot) (generation.ts:179) → getSkillGraphGenerationPath(resolve(workspaceRoot)) (freshness/generation.ts:29) → join(workspaceRoot, '.opencode/skills/.advisor-state/skill-graph-generation.json'). Every hop passes workspaceRoot through unchanged.
+- EXISTING FIX PATTERN ALREADY IN CODEBASE: skill-advisor-cli-fallback.ts:176-198 `findCliFallbackPaths(workspaceRoot)` walks UP from workspaceRoot (up to 14 levels) looking for `.opencode/bin/skill-advisor.cjs` to find the real repo root. This pattern should be replicated for the generation-counter resolver instead of trusting the raw workspaceRoot.
+- SUBPROCESS ALSO USES workspaceRoot AS cwd: subprocess.ts:310 spawns the Python advisor with `cwd: options.workspaceRoot`. While the Python script resolves its own REPO_ROOT from its file location (skill_advisor.py:43-45), any relative path operations inside the Python process would also resolve against the wrong base.
+- METRICS MODULE USES /tmp CORRECTLY: metrics.ts:178 stores diagnostics at `join(tmpdir(), 'speckit-skill-advisor-metrics')` — this is the correct pattern. The generation counter should similarly use an absolute, repo-root-anchored path.
+- DIRECTIVE LIFECYCLE STORE ALSO USES /tmp BY DEFAULT: directive-lifecycle-file-store.ts:46-48 defaults to `join(tmpdir(), 'speckit-advisor')` unless overridden by `SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR` env var. This path is safe.
+
+## Answered
+- Where exactly does the advisor resolve its state directory? → freshness/generation.ts:29-31 `getSkillGraphGenerationPath(workspaceRoot)` joins `.opencode/skills/.advisor-state/skill-graph-generation.json` to the raw workspaceRoot.
+- Why can this resolve inside specs/ instead of the repo root? → user-prompt-submit.ts:138-142 passes `cwd` or `process.cwd()` as workspaceRoot; if the session runs from a specs/ subdirectory, the entire chain inherits that wrong root.
+- What creates the actual directories on disk? → generation.ts:109-110 `mkdirSync(dirname(filePath), { recursive: true })` in `writeGenerationAtomic`, triggered when `readAdvisorGeneration` hits ENOENT (generation.ts:194-195).
+
+## Open
+- What specific user action causes cwd to be inside specs/ when the hook fires? (Likely: opening Claude Code / OpenCode from a spec directory, or using worktrees checked out inside specs/)
+- Are there other runtime writers (beyond the advisor hook) that also use workspaceRoot=cwd and create .opencode dirs in specs/?
+- Should the fix use a walk-up pattern like findCliFallbackPaths, or a fixed repo-root derivation from the script location like the Python skill_advisor.py does?
+# deepseek-v4-pro-max — iteration 3: Enumerated 9 runtime writers, 4 of which can leak .opencode/.advisor-state into specs/; identified 2 existing guards that are siloed per-component and NOT wired into the hook entry point.
+
+## Findings
+- WRITER 1 — Generation Counter (PRIMARY LEAK): freshness/generation.ts:12 defines GENERATION_RELATIVE_PATH = join('.opencode','skills','.advisor-state','skill-graph-generation.json'). Line 29-31 getSkillGraphGenerationPath(workspaceRoot) = join(resolve(workspaceRoot), GENERATION_RELATIVE_PATH) — blindly joins the hardcoded path to whatever workspaceRoot it receives. No walk-up, no canonicalization. generation.ts:109-110 writeGenerationAtomic calls mkdirSync(dirname(filePath), { recursive: true }), creating the full .opencode/skills/.advisor-state/ tree on first write. generation.ts:194-195 triggers the first write when ENOENT: setGeneration(workspaceRoot, filePath, 0) with reason='LEGACY_ADVISOR_GENERATION_BUMP'. This is the writer that created all 3 leaked generation.json files in specs/.
+- WRITER 2 — Daemon Quarantine DB: daemon/watcher.ts:294-295 quarantineDbPath(workspaceRoot) = join(resolve(workspaceRoot), '.opencode', 'skills', '.advisor-state', 'skill-graph-daemon-lease.sqlite'). No guard on workspaceRoot. state-mutation.ts:42 openDaemonStateDb calls mkdirSync(dirname(dbPath), { recursive: true }) before opening the SQLite db — creates the full nested tree on first quarantine operation.
+- WRITER 3 — Daemon Lease DB: daemon/lease.ts:55-60 LEGACY_LEASE_RELATIVE_PATH = join('.opencode', 'skills', '.advisor-state', 'skill-graph-daemon-lease.sqlite'). Line 88-95 resolveSkillAdvisorDbDir(workspaceRoot) = join(workspaceRoot, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'database'). Line 78-80 ensureCanonicalDir calls mkdirSync(canonicalizePath(dirPath), { recursive: true, mode: 0o700 }) — creates dirs on first lease acquisition. Same unguarded workspaceRoot pattern.
+- WRITER 4 — Skill Graph DB: skill-graph/skill-graph-db.ts:269-282 resolveSkillGraphDbDir(baseRoot = process.cwd()) uses resolve(baseRoot, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'database'). Defaults to process.cwd() — if daemon starts with cwd inside specs/, the database and its parent dirs get created there via better-sqlite3's implicit creation.
+- WRITER 5 — Subprocess Python Advisor (SAFE for Python writes): subprocess.ts:310 spawns Python with cwd: options.workspaceRoot (same unguarded workspaceRoot). But skill_advisor.py:43-45 computes REPO_ROOT from __file__ location (SCRIPT_DIR → SKILLS_DIR → REPO_ROOT), NOT from cwd. So Python-side file operations resolve correctly. However, subprocess.ts:270-278 resolves the script path as join(options.workspaceRoot, '.opencode', 'skills', ...) — if workspaceRoot is inside specs/ and no .opencode/ exists there, the script path resolves to a nonexistent file, causing SCRIPT_MISSING error.
+- WRITER 6 — Hook Diagnostic Metrics (SAFE): metrics.ts:178 DURABLE_METRICS_ROOT = join(tmpdir(), 'speckit-skill-advisor-metrics'). Line 284-286 durableMetricsPath uses a hash of resolve(workspaceRoot) as a key into this /tmp directory. Writes go to /tmp, never to workspaceRoot. SAFE by design.
+- WRITER 7 — Directive Lifecycle Store (SAFE by default): directive-lifecycle-file-store.ts:46-48 defaults baseDir to join(tmpdir(), 'speckit-advisor') unless overridden by SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR env var. directive-lifecycle-store.py:61 uses os.makedirs(base, mode=0o700, exist_ok=True) — writes go to /tmp, not workspaceRoot. However, line 76 uses os.getcwd() to derive the project hash — a different cwd creates a separate /tmp subdirectory but never leaks into specs/. SAFE.
+- WRITER 8 — Shadow Delta Sink (WEAK GUARD): shadow/shadow-sink.ts:39-51 findWorkspaceRoot(start) walks up looking for a directory containing '.opencode/' — stops at the FIRST parent containing it. If a leaked .opencode/ already exists inside specs/ from writer 1, this returns the specs/ directory as the workspace root. Line 36 defaultShadowDeltaPath() resolves relative to the module's own location, not workspaceRoot, so the default path is safe. Only SPECKIT_ADVISOR_SHADOW_DELTA_PATH env override (line 63-68) with isPathInside check (line 70) could be affected by a wrong workspaceRoot.
+- WRITER 9 — Daemon Watcher Skills Root (PARTIALLY GUARDED): daemon/watcher.ts:128-132 defaultSkillsRoot(workspaceRoot) = join(findAdvisorWorkspaceRoot(workspaceRoot, { maxDepth: 0 }), '.opencode', 'skills'). With maxDepth:0, findAdvisorWorkspaceRoot only applies hoistAboveOpencodeTree as a structural guard — it won't walk up to find the real root, only hoist above .opencode/ trees. The daemon itself (advisor-server.ts:71-91) resolves its workspaceRoot correctly by walking up from import.meta.dirname, so in practice the daemon path is safe when started from the repo root.
+- EXISTING GUARD 1 — findAdvisorWorkspaceRoot (utils/workspace-root.ts:78-95): Walks up from start looking for sentinel '.opencode/skills/system-spec-kit/SKILL.md' (not a bare .opencode/ dir, to avoid self-perpetuation). Falls back to hoistAboveOpencodeTree(start) if sentinel not found within 14 levels. USED BY: daemon watcher, MCP handlers, bench, parity tests. NOT USED BY: hook entry point (user-prompt-submit.ts), generation counter (generation.ts, freshness/generation.ts), quarantine/lease paths.
+- EXISTING GUARD 2 — hoistAboveOpencodeTree (utils/workspace-root.ts:46-56): Structural guard — splits path on separator, finds the OUTERMOST .opencode/ segment (not innermost, to handle nested leaks), hoists above it. Returns null if not inside an .opencode tree. Used as fallback by findAdvisorWorkspaceRoot but never called directly by any writer.
+- EXISTING GUARD 3 — findCliFallbackPaths (skill-advisor-cli-fallback.ts:176-198): Walks up from workspaceRoot (up to 14 levels) looking for '.opencode/bin/skill-advisor.cjs' + bridge. Correctly finds the repo root. BUT: only used by the CLI fallback path — never called by the generation counter or any other state writer.
+- EXISTING GUARD 4 — advisor-server.ts:71-91 resolveWorkspaceRoot(): Walks up from import.meta.dirname looking for '.opencode/skills/system-skill-advisor'. Only used by the MCP server daemon's own initialization.
+- EXISTING GUARD 5 — skill_advisor.py:43-45: Computes REPO_ROOT from __file__ (SCRIPT_DIR → SKILLS_DIR → REPO_ROOT). Only used for Python-side operations; the TypeScript side that calls it still uses unguarded workspaceRoot for script resolution.
+- ROOT CAUSE (confirmed from iteration 2): user-prompt-submit.ts:138-142 workspaceRootFor(input) returns input.cwd ?? process.cwd(). When a Claude Code / OpenCode session runs from inside a specs/ subdirectory, cwd points there. This unguarded value flows through the entire pipeline: buildSkillAdvisorBrief (skill-advisor-brief.ts:429) → getAdvisorFreshness (freshness.ts:330) → readAdvisorGeneration (generation.ts:184) → getAdvisorGenerationPath (generation.ts:179) → getSkillGraphGenerationPath (freshness/generation.ts:29) → join(workspaceRoot, '.opencode/skills/.advisor-state/...'). Every hop passes workspaceRoot through unchanged.
+- SELF-PERPETUATION MECHANISM: Once writer 1 creates .opencode/skills/ under a specs/ subdirectory, that directory now satisfies findAdvisorWorkspaceRoot's sentinel check (if the sentinel were a bare .opencode/skills/ dir) — but the current sentinel is a specific file (.opencode/skills/system-spec-kit/SKILL.md), which mitigates this. However, the hoistAboveOpencodeTree guard at line 46-56 explicitly documents this risk: 'a buggy caller writing to <wrong-cwd>/.opencode/skills/... creates a directory that satisfies the sentinel check on every subsequent walk-up'.
+
+## Answered
+- Are there other runtime writers (beyond the advisor hook) that also use workspaceRoot=cwd and create .opencode dirs in specs/? → YES: the daemon quarantine DB (watcher.ts:294-295), daemon lease DB (lease.ts:88-99), and skill graph DB (skill-graph-db.ts:269-282) all use unguarded workspaceRoot to construct paths under .opencode/. However, these are only triggered by daemon operations, not hooks — the hook path (generation counter) is the primary trigger for the observed leaks.
+- Should the fix use a walk-up pattern like findCliFallbackPaths, or a fixed repo-root derivation from the script location like skill_advisor.py? → The codebase already has findAdvisorWorkspaceRoot (utils/workspace-root.ts) which combines both approaches: a sentinel-based walk-up with a structural fallback. This is the right pattern — it just needs to be wired into the hook entry point (user-prompt-submit.ts) before workspaceRoot is passed downstream.
+
+## Open
+- What specific user action causes cwd to be inside specs/ when the hook fires? (Likely: opening Claude Code / OpenCode from a spec directory, or using worktrees checked out inside specs/)
+- The daemon path writers (2-4) are not currently triggering leaks because the daemon resolves its workspaceRoot correctly from import.meta.dirname (advisor-server.ts:71-91) — but if a daemon were ever started with cwd inside specs/ (e.g., via a worktree or manual launch), writers 2-4 would also leak. Should the daemon-side quarantine/lease/DB paths also use findAdvisorWorkspaceRoot as a defense-in-depth measure?
+- The directive-lifecycle-store.py:76 uses os.getcwd() to derive a project hash — while writes go to /tmp, different cwd values create separate state silos. Could this cause directive deduplication to silently fail when cwd changes between hook invocations?
+
+ITERATION 4 FOCUS
+Determine what actually shipped vs the 017 Draft: git log v3.6.0.0..HEAD for advisor state-containment; is there partial containment code, or is it entirely unbuilt? Distinguish v3.6-era work ("Advisor State Stays Out of Specs") from anything in-window.
+
+Reply with ONLY a fenced json block:
+```json
+{"iteration":4,"lineage":"deepseek-v4-pro-max","focus_summary":"<one line>","findings":["<grounded finding with file:line or command evidence>", "..."],"answered":["<question this iteration resolved>"],"open_questions":["<still open>"],"confidence":0.0}
+```

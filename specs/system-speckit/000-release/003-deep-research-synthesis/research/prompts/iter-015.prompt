@@ -1,0 +1,1472 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/hooks/001-hook-docs-relocation"
+# PACKET: specs/hooks/001-hook-docs-relocation
+
+---
+title: "Implementation Summary: Hook Reference Docs Relocation"
+description: "Four hook reference docs relocated to owning trees with full consumer repointing; strict validation green."
+trigger_phrases:
+  - "hook relocation summary"
+  - "resume hook relocation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/001-hook-docs-relocation"
+    last_updated_at: "2026-08-06T07:42:39Z"
+    last_updated_by: "pi-terminal-engineer"
+    recent_action: "Relocated four contracts and repointed 34 live consumers"
+    next_safe_action: "No follow-up required; packet verification is complete"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-05-system-speckit-032"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Hook Reference Docs Relocation
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-hook-docs-relocation |
+| **Status** | Complete |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Four hook reference documents now live in their owning trees:
+
+| Doc | Old path | New path |
+|-----|----------|----------|
+| goal-plugin.md | system-spec-kit/references/hooks/ | .opencode/hooks/goal/ |
+| injection-contract.md | system-spec-kit/references/hooks/ | .opencode/hooks/ |
+| skill-advisor-hook.md | system-spec-kit/references/hooks/ | system-skill-advisor/hooks/ |
+| skill-advisor-hook-validation.md | system-spec-kit/references/hooks/ | system-skill-advisor/hooks/ |
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/specs/system-speckit/032-hook-docs-relocation/` | Updated | Contract, placement evidence, verification, and completion state |
+| Four hook contracts | Relocated with `R100` status | Ownership placement with rename history preserved |
+| 34 live consumer files | Repointed | New owner paths and valid relative links |
+| system-spec-kit leaf metadata | Updated | Removed four leaves that no longer live under the guarded skill root |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The placement matrix was recorded before any rename. A pre-move grep classified 34 live consumers separately from packet/history and generated benchmark evidence. Four `git mv` operations preserved history, internal links were recalculated from each new location, every live consumer was repointed, and post-move checks proved the old live path absent.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Choice | Where |
+|----------|--------|-------|
+| Where the four docs go | Owning trees, not one flat home | decision-record.md ADR-001 |
+| Move mechanics | git mv, consumer repoint, grep-proof residue | spec.md REQ-003, REQ-007 |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Gate | Status | Evidence |
+|------|--------|----------|
+| Placement matrix before move | Pass | `decision-record.md:65-74`; checklist CHK-001 |
+| New paths exist, old paths gone | Pass | Four `test -f` results and source-folder absence; checklist CHK-003..006 |
+| Zero live old-path references | Pass | Live-content `rg` count `0`; checklist CHK-008 |
+| Moved docs link audit | Pass | `MOVED_DOC_RELATIVE_LINKS=PASS files=4`; link-aware strict gate exit 0 |
+| Strict validation | Pass | Standard and link-aware runs: `Errors: 0 Warnings: 0`, `RESULT: PASSED`; checklist CHK-010 |
+| Scoped git status | Pass | 34 inventoried consumers + 4 `R100` renames + packet evidence only; checklist CHK-013 |
+| system-spec-kit leaf manifest | Pass | `leaf-manifest.json OK (291e3a7497d6e207769ba6923707f740613325a824997a719c4ffe73abd54d69)` |
+| Follow-up ghost-path audit and fixes | Pass | Router-alignment report and fix report in this packet; zero remaining ghost references in live trees; JSON leaf files parse |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+- Historical packet records, `z_archive`, review reports, generated benchmark reports, and git history retain old-path evidence by contract; the live-content sweep excludes those persistence surfaces.
+- The repo-wide Markdown-link guard reports 97 unrelated existing failures and names none of the relocation files. The focused four-document link audit is green.
+- `validate_document.py` classifies `goal-plugin.md` as a README and requests an `OVERVIEW` heading; the approved no-content-rewrite boundary leaves that unrelated structural change out of scope.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/hooks/002-injection-bloat-reduction"
+# PACKET: specs/hooks/002-injection-bloat-reduction (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Per-Prompt Injection Bloat Reduction"
+description: "Phase parent: implement the ranked per-prompt injection reductions from the hooks/001 research — measurement-first, flag-gated, guardrail-preserving, one candidate at a time across all six runtime hook adapters."
+status: in_progress
+completion_pct: 52
+
+trigger_phrases:
+  - "injection bloat reduction"
+  - "per-prompt directive reduction"
+  - "lifecycle policy capsule"
+importance_tier: "important"
+contextType: "spec"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction"
+    last_updated_at: "2026-08-11T13:20:00Z"
+    last_updated_by: "pi"
+    recent_action: "Phase 018 remediation planning now covers the full directive-lifecycle review"
+    next_safe_action: "Capture phase 018 whole-gate baseline before changing runtime code"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts"
+      - ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+      - ".opencode/plugins/mk-skill-advisor.js"
+      - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
+    session_dedup:
+      fingerprint: "sha256:6166966361399e1cd96431c3d34c9a677f0721ddea8bcdde64cb8ce587f9bed4"
+      session_id: "2026-08-06-hooks-002"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+# Per-Prompt Injection Bloat Reduction
+
+---
+
+<!-- ANCHOR:metadata -->
+
+## 001-measurement-and-receipts-foundation/implementation-summary.md
+---
+title: "Implementation Summary: Measurement & Receipts Foundation"
+description: "Scoped implementation evidence for the shadow planner, canonical block IDs, delivery-receipt fields, and byte-stable parity fixtures."
+trigger_phrases:
+  - "measurement and receipts summary"
+  - "shadow planner implementation evidence"
+importance_tier: "important"
+contextType: "implementation"
+parent: "hooks"
+status: "in_progress"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/001-measurement-and-receipts-foundation"
+    last_updated_at: "2026-08-07T04:16:20Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled receipt-gated delivery and pure-peek verification for the shadow planner"
+    next_safe_action: "Resolve the missing Pi owner constant and remaining P1 record items"
+    blockers:
+      - "The current Pi prompt-advisor owner does not export the directive constant named by the research/spec."
+      - "The repository-wide Vitest/drift gates have unrelated baseline or environment failures."
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-06-hooks-002-001"
+      parent_session_id: null
+    completion_pct: 84
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Measurement & Receipts Foundation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-measurement-and-receipts-foundation |
+| **Status** | In progress — scoped implementation verified; Pi owner and P1 record items remain |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented the scoped shadow planner and its proof harness. `policy-plan.ts` now owns the stable ID registry, explicit hash-input allow-list, per-block and ordered policy-set hashes, receipt validation, and fail-open render observer. Delivery confirmation requires an observed matching receipt; `peek()` is a pure read and `decideSuppression()` is the explicit state transition. `render.ts` calls the observer after every existing success, fallback, and null-return path; the observer's `void` result cannot affect the emitted string.
+
+The parity harness covers six native serializer shapes x five cases (first, repeat, Gate-emitting, read-only, and failure/fallback), for 30 byte comparisons. The unit suite covers the four required IDs, the extension registry, the adversarial path/session negative control, receipt-field rejection, and configured-vs-observed host status.
+
+### Delivered Files
+
+| File | Action | Purpose |
+
+## 002-opencode-route-line-bounding/implementation-summary.md
+---
+title: "Implementation Summary: OpenCode Route-Line Bounding"
+description: "Implemented bounded compiled-route presentation with an independent off-by-default flag, complete reveal path, and full-target policy receipt hashing."
+trigger_phrases:
+  - "route line bounding implementation"
+  - "compiled route cap verification"
+importance_tier: "important"
+contextType: "implementation"
+parent: "hooks"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/002-opencode-route-line-bounding"
+    last_updated_at: "2026-08-07T07:55:47.416Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled the completed bounded renderer and flag-off parity evidence"
+    next_safe_action: "Keep the candidate flag off pending the activation gate"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-skill-advisor.js"
+    session_dedup:
+      fingerprint: "sha256:18eae2e0e5068178a708aa9fc07085b3a49ce39b2f594b50597d4200d02fdecd"
+      session_id: "2026-08-06-hooks-002-002"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: OpenCode Route-Line Bounding
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-opencode-route-line-bounding |
+| **Completed** | 2026-08-06 - implementation and verification complete |
+| **Status** | Complete — shadow-only; candidate flag remains off |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The OpenCode renderer now has a fixed three-target bounded mode behind the independent `boundedCompiledRouteSummary` option and `MK_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING=1` environment flag. Both are off by default, and the legacy branch remains the byte-for-byte path when bounding is disabled. A bounded line exposes `+K more` plus a 12-character SHA-256 digest of the full target membership; `revealCompiledRouteSummaryTargets` and `{ reveal: true }` recover the complete list.
+
+The policy registry now contains `runtime.opencode-compiled-route.v1`. Its content and hash are derived from the complete target list in canonical sorted order, so the receipt is order-insensitive while still changing whenever membership changes. Route resolution and the existing `hub`, `outcome`, and `servingAuthority` fields were not changed.
+
+### Delivered Files
+
+| File | Action | Purpose |
+|------|-----------------|---------|
+
+## 003-opencode-transform-dedup/implementation-summary.md
+---
+title: "Implementation Summary: OpenCode Transform Dedup"
+description: "Implemented stable-message-identity dedup for OpenCode system transforms, with flag-off parity and multi-transform receipts."
+trigger_phrases:
+  - "OpenCode transform dedup implementation"
+  - "message identity resolver"
+importance_tier: "important"
+contextType: "implementation"
+parent: "hooks"
+status: "in_progress"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/003-opencode-transform-dedup"
+    last_updated_at: "2026-08-07T04:16:20Z"
+    last_updated_by: "codex"
+    recent_action: "Reconciled the verified identity/dedup implementation and residual adversarial coverage"
+    next_safe_action: "Complete the remaining adversarial-table and P1 evidence rows before activation review"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-skill-advisor.js"
+      - ".opencode/plugins/mk-spec-memory.js"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-06-hooks-002-003"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: OpenCode Transform Dedup
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-opencode-transform-dedup |
+| **Status** | In progress — identity/dedup implementation verified; adversarial-table and P1 evidence rows remain |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The shared helper now resolves a stable `{sessionId, messageId, transformCallOrdinal}` identity without consulting prompt text, hashes contributions with the existing canonical policy-block algorithm, and tracks delivered/suppressed contributions in process-local state. Both OpenCode transforms use the same state only when deduplication is explicitly enabled; unresolved identities fall open to the existing full-delivery path.
+
+### Shipped Files
+
+| File | Planned Action | Purpose |
+|------|-----------------|---------|
+| `.opencode/plugins/lib/opencode-message-identity.js` | Created | Shared identity resolver, canonical block hashing, dedup tracker, lifecycle cleanup, and multi-transform receipt accessors (`:169`, `:285`, `:303`) |
+| `.opencode/plugins/mk-skill-advisor.js` | Modified | Independent flag, canonical block gates before every system append, and session cleanup (`:327`, `:576`, `:908`, `:933`, `:945`) |
+
+## 004-full-first-route-only-repeats/implementation-summary.md
+---
+title: "Implementation Summary: Full-First + Route-Only Repeats"
+description: "Implemented shadow-only delivery-state machine, route-only computation, lifecycle/session wiring, byte-parity proof, and seven behavioral negative controls."
+trigger_phrases:
+  - "full first route only repeats implemented"
+  - "delivery state machine shadow verification"
+importance_tier: "critical"
+contextType: "implementation"
+parent: "hooks"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/004-full-first-route-only-repeats"
+    last_updated_at: "2026-08-07T07:55:47.905Z"
+    last_updated_by: "opus"
+    recent_action: "Verified receipt-gated shadow reduction proof"
+    next_safe_action: "Keep activation deferred; a later phase owns default-on rollout"
+    blockers:
+      - "Full repository alignment guard reports pre-existing baseline drift; scoped alignment passes"
+      - "Global Codex hook installer check reports hook-file drift outside this worktree"
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
+    session_dedup:
+      fingerprint: "sha256:a042b42b9759ff8466c40c1c02fc79617a0ebfc47905287bcbe3abf0ae003992"
+      session_id: "2026-08-06-hooks-002-004"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Full-First + Route-Only Repeats
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-full-first-route-only-repeats |
+| **Completed** | 2026-08-07 — scoped phase implementation complete; activation remains deferred |
+| **Status** | Complete — shadow-only; candidate flag remains off |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The phase is implemented in shadow only. `DeliveryStateMachine` keys confirmed session state by block ID, content hash, and epoch, with `UNSEEN` -> `DELIVERED` -> `SUPPRESSED_SAME` transitions, dirty marking, lifecycle/scope/policy/goal epoch advancement, and isolated full-delivery fallback for unknown or ambiguous identities. The renderer computes a route-only result for eligible repeats and records its byte accounting, while the legacy full renderer remains the only returned/emitted path.
+
+The Claude/Codex/Devin shared hook and OpenCode advisor component pass lifecycle and session-identity signals into the observer. No runtime consumes suppression, no activation flag was added, and Cursor/Pi remain untouched.
+
+### Files Changed
+
+
+## 005-gate3-relay-edge-triggering/implementation-summary.md
+---
+title: "Implementation Summary: Gate-3 Relay Edge-Triggering"
+description: "Implemented the shadow-only Gate-3 delivery suppression predicate, receipt log, byte-parity proof, and 11-row negative-control matrix."
+trigger_phrases:
+  - "gate 3 relay implementation summary"
+  - "edge-triggered gate delivery implemented"
+importance_tier: "important"
+contextType: "implementation"
+parent: "hooks"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/005-gate3-relay-edge-triggering"
+    last_updated_at: "2026-08-07T07:55:48.337Z"
+    last_updated_by: "codex"
+    recent_action: "Verified Gate-3 shadow controls"
+    next_safe_action: "Keep suppression unconsumed until runtime-specific activation evidence exists"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs"
+    session_dedup:
+      fingerprint: "sha256:f516179adbdd29c7975a02bca71e6c4babe48e6d5dfc8f85b782f4e678682e62"
+      session_id: "2026-08-06-hooks-002-005"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-gate3-relay-edge-triggering |
+| **Completed** | 2026-08-07 — shadow implementation and scoped verification complete; activation deferred |
+| **Status** | Complete — shadow-only; candidate flag remains off |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The core now exposes a delivery-only shadow predicate and observer. The candidate is keyed by a confirmed session, lifecycle epoch, and a SHA-256 gate-state hash that includes task/scope, answer, and lifecycle fingerprints. Confirmed full deliveries seed process-local shadow state; a same-key repeat becomes suppression-eligible, while the observer still returns the unchanged full relay.
+
+### Gate-3 Relay Edge-Triggered Suppression
+
+`MK_SPEC_GATE_3_DELIVERY_SUPPRESSION` is independent and off by default. When enabled, the observer computes and records a receipt for every full Gate-3 relay, but never consumes a suppression decision. The unchanged relay remains byte-identical on first, repeated, invalid-answer, task/scope-change, recovery, enforcement, child, disabled, and error paths.
+
+### Files Changed
+
+
+## 006-pi-dispatch-and-compaction/implementation-summary.md
+---
+title: "Implementation Summary: Pi Dispatch and Compaction"
+description: "Implemented and verified a shadow-only compact Pi dispatch candidate with an independent prototype flag, full-directive fail-open behavior, and compaction/session-boundary dedup reset."
+trigger_phrases:
+  - "pi dispatch directive implementation summary"
+  - "compact pi arbitration shadow prototype"
+  - "pi dispatch compaction reset verification"
+importance_tier: "important"
+contextType: "implementation"
+parent: "hooks"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/006-pi-dispatch-and-compaction"
+    last_updated_at: "2026-08-07T07:55:48.822Z"
+    last_updated_by: "codex"
+    recent_action: "Verified Pi shadow controls"
+    next_safe_action: "Keep the prototype disabled until the activation phase reviews the executed candidate"
+    blockers:
+      - "Prototype activation remains deferred; the compact candidate is never emitted"
+    key_files:
+      - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
+    session_dedup:
+      fingerprint: "sha256:6d5458649515b2c7eb0f5eedd37e742389edd7c2a3345ea3611933b634737391"
+      session_id: "2026-08-06-hooks-002-006"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-pi-dispatch-and-compaction |
+| **Completed** | 2026-08-06 (implementation verified; activation deferred) |
+| **Level** | 2 |
+| **Status** | Complete — shadow-only; candidate flag remains off |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented the Pi shadow prototype and its verification matrix. The real transform still emits the unchanged full directive on every successful and failed advisor path.
+
+### Pi Dispatch Directive Compaction
+
+`PI_COMPACT_SUBAGENT_DISPATCH_DIRECTIVE` is a 165-byte UTF-8 candidate behind the independent `SPECKIT_PI_COMPACT_DIRECTIVE_PROTOTYPE` flag, disabled by default and never emitted. Its receipt uses the existing policy-plan hash and delivery-state helpers. The full 554-byte `PI_SUBAGENT_DISPATCH_DIRECTIVE` remains the unconditional output, including when the advisor fails. Pi `session_compact` and resume/fork `session_start` events advance the shadow epoch so the next turn observes `UNSEEN` instead of suppressing a repeat.
+
+
+## 007-guardrail-controls-and-activation/implementation-summary.md
+---
+title: "Implementation Summary: Guardrail Controls and Activation Gate"
+description: "Completed terminal governance phase: real negative controls, a fail-open activation matrix, risk mappings, and per-cell rollback procedure. Candidate flags remain off."
+trigger_phrases:
+  - "guardrail activation gate implementation summary"
+  - "behavioral negative control verification"
+importance_tier: "important"
+contextType: "implementation"
+parent: "hooks"
+status: "complete"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation"
+    last_updated_at: "2026-08-07T15:04:55.106Z"
+    last_updated_by: "codex"
+    recent_action: "Verified guardrail controls"
+    next_safe_action: "Collect candidate-owned behavioral and delivery evidence without changing flag defaults"
+    blockers: []
+    key_files:
+      - "guardrail-negative-controls.test.mjs"
+      - "activation-matrix.json"
+      - "activation-matrix.schema.json"
+      - "activation-matrix-evidence.mjs"
+      - "activation-matrix.test.mjs"
+      - "risk-register.md"
+      - "rollback-procedure.md"
+    session_dedup:
+      fingerprint: "sha256:27bed2254a09046186b8e2da8cdcb7642d396d8481ba9f690c6981fe24ede131"
+      session_id: "2026-08-06-hooks-002-007"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The governor control is behavioral and scored; it does not compare directive bytes."
+      - "Every applicable cell without both passing evidence types remains emit, and all candidate flags remain off."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-guardrail-controls-and-activation |
+| **Completed** | 2026-08-06 |
+| **Status** | Complete — controls defined and verified; all candidate flags remain off |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 008-sk-code-alignment/implementation-summary.md
+---
+title: "Implementation Summary: sk-code Alignment and README Freshness Audit"
+description: "Final state of the injection-bloat sk-code alignment audit: a 5-iteration deepseek-v4-flash deep-research pass found the changed surface substantially aligned, and the verified must-fix set (four comment-hygiene label strips and three stale-by-omission README corrections) was implemented with behavior unchanged."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "sk-code alignment summary"
+  - "readme freshness summary"
+  - "injection bloat audit result"
+importance_tier: "important"
+contextType: "implementation-summary"
+parent: "hooks"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/008-sk-code-alignment"
+    last_updated_at: "2026-08-07T17:40:36.725Z"
+    last_updated_by: "claude"
+    recent_action: "Implemented and verified the must-fix findings from the deep-research audit"
+    next_safe_action: "Alignment audit and follow-up polish complete; no further action"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs"
+      - ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md"
+    session_dedup:
+      fingerprint: "sha256:929d87704be840661ea885ad1344374482248bde2b3eabbb4ba9e23be509b319"
+      session_id: "2026-08-07-hooks-002-008"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The changed injection-bloat surface is substantially aligned with the sk-code opencode-surface standards (11 of 12 files clean; the twelfth carried only comment-hygiene labels)."
+      - "No README was directly contradicted; three were stale-by-omission of the now load-bearing delivery/epoch/observer behavior and were corrected."
+---
+# Implementation Summary: sk-code Alignment and README Freshness Audit
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Complete (must-fix implemented and verified; optional polish deferred) |
+| **Audit executor** | `cli-opencode` `deepseek/deepseek-v4-flash`, 5 iterations, no early convergence |
+| **Changed surface audited** | 12 code files committed at `78ef96ae6b` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A bounded five-iteration deep-research audit of the injection-bloat shadow-program code, followed by the implementation of its verified must-fix findings.
+
+- **Audit finding**: The changed surface is substantially aligned — 11 of 12 files fully conform to the sk-code opencode-surface standards; the changed behavior matches the frozen contract. Two gaps: ephemeral fix-round comment labels (must-fix), and duplicated packet-number `candidate` literals (optional).
+- **Comment hygiene**: Stripped four ephemeral labels — `(fix 3)`/`(fix 2)`/`(fix 2)` in `spec-gate-core.mjs` and `(P1 fix)` in `mk-spec-gate.js` — keeping the durable WHY.
+
+## 009-testing-doc-alignment/implementation-summary.md
+---
+title: "Implementation Summary: Testing-Doc and Feature-Catalog Alignment Sweep"
+description: "Final state of the dual-lineage repo-wide playbook and catalog alignment sweep: both models found the surfaces substantially aligned, with one change-derived stale playbook test count (corrected) and additive adapter-catalog omissions (two documented, the broad flag-reference sweep deferred)."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "testing doc alignment summary"
+  - "feature catalog sweep result"
+importance_tier: "important"
+contextType: "implementation-summary"
+parent: "hooks"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/009-testing-doc-alignment"
+    last_updated_at: "2026-08-08T09:29:48Z"
+    last_updated_by: "claude"
+    recent_action: "Implemented and verified the must-fix findings from the dual-lineage sweep"
+    next_safe_action: "Catalog delegates to ENV-REFERENCE by design; no further action"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md"
+      - ".opencode/skills/cli-external-orchestration/feature-catalog/cursor-hooks-and-spec-gate/cursor-hooks-and-spec-gate.md"
+    session_dedup:
+      fingerprint: "sha256:76ffd4d7e49c52c47916f84af2c503b9a9c754787cef0e6a69e7784504c7296d"
+      session_id: "2026-08-07-hooks-002-009"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The manual-testing-playbooks and feature-catalogs are substantially aligned; no document asserts the old epoch-0 or configured-receipt confirmation contract — the changed vocabulary lived only in the spec packet and the READMEs fixed in phase 008."
+      - "The only change-derived staleness was a playbook expected test count (67 -> 87) that grew when the epoch/observer tests were added."
+---
+# Implementation Summary: Testing-Doc and Feature-Catalog Alignment Sweep
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Complete (must-fix implemented and verified; broad flag-reference addition deferred) |
+| **Sweep executors** | `cli-codex gpt-5.6-luna` (max, fast) and `cli-opencode opencode-go/deepseek-v4-flash`, 10 iterations each, no early convergence |
+| **Surface swept** | ~41 manual-testing-playbooks and ~1,498 feature-catalog files, committed at `2af2feb113` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Two independent 10-iteration deep-loop lineages swept the repo-wide playbook and catalog surface, followed by the implementation of the verified must-fix findings.
+
+- **Convergent verdict**: Both models found the surfaces substantially aligned. No document asserts the old confirmation contract (epoch-0 or `configured`-receipt confirmation, pre-emission observation). The changed vocabulary existed only in the spec packet and the phase-008 READMEs.
+- **P1 must-fix (implemented)**: `spec-mutation-gate-enforce.md` step 2 expected `# tests 67`; the suite grew to 87 when the epoch/observer tests were added. Corrected the expected output to `87/87/0/0` and added the same env-neutralization step 1 already uses (so a child-dispatched run is hermetic).
+- **P2 adapter-catalog omissions (implemented)**: added the post-emission delivery-observation note to the cursor spec-gate catalog and the post-emission advisor-policy-observation note to `claude-hook.md`.
+
+## 010-playbook-cheapest-model/implementation-summary.md
+---
+title: "Implementation Summary: Per-Runtime Cheapest-Model Standardization of the CLI Manual-Testing Playbooks"
+description: "Final state of the documentation-only per-runtime playbook model standardization: five runtimes re-pointed to their cheapest model and one (cursor) already conformant, with model-under-test scenarios preserved and opencode/pi bound to the opencode-go gateway."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "playbook cheapest model summary"
+  - "cli playbook model swap result"
+importance_tier: "important"
+contextType: "implementation-summary"
+parent: "hooks"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/010-playbook-cheapest-model"
+    last_updated_at: "2026-08-08T10:47:17Z"
+    last_updated_by: "claude"
+    recent_action: "Standardized six runtimes onto their cheapest models and verified"
+    next_safe_action: "Port the delta to skilled/v4.0.0.0 on operator approval"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/"
+      - ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/"
+      - ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md"
+    session_dedup:
+      fingerprint: "sha256:fbd1722f492be533769dc029814ad6b94923d9d2eea380217c9f23c68387ecba"
+      session_id: "2026-08-08-hooks-002-010"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "cli-pi does support the opencode-go gateway (deepseek-v4-flash [opencode-go], confirmed live in the model picker); the skill's providers-and-models.md roster was stale (dated 2026-07-28) and predated it."
+      - "cursor needed no edit: its vehicle scenarios already dispatch composer-2.5, and the residual gpt-5.2 / composer-2.5-fast references are model-under-test."
+---
+# Implementation Summary: Per-Runtime Cheapest-Model Standardization of the CLI Manual-Testing Playbooks
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Complete (all six runtimes standardized and verified) |
+| **Scope** | 48 `manual-testing-playbook` markdown files across six runtimes, plus this packet |
+| **Change class** | Documentation-only (model-id tokens in playbook prose and command lines) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Each runtime's manual-testing-playbook vehicle scenarios were re-pointed to that runtime's operator-chosen cheapest dispatch model, so a full per-runtime playbook pass (to validate the injection-bloat hooks in each host) is cheap and uniform. No hook, plugin, or shadow-delivery behavior was touched.
+
+- **Codex** — `gpt-5.5`, `gpt-5.6-sol`, and bare `gpt-5.6` → `gpt-5.6-luna` (140 refs); the default `model_reasoning_effort="medium"` raised to `"high"` to match the `LUNA HIGH` combination. The `reasoning-effort/` dir (effort-under-test) was preserved untouched.
+- **Cursor** — no edit needed. Its vehicle scenarios already dispatch `--model composer-2.5`; the residual `gpt-5.2` / `composer-2.5-fast` references are model-under-test (a hallucination fixture on effort-suffix resolution, the allowlist description, and a deliberate fast-variant comparison).
+
+## 011-playbook-results-automation/implementation-summary.md
+---
+title: "Implementation Summary: Persisted Results for Manual Playbook Scenario Runs"
+description: "The wrapper, renderer/export changes, contract wiring, persistence test, and six-runtime representative exercise are built, wired, and exercised; full suites and optional shared-writer refactoring remain pending."
+status: "built, wired, and exercised end-to-end; full-suite runs pending"
+completion_pct: 95
+trigger_phrases:
+  - "manual playbook results summary"
+  - "playbook persistence design"
+  - "benchmark artifact automation summary"
+importance_tier: "critical"
+contextType: "implementation-summary"
+parent: "hooks"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/011-playbook-results-automation"
+    last_updated_at: "2026-08-08T16:27:56Z"
+    last_updated_by: "claude"
+    recent_action: "Reconciled the record to the built, wired, and exercised state"
+    next_safe_action: "Run the full per-runtime playbook suites"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/manual-playbook-persist.test.cjs"
+      - ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+      - ".opencode/skills/sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md"
+    session_dedup:
+      fingerprint: "sha256:393a8b410092acd2582c73ad9860f0be88a0aee9f562ea772bdbe46d458edf11"
+      session_id: "2026-08-08-hooks-002-011"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Persisted Results for Manual Playbook Scenario Runs
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-playbook-results-automation |
+| **Level** | 2 |
+| **Status** | Built, wired, and exercised end-to-end; full-suite runs pending |
+| **Completion** | 95% |
+| **Implementation Phase** | Wrapper/runtime + contract wiring + representative six-runtime exercise landed; optional shared-writer/Lane C refactor and full suites pending |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The core operator path now exists and is exercised by tests: a manual scenario outcome is handed to one canonical wrapper, which persists the full seven-file benchmark record into `<skill>/benchmark/reports/<dated-run-label>/`, reusing 021's naming, renderers, and index boundary. The optional shared `persist-run-artifacts.cjs` writer was not introduced; the wrapper calls the exported renderers and `appendRunIndex` directly.
+
+
+## 012-playbook-fails-remediation/implementation-summary.md
+---
+title: "Implementation Summary: Manual Testing Playbook FAIL Remediation"
+description: "Record the authored Level-2 remediation design and the follow-on work required to move 30 verified FAILs to PASS or documented SKIP."
+status: "remediation complete; re-run zero FAIL"
+completion_pct: 100
+trigger_phrases:
+  - "manual playbook remediation implementation summary"
+  - "design authored remediation"
+  - "zero FAIL follow-on state"
+  - "playbook remediation handoff"
+importance_tier: "critical"
+contextType: "implementation"
+parent: "hooks"
+_memory:
+  continuity:
+    packet_pointer: "hooks/002-injection-bloat-reduction/012-playbook-fails-remediation"
+    last_updated_at: "2026-08-09T05:04:50Z"
+    last_updated_by: "claude"
+    recent_action: "Re-ran all 30 scenarios to zero FAIL; re-run caught and fixed four codex defects"
+    next_safe_action: "None; packet complete — zero FAIL, all devin dispatches re-confirmed"
+    blockers: []
+    key_files:
+      - ".opencode/specs/hooks/002-injection-bloat-reduction/012-playbook-fails-remediation/spec.md"
+      - ".opencode/specs/hooks/002-injection-bloat-reduction/012-playbook-fails-remediation/plan.md"
+      - ".opencode/specs/hooks/002-injection-bloat-reduction/012-playbook-fails-remediation/tasks.md"
+      - ".opencode/specs/hooks/002-injection-bloat-reduction/012-playbook-fails-remediation/checklist.md"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs"
+      - ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      - ".opencode/skills/system-spec-kit/scripts/pi/sync-agents-pi.cjs"
+      - ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/sync-runtime-mirrors.cjs"
+      - ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs"
+    session_dedup:
+      fingerprint: "sha256:70bd208f38a9f4db6405737e717f01731f8ae8b835c384c40177b0d190b3390e"
+      session_id: "2026-08-08-hooks-002-012"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Manual Testing Playbook FAIL Remediation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 012-playbook-fails-remediation |
+| **Status** | Remediation complete; re-run zero FAIL |
+| **Created** | 2026-08-08 |
+| **Level** | 2 |
+| **Completion** | 100% — all 30 scenarios PASS or documented SKIP (0 FAIL); devin dispatches re-confirmed after cloud recovery |
+<!-- /ANCHOR:metadata -->
+
+---
+
+
+FOLDER
+
+<<<FOLDER id="specs/hooks/003-goal-hooks-cross-runtime"
+# PACKET: specs/hooks/003-goal-hooks-cross-runtime (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Cross-runtime goal hooks + dispatch-shape coverage + OpenCode symlink mirror"
+description: "Port the OpenCode passive session-goal system to cli-devin, cli-cursor and cli-pi via a runtime-neutral goal hook concern, activate the dormant hard_rules for those CLIs in the dispatch hook, and mirror the OpenCode plugins into the unified hooks tree."
+trigger_phrases:
+  - "goal hooks cross runtime"
+  - "goal hook devin cursor pi"
+  - "dispatch shape coverage"
+  - "opencode plugin symlinks"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/003-goal-hooks-cross-runtime"
+    last_updated_at: "2026-07-29T07:06:08Z"
+    last_updated_by: "claude"
+    recent_action: "All 8 phase children complete; packet closed out"
+    next_safe_action: "Commit phase 008 + parent metadata on skilled/v4"
+    blockers: []
+    key_files:
+      - ".opencode/plugins/mk-goal.js"
+      - ".opencode/hooks/dispatch/lib/dispatch-audit.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "goal-hooks-cross-runtime-20260728"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Codex excluded from the goal port by operator choice."
+      - "Port scope: full parity attempt, honest per-runtime tiers fixed by live probes."
+      - "State model: one shared active-goal file for non-OpenCode runtimes."
+      - "Workspace: directly on skilled/v4.0.0.0."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->
+# Feature Specification: Cross-runtime goal hooks + dispatch-shape coverage + OpenCode symlink mirror
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+## 001-goal-core-and-state/implementation-summary.md
+---
+title: "Implementation Summary: Runtime-neutral goal core + shared active-goal state + manage CLI"
+description: "Phase 001 built and verified: goal-core.cjs, the manage CLI, and their co-located test suite are shipped and committed (`7fd31049a3`)."
+trigger_phrases:
+  - "goal core implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/003-goal-hooks-cross-runtime/001-goal-core-and-state"
+    last_updated_at: "2026-08-11T06:43:14.790Z"
+    last_updated_by: "claude"
+    recent_action: "Build goal core, CLI and tests; 29/29 pass"
+    next_safe_action: "Run capability probes for phase 002"
+    blockers: []
+    key_files:
+      - ".opencode/hooks/goal/lib/goal-core.cjs"
+      - ".opencode/hooks/goal/bin/goal.cjs"
+      - ".opencode/hooks/goal/lib/goal-core.test.cjs"
+      - ".opencode/hooks/goal/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "goal-hooks-cross-runtime-20260728"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-goal-core-and-state |
+| **Completed** | 2026-07-28 (committed `7fd31049a3`) |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A new `.opencode/hooks/goal/` concern, shipped this session (committed `7fd31049a3`):
+
+- **`lib/goal-core.cjs`** (686 lines): shared-state atomic read/write (temp+rename, `0600`), the `[active_goal]` block renderer (byte-compatible with `mk-goal.js`'s template outside a parameterized Role line), ported `normalizeUserAuthoredText` hardening (NFKC normalization, bidi/zero-width stripping, marker redaction, homoglyph folding, instruction-override redaction, backtick downgrade), a ported heuristic verifier, and turn/wall-clock accounting with an honestly-labeled `usageSource`.
+- **`bin/goal.cjs`** (222 lines): the manage CLI with actions `set/show/history/clear/complete/pause/resume/doctor`, mirroring `/goal:goal-opencode`'s router contract (envelope shape, `--budget` parsing, error codes including `PLUGIN_DISABLED`, and bare-text-falls-to-set behavior).
+- **`lib/goal-core.test.cjs`** (304 lines, 29 tests): co-located `node --test` suite covering state roundtrip/atomicity, mode-0600, archive-on-clear/complete, byte-shape render + parameterized Role line, compact fallback, hardening cases, heuristic verdicts, and CLI envelopes/error codes.
+- **`README.md`**: behavioral-style documentation; `validate_document.py` reports 0 issues.
+
+### Files Built
+
+| File | Action | Purpose |
+
+## 002-capability-probes/implementation-summary.md
+---
+title: "Implementation Summary: Cross-runtime goal hook capability probes"
+description: "Three live capability probes complete: Pi turn-end event confirmed, Devin Stop block/continue confirmed live, Cursor preToolUse refresh confirmed non-delivering"
+trigger_phrases:
+  - "capability probe summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/003-goal-hooks-cross-runtime/002-capability-probes"
+    last_updated_at: "2026-08-11T06:43:14.944Z"
+    last_updated_by: "claude"
+    recent_action: "Ran all three live capability probes and recorded the matrix"
+    next_safe_action: "Hand fixed tiers to phases 003/004/005 adapter implementation"
+    blockers: []
+    key_files: ["capability-matrix.md", "spec.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "goal-hooks-cross-runtime-002-20260728"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Devin's Stop hook decision:block forces genuine continuation (live transcript proof)."
+      - "Pi's types.d.ts exposes turn_end/agent_end/agent_settled, all subscribable."
+      - "Cursor's preToolUse agent_message does not reach model-visible context (live transcript proof)."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-capability-probes |
+| **Completed** | 2026-07-28 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Three live/direct-read capability probes, each cited by evidence, plus a capability matrix (`capability-matrix.md`) fixing the honest parity tier for phases 003 (Devin), 004 (Cursor), and 005 (Pi) before any adapter code exists.
+
+- **Probe (a) — Pi event surface**: direct read of the installed `types.d.ts` (`/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/core/extensions/types.d.ts`). Found `TurnEndEvent` (`type:"turn_end"`, line 549), `AgentEndEvent` (`type:"agent_end"`, line 534), and `AgentSettledEvent` (`type:"agent_settled"`, line 539) — all fire at agent/turn boundaries distinct from `SessionShutdownEvent`, and are all subscribable via `ExtensionContext.on(...)` (lines 867-870).
+- **Probe (b) — Devin Stop block/continue**: live probe in an isolated `/tmp` workspace mirroring the DV-008 playbook pattern (throwaway `.devin/hooks.v1.json`, real repo's `.devin/hooks.v1.json` untouched). A `Stop` hook script returned `{"decision":"block","reason":"..."}` on its first invocation. Result: **CONFIRMED** — `devin -p` genuinely continued. Direct evidence from the real session transcript (`~/.local/share/devin/cli/transcripts/caring-diver.json`): step 8 the agent said "Hello!" and stopped; step 9 the hook's `reason` text was injected verbatim as a synthetic `user` turn; step 10 the agent produced a new turn ("Got it — no action taken.") in direct response. The hook fired twice; `stop_hook_active` was `false` on the first call and `true` on the second (the same loop-guard field/semantics as Claude Code's Stop contract).
+- **Probe (c) — Cursor preToolUse refresh**: live probe in an isolated `/tmp` workspace with a throwaway `.cursor/hooks.json` (real repo's `.cursor/hooks.json` untouched). A `preToolUse` hook returned `agent_message` containing an explicit instruction to echo a distinctive token in the model's next reply. Result: **CONFIRMED non-delivery** — the hook fired (payload logged), but the raw model transcript (`~/.cursor/projects/private-tmp-cli-cursor-pretooluse-probe-*/agent-transcripts/*.jsonl`) contains zero occurrences of the marker text anywhere in the user/assistant turns, and the model's final reply never referenced it. This is direct transcript-level proof, stronger than the prior packet's self-report caveat (`009-cursor-hooks-lifecycle/002-cursor-hooks-live-wiring/implementation-summary.md:68`), which only had the model's own (explicitly unreliable) account to go on.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `capability-matrix.md` | Created | Full evidence table for all three probes, status legend, fixed parity tiers |
+
+## 003-devin-goal-hooks/implementation-summary.md
+---
+title: "Implementation Summary: Devin goal hooks"
+description: "Three Devin goal-hook adapters shipped and live-verified: UserPromptSubmit inject, SessionStart restore, Stop verify-and-continue at the full tier phase 002 confirmed."
+trigger_phrases:
+  - "devin goal hooks summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/003-goal-hooks-cross-runtime/003-devin-goal-hooks"
+    last_updated_at: "2026-08-11T06:43:15.098Z"
+    last_updated_by: "claude"
+    recent_action: "Shipped and live-verified all three Devin goal-hook adapters"
+    next_safe_action: "Hand parity findings to phases 004/005 (Cursor, Pi)"
+    blockers: []
+    key_files:
+      - ".opencode/hooks/goal/devin/goal-inject.mjs"
+      - ".opencode/hooks/goal/devin/goal-session-start.mjs"
+      - ".opencode/hooks/goal/devin/goal-verify.mjs"
+      - ".opencode/hooks/goal/devin/goal-devin.test.mjs"
+      - ".devin/hooks.v1.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "goal-hooks-cross-runtime-003-devin-20260728"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Devin's Stop hook decision:block forces genuine continuation (mechanism confirmed by phase 002; this phase's script emits the identical envelope)."
+      - "Devin's real Stop payload carries neither last_assistant_message nor transcript_path (direct live capture), so the verify step never receives evidence in practice today -- a live upstream gap, not an adapter defect."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-devin-goal-hooks |
+| **Completed** | 2026-07-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Three Devin lifecycle hook adapters under `.opencode/hooks/goal/devin/`, each a thin wrapper around the phase 001 shared goal core (`.opencode/hooks/goal/lib/goal-core.cjs`), plus registration in `.devin/hooks.v1.json` and a co-located `node --test` suite.
+
+- **`goal-inject.mjs`** (`UserPromptSubmit`): reads the shared `active-goal.json`; if the goal is `active`, injects `renderGoalBrief({goal, runtimeLabel:'Devin'})` as `additionalContext` and calls `recordTurn({runtime:'devin'})`. No-ops silently for no goal / paused / disabled.
+- **`goal-session-start.mjs`** (`SessionStart`): read-only restore of the same brief at session boot; never calls `recordTurn` (a session start is not a turn).
+- **`goal-verify.mjs`** (`Stop`): runs `verifyGoalHeuristic()` against the Stop payload's evidence text (prefers `last_assistant_message`, falls back to reading the `transcript_path` file's last `source:"agent"` step). On a `not-met` verdict with iteration budget remaining (`goal.maxAutoTurns` if present, else a default cap of 20 against the shared `turnsUsed` counter), emits Devin's confirmed Stop continuation contract — a bare `{"decision":"block","reason":"..."}` at the top level of stdout, not nested in `hookSpecificOutput`. Honors `stop_hook_active === true` as the loop guard. Every path fails open.
+- **`.devin/hooks.v1.json`**: three new entries, additive-only — `goal-session-start.mjs` appended to `SessionStart`, `goal-inject.mjs` appended to `UserPromptSubmit`, `goal-verify.mjs` appended to `Stop`. No existing entry touched.
+- **`goal-devin.test.mjs`**: 21 `node --test` cases spawning each adapter as a real child process against an isolated `MK_GOAL_STATE_DIR`.
+
+## 004-cursor-goal-hooks/implementation-summary.md
+---
+title: "Implementation Summary: Cursor goal hooks"
+description: "Built the sessionStart-only prebind-style goal injection adapter for Cursor, the fixed injection-only tier per phase 002's capability matrix, with unconditional fail-open behavior since Cursor hooks are shared with the editor."
+trigger_phrases:
+  - "cursor goal hooks summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/003-goal-hooks-cross-runtime/004-cursor-goal-hooks"
+    last_updated_at: "2026-08-11T06:43:15.249Z"
+    last_updated_by: "claude"
+    recent_action: "Built, tested, live-smoked, and registered goal-inject.mjs"
+    next_safe_action: "None — phase complete"
+    blockers: []
+    key_files:
+      - ".opencode/hooks/goal/cursor/goal-inject.mjs"
+      - ".opencode/hooks/goal/cursor/goal-cursor.test.mjs"
+      - ".cursor/hooks.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "goal-hooks-cross-runtime-20260728"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "sessionStart-only is the fixed, honest parity tier for Cursor per phase 002; sessionEnd verify and preToolUse refresh both dropped."
+      - "Live smoke found zero occurrences of the injected marker in model-visible transcript across 2 dispatches, reported honestly as unproven delivery, not overclaimed."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-cursor-goal-hooks |
+| **Completed** | 2026-07-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+One adapter, `.opencode/hooks/goal/cursor/goal-inject.mjs`, plus its test suite and one `.cursor/hooks.json` registration. Phase 002's capability matrix fixed Cursor's honest parity tier at "injection-only, `sessionStart`-once" before this phase's implementation began, so the originally-planned `session-end.cjs` (heuristic verify) and `pre-tool-use.cjs` (optional refresh) adapters were dropped rather than built — both would have been inert: `preToolUse`'s `agent_message` is confirmed not spliced into model context, and `stop` never fires so no verify/continue mechanism exists for a `sessionEnd` verdict to act on.
+
+- `goal-inject.mjs` — `sessionStart` adapter. Reads the shared goal via `readGoalRecord()`, renders the `[active_goal]` block via `renderGoalBrief({goal, runtimeLabel:'Cursor'})`, records the touch via `recordTurn({runtime:'cursor'})`, and returns the block as `agent_message` in Cursor's `{permission, user_message, agent_message}` response envelope. Every path (malformed/missing stdin, disabled plugin, goal-core error, no/paused/cleared goal) fails open to `{"permission":"allow"}`.
+- Registered on `sessionStart` in `.cursor/hooks.json`, appended after the 6 pre-existing entries (none removed or reordered).
+
+### Files Changed
+
+| File | Change |
+|------|--------|
+
+## 005-pi-goal-hooks/implementation-summary.md
+---
+title: "Implementation Summary: Pi goal extension (input-transform injection, session_start restore, turn-end verify)"
+description: "Shipped and live-verified: operator-visible input-transform injection, session_start restore, and observe-only turn-end verify, all proven in a real Pi session transcript"
+trigger_phrases:
+  - "pi goal extension summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/003-goal-hooks-cross-runtime/005-pi-goal-hooks"
+    last_updated_at: "2026-08-11T06:43:15.448Z"
+    last_updated_by: "claude"
+    recent_action: "Shipped and live-verified the Pi goal extension"
+    next_safe_action: "None — phase complete"
+    blockers: []
+    key_files:
+      - ".opencode/hooks/goal/pi/goal-context.ts"
+      - ".pi/extensions/goal-context.ts"
+      - ".opencode/hooks/goal/pi/goal-pi.test.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "goal-hooks-cross-runtime-005-pi-20260729"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Turn-end verify is observe-only: void-returning handlers cannot force continuation, confirmed live (5 verdicts recorded, agent kept working under its own loop)."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-pi-goal-hooks |
+| **Completed** | 2026-07-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+One new Pi extension delivering all three lifecycle points named in scope, plus its co-located test suite:
+
+- **`.opencode/hooks/goal/pi/goal-context.ts`** — the real, canonical extension file. A single default-exported factory registers three handlers:
+  - `input`: dynamic-imports the goal core, reads the active-goal record, and — if a brief renders — returns `{action:"transform", text: "${event.text}\n\n${brief}"}`, appending the byte-compatible `[active_goal]` block to the user's own turn. Chains additively with the repo's other `input` handlers (e.g. `spec-gate-classify.ts`) the same way that file does.
+  - `session_start`: restores the active goal via a `pi.sendMessage({customType:"goal-context-restore", ..., display:false})` custom message, fired once per session before any user turn.
+  - `turn_end`: flattens the turn's ending message and tool-result content into evidence text, runs the ported heuristic verifier, calls `recordTurn` to persist turn count/activity, and — only when the verdict is not `"met"` — sends a non-blocking `goal-verify-nudge` custom message. It never returns a value that could force continuation (the event's handler type is `void`).
+  - Every handler wraps its body in try/catch and fails open (`{action:"continue"}` for `input`, `undefined` for `session_start`/`turn_end`) so a goal-state bug can never block a Pi turn or session.
+- **`.pi/extensions/goal-context.ts`** — a relative symlink (`-> ../../.opencode/hooks/goal/pi/goal-context.ts`) satisfying Pi's fixed auto-discovery directory. Reverse of the general Pi-extension pattern in this repo (real file usually lives under `.pi/extensions/`), matching the goal concern's canonical home in `.opencode/hooks/goal/` alongside its sibling adapters.
+- **`.opencode/hooks/goal/pi/goal-pi.test.mjs`** — 13 `node --test` cases covering render selection (active/none/paused), `isPluginDisabled`, four heuristic-verifier scenarios, the factory's export/registration shape, and the fail-open contract of all three handlers.
+
+
+## 006-dispatch-shape-coverage/implementation-summary.md
+---
+title: "Implementation Summary: Dispatch-shape coverage for devin/cursor/pi + Codex fold-in"
+description: "Delivered. DISPATCH_SHAPES extended 2->6, Codex fold-in on both PreToolUse and PostToolUse adapters, severity error->block mapping — all verified by test re-run; rg -n CODEX_EXEC_SHAPE repo-wide is 0 hits."
+trigger_phrases:
+  - "dispatch shape coverage summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/003-goal-hooks-cross-runtime/006-dispatch-shape-coverage"
+    last_updated_at: "2026-08-11T06:43:15.604Z"
+    last_updated_by: "claude"
+    recent_action: "Verified shipped code (both codex adapters) against spec; flipped docs to Complete"
+    next_safe_action: "Consider a follow-up phase for the three missing CHECKS functions"
+    blockers: []
+    key_files:
+      - ".opencode/hooks/dispatch/lib/dispatch-audit.mjs"
+      - ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs"
+      - ".opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs"
+      - ".opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "dispatch-shape-coverage-20260728"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Whether implementing the three missing CHECKS entries belongs in this phase or a follow-up remains unresolved; deliberately out of scope here (see REQ-006/REQ-007)."
+    answered_questions:
+      - "severity: error resolved to map to 'block', implemented as an explicit branch, tested."
+      - "REQ-002/SC-002 (zero remaining CODEX_EXEC_SHAPE duplicate) fully met: both the PreToolUse and PostToolUse codex adapters read DISPATCH_SHAPES directly; rg -n \"CODEX_EXEC_SHAPE\" repo-wide is 0 hits."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-dispatch-shape-coverage |
+| **Completed** | 2026-07-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`DISPATCH_SHAPES` in `.opencode/hooks/dispatch/lib/dispatch-audit.mjs` grew from 2 to 6 entries. Added `cli-codex` (`/\bcodex\s+exec\b[^\n;&|]*\s(-p|--print)\b/`), `cli-devin` (`/\bdevin\b[^\n;&|]*\s(-p|--print)\b/`), `cli-cursor` (`/\bcursor-agent\b[^\n;&|]*\s(-p|--print)\b/`), `cli-pi` (`/\bpi\b[^\n;&|]*\s(-p|--print)\b/`). The intervening-flag class is `[^\n;&|]*` — it allows flags between the binary and print flag (e.g. pi's required `--offline`), but not across a shell separator (`&&`/`;`/`|`): a `-p` after a separator belongs to the next command, not the dispatch being audited.
+
+`.opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs` (the PreToolUse Codex adapter) had its local `CODEX_EXEC_SHAPE` constant and the `DISPATCH_SKILLS = [...DISPATCH_SHAPES, CODEX_EXEC_SHAPE]` composition removed; it now reads the shared `DISPATCH_SHAPES` directly. Its PostToolUse sibling, `.opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs`, carried the same pattern (a local `CODEX_EXEC_SHAPE` + `SHAPES = [...DISPATCH_SHAPES, CODEX_EXEC_SHAPE]` composition) and was fixed the same way in this session once found — it now also reads `DISPATCH_SHAPES` directly, with no local shape duplicate remaining anywhere in the repo (`rg -n "CODEX_EXEC_SHAPE"` — 0 hits).
+
+`.opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs`'s `evaluate()` severity-mapping branch is resolved: `const blocking = rule.severity === 'block' || rule.severity === 'error';` then `severity: blocking ? 'block' : 'warn'` — `severity: 'error'` now maps to `'block'` (was silently `'warn'`), alongside the pre-existing `'block'`. This is future-proofing with no current runtime effect: the error-severity rules on cli-codex/devin/cursor/pi reference check functions (`command-v-<cli>-required`, `<cli>-self-invocation-guard`, `deep-loop-runtime-delegation`) that are NOT registered in `CHECKS`, so `evaluate()`'s `if (!fn) continue` guard skips them regardless of severity (see Known Limitations #2).
+
+### `DISPATCH_SHAPES` extension
+
+## 007-opencode-plugin-symlinks/implementation-summary.md
+---
+title: "Implementation Summary: OpenCode plugin browsability symlinks"
+description: "Completion record for the OpenCode plugin symlink mirror phase: 7 relative browsability symlinks added inside opencode/ subfolders of the concern and skill hook trees, each pointing back at the real plugin in .opencode/plugins/, plus README tree/prose updates across 7 files. No-double-load established via the discovery contract."
+trigger_phrases:
+  - "opencode symlink summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/003-goal-hooks-cross-runtime/007-opencode-plugin-symlinks"
+    last_updated_at: "2026-08-11T06:43:15.763Z"
+    last_updated_by: "claude"
+    recent_action: "Created 7 browsability symlinks + 7 hook READMEs; verified no-double-load via contract"
+    next_safe_action: "Proceed to phase 008 (goal docs hygiene) and commit 006+007 on skilled/v4"
+    blockers: []
+    key_files:
+      - ".opencode/hooks/dispatch/opencode/mk-cli-dispatch-audit.js"
+      - ".opencode/hooks/goal/opencode/mk-goal.js"
+      - ".opencode/skills/system-spec-kit/mcp-server/hooks/opencode/mk-spec-gate.js"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "goal-hooks-cross-runtime-20260728"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-opencode-plugin-symlinks |
+| **Completed** | 2026-07-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Seven relative browsability symlinks, each inside an `opencode/` subfolder of the concern (or skill-owned) hook tree, pointing back at the real OpenCode plugin file that must stay in `.opencode/plugins/` for OpenCode's plugin discovery to find it:
+
+- `.opencode/hooks/dispatch/opencode/mk-cli-dispatch-audit.js` -> `../../../plugins/mk-cli-dispatch-audit.js`
+- `.opencode/hooks/mcp-route-guard/opencode/mk-mcp-route-guard.js` -> `../../../plugins/mk-mcp-route-guard.js`
+- `.opencode/hooks/post-edit-quality/opencode/mk-post-edit-quality.js` -> `../../../plugins/mk-post-edit-quality.js`
+- `.opencode/hooks/task-dispatch/opencode/mk-deep-loop-guard.js` -> `../../../plugins/mk-deep-loop-guard.js`
+- `.opencode/hooks/goal/opencode/mk-goal.js` -> `../../../plugins/mk-goal.js`
+- `.opencode/skills/system-spec-kit/mcp-server/hooks/opencode/mk-spec-gate.js` -> `../../../../../plugins/mk-spec-gate.js`
+- `.opencode/skills/sk-git/scripts/hooks/opencode/mk-git-preflight-advisory.js` -> `../../../../../plugins/mk-git-preflight-advisory.js`
+
+Plus README updates in 7 files: the 5 concern READMEs (`dispatch`, `mcp-route-guard`, `post-edit-quality`, `task-dispatch`, `goal`) each got an `opencode/` tree row and a browsability-symlink prose note, and the 2 skill-owned hook READMEs (`system-spec-kit/mcp-server/hooks`, `sk-git/scripts/hooks`) got the same. The `goal` README additionally gained the previously missing `devin/`, `cursor/`, `pi/` adapter rows, and the `system-spec-kit/mcp-server/hooks` README gained its previously missing `codex/`, `cursor/`, `devin/`, `pi/`, `lib/` rows, so each tree now honestly reflects on-disk reality rather than showing `opencode/` beside invisible siblings.
+
+## 008-goal-docs-hygiene/implementation-summary.md
+---
+title: "Implementation Summary: Goal docs hygiene + cross-runtime contracts"
+description: "Completion record for packet 003's docs closeout: fixed 10 stale rename-fallout references, repaired the goal command-path test, and documented the cross-runtime goal hooks across injection-contract.md, goal-plugin.md, the runtime-routing constitutional rule, and the goal concern README."
+trigger_phrases:
+  - "goal docs hygiene summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "hooks/003-goal-hooks-cross-runtime/008-goal-docs-hygiene"
+    last_updated_at: "2026-08-11T06:43:15.940Z"
+    last_updated_by: "claude"
+    recent_action: "Decommissioned Devin: removed all commands + goal hook (adapter/registration/docs)"
+    next_safe_action: "Commit; optional: reconcile cli-devin COMMANDS scenarios + SYNC §5 narrative"
+    blockers: []
+    key_files:
+      - ".devin/hooks.v1.json"
+      - ".devin/SYNC.md"
+      - ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs"
+      - ".opencode/skills/system-spec-kit/references/hooks/goal-plugin.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "goal-hooks-cross-runtime-008-20260728"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Scope: docs-only closeout phase, no new hook code."
+      - "goal-plugin.md hosts the cross-runtime section; no separate sibling doc was created."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-goal-docs-hygiene |
+| **Completed** | 2026-07-29 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The docs closeout for the cross-runtime goal-hooks packet: the goal command moved into a `commands/goal/` subfolder (invoked `/goal:goal-opencode`), leaving stale references behind, and phases 003/004/005's Devin/Cursor/Pi adapters were undocumented in the hook-injection references. Both are now resolved.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `references/hooks/goal-plugin.md` | Modify | Fixed flat command path (3×) + dead RELATED packet path; added a "Cross-Runtime Relationship" section (shared-file model + capability tiers). |
+| `references/hooks/injection-contract.md` | Modify | Added the cross-runtime active-goal entry: verbatim `[active_goal]` block + per-runtime channel/visibility (Devin/Cursor `[SYS]`, Pi `[MSG]`). |
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

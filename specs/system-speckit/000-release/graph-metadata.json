@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/000-release",
+  "spec_folder": "system-speckit/000-release",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/000-release/001-context-pack",
+    "system-speckit/000-release/002-per-packet-extraction",
+    "system-speckit/000-release/003-deep-research-synthesis",
+    "system-speckit/000-release/004-release-notes-reduce",
+    "system-speckit/000-release/005-readme-update"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "system-speckit/033-spec-template-context-optimization"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "v4 release notes plan",
+      "gather all changes since v3.6",
+      "release notes deep research",
+      "update public root readme",
+      "changelog v4.0.0.0"
+    ],
+    "key_topics": [
+      "release",
+      "release-notes",
+      "changelog",
+      "readme",
+      "deep-research",
+      "map-reduce",
+      "conventional-commits"
+    ],
+    "importance_tier": "important",
+    "status": "planning",
+    "key_files": [
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [],
+    "causal_summary": "Planning capture for the v4.0.0.0 GitHub release. Turns 2,826 commits (v3.6.0.0..HEAD, 97% conventional) across ~54 already-documented packets into public release notes and a refreshed root README, using deterministic git extraction, a cheap-model per-packet extraction spine, and a seeded no-early-convergence deep-research synthesis layer, with the final prose written by a capable model.",
+    "created_at": "2026-08-14T00:00:00.000Z",
+    "last_save_at": "2026-08-14T00:00:00.000Z",
+    "save_lineage": "manual_stub",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  },
+  "_note": "Hand-written lean phase-parent stub (spec-memory MCP disconnected at authoring). Regenerate with generate-context.js + graph backfill before relying on graph traversal."
+}

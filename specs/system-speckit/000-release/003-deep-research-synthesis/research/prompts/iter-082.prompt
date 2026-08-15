@@ -1,0 +1,1396 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-speckit/z_archive/020-mcp-working-memory-hybrid-rag"
+# PACKET: specs/system-speckit/z_archive/020-mcp-working-memory-hybrid-rag (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: MCP Working Memory Hybrid Rag"
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+description: "Feature Specification: MCP Working Memory Hybrid Rag"
+trigger_phrases:
+  - "020-mcp-working-memory-hybrid-rag"
+  - "mcp working memory hybrid rag"
+  - "archive"
+  - "validation"
+  - "plan"
+  - "archive normalization"
+  - "tasks"
+  - "verification"
+  - "checklist"
+  - "decision record"
+  - "normalization"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "general"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase manifest: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: MCP Working Memory Hybrid Rag
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+
+## 001-foundation-phases-0-1-1-5/implementation-summary.md
+---
+title: "I [system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/001-foundation-phases-0-1-1-5/implementation-summary]"
+description: "Archive normalization summary for Foundation Phases 0 1 1 5."
+trigger_phrases:
+  - "001-foundation-phases-0-1-1-5"
+  - "implementation summary"
+  - "phase"
+  - "archive"
+importance_tier: "normal"
+contextType: "general"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-foundation-phases-0-1-1-5 |
+| **Completed** | 2026-03-31 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This archived child phase now has a current-template Level 1 documentation set for Foundation Phases 0 1 1 5. You can review the phase folder without depending on outdated phase-package scaffolding or stale cross references.
+
+### Phase Archive Normalization
+
+You can now inspect the child phase as a concise archive record. The core docs were rewritten for current validator expectations, and retained checklist or decision files were converted into compatibility notes instead of full higher-level governance documents.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| spec.md | Modified | Restores a validator-compliant archived phase specification. |
+| plan.md | Modified | Describes how the child phase was normalized. |
+| tasks.md | Modified | Records cleanup and verification work. |
+| implementation-summary.md | Modified | Captures the completed archival normalization state. |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The phase folder was reviewed, rewritten against the active Level 1 templates, and verified with validate.sh until error-level issues were removed.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 002-extraction-rollout-phases-2-3/implementation-summary.md
+---
+title: "...system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/002-extraction-rollout-phases-2-3/implementation-summary]"
+description: "Archive normalization summary for Extraction Rollout Phases 2 3."
+trigger_phrases:
+  - "002-extraction-rollout-phases-2-3"
+  - "implementation summary"
+  - "phase"
+  - "archive"
+importance_tier: "normal"
+contextType: "general"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-extraction-rollout-phases-2-3 |
+| **Completed** | 2026-03-31 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This archived child phase now has a current-template Level 1 documentation set for Extraction Rollout Phases 2 3. You can review the phase folder without depending on outdated phase-package scaffolding or stale cross references.
+
+### Phase Archive Normalization
+
+You can now inspect the child phase as a concise archive record. The core docs were rewritten for current validator expectations, and retained checklist or decision files were converted into compatibility notes instead of full higher-level governance documents.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| spec.md | Modified | Restores a validator-compliant archived phase specification. |
+| plan.md | Modified | Describes how the child phase was normalized. |
+| tasks.md | Modified | Records cleanup and verification work. |
+| implementation-summary.md | Modified | Captures the completed archival normalization state. |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The phase folder was reviewed, rewritten against the active Level 1 templates, and verified with validate.sh until error-level issues were removed.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 003-memory-quality-qp-0-4/implementation-summary.md
+---
+title: "Imple [system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/003-memory-quality-qp-0-4/implementation-summary]"
+description: "Archive normalization summary for Memory Quality QP 0 4."
+trigger_phrases:
+  - "003-memory-quality-qp-0-4"
+  - "implementation summary"
+  - "phase"
+  - "archive"
+importance_tier: "normal"
+contextType: "general"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-memory-quality-qp-0-4 |
+| **Completed** | 2026-03-31 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This archived child phase now has a current-template Level 1 documentation set for Memory Quality QP 0 4. You can review the phase folder without depending on outdated phase-package scaffolding or stale cross references.
+
+### Phase Archive Normalization
+
+You can now inspect the child phase as a concise archive record. The core docs were rewritten for current validator expectations, and retained checklist or decision files were converted into compatibility notes instead of full higher-level governance documents.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| spec.md | Modified | Restores a validator-compliant archived phase specification. |
+| plan.md | Modified | Describes how the child phase was normalized. |
+| tasks.md | Modified | Records cleanup and verification work. |
+| implementation-summary.md | Modified | Captures the completed archival normalization state. |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The phase folder was reviewed, rewritten against the active Level 1 templates, and verified with validate.sh until error-level issues were removed.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 004-post-research-wave-1-governance-foundations/implementation-summary.md
+---
+title: "...t/z_archive/020-mcp-working-memory-hybrid-rag/004-post-research-wave-1-governance-foundations/implementation-summary]"
+description: "Archive normalization summary for Post Research Wave 1 Governance Foundations."
+trigger_phrases:
+  - "004-post-research-wave-1-governance-foundations"
+  - "implementation summary"
+  - "phase"
+  - "archive"
+importance_tier: "normal"
+contextType: "general"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-post-research-wave-1-governance-foundations |
+| **Completed** | 2026-03-31 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This archived child phase now has a current-template Level 1 documentation set for Post Research Wave 1 Governance Foundations. You can review the phase folder without depending on outdated phase-package scaffolding or stale cross references.
+
+### Phase Archive Normalization
+
+You can now inspect the child phase as a concise archive record. The core docs were rewritten for current validator expectations, and retained checklist or decision files were converted into compatibility notes instead of full higher-level governance documents.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| spec.md | Modified | Restores a validator-compliant archived phase specification. |
+| plan.md | Modified | Describes how the child phase was normalized. |
+| tasks.md | Modified | Records cleanup and verification work. |
+| implementation-summary.md | Modified | Captures the completed archival normalization state. |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The phase folder was reviewed, rewritten against the active Level 1 templates, and verified with validate.sh until error-level issues were removed.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 005-post-research-wave-2-controlled-delivery/implementation-summary.md
+---
+title: "...-kit/z_archive/020-mcp-working-memory-hybrid-rag/005-post-research-wave-2-controlled-delivery/implementation-summary]"
+description: "Archive normalization summary for Post Research Wave 2 Controlled Delivery."
+trigger_phrases:
+  - "005-post-research-wave-2-controlled-delivery"
+  - "implementation summary"
+  - "phase"
+  - "archive"
+importance_tier: "normal"
+contextType: "general"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-post-research-wave-2-controlled-delivery |
+| **Completed** | 2026-03-31 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This archived child phase now has a current-template Level 1 documentation set for Post Research Wave 2 Controlled Delivery. You can review the phase folder without depending on outdated phase-package scaffolding or stale cross references.
+
+### Phase Archive Normalization
+
+You can now inspect the child phase as a concise archive record. The core docs were rewritten for current validator expectations, and retained checklist or decision files were converted into compatibility notes instead of full higher-level governance documents.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| spec.md | Modified | Restores a validator-compliant archived phase specification. |
+| plan.md | Modified | Describes how the child phase was normalized. |
+| tasks.md | Modified | Records cleanup and verification work. |
+| implementation-summary.md | Modified | Captures the completed archival normalization state. |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The phase folder was reviewed, rewritten against the active Level 1 templates, and verified with validate.sh until error-level issues were removed.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 006-post-research-wave-3-outcome-confirmation/implementation-summary.md
+---
+title: "...kit/z_archive/020-mcp-working-memory-hybrid-rag/006-post-research-wave-3-outcome-confirmation/implementation-summary]"
+description: "Archive normalization summary for Post Research Wave 3 Outcome Confirmation."
+trigger_phrases:
+  - "006-post-research-wave-3-outcome-confirmation"
+  - "implementation summary"
+  - "phase"
+  - "archive"
+importance_tier: "normal"
+contextType: "general"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-post-research-wave-3-outcome-confirmation |
+| **Completed** | 2026-03-31 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This archived child phase now has a current-template Level 1 documentation set for Post Research Wave 3 Outcome Confirmation. You can review the phase folder without depending on outdated phase-package scaffolding or stale cross references.
+
+### Phase Archive Normalization
+
+You can now inspect the child phase as a concise archive record. The core docs were rewritten for current validator expectations, and retained checklist or decision files were converted into compatibility notes instead of full higher-level governance documents.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| spec.md | Modified | Restores a validator-compliant archived phase specification. |
+| plan.md | Modified | Describes how the child phase was normalized. |
+| tasks.md | Modified | Records cleanup and verification work. |
+| implementation-summary.md | Modified | Captures the completed archival normalization state. |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The phase folder was reviewed, rewritten against the active Level 1 templates, and verified with validate.sh until error-level issues were removed.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 007-documentation-alignment/implementation-summary.md
+---
+title: "Imp [system-spec-kit/z_archive/020-mcp-working-memory-hybrid-rag/007-documentation-alignment/implementation-summary]"
+description: "Archive normalization summary for Documentation Alignment."
+trigger_phrases:
+  - "007-documentation-alignment"
+  - "implementation summary"
+  - "phase"
+  - "archive"
+importance_tier: "normal"
+contextType: "general"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-documentation-alignment |
+| **Completed** | 2026-03-31 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This archived child phase now has a current-template Level 1 documentation set for Documentation Alignment. You can review the phase folder without depending on outdated phase-package scaffolding or stale cross references.
+
+### Phase Archive Normalization
+
+You can now inspect the child phase as a concise archive record. The core docs were rewritten for current validator expectations, and retained checklist or decision files were converted into compatibility notes instead of full higher-level governance documents.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| spec.md | Modified | Restores a validator-compliant archived phase specification. |
+| plan.md | Modified | Describes how the child phase was normalized. |
+| tasks.md | Modified | Records cleanup and verification work. |
+| implementation-summary.md | Modified | Captures the completed archival normalization state. |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The phase folder was reviewed, rewritten against the active Level 1 templates, and verified with validate.sh until error-level issues were removed.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+FOLDER
+
+<<<FOLDER id="specs/system-speckit/z_archive/021-spec-kit-phase-system"
+# PACKET: specs/system-speckit/z_archive/021-spec-kit-phase-system
+
+---
+title: "Implementation Summary — 021-spec-kit-phase-system [system-spec-kit/021-spec-kit-phase-system/implementation-summary]"
+description: "The phase system moved from proposal into implemented behavior across scripts, command routing, and documentation surfaces. The core flow now exists end-to-end: phase recommenda..."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "021"
+  - "spec"
+importance_tier: "normal"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/021-spec-kit-phase-system"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3+ -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 021-spec-kit-phase-system |
+| **Completed** | 2026-02-21 (state-sync update) |
+| **Level** | 3+ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The phase system moved from proposal into implemented behavior across scripts, command routing, and documentation surfaces. The core flow now exists end-to-end: phase recommendation, phase folder scaffolding, phase-aware command routing, and recursive validation scaffolding are all represented as completed tasks in this spec.
+
+### Core capabilities now in place
+
+- Phase detection and scoring were implemented in the recommendation pipeline (`T001-T004`).
+- Phase creation behavior and template addendum injection were implemented in creation workflows (`T006-T012`).
+- Router and command integration for phase-aware workflows were implemented across existing commands (`T013-T016`, `T020-T023`). The dedicated `/spec_kit:phase` command and its assets (`T017-T019`) were NOT shipped; the packet uses the `:with-phases` suffix and `--phase-folder` argument on existing commands instead.
+- Recursive validation plumbing, phase-link rule support, and node/reference documentation updates were implemented (`T024-T027`, `T029-T032`, `T034`).
+
+### What is still open
+
+Six tasks remain open in `tasks.md`: `T005`, `T017`, `T018`, `T019`, `T028`, and `T033`. The three fixture tasks (`T005`, `T028`, `T033`) track fixture-backed verification debt. The three command-asset tasks (`T017-T019`) are superseded — the delivered phase workflow uses the `:with-phases` suffix plus `--phase-folder` on existing commands rather than a dedicated `/spec_kit:phase` command entry point.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Delivery followed the four planned execution phases in `plan.md`: detection/scoring, templates/creation, commands/router, and validation/docs/nodes. Work was tracked in `tasks.md`, where 28 of 34 tasks are marked complete (T005, T017-T019, T028, T033 open).
+
+State reconciliation was performed by aligning checklist status with task reality and documenting remaining verification debt explicitly. This removed the prior mismatch where `tasks.md` showed broad completion but `checklist.md` still reflected all-zero verification progress.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Keep phases as a behavioral layer, not a new level tier | Preserves the existing L1/L2/L3/L3+ model while enabling decomposition across any level. |
+| Keep `--phase` and `--subfolder` semantically distinct | Prevents conflating execution decomposition with version iteration. |
+| Use conservative phase recommendation thresholds | Reduces over-suggestion and keeps simple workflows fast. |
+| Track completion state directly from task evidence | Prevents checklist drift and keeps verification status auditable. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Task execution status | PARTIAL - 28/34 complete (`tasks.md`), pending `T005`, `T017`, `T018`, `T019`, `T028`, `T033` |
+| Checklist/task synchronization | PASS - `checklist.md` now mirrors `tasks.md` state, including pending fixture work |
+| Required Level 3+ artifact presence | PASS - `implementation-summary.md` now present in root spec folder |
+| Final fixture-driven closure | PENDING - requires completion of the three open fixture tasks |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Fixture backlog remains open.** Tasks `T005`, `T028`, and `T033` are still pending, so verification cannot be marked fully complete.
+2. **Sign-off gates remain pending.** Governance checkpoints in `checklist.md` and final acceptance in `spec.md` are not yet closed.
+3. **Full backward-compatibility evidence is not yet recorded.** The 51-fixture regression expectation is documented, but final run evidence is still pending.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/system-speckit/z_archive/022-hybrid-rag-fusion"
+# PACKET: specs/system-speckit/z_archive/022-hybrid-rag-fusion (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Hybrid RAG Fusion [system-spec-kit/022-hybrid-rag-fusion/spec]"
+description: "Parent coordination packet for the 022-hybrid-rag-fusion phase tree. This document exists to anchor child-phase references, preserve scope boundaries, and keep recursive validation green across the assigned root."
+trigger_phrases:
+  - "hybrid rag fusion parent"
+  - "022 hybrid rag fusion"
+  - "phase parent spec"
+importance_tier: "important"
+contextType: "general"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["spec.md"]
+---
+# Feature Specification: Hybrid RAG Fusion
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 1 |
+| **Priority** | P0 |
+| **Status** | In Progress |
+| **Created** | 2026-03-31 |
+| **Branch** | `022-hybrid-rag-fusion` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+
+## 001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation/implementation-summary.md
+---
+title: "...spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation/implementation-summary]"
+description: "Implementation summary normalized to the active Level 2 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "001-sprint-0-measurement-foundation implementation summary"
+  - "001-sprint-0-measurement-foundation delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Sprint 0 Measurement Foundation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-sprint-0-measurement-foundation |
+| **Completed** | 2026-03-25 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Narrative preserved from the original implementation summary during template normalization.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+- New tests: 268 (across 11 test files)
+- All tests passing: Yes (4876 total, 164 test files)
+- Key test files: `t004-eval-db.vitest.ts` (27 tests), `t006-eval-metrics.vitest.ts` (~30 tests), `t007-ground-truth.vitest.ts` (12 tests), `t008-bm25-baseline.vitest.ts` (12 tests), `t013-eval-the-eval.vitest.ts` (hand-calc validation)
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+1. **Separate eval database (`speckit-eval.db`)** -- Isolation ensures eval load cannot degrade primary DB; eval logging gated by `SPECKIT_EVAL_LOGGING` env var.
+2. **SHA256 fast-path dedup scoped to same `spec_folder`** -- Prevents false positives across projects while providing O(1) exact-duplicate rejection.
+
+## 001-hybrid-rag-fusion-epic/002-sprint-1-graph-signal-activation/implementation-summary.md
+---
+title: "...pec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/002-sprint-1-graph-signal-activation/implementation-summary]"
+description: "Implementation summary normalized to the active Level 2 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "002-sprint-1-graph-signal-activation implementation summary"
+  - "002-sprint-1-graph-signal-activation delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/002-sprint-1-graph-signal-activation"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Sprint 1 Graph Signal Activation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-sprint-1-graph-signal-activation |
+| **Completed** | 2026-03-25 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Narrative preserved from the original implementation summary during template normalization.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+- New test files: `t010-degree-computation.vitest.ts`, `t010b-rrf-degree-channel.vitest.ts`, `t011-edge-density.vitest.ts`, `t012-signal-vocab.vitest.ts`, `t040-sprint1-feature-eval.vitest.ts`, `co-activation.vitest.ts`
+- Sprint 1 cross-sprint integration: `t021-cross-sprint-integration.vitest.ts`, `t043-cross-sprint-integration.vitest.ts`
+- All tests passing: Yes
+
+| Gate | Criterion | Result |
+|------|-----------|--------|
+| 1 | R4 degree computation correct (unit tests + zero-return for unconnected memories) | PASS |
+| 2 | No single memory >60% of R4 dark-run results (hub domination check) | PASS (constitutional exclusion + DEGREE_BOOST_CAP) |
+| 3 | Edge density measured and R10 escalation decision recorded | PASS |
+| 4 | A7 co-activation boost at 0.25x with fan-effect dampening | PASS |
+| 5 | TM-08 CORRECTION and PREFERENCE signals recognized | PASS |
+<!-- /ANCHOR:how-delivered -->
+
+## 001-hybrid-rag-fusion-epic/003-sprint-2-scoring-calibration/implementation-summary.md
+---
+title: "...em-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/003-sprint-2-scoring-calibration/implementation-summary]"
+description: "Implementation summary normalized to the active Level 2 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "003-sprint-2-scoring-calibration implementation summary"
+  - "003-sprint-2-scoring-calibration delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/003-sprint-2-scoring-calibration"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Sprint 2 Scoring Calibration
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-sprint-2-scoring-calibration |
+| **Completed** | 2026-03-25 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Narrative preserved from the original implementation summary during template normalization.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+- New test files: `t015-embedding-cache.vitest.ts`, `t016-cold-start.vitest.ts`, `t019-interference.vitest.ts`, `t010d-scoring-observability.vitest.ts`, `t041-sprint2-feature-eval.vitest.ts`
+- Sprint 2 cross-sprint integration: `t021-cross-sprint-integration.vitest.ts`, `t043-cross-sprint-integration.vitest.ts`
+- All tests passing: Yes
+
+| Gate | Criterion | Result |
+|------|-----------|--------|
+| 1 | R18 cache hit >90% on re-index of unchanged content | PASS |
+| 2 | N4 dark-run passes -- new memories visible, old results not displaced | PASS |
+| 3 | Score distributions normalized to [0,1] range | PASS |
+| 4 | TM-01 interference penalty active; no false penalties on distinct content | PASS |
+| 5 | TM-03 classification-based decay operational; constitutional/critical never decay | PASS |
+| 6 | Scoring observability logging at 5% sample rate | PASS |
+
+## 001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence/implementation-summary.md
+---
+title: "...tem-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence/implementation-summary]"
+description: "Implementation summary normalized to the active Level 2 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "004-sprint-3-query-intelligence implementation summary"
+  - "004-sprint-3-query-intelligence delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Sprint 3 Query Intelligence
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-sprint-3-query-intelligence |
+| **Completed** | 2026-03-25 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Narrative preserved from the original implementation summary during template normalization.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+- New test files: `t022-query-classifier.vitest.ts`, `t023-rsf-fusion.vitest.ts`, `t024-channel-representation.vitest.ts`, `t027-rsf-multi.vitest.ts`, `t028-channel-enforcement.vitest.ts`, `t029-confidence-truncation.vitest.ts`, `t030-dynamic-token-budget.vitest.ts`, `t031-shadow-comparison.vitest.ts`, `t032-rsf-vs-rrf-kendall.vitest.ts`, `t033-r15-r2-interaction.vitest.ts`, `t042-sprint3-feature-eval.vitest.ts`
+- Sprint 3 cross-sprint integration: `t043-cross-sprint-integration.vitest.ts`
+- All tests passing: Yes
+
+| Gate | Criterion | Result |
+|------|-----------|--------|
+| 1 | R15 simple p95 < 30ms | CONDITIONAL PASS (simulated 20ms — not measured in production) |
+| 2 | RSF Kendall tau >= 0.4 | PASS (tau = 0.8507) |
+| 3 | R2 top-3 precision within 5% of baseline | CONDITIONAL PASS (unit tests only — live precision not measured) |
+| 4 | Confidence truncation reduces irrelevant tail results by >30% | PASS (66.7% reduction) |
+| 5 | Dynamic token budget applied per complexity tier | PASS |
+| 6 | Off-ramp evaluated (PROCEED decision) | PASS |
+
+## 001-hybrid-rag-fusion-epic/005-sprint-4-feedback-and-quality/implementation-summary.md
+---
+title: "...m-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/005-sprint-4-feedback-and-quality/implementation-summary]"
+description: "Implementation summary normalized to the active Level 2 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "005-sprint-4-feedback-and-quality implementation summary"
+  - "005-sprint-4-feedback-and-quality delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/005-sprint-4-feedback-and-quality"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Sprint 4 Feedback And Quality
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-sprint-4-feedback-and-quality |
+| **Completed** | 2026-02-28 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Narrative preserved from the original implementation summary during template normalization.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+All features shipped behind opt-in feature flags defaulting to OFF at Sprint 4 release. Five parallel opus agents implemented the independent modules simultaneously in worktree isolation, followed by a fifth integration agent that wired everything together. Each agent verified its own tests before completing. The integration agent confirmed all 315 tests pass together and TypeScript compiles with zero errors. Existing tests (handler-memory-save, rollout-policy, integration-save-pipeline) were re-verified at 173/173 and 27/27 passing.
+
+The recommended S4a/S4b sub-sprint split is preserved: R1, R13-S2, TM-04, and TM-06 can be enabled immediately (S4a). R11 learned feedback requires the 28-day R13 eval cycle prerequisite before enabling (S4b). Transition from OFF-default to default-ON/permanent requires four criteria: sprint gate evidence passed, no open P0 regressions, NFR-O01 flag budget compliance (target <=6 active, hard ceiling <=8), and a documented sunset decision at the corresponding T-FS gate.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+
+## 001-hybrid-rag-fusion-epic/006-sprint-5-pipeline-refactor/implementation-summary.md
+---
+title: "...stem-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/006-sprint-5-pipeline-refactor/implementation-summary]"
+description: "Implementation summary normalized to the active Level 2 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "006-sprint-5-pipeline-refactor implementation summary"
+  - "006-sprint-5-pipeline-refactor delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/006-sprint-5-pipeline-refactor"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Sprint 5 Pipeline Refactor
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-sprint-5-pipeline-refactor |
+| **Completed** | 2026-02-28 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Narrative preserved from the original implementation summary during template normalization.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 10 | 10/10 |
+| P1 Items | 43 | 43/43 |
+| P2 Items | 3 | 3/3 |
+| Tasks | 15 | 15/15 |
+| New Tests | 304+ | Passing in Sprint 5 test files |
+| TypeScript | Clean | `tsc --noEmit zero errors |
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 001-hybrid-rag-fusion-epic/007-sprint-6-indexing-and-graph/implementation-summary.md
+---
+title: "...tem-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/007-sprint-6-indexing-and-graph/implementation-summary]"
+description: "Implementation summary normalized to the active Level 2 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "007-sprint-6-indexing-and-graph implementation summary"
+  - "007-sprint-6-indexing-and-graph delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/007-sprint-6-indexing-and-graph"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Sprint 6 Indexing And Graph
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-sprint-6-indexing-and-graph |
+| **Completed** | 2026-03-25 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Sprint 6a feature delivery
+
+Sprint 6a delivered five concrete additions: weight-history audit tracking, the N3-lite consolidation engine, anchor-aware chunk thinning, encoding-intent capture, and spec-folder hierarchy retrieval. The implementation remained limited to Sprint 6a; Sprint 6b items stayed deferred behind the documented feasibility gates.
+
+### Post-review integration closure
+
+The follow-up pass closed the wiring gaps that mattered for release confidence: chunk thinning now runs before child writes, encoding intent persists through active and deferred indexing paths, hierarchy traversal augments graph search when `specFolder` is present, and the N3-lite runtime hook now runs on the intended cadence with bounds enforced during strengthening.
+
+### Verification assets produced
+
+The work added or updated the dedicated Sprint 6 test suites for consolidation, chunk thinning, encoding-intent capture, and spec-folder hierarchy, plus the schema-alignment updates required across existing causal-edge and indexing tests.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+1. Extended the SQLite schema from v17 to v18 with additive fields and the `weight_history` table.
+2. Added new runtime modules for consolidation, chunk thinning, encoding-intent classification, and hierarchy retrieval.
+
+## 001-hybrid-rag-fusion-epic/008-sprint-7-long-horizon/implementation-summary.md
+---
+title: "...2 [system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/008-sprint-7-long-horizon/implementation-summary]"
+description: "Implementation summary normalized to the active Level 2 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "008-sprint-7-long-horizon implementation summary"
+  - "008-sprint-7-long-horizon delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/008-sprint-7-long-horizon"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Sprint 7 Long Horizon
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-sprint-7-long-horizon |
+| **Completed** | 2026-03-25 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Implemented work
+
+Sprint 7 delivered the reporting dashboard and ablation framework (`R13-S3`), the smarter content-normalization path (`S1`), the final feature-flag sunset audit, and the documented disposition for `structuralFreshness()`. Those changes closed the mandatory long-horizon scope without overstating the scale-gated items.
+
+### Intentionally skipped items
+
+`R8` memory summaries and `S5` cross-document entity linking stayed unimplemented because the documented gates were not met: active memories remained below the threshold for `R8`, and `S5` still lacked the prerequisite entity infrastructure from the deferred Sprint 6b work.
+
+### Evidence refreshed
+
+The packet retained the concrete suite counts for ablation/reporting and content normalization, plus the explicit NO-GO decision for `R5` INT8 quantization.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+1. Added dedicated eval modules for ablation studies and reporting output.
+2. Inserted the content normalizer into both embedding and BM25 preparation paths.
+
+## 001-hybrid-rag-fusion-epic/009-sprint-8-deferred-features/implementation-summary.md
+---
+title: "...stem-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/009-sprint-8-deferred-features/implementation-summary]"
+description: "Implementation summary normalized to the active Level 1 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "009-sprint-8-deferred-features implementation summary"
+  - "009-sprint-8-deferred-features delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/009-sprint-8-deferred-features"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Sprint 8 Deferred Features
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-sprint-8-deferred-features |
+| **Completed** | 2026-03-01 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Sprint 8 converted the remaining deferred backlog into a named, trackable handoff packet. The phase now records which deferred items were executed, which remained deferred with reasons, and how that work hands off into Sprint 9 remediation.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+1. Mapped the deferred backlog into named tasks with owner/status context.
+2. Documented dependency order, rollback expectations, and exit conditions in the phase plan and checklist.
+3. Created the implementation summary and explicit handoff notes for the next sprint packet.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+1. Keep Sprint 8 documentation-only rather than claiming runtime implementation that belongs to Sprint 9.
+2. Preserve explicit deferral rationale for live-DB, calendar-gated, and Sprint 6b-dependent items.
+
+## 001-hybrid-rag-fusion-epic/010-sprint-9-extra-features/implementation-summary.md
+---
+title: ".. [system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features/implementation-summary]"
+description: "Implementation summary normalized to the active Level 2 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "010-sprint-9-extra-features implementation summary"
+  - "010-sprint-9-extra-features delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/010-sprint-9-extra-features"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Sprint 9 Extra Features
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-sprint-9-extra-features |
+| **Completed** | 2026-03-25 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Delivered features
+
+Sprint 9 completed the bounded productization slice for the Memory MCP server: strict tool-input validation, provenance-rich search envelopes, async ingestion job lifecycle tools, contextual tree injection, optional local GGUF reranking, dynamic server instructions, and real-time filesystem watching.
+
+### Review-driven hardening
+
+The phase also absorbed two later remediation passes. The cross-AI review fixes tightened path validation, schema strictness, error hygiene, and trace gating. The orphan-remediation follow-up refreshed the targeted verification suites, TypeScript compile gate, live DB cleanup evidence, and runtime smoke.
+
+### Deferred scope retained honestly
+
+The warm server, storage adapters, namespace tooling, anchor-node spike, and AST section retrieval remained deferred behind their stated demand or feasibility triggers.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+1. Added the new runtime modules and tool schemas across the MCP server surface.
+2. Threaded new parameters and response data through the existing handlers without breaking the default caller experience.
+
+## 001-hybrid-rag-fusion-epic/011-research-based-refinement/implementation-summary.md
+---
+title: "...ystem-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement/implementation-summary]"
+description: "Implementation summary normalized to the active Level 2 template while preserving recorded delivery evidence."
+trigger_phrases:
+  - "011-research-based-refinement implementation summary"
+  - "011-research-based-refinement delivery record"
+importance_tier: "important"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/011-research-based-refinement"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: Research Based Refinement
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-research-based-refinement |
+| **Completed** | 2026-03-25 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Wave delivery
+
+The parent phase coordinated and recorded delivery across all five research dimensions: fusion and scoring intelligence, query intelligence and reformulation, graph-augmented retrieval, feedback and quality learning, and retrieval UX/presentation. The packet now cleanly represents those child outcomes without relying on the stale research-path references that previously broke validation.
+
+### Post-review alignment
+
+The later review pass kept the parent summary aligned with the current runtime truth: feature-flag wiring, playbook/catalog coverage, replacement of obsolete concept-routing coverage, and the refreshed evidence for the repaired paths.
+
+### Evidence consolidation
+
+The parent summary retains the wave narrative and the child-folder map while reducing historical template drift to the current Level 2 structure.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+1. Split the research recommendations into five child folders with clear phase ownership.
+2. Executed the work in waves so foundation items landed before dependent improvements.
+
+## 001-hybrid-rag-fusion-epic/implementation-summary.md
+---
+title: "Implementation Summary [system-spec-kit/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/implementation-summary]"
+description: "Parent packet summary for the Hybrid RAG Fusion epic direct-child truth-sync pass."
+trigger_phrases:
+  - "001 epic implementation summary"
+importance_tier: "critical"
+contextType: "implementation"
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic"
+    last_updated_at: "2026-04-24T15:25:01Z"
+    last_updated_by: "backfill-memory-block"
+    recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
+    next_safe_action: "Revalidate packet docs and update continuity on next save"
+    key_files: ["implementation-summary.md"]
+---
+# Implementation Summary: 001-hybrid-rag-fusion-epic
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-hybrid-rag-fusion-epic |
+| **Completed** | 2026-03-25 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `001` parent packet now behaves like a real parent packet again. It records the live 12-child subtree, distinguishes the 11 sprint packets from the phase-012 release-control child, preserves current child statuses, and no longer depends on the older consolidated-merge docs as the active packet contract.
+
+### Parent Packet Normalization
+
+The parent `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, and `implementation-summary.md` were rewritten into concise current-state docs that point to the live root packet and the 12-child epic subtree.
+
+### Sprint Navigation Alignment
+
+Sprint-child packet navigation was updated to use the current parent packet and live sibling folder names, removing the worst remaining drift from retired sprint slugs.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+This pass stayed at the parent packet layer plus root-facing sprint-child navigation. It reconciled the live direct-child tree, rewrote the parent docs, and patched obvious stale parent metadata in the archival sprint summary bundle without rewriting every child packet in depth.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

@@ -1,0 +1,399 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/hooks/004-goal-hook-playbooks-and-validation"
+# PACKET: specs/hooks/004-goal-hook-playbooks-and-validation
+
+---
+title: "Implementation Summary: Goal-Hook Playbooks and Live Cross-Runtime Validation"
+description: "Playbook coverage plus live, canary-proven validation for the cross-runtime goal hook shipped in packet 003, across every goal-capable CLI runtime."
+trigger_phrases:
+  - "goal hook validation summary"
+  - "name"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/004-goal-hook-playbooks-and-validation"
+    last_updated_at: "2026-08-11T06:43:20.701Z"
+    last_updated_by: "claude"
+    recent_action: "Authored spec/plan/tasks/checklist/summary for the goal-hook tracker"
+    next_safe_action: "Run generate-description.js, backfill, and validate.sh --strict"
+    blockers: []
+    key_files:
+      - ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/pi-injection-excerpt.txt"
+      - ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/devin-injection-excerpt.txt"
+      - ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/cursor-recorded-evidence.txt"
+      - ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "goal-hook-playbooks-and-validation-20260729"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-goal-hook-playbooks-and-validation |
+| **Completed** | 2026-07-29 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Packet 003 shipped the cross-runtime session-goal hook but left it with no manual-testing-playbook coverage and no live proof the injection reaches the model turn. This packet closes both gaps: it names the playbook scenarios every goal-capable CLI runtime needs, and it runs the hook live against cheap and free models to prove — or honestly document the limits of — the injection.
+
+### Goal-Hook Playbooks
+Five `goal-hook.md` scenarios are named, one per goal-capable runtime, each authored in that runtime's own CLI skill tree with its own id prefix: `DV-###` for cli-devin, `CU-###` for cli-cursor, `PI-###` for cli-pi, `CO-###` for cli-opencode, and `CC-###` for cli-claude-code. A sixth doc, `goal-manage-cli.md`, covers the shared manage CLI the cross-runtime hooks use to read and mutate goal state. This packet references all six by path; their content is authored in the CLI skills' own trees, not here.
+
+### Live Cross-Runtime Validation
+Four runtimes were live-validated this session using a shared proof method: seed an active-goal state with a unique canary token, run the CLI, and grep the raw transcript for that canary and the `[active_goal]` marker. Every run used a dedicated `MK_GOAL_STATE_DIR` so no run could mutate shared or default goal state. Pi and Devin came back POSITIVE with the canary quoted verbatim by the model. Cursor came back RECORDED-EVIDENCE: its hook fires (confirmed by the turn counter) but its `sessionStart` `agent_message` channel is confirmed non-delivering to the model, so the negative transcript result is the documented, correct behavior, not a failure. OpenCode's native `mk-goal` plugin could not be live-validated headless at all — a structural finding, not a regression — and Claude-native `/goal` is an upstream, doc-only feature outside headless scripting entirely.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md` | Created (referenced) | DV-### goal-hook scenario, authored in the cli-devin skill tree |
+| `cli-external-orchestration/cli-cursor/manual-testing-playbook/goal-hook/goal-hook.md` | Created (referenced) | CU-### goal-hook scenario, including the RECORDED-EVIDENCE tier |
+| `cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md` | Created (referenced) | PI-### goal-hook scenario, manual-only (not fanout-dispatchable) |
+| `cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md` | Created (referenced) | CO-### goal-hook scenario, covering mk-goal plus the symlink mirror |
+| `cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md` | Created (referenced) | CC-### goal-hook scenario, native `/goal`, doc-only |
+| `cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md` | Created (referenced) | Shared playbook for the manage CLI |
+| `evidence/pi-injection-excerpt.txt` | Created | Pi live capture, canary `GOALCANARY-PI-2603128151` |
+| `evidence/devin-injection-excerpt.txt`, `evidence/devin-model-reply.txt` | Created | Devin live capture, canary `GOALCANARY-DV-1255523564` |
+| `evidence/cursor-recorded-evidence.txt` | Created | Cursor live capture, turn-counter + transcript-absence evidence |
+| `evidence/opencode-mkgoal-finding.txt` | Created | mk-goal headless-validation finding |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Every verdict in this packet is backed by a captured transcript or model reply, not a claim. Pi and Devin were run live and the canary token was matched verbatim in the model's own output. Cursor was deliberately run live specifically to capture its documented negative: the sessionStart hook fires (turn counter 0 to 1) while the injection stays invisible to the model, confirming the adapter-level, not model-visible, evidence tier that Cursor's contract already documents. mk-goal was attempted twice, with two different cheap models and two different failure surfaces (no tool exposure, then no transform firing even with pre-seeded state), before concluding the limitation is structural rather than a model or prompt problem. No run touched shared goal state outside its isolated `MK_GOAL_STATE_DIR`.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Scope covers all goal-capable runtimes, not just the packet-032 trio | Operator chose full coverage so every runtime that carries the goal hook has a playbook and a verdict, including OpenCode's separate native system and Claude's upstream feature |
+| Ran Cursor live to capture the negative, not just cite the known limitation | Operator wanted the RECORDED-EVIDENCE tier proven this session with fresh turn-counter and transcript evidence, not just referenced from prior work |
+| Proof method is canary token + raw-transcript grep, isolated via MK_GOAL_STATE_DIR | Gives a verifiable, model-agnostic signal that does not depend on trusting the model's self-report, and guarantees no run corrupts real goal state |
+| mk-goal's headless limitation is a finding, not a packet-032 regression | mk-goal is a separate, pre-existing OpenCode-native system with its own test suite; its headless gap predates this packet and packet 003 never touched it |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Pi live validation (offline gpt, free) | PASS — canary `GOALCANARY-PI-2603128151` cited verbatim, `[active_goal]` block present |
+| Devin live validation (glm-5-2, free) | PASS — canary `GOALCANARY-DV-1255523564` quoted verbatim, block present 2/2 times |
+| Cursor live validation (composer-2.5, paid) | RECORDED-EVIDENCE — hook fires (turns_used 0/1), canary+active_goal 0/0 in transcript (contract-documented) |
+| OpenCode mk-goal live validation (deepseek + gpt-luna, paid) | SKIP — `mk_goal` tool not exposed in headless `opencode run`; transform did not fire even with pre-seeded active state |
+| Claude-native `/goal` live validation | SKIP — upstream feature, doc-only, not headless-scriptable in this environment |
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` | PASS — Errors: 0 |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **mk-goal has no live headless proof path.** OpenCode's native `mk-goal` plugin (`.opencode/plugins/mk-goal.js`) is a separate system from the cross-runtime hooks under `.opencode/hooks/goal/`. Its `mk_goal` tool is not exposed to the default headless `opencode run` agent, and its `experimental.chat.system.transform` injection did not fire even against a pre-seeded, valid active-goal state file in a resumed `opencode run --session`. It is interactive/TUI-scoped behavior. Coverage instead comes from its 7 committed unit suites (`.opencode/plugins/tests/mk-goal-*.test.cjs`).
+2. **Cursor's injection is model-invisible by contract, not by bug.** Its `sessionStart` `agent_message` channel is confirmed non-delivering to the model (n=3 across this run and prior phase-004 capability probes); `preToolUse` `agent_message` is also non-delivering and `stop` never fires. The turn-counter increment is the only available adapter-level evidence for Cursor, and RECORDED-EVIDENCE is its correct, documented verdict tier — not a failed PASS.
+3. **cli-pi is not fanout-dispatchable.** Its live validation in this packet was run manually rather than through an automated fan-out harness; the offline gpt model also streams slowly, so `--mode json` capture is the practical way to pull its output.
+4. **The playbook docs are authored in a separate pass.** This packet references the 6 playbook paths by name and does not author or verify their prose content — that ownership sits in each CLI skill's own tree.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/hooks/005-pi-input-hook-latency"
+# PACKET: specs/hooks/005-pi-input-hook-latency
+
+---
+title: "Implementation Summary: PI input-hook latency"
+description: "The PI input hook's blocking spawn chain is gone: the advisor lifecycle runs in-process, repeat prompts resolve from the advisor's own 5-minute cache at ~1 ms, and the build no longer emits pi hook files with type errors."
+trigger_phrases:
+  - "pi input latency summary"
+  - "prompt-advisor summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/005-pi-input-hook-latency"
+    last_updated_at: "2026-08-11T06:43:20.852Z"
+    last_updated_by: "implementer"
+    recent_action: "PI input hook now in-process; cache invalidation fixed; benchmark recorded"
+    next_safe_action: "Follow-up: daemon fast-path or non-gating injection for the cold advisor tail"
+    blockers: []
+    key_files:
+      - ".pi/extensions/prompt-advisor.ts"
+      - ".opencode/skills/system-skill-advisor/lib/skill-advisor-brief.ts"
+      - ".opencode/skills/system-skill-advisor/mcp-server/tsconfig.build.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "impl-005-pi-input-hook-latency"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Git workspace: current branch (operator choice)"
+      - "Benchmark methodology: standalone harness reproducing both chains, 5 runs each, min/median + end-to-end pi smoke"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-pi-input-hook-latency |
+| **Completed** | 2026-08-02 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The PI `input` hook no longer blocks message sends on a synchronous multi-process spawn chain. `.pi/extensions/prompt-advisor.ts` (a symlink to `system-skill-advisor/hooks/pi/prompt-advisor.ts`) now imports the compiled advisor lifecycle module and calls `handleClaudeUserPromptSubmit()` in-process — the same code the claude/codex/cursor runtimes execute as a subprocess, with zero adapter/shim process hops on PI's hot path (the advisor's own bounded python subprocess still runs on a cache miss).
+
+Two defects discovered during benchmarking were fixed along the way:
+
+1. **Shared cache invalidation defect** (`system-skill-advisor/mcp-server/lib/skill-advisor-brief.ts`): the cache entry stored ALL recommendation labels including command/registry ids that never exist in the skill-fingerprint map, so `deletedCachedSkills()` reported a false "deleted skill" on every lookup and the cache NEVER hit. The set-site now stores only fingerprint-backed labels, so entries survive while their skills exist and genuinely removed skills still invalidate. This is what makes the ~1 ms repeat-prompt path possible.
+2. **Build emission defect** (`mcp-server/tsconfig.build.json`): `hooks/pi/**` was compiled even though pi hook files are runtime-loaded by Pi's loader (and `@earendil-works/pi-coding-agent` is not resolvable from the package build context). The build emitted them with unresolved-type errors. The exclusion matches the system-spec-kit precedent (`hooks/pi/**` excluded there) and `npm run build` now exits 0.
+
+### Files
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `system-skill-advisor/hooks/pi/prompt-advisor.ts` | Rewritten | In-process advisor call; no spawns on the input path |
+| `system-skill-advisor/mcp-server/lib/skill-advisor-brief.ts` | Modified | Cache set-site stores only graph-backed skill labels |
+| `system-skill-advisor/mcp-server/tsconfig.build.json` | Modified | Excludes `../hooks/pi/**` from the build |
+| `.pi/extensions/README.md`, `.pi/extensions/lib/README.md` | Modified | Wiring docs reflect the in-process path |
+
+**Post-review amendment (2026-08-02): directive hygiene + structure.** Injected hook content is now model-agnostic and labeled. `lib/render.ts` (and the opencode plugin bridge's fallback renderer) emit:
+
+```
+Advisor: <freshness>; … pass.
+Directives:
+- Comment hygiene [HARD BLOCK]: …
+- Governor: …
+```
+
+The governor capsule deliberately carries no model-family name — model names change, the disposition does not. The token cap now governs the advisor line only; the whole directives block is the always-delivered suffix (same guarantee as before, cleaner semantics). Files: `lib/render.ts`, `plugin-bridges/mk-skill-advisor-bridge.mjs`, the three format-asserting test files, and the claude-hook playbook transcript.
+
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The old chain was reproduced faithfully (adapter `spawnSync` → shim → advisor hook → python subprocess) and timed against the new in-process call with identical prompts, 5 runs each, min/median reported. The advisor's own python subprocess (~1.3 s) is the dominant cost on a cold prompt in both paths; the wins are the removal of the process hops and main-thread freeze, plus the cache now actually resolving repeats.
+
+### Benchmark methodology (reproducible)
+
+- **Prompt (substantive, passes the advisor policy threshold):** `Implement a memory context retrieval tool in the spec kit memory server and verify it with tests`
+- **BEFORE harness:** `spawnSync(process.execPath, [system-spec-kit/mcp-server/dist/hooks/claude/user-prompt-submit.js], { input: <payload>, timeout: 2800 })` × 5 fresh processes — reproduces the adapter's hop, which internally spawns the advisor hook.
+- **AFTER harness:** one process, `import(system-skill-advisor/mcp-server/dist/hooks/claude/user-prompt-submit.js)` then `handleClaudeUserPromptSubmit(payload)` × 5 same-session calls.
+- **Payload:** `{ prompt, cwd: <repo-root>, hook_event_name: "UserPromptSubmit" }`; daemon warm; 2026-08-02.
+
+| Path | Raw samples (ms) | min / median |
+|------|------------------|--------------|
+| BEFORE (5 fresh messages) | 1368, 1393, 1418, 1468, 1485 | 1368 / 1418 |
+| AFTER (one session, 5 calls) | 1302, 2, 1, 1, 1 | 1 / 1 (repeats); 1302 first |
+
+An independent reviewer run on 2026-08-02 reproduced the shape: cold 1171.5 ms, repeats 0.86–1.25 ms; old-chain baseline 1263–1321 ms (run-to-run variance from repo contention explains the range spread vs the 1368–1485 ms first measurement).
+
+Verification: static grep (no spawn token, no child_process import), live `pi --offline --approve -p` smoke (extension loads, advisor diagnostic emitted in-process, turn completes), `npm run build` exit 0, `validate.sh --strict` pass.
+
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| In-process advisor call over async spawn | Zero process hops, effective 5-minute cache, matches the opencode plugin's architecture; the module was already import-safe |
+| Fixed the shared cache at its set-site | The alternative (working around it in the adapter) would reimplement lifecycle logic; the filter is one expression and per-process consumers (claude/codex/cursor) are unaffected — they never retained entries across prompts |
+| Excluded `hooks/pi/**` from the build instead of vendoring the pi types | Matches the system-spec-kit precedent; pi loads these files directly and never tsc-compiles them |
+| Kept `lib/claude-hook-adapter.ts` | Session-start/stop bridges run once per session; the spawn cost there is acceptable and out of scope |
+| Worked on the current branch | Operator choice (sk-git ask-first rule) |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Static: no spawn token / child_process in the input extension | PASS |
+| Live smoke `pi --offline --approve -p` | PASS — extension loads, in-process advisor diagnostic emitted |
+| Benchmark before/after | PASS — 1368/1418 ms per message → 1302 ms cold / 1–2 ms repeat |
+| `npm run build` (system-skill-advisor) | PASS — exit 0 (was emitting with type errors) |
+| Session bridges untouched | PASS — `lib/claude-hook-adapter.ts` unmodified |
+| `validate.sh --strict` | PASS — Errors: 0, Warnings: 0 |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **The ~1.3 s cold-prompt tail remains.** It is the advisor's own Python recommendation subprocess, shared by the claude/codex/opencode hook paths and unchanged by this packet. Follow-up candidates: route the primary path through the warm daemon fast-path, or make the injection non-gating so the send never waits on it.
+2. **Benchmark noise.** The before/after cold numbers overlap within run-to-run variance; the reliable signal is the repeat-prompt path (1.37–1.49 s → 1–2 ms) and the removal of the blocking spawns.
+3. **Cache TTL is 5 minutes.** A repeat prompt after the TTL (or after any skill-graph change) pays the cold cost again — same behavior as the opencode plugin.
+4. **`hooks/pi` dist artifacts are stale-by-design.** The build no longer compiles them; the gitignored `dist/hooks/pi/*.js` files are inert (Pi loads the `.ts` sources through the symlinks).
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/hooks/006-spec-gate-question-noise"
+# PACKET: specs/hooks/006-spec-gate-question-noise
+
+---
+title: "Implementation Summary: Spec-gate question noise"
+description: "Packet 006 in progress: the shared Gate-3 core stops re-surfacing the SPEC FOLDER QUESTION on read-only turns, the question text aligns with the answer grammar, and the pi adapter strips embedded history and keys state on stable session identity."
+trigger_phrases:
+  - "spec-gate question noise summary"
+  - "gate question fix summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/006-spec-gate-question-noise"
+    last_updated_at: "2026-08-11T06:43:21.004Z"
+    last_updated_by: "implementer"
+    recent_action: "Packet scaffolded: runtime audit done; root causes pinned"
+    next_safe_action: "Implement core question semantics change, then pi adapter hardening, then verify"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs"
+      - ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-classify.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/hooks/pi/spec-gate-enforce.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "impl-006-spec-gate-question-noise"
+      parent_session_id: null
+    completion_pct: 98
+    open_questions: []
+    answered_questions:
+      - "Git workspace: operator chose a git worktree (branch system-spec-kit/0130-spec-gate-question-noise)"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
+
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Packet** | `006-spec-gate-question-noise` |
+| **Status** | In Progress |
+| **Completion** | 98% (implemented, verified, validated, committed `e251617bef`, merged to main `5ed153eaeb`; formal packet close pending operator review) |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented in worktree 0130 (branch `system-spec-kit/0130-spec-gate-question-noise`):
+
+1. **Core question semantics** — `hooks/lib/spec-gate/spec-gate-core.mjs` `classifyIntent()`: while the gate is `open`, read-only non-answer turns keep `status: 'open'` (enforcement intact) but return `question: null`. New exported `isAnswerAttempt()` re-surfaces the question when a turn looks like an answer (lettered choice, natural lead-in, skip word, standalone D) but failed to bind.
+2. **Session-key helper** — new exported `resolveSessionKey({ sessionId, sessionFile })` preferring the stable session-file basename (`file:<basename>`); used by both pi adapters so classify and enforce agree.
+3. **Question text alignment** — `GATE_3_QUESTION` options A-D instruct replying with the folder path (matching the binding grammar); AGENTS.md Gate 3 options A-D updated in parity.
+4. **pi adapter hardening** — `hooks/pi/spec-gate-classify.ts` strips the sibling-injected advisor capsule (last `\nDirectives:` onward) and embedded harness history (text after the last `[user]` marker) before classification; both pi adapters switch to the shared `resolveSessionKey`.
+
+**Scope note (deviation, recorded):** the live smoke surfaced a third injection source the scaffold audit had not pinned: input transforms chain across pi handlers, so the advisor's injected directives capsule (containing literal trigger tokens `move`/`write`) reached the classifier and opened the gate on every message — including pure read-only ones. Fix: the classify adapter strips the advisor tail before classification (same hardening family as the `[user]` history strip). Also, option B got the same path-reply instruction as A/C/D because it binds through the same grammar — a letter `B` alone would otherwise re-ask forever.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+- **T003–T007 (implementation):** all five files changed in the worktree; core change is the final non-trigger branch of `classifyIntent` plus two exported helpers; pi adapters share one key derivation; question text + AGENTS.md parity.
+- **T008–T010 (verification):** core suite 72 pass / 0 fail; codex/cursor/devin suites 47/47; live pi smoke read-only silent + mutating asks. The two handover-flagged core tests needed no assertion change — their prompts still trigger classification, so the question legitimately re-surfaces.
+- **Post-push refinement round (fresh GPT 5.6 SOL FAST review):** three accepted code findings fixed — (a) skip-letter grammar aligned with the menu (`E` is now the skip letter; pathless `D` re-asks instead of silently closing the gate; corpus + tests updated); (b) the OpenCode plugin + bridge fallback directives updated to the canonical labeled, model-agnostic format (`Directives:` + bullets, no Fable-5); (c) pi input sanitization extracted into the tested, exported `sanitizePromptForClassify()` in the core (adapter + core tests). Two doc findings fixed: resume-prompt/handover continuity refreshed; completion state reconciled across all five docs + metadata.
+- **T011 (agent fanout):** pending — three parallel read-only GPT 5.6 LUNA MAX FAST validators.
+- **T012 (packet validation):** pending — metadata regeneration + `validate.sh --strict`.
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+- **Core-first, not per-runtime**: all six surfaces share `classifyIntent`; one semantics change fixes pi, claude, codex, cursor, opencode, and devin together. Only the pi adapter needs extra hardening (embedded history + per-invocation session identity).
+- **Status stays `open` when the question is withheld**: the enforce hooks still deny/advise at write time; withholding the question never weakens the gate.
+- **Question text follows the parser, not the reverse**: the binding grammar (`SPEC_PATH_REGEX`/`BARE_FOLDER_TOKEN_REGEX`) is a public contract with corpus tests; the question text is the cheap thing to change.
+<!-- /ANCHOR:decisions -->
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result | Evidence |
+|-------|--------|----------|
+| Root-cause trace | PASS | `classifyIntent` final branch; `answerParse` null-on-bare-letter; state-file↔session-file mapping; live classifier run matched `create,fix` from summary text |
+| Runtime inventory | PASS | 6 surfaces traced (see checklist CHK-002) |
+| Core suite | PASS | `node --test` → 72 pass, 0 fail (3 pre-existing skips) |
+| Runtime suites | PASS | codex/cursor/devin → 47/47 |
+| Live pi smoke | PASS | read-only run silent (no state file, session `14-06-04-133Z`); mutating run opens gate + asks (session `14-06-14-434Z`) |
+| Agent fanout | PASS | 3 × GPT 5.6 LUNA MAX FAST read-only validators → core `APPROVED_WITH_NOTES`, pi `APPROVED_WITH_NOTES`, runtimes `APPROVED_WITH_NOTES`. Accepted findings fixed across two rounds: letter-led prose false attempt (tightened letter grammar + menu-vocabulary distinction), D-with-path parsed as skip (path outranks the skip default), separator-only/whitespace sessionFile (safe fallback), unguarded `getSessionFile()` (try/catch in both adapters), marker-only tail (whole-text fallback), hygiene (pre-existing literal path comment removed). Rejected: example placeholders not bindable (illustrative, by design), env-suppressed test runs (`AI_SESSION_CHILD=1` inherited by dispatched workers). Open P2 note: no dedicated pi-adapter unit tests (no pi-extension test harness exists repo-wide; live smoke covers the integration). |
+| Packet validation | PASS | `validate.sh --strict` Errors 0 Warnings 0 (see T012) |
+<!-- /ANCHOR:verification -->
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+- **Harness session identity**: this environment spawns a fresh pi session file per invocation, so cross-turn answer persistence cannot work even with the stable key; the key helps normal interactive pi (`/resume`). Documented, not fixed here.
+- **Question withheld ≠ gate closed**: users may not see the question again after a read-only turn; the enforce deny/advise path and `GATE_3_DENY_DETAIL` remain the reminder at write time.
+- **Sibling-injection stripping is label-coupled**: the classify adapter cuts at the advisor's `\nDirectives:` label; if that label ever changes in the advisor renderer, the cut silently stops working (the `[user]` history strip remains). The label is a deliberate 036-introduced structural constant.
+- **Incident note**: the initial untracked copy of this packet, authored in the main checkout, disappeared between validation (14:54) and worktree creation (14:59) — mechanism not identified (no destructive git hook exists in this repo; concurrent sessions operate in the main checkout). The packet was regenerated in the isolated worktree, where it lives with the branch. **Second incident**: the restored 036 code deliverable in the main checkout was wiped again after the handover (3rd wipe); re-restored from session-transcript pickles and committed as `fdd295981a` on `skilled/v4.0.0.0`.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

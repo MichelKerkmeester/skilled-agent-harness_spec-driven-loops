@@ -1,0 +1,851 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/013-agent-deep-review-optimization"
+# PACKET: specs/system-deep-loop/z_archive/013-agent-deep-review-optimization
+
+---
+title: "Implementation Summary: 061/008-agent-deep-review"
+description: "5-iteration improve-agent loop via cli-copilot. Outcome: keptBaseline / blockedStop. Best iter=1 (weighted=0)."
+trigger_phrases:
+  - "008-agent-deep-review"
+  - "deep-review optimization"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/013-agent-deep-review-optimization"
+    last_updated_at: "2026-05-02T18:17:43Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "5_iter_complete_keptBaseline"
+    next_safe_action: "operator_review_then_promote_or_skip"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-061-2026-05-02"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary: 061/008-agent-deep-review
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status:** COMPLETE — `keptBaseline` / `blockedStop` (5 iterations via cli-copilot orchestrator). Operator review pending for promotion decision.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|---|---|
+| **Sub-phase** | 061/008-agent-deep-review |
+| **Target** | `@deep-review` |
+| **Status** | Complete |
+| **Iterations run** | 5 of 5 |
+| **Stop reason** | `blockedStop` |
+| **Session outcome** | `keptBaseline` |
+| **Best iter** | iter-1 (weighted=0, delta=0) |
+| **Executor** | cli-copilot --model gpt-5.5 (orchestrator-driven) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+5 candidate iterations exploring different mutation themes via cli-copilot:
+- iter-1: discipline hardening
+- iter-2: concision + clarity
+- iter-3: edge case coverage
+- iter-4: integration touchpoints
+- iter-5: synthesis (best-of)
+
+All 5 candidates emitted CRITIC PASS labels verbatim. All ran benchmark + scoring + journal events.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+Driven by `/tmp/061-orchestrator.py` — single Python script orchestrating 6 sub-phases through 5 iterations each. Concurrency: 3-parallel (matches cli-copilot account throttle).
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## 4. KEY DECISIONS
+
+- Best-of-5 selection: max weighted score with tie-break favoring earlier iter (simpler).
+- Operator review pending: substrate's `keptBaseline` verdict reflects scorer ceiling, not lack of improvement. Operator may override per same pattern as 001/002/006 if iter-5 synthesis candidate has valuable changes.
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## 5. VERIFICATION
+
+### Score Progression
+
+| iter | structural | ruleCoherence | integration | outputQuality | systemFitness | delta |
+|---|---|---|---|---|---|---|
+| iter-1 | 100 | 100 | 100 | 100 | 100 | 0 |
+| iter-2 | 100 | 100 | 100 | 100 | 100 | 0 |
+| iter-3 | 100 | 100 | 100 | 100 | 100 | 0 |
+| iter-4 | 100 | 100 | 100 | 100 | 100 | 0 |
+| iter-5 | 100 | 100 | 100 | 100 | 100 | 0 |
+
+### Journal Events
+session_start → 5× (candidate_generated, candidate_scored, benchmark_completed) → legal_stop_evaluated → session_end (or blocked_stop + session_end).
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## 6. KNOWN LIMITATIONS
+
+1. Substrate ceiling pattern likely confirmed (carries from 001/002 finding — already-mature agents tend to hit 100/100/100/100/100 baseline).
+2. Scoring is structural-presence based; qualitative iter-5 synthesis may have value the scorer doesn't see.
+3. Promotion deferred to operator review (consistent with 001/002/006 pattern).
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/014-agent-deep-research-optimization"
+# PACKET: specs/system-deep-loop/z_archive/014-agent-deep-research-optimization
+
+---
+title: "Implementation Summary: 061/009-agent-deep-research"
+description: "5-iteration improve-agent loop via cli-copilot. Outcome: keptBaseline / blockedStop. Best iter=1 (weighted=0)."
+trigger_phrases:
+  - "009-agent-deep-research"
+  - "deep-research optimization"
+importance_tier: "high"
+contextType: "agent-architecture"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/014-agent-deep-research-optimization"
+    last_updated_at: "2026-05-02T18:19:51Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "5_iter_complete_keptBaseline"
+    next_safe_action: "operator_review_then_promote_or_skip"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-061-2026-05-02"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary: 061/009-agent-deep-research
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status:** COMPLETE — `keptBaseline` / `blockedStop` (5 iterations via cli-copilot orchestrator). Operator review pending for promotion decision.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|---|---|
+| **Sub-phase** | 061/009-agent-deep-research |
+| **Target** | `@deep-research` |
+| **Status** | Complete |
+| **Iterations run** | 5 of 5 |
+| **Stop reason** | `blockedStop` |
+| **Session outcome** | `keptBaseline` |
+| **Best iter** | iter-1 (weighted=0, delta=0) |
+| **Executor** | cli-copilot --model gpt-5.5 (orchestrator-driven) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+5 candidate iterations exploring different mutation themes via cli-copilot:
+- iter-1: discipline hardening
+- iter-2: concision + clarity
+- iter-3: edge case coverage
+- iter-4: integration touchpoints
+- iter-5: synthesis (best-of)
+
+All 5 candidates emitted CRITIC PASS labels verbatim. All ran benchmark + scoring + journal events.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+Driven by `/tmp/061-orchestrator.py` — single Python script orchestrating 6 sub-phases through 5 iterations each. Concurrency: 3-parallel (matches cli-copilot account throttle).
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## 4. KEY DECISIONS
+
+- Best-of-5 selection: max weighted score with tie-break favoring earlier iter (simpler).
+- Operator review pending: substrate's `keptBaseline` verdict reflects scorer ceiling, not lack of improvement. Operator may override per same pattern as 001/002/006 if iter-5 synthesis candidate has valuable changes.
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## 5. VERIFICATION
+
+### Score Progression
+
+| iter | structural | ruleCoherence | integration | outputQuality | systemFitness | delta |
+|---|---|---|---|---|---|---|
+| iter-1 | 100 | 100 | 100 | 100 | 100 | 0 |
+| iter-2 | 100 | 100 | 100 | 100 | 100 | 0 |
+| iter-3 | 100 | 100 | 100 | 100 | 100 | 0 |
+| iter-4 | 100 | 100 | 100 | 100 | 100 | 0 |
+| iter-5 | 100 | 100 | 100 | 100 | 100 | 0 |
+
+### Journal Events
+session_start → 5× (candidate_generated, candidate_scored, benchmark_completed) → legal_stop_evaluated → session_end (or blocked_stop + session_end).
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## 6. KNOWN LIMITATIONS
+
+1. Substrate ceiling pattern likely confirmed (carries from 001/002 finding — already-mature agents tend to hit 100/100/100/100/100 baseline).
+2. Scoring is structural-presence based; qualitative iter-5 synthesis may have value the scorer doesn't see.
+3. Promotion deferred to operator review (consistent with 001/002/006 pattern).
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/015-sk-deep-rename"
+# PACKET: specs/system-deep-loop/z_archive/015-sk-deep-rename (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-deep-* → deep-* Skill Rename — Phase Parent"
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+description: "Phase parent for renaming sk-deep-review → deep-review and sk-deep-research → deep-research across the entire repo. Simple semantic rename with broad cross-file reference impact (~700-1000+ files across .opencode/, .claude/, .codex/, .gemini/, root docs, configs, skill graph)."
+trigger_phrases:
+  - "070 sk-deep rename"
+  - "sk-deep-review to deep-review"
+  - "sk-deep-research to deep-research"
+  - "skill rename refactor"
+  - "drop sk- prefix"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/015-sk-deep-rename"
+    last_updated_at: "2026-05-05T18:00:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Initialize phase parent + 6 child scaffolds + resource map"
+    next_safe_action: "Phase 001 discovery via cli-codex"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "resource-map.md"
+      - "001-discovery-impact-map/spec.md"
+      - "002-skill-folder-rename/spec.md"
+      - "003-opencode-internals/spec.md"
+      - "004-runtime-mirrors/spec.md"
+      - "005-root-and-config/spec.md"
+      - "006-advisor-and-validate/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "claude-2026-05-05"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+## 001-discovery-impact-map/implementation-summary.md
+---
+title: "Implementation Summary: Phase 001 Discovery Impact Map"
+description: "Phase 001 produced the canonical active-scope inventory for the sk-deep-* rename and mapped every matching file to a downstream phase."
+trigger_phrases:
+  - "070 phase 001 summary"
+  - "sk-deep inventory summary"
+  - "discovery impact map complete"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/015-sk-deep-rename/001-discovery-impact-map"
+    last_updated_at: "2026-05-05T19:20:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Completed Phase 001 discovery inventory and strict validation preparation"
+    next_safe_action: "Start Phase 002 using inventory.tsv rows with phase=002"
+    blockers: []
+    key_files:
+      - "inventory.md"
+      - "inventory.tsv"
+      - "edge-cases.md"
+      - "checklist.md"
+      - "graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-05-phase-001"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-discovery-impact-map |
+| **Completed** | 2026-05-05 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 001 now has a measured, active-scope inventory for the `sk-deep-review` and `sk-deep-research` rename. The downstream phases can work from a TSV instead of estimates, and the risky non-text surfaces are called out separately so nobody tries to patch binary indexes by hand.
+
+### Discovery Inventory
+
+`inventory.md` reports the human-readable totals, category breakdown, top files by area, edge-case summary, and phase-order recommendation. `inventory.tsv` contains 1514 active text-reference rows with `file_path`, `match_count`, `area`, and `phase`.
+
+
+## 002-skill-folder-rename/implementation-summary.md
+---
+title: "Implementation Summary: Phase 002 Skill Folder Rename"
+description: "Phase 002 renamed the two deep loop skill folders, updated their internal old-name references, and patched skill-graph.json to use deep-review and deep-research."
+trigger_phrases:
+  - "070 phase 002 summary"
+  - "skill folder rename complete"
+  - "deep-review deep-research folder rename"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/015-sk-deep-rename/002-skill-folder-rename"
+    last_updated_at: "2026-05-05T19:45:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Completed Phase 002 folder rename and graph source update"
+    next_safe_action: "Start Phase 003"
+    blockers:
+      - "Advisor rebuild script missing at .opencode/skills/system-spec-kit/scripts/dist/skill-graph/build-skill-graph.js; orchestrator should run advisor_rebuild({force: true}) via MCP."
+      - "git mv was blocked by sandbox Git index permissions; filesystem rename produced the requested folder end-state."
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "graph-metadata.json"
+      - "implementation-summary.md"
+      - ".opencode/skills/deep-review"
+      - ".opencode/skills/deep-research"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-05-phase-002"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-skill-folder-rename |
+| **Completed** | 2026-05-05 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 003-opencode-internals/implementation-summary.md
+---
+title: "Implementation Summary: Phase 003 OpenCode Internal References"
+description: "Completion summary for updating approved .opencode internals from old deep-loop skill IDs to deep-* skill IDs."
+trigger_phrases:
+  - "070 phase 003 implementation summary"
+  - "opencode internal reference completion"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/015-sk-deep-rename/003-opencode-internals"
+    last_updated_at: "2026-05-05T20:00:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "completed"
+    next_safe_action: "Start Phase 004 handoff"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-05-phase-003"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-opencode-internals |
+| **Completed** | 2026-05-05 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 003 updated active `.opencode` internals to use `deep-review` and `deep-research` after the Phase 002 folder rename. The high-priority advisor graph metadata edges are clean, command and agent references are clean, MCP/scripts are clean, and a no-ignore active `.opencode` sweep is clean outside the explicit historical exclusions.
+
+### OpenCode Internal Reference Update
+
+The implementation fixed the two known broken advisor metadata files first, then normalized approved skill docs, command YAML/markdown, agent definitions, MCP server code, scripts, fixtures, and active spec artifacts. A broader no-ignore pass caught hidden/generated text files that the first ripgrep pass skipped.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `spec.md` | Created | Defines Phase 003 scope and acceptance criteria |
+
+## 004-runtime-mirrors/implementation-summary.md
+---
+title: "Implementation Summary: Phase 004 Runtime Mirrors"
+description: "Completion summary for runtime mirror updates from sk-deep-* to deep-* across .claude, .codex, and .gemini."
+trigger_phrases:
+  - "070 phase 004 summary"
+  - "runtime mirrors implementation summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/015-sk-deep-rename/004-runtime-mirrors"
+    last_updated_at: "2026-05-05T16:20:37Z"
+    last_updated_by: "cli-codex"
+    recent_action: "init"
+    next_safe_action: "Fill final verification evidence"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-05-phase-004"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Phase** | 004 Runtime Mirrors |
+| **Status** | Blocked |
+| **Date** | 2026-05-05 |
+| **Owner** | cli-codex |
+| **Parent Packet** | `070-sk-deep-rename` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 004 prepared Level 2 artifacts and updated writable runtime mirror references in `.claude` and `.gemini` from the old `sk-deep-*` names to `deep-review`/`deep-research`. The `.codex` portion is blocked by sandbox write denial.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.claude/agents/deep-research.md` | Modified | Update research skill path reference |
+| `.claude/agents/deep-review.md` | Modified | Update review skill description and path references |
+| `.claude/agents/orchestrate.md` | Modified | Update research skill dependency reference |
+| `.gemini/agents/deep-research.md` | Modified | Update research skill path reference |
+
+## 005-root-and-config/implementation-summary.md
+---
+title: "Implementation Summary: Phase 005 Root Docs and Configs"
+description: "Phase 005 updates the listed root documentation/config surface for the deep skill rename and records grep, JSON, and strict validation evidence."
+trigger_phrases:
+  - "070 phase 005 implementation summary"
+  - "root docs config implementation summary"
+  - "phase 005 done"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/015-sk-deep-rename/005-root-and-config"
+    last_updated_at: "2026-05-05T19:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Completed Phase 005 evidence"
+    next_safe_action: "Hand off to Phase 006"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "README.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-05-phase-005"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-root-and-config |
+| **Completed** | 2026-05-05 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 005 narrows the old-name cleanup to the user-approved root docs/config list. Preflight found the stale display names only in `README.md`, so the source edit is intentionally small while the phase folder records the evidence needed for Phase 006.
+
+### Root Reference Update
+
+`README.md` was the only listed root file with active `sk-deep-*` references. The remaining listed docs/configs were checked and left untouched because grep found no old names in them.
+
+### Files Changed
+
+
+## 006-advisor-and-validate/implementation-summary.md
+---
+title: "Implementation Summary: Phase 006 Advisor Rebuild and Validation"
+description: "Phase 006 created final verification artifacts, restored Packet 070 parent rename narrative, ran advisor probes, and found remaining active old-name references that require remediation outside this sandbox."
+trigger_phrases:
+  - "070 phase 006 implementation summary"
+  - "advisor rebuild validation summary"
+  - "phase 006 remediation needed"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/015-sk-deep-rename/006-advisor-and-validate"
+    last_updated_at: "2026-05-05T20:30:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Completed Phase 006 verification with remediation-needed verdict"
+    next_safe_action: "Patch unwritable .codex runtime mirror old-name references and rerun final grep/validation"
+    blockers:
+      - ".codex directory is not writable in this sandbox; touch and in-place edit return Operation not permitted"
+      - "Final active-scope grep found 42 file hits, including 4 .codex runtime mirror files"
+    key_files:
+      - "implementation-summary.md"
+      - "checklist.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-05-phase-006"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-advisor-and-validate |
+| **Completed** | 2026-05-05 |
+| **Level** | 2 |
+| **Verdict** | `REMEDIATION_NEEDED` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 006 produced the final packet documentation and ran the closing verification pass. The advisor probes now route to the new skill IDs correctly, and the parent Packet 070 docs again explain the real source-to-target rename instead of the over-replaced `deep-review` to `deep-review` wording.
+
+### Six-Phase Outcome
+
+| Phase | Outcome |
+
+## 007-deep-review-remediation/implementation-summary.md
+---
+title: "Implementation Summary: Phase 007 Deep Review Remediation"
+description: "Phase 007 remediated Packet 070 deep review findings by fixing P0 self-rename narratives, replacing stale changelog symlinks, tuning advisor review-loop signals, and documenting approved P1 deferrals."
+trigger_phrases:
+  - "070 phase 007 implementation summary"
+  - "deep review remediation complete"
+  - "P0 narrative cleanup complete"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/015-sk-deep-rename/007-deep-review-remediation"
+    last_updated_at: "2026-05-05T17:25:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Completed Phase 007 remediation and verification"
+    next_safe_action: "Orchestrator can run advisor_rebuild via MCP"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "checklist.md"
+      - "tasks.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-05-phase-007"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-deep-review-remediation |
+| **Completed** | 2026-05-05 |
+| **Level** | 2 |
+| **Verdict** | `DONE` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 007 closed the active Packet 070 deep review remediation scope. It restored historical source-side rename wording in Phase 002/003/004 docs, replaced broken changelog symlinks, tuned advisor source signals so iterative review-loop prompts favor `deep-review`, and recorded the two approved P1 deferrals.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 008-final-cleanup/implementation-summary.md
+---
+title: "Implementation Summary: Phase 008 Final Cleanup"
+description: "Phase 008 completed Packet 070 final cleanup by strengthening deep-review advisor signals, renaming the internal family to deep-loop, and fixing the sk-code entity kind validation issue."
+trigger_phrases:
+  - "070 phase 008 implementation summary"
+  - "final cleanup complete"
+  - "deep-loop family complete"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/015-sk-deep-rename/008-final-cleanup"
+    last_updated_at: "2026-05-05T18:05:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Completed Phase 008 cleanup and verification"
+    next_safe_action: "Orchestrator can run advisor_rebuild via MCP to refresh native routing"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "checklist.md"
+      - "tasks.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-05-phase-008"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-final-cleanup |
+| **Completed** | 2026-05-05 |
+| **Level** | 2 |
+| **Verdict** | `DONE` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 008 partially closed the three Packet 070 P1 findings. It added stronger review-loop advisor signals (P1-002 PARTIAL — gap closed 65%, shadow correct), reverted the family rename to `sk-deep` (P1-003 RESOLVED-AS-DEFERRED — SQL CHECK constraint blocks the rename without a separate schema-migration packet), and normalized the rejected `sk-code` entity kind to the compiler allow-list (P1-004 FIXED).
+
+### Files Changed (Final State After Orchestrator Reverts)
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 009-family-schema-migration/implementation-summary.md
+---
+title: "Implementation Summary: Phase 009 Family Schema Migration"
+description: "Phase 009 completed the schema migration that makes deep-loop valid across skill graph metadata, compiler validation, TypeScript schemas, generated mirrors, and SQLite recreation state."
+trigger_phrases:
+  - "070 phase 009 implementation summary"
+  - "family schema migration complete"
+  - "deep-loop schema complete"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/015-sk-deep-rename/009-family-schema-migration"
+    last_updated_at: "2026-05-05T18:45:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Completed Phase 009 schema migration and strict verification"
+    next_safe_action: "Run orchestrator advisor_rebuild"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "checklist.md"
+      - "tasks.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-05-phase-009"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-family-schema-migration |
+| **Completed** | 2026-05-05 |
+| **Level** | 2 |
+| **Verdict** | `DONE` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 009 migrated the skill graph family schema so `deep-loop` is accepted end-to-end. The packet re-applied the family rename, updated the SQLite `CHECK` constraint in source and dist mirrors, updated all requested TypeScript/schema family enum mirrors, deleted the stale SQLite database and sidecars, emitted the compiled graph, tuned lexical hints for deep-review (9 new phrases), tuned the explicit-lane review-loop regex to match `iterative` and `multi-pass` and `loop` keywords, added `iterative-review-vs-pr-disambiguation` anti-boost, added 8 new high-weight PHRASE_INTENT_BOOSTERS for deep-review in the Python scorer, and extended the native-bridge wrapper so `_apply_deep_research_disambiguation` runs on native results too (closing the live behavioral gap that was previously shadow-only).
+
+### Routing Verification (post-disambiguation, 8 prompt classes — ALL PASS)
+
+| Prompt | Expected | Actual TOP-1 | Confidence |
+|---|---|---|---|
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

@@ -1,0 +1,402 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/cli-external-orchestration/z_archive/011-cli-skill-patterns"
+# PACKET: specs/cli-external-orchestration/z_archive/011-cli-skill-patterns
+
+---
+title: "Implementation Summary: cli-* skill consistency patterns"
+description: "Harmonized 4 sibling cli-* skills on the structural surface they already shared with cli-opencode (post-051): added Provider Auth Pre-Flight, Default Invocation block, and (for cli-copilot) Error Handling table. Every per-skill unique value prop preserved (grep counts ≥ baseline)."
+trigger_phrases:
+  - "cli-skill 052"
+  - "cli sibling harmonization summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/011-cli-skill-patterns"
+    last_updated_at: "2026-04-29T13:00:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "All 5 SKILL.md files harmonized; 4 siblings adapted Provider Auth Pre-Flight from cli-opencode donor; cli-copilot got Error Handling table; do-not-collapse grep gate passed for all 33 unique terms"
+    next_safe_action: "Run /memory:save to refresh canonical continuity, then commit on main"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-claude-code/SKILL.md"
+      - ".opencode/skills/cli-codex/SKILL.md"
+      - ".opencode/skills/cli-copilot/SKILL.md"
+      - ".opencode/skills/cli-gemini/SKILL.md"
+      - ".opencode/skills/cli-opencode/SKILL.md"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Should we strict-dedupe UNKNOWN_FALLBACK_CHECKLIST in cli-opencode 3→1? -> No, deferred. The 3 occurrences are 1 dict + 2 distinct cross-references; removing either loses meaning. Norm is 2-3, not 1."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec** | specs/052-cli-skill-patterns/ |
+| **Branch** | `main` (052 feature branch deleted post-edit per user preference) |
+| **Level** | 2 |
+| **Status** | Complete |
+| **Date** | 2026-04-29 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 5 cli-* skills now share an identical §3 surface for the patterns that all 5 actually need: a Default Invocation block (pinned model + flags), a Provider Auth Pre-Flight (Smart Fallback) subsection (one-shot pre-dispatch auth detection + 3-state ASK-not-substitute decision tree + cache invalidation on auth-error mid-dispatch), and an Error Handling table.
+
+The cli-opencode SKILL.md (post-051) served as the donor template. The 4 siblings adapted it with provider-native substitutions:
+
+| Skill | Detection command | Primary auth | Fallback auth |
+|-------|-------------------|--------------|---------------|
+| cli-claude-code | `claude config list` + `$ANTHROPIC_API_KEY` | `ANTHROPIC_API_KEY` env var | `claude auth login` OAuth |
+| cli-codex | `codex auth status` + `$OPENAI_API_KEY` | `OPENAI_API_KEY` env var | `codex login` ChatGPT OAuth |
+| cli-copilot | `gh auth status` + `$GH_TOKEN` | `gh auth login` GitHub OAuth | `GH_TOKEN` PAT |
+| cli-gemini | `gemini config list` + `$GEMINI_API_KEY` + `$GOOGLE_GENAI_USE_VERTEXAI` | Google OAuth (free tier) | `GEMINI_API_KEY` paid / Vertex AI enterprise |
+| cli-opencode | `opencode providers list` (canonical donor) | `opencode-go/deepseek-v4-pro` | `deepseek/deepseek-v4-pro` |
+
+Every per-skill unique value prop survives — the do-not-collapse grep gate ran 33 unique terms across the 5 skills and every count went up or stayed the same vs baseline.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+**Modified files (4 SKILL.md):**
+- `.opencode/skills/cli-claude-code/SKILL.md` — added Provider Auth Pre-Flight + Default Invocation block to §3 (between Prerequisites and Core Invocation Pattern)
+- `.opencode/skills/cli-codex/SKILL.md` — added Provider Auth Pre-Flight to §3 (between Prerequisites and existing Default Invocation)
+- `.opencode/skills/cli-copilot/SKILL.md` — added Provider Auth Pre-Flight + Default Invocation block to §3 (between Prerequisites and Core Invocation Pattern); added Error Handling table at end of §3 (before §4 RULES)
+- `.opencode/skills/cli-gemini/SKILL.md` — added Provider Auth Pre-Flight + Default Invocation block to §3 (between Prerequisites and Core Invocation Pattern)
+
+**Unmodified files (intentional):**
+- `.opencode/skills/cli-opencode/SKILL.md` — already had all canonical subsections (post-051); served as donor template only
+- All `references/`, `assets/`, `manual_testing_playbook/`, `graph-metadata.json` for all 5 skills — no changes needed; the harmonization is in-SKILL.md only
+
+**New files:**
+- `specs/052-cli-skill-patterns/` — full Level 2 packet (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, README.md, description.json, graph-metadata.json)
+- `specs/052-cli-skill-patterns/scratch/baseline-grep.txt` — pre-edit grep snapshot for diff verification
+- `specs/052-cli-skill-patterns/scratch/provider-auth-preflight-template.md` — extracted donor template + per-recipient substitution table
+
+**Deleted files:** none.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+- **Donor-and-recipient pattern, not shared-reference extraction**: cli-opencode's §3 Provider Auth Pre-Flight block was used as the template for the 4 siblings. Extracting to a shared `system-spec-kit/references/cli/auth_preflight.md` file was considered (decision-record ADR-002 alt 2) but deferred — substitutions are skill-specific enough that a shared file would still need per-CLI adaptation tables. If a future packet refines the pattern, all 5 would coordinate then.
+- **UNKNOWN_FALLBACK_CHECKLIST 3→1 dedupe deferred**: REQ-005 originally said "exactly once". Re-examining cli-opencode's 3 occurrences (line 139 canonical Python dict, line 415 ESCALATE rule cross-ref, line 482 Skill Quality cross-ref), each is structurally distinct and removing either cross-ref loses meaning. The other skills sit at 2 (dict + 1 cross-ref); the 3-occurrence count is normal for a comprehensive skill. Documented this in `_memory.continuity.answered_questions`.
+- **Provider-native flag names preserved**: per ADR-001, the skill harmonizes the *subsection name* (e.g. all have "Default Invocation (Skill Default)") but not the flag itself — `--effort` / `-c model_reasoning_effort=` / `--variant` / `-y` / `--yolo` all stay native.
+- **Agent-routing syntax preserved**: per ADR-001, `--agent <slug>` / `-p <profile>` / `@prefix` all stay native. The Default Invocation block in each skill uses the skill's native syntax.
+- **Existing Default Invocation block in cli-codex left as-is**: cli-codex already had a Default Invocation subsection at line 168 (pre-edit) — the audit's "absent" classification was incorrect. Just added Provider Auth Pre-Flight before it.
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+**REQ-001 (8-section header order/titles identical across 5 skills)**: ✓ All 5 SKILL.md files show `## sections: 8` post-edit; all titles match canonical (verified by section-header diff in baseline-grep.txt + post-edit grep below).
+
+**REQ-002 (Error Handling table in §3 across all 5)**: ✓ `grep -c '^### Error Handling'` returns `1` for all 5 skills (cli-copilot was 0, now 1).
+
+**REQ-003 (Provider Auth Pre-Flight subsection across all 5)**: ✓ `grep -c 'Provider Auth Pre-Flight'` returns ≥1 for all 5 (cli-claude-code 0→1, cli-codex 0→1 0→2, cli-gemini 0→1, cli-opencode 3 unchanged).
+
+**REQ-004 (Default Invocation block across all 5)**: ✓ `grep -c 'Default Invocation'` returns 1 for all 5 (cli-claude-code 0→1 0→1, cli-gemini 0→1, cli-codex+cli-opencode unchanged at 1).
+
+**REQ-005 (UNKNOWN_FALLBACK occurrence count)**: ✗ DEFERRED — see Decisions section. cli-opencode remains at 3 (1 dict + 2 distinct cross-refs); other skills at 1-2 (varies). REQ-005 reframed in `_memory.continuity.answered_questions` from "exactly 1" to "1-3, no extra duplicates".
+
+**REQ-006 (every do-not-collapse term still grep-matches)**: ✓ All 33 unique terms across the 5 skills have post-edit count ≥ baseline count. Highlights:
+- cli-claude-code: `effort high` 3→5, `json-schema` 6→7, `max-budget-usd` 7→8, `permission-mode` 13→14, `Edit tool` 1→1
+- cli-codex: all 8 terms unchanged (only added new section, didn't touch existing content)
+- cli-copilot: `allow-all-tools` 8→16, `/delegate` 3→5, `/model` 3→4, `repo memory` 4→4, `SPEC-KIT-COPILOT-CONTEXT` 1→2
+- cli-gemini: `google_web_search` 2→3, `codebase_investigator` 3→4, `--yolo` 5→6, `free tier` 1→2, `.geminiignore` 1→1, `save_memory` 2→2
+- cli-opencode: all 6 terms unchanged (not edited this round)
+
+**REQ-009 (ALWAYS/NEVER/ESCALATE triple in §4)**: ✓ All 5 skills show `### ALWAYS|NEVER|ESCALATE` count = 3.
+
+**SC-003 (do-not-collapse grep gate)**: ✓ See REQ-006.
+**SC-004 (8-section identical)**: ✓ See REQ-001.
+**SC-005 (Provider Auth Pre-Flight in all 5)**: ✓ See REQ-003.
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+- **Strict validate not run**: the Level 2 strict-mode validator flagged 7 errors / 3 warnings on initial template authoring (custom phase names + custom checklist subsection labels not matching the rigid canonical anchors). The validator failures are template-drift only, not content errors. Re-running post-edit would still fail on the same template-drift items. Addressing this would require restructuring tasks.md and checklist.md to use only the 3 canonical Phase 1/2/3 anchors, which would lose the per-skill phase decomposition. Deferred as a future template-flexibility improvement.
+- **Advisor index not refreshed**: `doctor:skill-advisor :auto` not run post-edit. The new subsection vocabulary ("Provider Auth Pre-Flight", "Default Invocation") may shift TOKEN_BOOSTS / PHRASE_BOOSTS scoring across the cli-* sibling family. Operator should run the doctor pass before the next session if accurate advisor recommendations matter.
+- **graph-metadata.json not refreshed**: per-skill `causal_summary` strings still describe the pre-052 surface. A follow-on save via `generate-context.js` against any of the 5 skills would refresh the metadata; routine save (`memory:save`) on packet 052 will trigger this.
+- **UNKNOWN_FALLBACK_CHECKLIST dedupe deferred** (see Decisions).
+<!-- /ANCHOR:limitations -->
+
+---
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/z_archive/012-cli-skill-removal-mcp-clickup"
+# PACKET: specs/cli-external-orchestration/z_archive/012-cli-skill-removal-mcp-clickup
+
+---
+title: "Implementation Summary: Remove mcp-clickup skill"
+description: "Decommissioned the mcp-clickup skill: deleted the skill folder, its changelog, all advisor scoring entries, skill-graph nodes/edges, repo-wide README counts, and stale playbook anchor rows — preserving service-level ClickUp/UTCP references that flow through Code Mode."
+trigger_phrases: ["053 implementation summary", "mcp-clickup removed"]
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/012-cli-skill-removal-mcp-clickup"
+    last_updated_at: "2026-04-30T08:30:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Removed skill folder + 38 references; spec validates strict"
+    next_safe_action: "Optional: run /memory:save to refresh description.json + indexed continuity"
+    blockers: []
+    completion_pct: 100
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Completed** | 2026-04-30 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `mcp-clickup` skill is gone from the repo. The skill folder and its changelog are deleted, and every internal reference that pointed at the skill (advisor scoring tables, skill-graph nodes and edges, README listings, install-guide skill counts, dead manual-test anchor rows, and a regression test case) has been pruned. The skill set drops from 22 to 21 skills (advisor count) and 18 to 17 (install-guide-visible count). ClickUp-as-a-service references that flow through Code Mode (UTCP `clickup` manual, the upstream `mcp-clickup` npm package args, ClickUp env-var conventions, AGENTS.md naming examples) are intentionally preserved — they describe the upstream tool, not the orchestrator skill.
+
+### Files Changed
+
+| Path | Change | Notes |
+|---|---|---|
+| `.opencode/skills/mcp-clickup/` | **Deleted** | 37 files (whole skill tree) |
+| `.opencode/changelog/mcp-clickup/` | **Deleted** | 1 file |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/lexical.ts` | Edited | Removed `'mcp-clickup'` category-hint entry |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/lanes/explicit.ts` | Edited | Removed `clickup` and `sprint` token-boost entries |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Edited | Removed 4 INTENT routing entries (`clickup`, `cu`, `sprint`, `standup`), 2 hyphenated-token entries (`clickup-cli`, `task-management`), and the `mcp-clickup` boost from the `tooling` category (3 dicts touched) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Edited (Python json round-trip) | `skill_count` 22→21; dropped `families.mcp[mcp-clickup]`, `adjacency.mcp-clickup`, `mcp-code-mode.prerequisite_for[mcp-clickup]`, `skill-advisor.enhances[mcp-clickup]`, `signals.mcp-clickup` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/graph-metadata.json` | Edited | Removed routing edge `enhances[mcp-clickup]` |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | Edited | Removed `P1-GRAPH-003` regression case (expected mcp-clickup) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/routing-accuracy/labeled-prompts.jsonl` | Edited | Removed 3 ClickUp-routing labels (`rr-iter2-056`, `rr-iter3-181`, `rr-iter3-197`) that asserted `mcp-clickup` as the correct top-1 routing |
+| `.opencode/skills/.smart-router-telemetry/compliance.jsonl` | Edited | Removed 3 telemetry rows downstream of the deleted labels (same `promptId`s) |
+| `mcp_server/database/code-graph.sqlite` | Edited (SQL DELETE) | Removed 1 stale `code_files` row (`mcp-clickup/scripts/install.sh`) and 10 cascade `code_nodes` rows that survived the file-system delete |
+| `mcp_server/database/context-index__voyage__voyage-4__1024.sqlite` | Edited (SQL DELETE) | Purged 12 historical `memory_index` rows + 12 matching `memory_lineage` rows (memory IDs 167, 185, 190, 705, 813–818, 955, 1026) — voyage-embedded snapshots of past spec packets that mentioned mcp-clickup; will reappear on next `memory_ingest` of those packets |
+| `.opencode/skills/mcp-code-mode/graph-metadata.json` | Edited | Removed `prerequisite_for[mcp-clickup]` cross-link |
+| `.opencode/skills/README.md` | Edited (4 lines) | Total 21→20, MCP integration count 5→4, table row dropped, tree line dropped, runtime-coverage row dropped |
+| `.opencode/install_guides/README.md` | Edited (2 lines) | Skill table row dropped, "Skills 18 → 17" + name list updated |
+| `.opencode/install_guides/SET-UP - AGENTS.md` | Edited (1 line) | "Skills 18 → 17" + name list updated |
+| `README.md` (root) | Edited (1 block) | Removed the `**mcp-clickup**` skill section |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/003-tool-info-schema.md` | Edited | Removed dead-anchor row for `mcp-clickup/SKILL.md` |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/001-correct-manual-tool-form.md` | Edited | Same |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/001-sequential-chain.md` | Edited | Same |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/002-promise-all-parallel.md` | Edited | Same |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/001-clickup-create-read-delete.md` | Edited | Same |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/003-sibling-pair-handover.md` | Edited | Same |
+| `.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/005-partial-chain-rollback.md` | Edited | Same |
+
+Total: 38 files deleted (skill + changelog) + 21 files edited + 2 SQLite databases pruned (35 rows total: 11 in code-graph, 24 in voyage memory index).
+
+**Historical artifacts deliberately left untouched** (62 files): `mcp-clickup` mentions inside other `.opencode/specs/...` packets (research iterations, deep-review state, decision records, scratch notes, prior implementation summaries — frozen records of past work that *was about* the skill) and `.opencode/skills/system-spec-kit/scripts/observability/` reports (timestamped historical performance data). Editing these would falsify the audit trail; they remain as accurate snapshots of what the repo looked like when mcp-clickup existed.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The work split into three phases. Phase A deleted the two trees (`.opencode/skills/mcp-clickup/`, `.opencode/changelog/mcp-clickup/`) via `rm -rf`. Phase B pruned the advisor surface using surgical text edits on three TS/Python files plus a Python `json.load → modify → json.dump` round-trip on `skill-graph.json` (the safe path for a single-line JSON with multiple cross-cutting nodes). Phase C swept user-facing docs (READMEs, install guides, the root README, mcp-code-mode graph metadata, and seven manual-testing-playbook anchor rows) plus a stale regression-fixture line. JSON parse-validity, Python AST parse-validity, and `validate.sh --strict` were the gates after each phase.
+
+A dangling skill name in advisor data, skill graphs, or README listings would surface broken recommendations to operators (Gate 2 routing pointing at a non-existent skill). This sweep keeps the skill set internally consistent: every name that appears in an advisor table, graph node, or doc list now resolves to a real skill folder.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+- **Service references kept**: `clickup`-as-a-service mentions in `mcp-code-mode/SKILL.md`, `mcp-code-mode/README.md`, AGENTS.md siblings, and install-guide UTCP examples were preserved. Rationale: those describe how Code Mode talks to the *upstream* `clickup` MCP server, which still works without the local orchestrator skill.
+- **`args: ["mcp-clickup"]` left in `mcp-code-mode/README.md`**: that string names the upstream npm package (a different `mcp-clickup`), not the local skill folder. Removing it would damage the documented UTCP wiring example.
+- **Skill-graph edits via Python, not Edit**: the file is a single line of JSON with mcp-clickup appearing in `families.mcp`, `adjacency`, multiple `prerequisite_for`/`enhances` maps, `signals`, and `skill_count`. A Python round-trip kept the structure consistent and decremented the count atomically. Output style matches the original (compact dict with spaces).
+- **Stayed on `main`, no feature branch**: per durable user policy, packet-local branches are not used here.
+- **Removed regression case `P1-GRAPH-003`**: with `mcp-clickup` gone from the advisor, the case "expect mcp-clickup as top match for 'clickup create task via mcp'" can no longer pass. Removing the case is correct because the routing it asserts has been intentionally removed.
+
+### Edge Cases Handled
+
+- **Service vs. skill distinction**: `clickup`-the-service references that travel through Code Mode (UTCP manual, env vars, `cu` CLI examples in install guides, AGENTS.md naming examples, the upstream `mcp-clickup` npm package in `args: ["mcp-clickup"]`) were preserved. Only references that named *the local skill folder* were removed.
+- **Skill-graph orphan edges**: `mcp-code-mode.prerequisite_for` and `skill-advisor.enhances` both contained `mcp-clickup` — both were pruned in the same Python pass that decremented `skill_count`.
+- **Stale playbook anchors**: 7 manual-testing-playbook scenarios in `mcp-code-mode` had a "Related files" row pointing at `.opencode/skills/mcp-clickup/SKILL.md` (now a dead path) — those rows were removed; the test scenarios still work because they invoke `clickup.clickup_*` calls via Code Mode, which doesn't depend on the local skill catalog.
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+- **Repo-wide reference scan**: `grep -rn "mcp-clickup" --include="*.md" --include="*.json" --include="*.ts" --include="*.py" --include="*.sh" --include="*.yaml" --include="*.toml"` excluding `.opencode/specs/`, observability reports, and advisor-fixtures returns **one match**: `mcp-code-mode/README.md:238 args: ["mcp-clickup"]` — the upstream npm package name (different `mcp-clickup`), intentionally preserved.
+- **JSON parse round-trip**: `python3 -m json.tool` passes on `skill-graph.json`, `skill_advisor/graph-metadata.json`, `mcp-code-mode/graph-metadata.json`, plus the 053 spec's own `description.json` and `graph-metadata.json`.
+- **Python AST parse**: `ast.parse()` passes on `skill_advisor.py` (no syntactic damage from removed entries).
+- **Skill graph counts**: post-edit `skill_count=21`, `families.mcp=['mcp-chrome-devtools', 'mcp-coco-index', 'mcp-code-mode', 'mcp-figma']`, no `mcp-clickup` key in `adjacency` or `signals`, `mcp-code-mode.prerequisite_for=['mcp-figma', 'mcp-chrome-devtools']`.
+- **Spec validator**: `validate.sh --strict` passes core rules (TEMPLATE_SOURCE, TEMPLATE_HEADERS, FILE_EXISTS, COMPLEXITY_MATCH, FOLDER_NAMING, GRAPH_METADATA_PRESENT, SPEC_DOC_INTEGRITY). Two non-blocking warnings remain (EVIDENCE_CITED on items pre-marked complete, SECTION_COUNTS expecting acceptance scenarios in a deletion-only spec) — neither blocks the cleanup.
+- **Database state**: post-cleanup `mcp-clickup` mention counts — `skill-graph.sqlite=0`, `code-graph.sqlite=0`, `voyage-context-index=0`, `deep-loop-graph=0`, `speckit-eval=0`. The lone surviving DB hits are 19 rows across 6 tables in `context-index.sqlite`, all tagged `spec_folder=cli-external-orchestration/012-cli-skill-removal-mcp-clickup` — they index *this* packet's spec docs and are expected to be there.
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+- **No automatic re-routing for "clickup" prompts**: with mcp-clickup gone from the advisor, a user typing "clickup task" no longer gets a high-confidence skill recommendation. The `tooling` category in `skill_advisor.py` still boosts `mcp-code-mode` and `mcp-chrome-devtools` for tooling-shaped prompts, which is the natural surviving path, but no rule explicitly steers `clickup` → `mcp-code-mode`. Add such a mapping if that routing is desired.
+- **Compiled artifacts not regenerated**: if `skill-graph.json` is consumed by a downstream compiled artifact (`skill_graph_compiler.py` outputs, advisor cache, etc.), those will need a rebuild before they reflect the 21-skill state.
+- **Single-line JSON formatting**: the rewritten `skill-graph.json` keeps the original compact-with-spaces shape. Diffs against history will look noisy because the entire payload is one line; this is the upstream convention, not an artifact of this change.
+<!-- /ANCHOR:limitations -->
+
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/z_archive/013-cli-copilot-hallucination-caveat"
+# PACKET: specs/cli-external-orchestration/z_archive/013-cli-copilot-hallucination-caveat
+
+---
+title: "Implementation Summary: 075 cli-copilot Hallucination Caveat"
+description: "Two doc-only caveats land in cli-copilot/SKILL.md + sk-doc/SKILL.md, citing 071/072 stress-matrix evidence and recommending cli-codex as preferred default for routing-trace consumption tasks."
+trigger_phrases: ["075 summary"]
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/013-cli-copilot-hallucination-caveat"
+    last_updated_at: "2026-05-05T18:00:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Caveats shipped; ready to commit + push"
+    next_safe_action: "(packet final after commit + push)"
+    blockers: []
+    key_files: [.opencode/skills/cli-copilot/SKILL.md, .opencode/skills/sk-doc/SKILL.md]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "075-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 075-cli-copilot-hallucination-caveat |
+| **Completed** | 2026-05-05 |
+| **Level** | 1 |
+| **Predecessor** | 072 review-report-v2.md (P1-072-001 finding) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Future maintainers and AI agents loading cli-copilot/SKILL.md or sk-doc/SKILL.md now see explicit caveats about cli-copilot's resource-path hallucination behavior. The cli-copilot caveat lives in §1 "When NOT to Use" — bullet item flagging "Routing-trace tasks where the caller consumes resource paths LITERALLY", citing the 11.1% accuracy vs cli-codex 66.7% on the sk-doc router stress matrix. The sk-doc caveat lives in §2 "Resource Domains" as a callout note giving the per-CLI accuracy table summary (cli-codex 66.7% / cli-opencode 47.2% / cli-copilot 11.1%) and recommending cli-codex (gpt-5.5/high/fast) as preferred default. Both caveats reference `specs/skilled-agent-orchestration/z_archive/060-sk-doc-router-rerun-refined-extraction/review-report-v2.md` for the full evidence trail.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/cli-copilot/SKILL.md` | Modified (1 added bullet) | Routing-trace caveat in "When NOT to Use" |
+| `.opencode/skills/sk-doc/SKILL.md` | Modified (1 added paragraph) | Cross-CLI consumption note in "Resource Domains" |
+| `075/{spec,plan,tasks,implementation-summary}.md` | Created | Packet docs |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Two Edit calls. ~10 lines of content total. Both caveats use the same evidence trail (071/072 stress matrix), name the empirical accuracy numbers, and recommend cli-codex as the preferred default for routing-trace consumption tasks. The cli-copilot caveat scopes the recommendation tightly ("when caller consumes paths LITERALLY") to avoid creating a blanket "don't use cli-copilot" misreading; cli-copilot remains a good general-purpose dispatcher for tasks where its routing trace is treated as advisory.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Caveat in SKILL.md (not README.md) | SKILL.md is the AI-loaded surface. AI agents picking the right CLI for a task read SKILL.md. README is for maintainers. The discoverability path matters |
+| Tight scope on cli-copilot caveat ("LITERALLY") | Avoids a blanket "don't use cli-copilot" misread. Cli-copilot is fine for many tasks; only routing-trace consumers get burned |
+| Cite empirical numbers (66.7/47.2/11.1) | Maintainers reading later can verify; not opinion |
+| Reference review-report-v2.md path | Future readers can dig into the full evidence; not a black-box assertion |
+| 1-bullet caveat in 1-paragraph in sk-doc | Different surfaces; cli-copilot's "When NOT to Use" is a list, sk-doc's "Resource Domains" is prose |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| grep "Routing-trace tasks where the caller" cli-copilot/SKILL.md | PASS |
+| grep "Cross-CLI consumption note" sk-doc/SKILL.md | PASS |
+| Both caveats cite 071/072 evidence | PASS |
+| Both name cli-codex as preferred | PASS |
+| No code changes outside SKILL.md files + 075 docs | PASS |
+| Branch | main |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Evidence is from one session, n=15 scenarios per CLI** — not statistically definitive. Future packets running larger matrices (e.g., 076 if user requests) could revise the numbers.
+
+2. **Hallucination behavior is provider/model-specific** — claude-opus-4.7's behavior on sk-doc terminology may not generalize to other Anthropic models. Caveat mentions "claude-opus-4.7 (cli-copilot default)" specifically.
+
+3. **README.md not updated** — by design, but if a maintainer-only README touches cli-copilot's accuracy claims separately, they'd need a follow-up. None observed in the cli-copilot README.md scan.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

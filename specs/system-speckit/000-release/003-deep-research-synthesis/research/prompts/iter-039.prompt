@@ -1,0 +1,1211 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-doc/024-playbook-scenario-coverage"
+# PACKET: specs/sk-doc/024-playbook-scenario-coverage (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: playbook scenario coverage across the 11 hub playbooks"
+description: "The 11 hub manual-testing-playbook trees hold two incompatible contracts under one directory name, and the sk-doc operator-scenario contract has zero mechanical enforcement anywhere in the repository. Coverage claims are hand-typed prose that has drifted in every hub counted, several shipped scenarios teach an operator to violate a hard repo rule, and the only existing gate checks the other contract and exits 0 on failure. This phased packet builds the missing validator, repairs the hazardous scenarios risk-first, and authors the coverage the derived map proves is owed."
+trigger_phrases:
+  - "playbook scenario coverage"
+  - "manual testing playbook validator"
+  - "playbook census drift"
+  - "operator scenario contract gate"
+  - "playbook corpus split"
+importance_tier: "high"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/024-playbook-scenario-coverage"
+    last_updated_at: "2026-07-30T00:00:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Authored the phase-parent spec from the track (d) synthesis proposal"
+    next_safe_action: "Resolve the seven operator decisions, then scaffold and start child 001"
+    blockers:
+      - "OPERATOR-DECISION Q2 (corpus split ruling) gates child 001 Lane A"
+      - "OPERATOR-DECISION Q4 (Gate-3 D/E amendment) gates the RD-003-02 scenario rewrite in child 002"
+    key_files:
+      - "spec.md"
+    completion_pct: 0
+    open_questions:
+      - "Q1 shared count-derivation helper ownership"
+      - "Q2 corpus split: frontmatter discriminator or file move"
+      - "Q3 owner of cross-skill end-to-end workflow scenarios"
+      - "Q4 Gate-3 D/E amendment decision and the absent cursor advisory hook"
+      - "Q5 does sk-prompt-models owe a playbook package"
+      - "Q6 phase-qualification score for this program"
+      - "Q7 stating system-spec-kit NOT READY explicitly"
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  This file is the ONLY authored document at the parent level. Heavy docs live in the phase children.
+-->
+
+## 001-playbook-standard-and-fleet-normalization/implementation-summary.md
+---
+title: "Implementation Summary: Playbook Standard and Fleet Normalization BUILD Leaf"
+description: "Scoped FIX-leaf evidence for per-file routing-gold classification, explicit corpus overrides, fixtures, and packet doctrine updates."
+trigger_phrases:
+  - "playbook package validator implementation"
+  - "playbook corpus manifest"
+  - "playbook standard build leaf"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization"
+    last_updated_at: "2026-08-02T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Corrected mixed-hub corpus classification with the topology-gate typed-gold signature"
+    next_safe_action: "Run the full requested gates and reconcile the In Progress evidence"
+    blockers: []
+    completion_pct: 60
+    open_questions:
+      - "Fleet repair, topology-gate strictness, CI wiring, and shared-helper ownership remain outside this leaf."
+    answered_questions:
+      - "Use explicit whole-tree overrides plus the per-file typed routing-gold signature."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-playbook-standard-and-fleet-normalization |
+| **Status** | In Progress |
+| **Updated** | 2026-08-02 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The packet now contains a node-only operator-contract validator at
+`.opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs`. It walks package
+trees without mutation, honors explicit whole-tree routing-gold overrides, and classifies every remaining file by the
+non-empty `expected_workflow_mode` plus typed `expected_leaf_resources` signature. It derives census counts at runtime
+and implements strict-by-default exit codes with explicit staged WARN handling for the existing measured fleet.
+
+The paired fixture suite covers the automated checks and proves a clean package passes, seeded violations fail under
+strict mode, `--no-strict` is local triage only, and boundary errors return the usage code. The packet SKILL and both
+templates now document the two-contract boundary, derived-census behavior, and the canonical PASS/FAIL/SKIP verdict
+set.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The validator was implemented with direct CLI exit codes and exercised against paired temporary fixture copies,
+including a mixed-tree signature-bearing file that is excluded from operator auditing. The manifest remains additive
+as an explicit whole-tree override list, so existing routing-gold and Lane-C consumers retain their current path contracts.
+
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/025-skill-doc-currency"
+# PACKET: specs/sk-doc/025-skill-doc-currency (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: skill-doc-currency"
+description: "Skill-level documentation across twelve skill roots describes executors, canon, routing and hub surfaces that no longer match the code, the registries or the installed CLI binaries. This phased packet repairs the documents and installs the derivation mechanisms that stop them re-rotting."
+trigger_phrases:
+  - "skill doc currency"
+  - "sk-create-skill canon"
+  - "executor roster drift"
+  - "skill readme drift"
+  - "hub surface drift"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/025-skill-doc-currency"
+    last_updated_at: "2026-07-30T00:00:00Z"
+    last_updated_by: "track-e-spec-author"
+    recent_action: "Authored phase-parent spec from the track (e) synthesis proposal"
+    next_safe_action: "Operator resolves Q1-Q7, then scaffold child 001 and 002 (wave 1)"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "pending-first-save"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Q1 — fold the unsound RE-004-02 refutation into child 001's edit?"
+      - "Q2 — bring the two unaudited CLI packets into scope?"
+      - "Q3 — how are the 14 registry-supplementary findings handled?"
+      - "Q4 — Codex hook drift is user-global machine state, run separately?"
+      - "Q5 — system-code-graph: decommission or restore?"
+      - "Q6 — four children, or collapse 003+004 into one?"
+      - "Q7 — who owns the shared link-resolver and count-derivation helpers?"
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+
+## 001-executor-and-dispatch-contract-truth/implementation-summary.md
+---
+title: "Implementation Summary: executor-and-dispatch-contract-truth"
+description: "In-progress evidence for the documentation-only BUILD leaf."
+trigger_phrases:
+  - "executor contract implementation summary"
+  - "skd025-001 build evidence"
+importance_tier: "important"
+contextType: "implementation"
+status: "In Progress"
+version: 1.0.0.0
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/025-skill-doc-currency/001-executor-and-dispatch-contract-truth"
+    last_updated_at: "2026-08-02T00:00:00Z"
+    last_updated_by: "skd025-001-build"
+    recent_action: "Recorded documentation corrections and scoped verification receipts"
+    next_safe_action: "Resolve the remaining packet-wide gates and operator decisions"
+    blockers:
+      - "RE-004-12 remains outside the documentation-only edit boundary"
+    key_files:
+      - "tasks.md"
+      - "checklist.md"
+      - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "skd025-001-build"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Operator decisions ADR-001 through ADR-003 remain Proposed"
+    answered_questions: []
+---
+# Implementation Summary: executor-and-dispatch-contract-truth
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-executor-and-dispatch-contract-truth |
+| **Completed** | Not completed; status remains In Progress |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This BUILD leaf corrected the confirmed executor, dispatch, CLI-reference, Code Mode, and MCP-hub documentation drift against the supplied HEAD anchors. It also added the two durable cli-pi contract notes: print mode exposes only the final assistant message, and captured stdout is hard-capped at 20 MB, so structured-output leaves must keep tool output bounded.
+
+The two concurrent corrections were closed without edits: `RE-008-05` already had the four Code Mode core tools in `allowed-tools`, and `RE-009-04` already referenced the canonical install guide. The complete receipt is in `tasks.md`.
+<!-- /ANCHOR:what-built -->
+
+
+## 002-create-skill-canon-self-consistency/implementation-summary.md
+---
+title: "Implementation Summary: create-skill-canon-self-consistency"
+description: "Docs-only BUILD evidence for canon corrections; packet remains In Progress pending required gate receipts."
+trigger_phrases:
+  - "canon build summary"
+  - "skd025-002 build evidence"
+  - "skill canon dispositions"
+importance_tier: "important"
+contextType: "implementation"
+version: 1.0.0.0
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency"
+    last_updated_at: "2026-08-02T08:12:30Z"
+    last_updated_by: "skd025-002-build"
+    recent_action: "Applied docs-only corrections and ran all required gates successfully"
+    next_safe_action: "Keep this leaf In Progress for explicitly excluded follow-on work"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/sk-create-skill/SKILL.md"
+      - ".opencode/skills/sk-doc/sk-create-skill/scripts/lib/skill-root-metadata-contract.cjs"
+      - ".opencode/specs/sk-doc/025-skill-doc-currency/002-create-skill-canon-self-consistency/tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "skd025-002-build"
+      parent_session_id: null
+    completion_pct: 70
+    open_questions:
+      - "What are the verbatim outputs and direct return codes of the required gates?"
+    answered_questions:
+      - "RE-009-06 is refuted at HEAD."
+      - "RE-006-13 is deferred outside docs-only scope."
+---
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+# Implementation Summary: create-skill-canon-self-consistency
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-create-skill-canon-self-consistency |
+| **Status** | In Progress |
+| **Level** | 3 |
+| **Updated** | 2026-08-02 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The requested behavior-preserving documentation corrections are applied. The executable metadata contract, packaging script, naming validator, parent-hub gate, and live sibling registry were read before editing and remain unchanged.
+
+### Applied corrections
+
+- Companion metadata is conditional for hubs that own slash commands; commandless hubs omit it.
+- Skill frontmatter and required section examples match the packaging contract.
+- Resource directories are conditional when a packet carries source material.
+- Naming guidance uses lowercase kebab-case, and the valid and invalid examples are disjoint.
+
+## 003-routing-advisor-and-hook-truth/implementation-summary.md
+---
+title: "Implementation Summary: routing-advisor-and-hook-truth"
+description: "In-progress evidence for the documentation-only BUILD leaf covering advisor policy, hook topology, prompt routing and CLI-count truth."
+trigger_phrases:
+  - "routing advisor implementation summary"
+  - "hook topology truth evidence"
+  - "skd025-003 build evidence"
+importance_tier: "important"
+contextType: "implementation"
+status: "In Progress"
+version: 1.0.0.0
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/025-skill-doc-currency/003-routing-advisor-and-hook-truth"
+    last_updated_at: "2026-08-02T13:04:05.000Z"
+    last_updated_by: "skd025-003-build"
+    recent_action: "Recorded final smoke, safety and strict-validation receipts"
+    next_safe_action: "Handoff; retain In Progress while advisor daemon is unavailable"
+    blockers: []
+    key_files:
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+      - "baselines/advisor-validation-pre-edit.txt"
+      - "baselines/cli-smoke-pre-edit.txt"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "skd025-003-build"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions:
+      - "Post-edit advisor validation remains unavailable while the warm daemon socket is absent."
+    answered_questions:
+      - "DR-6 accepted as a bounded delta from the 2026-07-30 snapshot."
+      - "Q3 admits all four supplementary findings; each has an independent evidence line."
+      - "Q4 is documentation-only; the user-global installation remains untouched."
+---
+# Implementation Summary: routing-advisor-and-hook-truth
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| Spec folder | `003-routing-advisor-and-hook-truth` |
+| Status | In Progress |
+| Scope | Documentation and the bounded CLI smoke expectation only; no scorer, snapshot, hook behavior or user-global installation changes |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This BUILD leaf corrected the confirmed advisor gate, hook topology, prompt-model routing, stale-state, CLI-count and reference-structure documentation defects. The only executable change is the bounded offline smoke expectation in `.opencode/bin/cli-offline-smoke.cjs`; runtime hook behavior, the scorer and the baseline snapshot remain unchanged.
+<!-- /ANCHOR:what-built -->
+
+
+## 004-hub-surface-drift-sweep/implementation-summary.md
+---
+title: "Implementation Summary: hub-surface-drift-sweep"
+description: "Evidence ledger for the BUILD leaf covering link resolution, design/code/git/install drift, and archive-path ratification."
+trigger_phrases:
+  - "hub surface drift implementation"
+  - "skd025-004 build receipts"
+importance_tier: "important"
+contextType: "implementation"
+status: "In Progress"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep"
+    last_updated_at: "2026-08-02T14:32:45Z"
+    last_updated_by: "skd025-004-build"
+    recent_action: "Recorded BUILD receipts and kept the child status In Progress"
+    next_safe_action: "Run strict packet validation and preserve the receipts"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/resolve_skill_markdown_links.py"
+      - ".opencode/skills/sk-doc/shared/scripts/check_install_entries.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "skd025-004-BUILD"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions:
+      - "All locked operator rulings were applied."
+---
+
+# Implementation Summary: hub-surface-drift-sweep
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| Spec Folder | `sk-doc/025-skill-doc-currency/004-hub-surface-drift-sweep` |
+| Status | In Progress |
+| Verification Date | 2026-08-02 |
+| Level | 2 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Status
+
+In Progress. The locked BUILD scope is implemented and evidenced; child metadata remains explicitly In Progress as required by the leaf contract. No git commit was created.
+
+### Baselines and deltas
+
+
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/026-skill-readme-refinement"
+# PACKET: specs/sk-doc/026-skill-readme-refinement (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: skill README refinement — template, parent template, workflow, and fleet revisit"
+description: "Phase parent: revisit every skill README in the repo (standalone and child modes) on the mcp-obsidian standard, after refining the shared README template, adding a parent-skill README template, and updating the creation workflow."
+trigger_phrases:
+  - "skill readme refinement"
+  - "readme fleet revisit"
+  - "parent skill readme template"
+  - "skill readme template update"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement"
+    last_updated_at: "2026-08-04T00:00:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Author phase-parent spec + 6-phase documentation map after the mcp-obsidian README pilot"
+    next_safe_action: "Execute 001-readme-template-refinement"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+
+## 001-readme-template-refinement/implementation-summary.md
+---
+title: "Implementation Summary — shared standalone skill README template refinement"
+description: "Phase 001-readme-template-refinement implementation summary."
+trigger_phrases:
+  - "phase 001-readme-template-refinement summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/001-readme-template-refinement"
+    last_updated_at: "2026-08-04T12:45:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Phase 001-readme-template-refinement executed"
+    next_safe_action: "Proceed to successor phase"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/001-readme-template-refinement"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary — shared standalone skill README template refinement
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-readme-template-refinement |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+| **Status** | In Progress |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+skill-readme-template.md refined from v1.8.0.6 to v1.9.0.0: purpose-first identity guidance (outcome before tool names), a capability section pattern modeled on the mcp-obsidian Plugin Knowledge Layer, an HVR enforcement block with banned forms verbatim plus scripted grep commands and an hvr-rules.md link, versioning conventions (README version field + per-skill changelog entry), and a 9-item validation checklist (pitch, AT A GLANCE, numbered ALL-CAPS H2, OVERVIEW required, command output expectations, link verification, validate_document.py --type readme). An 8-row directive cross-check table maps every handover section-2 directive to a template location.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+A fresh deepseek-v4-flash markdown agent executed the refinement in one pass: read the phase spec, handover, hvr-rules, the pilot README and the current template, then rewrote the template in place. Verification ran on the finished body: validator exit 0 with zero issues on a throwaway sample, HVR greps empty, section model intact (H2 1-9, AT A GLANCE first, OVERVIEW only required).
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 002-parent-skill-readme-template/implementation-summary.md
+---
+title: "Implementation Summary — parent-skill (hub) README template"
+description: "Phase 002-parent-skill-readme-template implementation summary."
+trigger_phrases:
+  - "phase 002-parent-skill-readme-template summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template"
+    last_updated_at: "2026-08-04T12:45:00Z"
+    last_updated_by: "spec-author"
+    recent_action: "Phase 002-parent-skill-readme-template executed"
+    next_safe_action: "Proceed to successor phase"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/002-parent-skill-readme-template"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary — parent-skill (hub) README template
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-parent-skill-readme-template |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+| **Status** | In Progress |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+parent-skill-readme-template.md created (240 lines, v1.0.0.0) at assets/parent-skill/ covering all six mandated hub surfaces: hub pitch + WHY THIS HUB EXISTS overview, MODES AND PACKETS with per-mode pointer rows, NAVIGATION with mode-registry.json and leaf-manifest.json stable-link guidance, CHANGELOG per-release entry conventions, SCRIPTS AND COMMANDS one-line usage, and VERIFICATION with the readme validator and HVR checks. Guidance names mcp-tooling and system-deep-loop as structural examples.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+A fresh deepseek-v4-flash markdown agent executed the phase: read the refined standalone template for family conventions, read both example hubs' READMEs and registries, inventoried the parent-skill assets folder, then drafted and assembled the template at the mandated path. Verification: validator exit 0, HVR greps empty, section grep H2 1-7, example-name grep confirms both hubs named.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+
+## 003-creation-workflow-update/implementation-summary.md
+---
+title: "Implementation Summary: Phase 003 creation workflow README template wiring"
+description: "Closeout record for wiring standalone and parent-hub README templates into the create-skill workflow."
+trigger_phrases:
+  - "phase 003 implementation summary"
+  - "creation workflow readme templates"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/003-creation-workflow-update"
+    last_updated_at: "2026-08-04T19:10:00Z"
+    last_updated_by: "phase-executor"
+    recent_action: "Wrote phase docs"
+    next_safe_action: "Run packet closeout"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md"
+      - ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md"
+      - ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-003-creation-workflow-readme-wiring"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-creation-workflow-update |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+| **Status** | In Progress |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The create-skill workflow now has an explicit README authoring decision point. Standalone skills use the refined standalone README template. Parent hubs use the parent-skill README template. Child modes use the standalone family unless their own phase contract names another template. The workflow now places four README checks before packaging: the readme validator, HVR scan, link resolution and version field check.
+
+The workflow prose was also cleaned to pass its style gate. The standalone and parent template assets were read only. The examples-and-maintenance reference was scanned and did not contain README authoring instructions, so it was not changed.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+## 004-standalone-readme-revisit/001-cli-external-orchestration/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1 cli-external-orchestration README rewrite"
+description: "The cli-external-orchestration README now opens purpose-first with a one-line pitch and a problem-first overview, carries all six mode pointers and the routing facts, and versioned at 1.3.0.0 with a changelog entry."
+trigger_phrases:
+  - "implementation summary"
+  - "cli external orchestration readme"
+  - "hub readme rewrite summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration"
+    last_updated_at: "2026-08-04T12:45:00Z"
+    last_updated_by: "phase-executor-001"
+    recent_action: "Phase documentation complete"
+    next_safe_action: "Hand phase off: successor 002-mcp-code-mode ready"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/001-cli-external-orchestration"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-cli-external-orchestration |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The cli-external-orchestration README now opens with the reader's problem instead of a routing inventory. A one-line pitch blockquote states the outcome first, the OVERVIEW explains why the hub exists before listing what it routes, and the six mode pointers live in a mode roster table with links into each packet. The version field moved from 1.2.0.0 to 1.3.0.0 with a changelog entry at `changelog/v1.3.0.0.md`.
+
+### The Purpose-First Rewrite
+
+You can now read the hub README and know what it delivers within five seconds: cross-AI CLI dispatch routed through one advisor identity. The old tabular reference-card style kept the facts but hid the purpose. The rewrite keeps every dispatch fact, including the `hub-router.json` and `mode-registry.json` routing chain, the `tieBreak` order, `defaultMode` and the fail-closed availability gates.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/cli-external-orchestration/README.md` | Modified | Purpose-first rewrite on the refined standalone template, version `1.3.0.0` |
+
+## 004-standalone-readme-revisit/002-mcp-code-mode/implementation-summary.md
+---
+title: "Implementation Summary: Phase 002 mcp-code-mode README rewrite"
+description: "Purpose-first README rewrite for mcp-code-mode on the refined template, version bump to 1.0.0.31, changelog entry, validator and HVR gates passed."
+trigger_phrases:
+  - "mcp code mode readme implementation summary"
+  - "code mode readme rewrite summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode"
+    last_updated_at: "2026-08-04T12:51:55Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Completed README rewrite, version bump, changelog entry, gates passed"
+    next_safe_action: "Parent packet closeout: reconcile 004-standalone-readme-revisit phase statuses"
+    blockers: []
+    key_files:
+      - ".opencode/skills/mcp-code-mode/README.md"
+      - ".opencode/skills/mcp-code-mode/changelog/v1.0.0.31.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "waveA-execution/002-mcp-code-mode"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-mcp-code-mode |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+| **Actual Effort** | 1 session (single-pass rewrite + verification) |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Rewrote `.opencode/skills/mcp-code-mode/README.md` purpose-first on the refined skill README template from phase 001, with the mcp-obsidian README as the reference shape. The rewrite opens with a one-line pitch blockquote and a problem-first OVERVIEW, keeps the AT A GLANCE table first, adds a Tool Surface capability table and preserves every load-bearing fact from the baseline (token economics, the four core tools, the naming rule, the `.env` prefix rule, boundary statements, troubleshooting rows, FAQ answers and the verification matrix). The frontmatter version bumped from `1.0.0.30` to `1.0.0.31` and a matching changelog entry was added.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/mcp-code-mode/README.md` | Rewritten | Purpose-first README on the refined template with version bump to `1.0.0.31` |
+| `.opencode/skills/mcp-code-mode/changelog/v1.0.0.31.md` | Added | Changelog entry for the rewrite following the package compact convention |
+| `tasks.md`, `checklist.md` | Updated | Evidence marked with backticked tokens and N/M ratios |
+
+
+## 004-standalone-readme-revisit/003-mcp-tooling/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3 mcp-tooling README rewrite"
+description: "The mcp-tooling hub README now opens purpose-first: a one-line pitch, a problem-first overview and a routing surface table, with the version field synchronized to 1.5.0.0 and a matching changelog entry."
+trigger_phrases:
+  - "implementation summary"
+  - "mcp tooling readme summary"
+  - "phase 3 closeout"
+  - "hub readme rewrite summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling"
+    last_updated_at: "2026-08-04T12:52:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Documented phase 3 closeout: README rewrite, version 1.5.0.0, changelog added"
+    next_safe_action: "Parent packet closeout: reconcile phase status and run fleet-wide validation"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/003-mcp-tooling"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-mcp-tooling |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The mcp-tooling hub README stops reading like a tabular reference card and now opens like the mcp-obsidian pilot: a one-line pitch states the routing identity before any tool name, a problem-first OVERVIEW explains why the hub exists, and a routing surface table lists all seven modes with links to their packet READMEs. The frontmatter version field finally agrees with the changelog history: it moved from 1.0.0.0 to 1.5.0.0, and a matching entry at `changelog/v1.5.0.0.md` records the release.
+
+You can now orient a person to the hub in five seconds: the pitch names the outcome, the AT A GLANCE table covers the surfaces, and every factual claim of the old document survives the rewrite. The rewrite stays inside the refined standalone template shape with numbered ALL-CAPS sections, and the prose passes the Human Voice Rules with zero em dashes, zero semicolons and zero Oxford commas.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/mcp-tooling/README.md` | Modified | Rewritten purpose-first on the refined template with the version bumped to 1.5.0.0 |
+| `.opencode/skills/mcp-tooling/changelog/v1.5.0.0.md` | Created | Changelog entry for the rewrite release |
+
+## 004-standalone-readme-revisit/004-sk-code/implementation-summary.md
+---
+title: "Implementation Summary: Phase 004-sk-code standalone README rewrite"
+description: "The sk-code skill README was rewritten purpose-first on the refined standalone template with a one-line pitch, a problem-first OVERVIEW and a code work contract grid, with the version bumped to 4.2.0.0 and a changelog entry added."
+trigger_phrases:
+  - "phase 004-sk-code implementation"
+  - "sk-code readme rewrite summary"
+  - "standalone readme rewrite summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code"
+    last_updated_at: "2026-08-04T12:46:05Z"
+    last_updated_by: "004-sk-code-executor"
+    recent_action: "Phase 004-sk-code executed: README rewritten purpose-first, version bumped, changelog added"
+    next_safe_action: "Review the rewrite and hand off to 005-mode-child-readme-revisit"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-code/README.md"
+      - ".opencode/skills/sk-code/changelog/v4.2.0.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "waveA/004-sk-code"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-sk-code |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sk-code README no longer reads as a reference card. It now opens with a one-line pitch and a problem-first OVERVIEW, so a human reader learns what the hub delivers before any feature grid. Every mode, surface, routing and related-document fact from the old README survives the rewrite, the frontmatter version moves from 4.1.0.0 to 4.2.0.0 and a changelog entry records the release.
+
+### Purpose-First README Rewrite
+
+You can now open `.opencode/skills/sk-code/README.md` and get the outcome in one blockquote: code work resolves to the quality or review mode it needs, under one advisor identity. The AT A GLANCE table stays first, the OVERVIEW states the reader's situation before the solution and a code work contract grid names what each mode and surface owns. The old tabular inventory facts (mode hints, WEBFLOW and OPENCODE surfaces, the Motion.dev overlay, the implement → debug → verify doctrine, the single graph identity) all survive in the new section model, now with a FAQ and a verification section that were missing before.
+
+### Version And Changelog
+
+The frontmatter version is bumped from 4.1.0.0 to 4.2.0.0 and `changelog/v4.2.0.0.md` records the purpose-first rewrite under the Documentation category, with the routing contract unchanged.
+
+## 004-standalone-readme-revisit/005-sk-design/implementation-summary.md
+---
+title: "Implementation Summary: Phase 005 sk-design README rewrite"
+description: "Rewrote the sk-design README purpose-first on the refined template with a one-line pitch, problem-first OVERVIEW and verification close, bumped the version field to 1.7.0.0 and added the changelog entry."
+trigger_phrases:
+  - "phase 005 implementation summary"
+  - "sk design readme summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design"
+    last_updated_at: "2026-08-04T13:15:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Rewrote sk-design README, bumped version to 1.7.0.0, added changelog entry, gates green"
+    next_safe_action: "Packet closeout: fleet-wide validation and changelog aggregation in the parent packet"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/README.md"
+      - ".opencode/skills/sk-design/changelog/v1.7.0.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-sk-design-readme-rewrite"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-sk-design |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sk-design README now reads as a purpose-first front door instead of a tabular reference card. A one-line pitch in a blockquote sits right after the H1. An AT A GLANCE table opens the body, the OVERVIEW states the problem before any feature list, and a VERIFICATION section closes it. The version field finally matches the release history at `1.7.0.0`, with `changelog/v1.7.0.0.md` recording the rewrite in the changelog voice.
+
+### The Rewrite
+
+Every shipped behavior claim from the old README survives the narrative pass: the two design modes (`design-interface`, `design-md-generator`), the two canonical `/interface:*` creation commands, the retired command surface, the `legacy` / `shadow` / `persistent` style adapters, the persistent SQLite backend, the single advisor identity, the private procedure cards and the transport boundaries. One fact moved to current state: the manual testing playbook now reports 35 scenarios across 9 categories, matching its own header. The old README said 37 scenarios across 8 categories.
+
+### The Changelog Entry
+
+`changelog/v1.7.0.0.md` documents the rewrite with the local Added / Changed / Preserved / Verification shape. The runtime surface was not touched: `SKILL.md`, `mode-registry.json`, the mode packets and the shared references keep their exact content.
+
+## 004-standalone-readme-revisit/006-sk-doc/implementation-summary.md
+---
+title: "Implementation Summary: Phase 006 sk-doc standalone README rewrite"
+description: "Purpose-first README rewrite for sk-doc completed: version 2.0.0.0, changelog entry added, validator and HVR gates clean."
+trigger_phrases:
+  - "phase 006 summary"
+  - "sk doc readme implementation"
+  - "standalone readme summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc"
+    last_updated_at: "2026-08-04T13:30:00Z"
+    last_updated_by: "phase-executor"
+    recent_action: "Rewrote sk-doc README purpose-first (2.0.0.0) and added changelog entry"
+    next_safe_action: "Hand off to packet validation-and-closeout for fleet validation and changelog closeout"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/README.md"
+      - ".opencode/skills/sk-doc/changelog/v2.0.0.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "exec/006-sk-doc"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-sk-doc |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+| **Actual Effort** | ~2 hours (estimated: 1.5-3 hours) |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sk-doc README was rewritten purpose-first against the refined skill README template from phase 001, with the mcp-obsidian README as the exemplar shape. The rewrite opens with a one-line pitch blockquote and a problem-first OVERVIEW that states the reader's situation before any feature list. The body follows the 9-section numbered ALL-CAPS model with `---` dividers, adds a capability section (The Type-Aware Enforcement Layer) and a VERIFICATION close, and drops none of the old facts: all 43 scripted facts (eleven `/create:*` commands, script names, paths, skill names, `@markdown` agent) survive. The version field moved from `1.8.0.36` to `2.0.0.0` (the skill anchor, matching SKILL.md), and a changelog entry was added at `changelog/v2.0.0.0.md` in the message-release shape.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-doc/README.md` | Rewritten | Purpose-first narrative on the refined template: pitch, problem-first OVERVIEW, capability table, 9 numbered sections, version bumped to `2.0.0.0` |
+| `.opencode/skills/sk-doc/changelog/v2.0.0.0.md` | Created | Release entry for the rewrite in the NEW / CHANGED / NOT CHANGED shape |
+| Phase docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`) | Evidence updated | Task and checklist items marked `[x]` with backticked evidence tokens |
+
+## 004-standalone-readme-revisit/007-sk-git/implementation-summary.md
+---
+title: "Implementation Summary: Phase 007 sk-git standalone README revisit"
+description: "Rewrite of the sk-git skill README against the refined standalone README template and the mcp-obsidian exemplar: purpose-first structure, HVR cleanup, version bump with a matching changelog entry and validation evidence."
+trigger_phrases:
+  - "phase 7 implementation summary"
+  - "sk-git readme summary"
+  - "git readme rewrite summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git"
+    last_updated_at: "2026-08-04T13:26:00Z"
+    last_updated_by: "phase-executor"
+    recent_action: "Rewrote sk-git README, bumped version to 1.4.1.0, added changelog entry"
+    next_safe_action: "Hand off to packet validation-and-closeout"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-git/README.md"
+      - ".opencode/skills/sk-git/changelog/v1.4.1.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "exec/007-sk-git"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-sk-git |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+| **Actual Effort** | Under 1 hour (documentation rewrite) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sk-git README at `.opencode/skills/sk-git/README.md` was rewritten against the refined standalone skill README template (`.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md`) and the mcp-obsidian exemplar. The document now opens with a one-line blockquote pitch, an AT A GLANCE table and a problem-first OVERVIEW, then follows the template section order through RELATED DOCUMENTS. The FEATURES, STRUCTURE and REQUIREMENTS sections folded into the template model. The version field moved from `1.4.0.0` to `1.4.1.0` and the matching changelog entry was added.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-git/README.md` | Rewritten | Purpose-first README on the refined template with the em dash at line 102 and every other HVR violation removed |
+| `.opencode/skills/sk-git/changelog/v1.4.1.0.md` | Created | Changelog entry matching the bumped version field |
+| `spec.md` (this folder) | Scaffolded | Phase specification |
+
+## 004-standalone-readme-revisit/008-sk-prompt/implementation-summary.md
+---
+title: "Implementation Summary: Phase 008 sk-prompt README revisit"
+description: "Purpose-first rewrite of the sk-prompt README with a version bump to 1.1.0.0, a changelog entry and full validation evidence."
+trigger_phrases:
+  - "implementation summary"
+  - "phase 008 summary"
+  - "sk prompt readme summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt"
+    last_updated_at: "2026-08-04T13:24:03Z"
+    last_updated_by: "008-sk-prompt"
+    recent_action: "Executed README rewrite and changelog entry"
+    next_safe_action: "None. Phase complete and validated"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/README.md"
+      - ".opencode/skills/sk-prompt/changelog/v1.1.0.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "008-sk-prompt/execute"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-sk-prompt |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sk-prompt README now reads as a narrative front door instead of a tabular reference card. You get a one-line pitch and an AT A GLANCE table up front, a problem-first OVERVIEW that states the delivered outcome before the tooling, and only then the hub's two workflow packets. The Model Profile Layer table tells you what each of the six maintained profiles covers, every QUICK START command shows its expected output, and the README names the real command `/prompt:improve` instead of the stale `/prompt-improve`.
+
+The frontmatter version moved from 1.0.0.0 to 1.1.0.0. The release entry at `changelog/v1.1.0.0.md` records the rewrite and is linked from the README.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-prompt/README.md` | Rewritten | Purpose-first narrative rewrite, version 1.1.0.0 |
+
+## 004-standalone-readme-revisit/009-system-deep-loop/implementation-summary.md
+---
+title: "Implementation Summary: Phase 9 system-deep-loop README rewrite"
+description: "The system-deep-loop skill README now reads purpose-first on the refined template: a one-line pitch, a problem-first overview, a mode family table and a verification close, with the version bumped to 2.1.0.0 and a changelog entry."
+trigger_phrases:
+  - "phase 9 implementation summary"
+  - "system deep loop readme summary"
+  - "deep loop readme rewrite summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop"
+    last_updated_at: "2026-08-04T13:37:24Z"
+    last_updated_by: "phase-executor"
+    recent_action: "Completed README rewrite and changelog entry at version 2.1.0.0"
+    next_safe_action: "Hand over to the parent packet for phase closeout review"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-deep-loop/README.md"
+      - ".opencode/skills/system-deep-loop/changelog/v2.1.0.0.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "exec-009-system-deep-loop"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-system-deep-loop |
+| **Completed** | 2026-08-04 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-loop hub README, one of the most visible standalone documents in the fleet, now opens with a human pitch and a problem-first overview instead of a tabular capability sheet. A reader learns what the iterative workflows deliver before meeting the routing machinery, and the document matches the mcp-obsidian exemplar and the refined template from phase 001.
+
+### Purpose-First README Rewrite
+
+The README leads with a one-line blockquote pitch, then an AT A GLANCE table with the four rows a reader scans in five seconds. OVERVIEW opens with the reader's situation: five sibling skills once meant five advisor identities and five copies of every shared fix. The mode family table states what each workflow delivers, HOW IT WORKS carries the three-tier discriminator and the add-a-mode surfaces, and the close covers verification and related documents. Every durable fact from the old document survived, confirmed by a 25-item fact battery.
+
+### Changelog Entry
+
+The hub changelog gains the v2.1.0.0 entry with the standard frontmatter shape and the message-release structure. It records the voice and structure change, the version bump and the preserved facts, and it states what stayed untouched.
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

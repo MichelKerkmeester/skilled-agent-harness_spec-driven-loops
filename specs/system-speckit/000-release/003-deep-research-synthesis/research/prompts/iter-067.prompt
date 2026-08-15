@@ -1,0 +1,472 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-skill-advisor/017-advisor-audit-and-state-containment"
+# PACKET: specs/system-skill-advisor/017-advisor-audit-and-state-containment (spec only)
+
+---
+title: "Feature Specification: Advisor Audit and State Containment Phase Parent"
+description: "Phase parent for two advisor workstreams: containing the stray nested .opencode state directories that runtime writers leak, and auditing the advisor code surface itself."
+trigger_phrases:
+  - "feature"
+  - "specification"
+  - "name"
+  - "template"
+  - "spec core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/017-advisor-audit-and-state-containment"
+    last_updated_at: "2026-07-27T15:47:29Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialize continuity block"
+    next_safe_action: "Replace template defaults on first save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-27-advisor-018"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+# Feature Specification: Phase 1: advisor-audit-and-state-containment
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!--
+SELF-CHECK:
+- Confirm the artifact states the current problem, intended outcome, scope, and verification evidence.
+- Remove placeholders, stale status, and claims that are not backed by a check.
+FAILURE MODES:
+- Scope drift, vague acceptance criteria, and optimistic done-language without evidence.
+-->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 1 |
+| **Priority** | [P0/P1/P2] |
+| **Status** | [Draft/In Progress/Review/Complete] |
+| **Created** | 2026-07-27 |
+| **Branch** | `scaffold/017-advisor-audit-and-state-containment` |
+| **Parent Spec** | ../spec.md |
+| **Phase** | 18 of 18 |
+| **Predecessor** | 000-rust-backend-rewrite |
+| **Successor** | None |
+| **Handoff Criteria** | [To be defined during planning] |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:phase-context -->
+## Phase Context
+
+This is **Phase 18** of the Skill advisor surface audit and stray state-directory containment specification.
+
+**Scope Boundary**: [To be defined during planning]
+
+**Dependencies**:
+- [To be defined during planning]
+
+**Deliverables**:
+- [To be defined during planning]
+
+**Changelog**:
+- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+<!-- /ANCHOR:phase-context -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+
+### Purpose
+[One-sentence outcome statement. What does success look like?]
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- [Deliverable 1]
+- [Deliverable 2]
+- [Deliverable 3]
+
+### Out of Scope
+- [Excluded item 1] - [why]
+- [Excluded item 2] - [why]
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| [path/to/file.js] | [Modify/Create/Delete] | [Brief description] |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | [Requirement description] | [How to verify it's done] |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-002 | [Requirement description] | [How to verify it's done] |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: [Primary measurable outcome]
+- **SC-002**: [Secondary measurable outcome]
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
+| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- [Question 1 requiring clarification]
+- [Question 2 requiring clarification]
+<!-- /ANCHOR:questions -->
+
+---
+
+<!--
+CORE TEMPLATE (~80 lines)
+- Essential what/why/how only
+- No boilerplate sections
+- Add L2/L3 addendums for complexity
+-->
+
+
+<!-- SCAFFOLD_VALIDATION_COUNTS:
+REQ-003
+REQ-004
+REQ-005
+REQ-006
+REQ-007
+REQ-008
+**Given**
+**Given**
+**Given**
+**Given**
+**Given**
+**Given**
+-->
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 001 | `001-state-directory-containment/` | Stop runtime writers planting nested `.opencode` trees; clean the 40 that exist | Planned |
+| 002 | `002-advisor-surface-audit/` | Disposition the nine advisor-surface findings | Planned |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-state-directory-containment | 002-advisor-surface-audit | Containment landed or explicitly deferred | Zero nested `.opencode` dirs, or a recorded deferral |
+<!-- /ANCHOR:phase-map -->
+FOLDER
+
+<<<FOLDER id="specs/system-skill-advisor/018-codex-node-runtime-alignment"
+# PACKET: specs/system-skill-advisor/018-codex-node-runtime-alignment
+
+---
+title: "Implementation summary: Codex skill advisor Node runtime alignment"
+description: "Codex now launches the skill advisor with the Node ABI required by its installed native SQLite module. Direct MCP handshakes confirm the startup blocker is removed without changing other server-specific runtime pins."
+trigger_phrases:
+  - "Codex skill advisor runtime fixed"
+  - "mk_skill_advisor initialize passes"
+  - "Codex MCP startup ABI alignment"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/018-codex-node-runtime-alignment"
+    last_updated_at: "2026-08-14T07:52:06Z"
+    last_updated_by: "claude-code"
+    recent_action: "Verified the repaired advisor and dependent startup chain"
+    next_safe_action: "Start a fresh Codex session and confirm the startup banner is clear"
+    blockers: []
+    key_files:
+      - ".codex/config.toml"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-mcp-runtime-alignment-20260810"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The skipped MCP servers were a startup-interruption cascade, not six independent configuration failures."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 018-codex-node-runtime-alignment |
+| **Completed** | 2026-08-10 |
+| **Level** | 1 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Codex can now initialize the skill advisor instead of aborting the MCP startup sequence. The advisor uses Node 25 ABI 141, which matches the installed `better-sqlite3` binary, while memory and code mode retain their independently verified Node 22 and Node 24 pins.
+
+### Runtime Alignment
+
+The `mk_skill_advisor` registration now launches `/opt/homebrew/bin/node`. A durable comment records the native ABI constraint so a future runtime normalization does not reintroduce the failure.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.codex/config.toml` | Modified | Run the advisor with the compatible Node ABI. |
+| `specs/system-skill-advisor/018-codex-node-runtime-alignment/` | Created | Record scope, proof, rollback, and final state. |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The same native constructor that failed under Node 22 passed under Node 25, then the exact configured launcher completed a live MCP initialize handshake. Independent handshakes confirmed the other locally testable servers were healthy and had only been skipped after the advisor interrupted startup.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Change only the Codex advisor runtime. | Rebuilding SQLite for Node 22 would break runtimes already using its ABI 141 binary. |
+| Preserve memory and code-mode pins. | Their separate dependency trees initialized successfully under Node 22 and Node 24. |
+| Use the Codex CLI as the TOML authority. | The system Python is 3.9 and does not provide `tomllib`; `codex mcp list/get` loaded and resolved the actual production configuration. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Node 22 SQLite negative control | PASS: reproduced `NODE_MODULE_VERSION 141` versus required 127 with `ERR_DLOPEN_FAILED`. |
+| Node 25 SQLite positive control | PASS: in-memory database constructor completed under ABI 141. |
+| Advisor MCP initialize | PASS: `mk_skill_advisor` v0.1.0 initialized and shut down cleanly. |
+| Memory MCP initialize | PASS: `mk-spec-memory` v1.8.0 initialized under its unchanged Node 22 pin. |
+| Code mode MCP initialize | PASS: `CodeMode-MCP` v1.0.0 initialized under its unchanged Node 24 pin. |
+| Node REPL MCP initialize | PASS: `rmcp` v1.5.0 initialized from the resolved Codex registration. |
+| Sites picker MCP initialize | PASS: `Sites Design Picker` v0.1.30 initialized. |
+| Codex configuration authority | PASS: `codex mcp list` and `codex mcp get mk_skill_advisor --json` resolved `/opt/homebrew/bin/node`. |
+| Python TOML helper | FAIL, non-authoritative: system Python 3.9 lacks `tomllib`; replaced by the production Codex parser check. |
+| Whole-tree sk-code guards | CONDITIONAL: stack-folders and router-sync passed; alignment-drift reported the known unrelated backlog of 12,514 errors and 11,799 warnings across 788,322 files. |
+| Packet-scoped alignment delta | PASS: 2 scanned machine descriptors, 0 errors, 0 warnings; no reported finding names either changed scope path. |
+| Strict spec validation | PASS: final-state run exited 0 with zero errors and zero warnings. |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Fresh-session UI confirmation remains operator-observable.** `codex_apps` is runtime-managed and does not appear in `codex mcp list`; starting a new Codex session is the final check that its prior skipped status has cleared.
+2. **Repository-wide alignment backlog remains.** The scoped change adds no finding, but the whole-tree guard remains non-zero because of unrelated files and nested worktrees.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/system-skill-advisor/z_archive/001-skill-advisor-refinement"
+# PACKET: specs/system-skill-advisor/z_archive/001-skill-advisor-refinement
+
+---
+title: "Implementation Summary: Skill Advisor Refinement [template:level_3/implementation-summary.md]"
+description: "Completed refinement of skill advisor safety defaults, ranking discipline, runtime performance, and verification harnesses."
+trigger_phrases:
+  - "skill advisor implementation summary"
+  - "confidence-only override"
+  - "regression benchmark gates"
+# <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+importance_tier: "critical"
+contextType: "implementation"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-skill-advisor-refinement |
+| **Completed** | 2026-03-03 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### What Was Built
+
+This refinement closes the full nine-item improvement plan for the skill advisor and shifts the workstream from draft planning to implementation-complete. You now get safer default routing, explicit override semantics, cleaner command bridge handling, much faster warm-path execution, and permanent quality/performance gates that are repeatable.
+
+### Safety and routing behavior
+
+The advisor now preserves uncertainty guarding by default even when `--threshold` is passed, and exposes explicit `--confidence-only` when confidence-only behavior is intentionally needed. Command bridges are split into their own class (`kind: command`) and are deprioritized for natural-language prompts unless slash-intent is explicit.
+
+### Runtime performance and matching path
+
+Discovery now uses in-process caching with mtime invalidation, frontmatter-only parsing, and precomputed normalized metadata for hot-path matching. This reduces repeated parsing and token normalization costs in warm calls.
+
+### Structural mode and long-term verification gates
+
+Structural batch mode support (`--batch-file`, `--batch-stdin`) is implemented to reduce subprocess overhead. Permanent harnesses were added for regression and benchmark validation with versioned fixtures and machine-readable outputs. Script docs were also synchronized to implementation reality in both `.opencode/skills/scripts/README.md` and `.opencode/skills/scripts/SET-UP_GUIDE.md`.
+
+---
+
+---
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+### How It Was Delivered
+
+Delivery followed implementation then evidence-driven verification. First, core behavior and runtime helpers were updated in `skill_advisor.py` and `skill_advisor_runtime.py`. Next, permanent harnesses and fixtures were finalized in `skill_advisor_regression.py`, `skill_advisor_bench.py`, and `fixtures/skill_advisor_regression_cases.jsonl`. Finally, docs and operational commands were synced in `.opencode/skills/scripts/README.md`, `.opencode/skills/scripts/SET-UP_GUIDE.md`, and this Level 3 spec folder.
+
+---
+
+---
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+### Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Keep dual-threshold behavior as default, require explicit `--confidence-only` override | Prevents silent safety downgrade when operators set threshold and keeps uncertainty guard behavior predictable. |
+| Separate command bridges from real skills and apply slash-intent exception | Reduces false-positive command routing for plain-language prompts while preserving explicit slash-command workflows. |
+| Add runtime cache + frontmatter-only parsing + precomputed metadata | Delivers warm-path speed gains without adding external dependencies or changing overall script ergonomics. |
+| Add permanent regression and benchmark harnesses | Keeps correctness and latency measurable over time with repeatable gates and artifact outputs. |
+
+---
+
+---
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+### Verification
+
+| Check | Result |
+|-------|--------|
+| `python3 -m py_compile .opencode/skills/scripts/skill_advisor.py .opencode/skills/scripts/skill_advisor_runtime.py .opencode/skills/scripts/skill_advisor_regression.py .opencode/skills/scripts/skill_advisor_bench.py` | PASS |
+| `python3 .opencode/skills/scripts/skill_advisor.py --health` | PASS (`skills_found=16`, `command_bridges_found=2`) |
+| `python3 .opencode/skills/scripts/skill_advisor_regression.py --dataset .opencode/skills/scripts/fixtures/skill_advisor_regression_cases.jsonl --out .opencode/skills/scripts/out/regression-report.json` | PASS (`overall_pass=true`, `total_cases=34`, `top1_accuracy=1.0`, `p0_pass_rate=1.0`, `command_bridge_fp_rate=0.0`) |
+| `python3 .opencode/skills/scripts/skill_advisor_bench.py --dataset .opencode/skills/scripts/fixtures/skill_advisor_regression_cases.jsonl --runs 7 --out .opencode/skills/scripts/out/benchmark-report.json` | PASS (`overall_pass=true`, `subprocess p95=46.9855 ms`, `inprocess warm p95=0.6081 ms`, `throughput_multiplier=25.8538x`) |
+
+---
+
+---
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+### Known Limitations
+
+1. **Security/compliance checklist evidence is partial.** This doc set includes implementation and performance evidence, but dedicated security audit artifacts and rollback drill evidence are still pending checklist closure.
+2. **Optional documentation gates remain open.** Optional CI/user-facing guidance items are intentionally left unchecked because they were out of scope for this completion update.
+
+---
+<!-- /ANCHOR:limitations -->
+
+---
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

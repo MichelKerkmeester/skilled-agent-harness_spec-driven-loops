@@ -1,0 +1,13 @@
+### Documentation (sk-doc)
+
+- The `/create:*` command family now covers every documentation artifact, adding `/create:command`, `/create:benchmark`, `/create:diagram` (27 HTML/SVG diagram types plus ASCII/markdown flowcharts), and `/create:diff` for self-contained local before/after document reports.
+- Four commands were renamed to the `/create:<packet>` convention — `/create:skill`, `/create:skill-parent`, `/create:readme`, and `/create:manual-testing-playbook` — and `/create:flowchart` was folded into `/create:diagram`.
+- All ten create-* skills now share one consistent routing contract, so documentation requests land on the right tool (existing-document audit goes to create-quality-control, README/flowchart/diagram stay with their dedicated packets) and bare trigger words like "benchmark" no longer hijack a skill.
+- Documentation skills resolve through the single canonical `sk-doc` alias everywhere, and the authoring agent is now `@markdown` across every runtime mirror.
+- Generated skills, feature catalogs, and playbooks now ship with kebab-case directories and filenames, backed by a repo-wide guard that fails on new snake_case names (Python, vendored trees, lockfiles, and generated output stay exempt).
+- Benchmark runs now use one dated naming convention (`<YYYY-MM-DD>--<subject>--<variant>`), write results into `<skill>/benchmark/reports/<dated-run>/`, and auto-append to a drift-proof index; all 78 existing run folders were migrated.
+- Two new opt-in truth gates mechanically enforce the code-folder README standard, catching broken path references and stale inventory counts, and a fleet auditor discovers durable code folders and tracks results in a persisted manifest.
+- Skill READMEs were rewritten purpose-first (one-line pitch, problem-first overview, banned em-dash/Oxford-comma style enforcement), and the new `sk-communication` skill turns terse agent output into plain English without touching canonical bytes.
+- Generated markdown now follows one ratified structure standard (numbered ALL-CAPS H2 headings separated by `---` dividers, READMEs free of TOC/nav anchors), opt-in via `SKDOC_ENFORCE_STRUCTURE=1`, while spec-kit continuity anchors stay required and untouched.
+
+**Breaking:** `/create:skill`, `/create:skill-parent`, `/create:readme`, and `/create:manual-testing-playbook` were renamed; `/create:flowchart` was removed in favor of `/create:diagram`; all new generated output now uses kebab-case filenames enforced repo-wide; benchmark runs migrated to the dated `<YYYY-MM-DD>--<subject>--<variant>` grammar; the `visual-skill` alias was removed in favor of `sk-doc`; and the authoring agent was renamed from `create` to `@markdown`.

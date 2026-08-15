@@ -1,0 +1,2079 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-doc/018-benchmark-authoring-and-validation-fixes"
+# PACKET: specs/sk-doc/018-benchmark-authoring-and-validation-fixes (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Benchmark Authoring and Validation Fixes"
+description: "Make sk-doc/create-benchmark the single home for benchmark-document authoring across all repo benchmark families, then harden it through path, documentation, routing, runtime-alignment, registry-gate, and design-command validation fixes. Run and scoring logic stays owned by the deep-loop lanes."
+trigger_phrases:
+  - "benchmark authoring centralization"
+  - "create-benchmark single home"
+  - "benchmark validation fixes"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes"
+    last_updated_at: "2026-07-20T09:23:08Z"
+    last_updated_by: "claude-code"
+    recent_action: "Lean phase parent; centralization is child 000, fixes are children 001-006"
+    next_safe_action: "Resume a child phase folder or run recursive validation"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Benchmark Authoring and Validation Fixes
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P2 |
+| **Status** | Complete |
+| **Created** | 2026-07-12 |
+| **Track** | sk-doc |
+| **Predecessor** | None |
+| **Successor** | None |
+<!-- /ANCHOR:metadata -->
+
+## 000-benchmark-authoring-centralization/implementation-summary.md
+---
+title: "Implementation Summary: Benchmark Authoring Centralization"
+description: "Centralized benchmark-document authoring in sk-doc/create-benchmark: authored skill-benchmark (storage guide + hub README template) and model-benchmark (fixture + profile templates + guide) families, gave the SKILL a complete 6-family disambiguation table + new-family sections + header normalization (10/10 packets pass package_skill.py --check), and repointed 8 deep-improvement/hub consumer docs to create-benchmark for authoring. Lane C report stays renderer-owned; measurement contracts stay lane-local, linked not copied."
+trigger_phrases:
+  - "018 summary benchmark authoring and validation fixes"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/000-benchmark-authoring-centralization"
+    last_updated_at: "2026-07-20T09:23:08Z"
+    last_updated_by: "claude-code"
+    recent_action: "Centralization complete; templates, guides, family table, pointer-only rewire shipped"
+    next_safe_action: "Terminal gates + push the goal branch"
+    blockers: []
+    completion_pct: 100
+    status: "Complete"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|-------|-------|
+| **Packet** | 000 — benchmark-authoring-centralization |
+| **Status** | Complete |
+| **Track** | sk-doc |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+create-benchmark is now the single home for benchmark-document templates and authoring standards across families.
+
+| Artifact | Purpose |
+|---|---|
+| `references/skill_benchmark_storage_guide.md` | Hub `benchmark/<run-label>/` storage convention + the renderer-owned report boundary |
+| `assets/skill_benchmark_readme_template.md` | Hub `benchmark/README` index template (index only; not the report) |
+| `references/model_benchmark_fixture_guide.md` | Fixture families + profile shape; links lane-local contracts |
+| `assets/model_benchmark_code_task_fixture_template.md` | t-tier code-task fixture (JSON scaffold) |
+| `assets/model_benchmark_pattern_fixture_template.md` | pattern/capability fixture (JSON scaffold) |
+| `assets/model_benchmark_profile_template.md` | benchmark profile (JSON scaffold) |
+| `SKILL.md` §1/§2/§10/§11/§12 | header split + 6-family table + skill/model-benchmark sections + REFERENCES; v1.2.0.0 |
+| 8 consumer docs | pointer-only references to create-benchmark for authoring |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+Ran in an isolated worktree (see Known Limitations). A staged workflow authored the 6 templates/guides in parallel, then a single agent integrated the SKILL/README and normalized its header, then a single agent rewired the consumers pointer-only. Every stage self-verified; the results were then independently re-verified in the main loop.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+## 001-organize-benchmark-resources-and-routing/implementation-summary.md
+---
+title: "Implementation Summary: Create-Benchmark Resource Reorganization and Routing"
+description: "Grouped 16 create-benchmark templates and guides into per-family subfolders, repointed every live consumer, repaired moved-file link depth, and added family routing vocabulary to the source contract and both hub routing files."
+trigger_phrases:
+  - "create benchmark reorg summary"
+  - "benchmark family routing summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/001-organize-benchmark-resources-and-routing"
+    last_updated_at: "2026-07-20T09:07:18Z"
+    last_updated_by: "claude-code"
+    recent_action: "Reorg + reference migration + link repair + family routing vocab complete"
+    next_safe_action: "Recursive strict validation and commit"
+    blockers: []
+    completion_pct: 100
+    status: "Complete"
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-organize-benchmark-resources-and-routing |
+| **Completed** | 2026-07-13 |
+| **Level** | 2 |
+| **Actual Effort** | Reorg + reference migration + link repair + routing vocab |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Reorganized `create-benchmark` resources by benchmark family and made the four authored families durably routable, with no change to lane-owned scoring or execution. All 16 templates/guides now live under per-family subfolders (`behavior_benchmark/`, `model_benchmark/`, `skill_benchmark/`, `_shared/`) beneath the preserved top-level `assets/` and `references/` roots, so coverage is visible at a glance and `package_skill.py create-benchmark --check` still reports `PASS`. Every live consumer was repointed (136 references across 31 files), moved-file link depth was repaired, and the four benchmark families were added to both hub routing files.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `create-benchmark/assets/{_shared,behavior_benchmark,model_benchmark,skill_benchmark}/*` | Moved (`git mv`) | 9 templates grouped by family |
+| `create-benchmark/references/{_shared,behavior_benchmark,model_benchmark,skill_benchmark}/*` | Moved (`git mv`) | 7 guides/overflow docs grouped by family |
+| `create-benchmark/SKILL.md`, `README.md` | Modified | 50 internal reference paths repointed |
+| `sk-doc/mode-registry.json`, `hub-router.json` | Modified | Added `behavior benchmark`, `skill-benchmark`, `model-benchmark`, `benchmark fixture`, `benchmark profile` |
+| `/create:benchmark` command assets, `agents/markdown.md` (both), sibling `benchmark/README.md` (sk-code/sk-design/system-deep-loop), deep-improvement guides, `mcp_server/benchmarks/README.md`, `check-markdown-links.cjs` allowlist | Modified | Consumer paths repointed |
+
+<!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 002-complete-benchmark-guides-and-links/implementation-summary.md
+---
+title: "Implementation Summary: Benchmark Authoring Completion and Cross-Links"
+description: "Authored the Lane A (agent-improvement) authoring guide in sk-doc/create-benchmark, giving the packet five-family authoring coverage; completed the create-benchmark <-> deep-loop bidirectional link mesh; and landed three carried-over corrections (016->015 identity, dangling sibling, systemic fixtureDir break across 10 profiles). No lane-owned contract, schema, or code-coupled template was relocated; no run/scoring logic changed."
+trigger_phrases:
+  - "benchmark authoring completion summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/002-complete-benchmark-guides-and-links"
+    last_updated_at: "2026-07-20T06:37:55Z"
+    last_updated_by: "claude-code"
+    recent_action: "Guides authored, links completed, three fixes landed; gates run"
+    next_safe_action: "Final strict validation and commit"
+    blockers: []
+    completion_pct: 100
+    status: "Complete"
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-complete-benchmark-guides-and-links |
+| **Completed** | 2026-07-13 |
+| **Level** | 2 |
+| **Parent Spec** | ../spec.md |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+create-benchmark is now the single home for benchmark-document authoring guidance across all five families, with a complete bidirectional link mesh to the deep-loop lanes that run and score.
+
+| Artifact | Purpose |
+|---|---|
+| `references/agent_improvement/agent_improvement_authoring_guide.md` | Lane A (agent-improvement) authoring guide — charter/strategy/onboarding/candidate/profiling inputs; cross-links the 5-dim rubric, evaluator contract, promotion gate, and code-coupled config |
+| `SKILL.md` §1/§2/§12 + `version` 1.3.0.0 | Five-family table (Lane A now names its guide), reworded framing, REFERENCES rows; word-neutral under the 5000-word cap |
+| `changelog/v1.3.0.0.md` | Release note for the guide and completed link mesh |
+| 2 lane->hub back-pointers | `deep-alignment/behavior_benchmark/behavior_benchmark.md` (its first create-benchmark reference), Lane A `assets/agent_improvement/README.md` |
+| 10 model-benchmark profile JSONs + README | `fixtureDir` repointed `benchmark-fixtures`->`benchmark_fixtures` (systemic F002 fix) |
+| Parent + child metadata / continuity | `016`->`015` packet-identity normalization; parent sibling reference corrected |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 003-fix-benchmark-paths-docs-and-routing/implementation-summary.md
+---
+title: "Implementation Summary: create-benchmark audit remediation"
+description: "Fixed every P0/P1/P2 finding from the two-model create-benchmark audit across four disjoint surfaces via parallel Sonnet agents, plus two agent-surfaced pre-existing bugs; all gates green."
+trigger_phrases:
+  - "create-benchmark remediation summary"
+  - "benchmark audit fix summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/003-fix-benchmark-paths-docs-and-routing"
+    last_updated_at: "2026-07-20T06:37:55Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Fixed all audit findings; gates green"
+    next_safe_action: "Commit and push the remediation branch"
+    blockers: []
+    key_files: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-fix-benchmark-paths-docs-and-routing |
+| **Completed** | 2026-07-14 |
+| **Level** | 2 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Every finding from the two-model (GPT-5.6 SOL + LUNA) create-benchmark audit was fixed. The audit confirmed create-benchmark's benchmark-family coverage is intentionally complete; the defects were stale pointers and drift around it. Fixes landed on four disjoint surfaces so parallel agents never touched the same file, and two pre-existing bugs the agents surfaced were also fixed.
+
+### Fixes by surface
+
+- **create-benchmark docs**: the three `_shared` references became `shared` (grep now returns 0); README was corrected from "two families" to the real five-family taxonomy with Lane A guide ownership; the Smart Router got concrete routing data; `INTEGRATION POINTS` and `REFERENCES AND RELATED RESOURCES` sections were added; stale internal section-number prose was corrected; the version-field guidance was reconciled with a justifying comment.
+- **sk-doc hub metadata**: `hub-router.json` and `mode-registry.json` gained `agent-improvement` routing keywords, carrying the recorded keyword set.
+- **deep-improvement (Lane B)**: the two directories were renamed to hyphens so the ~70 committed hyphen references resolve; the default-profile resolver path now exists on disk; the Lane B output contract was reconciled to the runtime's real two-convention behavior.
+- **deep-alignment**: the behavior-benchmark index and five scenario files were reconciled to the captured baseline (provisional `300000` budgets replaced with measured values).
+
+### Cross-agent and pre-existing fixes (orchestrator)
+
+- Hyphenated the renamed-dir references in three create-benchmark asset templates the doc agent was not told to touch (one was a now-broken link).
+- Corrected the one-sided `{spec_folder}` output-contract line in the fixture guide.
+- Fixed a pre-existing stale path in `sweep-benchmark.cjs` (framework registry moved under the `prompt-improve` sub-hub) that was failing a Lane B suite unrelated to the rename.
+
+
+## 004-align-benchmark-docs-and-runtime/implementation-summary.md
+---
+title: "Implementation Summary: create-benchmark contract-drift remediation"
+description: "Fixed every confirmed finding from the three-model GPT-5.6 SOL create-benchmark review — two operator-approved runtime changes (D5 hard-fail exit, alignment budget cap) plus create-benchmark and deep-alignment doc reconciliation — via four disjoint-surface parallel agents; all gates green."
+trigger_phrases:
+  - "create-benchmark contract drift summary"
+  - "d5 hard fail alignment cap summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/004-align-benchmark-docs-and-runtime"
+    last_updated_at: "2026-07-20T06:37:55Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Fixed all review findings + two runtime gaps; gates green"
+    next_safe_action: "Commit and integrate to skilled/v4.0.0.0"
+    blockers: []
+    key_files: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-align-benchmark-docs-and-runtime |
+| **Completed** | 2026-07-14 |
+| **Level** | 2 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A three-model GPT-5.6 SOL review found `sk-doc/create-benchmark` structurally complete but its authoring templates describing a contract that drifts from the real deep-improvement (Lane B) and deep-alignment runtime. Every confirmed finding was fixed, including two genuine runtime gaps the review surfaced (not doc drift), both operator-approved: the skill-benchmark D5 structural gate did not hard-fail, and deep-alignment had no defined budget cap. Fixes landed on four disjoint surfaces so parallel agents never touched the same file.
+
+### Runtime changes (operator-approved)
+
+- **D5 structural gate hard-fails.** `run-skill-benchmark.cjs` `run()` now returns exit code `3` when the aggregated verdict is `BLOCKED-BY-STRUCTURE` or `BLOCKED-BY-REGISTRY` (the two D5-connectivity-owned verdicts); it stays `0` otherwise and reports are still written unconditionally. `NO-SCENARIOS`, `BLOCKED-BY-ROUTING`, and `BLOCKED-BY-TOOL-SURFACE` are deliberately left ungated (not the D5 structural gate). A durable-WHY comment records why the process signal must disagree with `0` on a structural block.
+- **Alignment budget cap defined.** `framework.md` BUDGET POLICY now caps `alignment` scenarios at `1500000` ms alongside `ai-council` and `improvement`, grounded in the Claude baseline's own "`900000` is too low for its autonomous cells" finding. No code cap-map exists (verified by grep) — the caps are the normative contract a scenario author hand-applies to `budget_ms` — so framework.md is the entire runtime change.
+
+### Doc reconciliation
+
+- **create-benchmark (10 files)**: reviewer-prompt fixtures carved out of the standard-profile workflow (routed to the lane-owned reviewer path, resolving the SKILL-vs-template contradiction); code-task oracle scoring corrected to the sweep/`scoreCodeTask` path (never `run-benchmark` `5dim`/`pattern`); Lane B per-path output/artifact contract documented (command/run vs sweep vs reviewer); advertised-but-ineffective profile controls marked single-pass-only / sweep-only / unsupported; D5 wording aligned to the now-true hard-fail; the phantom `d4-ablation.json` / `d5-connectivity-detail.json` rows removed; the underscore-directory generalization corrected to parent-underscore / child-hyphen; Smart Router gained Lane A vocabulary + the on-disk `shared` key; README gained the five-key family table; stale `§12` pointers repointed to `§13`; and the behavior-benchmark templates fixed (raw-JSON `command` placeholder, mandatory `fixture`, `fail_fast` enum, `watchdog_ms` moved before the mandatory `notes`, output-relative index links, baseline provenance fields, corrected cap citations).
+- **deep-alignment (6 files)**: the package's own stale `SKILL.md §2` pointers repointed to `§3` (heading-anchor links) across the index and DAB-005/006/007; the phantom `NEVER #5b` in DAB-008 removed (leaving the correct `ALWAYS #5`); the stale "framework extensions" subsection deleted (both `alignment` mode and `DAB` prefix are now first-class in framework.md); `version` fields + Availability blocks removed per the lifecycle rule; and the baseline's budget-cap commentary updated to the raised `1500000` cap with every measured number left untouched.
+
+### Files Changed
+
+| Area | Action | Purpose |
+
+## 005-enable-registry-checks-and-repair-tests/implementation-summary.md
+---
+title: "Implementation Summary: D5 registry-gate wiring + cli-* test repair"
+description: "Closed packet 004's two known limitations — wired scanHubRegistry so BLOCKED-BY-REGISTRY is reachable via run(), and repaired the skill-benchmark suite to 56/0 — via a GPT-5.6 SOL agent, adversarially verified by a Sonnet reviewer that caught and corrected a fabricated rationale."
+trigger_phrases:
+  - "d5 registry wiring summary"
+  - "cli test repair summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/005-enable-registry-checks-and-repair-tests"
+    last_updated_at: "2026-07-20T06:37:55Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Fixes landed + Sonnet-verified; gates green"
+    next_safe_action: "Commit and integrate to skilled/v4.0.0.0"
+    blockers: []
+    key_files: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-enable-registry-checks-and-repair-tests |
+| **Completed** | 2026-07-14 |
+| **Level** | 2 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Closed the two limitations packet 004 documented and left out of scope. A GPT-5.6 SOL (xhigh) agent applied the fixes; a fresh Sonnet (xhigh) reviewer adversarially verified them.
+
+### Fix 1 — `BLOCKED-BY-REGISTRY` reachable via run()
+`run-skill-benchmark.cjs` now imports and calls `scanHubRegistry({ skillRoot })` alongside `scanConnectivity`, and threads the result into `aggregate()`. `aggregate()` gained an optional `hubRegistry = {}` param and a `BLOCKED-BY-REGISTRY` verdict branch placed immediately after the structural branch, so the structural gate keeps precedence and the registry gate is now reachable. Hub-registry findings are merged into the report bottlenecks. Non-hub skills (no `mode-registry.json`) return `emptyHubRegistryResult()` (`gateFailed:false`) and are fully inert — no score, verdict, or findings change.
+
+### Fix 2 — skill-benchmark suite green again
+The 8 failing tests broke down as two independent pre-existing causes:
+- **6 tests** resolved `cli-opencode` / `cli-claude-code` at their pre-relocation top-level path; repaired to `cli-external-orchestration/…` (bare path-string substitutions, no assertion changed).
+- **2 `/design:*` command-recipe tests** were regressed by an unrelated thin-router restructure of the `/design:*` commands that dropped the `## CHOREOGRAPHY` wrapper prose section — the choreography check (reachable only for `/design:*` commands) had become unsatisfiable. Aligned the check in `score-skill-benchmark.cjs` so an absent wrapper prose section is no longer a miss; the substantive `recipe.choreography` vs command-metadata match is unchanged.
+- A test also pointed at a non-existent `fixtures/deep-improvement` (hyphen); corrected to the real on-disk `fixtures/deep_improvement`.
+
+A new test proves a hub skill with a missing-mode registry yields `BLOCKED-BY-REGISTRY` + exit 3.
+
+### Files Changed
+
+
+## 006-fix-design-command-validation/implementation-summary.md
+---
+title: "Implementation Summary: command-recipe choreography relocation + validator repair"
+description: "Executed the SOL ultra advisory (option C): removed the dead Lane C wrapper-prose branch, repaired sk-design's command-surface validator from INVALID/10 to VALID (stopping it fabricating a slash-command for the null-command transport), strengthened its asset-level choreography check to a structural thin-router contract, and de-drifted the stale recipe fixture + de-masked the self-masking unit test — delivered by a GPT-5.6 SOL MAX (fast) swarm, adversarially verified by a fresh Sonnet review that found no P0/P1."
+trigger_phrases:
+  - "command recipe choreography relocation summary"
+  - "design command surface validator repair summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/018-benchmark-authoring-and-validation-fixes/006-fix-design-command-validation"
+    last_updated_at: "2026-07-20T06:37:55Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Wave 1 + Wave 2 landed + Sonnet-verified; all gates green"
+    next_safe_action: "Commit and integrate to skilled/v4.0.0.0"
+    blockers: []
+    key_files: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-fix-design-command-validation |
+| **Completed** | 2026-07-14 |
+| **Level** | 2 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Executed the GPT-5.6 SOL ultra advisory (option C) in two waves. Wave 1 was a solo SOL MAX agent; Wave 2 was a two-agent SOL MAX (fast) swarm on disjoint surfaces. A fresh Sonnet reviewer then adversarially verified all five files.
+
+### Wave 1 — Lane C dead-branch cleanup (REQ-001)
+The wrapper-prose choreography branch in `validateRecipeChoreography()` was dead once the `/design:*` commands became thin routers (no wrapper carries a `## CHOREOGRAPHY` section). Removed the `extractSection()` + `normalizedIncludes()` helpers, the `wrapperMarkdown` plumbing, and the step-matching loop (net −39 lines in `score-skill-benchmark.cjs`). The substantive `sameJsonValue(recipe.choreography, record.choreography)` equality check survives unchanged. `wrapperPathForCommand()` + the wrapper read were retained — heading and `argument-hint` checks still consume them.
+
+### Wave 2, Agent A — validator repair + strengthen (REQ-002, REQ-003)
+`design-command-surface-check.mjs` reported `STATUS=INVALID invalid=10` because `commandSetForModes()` mapped **every** workflow mode to `` `/design:${mode}` ``, fabricating `/design:design-mcp-open-design` — a command that `mode-registry.json` declares `command: null` by design. The metadata honestly lists the transport sibling as `"design-mcp-open-design (no standalone command; …)"`, so both the sibling-membership and coverage checks failed. Fix (validator-only, metadata untouched): `readNoCommandTokens()` + `commandTokenForMode()` model the transport as the canonical no-command token `design-mcp-open-design`; `parseSiblingReference()` + `isAllowedSiblingReference()` accept a sibling iff its leading token exactly matches an allowed token, with a single balanced parenthetical permitted **only** on a no-command token. The discriminator check is now stricter than before, not weaker. Separately, the now-reachable asset-level choreography check was strengthened from a `wordOverlapRatio < 0.5` fuzzy match to a structural contract: ordered unique `step_N_<name>` keys with `purpose`/`action`/`output`, auto/confirm business-step parity (with `step_0_show_prompt` the sole confirm-only exemption), and canonical `load_hub`/`load_mode`/`run_*`/`prepare_handoff` witnesses — no positional `order === step_N` inference. A new colocated `design-command-surface-check.test.mjs` (`node --test`) proves 7 negative mutations fail.
+
+### Wave 2, Agent B — fixture refresh + test de-mask (REQ-004, REQ-005)
+`designRecipe()` built the expected recipe from a **live** clone of `command-metadata.json`, so it structurally could not detect fixture drift. The fixture `sk_design_command_recipe_valid.private.json` was stale on three live-mirroring fields (`argumentHint`, `argumentGrammar`, `choreography` 4→5 rows). Refreshed those three so the fixture deep-equals the live-derived recipe, then re-pointed `designRecipe('/design:interface')` to load the committed fixture gold (live-derivation retained as a fallback for non-interface commands). A negative test drifts the in-memory gold and asserts `scoreCommandRecipe` flags a `metadata` miss — proving the tripwire fires.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/019-skill-routing-refactor"
+# PACKET: specs/sk-doc/019-skill-routing-refactor (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-doc skill-routing refactor — routing correctness across the skill fleet"
+description: "Phase parent for the sk-doc skill-routing program: router audits, create-* conformance, benchmark and typed-pair fixes, a shared research layer, the fleet-wide router-unification program, and the documentation-quality program."
+trigger_phrases:
+  - "019-skill-routing-refactor"
+  - "sk-doc skill routing refactor"
+  - "phase parent"
+importance_tier: "important"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: sk-doc skill-routing refactor — routing correctness across the skill fleet
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 |
+| **Priority** | P1 |
+| **Status** | In Progress |
+| **Created** | 2026-07-13 |
+| **Branch** | `skilled/v4.0.0.0` |
+| **Parent Spec** | None |
+| **Parent Packet** | None (top-level under the `sk-doc` track) |
+| **Predecessor** | None |
+| **Successor** | None |
+
+## 001-research/001-sk-doc-routing-research/implementation-summary.md
+---
+title: "Implementation Summary: sk-doc Routing Foundation Research"
+description: "Research outcome for the sk-doc routing diagnosis: the alias-gap premise was falsified, the real defect is a three-part path-contract problem, and the dependency-ordered fix plan hands off to 011-sk-doc-routing-fixes."
+trigger_phrases:
+  - "sk-doc routing research outcome"
+  - "sk-doc benchmark root cause"
+  - "path contract handoff sk-doc"
+  - "sk-doc routing fix plan handoff"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/001-sk-doc-routing-research"
+    last_updated_at: "2026-07-16T08:08:19Z"
+    last_updated_by: "claude"
+    recent_action: "Documented research outcome and fix-plan handoff"
+    next_safe_action: "Plan 011-sk-doc-routing-fixes against research.md Section 8"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "spec.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "dr-20260716-052950-sk-doc-routing"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Q1: alias coverage gap falsified, 113/113 match"
+      - "Q2: two coordinate systems, no handoff contract"
+      - "Q3: 19-row failure classification complete"
+      - "Q4: drift guard scoped to deep-loop only"
+      - "Q5: 9-item dependency-ordered fix plan delivered"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research/001-sk-doc-routing-research |
+| **Completed** | 2026-07-16 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A 10-iteration deep-research loop traced sk-doc's 20/100 skill-benchmark score to its real cause, and that cause turned out to be different from what the packet was chartered to check. The alleged ~34-alias coverage gap does not exist. The actual defect is an undefined handoff between two coordinate systems that sk-doc's own authoring stack teaches side by side. All five original research questions got answered, and the packet closes with a dependency-ordered, implementable fix plan handed to a sibling packet for the build.
+
+
+## 001-research/002-skill-advisor-routing-research/implementation-summary.md
+---
+title: "Implementation Summary: system-skill-advisor Routing Research"
+description: "Research outcome for the skill-advisor routing diagnosis: the advisor is useful but its confidence is policy-quantized at the 0.82 floor, three P0 correctness defects are named with fixes, and the prioritized plan hands off to 012-skill-advisor-routing-fixes."
+trigger_phrases:
+  - "skill advisor routing research outcome"
+  - "advisor confidence policy floor"
+  - "advisor P0 defects handoff"
+  - "skill advisor fix plan handoff"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/002-skill-advisor-routing-research"
+    last_updated_at: "2026-07-16T08:20:00Z"
+    last_updated_by: "claude"
+    recent_action: "Documented research outcome and fix-plan handoff"
+    next_safe_action: "Plan 012-skill-advisor-routing-fixes against research.md Section 8"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "spec.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "dr-20260716-054704-skill-advisor-routing"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "REQ-001: holdout 73.08%, confidence dominated by 0.82 floor"
+      - "REQ-002: fallback chain traced, hook tests 4/11 red"
+      - "REQ-003: no drift, separate eligibility gate confirmed"
+      - "REQ-004: no, guard hard-codes deep-loop registry only"
+      - "REQ-005: P0-1 through P2-8 delivered to 013"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research/002-skill-advisor-routing-research |
+| **Completed** | 2026-07-16 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Ten iterations of deep research now answer whether system-skill-advisor works and where it breaks. The advisor helps: current-source holdout accuracy lands at 73.08% (57/78) with 85.25% selective precision. But the confidence number CLAUDE.md Gate 2 reads as an >=0.8 must-invoke signal is dominated by categorical policy floors rather than an 80% posterior, and three correctness defects plus one unguarded architecture boundary now have named fixes waiting in a sibling packet.
+
+
+## 001-research/003-sk-design-routing-research/implementation-summary.md
+---
+title: "Implementation Summary: sk-design Routing Research"
+description: "Completed outcome record for the eight-iteration sk-design typed-pair routing diagnosis and implementation-plan handoff."
+trigger_phrases:
+  - "sk-design routing research outcome"
+  - "sk-design routing research status"
+  - "sk-design typed pair routing"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/003-sk-design-routing-research"
+    last_updated_at: "2026-07-16T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Completed eight deep-research iterations, synthesis, resource map, and fix-plan handoff"
+    next_safe_action: "Open sibling implementation packet"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "001-research/003-sk-design-routing-research-scaffold"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Six-mode typed-pair classification"
+      - "Leaf-manifest feasibility"
+      - "Typed-gold scenario eligibility"
+      - "Baseline attribution"
+      - "Dependency-ordered optimization plan"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research/003-sk-design-routing-research |
+| **Status** | Complete |
+| **Completed** | Research Complete (100%) |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**Status: RESEARCH COMPLETE (100%).** The eight-iteration loop produced the canonical synthesis, resource map, route-proof state, reducer registry/dashboard, and implementation acceptance matrix under `research/`.
+
+## 001-research/004-system-code-graph-routing-research/implementation-summary.md
+---
+title: "Implementation Summary: system-code-graph Routing Research"
+description: "Completed eight-iteration diagnosis of system-code-graph routing, typed-pair readiness, benchmark design, and implementation handoff."
+trigger_phrases:
+  - "system-code-graph routing research outcome"
+  - "system-code-graph routing research status"
+  - "code-graph resource domains leaf paths"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research"
+    last_updated_at: "2026-07-17T05:41:36Z"
+    last_updated_by: "opencode"
+    recent_action: "Deep-research synthesis + bounded spec findings write-back done"
+    next_safe_action: "Create sibling implementation packet from research Sections 15-16"
+    blockers:
+      - "Canonical generate-context.js save could not run because scripts/dist/memory/generate-context.js is absent"
+    key_files:
+      - "spec.md"
+      - "research/research.md"
+      - "research/resource-map.md"
+      - "research/deep-research-state.jsonl"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "rsr-2026-07-17T04-41-30Z"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "What numeric dimensions will the authorized unmodified baseline report produce?"
+      - "Will implementation satisfy the 53-leaf manifest and 23/23 typed-gold promotion gates?"
+    answered_questions:
+      - "Current pseudocode-to-typed-pair mapping"
+      - "Leaf-set enumerability and manifest feasibility"
+      - "First baseline procedure"
+      - "28-scenario routing eligibility partition"
+      - "Dependency-ordered routing optimization plan"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research/004-system-code-graph-routing-research |
+| **Completed** | 2026-07-17 (100% research scope) |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+
+## 001-research/005-system-deep-loop-routing-research/implementation-summary.md
+---
+title: "Implementation Summary: system-deep-loop Routing Research"
+description: "Placeholder outcome record for the system-deep-loop routing-research packet. Research is in progress; the bound /deep:research loop will populate research/ and this summary will be rewritten with the diagnosis and fix-plan handoff on close."
+trigger_phrases:
+  - "system-deep-loop routing research outcome"
+  - "system-deep-loop routing research status"
+  - "deep-loop packet-qualified leaf paths"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research"
+    last_updated_at: "2026-07-16T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Created the placeholder implementation-summary for the pending research loop"
+    next_safe_action: "Launch the /deep:research loop bound to this packet; it populates research/"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "001-research/005-system-deep-loop-routing-research-scaffold"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research/005-system-deep-loop-routing-research |
+| **Completed** | In Progress (0%) |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**Status: RESEARCH IN PROGRESS (0%).** Nothing is built yet. This packet is scaffolded as the bound spec-folder for a `/deep:research` run that diagnoses system-deep-loop's routing on the typed-pair surface. The deep-research loop will create and populate `research/` (`research.md`, `deep-research-dashboard.md`, `findings-registry.json`, `iterations/`, `deltas/`); this summary is a placeholder and will be rewritten with the diagnosis and fix-plan handoff when the loop closes.
+
+The charter carried into research: system-deep-loop is a parent hub with seven `workflowModes` over five child packets. Its per-mode pseudocode routers emit flat, child-relative leaf paths that are not packet-qualified, so a given relative leaf ID is non-unique across the five children — the coordinate-collision class the sk-doc research isolated as its wrong-path-root failure. The committed baseline aggregate is roughly 71, and none of the roughly 319 playbook scenarios carry typed gold. The research applies the sk-doc typed-pair optimizations, led by packet-qualification, to make the routing measurable.
+<!-- /ANCHOR:what-built -->
+
+---
+
+
+## 001-research/006-sk-prompt-routing-research/implementation-summary.md
+---
+title: "Implementation Summary: sk-prompt Routing Research"
+description: "Completed sk-prompt routing-research outcome: five evidence-backed iterations, a seven-leaf prompt-models candidate map, benchmark provenance, 32-scenario classification, two-row typed-gold seed, and implementation handoff."
+trigger_phrases:
+  - "sk-prompt routing research outcome"
+  - "sk-prompt routing research status"
+  - "prompt-models missing router map"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research"
+    last_updated_at: "2026-07-16T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Created the placeholder implementation-summary for the pending research loop"
+    next_safe_action: "Launch the /deep:research loop bound to this packet; it populates research/"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "001-research/006-sk-prompt-routing-research-scaffold"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research/006-sk-prompt-routing-research |
+| **Completed** | Research Complete (100%) |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**Status: RESEARCH COMPLETE (100%).** The five-iteration loop produced `research/research.md`, `research/resource-map.md`, five iteration narratives, five structured deltas, reducer state, a dashboard, and a findings registry. No sk-prompt source or benchmark file was modified.
+
+The diagnosis preserves both workflow modes and adds a separate second-layer leaf router in implementation. `prompt-improve` exposes six unique leaves. The proposed `prompt-models` map has seven resolving route-load leaves: five model-selected profiles plus two lifecycle leaves. The hub's aggregate 100 measures four packet-selection scenarios with typed routing inactive; the D5=16/null report belongs to the zero-scenario child target. Of 32 authored scenarios, seven are positive leaf-routing candidates. The first typed seed should use two atomic hub rows, one per workflow mode.
+<!-- /ANCHOR:what-built -->
+
+---
+
+
+## 001-research/011-sk-code-routing-research/implementation-summary.md
+---
+title: "Implementation Summary: sk-code Typed-Pair Routing and Leaf Recall Research"
+description: "Outcome of the eight-iteration sk-code routing deep-research: surface selection ruled out as the primary fault, monolithic leaf selection and an untyped preamble identified, anti-gamed leaf-recall candidates delivered. Findings only; handoff to 014-sk-code-router-alignment."
+trigger_phrases:
+  - "sk-code routing research outcome"
+  - "sk-code leaf recall research status"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/001-research/011-sk-code-routing-research"
+    last_updated_at: "2026-07-24T00:00:00Z"
+    last_updated_by: "claude"
+    recent_action: "Extracted sk-code routing research into its own 001-research phase; authored conforming docs"
+    next_safe_action: "Apply the recall/typed-pair findings in 014-sk-code-router-alignment"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "spec.md"
+---
+# Implementation Summary: sk-code Typed-Pair Routing and Leaf Recall Research
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Complete (research) |
+| **Level** | 1 |
+| **Packet** | sk-doc/019-skill-routing-refactor/001-research/011-sk-code-routing-research |
+| **Iterations** | Eight-iteration deep-research loop |
+| **Handoff** | `../014-sk-code-router-alignment/` (measurement + implementation) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A research packet — no source changes. It separated sk-code hub/surface routing from leaf-resource
+routing and evaluated typed-pair recall honestly, producing:
+
+- Evidence that **surface selection is not the primary fault**; monolithic leaf selection expands the
+  candidate set.
+- Identification of the untyped `DEFAULT_RESOURCE` preamble as a **separate typed-identity defect**,
+  distinct from leaf recall.
+- A dependency-ordered set of anti-gamed leaf-recall candidates: freeze same-revision baselines,
+  separate minimum from exhaustive gold, instrument ordered successful reads + route-decision
+  provenance, then test two-tier resource selection before specificity weighting.
+
+The canonical synthesis and supporting evidence live under `research/`.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+## 002-router-audit-and-fix-map/implementation-summary.md
+---
+title: "Implementation Summary: Audit and Fix Map"
+description: "All router sources were audited and the 14 frozen fixes were mapped before implementation."
+trigger_phrases:
+  - "router audit summary"
+  - "fourteen fix map summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/002-router-audit-and-fix-map"
+    last_updated_at: "2026-07-13T06:50:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed audit and fix map"
+    next_safe_action: "Reference phase 002"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/002-router-audit-and-fix-map"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-router-audit-and-fix-map |
+| **Completed** | 2026-07-13 |
+| **Level** | 3 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+All ten packet contracts, the hub contract, and both router projections were read before implementation. The audit produced an exact 14-row map, captured the six-query before-state, and confirmed that no scoped registry generator exists.
+
+### Audit Evidence
+
+## 003-router-collision-fixes/implementation-summary.md
+---
+title: "Implementation Summary: P0 Collision Fixes"
+description: "Existing-document quality actions now belong to create-quality-control while README and flowchart creation coverage remains intact."
+trigger_phrases:
+  - "quality collision summary"
+  - "readme flowchart routing summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/003-router-collision-fixes"
+    last_updated_at: "2026-07-13T06:50:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed three collision fixes"
+    next_safe_action: "Reference phase 003"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/003-router-collision-fixes"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-router-collision-fixes |
+| **Completed** | 2026-07-13 |
+| **Level** | 3 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+README and flowchart packets no longer advertise standalone existing-document audit or validation. `create-quality-control` now names existing READMEs and flowcharts explicitly, so source regeneration cannot revive the collision.
+
+### Ownership Boundary
+
+## 004-trigger-scoping-and-handoffs/implementation-summary.md
+---
+title: "Implementation Summary: P1 Trigger Scoping and Handoffs"
+description: "Broad selector tokens were removed and all ten packet exclusions now identify exact sibling owners."
+trigger_phrases:
+  - "trigger scoping summary"
+  - "handoff alignment summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/004-trigger-scoping-and-handoffs"
+    last_updated_at: "2026-07-13T06:50:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed broad-trigger and handoff fixes"
+    next_safe_action: "Reference phase 004"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/004-trigger-scoping-and-handoffs"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-trigger-scoping-and-handoffs |
+| **Completed** | 2026-07-13 |
+| **Level** | 3 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+Bare benchmark, generic documentation, command suffix, and hub-schema terms no longer select a packet without artifact intent. Every `When NOT to Use` list now points to exact sibling packet ids instead of vague “matching packet” language.
+
+### Preserved Vocabulary
+
+## 005-router-standardization-and-regen/implementation-summary.md
+---
+title: "Implementation Summary: P2 Standardization and Registry Regeneration"
+description: "Ten packet sources now share one trigger/handoff shape and both JSON projections match those sources with zero drift."
+trigger_phrases:
+  - "router regeneration summary"
+  - "routing delta"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/005-router-standardization-and-regen"
+    last_updated_at: "2026-07-13T06:50:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed source alignment, hand-sync, and verification"
+    next_safe_action: "Orchestrator may rebuild stale dist and rerun exact strict validation"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/005-router-standardization-and-regen"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-router-standardization-and-regen |
+| **Completed** | 2026-07-13 |
+| **Level** | 3 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+All ten packet contracts now expose one `Activation Triggers` section, one `Keyword triggers:` line, one `When NOT to Use` heading, and one exact sibling-handoff lead-in. Both runtime JSON files were hand-synchronized because no scoped generator exists, and the extractor reports zero drift.
+
+### Routing Delta
+
+## 006-create-skill-smart-routing-notes/implementation-summary.md
+---
+title: "Implementation Summary: sk-doc Smart Routing Mechanism Notes"
+description: "Gave the 10 create-* packets an explicit Smart Routing posture: create-skill/create-flowchart already carry the keyed-discovery mechanism, create-readme already had its N/A note, and 6 flat-resource packets gained a documented N/A routing note (routing basis + no-keyed-discovery + resilience rules, modeled on create-readme). create-benchmark is a documented exception (already family-routes, at the 5000-word cap). All 10 package_skill.py --check PASS."
+trigger_phrases:
+  - "017 summary smart routing mechanism notes"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/019-skill-routing-refactor/006-create-skill-smart-routing-notes"
+    last_updated_at: "2026-07-12T14:23:42Z"
+    last_updated_by: "claude-code"
+    recent_action: "6 N/A notes added; 10/10 --check PASS; pushed to v4"
+    next_safe_action: "Terminal gates + memory save"
+    blockers: []
+    completion_pct: 100
+    status: "Complete"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|-------|-------|
+| **Packet** | 017 — sk-doc Smart Routing Mechanism Notes |
+| **Status** | Complete |
+| **Track** | sk-doc |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+An explicit Smart Routing posture for all 10 create-* packets.
+
+| Packet(s) | Posture |
+|---|---|
+| create-skill | keyed-discovery mechanism present (canon) |
+| create-flowchart | mechanism present |
+| create-readme | N/A note already present |
+| create-agent, create-command, create-feature-catalog, create-manual-testing-playbook, create-changelog, create-quality-control | N/A routing note added (routing basis + no keyed resource discovery + resilience rules) |
+| create-benchmark | documented exception — already routes by its 6-family table; at the 5000-word hard cap, so no note added |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+A GPT-5.6-sol-fast batch added the notes to the 6 flat-resource packets, modeled on create-readme's precedent (does-not-use-keyed-discovery + resilience rules), tailored per packet. Orchestrator-verified.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+FOLDER
+
+<<<FOLDER id="specs/sk-doc/020-hyphen-naming-convention"
+# PACKET: specs/sk-doc/020-hyphen-naming-convention (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: repo-wide kebab-case (hyphen) filesystem-naming convention"
+description: "Ban snake_case in filesystem names repo-wide and make kebab-case (hyphens) the sole canonical form for folder names, file names, and script filenames — with a hard exemption for Python (.py, PEP-8 snake_case) plus vendored/third-party trees, generated/lockfile output, tool-mandated filenames, and Python import-package directories. Code identifiers, JSON/YAML/TOML keys, frontmatter fields, and DB columns are OUT of scope (idiomatic case, hyphens illegal there). Reverses and supersedes the 027 underscore migration, including the sk-doc validator/loader logic keyed on feature_catalog / manual_testing_playbook. Phase parent for a 12-phase core migration program (000-011): worktree + immutable-baseline + census first, then policy + all-consumer logic + create-generators + no-new-snake guard + rename-and-reference tooling + a frozen bijective rename map + shared cross-cutting closures, then a per-component migration fan-out, then alias-removal, the whole-repo gate, and integrate-latest + closeout. Three follow-on phases extend the closed program: 012 code-directory naming enforcement, 013 INSTALL-GUIDE canonical filename normalization (absorbed from former top-level packet 021), and 014 naming-standard hardening (absorbed from former top-level packet 022). Migration runs on a dedicated worktree pinned to an immutable BASE SHA."
+trigger_phrases:
+  - "hyphen naming convention"
+  - "kebab-case filesystem names"
+  - "ban snake_case files and folders"
+  - "reverse underscore migration"
+  - "hyphenate folder and file names"
+importance_tier: "critical"
+contextType: "planning"
+parent: "sk-doc"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention"
+    last_updated_at: "2026-07-20T10:42:52Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Registered follow-on phase 012 in the parent phase map"
+    next_safe_action: "Generate 012 child metadata, then validate 012 and the parent"
+    blockers: []
+    key_files: []
+    completion_pct: 0
+    open_questions: []
+    answered_questions:
+      - "Scope = filesystem names only (folders/files/script filenames); code identifiers + JSON/YAML/TOML keys + frontmatter fields keep idiomatic case"
+      - "Exemptions = .py files, Python import-package dirs, vendored/third-party, lockfiles/generated output, tool-mandated filenames, frozen surfaces"
+      - "Fully reverses 027, including the sk-doc validator/loader logic keyed on feature_catalog / manual_testing_playbook"
+      - "Placement = top-level phase parent under sk-doc; packet number 020 (concurrent 032-smart-routing folds into 016); migration on a worktree"
+      - "Catalog-root transition = bounded dual-name tolerance + an explicit alias-removal phase"
+      - "Rename batching = dependency-closure (reference-graph SCCs), not per-extension"
+      - "node tooling in the worktree = fresh deterministic install, never a symlink to the main tree"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list + outcome; mechanics live in each child's plan.md, decisions in 001's decision-record.md. -->
+
+# Feature Specification: Repo-Wide Kebab-Case Filesystem Naming
+
+
+## 000-worktree-baseline-and-census/implementation-summary.md
+---
+title: "Implementation Summary: worktree, baseline, and census (020 phase 000)"
+description: "Phase 000 outcome: isolated worktree pinned to BASE, reproducible install hardened, and the green baseline captured."
+trigger_phrases:
+  - "hyphen naming phase 000 summary"
+  - "worktree baseline census summary"
+  - "020 baseline implementation summary"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
+    last_updated_at: "2026-07-18T05:15:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Captured the green BASE baseline and hardened the install"
+    next_safe_action: "Begin phase 001 policy work"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-000-baseline"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 000-worktree-baseline-and-census |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 000 gives the naming migration a safe place to run and a truthful starting
+line. The migration executes on an isolated worktree pinned to an immutable BASE,
+away from the actively-raced main checkout, and every later phase now has a
+green baseline to prove itself against.
+
+### Isolated, pinned worktree
+
+The work runs in `.worktrees/0068-sk-doc-020-migration-exec`, a worktree with its
+own git index, pinned to BASE `1ec0ad2947b`. The tree at BASE is clean; the only
+commits on the branch carry phase-000 evidence, so no rename has touched the repo.
+
+## 001-convention-policy-and-scope/implementation-summary.md
+---
+title: "Implementation Summary: convention policy and scope (020 phase 001)"
+description: "Phase 001 outcome: the canonical kebab-case convention doc is published, 027 is superseded, and the program decisions are recorded."
+trigger_phrases:
+  - "hyphen naming phase 001 summary"
+  - "convention policy summary"
+  - "kebab-case canon summary"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
+    last_updated_at: "2026-07-18T05:35:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Published the canonical convention doc and superseded 027"
+    next_safe_action: "Begin phase 002 consumer migration"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-001-policy"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-convention-policy-and-scope |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The naming migration now has a single authoritative rule. Before this phase there was no written statement that
+kebab-case is canonical, the only filename-convention doc mandated the opposite, and the program decisions lived only in
+a review transcript. Every later phase now points at one convention doc instead of restating ad-hoc rules.
+
+### The canonical convention doc
+
+`filesystem-naming-convention.md` under `sk-doc/shared/references/` states that kebab-case is the sole in-scope
+filesystem-naming form and draws the exemption boundary in full: `.py` files, Python import-package directories,
+vendored and third-party trees, generated and lockfile output, tool-mandated filenames, test-runner magic, and frozen
+history. It also draws the line the migration must never cross: a filesystem rename never alters a code identifier, a
+
+## 002-root-name-consumer-migration/implementation-summary.md
+---
+title: "Implementation Summary: root-name consumer migration"
+description: "Catalog and playbook consumers now accept both registered root forms and refuse missing, coexisting or unsupported roots before classification, discovery, routing or emission."
+trigger_phrases:
+  - "root-name consumer migration summary"
+  - "hyphen naming phase 002 implementation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration"
+    last_updated_at: "2026-07-18T07:18:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Kebab-cased the leaked matrix .cjs name flagged by the phase-004 guard"
+    next_safe_action: "Begin phase 005 rename tooling"
+    blockers:
+      - "The sandbox cannot create the shared worktree index.lock, so no files can be staged or committed"
+    key_files:
+      - ".opencode/skills/sk-doc/scripts/tests/test_root_name_consumer_matrix.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test-root-name-consumer-matrix.cjs"
+      - ".opencode/skills/sk-doc/shared/scripts/naming_root_resolver.py"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-002-migration-exec"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions:
+      - "explicit.ts contains stable routing identifiers, not a filesystem-root consumer"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-root-name-consumer-migration |
+| **Verified** | 2026-07-18 |
+| **Level** | 2 |
+| **Status** | Implementation verified, commit blocked |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Catalog and playbook consumers now reject ambiguous or unsupported filesystem names before they classify a document, discover a benchmark, route a quality check or emit a manifest. Registered underscore and hyphen names still produce the same typed root result. The matrix covers every active filesystem boundary in the reviewed manifest.
+
+### Fail-closed consumer boundaries
+
+The Lane C loader throws typed errors for missing roots, coexisting roots, unsupported near-matches and unsupported index names. The generator validates that boundary before reading router data. The classifier handles POSIX and Windows separators and raises before an unsupported root can become `readme`.
+
+## 003-create-generators-and-templates/001-create-skill-and-packaging/implementation-summary.md
+---
+title: "Implementation Summary: create-skill scaffolding and packaging"
+description: "Create-skill scaffolds, package validation, templates and tests now enforce kebab-case generated filesystem names while preserving declared interpreter and tool names."
+trigger_phrases:
+  - "create-skill implementation summary"
+  - "skill package naming completion"
+  - "kebab-case scaffold results"
+  - "generated path validation results"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
+    last_updated_at: "2026-07-20T11:09:35Z"
+    last_updated_by: "codex"
+    recent_action: "Completed and verified create-skill output naming migration"
+    next_safe_action: "No child work remains"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py"
+      - ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py"
+      - ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-07-18-create-skill"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-create-skill-and-packaging |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+New skill packages now keep authored filesystem output in kebab-case. Parent scaffolds emit `manual-testing-playbook/`, package validation checks every non-exempt relative path and archive output keeps the hyphenated skill root.
+
+### Generated Path Contract
+
+The standalone and parent generators validate the public skill slug before writing. Parent creation now emits `manual-testing-playbook/` alongside exact tool names such as `SKILL.md`, `README.md` and `hub-router.json`.
+
+## 003-create-generators-and-templates/002-catalog-and-playbook-generators/implementation-summary.md
+---
+title: "Implementation Summary: catalog and playbook generators"
+description: "Feature-catalog and manual-testing-playbook workflows now emit kebab-case package roots, category directories, leaf files, links and filesystem-valued slugs."
+trigger_phrases:
+  - "catalog and playbook generator summary"
+  - "feature catalog output migration results"
+  - "manual testing playbook output migration results"
+  - "kebab-case generator completion"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
+    last_updated_at: "2026-07-20T11:09:35Z"
+    last_updated_by: "codex"
+    recent_action: "Completed and verified catalog and playbook generator output naming"
+    next_safe_action: "No child work remains"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md"
+      - ".opencode/skills/sk-doc/create-feature-catalog/assets/feature_catalog_template.md"
+      - ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md"
+      - ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual_testing_playbook_template.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-07-18-catalog-playbook"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-catalog-and-playbook-generators |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+New catalogs and testing playbooks now start with kebab-case filesystem names. The authoring packets emit hyphenated roots, indexes, category directories, leaf files and relative links while the current source templates keep their existing filenames.
+
+### Emitted Package Contract
+
+The catalog workflow emits `feature-catalog/feature-catalog.md` with category paths such as `category-name/feature-name.md`. The playbook workflow emits `manual-testing-playbook/manual-testing-playbook.md` with the same kebab-case category and leaf rule.
+
+## 003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark/implementation-summary.md
+---
+title: "Implementation Summary: create generator output naming"
+description: "Seven create-* generator families now emit kebab-case filesystem names while keeping source templates, runtime package directories, version files and tool-owned names unchanged."
+trigger_phrases:
+  - "create generator naming implementation"
+  - "readme agent command benchmark completion"
+  - "kebab-case output verification"
+  - "generator emission migration results"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
+    last_updated_at: "2026-07-20T11:09:35Z"
+    last_updated_by: "codex"
+    recent_action: "Completed and verified seven create-* output naming migrations"
+    next_safe_action: "No child work remains"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/create-readme/SKILL.md"
+      - ".opencode/skills/sk-doc/create-agent/SKILL.md"
+      - ".opencode/skills/sk-doc/create-command/SKILL.md"
+      - ".opencode/skills/sk-doc/create-diff/scripts/create_diff.py"
+      - ".opencode/skills/sk-doc/create-benchmark/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-07-18-create-generators"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-readme-agent-command-changelog-flowchart-diff-benchmark |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Seven create-* workflows now direct every new, non-exempt filesystem name to kebab-case. The migration keeps exact runtime and format contracts intact, so authors receive canonical paths without breaking source templates or existing package directories owned by other skills.
+
+### Generator Output Contract
+
+
+## 003-create-generators-and-templates/004-command-asset-emitters/implementation-summary.md
+---
+title: "Implementation Summary: command asset emitters"
+description: "Create command assets now request, derive and display canonical kebab-case output paths while their current source filenames and schema keys remain stable."
+trigger_phrases:
+  - "create command asset emitter implementation"
+  - "kebab case create command outputs"
+  - "command asset output migration summary"
+importance_tier: "important"
+contextType: "implementation"
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
+    last_updated_at: "2026-07-20T11:09:35Z"
+    last_updated_by: "codex"
+    recent_action: "Completed kebab-case output contracts and regression coverage for create command assets"
+    next_safe_action: "Integrate this child with the phase 003 parent after central review"
+    blockers: []
+    key_files:
+      - ".opencode/commands/create/assets/tests/test_emitted_name_contract.py"
+      - ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Current underscore command asset source filenames remain unchanged in this child."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-command-asset-emitters |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+| **Base** | `1ec0ad2947b` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `/create:*` command layer now emits canonical kebab-case names instead of advertising underscore paths. Catalogs, playbooks, skill resources, benchmark packages, command bundles, install guides and flowchart targets all share the same filesystem contract. Current command asset source filenames, schema keys and Python names stay unchanged.
+
+### Emitted Path Contracts
+
+Catalog output now starts at `feature-catalog/feature-catalog.md` with kebab-case category and feature names. Playbook output starts at `manual-testing-playbook/manual-testing-playbook.md` with kebab-case scenario directories and files. Skill resources use patterns such as `[topic]-workflow.md`, while command bundles use `<stem>-auto.yaml`, `<stem>-confirm.yaml` and `<stem>-presentation.txt`.
+
+Benchmark output uses `benchmark-report.md` and `assets/conformance-benchmark/<benchmark-id>/conformance-benchmark.md`. Install guide examples use `install-guides/mcp-semantic-search.md`. Flowchart assets reject non-exempt underscore segments before writing.
+
+### Regression Contract
+
+
+## 004-no-new-snake-guard/implementation-summary.md
+---
+title: "Implementation Summary: no-new-snake guard (020 phase 004)"
+description: "Phase 004 outcome: an exemption-aware guard that fails only on newly-introduced snake_case names, plus the leaked name it already caught."
+trigger_phrases:
+  - "no new snake guard summary"
+  - "hyphen naming phase 004 summary"
+  - "changed-since snake guard"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
+    last_updated_at: "2026-07-18T07:18:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Built the guard and fixed the snake_case name it caught"
+    next_safe_action: "Begin phase 005 rename tooling"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-004-guard"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-no-new-snake-guard |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The migration now has a ratchet. A guard fails the moment anyone introduces a new
+snake_case filesystem name in an in-scope location, so the tree cannot drift back
+toward underscores while the rename phases are still pending. It proved its worth
+immediately by catching a name the earlier phases had leaked.
+
+### The guard
+
+`check_no_new_snake_case.py` flags an in-scope directory, file, or script filename
+that uses snake_case, and honors every exemption class: `.py` files, Python
+import-package directories, vendored and third-party trees, generated and lockfile
+
+## 005-rename-and-reference-tooling/001-rename-engine/implementation-summary.md
+---
+title: "Implementation Summary: semantic rename engine (020 phase 005.001)"
+description: "The rename engine now turns a reviewed semantic map into deterministic SCC batches, blocks stale or unsafe plans and limits every mutating test to an opted-in disposable Git repository."
+trigger_phrases:
+  - "semantic rename engine implementation"
+  - "rename engine fixture results"
+  - "dry-run git mv tooling"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
+    last_updated_at: "2026-07-20T11:09:35Z"
+    last_updated_by: "codex"
+    recent_action: "Built and verified the semantic rename engine"
+    next_safe_action: "Consume the dry-run report in the reference checker child"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/semantic_rename_engine.py"
+      - ".opencode/skills/sk-doc/shared/scripts/rename_engine_core.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test_semantic_rename_engine.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-001-rename-engine"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Apply and rollback require a committed fixture marker plus a local Git disposable flag."
+      - "The engine executes every Git move with option-terminated path operands."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-rename-engine |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The migration now has a rename engine that can be reviewed without moving a real repository path. You can feed it an explicit semantic map and inspect stable dependency batches, collision results, exemption reasons and per-entry states. Dry-run remains the default.
+
+### Plan and safety boundary
+
+`rename_engine_core.py` validates normalized repository-relative paths and explicit classifications. It rejects empty maps, unknown dependencies, path escape, source aliases and exact, casefold or NFC target collisions. It imports the existing naming resolver and guard policy instead of copying those rules.
+
+## 005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/implementation-summary.md
+---
+title: "Implementation Summary: reference checker and disposition ledger (020 phase 005.002)"
+description: "The checker now turns the rename engine's semantic map into a complete CAS-ready reference ledger without writing to the scanned repository."
+trigger_phrases:
+  - "reference checker implementation"
+  - "disposition ledger fixture results"
+  - "CAS-ready reference sites"
+importance_tier: "important"
+contextType: "planning"
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
+    last_updated_at: "2026-07-18T07:41:15Z"
+    last_updated_by: "codex"
+    recent_action: "Built and verified the reference checker"
+    next_safe_action: "Consume the ledger in the reference rewrite executor"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/reference_checker.py"
+      - ".opencode/skills/sk-doc/shared/scripts/reference_checker_core.py"
+      - ".opencode/skills/sk-doc/shared/scripts/reference_checker_extractors.py"
+      - ".opencode/skills/sk-doc/shared/scripts/reference_checker_models.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test_reference_checker.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-002-reference-checker"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The checker delegates semantic-map validation to the rename engine's public loader."
+      - "The ledger records static sites with Git blob preimages and dispositions every dynamic site."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-reference-checker-and-disposition-ledger |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The migration now has a read-only checker that follows the rename engine's exact map contract. You can scan a disposable Git repository and obtain one ordered ledger containing every map row, every mapped static reference and every dynamic require, source or glob site. The checker writes JSON to stdout and rejects stale, dirty or empty scans before it reports acceptance.
+
+### Reference Resolution and Ledger
+
+## 005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/implementation-summary.md
+---
+title: "Implementation Summary: fixture corpus and dry-run verification (020 phase 005.003)"
+description: "The migration tooling now has a deterministic disposable fixture corpus that proves semantic rename, reference checking and reference rewrite behavior without changing the real worktree."
+trigger_phrases:
+  - "fixture corpus implementation"
+  - "rename tooling dry-run results"
+  - "disposable migration fixtures"
+importance_tier: "important"
+contextType: "implementation"
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
+    last_updated_at: "2026-07-18T08:32:34Z"
+    last_updated_by: "codex"
+    recent_action: "Built and verified the disposable fixture corpus"
+    next_safe_action: "Use the evidence hash before phase 006 freezes the repository map"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py"
+      - ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_harness.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py"
+      - ".opencode/skills/sk-doc/scripts/tests/fixtures/rename-tooling/corpus.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-003-fixture-corpus"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The default command runs dry-run only and protects the exact current Git worktree."
+      - "Explicit apply and rollback execute only in temporary Git repositories with both disposable opt-ins."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-fixture-corpus-and-dry-run-harness |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The rename toolchain now has a deterministic fixture runner that proves its safety contracts before any repository migration. Ten declarative scenarios cover semantic maps, policy exemptions, dependency SCCs, collision failures, reference classes, stale plans, compare-and-swap regeneration and empty scans. The default command changes no fixture or real-worktree path.
+
+### Disposable repository boundary
+
+
+## 005-rename-and-reference-tooling/004-reference-rewrite-executor/implementation-summary.md
+---
+title: "Implementation Summary: static reference-rewrite executor (020 phase 005.004)"
+description: "The executor now converts accepted ledger sites and an explicit semantic map into deterministic SCC rewrite plans with blob-hash compare-and-swap, fixture-only apply and journaled rollback."
+trigger_phrases:
+  - "reference rewrite executor implementation"
+  - "compare and swap rewrite results"
+  - "disposable rewrite fixture"
+importance_tier: "important"
+contextType: "implementation"
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
+_memory:
+  continuity:
+    packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
+    last_updated_at: "2026-07-18T08:08:15Z"
+    last_updated_by: "codex"
+    recent_action: "Built and verified the static reference-rewrite executor"
+    next_safe_action: "Supply the phase 006 frozen map to a reviewed dry-run"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_core.py"
+      - ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_executor.py"
+      - ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-004-reference-rewrite-executor"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The executor consumes checker-owned static sites and never discovers extra rewrite targets."
+      - "Apply and rollback require both disposable repository opt-ins and external evidence files."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-reference-rewrite-executor |
+| **Completed** | 2026-07-18 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The migration now has a deterministic executor for static reference sites already accepted by the checker. You can inspect a dry-run plan for one dependency SCC without changing the repository. Explicit apply and rollback remain confined to opted-in disposable Git fixtures.
+
+### Deterministic planning and CAS
+
+`reference_rewrite_core.py` loads the checker ledger and the rename engine's exact semantic-map contract. It binds each plan to pinned BASE and HEAD values, the exact map-byte hash, operation-set hash, ordered source-to-target rows, ledger hash, SCC membership and static site plan. A zero-file ledger fails before planning.
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

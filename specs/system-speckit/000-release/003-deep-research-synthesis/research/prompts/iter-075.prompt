@@ -1,0 +1,657 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-speckit/032-relocate-specs-folder"
+# PACKET: specs/system-speckit/032-relocate-specs-folder (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Relocate Specs Folder"
+description: "Phase-parent: evaluate and (if approved) execute moving the root spec-kit folder from .opencode/specs/ to a top-level specs/ directory."
+trigger_phrases:
+  - "relocate specs folder"
+  - "specs folder outside opencode"
+  - "root specs directory"
+  - "move .opencode/specs"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/032-relocate-specs-folder"
+    last_updated_at: "2026-08-08T11:02:42Z"
+    last_updated_by: "claude-code"
+    recent_action: "Packet closed: 006 re-nested from top-level 033, changelog/ added, T015 confirmed by operator"
+    next_safe_action: "None — packet closed"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-07-system-speckit-032-relocate"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Relocate Specs Folder
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P2 |
+
+## 001-relocation-implications-research/implementation-summary.md
+---
+title: "Implementation Summary: Relocation Implications Research"
+description: "Dual-executor deep research converged on both lineages and produced a reconciled recommendation: CONDITIONAL-GO on a back-symlink flip, gated on a combined patch list neither lineage alone found in full."
+trigger_phrases:
+  - "relocation research summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/032-relocate-specs-folder/001-relocation-implications-research"
+    last_updated_at: "2026-08-06T13:28:45Z"
+    last_updated_by: "claude-code"
+    recent_action: "4-lineage synthesis complete; found reusable existing migration infrastructure"
+    next_safe_action: "Operator reviews research/research.md before scoping phase 002"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-06-system-speckit-032-relocate-001"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-relocation-implications-research |
+| **Completed** | 2026-08-06 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+You now have a source-cited, cross-verified answer to whether the root `.opencode/specs` folder can move to a top-level `specs/` directory: **CONDITIONAL-GO**, via a back-symlink flip, gated on patching a combined list of hardcoded literals that only surfaced by running two independent lineages and reading them against each other.
+
+### Dual-executor research (round 1) + two more lineages (round 2)
+
+Round 1: two lineages ran the full deep-research loop independently: `glm` (cli-devin, GLM-5.2 High) and `grok` (cli-cursor, Grok 4.5 High). Both converged legally (`all_questions_answered`) with full source citations. glm quantified the reference-scale problem (476,239 references, 99.6% self-reference) and designed the back-symlink-flip architecture. grok found three Memory MCP discovery-layer literals that glm's lineage never inspected, and was more conservative about executing without a coordinated cutover.
+
+Round 2 (operator-requested, "10 more iterations", clarified to 5 each): two more lineages, `sol` (cli-codex, gpt-5.6-sol, reasoningEffort high) and `luna` (cli-codex, gpt-5.6-luna, reasoningEffort max), ran on the same topic. Both went considerably deeper than round 1 and independently discovered that **this repo already has a substantial migration-safety subsystem** (`spec-root-registry.ts`, `spec-root-migration.ts`, `spec-root-migration-manifest.ts`, `spec-root-write-guard.ts`, a 61-test-case validation matrix) built for the opposite migration direction — verified real, and precisely matching its stated purpose. That single finding changes the recommendation from "hand-patch ~7 literals" to "invert and reuse the existing harness." `sol`'s dispatch was flagged by the orchestrator as failed over an incidental write-containment violation (`.pi/modes.json`, cleanly reverted, zero residue, never referenced in sol's own output) — investigated and confirmed benign before its findings were used.
+
+`research/research.md` reconciles all four lineages, including an internal Memory MCP inconsistency (indexer is dual-root-aware, discovery/identity layer is canonical-locked) that only emerged from reading multiple citation sets together.
+
+### Phase-parent scaffold
+
+`system-speckit/032-relocate-specs-folder/` is a phase-parent packet (lean trio at the parent) with this phase as its first child, scaffolded via `create.sh --phase --parent` and hand-filled from the Level-1 templates for the research-first framing.
+
+## 002-migration-plan/implementation-summary.md
+---
+title: "Implementation Summary: Specs-Root Migration Plan"
+description: "Reading the existing migration subsystem in full changed the plan from a simple root-swap to a new topology-flip operation built on reused primitives."
+trigger_phrases:
+  - "migration plan summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/032-relocate-specs-folder/002-migration-plan"
+    last_updated_at: "2026-08-08T10:03:46Z"
+    last_updated_by: "claude-code"
+    recent_action: "Planning phase complete; operator accepted ADR-002's downstream-ownership policy"
+    next_safe_action: "Execution phase proceeds under ADR-002's accepted shared-default and opt-in override policy"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-06-system-speckit-032-relocate-002"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-migration-plan |
+| **Completed** | 2026-08-06 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 001's research recommended "invert and reuse" the existing `spec-root-*` migration subsystem. Reading that subsystem in full — not just the citations that verified it exists — found the recommendation was directionally right but mechanically wrong: the subsystem's mutation functions consolidate packets between two independently-real directory trees, and today's actual state (`specs` is a symlink to `.opencode/specs`) means its own collision classifier would mark every packet `same-inode-alias` and skip it. Calling the existing migration function as written would do nothing.
+
+This phase replaces "invert and reuse" with a precise design: reuse the five primitives that are genuinely direction-agnostic (collision classification, byte-verified copy/move, quarantine safety, deterministic manifest hashing, writer freeze), and build a new topology-flip operation on top of them, because that operation doesn't exist in the codebase yet.
+
+### Registry Inversion Design
+
+The 21-entry resolver registry — the maintained inventory of every place in the codebase that resolves a specs root — got read and grouped by precedence type. Seven entries actively prefer or require `.opencode/specs` today (`canonical-first`/`canonical-only`) and need real logic changes: Memory MCP document/graph discovery, the Gate 3 classifier, graph metadata migration and backfill defaults, startup drift-marker containment, resume-ladder resolution, and authored-continuity resolution. The other fourteen already treat both roots symmetrically or already prefer the spelling that becomes canonical after the flip — they need relabeling, not new logic. That 7-entry count landed within one of phase 001's independent "~5-7 hardcoded literals" estimate, derived by a completely different method (reading the registry directly instead of sampling citations) — a real cross-check, not a coincidence worth dismissing.
+
+### Decision Record
+
+`decision-record.md` captures two things: the finding above as ADR-001 (with the evidence for why the existing function is currently a no-op), and the downstream specs-ownership policy question as ADR-002. It was explicitly left open during this planning phase because the choice belonged to the operator; the operator has since accepted ADR-002's shared/framework-default baseline with an opt-in `SPEC_KIT_SPECS_DIR` override.
+<!-- /ANCHOR:what-built -->
+
+
+## 003-migration-execution/implementation-summary.md
+---
+title: "Implementation Summary: Specs-Root Migration Execution"
+description: "All 11 steps of the runbook ran and verified clean, including step 9's Memory MCP reindex — worked around a daemon-workspace mismatch with a standalone reindex, then a verified bulk-delete of 10,459 stale-alias rows the reindex alone couldn't clean up."
+trigger_phrases:
+  - "migration execution summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/032-relocate-specs-folder/003-migration-execution"
+    last_updated_at: "2026-08-08T11:04:58Z"
+    last_updated_by: "claude-code"
+    recent_action: "All 11 steps executed and verified; step 9 dedup resolved via bulk-delete"
+    next_safe_action: "T015: operator reviews the final state"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-06-system-speckit-032-relocate-003"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-migration-execution |
+| **Completed** | 2026-08-07 — all 11 steps executed and verified |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The runbook scoped in this phase (11 numbered steps, each with an exact command and its own pass/fail check) then ran, gated by the operator's separate `/goal` submission plus "Go" — the explicit approval ADR-001 required.
+
+### The Flip (Step 4)
+
+The atomic step: `specs/` is now the real, physical directory; `.opencode/specs` is a relative symlink to `../specs`. Landed in one commit (`606e55cb8a`) together with the `.gitignore` rebase for the four downstream projects (`ai-systems`, `anobel.com`, `barter`, `z-future`), per ADR-002's leak-prevention requirement. All three named pre-commit checks passed before committing.
+
+### The Wider Fix (Steps 5-8, 10)
+
+Steps 5-8 flipped the 12 originally-named call sites (7 registry resolvers, 5 `SPEC_KIT_SPECS_DIR` override sites) plus CI and operator-facing docs. Step 10's test-suite inversion surfaced **6 more production files** with the same hardcoded old-direction bug that were never on the original list: `spec-root-canonical-resolver.ts`, `spec-root-write-guard.ts`, `spec-root-migration.ts` (two functions), `spec-root-migration-manifest.ts`, and `config.ts` (whose registry label had also been wrong — `legacy-first` when the code was always canonical-first). All were fixed in the same pass, since a real correctness bug post-flip isn't optional just because it wasn't on the original list.
+
+### Step 9's Design Gap (Memory MCP Reindex)
+
+This session's `mk-spec-memory` MCP connection resolved to a daemon serving a different git worktree (`.worktrees/0129-system-deep-loop-036-remediation-execution/`), not the main repo. Worked around it with the standalone `cli.js reindex --force`, bypassing the daemon and writing directly to the main repo's own `context-index.sqlite`.
+
+## 004-code-graph-index-flag-deprecation/implementation-summary.md
+---
+title: "Implementation Summary: Deprecate SPECKIT_CODE_GRAPH_INDEX_* Flag Remnants"
+description: "Removed the dead maintainer-mode code-graph-index flag mechanism: the git filter, its config file, its reference doc, and the dead env-var fallback path it fed."
+trigger_phrases:
+  - "code graph index flag deprecation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/032-relocate-specs-folder/004-code-graph-index-flag-deprecation"
+    last_updated_at: "2026-08-08T10:52:13Z"
+    last_updated_by: "claude-code"
+    recent_action: "All 5 plan.md steps executed and verified"
+    next_safe_action: "Commit and push"
+    blockers: []
+    key_files:
+      - ".gitattributes"
+      - ".opencode/skills/sk-git/references/config-content-filters.md"
+      - ".opencode/skills/system-spec-kit/mcp-server/lib/utils/index-scope.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-07-system-speckit-032-relocate-004"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-code-graph-index-flag-deprecation |
+| **Completed** | 2026-08-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The repo no longer carries filter/config/doc plumbing for a maintainer-mode toggle nothing uses anymore. `scripts/setup-maintainer-filters.sh`, removed during the specs-root migration's cleanup step, installed a git clean/smudge filter that kept five `SPECKIT_CODE_GRAPH_INDEX_*` flags `"true"` in a maintainer's working tree while committing `"false"`. None of the four config files it targeted have carried those keys for a while — the filter, its `.gitattributes` declaration, the reference doc describing it, and a dead env-var read path in `index-scope.ts` were all infrastructure for a mechanism with nothing left to act on.
+
+### Dead-file removal
+
+`.gitattributes` (21 lines, entirely this filter's mapping and rationale comment) and `.opencode/skills/sk-git/references/config-content-filters.md` (entirely a description of the same filter) are both deleted. Deleting the reference doc surfaced a dependency the initial scoping grep missed: `sk-git`'s own `leaf-manifest.json`/`leaf-aliases.json` still listed it as a hub resource. Fixed with the hub's own regeneration tooling (`generate-leaf-manifest.cjs --write`, `ci-skill-root-metadata.cjs --fix`) rather than hand-editing the JSON.
+
+### `index-scope.ts` simplification
+
+`resolveIncludedSkillsList` and `resolveIndexScopePolicy` no longer read `env.SPECKIT_CODE_GRAPH_INDEX_*` at all — every fallback now goes straight to its safe default (`'none'` / `false`) instead of consulting an env var no config file ever set. The now-unreachable `'env'` value was dropped from `IndexScopePolicySource`, and the `env` field was dropped from `ResolveIndexScopePolicyInput` — confirmed unused by any caller across the codebase before removing it. The per-call override machinery (`includeSkills`, `includeAgents`, `includeCommands`, `includeSpecs`, `includePlugins`, `includeGlobs`, `excludeGlobs`) is byte-for-byte unchanged; that's the still-live mechanism this cleanup was careful not to touch.
+
+
+## 005-readme-migration-audit/implementation-summary.md
+---
+title: "Implementation Summary: README Migration Audit"
+description: "Dual-executor deep-review (deepseek-flash completed 10/10; glm-high root-caused as a dispatch failure) found 20 stale-topology findings across the repo's README family; all 20 fixed (2 initially deferred, then fixed on operator request)."
+trigger_phrases:
+  - "readme migration audit summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/032-relocate-specs-folder/005-readme-migration-audit"
+    last_updated_at: "2026-08-08T11:36:38Z"
+    last_updated_by: "claude-code"
+    recent_action: "All findings dispositioned, fixes applied, verified against fixtures and real targets"
+    next_safe_action: "Run validate.sh --recursive --strict, then commit and push to skilled/v4.0.0.0"
+    blockers: []
+    key_files:
+      - "README.md"
+      - ".opencode/skills/system-spec-kit/README.md"
+      - ".opencode/bin/check-no-spec-imports.cjs"
+      - ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-07-system-speckit-032-relocate-005"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-readme-migration-audit |
+| **Completed** | 2026-08-07 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A dual-executor `/deep:review` loop audited every non-worktree `README.md` in the repo (root included) for content left logically stale by the specs-root topology flip (`003-migration-execution`: `specs/` canonical, `.opencode/specs` a compat symlink). `deepseek-flash` (cli-opencode) completed all 10 iterations; `glm-high` (cli-devin) never spawned a process despite fully-resolved config and confirmed auth — root-caused to a real, confirmed silent-failure gap in `fanout-run.cjs`'s spawn-error path, out of scope for this packet to fix. The single-lineage run converged (CONDITIONAL verdict, iterations 5-9 returned zero new findings, adversarial replay in iteration 10 confirmed no severity changes) with 20 findings (0 P0, 5 P1, 15 P2).
+
+18 of 20 findings were fixed in the first pass; the remaining 2 (F012: `.txt` command-help files outside strict `README.md` scope; F020: a closed historical packet under `specs/**`) were initially deferred exactly as the review itself recommended, then fixed in a follow-up round after the operator explicitly asked for them. All 20 findings are now fixed. A later follow-up (2026-08-08) also closed the gap F020's own fix had left open: its example commands used a stale track name and folder depth from an unrelated document reorganization, so they didn't resolve even after the specs-root prefix was fixed — corrected to the real path, verified every reference in that file now resolves.
+
+### Findings fixed (20/20, 26 files)
+
+| Finding(s) | File(s) | Fix |
+|---|---|---|
+| F001, F018 | `.opencode/skills/system-spec-kit/README.md` | 8 locations: `.opencode/specs/...` examples → `specs/...`; reference table row now states `.opencode/specs` is a compat symlink to `specs/` |
+
+## 006-memory-scan-dedup-gap/implementation-summary.md
+---
+title: "Implementation Summary: Memory-Index Scan-Path Same-Path Dedup Gap"
+description: "Investigated a suspected memory-index duplicate-row bug through two hypotheses, refuted both against real evidence, and landed the regression test the investigation produced. No confirmed code defect; no fix shipped."
+trigger_phrases:
+  - "memory scan dedup gap summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/032-relocate-specs-folder/006-memory-scan-dedup-gap"
+    last_updated_at: "2026-08-08T10:58:46Z"
+    last_updated_by: "claude-code"
+    recent_action: "Investigation closed, regression test landed, no fix warranted"
+    next_safe_action: "None — packet closed"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp-server/tests/memory-save-supersede-reindex.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-07-system-speckit-033-memory-scan-dedup-gap"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-memory-scan-dedup-gap |
+| **Completed** | 2026-08-07 — investigation closed, no fix |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A suspected memory-index bug turned out not to be one — at least not the one, or the two, hypotheses this investigation could confirm. What shipped is a genuine regression test covering a scenario that had no coverage before, and a fully documented chain of evidence for the next person who finds a fresh duplicate-row pair.
+
+### The chase
+
+It started from a real observation: two rows in `memory_index` for the same file, byte-identical content, one tagged `deprecated` and one `normal`, 7 minutes apart. The first hypothesis was a same-path insert branch in `memory-save.ts` that appeared to conflate "no prior row" with "prior row found, unchanged" into one plain-INSERT path. A controlled test reproducing exactly that scenario — index a file, mark its row `deprecated`, re-index unchanged content through the real production entry point — was written and run against current `HEAD` before touching any source, per this packet's own confirm-first design.
+
+It passed. Not failed — passed. The hypothesis was wrong. An earlier gate (`checkExistingRow`, called before the branch this investigation had targeted) already catches this case correctly and always had.
+
+The second hypothesis was a cross-process race: `checkExistingRow` runs outside any database transaction, so two concurrent indexing passes for the same file could both read stale state. This session's own ~3-hour reindex ran alongside a shared daemon and other live sessions for extended stretches — exactly the condition a race needs. But `memory_history`'s audit trail for the one concrete reproduction told a cleaner story: the deprecated row has an `UPDATE` event at the exact same timestamp the new row has its `ADD` event. That's the signature of the already-tested-and-correct "content genuinely changed" branch firing, not a race. The most likely explanation: the file was edited and reverted within that 7-minute window, and today's byte-identical hashes are just where it landed, not evidence anything went wrong.
+
+### What actually landed
+
+
+FOLDER
+
+<<<FOLDER id="specs/system-speckit/033-spec-template-context-optimization"
+# PACKET: specs/system-speckit/033-spec-template-context-optimization
+
+---
+title: "Implementation Summary: Spec-Kit Template & Context Optimizations"
+description: "Current state: all four phases implemented (uncommitted); deep-review findings remediated; QA checklist verified; validate --strict clean; awaiting commit go-ahead."
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/033-spec-template-context-optimization"
+    last_updated_at: "2026-08-13T17:05:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Absorbed 033 research into research/; updated refs"
+    next_safe_action: "Await commit go-ahead"
+    blockers: []
+    key_files:
+      - "specs/system-speckit/033-spec-template-context-optimization/plan.md"
+      - ".opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl"
+      - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-12-system-speckit-034-optimizations"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Phase-1 consumer: research.md.tmpl is workflow-owned (deep-research), so gating savings are authoring-only"
+      - "AC_COVERAGE severity: implemented as default-on advisory (non-blocking), not a hard warn"
+      - "REQ-005 changed-files contract defined: MK_SCOPE_CHANGED_FILES / MK_SCOPE_BASE; canonical-doc exception is packet-folder-scoped"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: Spec-Kit Template & Context Optimizations
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Complete — all phases + deep-review remediation + QA checklist done; shipped to origin/v4 (skill `v3.9.0.0`) and consolidated into this packet (formerly 034) |
+| **Completion** | 100% (implemented, reviewed, remediated, verified, shipped, and consolidated) |
+| **Last Updated** | 2026-08-13 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+All four phases of the plan are implemented and shipped (12 runtime/skill files; enumerated below):
+
+- **Phase 1 — research-template level-gating (REQ-001):** `research.md.tmpl` restructured from a single always-true gate into per-level sections. Level 1 renders 175 lines (was 944); Level 3/3+/phase stay byte-identical to baseline (full content preserved).
+- **Phase 2 — template consolidation + read-safety (REQ-002, REQ-003):** `spec/plan/tasks/implementation-summary.md.tmpl` consolidated to one shared core + per-level gated addenda (2,931 → 1,314 source lines, byte-identical renders). `template-guide.md` gained a "Reading a Template (Agents)" read-guard directing agents to the rendered view rather than the raw `.tmpl`.
+- **Phase 3 — plan-adherence validation gates (REQ-004, REQ-005):** `check-ac-coverage.sh` flipped to default-on (advisory, non-blocking); `validation-rules.md` updated. New `check-scope-adherence.sh` (advisory) registered in `validator-registry.json`.
+- **Phase 4 — memory-search token budget (REQ-006):** `memory-search.ts` gained search-envelope token-budget enforcement mirroring the memory-context handler, with a new 5-test vitest suite.
+
+### Files changed (runtime / skill surface)
+
+| File | REQ | Change |
+|------|-----|--------|
+| `templates/manifest/research.md.tmpl` | 001 | Per-level gating (L1: 175 lines, was 944; L3/3+/phase byte-identical) |
+| `templates/manifest/spec.md.tmpl` | 002 | Consolidated to shared core + gated addenda |
+| `templates/manifest/plan.md.tmpl` | 002 | Consolidated |
+| `templates/manifest/tasks.md.tmpl` | 002 | Consolidated |
+| `templates/manifest/implementation-summary.md.tmpl` | 002 | Consolidated (four templates: 2,931 -> 1,314 source lines, byte-identical renders) |
+| `references/templates/template-guide.md` | 003 | "Reading a Template (Agents)" read-guard |
+| `mcp-server/handlers/memory-search.ts` | 006 | Search-envelope token-budget enforcement |
+| `mcp-server/tests/memory-search-token-budget.vitest.ts` | 006 | New 5-test suite |
+| `scripts/rules/check-ac-coverage.sh` | 004 | Flipped default-on (advisory) |
+| `scripts/rules/check-scope-adherence.sh` | 005 | New advisory validator (166 lines) |
+| `scripts/lib/validator-registry.json` | 005 | Registered the scope-adherence rule |
+| `references/validation/validation-rules.md` | 004/005 | Documented both rules |
+| `manual-testing-playbook/tooling-and-scripts/scope-adherence-advisory-rule.md` | 005 | New playbook + `MK_SCOPE_*` contract |
+| `scripts/tests/research-template-gating.vitest.ts` | 001 | New render-gating test |
+| `scripts/tests/check-scope-adherence.vitest.ts` | 005 | New/updated scope-rule test |
+| `scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | — | Regenerated stale goldens |
+| `changelog/v3.9.0.0.md` | — | Skill release changelog |
+
+The `changelog.md` in this packet holds the exhaustive record (research question, method, refutation list, ADRs, reviews, commit timeline).
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## 3. HOW IT WAS DELIVERED
+
+Primary writer was deepseek-v4-flash (via the opencode-go provider) under strict write-containment; gpt-5.6-sol (high, fast) handled the hard design calls and acted as adversarial verifier. Each phase captured a regression baseline, changed one surface, passed a changed-files sweep (revert-and-halt on any out-of-scope write or deletion), ran focused tests, and — for the byte-identical claim — diffed rendered output per level against baseline. Containment held across every dispatch: zero out-of-scope writes, zero deletions.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## 4. KEY DECISIONS
+
+- **Phased plan, not phase folders** — loosely-coupled recs tracked as phases within one packet.
+- **Refutation list is a hard blocker** — no phase reinvented the deep-loop reducers, the memory_context budget, or the evaluator/handoff machinery.
+- **Byte-identical render gate** — template changes proven render-neutral by per-level hash comparison (25/25 renders matched baseline).
+- **AC_COVERAGE stays advisory** — kept non-blocking rather than emitting a hard warn, to avoid false completion-blocks on planning-stage packets under `--strict` (the acceptance wording was aligned to this).
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## 5. VERIFICATION
+
+- Focused suites green: `template-structure` 8/8, `inline-gate-renderer` 12/12, `memory-search-token-budget` 5/5.
+- Byte-identical render gate: 25/25 per-level render hashes matched baseline for REQ-002; research.md.tmpl L3/3+/phase renders matched baseline for REQ-001.
+- `scaffold-golden-snapshots` is green (6/6) after regenerating the stale goldens; the failures seen during the build were pre-existing stale fixtures on the original templates (confirmed via baseline isolation), since regenerated. `research-template-gating` 4/4.
+- A 10-iteration deep-review (deepseek-v4-flash) returned **CONDITIONAL** (P0=0, P1=8, P2=8); every P1 was subsequently remediated (code/doc fixes) or recorded as a verified decision (F005). Its report lives under `review/`.
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## 6. KNOWN LIMITATIONS
+
+- **Shipped** — the implementation is committed and on origin/skilled/v4.0.0.0 (skill `v3.9.0.0`); this packet was later consolidated from 034 into 033 (see `changelog.md` §1).
+- **Deep-review findings resolved** — golden snapshots regenerated (F001); research.md render test added (F013); scope-rule false-positive fixed + `MK_SCOPE_*` contract documented (F015); phase-number collision clarified (F010); feedback-enqueue reorder applied (F006). F005 (memory-search budget mirror) recorded as an intentional decision after verifying the two enforcers use different truncation strategies (ADR-005). Full report under `review/`.
+- **Full-repo test caveat** — the touched surfaces all pass; the full scripts suite shows unrelated failures in untouched subsystems (pre-existing + heavy concurrent load). A clean-machine full run is advisable before merge.
+- Final documentation level may rise to 3 if implementation LOC is later re-counted.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/system-speckit/z_archive/001-fix-command-dispatch"
+# PACKET: specs/system-speckit/z_archive/001-fix-command-dispatch
+
+---
+title: "Implementation Summary [system-spec-kit/z_archive/001-fix-command-dispatch/implementation-summary]"
+description: "Archive repair summary for the Fix Command Dispatch Vulnerability folder."
+trigger_phrases:
+  - "implementation summary"
+  - "fix command dispatch"
+  - "archive"
+importance_tier: "normal"
+contextType: "general"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-fix-command-dispatch |
+| **Completed** | 2026-03-31 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This archive repair turned the folder into a clean Level 1 historical record for the command dispatch vulnerability fix. You can now inspect the archived topic without stale higher-level structure or broken top-level references.
+
+### Archive Repair
+
+The core documents were rebuilt from the current templates, and the extra README was reduced to a short archival note. The result is small, readable, and validator-safe.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| spec.md | Created | Preserve the archived feature summary in the current structure |
+| plan.md | Created | Record the archive normalization approach |
+| tasks.md | Created | Capture the repair workflow and verification |
+| implementation-summary.md | Created | Document the archive repair outcome |
+| README.md | Created | Keep a brief archival note for the extra top-level markdown file |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+I rebuilt the archive from the current Level 1 templates, kept the original security-focused topic explicit, and validated the folder in strict mode until it reported zero errors.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Normalize the archive to Level 1 | The folder only needed a compact, trustworthy historical record |
+| Keep README.md as a short note | The extra top-level markdown should remain readable without introducing integrity issues |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Strict folder validation | PASS |
+| Markdown reference integrity | PASS |
+| Manual archive review | PASS |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Condensed detail** This archive preserves the feature summary and repair outcome, not the full historical planning trail.
+<!-- /ANCHOR:limitations -->
+
+---
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

@@ -1,0 +1,1546 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/004-sk-deep-agent-improvement"
+# PACKET: specs/system-deep-loop/z_archive/004-sk-deep-agent-improvement
+
+---
+title: "Implementation Summary: Rename sk-improve-agent → deep-agent-improvement"
+description: "Skill folder rename complete. ~116 files migrated across the renamed skill folder, advisor scoring tables (156 phrase entries), command surfaces in 4 runtimes, agent definitions in 4 runtimes, root docs, and install guides. Active-code residual grep returns 0 hits. SQLite advisor cache rebuilt (skillCount=18). On main branch with no auto-branch created."
+trigger_phrases:
+  - "rename complete"
+  - "implementation summary"
+  - "deep-agent-improvement done"
+  - "079 complete"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/004-sk-deep-agent-improvement"
+    last_updated_at: "2026-05-06T13:30:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "implementation-summary authored"
+    next_safe_action: "memory save"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-agent-improvement/SKILL.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000084"
+      session_id: "079-impl-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+# Implementation Summary: Rename `sk-improve-agent` → `deep-agent-improvement`
+
+**Status**: COMPLETE. All P0 + P1 requirements met. Smoke dispatch + advisor recommendation verified.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `specs/skilled-agent-orchestration/079-sk-deep-agent-improvement` |
+| **Completed** | 2026-05-06 |
+| **Level** | 2 |
+| **Implementation executor** | mixed: cli-copilot gpt-5.5 high (Phases 2-4) + Claude shell-driven sed substitution (Phases 5-8 after cli-copilot/codex dispatches went silent) |
+| **Precedent** | `specs/skilled-agent-orchestration/z_archive/056-sk-deep-rename/` |
+| **Branch** | `main` (no auto-branch created) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The skill `sk-improve-agent` is now `deep-agent-improvement`, joining the `deep-*` family alongside `deep-review` and `deep-research`. The rename is symbolic-only: every active-code reference site was migrated to the new path/identifier, but no behavior changed. The agent `@improve-agent` and slash command `/deep:start-agent-improvement-loop` stayed stable per 070-sk-deep-rename precedent (their names already followed modern convention without the `sk-` prefix).
+
+### Skill folder rename
+
+Skill folder `.opencode/skills/sk-improve-agent/` renamed to `.opencode/skills/deep-agent-improvement/` via `git mv`. The convenience symlink `.opencode/changelog/sk-improve-agent` was deleted and recreated as `.opencode/changelog/deep-agent-improvement` pointing at the new skill's `changelog/` directory.
+
+### Advisor scoring tables migrated (CRITICAL)
+
+`skill_advisor.py` had its 156 phrase-routing entries updated so every phrase that previously routed to `sk-improve-agent` now routes to `deep-agent-improvement`. The trigger phrase keys themselves stayed unchanged (e.g., "improve agent", "agent improvement loop", "/deep:start-agent-improvement-loop" remain valid keys). `skill-graph.json` registry, `fusion.ts:270` penalty list, and the two test fixtures (`native-scorer.vitest.ts`, `remediation-008-docs.vitest.ts`) were all updated. The compiled `dist/` mirrors regenerated cleanly via `npm run build`. The SQLite advisor cache was rebuilt via `advisor_rebuild` (skillCount=18).
+
+### Files Changed
+
+| Surface | Action | Notes |
+|---------|--------|-------|
+| `.opencode/skills/sk-improve-agent/` → `.opencode/skills/deep-agent-improvement/` | Renamed | `git mv` (T-001); 116 files now under new path |
+| `.opencode/changelog/sk-improve-agent` symlink | Renamed + Retargeted | Now `.opencode/changelog/deep-agent-improvement → ../skill/deep-agent-improvement/changelog` (T-002) |
+| 60 in-skill files (SKILL.md, README.md, graph-metadata.json, scripts, assets, changelog v1.0..v1.2.2, feature_catalog, manual_testing_playbook, references, test-fixtures) | Modified | All `sk-improve-agent` refs migrated; new `changelog/v1.3.0.0.md` and `v1.4.0.0.md` document the rename (T-003..T-009) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill_advisor.py` | Modified | 156 phrase routing entries (T-010) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json` | Modified | Registry key + edges + trigger phrases (T-011) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts:270` | Modified | Penalty list (T-012) |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts:315,343` | Modified | Test fixture skill IDs (T-013) |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/remediation-008-docs.vitest.ts:22` | Modified | Path string assertion (T-014) |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/skill_advisor/**/*.js` | Regenerated | `npm run build` (T-015) — fusion.js dist mirror correct |
+| `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite` | Rebuilt | `advisor_rebuild` (T-016) skillCount=18 |
+| `.opencode/skills/sk-improve-prompt/graph-metadata.json:32` | Modified | Sibling target (T-017) |
+| `.opencode/skills/README.md` | Modified | Skill index + directory tree (T-018) |
+| `.opencode/skills/system-spec-kit/changelog/v3.3.0.0.md`, `v3.4.0.0.md` | Modified | Path strings only; narrative untouched (T-019) |
+| `.opencode/commands/deep/start-agent-improvement-loop.md` + 32-ref auto.yaml + 33-ref confirm.yaml + README.txt | Modified | Canonical .opencode/ command surface (T-020..T-023) |
+| `.claude/commands/deep/` (4 files) | Modified | Runtime mirror (T-024) |
+| `.gemini/commands/deep/start-agent-improvement-loop.toml` + README.txt | Modified | Runtime mirror (T-025); no YAML assets in this dir |
+| `.codex/commands/deep/` | N/A — does not exist | Codex runtime has only `.codex/agents/improve-agent.toml`; no commands dir (T-026 N/A) |
+| `.opencode/agents/improve-agent.md`, `.claude/agents/improve-agent.md`, `.gemini/agents/improve-agent.md`, `.codex/agents/improve-agent.toml` | Modified | Skill matrix line per file; agent name `improve-agent` itself unchanged (T-027..T-030) |
+| `README.md` (root) | Modified | Lines 848 + 1220 (T-031) |
+| `AGENTS.md` (root) and `CLAUDE.md` → AGENTS.md (symlink) | Modified | Line 324 (T-032). CLAUDE.md is a symlink to AGENTS.md so updates transitively |
+| `.opencode/install_guides/README.md` (2 refs) + `SET-UP - AGENTS.md` (1 ref) | Modified | T-033 |
+| `AGENTS_Barter.md` | Skipped | Symlink to external Barter repo `/Users/michelkerkmeester/.../barter/coder/AGENTS.md`; Barter handles its own propagation per memory (T-034) |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The work shipped in two phases: cli-copilot gpt-5.5 high handled Phase 2 (folder rename), Phase 3 (in-skill updates), and most of Phase 4 (advisor migration). Mid-session the cli-copilot dispatch hit a transient API connection error during Phase 5+6, and a subsequent cli-codex fast-mode dispatch went silent (output file 0 bytes after dispatch — likely throttle/conflict with two other parallel codex runs the user had going). Rather than block on the unreliable CLI dispatches, Claude completed Phases 5-8 directly via shell-driven `sed -i ''` substitution across the enumerated target files, plus an additional repair pass on advisor files (`skill_advisor.py`, `fusion.ts`, advisor `graph-metadata.json`, `native-scorer.vitest.ts`, `remediation-008-docs.vitest.ts`) which had been partially reverted between Phase 4 completion and the residual scan — likely from concurrent parallel work on other packets in the same worktree.
+
+Verification ran throughout: every phase completed with a per-file `grep -c 'sk-improve-agent'` check, the final residual grep across the entire active-code surface returned 0 hits, the advisor's `native-scorer.vitest.ts` passed all 21 tests, and `advisor_rebuild` reported a successful rebuild with skillCount=18.
+
+Total elapsed wall-clock: ~5 hours including spec authoring (90 min), CLI dispatch issues + recovery (90 min), and direct sed pass + verification (60 min).
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Skill folder renamed; agent name `@improve-agent` and command `/deep:start-agent-improvement-loop` kept stable | Per 070-sk-deep-rename precedent — agent and command names already use modern convention without `sk-` prefix and are independent of skill folder name. Renaming them would have been gratuitous churn. |
+| Historical changelog narrative kept verbatim (skill v1.0.0..v1.2.2, system-spec-kit v3.3/v3.4) | Past entries document past releases factually. Updating their prose would falsify history. Path strings inside those docs were updated since paths must resolve. |
+| `specs/` research artifacts (~24,127 historical refs) out of scope | Research record stays factually accurate. Only active-code references migrated. |
+| Switched executor from cli-copilot to direct sed mid-flight after CLI silent failures | The CLI dispatches went unreliable mid-session (cli-copilot connection error at Phase 5+6 mid-stream; cli-codex fast-mode bg dispatch produced 0-byte output). Mechanical sed substitution is deterministic and the work was pure string replacement — no judgment needed for path-string vs identifier disambiguation. The work is identical to what the CLIs would have done. |
+| Build script failure on unrelated TS errors not blocking | `npm run build` failed on pre-existing TypeScript errors in `code_graph/lib/index-scope-policy.ts`, `code_graph/tests/code-graph-query-handler.vitest.ts`, and `matrix_runners/run-matrix.ts` — these are from other concurrent packet work (026/007/012/006 cluster A-E and 082) running in parallel worktrees. Per memory: dirty worktree is baseline, not a blocker. The advisor files we touched compiled cleanly (verified via direct dist file check). |
+| `AGENTS_Barter.md` skipped | Symlink to external Barter repo per memory. Barter handles its own propagation. |
+| `.codex/commands/deep/` skipped | Directory does not exist in this repo's Codex runtime config. Codex has agents but no commands here. T-026 N/A documented. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Strict spec validation pre-dispatch (`validate.sh ... --strict`) | PASS — Errors: 0, Warnings: 0 (after restructuring with proper anchors + headers + frontmatter ordering) |
+| Folder rename (`ls .opencode/skills/deep-agent-improvement/SKILL.md`) | PASS — file exists; `.opencode/skills/sk-improve-agent` returns ENOENT |
+| Symlink (`readlink .opencode/changelog/deep-agent-improvement`) | PASS — `../skill/deep-agent-improvement/changelog`; old symlink absent |
+| Residual grep (active code, ex-historical) | PASS — `0` lines (excluding `specs/` historical record + skill changelog v1.0..v1.2.2 narrative + system-spec-kit changelog v3.3/v3.4 narrative) |
+| Advisor source files (`grep -c` per file) | PASS — `skill_advisor.py: 0`, `skill-graph.json: 0`, `fusion.ts: 0`, `graph-metadata.json (advisor): 0`, `native-scorer.vitest.ts: 0`, `remediation-008-docs.vitest.ts: 0` |
+| Advisor dist files (`grep -c`) | PASS — `dist/skill_advisor/lib/scorer/fusion.js: 0`, `dist/skill_advisor/tests/scorer/native-scorer.vitest.js: 0` |
+| Advisor `npm run build` | PARTIAL — TS build script failed on unrelated parallel-work errors (code_graph + matrix_runners). Affected dist outputs already correct from earlier build. Verified directly. |
+| Advisor SQLite cache rebuild (`advisor_rebuild`) | PASS — `rebuilt: true, skillCount: 18` |
+| Vitest `native-scorer.vitest.ts` | PASS — 21 tests pass |
+| Vitest `remediation-008-docs.vitest.ts` | FAIL — but unrelated regression: missing research file at `specs/.../004-smart-router-context-efficacy/001-initial-research/research/research-validation.md`. NOT caused by this rename. |
+| Smoke `/deep:start-agent-improvement-loop` dispatch on sandbox agent | PASS — `scan-integration.cjs --agent <sandbox>` exits 0, produces valid JSON output (47 surfaces, 13 skills detected, no broken-path errors). `generate-profile.cjs --help` returns clean usage. Scripts resolve from new `deep-agent-improvement/` path. Full end-to-end /deep:start-agent-improvement-loop dispatch confirmed at the script level. |
+| Advisor recommendation smoke (`handleAdvisorRecommend({prompt: "improve agent loop"})`) | PASS — top hit `deep-agent-improvement` with score 0.7, confidence 0.878, uncertainty 0.12. Trust state: live, generation 1218. All 156 phrase entries route to the new skill ID. |
+| Branch hygiene | PASS — `git branch --show-current` returns `main`; no auto-branch surviving |
+
+### Requirements rollup
+
+| REQ ID | Status | Evidence |
+|--------|--------|----------|
+| REQ-001 (folder rename) | MET | `.opencode/skills/deep-agent-improvement/SKILL.md` exists; old path absent |
+| REQ-002 (skill_id + name) | MET | `jq '.skill_id'` returns `"deep-agent-improvement"`; SKILL.md frontmatter `name: deep-agent-improvement` |
+| REQ-003 (advisor migrated) | MET | `grep -c 'sk-improve-agent' skill_advisor.py` → 0; `native-scorer.vitest.ts` passes |
+| REQ-004 (SQLite rebuilt) | MET | `advisor_rebuild` returned `rebuilt: true, skillCount: 18` |
+| REQ-005 (dist regenerated) | MET (partial) | dist/skill_advisor outputs correct; full `npm run build` failed on unrelated errors |
+| REQ-006 (4 runtime command surfaces) | MET | `.opencode/`, `.claude/`, `.gemini/` clean; `.codex/commands/deep/` does not exist (documented N/A) |
+| REQ-007 (/deep:start-agent-improvement-loop dispatch) | MET | scan-integration.cjs + generate-profile.cjs smoke pass; advisor recommendation returns deep-agent-improvement (confidence 0.878) |
+| REQ-008 (symlink) | MET | `readlink` resolves new path; old absent |
+| REQ-009 (validate.sh strict) | MET | Pre-dispatch strict pass; post-dispatch validation re-runnable |
+| REQ-010 (vitest pass) | MET (partial) | `native-scorer.vitest.ts` passes; `remediation-008-docs` fail is unrelated to rename |
+| REQ-011 (new changelog) | MET | `.opencode/skills/deep-agent-improvement/changelog/v1.3.0.0.md` and `v1.4.0.0.md` exist |
+| REQ-012 (root docs) | MET | `README.md`, `AGENTS.md`, `CLAUDE.md` (via symlink): 0 hits |
+| REQ-013 (install guides) | MET | `.opencode/install_guides/README.md`, `SET-UP - AGENTS.md`: 0 hits |
+| REQ-014 (this file) | MET | This file authored with verification evidence |
+| REQ-015 (/memory:save) | PENDING | T-041 — final task before declaring done |
+| REQ-016 (branch hygiene) | MET | On `main`; no auto-branch |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **`npm run build` failed on unrelated TS errors.** Three pre-existing TypeScript errors live in `code_graph/lib/index-scope-policy.ts`, `code_graph/tests/code-graph-query-handler.vitest.ts`, and `matrix_runners/run-matrix.ts` — these are from concurrent parallel-track work (packet 026/007/012/006 cluster A-E + 082) sharing the same worktree. Our advisor files in `skill_advisor/` compiled cleanly (verified directly via `grep` on `dist/skill_advisor/lib/scorer/fusion.js`). When parallel tracks land, run `npm run build` again to confirm a fully clean build.
+2. ~~Smoke `/deep:start-agent-improvement-loop` dispatch deferred~~ — RESOLVED. Verified at the script level: `scan-integration.cjs` exits 0 against the sandbox agent producing valid JSON (47 surfaces, 13 skills); advisor recommendation returns `deep-agent-improvement` with confidence 0.878 for "improve agent loop" prompt. Full operator-invoked `/deep:start-agent-improvement-loop :auto` workflow remains available but the underlying scripts are confirmed functional.
+3. **Historical changelog narrative untouched.** Skill `changelog/v1.0.0.0.md..v1.2.2.0.md` and system-spec-kit `changelog/v3.3.0.0.md`/`v3.4.0.0.md` keep narrative prose verbatim ("v1.0.0.0 created sk-improve-agent…"). Path strings inside those docs were updated for resolution.
+4. **`specs/` research artifacts unchanged.** ~24,127 historical references to `sk-improve-agent` remain in `specs/059-*`, `specs/060-*`, `specs/070-*`, etc. These are research artifacts and stay verbatim per `spec.md` §3 Out of Scope.
+5. **Agent name not modernized.** The agent is still `@improve-agent` rather than `@deep-agent-improvement`. Per 070 precedent, agent naming is independent of skill folder naming. If full naming-family alignment is desired, a follow-on packet can rename the agent.
+6. **YAML asset filenames preserved.** Files `deep_start-agent-improvement-loop_auto.yaml` and `deep_start-agent-improvement-loop_confirm.yaml` keep their filenames because they are command-scoped (named after `/deep:start-agent-improvement-loop` command target, not the skill).
+7. **CLI dispatch reliability.** Mid-session, both cli-copilot (transient API connection error) and cli-codex fast-mode bg (silent 0-byte output, likely throttled by 2 other parallel codex runs the user had going) were unreliable. Final phases shipped via direct sed substitution, which was deterministic and faster than retrying the CLIs.
+<!-- /ANCHOR:limitations -->
+
+---
+
+## Cross-References
+
+- **Specification**: `spec.md`
+- **Plan**: `plan.md`
+- **Tasks**: `tasks.md` (T-001..T-041)
+- **Checklist**: `checklist.md`
+- **Resource Map**: `resource-map.md`
+- **Precedent**: `specs/skilled-agent-orchestration/z_archive/056-sk-deep-rename/`
+- **New changelog entries**: `.opencode/skills/deep-agent-improvement/changelog/v1.3.0.0.md` (rename milestone) and `v1.4.0.0.md` (companion entry from cli-copilot Phase 3)
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/005-deep-multi-ai-council-skill"
+# PACKET: specs/system-deep-loop/z_archive/005-deep-multi-ai-council-skill (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Deep AI Council Skill Extraction"
+description: "Phase parent for extracting multi-ai-council into a dedicated deep-ai-council skill, then planning later council graph support. Child phases own execution detail."
+trigger_phrases:
+  - "deep-ai-council"
+  - "multi-ai-council extraction"
+  - "council skill"
+  - "council graph support"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/005-deep-multi-ai-council-skill"
+    last_updated_at: "2026-05-11T07:55:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Phase 005 added for fixups and value scenarios"
+    next_safe_action: "Complete 005-deep-ai-council-fixups-and-graph-value-scenarios implementation"
+    blockers: []
+    key_files:
+      - .opencode/specs/system-deep-loop/z_archive/005-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation/
+      - .opencode/specs/system-deep-loop/z_archive/005-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion/
+      - .opencode/specs/system-deep-loop/z_archive/005-deep-multi-ai-council-skill/003-deep-ai-council-graph-support/
+      - .opencode/specs/system-deep-loop/z_archive/005-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage/
+      - .opencode/specs/system-deep-loop/z_archive/005-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios/
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "101-phase-parent-scaffold"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Do any external callers still depend on the literal multi-ai-council name?"
+    answered_questions:
+      - "Initial skill extraction and future graph support are separate phase children."
+      - "Phase 002 reference expansion is complete and graph support is Phase 003."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+
+## 001-deep-ai-council-skill-creation/implementation-summary.md
+---
+title: "Implementation Summary: 101/001 Deep AI Council Skill Creation"
+description: "Implementation summary for the initial deep-ai-council skill creation phase, runtime rename, council asset move, and advisor routing fix."
+trigger_phrases:
+  - "101/001 summary"
+  - "deep-ai-council skill summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation"
+    last_updated_at: "2026-05-10T10:20:00Z"
+    last_updated_by: "openai-gpt-5.5-codex"
+    recent_action: "Aligned deep-ai-council skill docs"
+    next_safe_action: "Rerun alignment verification"
+    blockers: []
+    key_files:
+      - .opencode/skills/deep-ai-council/
+      - .opencode/agents/deep-ai-council.md
+      - .claude/agents/deep-ai-council.md
+      - .codex/agents/deep-ai-council.toml
+      - .gemini/agents/deep-ai-council.md
+      - .opencode/skills/deep-ai-council/README.md
+      - .opencode/skills/deep-ai-council/manual_testing_playbook/
+      - .opencode/skills/system-spec-kit/mcp_server/skill_advisor/lib/scorer/fusion.ts
+      - .opencode/skills/system-spec-kit/mcp_server/skill_advisor/tests/scorer/native-scorer.vitest.ts
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "101-001-skill-creation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Phase 001 excludes graph support."
+      - "The old protocol string remains only for additive JSONL compatibility."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: 101/001 Deep AI Council Skill Creation
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/001-deep-ai-council-skill-creation` |
+| **Status** | Complete |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase created the dedicated `deep-ai-council` skill package, renamed the runtime agent mirrors, moved/adapted council references and scripts, and fixed the skill advisor source scorer so natural council prompts route to `deep-ai-council`.
+
+## 002-deep-ai-council-reference-expansion/implementation-summary.md
+---
+title: "Implementation Summary: 101/004 Deep AI Council Reference Expansion"
+description: "Completed reference, playbook, routing, and packet metadata expansion for deep-ai-council scoring, depth dispatch, failure handling, and anti-pattern guidance."
+trigger_phrases:
+  - "101/004 summary"
+  - "deep-ai-council reference expansion summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion"
+    last_updated_at: "2026-05-10T10:50:00Z"
+    last_updated_by: "openai-gpt-5.5-codex"
+    recent_action: "Completed council reference expansion."
+    next_safe_action: "Use verification output as completion evidence."
+    blockers: []
+    key_files:
+      - references/scoring_rubric.md
+      - references/depth_dispatch.md
+      - references/failure_handling.md
+      - references/anti_patterns.md
+      - references/seat_diversity_patterns.md
+      - playbook/06/001-depth-detection-parallel-vs-sequential.md
+      - playbook/06/002-resume-after-interrupted-state.md
+      - playbook/07/001-library-writer-call-sequence.md
+      - playbook/07/002-five-dimension-scoring-rubric-application.md
+      - playbook/07/003-hunter-skeptic-referee-cross-critique.md
+      - playbook/07/004-out-of-scope-write-rejection.md
+      - SKILL.md
+      - .opencode/agents/deep-ai-council.md
+      - .claude/agents/deep-ai-council.md
+      - .codex/agents/deep-ai-council.toml
+      - .gemini/agents/deep-ai-council.md
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "101-004-reference-expansion"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Agent §17/§18 reordered and parity drift in Codex TOML were recorded as completed adjacent runtime-mirror parity work."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: 101/004 Deep AI Council Reference Expansion
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/002-deep-ai-council-reference-expansion` |
+| **Status** | Complete |
+| **Level** | 1 |
+| **Completed** | 2026-05-10 |
+<!-- /ANCHOR:metadata -->
+
+
+## 003-deep-ai-council-graph-support/implementation-summary.md
+---
+title: "Implementation Summary: 101/003 Deep AI Council Graph Support"
+description: "Implemented dedicated derived council graph support with SQLite storage, MCP handlers, strict schemas, bounded queries, convergence signals, references, and tests."
+trigger_phrases:
+  - "101/003 summary"
+  - "deep-ai-council graph summary"
+  - "council_graph_upsert"
+  - "council graph implementation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/003-deep-ai-council-graph-support"
+    last_updated_at: "2026-05-11T05:20:00Z"
+    last_updated_by: "openai-gpt-5.5-opencode"
+    recent_action: "Fixed deep-review findings for council graph support"
+    next_safe_action: "Run final verification and report outcome"
+    blockers: []
+    key_files:
+      - .opencode/skills/system-spec-kit/mcp_server/lib/council-graph/
+      - .opencode/skills/system-spec-kit/mcp_server/handlers/council-graph/
+      - .opencode/skills/system-spec-kit/mcp_server/tests/council-graph.vitest.ts
+      - .opencode/skills/deep-ai-council/references/graph_support.md
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "101-003-graph-support"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Do not reuse deep-loop graph as-is for council support."
+      - "Dedicated derived council graph selected over deep-loop reuse and deferral."
+      - "Council graph rows are derived and replayable from ai-council artifacts."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: 101/003 Deep AI Council Graph Support
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/003-deep-ai-council-graph-support` |
+| **Status** | Complete |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 003 now implements a dedicated council graph as a derived SQLite projection. The implementation deliberately keeps `ai-council-state.jsonl` and packet-local `ai-council/**` artifacts as source-of-truth and does not overload `deep_loop_graph_*` research/review semantics.
+
+### Dedicated Graph Surface
+
+## 004-deep-ai-council-playbook-graph-coverage/implementation-summary.md
+---
+title: "Implementation Summary: 101/004 Deep AI Council Playbook Graph Coverage"
+description: "Added 8 functional council-graph integration scenarios (DAC-019..DAC-026) to the deep-ai-council manual testing playbook so Phase 003's shipped MCP surface has operator-driven validation coverage."
+trigger_phrases:
+  - "101/004 summary"
+  - "deep-ai-council playbook graph summary"
+  - "DAC-019..DAC-026"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage"
+    last_updated_at: "2026-05-11T07:55:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Authored 8 graph integration scenarios and refreshed root playbook"
+    next_safe_action: "Mark phase 004 Complete in parent 101 spec.md; consider /memory:save"
+    blockers: []
+    key_files:
+      - .opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md
+      - .opencode/skills/deep-ai-council/manual_testing_playbook/05--scope-boundaries/001-graph-support-derived-and-scoped.md
+      - .opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "101-004-playbook-graph-coverage"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Re-homed the originally-scaffolded standalone packet 103 under 101 as phase 4."
+      - "DAC-011 stays as a textual boundary scenario; functional behavior covered by DAC-019..DAC-026."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: 101/004 Deep AI Council Playbook Graph Coverage
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/004-deep-ai-council-playbook-graph-coverage` |
+| **Status** | Complete |
+| **Level** | 1 |
+| **Completed** | 2026-05-11 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-ai-council manual testing playbook now exercises every shipped behavior of the Phase 003 council graph MCP surface. Before this packet the playbook had zero functional coverage of `council_graph_*`; the only mention was one textual line inside DAC-011's "expected signals" bullet. After this packet the playbook covers all four MCP tools, all five query modes, all three convergence buckets, hostile-metadata redaction, idempotent upsert, self-loop rejection, empty-input no-op, recovery payload, derived-projection replay, and tool-family separation from `deep_loop_graph_*`.
+
+### Eight new graph integration scenarios (DAC-019..DAC-026)
+
+A new `08--council-graph-integration/` category holds eight templated scenarios that 1:1-mirror the shipped Phase 003 surface. Each scenario follows the proven `07--writer-library-contract/001` template structure (frontmatter, OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, SOURCE FILES, SOURCE METADATA), names the exact MCP tool calls, expected response shape, and anchors back to specific `tests/council-graph.vitest.ts` test names so any test rename surfaces a playbook update need.
+
+## 005-deep-ai-council-fixups-and-graph-value-scenarios/implementation-summary.md
+---
+title: "Implementation Summary: 101/005 Deep AI Council Fix-ups and Graph Value Scenarios"
+description: "Repaired 2 pre-existing vitest failures surfaced by 101/004's playbook run and authored 6 value-comparison scenarios DAC-027..DAC-032 proving the council graph beats the no-graph baseline in real-world situations."
+trigger_phrases:
+  - "101/005 summary"
+  - "deep-ai-council fixups summary"
+  - "DAC-027..DAC-032 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios"
+    last_updated_at: "2026-05-11T09:05:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Fixed 2 vitests and authored 6 value scenarios"
+    next_safe_action: "Mark phase 005 Complete in parent 101 spec.md"
+    blockers: []
+    key_files:
+      - .opencode/skills/system-spec-kit/mcp_server/tests/multi-ai-council-runtime-parity.vitest.ts
+      - .opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts
+      - .opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/
+      - .opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "101-005-fixups-and-value-scenarios"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Runtime-parity test was correct at 101/001 ship; commit 85bd60b9f added Claude translated frontmatter without updating the test."
+      - "Persist-artifacts vitest HELPER_PATH pointed at the system-spec-kit script location used before 101/001 moved the helper into deep-ai-council."
+      - "Value-comparison scenarios use A/B structure: each contrasts no-graph baseline workflow with with-graph workflow on a real-world council situation."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: 101/005 Deep AI Council Fix-ups and Graph Value Scenarios
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/005-deep-ai-council-fixups-and-graph-value-scenarios` |
+| **Status** | Complete |
+| **Level** | 1 |
+| **Completed** | 2026-05-11 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Two surgical test repairs restored the council vitest matrix to fully green (7 files, 43 tests, 0 failures), and six new value-comparison scenarios moved the playbook beyond "the graph works" to "the graph beats the no-graph baseline in real-world situations". Every behavior the playbook is supposed to validate is now exercised by at least one test or operator scenario.
+
+### Fix #1 — Runtime-parity vitest acknowledges Claude translated frontmatter
+
+## 006-council-graph-value-scenario-automation/implementation-summary.md
+---
+title: "Implementation Summary: 101/006 Council Graph Value-Scenario Automation"
+description: "Fixture-driven vitest coverage and operator artifact seeder for DAC-027..DAC-032."
+trigger_phrases:
+  - "101/006 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation"
+    last_updated_at: "2026-05-11T09:25:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Implemented fixture-driven council graph value scenarios"
+    next_safe_action: "Review final diff and commit if desired"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "101-006-value-scenario-automation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: 101/006 Council Graph Value-Scenario Automation
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/006-council-graph-value-scenario-automation` |
+| **Status** | Complete |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented CI-protected value-scenario coverage for DAC-027..DAC-032. The new harness seeds synthetic `ai-council/**` artifacts plus a temp council graph DB, runs the no-graph baseline and with-graph workflow, asserts the expected answer, and writes measured ratios to `council-graph-value-report.json`.
+
+### Measured baseline-vs-graph ratios
+
+The 6 scenarios now produce real measured numbers (file reads vs MCP calls) on every test run:
+
+| Scenario | Baseline file reads | Graph MCP calls | Ratio | Value type |
+|---|---|---|---|---|
+| DAC-027 unresolved-disagreement triage | 12 | 1 | 12x | speed |
+| DAC-028 decision provenance audit | 13 | 1 | 13x | speed + structure |
+| DAC-029 convergence safety under critical disagreement | 1 | 1 | 1x | safety (graph blocks an unsafe stop the baseline would have allowed) |
+| DAC-030 stalled-council blocker ranking | 7 | 1 | 7x | speed + ranking |
+| DAC-031 hot-topic discovery | 8 | 1 | 8x | speed + structural |
+
+## 007-council-infrastructure-hardening/implementation-summary.md
+---
+title: "Implementation Summary: 101/007 Council Infrastructure Hardening"
+description: "Council infrastructure hardening shipped: test gate, feature catalog, anchor integrity test, replay helper, Codex TOML parity, and fixture normalization provenance."
+trigger_phrases:
+  - "101/007 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/007-council-infrastructure-hardening"
+    last_updated_at: "2026-05-11T11:35:00Z"
+    last_updated_by: "cli-codex-gpt-5.5-high"
+    recent_action: "Closed all six residual infrastructure gaps and verified the council gate"
+    next_safe_action: "Run council gate"
+    blockers: []
+    key_files:
+      - .opencode/skills/system-spec-kit/mcp_server/package.json
+      - .opencode/skills/system-spec-kit/scripts/test-council-matrix.sh
+      - .opencode/skills/deep-ai-council/feature_catalog/
+      - .opencode/skills/system-spec-kit/mcp_server/tests/council-playbook-anchor-integrity.vitest.ts
+      - .opencode/skills/deep-ai-council/scripts/replay-graph-from-artifacts.cjs
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "101-007-infrastructure-hardening"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The local-only gate is npm + bash, not GitHub Actions."
+      - "The catalog has exactly 32 markdown entries under feature_catalog/ so the required count check stays at 32."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: 101/007 Council Infrastructure Hardening
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/007-council-infrastructure-hardening` |
+| **Status** | Complete |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Closed the six residual 101/007 gaps without changing council graph runtime handlers or storage logic. The packet now has a one-command council test gate, a complete 32-entry catalog, a reverse-anchor vitest, a DAC-025 replay helper, stronger Codex TOML parity checks, and inline fixture-side normalization provenance.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 008-council-surface-polish/implementation-summary.md
+---
+title: "Implementation Summary: 101/008 Council Surface Polish"
+description: "Surfaced 101/007 artifacts via SKILL.md, published v1.1.0.0 series changelog covering 101/001..008, and added a smoke vitest covering the replay helper plus the bash runner."
+trigger_phrases:
+  - "101/008 summary"
+  - "deep-ai-council surface polish summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/005-deep-multi-ai-council-skill/008-council-surface-polish"
+    last_updated_at: "2026-05-11T11:40:00Z"
+    last_updated_by: "claude-opus-4-7"
+    recent_action: "Surfaced new artifacts and shipped smoke coverage"
+    next_safe_action: "Mark phase 008 Complete in parent 101"
+    blockers: []
+    key_files:
+      - .opencode/skills/deep-ai-council/SKILL.md
+      - .opencode/skills/deep-ai-council/changelog/v1.1.0.0.md
+      - .opencode/skills/system-spec-kit/mcp_server/tests/council-helpers-smoke.vitest.ts
+      - .opencode/skills/system-spec-kit/mcp_server/package.json
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "101-008-surface-polish"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Smoke vitest follows the shape-assertion pattern for shell scripts and an end-to-end spawn for the Node helper."
+      - "Direct main-agent Edit/Write throughout; no cli-codex dispatch needed for this scale."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: 101/008 Council Surface Polish
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/101-deep-multi-ai-council-skill/008-council-surface-polish` |
+| **Status** | Complete |
+| **Level** | 1 |
+| **Completed** | 2026-05-11 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Three additive deliverables close the last follow-ups from 101's seven-phase work. New consumers reading `SKILL.md` now discover the 101/007 artifacts (`feature_catalog/` and the replay helper) directly from the skill entry point. A new `changelog/v1.1.0.0.md` summarizes the 101/001..008 series in one place using the existing v1.0.0.0 format. A new `council-helpers-smoke.vitest.ts` covers the helper scripts that previously had no regression coverage.
+
+### SKILL.md surface
+
+The Resource Domains section under §6 grew two new mentions: `feature_catalog/` (one entry per scenario), and `scripts/replay-graph-from-artifacts.cjs` (DAC-025 derived-projection rebuild). The router and intent model stayed untouched — these are documentation entries, not new routing targets. `CONTRIBUTING.md` exists alongside SKILL.md and is discoverable by convention, but is intentionally not cross-referenced from the skill body.
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/006-deep-skill-evolution"
+# PACKET: specs/system-deep-loop/z_archive/006-deep-skill-evolution (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: deep-skill evolution arc (nested phase parent)"
+description: "Nested phase parent for the deep-* skill family evolution arc: eight thematic clusters (release-cleanup + five per-skill clusters + one cross-cutting cluster + one playbook-validation cluster) each owning their own leaf phases."
+trigger_phrases:
+  - "deep skill evolution arc"
+  - "deep stack consolidation"
+  - "deep-ai-council rename + iterative"
+  - "deep-loop runtime isolation"
+  - "deep-research uplift + hygiene"
+  - "deep-agent-improvement correctness + evaluator"
+  - "deep-stack cross-cutting"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution"
+    last_updated_at: "2026-05-26T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "reorganized to 7 thematic clusters with bridged old paths"
+    next_safe_action: "validate.sh --strict --recursive then reindex memory/skill/code graph"
+    blockers: []
+    key_files:
+      - "context-index.md"
+      - "merged-phase-map.md"
+      - "001-deep-ai-council/spec.md"
+      - "002-deep-review/spec.md"
+      - "003-deep-loop-runtime/spec.md"
+      - "004-deep-research/spec.md"
+      - "005-deep-agent-improvement/spec.md"
+      - "006-deep-stack-cross-cutting/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000131"
+      session_id: "131-phase-parent-nested"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions:
+      - "Root structure: 8 thematic clusters (000 release-cleanup + 5 per-skill + 006 cross-cutting + 007 playbook-validation)"
+      - "Each cluster is a phase parent with its own lean trio and leaf phases"
+      - "Reorganization history lives in context-index.md; exhaustive old->new paths in merged-phase-map.md"
+
+## 001-release-cleanup/001-deep-loop-runtime-release-cleanup/implementation-summary.md
+---
+title: "Implementation Summary: deep-loop-runtime skill release cleanup"
+description: "Post-implementation skeleton. Fill the placeholders after the 5-phase workflow completes. The narrative carries Level-3 summaries — no Files Changed table needed."
+trigger_phrases:
+  - "deep-loop-runtime release cleanup summary"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/001-deep-loop-runtime-release-cleanup"
+    last_updated_at: "2026-05-23T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "phase-1-skeleton-authored"
+    next_safe_action: "fill-after-phase-5-completes"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000001007"
+      session_id: "131-000-001-spec-author"
+      parent_session_id: "131-000-001-spec-author"
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+# Implementation Summary
+
+> **Status**: SKELETON. Fill the bracketed placeholders after the 5-phase workflow completes. Per `feedback_implementation_summary_placeholders` memory, unfilled placeholders during planning are expected. Per `project_implementation_summary_unfilled_gap`, completion_pct should not be set to 100 until this file is filled with real evidence.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime` |
+| **Completed** | [YYYY-MM-DD — filled at completion] |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact. Example tone: "You can now hand the deep-loop-runtime skill to a downstream packet with full sk-doc conformance, an HVR-compliant README, and a converged resource map that captures every logic gap surfaced by 10 cli-devin SWE-1.6 iterations — and the lib/scripts/tests surface is untouched per the ADR-004 no-code-edit boundary."]
+
+### Phase 1: Spec Folder and Schemas
+
+[What this phase delivered: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md skeleton, resource-map.md with ~88 artifacts inventoried, 4 JSON schemas copied from sibling 002, description.json + graph-metadata.json authored manually. Why it matters: every downstream phase pulls schemas + resource-map from here; ADRs anchor the 5 locked decisions.]
+
+### Phase 2: Surgical Skill Audit
+
+
+## 001-release-cleanup/002-deep-loop-runtime-doc-remediation/implementation-summary.md
+---
+title: "Implementation Summary: deep-loop-runtime doc-remediation"
+description: "Post-implementation skeleton. Fill placeholders after all 4 batches complete + Phase 3 closeout."
+trigger_phrases:
+  - "deep-loop-runtime doc-remediation summary"
+  - "remediation packet implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/002-deep-loop-runtime-doc-remediation"
+    last_updated_at: "2026-05-23T22:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "phase-1-skeleton-authored"
+    next_safe_action: "fill-after-phase-3-closeout"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000131000606"
+      session_id: "131-000-001-001-doc-remediation"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+# Implementation Summary
+
+> **Status**: SKELETON. Filled at Phase 3 closeout. Per `feedback_implementation_summary_placeholders` memory, placeholders during planning are expected; per `project_implementation_summary_unfilled_gap`, completion_pct must not hit 100 until this file is filled with real evidence.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/001-doc-remediation` |
+| **Completed** | [YYYY-MM-DD — filled at completion] |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Closed all 36 Phase 5 findings across 4 remediation batches and shipped `deep-loop-runtime` at v1.2.0. The council surface is now present in feature_catalog (08--council/), manual_testing_playbook (08--council/), and graph-metadata.json. The fabricated `code-surface` node kind is replaced with the 10-kind source-of-truth allow-list. Six cross-arc citations are corrected from the non-existent `129/001` to `131/001/008 ADR-001`. Two previously-uncovered lib modules now have unit tests, and two weak council tests are deepened. cli-devin direct dispatch hit non-interactive write-permission restrictions in this environment, so edits were applied via the orchestrator's own Edit/Write tools (the "where useful" qualifier in the operator request explicitly permits skipping cli-devin when it adds no value).
+
+### Batch A - Consolidated cleanup
+
+26 findings closed (DR-001, DR-003, DR-004, DR-006, DR-009, DR-011, DR-016, DR-017 through DR-024, DR-027, DR-030, DR-031, DR-033, DR-035, DR-036, DR-037; smaller P2 DR-002/005/008/010 resolved incidentally). Files touched: SKILL.md, README.md, changelog/v1.1.0.0.md, graph-metadata.json, references/integration_points.md, references/coverage_graph_schema.md, lib/README.md. SC-007 code-path invariant held (git diff empty for lib/scripts/storage code).
+
+### Batch B - Description-drift full-17 sweep
+
+
+## 001-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep/implementation-summary.md
+---
+title: "Implementation Summary: full strict evergreen-citation sweep across the deep-* skills"
+description: "Full strict sweep applied across all 5 deep-* skills (63 citations / ~29 files). Working tree re-greps clean; 25 clean files committed, 4 deferred due to active parallel-track entanglement."
+trigger_phrases:
+  - "full strict evergreen sweep summary"
+  - "010 evergreen sweep summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/003-deep-loop-runtime-evergreen-citation-sweep"
+    last_updated_at: "2026-05-24T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "sweep-applied-and-verified-25-of-29-committed"
+    next_safe_action: "4-entangled-files-ride-parallel-track-commit"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - ".opencode/skills/deep-loop-runtime/README.md"
+      - ".opencode/skills/deep-loop-runtime/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000010004"
+      session_id: "131-000-010-evergreen-sweep"
+      parent_session_id: "131-000-010-evergreen-sweep"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "4 files (deep-research/SKILL.md + 3 deep-ai-council references) are entangled with active parallel-track work (agent rename + executor-config path fix + section move); excluded from this commit, evergreen edits applied in working tree"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Implementation Summary
+
+> **Status**: COMPLETE (working tree). Sweep applied to all 63 citations; 25 of 29 skill files committed, 4 deferred for parallel-track entanglement (see Known Limitations).
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/002-evergreen-citation-sweep` |
+| **Completed** | 2026-05-24 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A full strict evergreen-citation sweep across all 5 deep-* skills, rewriting 63 transient packet/arc/phase/spec-path citations to present-tense form while keeping the durable anchors (ADR names, the `FULL_ISOLATE_NO_MCP` concept, REQ-IDs, the `M-3` marker, CHK-IDs).
+
+- **deep-loop-runtime** (8 files): README + SKILL rewrote the `Packet 131/001/008 ADR-001 (Runtime Boundary Decision)` provenance to `the Runtime Boundary Decision (ADR-001)`, the `Arc 118 (FULL_ISOLATE_NO_MCP ...)` intro to `The FULL_ISOLATE_NO_MCP consolidation`, dropped `phase 002/003/005/008` references, genericized two `--spec-folder` command examples to `<spec-folder>`, replaced the README `### Arc and packet history` path table with a `### History` changelog pointer, and collapsed the SKILL `## 8. REFERENCES` path bullets into ADR-name descriptions. Plus feature_catalog (x2), lib/deep-loop/README, tests/council/README, the executor-config test comment, the playbook root index, and references/integration_points.md (dropped `phase-5 deep-research audit` / `DR-017..DR-024` / `arc-118 move` framing).
+- **deep-review** (10 files): genericized 2 command-example paths, retitled `### Phase 008 Additions` to `### Blocked-Stop and Corruption-Tracking Additions`, dropped `phase 008` from a JSON example + 2 reduce-state.cjs comments, replaced 6 playbook provenance footers (`116-deep-skill-evolution` ADR/spec paths + `arc completion` sourcing) with evergreen descriptions, and cleaned bare `116` packet references.
+- **deep-research** (committed: reduce-state.cjs comments dropped `phase 008`; SKILL.md deferred — see limitations).
+- **deep-ai-council** (committed: 2 playbook descriptions dropped `Phase 003`; 3 references files deferred — see limitations).
+
+## 001-release-cleanup/004-deep-loop-runtime-reference-asset-alignment/implementation-summary.md
+---
+title: "Implementation Summary: Deep Skills Reference And Asset Alignment"
+description: "Summary and validation handoff for phases 1-8 of the deep skills reference and asset alignment."
+trigger_phrases:
+  - "deep skills alignment summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/004-deep-loop-runtime-reference-asset-alignment"
+    last_updated_at: "2026-05-24T12:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "phase-8-validation-complete"
+    next_safe_action: "await-human-approval-for-phase-9"
+    blockers:
+      - "Phase 9 requires approval after validation."
+    key_files: ["implementation-summary.md", "validation-report.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000013018"
+      session_id: "131-000-013-deep-skills-reference-asset-alignment"
+      parent_session_id: "131-000-013-deep-skills-reference-asset-alignment"
+    completion_pct: 89
+    open_questions:
+      - "Approve Phase 9?"
+    answered_questions: []
+---
+
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/001-deep-loop-runtime/003-reference-asset-alignment` |
+| **Date** | 2026-05-24 |
+| **Level** | 3 |
+| **Status** | Phase 8 Complete, Phase 9 Approval Gate |
+| **Gate** | Human approval required before Phase 9 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The three deep skills now present the same resource family without sharing the same voice. Council planning gained its missing reference and asset layer, review gained the focused state/convergence references it was missing, and research now records that its existing split family is the aligned research model.
+
+### Council Resources
+
+`deep-ai-council` now has `quick_reference.md`, `loop_protocol.md`, and five assets for config, strategy, dashboard, prompt-pack, and runtime capabilities.
+
+### Review Resources
+
+
+## 001-release-cleanup/005-deep-research-release-cleanup/implementation-summary.md
+---
+title: "Implementation Summary: deep-research skill release cleanup"
+description: "Post-implementation skeleton. Fill the placeholders after the 5-phase workflow completes. The narrative carries Level-3 summaries — no Files Changed table needed."
+trigger_phrases:
+  - "deep-research release cleanup summary"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/005-deep-research-release-cleanup"
+    last_updated_at: "2026-05-23T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "phase-1-skeleton-authored"
+    next_safe_action: "fill-after-phase-5-completes"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000002007"
+      session_id: "131-000-002-spec-author"
+      parent_session_id: "131-000-002-spec-author"
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+# Implementation Summary
+
+> **Status**: SKELETON. Fill the bracketed placeholders after the 5-phase workflow completes. Per `feedback_implementation_summary_placeholders` memory, unfilled placeholders during planning are expected. Per `project_implementation_summary_unfilled_gap`, completion_pct should not be set to 100 until this file is filled with real evidence.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-research` |
+| **Completed** | [YYYY-MM-DD — filled at completion] |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact. Example tone: "You can now hand the deep-research skill to a downstream packet with full sk-doc conformance, an HVR-compliant README, and a converged resource map that captures every logic gap surfaced by 10 cross-model iterations."]
+
+### Phase 1: Spec Folder and Schemas
+
+[What this phase delivered: spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md skeleton, resource-map.md with ~95 artifacts inventoried, 4 JSON schemas authored, description.json + graph-metadata.json auto-generated and manual fields re-applied. Why it matters: every downstream phase pulls schemas and resource-map from here.]
+
+### Phase 2: Surgical Skill Audit
+
+
+## 001-release-cleanup/006-deep-research-reference-split/implementation-summary.md
+---
+title: "Implementation Summary: deep-research reference split and router alignment"
+description: "Tracks the final evidence for the deep-research reference split and sk-doc smart-router alignment."
+trigger_phrases:
+  - "deep-research reference split summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/006-deep-research-reference-split"
+    last_updated_at: "2026-05-24T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "implementation-complete-and-validated"
+    next_safe_action: "optional-commit"
+    blockers: []
+    key_files: ["implementation-summary.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000012015"
+      session_id: "131-000-012-reference-split"
+      parent_session_id: "131-000-012-reference-split"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary
+
+> **Status**: COMPLETE. The deep-research reference split and router alignment are implemented and validated.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/002-deep-research/001-reference-split` |
+| **Completed** | 2026-05-24 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+- Replaced `references/convergence.md` with a 126-line hub for the live stop contract, legal-stop gates, signal weights, graph gates, and routed references.
+- Added focused convergence docs: `convergence_signals.md`, `convergence_recovery.md`, `convergence_graph.md`, and `convergence_reference_only.md`.
+- Replaced `references/state_format.md` with a 101-line state packet hub.
+- Added focused state docs: `state_jsonl.md`, `state_outputs.md`, and `state_reducer_registry.md`.
+- Updated `SKILL.md` smart routing to match the sk-doc resilient-router pattern: dynamic markdown discovery, path guarding, existence checks, weighted scoring, ambiguity fallback, and missing-resource notice.
+- Realigned `SKILL.md` Section 1 with the sk-doc skill template: activation triggers, use cases, and anti-patterns only. Moved invocation, executor, lifecycle, and TrustState contracts into `HOW IT WORKS` and `RULES`.
+- Moved the `Task`/LEAF note out of YAML frontmatter so sk-doc structure extraction no longer misreads it.
+- Updated `README.md` to follow the skill README model with Purpose, Usage, Key Statistics, How This Compares, Key Features, Configuration, and Usage Examples.
+- Updated `quick_reference.md` navigation, including the corrected live convergence weights `0.30/0.35/0.35`.
+<!-- /ANCHOR:what-built -->
+
+
+## 001-release-cleanup/007-deep-review-release-cleanup/implementation-summary.md
+---
+title: "Implementation Summary: deep-review skill release cleanup"
+description: "Five-phase release-cleanup arc complete. 56 audit + research findings closed across Phase 2 + Phase 5. deep-review v1.9.0.0 shipped with 95/96 PASS at validation gate. Strict validate exit 0 at every phase boundary."
+trigger_phrases:
+  - "deep-review release cleanup summary"
+  - "implementation summary"
+  - "phase 1-5 complete"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/007-deep-review-release-cleanup"
+    last_updated_at: "2026-05-23T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "phase-5-synthesis-complete"
+    next_safe_action: "packet-shipped-no-followon-required"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "research/convergence-summary.md"
+      - "resource-map.md"
+      - "validation-report.md"
+      - "audit-findings.jsonl"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003007"
+      session_id: "131-000-003-phase-5-synthesis"
+      parent_session_id: "131-000-003-spec-author"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Phase 4 approval received via operator 'Approve' on 2026-05-23 (ADR-006)"
+      - "Phase 5 stop reason: ADR-001 hard cap reached. Convergence saturated at iter 8"
+      - "33 cumulative phase-5 logic gaps. 9 closed inline, 24 deferred to follow-on per resource-map.md Phase-5 Augmentation"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+# Implementation Summary
+
+> **Status**: COMPLETE. 5 phases shipped. 56 audit + research findings closed (32 inline + 24 deferred with rationale). 95/96 PASS at phase-4 validation gate. ADR-006 approval recorded. Phase 5 ran all 10 iters per ADR-001 hard cap. Convergence saturated at iter 8.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review` |
+| **Completed** | 2026-05-23 |
+| **Level** | 3 |
+| **Commits** | `e0d57c422e` (phase 1+2), `6e6b1c44b9` (phase 3), `1d316482c3` (phase 4 validation), `9ef737c63d` (ADR-006 approval), plus 10 phase-5 iter commits + 1 synthesis commit |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+## 001-release-cleanup/008-deep-review-gate-model-reconciliation/implementation-summary.md
+---
+title: "Implementation Summary: deep-review gate-model reconciliation"
+description: "Skeleton; filled after the 9-gate reconciliation completes across 6 surfaces."
+trigger_phrases:
+  - "gate model reconciliation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/008-deep-review-gate-model-reconciliation"
+    last_updated_at: "2026-05-23T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "skeleton-authored"
+    next_safe_action: "fill-after-reconciliation"
+    blockers: []
+    key_files: ["implementation-summary.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000006005"
+      session_id: "131-000-006-gate-model"
+      parent_session_id: "131-000-006-gate-model"
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+# Implementation Summary
+
+> **Status**: Complete.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/003-deep-review/001-gate-model-reconciliation` |
+| **Completed** | 2026-05-23 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Six deep-review documentation surfaces were reconciled to the authoritative 9-gate legal-stop model emitted by `step_emit_blocked_stop` in `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:573` (and the identical shape in `deep_start-review-loop_confirm.yaml:581`). Before this packet the surfaces described 6 or 7 gates depending on the document, omitting the two v2-rollout gates `candidateCoverageGate` and `graphlessFallbackGate`.
+
+Surfaces changed:
+
+- `.opencode/skills/deep-review/references/convergence.md`, §Section-1 `blocked_stop` event example, the prose key listing, the §6 LEGAL-STOP GATE BUNDLE drift note + table, the `buildReviewLegalStop` pseudocode, and the recovery-strategy table all extended from 7 to 9 gates.
+- `.opencode/skills/deep-review/references/loop_protocol.md`, §Step-2 gate list corrected from seven to nine.
+- `.opencode/skills/deep-review/references/state_format.md`, `blocked_stop` event example completed from five to the full nine gates.
+- `.opencode/skills/deep-review/feature_catalog/04--severity-system/05-quality-gates.md`, §2 now enumerates all 9 gate names in a table and explains the 3-binary-gate to 9-gate relationship.
+- `.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/review-quality-guards-block-premature-stop.md`, clarified the 3-binary-gate scenario against the 9-gate bundle, fixed a stale `convergence.md` Section 10.4 anchor to §6.
+- `.opencode/skills/deep-review/changelog/v1.10.0.0.md` (new) + `SKILL.md` version bump 1.9.0.0 → 1.10.0.0.
+
+## 001-release-cleanup/009-deep-review-phase5-doc-cluster-remediation/implementation-summary.md
+---
+title: "Implementation Summary: deep-review doc-cluster backlog remediation"
+description: "Skeleton; filled after the 6 feature_catalog entries + backlog annotations complete."
+trigger_phrases:
+  - "doc cluster remediation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/009-deep-review-phase5-doc-cluster-remediation"
+    last_updated_at: "2026-05-23T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "skeleton-authored"
+    next_safe_action: "fill-after-implementation"
+    blockers: []
+    key_files: ["implementation-summary.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000007015"
+      session_id: "131-000-007-001-doc"
+      parent_session_id: "131-000-007-001-doc"
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+# Implementation Summary
+
+> **Status**: Complete.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `.../002-phase5-backlog/001-doc-cluster-remediation` |
+| **Completed** | 2026-05-23 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Six dedicated feature_catalog entries closing the genuinely-open documentation gaps from the `003-deep-review` phase-5 backlog:
+
+- `feature_catalog/01--loop-lifecycle/07-resource-map-coverage-gate.md` (LG-0009)
+- `feature_catalog/01--loop-lifecycle/08-executor-selection-contract.md` (LG-0012)
+- `feature_catalog/02--state-management/06-graph-convergence-event.md` (LG-0014)
+- `feature_catalog/02--state-management/07-pause-sentinel.md` (LG-0015)
+- `feature_catalog/04--severity-system/06-convergence-signals.md` (LG-0010)
+- `feature_catalog/04--severity-system/07-security-sensitive-fix-overrides.md` (LG-0011)
+
+The root `feature_catalog/feature_catalog.md` index gained six summary rows and the per-category counts moved from 5/5/5 to 7/7/7 for loop-lifecycle, state-management, and severity-system (26 per-feature files + 1 root index). The `003-deep-review/resource-map.md` Phase-5 Augmentation gained a terminal-state table recording the disposition of all 22 remaining gaps.
+
+## 001-release-cleanup/010-deep-review-phase5-reducer-cluster-remediation/implementation-summary.md
+---
+title: "Implementation Summary: deep-review reducer-cluster backlog remediation"
+description: "Skeleton; filled after the 5 reducer changes + vitest + by-design documentation complete."
+trigger_phrases:
+  - "reducer cluster remediation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/010-deep-review-phase5-reducer-cluster-remediation"
+    last_updated_at: "2026-05-23T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "skeleton-authored"
+    next_safe_action: "fill-after-implementation"
+    blockers: []
+    key_files: ["implementation-summary.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000007026"
+      session_id: "131-000-007-002-reducer"
+      parent_session_id: "131-000-007-002-reducer"
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+# Implementation Summary
+
+> **Status**: Complete.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `.../002-phase5-backlog/002-reducer-cluster-remediation` |
+| **Completed** | 2026-05-23 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Five surgical, additive behavioral changes to `.opencode/skills/deep-review/scripts/reduce-state.cjs`, each aligning the reducer to a documented contract:
+
+- **LG-0001**: `deriveDashboardStatus` now detects the latest `userPaused`/`stuckRecovery` event and returns PAUSED/RECOVERING when it is newer than the last iteration/resume/synthesis, instead of always showing RUNNING.
+- **LG-0005**: `deltaRecordToFinding` carries `scopeProof` (string) and `affectedSurfaceHints` (string[]) into the registry findingDetails, per state_format.md line 226.
+- **LG-0006**: new `buildTraceabilityRollup` aggregates the latest `traceabilityChecks` summary + results into a registry `traceability` field.
+- **LG-0008**: new `collapseFindingsByDedupKey` applies the SKILL.md 8.1 two-tier dedup (content_hash primary, file:line+normalized-title fallback), collapsing cross-dimension restatements into one entry with a merged `dimensions[]` list and `mergedFindingIds[]`.
+- **LG-0033**: new `validateReviewRecordFields` adds non-fatal field-level warnings (record `type`, `mode==review`, `newFindingsRatio` range, severity-key presence, findingDetails-is-array) surfaced as a registry `fieldWarnings` field without changing default pass/fail.
+
+The four by-design gaps (LG-0002 gate-name-agnostic, LG-0003 compositeStop pre-blending, LG-0004 graphEvents MCP-owned, LG-0023 emitResourceMap flag gating) are documented in `decision-record.md` ADR-002 and annotated in the `003-deep-review` resource-map. New test: `system-spec-kit/scripts/tests/reducer-backlog-remediation.vitest.ts` (16 tests).
+<!-- /ANCHOR:what-built -->
+
+## 001-release-cleanup/011-deep-ai-council-release-cleanup/implementation-summary.md
+---
+title: "Implementation Summary: deep-ai-council skill release cleanup"
+description: "Five-phase release-cleanup of the deep-ai-council skill: spec folder + schemas, surgical audit, README rewrite, validation gate, and a converged cli-devin deep-research loop. Shipped to v2.1.0.0."
+trigger_phrases:
+  - "deep-ai-council release cleanup summary"
+  - "implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/011-deep-ai-council-release-cleanup"
+    last_updated_at: "2026-05-24T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "phase-5-converged-iter4-gaps-merged"
+    next_safe_action: "packet-complete; optional follow-ons F-002/003/004/006 + DAC-001 narrative"
+    blockers: []
+    key_files:
+      - "implementation-summary.md"
+      - "resource-map.yaml"
+      - "audit-findings.jsonl"
+      - "validation-report.md"
+      - "research/convergence-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000004007"
+      session_id: "131-000-004-spec-author"
+      parent_session_id: "131-000-004-spec-author"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Phase 5 toolchain: all iters cli-devin SWE-1.6 (read-only-research recipe), converged at iter 4"
+      - "Resource-map format: resource-map.yaml (operator-directed)"
+      - "AF-0002 root catalog: authored (operator '1: author')"
+      - "AF-0008 agent paths: corrected to ai-council.* skill-wide; rename declined (operator '2: correct')"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+# Implementation Summary
+
+> **Status**: COMPLETE. Five phases shipped; the deep-research loop converged at iteration 4. P0/P1 requirements met; four P2 gaps and one narrative reconciliation are recommended as follow-ons.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/004-deep-ai-council` |
+| **Completed** | 2026-05-24 |
+| **Level** | 3 |
+| **Target skill** | `.opencode/skills/deep-ai-council/` shipped to v2.1.0.0 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+## 001-release-cleanup/012-deep-ai-council-deep-mode-docs-and-tests/implementation-summary.md
+---
+title: "Implementation Summary: deep-ai-council deep-mode docs + script tests (001)"
+description: "Post-implementation skeleton; filled after the five deferred 004 follow-ons are closed."
+trigger_phrases:
+  - "deep-ai-council follow-on summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/012-deep-ai-council-deep-mode-docs-and-tests"
+    last_updated_at: "2026-05-24T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "deep-mode-followons-closed"
+    next_safe_action: "present-for-commit"
+    blockers: []
+    key_files: ["implementation-summary.md", "spec.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000011007"
+      session_id: "131-000-011-followon"
+      parent_session_id: "131-000-011-followon"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/global/hvr_rules.md -->
+
+# Implementation Summary
+
+> **Status**: SKELETON. Filled after the five deferred items are closed.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `.../000-release-cleanup/004-deep-ai-council/001-deep-mode-docs-and-tests` |
+| **Completed** | [YYYY-MM-DD] |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All five deferred 004 phase-5 follow-ons are closed, shipping deep-ai-council to v2.1.1.0. Two new references document deep mode and the findings registry; `graph_support.md` now cross-links the replay script; the DAC-001 rename narrative is reconciled to the `@ai-council` reality; and five new vitest files (60 test cases) cover the previously-untested scripts. The two references were authored by a scoped cli-devin SWE-1.6 dispatch and verified natively (anti-hallucination grep on every claimed symbol, HVR cleanup, sk-doc conformance); the surgical edits were done natively. No deep-mode runtime or script logic changed.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The 7 new files (2 references + 5 tests) were created by one scoped-write cli-devin SWE-1.6 dispatch with `sequential_thinking` enforced; its Write scope was locked to exactly those 7 paths, so `git status` confirms no existing script was edited. Verification was native: every claimed symbol in both references was grep-checked against the actual scripts (11/11 findings-registry exports, the cost-guard / session-hierarchy functions, the 5 deep-loop-runtime council files, the state-file names all exist), the research-iter `<ref_snippet>` tags cli-devin carried over were stripped, and the residual Oxford commas were fixed. The surgical edits (graph_support cross-link, DAC-001 narrative) were applied natively in parallel while the dispatch ran. The 5 tests pass `node -c` and match the existing `.vitest.ts` import/`createRequire` style.
+<!-- /ANCHOR:how-delivered -->
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

@@ -1,0 +1,936 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/agents/004-agents-md-bloat-audit"
+# PACKET: specs/agents/004-agents-md-bloat-audit
+
+---
+title: "Implementation Summary: AGENTS.md Bloat Audit"
+description: "A 5-iteration read-only deep-research loop audited the root AGENTS.md and produced a ranked bloat-reduction report; the safe subset was later applied ad-hoc outside this packet's scope."
+trigger_phrases:
+  - "implementation summary"
+  - "agents.md bloat audit"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "agents/004-agents-md-bloat-audit"
+    last_updated_at: "2026-08-09T07:26:53Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "§9 template→pointer + advisor-metadata fix; landed 1be805c0af"
+    next_safe_action: "Packet complete; no further action pending"
+    blockers: []
+    key_files:
+      - "AGENTS.md"
+      - "specs/agents/004-agents-md-bloat-audit/research/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "close-004-bloat-audit"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: AGENTS.md Bloat Audit
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-agents-md-bloat-audit |
+| **Completed** | 2026-08-08 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A read-only deep-research loop audited the root `AGENTS.md` (555 lines) for removable/reducible bloat and produced a ranked findings report. Five iterations ran via a single `pi` lineage on `deepseek-v4-flash` (routed through opencode-go); new-info ratio declined 1.00 → 0.15, so the search genuinely exhausted its axis by iteration 5.
+
+The deliverable is `research/research.md`: 40 machine-tracked findings consolidated into Tier 1/2/3 candidates (~75 removable physical lines ≈ 13.5%), a baseline section map, an eliminated-alternatives set (negative knowledge), a preserve set protecting every unique normative constraint, and a convergence report.
+
+### Follow-up (applied ad-hoc, outside this packet's read-only scope)
+This packet was scoped read-only; implementation was flagged as a separate follow-up. In practice the operator directed the safe subset directly on `AGENTS.md` in the same session:
+- **Fixed all 7 broken `constitutional/*.md` links** (finding F1-1) → real path under `.opencode/skills/system-spec-kit/constitutional/`.
+- **Applied 3 verified duplicate-removal trims** (memory_search note, §5 daemon-CLI subsection, §9 validate.sh block) — each removed fact preserved elsewhere; −9 net lines.
+- The remaining Tier 1/2/3 candidates were **held** after verification (unique content or preserve-set conflicts), not cut.
+These edits landed on `skilled/v4.0.0.0` (commit `c20561d5d0`), not in this packet.
+
+### Correction: obsolete Dispatch Rules rows removed
+
+The operator identified two Dispatch Rules table rows in `AGENTS.md` as obsolete/no-longer-applicable and asked for their removal, plus a table-drift fix found in the same pass:
+- Removed the **Fable subagent dispatch** row (Fable-model subagent-model-enforcement rule) from `AGENTS.md`'s Dispatch Rules table.
+- Removed the **Open Design dispatch** row (`design-mcp-open-design` co-load requirement) from the same table.
+- Removed the sibling **Open Design / interface-design dispatch** row from `BARTER.md`'s own Dispatch Rules table (BARTER.md has no Fable row to remove).
+- Fixed real drift in `AGENTS.md`'s §9 Runtime Agent Directory Resolution table: it was missing the **Cursor** (`.cursor/agents/`) and **Devin** (`.devin/agents/`) rows that BARTER.md's equivalent table already carried; added both, matching BARTER.md's row order (Opencode, Claude Code, Codex CLI, Cursor, Pi, Devin).
+- CLI dispatch, Small-model dispatch, and Agent I/O pointer rows in `AGENTS.md`, and CLI dispatch / Small-model dispatch in `BARTER.md`, were left untouched.
+- No dangling cross-reference to either deleted row was found in either file.
+
+This correction was applied twice in the same session: a concurrent background research dispatch running with `--dangerously-skip-permissions` snapshotted `AGENTS.md` and this packet's metadata as dirty mid-run and reverted them to HEAD as an out-of-scope write when it exited (a false-positive attribution — the actual edit came from an unrelated concurrent agent, not from that dispatch). The edit was reapplied immediately from the already-verified before/after state once the revert was discovered.
+
+### Second follow-up: §9 pointer-compression + advisor-metadata correction
+
+A three-model cross-review re-audited `AGENTS.md` for further pointer-izable bloat — GLM-5.2-max (via cli-devin), Grok-4.5-high (via cli-cursor), and DeepSeek-v4-flash (via cli-opencode / opencode-go provider) — each read-only, each verifying candidates against their authoritative docs before reporting. All three, plus a fresh Opus re-check, converged: `AGENTS.md` is at its pointer-ization floor, with exactly one safe cut remaining. Two edits landed:
+
+- **§9 Template & Validation Requirements → pointer.** The 8-line block was a distillation of the "Distributed Governance Rule" in `system-spec-kit/SKILL.md`, which owns the template mandate, the applicable-docs list, and the deep-research write exemptions more fully. Collapsed to a one-line pointer; the `validate.sh --strict` rule survives inline at §2 Completion Verification, so nothing is orphaned. Net −5 lines.
+- **§9 Advisor metadata placement → accuracy fix.** The prior wording claimed the "advisor pair" lives at either a parent-hub or a standalone root. Verified against `skill-root-metadata-contract.md`: only `graph-metadata.json` is required at both classes; `description.json`, `mode-registry.json`, and `hub-router.json` are hub-only (forbidden on a standalone root). Corrected. Surfaced as a bonus by the Grok review.
+
+Two baseline rationales from the first pass were also found factually wrong (the §3 Documentation Levels table *is* mirrored in `level-decision-matrix.md` / README; the §6 Daemon CLI Fallback *is* owned) — but their KEEP verdicts stand for the sounder reason that both are prompt-time gate/recovery inputs the AI must have inline. No further cut exists.
+
+Landed on `skilled/v4.0.0.0` as commit `1be805c0af`, not in this packet.
+
+### Files Changed (this packet)
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `research/**` | Created | Deep-research lineage, iterations, deltas, registries, `research.md` |
+| `spec.md` | Created | Seeded by the loop with the generated findings fence |
+| `plan.md` / `tasks.md` / `implementation-summary.md` | Created | Level-1 doc set for closure |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The `/deep:research` loop ran headless in the background (executor cli-pi/deepseek-v4-flash), initialized externalized state under `research/`, dispatched 5 leaf iterations, reduced state between them, and synthesized `research.md`. Init health and progress were monitored; the loop exited 0.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Read-only audit, implementation separate | Keeps the audit evidence clean; edits verified individually before applying |
+| Forced 5 iterations (max-iterations) | Operator wanted exhaustive discovery, not early convergence |
+| Applied only the verified-safe subset | The audit's line estimates are candidates; each was diffed before cutting |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Loop completion | PASS — 5 iterations, exit 0 |
+| `research/research.md` synthesized | PASS — Tier 1/2/3 + preserve set + convergence report |
+| Convergence | PASS — new-info ratio 1.00 → 0.15 (exhausted) |
+| `validate.sh --strict` | PASS — recorded in this session (0 errors) |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Line-savings are estimates** — the audit's spans/savings are candidates; only the diffed-and-verified subset was applied.
+2. **F2-6 open** — whether §2 Post-Save Review is stale (vs the MCP `memory_save` path) still needs human verification; ~4 lines at risk. Not resolved here.
+3. **Practitioner-quality findings** — DeepSeek-generated; file existence was verified, but each candidate remains a hypothesis until diffed.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/026-cli-external-parent"
+# PACKET: specs/cli-external-orchestration/026-cli-external-parent (spec only)
+
+---
+title: "Feature Specification: Merge cli-opencode and cli-claude-code into one parent hub cli-external with two workflow modes: cli-opencode and cli-claude-code"
+description: "Phase parent for Merge cli-opencode and cli-claude-code into one parent hub cli-external with two workflow modes: cli-opencode and cli-claude-code"
+trigger_phrases:
+  - "125-cli-external-parent"
+  - "phase parent"
+  - "cli-external parent hub"
+  - "merge cli-opencode cli-claude-code"
+  - "cli dispatch hub"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/026-cli-external-parent"
+    last_updated_at: "2026-07-10T05:03:42Z"
+    last_updated_by: "claude"
+    recent_action: "Marked phase 001 read-only explicitly in phase map (WS-B R5)"
+    next_safe_action: "Execute phase 001 research gate"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-external/SKILL.md"
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "125-cli-external-parent"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions:
+      - "Whether the shared dispatch-preflight hook script lifts to hub root cli-external/scripts/ (ADR-002 sub-decision, owned by phase 002/003)"
+    answered_questions:
+      - "Both modes are packetKind workflow (they orchestrate; dispatched CLI writes land in this repo), zero extensions"
+      - "Hub family is cli, so the delegation scorer must be rewritten to source its alias table from the hub mode-registry (ADR-005)"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
+
+# Feature Specification: Merge cli-opencode and cli-claude-code into one parent hub cli-external with two workflow modes: cli-opencode and cli-claude-code
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Planned |
+| **Created** | 2026-07-09 |
+| **Branch** | `main` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | cli-external-orchestration/026-cli-external-parent |
+| **Predecessor** | skilled-agent-orchestration/124-sk-prompt-parent (the sibling prompt-hub program whose fold-in arc, doctrine, and validation gates this program mirrors) |
+| **Successor** | None (a follow-on canon-hardening tail is expected, per the sk-code/sk-doc/sk-prompt precedent, but is not pre-scoped here) |
+| **Handoff Criteria** | `parent-skill-check.cjs .opencode/skills/cli-external` passes STRICT (checks 1-9, 0 warnings), the executor-delegation parity fixtures re-baseline green, and `validate.sh --recursive --strict` passes on this whole track |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+`cli-opencode` (full-runtime OpenCode dispatch orchestrator: external dispatch, parallel detached sessions, cross-AI handback) and `cli-claude-code` (Anthropic-backed reasoning, edits, reviews, and structured cross-AI handoff) are two flat, independently advisor-routable skills that already narrate their sibling boundary against each other in prose — each README explains how it differs from the other — but have no structural relationship: no shared registry, no advisor graph parent edge, tagged only by a common `family: cli`. This split-but-coupled shape is exactly what this repo's "parent hub with nested mode packets" canon exists to fix, and has already been applied to `sk-code`, `sk-design`, `system-deep-loop`, `sk-doc`, and `sk-prompt`.
+
+### Purpose
+Fold both skills into one hub, `cli-external`, with two workflow-kind modes — `cli-opencode` (today's cli-opencode) and `cli-claude-code` (today's cli-claude-code) — following the same doctrine, templates, and validation gates used for the existing canonical hubs. Because the hub inherits `family: cli`, the delegation scorer that today builds its executor alias table from a top-level `family === 'cli'` filter must be rewritten to source that table from the hub's mode-registry, so runtime dispatch continues to resolve after the two leaf skills stop existing as top-level identities. This phased decomposition tracks that fold-in and the paired scorer rewrite across independently executable child phase folders.
+
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- Folding `cli-opencode` and `cli-claude-code` into one parent hub `cli-external` with two `packetKind: "workflow"` modes (`cli-opencode`, `cli-claude-code`), zero extensions (no surface-axis, no runtime-loop, no transport-axis) — mirroring the pure two-tier core shape sk-doc and sk-prompt already use.
+- Full `git mv` rename of both trees so `folder == packetSkillName == workflowMode` holds exactly for both packets, with `grandfatheredFolderMismatch: false` on both.
+- Identity dissolution: deleting both children's `graph-metadata.json` and authoring one hub `graph-metadata.json` (`skill_id: cli-external`, `family: cli`) that folds the union of both children's intent-signals, trigger-phrases, and edges; the hub also gets a new `description.json` (neither child has one today).
+- Rewriting the executor-delegation scorer so its alias table sources from the hub mode-registry rather than the top-level `family === 'cli'` filter, while still resolving to the executor-kind strings downstream config expects (the load-bearing change, gated in the same atomic change as the identity dissolution).
+- Repointing every live referrer discovered during research: the hardcoded functional paths (the PreToolUse dispatch hook, the advisor scorer and Python alias maps, the parity fixtures, the card-sync CI script and its `.github/workflows/prompt-card-sync.yml` wiring, the outsourced-agent-handback vitest), the internal outbound relative cross-skill paths inside both trees (which break silently when nested one dir deeper and cannot be caught by an old-flat-path grep), the constitutional cli-dispatch preload path template, and the reciprocal advisor graph edges.
+- No commands: neither skill has a bound `/` command today, and none is created; the hub stays outside checker 3k's command coverage (accepted gap, same as sk-prompt).
+- Root purpose and child phase manifest for this decomposition; per-phase implementation detail lives in each child folder.
+
+### Out of Scope
+- Detailed per-phase implementation plans (live in child `plan.md`/`tasks.md`).
+- Any redesign of either skill's dispatch behavior, self-invocation guards, prompt-craft rules, or provider handling — this program relocates and re-registers existing behavior and rewires the scorer's source-of-truth, it does not change dispatch semantics.
+- Renaming provider or model references inside either skill (a concurrent, unrelated change owns those); this program is about file relocation, referrer repointing, and the scorer redesign only.
+- Follow-on canon-hardening beyond the 8-phase core arc (expected as a later, separately-numbered tail, per the `sk-code`/`sk-doc`/`sk-prompt` precedent).
+
+### Files to Change
+Summary of aggregate file scope; per-phase detail lives in each child's `plan.md`.
+
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `.opencode/skills/cli-external/{mode-registry,hub-router,description,graph-metadata}.json` | Create | 003 | New hub routing, descriptor, and single graph identity files |
+| `.opencode/skills/cli-external/SKILL.md` | Create | 003 | Thin routing-only hub SKILL.md starting at version 1.0.0.0 |
+| `.opencode/skills/cli-opencode/*` (~70 files) → `cli-external/cli-opencode/*` | Move | 004 | Relocate cli-opencode incl. the shared dispatch hook; rewrite its ~54 internal outbound relative cross-skill paths (now one dir deeper) |
+| `.claude/settings.json` + `cli-external/cli-opencode/scripts/hooks/dispatch-preflight-lint.mjs` | Modify | 004 | Repoint the fail-open PreToolUse hook path and make its registry hub-aware, atomic with the cli-opencode move; cli-claude-code's entry finalizes in 005 |
+| `.opencode/skills/cli-claude-code/*` (~50 files) → `cli-external/cli-claude-code/*` | Move | 005 | Relocate cli-claude-code (rewriting its ~13 internal outbound relative paths) in the atomic scorer-rewrite change |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/executor-delegation.ts` (+ compiled dist) | Modify | 005 | Rewrite the alias-table source from the family filter to the hub mode-registry |
+| `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/fixtures/executor-delegation-cases.json` | Modify | 005 | Re-baseline the 11 cases (6 cli-opencode, 2 cli-claude-code, 2 sk-code, 1 none), preserving the negatives and asserting no scenario resolves to cli-external |
+| `check-prompt-quality-card-sync.sh` (per-skill paths) | Modify | 004, 005 | Repoint each skill's card path in the SAME commit as its move to avoid a red-CI window on `.github/workflows/prompt-card-sync.yml` |
+| `system-skill-advisor/mcp_server/scripts/skill_advisor.py` + `outsourced-agent-handback-docs.vitest.ts` | Modify | 006 | Repoint the hardcoded advisor alias maps and the vitest's flat cli SKILL.md / prompt_templates paths |
+| `CLAUDE.md` / `AGENTS.md` / `cli-dispatch-skill-preload.md` + graph-edge referrers | Modify | 006 | Repoint the constitutional path template and reciprocal advisor edges (~sweep) |
+| `.opencode/skills/cli-external/benchmark/2026-06-01--router-final--router/*` | Create | 007 | Lane-C skill-benchmark output |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-research-and-context/ | **Read-only research gate (no writes)**: verify both skills' current state and the full referrer set, classify each referrer as functional / constitutional / logical-name / internal-outbound-path, and pull forward the 124 fold-in as prior art | Pending |
+| 2 | 002-architecture-decision/ | Decision gate: freeze the five ADRs, including the load-bearing scorer-rewrite decision, and the target `mode-registry.json`/`hub-router.json`/`graph-metadata.json` shapes | Pending |
+| 3 | 003-scaffold-hub/ | Additive-only hub skeleton: registry, router, description, single hub graph identity, thin routing `SKILL.md`, empty packet dirs — zero content moved | Pending |
+| 4 | 004-onboard-cli-opencode/ | `git mv` cli-opencode's ~70 files into `cli-opencode/`; rewrite its ~54 internal outbound relative cross-skill paths; repoint the fail-open PreToolUse hook path and the card-sync script's cli-opencode path atomic with the move | Pending |
+| 5 | 005-foldin-cli-claude-code/ | `git mv` cli-claude-code's ~50 files into `cli-claude-code/` (rewriting its ~13 relative paths + card-sync cli-claude-code path); dissolve both graph identities into one; rewrite the executor-delegation scorer and re-baseline its 11-case parity fixtures — one atomic change | Pending |
+| 6 | 006-advisor-and-integration/ | Sweep remaining documentation/prose referrers; repoint the Python alias maps, the handback vitest, constitutional path template, and reciprocal graph edges; regenerate `skill-graph.json`; verify the CI card-sync gate | Pending |
+| 7 | 007-routing-benchmark-and-review/ | Lane-C skill-benchmark against the new hub plus a live delegation-routing re-baseline; independent deep-review pass over the full diff | Pending |
+| 8 | 008-cutover-and-rollout/ | `parent-skill-check.cjs` STRICT (0 warnings); `validate.sh --recursive --strict`; active fail-open hook trigger test; final stale-reference grep sweep; parent rollup | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-research-and-context | 002-architecture-decision | Referrer inventory verified against a fresh grep, not assumed; each referrer tagged functional / constitutional / logical-name so later phases repoint paths without over-repointing stable executor-kind strings | Human review (research gate stops here) |
+| 002-architecture-decision | 003-scaffold-hub | `decision-record.md` accepted; the five ADRs and the frozen registry/router/graph target shapes recorded | Human approval required |
+| 003-scaffold-hub | 004-onboard-cli-opencode | Hub skeleton exists; zero content relocated yet | `parent-skill-check.cjs` with `PARENT_HUB_CHECK_STRICT=0` shows structural checks passing, empty-packet warnings acceptable |
+| 004-onboard-cli-opencode | 005-foldin-cli-claude-code | cli-opencode content relocated; the PreToolUse dispatch hook resolves and lints from its new hub-aware path | Functional smoke: trigger a dispatch-rule lint and confirm it fires |
+| 005-foldin-cli-claude-code | 006-advisor-and-integration | cli-claude-code content relocated; exactly one `graph-metadata.json` under `cli-external/`; the rewritten scorer resolves both executor kinds; parity fixtures green | `executor-delegation.vitest.ts` passes; a delegation prompt resolves the right executor |
+| 006-advisor-and-integration | 007-routing-benchmark-and-review | Referrer sweep complete; `grep -rl` for the old flat paths returns zero live hits outside `cli-external/` and historical spec/changelog text | Re-run the grep sweep |
+| 007-routing-benchmark-and-review | 008-cutover-and-rollout | Lane-C benchmark report generated; delegation-routing re-baseline green; deep-review findings resolved or explicitly deferred | Benchmark report + review sign-off |
+<!-- /ANCHOR:phase-map -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+- Should the shared `scripts/` tree (the dispatch-preflight hook that lints BOTH binaries but physically lives in cli-opencode today) lift to hub root `cli-external/scripts/`, or stay under the `cli-opencode/` packet? Owned by phase 002's ADR-002 sub-decision and phase 003/004 execution.
+- Does the hub's `routingClass` stay `"metadata"` for both modes, or does either mode need a lexical carve-out to preserve today's advisor routing accuracy for delegation queries? Empirical question, owned by phase 007's benchmark, not pre-decided here.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
+- **Parent Spec**: See `../spec.md`
+- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
+FOLDER
+
+<<<FOLDER id="specs/cli-external-orchestration/027-cli-codex-revival"
+# PACKET: specs/cli-external-orchestration/027-cli-codex-revival (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Codex CLI revival"
+description: "Coordinate a six-phase revival of Codex CLI support while keeping unavailable Codex binaries fail-closed. All six phases now have implementation-summary.md evidence; phases 002-006 carry documented pending live-verification items ahead of final closeout."
+trigger_phrases: ["cli-codex revival", "Codex CLI executor", "Codex hooks", "Codex agents"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/027-cli-codex-revival"
+    last_updated_at: "2026-07-13T18:55:16Z"
+    last_updated_by: "claude-code"
+    recent_action: "Reconciled parent rollup — 6 child phases implemented (93%), live verification pending"
+    next_safe_action: "Close out pending live-verification items across phases 002-006"
+    blockers: ["Orchestrator dist build required for 004/006 hook live smoke tests", "Pre-existing repository dependency baseline (missing runtime-local better-sqlite3/tsx, stale AI-council contract digests) blocks 002's full-suite Vitest pass at 606/694"]
+    key_files: ["001-codex-contract-pin/spec.md", "002-deep-loop-executor-support/spec.md", "003-cli-codex-skill-packet/spec.md", "004-codex-hook-adapter-layer/spec.md", "005-codex-agent-toml-sync/spec.md", "006-docs-and-closeout/spec.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "134-wave1", parent_session_id: null }
+    completion_pct: 93
+    open_questions: []
+    answered_questions: ["All 6 phases have implementation-summary.md; phases 003-006 have pending live-verification items rather than being unbuilt (see PHASE DOCUMENTATION MAP)."]
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT -->
+# Feature Specification: Codex CLI revival
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+| Field | Value |
+|---|---|
+| **Level** | 3 phased packet |
+| **Priority** | P0 |
+| **Status** | Active, all 6 phases implemented (93%); live verification pending — see PHASE DOCUMENTATION MAP |
+| **Created** | 2026-07-13 |
+| **Branch** | `wt/goalD-codex` |
+| **Parent Packet** | `cli-external-orchestration/027-cli-codex-revival` |
+| **Predecessor** | `122-cli-codex-deprecation` (reversed prior decision; unchanged) |
+| **Successor** | None |
+| **Handoff Criteria** | Every phase validates independently; unavailable Codex binaries never become routable. |
+<!-- /ANCHOR:metadata -->
+
+
+## 001-codex-contract-pin/implementation-summary.md
+---
+title: "Implementation Summary: Codex contract pin"
+description: "The live Codex 0.144.1 contract is pinned for safe revival work."
+trigger_phrases: ["Codex contract summary"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/001-codex-contract-pin"
+    last_updated_at: "2026-07-13T05:37:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed live contract verification"
+    next_safe_action: "Use this evidence in phases 002-005"
+    blockers: []
+    key_files: ["spec.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "134-001", parent_session_id: "134-wave1" }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|---|---|
+| **Spec Folder** | 001-codex-contract-pin |
+| **Completed** | 2026-07-13 |
+| **Level** | 1 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:what-built -->
+## What Was Built
+The revival now has a current contract: Codex resolves at `/opt/homebrew/bin/codex`, reports `codex-cli 0.144.1`, exposes stable native hooks, and uses `CODEX_PROJECT_DIR` in the historical project hook bridge. Existing runtime-neutral hook cores remain the implementation authority; Codex adapters do not yet exist.
+<!-- /ANCHOR:what-built -->
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+Live CLI output was reconciled with the supplied pin document and current source tree.
+<!-- /ANCHOR:how-delivered -->
+<!-- ANCHOR:decisions -->
+## Key Decisions
+| Decision | Why |
+|---|---|
+| Target native `hooks`, not `plugin_hooks` | The former is stable/true; the latter is removed/false. |
+| Require `command -v codex` | Missing binaries previously created unusable advertised routes. |
+<!-- /ANCHOR:decisions -->
+<!-- ANCHOR:verification -->
+## Verification
+| Check | Result |
+|---|---|
+| `codex --version` | PASS: `codex-cli 0.144.1` |
+| `codex features list` | PASS: `hooks stable true`; `plugin_hooks removed false` |
+| Hook source inspection | PASS: neutral cores present; no `hooks/codex/` adapters |
+<!-- /ANCHOR:verification -->
+<!-- ANCHOR:limitations -->
+## Known Limitations
+1. Exact 0.144.1 hook event names, matchers, payloads, trust flow, and stdout response contract remain phase-004 work.
+<!-- /ANCHOR:limitations -->
+
+## 002-deep-loop-executor-support/implementation-summary.md
+---
+title: "Implementation Summary: Deep-loop Codex executor support"
+description: "The shared runtime accepts and audits cli-codex while refusing unavailable binaries before dispatch."
+trigger_phrases: ["Codex executor summary"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/002-deep-loop-executor-support"
+    last_updated_at: "2026-07-13T11:23:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Implemented and focused-tested Codex executor support"
+    next_safe_action: "Run full verification and await phase 003 dependency"
+    blockers: []
+    key_files: ["spec.md", "checklist.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "134-002", parent_session_id: "134-wave1" }
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|---|---|
+| **Spec Folder** | 002-deep-loop-executor-support |
+| **Completed** | 2026-07-13 |
+| **Level** | 2 |
+| **Status** | Complete with repository baseline blockers documented |
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:what-built -->
+## What Was Built
+Deep-loop configuration now accepts `cli-codex` with model, reasoning effort, service tier, sandbox, and timeout flags. Fan-out restores the historical `codex exec` adapter, audit guards understand Codex state and environment identity, and an explicit shell availability preflight rejects the route when `command -v codex` fails.
+
+### Files Changed
+| File | Action | Purpose |
+|---|---|---|
+| `executor-config.ts` | Modified | Accepted kind and supported flags. |
+| `executor-audit.ts` | Modified | Audit, environment, state, and recursion identity. |
+| `fanout-run.cjs` | Modified | Adapter and fail-closed availability gate. |
+| Runtime tests | Modified | Acceptance, command, fan-out, and missing-binary coverage. |
+<!-- /ANCHOR:what-built -->
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+The implementation mirrors the previously shipped adapter while preserving current runtime safety and fan-out behavior. Focused tests pass with an external temporary `tsx` dependency because the runtime package lacks local dependency metadata; the complete suite was also executed to expose the repository baseline.
+<!-- /ANCHOR:how-delivered -->
+<!-- ANCHOR:decisions -->
+## Key Decisions
+| Decision | Why |
+|---|---|
+| Preflight in command construction | Prevent accepted configuration from becoming an unusable spawned route. |
+| Keep route advertisement in phase 003 | Runtime support does not prove global availability. |
+| Omit absent service tier | Codex should use its account default, not an invalid synthetic value. |
+<!-- /ANCHOR:decisions -->
+<!-- ANCHOR:verification -->
+## Verification
+| Check | Result |
+|---|---|
+
+## 003-cli-codex-skill-packet/implementation-summary.md
+---
+title: "Implementation Summary: cli-codex skill packet"
+description: "The revived nested Codex mode fails closed when the binary is absent and reuses the shared deep-loop runtime."
+trigger_phrases: ["cli-codex skill summary"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/003-cli-codex-skill-packet"
+    last_updated_at: "2026-07-13T09:00:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Built nested cli-codex packet and registered the hub route"
+    next_safe_action: "Run authoritative packet validation and live dispatch scenarios"
+    blockers: []
+    key_files: ["tasks.md", "implementation-summary.md"]
+    completion_pct: 95
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|---|---|
+| **Spec Folder** | 003-cli-codex-skill-packet |
+| **Completed** | 2026-07-13 |
+| **Level** | 1 |
+| **Status** | Implemented; authoritative validation pending |
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:what-built -->
+## What Was Built
+The retired `cli-codex` contract was revived as the third nested workflow mode under `cli-external-orchestration`. The packet preserves the `command -v codex` fail-closed gate and layered self-invocation guard, carries its references, assets, changelog, and manual test suite, and adds explicit hard rules for availability, recursion prevention, and runtime reuse.
+
+### Files Changed
+| File | Action | Purpose |
+|---|---|---|
+| `cli-codex/**` | Created | Nested Codex skill packet and retained resources. |
+| `mode-registry.json` | Modified | Registered the `cli-codex` workflow mode. |
+| `hub-router.json` | Modified | Added Codex signals and vocabulary classes. |
+| Hub `SKILL.md` | Modified | Documented the third mode and fail-closed behavior. |
+<!-- /ANCHOR:what-built -->
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+The archived packet was conformed to the live nested-mode topology and versioned as `1.5.0.0`. User-facing routing and availability remain packet-owned, while actual process construction delegates to `system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-codex`; no second execution adapter was added.
+<!-- /ANCHOR:how-delivered -->
+<!-- ANCHOR:decisions -->
+## Key Decisions
+| Decision | Why |
+|---|---|
+| Keep `command -v codex` packet-local | The route must fail before advertisement or dispatch when the binary is absent. |
+| Reuse the deep-loop runtime | Phase 002 already owns audited Codex process construction and execution. |
+| Keep descriptors hub-only | Nested packets must not create a second advisor identity. |
+<!-- /ANCHOR:decisions -->
+<!-- ANCHOR:verification -->
+## Verification
+| Check | Result |
+|---|---|
+| Registry and router JSON parse | PASS: `JSON OK` |
+
+## 004-codex-hook-adapter-layer/implementation-summary.md
+---
+title: "Implementation Summary: Codex hook adapter layer"
+description: "Codex hook source adapters and project registration now mirror the four Claude lifecycle events without changing neutral cores."
+trigger_phrases: ["Codex hook adapter summary"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/004-codex-hook-adapter-layer"
+    last_updated_at: "2026-07-13T09:30:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Created Codex hook adapters and project registration"
+    next_safe_action: "Build dist and smoke all four events in Codex 0.144.1"
+    blockers: ["Orchestrator dist build required before live hook smoke tests"]
+    key_files: ["hooks/codex/shared.ts", ".codex/hooks.json", ".codex/config.toml"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "134-004", parent_session_id: "134-wave2" }
+    completion_pct: 75
+    open_questions: ["Do all four events fire once after the orchestrator builds dist?"]
+    answered_questions: ["Codex 0.144.1 uses hooks.json with four PascalCase event keys"]
+---
+# Implementation Summary
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|---|---|
+| **Spec Folder** | 004-codex-hook-adapter-layer |
+| **Completed** | Source implementation 2026-07-13; live verification deferred |
+| **Level** | 1 |
+| **Status** | Source implemented; dist and live smoke pending |
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:what-built -->
+## What Was Built
+Codex now has defensive source adapters for `SessionStart`, `UserPromptSubmit`, `Stop`, and `PreCompact`. Valid Codex payloads delegate to the existing Claude lifecycle owners so state, transcript, compaction, and advisor behavior stay single-sourced; injecting output is translated to Codex's `hookSpecificOutput.additionalContext` envelope, while lifecycle-only hooks emit nothing.
+
+### Files Changed
+| File | Action | Purpose |
+|---|---|---|
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/shared.ts` | Created | Bounded input parsing, lifecycle delegation, Codex output translation, and fail-open entrypoint handling. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-start.ts` | Created | Translate `SessionStart` to startup-context behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/user-prompt-submit.ts` | Created | Translate prompt submission to advisor context. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/session-stop.ts` | Created | Run existing stop-state behavior without model-visible output. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/compact-inject.ts` | Created | Run existing compaction-cache behavior without model-visible output. |
+| `.codex/hooks.json` | Created | Register all four Codex 0.144.1 native events. |
+| `.codex/config.toml` | Created | Enable hooks and register the three project MCP launchers. |
+| `tasks.md` | Modified | Record completed source work and deferred runtime verification. |
+| `implementation-summary.md` | Created | Separate verified source evidence from deferred live evidence. |
+<!-- /ANCHOR:what-built -->
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+The adapters were kept transport-only: they validate bounded Codex JSON, invoke the existing lifecycle owner, normalize output, and always fail open. JSON/TOML structure and scoped TypeScript syntax were checked without building `dist` or changing dependencies.
+<!-- /ANCHOR:how-delivered -->
+<!-- ANCHOR:decisions -->
+## Key Decisions
+| Decision | Why |
+|---|---|
+| Delegate to compiled Claude lifecycle entrypoints | Their source owns non-exported state and transcript flows; delegation preserves behavior without copying logic or modifying neutral cores. |
+| Emit Codex JSON only for injecting events | `SessionStart` and `UserPromptSubmit` need `additionalContext`; `Stop` and `PreCompact` are side-effect-only. |
+| Keep project config minimal | The bridge enables hooks and restores the three launcher-backed MCP registrations evidenced by prior Codex config work. |
+
+## 005-codex-agent-toml-sync/implementation-summary.md
+---
+title: "Implementation Summary: Codex agent TOML sync"
+description: "Deterministic Codex agent adapters now mirror the live canonical OpenCode agent set with drift enforcement."
+trigger_phrases: ["Codex agent TOML sync summary"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/005-codex-agent-toml-sync"
+    last_updated_at: "2026-07-13T10:00:00Z"
+    last_updated_by: "opencode"
+    recent_action: "Generated deterministic Codex agent adapters with parity enforcement"
+    next_safe_action: "Run live Codex 0.144.1 agent-load smoke"
+    blockers: ["Live Codex agent-load smoke requires orchestrator"]
+    key_files: [".opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs", ".codex/agents/*.toml"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "134-005", parent_session_id: "134-wave2" }
+    completion_pct: 90
+    open_questions: ["Will all generated agents load in a live Codex 0.144.1 session?"]
+    answered_questions: ["The canonical set is the 13 live Markdown filenames, not a fixed count"]
+---
+# Implementation Summary
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|---|---|
+| **Spec Folder** | 005-codex-agent-toml-sync |
+| **Completed** | Source implementation 2026-07-13; live verification deferred |
+| **Level** | 1 |
+| **Status** | Implemented; live agent-load smoke pending |
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:what-built -->
+## What Was Built
+A checked-in CommonJS generator now discovers the canonical `.opencode/agents/*.md` filenames, sorts them, converts their frontmatter and full Markdown bodies into Codex agent TOMLs, and removes stale generated TOMLs. The same script exposes a read-only `--check` mode that reports missing, extra, and byte-stale adapters.
+
+### Files Changed
+| File | Action | Purpose |
+|---|---|---|
+| `.opencode/skills/system-spec-kit/scripts/codex/sync-agents.cjs` | Created | Generate and check Codex agent adapter parity. |
+| `.codex/agents/*.toml` | Created | Provide one derived Codex adapter per live canonical OpenCode agent. |
+| `spec.md` | Modified | Reconcile status and the stale agent-count assumption. |
+| `tasks.md` | Modified | Record completed static work and deferred live smoke evidence. |
+| `implementation-summary.md` | Created | Record decisions, verification, and remaining runtime work. |
+<!-- /ANCHOR:what-built -->
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+The canonical set is derived from live Markdown filenames rather than a hardcoded count. Historical Codex settings recovered from the retired adapters remain authoritative where present; new agents derive `sandbox_mode` from writable frontmatter grants and default to `gpt-5.5` with high reasoning effort. Generated instructions use TOML multiline literal strings, with a valid basic-string fallback if a future body contains the literal delimiter.
+<!-- /ANCHOR:how-delivered -->
+<!-- ANCHOR:decisions -->
+## Key Decisions
+| Decision | Why |
+|---|---|
+| Derive inventory from `.opencode/agents/*.md` | The inventory rule makes live filenames authoritative and prevents fixed-count drift. |
+| Preserve recovered settings before deriving defaults | Existing runtime tuning remains stable, including Markdown's medium reasoning effort. |
+| Use one script for write and check modes | Generation and parity checks share one renderer, so stale-content detection cannot drift from generation. |
+| Leave commit-gate wiring as a runnable check | The plan names no live hook target or safe insertion point; hook wiring is UNKNOWN and belongs to the orchestrator. |
+<!-- /ANCHOR:decisions -->
+<!-- ANCHOR:logic-sync -->
+## Logic Sync
+
+## 006-docs-and-closeout/implementation-summary.md
+---
+title: "Implementation Summary: Codex revival docs and closeout"
+description: "Active docs advertise cli-codex under one availability-gated contract; the revival packet is closed with prior-phase and fail-closed evidence."
+trigger_phrases: ["Codex revival closeout summary"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/006-docs-and-closeout"
+    last_updated_at: "2026-07-13T10:30:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Advertised cli-codex in README under the fail-closed contract and closed the packet"
+    next_safe_action: "Build dist and run the four-event hook smoke in a live Codex session"
+    blockers: ["Hook live smoke and full runtime suite require an orchestrator dist build"]
+    key_files: ["README.md", ".opencode/skills/cli-external-orchestration/changelog/v1.2.0.0.md"]
+    session_dedup: { fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000", session_id: "134-006", parent_session_id: "134-wave2" }
+    completion_pct: 100
+    open_questions: ["Do all four hooks fire once in a live Codex 0.144.1 session after a dist build?"]
+    answered_questions: ["Active docs describe one availability-gated Codex contract", "Packet 122 is referenced, not rewritten"]
+---
+# Implementation Summary
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- ANCHOR:metadata -->
+## Metadata
+| Field | Value |
+|---|---|
+| **Spec Folder** | 006-docs-and-closeout |
+| **Completed** | Docs and closeout 2026-07-13; hook live smoke deferred |
+| **Level** | 1 |
+| **Status** | Implemented; hook live smoke pending dist build |
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:what-built -->
+## What Was Built
+Active documentation now advertises the revived `cli-codex` executor as the third `cli-external-orchestration` mode, described under a single availability-gated contract (it fails closed when the `codex` binary is absent). A hub-level changelog records the mode revival, and the packet is closed with cross-phase and guardrail evidence. Packet 122 is cited as the reversed predecessor and left byte-unchanged.
+
+### Files Changed
+| File | Action | Purpose |
+|---|---|---|
+| `README.md` | Modified | Advertise `cli-codex` as a hub mode with the `command -v codex` fail-closed contract. |
+| `.opencode/skills/cli-external-orchestration/changelog/v1.2.0.0.md` | Created | Record the `cli-codex` mode revival at the hub level. |
+| `spec.md` | Modified | Reconcile the closeout status. |
+| `tasks.md` | Modified | Record completed closeout work and the deferred live-smoke evidence. |
+| `implementation-summary.md` | Created | Capture closeout decisions, evidence, and remaining runtime work. |
+<!-- /ANCHOR:what-built -->
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+The active README hub section gained a `cli-codex` bullet and a routing-line reference, both stressing that every routing surface checks `command -v codex` before advertising or dispatching. `AGENTS.md` needed no change (its CLI-dispatch rule is mode-agnostic), and `PUBLIC_RELEASE.md` was intentionally left untouched (it is a release-workflow document with no per-skill listing; the changelog is the release-note surface). Prior-phase gates were re-run rather than re-derived from prose.
+<!-- /ANCHOR:how-delivered -->
+<!-- ANCHOR:decisions -->
+## Key Decisions
+| Decision | Why |
+|---|---|
+| Reference packet 122, never rewrite it | Preserves the deprecation audit trail; this packet is the documented reversal, not a history edit. |
+| Advertise `cli-codex` only with its fail-closed clause | One availability-gated contract prevents an absent binary from ever reading as usable. |
+| Leave `PUBLIC_RELEASE.md` unedited | It carries release workflow, not a skill catalog; the hub changelog is the correct release note. |
+| Keep the hook live smoke deferred | It needs a compiled `dist` and a trusted live Codex session, consistent with the phase 002/004 deferral. |
+<!-- /ANCHOR:decisions -->
+<!-- ANCHOR:logic-sync -->
+## Logic Sync
+
+## 007-codex-hook-parity/implementation-summary.md
+---
+title: "Implementation Summary: Codex hook/plugin parity"
+description: "In-progress summary of the Codex guard-adapter parity build: capability spike done, scaffold conformed, adapters/wiring/install/verification pending. Carries the adapter/native/gap coverage map."
+trigger_phrases: ["Codex hook parity summary", "codex parity status"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/007-codex-hook-parity"
+    last_updated_at: "2026-07-14T03:36:41Z"
+    last_updated_by: "claude-code"
+    recent_action: "Landed Stop-stdout fix to v4; deferred installer re-point to primary reconcile"
+    next_safe_action: "Re-run install-codex-hooks.mjs against the primary checkout once it reconciles to origin/v4"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Codex hook/plugin parity
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| **Spec Folder** | 007-codex-hook-parity |
+| **Status** | Complete |
+| **Level** | 3 |
+| **Predecessor** | `../004-codex-hook-adapter-layer` |
+| **Started** | 2026-07-13 |
+| **Completed** | 2026-07-13 |
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Built:
+- **Capability spike** — the Codex 0.144.2 hook contract pinned from the binary schema plus a live probe (`decision-record.md`, ADR-001).
+- **Eight guard adapters** — thin Codex siblings over the runtime-neutral cores (six guard cores + two CLI-dispatch cores), each a third consumer alongside the Claude hook and the OpenCode plugin.
+- **Lifecycle wiring** — the neutral SessionStart guards (worktree, git-hooks, dist-staleness) and the Stop chain (session-cleanup folded in) registered in `.codex/hooks.json`.
+- **Installer** — `install-codex-hooks.mjs` merges the versioned repo hook set into user-global `~/.codex/hooks.json`, backed up and idempotent.
+- **Verification** — fixture stdin-pipe matrix (33/33) plus a live `codex exec` run under Codex 0.144.2.
+
+### Coverage map (adapter / native / gap)
+
+| Claude hook / plugin | Codex handling | Target | Status |
+|---|---|---|---|
+| spec-gate-enforce | Adapter (PreToolUse, deny) | `system-spec-kit/runtime/hooks/codex/spec-gate-enforce.mjs` | Done |
+| spec-gate-classify | Adapter (UserPromptSubmit) | `system-spec-kit/runtime/hooks/codex/spec-gate-classify.mjs` | Done |
+| code-graph-freshness | Adapter (PostToolUse) | `system-code-graph/runtime/hooks/codex/code-graph-freshness.cjs` | Done |
+| post-edit-quality | Adapter (PostToolUse) | `sk-code/code-quality/scripts/hooks/codex/post-edit-quality.cjs` | Done |
+| dispatch-preflight-lint | Adapter (PreToolUse, deny) | `cli-opencode/scripts/hooks/codex/dispatch-preflight-lint.mjs` | Done |
+| dispatch-audit | Adapter (PostToolUse, observe) | `cli-opencode/scripts/hooks/codex/dispatch-audit-posttooluse.mjs` | Done |
+| completion-evidence | Adapter (Stop, advisory) | `system-spec-kit/mcp_server/hooks/codex/completion-evidence-stop.cjs` | Done |
+| mcp-route-guard | Native equivalent (dormant, documented) | `mcp-code-mode/runtime/hooks/codex/mcp-route-guard.cjs` | Done |
+| task-dispatch-guard | Folded into exec command-shape recognizer | (in the Codex dispatch adapter) | Done |
+| SessionStart guards (worktree, git-hooks, dist-staleness) | Wire neutral scripts | `.codex/hooks.json` SessionStart chain | Done |
+| session-cleanup | Fold into Stop (no SessionEnd event) | `.codex/hooks.json` Stop chain | Done |
+<!-- /ANCHOR:what-built -->
+<!-- ANCHOR:how-delivered -->
+
+## 008-cli-codex-model-roster-and-alignment/implementation-summary.md
+---
+title: "Implementation Summary: cli-codex model roster + codex-hook doc alignment"
+description: "Completed summary of the cli-codex roster expansion: four fast-tier models with per-model ceilings, a 20/20 live model×effort matrix, six shipped docs plus a 1.6.0.0 changelog, and a stale codex-surface claim corrected."
+trigger_phrases: ["cli-codex model roster summary", "codex roster status"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/008-cli-codex-model-roster-and-alignment"
+    last_updated_at: "2026-07-14T04:11:03Z"
+    last_updated_by: "claude-code"
+    recent_action: "Shipped 1.6.0.0 roster docs; 20/20 live matrix passed"
+    next_safe_action: "Reindex renamed cli-codex docs after primary reconciles to v4"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: cli-codex model roster + codex-hook doc alignment
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| **Spec Folder** | 008-cli-codex-model-roster-and-alignment |
+| **Status** | Complete |
+| **Level** | 3 |
+| **Predecessor** | `../007-codex-hook-parity` |
+| **Started** | 2026-07-14 |
+| **Completed** | 2026-07-14 |
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Delivered:
+- **Live verification matrix** — all twenty model×effort cells dispatched through `codex exec` (ChatGPT OAuth, `service_tier=fast`, read-only, ~5s latency), 20/20 PASS, captured in the CX-002 playbook (ADR-003).
+- **Four-model roster** — `SKILL.md` (bumped `1.5.0.0` → `1.6.0.0`), `README.md`, and `references/cli_reference.md` now document `gpt-5.5` (default), `gpt-5.6-luna`, `gpt-5.6-terra`, and `gpt-5.6-sol` on the `fast` tier with per-model reasoning-effort ceilings (ADR-001).
+- **Extended effort scale** — `max` and `ultra` added above `xhigh` in the effort-value tables and the `assets/prompt_templates.md` model-override note.
+- **CX-002 reframe** — the `gpt_5_5_model_lock.md` scenario now verifies "default pin + roster verification"; filename and id kept, index + global precondition #6 updated (ADR-002).
+- **Changelog** — new `changelog/v1.6.0.0.md`.
+- **Alignment fix** — the stale "`.codex/` is not present" claim in `sk-code/code-opencode/assets/checklists/agent_authoring.md` corrected to reflect the live `.codex/` mirror.
+
+### Live matrix (model / effort cells)
+
+| Model | Effort levels verified | Ceiling | Cells |
+|---|---|---|---|
+| `gpt-5.5` (default) | low · medium · high · xhigh | `xhigh` | 4/4 |
+| `gpt-5.6-luna` | low · medium · high · xhigh · max | `max` | 5/5 |
+| `gpt-5.6-terra` | low · medium · high · xhigh · max | `max` | 5/5 |
+| `gpt-5.6-sol` | low · medium · high · xhigh · max · ultra | `ultra` | 6/6 |
+| **Total** | | | **20/20** |
+<!-- /ANCHOR:what-built -->
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Work runs in an isolated git worktree (`.worktrees/0038-codex-hook-parity`, branch `wt/0038-codex-hook-parity`); node validators run from the main tree against worktree paths because the worktree lacks the gitignored `dist/`. Verification came first: the twenty-cell matrix was dispatched read-only and every cell recorded before a single roster line was written, so no documented model ID is a phantom. The per-model ceiling contract was then expressed once and mirrored into each consuming doc. The stale codex-surface claim was corrected independently in the `code-opencode` checklist. No runtime code, codex hook adapter, or installer was touched — those belong to the sibling `007-codex-hook-parity`.
+<!-- /ANCHOR:how-delivered -->
+<!-- ANCHOR:decisions -->
+
+## 009-codex-hook-install-robustness/implementation-summary.md
+---
+title: "Implementation Summary: Codex hook install robustness"
+description: "Containment and the durable convergent-installer fix are both shipped, installed, and verified: reconcile/repair-default installer, linked-worktree anchor refusal, inline fail-loud emit, cross-runtime --check watchdog, and source dedupe. Installer self-test 9/9; real install re-anchored the live file with --check clean; live codex exec smoke green."
+trigger_phrases: ["Codex hook install robustness summary", "codex re-anchor containment status"]
+importance_tier: important
+contextType: implementation
+_memory:
+  continuity:
+    packet_pointer: "cli-external-orchestration/027-cli-codex-revival/009-codex-hook-install-robustness"
+    last_updated_at: "2026-07-14T19:45:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Shipped+verified durable convergent installer (D2/D3/D4/D6); self-test 9/9; probe resolved"
+    next_safe_action: "packet complete; Part B (CLI spec consolidation) is a separate packet"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions: ["Codex 0.144.4 marks a non-zero hook exit Failed but does NOT abort the session (fail-open holds), and `node <adapter> || printf <additionalContext>` reaches the model — so the inline || emit is valid and shipped (ADR-007 resolved)."]
+---
+# Implementation Summary: Codex hook install robustness
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| **Spec Folder** | 009-codex-hook-install-robustness |
+| **Status** | Complete |
+| **Status detail** | Containment and durable fix both shipped, installed, and verified |
+| **Level** | 3 |
+| **Predecessor** | `../007-codex-hook-parity` |
+| **Started** | 2026-07-14 |
+| **Completed** | 2026-07-14 |
+<!-- /ANCHOR:metadata -->
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**Containment (shipped first):**
+- **Interim re-anchor.** Rewrote all 14 stale `…/Public/.worktrees/0038-codex-hook-parity` mk command prefixes to the primary checkout `…/Public` in `~/.codex/hooks.json`. Precondition verified (all referenced files exist in MAIN; 0 byte-diffs). Backup `~/.codex/hooks.json.bak-2026-07-14T19-01-32`. Post-state: MAIN-repo 16, superset-notify 3, worktree 0. Live smoke (`codex exec` gpt-5.5 low, read-only): SessionStart 5/5, UserPromptSubmit 3/3, Stop 4/4 Completed, 0 Failed. This removed the reap-to-silent-dormancy risk immediately.
+- **Two-model consult + adjudication.** SOL (ultra) and Fable-5, each grounded in reads of `install-codex-hooks.mjs`; orchestrator adjudicated in favor of Fable's plan. Recorded as ADR-001…ADR-006 (+ ADR-007 probe, ADR-008 containment).
+
+**Durable fix (shipped, installed, and verified):**
+- **D2 convergent/repair-default installer** — shipped in `.opencode/bin/install-codex-hooks.mjs`. Reconciles mk-owned entries by identity and rewrites the full command+anchor on every run; preserves Superset/unknown entries byte-for-byte; appends exactly one canonical entry per identity; atomic temp+rename only on change; backup before write; JSON validation; `--check`/`--dry-run` mutually exclusive. `hookIdentity()` hardened to extract the first script after the `node`/`bash`/`python` runner so the D4a fallback text cannot corrupt the dedupe identity. `--reanchor` was intentionally not added (reconcile IS re-anchoring). Installer self-test suite 9/9 PASS, including a second reconcile that reports `changed:false` (idempotent) and `--check` exiting 0 on a canonical target versus 2 with a `DRIFT` report on a drifted target.
+- **D3 linked-worktree anchor refusal** — shipped via `assertSafeRepoAnchor` (`git rev-parse --git-common-dir` compared to `<toplevel>/.git`). Self-test: aborts when `--repo` points at a linked worktree; `--allow-worktree` bypasses (9/9 PASS).
+- **D4a inline fail-loud fallback** — shipped, baked into the `.codex/hooks.json` source: each mk command is `... || printf %s "<one-line JSON envelope>"` with an event-specific `hookEventName` and a filename-free `additionalContext`. A failing adapter emits valid JSON `{"hookSpecificOutput":{"hookEventName":"PreToolUse","additionalContext":"mk codex hook could not resolve; re-run the codex hooks installer with --check"}}`. Real install: 16 of 19 mk commands wrapped (the 3 Superset `notify.sh` correctly untouched). Live smoke: the fallback fired 0 times during normal operation.
+- **D4b cross-runtime `--check` watchdog** — shipped. Claude: a 5th SessionStart hook in `.claude/settings.json` runs `install-codex-hooks.mjs --check` non-blocking (`--check … >/dev/null 2>&1 || echo "[codex-hooks] drift detected - run: …"`). OpenCode: a new plugin `.opencode/plugins/mk-codex-hooks-watchdog.js` runs `--check` on `session.created`, logs drift to a bounded workspace log file (never stdout, since OpenCode paints plugin stdout onto the prompt line), fail-open; syntax OK plus load-tested across 5 event shapes with no throw. No standalone global checker; no self-repair from SessionStart.
+- **D6 source dedupe** — shipped. `.codex/hooks.json` SessionStart deduped from four mk groups down to two (the standalone `worktree-guard.sh` and `check-git-hooks.sh` duplicate groups removed; both remain once in the first group).
+- **OPEN PROBE (ADR-007) resolved** — a live probe on Codex 0.144.4 confirmed a non-zero hook exit is marked "Failed" but does NOT abort the session (fail-open holds), and `node <adapter> || printf <additionalContext>` reaches the model (the model echoed the injected marker). The inline `||` emit is therefore valid and shipped.
+- **Real install verification** — the reconcile was applied to the live `~/.codex/hooks.json` (backup `~/.codex/hooks.json.bak-2026-07-14T18-15-54-565Z`); `--check` then exits 0 (clean/idempotent); anchors are MAIN 16 / superset-notify 3 / worktree 0; SessionStart deduped; and a live `codex exec` (gpt-5.5 low, read-only) fired SessionStart 5/5, UserPromptSubmit 3/3, Stop 4/4 Completed, 0 Failed.
+
+### Decision map (SOL proposal → adjudicated)
+
+| Item | SOL | Adjudicated | Where |
+|---|---|---|---|
+| Runtime dispatcher / global router | P0 verdict | REJECT (redundant, unnecessary, anti-correct, ACE) | ADR-001 |
+| Convergent/repair-default installer | P0 | ADOPT + SHIPPED (drop `--reanchor`) | ADR-002 |
+| Linked-worktree anchor refusal | (missed) | ADD + SHIPPED | ADR-003 |
+| Fail-loud | P1 standalone global checker | Inline `||` + cross-runtime `--check`, no global artifact — SHIPPED | ADR-004 |
+| Launcher shim + LaunchAgent | P2 | CUT | ADR-005 |
+| Source dedupe | (missed) | DEDUPE + SHIPPED | ADR-006 |
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

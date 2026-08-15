@@ -1,0 +1,394 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/agents/001-terminal-proof-discipline"
+# PACKET: specs/agents/001-terminal-proof-discipline
+
+---
+title: "Implementation Summary: Terminal-Proof Discipline and Directive Injection"
+description: "AGENTS.md gains the five-step terminal protocol, the per-turn capsule gains a proof-over-appearance directive through the existing governor chain, and the packet passes strict validation."
+trigger_phrases:
+  - "terminal proof summary"
+  - "resume terminal proof work"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "agents/001-terminal-proof-discipline"
+    last_updated_at: "2026-08-05T00:00:00Z"
+    last_updated_by: "pi-terminal-engineer"
+    recent_action: "Integrated the terminal-proof rules into their existing AGENTS.md authorities"
+    next_safe_action: "None; distributed integration and final strict validation are complete"
+    blockers: []
+    key_files:
+      - "AGENTS.md"
+      - "specs/agents/001-terminal-proof-discipline/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-05-agents-001"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Terminal-Proof Discipline and Directive Injection
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-terminal-proof-discipline |
+| **Status** | Complete |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The terminal-proof protocol remains permanent operating discipline in AGENTS.md, but no longer appears as a benchmark-shaped standalone lifecycle. The review-directed integration distributes its mechanics across the Four Laws clarification, Verification Standards and task-specific proofs, Blast-Radius Management, a new Final-State Verification hard gate, Execution Behavior, Quality Principles, search and terminal routing, Startup and Resume Recovery, and the Quick Reference. The standalone Terminal Discipline block is removed after every useful invariant is assigned to an authoritative owner.
+
+The hook assessment proved the governor directive injection already exists and is live: render.ts line 60 holds the canonical constant, mk-skill-advisor.js line 46 mirrors it for the OpenCode fallback, and the pi runtime wires it through the .pi/extensions/prompt-advisor.ts symlink into the compiled Claude hook chain. The extension adds a one-line proof-over-appearance directive to the same capsule, shipped through a rebuilt dist.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `AGENTS.md` | Modified | Eleven-step distributed integration across existing framework authorities; standalone protocol block removed |
+| `specs/agents/001-terminal-proof-discipline/` | Created | Level 2 packet docs |
+| `render.ts` | Modified | TERMINAL_PROOF_DIRECTIVE in the capsule |
+| `mk-skill-advisor.js` | Modified | FALLBACK_DIRECTIVE mirror |
+| `dist/` | Rebuilt | Compiled renderer and hook chain carry the new capsule |
+| three vitest files | Modified | Expectations extended to the new capsule text |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Analysis first: the hook chain was traced with file-level evidence before any edit. The AGENTS.md change was written and verified against git. The packet was authored to the manifest templates with full anchors and continuity frontmatter after the first validation run exposed template-header and anchor gaps. The hook patch was applied to the renderer and the plugin mirror, the dist was rebuilt, and the three test files with exact-string capsule expectations were extended to the new text before the suites were re-run.
+
+The review integration pass then treated `review-report.md` as authoritative: its Protocol-to-Framework Mapping supplied the placement analysis, its eleven-step Placement Plan supplied the edit order, and ADR-003 was amended without reversing its durable-home decision. Focused grep and diff checks confirmed that the local placements landed and the standalone protocol vocabulary left AGENTS.md.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Choice | Where |
+|----------|--------|-------|
+| Extend the existing capsule rather than build a new injection | Extend | decision-record.md ADR-001 |
+| Apply the patch now with git revert rollback | Apply | decision-record.md ADR-002 |
+| AGENTS.md stays the durable home of the full protocol | Split | decision-record.md ADR-003 |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Gate | Status | Evidence |
+|------|--------|----------|
+| AGENTS.md distributed integration diff | Pass | `git diff --stat -- AGENTS.md`: 51 insertions, 2 deletions; `git diff --check -- AGENTS.md` exits 0 |
+| Planned placements and standalone-block removal | Pass | integrated rules at lines 26, 84-113, 193-201, 284-318, 373-388, 417-419, 525-526; focused grep finds no standalone heading or benchmark-step labels |
+| Packet docs present | Pass | ls of the packet folder |
+| Advisor build | Pass | npm build exited 0 |
+| Vitest suite | Pass | 672 passed; 16 directive-expectation tests fixed and green |
+| Plugin node test | Pass | node --test reports 14 pass, 0 fail |
+| Strict validation | Pass | after metadata backfill, `validate.sh --strict` reports Errors: 0, Warnings: 0, RESULT: PASSED and exits 0 |
+| Stray probe file removed | Pass | specs/agents holds only the packet and pre-existing entries |
+| Review integration pass | Pass | AGENTS.md diff and residue checks pass; metadata backfill reports no failures or drift; strict packet validation exits 0 |
+
+Note on the vitest remainder: 27 failures persist that are pre-existing drift in this clone (environment variables, corpus counts, routing ledgers, missing @opencode-ai/plugin package). They were failing identically before the directive test updates, and none touch the brief text; they are outside this packet scope.
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+- The capsule text is fixed in source; operators who want different wording edit render.ts and the plugin mirror and rebuild.
+- The folder-name convention required the packet to live at specs/agents/001-terminal-proof-discipline rather than directly at specs/agents; the user-directed track root is preserved and holds the packet.
+- The completion-freshness fingerprint is a placeholder; the next memory save regenerates it.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/agents/002-runtime-surface-coverage"
+# PACKET: specs/agents/002-runtime-surface-coverage
+
+---
+title: "Implementation Summary: Runtime Surface Coverage"
+description: "Audit phase complete: a gpt-5.6-sol (high thinking) scout subagent enumerated every runtime-support doc and script that still names only Claude/Codex/OpenCode. Spec packet documents 20+ stale enumeration sites across six runtime surfaces; implementation pending."
+trigger_phrases:
+  - "runtime surface coverage"
+  - "six runtime surfaces"
+  - "runtime enumeration audit"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "agents/002-runtime-surface-coverage"
+    last_updated_at: "2026-08-04T06:30:00Z"
+    last_updated_by: "pi-main-agent"
+    recent_action: "Scout audit recorded; spec/plan/tasks/checklist written; implementation not started"
+    next_safe_action: "Implement T001-T009 (Phase 1 P1 fixes)"
+    blockers: []
+    key_files:
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - "README.md"
+      - ".opencode/skills/system-skill-advisor/mcp-server/lib/advisor-runtime-values.ts"
+      - ".opencode/commands/scripts/validate-command-references.cjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-04-agents-002"
+      parent_session_id: null
+    completion_pct: 5
+    open_questions:
+      - "Should Devin MCP registration be added? Default: remain absent"
+    answered_questions:
+      - "copilot is deprecated (user decision 2026-08-04)"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-runtime-surface-coverage |
+| **Completed** | — (audit phase done, implementation pending) |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+You now have a complete, evidence-backed map of every place the repo still talks about three runtimes (Claude, Codex, OpenCode) when it actually ships six (`.opencode`, `.claude`, `.codex`, `.cursor`, `.pi`, `.devin`). The audit found 20+ stale enumeration sites, from the root AGENTS.md contract down to per-runtime SYNC.md manifests, and separated real gaps from non-issues — `sk-code`'s surface detection and the completed terminal-proof packet are both clean.
+
+### Audit Deliverable
+
+A scout subagent (openai-codex/gpt-5.6-sol, high thinking, fresh context, read-only) produced the gap inventory, categorized into hard gaps (AGENTS.md + CLAUDE.md mirror + README + advisor runtime enum + validation allowlists + orchestrator guidance), soft gaps (secondary skill docs, SYNC.md counts, doctor docs), and structural facts (all six runtime dirs exist; Devin has no MCP registration; Cursor dispatch is asymmetric; copilot is deprecated per user decision). The packet captures every finding with file:line evidence and turns them into REQ-001..008 with acceptance criteria.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `spec.md` | Created | Requirements REQ-001..008 from audit evidence; scope; decisions D-001..D-003 |
+| `plan.md` | Created | 3-phase implementation approach with rollback and verification path |
+| `tasks.md` | Created | T001..T022 task breakdown |
+| `checklist.md` | Created | Verification gates for the six-surface claim |
+| `implementation-summary.md` | Created | This document |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The audit ran as a read-only scout dispatch on gpt-5.6-sol at high thinking (run e8d44f53, exit 0, acceptance attested). Its findings were cross-checked against the repo structure (all six runtime dirs listed, MCP configs grepped) before being written into the packet. No implementation changes have been made yet — the packet is the approved plan for the next work session.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Do not claim Devin MCP registration | No checked-in Devin MCP config exists; a false support claim would break the honesty mandate |
+| Remove copilot from the supported set | User confirmed copilot is deprecated (2026-08-04); no `.copilot/` surface exists, so the enum fix removes it rather than labeling it legacy |
+| Generated mirrors are regenerated, never hand-edited | `.codex/agents` and `.pi/agents` are machine output; hand-editing creates drift that the roster checker flags |
+| Historical completed specs stay historical | Rewriting past packets to current truth would corrupt the audit trail; only live docs get updated |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Scout audit run (e8d44f53) | PASS — exit 0, full gap inventory with file:line evidence |
+| All six runtime dirs exist | PASS — `.opencode`, `.claude`, `.codex`, `.cursor`, `.pi`, `.devin` listed |
+| Packet scaffold | PASS — Level 2 template set created via create.sh (spec, plan, tasks, checklist, impl-summary, description.json, graph-metadata.json) |
+| Implementation (T001-T022) | NOT STARTED — next session |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Line numbers are audit-snapshot references.** Files will shift as edits land; re-grep before each change rather than trusting quoted line numbers.
+2. **Copilot deprecation is decided.** The enum fix removes copilot from the supported set (user decision 2026-08-04); any consumer still routing to copilot must be updated in the same change.
+3. **Daemon restart needed after enum change.** The skill-advisor daemon caches runtime values; stale consumers may reject new enum entries until restarted.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/agents/003-communication-quality"
+# PACKET: specs/agents/003-communication-quality
+
+---
+title: "Implementation Summary: AGENTS.md Communication Quality Section"
+description: "Added a dedicated Communication Quality section to the universal AGENTS.md and reconciled the Codex voice spec, lifting only net-new craft principles from the 003 context."
+trigger_phrases:
+  - "implementation summary"
+  - "communication quality"
+  - "agents.md"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "agents/003-communication-quality"
+    last_updated_at: "2026-08-07T08:44:03Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Summarized shipped §8 section and .codex reconciliation"
+    next_safe_action: "Packet complete; no further action pending"
+    blockers: []
+    key_files:
+      - "AGENTS.md"
+      - ".codex/AGENTS.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "manual-authoring"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: AGENTS.md Communication Quality Section
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-communication-quality |
+| **Completed** | 2026-08-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Every runtime now finds its cross-runtime communication rules in one place. The universal `AGENTS.md` gained a dedicated `## 8. COMMUNICATION QUALITY` section, and the deeper Codex voice spec was reconciled so the two files agree instead of drifting. The work started from the `context/` source (a Reddit r/codex thread on frontier-model verbosity) but lifted only the handful of principles genuinely missing from both files — the rest was already covered, more thoroughly, in `.codex/AGENTS.md`.
+
+### Root AGENTS.md — new §8
+A dedicated, self-contained section with three subsections and a closing caveat: **Writing** (one idea per sentence / SVO; atomic paragraphs; plain words with progressive jargon disclosure; cut filler; vary the rhythm; match length to the question; lead-with-the-recommendation-but-earn-it), **Recommendations & Honesty** (recommend one approach + trade-off; separate required from optional; name the specific failure a best practice prevents; state assumptions when evidence is missing), and **Turn Framing** (the Ask→Do frame for complex or ambiguous requests). It links only to §1 and §7 — no reference to `.codex` — and closes with "these shape delivery, not rigor — over-constraining voice backfires."
+
+### Codex voice-spec reconciliation
+Four small additive edits keep `.codex/AGENTS.md` in step: an early-commitment caveat in §3, required/optional + best-practice-honesty bullets in §4, a new Register subsection in §6, and a new Construction subsection in §7. The reconciliation deliberately imported one-idea/SVO/atomic but NOT "keep it short," because `.codex` already prescribes varied medium-length rhythm — adding "short" would have contradicted it.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `AGENTS.md` | Modified | New §8 Communication Quality; renumber §8→§9, §9→§10 |
+| `.codex/AGENTS.md` | Modified | 4 additive edits (§3, §4, §6, §7) reconciling net-new principles |
+| `specs/agents/003-communication-quality/spec.md` | Created | Level 2 specification |
+| `specs/agents/003-communication-quality/plan.md` | Created | Implementation plan |
+| `specs/agents/003-communication-quality/tasks.md` | Created | Task breakdown |
+| `specs/agents/003-communication-quality/checklist.md` | Created | Verification checklist |
+| `specs/agents/003-communication-quality/implementation-summary.md` | Created | This summary |
+| `specs/agents/003-communication-quality/description.json` | Created | Packet metadata |
+| `specs/agents/003-communication-quality/graph-metadata.json` | Created | Graph metadata |
+
+`CLAUDE.md` updated automatically — it is a symlink to `AGENTS.md`.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Read the source and both target files directly before editing. The key finding — that `.codex/AGENTS.md` already covered ~70% of the source — turned the task from "copy the good bits" into "add only what's missing and reconcile." Renumbering was proven safe by grepping every `§8/§9/§10` reference first: the only hit points at an external file (`quick-reference.md §8`), so no in-doc navigation broke.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Dedicated §8 instead of extending §1 | Operator chose a visible, expandable home; §1 was already the densest section |
+| Both files, reconciled | Root reaches every runtime; `.codex` is the deep Codex spec — keeping them in sync prevents drift |
+| Imported one-idea/SVO/atomic but not "keep it short" | `.codex` already prescribes varied medium rhythm; adding "short" would contradict it |
+| Excluded model-internals claims and hard word budgets | Forum opinion, not authority; length already handled per-mode in `.codex` |
+| Cross-link §1/§7 rather than move them | Avoids scope creep and broken references |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `grep -nE '^## [0-9]+\.' AGENTS.md` | PASS — headers sequential 1..10 |
+| `grep -nE '(§|Section )(8|9|10)\b' AGENTS.md` | PASS — sole hit is external-file ref `quick-reference.md §8`, correctly untouched |
+| `.codex/AGENTS.md` header integrity | PASS — sections 1..12 intact |
+| Diff stat | PASS — `AGENTS.md` +33/-3, `.codex/AGENTS.md` +14/-1; no unrelated files |
+| No-duplication read vs §1 and `.codex` | PASS — each added bullet is net-new or an explicit cross-link |
+| `validate.sh --strict` | PASS — see run output in this session (exit 0/1, no errors) |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Two homes for voice guidance** — root §8 and `.codex/AGENTS.md` are intentionally cross-linked, not merged; future editors must keep both consistent.
+2. **Codex-only propagation** — the sentence-craft additions to `.codex` reach only Codex; other runtimes rely on root §8 alone (acceptable, since root is universal).
+3. **Source is practitioner opinion** — only communication craft was lifted; model-internals claims were excluded by design.
+<!-- /ANCHOR:limitations -->
+
+---
+
+<!-- ANCHOR:deviations -->
+## Deviations from Plan
+
+| Planned | Actual | Reason |
+|---------|--------|--------|
+| ~6 net-new bullets into a new section | Delivered as 3 named subsections + closing caveat | Operator chose a dedicated section, which invited light structure |
+
+<!-- /ANCHOR:deviations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

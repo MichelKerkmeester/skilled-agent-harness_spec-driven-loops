@@ -1,0 +1,29 @@
+Tracing the advisor workspace-root resolver. Loading the matching skills and memory tools first, then walking the code path.Skill packets loaded. Next I’ll read the deep-research iteration contract and trace the advisor workspace-root resolver.Key resolver files located. Reading them and tracing every live call site that can still pass a `specs/` CWD.Core resolver is in place. Next I’ll map every caller that feeds it a workspace root, especially `process.cwd()` and hooks.Production call sites next: `advisor-server.ts`, `detectRepoRoot`, and hook writers.Production callers next: handlers, schemas, and hook resolvers that still accept a caller CWD.Handlers and tests next — I need the exact fallback that still accepts a `specs/` CWD after the `.opencode` hoist.The generation writer is isolated. Next I’ll follow who feeds it a workspace root and which callers skip the hoist.I have the resolver hole. Next I’ll confirm which production writers still skip it and take a `specs/` CWD as the root.The launcher and OpenCode plugin both look like writers. I’ll read those next, then check remaining CWD fallbacks.The launcher search may have used the wrong pattern. I’ll open the launcher and the plugin `projectDir` path next.Need to see how the plugin chooses `directory` and how recommend handles an explicit `specs/` workspaceRoot.Schema vs resolver mismatch is the next gap. I’ll also check Cursor/Codex hooks and other runtimes that pass CWD.Codex/Cursor hook entrypoints may sit outside the skill tree. I’ll search those next, then confirm generation write on missing file.The Codex/Cursor hooks live under spec-kit. I’ll read their workspace-root handling and how they call the advisor brief.Those hook files are likely re-exports. I’ll read them and locate the shared workspace-root helper.Need `toClaudeShape` and how Codex/Cursor pass `cwd` through. Also check `defaultSkillsRoot` with `maxDepth: 0`.Need exact Cursor/Codex cwd mapping, `runAdvisorSubprocess`, and a live-tree sanity check of the hoist gap.Need `runAdvisorSubprocess` spawn details and the shadow-sink workspace finder. Then I’ll verify the leak path with a read-only command.Shadow-sink has its own walk-up. I’ll read that and check how the launcher sets child CWD.Pi hook confirmation next, then a read-only Node check of the hoist vs an explicit `specs/` CWD.I’ll simulate the resolver from this checkout (read-only) so the hoist-gap claim is command-backed, then check `advisor-server.resolveWorkspaceRoot` against the live nested sandbox.Need one last confirmation: `getAdvisorFreshness` writes on ENOENT even when the skill tree is missing, and the native recommend path does not re-hoist an explicit `workspaceRoot`.Need one more nuance: `advisor-server.resolveWorkspaceRoot` walks from `import.meta.dirname` looking for `.opencode/skills/system-skill-advisor` *as a child*. Inside this worktree, that child exists at the sandbox root — but if the compiled file lives under `.opencode/skills/system-skill-advisor/mcp-server/dist`, the first ancestor that *contains* `.opencode/skills/system-skill-advisor` is the sandbox root, not the packet. That's actually correct for a worktree.
+
+The dangerous case is when `import.meta.dirname` is *outside* any tree that contains that child — then line 90 falls back to cwd. If someone runs a copied/bundled server from a specs packet without that child nearby, it leaks.
+
+Also `resolveSkillGraphSourceDir` first candidate is `process.cwd()/.opencode/skills`. If that exists as a leak already, it treats it as the source dir. Combined with `resolveWorkspaceRoot` succeeding via module walk, generation still writes at the module-walk root. That's OK for generation.
+
+The write that matches live leak payload (`LEGACY_ADVISOR_GENERATION_BUMP`) is specifically `readAdvisorGeneration` ENOENT path — triggered by `getAdvisorFreshness` in hooks, NOT by `publishSkillGraphGeneration` (which uses different reasons).
+
+That's the smoking gun connecting leak payloads to the hook freshness probe, not the daemon.
+
+I have enough. Produce the JSON-only response.
+
+Open questions for next iteration:
+- Which runtime actually supplied those three packet CWDs in 2026-07/08 (Claude hook cwd vs OpenCode ctx.directory vs explicit workspaceRoot)?
+- Does `isAllowedWorkspaceRoot` accept packet paths (yes, because they're under repo root) — confirm if any test covers rejecting specs/ packet roots.
+- Historical vs current: at leak dates, was sentinel walk-up already present? If walk-up existed then, findAdvisorWorkspaceRoot from a specs packet CWD would have found Public's sentinel. So those leaks require callers that SKIP findAdvisorWorkspaceRoot and pass raw CWD/workspaceRoot. That's stronger.
+
+At leak date 2026-08-08, if findAdvisorWorkspaceRoot already walked up, then advisor-recommend default path would NOT leak. The leak must be from:
+1. Explicit workspaceRoot = packet path (hooks, plugin)
+2. Direct process.cwd() writers (scan, rebuild)
+3. getAdvisorFreshness(raw workspaceRoot) from hooks
+
+That's the iteration-2 answer.
+
+Confidence ~0.88 because I didn't replay historical git blame for when hoist/sentinel was added vs leak dates.
+
+Should I check git log for workspace-root.ts to see if hoist existed at leak time? That would be valuable and is still this iteration's focus (why it can resolve inside specs).
+
+Quick git log / blame for workspace-root.ts and generation.ts writeGenerationAtomic. Read-only git is allowed.The git history is load-bearing: callers that skip `findAdvisorWorkspaceRoot` still write under a raw `specs/` CWD. I’ll confirm that `advisor-server` walk does not treat a packet as a root, then emit the iteration JSON.

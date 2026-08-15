@@ -1,0 +1,334 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-code/z_archive/013-sk-code-review-readme"
+# PACKET: specs/sk-code/z_archive/013-sk-code-review-readme
+
+---
+title: "Implementation Summary: sk-code-review README"
+description: "The sk-code-review README now reads in the narrative voice and leads with the stack-agnostic findings-first review baseline and its machine-parsable Review status verdict, with the output contract corrected."
+trigger_phrases:
+  - "sk-code-review readme shipped"
+importance_tier: "normal"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "sk-code/z_archive/013-sk-code-review-readme"
+    last_updated_at: "2026-06-07T13:52:39Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped sk-code-review README; Batch D 1 of 6"
+    next_safe_action: "Begin phase 016 (sk-code README)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-code-review/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "readme-std-135-015"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All 11 cited paths resolve; output contract corrected (Summary then Findings, Review status final line, no phantom Review Context); no assets path; version and counts dropped; survived an orphan-pressure dispatch failure via process sweep"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 013-sk-code-review-readme |
+| **Completed** | 2026-06-07 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sk-code-review README now opens with a human pitch and an at-a-glance table, explains the ad-hoc-review problem before the mechanism, and leads with the distinctive value: a stack-agnostic findings-first review baseline that always enforces security and correctness minimums, classifies every finding by blocking severity (P0/P1/P2) with file:line evidence, pairs with sk-code for the detected surface's standards, and ends with one exact `Review status:` line a gate can parse.
+
+### Narrative rewrite
+
+HOW IT WORKS covers the findings-first analysis order, the severity taxonomy (shared with deep-review via review_core.md), the baseline-plus-surface precedence, the single-pass rule and the PR-state efficiency gates. QUICK START shows the `@review` dispatch and the full output contract ending with the Review status line. The stray non-numbered headings are gone. It is 206 lines and HVR-clean in prose.
+
+### Output contract corrected
+
+The old README documented the contract wrong: it ordered `## Findings` before `## Code Review Summary`, invented a `## Review Context` heading that does not exist, and omitted the mandatory `Review status:` final line. The rewrite uses the real contract (Summary, then Findings, then Removal/Iteration Plan, then Next Steps, ending with the exact status line), drops the version line and the reference count (9 versus the real 10), and cites no `assets/` path (no such directory exists).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-code-review/README.md` | Modified | Narrative-voice rewrite with the corrected output contract |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+A two-iteration deep-context sweep ran DeepSeek v4 Pro and MiMo v2.5 Pro as read-only seats. The first iteration-1 dispatch failed when accumulated orphan MCP-server processes from prior phases starved it; a surgical process sweep cleared 102 orphans and the re-run succeeded, and an orphan sweep is now baked into every dispatch. Both models found the same output-contract drift and agreed on the authoritative shape. DeepSeek's draft was the stronger base. The host verified all 11 cited paths resolve and confirmed the draft carries no `## Review Context` heading and no `assets/` path.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Correct the output contract to the SKILL.md shape | The old README misdocumented the verdict structure automation depends on |
+| Lead with findings-first severity and the Review status line | That is the skill's distinctive value and its automation contract |
+| Drop the version, reference count and assets path | The docs disagree on the count and the assets directory does not exist |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `validate_document.py --type readme` | PASS, 0 issues |
+| HVR prose scan (em dash, semicolon, Oxford-comma list, code blocks excluded) | PASS, clean |
+| Output contract correct; no `## Review Context`; no `assets/` path | PASS |
+| All 11 cited paths resolve | PASS |
+| `validate.sh --strict` on the phase | PASS |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **None specific to this README.** The output contract, severity taxonomy and reference set were captured accurately. The dispatch-orphan accumulation that caused the first iteration-1 failure is an infrastructure issue (now mitigated by a between-batch process sweep), not a content issue.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/sk-code/z_archive/014-sk-code-readme"
+# PACKET: specs/sk-code/z_archive/014-sk-code-readme
+
+---
+title: "Implementation Summary: sk-code README"
+description: "The sk-code README now reads in the narrative voice and leads with the surface-aware router, the five gated phases and the Iron Law, with MOTION_DEV corrected from a surface to a cross-stack resource intent."
+trigger_phrases:
+  - "sk-code readme shipped"
+importance_tier: "normal"
+contextType: "specification"
+_memory:
+  continuity:
+    packet_pointer: "sk-code/z_archive/014-sk-code-readme"
+    last_updated_at: "2026-06-07T14:07:55Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped sk-code README; Batch D 2 of 6"
+    next_safe_action: "Begin phase 017 (sk-doc README)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-code/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "readme-std-135-016"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All cited paths resolve; MOTION_DEV corrected to a resource intent (2 surfaces + UNKNOWN); five gated phases distinguished from the four-axis routing; version, LOC and intent count dropped"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 014-sk-code-readme |
+| **Completed** | 2026-06-07 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sk-code README now opens with a human pitch and an at-a-glance table, explains the one-generic-skill-cannot-serve-many-stacks problem before the mechanism, and leads with the distinctive value: a single code-work skill that detects which surface it is in (WEBFLOW or OPENCODE, with an UNKNOWN fallback), loads that surface's standards, runs five gated phases and enforces the Iron Law so nothing is called done without fresh surface verification evidence. It also frames sk-code as the one skill end users customize for their own stack.
+
+### Narrative rewrite
+
+HOW IT WORKS covers surface detection and the OPENCODE-over-WEBFLOW precedence, the intent routing, the five gated phases (Research, Implementation, the Code Quality Gate, Debugging, Verification) and the Iron Law, with the per-surface verification commands. QUICK START shows surface detection and a verification command. The table of contents is gone. It is 198 lines and HVR-clean in prose.
+
+### MOTION_DEV corrected
+
+The old README presented MOTION_DEV as a third surface and a valid surface-override value. SKILL.md and the reference docs define only two surfaces (WEBFLOW, OPENCODE) plus an UNKNOWN fallback, with MOTION_DEV a cross-stack resource intent loaded after surface detection. The rewrite corrects this throughout. It also stops conflating the four-axis routing model with the five-phase lifecycle, and drops the version line, the line count and the intent count.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-code/README.md` | Modified | Narrative-voice rewrite with the MOTION_DEV and phase corrections |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+A two-iteration deep-context sweep ran DeepSeek v4 Pro and MiMo v2.5 Pro as read-only seats. Both independently found that MOTION_DEV is not a surface and that the README miscounts surfaces and phases, and both confirmed it against `description.json` (the supported_surfaces array holds only WEBFLOW and OPENCODE). The host pinned the corrected model in the context report and forbade the surface framing in the authoring prompt. DeepSeek's draft was the stronger base. The host verified every cited path resolves and confirmed the draft carries no "third surface" framing and no version leak.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Correct MOTION_DEV to a resource intent | The README was materially wrong; readers would expect a surface that does not exist |
+| Lead with the router, the phases and the Iron Law | That is the skill's distinctive value and its core safety property |
+| Drop the version, line count and intent count | The docs disagree on version and the counts drift |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `validate_document.py --type readme` | PASS, 0 issues |
+| HVR prose scan (em dash, semicolon, Oxford-comma list, code blocks excluded) | PASS, clean |
+| MOTION_DEV framed as a resource intent (no "third surface"); no version leak | PASS |
+| All cited paths resolve | PASS |
+| `validate.sh --strict` on the phase | PASS |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **None specific to this README.** The surface model, the phases and the verification commands were captured accurately, and the MOTION_DEV correction was cross-checked against `description.json`.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+<<<FOLDER id="specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement"
+# PACKET: specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement
+
+---
+title: "Implementation Summary: Ponytail-Based Refinement Research"
+description: "Summary of the 12-iteration, 2-model deep-research investigation into applying ponytail's logic/hooks to sk-code and sk-code-review."
+trigger_phrases:
+  - "ponytail refinement summary"
+  - "ponytail research summary"
+importance_tier: "high"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-code/z_archive/015-sk-code-ponytail-based-refinement"
+    last_updated_at: 2026-06-13T15:45:00Z
+    last_updated_by: claude-opus
+    recent_action: "Deep-review remediation done: 12 findings fixed, changelogs updated, gates green"
+    next_safe_action: "Operator: log remediation in review-report, then scoped commit on branch 028"
+    fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+---
+# Implementation Summary: Ponytail-Based Refinement Research
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Type** | Deep-research (read-only) |
+| **Status** | Complete |
+| **Iterations** | 12 (claude-opus-4-8 ×6, openai/gpt-5.5-fast ×6) |
+| **Reference** | `external/ponytail-main` (gitignored) |
+| **Targets** | `.opencode/skills/sk-code`, `.opencode/skills/sk-code-review` |
+| **Deliverable** | `research/research.md` |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A prioritized, file-mapped recommendation report (`research/research.md`) for transplanting ponytail mechanisms into sk-code / sk-code-review:
+
+- **Core tension resolved:** ponytail gates *design* upfront (6-rung ladder, no loop) at Phase 1; sk-code's Iron Law verifies *result* at Phase 3 — complementary, not conflicting, provided the no-loop stance is not imported literally.
+- **25 ranked recommendations** — ADOPT-NOW (8): Design Restraint Ladder in the always-loaded universal doc; stdlib/native review rows; canary-lock the `Review status:` triplet (per-file scoped); neutral `ceiling:` comments (not the brand, not in `ALLOWED_PATTERNS`); ceiling-as-P2-downgrade evidence; needed-ness KISS prompt; `Replacement` field in removal_plan. ADOPT-LATER (9) incl. canonicalize-then-canary the Iron Law, fold `code_loc` into Lane B sweep, promote `mirror-sync-verify.cjs` to a repo-wide gate. DO-NOT-ADOPT (8) incl. the verification-intensity slider (Iron-Law bypass), standalone clones, `net -N` severity gate.
+- **3 bonus latent defects** found + verified: Iron Law wording drifted 3 ways; `mirror-sync-verify.cjs` mis-scoped to promotion-time; `STACK_FOLDERS`↔`references/` binding unenforced.
+
+<!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+5 parallel generate waves (each = 1 Opus 4.8 seat via the account-2 `claude` CLI + 1 gpt-5.5-fast seat via cli-opencode) over 10 distinct angles, then 1 round-2 adversarial refute-first cross-verify wave. Read-only seats; orchestrator wrote all iteration/delta/state (Gate-3 safe). Two execution issues handled mid-run: (1) the gitignored ponytail tree blocked opencode's search tools → ponytail source embedded inline in gpt prompts; (2) `--permission-mode plan` truncated one Opus stdout (it wrote to a plan file) → recovered fully from the account-2 transcript and hardened the remaining Opus prompts with a stdout-only rule.
+
+<!-- /ANCHOR:how-delivered -->
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+- Orchestrated-waves execution (orchestrator owns all state writes) over the formal `/deep:start-research-loop` command — sidesteps the Gate-3 executor-write block; operator-approved deviation.
+- 5 waves / 10 distinct angles + round-2 cross-verify (operator choice over per-angle dual-model or two-lineage).
+- Reducer (`reduce-state.cjs`) skipped — its anchor format (ANCHOR:key-questions style) differs from the seeded strategy; registry + dashboard hand-maintained instead (plan's explicit fallback).
+- Research-only deliverable; implementation deferred to a follow-up packet.
+
+<!-- /ANCHOR:decisions -->
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+- 12/12 iterations valid; recorded in `research/deep-research-state.jsonl` + `iterations/iteration-001..012.md` + `deltas/`.
+- Round-2 refute-first: 0 recommendations refuted as already-present (gaps grep-confirmed absent); 2 scope corrections applied.
+- Orchestrator grep-verified all 7 load-bearing factual claims on disk (7/7 confirmed).
+- `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec> --strict` — see final run in the session.
+
+<!-- /ANCHOR:verification -->
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+- The Design Restraint Ladder's clean integration into sk-code Phase 1 (no break to `OPENCODE>WEBFLOW>UNKNOWN` precedence / Iron Law) is *asserted* by the research, not *exercised* — the follow-up plan packet must prove it before implementing.
+- iter-002 (hooks) ran with degraded ponytail evidence (gitignore discovered after it ran); its findings are grounded in the local sk-code hook files + the round-2 verify, but were not re-run.
+- No skill code implemented (research-only). Recommendations are deferred to a separate `/speckit:plan` → `/speckit:implement` packet, sequenced Wave A-D in `research/research.md` §5.
+
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

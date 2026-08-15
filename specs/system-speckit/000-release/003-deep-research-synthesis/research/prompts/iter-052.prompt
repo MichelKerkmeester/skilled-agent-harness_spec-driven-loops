@@ -1,0 +1,1191 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-prompt/007-sk-prompt-parent"
+# PACKET: specs/sk-prompt/007-sk-prompt-parent (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Merge sk-prompt and sk-prompt-models into one parent hub sk-prompt with two workflow modes: prompt-improve and prompt-models"
+description: "Phase parent for Merge sk-prompt and sk-prompt-models into one parent hub sk-prompt with two workflow modes: prompt-improve and prompt-models"
+trigger_phrases:
+  - "007-sk-prompt-parent"
+  - "phase parent"
+  - "sk-prompt parent hub"
+  - "merge sk-prompt sk-prompt-models"
+  - "prompt-improve prompt-models"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/007-sk-prompt-parent"
+    last_updated_at: "2026-07-09T18:15:00Z"
+    last_updated_by: "claude"
+    recent_action: "All 8 phases complete; terminal gates PASS clean"
+    next_safe_action: "None — packet complete"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/commands/prompt-improve.md"
+      - ".opencode/commands/deep/model-benchmark.md"
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "007-sk-prompt-parent-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "prompt-improve's manual_testing_playbook stays packet-local (ADR-004)"
+      - "sk-prompt-models version metadata normalized to 0.9.0.0 pre-fold; hub SKILL.md started at 1.0.0.0 (ADR-004)"
+      - "routingClass stays metadata for both modes; no lexical carve-out — resolved by phase 007's router-mode benchmark, PASS 100/100"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+
+## 001-research-and-context/implementation-summary.md
+---
+title: "Implementation Summary: Phase 1 research-and-context"
+description: "Re-verified sk-prompt + sk-prompt-models state and referrers before the phase 002 decision gate; zero drift found."
+trigger_phrases:
+  - "sk-prompt parent research summary"
+  - "phase 001 implementation summary"
+  - "referrer sweep results"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/007-sk-prompt-parent/001-research-and-context"
+    last_updated_at: "2026-07-09T15:02:39Z"
+    last_updated_by: "claude"
+    recent_action: "Re-verified both skills' state and referrers; zero drift found"
+    next_safe_action: "Proceed to phase 002 decision gate"
+    blockers: []
+    key_files:
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-001-research-and-context"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "prompt-models routingClass carve-out — deferred to phase 007's empirical benchmark"
+    answered_questions:
+      - "No drift between planning-time research and current repo state"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research-and-context |
+| **Completed** | 2026-07-09 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+
+## 002-architecture-decision/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2 architecture-decision"
+description: "Froze the sk-prompt parent-hub architecture into 4 accepted ADRs before phase 003 scaffolds the hub."
+trigger_phrases:
+  - "sk-prompt architecture decision summary"
+  - "phase 002 implementation summary"
+  - "decision record adr summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/007-sk-prompt-parent/002-architecture-decision"
+    last_updated_at: "2026-07-09T17:30:00Z"
+    last_updated_by: "claude"
+    recent_action: "Confirmed the gate approved; 4 ADRs accepted"
+    next_safe_action: "Proceed to phase 003 hub scaffold"
+    blockers: []
+    key_files:
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-002-architecture-decision"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "prompt-models routingClass carve-out — deferred to phase 007's empirical benchmark"
+    answered_questions:
+      - "Hub topology, naming, command binding, playbook/version reconciliation all locked"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-architecture-decision |
+| **Completed** | 2026-07-09 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+
+## 003-scaffold-hub/implementation-summary.md
+---
+title: "Implementation Summary: Phase 3 scaffold-hub"
+description: "Scaffolded the sk-prompt hub skeleton — registry, router, descriptor, single graph identity, thin SKILL.md, two empty packet dirs."
+trigger_phrases:
+  - "sk-prompt hub scaffold summary"
+  - "phase 003 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/007-sk-prompt-parent/003-scaffold-hub"
+    last_updated_at: "2026-07-09T15:42:00Z"
+    last_updated_by: "claude"
+    recent_action: "Scaffolded hub skeleton, structural checks pass"
+    next_safe_action: "Proceed to phase 004"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/mode-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-003-scaffold-hub"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Hub skeleton created additive-only, zero content relocated"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-scaffold-hub |
+| **Completed** | 2026-07-09 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+`.opencode/skills/sk-prompt/` is now a real two-mode parent hub skeleton — the advisor already resolves it as one identity with `prompt-improve` and `prompt-models` as registered modes, even though neither packet has content yet. Zero existing behavior changed: the pre-existing flat `sk-prompt` content (SKILL.md's old body, references/, assets/, changelog/, manual_testing_playbook/) is untouched at the hub root, `/prompt` still works exactly as before, and `sk-prompt-models/` was not touched at all.
+
+
+## 004-onboard-prompt-improve/implementation-summary.md
+---
+title: "Implementation Summary: Phase 4 onboard-prompt-improve"
+description: "Relocated today's sk-prompt prompt-improvement engine into the prompt-improve packet via git mv; renamed /prompt to /prompt-improve."
+trigger_phrases:
+  - "prompt-improve onboarding summary"
+  - "phase 004 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/007-sk-prompt-parent/004-onboard-prompt-improve"
+    last_updated_at: "2026-07-09T16:02:00Z"
+    last_updated_by: "claude"
+    recent_action: "git mv complete, command renamed, agents repointed"
+    next_safe_action: "Proceed to phase 005"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/prompt-improve/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-004-onboard-prompt-improve"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Original SKILL.md content recovered from git HEAD since phase 003 had already overwritten the hub-root SKILL.md"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-onboard-prompt-improve |
+| **Completed** | 2026-07-09 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+`sk-prompt`'s original prompt-improvement engine now lives at its permanent home, `sk-prompt/prompt-improve/`, with full git history preserved across all 47 content files. `/prompt-improve` is live; the advisor already lists `prompt-improve` as an independent skill.
+
+
+## 005-foldin-prompt-models/implementation-summary.md
+---
+title: "Implementation Summary: Phase 5 foldin-prompt-models"
+description: "Folded sk-prompt-models into sk-prompt/prompt-models via one atomic bundle; the hub is now fully canon-clean."
+trigger_phrases:
+  - "prompt-models foldin summary"
+  - "phase 005 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/007-sk-prompt-parent/005-foldin-prompt-models"
+    last_updated_at: "2026-07-09T16:35:00Z"
+    last_updated_by: "claude"
+    recent_action: "Atomic bundle executed; retroactively closed a phase-003 gap"
+    next_safe_action: "Proceed to phase 006"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/prompt-models/SKILL.md"
+      - ".opencode/skills/sk-prompt/graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-005-foldin-prompt-models"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "parent-skill-check.cjs sk-prompt: 0 invariant failures, 0 warnings — matches sk-code/sk-design/system-deep-loop/sk-doc"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-foldin-prompt-models |
+| **Completed** | 2026-07-09 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+This was the highest-risk phase in the program — a 2,616-file directory move bundled atomically with the two hardcoded functional path repoints and the `/deep:model-benchmark` write-target repoint, so no window existed where a live consumer pointed at a dead path. The bundle held: `sk-prompt` now passes `parent-skill-check.cjs` with 0 failures and 0 warnings, matching the other three canonical hubs three phases ahead of schedule.
+
+## 006-advisor-and-integration/implementation-summary.md
+---
+title: "Implementation Summary: Phase 6 advisor-and-integration"
+description: "Swept ~55 documentation/prose referrers to the old sk-prompt-models path; deferred the generated skill-graph.json regeneration."
+trigger_phrases:
+  - "advisor integration summary"
+  - "phase 006 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/007-sk-prompt-parent/006-advisor-and-integration"
+    last_updated_at: "2026-07-09T17:05:00Z"
+    last_updated_by: "claude"
+    recent_action: "Referrer sweep complete; skill-graph.json regen deferred"
+    next_safe_action: "Proceed to phase 007"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-006-advisor-and-integration"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "check-prompt-quality-card-sync.sh CI gate: GUARD PASS, all 4 checks clear"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-advisor-and-integration |
+| **Completed** | 2026-07-09 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+Zero live files anywhere in the active repo tree still point at the old flat `sk-prompt-models/` path — a comprehensive final sweep across 10 file extensions confirms it. This closes the loop phases 004/005 opened: every functional path, CI gate, and documentation cross-reference now resolves to the new nested location.
+
+
+## 007-routing-benchmark-and-review/implementation-summary.md
+---
+title: "Implementation Summary: Phase 7 routing-benchmark-and-review"
+description: "The merged sk-prompt hub now has empirical proof its routing works: a router-mode Lane-C benchmark scores PASS 100/100 across both workflow modes, closing the phase-002 routingClass question with data instead of assumption."
+trigger_phrases:
+  - "sk-prompt benchmark result"
+  - "prompt-models routingClass resolved"
+  - "router-final report"
+  - "load-playbook-scenarios regex fix"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review"
+    last_updated_at: "2026-07-09T17:45:00Z"
+    last_updated_by: "claude"
+    recent_action: "Filled implementation-summary.md with the benchmark narrative and bug-fix record"
+    next_safe_action: "Regenerate description.json/graph-metadata.json, validate --strict, proceed to phase 008"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/benchmark/reports/2026-07-10--router-final--router/skill-benchmark-report.md"
+      - ".opencode/skills/sk-prompt/hub-router.json"
+      - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs"
+      - "../002-architecture-decision/decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "phase-007-routing-benchmark-and-review"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "prompt-models keeps routingClass:metadata; no lexical carve-out needed, resolved by router-mode benchmark PASS 100/100"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-routing-benchmark-and-review |
+| **Completed** | 2026-07-09 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The merged `sk-prompt` hub carried one open architecture question out of phase 002: could `prompt-models` keep the default `routingClass: "metadata"`, or would it need a lexical carve-out to preserve small-model-dispatch routing accuracy after losing its independent-skill identity? This phase answers that with data. A deterministic router-mode Lane-C skill-benchmark now scores the hub **PASS 100/100** across both workflow modes, and the run surfaced two real bugs along the way — one in the hub's own router weighting, one in shared benchmark tooling used by every hub in the repo.
+
+### Router-mode Lane-C benchmark
+
+`sk-prompt/benchmark/reports/2026-07-10--router-final--router/` now holds a legible `skill-benchmark-report.md` and `skill-benchmark-report.json` produced by `loop-host.cjs --mode=skill-benchmark --skill=sk-prompt --trace-mode=router`. Four scenarios (SP-001 through SP-004) exercise both `prompt-improve` and named-small-model `prompt-models` queries (DeepSeek, GLM-5.2). All four score 100/100. D1-intra (router self-consistency) is 100/100, D2 discovery is 100/100, and D5 connectivity (the hard gate) is 100/100. D1-inter and D4 stay unscored in Mode A by design — they need a live advisor/ablation run, which is explicitly out of scope for this phase per `spec.md`'s deliverables.
+
+## 008-cutover-and-rollout/implementation-summary.md
+---
+title: "Implementation Summary: Phase 8 cutover-and-rollout"
+description: "sk-prompt clears the terminal gate: parent-skill-check.cjs STRICT passes with zero warnings, the whole 8-phase packet validates recursively at 0 errors/0 warnings, stale-reference sweeps are clean, and the parent packet is rolled up complete."
+trigger_phrases:
+  - "sk-prompt cutover complete"
+  - "fifth canon-clean parent hub"
+  - "007-sk-prompt-parent complete"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/007-sk-prompt-parent/008-cutover-and-rollout"
+    last_updated_at: "2026-07-18T06:22:50.367Z"
+    last_updated_by: "claude"
+    recent_action: "Filled implementation-summary.md with the terminal-gate evidence"
+    next_safe_action: "None — packet complete"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/"
+      - ".opencode/specs/sk-prompt/007-sk-prompt-parent/graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "007-sk-prompt-parent-008-cutover-and-rollout"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "sk-prompt is the fifth canon-clean parent hub, beside sk-code/sk-design/system-deep-loop/sk-doc"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-cutover-and-rollout |
+| **Completed** | 2026-07-09 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`sk-prompt` now stands as the fifth canon-clean parent hub in this repo, beside `sk-code`, `sk-design`, `system-deep-loop`, and `sk-doc`. This phase is the terminal gate: it doesn't add behavior, it proves the 7-phase fold-in (research, decision, scaffold, onboard-prompt-improve, foldin-prompt-models, advisor-integration, routing-benchmark) actually landed clean, then rolls up the parent packet to complete.
+
+### Strict parent-hub check
+
+`PARENT_HUB_CHECK_STRICT=1 node .opencode/commands/doctor/scripts/parent-skill-check.cjs .opencode/skills/sk-prompt` passes every hard invariant (1a through 9b) with 0 warnings — exactly one `graph-metadata.json`, both modes carry the full canon discriminator set, `hub-router.json`'s base three outcomes and vocabulary classes all resolve, `description.json` is present with no registry-owned duplicate keys, and both the hub-level `manual_testing_playbook/` and `benchmark/` companion directories (added in phase 005 as a retroactive gap-fix) are in place.
+
+### Recursive strict spec validation
+
+
+## 009-prompt-command-canon-refactor/implementation-summary.md
+---
+title: "Implementation Summary: Prompt Command Canon Refactor"
+description: "The /prompt:improve command went from a 28KB monolith to a thin create-command router with a Phase 0 dispatch-context check and an auto/confirm/presentation asset triad, with every behavior preserved and the command index fixed."
+trigger_phrases:
+  - "prompt command summary"
+  - "canon refactor summary"
+  - "router triad summary"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/007-sk-prompt-parent/009-prompt-command-canon-refactor"
+    last_updated_at: "2026-07-18T06:21:04.143Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Refactored /prompt:improve into the create-command canon and validated it"
+    next_safe_action: "Refresh packet metadata, strict-validate, then commit and FF-push"
+    blockers: []
+    key_files:
+      - ".opencode/commands/prompt/improve.md"
+      - ".opencode/commands/prompt/assets/prompt_improve_presentation.txt"
+      - ".opencode/commands/prompt/assets/prompt_improve_auto.yaml"
+      - ".opencode/commands/prompt/assets/prompt_improve_confirm.yaml"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "session-009-authoring"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-prompt-command-canon-refactor |
+| **Completed** | 2026-07-18 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`/prompt:improve` is now a thin create-command router instead of a 28KB monolith. The command that fronts the sk-prompt engine reads like every other first-class router: it verifies its dispatch context, binds the required inputs, then hands off to owned assets. Display wording, workflow steps, and routing no longer sit fused in one file, so any one of them can change without touching the others.
+
+### Router with a Phase 0 dispatch-context check
+`improve.md` carries the six canonical sections plus a `PHASE 0: DISPATCH-CONTEXT CHECK` and a `MANDATORY INPUT GATE` under section 1, matching the deep-command pattern. The gate binds `prompt_input` (never inferred), `enhancement_mode`, `save_choice`, `execution_mode`, and `dispatch_mode` before any YAML loads.
+
+### Presentation and workflow assets
+The consolidated Q0-Q4 setup prompt, the interactive framework and simplification templates, the error-recovery table, the transparency report, and the result and status displays moved verbatim into `prompt_improve_presentation.txt`. The DEPTH pipeline, CLEAR scoring, inline-vs-`@prompt-improver` dispatch, and the spec-folder save flow moved into `prompt_improve_auto.yaml` (autonomous) and `prompt_improve_confirm.yaml` (paused at Discover, Prototype, and Test).
+
+FOLDER
+
+<<<FOLDER id="specs/sk-prompt/z_archive/001-sk-prompt-initial-creation"
+# PACKET: specs/sk-prompt/z_archive/001-sk-prompt-initial-creation
+
+---
+title: "Implementation Summary: sk-prompt-improv [03--commands-and-skills/001-sk-prompt-initial-creation/implementation-summary]"
+description: "title: \"Implementation Summary: sk-improve-prompt Initial Creation\""
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "prompt"
+  - "improv"
+  - "implementation summary"
+  - "003"
+importance_tier: "normal"
+contextType: "implementation"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-sk-prompt-initial-creation |
+| **Completed** | 2026-03-01 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### What Was Built
+
+The standalone Prompt Improver AI system (v0.200, ~250KB across 7+ documents) is now an OpenCode-native skill. You can invoke `sk-improve-prompt` through the skill advisor and get structured prompt engineering across text, visual, image, and video domains with automatic framework selection and quality scoring.
+
+### SKILL.md Orchestrator
+
+The orchestrator weighs in at 2,334 words (well under the 5,000 limit) and handles intent classification across 6 categories: TEXT_ENHANCE, VISUAL_UI, IMAGE_GEN, VIDEO_GEN, FRAMEWORK, and FORMAT. Smart routing uses a Python pseudocode decision tree with keyword scoring, context detection, explicit intent matching, and scoped resource loading. The RULES section enforces 6 ALWAYS rules, 5 NEVER anti-patterns, and 3 ESCALATE IF triggers.
+
+### 8 Reference Files (307KB Total)
+
+Each reference file was adapted from the original Prompt Improver knowledge base, not copied. Standalone Claude Project assumptions were stripped, retrieval anchors added, and voice converted to imperative/third-person:
+
+- **system_prompt.md** (33KB) — Core routing logic, 38 critical rules, command registry, detection functions for mode/platform/format/framework/complexity
+- **depth_framework.md** (23KB) — DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration, signal-based routing, 10-round processing
+- **patterns_evaluation.md** (39KB) — All 11 frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT, VIBE, VIBE-MP, FRAME, MOTION), CLEAR scoring (50-point), framework selection algorithm, REPAIR framework
+- **interactive_mode.md** (20KB) — 7 conversation variants, state machine (18 states), command detection (12 commands), error recovery patterns
+- **visual_mode.md** (49KB) — VIBE/VIBE-MP framework, EVOKE scoring, MagicPath.ai specialization, platform optimization
+- **image_mode.md** (64KB) — FRAME framework (30 sub-categories), VISUAL scoring (60-point), platform-specific syntax for Flux 2 Pro, Imagen 4, Midjourney, DALL-E 3, SD/SDXL
+- **video_mode.md** (41KB) — MOTION framework, VISUAL scoring (70-point), syntax for 10 platforms (Runway, Sora, Kling, Veo, Pika, Luma, Minimax, Seedance, OmniHuman, Wan)
+- **format_guides.md** (38KB) — Consolidated from 3 separate guides (Markdown, JSON, YAML) with RCAF/CRAFT templates per format
+
+### Skill Advisor Integration
+
+The skill advisor (`skill_advisor.py`) now routes to `sk-improve-prompt` with 0.95 confidence for prompt-related queries. Registration includes 18 intent booster keywords, 21 phrase-level boosters, 4 multi-skill booster entries, and 3 synonym map entries.
+
+---
+
+---
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+### How It Was Delivered
+
+Implementation used parallel agent dispatch (5 agents creating reference files simultaneously) across two sessions. The first session completed the spec folder documentation, SKILL.md, skill advisor updates, and depth_framework.md. The second session created the remaining 7 reference files via background agents, then ran full checklist verification.
+
+Verification covered: SKILL.md frontmatter validation, section presence check (8 sections), word count (2,334), RULES subsection audit (ALWAYS/NEVER/ESCALATE IF), reference directory completeness (8/8 files), and skill advisor routing test (0.95 confidence for "improve my prompt").
+
+---
+
+---
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+### Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Progressive reference strategy (ADR-001) | Source material is ~250KB. Chose SKILL.md as lean orchestrator (<5k words) with 8 reference files because it keeps context window usage low and follows sk-doc best practices. |
+| Adapt rather than copy (ADR-002) | Source docs assumed a standalone Claude Project with custom instructions. Adapted for OpenCode skill architecture to get clean native integration. |
+| Consolidated format guides (ADR-003) | Three separate format guides (Markdown ~14KB, JSON ~16KB, YAML ~15KB) merged into one format_guides.md because the content is complementary and reduces file count. |
+| Python pseudocode for smart routing | Chose Python-style pseudocode over natural language because it removes ambiguity from the intent classification logic and makes scoring thresholds explicit. |
+| 6-category intent classification | Grouped all use cases into TEXT_ENHANCE, VISUAL_UI, IMAGE_GEN, VIDEO_GEN, FRAMEWORK, FORMAT because these map cleanly to the reference files and cover all 11 original operating modes. |
+| Retrieval anchors in all references | Added `<!-- anchor: ... -->` tags to every H2 section in reference files so the smart router can load specific sections rather than entire files. |
+
+---
+
+---
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+### Verification
+
+| Check | Result |
+|-------|--------|
+| SKILL.md frontmatter valid | PASS — name, description, allowed-tools, version all present |
+| SKILL.md sections complete | PASS — 8/8 sections present (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES, SUCCESS CRITERIA, INTEGRATION POINTS, RELATED RESOURCES) |
+| SKILL.md word count | PASS — 2,334 words (46.7% of 5,000 limit) |
+| RULES subsections | PASS — ALWAYS (6), NEVER (5), ESCALATE IF (3) |
+| Reference files complete | PASS — 8/8 files present, 307KB total |
+| Skill advisor routing | PASS — "improve my prompt" returns sk-improve-prompt at 0.95 confidence |
+| Triple scoring documented | PASS — 174 occurrences of CLEAR/EVOKE/VISUAL across reference files |
+| DEPTH framework integrated | PASS — 43 matches for DEPTH methodology terms in depth_framework.md |
+| All tasks completed | PASS — 15/15 tasks marked [x] in tasks.md |
+| P0 checklist items | PASS — 6/6 verified with evidence |
+| P1 checklist items | PASS — 6/6 verified with evidence |
+
+---
+
+---
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+### Known Limitations
+
+1. **P2 items deferred.** README.md for the skill folder, per-file word count audit (some references exceed 10k words), and flowchart supplements were not created. These are nice-to-have items that can be added in a follow-up spec.
+2. **No end-to-end invocation test.** The skill was verified structurally (frontmatter, sections, routing) but not tested with an actual prompt improvement request through the full pipeline. Manual testing is recommended.
+3. **Large reference files.** image_mode.md (64KB) and visual_mode.md (49KB) are substantial. Consider splitting if context window pressure becomes an issue during actual use.
+4. **Missing reference files (audit finding, 2026-03-21).** The implementation-summary and verification table above claim 8/8 reference files present. As of the spec folder alignment audit, only 2 of the 8 reference files in `.opencode/skills/sk-improve-prompt/references/` actually exist on disk: depth_framework.md and patterns_evaluation.md. The following 6 files are missing: system_prompt.md, interactive_mode.md, visual_mode.md, image_mode.md, video_mode.md, format_guides.md. The skill was subsequently refactored (spec 003, session 2026-03-04) to remove visual/creative modes, so the missing visual/image/video/interactive mode files may have been intentionally deleted. system_prompt.md and format_guides.md are unaccounted for. A follow-up task should verify the current state of the skill and update the reference list accordingly.
+
+---
+
+---
+<!-- /ANCHOR:limitations -->
+
+---
+FOLDER
+
+<<<FOLDER id="specs/sk-prompt/z_archive/002-sk-improve-prompt-rename"
+# PACKET: specs/sk-prompt/z_archive/002-sk-improve-prompt-rename (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-improve-prompt → sk-prompt Skill Rename — Phase Parent"
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+description: "Phase parent for renaming sk-improve-prompt → sk-prompt across the entire repo. Simple semantic rename with broad cross-file reference impact (~200 total refs, ~51 active files across .opencode/, .claude/, .codex/, .gemini/, root docs, configs, skill graph, advisor signals)."
+trigger_phrases:
+  - "082 sk-improve-prompt rename"
+  - "sk-improve-prompt to sk-prompt"
+  - "rename sk-improve-prompt"
+  - "skill rename sk-prompt"
+  - "drop improve from skill name"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename"
+    last_updated_at: "2026-05-06T13:50:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Packet 082 PASSED post deep-review × 5 remediations"
+    next_safe_action: "Final memory save + close packet"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "resource-map.md"
+      - "001-discovery-impact-map/spec.md"
+      - "002-skill-folder-rename/spec.md"
+      - "003-opencode-internals/spec.md"
+      - "004-runtime-mirrors/spec.md"
+      - "005-root-and-config/spec.md"
+      - "006-advisor-and-validate/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "claude-2026-05-06-082"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+## 001-discovery-impact-map/implementation-summary.md
+---
+title: "Implementation Summary: Phase 001 Discovery Impact Map"
+description: "Completed read-only inventory for active sk-improve-prompt references before the rename phases begin."
+trigger_phrases:
+  - "082 phase 001 complete"
+  - "sk-improve-prompt inventory summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/001-discovery-impact-map"
+    last_updated_at: "2026-05-06T10:45:10Z"
+    last_updated_by: "codex"
+    recent_action: "Completed active reference inventory and edge-case audit"
+    next_safe_action: "Phase 002 skill-folder-rename"
+    blockers: []
+    key_files:
+      - "inventory.tsv"
+      - "inventory.md"
+      - "edge-cases.md"
+      - "tasks.md"
+      - "spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-06-082-001"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Canonical active inventory count is 58 files"
+      - "The provided final sanity command returns 52 because it misses hidden runtime mirrors and root AGENTS.md"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `001-discovery-impact-map` |
+| **Completed** | 2026-05-06 |
+| **Level** | 2 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 001 now has a canonical active-reference ledger for the `sk-improve-prompt` rename. The inventory gives Phase 002-005 exact file ownership, exact `rg -c` counts, and the edge cases that would otherwise be easy to miss during a broad rename.
+
+### Inventory Files
+
+`inventory.tsv` is the machine-readable ledger with 58 canonical active rows. `inventory.md` groups the same rows by owning phase and records the count reconciliation against the provided final sanity command. `edge-cases.md` captures filename embeds, graph JSON keys, symlink state, hidden runtime mirrors, generated-state deferrals, and root instruction doc behavior.
+
+## 002-skill-folder-rename/implementation-summary.md
+---
+title: "Implementation Summary: Phase 002 Skill Folder Rename + Skill Internals"
+description: "Phase 002 renamed the prompt skill folder, updated skill-local references and advisor graph keys, retargeted the changelog symlink, and rebuilt advisor state."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/002-skill-folder-rename"
+    last_updated_at: "2026-05-06T11:00:06Z"
+    last_updated_by: "codex"
+    recent_action: "Phase 002 complete: folder renamed, 9 files updated, advisor rebuilt"
+    next_safe_action: "Phase 003 opencode internals"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - ".opencode/skills/sk-prompt/README.md"
+      - ".opencode/skills/sk-prompt/graph-metadata.json"
+      - ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/scripts/skill-graph.json"
+      - ".opencode/changelog/sk-prompt"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/002-skill-folder-rename"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Phase 002 Skill Folder Rename
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-skill-folder-rename |
+| **Completed** | 2026-05-06 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+
+## 003-opencode-internals/implementation-summary.md
+---
+title: "Implementation Summary: Phase 003 OpenCode Internals"
+description: "Phase 003 rotated active .opencode internals from sk-improve-prompt to sk-prompt and records verification evidence plus rebuild blockers."
+trigger_phrases:
+  - "082 phase 003 implementation summary"
+  - "opencode internals rename summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/003-opencode-internals"
+    last_updated_at: "2026-05-06T11:12:38Z"
+    last_updated_by: "codex"
+    recent_action: "Phase 003 refs rotated; rebuild blocked"
+    next_safe_action: "Resolve rebuild blocker"
+    blockers:
+      - "advisor_rebuild failed because .opencode/skills/deep-agent-improvement/graph-metadata.json has skill_id sk-improve-agent while the folder is deep-agent-improvement"
+      - "The requested broad .opencode grep still finds Phase 005-only files, which this phase was instructed not to touch"
+    key_files:
+      - "spec.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-06-082-003"
+      parent_session_id: null
+    completion_pct: 95
+    open_questions:
+      - "Should the deep-agent-improvement skill_id/folder mismatch be fixed in this packet before rerunning advisor_rebuild?"
+    answered_questions: []
+---
+# Implementation Summary: Phase 003 OpenCode Internals
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `003-opencode-internals` |
+| **Completed** | 2026-05-06 |
+| **Level** | 2 |
+| **Status** | Source refs updated; rebuild blocked by existing metadata mismatch |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 003 rotated the existing `.opencode/` internals that belong to this phase from `sk-improve-prompt` to `sk-prompt`. The command and agent names stayed unchanged, while their body references, advisor scoring literals, fixtures, mirror-card paths, and cross-skill docs now point at the renamed prompt skill.
+
+### Reference Rotation
+
+Updated 25 existing Phase 003 source files and removed 93 old-name references from those files. The requested cli-copilot files are currently absent/deleted in the working tree, so they could not be edited; no cli-copilot old-name hits remain in the filesystem.
+
+## 004-runtime-mirrors/implementation-summary.md
+---
+title: "Implementation Summary: Phase 004 Runtime Mirrors"
+description: "Rotated 31 sk-improve-prompt → sk-prompt references across 5 runtime mirror files (.claude, .codex, .gemini agent body refs and Gemini command files). Agent name @improve-prompt and command /prompt unchanged — only loaded skill name changed."
+trigger_phrases:
+  - "082 phase 004"
+  - "runtime mirror rotation"
+  - "claude codex gemini agent body refs"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/004-runtime-mirrors"
+    last_updated_at: "2026-05-06T13:35:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 004 rotation complete (5 files)"
+    next_safe_action: "Phase 005 root and config"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "claude-2026-05-06-082-004"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-runtime-mirrors |
+| **Completed** | 2026-05-06 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Five runtime mirror files now reference the renamed skill `sk-prompt` instead of `sk-improve-prompt`. The agent identity `@improve-prompt` and command identity `/prompt` stay exactly the same — only the body text that loads the skill changed. Cross-runtime users (Claude, Codex, Gemini) all dispatch to a single canonical skill name.
+
+### Runtime mirror updates
+
+The .claude, .codex, and .gemini agent files each carried 9 references to the old skill name. Two Gemini command files added another 4 between them. After this phase a fresh `rg 'sk-improve-prompt' .claude/ .codex/ .gemini/` returns zero hits.
+
+### Files Changed
+
+| File | Action | Purpose |
+
+## 005-root-and-config/implementation-summary.md
+---
+title: "Implementation Summary: Phase 005 Root and Config"
+description: "Rotated 35 sk-improve-prompt → sk-prompt references across 9 root and config files (root README, AGENTS.md, install guides, .opencode/skills/README, observability JSONL/report, system-spec-kit changelog v3.4, agent-orchestration changelog v2.4)."
+trigger_phrases:
+  - "082 phase 005"
+  - "root config rotation"
+  - "README AGENTS install guide observability"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/005-root-and-config"
+    last_updated_at: "2026-05-06T13:35:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 005 rotation complete (9 files)"
+    next_safe_action: "Phase 006 advisor rebuild + strict validate"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "claude-2026-05-06-082-005"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-root-and-config |
+| **Completed** | 2026-05-06 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Root-level docs, install guides, the active changelog, and observability artifacts now reference `sk-prompt`. Anyone reading repo onboarding (root README), framework instructions (AGENTS.md), the skill catalog, or the system-spec-kit changelog finds a consistent name.
+
+### Root + observability rotation
+
+The largest single file in this phase was `smart-router-measurement-results.jsonl` with 15 forward-facing skill IDs. The rotation preserves JSONL line-level validity (each line still parses as JSON). The active system-spec-kit changelog `v3.4.0.0.md` now reflects `sk-prompt` as a current skill, while older changelog versions stay frozen as historical record.
+
+### Files Changed
+
+| File | Action | Purpose |
+
+## 006-advisor-and-validate/implementation-summary.md
+---
+title: "Implementation Summary: Phase 006 Advisor + Validate"
+description: "Verification-only phase: advisor rebuild, 5-prompt advisor probe battery, strict --recursive validation on parent + 6 children, final grep gate. All 5 probes return sk-prompt as top-1; strict validate passes; final grep returns 0 hits in active scope."
+trigger_phrases:
+  - "082 phase 006"
+  - "advisor probes"
+  - "final grep gate"
+  - "strict validate recursive"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/002-sk-improve-prompt-rename/006-advisor-and-validate"
+    last_updated_at: "2026-05-06T13:40:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 006 verification complete"
+    next_safe_action: "Packet 082 complete — proceed to memory save and code-graph refresh"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "claude-2026-05-06-082-006"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-advisor-and-validate |
+| **Completed** | 2026-05-06 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Final verification pass for the rename. The skill advisor now returns `sk-prompt` as top-1 for every prompt-improvement intent the team uses in practice. Strict validation passes for the parent and all six child phases. The final scoped grep confirms zero `sk-improve-prompt` hits in active repo scope, with two expected residuals documented (Barter symlink + auto-regenerated descriptions.json).
+
+### Advisor probe battery
+
+Five prompts spanning the prompt-improvement intent space: "improve my prompt", "enhance this prompt", "rewrite this prompt", "make this prompt better", "DEPTH framework prompt". Each returned `sk-prompt` as top-1. The skill graph generation bumped from 1213 to 1214 during Phase 002's immediate rebuild and stayed live through Phase 003-005.
+
+### Files Changed
+
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

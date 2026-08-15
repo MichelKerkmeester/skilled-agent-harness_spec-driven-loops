@@ -1,0 +1,2203 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-skill-advisor/z_archive/008-skill-advisor-documentation"
+# PACKET: specs/system-skill-advisor/z_archive/008-skill-advisor-documentation (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "006-skill-advisor/008-skill-advisor-documentation Phase Parent: Documentation Alignment and Drift Fixes"
+description: "Phase parent for skill-advisor documentation work across 3 children: docs/code alignment, code-folder READMEs, and doc/config drift fixes."
+trigger_phrases:
+  - "006-skill-advisor/008-skill-advisor-documentation"
+  - "skill-advisor-docs"
+  - "code-folder-readmes"
+importance_tier: "normal"
+contextType: "general"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-core | v1.0 -->
+# Phase Parent: 006-skill-advisor/008-skill-advisor-documentation
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+## 1. ROOT PURPOSE
+
+Coordinate documentation quality and alignment work across the skill-advisor system. This sub-phase binds together three children that establish baseline docs/code alignment (004), expand code-folder README coverage with sk-doc standards (024), and resolve drift issues in documentation and configuration files (025). Together they ensure skill-advisor documentation remains consistent with code structure and current configuration.
+
+---
+
+## 2. PHASE CHILDREN
+
+| ID | Slug | Summary |
+|----|------|---------|
+| 001 | docs-and-code-alignment | Skill-Advisor Docs + Phase 020 Code Alignment |
+| 002 | code-folder-readmes | Phase B of 4-phase code-folder README pipeline: TOC anchors and fixture folder READMEs |
+| 003 | doc-and-config-drift-fixes | system-skill-advisor doc + config drift fixes - TS5103 build, 8-vs-9 tool count, stale opencode.json comment |
+
+---
+
+## 3. SUB-PHASE CONTROL FILE
+
+- Active child: n/a - sub-phase children share equivalent priority
+- Last completed child: n/a
+- Resume entry: /spec_kit:resume honors graph-metadata.json derived.last_active_child_id; falls back to listing children.
+
+
+## 001-documentation-code-alignment/implementation-summary.md
+---
+title: "...and-context-optimization/006-skill-advisor/005-skill-advisor-docs-and-code-alignment/implementation-summary]"
+description: "Phase 022 updated skill-advisor docs for hook-first invocation and completed a sk-code-opencode audit of Phase 020 TypeScript hook files with nine minor remediations."
+trigger_phrases:
+  - "022 implementation summary"
+  - "skill-advisor hook docs complete"
+  - "phase 020 code alignment complete"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/001-documentation-code-alignment"
+    last_updated_at: "2026-04-19T18:10:00Z"
+    last_updated_by: "codex-gpt-5.4"
+    recent_action: "Docs updated, audit remediations applied, all verification passed"
+    next_safe_action: "Await handback"
+    blockers: []
+    key_files:
+      - "../../../../skill/skill-advisor/README.md"
+      - "../../../../skill/skill-advisor/feature_catalog/feature_catalog.md"
+      - "../../../../skill/skill-advisor/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/specs/system-skill-advisor/008-skill-advisor-documentation/001-documentation-code-alignment/scratch/audit-findings.md"
+    completion_pct: 100
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
+---
+# Implementation Summary: Skill-Advisor Docs + Phase 020 Code Alignment
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-documentation-code-alignment |
+| **Completed** | 2026-04-19 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 022 brings the skill-advisor package into line with the hook surface that Phase 020 shipped. Operators now see prompt-time hook invocation as the primary Gate 2 path, still have the direct Python CLI documented as a fallback, and have a packet-local audit trail for the Phase 020 TypeScript quality pass.
+
+### Documentation Updates
+
+The README now introduces `HOOK INVOCATION (PRIMARY)` near the top, including build and runtime registration guidance plus a link to the Phase 020 hook reference. The direct `skill_advisor.py` flow is preserved under `FALLBACK / DIRECT CLI` for diagnostics and scripted checks.
+
+The feature catalog now has a dedicated `HOOK SURFACE` category with 12 Phase 020 entries: runtime hook adapters, `AdvisorEnvelopeMetadata`, HMAC prompt cache, freshness fingerprints, generation counter, runtime parity, corpus parity, disable flag, observability metrics, `AdvisorHookDiagnosticRecord`, `advisor-hook-health`, and privacy contract.
+
+The manual testing playbook now includes a `06--hook-routing` folder and root index coverage for HR-001 through HR-006. The new smoke playbook covers runtime registration, work-intent brief injection, `/help` suppression, disable flag bypass, stale-graph badge behavior, and diagnostic privacy spot checks.
+
+The setup guide now names hook invocation as the primary Gate 2 mode and keeps the one-shot CLI mode as a fallback path.
+
+
+## 002-code-folder-readme-coverage/implementation-summary.md
+---
+title: "Implementation Summary: Phase B scoped README work"
+description: "Living summary for Phase B execution; filled post-implementation."
+trigger_phrases:
+  - "024 implementation"
+  - "phase B summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/002-code-folder-readme-coverage"
+    last_updated_at: "2026-05-15T11:55:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Authored impl-summary stub"
+    next_safe_action: "Begin Phase 2"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:c279872adaa13604ac9cb8d34478a25db2b1df0b32bd51674287456bb9fbafd1"
+      session_id: "024-impl-summary"
+      parent_session_id: null
+    completion_pct: 5
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/002-code-folder-readme-coverage |
+| **Phase** | B of 4 |
+| **Completed** | 2026-05-15 |
+| **Level** | 1 |
+| **Files in scope** | 2 new + 5 edited = 7 total |
+| **Commits** | `814b0eff6` (initial), `94d2e38d8` (P0 patch) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+(Filled post-execution.) Phase B closes the sk-doc gap in system-skill-advisor across 7 files via two parallel tracks:
+
+**Track 1 — Pipeline authoring (2 new fixture READMEs):**
+- `.opencode/skills/system-skill-advisor/mcp_server/tests/fixtures/lifecycle/README.md`
+- `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/fixtures/README.md`
+
+Both follow the sk-doc CODE template with anchored sections, YAML frontmatter, and HVR-compliant prose. 2 context bundles in `research/context-bundles/{tests-fixtures-lifecycle,tests-scorer-fixtures}.json` document the per-folder file inventory and architecture observations gathered by cli-devin in Pass 1.
+
+**Track 2 — TOC anchor insert (5 existing READMEs):**
+
+## 003-fix-documentation-config-drift/implementation-summary.md
+---
+title: "Implementation Summary: system-skill-advisor doc + config drift fixes"
+description: "Restored a clean npm run build by fixing an out-of-range ignoreDeprecations value, reconciled the 8-vs-9 tool count narrative across SKILL.md and ARCHITECTURE.md, and refreshed the stale opencode.json registration comment."
+trigger_phrases:
+  - "skill-advisor drift fix summary"
+  - "025 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/003-fix-documentation-config-drift"
+    last_updated_at: "2026-05-16T00:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Scaffolded impl-summary"
+    next_safe_action: "Fill verification table"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "025-implsum"
+      parent_session_id: null
+    completion_pct: 25
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `006-skill-advisor/008-skill-advisor-documentation/003-fix-documentation-config-drift` |
+| **Completed** | 2026-05-16 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Three drift issues that surfaced during a routine analysis pass on `system-skill-advisor` are now resolved. The TS5103 build failure (one-character fix) is unblocked, and the tool-count narrative ("8 public + 1 internal trusted-caller", 9 total) reads identically across SKILL.md, ARCHITECTURE.md, README.md, and `opencode.json`.
+
+### tsconfig fix
+`ignoreDeprecations: "6.0"` → `"5.0"` in `mcp_server/tsconfig.json`. The `"6.0"` value was added per system-code-graph v1.0.3.0 changelog to silence the TS5101 baseUrl warning, but `"6.0"` is reserved for TS 6.x and the installed compiler is 5.9.3 — so tsc rejected it with `error TS5103: Invalid value for '--ignoreDeprecations'` and bailed before doing any real type-checking work.
+
+### Doc reconciliation
+- SKILL.md §3 now explicitly frames "8 public tools plus 1 internal trusted-caller tool (9 total)" and lists `skill_graph_propagate_enhances` in its own internal section with a pointer to the tool-ids reference §4.
+- ARCHITECTURE.md §1 mirrors the same framing in its tool-family table, with an explicit "Visibility" column.
+- ARCHITECTURE.md §6 was extended to include `skill_graph_propagate_enhances`, and the stale "opencode.json still says four tools" disclaimer was rewritten to confirm the surface is now in sync as of this packet.
+- README.md §1 was clarified — the prior "four advisor + five skill_graph" wording was numerically correct (4+5=9) but did not distinguish public from internal.
+
+### opencode.json comment
+Note `_NOTE_2_TOOLS` was updated from "Registers 8 tools..." to "Registers 9 tools (8 public + 1 internal trusted-caller)..." and now names `propagate_enhances` explicitly.
+
+## 004-documentation-quality-refactor/001-documentation-quality-audit-research/implementation-summary.md
+---
+title: "Implementation Summary: 001-documentation-quality-audit-research"
+description: "Pending — fills after 20-iter deep-research loop + P0 gates complete. Will record stopReason, iter count, P0 results, and pointer to research.md synthesis."
+trigger_phrases:
+  - "001 audit research summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research"
+    last_updated_at: "2026-05-16T00:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Scaffolded impl-summary"
+    next_safe_action: "Fill after loop"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "001-impl"
+      parent_session_id: null
+    completion_pct: 5
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research` |
+| **Completed** | [PENDING] |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+[PENDING — fill after deep-research loop completes. Will describe: 20-iter audit run via cli-devin SWE 1.6, stopReason, synthesis ladder, ranked findings catalog.]
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `research/research.md` | Created | Final synthesis |
+| `research/iterations/iteration-001.md` through `iteration-020.md` | Created | Per-iter outputs |
+| `research/deep-research-state.jsonl` | Created | Append-only state log |
+| `research/deep-research-strategy.md` | Created | Reducer-mutable strategy |
+<!-- /ANCHOR:what-built -->
+
+---
+
+
+## 004-documentation-quality-refactor/002-fix-documentation-bugs/implementation-summary.md
+---
+title: "Implementation Summary: 002-fix-documentation-bugs (skeleton)"
+description: "Pending — fills after bug fixes ship."
+trigger_phrases:
+  - "002 bug fixes summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs"
+    last_updated_at: "2026-05-16T00:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Scaffolded impl-summary"
+    next_safe_action: "Fill post-implementation"
+    blockers: ["001 not shipped"]
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "002-impl"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs` |
+| **Completed** | [PENDING] |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+[PENDING — bug fixes per 001 research.md P0 catalog.]
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| [TBD] | [TBD] | [TBD] |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 004-documentation-quality-refactor/003-readme-problem-first-rewrite/implementation-summary.md
+---
+title: "Implementation Summary: 003-readme-problem-first-rewrite (skeleton)"
+description: "Pending — fills after README rewrite ships."
+trigger_phrases:
+  - "003 readme marketing summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite"
+    last_updated_at: "2026-05-16T00:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Scaffolded impl-summary"
+    next_safe_action: "Fill post-rewrite"
+    blockers: ["001 not shipped"]
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "003-impl"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite` |
+| **Completed** | [PENDING] |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+[PENDING — full README rewrite, ~2000 words, 9 sections, marketing-style HVR-compliant.]
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-skill-advisor/README.md` | Modified | Marketing-style rewrite |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 004-documentation-quality-refactor/004-sk-doc-type-validation-alignment/implementation-summary.md
+---
+title: "Implementation Summary: 004-sk-doc-type-validation-alignment (skeleton)"
+description: "Pending — fills after alignment edits ship."
+trigger_phrases:
+  - "004 sk-doc alignment summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment"
+    last_updated_at: "2026-05-16T00:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Scaffolded impl-summary"
+    next_safe_action: "Fill post-implementation"
+    blockers: ["001 not shipped"]
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "004-impl"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/004-sk-doc-type-validation-alignment` |
+| **Completed** | [PENDING] |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+[PENDING — per-file alignment edits across SKILL.md, ARCHITECTURE.md, INSTALL_GUIDE.md, references/*, feature_catalog/*, manual_testing_playbook/*.]
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| [TBD] | [TBD] | [TBD] |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+
+## 004-documentation-quality-refactor/005-content-additions-hvr-polish/implementation-summary.md
+---
+title: "Implementation Summary: 005-content-additions-hvr-polish (skeleton)"
+description: "Pending — fills after content additions ship and HVR sweep completes."
+trigger_phrases:
+  - "005 content additions summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/005-content-additions-hvr-polish"
+    last_updated_at: "2026-05-16T00:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Scaffolded impl-summary"
+    next_safe_action: "Fill post-implementation"
+    blockers: ["001 not shipped", "004 not shipped"]
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "005-impl"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/005-content-additions-hvr-polish` |
+| **Completed** | [PENDING] |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+[PENDING — 5 new reference docs + canonical hook-reference copy + HVR sweep across package.]
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-skill-advisor/references/lane-weight-tuning.md` | Created | New reference |
+| `.opencode/skills/system-skill-advisor/references/skill-graph-query-cookbook.md` | Created | New reference |
+| `.opencode/skills/system-skill-advisor/references/validation-baselines.md` | Created | New reference |
+| `.opencode/skills/system-skill-advisor/references/daemon-lease-contract.md` | Created | New reference |
+| `.opencode/skills/system-skill-advisor/references/skill-graph-drift.md` | Created | New reference |
+| `.opencode/skills/system-skill-advisor/references/hooks/skill-advisor-hook.md` | Created | Canonical copy |
+<!-- /ANCHOR:what-built -->
+
+
+## 004-documentation-quality-refactor/006-clean-deferred-documentation/implementation-summary.md
+---
+title: "Implementation Summary: 006-clean-deferred-documentation"
+description: "Pending fill — Tier A+B+C-subset deferred backlog closure."
+trigger_phrases:
+  - "006 deferred cleanup summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation"
+    last_updated_at: "2026-05-16T00:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Shipped 006 cleanup"
+    next_safe_action: "Memory save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "006-impl"
+      parent_session_id: null
+    completion_pct: 5
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation` |
+| **Completed** | 2026-05-16 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Closed the deferred backlog that ships without architectural decisions or context-aware editing. Tier A: F30 (3 cross-link conversions in skill-graph-extraction-plan.md, with status notes that the underlying work has already shipped in 002), F33 (added SOURCE FILES section to 3 playbook scenarios). Tier B re-verify: confirmed F23/F24/F44 documented paths match disk; the one discrepancy (F23 built artifact missing under dist/) is a build-state issue, not a doc bug. Tier C bulk Oxford comma sweep: 943 instances cleared package-wide (mechanical sed `s/, and / and /g`, `s/, or / or /g` preserving conjunctions). Parent metadata refreshed: children_ids[] now lists 6, last_active_child_id points to 006, PHASE DOCUMENTATION MAP shows 6 rows.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md` | Modified | F30 — converted 3 plain-text refs to markdown links + added status notes citing 002 shipped the underlying fix |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-status.md` | Modified | F33 — added §4 SOURCE FILES section (status.ts + tools/skill-graph-tools.ts + skill-graph-handlers.vitest.ts); §4 renamed §5 SOURCE METADATA |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-query.md` | Modified | F33 — same shape (query.ts + 2 tests) |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/skill-graph-validate.md` | Modified | F33 — same shape (validate.ts + 2 tests) |
+| ~33 .md files under `feature_catalog/`, `manual_testing_playbook/`, `hooks/`, `mcp_server/lib/`, `mcp_server/scripts/`, `mcp_server/stress_test/`, `references/`, `INSTALL_GUIDE.md`, `SKILL.md` | Modified | Bulk Oxford comma sweep (943 → 0 in authored files) |
+| `.opencode/skills/system-skill-advisor/feature_catalog/mcp-surface/{08-skill-graph-status,09-skill-graph-validate}.md` | Modified | End-of-line Oxford comma edge cases (2 instances) |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/graph-metadata.json` | Modified | Appended 006 to children_ids[], advanced last_active_child_id |
+| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/spec.md` | Modified | Added 006 row to PHASE DOCUMENTATION MAP |
+
+## 004-documentation-quality-refactor/007-finalize-documentation-quality-refactor/implementation-summary.md
+---
+title: "Implementation Summary: 007-finalize-documentation-quality-refactor"
+description: "Pending fill — single-dispatch cli-opencode DeepSeek API execution of all remaining deferred items."
+trigger_phrases:
+  - "007 deferred final summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor"
+    last_updated_at: "2026-05-16T00:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Shipped 007 in-session"
+    next_safe_action: "Memory save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "007-impl"
+      parent_session_id: null
+    completion_pct: 5
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/007-finalize-documentation-quality-refactor` |
+| **Completed** | 2026-05-16 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Closed all remaining deferred items from packets 002-006 Known Limitations. Originally dispatched cli-opencode with DeepSeek API as the user requested. The dispatch failed twice with `InstanceRef not provided` (opencode v1.15.1 internal error, plausibly v1.3.17→v1.15.1 baseline drift compounded by parallel user opencode sessions). Fell back to in-session execution by Claude Code, delivering the same scope: semicolon HVR sweep (137→30, 78% reduction), F34 deviation notes across 20 playbook files, 4 new reference docs, plus deferred-decisions.md.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-skill-advisor/references/skill-graph-query-cookbook.md` | Created | 13 sections, ~380 lines, worked examples for all 10 skill_graph_query types |
+| `.opencode/skills/system-skill-advisor/references/validation-baselines.md` | Created | 6 sections, ~150 lines, advisor_validate baselines + troubleshooting playbook |
+| `.opencode/skills/system-skill-advisor/references/daemon-lease-contract.md` | Created | 6 sections, ~115 lines, lease lifecycle + contention recovery + failure modes |
+| `.opencode/skills/system-skill-advisor/references/skill-graph-drift.md` | Created | 6 sections, ~155 lines, drift sources + detection + reconciliation + failure modes |
+| `.opencode/skills/system-skill-advisor/references/deferred-decisions.md` | Created | 8 sections, ~220 lines, Tier D rationale (F4/F6/F34/F35/F36/F37) for human review |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/{007-skill-graph-status,008-skill-graph-query,009-skill-graph-validate}.md` | Modified | F33 SOURCE FILES section added (3 files) |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/0[5-8]--*/*.md` (20 files) | Modified | F34 deviation note inserted at top of §3 TEST EXECUTION |
+| ~30 .md files across `.opencode/skills/system-skill-advisor/` (excluding changelog/) | Modified | Context-aware semicolon sweep (Python script with code-fence + URL + backtick + frontmatter protection) |
+
+## 004-documentation-quality-refactor/008-tier-d-documentation-execution/implementation-summary.md
+---
+title: "Implementation Summary: 008-tier-d-documentation-execution"
+description: "Pending fill — F4 hooks migration, F6 deprecation banners, F37 cross-reference table."
+trigger_phrases:
+  - "008 tier d summary"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution"
+    last_updated_at: "2026-05-16T00:00:00Z"
+    last_updated_by: "claude-opus-4-7-1m"
+    recent_action: "Shipped 008 Tier D"
+    next_safe_action: "Memory save"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "008-impl"
+      parent_session_id: null
+    completion_pct: 5
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/008-skill-advisor-documentation/004-documentation-quality-refactor/008-tier-d-documentation-execution` |
+| **Completed** | 2026-05-16 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Closed all 3 actionable Tier D items: F4 Devin hooks migration with a conceptual-ownership pivot (SessionStart hook moved to system-code-graph, its real owner), F6 deprecation banners on all 4 OLD hook READMEs with a 90-day window, F37 catalog/playbook cross-reference table in §17.5 of the playbook root. F35 and F36 stay status-quo per deferred-decisions.md §5 and §6 recommendations.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.devin/hooks.v1.json` | Modified | F4: UserPromptSubmit → system-skill-advisor NEW dist; SessionStart → system-code-graph NEW dist |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/claude/README.md` | Modified | F6: 2026-05-16 deprecation banner with 90-day window |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/codex/README.md` | Modified | F6: same |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/README.md` | Modified | F6: same |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/devin/README.md` | Created | F6: created with deprecation banner (was missing) |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | Modified | F37: added §17.5 cross-reference table with all 7 catalog groups mapped plus 2 playbook-only categories called out |
+| `.opencode/skills/system-skill-advisor/references/deferred-decisions.md` | Modified | Marked F4/F6/F37 as Done with packet 008 citation; preserved original-current-state sections as history |
+<!-- /ANCHOR:what-built -->
+
+## 005-cross-skill-documentation-decoupling/implementation-summary.md
+---
+title: "Implementation Summary: Cross-Skill Decoupling"
+description: "Three-phase doc cleanup landed; 7 skill files touched; cross-skill refs zeroed in spec-kit; Section 1 zero-table in 3 READMEs; ARCHITECTURE conform across 3 skills."
+trigger_phrases:
+  - "005 implementation summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/008-skill-advisor-documentation/005-cross-skill-documentation-decoupling"
+    last_updated_at: "2026-05-16T12:33:24Z"
+    last_updated_by: "main_agent"
+    recent_action: "Filled with grep and line-count evidence"
+    next_safe_action: "Strict-validate then commit"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md"]
+    session_dedup:
+      fingerprint: "sha256:0050000000000000000000000000000000000000000000000000000000000008"
+      session_id: "005-cross-skill-documentation-decoupling-impl-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Cross-Skill Decoupling
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-cross-skill-documentation-decoupling |
+| **Completed** | 2026-05-16 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The three system-spec-kit docs now describe only spec-kit. The 26 cross-skill references catalogued at Phase 1 are removed, including the entire SKILL-ADVISOR and CODE-GRAPH subsystem sections that lived in spec-kit/ARCHITECTURE.md. Section 1 of every README is prose plus bullets, zero tables. The three ARCHITECTURE.md files share an identical 9-row section list (TOC plus 8 numbered H2s) with the same anchor names and the same frontmatter shape; only the subject material differs.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-spec-kit/README.md` | Modified | §1 OVERVIEW rewritten as prose+bullets; sibling refs removed; em dashes zeroed |
+| `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | Trigger phrases scrubbed; inline path refs removed; sibling link deleted |
+| `.opencode/skills/system-spec-kit/ARCHITECTURE.md` | Modified (full rewrite) | New canonical 8-section template; §5 SKILL-ADVISOR and §6 CODE-GRAPH deleted |
+| `.opencode/skills/system-skill-advisor/README.md` | Modified | §1 "How This Compares" + "Key Features" tables replaced with prose + bullets |
+| `.opencode/skills/system-code-graph/README.md` | Modified | §1 "How This Compares" + "Cross-Skill Integration" tables replaced with prose + bullets |
+| `.opencode/skills/system-skill-advisor/ARCHITECTURE.md` | Modified (full rewrite) | Conformed to 8-section template; terse target ≤210 lines |
+| `.opencode/skills/system-code-graph/ARCHITECTURE.md` | Modified (full rewrite) | Conformed to 8-section template; terse target ≤220 lines |
+
+FOLDER
+
+<<<FOLDER id="specs/system-skill-advisor/z_archive/009-playbook-run-and-remediation"
+# PACKET: specs/system-skill-advisor/z_archive/009-playbook-run-and-remediation (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Skill Advisor Manual Testing Playbook Run"
+description: "Execute all 46 scenarios of the system-skill-advisor manual testing playbook across native MCP, CLI hooks, compat, daemon, indexing, lifecycle, scorer and python-compat surfaces, with CLI-delegated waves (cli-devin SWE-1.6, cli-opencode DeepSeek) and recorded verdicts + evidence."
+trigger_phrases:
+  - "skill advisor playbook run"
+  - "skill-advisor manual testing playbook"
+  - "028 skill advisor playbook"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "playbook-run-operator"
+    recent_action: "All phases complete: playbook run, finding remediation, P1 routing tuning"
+    next_safe_action: "None; F4 cold-env residual is an optional follow-up"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-playbook-run"
+      parent_session_id: null
+    completion_pct: 98
+    open_questions: []
+    answered_questions:
+      - "Phase granularity: 4 grouped phases (user-selected)"
+      - "CLI depth: maximize delegation (user-selected) — devin PC/AU/CP, opencode SC/AI/LC"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + sub-phase list + outcome only. No migration narrative; heavy docs live in children. -->
+
+# Feature Specification: Skill Advisor Manual Testing Playbook Run
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+
+## 001-preconditions-and-build/implementation-summary.md
+---
+title: "Implementation Summary: Preconditions and Build (Playbook Run Phase 001)"
+description: "Both MCP servers build clean, env flags confirmed, evidence workspaces created, and both CLI executors verified authenticated, so all downstream playbook waves run against a known-good environment."
+trigger_phrases:
+  - "playbook preconditions summary"
+  - "028 phase 001 summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/001-preconditions-and-build"
+    last_updated_at: "2026-05-26T20:00:00Z"
+    last_updated_by: "playbook-run-operator"
+    recent_action: "Preconditions established and verified"
+    next_safe_action: "Execute phase 002 MCP-native scenarios"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/dist/hooks/devin/user-prompt-submit.js"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-phase-001"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/001-preconditions-and-build |
+| **Completed** | 2026-05-26 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase brought the environment to a known-good state before any scenario ran. Both MCP servers compile clean, the hook-disable flag is unset, evidence workspaces exist, and both CLI executors are authenticated — so the 46-scenario run that follows measures the real system, not a stale build.
+
+### MCP server builds
+`npm run build` for `system-spec-kit/mcp_server` emitted `dist/api/index.js`, `dist/cli.js`, `dist/context-server.js` and the hook/validation bundles. `system-skill-advisor/mcp_server` built its shared dependency first, then compiled to `dist/` including `dist/hooks/{claude,codex,devin,gemini}/` and `dist/mcp_server/compat/index.js`. The advisor devin hook artifact (`dist/hooks/devin/user-prompt-submit.js`) is present, satisfying the CL-006 prerequisite.
+
+### Environment + executor probes
+`SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset. `devin` is installed and `devin auth status` reports "Logged in" (SWE-1.6 runs on the free tier). `opencode` v1.15.10 is installed and `opencode providers list` shows DeepSeek configured in opencode's own `auth.json` (so the unset shell `DEEPSEEK_API_KEY` does not block dispatch). Next free spec slot confirmed as 028.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 002-mcp-native-scenarios/implementation-summary.md
+---
+title: "Implementation Summary: MCP-Native Scenarios (Playbook Run Phase 002)"
+description: "NC-001..009 ran clean against the live advisor surface (7 PASS, 2 PARTIAL); the run surfaced a real accuracy regression — advisor_validate reports 50.78% full-corpus accuracy versus the documented 80.5% baseline."
+trigger_phrases:
+  - "playbook mcp native summary"
+  - "NC results summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/002-mcp-native-scenarios"
+    last_updated_at: "2026-05-26T20:00:00Z"
+    last_updated_by: "playbook-run-operator"
+    recent_action: "Recorded NC scenario verdicts"
+    next_safe_action: "Phase 003 CLI hooks"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-phase-002"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/002-mcp-native-scenarios |
+| **Completed** | 2026-05-26 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The native advisor surface works and is prompt-safe: 7 of 9 NC scenarios pass outright, and the two PARTIALs are honest — one because a transition needs a disposable workspace, the other because the run uncovered a real accuracy regression worth fixing. Every recommendation, status, and graph envelope returned `status: ok` with no raw prompt text leaking into attribution, cache, trust-state, or warnings.
+
+### Recommendation + ambiguity (NC-001, NC-004)
+`advisor_recommend` for a memory prompt returned `system-spec-kit` at confidence 0.9442 with `effectiveThresholds` exactly `{0.8, 0.35, false}` and a fully structured five-lane breakdown. The cross-domain prompt put `sk-code` (0.8966) and `sk-prompt` (0.8892) within 0.0074 confidence and correctly set `ambiguous: true`. The ambiguity/renderer/lifecycle/plugin-bridge vitest suites pass 49/49.
+
+### Status vs rebuild separation (NC-002, NC-006)
+`advisor_status` is diagnostic-only: repeated calls never advanced the generation (held at 4463). `advisor_rebuild` with no force returned `skipped: true, reason: "status-live"`; with `force: true` it returned `rebuilt: true, reason: "force"` and bumped 4463 to 4464, correctly skipping two non-skill-metadata fixtures. The stale-repair and stale/absent transitions need a disposable copy with its own `node_modules`/`dist`, which this session did not stand up — those sub-steps are deferred, hence NC-002 PARTIAL.
+
+### Skill graph reads (NC-007, NC-008, NC-009)
+`skill_graph_status` reports 21 skills / 85 edges, `dbStatus: ready`, `isHealthy: true`. `skill_graph_query` (hub_skills, limit 10) returned query-type metadata and exactly 10 bounded rows. `skill_graph_validate` returned `isValid: true`, 0 errors.
+
+### The accuracy regression (NC-003)
+
+## 003-cli-hooks-and-plugin/implementation-summary.md
+---
+title: "Implementation Summary: CLI Hooks and Plugin (Playbook Run Phase 003)"
+description: "All four runtime hook adapters (Claude, Gemini, Codex, Devin) surface prompt-safe advisor briefs and fail open correctly; only the OpenCode plugin bridge is PARTIAL because its native route does not engage and it fails open to the python path."
+trigger_phrases:
+  - "playbook cli hooks summary"
+  - "CL results summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/003-cli-hooks-and-plugin"
+    last_updated_at: "2026-05-26T20:00:00Z"
+    last_updated_by: "playbook-run-operator"
+    recent_action: "CL-001/003/004/005/006 executed; bridge fail-open finding recorded"
+    next_safe_action: "Phase 004 shell/python/daemon waves"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-phase-003"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/003-cli-hooks-and-plugin |
+| **Completed** | 2026-05-26 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Every prompt-time hook adapter does its job: Claude, Gemini, Codex and Devin all surface a compact `Advisor:` brief for a substantive prompt, return `{}` for short or malformed input, exit 0, and keep the raw prompt out of their stderr diagnostics. The one soft spot is the OpenCode plugin bridge, which fails open safely but never reaches its native route.
+
+### The four runtime adapters (CL-001, CL-003, CL-004, CL-006)
+- **Claude**: `Advisor: live; use sk-doc 0.93/0.12 pass.`, `runtime:"claude"`, no leak.
+- **Gemini** (BeforeAgent schema): an ambiguous two-skill brief, `runtime:"gemini"`, no leak.
+- **Codex**: SessionStart returns the startup-context block; UserPromptSubmit returns the advisor brief; the prompt-wrapper returns `{}` because native hooks are available (correct). All exit 0.
+- **Devin**: `.devin/hooks.v1.json` correctly cites the advisor-owned hook path; the substantive prompt returns `additionalContext` starting `Advisor:`, the short prompt returns `{}`, and malformed stdin returns `{}` (fail-open). No prompt leak.
+
+### The OpenCode plugin bridge (CL-005)
+Running `mk-skill-advisor-bridge.mjs` directly exits 0 and returns a prompt-safe fail-open envelope with the correct `0.8/0.35/false` threshold pair — so the safety contract holds. But `metadata.route` is `python` and `error` is `SYSTEM_SKILL_ADVISOR_UNAVAILABLE`, meaning the native compat route never engaged even though `dist/mcp_server/compat/index.js` is present on disk. The native success path (`route:"native"` + an `Advisor:` brief) could not be demonstrated, so CL-005 is PARTIAL.
+
+### Files Changed
+
+## 004-shell-python-daemon/implementation-summary.md
+---
+title: "Implementation Summary: Shell/Python/Daemon Waves + Playbook Run Rollup"
+description: "Devin (SWE-1.6, dangerous mode in an isolated worktree) and OpenCode (DeepSeek) ran the python/compat/daemon and scorer/indexing/lifecycle waves; the run executed all 46 playbook scenarios with 21 PASS, 10 PARTIAL, 2 FAIL, 13 SKIP — release is NOT READY due to a corpus-accuracy regression and two python-suite failures."
+trigger_phrases:
+  - "playbook run rollup"
+  - "skill advisor playbook results"
+  - "phase 004 summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/004-shell-python-daemon"
+    last_updated_at: "2026-05-26T20:00:00Z"
+    last_updated_by: "playbook-run-operator"
+    recent_action: "Completed all 46 scenarios; consolidated rollup + findings; release NOT READY"
+    next_safe_action: "File follow-on remediation packet for accuracy regression + python-suite failures"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-phase-004"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/004-shell-python-daemon |
+| **Completed** | 2026-05-26 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase finished the playbook run by delegating two-thirds of the remaining scenarios to CLI executors and running the operator-H5 wave locally. The headline: the **whole 46-scenario run is complete**, and it surfaced real defects rather than a clean pass — exactly what a manual test pass is for.
+
+### CLI delegation that actually worked
+OpenCode (DeepSeek, full MCP runtime) ran the scorer/indexing/lifecycle waves live, calling `advisor_validate`/`advisor_status` directly and writing structured evidence: SC 3 PASS / 2 PARTIAL, AI 2 PASS / 1 PARTIAL / 2 SKIP, LC 1 PASS / 1 PARTIAL / 3 SKIP. Devin (SWE-1.6) needed two attempts — its non-interactive `auto` mode refused to run any command, so after operator approval it was re-dispatched in `--permission-mode dangerous` confined to an isolated git worktree (`/tmp/devin-wt`, node_modules/dist symlinked). It then ran PC 1 PASS / 2 PARTIAL / 2 FAIL, CP 3 PASS / 1 PARTIAL, AU 5 SKIP. The worktree `git status` was clean afterward — Devin mutated zero tracked files.
+
+### Verification, not trust
+Both FAIL findings came from Devin's worktree, where the live SQLite was absent, so they were re-run in the main environment with the full graph loaded. **PC-004** (python regression) still failed: 54/96 cases (56.25%), **P0 pass 50%** (12/24), top1 62.79% — all four gates fail, with P0 failures in memory-save, uncertainty, and command routing. **PC-005** (bench) still failed: the scenario omits the required `--dataset` flag, and warm/cold p95 gates fail. OpenCode's SC-005 accuracy figure (50.78%) matches the NC-003 figure from phase 002 — three independent harnesses agree the corpus accuracy has regressed.
+
+### Operator-H5 (local)
+OP-001/002/003 are SKIP: all three need a disposable repo copy with an active daemon watcher plus fault injection (stale source, malformed SKILL.md, corrupt SQLite, untrusted-caller context). The daemon's *healthy* path is already verified in phase 002 (`advisor_status` live, `skill_graph_status` ready/healthy); only the recovery paths are unproven.
+
+
+## 005-finding-remediation/001-advisor-validate-alias-matching/implementation-summary.md
+---
+title: "Implementation Summary: advisor_validate Alias-Aware Gold Matching (F1a) — Complete"
+description: "Shipped: advisor_validate gold matching is alias-aware, recovering the reported corpus accuracy from 50.78%/42.5% to 74.09%/65.0% with no scorer change."
+trigger_phrases:
+  - "F1a implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Shipped alias-aware gold matching in advisor_validate"
+    next_safe_action: "None; phase complete and verified"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-005-001"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching |
+| **Completed** | 2026-05-27 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`advisor_validate` gold matching now canonicalizes both the recommended `topSkill` and the corpus `expected` label through `lib/scorer/aliases.ts` (`skillMatchesAlias`) before comparison, so the 53/193 rows labelled `sk-deep-research`/`sk-deep-review` count as hits against the live `deep-research`/`deep-review` IDs. This restores the reported metric from 50.78%/42.5% to 74.09%/65.0% with no scorer change.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-validate.ts` | Modify | Alias-aware comparison at both gold-match sites (`skillMatchesAlias`) |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+## 005-finding-remediation/002-scorer-p0-routing-fixes/implementation-summary.md
+---
+title: "Implementation Summary: Scorer P0 Routing Fixes (F1b) — Complete"
+description: "Implemented model-B explicit-slash routing, code-mode disambiguation, and low-information ambiguity abstention across both scorers (TS + Python). All P0 regression cases pass in both; corpus parity improved 45→62 with zero lost rows."
+trigger_phrases:
+  - "F1b implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/002-scorer-p0-routing-fixes"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-p0-remediation"
+    recent_action: "Implemented and verified all P0 routing fixes in both scorers"
+    next_safe_action: "None; phase complete and verified"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-005-002"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "mcp-code-mode routes (not relabelled)"
+      - "abstain only on ambiguous-keyword-driven winners"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/002-scorer-p0-routing-fixes |
+| **Completed** | 2026-05-27 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The genuine P0 scorer/routing failures from the 028 playbook run, fixed in BOTH the
+TypeScript scorer (`lib/scorer/*`) and the Python scorer (`scripts/skill_advisor.py`)
+so the two implementations stay at behavioral parity on the regression contract.
+
+**Model B — explicit `/X:y` routes to the owning skill (P0-CMD-003).** An explicit
+`/memory:save` now routes to the owning skill `system-spec-kit`, not the
+`command-memory-save`/`memory:save` bridge. In TS this was already the behavior; the
+Python `COMMAND_BRIDGE_OWNER_NORMALIZATION` mapped the bridge to `memory:save` (a sibling
+bridge alias) instead of the real owner, so it was corrected to `system-spec-kit`. The
+pre-model-B unit test (T243-SA-017) was updated to the parity-correct owner, confirmed
+
+## 005-finding-remediation/003-pc005-bench-doc-and-gates/implementation-summary.md
+---
+title: "Implementation Summary: PC-005 Bench Doc + Gate Calibration (F2) — Complete"
+description: "Shipped: PC-005 scenario doc now documents the required --dataset flag, and the bench gates are recalibrated (warm p95 50ms envelope; cold p95 advisory via --enforce-cold-p95)."
+trigger_phrases:
+  - "F2 implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Shipped PC-005 doc fix + bench gate recalibration"
+    next_safe_action: "None; phase complete and verified"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_bench.py"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-005-003"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/003-pc005-bench-doc-and-gates |
+| **Completed** | 2026-05-27 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The PC-005 scenario doc now documents the required `--dataset` flag (with `--runs 1` as a smoke convenience), and the bench gates are recalibrated: warm p95 uses the documented 50 ms envelope, cold p95 is advisory by default (subprocess-scoped; opt-in via `--enforce-cold-p95`), and `throughput_multiplier` remains the blocking Python-surface regression gate. The native scorer was unchanged (it already passes at 3.69/6.71 ms).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.../manual_testing_playbook/python-compat/005-bench-runner.md` | Modify | Add `--dataset` + smoke note + gate descriptions |
+| `.../mcp_server/scripts/skill_advisor_bench.py` | Modify | Warm p95 50ms default; `--enforce-cold-p95` flag; `cold_p95_advisory` in report |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 005-finding-remediation/004-semantic-shadow-doc-sync/implementation-summary.md
+---
+title: "Implementation Summary: semantic_shadow Doc Sync (F3) — Complete"
+description: "Shipped: SC-004/SC-005 scenarios, the feature-catalog attribution doc, and a stale lane comment are synced to the verified live semantic_shadow lane (weight 0.05, live, shadowOnly:false); the weight was NOT changed."
+trigger_phrases:
+  - "F3 implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Shipped semantic_shadow doc + comment sync to the live lane"
+    next_safe_action: "None; phase complete and verified"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-005-004"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/004-semantic-shadow-doc-sync |
+| **Completed** | 2026-05-27 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The stale SC-004/SC-005 scenarios, the feature-catalog attribution doc, and a stale comment in `lanes/semantic-shadow.ts` now match the verified live lane (weight 0.05, `live:true`, fused `shadowOnly:false`). The weight is intentional and was NOT changed — this was a documentation/comment-only sync that clears the SC-004 PARTIAL from the 028 run.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.../scorer-fusion/004-lane-attribution.md` | Modify | Expect shadowOnly:false |
+| `.../scorer-fusion/005-ablation.md` | Modify | Non-zero ablation lane |
+| `.../feature_catalog/scorer-fusion/04-attribution.md` | Modify | Match the live lane |
+| `.../lib/scorer/lanes/semantic-shadow.ts` | Modify | Rewrote stale comment / clarified the raw shadowOnly flag |
+<!-- /ANCHOR:what-built -->
+
+---
+
+## 005-finding-remediation/005-opencode-bridge-native-route/implementation-summary.md
+---
+title: "Implementation Summary: OpenCode Bridge Native Route (F4) — Partial"
+description: "Shipped the bridge direct compat import (route:native verified); a daemon-freshness/cold-env residual where the bridge still falls to python remains flagged."
+trigger_phrases:
+  - "F4 implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Shipped bridge direct compat import (route:native); cold-env residual flagged"
+    next_safe_action: "Optional follow-up: close the cold-env daemon-freshness residual"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-005-005"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route |
+| **Completed** | Partial (2026-05-27) |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The bridge's `loadNativeAdvisorModules()` now imports `dist/mcp_server/compat/index.js` directly as the primary native path (launcher/MCP subprocess kept only as fallback), and `probeNativeAdvisor` is gated on a reader-usable trustState so a usable-but-degraded daemon still serves a native route. With this, the OpenCode plugin returns `route:"native"` + an `Advisor:` brief instead of the silent python fail-open (verified).
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.../mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | Modify | Direct compat import; reader-usable trustState gate; launcher fallback |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+## 005-finding-remediation/006-playbook-vitest-path-fix/implementation-summary.md
+---
+title: "Implementation Summary: Playbook Vitest Path Fix (F5) — Complete"
+description: "Shipped: NC-004/NC-005 now use the canonical vitest invocation (cd system-skill-advisor/mcp_server && npm exec -- vitest run tests/...); no residual stale paths remain."
+trigger_phrases:
+  - "F5 implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-remediation"
+    recent_action: "Shipped NC-004/NC-005 vitest path correction"
+    next_safe_action: "None; phase complete and verified"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/native-mcp-tools/ambiguous-brief-rendering.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-005-006"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/006-playbook-vitest-path-fix |
+| **Completed** | 2026-05-27 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+NC-004 and NC-005 now use the canonical vitest invocation `cd .opencode/skills/system-skill-advisor/mcp_server && npm exec -- vitest run tests/...`, replacing the stale pre-extraction `npm --prefix .../system-spec-kit/mcp_server exec -- vitest run skill-advisor/tests/...` form. A whole-playbook audit confirmed only these two scenarios carried the stale pattern.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.../native-mcp-tools/ambiguous-brief-rendering.md` | Modify | Corrected vitest command |
+| `.../native-mcp-tools/lifecycle-redirect-metadata.md` | Modify | Corrected vitest command |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 005-finding-remediation/007-harness-alias-and-stale-path/implementation-summary.md
+---
+title: "Implementation Summary: Regression-Harness Alias-Awareness & Stale Test Path — Complete"
+description: "Both regression harnesses now match gold labels alias-aware (Python + TS), the alias groups were completed (sk-deep-* and a deep-agent-improvement group), and lane-weight-sweep.vitest.ts anchors on a stable marker with reports redirected off the deleted packet path."
+trigger_phrases:
+  - "harness alias impl summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-p0-remediation"
+    recent_action: "Implemented and verified harness alias-awareness plus stale-path fix"
+    next_safe_action: "None; phase complete and verified"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor_regression.py"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/scorer/lane-weight-sweep.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-005-007"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "alias-resolve in the harness layer (not relabel fixtures)"
+      - "anchor findWorkspaceRoot on the skill package.json marker"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/005-finding-remediation/007-harness-alias-and-stale-path |
+| **Completed** | 2026-05-27 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Both regression harnesses now compare gold labels alias-aware, so a renamed skill (the live `deep-*` ids) satisfies a fixture labelled with its old `sk-deep-*` alias. The alias groups were the real gap: the Python groups lacked the `sk-deep-*` entries and neither language had a `deep-agent-improvement` group, so the matcher had nothing to resolve against. Completing the groups plus switching the harness compares to the existing alias helpers (`skill_matches_alias` in Python, `skillInAliasSet` in TS) clears the deep-* alias failures without editing the ground-truth fixtures.
+
+Separately, `lane-weight-sweep.vitest.ts` now resolves the workspace root from the skill's own `package.json` instead of a 026 packet path that the reorg removed, and its sweep reports write to a gitignored skill-local directory so the run no longer recreates deleted packet folders via `mkdir`.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.../lib/scorer/aliases.ts` | Modify | Add the `deep-agent-improvement` alias group (sk-deep-research/review already present) |
+
+## 006-p1-routing-tuning/implementation-summary.md
+---
+title: "Implementation Summary: Skill Advisor P1 Routing & Abstention Tuning — Pending"
+description: "Planned, not yet implemented. Scopes the residual non-alias P1 fixes into 5 root-cause classes with per-case evidence, approach, and a regression guard."
+trigger_phrases:
+  - "p1 routing tuning impl summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/009-playbook-run-and-remediation/006-p1-routing-tuning"
+    last_updated_at: "2026-05-27T00:00:00Z"
+    last_updated_by: "scorer-p1-tuning"
+    recent_action: "Scoped; pending implementation"
+    next_safe_action: "Implement class by class via /speckit:implement"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "028-006"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-playbook-run-and-remediation/006-p1-routing-tuning |
+| **Completed** | 2026-05-27 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Complete. The residual non-alias P1 regression failures, fixed across both scorers in 5 root-cause classes (scoped + designed with a cli-codex gpt-5.5 xhigh read-only review). Both regression harnesses now report **0 failures across all 50 cases** (P0 12/12 each).
+
+- **Class A — terse-phrase routing:** domain anchors in the direct-evidence lane (TS `explicit.ts` PHRASE_BOOSTS / Python `PHRASE_INTENT_BOOSTERS`) lift a strong multi-token phrase's CONFIDENCE past threshold, paired with `primaryIntentBonus` for rank. "webflow cms"/"cms collection" → mcp-code-mode; "structural search"/"find code that" → system-code-graph; "5d scoring"/"integration scan"/"dynamic profile" → deep-agent-improvement.
+- **Class B — CLI-vs-skill:** Python code-edit disambiguator caps sk-code uncertainty when code-edit verbs + a code-surface noun are present and no explicit CLI invocation. Fixes "update python script following opencode standards" → sk-code.
+- **Class C — breadth abstention:** broad greenfield builds and multi-concern optimizations floor their code-like top's uncertainty so strict callers abstain. Narrowly gated (top must be code-like; narrow-anchor + single-concern bypass), with adversarial routable guards.
+- **Class D — deep-loop syntax:** `:review:auto` colon syntax → deep-review (both scorers); bare "auto review" stays sk-code-review per the documented decision (codex confirmed the split).
+- **Class E — review-target:** "code audit" → sk-code-review over deep-review; "audit ... recommendations" → sk-code-review over system-skill-advisor.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.../lib/scorer/lanes/explicit.ts` | Modify | Class A/D direct-evidence phrase anchors |
+
+FOLDER
+
+<<<FOLDER id="specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack"
+# PACKET: specs/system-skill-advisor/z_archive/010-skill-advisor-embedder-stack (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "022: Skill-advisor pluggable architecture and writer wiring (phase parent)"
+description: "Skill-advisor embedder work delivered the pluggable architecture, registry, schema, and writer wiring. The active runtime remains gemma; default alignment to mk-spec-memory Nomic is deferred to 003/006-shared-embedder-logic."
+trigger_phrases:
+  - "022 skill advisor embedder parity"
+  - "skill-advisor jina swap"
+  - "skill-advisor pluggable embedder"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack"
+    last_updated_at: "2026-05-17T21:25:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Scaffolded skill-advisor embedder parity packet"
+    next_safe_action: "Implement 001 pluggable architecture"
+    blockers: []
+    key_files:
+      - "001-pluggable-architecture/spec.md"
+      - "002-jina-swap-and-reindex/spec.md"
+      - "003-install-guide-docs/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000022000"
+      session_id: "022-skill-advisor-embedder-parity"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-phase-parent | v1.0 -->
+<!-- SPECKIT_LEVEL: phase-parent -->
+
+# Skill-advisor embedder stack (phase parent)
+
+This hub also holds 3 items migrated in from elsewhere in `system-speckit/026`, all from the same May 2026 wave: `006-skill-advisor-zombie-launcher-fix`, `007-skill-advisor-compat-contract-consolidation`, and `008-skill-advisor-interface-and-env-vars`. See `system-skill-advisor/context-index.md` for the migration record.
+
+<!-- ANCHOR:overview -->
+## 1. OVERVIEW
+
+The 020 deep-review's legacy-DB audit surfaced a gap: **skill-advisor is the only system in this repo still on gemma**.
+
+## 001-pluggable-architecture/implementation-summary.md
+---
+title: "Summary: 022/001 pluggable architecture"
+description: "Implemented skill-advisor-local pluggable embedder architecture"
+trigger_phrases: ["022/001 summary"]
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/001-pluggable-architecture"
+    last_updated_at: "2026-05-17T22:05:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Implemented pluggable embedder architecture"
+    next_safe_action: "Resolve or waive full-suite drift before 001 commit"
+    blockers: ["Full skill-advisor suite fails outside 001 scope: manual playbook inventory, corpus parity, graph health"]
+    key_files: ["spec.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000022001"
+      session_id: "022-001-pluggable-architecture-impl"
+      parent_session_id: "022-001-pluggable-architecture"
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Summary: 022/001 pluggable architecture
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| Status | Implemented; verification blocked |
+| Artifact | `mcp_server/lib/embedders/**`, `tests/embedders/**`, skill-graph-db migration, semantic-shadow registry wiring |
+| Owner | main agent |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+- Added skill-advisor-local `lib/embedders/` with `EmbedderAdapter`, manifests, Ollama adapter, llama-cpp baseline adapter, schema helpers, and barrel exports.
+- Registry has 6 manifests: `embeddinggemma-300m`, `jina-embeddings-v3`, `nomic-embed-text-v1.5`, `jina-embeddings-v2-base-code`, `mxbai-embed-large-v1`, and `bge-m3`.
+- Default registry selection is `jina-embeddings-v3`; empty `vec_metadata` falls back to `embeddinggemma-300m`.
+- Added `vec_metadata`, `vec_768`, and `vec_1024` idempotent migrations to skill-graph init.
+- Rewired semantic-shadow query embedding through `getActiveEmbedder()` + `getAdapter()`.
+<!-- /ANCHOR:what-built -->
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Copied the 016 embedder pattern, then adapted storage for skill-advisor skill IDs: `vec_<dim>` rows are keyed by `skill_nodes.id` so 002 can reindex skill metadata into the active vector table. Legacy `skill_nodes.embedding` loading remains the fallback when `vec_metadata` is empty.
+<!-- /ANCHOR:how-delivered -->
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+- Copy-adapt 016 mk-spec-memory code (duplicate) rather than extract shared package now — accelerates ship; defer extraction.
+- `vec_metadata` keeps the 016 key/value shape (`active_embedder_name`, `active_embedder_dim`).
+- `vec_<dim>` uses `skill_id TEXT PRIMARY KEY` rather than anonymous integer IDs because skill-advisor reindexing writes per-skill vectors.
+
+## 002-jina-swap-and-reindex/implementation-summary.md
+---
+title: "Summary: 010/002 jina swap + reindex (PARTIAL — blocked on 010/004)"
+description: "Operator runbook authored; actual swap blocked by writer cross-wiring gap discovered during execution. Deferred to 010/004 follow-on packet."
+trigger_phrases:
+  - "010/002 summary"
+  - "jina swap partial"
+  - "skill-graph architecture gap"
+  - "010/004 follow-on"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/002-jina-swap-and-reindex"
+    last_updated_at: "2026-05-17T23:55:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "010/004 writer cross-wire shipped (c0ec765f4); 010/002 unblocked"
+    next_safe_action: "Execute swap per runbook §Swap procedure (post-010/004 wiring shipped); restart daemon + verify"
+    blockers: []
+    key_files: ["evidence/swap-runbook.md", "../001-pluggable-architecture/review/review-report.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000022002"
+      session_id: "022-002-jina-swap-and-reindex-impl"
+      parent_session_id: "022-002-jina-swap-and-reindex"
+    completion_pct: 40
+    open_questions:
+      - "Should 010/004 wire writer to use NEW adapter exclusively, or keep dual-path for backward compat?"
+    answered_questions:
+      - "Q: Auto-promote or operator-driven? A: Operator-driven via explicit setActiveEmbedder() call (per spec.md §7)."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Summary: 010/002 jina swap + reindex — PARTIAL (BLOCKED on 010/004)
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| Status | In Progress — operator swap and reindex pending |
+| Artifact | `evidence/swap-runbook.md` (~200 lines, comprehensive) |
+| Owner | main agent (orig); next: operator executes runbook §"Swap procedure" |
+| Blockers | RESOLVED — 010/004 writer cross-wiring shipped 2026-05-18 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**Shipped:**
+1. **Comprehensive operator runbook** at `evidence/swap-runbook.md`:
+   - Architecture context explaining 010/001's parallel layer + half-wired state
+   - Step-by-step swap procedure (assuming 010/004 ships)
+   - Rollback procedure
+   - Known architecture gap with explicit path forward via 010/004
+2. **DB snapshot** at `.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite.snap-pre-jina-2026-05-17` (4KB, captured during 010/002 execution attempt)
+3. **Architecture-gap discovery document** (this file's §"How It Was Delivered")
+
+**Deferred (requires 010/004):**
+- R1-R4 from spec.md §4 (active pointer set, reindex, smoke tests)
+- vec_1024 table population
+
+## 003-install-guide-docs/implementation-summary.md
+---
+title: "Summary: 010/003 skill-advisor INSTALL_GUIDE + README docs"
+description: "Authored INSTALL_GUIDE §12 'Choosing an embedder' + README 'Pluggable embedder layer' subsection reflecting the half-wired pluggable state (gemma active default, jina-v3 registered but pointer flip deferred to 010/004)."
+trigger_phrases: ["010/003 summary", "skill-advisor embedder docs", "022/003 summary"]
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/003-install-guide-docs"
+    last_updated_at: "2026-05-18T03:30:00Z"
+    last_updated_by: "markdown_agent"
+    recent_action: "Authored INSTALL_GUIDE §12 + README pluggable-layer subsection + cross-links"
+    next_safe_action: "Strict-validate + commit"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md"
+      - ".opencode/skills/system-skill-advisor/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000010003"
+      session_id: "022-003-install-guide-docs-impl"
+      parent_session_id: "022-003-install-guide-docs"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Default embedder claim: gemma (not jina-v3) — matches DEFAULT_ACTIVE_EMBEDDER in schema.ts"
+      - "Swap mechanism: setActiveEmbedder(db, name, dim), not env var — matches schema.ts surface"
+      - "Registered count: 6 manifests, not 8 — matches MANIFESTS array length in registry.ts"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Summary: 010/003 skill-advisor INSTALL_GUIDE + README docs
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| Status | Complete |
+| Artifact | `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md` (§12 added) + `.opencode/skills/system-skill-advisor/README.md` (Configuration subsection + Related Documents row added) |
+| Owner | markdown agent (Opus 4.7, 1M context) |
+| Completed | 2026-05-18 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Surgical doc updates that document the pluggable embedder layer shipped in `010/001` and the active-pointer deferral handed off to `010/004`.
+
+**INSTALL_GUIDE.md additions** (new §12 "Choosing an embedder", ~95 lines):
+- §12.1 Current active default — calls out `embeddinggemma-300m @ 768d via llama-cpp` as the production pointer and explicitly states `jina-embeddings-v3` is registered-but-not-active, with the read-path / write-path split that surfaced in `010/002`.
+- §12.2 Registered alternatives — 6-row table sourced from `mcp_server/lib/embedders/registry.ts` (name / dim / backend / ollama tag or gguf path / max input / notes).
+- §12.3 Swap mechanism — explicit that `setActiveEmbedder(db, name, dim)` is the surface, NOT an env var, NOT an MCP tool. Shows the TypeScript call shape and the database side effects.
+- §12.4 Operator-safe swap runbook — cross-links to `002-jina-swap-and-reindex/evidence/swap-runbook.md` with explicit "do not flip in production until 010/004 ships" guidance.
+- §12.5 Device selection — honest note that skill-advisor does NOT ship an `_resolve_device()` shim; backend-inherited (Ollama handles Metal/CUDA/CPU on its own; llama-cpp baseline inherits from the shared provider cascade).
+- §12.6 Cross-references — links to canonical narrative, mk-spec-memory analog, adapter contract, schema helpers, and the `010/004` follow-on.
+- TOC updated with new entry; existing §12 "RELATED RESOURCES" renumbered to §13 and now includes an embedder-pluggability cross-link.
+
+**README.md additions** (~18 lines + 1 table row):
+- New "Pluggable embedder layer" subsection appended to §5 CONFIGURATION. Names all 6 registered candidates, identifies `embeddinggemma-300m @ 768d via llama-cpp` as the current active default, and links forward to INSTALL_GUIDE §12 plus the canonical narrative.
+
+## 004-skill-graph-db-writer-cross-wire/implementation-summary.md
+---
+title: "Summary: 010/004 writer cross-wire"
+description: "Complete — scaffolded 2026-05-18 to unblock 010/002 swap execution"
+trigger_phrases:
+  - "010/004 summary"
+  - "writer cross-wire implementation"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/004-skill-graph-db-writer-cross-wire"
+    last_updated_at: "2026-05-18T00:05:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Scaffolded packet — spec/plan/tasks/impl-summary skeleton"
+    next_safe_action: "Execute T001 (read refreshSkillEmbeddings)"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000010004"
+      session_id: "010-004-writer-cross-wire-impl"
+      parent_session_id: "010-004-writer-cross-wire-spec"
+    completion_pct: 0
+    open_questions:
+      - "See spec.md §7 Q1 + Q2"
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Summary: 010/004 Writer Cross-Wire — PENDING
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| Status | IMPLEMENTED 2026-05-18T00:15 (complete post-impl deep-review) |
+| Artifact | Refactored `lib/skill-graph/skill-graph-db.ts:refreshSkillEmbeddings` (+~140 LOC for new adapter branch + helper extraction) + new round-trip test `tests/skill-graph/refresh-roundtrip.vitest.ts` (4/4 passing) |
+| Owner | Main agent (autonomous overnight session) |
+| Blockers | None for impl. Post-impl deep-review (5-iter) still complete. |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+**Shipped (implementation):**
+- `lib/skill-graph/skill-graph-db.ts`:
+  - Added `getAdapter` + `EmbedderAdapter` imports from new layer (lines 25-26)
+  - Refactored `refreshSkillEmbeddings()` into a dispatcher (line 769) that branches on `hasActiveEmbedderPointer(database)`
+  - New `refreshSkillEmbeddingsViaAdapter()` helper: uses `getAdapter(active.name).embed([text], {inputType: 'document'})`, writes to `vec_<active.dim>` via INSERT OR REPLACE (with model_id + content_hash columns), handles "manifest not found" → ADAPTER-UNAVAILABLE warning, dim mismatch → EMBEDDING-FAILED warning
+  - Renamed existing implementation to `refreshSkillEmbeddingsLegacy()` (unchanged behavior — backward compat for fresh installs without active pointer)
+- `tests/skill-graph/refresh-roundtrip.vitest.ts` (NEW):
+  - 4 test cases — all passing on first run
+  - adapter path: writes to vec_<dim> via getAdapter + verifies dim/modelId
+  - adapter path: idempotent (re-run with no source changes → 0 embedded, all skipped)
+  - adapter path: unknown manifest → returns ADAPTER-UNAVAILABLE warning, embedded=0
+  - legacy path: when pointer NOT set, falls back to createEmbeddingsProvider + writes skill_nodes.embedding
+
+**Shipped (scaffolding from earlier):**
+- spec.md, plan.md, tasks.md, implementation-summary.md (this file)
+
+## 005-shared-embedder-logic-with-spec-memory/implementation-summary.md
+---
+title: "Implementation Summary: shared embedder logic with spec-memory"
+description: "Shipped 2026-05-21: shared embedder contract surface, llama-cpp purge parity, 'auto' sentinel default with content-type-aware cascade, bootstrap wiring. Round 2 (2026-07-08): provider persistence, cross-server MEMORY_DB_PATH leakage fix, hf-model-server onnx shutdown-crash mitigation."
+trigger_phrases:
+  - "shared embedder logic skill-advisor"
+  - "skill-advisor spec-memory embedder parity"
+  - "auto sentinel default"
+  - "nomic-embed-text-v1.5 default"
+  - "content-type aware cascade"
+  - "active embedder provider persistence"
+  - "MEMORY_DB_PATH cross-server leakage"
+  - "hf-model-server onnx shutdown crash"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/005-shared-embedder-logic-with-spec-memory"
+    last_updated_at: "2026-07-08T06:58:48Z"
+    last_updated_by: "claude"
+    recent_action: "Retro-documented Round 2: provider persistence, DB-leak fix, onnx mitigation"
+    next_safe_action: "Operator: run the true production swap-runbook + cold-daemon live-smoke"
+    blockers: []
+    completion_pct: 100
+---
+# Implementation Summary: shared embedder logic with spec-memory
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status: SHIPPED (original + Round 2 hardening).** The original 5-step plan shipped 2026-05-21 (`5d1ed78ae1`) with a same-day deep-review remediation (`12a322aa45`), but this packet's spec/plan/tasks docs were never updated to say so until this doc pass — only `implementation-summary.md` itself told the truth. A Round 2 pass on 2026-07-08 found and fixed a real cross-server database-path leakage defect, hardened provider persistence, and shipped an empirically-verified (not categorically-guaranteed) onnx shutdown-crash mitigation in a shared binary. Live daemon smoke (originally T017, still not executed as literally scoped) remains the one open operator-side gap — see Known Limitations.
+
+### Remediation commit (after deep-review iter-001)
+
+A single follow-up commit closed all three P1 advisories and three P2 cleanup items surfaced by the deep-review:
+
+- **P1-1 → fixed.** Shipped `mcp_server/tests/embedders/shared-factory-parity.vitest.ts` with 9 cases covering MANIFESTS reference identity, `NotImplementedError` class identity, manifest-lookup parity, adapter-shape parity for the production default `jina-embeddings-v3` plus the local-cascade default `nomic-embed-text-v1.5`, `listManifests` / `listSupportedDimensions` identity, and negative cases for unknown names and the purged baseline. Tasks T011 checked.
+- **P1-2 → fixed.** `INSTALL_GUIDE.md:414` now reads "Ollama → hf-local → OpenAI → Voyage probe chain (ADR-014 local-first)", matching §12.1, auto-select.ts and README.
+- **P1-3 → fixed.** Hardcoded `provider: 'ollama'` in `schema.ts` replaced with `backendToProvider(manifest?.backend)` that maps `BackendKind` to `AutoSelectedEmbedderProvider` (`ollama` → `'ollama'`, `sentence-transformers` → `'hf-local'`, `api` → `'openai'`). Self-documenting and future-proof for any non-Ollama manifest added later.
+- **P2-3 → fixed.** `mcp_server/lib/embedders/index.ts` barrel preamble now names `ensureActiveEmbedder()` and the `'auto'` sentinel cascade.
+- **P2-4 → fixed.** Dropped `pointerNeedsResolution` from `__embedderSchemaTestables` — it had no test consumer.
+- **P2-5 → fixed.** README `setActiveEmbedder` sentence now annotates the 3-arg vs 4-arg cross-skill divergence and points at `embedder-pluggability.md`.
+- **P2-1 + P2-2 → kept.** Both were intentional design choices (test-mock convenience for double-persist, forward-looking documentation for `contentType`). Comments in source make the intent explicit.
+
+Post-remediation gate:
+
+- `@spec-kit/shared` builds clean.
+- `system-skill-advisor` typecheck clean.
+- Embedder vitests: **20 of 20 pass** across `registry.vitest.ts`, `schema.vitest.ts`, `ensure-active-embedder.vitest.ts` (5 cases) and the new `shared-factory-parity.vitest.ts` (9 cases).
+- `validate.sh --strict` on this packet: 0 errors, 0 warnings.
+- 4 shim test failures in `tests/compat/shim.vitest.ts` confirmed PRE-EXISTING (reproduced at HEAD without my changes applied) — unrelated to this work, listed in section "Known Limitations" below.
+
+Verdict moves from CONDITIONAL to PASS (PASS-with-advisories for the P2-1 and P2-2 intentional-design notes only). Deep-review report and resource map at `review/`.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+
+## 006-skill-advisor-zombie-launcher-fix/implementation-summary.md
+---
+title: "Implementation Summary: Skill-Advisor Zombie Launcher Fix"
+description: "Phase 007 closes the skill-advisor zombie launcher regression by adding the missing launcher-owned PID guard before the daemon-backed server spawn."
+trigger_phrases:
+  - "007 zombie launcher summary"
+  - "skill-advisor zombie root cause"
+  - "spawn-three launcher fix"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/006-skill-advisor-zombie-launcher-fix"
+    last_updated_at: "2026-05-18T00:00:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented Phase 007 launcher fix"
+    next_safe_action: "Commit explicit scoped paths"
+    blockers: []
+    key_files:
+      - ".opencode/bin/mk-skill-advisor-launcher.cjs"
+      - ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "007-implementation-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Root cause: launcher did not own a pre-spawn PID guard"
+      - "daemon lease.ts inspected; no source change required"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-skill-advisor-zombie-launcher-fix |
+| **Completed** | 2026-05-18 |
+| **Level** | 2 |
+| **Status** | Complete; commit pending main-agent handoff |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 007 adds the missing skill-advisor launcher-boundary PID guard. The launcher now checks a live `.mk-skill-advisor-launcher.json` owner before consulting the daemon SQLite lease, serializes the pre-spawn acquisition window with the bootstrap lock, writes its own PID guard before `launchServer()`, re-probes ownership, and only then starts `advisor-server.js`.
+
+### Root Cause
+
+The working launchers (`mk-code-index-launcher.cjs` and `mk-spec-memory-launcher.cjs`) write an inline PID lease before spawning their child servers. Skill-advisor had cleanup/probe helpers for `.mk-skill-advisor-launcher.json`, but it never wrote that file as a live PID guard; instead, it only probed `lease.ts` for the daemon SQLite lease.
+
+That daemon SQLite lease is acquired inside `advisor-server.ts` through `startSkillGraphDaemon()` after startup scan work. A duplicate launcher can therefore pass the parent preflight before the first child acquires the daemon lease. Even after losing the daemon lease, the child server remains connected in degraded mode, so the parent launcher remains alive. That is how three `mk-skill-advisor-launcher` processes could survive while only one daemon writer was active.
+
+## 007-skill-advisor-compat-contract-consolidation/implementation-summary.md
+---
+title: "Implementation Summary: 022/004a Skill-Advisor Compat-Contract Consolidation (Wave 1)"
+description: "5 production files now derive confidence/uncertainty thresholds from SKILL_ADVISOR_COMPAT_CONTRACT.defaults. 14 P0 audit findings closed."
+trigger_phrases: ["022/004a shipped"]
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/007-skill-advisor-compat-contract-consolidation"
+    last_updated_at: "2026-05-23T17:20:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Wave 1 shipped"
+    next_safe_action: "Dispatch 004b waves 2-4 via cli-opencode + deepseek-v4-pro"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-cache.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/subprocess.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts"
+    session_dedup:
+      fingerprint: "sha256:00000000000000000000000000000000000000000000000000000000000022f5"
+      session_id: "016-002-022-004a-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Wave 1 shipped closing 14 P0; waves 2-4 split to 004b for cli-opencode dispatch with verified file shapes"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: 022/004a Skill-Advisor Compat-Contract Consolidation (Wave 1)
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|---|---|
+| Status | Complete |
+| Shipped | 2026-05-23 |
+| Files changed | 5 production files |
+| Tests added | 0 (existing vitest covers behavior; explicit invariant tests deferred to 004b) |
+| Typecheck | exit 0 (both skill-advisor mcp_server tsc + system-spec-kit typecheck:root) |
+| Audit findings closed | 14 P0 (f-iter004-001 through f-iter004-014: duplicate confidence/uncertainty threshold defaults) |
+| Wall-clock | ~25 min (including pre-edit investigation) |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+5 production files in `.opencode/skills/system-skill-advisor/mcp_server/lib/` now derive their default confidence (0.8) and uncertainty (0.35) thresholds from a single source: `SKILL_ADVISOR_COMPAT_CONTRACT.defaults` at `compat/contract.ts:9-12`.
+
+### `scorer/fusion.ts`
+
+- Added `import { SKILL_ADVISOR_COMPAT_CONTRACT } from '../compat/contract.js';`
+- `const DEFAULT_CONFIDENCE_THRESHOLD = 0.8` → `= SKILL_ADVISOR_COMPAT_CONTRACT.defaults.confidenceThreshold`
+- `const DEFAULT_UNCERTAINTY_THRESHOLD = 0.35` → `= SKILL_ADVISOR_COMPAT_CONTRACT.defaults.uncertaintyThreshold`
+
+
+## 008-skill-advisor-interface-and-env-vars/implementation-summary.md
+---
+title: "Implementation Summary: 022/004b"
+description: "cli-opencode + deepseek-v4-pro dispatch shipped waves 2-4. 9 P1 + 2 P2 closed."
+trigger_phrases: ["022/004b shipped"]
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/008-skill-advisor-interface-and-env-vars"
+    last_updated_at: "2026-05-23T18:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Phase 004b shipped via cli-opencode"
+    next_safe_action: "Phase 005 cli-opencode dispatch"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/compat/contract.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/scoring-constants.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-policy.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/prompt-cache.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/subprocess.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/skill-advisor-brief.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/data/prompt-policy.default.json"
+    session_dedup:
+      fingerprint: "sha256:00000000000000000000000000000000000000000000000000000000000022a5"
+      session_id: "016-002-022-004b-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: ["Lane-weights env-var override deferred follow-on"]
+    answered_questions: ["9 P1 + 2 P2 closed; 4 pre-existing vitest failures confirmed via git stash"]
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: 022/004b
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|---|---|
+| Status | Complete |
+| Shipped | 2026-05-23 |
+| Files changed | 9 modified + 1 new (data/prompt-policy.default.json) |
+| Typecheck | exit 0 |
+| Vitest | 4 pre-existing failures confirmed via git stash; 0 new failures |
+| Findings closed | 9 P1 + 2 P2 |
+| Wall-clock | ~10 min cli-opencode dispatch |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## 2. WHAT WAS BUILT
+
+### Wave 2 — RoutingCalibration interface expansion
+
+- `scoring-constants.ts:106-140` RoutingCalibration interface gained typed slots for memorySaveBonus, createAgentBonus, testingPlaybookBonus.
+- `fusion.ts:280-295` inline `return 0.55` / `return 0.65` literals replaced with `SCORING_CALIBRATION.routing.memorySaveBonus` / `.createAgentBonus` / `.testingPlaybookBonus` references.
+
+### Wave 3 — Env-var overrides for thresholds + calibration
+
+## 009-embedder-onnx-hardening-round2/implementation-summary.md
+---
+title: "Implementation Summary: Embedder ONNX Hardening — Round 2 Review Remediation"
+description: "F1-F4 implemented and verified: tiered shutdown failsafe, dedicated DB-path override var, preserve-on-omit provider writes, and a real end-to-end DB-resolution regression test."
+trigger_phrases:
+  - "009 embedder onnx hardening round 2 summary"
+  - "hf-model-server tiered shutdown failsafe implemented"
+  - "skill-advisor MK_SKILL_ADVISOR_MEMORY_DB_PATH"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/010-skill-advisor-embedder-stack/009-embedder-onnx-hardening-round2"
+    last_updated_at: "2026-07-08T11:05:00Z"
+    last_updated_by: "claude-sonnet-5"
+    recent_action: "Implemented and verified F1-F4"
+    next_safe_action: "None — packet complete"
+    blockers: []
+    key_files:
+      - ".opencode/bin/hf-model-server.cjs"
+      - ".opencode/bin/mk-skill-advisor-launcher.cjs"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/embedders/schema.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "009-embedder-onnx-hardening-round2-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "F1 test shape: real subprocess + real SIGTERM with a fake loadModel injected via the existing options.loadModel seam"
+      - "F4 test shape: in-process, using createChildEnv()'s real output against the real shared factory (plan's explicitly-allowed alternative to a subprocess)"
+      - "F3 call-site recount: 3 4-arg sites in schema.ts, not 2 as plan/checklist claimed; corrected in 005's summary"
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-embedder-onnx-hardening-round2 |
+| **Completed** | 2026-07-08 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 4 findings from the independent adversarial review of packet 005's Round 2 shipped diff are fixed, each with a regression test that would have caught the original gap — verified by literally reverting each fix in isolation and watching its new test fail.
+
+### F1 — shutdown failsafe can no longer SIGKILL mid-drain
+
+`hf-model-server.cjs`'s `shutdown()` closure is extracted into an exported `installShutdownHandlers(app, options)`. The single fixed 1500ms SIGKILL failsafe is replaced with `computeShutdownFailsafeMs(app)`: idle at shutdown stays 1500ms; a pending model load gets `MODEL_LOAD_TIMEOUT + 2000ms`; in-flight inference gets `INFERENCE_DRAIN_TIMEOUT_MS + 2000ms` (these two are mutually exclusive — an embed can only start after `getModel()` resolves). The timer is now explicitly cleared on both the success and failure paths of `app.close()`, and a `shuttingDown` guard stops a second signal from re-arming a second timer.
+
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

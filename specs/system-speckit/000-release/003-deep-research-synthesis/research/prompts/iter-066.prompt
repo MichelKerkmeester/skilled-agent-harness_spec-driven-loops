@@ -1,0 +1,1246 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities"
+# PACKET: specs/system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Deprecate Standalone Deep Context"
+description: "Phase parent for deprecating the standalone deep-context command, agent, nested mode, and discoverability surfaces while preserving useful codebase-context behavior inside deep-research and deep-review."
+trigger_phrases:
+  - "deep-context deprecation"
+  - "deprecate /deep:context"
+  - "integrate context report into deep research"
+  - "integrate context report into deep review"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/028-deprecate-deep-context-integrate-capabilities"
+    last_updated_at: "2026-07-04T18:32:06Z"
+    last_updated_by: "opencode"
+    recent_action: "Validated all four child phases for standalone deep-context deprecation"
+    next_safe_action: "Recover Spec Memory daemon and reindex packet metadata"
+    blockers:
+      - "Spec Memory daemon indexing is unavailable: socket absent."
+    key_files:
+      - "001-research-baseline-and-inventory/spec.md"
+      - "002-public-redirect-and-replacement-contracts/spec.md"
+      - "003-discoverability-docs-mirrors-and-index/spec.md"
+      - "004-fixtures-benchmarks-and-runtime-cleanup/spec.md"
+      - "001-research-baseline-and-inventory/research/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-04-phase-parent-conversion"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Spec Memory reindex pending daemon recovery."
+    answered_questions:
+      - "User approved the phased conversion plan."
+      - "Completed research evidence is owned by phase 001."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Deprecate Standalone Deep Context
+
+## 001-research-baseline-and-inventory/implementation-summary.md
+---
+title: "Implementation Summary: Research Baseline And Inventory"
+description: "Phase 001 now owns the completed research evidence and inventory baseline contract for the standalone deep-context deprecation packet."
+trigger_phrases:
+  - "deep-context research baseline summary"
+  - "phase 001 implementation summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/028-deprecate-deep-context-integrate-capabilities/001-research-baseline-and-inventory"
+    last_updated_at: "2026-07-04T17:50:32Z"
+    last_updated_by: "opencode"
+    recent_action: "Summarized phase 001 conversion"
+    next_safe_action: "Refresh metadata and validate"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/deep-research-state.jsonl"
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-04-phase-001-summary"
+      parent_session_id: "2026-07-04-phase-001-research-baseline"
+    completion_pct: 70
+    open_questions: []
+    answered_questions:
+      - "Phase 001 is evidence and inventory, not runtime deprecation."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research-baseline-and-inventory |
+| **Completed** | Complete |
+| **Level** | 3 |
+| **Current State** | Research evidence moved, baseline inventory documented, and phase validation passed |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 001 now holds the completed 10-iteration research evidence for standalone `deep-context` deprecation. The phase docs define the inventory and baseline gates that later runtime phases must respect.
+
+### Research Evidence
+
+## 002-public-redirect-and-replacement-contracts/implementation-summary.md
+---
+title: "Implementation Summary: Public Redirect And Replacement Context Contracts"
+description: "Phase 002 implements the /deep:context no-write redirect and bounded replacement context snapshot contracts."
+trigger_phrases:
+  - "deep-context redirect implementation summary"
+  - "replacement context contract summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/028-deprecate-deep-context-integrate-capabilities/002-public-redirect-and-replacement-contracts"
+    last_updated_at: "2026-07-04T17:50:32Z"
+    last_updated_by: "opencode"
+    recent_action: "Validated redirect and snapshots"
+    next_safe_action: "Begin phase 003 discoverability cleanup"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-04-phase-002-summary"
+      parent_session_id: "2026-07-04-phase-002-contract-authoring"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Runtime implementation is limited to redirect, replacement contracts, compiler source mapping, and generated contract refresh."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Public Redirect And Replacement Context Contracts
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-public-redirect-and-replacement-contracts |
+| **Status** | Implemented and validated |
+| **Level** | 3 |
+| **Parent** | `../spec.md` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 002 changes standalone `/deep:context` from an executable context loop into a no-write redirect while preserving replacement context capabilities in supported routes.
+
+### Contract Authoring
+
+The maintained command wrapper `.opencode/commands/deep/context.md`, legacy body, presentation source, auto YAML, confirm YAML, compiler source map, and regenerated compiled contract now agree that `/deep:context` is deprecated, emits replacement guidance, and writes no context artifacts.
+
+## 003-discoverability-docs-mirrors-and-index/implementation-summary.md
+---
+title: "Implementation Summary: Discoverability Docs Mirrors And Index Cleanup"
+description: "Phase 003 completed registry, advisor, active documentation, mirror, and generated-index cleanup for standalone deep-context deprecation."
+trigger_phrases:
+  - "deep-context discoverability summary"
+  - "deep-context registry cleanup summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/028-deprecate-deep-context-integrate-capabilities/003-discoverability-docs-mirrors-and-index"
+    last_updated_at: "2026-07-04T17:50:32Z"
+    last_updated_by: "opencode"
+    recent_action: "Completed phase 003 discoverability cleanup and verification evidence"
+    next_safe_action: "Proceed to phase 004 runtime cleanup."
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+      - ".opencode/agents/deep-context.md"
+      - ".claude/agents/deep-context.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-04-phase-003-summary"
+      parent_session_id: "2026-07-04-phase-003-contract-authoring"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Standalone `/deep:context` remains as a no-write redirect, not a live loop."
+      - "Active OpenCode and Claude `deep-context` mirrors are disabled deprecation stubs."
+      - "Generated skill graph owner tooling reports unrelated inventory-parity warnings; trusted scan still passes."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Discoverability Docs Mirrors And Index Cleanup
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-discoverability-docs-mirrors-and-index |
+| **Status** | Validated |
+| **Level** | 3 |
+| **Parent** | `../spec.md` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 003 removed active standalone `deep-context` discoverability after phase 002 proved the public command path is a no-write redirect.
+
+## 004-fixtures-benchmarks-and-runtime-cleanup/implementation-summary.md
+---
+title: "Implementation Summary: Fixtures Benchmarks Archive And Runtime Cleanup"
+description: "Phase 004 implemented fixture, benchmark, generated-contract, and runtime cleanup for standalone deep-context deprecation."
+trigger_phrases:
+  - "deep-context runtime cleanup summary"
+  - "deep-context fixture cleanup summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/028-deprecate-deep-context-integrate-capabilities/004-fixtures-benchmarks-and-runtime-cleanup"
+    last_updated_at: "2026-07-04T18:32:06Z"
+    last_updated_by: "opencode"
+    recent_action: "Recorded phase 004 validation evidence"
+    next_safe_action: "Recover Spec Memory daemon and reindex packet metadata"
+    blockers:
+      - "Spec Memory daemon indexing is unavailable: socket absent."
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-04-phase-004-summary"
+      parent_session_id: "2026-07-04-phase-004-contract-authoring"
+    completion_pct: 100
+    open_questions:
+      - "Spec Memory reindex pending daemon recovery."
+    answered_questions:
+      - "Active context fan-out is rejected; historical context artifact parsing remains with tests."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Fixtures Benchmarks Archive And Runtime Cleanup
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-fixtures-benchmarks-and-runtime-cleanup |
+| **Status** | Validated |
+| **Level** | 3 |
+| **Parent** | `../spec.md` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 004 updated runtime, fixtures, benchmarks, generated contracts, and workflow/runtime documentation so standalone `deep-context` is no longer kept active by test or generated-contract surfaces.
+
+### Cleanup Implemented
+
+FOLDER
+
+<<<FOLDER id="specs/system-deep-loop/z_archive/029-deep-loop-runtime"
+# PACKET: specs/system-deep-loop/z_archive/029-deep-loop-runtime (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Deep Loop Runtime Phase Parent"
+description: "Phase parent for 6 deep-loop runtime implementation plans derived from packet 028 research."
+trigger_phrases:
+  - "028 deep loop implementation parent"
+  - "deep loop child phase map"
+  - "deep loop implementation planning"
+  - "028 deep loop candidate tail"
+  - "deep loop research to implementation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime"
+    last_updated_at: "2026-07-04T16:45:49.357Z"
+    last_updated_by: "codex-gpt-5"
+    recent_action: "Wired Deep Loop Runtime as a phase parent with 6 implementation sub-phases"
+    next_safe_action: "Use the child map to implement PENDING deep-loop candidates after reducer and fanout gates"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "research/research.md"
+      - "001-reducer-anchor-fix/spec.md"
+      - "006-continuity-threading/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-004-deep-loop-parent"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The deep-loop research child now routes to 6 implementation child folders."
+      - "Packet 030 remains the Wave-0 shipped evidence record for DONE rows."
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: Deep Loop Runtime Phase Parent
+
+
+## 001-reducer-anchor-fix/implementation-summary.md
+---
+title: "Implementation Summary: Deep Research Reducer-Anchor Template Fix (028/004)"
+description: "The shipped deep-research strategy template now carries the 7 reducer-owned ANCHOR markers, so a freshly-copied strategy folds deterministically instead of hard-failing on the first reduce. Template-only, no runtime change. Landed in commit 738e118751."
+trigger_phrases:
+  - "reducer anchor fix summary"
+  - "Q6 anchor implementation summary"
+  - "deep research strategy template fixed"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/001-reducer-anchor-fix"
+    last_updated_at: "2026-07-06T16:24:27.982Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Recorded the DONE Q6-anchor reducer template fix against commit 738e118751"
+    next_safe_action: "None, candidate COMPLETE. Sibling D2/D3/Q2 ships in separate 004 sub-phases"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-004-001-replan"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/001-reducer-anchor-fix` |
+| **Completed** | 2026-06-18 |
+| **Level** | 1 |
+| **Shipped commit** | `738e118751` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A freshly-copied deep-research strategy file now folds its cross-iteration state cleanly instead of crashing on the first reduce. The shipped template `deep_research_strategy.md` previously carried thirteen section headings but none of the `ANCHOR:*` markers the reducer keys on, so the very first reduce after iteration 1 threw `Missing anchor section key-questions in strategy file` and the loop could not advance. The fix wraps the seven reducer-owned headings in their anchor pairs, restoring deterministic reducer behavior for every new deep-research run.
+
+### The seven reducer anchor pairs
+
+The reducer's `updateStrategyContent` (`reduce-state.cjs:734-745`) rewrites seven anchored sections each reduce: `key-questions`, `answered-questions`, `what-worked`, `what-failed`, `exhausted-approaches`, `ruled-out-directions`, `next-focus`. For each one, `replaceAnchorSection` (`:699-714`) requires a matching `ANCHOR:<id>` … `/ANCHOR:<id>` HTML-comment pair and throws if it is absent. You now get those pairs in the shipped template, so the reducer's regex matches on a clean copy and the section is rewritten in place rather than raising. This is a determinism-spine repair: a reducer that hard-fails on a fresh strategy is non-deterministic at the loop level, and this session's own driver hit the throw and hand-patched its working copy before the fix landed.
+
+
+## 002-fanout-determinism-observability/implementation-summary.md
+---
+title: "Implementation Summary: Deep Loop Fan-out Determinism + Observability"
+description: "Implementation summary for the deep-loop fan-out determinism + observability sub-phase: the Wave-0 trio (deterministic merge total-order, read-derived lag/pending/failed pool gauges, graceful self-stop) shipped in packet 030 (commit 46812f12a8) and re-confirmed against current source, plus the locally implemented Wave-1 tail (arrival-order/order-invariance tests and default-off near-duplicate merge dedup). No dependency on the absent D2 reliability signal."
+trigger_phrases:
+  - "implementation summary fanout determinism observability"
+  - "merge total order pool gauges graceful self-stop shipped"
+  - "order invariance property test near-dup dedup tail"
+  - "028 deep-loop determinism impl summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/002-fanout-determinism-observability"
+    last_updated_at: "2026-07-06T16:24:26.523Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Wave-1 tail implemented"
+    next_safe_action: "Run strict validation and mark tasks validation checkbox"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-004-fanout-determinism-observability"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Lineage labels and merged metadata arrays are sorted to make full-registry order-invariance byte-stable."
+      - "Near-duplicate dedup is implemented default-off behind an option, CLI flag and environment variable."
+---
+# Implementation Summary: Deep Loop Fan-out Determinism + Observability
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/002-fanout-determinism-observability` |
+| **Status** | complete |
+| **Level** | 2 |
+| **Actual Effort** | Trio shipped in Wave-0 (commit `46812f12a8`). Wave-1 tail with 9 new unit tests implemented locally, uncommitted per instruction (order-invariance tests, label/metadata sorting, default-off near-dup dedup) |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The deep-loop fan-out **determinism + observability** trio shipped in the flat Wave-0 implementation record (030, commit `46812f12a8`) and is the foundation already in place: the merge sorts its de-duplicated survivors with a hand-written content-then-id total comparator (`compareByContentThenId`, layered on the first-write-wins `id||title` dedup), the concurrent pool emits read-derived `lag`/`pending`/`failed` gauges (`buildPoolGauges`, no new state) and a SIGINT/SIGTERM during a long run flushes a `stopped` partial summary while an empty no-new-findings tick is valid convergence. This worktree now implements the Wave-1 tail: research and review order-invariance tests assert byte-identical merged registries across lineage-order permutations, `fanout-merge.cjs` sorts lineage labels and merged metadata arrays to close the full-registry arrival-order seam and a default-off near-duplicate dedup option collapses normalized body-content restatements across research, review open and review resolved findings.
+
+Status detail: the sub-phase is complete. The 3 Wave-0 candidates shipped in packet 030 (commit `46812f12a8`) and the 3 Wave-1 rows are implemented locally in this worktree. The near-duplicate dedup ships default-off behind an explicit option, CLI flag and environment variable so default merge membership stays byte-compatible, and it is opt-in only because no candidate carries a measured before/after benchmark number. The resilience cluster and the D2/D3/Q2 reliability-learning cluster are recorded as out of scope (sibling sub-phase or NO-GO), not silently dropped.
+
+### Files Changed
+
+## 003-fanout-failure-recovery/implementation-summary.md
+---
+title: "Implementation Summary: Deep Loop Fan-out Failure Recovery (028/004 resilience cluster)"
+description: "Implementation summary for the deep-loop resilience GO cluster (C1-C5): bounded failure-class taxonomy, transient/fatal retry with durable budget, orphan-lineage marker and explicit recover-vs-fresh resume gate."
+trigger_phrases:
+  - "fanout failure recovery summary"
+  - "deep loop resilience implementation"
+  - "transient fatal retry status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/003-fanout-failure-recovery"
+    last_updated_at: "2026-07-06T16:24:27.369Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented C1-C5 fan-out failure recovery with deterministic unit coverage"
+    next_safe_action: "Run strict spec validation and report final verification delta"
+    blockers: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "C4 implemented detect + marker, auto-redispatch remains lease/heartbeat-gated."
+      - "C5 uses explicit --require-existing-state / requireExistingState mode."
+      - "fanout maxRetries defaults to 5 and remains config-overridable, direct pool callers stay no-retry unless opted in."
+---
+# Implementation Summary: Deep Loop Fan-out Failure Recovery (028/004 resilience cluster)
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/003-fanout-failure-recovery` |
+| **Status** | complete |
+| **Completed** | 2026-06-19 |
+| **Level** | 2 |
+| **Actual Effort** | C1-C5 implemented surgically across fan-out pool/run, CLI guards, fan-out config, reducer gate and tests |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented the Level 2 deep-loop **resilience GO cluster**. The change keeps the runtime fire-and-exit shape and adds only bounded, deterministic recovery behavior:
+
+| # | Candidate | What was built | Status |
+|---|-----------|-----------------|--------|
+| C1 | DL-failure-class-taxonomy | `settleItem` preserves `error:{name,message}` and adds bounded `failure_class`, `buildPoolSummary` emits fixed `failure_classes` rollup | DONE |
+| C2 | Q3-fanout-recovery | `classifyLineageFailure` derives transient/fatal verdicts from `timedOut`, `exitCode` and `salvage` only, unknown/default exit remains fatal | DONE |
+| C3 | Q3-fanout-transient-fatal-retry | `runCappedPool` requeues only the failed transient lineage, honors `maxRetries`, reads prior retry count from `orchestration-status.log` and preserves final summary counts | DONE |
+| C4 | DL-orphan-lineage-reset | status-ledger scan detects started-without-terminal lineages and appends `orphan_requeued` markers, auto-redispatch remains lease/heartbeat-gated | DONE |
+| C5 | DL-recover-vs-fresh-gate | `reduce-state.cjs` supports explicit `--require-existing-state` / `requireExistingState` mode and refuses missing, empty or corrupt state logs distinctly from fresh starts | DONE |
+
+### Files Changed
+
+
+## 004-reliability-weighted-convergence/implementation-summary.md
+---
+title: "Implementation Summary: Reliability-Weighted Convergence"
+description: "Planning-stage summary for the deep-loop reliability cluster. The cluster is fully planned, but implementation remains PENDING behind the benchmark gate, the shared f64 Beta primitive and the D2 reliability signal."
+trigger_phrases:
+  - "reliability convergence implementation summary"
+  - "deep loop reliability cluster status"
+  - "beta posterior convergence status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/004-reliability-weighted-convergence"
+    last_updated_at: "2026-07-06T16:24:26.243Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Marked reliability cluster NO-GO. Plan kept as design of record"
+    next_safe_action: "Held NO-GO. Revisit after benchmark tier supplies a success signal"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-004-004-replan"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Reliability-Weighted Convergence
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level3-arch | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/004-reliability-weighted-convergence` |
+| **Completed** | n/a, NO-GO, no implementation this cycle |
+| **Level** | 3 |
+| **Status** | complete |
+
+> **Status nuance**: this packet is `complete` as a closed-out decision, NOT as shipped code. The determination is NO-GO / WILL-NOT-BUILD this cycle, deferred to the benchmark tier. The Level 3 plan is preserved intact as the design of record. The cluster is held behind a benefit micro-benchmark gate, every reliability input is the prior mean (`r=0.5`) today because no writer populates the slot, and D3 / D4 ship default-off when the cluster is eventually built. Revisit once the benchmark tier supplies a per-execution success signal and the REQ-BENCH micro-benchmark.
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+No production reliability code was built in this sub-phase. The deliverable is the Level 3 plan for the reliability-weighted convergence cluster: D-orderhelper, D1 f64 Beta, D2 reliability, D3 cap and gate, D4 default-off policy, Q2 quarantine, Q2-adjudicator-seat and Q7 rank field. The incoming research list had a D3 alias, so the packet tracks the executable rows once and keeps the whole cluster PENDING until the benchmark gate is satisfied.
+
+
+## 005-stop-input-corroboration/implementation-summary.md
+---
+title: "Implementation Summary: Deep Loop STOP-Input Corroboration"
+description: "Runtime implementation summary for the STOP-input corroboration cluster. C1 through C6 are implemented in deep-loop-runtime with deterministic tests. Live benchmark calibration, workflow reported-novelty forwarding and namespace-aware graph-edge persistence remain explicit gates. C7 was already shipped in packet 030 commit 46812f12a8."
+trigger_phrases:
+  - "stop input corroboration implementation summary"
+  - "newInfoRatio audit status"
+  - "lag ceiling status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/005-stop-input-corroboration"
+    last_updated_at: "2026-07-06T16:24:27.096Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented deep-loop-runtime C1-C6 runtime seams and deterministic tests"
+    next_safe_action: "Run live benchmark calibration and wire workflow reported-novelty forwarding"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-004-005-replan"
+      parent_session_id: null
+    completion_pct: 80
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Deep Loop STOP-Input Corroboration
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/005-stop-input-corroboration` |
+| **Completed** | Runtime implementation complete. Live gates pending |
+| **Level** | 2 |
+| **Status** | complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+C1 through C6 were implemented in `.opencode/skills/deep-loop-runtime` with deterministic tests. C7 remains already-shipped via packet 030 commit `46812f12a8` and was not re-implemented. The cluster is complete as a runtime-scoped ship: every candidate landed behind a conservative default-off or benchmark-gated guard, so the live behavior gates (novelty floor/tolerance calibration, fanout lag ceiling, heartbeat cadence), the workflow reported-novelty forwarding and namespace-aware graph-edge persistence remain explicit downstream gates recorded under Known Limitations rather than incomplete core work.
+
+| Candidate | Outcome |
+|-----------|---------|
+| C1 graph-novelty audit | Implemented `computeGraphNoveltyDelta` from graph rows and snapshots, with no model self-report input. Benchmark threshold calibration pending. |
+
+## 006-continuity-threading/implementation-summary.md
+---
+title: "Implementation Summary: Deep Loop Continuity Threading"
+description: "Implementation summary for the continuity-threading cluster. Q5-carried-forward and DL-iterative-retrieval-loop are both DONE."
+trigger_phrases:
+  - "continuity threading implementation summary"
+  - "carried forward block status"
+  - "iterative retrieval status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/006-continuity-threading"
+    last_updated_at: "2026-07-06T16:24:27.687Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented Q5-carried-forward and DL-iterative-retrieval-loop"
+    next_safe_action: "Run strict packet validation"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-06-19-028-004-006-replan"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Deep Loop Continuity Threading
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `system-deep-loop/029-deep-loop-runtime/006-continuity-threading` |
+| **Completed** | 2026-06-19 |
+| **Level** | 2 |
+| **Status** | complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented both continuity candidates. C1 now computes a self-owned carried-forward open-questions block from iteration markdown / records, de-duplicated against the reducer's machine-owned strategy question fold. C2 now derives `Next Focus` from the carried-forward thread or latest finding before falling back to the first strategy question or terminal sentinel. Blocked-stop precedence remains ahead of derived focus, and no new convergence primitive was added.
+
+### Files Changed
+
+| File | Action | Purpose |
+
+## 007-deep-review-followup-hardening/001-orchestrator-validation-parity/implementation-summary.md
+---
+title: "Implementation Summary: Orchestrator Validation Parity"
+description: "Focused implementation evidence for the strict-aware registry filter, node-rule bridge, started-work exemption, and bridge unit coverage."
+trigger_phrases:
+  - "orchestrator validation parity implementation"
+  - "strict only registry filter evidence"
+  - "started work exemption evidence"
+importance_tier: "high"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/007-deep-review-followup-hardening/001-orchestrator-validation-parity"
+    last_updated_at: "2026-07-06T16:24:25.045Z"
+    last_updated_by: "gpt-5.5-opencode"
+    recent_action: "Implemented node-rule bridge follow-up"
+    next_safe_action: "Orchestrator runs rebuild, bash validation, and live proofs"
+    blockers:
+      - "Orchestrator verification pending for T007-T010"
+    key_files:
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/tests/validation-orchestrator-bridge.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "gpt-5.5-032-001-orchestrator-parity-impl"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-orchestrator-validation-parity |
+| **Completed** | Complete; orchestrator verification recorded 2026-07-03 |
+| **Level** | 3 |
+| **Focused Implementation Timestamp** | 2026-07-03T07:34:06Z |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The TypeScript orchestrator now matches the shell contract for the focused parity gaps covered by this child. Strict-only registry entries are eligible when validation runs strict, `validation/*.ts` registry entries resolve to compiled `scripts/dist/validation/*.js` siblings and run through node, skip-severity entries are still suppressed in every mode, and unstarted numbered spec folders no longer need `implementation-summary.md` before work begins.
+
+### Strict-Aware Registry Filtering
+
+`runRegistryShellRules` now computes the strict flag once and delegates eligibility to `shouldRunRegistryShellRule`. That helper excludes `severity: skip` in all modes, excludes `strict_only` rules only outside strict mode, and keeps native-rule suppression unchanged.
+
+### Node Rule Bridge
+
+
+## 007-deep-review-followup-hardening/002-lineage-timestamp-guard/implementation-summary.md
+---
+title: "Implementation Summary: Lineage Timestamp Guard"
+description: "Completed pure timestamp-window checker, fanout-run warning telemetry integration, focused tests, mutation check, and full-suite 0-new-failure verification."
+trigger_phrases:
+  - "lineage timestamp guard summary"
+  - "timestamp anomaly implementation"
+importance_tier: "medium"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/007-deep-review-followup-hardening/002-lineage-timestamp-guard"
+    last_updated_at: "2026-07-06T16:24:25.969Z"
+    last_updated_by: "openai-gpt-5.5"
+    recent_action: "Implementation completed"
+    next_safe_action: "Review final verification evidence"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+      - ".opencode/skills/deep-loop-runtime/lib/deep-loop/lineage-timestamp-window.ts"
+      - ".opencode/skills/deep-loop-runtime/tests/unit/lineage-timestamp-window.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "gpt-5.5-032-002-timestamp-guard"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Warn-first behavior was preserved by placing telemetry after existing success gates."
+      - "The full suite remains at the known two-failure baseline with 0 new failures."
+---
+# Implementation Summary: Lineage Timestamp Guard
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-lineage-timestamp-guard |
+| **Completed** | 2026-07-02T16:08:01Z |
+| **Level** | 3 |
+| **Status** | Complete |
+| **Suite Bar** | 0 new failures against known two-failure baseline |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+| Component | File(s) | Result |
+|-----------|---------|--------|
+| Pure checker | `.opencode/skills/deep-loop-runtime/lib/deep-loop/lineage-timestamp-window.ts` | Added `checkLineageTimestampWindow(records, { windowStart, windowEnd, toleranceMs })` with inclusive bounds, two-minute tolerance, per-class counts, and bounded offender samples. |
+| Fanout integration | `.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs` | Added post-success timestamp anomaly detection using runner-owned slot start/end times; emits `timestamp_anomaly` warning ledger events and `summary.timestamp_anomalies` only when anomalies exist. |
+| Regression tests | `.opencode/skills/deep-loop-runtime/tests/unit/lineage-timestamp-window.vitest.ts` | Covered fabricated pre-window sequence, honest in-window records, boundary-exact records, unparseable and untimestamped classes, warning emission, outcome invariance, and no-event clean gating. |
+
+
+## 007-deep-review-followup-hardening/003-session-id-parity-tests/implementation-summary.md
+---
+title: "Implementation Summary: Session-Id Parity Tests"
+description: "Implemented the test-only session-id parity suite and verified green-on-truth plus red-on-drift behavior."
+trigger_phrases:
+  - "session id parity implementation"
+  - "workflow session id parity tests"
+importance_tier: "medium"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/007-deep-review-followup-hardening/003-session-id-parity-tests"
+    last_updated_at: "2026-07-06T16:24:25.683Z"
+    last_updated_by: "opencode-gpt-5.5"
+    recent_action: "Implemented parity tests"
+    next_safe_action: "Use parity suite during future YAML edits"
+    blockers: []
+    key_files:
+      - ".opencode/skills/deep-loop-runtime/tests/unit/workflow-session-id-parity.vitest.ts"
+      - ".opencode/commands/deep/assets/deep_review_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_context_auto.yaml"
+      - ".opencode/commands/deep/assets/deep_research_auto.yaml"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "fable-032-003-parity-tests"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-session-id-parity-tests |
+| **Completed** | 2026-07-02T16:52:44Z |
+| **Level** | 3 |
+| **Status** | Complete |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A new vitest parity suite now pins the session-id handoff contract across review, context, and research auto workflows. Future edits that remove the resolve step, bypass the caller-supplied session id, change the fallback token, or stop consuming the resolved init value now fail with the affected mode named.
+
+### Structural Workflow Contract
+
+The suite loads `deep_review_auto.yaml`, `deep_context_auto.yaml`, and `deep_research_auto.yaml` from the command assets and reads the relevant YAML nodes with an indentation-scoped structural helper. It asserts `step_resolve_session_id`, the `if_present.bind.session_id_init` value, each mode's `if_absent` fallback, and the config creation field that must consume `{session_id_init}`.
+
+### Fan-Out Prompt Contract
+
+
+## 007-deep-review-followup-hardening/004-section-counts-manifest-fix/implementation-summary.md
+---
+title: "Implementation Summary: Section-Counts Manifest Fix"
+description: "Delivery evidence for the SECTION_COUNTS spec.md per-doc template contract fix."
+trigger_phrases:
+  - "section counts implementation"
+  - "section counts verification"
+importance_tier: "medium"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/007-deep-review-followup-hardening/004-section-counts-manifest-fix"
+    last_updated_at: "2026-07-06T16:24:25.326Z"
+    last_updated_by: "opencode-gpt-5.5"
+    recent_action: "Implemented and verified the SECTION_COUNTS per-doc spec.md expectation fix"
+    next_safe_action: "No follow-up required; packet is complete"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh"
+      - ".opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "opencode-032-004-section-counts"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Section-Counts Manifest Fix
+
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary | v2.2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Status | Complete |
+| Completed At | 2026-07-02T17:59:45Z |
+| Implementer | opencode-gpt-5.5 |
+| Primary File | `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh` |
+| Suite Expectation File | `.opencode/skills/system-spec-kit/scripts/tests/test-validation-extended.sh` |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`_section_expected_spec_h2` now derives the minimum `spec.md` h2 count from the same per-document template contract mechanism already used by `plan.md`, pointed at `spec.md`.
+
+The fallback remains level-specific and only applies when the helper returns `0`: Level 1 and Level 2 fall back to 7, Level 3 falls back to 14, and Level 3+ falls back to 18.
+
+The full validation suite had stale expectations that `053-template-compliant-level2` should warn. That fixture now correctly passes, so the suite expectations were updated from `warn` to `pass`. No fixture content was changed.
+
+<!-- /ANCHOR:what-built -->
+
+---
+
+
+## 008-deep-loop-finding-dedup/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Status COMPLETE. Benchmarked the deep-loop fan-out near-duplicate finding dedup SPECKIT_FANOUT_NEAR_DUP_DEDUP plus the lag-ceiling and progress-heartbeat gauges, all default-off, against a labeled multi-worker fan-out finding set on the production merge and pool path. The dedup collapses every labeled near-duplicate restatement with pooled precision 1.0 and distinct-finding recall 1.0 across research and review, removes 7 of 17 records as restatement noise, keeps the strongest severity on review collapse, and is byte-identical when off. The lag-ceiling fires exactly one warning when on and zero when off, the heartbeat fires 43 steady records over a 2s run at 0.05s cadence when on and zero when off. Verdict GRADUATE for all three, the flip is a separate evidence-gated decision this phase recommends but does not enact."
+trigger_phrases:
+  - "deep loop finding dedup benchmark summary"
+  - "fanout near dup dedup graduate verdict"
+  - "SPECKIT_FANOUT_NEAR_DUP_DEDUP graduation"
+  - "lag ceiling progress heartbeat graduate"
+  - "fanout finding noise dedup precision recall"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/008-deep-loop-finding-dedup"
+    last_updated_at: "2026-07-06T17:15:59.122Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Ran both benchmarks and authored the three graduate verdicts"
+    next_safe_action: "Phase complete, verdict lives in benchmark-results.md"
+    blockers: []
+    key_files:
+      - "scripts/dedup-benchmark.mjs"
+      - "scripts/gauge-benchmark.mjs"
+      - "results/dedup-metrics.json"
+      - "results/gauge-metrics.json"
+      - "benchmark-results.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "claude-opus-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Complete |
+| **Completed** | 2026-06-24 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A benchmark for three default-off deep-loop fan-out capabilities and the verdict it produced. The fan-out merge ships `SPECKIT_FANOUT_NEAR_DUP_DEDUP`, which collapses repeated finding bodies when different fan-out workers restate the same point under different ids and titles, keeping the strongest severity and distinct conflicting content. It also ships the lag-ceiling gauge (a fan-out lag warning) and the progress-heartbeat gauge (per-lineage progress events), both default to zero or off until cadence and benefit are benchmarked. This phase measured all three on the production path and returned a verdict per capability without flipping any default.
+
+The findings:
+
+
+## 009-deep-loop-gauges-dedup-scale/implementation-summary.md
+---
+title: "Implementation Summary"
+description: "Status COMPLETE. Closed the two deep-loop production-readiness gaps the 009 validation flagged, then IMPLEMENTED the two deep-review follow-up fixes, each behind its existing default-off flag and byte-identical off. A flood-test reproduces the 009 0.05s flood (440 records/2s, ~645K/h) and proves a 30s heartbeat cadence informs without flooding (20 observed records over 75s, ~955/h). FIX 1 (P1-7): the lag metric in fanout-pool.cjs was redefined from time-since-pool-start (queue backpressure, which false-fired on every healthy width>concurrency pool) to time-since-last-completion (a TRUE stall signal); the same healthy 10-wide pool that false-fired at 1500ms is now silent, the detector fires once on a genuine 5s stall, the committed pool test was updated to stall semantics plus two new silent-on-backpressure / silent-when-off cases, and the recommended default drops from 5min to 120000ms (2min). FIX 2 (P2-15): nearDuplicateContentKey now factors a title-overlap gate (Jaccard of stopword-stripped title tokens, threshold 0.15) so genuinely-distinct findings with identical bodies but disjoint titles no longer collapse; the title-only false-collapse rate drops 0.50 -> 0 while body-distinguished precision holds (false-collapse 0, distinct recall 1.0, identical-dup 7/7 still collapses) and the off path stays byte-identical. The full 428-test deep-loop suite is green; the gauge committed defaults remain 0 (the recommended values ship documented for the separate graduation flip)."
+trigger_phrases:
+  - "deep loop gauge flood test summary"
+  - "progress heartbeat 30 second cadence decision"
+  - "fanout dedup scale test false collapse rate"
+  - "gauge enable by default decision"
+  - "SPECKIT_FANOUT_NEAR_DUP_DEDUP scale verdict"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/029-deep-loop-runtime/009-deep-loop-gauges-dedup-scale"
+    last_updated_at: "2026-07-06T17:15:59.524Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped P1-7 stall-metric and P2-15 title-aware dedup fixes"
+    next_safe_action: "Phase complete; the full cli test pass runs after"
+    blockers: []
+    key_files:
+      - "scripts/gauge-flood-test.mjs"
+      - "scripts/dedup-scale-test.mjs"
+      - "results/gauge-flood-metrics.json"
+      - "results/dedup-scale-metrics.json"
+      - ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs"
+      - ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs"
+      - ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "claude-opus-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Status** | Complete |
+| **Completed** | 2026-06-24 |
+| **Branch** | `system-speckit/028-memory-search-intelligence` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Two harnesses over the production deep-loop fan-out modules plus two production fixes. The harnesses close the two gaps the 009 dark-flag validation left open (research sections 3.6 gauges and 3.5 dedup) and carry the gauge-default decision. The fixes — a redefined lag metric in `fanout-pool.cjs` (P1-7) and a title-aware dedup match in `fanout-merge.cjs` (P2-15) — land each behind its existing default-off flag and are byte-identical off.
+
+
+FOLDER
+
+<<<FOLDER id="specs/system-skill-advisor/000-rust-backend-rewrite"
+# PACKET: specs/system-skill-advisor/000-rust-backend-rewrite (spec only)
+
+---
+title: "Feature Specification: Rust Skill-Advisor Backend Rewrite Research Phase Parent"
+description: "Phase parent for a two-phase deep-research investigation into whether, where, and how the system-skill-advisor backend (mcp_server, ~51K LOC TypeScript across ~268 files) would benefit from a Rust rewrite — grounded in the current native boundary (SQLite store, ONNX/vector search) versus the JS-resident scoring, matching, and ranking compute."
+trigger_phrases:
+  - "013 rust skill advisor rewrite"
+  - "rust rewrite skill advisor"
+  - "skill advisor rust backend research"
+  - "rust vs typescript skill advisor"
+  - "skill advisor rust deep research"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/000-rust-backend-rewrite"
+    last_updated_at: "2026-07-11T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Authored phase parent over two research children via a GPT-5.6-sol agent swarm"
+    next_safe_action: "Human review of both 16-round charters; then launch each child's research via /deep:research"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "001-research/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-07-11-skill-advisor-000-rust-backend-rewrite-parent"
+      parent_session_id: null
+    completion_pct: 0
+    status: "Not Started"
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 1 -->
+
+# Feature Specification: Rust Skill-Advisor Backend Rewrite Research Phase Parent
+
+## How to read this packet
+
+Use this root `spec.md` as the current phase map. The research subject is **our own** `system-skill-advisor` backend — the authored TypeScript under `.opencode/skills/system-skill-advisor/` (`mcp_server/`) — evaluated against a hypothetical **Rust** reimplementation. The detailed deep-research charters and their predefined angles live in the two phase children, split by backend half: `001-research/` (scoring & ranking core) and `002-research/` (embeddings, vector & serving).
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 1 |
+| **Priority** | P2 |
+| **Status** | Not Started |
+| **Created** | 2026-07-11 |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `system-skill-advisor` |
+| **Successor** | `../017-advisor-audit-and-state-containment/spec.md` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The `system-skill-advisor` backend is ~51K LOC of authored TypeScript across ~268 files (`mcp_server/`), run as a long-lived MCP server (plus a daemon-backed CLI front door) that routes a request to the matching skill. Its retrieval-adjacent primitives lean on native code — the SQLite store via `better-sqlite3`, and embedding/vector similarity through ONNX / vector-index paths — while the routing decision itself is JS-resident scoring math: feature extraction, trigger/vocabulary matching, executor-delegation scoring, and result ranking.
+
+The question "should we rewrite the skill-advisor backend to Rust?" therefore has **no obvious answer from first principles**. The scorer is the strongest pure-compute rewrite candidate, but much of the embedding/vector hot path may already be native — meaning the honest finding may be "little JS-resident compute to reclaim on that half." We need cited, code-referenced evidence, not vibes, before anyone commits engineering time.
+
+### Purpose
+Provide the root purpose, child map, and cross-packet boundary for this packet. This parent routes to two research children that each run a **pre-planned 16-round deep-research pass** with predefined angles tied to concrete files, answering three linked questions per half: (1) what *improvements* would Rust give and where, with references; (2) what *new features* become possible; and (3) what is genuinely *hard or impossible* in TypeScript that Rust unlocks — each culminating in a ranked, decision-ready recommendation (full rewrite / targeted native module / Rust sidecar / do-not-rewrite).
+
+> **Phase-parent note:** This `spec.md` is the only authored document at this parent level. The substantive charters, the round plans, and the predefined angles live in the phase children below.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- Root-level routing for this packet's phase children.
+- Holding the current `system-skill-advisor` backend (`mcp_server/`) as the research subject.
+- A phase-documentation map pointing to the two research children (and any later planning/PoC children).
+
+### Out of Scope
+- Writing any Rust, scaffolding a crate, or wiring a native module (research-only at this stage).
+- Editing the current TypeScript backend as part of this packet.
+- Committing to a rewrite decision before the research produces cited evidence.
+
+### Files to Change
+
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `spec.md` | Create | parent | Root purpose and child map |
+| `description.json` | Create | parent | Search metadata for the parent |
+| `graph-metadata.json` | Create | parent | Child identity and parent graph metadata |
+| `001-research/**` | Create | 001 | Scoring & ranking research charter (feature extraction, matcher, trigger/vocabulary matching, executor-delegation, ranking math) |
+| `002-research/**` | Create | 002 | Embeddings, vector & serving research charter (embedder stack, vector index, skill-graph, daemon/MCP/CLI transport & determinism) |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 001 | `001-research/` | 16-round deep-research pass over the **scoring & ranking core**: feature extraction, trigger/vocabulary/intent matching, executor-delegation scoring, and the ranking math that turns a prompt into a ranked skill recommendation — with an improvement matrix, a new-feature-feasibility matrix, a risk register, and a ranked recommendation | Not Started |
+| 002 | `002-research/` | 16-round deep-research pass over the **embeddings, vector & serving** half: the embedder stack, the vector index / similarity search, the skill-graph tools, and the daemon/MCP/CLI transport & determinism layer — with the same four deliverables | Not Started |
+
+### Phase Transition Rules
+
+- Both children are research-only: they report findings and a recommendation; they write no Rust and touch no backend source.
+- The two halves are disjoint by design — 001 owns the scoring/matching compute, 002 owns the embedding/vector/transport path — so they can run and converge independently.
+- A later `003-*` phase (PoC / boundary spec / targeted native module) is opened **only if** a child's recommendation warrants it.
+- The current backend under `.opencode/skills/system-skill-advisor/` is read-only research material for this packet.
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| root | 001-research | Scoring/ranking charter authored with predefined angles | `001-research/spec.md` §7 lists the angles and the 16-round allocation |
+| root | 002-research | Embedder/vector/serving charter authored with predefined angles | `002-research/spec.md` §7 lists the angles and the 16-round allocation |
+| child | decision | Loop converged or hit the round cap | the child's `research/research.md` exists with cited findings + ranked recommendation |
+<!-- /ANCHOR:phase-map -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+- None for parent wiring. The substantive questions and the predefined research angles live in `001-research/spec.md` and `002-research/spec.md`.
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Research children**: `001-research/` (scoring & ranking core), `002-research/` (embeddings, vector & serving)
+- **Research subject**: `../../../skills/system-skill-advisor/` (`mcp_server/`)
+- **Sibling precedent**: `../../system-speckit/029-rust-backend-rewrite-research/` (same Rust-rewrite research pattern)
+- **Graph metadata**: `graph-metadata.json`
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

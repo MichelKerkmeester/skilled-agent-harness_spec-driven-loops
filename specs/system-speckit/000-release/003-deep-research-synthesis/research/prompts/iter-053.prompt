@@ -1,0 +1,1521 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename"
+# PACKET: specs/sk-prompt/z_archive/003-sk-prompt-testing-playbook-and-agent-rename (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: sk-prompt Manual Testing Playbook + @improve-prompt → @prompt-improver Agent Rename — Phase Parent"
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+description: "Phase parent for two related deliverables. Phase 001 renames the @improve-prompt agent to @prompt-improver across all 4 runtimes plus 31 active-scope reference files. Phase 002 authors a 28-scenario manual testing playbook for the sk-prompt skill conforming to sk-doc templates."
+trigger_phrases:
+  - "085 sk-prompt playbook and agent rename"
+  - "improve-prompt to prompt-improver"
+  - "sk-prompt manual testing playbook"
+  - "rename improve-prompt agent"
+  - "prompt-improver agent"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/003-sk-prompt-testing-playbook-and-agent-rename"
+    last_updated_at: "2026-05-06T15:30:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Both phases shipped + validated"
+    next_safe_action: "Final memory save + close packet"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "001-prompt-improver-rename/spec.md"
+      - "002-sk-prompt-testing-playbook/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "claude-2026-05-06-085"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  This document is the PARENT spec for the 2-phase 085 packet.
+  All planning, tasks, checklists, decisions, and continuity live in the child phase folders 001..002.
+  This file declares ROOT PURPOSE, the SUB-PHASE MANIFEST, and WHAT NEEDS DONE — nothing else.
+-->
+
+## 001-prompt-improver-rename/implementation-summary.md
+---
+title: "Implementation Summary: Phase 001 — Rename @improve-prompt → @prompt-improver"
+description: "Renamed agent across 4 runtime mirrors (.opencode, .claude, .codex, .gemini) plus 35 active-scope reference files via cli-codex gpt-5.5 medium fast plus manual finalization for sandbox-blocked .codex/ paths. Pure semantic rename — agent identity now follows the noun-form family convention (@code, @review, @debug, @context)."
+trigger_phrases:
+  - "085 phase 001 summary"
+  - "improve-prompt to prompt-improver complete"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/003-sk-prompt-testing-playbook-and-agent-rename/001-prompt-improver-rename"
+    last_updated_at: "2026-05-06T19:40:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Phase 001 rename complete + .codex residuals fixed post deep-review"
+    next_safe_action: "Phase 002 testing playbook"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "claude-2026-05-06-085-001-summary"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-prompt-improver-rename |
+| **Completed** | 2026-05-06 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The agent `@improve-prompt` is now `@prompt-improver` across all 4 runtime mirrors. The rename brings the agent name into the noun-form family (`@code`, `@review`, `@debug`, `@context`, `@deep-research`, `@deep-review`) and fixes the verb-object outlier. Pure semantic rename — no behavior change, no dispatcher contract change, no skill change.
+
+### Runtime mirror renames
+
+Four physical file renames: `.opencode/agents/improve-prompt.md` → `prompt-improver.md`; `.claude/agents/improve-prompt.md` → `prompt-improver.md`; `.codex/agents/improve-prompt.toml` → `prompt-improver.toml`; `.gemini/agents/improve-prompt.md` → `prompt-improver.md`. Frontmatter `name:` field rotated in all 4. Body self-references updated.
+
+### Reference rotations across active scope
+
+35 active-scope files carried `@improve-prompt` or `improve-prompt` references. The dispatcher command body, 5 cli-* prompt_quality_card mirrors, sk-prompt SKILL.md §7 agent contract, root README/AGENTS.md, install guides, active changelogs, advisor scripts, and 4 runtime READMEs all rotated. The dispatcher command name `/prompt` and the command file path itself stay UNCHANGED — only body references to the agent change.
+
+
+## 002-sk-prompt-testing-playbook/implementation-summary.md
+---
+title: "Implementation Summary: Phase 002 sk-prompt Manual Testing Playbook"
+description: "Phase 002 completed the sk-prompt manual testing playbook with 28 scenarios, root index coverage, validation evidence, and the single SKILL.md related-playbook backref."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/003-sk-prompt-testing-playbook-and-agent-rename/002-sk-prompt-testing-playbook"
+    last_updated_at: "2026-05-06T16:58:29Z"
+    last_updated_by: "codex"
+    recent_action: "Phase 002 complete: 28 scenarios shipped"
+    next_safe_action: "Final memory save"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md"
+      - ".opencode/skills/sk-prompt/manual_testing_playbook/"
+      - ".opencode/skills/sk-prompt/SKILL.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "codex-2026-05-06-085-002-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-sk-prompt-testing-playbook |
+| **Completed** | 2026-05-06 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+
+FOLDER
+
+<<<FOLDER id="specs/sk-prompt/z_archive/004-sk-prompt-small-model-optimization"
+# PACKET: specs/sk-prompt/z_archive/004-sk-prompt-small-model-optimization (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: small-AI-model optimization — mine smallcode-master for cli-devin / cli-opencode / sk-prompt deltas"
+description: "Phase parent for the deep-research arc that extracts small-model output-quality patterns (context budget engine, output verification, per-model profiles + escalation, structured permissions, skill architecture) from the external smallcode-master corpus and lands them as concrete deltas across our cli-* and sk-* skills."
+trigger_phrases:
+  - "small model optimization"
+  - "smallcode-master research"
+  - "swe-1.6 output quality"
+  - "small-ai-model deep research"
+  - "cli-devin small-model patterns"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization"
+    last_updated_at: "2026-05-21T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Phase 7 rename packet shipped"
+    next_safe_action: "Close arc or start 115"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "007-rename-sk-prompt-small-model/implementation-summary.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000114"
+      session_id: "114-phase-parent-init"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Executor for the 20-iter research loop: cli-devin SWE-1.6 (full dogfood) — locked via ADR-001 in 001-research-smallcode/decision-record.md"
+      - "RQ scope: 5 questions (RQ1 budget, RQ2 verification, RQ3 profiles+escalation, RQ4 structured permissions, RQ5 architecture) — locked via ADR-002"
+      - "Convergence math: newInfoRatio<0.15 × 3 OR cap 20 — locked via ADR-003"
+      - "RQ5 outcome (post-synthesis): new sk-small-model skill (renamed sk-prompt-small-model via Phase 7 on 2026-05-21) with enhances edges to cli-devin + cli-opencode — shipped via 002-foundation-routing"
+---
+
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Feature Specification: small-AI-model optimization
+
+
+## 001-smallcode-deep-research/implementation-summary.md
+---
+title: "Implementation Summary: deep-research mining smallcode-master for small-model patterns"
+description: "Post-synthesis summary — populated AFTER the 20-iter deep-research loop converges and research.md ships. Pre-loop state shows planned scope only."
+trigger_phrases:
+  - "smallcode research summary"
+  - "small-model research findings"
+  - "post-synthesis hand-off"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/001-smallcode-deep-research"
+    last_updated_at: "2026-05-18T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Synthesis complete; 12 iters; HYBRID verdict"
+    next_safe_action: "Spawn 12 follow-on remediation packets"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/deep-research-state.jsonl"
+      - "research/findings-registry.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000006"
+      session_id: "114-001-impl-summary-final"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "RQ1-5 all resolved (5/5)"
+      - "Architecture verdict: HYBRID (distributed refs + enhances edges, no new skill)"
+      - "12 follow-on packets recommended (P0-P4 priority)"
+---
+
+# Implementation Summary: deep-research mining smallcode-master
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status**: COMPLETE. Synthesis pass landed `research/research.md` (1006 lines) on 2026-05-18 with HYBRID architecture verdict + 41 candidate-delta artifacts + 12 recommended follow-on packets.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Packet** | sk-prompt/004-sk-prompt-small-model-optimization/001-smallcode-deep-research |
+| **Level** | 3 |
+| **Status** | COMPLETE |
+| **Last updated** | 2026-05-18 |
+| **Loop executor** | cli-devin SWE-1.6 (free tier, no Pro quota burn per cli-devin v1.0.6.2) |
+| **Iterations completed** | 12 / 20 (convergence at iter 11, synthesis iter 12) |
+| **Convergence trigger** | all_questions_answered (5/5 RQs resolved) |
+| **Final convergenceScore** | 0.15 |
+| **Key findings** | 389 across 12 iters |
+| **Total artifacts** | 41 patterns across 5 RQs |
+| **Follow-on packets** | 12 recommended (P0-P4 priority) |
+| **Wall-clock** | ~1.5 hours total (well under the 5-8 hr estimate) |
+| **Pro-quota burn** | $0 (SWE-1.6 free tier) |
+
+## 002-sentinel-skill-foundation/implementation-summary.md
+---
+title: "Implementation Summary: foundation routing"
+description: "Placeholder pre-implementation. Filled when Phase A ships."
+trigger_phrases:
+  - "foundation routing summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/002-sentinel-skill-foundation"
+    last_updated_at: "2026-05-18T14:45:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Implemented Phase 002 foundation routing with documented generator/search skips"
+    next_safe_action: "Continue with 003-permissions-matrix or 004-cli-devin-quality"
+    blockers:
+      - "generate-context.js rejects skill paths; description.json was authored manually"
+      - "No convenient memory search CLI found under system-spec-kit scripts; T015 skipped"
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000005"
+      session_id: "114-002-impl-summary-init"
+      parent_session_id: null
+    completion_pct: 90
+    open_questions:
+      - "Whether to add sk-prompt/sk-code enhances edges in 006 after real budget guidance lands"
+    answered_questions: []
+---
+
+# Implementation Summary: foundation routing
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status**: Implemented with documented skips. P0 routing and advisor simulation gates pass; generator-based description minting and memory-search verification were skipped for tool-surface reasons.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Packet** | sk-prompt/004-sk-prompt-small-model-optimization/002-sentinel-skill-foundation |
+| **Level** | 2 |
+| **Status** | Implemented with documented skips |
+| **Estimated effort** | ~6.5 hours |
+| **Priority** | P0 (foundation for 003-006) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Built
+
+- Created `.opencode/skills/sk-small-model/` with `SKILL.md`, `description.json`, `graph-metadata.json`, and `references/pattern-index.md`.
+
+## 003-structured-permissions-matrix/implementation-summary.md
+---
+title: "Implementation Summary: cli-opencode permissions-matrix"
+description: "Pre-implementation placeholder for Phase B; filled when packet ships."
+trigger_phrases:
+  - "permissions-matrix summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/003-structured-permissions-matrix"
+    last_updated_at: "2026-05-18T18:20:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented Phase 003 permissions matrix"
+    next_safe_action: "Main agent reviews explicit commit handoff paths, then commits"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000012"
+      session_id: "114-003-impl-summary-init"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+
+# Implementation Summary: cli-opencode permissions-matrix
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status**: Implemented with one documented scope deviation: the pre-dispatch integration is exported as a non-invasive helper in `permissions-gate.ts`; no YAML/runtime wrapper file was edited because the user hard rule froze scope to spec.md §3 files plus the test file.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Packet** | 114-small-ai-model-optimization/003-structured-permissions-matrix |
+| **Level** | 3 |
+| **Status** | Implemented with documented hook-scope deviation |
+| **Effort** | ~12 hours estimated |
+| **Priority** | P0 (RM-8 prevention) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Built
+
+- Created `permissions-matrix.schema.json` as JSON Schema draft-2020-12 with top-level `version`, optional `description`, and flat `rules[]`.
+- Created 3 validated matrices: read-only, packet-local, and repo-wide `.opencode`.
+- Created `permissions-gate.ts` with `evaluateToolCall()` and `evaluatePreDispatchToolCalls()`.
+- Implemented default-deny for malformed/empty matrices, no-match paths, unsupported tools, missing Bash commands, and symlink-resolution failures.
+
+## 004-budget-and-output-verification/implementation-summary.md
+---
+title: "Implementation Summary: cli-devin quality optimization"
+description: "Phase 004 shipped cli-devin context-budget defaults and opt-in output verification."
+trigger_phrases:
+  - "cli-devin quality summary"
+  - "phase 004 implementation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/004-budget-and-output-verification"
+    last_updated_at: "2026-05-18T18:30:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented Phase 004 budget and verification pipeline"
+    next_safe_action: "Review diffs and commit the Phase 004 path list"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-devin/assets/per-model-budgets.json"
+      - ".opencode/skills/cli-devin/references/context-budget.md"
+      - ".opencode/skills/cli-devin/references/output-verification.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/post-dispatch-validate.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000044"
+      session_id: "114-004-implementation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Tokenizer-accurate counting remains future work; Phase 004 uses the smallcode 4 chars/token heuristic."
+      - "Sandboxed real compile/run/test execution remains future work; Phase 004 validator uses static scoring and documents command recipes."
+    answered_questions:
+      - "Verification remains OFF by default in all three recipes."
+      - "Slim model scope excludes GLM-5.1, gpt-5.5, Opus, and Sonnet from per-model-budgets.json."
+---
+
+# Implementation Summary: cli-devin quality optimization
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status**: Implemented. Verification is opt-in and backward compatible; budget defaults are data-only.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Packet** | sk-prompt/004-sk-prompt-small-model-optimization/004-budget-and-output-verification |
+| **Level** | 3 |
+| **Status** | Implemented |
+| **Effort** | ~28 hours planned; implemented in focused pass |
+| **Priority** | P1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 005-model-profiles-and-fallback/implementation-summary.md
+---
+title: "Implementation Summary: shared model intelligence"
+description: "Phase 005 shipped shared small-model registry, Bayesian scoring contracts, and quota-pool-aware fallback."
+trigger_phrases:
+  - "shared intelligence summary"
+  - "phase 005 implementation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/005-model-profiles-and-fallback"
+    last_updated_at: "2026-05-18T16:58:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented Phase 005 registry, Bayesian scoring, and quota-pool-aware fallback"
+    next_safe_action: "Review diffs and commit the explicit Phase 005 path list"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt/references/model-profiles.md"
+      - ".opencode/skills/cli-devin/references/quota-fallback.md"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/bayesian-scorer.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000045"
+      session_id: "114-005-implementation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions:
+      - "Haiku and Gemini Flash remain optional-unverified stubs until the operator adopts and verifies them."
+      - "Cross-packet Bayesian aggregation remains future work; Phase 005 state is per-iter scratch."
+    answered_questions:
+      - "Registry scope is 4 required active models plus 2 optional stubs; GLM-5.1, gpt-5.5, Opus, and Sonnet are excluded."
+      - "Fallback is quota-pool-aware fail-fast by default, not small-to-frontier escalation."
+      - "All new recipe features remain off by default: bayesian_scoring_enabled false, fallback_chain empty, verification_enabled false."
+---
+
+# Implementation Summary: shared model intelligence
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status**: Implemented. Registry is data-only; Bayesian scoring and fallback remain opt-in / fail-fast by default.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Packet** | sk-prompt/004-sk-prompt-small-model-optimization/005-model-profiles-and-fallback |
+| **Level** | 3 |
+| **Status** | Implemented |
+| **Effort** | ~20 hours planned; implemented in focused pass |
+| **Priority** | P2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+
+## 006-budget-pattern-propagation/implementation-summary.md
+---
+title: "Implementation Summary: cross-skill propagation"
+description: "Phase 006 shipped cli-opencode context-budget propagation and sk-prompt budget awareness."
+trigger_phrases: ["cross-skill propagation summary"]
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation"
+    last_updated_at: "2026-05-18T19:10:00Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented Phase 006 cross-skill propagation"
+    next_safe_action: "Main agent reviews the explicit Phase 006 path list, then commits"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-opencode/references/context-budget.md"
+      - ".opencode/skills/cli-opencode/assets/prompt_templates.md"
+      - ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md"
+      - ".opencode/skills/sk-small-model/references/pattern-index.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000046"
+      session_id: "114-006-implementation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "2-stage tool routing remains dropped per research iter-011."
+      - "cli-opencode prompt_templates.md exists in this checkout, so T002 was implemented."
+      - "cli-opencode model windows are registry-driven; Kimi-k2.6 is larger than SWE-1.6, while DeepSeek-v4-pro and Qwen3.6 are smaller."
+---
+
+# Implementation Summary: cross-skill propagation
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+
+> **Status**: Implemented. This is a docs-only propagation packet; no runtime budget logic or 2-stage routing was added.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Packet** | sk-prompt/004-sk-prompt-small-model-optimization/006-budget-pattern-propagation |
+| **Level** | 2 |
+| **Status** | Implemented |
+| **Effort** | ~5 hours planned; implemented in focused pass |
+| **Priority** | P3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+### Built
+
+- Created `.opencode/skills/cli-opencode/references/context-budget.md` as a 54 LOC sentinel mirror that points to `../../cli-devin/references/context-budget.md` for canonical Phase 004 budget semantics.
+
+## 007-sk-ai-small-model-rename/implementation-summary.md
+---
+title: "Implementation Summary: Phase 7 — rename sk-small-model → sk-prompt-small-model"
+description: "Renamed the sentinel skill `sk-small-model` to `sk-prompt-small-model` across 22 live surfaces, regenerated the compiled skill-graph index, and verified the advisor now surfaces the renamed skill at confidence 0.95 on the canonical small-model dispatch prompt — all in ~35 minutes with zero behavioral drift and 100% historical-narrative preservation under 114/001-006."
+trigger_phrases:
+  - "sk-prompt-small-model rename complete"
+  - "phase 7 rename summary"
+  - "skill rename implementation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/007-sk-ai-small-model-rename"
+    last_updated_at: "2026-05-21T00:00:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Authored 007 implementation-summary.md"
+    next_safe_action: "Run 007 canonical save"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000007"
+      session_id: "114-007-impl-summary"
+      parent_session_id: "114-007-spec-init"
+    completion_pct: 98
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: implementation-summary-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary: Phase 7 — rename sk-small-model → sk-prompt-small-model
+
+The sentinel skill `sk-small-model` (created by Phase 002 on 2026-05-18) was renamed in-place to `sk-prompt-small-model` to align with the family naming convention (`sk-code`, `sk-doc`, `sk-prompt`, `sk-git`) and with the 114 phase-parent slug `small-ai-model-optimization` (note the explicit `ai` infix). Behavior, trigger phrases, model coverage, dispatch matrix, and `enhances` edge weights are unchanged — this is a pure identity refactor. The advisor now surfaces `sk-prompt-small-model` at confidence **0.95** on the canonical small-model dispatch prompt, exceeding the 0.7 threshold by a wide margin.
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| Spec folder | `.opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/007-sk-prompt-small-model-rename/` |
+| Phase | 7 of 7 |
+| Predecessor | 006-cross-skill-propagation (Complete 2026-05-18) |
+| Started | 2026-05-21 |
+| Completed | 2026-05-21 |
+| Level | 2 |
+| Branch | `main` (no feature branch per [[feedback_stay_on_main_no_feature_branches]]) |
+| Validate state | `validate.sh --strict` → exit 0, 0 errors, 0 warnings |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A coordinated rename pass across 22 live-reference surfaces, plus advisor reindex, plus parent metadata reconciliation.
+
+## 008-sk-prompt-small-model-rename/implementation-summary.md
+---
+title: "Implementation Summary: Phase 8 — rename sk-ai-small-model → sk-prompt-models"
+description: "Second-pass rename shipped 2026-05-23 (re-applied from scratch after a stash-revert mid-session). Skill dir + frontmatter + 2 sibling reverse edges + 4 playbook FILE renames + 4 root markdown + 2 compiled mirrors + 3 memory files + historical sweep across 4 groups + symlink rotation + 007-path-component restore. validate.sh --strict PASSED 0/0; disambiguating PCRE residual sweep returns 0; advisor surfaces sk-prompt-models at confidence 0.95."
+trigger_phrases:
+  - "sk-prompt-models rename complete"
+  - "phase 8 rename summary"
+  - "skill rename 008 implementation"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "sk-prompt/004-sk-prompt-small-model-optimization/008-sk-prompt-small-model-rename"
+    last_updated_at: "2026-05-23T13:30:00Z"
+    last_updated_by: "main_agent"
+    recent_action: "Authored implementation-summary.md (re-application post stash-revert)"
+    next_safe_action: "Canonical save + workflow closeout"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "checklist.md"
+      - "decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000008"
+      session_id: "114-008-impl-summary"
+      parent_session_id: "114-008-checklist-verified"
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Phase 8 — rename sk-ai-small-model → sk-prompt-models
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+Identity refactor of the small-model sentinel skill: `sk-ai-small-model` → `sk-prompt-models`. Family stays `sk-util` (ADR-001). REWRITE-ALL historical-doc policy applied per user directive (ADR-002), sweeping every occurrence project-wide including phase-007's shipped spec docs. Aggregator symlink rotated. Compiled skill-graph regenerated; advisor surfaces new name at confidence 0.95. **Re-applied from scratch on 2026-05-23 after a mid-session stash-revert by an external workstream (spec_kit → speckit rename).**
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|---|---|
+| Spec folder | `.opencode/specs/sk-prompt/004-sk-prompt-small-model-optimization/008-sk-prompt-models-rename/` |
+| Phase | 8 of 8 |
+| Predecessor | 007-sk-ai-small-model-rename (Complete 2026-05-21) |
+| Started | 2026-05-23 |
+| Completed | 2026-05-23 (re-applied after stash-revert) |
+| Level | 2 + Level-3 decision-record.md addendum |
+| Branch | `main` |
+| Validate state | `validate.sh --strict` → exit 0, 0 errors, 0 warnings ✓ |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+FOLDER
+
+<<<FOLDER id="specs/sk-prompt/z_archive/005-sk-prompt-knowledge-layering"
+# PACKET: specs/sk-prompt/z_archive/005-sk-prompt-knowledge-layering (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Feature Specification: Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-models model-craft hub"
+description: "Phase parent for Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-models model-craft hub"
+trigger_phrases:
+  - "130-prompt-knowledge-layering"
+  - "phase parent"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering"
+    last_updated_at: "2026-06-02T00:00:00Z"
+    last_updated_by: "opus-orchestrator"
+    recent_action: "Spec 130 shipped and verified"
+    next_safe_action: "None; spec complete"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/assets/cli_prompt_quality_card.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-130-prompt-knowledge-layering"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Where does per-model prompt-craft prose live? -> Architecture A: sk-prompt-models/references/models/ (model-knowledge hub)"
+      - "Model coverage scope? -> All active small models at equal depth"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+
+## 001-design-architecture-and-data-contract/implementation-summary.md
+---
+title: "Implementation Summary: Design — 3-layer prompt-knowledge architecture + data contract"
+description: "Phase 001 ratified Architecture A and locked three contracts (recommended_frameworks schema, per-model profile template, prompt-composition precedence rule) as the frozen design target for phases 002-008."
+trigger_phrases:
+  - "prompt knowledge architecture decision"
+  - "recommended_frameworks schema"
+  - "per-model profile template"
+  - "prompt precedence rule"
+  - "model-craft hub design"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/001-design-architecture-and-data-contract"
+    last_updated_at: "2026-06-02T00:00:00Z"
+    last_updated_by: "opus-orchestrator"
+    recent_action: "Design ratified"
+    next_safe_action: "Implement phases 002 and 003 against locked contracts"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+      - ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-130-001-design"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Prose home -> Architecture A (sk-prompt-models/references/models/)"
+      - "Model scope -> all active small models at equal depth"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-design-architecture-and-data-contract |
+| **Completed** | 2026-06-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 001 delivered the ratified Architecture A decision plus three locked contracts — the `recommended_frameworks` JSON schema, the 6-section per-model profile template, and the 3-tier prompt-composition precedence rule — recorded in spec.md sections 8-11. These contracts give phases 002-008 a frozen design target so implementation can proceed without relitigating the architecture.
+
+### Architecture A Decision
+
+
+## 002-repair-and-extend-sync-substrate/implementation-summary.md
+---
+title: "Implementation Summary: Phase 2 — Repair + extend sync substrate"
+description: "Repurposed the prompt-quality-card sync script from a 3-mirror hash comparison into a duplication guard covering all 5 cli-* cards, and fixed a broken checker-path reference in sk-prompt."
+trigger_phrases:
+  - "repair sync substrate"
+  - "duplication guard"
+  - "check-prompt-quality-card-sync"
+  - "cli prompt quality card"
+  - "sync substrate"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/002-repair-and-extend-sync-substrate"
+    last_updated_at: "2026-06-02T18:04:11Z"
+    last_updated_by: "completion-agent"
+    recent_action: "Completed phase — duplication guard shipped, path reference fixed"
+    next_safe_action: "Phase 006 turns the guard GREEN by thinning the inlined tables from the 4 failing cli-* cards"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+      - ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/002-repair-and-extend-sync-substrate"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-repair-and-extend-sync-substrate |
+| **Completed** | 2026-06-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sync substrate that was supposed to prevent framework-table duplication across cli-* cards was doing the wrong job: it compared hashes across only 3 mirrors and had a broken path reference pointing to a script location that did not exist. This phase replaced that mechanism with a duplication guard that directly greps all 5 cli-* executor cards for the two canonical table header rows and fails immediately when any card inlines them. The broken path reference in sk-prompt that pointed callers to the old location was also corrected.
+
+### Duplication Guard (check-prompt-quality-card-sync.sh)
+
+The script was rewritten from a 3-mirror hash-comparison to a DUPLICATION GUARD covering all five cli-* quality cards: `cli-opencode`, `cli-gemini`, `cli-devin`, `cli-codex`, and `cli-claude-code`. It greps each card for two specific table header strings — the framework selection table header (`| Framework | Best for | Complexity band |`) and the CLEAR table header (`| Dimension | Floor | Pre-dispatch question |`). If either header appears in any cli-* card, the script emits a `FAIL` line for that card and exits 1. It exits 0 only when none of the five cards inline either table. The output is human-readable: each card gets either a `PASS` or `FAIL [inlines: <which-tables>]` label, and a final summary line names the overall verdict.
+
+At the end of this phase the guard correctly reported RED — 4 of the 5 cli-* cards still inlined the framework and/or CLEAR table. Turning those failures green is the scope of Phase 006.
+
+## 003-land-recommended-frameworks-data/implementation-summary.md
+---
+title: "Implementation Summary — Land recommended_frameworks data"
+description: "Additive recommended_frameworks object added to all 8 active models in model-profiles.json; sk-prompt model-profiles.md rebuilt with accurate counts and schema documentation."
+trigger_phrases:
+  - "recommended_frameworks"
+  - "model-profiles.json"
+  - "framework data"
+  - "tidd-ec"
+  - "costar lean"
+  - "rcaf default"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/003-land-recommended-frameworks-data"
+    last_updated_at: "2026-06-02T18:30:00Z"
+    last_updated_by: "agent"
+    recent_action: "Populate completion docs"
+    next_safe_action: "Proceed to Phase 4 (004-model-hub-and-priority-profiles)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt/references/model-profiles.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "complete-003-land-recommended-frameworks-data"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-land-recommended-frameworks-data |
+| **Completed** | 2026-06-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Every active model in `sk-prompt/assets/model-profiles.json` now carries a structured `recommended_frameworks` object that tells dispatchers exactly which prompt frameworks to prefer, which to fall back to, and which to avoid — along with pre-planning density guidance, empirical evidence citations, a profile reference path, and a status flag. Before this phase, the file had no per-model framework guidance; dispatchers had to consult scattered docs or rely on tribal knowledge. Now the data lives in one authoritative place and the reference prose in `model-profiles.md` was rebuilt to match.
+
+### recommended_frameworks field
+
+Each of the 8 active model entries gained an additive `recommended_frameworks` object with six sub-fields: `primary`, `fallback`, `avoid`, `preplanning_density`, `evidence`, and `profile_ref`. The assignments are:
+
+
+## 004-model-hub-and-priority-profiles/implementation-summary.md
+---
+title: "Implementation Summary: model-hub-and-priority-profiles"
+description: "Phase 4 matured sk-prompt-models from a thin router into the per-model prompt-craft content hub: rewrote SKILL.md, authored _index.md, and delivered the two priority profiles (minimax-m3.md + mimo-v2.5-pro.md) following the fixed 6-section template."
+trigger_phrases:
+  - "model hub"
+  - "priority profiles"
+  - "sk-prompt-models hub"
+  - "minimax-m3 profile"
+  - "mimo profile"
+  - "small model prompt craft"
+importance_tier: "important"
+contextType: "spec-completion"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/004-model-hub-and-priority-profiles"
+    last_updated_at: "2026-06-02T18:30:00Z"
+    last_updated_by: "agent"
+    recent_action: "Populated completion docs for phase 004"
+    next_safe_action: "Proceed to phase 005-backfill-remaining-profiles"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/references/models/_index.md"
+      - ".opencode/skills/sk-prompt-models/references/models/minimax-m3.md"
+      - ".opencode/skills/sk-prompt-models/references/models/mimo-v2.5-pro.md"
+    session_dedup:
+      fingerprint: "sha256:920a4c16c23cc8b74bb3707be375f277e0f10452c73265af25d0c1fe90fff177"
+      session_id: "phase-004-completion"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Architecture A (per-model profiles as WEIGHT) was confirmed; SKILL.md is the thin entry surface."
+      - "MiniMax-M3 framework carried from minimax-2.7 (TIDD-EC + dense), status: carried."
+      - "MiMo-V2.5-Pro framework empirically benchmarked (COSTAR + lean, benchmark 126/004), status: empirical."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-model-hub-and-priority-profiles |
+| **Completed** | 2026-06-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`sk-prompt-models` was a thin router with no per-model content. Phase 4 flipped it into the canonical prompt-craft hub for the entire small-model rotation: per-model prompt profiles now live here in `references/models/`, executor mechanics stay in `cli-devin`/`cli-opencode`, and the SKILL.md is the thin entry surface that ties them together. The two priority profiles — `minimax-m3.md` and `mimo-v2.5-pro.md` — are the first empirically-grounded profiles in the hub.
+
+## 005-backfill-remaining-profiles/implementation-summary.md
+---
+title: "Implementation Summary: Phase 5 — Backfill Remaining Profiles"
+description: "Six remaining per-model prompt-craft profiles authored under sk-prompt-models/references/models/: minimax-2.7, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1. All follow the canonical 6-section template and resolve the profile_ref/model_id round-trip."
+trigger_phrases:
+  - "backfill remaining profiles"
+  - "minimax-2.7 profile"
+  - "swe-1.6 profile"
+  - "deepseek-v4-pro profile"
+  - "kimi-k2.6 profile"
+  - "qwen3.6 profile"
+  - "glm-5.1 profile"
+  - "small model profiles complete"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/005-backfill-remaining-profiles"
+    last_updated_at: "2026-06-02T18:04:14Z"
+    last_updated_by: "agent"
+    recent_action: "Completion docs written"
+    next_safe_action: "Proceed to phase 006-thin-and-standardize-cli-cards"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt-models/references/models/minimax-2.7.md"
+      - ".opencode/skills/sk-prompt-models/references/models/swe-1.6.md"
+      - ".opencode/skills/sk-prompt-models/references/models/deepseek-v4-pro.md"
+      - ".opencode/skills/sk-prompt-models/references/models/kimi-k2.6.md"
+      - ".opencode/skills/sk-prompt-models/references/models/qwen3.6.md"
+      - ".opencode/skills/sk-prompt-models/references/models/glm-5.1.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "005-backfill-remaining-profiles"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-backfill-remaining-profiles |
+| **Completed** | 2026-06-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+
+## 006-thin-and-standardize-cli-cards/implementation-summary.md
+---
+title: "Implementation Summary: Phase 6: Thin + standardize CLI cards"
+description: "Five CLI prompt-quality cards thinned from 90-line inline duplicates to lean delegating mirrors. cli-devin semantic fork reconciled. Duplication guard passes GREEN on all 5 cards."
+trigger_phrases:
+  - "cli cards thinned"
+  - "thin standardize cli"
+  - "cli prompt card delegation"
+  - "duplication guard cli"
+  - "cli-devin fork reconciled"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/006-thin-and-standardize-cli-cards"
+    last_updated_at: "2026-06-02T00:00:00Z"
+    last_updated_by: "sonnet-impl"
+    recent_action: "Phase 6 complete"
+    next_safe_action: "Proceed to phase 007: wire 3-tier precedence rule + sentinel cross-link into all 5 CLI SKILL.md"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-opencode/assets/prompt_quality_card.md"
+      - ".opencode/skills/cli-gemini/assets/prompt_quality_card.md"
+      - ".opencode/skills/cli-codex/assets/prompt_quality_card.md"
+      - ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md"
+      - ".opencode/skills/cli-devin/assets/prompt_quality_card.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "impl-006-thin-and-standardize-cli-cards"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "How to handle cli-devin STAR/BUILD/ATLAS mechanics? -> Reframed as Devin model-selection MECHANICS, kept as addendum, not CLEAR axes"
+      - "Where does the 3-tier precedence rule live? -> Added to the canonical card; per-model note in each delegating mirror repoints to the hub"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-thin-and-standardize-cli-cards |
+| **Completed** | 2026-06-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Four CLI prompt-quality cards that each inlined the full framework table (ranging from 89 to 96 lines) were refactored into lean delegating mirrors that link to the canonical card for the framework table and CLEAR scoring, and point per-model override notes to the hub profiles. The result is a single source of truth for framework selection: sk-prompt owns the table; the CLI cards own only the per-executor dispatch mechanics. The duplication guard now passes GREEN across all five cards.
+
+
+## 007-wire-precedence-and-crosslinks/implementation-summary.md
+---
+title: "Implementation Summary: Phase 7 — Wire precedence + crosslinks"
+description: "Inserted a uniform 3-tier prompt-composition precedence block into all 5 cli-* SKILL.md files, reconciled cli-devin's bespoke compose mandate, refreshed the canonical card's Mirror Sync section, and repointed pattern-index.md to hub profiles."
+trigger_phrases:
+  - "wire precedence"
+  - "crosslinks"
+  - "3-tier prompt composition"
+  - "cli-* precedence block"
+  - "sk-prompt-models hub crosslink"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/007-wire-precedence-and-crosslinks"
+    last_updated_at: "2026-06-02T18:04:15Z"
+    last_updated_by: "agent"
+    recent_action: "Phase 7 complete: 3-tier block in all 5 cli-* SKILL.md; hub card + pattern-index refreshed"
+    next_safe_action: "Proceed to phase 008-validate-sweep-changelog-reindex"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-devin/SKILL.md"
+      - ".opencode/skills/cli-opencode/SKILL.md"
+      - ".opencode/skills/cli-claude-code/SKILL.md"
+      - ".opencode/skills/cli-codex/SKILL.md"
+      - ".opencode/skills/cli-gemini/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/references/pattern-index.md"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:38fe68bc403651b05e50bebfeb0c4b0a661aede11c5927a95189818c2d58772d"
+      session_id: "007-wire-precedence-and-crosslinks-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "How should cli-devin's bespoke compose mandate coexist with the 3-tier rule? Reconciled: honor the swe-1.6 profile + the 3-tier rule."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-wire-precedence-and-crosslinks |
+| **Completed** | 2026-06-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+All 5 cli-* SKILL.md files now carry an identical 3-tier prompt-composition precedence block that enforces a consistent decision order — fast path first, model override in tier 2 (pointing back to the sk-prompt-models hub), deep path last. Before this phase, each CLI skill defined composition guidance independently, making it impossible for a caller to predict which rule prevailed when two tiers both matched. Now every consumer reads the same three-tier cascade.
+
+## 008-validate-sweep-changelog-reindex/implementation-summary.md
+---
+title: "Implementation Summary: Phase 8 — Validate, changelog, reindex"
+description: "Completion record for the final sweep phase of spec 130: recursive validate, duplication-guard GREEN, data<->prose round-trip across 8 profiles, per-skill changelogs, and skill-advisor reindex."
+trigger_phrases:
+  - "130 validate sweep changelog"
+  - "prompt knowledge layering validation"
+  - "duplication guard green 130"
+  - "phase 8 completion record"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/008-validate-sweep-changelog-reindex"
+    last_updated_at: "2026-06-02T18:30:00Z"
+    last_updated_by: "claude-sonnet"
+    recent_action: "Populated completion docs; all checks GREEN"
+    next_safe_action: "None — phase complete"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-models/references/models/"
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "008-validate-sweep-changelog-reindex-complete"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-validate-sweep-changelog-reindex |
+| **Completed** | 2026-06-02 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 8 is the completion sweep for spec 130. It validates that all prior phases landed correctly, confirms the duplication guard is GREEN, verifies the data-to-prose round-trip across every active small model, adds per-skill changelog entries for all touched skills, and re-indexes the skill advisor so the updated routing knowledge is live. Nothing new was built — this phase asserts that everything built in phases 001-007 is coherent, consistent, and discoverable.
+
+### Recursive Validation
+
+`validate.sh --recursive --strict` was run on the parent folder `130-prompt-knowledge-layering`. All eight child phase folders passed independently, confirming each child's spec.md, plan.md, tasks.md, and implementation-summary.md are structurally sound and placeholder-free.
+
+### Duplication Guard
+
+## 009-refine-hub-cli-connections/implementation-summary.md
+---
+title: "Implementation Summary: refine-hub-cli-connections"
+description: "Closed the C1–C10 seam-drift backlog from the 130 deep research: pointer-ized the precedence rule across all 5 cli-*, de-phantomed STAR, repaired the 4-model navigability/discovery dead-spot, completed the new-provider checklist, and extended + CI-wired the sync guard so none of it can silently regress."
+trigger_phrases:
+  - "refine hub cli summary"
+  - "c1 c10 implementation"
+  - "prompt layering remediation"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/009-refine-hub-cli-connections"
+    last_updated_at: "2026-06-03T06:30:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Implemented C1-C10; guard green"
+    next_safe_action: "Run validate --strict, then commit"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+      - ".opencode/scripts/git-hooks/pre-commit"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "e02c3e95-f865-4fec-8ff8-0a7907486924"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "C7 dispatch matrix confirmed before scaffolding"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-refine-hub-cli-connections |
+| **Completed** | 2026-06-03 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The 3-layer prompt-knowledge architecture (sk-prompt → sk-prompt-models → cli-*) shipped in phases 001–008 had drifted at its seams. This phase closes the full C1–C10 backlog the 5-iteration deep research found, and — the keystone — makes the structure self-enforcing so it cannot drift again.
+
+### The escalation rule is now pointer-only (C1, C2)
+All five `cli-*/SKILL.md` Tier-3 deep-path bullets are now byte-identical pointers to the canonical card; the inlined trigger list (which had drifted in 4 of 5, dropping "policy" and "or audience") is gone. cli-devin also drops its inline RCAF/STAR/BUILD framework-choice restatement, keeping the "OWNED by the profile" pointer.
+
+### STAR is no longer a phantom framework (C3, C4)
+STAR/BUILD are now consistently labeled cli-devin task-shapes, never sk-prompt frameworks or a registry `fallback`. The hub `SKILL.md`, `swe-1.6.md` (§3 and the §4 template heading), and the `_index.md` row all agree with the registry's `fallback: null`.
+
+## 010-hub-doc-alignment-and-router/implementation-summary.md
+---
+title: "Implementation Summary: hub-doc-alignment-and-router"
+description: "Aligned the sk-prompt-models hub to the sk-doc templates: the no-op router became a model-keyed smart router, the README was rewritten to the hub identity with all ephemeral spec refs stripped, and the 9 per-model profiles were conformed to the reference template."
+trigger_phrases:
+  - "hub doc alignment summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/010-hub-doc-alignment-and-router"
+    last_updated_at: "2026-06-03T08:05:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Phase 010 content complete + verified"
+    next_safe_action: "validate --strict then commit; start phase 011"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt-models/SKILL.md"
+      - ".opencode/skills/sk-prompt-models/README.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "e02c3e95-f865-4fec-8ff8-0a7907486924"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-hub-doc-alignment-and-router |
+| **Completed** | 2026-06-03 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The `sk-prompt-models` hub now tells the truth about what it is and conforms to the sk-doc templates.
+
+### A real router replaces the no-op
+SKILL.md §2 declared "this skill has no runtime router of its own." It now carries a model-keyed smart router faithful to `skill_smart_router.md`: runtime discovery of `references/models/*.md`, an alias map that resolves a named model to its canonical id, guarded loads, and three-tier fallback (no model named → index + disambiguation checklist; known-but-unauthored → notice; happy path → load the profile + pattern-index). The LOC cap was relaxed from 200 to 300 because the template requires the inline router.
+
+### The README tells the hub story
+The README was rewritten from the stale "thin sentinel that does not host pattern bodies" framing to the hub identity (it owns the per-model profiles + the registry). Every ephemeral spec reference is gone (the arc name, phase numbers, research-iter links, the spec-folder links), and it follows the skill_readme_template structure with Human Voice Rules (no em dashes, no semicolons).
+
+### The 9 profiles conform
+Each of the 8 model profiles plus `_index.md` now opens with `## 1. OVERVIEW` (Purpose / When to Use / Core Principle) followed by six ALL-CAPS numbered sections. The repetitive restructure was delegated to two subagents against the exact reference template and verified: 7 numbered ALL-CAPS sections per profile, code-block scaffold headers untouched, all body content preserved.
+
+
+## 011-model-profiles-and-benchmark-merge/implementation-summary.md
+---
+title: "Implementation Summary: model-profiles-and-benchmark-merge"
+description: "Staged the benchmark folder rename, merged benchmark 006 into 005 as two eval subsets with a combined synthesis, repointed every stale benchmark citation to the 00N scheme, and applied comment-hygiene to the registry and pattern-index."
+trigger_phrases:
+  - "benchmark merge summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge"
+    last_updated_at: "2026-06-03T09:05:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Phase 011 content complete + verified"
+    next_safe_action: "Stage rename, validate, commit; then phase 012"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-prompt-models/benchmarks/2026-06-02--minimax-capability-discrimination--mimo/"
+      - ".opencode/skills/sk-prompt-models/assets/model-profiles.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "e02c3e95-f865-4fec-8ff8-0a7907486924"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 011-model-profiles-and-benchmark-merge |
+| **Completed** | 2026-06-03 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The benchmark layer is now coherent: the rename is reconciled in git, the two sibling runs are one benchmark, and every citation points at the right place.
+
+### The rename is reconciled
+The benchmark folders had been renamed on disk to a clean `00N` scheme without git (270 deleted old-named files + 6 untracked new folders). This phase stages that rename as part of its commit, with `node_modules` and seed lockfiles staying ignored.
+
+### Two sibling benchmarks became one
+Benchmarks 005 (capability discrimination) and 006 (strict-validation fixtures) are the same MiniMax-M3-vs-MiMo comparison and reach the same verdict. 006 was merged into 005 as `eval/strict-validation/`, 005's original data moved to `eval/capability-discrimination/`, and a merged top-level `synthesis.md` ties both (M3 perfect across 32/32 cells over 8 fixtures and two independent runs; MiMo ~0.89, gate-ineligible both times). The `006-` folder is gone.
+
+### Citations point at the new scheme
+Roughly 40 stale benchmark citations (`120/003`, `126/004`, `127/004`, `127/006`, `113/003`, `113/005`) across the profiles, `_index.md`, `pattern-index.md`, and `model-profiles.json` were repointed to `benchmark 00N`. The registry's annotation fields were hygiened (durable WHY, no ephemeral pointers). `pattern-index.md` also lost its remaining ephemeral spec-phase refs (the `Phase NNN` column became `Status`, the arc name and deleted-phase line and spec-folder links were removed).
+
+
+## 012-cli-doc-alignment/implementation-summary.md
+---
+title: "Implementation Summary: cli-doc-alignment"
+description: "Aligned the five cli-* prompt quality cards, cli-devin's confidence-scoring rubric, and three cli-opencode references to the sk-doc asset/reference templates, scrubbing the ephemeral spec-phase pointers they carried."
+trigger_phrases:
+  - "cli doc alignment summary"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/z_archive/005-sk-prompt-knowledge-layering/012-cli-doc-alignment"
+    last_updated_at: "2026-06-03T10:05:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Phase 012 content complete + verified"
+    next_safe_action: "Validate, commit; then phase 013 (card move + guard rewrite)"
+    blockers: []
+    key_files:
+      - ".opencode/skills/cli-opencode/assets/prompt_quality_card.md"
+      - ".opencode/skills/cli-opencode/references/permissions-matrix.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "e02c3e95-f865-4fec-8ff8-0a7907486924"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 012-cli-doc-alignment |
+| **Completed** | 2026-06-03 |
+| **Level** | 1 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The executor-side docs the user listed now conform to the sk-doc templates and carry no ephemeral spec pointers.
+
+### The five cli-* cards conform
+Each `prompt_quality_card.md` now opens with `## 1. OVERVIEW` (Purpose + Usage), uses ALL-CAPS numbered sections, and ends with `## N. RELATED RESOURCES`. The cards still delegate the 7-framework table and the CLEAR check to the canonical card (the sync guard confirms nothing was inlined), and their canonical-card pointer is left unchanged for phase 013 to repoint.
+
+### The rubric and three references conform
+`cli-devin/assets/confidence-scoring-rubric.md` aligns to the asset template (OVERVIEW first, ALL-CAPS sections, RELATED RESOURCES last) with its `Phase 004` heading + mentions scrubbed. The three `cli-opencode/references/` docs (permissions-matrix, destructive_scope_violations, context-budget) align to the reference template (OVERVIEW with Purpose/When-to-Use/Core-Principle first) with their ephemeral spec-phase pointers (ADR ids, `Phase 003/004/005`, spec-folder paths) rewritten to durable wording. The technical content (the RM-8 walkthrough, the permission examples, the budget notes) is preserved verbatim.
+
+### Files Changed
+| File | Action | Purpose |
+|------|--------|---------|
+
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

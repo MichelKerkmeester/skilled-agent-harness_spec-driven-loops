@@ -1,0 +1,15 @@
+You are deep-research iteration 1 (of 5) for lineage "deepseek-v4-pro-max", investigating one issue in this repository. Use Read, Grep and Bash (git) — read only, DO NOT modify any files. Ground every claim in file:line or command output.
+
+ISSUE
+The skill-advisor (and other runtime writers) leak nested .opencode / .advisor-state directories INTO specs/ instead of keeping advisor state at the repo root. Live symptom (HEAD): 23 nested .opencode dirs under specs/, plus .advisor-state under specs/hooks/008-pi-caching-like-reasonix/..., specs/mcp-tooling/013-mcp-obsidian/009-community-plugin-support/, and specs/system-deep-loop/z_archive/026-goal-opencode-plugin/... . The packet meant to fix this, specs/system-skill-advisor/017-advisor-audit-and-state-containment, is Draft at 0% completion.
+
+FINDINGS SO FAR (prior iterations of this lineage; build on them, do not repeat):
+（none yet — this is iteration 1）
+
+ITERATION 1 FOCUS
+Reproduce and confirm: enumerate the stray .opencode/.advisor-state dirs under specs/, confirm they are advisor-written (not user/tooling), and identify the distinct packets/paths affected.
+
+Reply with ONLY a fenced json block:
+```json
+{"iteration":1,"lineage":"deepseek-v4-pro-max","focus_summary":"<one line>","findings":["<grounded finding with file:line or command evidence>", "..."],"answered":["<question this iteration resolved>"],"open_questions":["<still open>"],"confidence":0.0}
+```

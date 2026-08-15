@@ -1,0 +1,685 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/sk-code/z_archive/016-sk-code-rituals"
+# PACKET: specs/sk-code/z_archive/016-sk-code-rituals
+
+---
+title: "Implementation Summary [template:level_2/implementation-summary.md]"
+description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "template"
+  - "impl summary core"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-code/z_archive/016-sk-code-rituals"
+    last_updated_at: "2026-06-15T14:25:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Shipped sk-code verification rituals; phase 007 complete"
+    next_safe_action: "Phase 007 done; implement phase 008 next"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-code/SKILL.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-scaffold/007-sk-code-rituals"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 016-sk-code-rituals |
+| **Status** | Complete |
+| **Completed** | 2026-06-15 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+<!-- Voice guide:
+     Open with a hook: what changed and why it matters. One paragraph, impact first.
+     Then use ### subsections per feature. Each subsection: what it does + why it exists.
+     Write "You can now inspect the trace" not "Trace inspection was implemented."
+     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
+     For Level 1-2, a Files Changed table after the narrative is fine.
+     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+
+Added a **Verification Rituals** subsection to `.opencode/skills/sk-code/SKILL.md` (in the verification section; 8 lines, confined — smart-router behavior unchanged, confirmed by `git diff`):
+- **B4 — mutation-check / claim-falsifier**: after green, break the guarded code and confirm that test fails; distinguish true-RED from compile-RED; a green-but-vacuous test is a defect, not coverage.
+- **B5 — verification ladder** (unit → in-memory → on-server → live) with each rung's blind spot named in advance, plus the WEBFLOW/OPENCODE rung mapping.
+- **rec #11 — decision-economy + fail-closed by construction**: a named seam with a closing condition (never a bare TODO or dead control); structural invariants over disciplinary reminders.
+
+The constitutional promotion of decision-economy / fail-closed (OQ-1) is left as an owner-gated follow-up. `validate.sh --strict` passes on this folder.
+
+### Mutation-check / claim-falsifier ritual (rec B4)
+
+Once built, the `sk-code` verification guidance will tell you to break the production code after a green run and confirm the test fails, so a green is treated as evidence only after it has bitten. It distinguishes true-RED (the assertion fails against correct intent) from compile-RED (the suite never compiled or ran), which is the cheapest place to kill the most expensive failure class: a green-but-vacuous test.
+
+### Verification ladder with named blind spots (rec B5)
+
+The guidance will add a unit -> in-memory -> on-server -> live ladder, naming what each rung leaves unproven, so you stop claiming "works" at the rung that never exercised the failing path.
+
+### Decision-economy + fail-closed-by-construction doctrine (rec #11 / B5)
+
+The guidance will replace bare `TODO`s with named seams that carry a closing condition, forbid dead controls, and prefer structural invariants over disciplinary reminders.
+
+### Files Changed (planned)
+
+<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/skills/sk-code/SKILL.md` | Modify (planned) | Add the three verification rituals to the verification section without touching smart-router routing |
+| `.opencode/skills/system-spec-kit/constitutional/decision-economy.md` | Create (planned, optional) | Standalone always-surfacing rule, only if OQ-1 promotes it |
+| `.opencode/skills/system-spec-kit/constitutional/fail-closed-by-construction.md` | Create (planned, optional) | Standalone always-surfacing rule, only if OQ-1 promotes it |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+<!-- Voice guide:
+     Tell the delivery story. What gave you confidence this works?
+     "All features shipped behind feature flags" not "Feature flags were used."
+     For Level 1: a single sentence is enough.
+     For Level 3+: describe stages (testing, rollout, verification). -->
+
+Pending implementation. The planned rollout is additive and confined to one read surface, so it ships as a single reviewable diff with `git revert` as the rollback. Delivery will lean on grep assertions for the required ritual phrases, `git diff` confinement to prove the smart router did not regress, and the spec-folder validator.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
+     "Chose X because Y" not "X was selected due to Y." -->
+
+| Decision | Why |
+|----------|-----|
+| Land the rituals as advisory text in `sk-code`, not as enforced runtime code | The research classes B4/B5 as advisory and point-of-use; this is the cheapest high-leverage spot (6/6 convergence on mutation-check) and avoids the cost of structural enforcement that other phases own |
+| Confine edits to the verification section only | Touching the smart router in the same file risks a routing regression across every stack, so we keep §2 byte-untouched and prove it with the diff |
+| Keep generic ladder rung names with a one-line surface mapping | One ladder is easier to read than per-surface ladders; WEBFLOW's live rung maps to browser-console evidence, OPENCODE's to running suites (OQ-2) |
+| Make the standalone constitutional rules optional, gated on OQ-1 | The doctrine earns always-surfacing status only if it needs to reach beyond code work; defaulting to `sk-code`-only keeps the constitutional set lean |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+<!-- Voice guide: Be honest. Show failures alongside passes.
+     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
+
+Pending - gates defined in `checklist.md`; will run `validate.sh` and the relevant `vitest` suites.
+
+| Check | Result |
+|-------|--------|
+| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` | PLANNED - will run at implementation |
+| `bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <snippet>` | PLANNED - will run on any added snippet |
+| grep for required ritual phrases in `sk-code/SKILL.md` (REQ-001/002/004) | PLANNED |
+| smart-router routing unchanged + relevant `vitest` suites | PLANNED - `git diff` confinement + `vitest` where the skill has runnable suites |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+<!-- Voice guide: Number them. Be specific and actionable.
+     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
+     not "Some features may require configuration."
+     Write "None identified." if nothing applies. -->
+
+1. **Advisory, not enforced.** These rituals live as text on a read surface, so they decay if not periodically re-read; structural enforcement (recs B1/B3/B6) is owned by other phases/packets and is out of scope here.
+2. **Subagent reach.** The `sk-code` text is read when the skill is invoked; it does not auto-inject into subagent prompts (that channel is rec B3). Subagents see it only when they load the skill.
+3. **Planned, not built.** Status is PLANNED; all checks above run at implementation time.
+<!-- /ANCHOR:limitations -->
+
+---
+
+<!--
+CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
+Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
+HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
+-->
+
+FOLDER
+
+<<<FOLDER id="specs/sk-design/001-design-foundations"
+# PACKET: specs/sk-design/001-design-foundations (spec only)
+
+---
+title: "Feature Specification: Reconstruct the sk-design foundations mode"
+description: "The shipped sk-design foundations mode lacked a tracked spec-folder packet, so its source-defined routing, static-system workflow, boundaries, and handoff contract were not documented in packet form. This reconstruction records only behavior stated by the intact design-foundations source and its references."
+trigger_phrases:
+  - "sk-design foundations reconstruction"
+  - "static visual system specification"
+  - "design foundations mode"
+  - "foundations source packet"
+importance_tier: "normal"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/001-design-foundations"
+    last_updated_at: "2026-07-16T00:00:00Z"
+    last_updated_by: "gpt-5.6-luna"
+    recent_action: "Drafted source faithful foundations specification"
+    next_safe_action: "Review specification against shipped source"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/design-foundations/SKILL.md"
+      - ".opencode/skills/sk-design/design-foundations/references/"
+      - ".opencode/skills/sk-design/design-foundations/assets/"
+      - ".opencode/specs/sk-design/001-design-foundations/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-design-foundations-reconstruction-20260716"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Feature Specification: Reconstruct the sk-design foundations mode
+<!-- SPECKIT_LEVEL: 2 -->
+
+> RECONSTRUCTION DRAFT (best-effort). This spec did not previously exist in git or memory; it is reconstructed from the intact source .opencode/skills/sk-design/design-foundations/. Verify against that SKILL.md before treating any line as authoritative.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-07-16 |
+| **Branch** | 0055-skilled-migration-000-scaffold |
+| **Spec Folder** | 001-design-foundations |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The shipped foundations mode defines the static visual system for the sk-design family, but its packet was absent from git and memory. The intact source specifies routing, resource loading, static-system decisions, read-only execution, procedure-card selection, downstream handoff, and verification expectations that need to be represented without adding behavior.
+
+### Purpose
+Reconstruct a Level-2 packet that makes the source-defined foundations contract inspectable while preserving its boundaries and uncertainty.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- Static visual-system ownership for color, typography, spacing, layout, hierarchy, grids, responsive adaptation, theming, and design tokens.
+- Activation triggers, skip conditions, family boundaries, smart routing, resource-loading levels, and the direct fallback.
+- The source-defined workflow from system role and constraints through layered static decisions, anti-slop checks, proof, and implementation handoff.
+- The read-only execution contract: backendKind reference-base, Read/Glob/Grep tool surface, and mutatesWorkspace false.
+- At-most-one procedure-card selection, including the no-procedure fallback and relative-path proof.
+- The shared sk_code_handoff envelope and its foundations-owned fields: register posture, surface role, source evidence, output schema, token names, breakpoint intent, accessibility checks, and unresolved risks.
+- Source and asset traceability for this reconstruction.
+
+### Out of Scope
+- Inventing an overall interface direction, voice, or signature concept; the source routes that work to interface.
+- Animation, transition choreography, micro-interactions, or reduced-motion behavior; the source routes that work to motion.
+- Review, scoring, accessibility audit, or production-hardening reports; the source routes that work to audit.
+- Measured token extraction from a live site into DESIGN.md; the source routes that work to md-generator or the future sk-design-spec child.
+- Static-system implementation after handoff; sk-code implements the tokens and breakpoints without inventing roles or changing breakpoint intent.
+- Running the shipped deterministic scripts inside foundations; the source states they run downstream.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| .opencode/specs/sk-design/001-design-foundations/spec.md | Create | Level-2 reconstruction specification for the foundations mode. |
+| .opencode/specs/sk-design/001-design-foundations/plan.md | Create | Source-faithful reconstruction plan and boundaries. |
+| .opencode/specs/sk-design/001-design-foundations/tasks.md | Create | Task breakdown for authoring and checking the packet. |
+| .opencode/specs/sk-design/001-design-foundations/checklist.md | Create | Unchecked Level-2 verification checklist for the reconstruction draft. |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Preserve foundations ownership of the static visual system. | The packet names color, type, spacing, layout, hierarchy, grids, responsive adaptation, theming, and token vocabulary as the owned axis, and distinguishes implementation handoff from design decisions. |
+| REQ-002 | Preserve activation, skip, and family boundaries. | The packet records the source triggers and the stated exclusions for interface, motion, audit, md-generator, and sk-code. |
+| REQ-003 | Preserve the execution contract. | The packet records backendKind reference-base, Read/Glob/Grep only, mutatesWorkspace false, no subagent dispatch in direct fallback, and no script execution by foundations. |
+| REQ-004 | Preserve procedure-card selection discipline. | The packet states that at most one matching private procedure card is selected and cited, or that the no-procedure baseline fallback is stated. |
+| REQ-005 | Preserve the implementation handoff contract. | The packet records the shared sk_code_handoff envelope and only the foundations-owned fields named by the source, without defining an unprovided schema. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-006 | Preserve routing and resource-loading behavior. | The packet records register-first loading, corpus-map plus matching-axis loading, conditional resources, guarded discovery, and the unknown fallback checklist described by the source. |
+| REQ-007 | Preserve static-system decision rules. | The packet records role-first token naming, OKLCH and contrast guidance, dark-mode surface rebuilding, scale-based spacing, content-driven breakpoints, input-capability adaptation, and chart-question matching. |
+| REQ-008 | Preserve source traceability and verification expectations. | The packet cites the intact SKILL.md, references, and assets paths, and separates foundations proof from downstream deterministic checks. |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: The packet describes foundations as the static visual-system mode and lists its owned axes without adding interface, motion, audit, extraction, or implementation behavior.
+- **SC-002**: The packet makes the Read/Glob/Grep-only surface, reference-base backend, non-mutating workspace contract, and downstream-only scripts explicit.
+- **SC-003**: The packet captures the role-first workflow, one-procedure-card rule, proof requirements, and shared sk_code_handoff field ownership.
+- **SC-004**: Every source claim in the reconstruction can be traced to the intact SKILL.md or a cited references/assets path.
+- **SC-005**: The packet remains a reconstruction draft and does not claim runtime validation, generated metadata, or a complete shared-envelope schema that the source does not provide.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | The shared register, context-loading contract, and sk_code_handoff envelope are named by SKILL.md through sibling shared paths. | Exact shared-envelope details are outside this child source set. | Keep the handoff statement limited to the foundations-owned fields named in SKILL.md and retain the shared-path pointers. |
+| Risk | Foundations overlaps with interface, motion, audit, md-generator, and sk-code. | A reconstruction could accidentally assign another family member's behavior to foundations. | Keep the explicit When NOT to Use, Family Boundary, and Integration Points statements in the packet. |
+| Risk | Resource loading is conditional and axis-driven. | Loading every reference or every procedure card would contradict the routing contract. | Record the default resources, matching-axis map, guarded discovery, and at-most-one procedure selection. |
+| Risk | The mode has deterministic scripts but cannot run them. | A packet could falsely claim contrast, rhythm, or naming verification. | Record scripts as downstream checks only and keep the direct mode proof separate from script execution. |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: No runtime performance behavior is specified; the mode is a read-only reference-base tool surface.
+- **NFR-P02**: No execution benchmark is claimed for this reconstruction packet.
+
+### Security
+- **NFR-S01**: No authentication or authorization behavior is specified by the foundations source.
+- **NFR-S02**: The documented tool surface excludes workspace mutation and shell execution.
+
+### Reliability
+- **NFR-R01**: Direct execution keeps the same context, procedure-selection, proof, and handoff bar when subagents are unavailable or disallowed.
+- **NFR-R02**: Missing resources are loaded only when discovered and guarded by the source-defined skill-root checks.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Empty or unscoped request: use the source-defined UNKNOWN_FALLBACK checklist and confirm static axis, system role, concrete input, and verification expectations.
+- Multi-axis request: load the corpus map plus one matching reference from each relevant axis, as defined by the smart router.
+- Missing markdown resource: discover and load only paths that exist within the allowed skill or shared roots.
+
+### Error Scenarios
+- No procedure card matches: state Procedure applied: none - baseline foundations workflow.
+- Subagents are unavailable or disallowed: execute directly with Read, Glob, and Grep while preserving the same proof bar.
+- A deterministic script would be needed: do not invoke it in foundations; leave it for the downstream build, ship, maintenance, human-check, or CI step.
+
+### State Transitions
+- Public mode selected: choose at most one private procedure card after foundations routing.
+- Static decisions ready: emit the shared sk_code_handoff envelope with the foundations-owned fields.
+- Static system already fully specified and only code remains: hand off to sk-code rather than reopening foundations decisions.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 12/25 | One mode with routing, resources, static-system axes, procedure support, handoff, and boundaries. |
+| Risk | 8/25 | The main risk is source drift or boundary invention; no runtime code is changed. |
+| Research | 12/20 | Reconstruction requires the intact source plus all references and assets named in the packet brief. |
+| **Total** | **32/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. OPEN QUESTIONS
+
+- None stated by the foundations source; the exact shared sk_code_handoff schema remains owned by the shared reference named in SKILL.md.
+<!-- /ANCHOR:questions -->
+
+---
+
+## 11. SOURCES / TRACEABILITY
+
+The following intact paths were read as reconstruction evidence. They are source references, not additional behavior:
+
+- .opencode/skills/sk-design/design-foundations/SKILL.md
+- .opencode/skills/sk-design/design-foundations/references/corpus_map.md
+- .opencode/skills/sk-design/design-foundations/references/color/oklch_workflow.md
+- .opencode/skills/sk-design/design-foundations/references/color/palette_theming.md
+- .opencode/skills/sk-design/design-foundations/references/type/typography_system.md
+- .opencode/skills/sk-design/design-foundations/references/layout/layout_responsive.md
+- .opencode/skills/sk-design/design-foundations/references/layout/adaptation_matrix.md
+- .opencode/skills/sk-design/design-foundations/references/data_viz.md
+- .opencode/skills/sk-design/design-foundations/references/worked_examples.md
+- .opencode/skills/sk-design/design-foundations/references/smart_router_pseudocode.md
+- .opencode/skills/sk-design/design-foundations/references/design_system_artifact_contract.md
+- .opencode/skills/sk-design/design-foundations/assets/token_starter.md
+- .opencode/skills/sk-design/design-foundations/assets/contrast_pair_inventory.md
+
+SKILL.md also names the sibling shared pointers for register, context loading, anti-slop vocabulary, design-token vocabulary, cognitive laws, procedure orchestration, and the sk_code_handoff envelope. This packet preserves those pointers without reconstructing their undisclosed contents.
+
+---
+
+## RELATED DOCUMENTS
+
+- Implementation Plan: See plan.md
+- Task Breakdown: See tasks.md
+- Verification Checklist: See checklist.md
+FOLDER
+
+<<<FOLDER id="specs/sk-design/002-design-interface"
+# PACKET: specs/sk-design/002-design-interface (spec only)
+
+---
+title: "Feature Specification: Reconstruct the sk-design interface mode"
+description: "The shipped sk-design interface mode lacked a tracked spec-folder packet, so its source-defined direction, voice, information architecture, composition, routing, and handoff contract were not documented in packet form. This reconstruction records only behavior stated by the intact interface source and its references, procedures, and asset."
+trigger_phrases:
+  - "sk-design interface reconstruction"
+  - "overall interface direction"
+  - "interface composition and voice"
+  - "design-interface source packet"
+importance_tier: "normal"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "sk-design/002-design-interface"
+    last_updated_at: "2026-07-16T00:00:00Z"
+    last_updated_by: "gpt-5.6-luna"
+    recent_action: "Reconstructed interface source contract"
+    next_safe_action: "Review packet against source"
+    blockers: []
+    key_files:
+      - ".opencode/skills/sk-design/design-interface/SKILL.md"
+      - ".opencode/skills/sk-design/design-interface/references/"
+      - ".opencode/skills/sk-design/design-interface/assets/"
+      - ".opencode/skills/sk-design/design-interface/procedures/"
+      - ".opencode/specs/sk-design/002-design-interface/"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-design-interface-reconstruction-20260716"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+# Feature Specification: Reconstruct the sk-design interface mode
+<!-- SPECKIT_LEVEL: 2 -->
+
+> RECONSTRUCTION DRAFT (best-effort). This spec did not previously exist in git or memory; it is reconstructed from the intact source .opencode/skills/sk-design/design-interface/SKILL.md and its references/ and assets/. Verify against that source before treating any line as authoritative.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-07-16 |
+| **Branch** | `0055-skilled-migration-000-scaffold` |
+| **Spec Folder** | 002-design-interface |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+### Problem Statement
+The shipped interface mode defines the overall direction for distinctive UI, including visual voice, information architecture, component direction, interface-level composition, motion posture, critique, and writing. Its packet was absent from git and memory, while the intact source distributes the contract across routing rules, design-process references, private procedure cards, and a mechanical pre-flight asset.
+
+### Purpose
+Reconstruct a Level-2 packet that makes the source-defined interface contract inspectable without adding behavior, inventing a component schema, or claiming runtime verification.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+### In Scope
+- The public `interface` mode's ownership of overall visual direction: palette, typography, layout, motion direction, critique, and interface writing.
+- Subject, audience, and single-page-job grounding; Brand-vs-Product register posture; and the internal VARIANCE, MOTION, and DENSITY Design Read dials.
+- Information architecture and voice guidance: hierarchy from the subject, structural devices that encode true information, one job per interface element, end-user vocabulary, active voice, stable action names, and useful error and empty states.
+- Component and composition direction: a compact color/type/layout/signature token plan, deliberate brief-specific choices, one justified aesthetic risk, reuse-before-generate when a real system exists, and the anti-default critique.
+- Interface-level composition gates for hero structure, bento cell math, eyebrow and meta-label restraint, contrast, CTA naming, section rhythm, layout-family repetition, navigation, responsive collapse, and mobile behavior.
+- Smart routing, default and conditional resource loading, guarded resource discovery, intent-specific references, and the unknown fallback defined by the source.
+- At-most-one private procedure-card selection, relative-path proof, the no-procedure fallback, context basis, proof line, direct Read/Glob/Grep fallback, and the shared sk-code handoff fields named by the source.
+- Real-UI grounding, reuse, render fidelity, targeted revision, redesign intake, variation debiasing, transform application, optional real-world references, quality-floor checks, and source traceability.
+
+### Out of Scope
+- Pure logic, data, or back-end work with no visual surface; the source routes that work to `sk-code`.
+- Documentation or prose work that is not interface work; the source routes that work to `sk-doc`.
+- A measured `DESIGN.md` or `tokens.json` artifact extraction task; the source routes measured artifacts to `md-generator`.
+- Implementation ownership, framework-specific web-surface standards, full-stack behavior, deployment, or Git workflow; the source hands implementation to `sk-code` and related transports.
+- Review, scoring, audit, or release-readiness decisions about whether a transform should be applied; the source routes those questions to `audit`.
+- A reusable style chooser, preset menu, named aesthetic dial, or copied third-party reference; the source explicitly forbids these.
+
+### Files to Change
+
+| File Path | Change Type | Description |
+|-----------|-------------|-------------|
+| .opencode/specs/sk-design/002-design-interface/spec.md | Create | Level-2 reconstruction specification for the interface mode. |
+| .opencode/specs/sk-design/002-design-interface/plan.md | Create | Source-faithful reconstruction plan and boundaries. |
+| .opencode/specs/sk-design/002-design-interface/tasks.md | Create | Task breakdown for authoring and checking the packet. |
+| .opencode/specs/sk-design/002-design-interface/checklist.md | Create | Unchecked Level-2 verification checklist for the reconstruction draft. |
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+### P0 - Blockers (MUST complete)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-001 | Preserve the interface mode's direction and voice ownership. | The packet states that interface makes deliberate, brief-specific choices for palette, typography, layout, motion direction, copy, and one justified aesthetic risk after grounding the subject, audience, and page job. |
+| REQ-002 | Preserve register-first calibration and pinned-axis precedence. | The packet records Brand-vs-Product posture, the one-line Design Read, VARIANCE/MOTION/DENSITY as internal 1-to-10 calibration, and the rule that explicitly pinned brief values are followed exactly. |
+| REQ-003 | Preserve information architecture and interface-writing behavior. | The packet records hierarchy from the subject, structural devices only when they encode real information, one job per element, end-user vocabulary, active voice, stable action names, direct errors, useful empty states, and protected redesign contracts. |
+| REQ-004 | Preserve component direction and interface-level composition. | The packet records the color/type/layout/signature plan, critique against AI-default looks, reuse-before-generate, the one-signature rule, mechanical delivery gates, responsive quality floor, and the source's concrete hero, bento, CTA, spacing, navigation, and layout-family constraints. |
+| REQ-005 | Preserve routing, resources, and private procedure selection. | The packet records the default resources, intent-to-resource map, guarded in-skill discovery, at most one matching procedure card with relative-path proof, and the explicit no-procedure baseline fallback. |
+| REQ-006 | Preserve proof, direct execution, and implementation handoff boundaries. | The packet records context basis, proof before ready or handoff claims, Read/Glob/Grep direct fallback, the required sk-code build manifest fields, and the source's child-agent context/proof requirements without inventing a complete shared schema. |
+
+### P1 - Required (complete OR user-approved deferral)
+
+| ID | Requirement | Acceptance Criteria |
+|----|-------------|---------------------|
+| REQ-007 | Preserve conditional design lanes and escalation behavior. | The packet covers transform verbs, multiple-direction debiasing, real UI, redesign, real-system grounding, Mobbin/Refero critique-against references, thin briefs, pinned conflicts, reduced motion, and the source-defined fallback or escalation for each. |
+| REQ-008 | Preserve source traceability and reconstruction limits. | The packet cites the intact SKILL.md, all 19 reference paths, six procedure paths, and the pre-flight asset, and clearly labels the packet as a best-effort reconstruction rather than shipped runtime verification. |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- **SC-001**: The packet describes interface as the mode for overall direction, voice, information architecture, component direction, interface composition, critique, and writing, without assigning implementation or unrelated work to it.
+- **SC-002**: The packet makes register-first calibration, pinned-axis precedence, subject grounding, one justified risk, anti-default critique, and the one-signature composition rule explicit.
+- **SC-003**: The packet captures the mechanical and objective floors: responsive behavior, visible focus, reduced motion, touch targets, contrast, content discipline, pre-flight binary gates, and explicit mobile collapse.
+- **SC-004**: The packet records routing, conditional resource loading, one-procedure-card selection, direct fallback, proof requirements, and the required sk-code handoff fields at the level stated by the source.
+- **SC-005**: Every source claim in the reconstruction is traceable to the intact SKILL.md or a cited reference, procedure, or asset path, and no runtime execution or generated metadata is claimed.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | The shared register, context-loading contract, sk-code handoff envelope, shared procedures, and external Code Mode manuals are named by the source through sibling paths or integrations. | Their complete schemas and transport behavior are outside the requested interface reference set. | Preserve the source paths and only document the interface-owned fields and decisions named by SKILL.md. |
+| Risk | Interface overlaps with foundations, audit, md-generator, sk-code, sk-doc, and sibling transports. | A reconstruction could assign static-system, review, extraction, implementation, documentation, or transport behavior to interface incorrectly. | Retain the source's activation, skip, transform, integration, and handoff boundaries. |
+| Risk | Resource loading and procedure selection are conditional. | Loading every reference or procedure card by default would contradict the smart router and private-card contract. | Record default resources, intent mapping, guarded discovery, and at-most-one selection rather than a universal load list. |
+| Risk | AI-default avoidance can become a reusable aesthetic menu. | Named cues, real-world references, or seed candidates could be mistaken for presets or copied sources. | Keep grounding upstream, resolve at most one critique-against reference, never surface a chooser, and spend one justified risk. |
+| Risk | The packet is reconstructed without runtime execution. | Claims about a built render, pre-flight result, or downstream implementation could be overstated. | Keep verification items unchecked and distinguish source evidence from runtime or downstream checks. |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:questions -->
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: The source specifies a quality floor and render-fidelity judgment, not a runtime benchmark or implementation performance budget.
+- **NFR-P02**: Responsive behavior, layout stability, loading states where applicable, and readable mobile type remain part of the source-defined quality floor.
+
+### Security
+- **NFR-S01**: No authentication or authorization behavior is specified by the interface mode.
+- **NFR-S02**: Real-world references are read live through the named Code Mode path, never copied into the design or repository; unsanctioned source write-back is out of scope.
+
+### Reliability
+- **NFR-R01**: Every animation has a reduced-motion alternative, and motion cannot be the only carrier of meaning or functionality.
+- **NFR-R02**: Direct execution preserves the same context, procedure-selection, proof, quality, and handoff bar when subagents are unavailable or disallowed.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Pinned visual axis: follow the brief exactly and do not replace it with an AI-default critique.
+- Free visual axis: ground the subject, audience, and page job, then derive palette, type, structure, motion, and copy from the revised plan.
+- Multiple directions: build a subject-grounded candidate space, exclude the median default, use the committed seed-of-thought procedure, and critique every selected direction; never expose the candidate set as a chooser.
+- Existing system: read one matching owned system live and reuse its tokens and components before generating net-new work; do not copy the system into the skill or turn it into a generator.
+
+### Error Scenarios
+- Brief too thin to ground: state the assumed direction and confirm, or use one focused question when the missing fact changes posture or the largest free axis.
+- Transform wording: `make it ...` routes to interface for application; `should it be ...` routes to audit for judgment. `clarify` is an interface alias; `typeset` and `colorize` remain foundations-owned.
+- Convention-heavy category: take one Mobbin or Refero reference when initiative and subscription conditions are met, ask when the lookup is borderline or surprising, and fall back to the generic anti-default process when unavailable or declined.
+- Redesign: classify greenfield, preserve, or overhaul; protect URLs, navigation labels and destinations, form fields and validation, legal/compliance/pricing copy, locked tokens, analytics, SEO, and structured data unless explicitly approved.
+- Missing procedure match: state `Procedure applied: none - baseline interface workflow` and continue with the register, dials, two-pass process, and pre-flight card.
+- Quality or motion conflict: surface the trade-off; accessibility and reduced-motion rules win, and a motion value above 4 must correspond to shippable motion or be lowered.
+
+### State Transitions
+- Public interface mode selected: choose at most one private procedure card after context is captured and cite its relative path in the plan or proof line.
+- Direction plan ready: critique it against the brief and AI-default looks, revise generic choices, then build from the revised plan.
+- Real UI in progress: ground, reuse, render, check the actual render, revise with targeted or broad feedback, and hand off with the manifest.
+- Pre-delivery: run the binary layout and content gates plus the objective quality floor; one failed or uncheckable pre-flight box means the surface is not ready.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 16/25 | One mode spans direction, voice, IA, composition, routing, conditional resources, procedures, quality, references, and handoff. |
+| Risk | 10/25 | The main risks are boundary drift, default/preset invention, and overclaiming runtime behavior; no runtime code is changed. |
+| Research | 15/20 | Reconstruction requires the intact source, all 19 references, six procedures, one asset, and the required Level-2 format exemplar. |
+| **Total** | **41/70** | **Level 2** |
+<!-- /ANCHOR:complexity -->
+
+---
+
+## 10. OPEN QUESTIONS
+
+- The source does not define a universal component inventory or a complete sk-code handoff schema; those remain owned by the shared references named by SKILL.md.
+- The packet does not claim a pre-flight result, render-fidelity result, external-reference lookup, or downstream implementation result.
+<!-- /ANCHOR:questions -->
+
+---
+
+## 11. SOURCES / TRACEABILITY
+
+The following intact paths were read as reconstruction evidence. They are source references, not additional behavior:
+
+- .opencode/skills/sk-design/design-interface/SKILL.md
+- .opencode/skills/sk-design/design-interface/references/aesthetics/README.md
+- .opencode/skills/sk-design/design-interface/references/aesthetics/apple_bento.md
+- .opencode/skills/sk-design/design-interface/references/aesthetics/brutalist.md
+- .opencode/skills/sk-design/design-interface/references/aesthetics/minimalist.md
+- .opencode/skills/sk-design/design-interface/references/aesthetics/soft.md
+- .opencode/skills/sk-design/design-interface/references/design_grounding/design_inventory.md
+- .opencode/skills/sk-design/design-interface/references/design_grounding/design_references_mcp.md
+- .opencode/skills/sk-design/design-interface/references/design_process/brief_to_dials.md
+- .opencode/skills/sk-design/design-interface/references/design_process/copy_and_mock_data.md
+- .opencode/skills/sk-design/design-interface/references/design_process/design_principles.md
+- .opencode/skills/sk-design/design-interface/references/design_process/mechanical_defaults.md
+- .opencode/skills/sk-design/design-interface/references/design_process/real_ui_loop.md
+- .opencode/skills/sk-design/design-interface/references/design_process/redesign_intake.md
+- .opencode/skills/sk-design/design-interface/references/design_process/resource_loading_notes.md
+- .opencode/skills/sk-design/design-interface/references/design_process/transform_application.md
+- .opencode/skills/sk-design/design-interface/references/design_process/ux_quality_reference.md
+- .opencode/skills/sk-design/design-interface/references/design_process/variation_diversity.md
+- .opencode/skills/sk-design/design-interface/references/mcp_tooling/mobbin_tools.md
+- .opencode/skills/sk-design/design-interface/references/mcp_tooling/refero_tools.md
+- .opencode/skills/sk-design/design-interface/procedures/aesthetic_direction.md
+- .opencode/skills/sk-design/design-interface/procedures/deck_direction_spec.md
+- .opencode/skills/sk-design/design-interface/procedures/discovery_question_round.md
+- .opencode/skills/sk-design/design-interface/procedures/prototype_flow_spec.md
+- .opencode/skills/sk-design/design-interface/procedures/variation_set.md
+- .opencode/skills/sk-design/design-interface/procedures/wireframe_exploration.md
+- .opencode/skills/sk-design/design-interface/assets/interface_preflight_card.md
+
+The source also names sibling shared references, Code Mode transports, the manual-testing playbook, and the Apache-2.0 license. This packet preserves those pointers and boundaries without reconstructing schemas or behavior that are not part of the requested interface source set.
+
+---
+
+## RELATED DOCUMENTS
+
+- Implementation Plan: See plan.md
+- Task Breakdown: See tasks.md
+- Verification Checklist: See checklist.md
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.

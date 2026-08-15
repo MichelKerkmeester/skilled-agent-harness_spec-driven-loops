@@ -1,0 +1,1610 @@
+## Role
+You are writing the v4.0.0.0 changelog for "OpenCode Spec-Kit", a developer framework of AI skills/commands/hooks. For EACH spec folder below, write a DETAILED, house-style changelog entry. You have no tools; reply with markdown only.
+
+## Context
+Each folder shipped in the v3.6.0.0 -> v4.0.0.0 cycle. Its internal docs are given verbatim (ignore YAML frontmatter, ANCHOR markers, spec ids, CI names, session metadata, phase numbers).
+
+<<<FOLDER id="specs/hooks/007-fable-governor-pi-hook"
+# PACKET: specs/hooks/007-fable-governor-pi-hook (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Phase Parent: Fable Governor Hook Research + Pi-Only Subagent Dispatch Directive"
+description: "Two-part research and follow-up: (1) evaluate whether the fable governor per-turn hook should be updated or replaced with the governor logic now embedded in AGENTS.md; (2) design a pi-only per-turn hook directive mandating native pi-subagents plugin for subagent dispatch unless the user explicitly requests a specific cli-* skill mode."
+trigger_phrases:
+  - "fable governor hook"
+  - "governor capsule"
+  - "pi subagents directive"
+  - "pi-only hook"
+  - "subagent dispatch policy"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook"
+    last_updated_at: "2026-08-05T00:23:03Z"
+    last_updated_by: "pi-phase-state-reconciliation"
+    recent_action: "Completed packet status reconciliation and refreshed all phase metadata"
+    next_safe_action: "Preserve the uncommitted-state freshness caveat; no further in-scope implementation remains"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "006-dispatch-authorization-hardening/spec.md"
+      - "007-dispatch-validation-evidence/spec.md"
+      - "008-phase-state-reconciliation/spec.md"
+      - "009-injection-contract-directive-sync/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-04-cli-038"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "All nine phases have evidence-supported Complete status; the package-root corpus remains an explicit exit-1 deferral."
+      - "The final packet remains uncommitted, so any CONTINUITY_FRESHNESS warning is reported separately."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+
+## 001-research/implementation-summary.md
+---
+title: "Implementation Summary: Governor Hook + Pi Subagent Directive Research"
+description: "Research phase completed: ten three-model iterations, evidence logging, and synthesis deliverables are recorded with route limitations preserved."
+trigger_phrases:
+  - "governor research"
+  - "pi subagent directive"
+importance_tier: "important"
+status: complete
+completion_pct: 100
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook/001-research"
+    last_updated_at: "2026-08-11T06:43:16.092Z"
+    last_updated_by: "pi-phase-state-reconciliation"
+    recent_action: "Reconciled the completed research evidence and checklist"
+    next_safe_action: "Continue with the implementation follow-up phases"
+    blockers: []
+    key_files:
+      - "evidence/iterations.md"
+      - "evidence/synthesis.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:286cca9c7b9da6f23d51e1ee3f0caaeb6955ad3f365a0585a2f204c2bc744175"
+      session_id: "2026-08-04-cli-038-research"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research |
+| **Status** | Complete |
+| **Completion** | 100% research evidence; route limitations preserved |
+| **Completed** | 2026-08-04 (research phase) |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The research phase for the governor-hook verdict and the pi-only subagent dispatch directive is complete. All ten planned iterations ran, route limitations were recorded, and the two named deliverables (verdict plus directive design) are present in the evidence directory.
+
+### Research Protocol
+
+Three independent tracks answer two questions: (1) keep/update/replace the fable governor per-turn hook given the governor logic now in AGENTS.md; (2) design a pi-only per-turn directive mandating native pi-subagents for subagent dispatch unless the user explicitly requests a cli-* skill mode. Track A runs 5 fresh-context iterations on GPT-5.6 Luna (max thinking) via native pi-subagents; Track B runs 3 iterations of GLM 5.2 (high) through cli-devin; Track C runs 2 iterations of Grok 4.5 Max through cli-cursor. No track may be truncated because another converged.
+
+
+## 002-governor-parity/implementation-summary.md
+---
+title: "Implementation Summary: Governor Capsule Parity Fix"
+description: "Implemented and verified bridge parity and model-agnostic contract wording; historical corpus evidence remains qualified."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "governor parity summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook/002-governor-parity"
+    last_updated_at: "2026-08-11T06:43:16.244Z"
+    last_updated_by: "pi-phase-state-reconciliation"
+    recent_action: "Reconciled completed bridge parity evidence"
+    next_safe_action: "Continue with Phase 003 follow-up"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs"
+      - ".opencode/hooks/injection-contract.md"
+    session_dedup:
+      fingerprint: "sha256:2a29b7760be59b5faa23a59c20dcbdf82ee694082c2ad394a9bf3000fb2f72ab"
+      session_id: "2026-08-04-cli-038-002"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Governor Capsule Parity Fix
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-governor-parity |
+| **Status** | Complete |
+| **Completion** | 100% implementation evidence; historical corpus result remains qualified |
+| **Completed** | 2026-08-04 (via cli-codex, gpt-5.6-luna max fast) |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented by cli-codex dispatch (gpt-5.6-luna max fast, exit 0, ~306k tokens). Proof directive added to both bridge fallback branches and the native path now delegates to the canonical renderer; parity test added; Fable-5 label synced.: bridge fallback parity fix (`mk-skill-advisor-bridge.mjs:319-373`) + label sync (`injection-contract.md:50-58`). Evidence: `../001-research/evidence/synthesis.md` recommendations 1-2.
+
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 003-pi-directive-capsule/implementation-summary.md
+---
+title: "Implementation Summary: Pi Directive Capsule Layer"
+description: "Implemented and verified the Pi-only directive capsule with focused transform, isolation, and startup evidence."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "pi directive capsule summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook/003-pi-directive-capsule"
+    last_updated_at: "2026-08-11T06:43:16.393Z"
+    last_updated_by: "pi-phase-state-reconciliation"
+    recent_action: "Reconciled completed Pi directive capsule evidence"
+    next_safe_action: "Continue with Phase 004 follow-up"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
+      - ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/prompt-advisor.vitest.ts"
+    session_dedup:
+      fingerprint: "sha256:6fafaeeff7701be14562aed741cdffcddc20aac2145cd3d0ffef4908cbec8219"
+      session_id: "2026-08-04-cli-038-003"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Pi Directive Capsule Layer
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-pi-directive-capsule |
+| **Status** | Complete |
+| **Completion** | 100% implementation evidence; registration-order scope is explicitly owned by Phase 007 |
+| **Completed** | 2026-08-04 (via cli-codex, gpt-5.6-luna max fast) |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented by cli-codex dispatch (gpt-5.6-luna max fast, exit 0, ~238k tokens). Directive capsule appended inline in `prompt-advisor.ts` pi input transform; sibling extension rejected for deterministic ordering; tests + changelog + README updated. Layer 1: pi-only per-turn directive line, exact wording frozen in `../001-research/evidence/synthesis.md`.
+
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 004-pi-directive-enforcement/implementation-summary.md
+---
+title: "Implementation Summary: Pi Directive Enforcement — tool_call Deny"
+description: "Implemented and verified the Pi-default dispatch deny matrix with deep-loop and explicit-mode exemptions."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "pi directive enforcement summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook/004-pi-directive-enforcement"
+    last_updated_at: "2026-08-11T06:43:16.544Z"
+    last_updated_by: "pi-phase-state-reconciliation"
+    recent_action: "Reconciled completed Pi dispatch deny evidence"
+    next_safe_action: "Continue with Phase 005 follow-up"
+    blockers: []
+    key_files:
+      - ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+      - ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts"
+    session_dedup:
+      fingerprint: "sha256:99a49978f82ca5912dedbe9bc1a82dfe09664403d403cfaf892637a483b1fca8"
+      session_id: "2026-08-04-cli-038-004"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Pi Directive Enforcement — tool_call Deny
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-pi-directive-enforcement |
+| **Status** | Complete |
+| **Completion** | 100% policy-matrix evidence; registered factory coverage is separately attributed to Phase 007 |
+| **Completed** | 2026-08-04 (via cli-codex, gpt-5.6-luna max fast) |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented the Pi-default deny policy in `.opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts`: dispatch-shaped calls are denied unless a matching explicit cli-* authorization or deep-loop executor is present, while native subagent tools remain unaffected. The phase matrix and focused receipts are retained below; the registered factory boundary is separately evidenced by Phase 007.
+
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 005-agents-md-pi-row/implementation-summary.md
+---
+title: "Implementation Summary: AGENTS.md Pi Row"
+description: "Implemented and verified the single Pi runtime-directory row in AGENTS.md."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "AGENTS.md pi row summary"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook/005-agents-md-pi-row"
+    last_updated_at: "2026-08-11T06:43:16.693Z"
+    last_updated_by: "pi-phase-state-reconciliation"
+    recent_action: "Reconciled completed AGENTS.md Pi-row evidence"
+    next_safe_action: "Continue with Phase 006 dispatch-boundary follow-up"
+    blockers: []
+    key_files:
+      - "AGENTS.md"
+    session_dedup:
+      fingerprint: "sha256:0778887586dc3c4332c4f55d481878900d36337ee39874515934ebe743fcc145"
+      session_id: "2026-08-04-cli-038-005"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: AGENTS.md Pi Row
+
+<!-- SPECKIT_LEVEL: 1 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-agents-md-pi-row |
+| **Status** | Complete |
+| **Completion** | 100% implementation evidence; one Pi row verified |
+| **Completed** | 2026-08-04 (via cli-codex, gpt-5.6-luna max fast) |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Implemented by cli-codex dispatch (gpt-5.6-luna max fast, exit 0, ~63k tokens). Pi row added at `AGENTS.md:479`. to AGENTS.md §8 (Pi → `.pi/agents/`), coordinated with `agents/002-runtime-surface-coverage` which owns the full six-runtime table.
+
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+## 006-dispatch-authorization-hardening/implementation-summary.md
+---
+title: "Implementation Summary: Pi Dispatch Authorization Boundary Hardening"
+description: "Completed evidence summary for the bounded Pi dispatch authorization hardening and Phase 007 handoff."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "Pi dispatch hardening summary"
+  - "authorization boundary status"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook/006-dispatch-authorization-hardening"
+    last_updated_at: "2026-08-11T06:43:16.845Z"
+    last_updated_by: "pi-phase-state-reconciliation"
+    recent_action: "Reconciled completed dispatch-boundary evidence and Phase 007 handoff"
+    next_safe_action: "Use the Phase 007 ledger for packet state reconciliation"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "tasks.md"
+      - "checklist.md"
+      - ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+    session_dedup:
+      fingerprint: "sha256:f6790816fa873fa3f4471627016ccd145a5b7d0ef006570fdbd874b9676dc374"
+      session_id: "2026-08-04-cli-038-006-plan"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Pi Dispatch Authorization Boundary Hardening
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 006-dispatch-authorization-hardening |
+| **Status** | Complete; implementation evidence recorded and handed off |
+| **Completion** | 100% implementation evidence; Phase 007/008 state work is separate |
+| **Level** | 2 |
+| **Predecessor** | 005-agents-md-pi-row |
+| **Successor** | 007-dispatch-validation-evidence |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The bounded dispatch authorization boundary is implemented. A synchronous, dependency-free inspector tokenizes only a capped command string, respects quotes/escapes and top-level separators, recognizes the six supported direct executors, permits only literal `env` assignments as a transparent wrapper, and returns `direct`, `ambiguous`, or `none`. Variables, aliases, substitutions, unknown wrappers, malformed dispatch-shaped input, and multiple dispatch segments cannot become a direct allow; unrelated unsupported shell syntax returns `none` and remains fail-open.
+
+Pi now authorizes only the executor proven by the inspector. `cli-pi` is denied before every override path; deep-loop authorization requires exact executor equality; positive mode text is unquoted and non-negated; and raw input is session-keyed across the guard, advisor, directive, spec-gate, history, and sibling extension ordering seams. The registered factory tests invoke real `input` and `tool_call` callbacks, while native `subagent` events remain outside this policy.
+
+### Files Changed
+
+## 007-dispatch-validation-evidence/implementation-summary.md
+---
+title: "Implementation Summary: Dispatch Validation, Evidence, and Corpus Baseline"
+description: "Completed command-backed evidence summary separating Pi helper, shared-core, registered tool_call, startup, and the nonzero full-corpus result."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "dispatch evidence summary"
+  - "Pi tool_call evidence status"
+  - "full corpus baseline status"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook/007-dispatch-validation-evidence"
+    last_updated_at: "2026-08-11T06:43:16.995Z"
+    last_updated_by: "pi-phase-state-reconciliation"
+    recent_action: "Reconciled completed evidence ledger and preserved the nonzero corpus baseline"
+    next_safe_action: "Use the ledger while completing Phase 008 state reconciliation"
+    blockers: []
+    key_files:
+      - ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts"
+      - ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs"
+      - "evidence/full-corpus-baseline.md"
+      - "checklist.md"
+    session_dedup:
+      fingerprint: "sha256:1fc95833707ec425bd9bf25b6968bf0584156a533c415b7463b14901efeb9934"
+      session_id: "2026-08-04-cli-038-007-plan"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Dispatch Validation, Evidence, and Corpus Baseline
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-dispatch-validation-evidence |
+| **Status** | Complete; focused evidence and the explicit corpus deferral are recorded |
+| **Completion** | 100% scoped evidence and verification; whole advisor corpus remains an explicit nonzero deferral |
+| **Level** | 2 |
+| **Predecessor** | 006-dispatch-authorization-hardening |
+| **Successor** | 008-phase-state-reconciliation |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Phase 007 now has command-backed evidence for four distinct boundaries. The Pi test registers the default factory against a fake `ExtensionAPI`, records `input` and `tool_call` handlers, chains input transforms in both registration orders, and invokes the registered `tool_call` callback. The pure predicate matrix and the registered callback cases remain separate named test blocks in the same file.
+
+The shared matcher suite already contained the required direct, prose/quoted, `printf`/`echo`, separator, variable, alias, substitution, and wrapper rows, so no redundant shared test rows were added. Historical evidence language was narrowed where a reviewer statement or a combined suite count was stronger than the named automated assertion. The package-root full-corpus command was run twice and remains nonzero; both observations and the complete 27-entry failure ledger are retained in [`evidence/full-corpus-baseline.md`](evidence/full-corpus-baseline.md).
+
+
+## 008-phase-state-reconciliation/implementation-summary.md
+---
+title: "Implementation Summary: Phase State and Metadata Reconciliation"
+description: "Completed summary for reconciling phase status, parent map, handoffs, evidence placement, and generated metadata across all nine phases."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "phase state reconciliation summary"
+  - "metadata reconciliation status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook/008-phase-state-reconciliation"
+    last_updated_at: "2026-08-11T06:43:17.146Z"
+    last_updated_by: "pi-phase-state-reconciliation"
+    recent_action: "Completed phase status reconciliation and refreshed all packet metadata"
+    next_safe_action: "Review freshness caveat"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "plan.md"
+      - "tasks.md"
+      - "../spec.md"
+      - "../graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:74a29f1bcfb376d28f57d57929383192542f6dbba3254f48d4838360e06e9782"
+      session_id: "2026-08-04-cli-038-008-plan"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The parent map has nine unique rows and generated metadata covers every child."
+      - "The package-root corpus remains an explicit exit-1 deferral; focused evidence is green."
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Phase State and Metadata Reconciliation
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 008-phase-state-reconciliation |
+| **Status** | Complete; state and metadata reconciliation verified |
+| **Completion** | 100% scoped reconciliation; all nine phase states and generated metadata are aligned |
+| **Level** | 2 |
+| **Predecessor** | 007-dispatch-validation-evidence |
+| **Successor** | 009-injection-contract-directive-sync |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase reconciled the packet's status surfaces and generated metadata. The final state has one evidence-supported Complete status for each phase 001-009, a nine-row parent map with unique handoff pairs, command-backed checklist/task evidence, refreshed descriptions and graph metadata, and a parent pointer targeting the most recently reconciled Phase 009 child. The package-root advisor corpus remains an explicit exit-1 maintenance deferral; focused Pi/shared/Node evidence remains green.
+
+
+## 009-injection-contract-directive-sync/implementation-summary.md
+---
+title: "Implementation Summary: Injection Contract Directive Sync"
+description: "Completed summary for synchronizing the three shared advisor directives, canonical ownership, OpenCode fallback parity, and Pi-only directive ownership in the injection contract."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "injection contract sync summary"
+  - "directive ownership status"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook/009-injection-contract-directive-sync"
+    last_updated_at: "2026-08-11T06:43:17.298Z"
+    last_updated_by: "pi-phase-009-implementation"
+    recent_action: "Completed contract synchronization; Phase 008 reconciled the parent packet metadata"
+    next_safe_action: "Preserve the uncommitted-state freshness caveat; no Phase 009 source or contract work remains"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "tasks.md"
+      - "checklist.md"
+      - ".opencode/hooks/injection-contract.md"
+      - ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts"
+      - ".opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/mk-skill-advisor-bridge.mjs"
+      - ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
+    session_dedup:
+      fingerprint: "sha256:c7e7914c4e16ce9cf20f481eceafe2dccbefe69e8c7b03d389acae85dac242d3"
+      session_id: "2026-08-05-cli-038-009-implementation"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Injection Contract Directive Sync
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-injection-contract-directive-sync |
+| **Status** | Complete; scoped contract synchronization verified |
+| **Completion** | 100% scoped implementation; parent packet is Complete after Phase 008 reconciliation |
+| **Level** | 2 |
+| **Predecessor** | 008-phase-state-reconciliation |
+| **Successor** | None |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase synchronizes the durable Skill Advisor Brief entry in `injection-contract.md` with the live sources. The contract now names the three fixed shared directives (comment hygiene, governor, proof-over-appearance), identifies `render.ts` as their canonical owner, documents the OpenCode bridge as the parity-preserving fallback emitter, and records the per-runtime channels. It also distinguishes Pi's role: `prompt-advisor.ts` forwards the shared brief and owns the Pi-only `PI_SUBAGENT_DISPATCH_DIRECTIVE` appended in the visible input transform. Phase 009 modified no advisor source, bridge source, runtime adapter, test, README, or other phase; source paths with prior working-tree changes remain read-only and are called out in the handoff.
+
+
+## 010-cross-runtime-coverage-and-verification/implementation-summary.md
+---
+title: "Implementation Summary: Cross-Runtime Coverage and Verification"
+description: "Command-backed record of the R1-P1-001 quoted-executor fix, its shared-lib test evidence, cross-runtime documentation coverage, and the explicit R2-P1-002/R2-P1-003 deferral."
+status: complete
+completion_pct: 100
+trigger_phrases:
+  - "quoted executor fix summary"
+  - "cross-runtime coverage status"
+  - "R1-P1-001 resolution evidence"
+importance_tier: "critical"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/007-fable-governor-pi-hook/010-cross-runtime-coverage-and-verification"
+    last_updated_at: "2026-08-11T06:43:17.475Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Recorded the evidence ledger for the quoted-executor dispatch fix"
+    next_safe_action: "Confirm commit of the fix and open a system-deep-loop packet for R2 findings"
+    blockers:
+      - "The fix files remain uncommitted in the working tree at authoring time"
+    key_files:
+      - ".opencode/hooks/dispatch/lib/dispatch-audit.mjs"
+      - ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs"
+      - ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts"
+      - ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts"
+      - "../review/deep-review-findings-registry.json"
+    session_dedup:
+      fingerprint: "sha256:1a4aaea57bc396194ce9e97a85c5f9c6ebbaeb4dc6190cf56d615f9856215f8f"
+      session_id: "2026-08-05-cli-038-010-doc"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Cross-Runtime Coverage and Verification
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 010-cross-runtime-coverage-and-verification |
+| **Status** | Complete; documentation-only recording of an already-applied fix, with the fix files still uncommitted |
+| **Completion** | 100% of this phase's documentation and verification scope; the underlying fix commit and the R2-P1-002/R2-P1-003 remediation packet are explicit follow-ups, not this phase's scope |
+| **Level** | 2 |
+| **Predecessor** | 007-dispatch-validation-evidence (evidence taxonomy this ledger follows) |
+| **Successor** | None planned inside packet 007; R2-P1-002/R2-P1-003 belong to a separate `system-deep-loop` packet |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase built no code. It recorded, with independently re-run command evidence, a fix that already existed in the working tree when this phase began authoring.
+
+
+FOLDER
+
+<<<FOLDER id="specs/hooks/008-pi-caching-like-reasonix"
+# PACKET: specs/hooks/008-pi-caching-like-reasonix (rolled up from child summaries)
+
+## parent spec (excerpt)
+---
+title: "Phase Parent: Pi Reasonix-Style Prompt Caching — Research → Build Decision"
+description: "Phased packet investigating whether Pi should gain Reasonix-style prompt-cache discipline via a plugin. Phase 1 runs a 20-iteration, non-converging deep-research pass across three GPT-5.6 executors (SOL high fast, TERRA max fast, LUNA max fast) to verify the lumo.md caching claims and scope the real feature gap; Phase 2 synthesizes findings into a NO-GO on a new plugin. Phases 3-5 re-enter under ADR-001's documented contract (a new phase child + superseding ADR) to fork-and-split ownership of two existing packages instead — not the rejected greenfield build. Phase 6 hardens the deep-pi fork; phase 7 runs a 4-executor research pass over both forks; phase 8 turns those findings into a planning-only, sequenced 3-child fix plan that changes no code."
+trigger_phrases:
+  - "pi caching reasonix"
+  - "pi prompt cache plugin"
+  - "reasonix-like pi"
+  - "pi cache optimizer"
+  - "deepseek prefix cache pi"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix"
+    last_updated_at: "2026-08-08T07:03:28Z"
+    last_updated_by: "spec-author"
+    recent_action: "Phase 8 authored as a planning-only 3-child decomposition"
+    next_safe_action: "Operator selects which 008 child phase to implement first"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "lumo.md"
+      - "001-research/research/research.md"
+      - "002-synthesis-and-decision/decision-record.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-06-cli-039"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Iteration distribution resolved: runtime ran 3 independent lineages x 20 iterations (60 dispatches)."
+      - "Go/No-Go: NO-GO on a new plugin; the useful scope already ships as pi-cache-optimizer."
+      - "Phase 6 (deep-pi hardening) shipped Complete 2026-08-07, including a HANDOFF SOL review whose confirmed findings were all fixed — this doc's own frontmatter was stale about that until this update."
+      - "Phase 7 (007-research-fork-improvements) ran a 4-executor, 24-iteration deep-research pass finding concrete improvement opportunities for both forks; research/research.md holds the priority-ranked synthesis."
+      - "Phase 8 (008-implement-fork-improvements) turns 7's 13-item action list into 3 planning-only child phases matching its own P0/P1/P2 tiers. It authored specs, not code — zero changes to either fork. Implementing any child is a separate operator decision."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+## 001-research/implementation-summary.md
+---
+title: "Implementation Summary: Pi Reasonix-Style Caching Research"
+description: "Execution summary for the three-lineage deep-research run verifying Reasonix and Pi prompt-caching claims."
+trigger_phrases:
+  - "pi caching research summary"
+  - "reasonix pi research execution"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/001-research"
+    last_updated_at: "2026-08-11T06:43:17.634Z"
+    last_updated_by: "deep-research-auto"
+    recent_action: "Three cli-codex lineages executed and parent research synthesis written"
+    next_safe_action: "Review open checklist items"
+    blockers:
+      - "Parent phase map handoff not updated because it is outside this phase folder's research-artifact scope"
+    key_files:
+      - "research/research.md"
+      - "research/resource-map.md"
+      - "research/fanout-attribution.md"
+      - "research/lineages/sol-high/research.md"
+      - "research/lineages/terra-max/research.md"
+      - "research/lineages/luna-max/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-06-cli-039-research"
+      parent_session_id: null
+    completion_pct: 85
+    open_questions:
+      - "Should parent phase-map and Phase 2 handoff docs be updated now, despite the phase's artifact-only scope?"
+    answered_questions:
+      - "20 iterations were interpreted and executed as 20 per lineage, 60 total."
+---
+# Implementation Summary: Pi Reasonix-Style Caching Research
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-research |
+| **Executed** | 2026-08-06 |
+| **Level** | 2 |
+| **Execution Mode** | `/deep:research:auto` fan-out through `cli-codex` |
+| **Stop Policy** | `max-iterations` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The research phase executed three independent `cli-codex` deep-research lineages and produced a parent synthesis for the Reasonix-vs-Pi prompt-caching claim audit.
+
+
+## 002-synthesis-and-decision/implementation-summary.md
+---
+title: "Implementation Summary: Reasonix-Style Pi Caching Go/No-Go"
+description: "The synthesis-and-decision phase turned Phase 1's research into a recorded NO-GO on building a Reasonix-style Pi caching plugin, because the useful narrow scope already ships as the pi-cache-optimizer package. Build phases 3+ are gated closed."
+trigger_phrases:
+  - "pi caching decision summary"
+  - "reasonix pi no-go"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/002-synthesis-and-decision"
+    last_updated_at: "2026-08-11T06:43:17.797Z"
+    last_updated_by: "spec-author"
+    recent_action: "Recorded NO-GO decision; phase complete"
+    next_safe_action: "Close the packet or author a pi-cache-optimizer audit spike"
+    blockers: []
+    key_files:
+      - "decision-record.md"
+      - "../001-research/research/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-06-cli-039-decision"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "NO-GO on a new plugin; the useful scope already ships as pi-cache-optimizer."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-synthesis-and-decision |
+| **Completed** | 2026-08-06 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+This phase produced a decision, not code. It read Phase 1's three-lineage research, resolved every load-bearing `lumo.md` caching claim, and recorded a **NO-GO** on building a new Reasonix-style Pi caching plugin. The reason is decisive: the useful narrow scope the research endorsed already ships as the `pi-cache-optimizer` package, which was verified real by live fetch.
+
+### Go/No-Go decision
+
+You now have a defensible answer to the `lumo.md` proposal. The broad "Reasonix-parity" plugin is rejected because its headline numbers are unreproducible and its extra features (MCP, plan mode, context engine, rewind) are separate products. The narrow observe-first caching scope that survives scrutiny is already covered by a maintained MIT package. The only forward path this phase endorses is a conditional, separate audit spike of that existing package.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+
+## 003-fork-and-guard-cache-optimizer/implementation-summary.md
+---
+title: "Implementation Summary: Fork pi-cache-optimizer with a DeepSeek Exclusion Guard"
+description: "pi-cache-optimizer is patched with a narrow provider-scoped guard on all 6 model-specific hooks and vendored in-repo; Pi resolves it via a local package source, no external repo dependency. All live verification (non-DeepSeek, opencode-routed DeepSeek-family, real DeepSeek-direct, rollback) passed with real evidence."
+trigger_phrases:
+  - "pi-cache-optimizer fork status"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/003-fork-and-guard-cache-optimizer"
+    last_updated_at: "2026-08-11T06:43:17.952Z"
+    last_updated_by: "spec-author"
+    recent_action: "Re-confirmed independently after unrelated concurrent repo changes"
+    next_safe_action: "None — phase 003 complete"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md", ".pi/settings.json", ".pi/extensions/pi-cache-optimizer/index.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-07-cli-039-003"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Fork target is the public MichelKerkmeester/pi-cache-optimizer repository at commit 5132d137ce28cb91ec12a5475832df4d5154085a; that fork remains published as the patch's origin."
+      - "after_provider_response is covered by the same narrow guard before its 400-retry compatibility path."
+      - "model_select's event.model is correct (that event type carries model directly); the other 5 hooks correctly use ctx.model."
+      - "2026-08-07: at operator request, the patched source now resolves from an in-repo vendored copy (Pi's local package-source type) instead of the hosted git fork; content is byte-identical, re-verified with a fresh test run and live smoke tests."
+      - "2026-08-07 (later): unrelated concurrent work in this repo removed the now-unneeded .pi/git/ runtime clone cache (176MB, the pre-vendoring git-source install artifact; nothing referenced it since the vendored copy replaced it). Re-ran npm test/npm run typecheck directly against .pi/extensions/pi-cache-optimizer/ myself afterward: still 25/25 passing, still exit 0 — the vendored copy was untouched by that unrelated cleanup."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-fork-and-guard-cache-optimizer |
+| **Completed** | 2026-08-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`pi-cache-optimizer` no longer touches DeepSeek's direct API. It's patched with a narrow ownership guard across every model-specific hook, and the local Pi install resolves that patched source from inside this repo — no external repository dependency — with live sessions proving the boundary holds exactly where it should and nowhere else.
+
+### The guard
+
+`jiangge/pi-cache-optimizer` v2.8.0 was forked to the public `MichelKerkmeester/pi-cache-optimizer` and patched at commit `5132d137ce28cb91ec12a5475832df4d5154085a`. A new `isDeepPiOwned(model)` predicate matches only `provider === "deepseek"` with `id` `deepseek-v4-flash` or `deepseek-v4-pro` — deliberately narrower than the package's existing `isDeepSeekLikeModel`, which substring-matches any "deepseek" model or provider name. The guard was added as the first statement in all 6 model-specific hooks (`session_start`, `model_select`, `before_agent_start`, `before_provider_request`, `after_provider_response`, `message_end`); `session_shutdown` was deliberately left untouched since it's global cleanup with no model branching. `tsc --noEmit` exits 0 and the fork's test suite passes 25/25 (24 pre-existing plus one new boundary test).
+
+### The install pointer
+
+
+## 004-adopt-deep-pi-deepseek/implementation-summary.md
+---
+title: "Implementation Summary: Adopt deep-pi as Exclusive DeepSeek Extension"
+description: "deep-pi installed pinned at v1.0.0, integrity-verified byte-identical against its claimed GitHub commit, and confirmed via source to activate on exactly the models pi-cache-optimizer's phase-003 guard excludes."
+trigger_phrases:
+  - "deep-pi adoption status"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/004-adopt-deep-pi-deepseek"
+    last_updated_at: "2026-08-11T06:43:18.101Z"
+    last_updated_by: "spec-author"
+    recent_action: "Install, integrity check, and activation confirmation complete"
+    next_safe_action: "Proceed to phase 005"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-07-cli-039-004"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "deep-pi keeps no persistent stats file, unlike pi-cache-optimizer; activation is confirmed via source-level eligibility matching, with the cross-extension live payload-diff explicitly deferred to phase 005."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 004-adopt-deep-pi-deepseek |
+| **Completed** | 2026-08-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`deep-pi` is installed, pinned, and confirmed to own exactly the two models `pi-cache-optimizer` now excludes — nothing more, nothing less.
+
+`@arter/deep-pi@1.0.0` was installed via `pi install npm:@arter/deep-pi@1.0.0`. Its npm tarball's `gitHead` metadata (`0f1cbd8124b4fb35df97f85aa943d730f4aae549`) was checked against the real `github.com/christopherarter/deep-pi` repository: the commit exists in that repo's history (the repo has since advanced to `v1.0.4`, so no `v1.0.0` tag remains, but the commit is genuinely reachable), and a direct diff of the installed `extensions/deeppi.ts` against that exact commit's content came back byte-identical — the published package is exactly what it claims to be, not a supply-chain substitution.
+
+`deep-pi`'s own eligibility gate, `isDeepPiModel` (`extensions/deeppi/eligibility.ts`), requires `provider === "deepseek"` and `id` in `{deepseek-v4-flash, deepseek-v4-pro}` — read directly from source, this is an exact match for the `isDeepPiOwned` predicate phase 003 added to `pi-cache-optimizer`. The two extensions agree precisely on ownership with no gap and no overlap by construction, not by coincidence.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `@arter/deep-pi@1.0.0` (Pi package) | Installed | Adds the DeepSeek-side cache/storm-breaker/hashline-edit stack |
+<!-- /ANCHOR:what-built -->
+
+## 005-verification-and-decision-reconciliation/implementation-summary.md
+---
+title: "Implementation Summary: Cross-Extension Verification + Superseding Decision Record"
+description: "Live composition verification confirmed zero overlap and no regression with both extensions installed together. The superseding decision record is Accepted, honestly grounded in materially increased DeepSeek usage. Packet closed."
+trigger_phrases:
+  - "cache split verification status"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/005-verification-and-decision-reconciliation"
+    last_updated_at: "2026-08-11T06:43:18.255Z"
+    last_updated_by: "spec-author"
+    recent_action: "Added real cache-economics evidence from the actual composition-test session"
+    next_safe_action: "None — this phase's own scope is closed"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-07-cli-039-005"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Direct wire-payload instrumentation was attempted (fs-write probes in both extensions' runtime-installed guard functions) and produced no observable output; the cause was not conclusively diagnosed (deep-pi's own code successfully uses fs/process elsewhere, so a blanket sandboxing explanation is not fully supported). Composition proof uses the observable pi-cache-optimizer-stats.json channel plus source-level predicate equivalence instead."
+      - "2026-08-07: re-read composition-test-005.jsonl directly and confirmed Pi's own session format never captures a pre-send provider payload either (only post-response usage/cost) - a raw wire-payload diff isn't reconstructable from session files, matching the earlier instrumentation finding. Extracted real usage data instead: the DeepSeek-direct turn showed a 98.4% cache-hit rate and $0.0001309 cost on the first message of a fresh session; the model-switch turn showed 0% cache hit and $0.003765, ~29x more for that pair."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 005-verification-and-decision-reconciliation |
+| **Completed** | 2026-08-07 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The packet closes on real evidence, not assumption: two extensions install together, one owns DeepSeek's direct API, the other owns everything else, and a live session proves it — including a mid-conversation model switch, the exact edge case a static per-model check would miss.
+
+### Composition verification
+
+With the phase-003 fork and phase-004's `deep-pi` both installed simultaneously, three model classes and one mid-session switch were run live:
+
+- **DeepSeek-direct** (`deepseek/deepseek-v4-flash`, a real configured API key, genuine model response): `pi-cache-optimizer-stats.json` gained zero entries — the guard holds even with `deep-pi` present.
+- **Non-DeepSeek** (`openai-codex/gpt-5.6-luna`): stats incremented normally across every probe this phase, unaffected by `deep-pi`'s installation.
+- **`opencode/deepseek-v4-flash-free`** (the confirmed real edge case — a DeepSeek-family model on a non-`deepseek` provider): a fresh stats entry appeared, proving it stays with `pi-cache-optimizer` as designed.
+- **Mid-session switch**: one named session ran a DeepSeek-direct turn then a non-DeepSeek turn back to back. `legacyFamily.deepseek` stayed at zero through turn 1; `gpt-5.6-luna`'s counter incremented by exactly one on turn 2 — a clean hand-off within a single conversation.
+
+
+## 006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi/implementation-summary.md
+---
+title: "Implementation Summary: Fix and Test deep-pi"
+description: "All three fixes implemented and hardened through two review rounds: silent counters (including one the fix itself introduced) now surface and reset per session, a warning-only model-drift signal added without touching the activation boundary, and cost-math validated before the mutations it protects. 60/60 tests pass, independently re-verified twice."
+trigger_phrases:
+  - "deep-pi fix and test status"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/001-fix-and-test-deep-pi"
+    last_updated_at: "2026-08-11T06:43:13.797Z"
+    last_updated_by: "spec-author"
+    recent_action: "HANDOFF review's 4 confirmed findings fixed; 60/60 tests"
+    next_safe_action: "None — 006 packet complete"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-07-cli-039-006-001"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "REQ-003 resolved: implemented, not cut. gpt-5.6-luna implemented all three fixes; every claim independently re-verified. A second gpt-5.6-sol HANDOFF review then found 4 more real gaps, all fixed and re-verified (60/60 tests)."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-fix-and-test-deep-pi |
+| **Completed** | 2026-08-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`deep-pi`'s silent-diagnostics gaps are closed — all three of them, including one that the fix work itself introduced and a second review round caught — and it now warns instead of staying dark when DeepSeek ships a model id it doesn't recognize, without ever risking the crash the first draft of that fix would have introduced.
+
+### The three fixes
+
+`transformErrors`, `usageUnavailable`, and `costMathErrors` all surface in `/deeppi`'s report, but only when nonzero/true — a clean run's output is byte-identical to before. All three reset at the start of every session, so the report reflects the current session, not a lifetime tally. (`costMathErrors` — fix #3's own counter — was originally left unsurfaced by the first implementation pass; a HANDOFF review caught that this was exactly the class of bug the whole phase exists to fix, reintroduced by the fix meant to add hardening. Closed the same way as the other two.)
+
+The model-drift signal is warning-only, exactly as redesigned after the first review: `isDeepPiModel`'s exact-match gate is untouched, byte-for-byte. A `warnOnUnrecognizedModel()` check runs in `session_start`/`model_select`, and if it sees a `deepseek`-provider model id that doesn't match the known set but does look like a DeepSeek-direct id, it notifies once per session — never activating a hook, tool, or telemetry entry for that id. Since `syncModel()` already skips `footerText`/`state.byModel` whenever `isDeepPiModel` is false, the original crash path is structurally unreachable, not just avoided by convention — confirmed by a second review that traced the actual call path itself rather than trusting the description.
+
+The cost-math guard validates `model.cost`/`usage.cost` before the `totals.*` mutations it exists to protect, returning early with an incremented `costMathErrors` counter instead of throwing. A negative-control run (temporarily removing the guard) reproduced the exact predicted crash, confirming its test is real protection, not decoration.
+
+### Files Changed
+
+
+## 006-fork-and-improve-deep-pi/002-vendor-and-repoint/implementation-summary.md
+---
+title: "Implementation Summary: Vendor and Repoint deep-pi"
+description: "The patched deep-pi fork now lives in-repo at .pi/extensions/deep-pi/, byte-identical to what phase 1 tested, and .pi/settings.json resolves it as the active extension — no npm dependency, no external hosting."
+trigger_phrases:
+  - "deep-pi vendor status"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/002-vendor-and-repoint"
+    last_updated_at: "2026-08-11T06:43:13.973Z"
+    last_updated_by: "spec-author"
+    recent_action: "Re-vendored after HANDOFF fixes; diff -rq still exits 0"
+    next_safe_action: "None — 006 packet complete"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-07-cli-039-006-002"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-vendor-and-repoint |
+| **Completed** | 2026-08-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+`deep-pi` now runs from inside this repo, not from npm. Phase 1's patched fork was copied byte-for-byte into `.pi/extensions/deep-pi/`, and `.pi/settings.json`'s package entry now points there directly — applying the exact same local-package-source mechanism `003-fork-and-guard-cache-optimizer` already proved, from the start this time rather than after an external-hosting detour.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.pi/extensions/deep-pi/` | Created | Vendored copy: `extensions/`, `package.json`, `tsconfig.json`, `LICENSE`, `README.md`, `tests/` |
+| `.pi/settings.json` | Modified | `@arter/deep-pi` entry changed from `npm:@arter/deep-pi@1.0.0` to `extensions/deep-pi` |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+
+## 006-fork-and-improve-deep-pi/003-live-verification-and-closeout/implementation-summary.md
+---
+title: "Implementation Summary: Live Verification and Closeout"
+description: "Live sessions confirmed the vendored, patched deep-pi works correctly and stays inactive on boundary/non-DeepSeek models. Three real limitations disclosed rather than papered over. A HANDOFF SOL review's 2 confirmed findings against this phase were closed with real follow-up; the 006 packet is Complete."
+trigger_phrases:
+  - "deep-pi closeout status"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/006-fork-and-improve-deep-pi/003-live-verification-and-closeout"
+    last_updated_at: "2026-08-11T06:43:14.134Z"
+    last_updated_by: "spec-author"
+    recent_action: "HANDOFF review's confirmed findings closed; RPC mode followed up"
+    next_safe_action: "None — 006 packet complete"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-07-cli-039-006-003"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+# Implementation Summary
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-live-verification-and-closeout |
+| **Completed** | 2026-08-07 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The vendored, patched `deep-pi` proved itself in real Pi sessions, not just unit tests — a genuine DeepSeek-direct round-trip completed cleanly, and the boundary models `pi-cache-optimizer`/`deep-pi` already split in phases 003-005 stayed correctly excluded.
+
+### Live verification
+
+A `deepseek/deepseek-v4-flash` session (`phase006-smoke-deepseek`) returned a real "OK" response through the vendored extension, with `pi-cache-optimizer-stats.json` gaining zero new entries — the phase-003 guard still holds with `deep-pi` active. Two boundary/non-DeepSeek sessions (`opencode-go/deepseek-v4-flash`, `openai-codex/gpt-5.6-luna`) both continued incrementing `pi-cache-optimizer`'s stats normally, confirming no regression.
+
+Two real limitations surfaced during this verification and are recorded honestly rather than smoothed over:
+- `/deeppi`'s `ctx.ui.notify()` report doesn't surface through `pi --print`'s non-interactive stdout or the session `.jsonl` — confirmed by directly inspecting the session file, not assumed. The counter values themselves weren't directly observable this way; phase 1's unit tests already prove they surface and reset correctly when forced.
+- `opencode/deepseek-v4-flash-free` has no live API key configured right now (a pre-existing environmental gap, unrelated to this phase's work) — the live round-trip couldn't be run for that specific model. Substituted with phase 1's new `tests/eligibility.test.ts` case, which source-confirms this model fails `isDeepPiModel`'s `provider === "deepseek"` gate.
+
+### HANDOFF review and follow-up
+
+A fresh, independent `gpt-5.6-sol` HANDOFF review of the whole 006 packet found 2 confirmed gaps against this phase specifically:
+
+## 007-research-fork-improvements/implementation-summary.md
+---
+title: "Implementation Summary: Further Improvements for the deep-pi and pi-cache-optimizer Forks"
+description: "Execution summary for the 3-executor, 20-iteration deep-research run finding concrete improvement opportunities for both packet-039 forks."
+trigger_phrases:
+  - "fork improvement research summary"
+importance_tier: "important"
+contextType: "research"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/007-research-fork-improvements"
+    last_updated_at: "2026-08-11T06:43:18.558Z"
+    last_updated_by: "spec-author"
+    recent_action: "Successor set to 008-implement-fork-improvements"
+    next_safe_action: "Operator selects which 008 child phase to implement first"
+    blockers: []
+    key_files:
+      - "research/research.md"
+      - "research/lineages/sol/research.md"
+      - "research/lineages/luna/research.md"
+      - "research/lineages/grok/research.md"
+      - "research/lineages/deepseek-flash/research.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-08-cli-039-007-research"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "20 iterations interpreted as 20 total (not 20 each), split 7/7/6 across sol/luna/grok, per the operator's explicit answer to a consolidated clarifying question."
+---
+# Implementation Summary: Further Improvements for the deep-pi and pi-cache-optimizer Forks
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 007-research-fork-improvements |
+| **Executed** | 2026-08-08 |
+| **Level** | 2 |
+| **Execution Mode** | `/deep:research:auto` fan-out, manually driven (setup + `fanout-run.cjs` dispatch + synthesis), through `cli-codex` (sol, luna) and `cli-cursor` (grok) |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+A real, evidence-grounded improvement roadmap for both packet-039 forks — not from one model's opinion, but from three genuinely independent models (`gpt-5.6-sol`, `gpt-5.6-luna`, Grok 4.5) each running a full research loop against the real source, cross-checked against each other.
+
+### The run
+20 iterations total, split 7/7/6 across the first three lineages, forced to full depth via a manually-added `--stop-policy max-iterations` flag (the command's own YAML asset doesn't forward this flag by default — see Known Limitations). All three lineages produced real, cited findings: sol (35 findings), luna (28 findings), grok (7 curated findings plus a P0/P1/P2 backlog). At operator request, a 4th lineage was added afterward — `deepseek-v4-flash` via `opencode-go` (cli-opencode, 4 iterations, 20 findings) — explicitly briefed to read the existing synthesis and corroborate or refute it, not restate it. 24 iterations total across 4 genuinely independent models.
+
+### The synthesis
+`research/research.md` groups every finding by how many lineages independently reached it — Tier 1 (all 4), Tier 2 (2-3 of 4), Tier 3/4 (single-lineage but well-evidenced) — rather than just concatenating four reports. The strongest, highest-confidence findings: a duplicated DeepSeek-ownership predicate across both forks with no shared source of truth (now corroborated a 4th time); `/deeppi`'s report still being UI-notify-only (the same limitation disclosed in 006, now with a concrete, 4-model-agreed fix direction); deep-pi's complete lack of a persistent stats file; cost/savings arithmetic that's a counterfactual estimate, not a causal measurement, in both forks; and missing boundary/composition tests for both. The 4th lineage's own independent read did more than corroborate: it found deep-pi's cold-start cache write is entirely invisible to its own telemetry (a real correctness bug, not just an uninstrumented economics question), issued a genuine correction downgrading an earlier TOCTOU severity claim after tracing the actual `atomicWriteFile` post-rename verification, and caught its own false negative on its final iteration. A closing priority-ranked action list is cross-validated across all four models — grok's own backlog, sol's final "adversarial prioritization" iteration, luna's staged-order finding, and deepseek-flash's corroboration all converge on the same P0→P1→P2 ordering, updated to include the new correctness bugs the 4th pass surfaced.
+
+## 008-implement-fork-improvements/001-correctness-floor/implementation-summary.md
+---
+title: "Implementation Summary: Correctness Floor"
+description: "Final implementation and verification record for phase 008/001 correctness floor."
+trigger_phrases:
+  - "correctness floor implementation"
+  - "pi cache optimizer correctness"
+  - "deep-pi correctness floor"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements/001-correctness-floor"
+    last_updated_at: "2026-08-11T06:43:14.321Z"
+    last_updated_by: "implementation"
+    recent_action: "Fixed HANDOFF ownership-divergence and no-mutation test gaps"
+    next_safe_action: "Regenerate metadata and run validate.sh --recursive --strict"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-08-cli-039-008-001"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "The two-wrapper runner bridge succeeded; the documented fallback was not taken."
+      - "The ownership boundary is a test-only JSON fixture; runtime predicates remain unchanged."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 001-correctness-floor |
+| **Completed** | 2026-08-08 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The correctness floor now records cache-write-only turns without latching unavailable usage, keeps the DeepSeek ownership contract aligned across both extensions, and proves the split through a combined FakePi host. The `/deeppi` report reads current stability churn without mutating telemetry state, and all six pi-cache-optimizer ownership guards are exercised through their real hooks.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.pi/extensions/deep-pi/extensions/deeppi/telemetry.ts` | Modified | Split the cold-start guard and move churn into `ReportInput`. |
+| `.pi/extensions/deep-pi/extensions/deeppi.ts` | Modified | Pass `stability.latestChurn` directly to the report. |
+| `.pi/extensions/deep-pi/tests/telemetry.test.ts` | Modified | Cover cache-write-only, empty, and normal usage records. |
+| `.pi/extensions/deep-pi/tests/deeppi.integration.test.ts` | Modified | Prove the report renders current churn; a HANDOFF-driven follow-up test wraps `createTelemetryState` to assert telemetry is byte-identical before/after `/deeppi`, since the churn-rendering test alone never touched telemetry state. |
+| `.pi/extensions/deep-pi/tests/fake-pi.ts` | Modified | Supply the session/model handles required by the combined host. |
+| `.pi/extensions/deep-pi/tests/ownership-composition.test.ts` | Created | Vitest ownership and combined-host wrapper. |
+
+## 008-implement-fork-improvements/002-observability-and-economics/implementation-summary.md
+---
+title: "Implementation Summary: Observability and Economics"
+description: "Completed deep-pi observability, cost-accounting, report transport, persistent statistics, and measured hot-path investigation."
+trigger_phrases:
+  - "deep-pi observability implementation"
+  - "deep-pi economics implementation"
+  - "deep-pi stats report"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements/002-observability-and-economics"
+    last_updated_at: "2026-08-11T06:43:14.480Z"
+    last_updated_by: "codex"
+    recent_action: "Fixed HANDOFF cross-process race and false characterization pin"
+    next_safe_action: "Keep cross-process lock test green in future stats.ts edits"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-08-cli-039-008-002"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Stats use an independent schemaVersion 1 at <cwd>/.pi/deep-pi-stats.json."
+      - "The structured savings field is noCacheCounterfactualSavings."
+      - "ctx.ui is required by Pi's ExtensionContext type; hasUI gates notification."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 002-observability-and-economics |
+| **Completed** | 2026-08-08 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+DeepPi now preserves useful economics across sessions, exposes a machine-readable report without requiring a TUI, and distinguishes measured costs from a no-cache counterfactual. Failed turns and invalid numeric usage no longer contaminate telemetry, and the previously silent runtime counters appear when they carry a nonzero value.
+
+### Persistent statistics
+
+`stats.ts` stores schemaVersion 1 at `<cwd>/.pi/deep-pi-stats.json`. It keeps per-session totals and cumulative daily totals keyed by UTC date. Reads return an explicit unreadable result for corrupt or future-version data. The read-modify-write update uses `atomicWriteFile` with `expectedContent` CAS; first-time file creation uses a separate `seedFile` bootstrap. A HANDOFF review correctly found that `atomicWriteFile`'s CAS only serializes writers inside one Node process, so two genuinely separate processes could each pass the check and the later one could silently clobber the earlier one's update — reproduced empirically with an artificially widened race window. `withCrossProcessLock`, an advisory `open(path, "wx")` file lock, now wraps the entire read-modify-write cycle (including `seedFile`), verified by two real child processes racing the same lock and stats file.
+
+### Structured reporting and accounting
+
+`buildDeepPiReport()` produces a plain versioned object, `renderDeepPiReport()` produces the human-readable text, and `deeppi.ts` writes `.pi/deep-pi-report.json` on every `/deeppi` call. UI notification is gated by `hasUI`. Cache-write tokens have their own bucket and cost is included in `actualInputCost`; `noCacheCounterfactualSavings` and its rendered label state the counterfactual explicitly.
+
+## 008-implement-fork-improvements/003-maintainability-and-provenance/implementation-summary.md
+---
+title: "Implementation Summary: Maintainability and Provenance"
+description: "Final evidence for deep-pi benchmark packaging, vendored-fork provenance, coupling measurement, and the local provider boundary fixture."
+trigger_phrases:
+  - "maintainability provenance implementation"
+  - "vendored fork provenance check"
+  - "deep-pi benchmark packaging"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/008-pi-caching-like-reasonix/008-implement-fork-improvements/003-maintainability-and-provenance"
+    last_updated_at: "2026-08-11T06:43:14.636Z"
+    last_updated_by: "codex"
+    recent_action: "Fixed HANDOFF stray files and ran REQ-006 fixture live"
+    next_safe_action: "Re-run boundary fixture only in a loopback-permitting sandbox"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md", ".opencode/scripts/check-vendored-fork-provenance.mjs", ".opencode/scripts/vendored-fork-provenance.json"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-08-cli-039-008-003"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "No extraction was selected after coupling measurement; prompt transforms were lowest at 60 shared identifiers and zero tracked extension-state references."
+      - "The provenance check runs on demand and reports drift without failing builds."
+      - "The local boundary fixture ran live in a permitting sandbox and a deepPiDormant logic bug it exposed was fixed."
+---
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 003-maintainability-and-provenance |
+| **Status** | Complete; REQ-006's live session ran and its logic bug was fixed in a HANDOFF follow-up |
+| **Completed** | 2026-08-08 |
+| **Level** | 2 |
+<!-- /ANCHOR:metadata -->
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The two independent deep-pi benchmark packaging defects are fixed, both vendored forks have a report-only provenance check, and the optimizer extraction decision is evidence-backed. No source, tests, or package metadata under `pi-cache-optimizer` changed. The local provider fixture's live session was deferred in this build's sandbox by a loopback bind denial; a later HANDOFF-driven run in a permitting sandbox executed it successfully and fixed a real logic bug it exposed (see REQ-006 below).
+
+## Changes
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.pi/extensions/deep-pi/package.json` | Modified | Added `scripts` to the shipped `files` allowlist |
+| `.pi/extensions/deep-pi/scripts/live-benchmark.mjs` | Created | Opt-in live benchmark entry point; safe default mode skips external calls |
+| `.opencode/scripts/check-vendored-fork-provenance.mjs` | Created | Hashes each fork's allowlisted shipped file set and reports identity/content drift |
+| `.opencode/scripts/vendored-fork-provenance.json` | Created | Records both fork identities, file sets, and baseline SHA-256 hashes |
+| `.opencode/scripts/run-local-deep-pi-boundary.mjs` | Created | Test-scoped OpenAI-compatible provider fixture and real-Pi boundary runner |
+| `spec.md`, `plan.md`, `tasks.md`, `checklist.md` | Updated | Reconciled status, evidence, open-question answers, and explicit deferrals |
+
+FOLDER
+
+<<<FOLDER id="specs/hooks/009-goal-isolation"
+# PACKET: specs/hooks/009-goal-isolation
+
+---
+title: "Implementation Summary: Cross-Runtime Goal Isolation"
+description: "Session-scoped goal state, native Pi and Cursor bindings, bounded OpenCode persistence, explicit legacy handling, and aligned playbooks are verified; delivery freshness remains pending."
+status: "in_progress"
+trigger_phrases:
+  - "goal isolation implementation status"
+  - "goal isolation implementation summary"
+  - "pi goal isolation handoff"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "hooks/009-goal-isolation"
+    last_updated_at: "2026-08-11T06:46:15.236Z"
+    last_updated_by: "codex"
+    recent_action: "All six implementation phases and content checks passed"
+    next_safe_action: "After authorized delivery, rerun default strict validation from clean packet paths"
+    blockers:
+      - "The no-commit task boundary leaves strict completion freshness red on dirty packet paths."
+    key_files:
+      - ".opencode/hooks/goal/lib/goal-core.cjs"
+      - ".opencode/hooks/goal/bin/goal.cjs"
+      - ".opencode/hooks/goal/pi/goal-context.ts"
+      - ".opencode/hooks/goal/cursor/goal-inject.mjs"
+      - ".pi/settings.json"
+      - "006-opencode-goal-optimization-and-devin-removal/handover.md"
+    session_dedup:
+      fingerprint: "sha256:bdc29c6ffbb12d94c5ad07f1320a861985a7eec0a3b107a08bfc174729c76e38"
+      session_id: "goal-isolation-spec-20260810"
+      parent_session_id: null
+    completion_pct: 99
+    open_questions: []
+    answered_questions:
+      - "Cross-runtime goal state requires explicit workspace, runtime, and native session identity."
+      - "Pi native commands and lifecycle hooks share sessionManager.getSessionId()."
+      - "Cursor injection is scoped; prompt management is unsupported without native identity."
+      - "Legacy singleton state never injects and requires explicit migration or archive."
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary: Cross-Runtime Goal Isolation
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 009-goal-isolation |
+| **Implemented** | 2026-08-10 |
+| **Level** | 3 |
+| **Status** | In progress — implementation verified; delivery freshness pending |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The runtime-neutral goal system in `.opencode/hooks/goal/lib/goal-core.cjs` now stores one active goal per explicit workspace/runtime/session scope. It canonicalizes workspace to the repository root, hashes the unambiguous JSON tuple into one opaque filename, serializes same-scope read-modify-write operations across processes, and contains every archive target under the real state root. Reads never fall back to the legacy singleton.
+
+`.opencode/hooks/goal/pi/goal-context.ts` uses Pi's native session manager for input, session start, turn end, and the registered `/goal-pi` command. `.opencode/hooks/goal/cursor/goal-inject.mjs` uses `session_id` with the documented `conversation_id` fallback. Cursor prompt management fails closed because that surface cannot prove native command identity. Devin remains decommissioned.
+
+Legacy state is diagnostic-only. Operators can inspect it, explicitly bind a valid record to a validated scope, or archive valid/malformed bytes. Occupied targets and malformed migration attempts fail without overwriting either side, and concurrent migration losers cannot delete another process's successful target.
+
+OpenCode remains a separate native plugin. Its session files now use fixed 64-character SHA-256 keys, and valid earlier hex-keyed active/archive records migrate lazily only after a present exact embedded session identity matches. Long-session canonical deletion ignores impossible legacy path components, an occupied digest target remains authoritative, native token accounting is unchanged, and the focused suite passes 128/128.
+
+Claude's checked-in command discovery is a generated filtered directory of per-command relative symlinks. Shared commands remain mirrored, while the OpenCode-only goal router is excluded and enforced by the mirror checker. Live Claude product-native goal behavior remains unverified and is not claimed.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The six-phase packet separated research, scoped storage, native bindings, legacy/documentation cutover, independent verification, and OpenCode persistence hardening. Pi remained disabled throughout the initial implementation. After the goal-specific gates passed, `.pi/settings.json` removed the exclusion and a trusted-project normal-discovery canary proved that Pi registers `/goal-pi` without an explicit extension flag. The earlier implementation was published, but this post-review Phase 6 repair remains an uncommitted shared-checkout diff because no commit or push was authorized.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Require composite scope for every operation | Ownership must be an input; a field on one global record cannot represent concurrent goals. |
+| Hash the canonical JSON scope tuple | Runtime, repository workspace, and session namespaces cannot collide or leak into filenames. |
+| Serialize shared-core lifecycle mutation across processes | Atomic rename prevents torn files but cannot prevent lost read-modify-write updates. |
+| Contain archive paths from persisted identifiers | Stored goal ids are untrusted and cannot choose relative or symlink-escaped targets. |
+| Fail open for prompt delivery and fail closed for mutation | Missing identity must not block the user turn or select/write ambiguous state. |
+| Keep Cursor prompt management unsupported | A shell prompt without native identity would recreate global ownership ambiguity. |
+| Preserve legacy bytes without implicit ownership | The old objective may be valuable, but its owner cannot be inferred safely. |
+| Filter Claude's repository command tree | Runtime-exclusive OpenCode commands must not leak through a whole-directory mirror. |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Integrated cross-runtime goal suite | PASS: 91/91. |
+| OpenCode goal regression control | PASS: 128/128, up from the 119-test baseline. |
+| Focused repaired producers | PASS: shared core 49/49; OpenCode state/lifecycle 70/70. |
+| Pi TypeScript and executable syntax | PASS: no-emit TypeScript compile and all syntax checks. |
+| Real Pi A/B native commands | PASS: two distinct scoped files, correct objectives, mode 0600, opaque paths. |
+| Pi rollout | PASS: trusted-project normal discovery handled `/goal-pi` after exclusion removal. |
+| Runtime registration truth | PASS: Pi enabled, one Cursor registration, zero Devin goal registrations. |
+| Documentation | PASS: 16/16 documents and 199/199 relative links. |
+| Quality | PASS: comment hygiene 8/8; packet alignment 8 files with zero findings. |
+| Runtime mirrors | PASS: 165 links across eight trees; Claude's exclusive goal router is absent. |
+| Repository-wide drift wrapper | EXPECTED GLOBAL BACKLOG: exit 1 after 807,825 files and 25,551 findings (12,774 errors and 12,777 warnings); stack folders pass 6/6 and router sync passes 10/10. |
+| Phase 6 alignment | PASS: 42 source files with zero findings; Claude goal slice has zero violations; nine changed documents validate. |
+| Final recursive packet validation | BLOCKED FOR DELIVERY: default Phase 6 strict exits 0 with zero errors/warnings; recursive parent strict exits 2 with zero errors/one parent `dirty_tree` warning while all six child phases pass. |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. Cursor prompt management remains unavailable until Cursor exposes the same native identity as its hook payload.
+2. Live Claude product-native goal behavior is unverified; only the checked-in command discovery boundary is proven.
+3. The repository-wide alignment backlog is outside this packet. The goal-isolation code/test delta contributes zero findings.
+4. The isolated normal-discovery canary emitted a `deep-pi` statistics-lock warning from a separate extension; `/goal-pi` still registered and completed successfully.
+5. The post-review Phase 6 repair remains uncommitted. Preserved unrelated dirty paths remain untouched.
+6. Default strict completion freshness cannot pass until an authorized delivery makes the repaired packet paths clean; packet completion is not claimed in this state.
+<!-- /ANCHOR:limitations -->
+FOLDER
+
+## Action
+For EACH folder, write one detailed changelog entry in this house style:
+
+#### <concise feature/change title, <= 9 words>
+A prose paragraph of 3-6 sentences: what changed and, where the source shows it, the before -> after; then why it matters to a framework user; then any key specifics (behaviors, renamed/removed items, files or components) grounded in the source. Do NOT invent anything not in the source. If a change is breaking, end the paragraph with "**Breaking:** ..." naming the migration.
+
+Rules: plain English; benefit- and mechanism-rich, not a one-line bullet; one `####` block per folder; keep internal jargon out of the prose. If a folder is purely internal tooling with no user-visible effect, still write its entry and note it is internal.
+
+## Format
+Reply with ONLY the markdown `####` blocks, one per folder, in the given order. No preamble, no closing summary.
