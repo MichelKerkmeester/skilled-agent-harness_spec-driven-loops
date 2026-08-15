@@ -105,23 +105,18 @@ The autosync block composes with — it does not replace — the hook's existing
 
 ## 5. OPERATOR SETUP
 
-1. **Install the git hooks** (once per clone) so autosync fires:
-   ```bash
-   bash .opencode/scripts/install-git-hooks.sh
-   ```
-   `check-git-hooks.sh` warns at SessionStart when the hooks are not installed.
+Live-sync is **on by default** in the main checkout. No setup step is required: SessionStart self-heals the git hook install and backgrounds the follower automatically, and both legs run only in the main checkout, never inside a session worktree.
 
-2. **Follow the live branch in the IDE checkout** — from the primary tree, background the follower:
-   ```bash
-   bash .opencode/bin/git-live-follow.sh &
-   ```
+1. **Nothing to install** - when the hook symlinks are missing, `check-git-hooks.sh` runs the installer itself from the main checkout (self-heal). `MK_LIVE_SYNC_DISABLED=1` stops this leg.
+
+2. **Nothing to start** - the SessionStart chain runs `git-live-follow.sh --start`, which backgrounds one follower per checkout. `MK_LIVE_FOLLOW_DISABLED=1` stops this leg.
 
 3. **Glance at what's outstanding** any time:
    ```bash
    bash .opencode/bin/worktree-status.sh --fetch
    ```
 
-4. **Opt out** of autosync for a single launch with `SPECKIT_AUTOSYNC=0` in the environment; nothing else changes and the session still runs isolated.
+4. **Opt out** - the one master flag `MK_LIVE_SYNC_DISABLED=1` (truthy `1`/`true`/`on`) disables the whole loop: autosync publish, follower auto-start, and self-heal install. It honors the shared hook kill-switch convention, so `MK_HOOKS_DISABLED=1` or a line in `.opencode/hooks/hook-flags.env` also stops it. Finer per-leg switches stay available: `SPECKIT_AUTOSYNC=0` for a single publish and `MK_LIVE_FOLLOW_DISABLED=1` for the follower alone.
 
 ---
 
@@ -129,20 +124,21 @@ The autosync block composes with — it does not replace — the hook's existing
 
 Autosync is runtime-agnostic by construction: it is a git hook plus a wrapper that takes the runtime as an argument, so it fires identically for `claude`, `codex`, and `opencode` sessions.
 
-The two SessionStart guards that make the model observable — `worktree-guard.sh` (warns when a top-level session runs on the shared checkout instead of isolated) and `check-git-hooks.sh` (warns when the hooks are not installed) — run in all three runtimes:
+The two SessionStart guards that make the model observable are `worktree-guard.sh` (warns when a top-level session runs on the shared checkout instead of isolated) and `check-git-hooks.sh` (warns when the hooks are not installed, and self-heals them in the main checkout). Both run in every runtime. The follower auto-start (`git-live-follow.sh --start`) is wired into the same surfaces beside them:
 
 | Runtime | Guard wiring |
 |---------|--------------|
 | Claude | `.claude/settings.json` SessionStart |
 | OpenCode | `.opencode/plugins/session-cleanup.js` (runs both guards on `session.created`) |
 | Codex | `.codex/hooks.json` SessionStart |
+| Pi | `session-start-advisories.ts` advisory chain |
 
 ---
 
 ## 7. LIMITS
 
 - Visibility is at **commit granularity**, never another session's un-committed buffer.
-- Autosync only fires when the git hooks are **installed**; the SessionStart guard warns but does not install them.
+- Autosync only fires when the git hooks are **installed**; with live-sync enabled, the SessionStart guard auto-installs them from the main checkout.
 - A conflicting commit is **not** auto-resolved — it stays local with a printed manual-resolution path, by design.
 - `worktree-status.sh` shows external session worktrees (outside the repo root) with a truncated absolute path; in-repo worktrees show a clean repo-relative path.
 

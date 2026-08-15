@@ -105,6 +105,16 @@ while read -r _ local_sha remote_ref remote_sha; do
     _mdg_pushdel="$(mass_deletion_range_count "$remote_sha" "$local_sha")"
     if ! mass_deletion_verdict "$_mdg_pushdel"; then
       mass_deletion_report push "$_mdg_pushdel" "($branch_name $remote_sha..$local_sha)"
+      # An autosync publish to the live branch needs a different explanation:
+      # the operator is not at the keyboard, so the generic stale-tree message
+      # reads as an unexpected hook failure. Name the mass-deletion ceiling as
+      # the cause and point at the manual publish path for the session's work.
+      if [[ "${SPECKIT_AUTOSYNC:-0}" = "1" && -n "${SPECKIT_LIVE_BRANCH:-}" && "$branch_name" = "$SPECKIT_LIVE_BRANCH" ]]; then
+        echo "⚠️  pre-push: this push is an autosync publish to the live branch '$branch_name'." >&2
+        echo "   The mass-deletion ceiling (${SPECKIT_MASS_DELETION_THRESHOLD:-100} tracked files) blocked it." >&2
+        echo "   A session likely committed against a stale tree. Inspect the range, then publish manually." >&2
+        echo "   Manual publish:  bash .opencode/bin/git-sync.sh --live $branch_name" >&2
+      fi
       REJECTED=1
       continue
     fi
