@@ -98,6 +98,16 @@ function emptyLaneScores(): MutableLaneScores {
   return Object.fromEntries(SCORER_LANES.map((lane) => [lane, []])) as unknown as MutableLaneScores;
 }
 
+function projectionWithUsableSkillIds(projection: AdvisorProjection): AdvisorProjection {
+  const skills = projection.skills.filter((skill) => {
+    const skillId: unknown = skill.id;
+    return typeof skillId === 'string' && skillId.trim().length > 0;
+  });
+  return skills.length === projection.skills.length
+    ? projection
+    : { ...projection, skills };
+}
+
 export function isAdvisorRrfFusionEnabled(): boolean {
   const value = process.env[ADVISOR_RRF_FUSION_FLAG]?.trim().toLowerCase();
   return value ? TRUE_FLAG_VALUES.has(value) : false;
@@ -604,7 +614,9 @@ function primaryIntentBonus(
 }
 
 export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
-  const projection = options.projection ?? loadAdvisorProjection(options.workspaceRoot);
+  const projection = projectionWithUsableSkillIds(
+    options.projection ?? loadAdvisorProjection(options.workspaceRoot),
+  );
   const promptLower = prompt.toLowerCase();
   const queryClass = classifyAdvisorQuery(promptLower);
   const weights = effectiveScorerWeights(

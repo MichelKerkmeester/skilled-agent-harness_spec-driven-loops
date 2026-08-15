@@ -313,19 +313,21 @@ export function scoreExplicitLane(
   }
 
   for (const skill of projection.skills) {
-    for (const variant of skillNameVariants(skill.id)) {
+    const skillId: unknown = skill.id;
+    if (typeof skillId !== 'string' || skillId.trim().length === 0) continue;
+    for (const variant of skillNameVariants(skillId)) {
       if (matchesPhraseBoundary(lower, variant)) {
-        push(scores, skill.id, 1, `explicit:${variant}`);
+        push(scores, skillId, 1, `explicit:${variant}`);
       }
     }
     for (const phrase of [...skill.intentSignals, ...skill.keywords]) {
       if (matchesPhraseBoundary(lower, phrase)) {
         push(
           scores,
-          skill.id,
+          skillId,
           phraseSpecificity(phrase),
           `author:${phrase}`,
-          options.includeProducerIdentity ? skill.id : undefined,
+          options.includeProducerIdentity ? skillId : undefined,
         );
       }
     }
