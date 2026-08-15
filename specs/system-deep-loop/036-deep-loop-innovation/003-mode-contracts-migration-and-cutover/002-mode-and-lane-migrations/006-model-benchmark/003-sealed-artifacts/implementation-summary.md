@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/003-sealed-artifacts"
-    last_updated_at: "2026-07-24T04:18:10Z"
+    last_updated_at: "2026-08-15T15:07:50Z"
     last_updated_by: "codex"
-    recent_action: "Closed access-role normalization fail-open"
-    next_safe_action: "Close the remaining broad phase-verifier checklist items"
+    recent_action: "Verified sealed-artifact closeout with focused suite 12 of 12 at exit 0"
+    next_safe_action: "Treat this leaf as complete while preserving additive-dark authority"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-sealed-artifacts/index.ts"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "model-benchmark-sealed-artifacts-20260723"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Model-specific artifact kinds are closed and canonicalized through one shared store"
@@ -51,7 +51,7 @@ _memory:
 | **Spec Folder** | 003-sealed-artifacts |
 | **Implemented** | 2026-07-23 |
 | **Level** | 2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Posture** | Additive-dark; legacy execution and shared common authority remain unchanged |
 | **substrateImportsReal** | true |
 <!-- /ANCHOR:metadata -->
@@ -143,7 +143,7 @@ while mode-specific profiles add only model-benchmark material and read-policy f
 
 | Check | Result |
 |-------|--------|
-| Targeted Vitest | PASS: 1 file, 12 tests passed serially; the new role-normalization test failed against the prior bare-equality policy before the fix |
+| Targeted Vitest | PASS: 1 file, 12 tests, exit 0, 1.71s |
 | Visibility proof | PASS: `Candidate`, `CANDIDATE`, `SCORER`, ` candidate`, unknown `auditor`, and normalized `candidate` reads of sealed scoring evidence return typed `VISIBILITY_MISMATCH` without bytes, material, or the secret winner identifier |
 | Visibility controls | PASS: evaluator and downstream reads retain the full winner, judge-calibration, and uncertainty material; existing genuinely public candidate controls remain readable |
 | Matrix proof | PASS: the true nested cell `matrixMembership.matrixDigest` succeeds; the run-manifest `matrixMembershipDigest` succeeds; a wrong cell digest returns typed `MATRIX_MISMATCH` with the actual nested digest |
@@ -152,8 +152,8 @@ while mode-specific profiles add only model-benchmark material and read-policy f
 | Whole-runtime TypeScript | PASS: runtime project compiler exits 0; `runtime/lib/model-benchmark-sealed-artifacts/` diagnostic grep is 0 |
 | Alignment drift | PASS: 4 scoped TypeScript files scanned, Findings 0, Errors 0, Warnings 0 |
 | Comment hygiene | PASS: no forbidden packet, requirement, checklist, task, or spec markers in code comments |
-| Strict spec validation | PASS: exit 0, Errors 0, Warnings 0 |
-| Scope audit | Preserved unrelated pre-existing worktree changes; this build adds only the model-benchmark module, its unit test, and this leaf's docs |
+| Strict spec validation | Errors 0, Warnings 1, exit 2; only the known `METADATA_DISK_PATH_CONSISTENCY` false-positive |
+| Scope audit | PASS: closeout changes remain inside the five authorized Model Benchmark leaf folders |
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->
@@ -161,9 +161,8 @@ while mode-specific profiles add only model-benchmark material and read-policy f
 
 1. **No authoritative consumer.** Dispatch, reduction, projection, replay/resume, parity, certificates, receipts,
    promotion, and mode-gate behavior stay outside this leaf.
-2. **The broader planning checklist remains partially verified.** The shared-store, typed matrix-mismatch, and
-   candidate/scorer visibility items carry current evidence; unchecked replay, concurrency, downstream certificate,
-   reducer, parity, and authority items remain outside this scoped re-verification.
+2. **Cross-leaf consumers remain separately owned.** This leaf verifies its sealed-artifact contract and handoff
+   boundaries; certificate, resume, parity, and authority behavior remain implemented and verified by their sibling leaves.
 3. **Common service behavior remains common-owned.** The model adapter only delegates common canonicalization and read
    policy; it does not reimplement evaluator, canary, promotion, veto, or redaction semantics.
 <!-- /ANCHOR:limitations -->

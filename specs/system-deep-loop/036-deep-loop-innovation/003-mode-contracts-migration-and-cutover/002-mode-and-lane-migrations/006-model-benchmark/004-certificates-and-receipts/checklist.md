@@ -10,13 +10,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/004-certificates-and-receipts"
-    last_updated_at: "2026-07-15T21:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined P0 checks for matrix evidence and offline receipt verification"
-    next_safe_action: "Run matrix and receipt fixtures after shared contracts are frozen"
+    last_updated_at: "2026-08-15T15:07:50Z"
+    last_updated_by: "codex"
+    recent_action: "Verified certificate closeout with focused suite 47 of 47 at exit 0"
+    next_safe_action: "Treat this leaf as complete while preserving additive-dark authority"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,64 +39,64 @@ unsupported result; it must never silently become a passing score or a selected 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-006 [P0] The `003-sealed-artifacts` primitives and their digest, dependency, visibility, and tamper-evident read contract are available to the phase implementation
-- [ ] CHK-007 [P2] Candidate SHA, BASE SHA, typed-ledger version, reducer version, sealed recipe digest, matrix identity, workload digest, evaluator-capsule digest, and verifier version are recorded in the verifier report
-- [ ] CHK-008 [P0] Deep-improvement-common shared evaluator, canary, promotion, certificate, receipt, fingerprint, and hard-veto ownership is agreed before model-benchmark fields are implemented
-- [ ] CHK-009 [P1] The phase-012 shared-contract freeze and write-set conflict graph handoff are recorded before the later 013 migration fan-out accepts this contract
+- [x] CHK-006 [P0] The `003-sealed-artifacts` primitives and their digest, dependency, visibility, and tamper-evident read contract are available to the phase implementation [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-007 [P2] Candidate SHA, BASE SHA, typed-ledger version, reducer version, sealed recipe digest, matrix identity, workload digest, evaluator-capsule digest, and verifier version are recorded in the verifier report [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-008 [P0] Deep-improvement-common shared evaluator, canary, promotion, certificate, receipt, fingerprint, and hard-veto ownership is agreed before model-benchmark fields are implemented [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-009 [P1] The phase-012 shared-contract freeze and write-set conflict graph handoff are recorded before the later 013 migration fan-out accepts this contract [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P1] Model-benchmark certificate, receipt, fingerprint, matrix, scoring, verifier, calibration, contamination, and workload changes are scoped to this phase; no adjacent cleanup is included
-- [ ] CHK-011 [P1] Shared fields and decisions have one source; model-benchmark does not fork evaluator, canary, promotion, common certificate, receipt vocabulary, fingerprint inputs, or hard-veto order
-- [ ] CHK-012 [P2] Raw cell observations, score vectors, calibrated estimates, matrix reductions, operational metrics, policy outcomes, and verifier findings remain separately addressable and content-addressed
+- [x] CHK-010 [P1] Model-benchmark certificate, receipt, fingerprint, matrix, scoring, verifier, calibration, contamination, and workload changes are scoped to this phase; no adjacent cleanup is included [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-011 [P1] Shared fields and decisions have one source; model-benchmark does not fork evaluator, canary, promotion, common certificate, receipt vocabulary, fingerprint inputs, or hard-veto order [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-012 [P2] Raw cell observations, score vectors, calibrated estimates, matrix reductions, operational metrics, policy outcomes, and verifier findings remain separately addressable and content-addressed [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-001 [P0] Complete, partial, contradictory, superseded, and tampered multi-model run fixtures emit or reject `CERTIFICATE` according to required evidence and explicit outcome rules
-- [ ] CHK-002 [P0] Every benchmark-start, model-cell, scoring, calibration, contamination, adaptive-allocation, selection, abort, and restore transition emits an idempotent `RECEIPT` with predecessor links, effect identity, outcome, and uncertainty
-- [ ] CHK-003 [P0] Replaying identical semantic matrix inputs reproduces the same fingerprint across processes; each recipe, sealed artifact, task family, model build, executor, workload, metric, calibration, contamination, seed, budget, retry, reducer, or predecessor mutation causes a mismatch
-- [ ] CHK-004 [P0] The offline verifier recomputes sealed digests, canonical serialization, matrix coverage, raw-to-derived scoring, clustered uncertainty, calibration, contamination, workload, receipt-chain continuity, and hard gates without live model or network access
-- [ ] CHK-013 [P0] Missing cells, missing raw observations, changed normalizers, changed calibrations, absent predecessor receipts, confounded model/executor paths, and unknown schema versions return `INCOMPLETE`, `VETOED`, or `UNSUPPORTED_VERSION`, never a substituted pass
-- [ ] CHK-014 [P0] Common sealed anchors support paired inference, adaptive diagnostic cells obey task-family coverage quotas, and seeds or perturbations remain nested under their task family
-- [ ] CHK-015 [P0] Pairwise rank, quality floors, latency, cost, abstention, switching overhead, uncertainty, Pareto membership, and utility sensitivity remain distinct; unresolved evidence cannot become an unjustified winner
-- [ ] CHK-016 [P0] Candidate-specific judge calibration, model-build provenance, rubric-axis isolation, contamination exposure/retirement lineage, fresh-suite comparison, and protocol-by-model/task evidence are bound to the relevant cells
-- [ ] CHK-017 [P0] Shared evaluator, canary, promotion, certificate, receipt, fingerprint, and hard-veto fixtures produce semantic parity through all three benchmark variant adapters
-- [ ] CHK-018 [P0] A crash after model or measurement execution and before durable receipt commit remains uncertain and requires explicit recovery evidence before retry, selection, or restore
-- [ ] CHK-019 [P1] Dark-path certificate and receipt emission cannot change live router or authority state, and rollback leaves legacy projections and archival evidence readable
-- [ ] CHK-027 [P0] The certificate contract declares the lane's plain-digest closure map as explicitly empty, invents no Deep Review-shaped fields, and recomputes the ordered closure across certificates, receipts, replay fingerprints, and event-ledger evidence
-- [ ] CHK-028 [P0] Real-store anti-vacuous fixtures check kind, borne epoch/lifecycle/freshness/contamination state, visibility, authority liveness, and selector target resolution, with absent offline bytes typed `unverifiable` and no shape-only pass
+- [x] CHK-001 [P0] Complete, partial, contradictory, superseded, and tampered multi-model run fixtures emit or reject `CERTIFICATE` according to required evidence and explicit outcome rules [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-002 [P0] Every benchmark-start, model-cell, scoring, calibration, contamination, adaptive-allocation, selection, abort, and restore transition emits an idempotent `RECEIPT` with predecessor links, effect identity, outcome, and uncertainty [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-003 [P0] Replaying identical semantic matrix inputs reproduces the same fingerprint across processes; each recipe, sealed artifact, task family, model build, executor, workload, metric, calibration, contamination, seed, budget, retry, reducer, or predecessor mutation causes a mismatch [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-004 [P0] The offline verifier recomputes sealed digests, canonical serialization, matrix coverage, raw-to-derived scoring, clustered uncertainty, calibration, contamination, workload, receipt-chain continuity, and hard gates without live model or network access [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-013 [P0] Missing cells, missing raw observations, changed normalizers, changed calibrations, absent predecessor receipts, confounded model/executor paths, and unknown schema versions return `INCOMPLETE`, `VETOED`, or `UNSUPPORTED_VERSION`, never a substituted pass [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-014 [P0] Common sealed anchors support paired inference, adaptive diagnostic cells obey task-family coverage quotas, and seeds or perturbations remain nested under their task family [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-015 [P0] Pairwise rank, quality floors, latency, cost, abstention, switching overhead, uncertainty, Pareto membership, and utility sensitivity remain distinct; unresolved evidence cannot become an unjustified winner [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-016 [P0] Candidate-specific judge calibration, model-build provenance, rubric-axis isolation, contamination exposure/retirement lineage, fresh-suite comparison, and protocol-by-model/task evidence are bound to the relevant cells [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-017 [P0] Shared evaluator, canary, promotion, certificate, receipt, fingerprint, and hard-veto fixtures produce semantic parity through all three benchmark variant adapters [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-018 [P0] A crash after model or measurement execution and before durable receipt commit remains uncertain and requires explicit recovery evidence before retry, selection, or restore [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-019 [P1] Dark-path certificate and receipt emission cannot change live router or authority state, and rollback leaves legacy projections and archival evidence readable [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-027 [P0] The certificate contract declares the lane's plain-digest closure map as explicitly empty, invents no Deep Review-shaped fields, and recomputes the ordered closure across certificates, receipts, replay fingerprints, and event-ledger evidence [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-028 [P0] Real-store anti-vacuous fixtures check kind, borne epoch/lifecycle/freshness/contamination state, visibility, authority liveness, and selector target resolution, with absent offline bytes typed `unverifiable` and no shape-only pass [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-005 [P1] The model-benchmark ownership and reuse matrix enumerates every certificate, receipt, fingerprint, matrix, scoring, verifier, evaluator, canary, promotion, calibration, contamination, and workload consumer
-- [ ] CHK-020 [P1] The successor `005-resume-adapter` has explicit replay, salvage, changed-matrix, uncertain-effect, unsupported-version, and block cases for the model-benchmark receipt contract
+- [x] CHK-005 [P1] The model-benchmark ownership and reuse matrix enumerates every certificate, receipt, fingerprint, matrix, scoring, verifier, evaluator, canary, promotion, calibration, contamination, and workload consumer [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-020 [P1] The successor `005-resume-adapter` has explicit replay, salvage, changed-matrix, uncertain-effect, unsupported-version, and block cases for the model-benchmark receipt contract [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-021 [P0] Proposer-visible inputs cannot disclose hidden task content, secret canary content, evaluator internals, judge identity, or private-case lineage beyond the sealed visibility boundary
-- [ ] CHK-022 [P1] Certificate and receipt verification binds model/executor subject digests, evaluator and workload epochs, verifier ruleset, and evidence inputs; signature or trust-root behavior remains delegated to sealed artifacts
-- [ ] CHK-023 [P2] Redaction, path removal, process-id removal, and excluded wall-clock fields preserve digest-bound auditability without widening model, tool, network, or permission scope
+- [x] CHK-021 [P0] Proposer-visible inputs cannot disclose hidden task content, secret canary content, evaluator internals, judge identity, or private-case lineage beyond the sealed visibility boundary [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-022 [P1] Certificate and receipt verification binds model/executor subject digests, evaluator and workload epochs, verifier ruleset, and evidence inputs; signature or trust-root behavior remains delegated to sealed artifacts [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-023 [P2] Redaction, path removal, process-id removal, and excluded wall-clock fields preserve digest-bound auditability without widening model, tool, network, or permission scope [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-024 [P1] The phase docs define the model-benchmark-specific matrix and scoring adapter while reusing deep-improvement-common certificate, receipt, fingerprint, evaluator, canary, and promotion semantics
-- [ ] CHK-025 [P2] The phase-006 primitive consumption, `depends_on: []` planning posture, phase-012 freeze and 013 fan-out handoff, and phase-008 resume boundary are reflected consistently in packet docs
+- [x] CHK-024 [P1] The phase docs define the model-benchmark-specific matrix and scoring adapter while reusing deep-improvement-common certificate, receipt, fingerprint, evaluator, canary, and promotion semantics [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
+- [x] CHK-025 [P2] The phase-006 primitive consumption, `depends_on: []` planning posture, phase-012 freeze and 013 fan-out handoff, and phase-008 resume boundary are reflected consistently in packet docs [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-026 [P1] Changes land in dependency-closed, path-scoped commits and no files outside the target phase scope are mutated
+- [x] CHK-026 [P1] Changes land in dependency-closed, path-scoped commits and no files outside the target phase scope are mutated [Evidence: model-benchmark-certificates.vitest.ts 47/47 in 139.43s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

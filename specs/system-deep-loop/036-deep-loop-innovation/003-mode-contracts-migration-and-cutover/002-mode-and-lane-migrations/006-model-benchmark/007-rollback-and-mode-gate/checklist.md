@@ -11,13 +11,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T23:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined Model Benchmark rollback switch and independent gate boundary"
-    next_safe_action: "Freeze matrix gate predicates and rollback window evidence"
+    last_updated_at: "2026-08-15T15:07:50Z"
+    last_updated_by: "codex"
+    recent_action: "Verified rollback-gate closeout with focused suite 58 of 58 at exit 0"
+    next_safe_action: "Treat this leaf as complete while preserving additive-dark authority"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -30,8 +30,8 @@ _memory:
 <!-- ANCHOR:protocol -->
 ## Verification Protocol
 
-This checklist is the blocking SOL verifier contract for the Model Benchmark mode gate. Items remain unchecked while the
-phase is Planned. Every report pins BASE, candidate SHA, shared transition and mode-contract digests, write-set graph
+This checklist is the blocking SOL verifier contract for the Model Benchmark mode gate. Every completed item cites the
+fresh closeout probes. Every report pins BASE, candidate SHA, shared transition and mode-contract digests, write-set graph
 digest, event and reducer versions, evaluator and canary epochs, matrix and fixture IDs, stream and artifact digests,
 window ID, verifier identity, commands, exit codes, and every disposition. A green process exit without the required
 evidence is not a passing gate. `INCONCLUSIVE`, `TELEMETRY_GAP`, `UNKNOWN`, `INSUFFICIENT_EVIDENCE`, stale evidence,
@@ -41,77 +41,77 @@ underpowered coverage, or an empty eligible matrix is blocking.
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase 012 contract digest, write-set graph digest, and phase-014 handoff version are recorded
-- [ ] CHK-002 [P0] LANDED additive-dark Model Benchmark siblings `001` through `003` and planned evidence siblings `004` through `006` are inventory-bound with event, reducer, seal, certificate, receipt, replay, resume, and shadow-parity references
-- [ ] CHK-003 [P0] The shared-service ownership matrix identifies evaluator, canary, calibration, promotion, certificate, receipt, fingerprint, veto, budget, and rollback owners
-- [ ] CHK-004 [P1] The legacy anchor, typed frontier, matrix frontier, evaluator epoch, canary epoch, and required fixture manifest are recorded for every gate boundary
+- [x] CHK-001 [P0] BASE, candidate scope, shared transition/versioning/rollback digest, phase 012 contract digest, write-set graph digest, and phase-014 handoff version are recorded [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-002 [P0] LANDED additive-dark Model Benchmark siblings `001` through `006` are inventory-bound with event, reducer, seal, certificate, receipt, replay, resume, and shadow-parity references [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-003 [P0] The shared-service ownership matrix identifies evaluator, canary, calibration, promotion, certificate, receipt, fingerprint, veto, budget, and rollback owners [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-004 [P1] The legacy anchor, typed frontier, matrix frontier, evaluator epoch, canary epoch, and required fixture manifest are recorded for every gate boundary [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:pre-impl -->
 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-005 [P0] Every caller-input digest and validator is guarded; circular, non-finite, forbidden-prototype, non-plain, wrong-shape, stale, or absent evidence returns a typed denial and `legacy_authoritative` without throwing
-- [ ] CHK-006 [P0] A closed request schema authenticates every field, rejects unknown or inert fields, snapshots validated values, and cannot bypass the real gateway or accept a certificate for another mode
-- [ ] CHK-007 [P0] The rollback window records stable identity, legacy anchor, typed and matrix frontiers, trigger policy, fencing token, successful-run count, expiry, unresolved obligations, and close or rollback receipt
-- [ ] CHK-008 [P1] Window closure requires both 14 calendar days and five successful authoritative executions and extends for low traffic or unresolved parity, validity, replay, receipt, budget, health, or effect obligations
-- [ ] CHK-009 [P0] Gate and rollback operations do not rewrite legacy rows, delete typed events, mutate sealed artifacts, disclose hidden cases, dispatch models, or retire legacy writers
-- [ ] CHK-010 [P1] Shared evaluator, canary, calibration, and promotion semantics have one source; the Model Benchmark adapter cannot fork hard vetoes, evidence states, receipt vocabulary, or rollback behavior
+- [x] CHK-005 [P0] Every caller-input digest and validator is guarded; circular, non-finite, forbidden-prototype, non-plain, wrong-shape, stale, or absent evidence returns a typed denial and `legacy_authoritative` without throwing [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-006 [P0] A closed request schema authenticates every field, rejects unknown or inert fields, snapshots validated values, and cannot bypass the real gateway or accept a certificate for another mode [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-007 [P0] The rollback window records stable identity, legacy anchor, typed and matrix frontiers, trigger policy, fencing token, successful-run count, expiry, unresolved obligations, and close or rollback receipt [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-008 [P1] Window closure requires both 14 calendar days and five successful authoritative executions and extends for low traffic or unresolved parity, validity, replay, receipt, budget, health, or effect obligations [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-009 [P0] Gate and rollback operations do not rewrite legacy rows, delete typed events, mutate sealed artifacts, disclose hidden cases, dispatch models, or retire legacy writers [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-010 [P1] Shared evaluator, canary, calibration, and promotion semantics have one source; the Model Benchmark adapter cannot fork hard vetoes, evidence states, receipt vocabulary, or rollback behavior [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:code-quality -->
 
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-011 [P0] Absent, malformed, stale, unauthorized, mixed-version, gateway-failed, and wrong-mode requests fail closed before append, projection, effect, or authority change
-- [ ] CHK-012 [P0] The Model Benchmark adapter cannot self-authorize rollback, unquarantine, verifier replacement, or legacy restoration
-- [ ] CHK-013 [P0] The required phase-009 parity receipt verifies integrity and mode/frontier/manifest binding, but its `exitStatus` is never adopted; readiness is independently re-derived through the real `TransitionAuthorizationGateway` and deterministic ledger replay without re-running the harness
-- [ ] CHK-014 [P0] Event and projection parity has zero missing, extra, reordered, unauthorized, unsupported, or unexplained protected differences at every eligible matrix boundary
-- [ ] CHK-015 [P0] Raw per-cell and per-item observations, model/build identity, execution path, task family, anchor or diagnostic status, seed, score vector, calibration, usage, cost, latency, and validity remain addressable after reduction changes
-- [ ] CHK-016 [P0] Every required recipe, anchor, diagnostic, model-cell, raw-trial, workload, calibration, contamination, and scoring reference resolves through the real substrate with expected kind, epoch/lifecycle/freshness/state, visibility/redaction, authority-liveness, valid seals, dependency closure, and content digest
-- [ ] CHK-017 [P0] Common sealed anchors remain paired across compared cells and adaptive diagnostics record information inputs, family quotas, selection policy, exposure caps, and confirmatory status
-- [ ] CHK-018 [P0] Model and execution-path factors are independently represented where the claim is model-specific; a complete stack comparison is not mislabeled as a model comparison
-- [ ] CHK-019 [P0] Candidate-specific judge calibration, rubric-axis validity, oracle uncertainty, protocol perturbations, contamination lineage, and hidden-visibility states remain separate from model quality scores
-- [ ] CHK-020 [P0] Quality floors, pairwise or preference estimates, task-family uncertainty, cost, latency, abstention, switching overhead, and Pareto or conditional selection states remain separate and no ratio is the sole selection basis
-- [ ] CHK-021 [P0] Certificate and receipt chains verify offline with stable replay fingerprints, predecessor links, effect identities, budgets, policy versions, matrix coverage, and explicit uncertainty
-- [ ] CHK-022 [P0] Complete replay, checkpoint replay, matrix-order permutation, resume, changed-manifest, crash-before-receipt, duplicate delivery, and unknown-effect fixtures remain deterministic or fail closed
-- [ ] CHK-023 [P0] Missing observations, stale watermarks, unsupported versions, evaluator or canary epoch mismatch, calibration gaps, contaminated cases, telemetry gaps, underpowered comparisons, and nondeterminism produce `blocked`, `incomplete`, or `rollback_required`
-- [ ] CHK-024 [P0] Rollback rehearsal requires a predecessor token strictly below the canonical writer's durable coordinator high-water mark and new rollback token, cross-checks the request anchor against the re-verified migration certificate, freezes admission, restores legacy at a new epoch, preserves evidence, and emits a rollback certificate
-- [ ] CHK-025 [P0] The rollback window remains open until both 14 calendar days and five successful authoritative executions are satisfied and extends on low traffic or unresolved obligations
-- [ ] CHK-026 [P0] Model Benchmark consumes the same evaluator, canary, calibration, promotion, certificate, receipt, fingerprint, veto, budget, and rollback fixtures through namespaced adapters
-- [ ] CHK-027 [P0] Repeated evaluation of the same sealed matrix frontier emits the same gate disposition and certificate body digest; a changed semantic input invalidates the result
-- [ ] CHK-028 [P0] Phase-014 receives a readiness certificate only; any certificate claiming authority moved, the rollback window closed, a model was globally selected, or legacy writers retired is rejected
+- [x] CHK-011 [P0] Absent, malformed, stale, unauthorized, mixed-version, gateway-failed, and wrong-mode requests fail closed before append, projection, effect, or authority change [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-012 [P0] The Model Benchmark adapter cannot self-authorize rollback, unquarantine, verifier replacement, or legacy restoration [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-013 [P0] The required phase-009 parity receipt verifies integrity and mode/frontier/manifest binding, but its `exitStatus` is never adopted; readiness is independently re-derived through the real `TransitionAuthorizationGateway` and deterministic ledger replay without re-running the harness [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-014 [P0] Event and projection parity has zero missing, extra, reordered, unauthorized, unsupported, or unexplained protected differences at every eligible matrix boundary [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-015 [P0] Raw per-cell and per-item observations, model/build identity, execution path, task family, anchor or diagnostic status, seed, score vector, calibration, usage, cost, latency, and validity remain addressable after reduction changes [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-016 [P0] Every required recipe, anchor, diagnostic, model-cell, raw-trial, workload, calibration, contamination, and scoring reference resolves through the real substrate with expected kind, epoch/lifecycle/freshness/state, visibility/redaction, authority-liveness, valid seals, dependency closure, and content digest [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-017 [P0] Common sealed anchors remain paired across compared cells and adaptive diagnostics record information inputs, family quotas, selection policy, exposure caps, and confirmatory status [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-018 [P0] Model and execution-path factors are independently represented where the claim is model-specific; a complete stack comparison is not mislabeled as a model comparison [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-019 [P0] Candidate-specific judge calibration, rubric-axis validity, oracle uncertainty, protocol perturbations, contamination lineage, and hidden-visibility states remain separate from model quality scores [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-020 [P0] Quality floors, pairwise or preference estimates, task-family uncertainty, cost, latency, abstention, switching overhead, and Pareto or conditional selection states remain separate and no ratio is the sole selection basis [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-021 [P0] Certificate and receipt chains verify offline with stable replay fingerprints, predecessor links, effect identities, budgets, policy versions, matrix coverage, and explicit uncertainty [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-022 [P0] Complete replay, checkpoint replay, matrix-order permutation, resume, changed-manifest, crash-before-receipt, duplicate delivery, and unknown-effect fixtures remain deterministic or fail closed [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-023 [P0] Missing observations, stale watermarks, unsupported versions, evaluator or canary epoch mismatch, calibration gaps, contaminated cases, telemetry gaps, underpowered comparisons, and nondeterminism produce `blocked`, `incomplete`, or `rollback_required` [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-024 [P0] Rollback rehearsal requires a predecessor token strictly below the canonical writer's durable coordinator high-water mark and new rollback token, cross-checks the request anchor against the re-verified migration certificate, freezes admission, restores legacy at a new epoch, preserves evidence, and emits a rollback certificate [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-025 [P0] The rollback window remains open until both 14 calendar days and five successful authoritative executions are satisfied and extends on low traffic or unresolved obligations [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-026 [P0] Model Benchmark consumes the same evaluator, canary, calibration, promotion, certificate, receipt, fingerprint, veto, budget, and rollback fixtures through namespaced adapters [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-027 [P0] Repeated evaluation of the same sealed matrix frontier emits the same gate disposition and certificate body digest; a changed semantic input invalidates the result [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-028 [P0] Phase-014 receives a readiness certificate only; any certificate claiming authority moved, the rollback window closed, a model was globally selected, or legacy writers retired is rejected [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-029 [P1] The gate matrix covers every Model Benchmark run, matrix, anchor, adaptive-tail, validity, workload, replay, resume, failure, rollback, and shared-service-reuse obligation without an unowned evidence row
-- [ ] CHK-030 [P1] Every failure or uncertainty case has an explicit `blocked`, `incomplete`, `not_ready`, `rollback_required`, or window-extension disposition and an evidence owner
-- [ ] CHK-031 [P0] The mode certificate binds Model Benchmark, exact BASE and candidate SHA, contract and write-set digests, event and matrix frontiers, evaluator and canary epochs, sealed manifest, receipt chain, rollback anchor, verifier, and dispositions
+- [x] CHK-029 [P1] The gate matrix covers every Model Benchmark run, matrix, anchor, adaptive-tail, validity, workload, replay, resume, failure, rollback, and shared-service-reuse obligation without an unowned evidence row [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-030 [P1] Every failure or uncertainty case has an explicit `blocked`, `incomplete`, `not_ready`, `rollback_required`, or window-extension disposition and an evidence owner [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-031 [P0] The mode certificate binds Model Benchmark, exact BASE and candidate SHA, contract and write-set digests, event and matrix frontiers, evaluator and canary epochs, sealed manifest, receipt chain, rollback anchor, verifier, and dispositions [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:fix-completeness -->
 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-032 [P0] Candidate-facing views cannot disclose hidden case content, evaluator internals, judge identity, calibration labels, or terminal evidence before the declared visibility boundary
-- [ ] CHK-033 [P0] Rollback preserves append-only ledger history and sealed artifacts and never truncates evidence to make parity, replay, or certificate verification pass
-- [ ] CHK-034 [P0] Fencing and monotonic epochs reject stale Model Benchmark writers and duplicate authority requests after rollback or restoration
-- [ ] CHK-035 [P1] Certificate and receipt verification rejects mixed-version, expired, malformed, unsigned, or digest-mismatched references without widening capability scope
+- [x] CHK-032 [P0] Candidate-facing views cannot disclose hidden case content, evaluator internals, judge identity, calibration labels, or terminal evidence before the declared visibility boundary [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-033 [P0] Rollback preserves append-only ledger history and sealed artifacts and never truncates evidence to make parity, replay, or certificate verification pass [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-034 [P0] Fencing and monotonic epochs reject stale Model Benchmark writers and duplicate authority requests after rollback or restoration [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-035 [P1] Certificate and receipt verification rejects mixed-version, expired, malformed, unsigned, or digest-mismatched references without widening capability scope [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:security -->
 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-036 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Model Benchmark gate, mode-migration certificate, phase-014 readiness handoff, later authority-cutover certificate, LANDED additive-dark predecessors, and provenance limits cited from the golden 007 decision record
-- [ ] CHK-037 [P1] The shared-service reuse boundary names Deep Improvement Common Services and records that Model Benchmark consumes its evaluator, canary, calibration, promotion, receipt, certificate, veto, budget, and recovery source
-- [ ] CHK-038 [P2] Research traceability cites the 036/002 findings on model/path confounding, adaptive anchors, candidate-specific calibration, contamination lineage, operational workload, cost, and false-green ranking claims
+- [x] CHK-036 [P1] The phase docs distinguish the rollback switch, rollback certificate, independent Model Benchmark gate, mode-migration certificate, phase-014 readiness handoff, later authority-cutover certificate, LANDED additive-dark predecessors, and provenance limits cited from the golden 007 decision record [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-037 [P1] The shared-service reuse boundary names Deep Improvement Common Services and records that Model Benchmark consumes its evaluator, canary, calibration, promotion, receipt, certificate, veto, budget, and recovery source [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-038 [P2] Research traceability cites the 036/002 findings on model/path confounding, adaptive anchors, candidate-specific calibration, contamination lineage, operational workload, cost, and false-green ranking claims [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:docs -->
 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-039 [P0] Authored changes remain limited to this target phase folder and use the prescribed four-document Level 2 structure
-- [ ] CHK-040 [P1] No `description.json` or `graph-metadata.json` is hand-written; deterministic tooling owns generated metadata
-- [ ] CHK-041 [P1] Any later implementation remains path-scoped, additive-dark, dependency-closed, and ordered after the phase 012 contract freeze without adjacent sibling cleanup
+- [x] CHK-039 [P0] Authored changes remain limited to this target phase folder and use the prescribed four-document Level 2 structure [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-040 [P1] No `description.json` or `graph-metadata.json` is hand-written; deterministic tooling owns generated metadata [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
+- [x] CHK-041 [P1] Any later implementation remains path-scoped, additive-dark, dependency-closed, and ordered after the phase 012 contract freeze without adjacent sibling cleanup [Evidence: model-benchmark-rollback-gate.vitest.ts 58/58 in 2.01s, exit 0; runtime tsc exit 0]
 <!-- /ANCHOR:file-org -->
 
 <!-- ANCHOR:summary -->

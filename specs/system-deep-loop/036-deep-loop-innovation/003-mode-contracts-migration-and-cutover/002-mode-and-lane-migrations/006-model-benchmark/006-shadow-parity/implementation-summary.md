@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/006-shadow-parity"
-    last_updated_at: "2026-07-28T11:20:45Z"
-    last_updated_by: "opencode"
-    recent_action: "Verified Model Benchmark shadow parity"
-    next_safe_action: "Hand parity evidence to the successor gate"
+    last_updated_at: "2026-08-15T15:07:50Z"
+    last_updated_by: "codex"
+    recent_action: "Reverified shadow-parity closeout with focused suite 40 of 40 at exit 0"
+    next_safe_action: "Treat this leaf as complete while preserving additive-dark authority"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-shadow-parity/index.ts"
@@ -101,7 +101,7 @@ stay in path evidence, and ordered digests cross the bounded generic harness int
 
 | Gate | Result |
 |---|---|
-| Focused Vitest | PASS with 1 file and 37 tests |
+| Focused Vitest | PASS: 1 file, 40 tests, exit 0, 34.37s |
 | Real zero-diff execution | PASS through authorization, ledger, reducer, replay, projection, and attestation |
 | End-to-end fault injection | PASS with payload drift rejected after real substrate execution |
 | Typed fault taxonomy | PASS for 28 registered fault classes |
@@ -109,15 +109,16 @@ stay in path evidence, and ordered digests cross the bounded generic harness int
 | Closed volatility | PASS for exactly three transport-only fields |
 | Exact fixture closure | PASS for all 17 required Model Benchmark scenarios |
 | Manifest-bound gate input | PASS with missing receipts and different BASE values blocked |
-| Whole-runtime TypeScript | PASS with zero diagnostics containing `model-benchmark-shadow-parity` |
+| Whole-runtime TypeScript | PASS: exit 0 with `--noEmit --ignoreDeprecations 6.0` |
+| Strict packet validation | Errors 0, Warnings 1, exit 2; only the known `METADATA_DISK_PATH_CONSISTENCY` false-positive |
 
 Focused command:
 
-`cd .opencode/skills/system-spec-kit/mcp-server && node_modules/.bin/vitest run --no-coverage ../../system-deep-loop/runtime/tests/unit/model-benchmark-shadow-parity.vitest.ts`
+`cd .opencode/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/model-benchmark-shadow-parity.vitest.ts --configLoader runner`
 
 TypeScript command:
 
-`.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json`
+`cd .opencode/skills/system-deep-loop/runtime && npx --no-install tsc --noEmit --ignoreDeprecations 6.0`
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:nfr-verify -->

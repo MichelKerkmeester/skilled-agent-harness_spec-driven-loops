@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/006-model-benchmark/005-resume-adapter"
-    last_updated_at: "2026-07-28T03:53:47Z"
+    last_updated_at: "2026-08-15T15:07:50Z"
     last_updated_by: "codex"
-    recent_action: "Implemented and verified the Model Benchmark resume adapter"
-    next_safe_action: "Consume the frozen adapter in shadow parity"
+    recent_action: "Reverified resume-adapter closeout with focused suite 22 of 22 at exit 0"
+    next_safe_action: "Treat this leaf as complete while preserving additive-dark authority"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/model-benchmark-resume-adapter/index.ts"
@@ -166,7 +166,7 @@ real common adapter and never rely on a bare effect identifier.
 
 | Check | Result |
 |-------|--------|
-| Target Vitest suite | PASS, 1 file and 22 tests |
+| Target Vitest suite | PASS: 1 file, 22 tests, exit 0, 67.70s |
 | Resume matrix | PASS, exact-reuse, compatible, migrate, rebuild-required, and blocked |
 | Compatibility ownership | PASS, caller-added verdict is rejected and an unauthenticated registry blocks |
 | Fingerprint recomputation | PASS, changed tool, model, policy, target, or schema facts alter the digest and cannot reuse |
@@ -177,9 +177,9 @@ real common adapter and never rely on a bare effect identifier.
 | Authenticated history | PASS, causal cursor gaps and run stream splits fail at the adapter-local guard |
 | Frontier integrity | PASS, a replayed final head different from the certificate returns frontier-mismatch |
 | Prior-run integrity | PASS, a mutated certificate is refused before reuse |
-| Runtime TypeScript compile | PASS, exit 0 with zero adapter-path diagnostics |
-| Strict packet validation | PENDING final documentation gate |
-| Scope audit | PENDING final path-scoped status check |
+| Runtime TypeScript compile | PASS: exit 0 with `--noEmit --ignoreDeprecations 6.0` |
+| Strict packet validation | Errors 0, Warnings 1, exit 2; only the known `METADATA_DISK_PATH_CONSISTENCY` false-positive |
+| Scope audit | PASS: closeout changes remain inside the five authorized Model Benchmark leaf folders |
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

@@ -97,12 +97,6 @@
         "source": "derived"
       },
       {
-        "name": "Verified Model Benchmark",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Deep Improvement Common Services",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -115,7 +109,19 @@
         "source": "derived"
       },
       {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Model Benchmark",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,6 +145,12 @@
         "source": "derived"
       },
       {
+        "name": "focused",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -152,6 +164,12 @@
       },
       {
         "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -173,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Model Benchmark variant's shadow-parity harness over the typed event-ledger substrate: run multi-model benchmark executions and scoring-matrix reductions beside the legacy emitter, compare projections event-for-event, and block authority cutover on any unexplained semantic difference while reusing deep-improvement-common services.",
     "created_at": "2026-07-16T03:43:40.543Z",
-    "last_save_at": "2026-08-14T04:27:56.395Z",
+    "last_save_at": "2026-08-15T15:08:47.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -193,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe00f13a4e80aa9b3afb77541aa4223dd2b10e2988a2eabb7947ac7d9d8d47b5",
+    "source_fingerprint": "sha256:176b84d5e91cce875baca3c9230d0dd2846b0751a41b1e82549663c83dc521ad",
     "source_doc_hashes": {
-      "spec.md": "f325bcdd6738431ea62fd0673b30df0df2f048f450b4ec1deb7d18120f118b79",
+      "spec.md": "5eab679515630387ec772252c13fdcd7a3adae2b5de4d08b74f37ebd71148e3d",
       "plan.md": "5c382c3def2a1d0d8161475a3654da765813c164a4cd91017a8e8eea9023cee7",
-      "tasks.md": "3b6b5aebfd454db303fdeb455a7d6505e3d4b6add8f207bce7e9e8df1e336a8a",
-      "checklist.md": "d89b4a1b7da6e632e5213dbe38adc24836b5077827b0aa22f6c27812ab17132b",
-      "implementation-summary.md": "7922f2604706d63343e44b095eea474c8e9a2df27faf14fcc535c5ef282ec72b"
+      "tasks.md": "d26ca4fa88169b3937444fb1ff925c05948551611477fef4231aefb348b53ea6",
+      "checklist.md": "adfd19db2be57895cdd2045adbfda599b6aa0c0a50a75c5803ac44fc5601977f",
+      "implementation-summary.md": "4ee671f5c5febc5f66bf14ff81b9e5f9de20f02685095450eaafc7d8114a7947"
     },
     "last_active_child_id": null,
     "last_active_at": null

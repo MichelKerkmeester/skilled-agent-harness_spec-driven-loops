@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -97,12 +97,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Purpose Define",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,6 +104,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -151,13 +151,13 @@
         "source": "derived"
       },
       {
-        "name": "deep-improvement-common",
+        "name": "focused",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "deep-improvement-common",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Define how Model Benchmark seals its reference artifacts over the typed event-ledger substrate",
     "created_at": "2026-07-16T03:43:39.766Z",
-    "last_save_at": "2026-08-14T04:27:57.347Z",
+    "last_save_at": "2026-08-15T15:08:30.862Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3c46f8053a808dd088d12f91eb8a1c1a4c142fa0f4e4eec640e36ea9352b4c86",
+    "source_fingerprint": "sha256:605fb63c50f27bfa617294198648cfc0dac76085821d992019b7339b3f01a253",
     "source_doc_hashes": {
-      "spec.md": "f8ff25dcdf1843eadee1335b6b00bdd3a3f933f713345ccbef009d9be3d59363",
+      "spec.md": "6e3c56340104f02b083f94dcfaecd62bb7528b95a94de7f2cd67f1e7b1d3f9ba",
       "plan.md": "6745690742b3a0eac8f2ac84a06548629ec37b1a989047d4ea82d185828a2510",
-      "tasks.md": "313911c95ca4740b2c82cb69ad161f19f2efe39e671af23710398c227c400b68",
-      "checklist.md": "988dc19faf26edf75cda868e405bbd0e260ce4ccadf5ffc351c270078854b40b",
-      "implementation-summary.md": "a0083b21225825d8106967a5e05547017c3f4681828aaf0b779bb59e2aacdd2d"
+      "tasks.md": "3b0f44b749b72815b505e9435e4c910ded600e55ccffcf90414e4b7acaf4e52b",
+      "checklist.md": "1ccdab27b53e12a4047e0bb801fbf9441e9ac4d67810c901fd1ae03cbd3b8f88",
+      "implementation-summary.md": "419370d1b7f9b3d3e355546138c70e84831ad31b108e3a31b6c73aa5b407d91c"
     },
     "last_active_child_id": null,
     "last_active_at": null
