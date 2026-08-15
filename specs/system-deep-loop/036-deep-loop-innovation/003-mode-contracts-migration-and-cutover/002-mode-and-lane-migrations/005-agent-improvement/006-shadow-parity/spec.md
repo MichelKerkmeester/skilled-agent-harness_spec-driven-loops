@@ -12,13 +12,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity"
-    last_updated_at: "2026-07-15T21:00:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Read the leaf mold, parent plan, phase tree, and agent-improvement findings"
-    next_safe_action: "Freeze the agent event map and parity oracle over shared common services"
+    last_updated_at: "2026-08-15T14:36:34Z"
+    last_updated_by: "codex"
+    recent_action: "Verified shadow-parity closeout with focused suite 36/36 passed at exit 0"
+    next_safe_action: "Use parity evidence only through the authenticated successor gate"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (owns the Agent Improvement workflow, typed migration, and shadow evidence) |
 | **Origin** | Phase 013 mode-and-lane migrations, mode 005; shadow-parity planning after shared contracts and common-service migration |
@@ -70,7 +70,7 @@ framework and shared compatibility bridge, but owns only the Agent Improvement e
 fixtures, comparator extensions, parity receipt, and successor handoff. No authority cutover occurs here.
 
 The schema, reducer/projection, and sealed-artifact predecessor leaves are LANDED and additive-dark. They provide typed inputs
-to this still-Planned harness without moving authority from the legacy emitter.
+to this implemented harness without moving authority from the legacy emitter.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:scope -->
@@ -188,19 +188,7 @@ trust anchor and must re-verify the receipt binding rather than self-trust a com
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which phase-014 shadow-framework event envelope and comparator extension points are mandatory for Agent Improvement, and which
-  common evaluator, canary, promotion, and health events remain control-plane evidence only?
-- Which legacy proposal and scoring boundaries are canonical when one proposal call creates multiple AgentIR or package records,
-  and what stable logical identity preserves the original grouping?
-- Which AgentIR, inherited-clause, authority-conflict, family, and evaluator fields are protected semantics versus transport
-  volatility, and what digest rule proves their comparison is stable?
-- What minimum fixture corpus covers single-locus repair, defect attribution, act/refuse/clarify, semantic variants, untouched
-  families, executor transfer, missing evidence, evaluator epoch changes, and canary exposure without duplicating common fixtures?
-- How should a ledger event represent legacy profile generation when the current path derives candidate and baseline profiles
-  separately, while keeping the profile-substitution defect visible rather than blessing it as parity?
-- What parity receipt fields and failure severities does `007-rollback-and-mode-gate` require before it can authorize rollback
-  readiness or any later authority review?
-
-These questions are planning boundaries, not permission to weaken parity. Until answered against the shared contracts and frozen
-fixtures, the safe disposition is blocked or indeterminate and the legacy path remains authoritative.
+No implementation questions remain. The harness reuses the shared comparator, pairs streams by stable logical identity,
+protects all non-transport semantics, runs the exact mode fixture closure, and emits manifest-bound evidence that the
+authenticated successor gate must re-verify. Legacy authority remains unchanged.
 <!-- /ANCHOR:questions -->

@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter"
-    last_updated_at: "2026-07-28T03:53:39Z"
+    last_updated_at: "2026-08-15T14:36:34Z"
     last_updated_by: "codex"
-    recent_action: "Rebuilt and verified the full resume adapter"
-    next_safe_action: "Consume the closed decision surface in shadow parity"
+    recent_action: "Verified resume closeout with focused suite 34/34 passed at exit 0"
+    next_safe_action: "Treat this leaf as complete while preserving additive-dark authority"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/agent-improvement-resume-adapter.ts"
@@ -124,7 +124,7 @@ authority.
 
 | Check | Result |
 |-------|--------|
-| Target Vitest suite | PASS, 1 file and 34 tests |
+| Target Vitest closeout at HEAD | PASS, 1 file and 34 tests, exit 0, 202.47s |
 | Resume decision matrix | PASS, exact-reuse, compatible, migrate, rebuild-required, and blocked |
 | Compatibility ownership | PASS, caller-added verdict rejected and unauthenticated registry blocked |
 | Fingerprint recomputation | PASS, mode fields and changed shared schema facts change the recomputed digest |
@@ -132,7 +132,7 @@ authority.
 | Genuine effect confirmation | PASS, the shared seven-fact binder yields applied and reuse |
 | Prior-run integrity | PASS, forged checkpoint, frontier mismatch, causal cursor gap, divergent reducer input, and unverified certificate block |
 | Common resume dependency | PASS, owning compatibility and effect-recovery contract runs inside the target suite |
-| Whole-runtime TypeScript compile | PASS, exit 0 |
+| Whole-runtime TypeScript closeout | PASS, exit 0 with `--noEmit --ignoreDeprecations 6.0` |
 | Adapter-path TypeScript diagnostics | PASS, zero diagnostics for `runtime/lib/agent-improvement-resume-adapter/` |
 | Strict packet validation | PASS, exit 0 with Errors 0 and Warnings 0 |
 | Scope audit | PASS, scoped status contains only this module, test, and leaf packet docs |

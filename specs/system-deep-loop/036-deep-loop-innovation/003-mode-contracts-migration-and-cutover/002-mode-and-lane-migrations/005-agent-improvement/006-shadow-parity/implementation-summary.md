@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/006-shadow-parity"
-    last_updated_at: "2026-07-28T11:52:50Z"
-    last_updated_by: "claude"
-    recent_action: "Verified Agent Improvement shadow parity"
-    next_safe_action: "Hand parity evidence to the successor gate"
+    last_updated_at: "2026-08-15T14:36:34Z"
+    last_updated_by: "codex"
+    recent_action: "Verified shadow-parity closeout with focused suite 36/36 passed at exit 0"
+    next_safe_action: "Use parity evidence only through the authenticated successor gate"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-shadow-parity/index.ts"
@@ -98,18 +98,18 @@ typed events before invoking the landed reducer and replay-fingerprint pipeline.
 
 | Gate | Result |
 |---|---|
-| Focused Vitest | PASS with 1 file and 33 tests |
-| Whole-runtime TypeScript | PASS with zero diagnostics containing `agent-improvement-shadow-parity` |
+| Focused Vitest closeout at HEAD | PASS with 1 file and 36 tests, exit 0, 42.63s |
+| Whole-runtime TypeScript closeout | PASS, exit 0 with `--noEmit --ignoreDeprecations 6.0` |
 | Strict leaf validation | PASS with zero errors and zero warnings |
 | Shared-contract reuse | Confirmed by direct imports of the common parity contract |
 
 Focused command:
 
-`cd .opencode/skills/system-spec-kit/mcp-server && node_modules/.bin/vitest run --no-coverage ../../system-deep-loop/runtime/tests/unit/agent-improvement-shadow-parity.vitest.ts`
+`cd .opencode/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/agent-improvement-shadow-parity.vitest.ts --configLoader runner`
 
 TypeScript command:
 
-`.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json`
+`cd .opencode/skills/system-deep-loop/runtime && npx --no-install tsc --noEmit --ignoreDeprecations 6.0`
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:nfr-verify -->

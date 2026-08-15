@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -145,7 +145,7 @@
         "source": "derived"
       },
       {
-        "name": "BASE",
+        "name": "focused",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -187,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Verified Agent Improvement",
+        "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy agent-loop emitter for proposal generation, candidate evaluation, scoring, frontier selection, resume, and promotion preparation; compares the agent-specific projections event-for-event; and blocks authority cutover on any unexplained semantic difference. It consumes the phase-014 shadow framework and the Deep Improvement Common Services harness rather than reimplementing them.",
     "created_at": "2026-07-16T03:43:38.788Z",
-    "last_save_at": "2026-08-14T04:27:58.584Z",
+    "last_save_at": "2026-08-15T14:42:51.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:844a1066edabc23a2b57a60d50d8f4591a51af9505acc7a7f338a0d6bf415c0b",
+    "source_fingerprint": "sha256:67a8bc956eca0b2eed075bc54d2d47bfaf5cf3f8cb88d7b86a59f8346587e96e",
     "source_doc_hashes": {
-      "spec.md": "02bd067d194364a203e8b2b7587f91e322e7cfaa7edb831592e252730339fc9e",
+      "spec.md": "4f4e1dcf09fddb883886cbcf986d4ccdaaf366e26faf38f261f4621a4be14392",
       "plan.md": "283343047d2867bc31fc4cd8f16065d6dd060119c6fbba32f87d5bdca8ca446f",
-      "tasks.md": "cebdde64e8306c79901f6b6fa9596104bc52914f7306d57aefad4e05670d8f6e",
-      "checklist.md": "b34b25389838c9ef8da617b2a57e6033ea6b8f0357486fa8bd4671a6cb92e92c",
-      "implementation-summary.md": "4fe8adcecafdbad1d113f223e97898252e59ef865bfab0c867b67e6ee5635971"
+      "tasks.md": "bf503db861bb9137a0aac9c5ab2dae42a254a5aa28ac58cc17d1b3f8e8adae3b",
+      "checklist.md": "653ae955ae6395a8d48a40650abdf006aa36f180b4d61471af01d384fa402866",
+      "implementation-summary.md": "8fe8581a4dd346568ec95be2e29c4bac94ddce37154eab6c7b9a4a2983450e33"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -11,10 +11,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-29T05:10:10Z"
-    last_updated_by: "claude"
-    recent_action: "Verified the Agent Improvement rollback and mode gate"
-    next_safe_action: "Build the remaining rollback-gate lanes then land the column"
+    last_updated_at: "2026-08-15T14:36:34Z"
+    last_updated_by: "codex"
+    recent_action: "Verified rollback-gate closeout with focused suite 61/61 passed at exit 0"
+    next_safe_action: "Hand readiness evidence to phase 014 without changing authority"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-rollback-gate/index.ts"
@@ -99,18 +99,18 @@ uncaught throw. The golden leaf's documented substrate-handle boundaries are mir
 
 | Gate | Result |
 |---|---|
-| Focused Vitest | PASS with 1 file and 253 tests |
-| Whole-runtime TypeScript | PASS with zero diagnostics containing `agent-improvement-rollback` |
+| Focused Vitest closeout at HEAD | PASS with 1 file and 61 tests, exit 0, 1.55s |
+| Whole-runtime TypeScript closeout | PASS, exit 0 with `--noEmit --ignoreDeprecations 6.0` |
 | Shared-base reuse | Confirmed by direct import of the common gate and window evaluator |
 | Real gateway driving | Confirmed by a test where the gateway authorizes but the gate still fails over forged parity evidence |
 
 Focused command:
 
-`cd .opencode/skills/system-spec-kit/mcp-server && node_modules/.bin/vitest run --no-coverage ../../system-deep-loop/runtime/tests/unit/agent-improvement-rollback-gate.vitest.ts`
+`cd .opencode/skills/system-deep-loop/runtime && npx --no-install vitest run tests/unit/agent-improvement-rollback-gate.vitest.ts --configLoader runner`
 
 TypeScript command:
 
-`.opencode/skills/system-spec-kit/node_modules/.bin/tsc --noEmit -p .opencode/skills/system-deep-loop/runtime/tsconfig.json`
+`cd .opencode/skills/system-deep-loop/runtime && npx --no-install tsc --noEmit --ignoreDeprecations 6.0`
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:nfr-verify -->

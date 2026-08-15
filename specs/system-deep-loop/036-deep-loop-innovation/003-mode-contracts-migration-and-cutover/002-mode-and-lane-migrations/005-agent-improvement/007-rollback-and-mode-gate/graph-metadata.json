@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -97,25 +97,31 @@
         "source": "derived"
       },
       {
-        "name": "Defined Agent Improvement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "This Planned",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
+        "name": "Implementing Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Defined Agent Improvement",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -145,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "Verify Agent Improvement",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -163,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -173,23 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the fail-closed Agent Improvement rollback switch and independent migration gate for the agent-loop proposal-generation and scoring variant. Reuse the deep-improvement-common evaluator, canary, and promotion services; certify this mode only after shadow parity, sealed evidence, replay/resume integrity, and rollback readiness pass.",
     "created_at": "2026-07-16T03:43:39.029Z",
-    "last_save_at": "2026-08-14T04:27:58.279Z",
+    "last_save_at": "2026-08-15T14:42:51.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b55d49b1cdadca9e508a40acc72b9a783750e8d39208abae6b5ede6ecc82523c",
+    "source_fingerprint": "sha256:801338ad8522e6b9e316d21e53dacb69f94e8ef807f5910101bcac214b448adf",
     "source_doc_hashes": {
-      "spec.md": "c8d73f6084bf881cf96b7b2f153d58d57e7062e870b1316b33348baee9787ccd",
+      "spec.md": "bfd1a6b790259625e3d7730db1fbdda27cc859aba47cc091bbb7e966430c44b6",
       "plan.md": "4b519cefa072d1f1a73184dae119660e2381c029e743615a56f6d92a21aa86cd",
-      "tasks.md": "9ff1692a48fb475bd3a575209cea50f1770ad2ec53ea5521a914b2bc28cbe145",
-      "checklist.md": "533b8cbe9467d99551fa20c0348ed189e8f3355a70d93defdc9c3a71b03aed69",
-      "implementation-summary.md": "b30b270d29a1ef7c58889c022a70dc9021f66d7cc71dfe5dddd05ca7b6bb94ba"
+      "tasks.md": "2c1d214860e81bf670867c00a7d2c14914cbf6fa2424b78dfa02d33df2fab2bd",
+      "checklist.md": "cbbdae8222cf8dd0e03a52031af0aace3c33e44ce54ea1abff0de09726fc5d2f",
+      "implementation-summary.md": "d1ef5fc4eae41fe7aec4a63b05f66e9dba258155f0f9083ec0168745fa30e430"
     },
     "last_active_child_id": null,
     "last_active_at": null
