@@ -10,7 +10,7 @@ contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/036-deep-loop-innovation/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
+    packet_pointer: "system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/001-shared-mode-contracts-and-fixtures/004-write-set-conflict-graph"
     last_updated_at: "2026-07-21T13:29:00Z"
     last_updated_by: "codex"
     recent_action: "Consolidated comparison-time path identity and verified normalization composition"
@@ -18,6 +18,7 @@ _memory:
     blockers:
       - "Independent phase-gate verification is not yet recorded"
     key_files:
+      - ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/artifact.ts"
       - ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/graph.ts"
       - ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/scheduler.ts"
       - ".opencode/skills/system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts"
@@ -56,6 +57,11 @@ The scheduler uses stable node ordering and deterministic antichain construction
 missing or stale source, contradictory declaration, manifest mismatch, failed independence assertion, or dependency cycle
 produces a `serial-single-writer` refusal schedule. Both ready and fallback schedules keep `phase_gate_complete: false`.
 
+The artifact builder wraps the complete graph, enumerates all 28 unordered workstream pairs as `parallel-safe` or
+`must-serialize`, and emits stable-key UTF-8 JSON with a single trailing newline. A fallback graph marks every pair
+`must-serialize` with typed `GRAPH_NOT_READY` evidence and the underlying issue codes, so missing or unclassifiable input
+cannot become safety by omission. The artifact and its canonical payload carry independent SHA-256 digests.
+
 `normalizeComparablePath` now provides the single comparison-time identity for path resources. In order, it applies NFC,
 POSIX normalization and dot-segment collapse, leading `./` removal, complete trailing-slash trimming, root/empty collapse,
 and ASCII case folding. Overlap derivation, identity/canonical collision keys, comparable-path alias detection, and
@@ -68,6 +74,7 @@ still becomes `unknown`, and unresolved path aliases still force conservative wi
 ## 3. HOW IT WAS DELIVERED
 
 - `types.ts` defines the schema, exact node identities, graph records, evidence, decisions, and reuse result.
+- `artifact.ts` derives the complete pair matrix, validates graph and artifact digests, and emits canonical bytes.
 - `shipped-census.ts` records canonical resources from direct imports and writes in the shipped mode packets and shared roots.
 - `canonicalize.ts` owns `normalizeComparablePath` and resource canonicalization while turning unresolved evidence into explicit validation issues.
 - `graph.ts` validates the node set, derives conflict and hard-order edges, checks independence, seals the digest, and rejects stale reuse.
@@ -100,13 +107,15 @@ still becomes `unknown`, and unresolved path aliases still force conservative wi
 
 | Check | Result |
 |-------|--------|
-| Leaf Vitest suite | `57 passed`; exit 0 |
+| Leaf Vitest suite | `61 passed`; exit 0 |
 | Repository-bundled TypeScript `--noEmit` | exit 0 |
 | Strict leaf validation | Errors 0, Warnings 0; exit 0 |
 | Comment hygiene and whitespace | Scoped scans passed; exit 0 |
 | Scope | Task-owned status contains only the additive graph library/test and leaf-local docs/metadata |
 
-The executable fixtures cover unknown-as-conflict, write-write and write-read soundness, canonical collisions, directory
+The executable fixtures cover the complete 28-pair map, fabricated-conflict detection, spurious-prefix rejection,
+byte-identical reordered builds, typed missing-input failures, unknown-as-conflict, write-write and write-read soundness,
+canonical collisions, directory
 overlap and trailing-slash equivalence, valid and invalid shared-state access, case-only alias fallback, the 16-case
 case × slash × Unicode-form × root/non-root composition matrix, different-filename/NFKC-ligature/accented-name negative
 controls, namespace-root variants, mutability normalization, separate hard ordering, both review-loop aliases,

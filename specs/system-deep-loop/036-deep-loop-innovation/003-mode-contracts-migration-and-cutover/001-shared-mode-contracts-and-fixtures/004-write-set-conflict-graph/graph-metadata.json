@@ -140,13 +140,13 @@
         "source": "derived"
       },
       {
-        "name": "kind",
+        "name": "one",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "no",
+        "name": "kind",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the executable dependency and write-set conflict graph for the eight phase-013 mode migrations, including canonical read/write resources, derived conflict edges, hard ordering fences, freshness checks, and orchestrator consumption.",
     "created_at": "2026-07-16T03:43:54.781Z",
-    "last_save_at": "2026-08-14T04:28:16.511Z",
+    "last_save_at": "2026-08-15T08:30:24.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:449b2321c71519692601787e0436cbfe74524558c57776d2e9fdb2348320cc60",
+    "source_fingerprint": "sha256:2728f476212359b2f1f11a61449c2ad7ecebc383432af4706dec96bd29ad6154",
     "source_doc_hashes": {
-      "spec.md": "6662ebff2fa2724c3f198ae082c7c988152fce8508538f4023da4c1b383077f7",
-      "plan.md": "a512e450cd4c8684a805b4290d07ee38b821530b02e2bab8eeac3dfb0b969013",
-      "tasks.md": "fe91261ba8003a497fcfb16e8539b4e590b751f4e23f93a0c6d117eaf6a60109",
-      "checklist.md": "4791a5d13c7c9ded39b669b688b546ff36da28c358bb92e7d5774d3f1ff20984",
-      "decision-record.md": "b8f015a8f9999b70364e9f718a2f899703191e47b4f96c6875ca843fcff86ea5",
-      "implementation-summary.md": "9098f3b1c2814482abd2761db1d350c1554e4717fbe215ffb5e9d29fa185760d"
+      "spec.md": "8c850713a6fd0fef20d8a2db40f3e14964a427a02fdc4ed710af82ad39b33fc5",
+      "plan.md": "80ae327d4df3a18e905bea5f9b2dd93f607a74ced0370e90ac4e54552d256e3b",
+      "tasks.md": "d9430edbbe67d560126f13058ba9548db63f2e8828f8ea917201d8806513d961",
+      "checklist.md": "2e5e1a4f6665e2efc4ba745616257b8a2ff23702aa163fd0c543272b6baffccc",
+      "decision-record.md": "996a39e77b4584c0523fb6a547bd49c0df9a8505661b336691d83993329dee8f",
+      "implementation-summary.md": "0d609cbd4c3d7b005098b6c81e948a7d24e877ac074ef4a77eada225e22500d8"
     },
     "last_active_child_id": null,
     "last_active_at": null

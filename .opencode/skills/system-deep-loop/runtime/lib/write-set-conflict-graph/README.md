@@ -9,7 +9,7 @@ description: "Derives a deterministic conflict graph over the resources shipped 
 
 ## 1. OVERVIEW
 
-Works out which parts of a run can safely happen at the same time. Each shipped mode declares the resources it reads or writes, such as files, state, locks or backends. Aliased identities are canonicalized to one resource id. The graph derivation turns overlapping declarations into conflict edges. A deterministic scheduler then groups the graph into ordered lanes so independent work can run in parallel while conflicting work stays ordered.
+Works out which parts of a run can safely happen at the same time. Each shipped mode declares the resources it reads or writes, such as files, state, locks or backends. Aliased identities are canonicalized to one resource id. The graph derivation turns overlapping declarations into conflict edges. A deterministic scheduler then groups the graph into ordered lanes so independent work can run in parallel while conflicting work stays ordered. The artifact builder enumerates every workstream pair and emits canonical JSON bytes with a trailing newline.
 
 ---
 
@@ -17,6 +17,7 @@ Works out which parts of a run can safely happen at the same time. Each shipped 
 
 | File | Purpose |
 |------|---------|
+| `artifact.ts` | Builds the complete pair-classification map and emits byte-canonical JSON |
 | `canonicalize.ts` | Normalizes resource identities and resolves alias groups to one canonical id |
 | `errors.ts` | Validation error codes for the conflict-graph builder |
 | `graph.ts` | Derives the conflict graph and validates it for manifest reuse |
