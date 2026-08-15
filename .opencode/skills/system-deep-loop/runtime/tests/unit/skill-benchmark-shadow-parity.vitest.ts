@@ -46,6 +46,8 @@ import {
   createSkillBenchmarkModeGateInput,
   createSkillBenchmarkParityCaseDefinition,
   createSkillBenchmarkParityExecutors,
+  parseSkillBenchmarkParityReceipt,
+  runSkillBenchmarkParityCase,
   skillBenchmarkParityInitialStateDigest,
   verifySkillBenchmarkLifecycleEventMap,
   verifySkillBenchmarkParityModeCertificate,
@@ -806,6 +808,29 @@ function independentTransportEvents(
   } as SkillBenchmarkLedgerEvent)));
 }
 
+function malformedIdentityRegistryCertificate(mode: string): Record<string, unknown> {
+  const placeholderDigest = digest({ mode, certificate: 'malformed-identity-registry' });
+  return {
+    schema_version: 1,
+    mode,
+    base_sha: BASE_SHA,
+    manifest_digest: placeholderDigest,
+    case_ids: [],
+    case_evidence_digests: [],
+    reference_set_digests: [],
+    attestation_final_digests: [],
+    bindings: {},
+    identity_registry: { schema_version: 1, identities: {} },
+    evidence_digest: placeholderDigest,
+    open_divergence_count: 0,
+    authority_state: 'legacy_authoritative',
+    authority_mutation: false,
+    rollback_minimum_days: 14,
+    rollback_minimum_successful_runs: 20,
+    certificate_digest: placeholderDigest,
+  };
+}
+
 afterEach(() => {
   for (const root of temporaryRoots.splice(0)) {
     rmSync(root, { recursive: true, force: true });
@@ -1023,6 +1048,17 @@ describe('skill benchmark shadow parity', () => {
       rollbackReadinessAuthorized: false,
     });
   });
+
+  it('rejects a malformed certificate identity registry', async () => {
+    const parityFixture = fixture();
+    const manifest = targetedManifest(parityFixture);
+    const { run } = await genericRun(parityFixture);
+    const outcome = await runSkillBenchmarkParityCase({ manifest, caseRun: run });
+    expect(() => parseSkillBenchmarkParityReceipt({
+      ...outcome.receipt,
+      parityCertificate: malformedIdentityRegistryCertificate('skill-benchmark'),
+    }, manifest)).toThrow(/closed identity-registry shape/);
+  }, 30_000);
 
   it('proves the lifecycle map closes shared and skill-specific events', () => {
     expect(DeepImprovementCommonEventStems.length).toBeGreaterThan(0);

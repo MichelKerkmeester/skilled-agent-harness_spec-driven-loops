@@ -59,6 +59,7 @@ import {
   replayFingerprintAttestationEventDefinition,
 } from '../replay-fingerprint/index.js';
 import { SEALED_ARTIFACT_REPLAY_INPUT_KEY } from '../sealed-reference-artifacts/index.js';
+import { parseParityCertificateIdentityRegistry } from '../shadow-parity/parity-identity-registry.js';
 import {
   compileParityCaseManifest,
   issueParityCertificate,
@@ -3192,6 +3193,21 @@ function parseEvidenceBinding(
   });
 }
 
+function parseEmbeddedParityCertificate(
+  input: unknown,
+): NonNullable<DeepAlignmentParityReceipt['parityCertificate']> {
+  if (!isRecord(input) || !hasExactKeys(input, [
+    'schema_version', 'mode', 'base_sha', 'manifest_digest', 'case_ids',
+    'case_evidence_digests', 'reference_set_digests', 'attestation_final_digests',
+    'bindings', 'identity_registry', 'evidence_digest', 'open_divergence_count',
+    'authority_state', 'authority_mutation', 'rollback_minimum_days',
+    'rollback_minimum_successful_runs', 'certificate_digest',
+  ])) throw new TypeError('parityCertificate must use the closed certificate shape');
+  return parseParityCertificateIdentityRegistry(input) as NonNullable<
+    DeepAlignmentParityReceipt['parityCertificate']
+  >;
+}
+
 class DeepAlignmentParityCertificateVerificationError extends TypeError {
   public readonly refusalCode: DeepAlignmentParityReceipt['certificateRefusalCode'];
 
@@ -3374,6 +3390,9 @@ export function parseDeepAlignmentParityReceipt(
   const evidenceBindings = input.certificateEvidenceBindings.map((entry, index) => (
     parseEvidenceBinding(entry, `certificateEvidenceBindings[${index}]`)
   ));
+  const parityCertificate = input.parityCertificate === null
+    ? null
+    : parseEmbeddedParityCertificate(input.parityCertificate);
   if (input.parityCertificateDigest !== null) {
     requireDigest(input.parityCertificateDigest, 'parityCertificateDigest');
   }
@@ -3407,6 +3426,7 @@ export function parseDeepAlignmentParityReceipt(
     ...(input as unknown as DeepAlignmentParityReceipt),
     diffDispositions: Object.freeze(diffs),
     certificateEvidenceBindings: Object.freeze(evidenceBindings),
+    parityCertificate,
   });
   const { receiptDigest, diffDispositions, certificateEvidenceBindings, ...body } = receipt;
   if (digest({ ...body, diffDispositions, certificateEvidenceBindings }) !== receiptDigest) {

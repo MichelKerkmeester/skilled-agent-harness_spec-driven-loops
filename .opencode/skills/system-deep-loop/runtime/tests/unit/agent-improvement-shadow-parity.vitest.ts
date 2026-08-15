@@ -30,6 +30,8 @@ import {
   createAgentImprovementParityCaseDefinition,
   createAgentImprovementParityExecutors,
   parseAgentImprovementModeGateInput,
+  parseAgentImprovementParityReceipt,
+  runAgentImprovementParityCase,
   verifyAgentImprovementLifecycleEventMap,
 } from '../../lib/agent-improvement-shadow-parity/index.js';
 import {
@@ -625,6 +627,29 @@ function independentTransportEvents(
   } as AgentImprovementLedgerEvent)));
 }
 
+function malformedIdentityRegistryCertificate(mode: string): Record<string, unknown> {
+  const placeholderDigest = digest({ mode, certificate: 'malformed-identity-registry' });
+  return {
+    schema_version: 1,
+    mode,
+    base_sha: BASE_SHA,
+    manifest_digest: placeholderDigest,
+    case_ids: [],
+    case_evidence_digests: [],
+    reference_set_digests: [],
+    attestation_final_digests: [],
+    bindings: {},
+    identity_registry: { schema_version: 1, identities: {} },
+    evidence_digest: placeholderDigest,
+    open_divergence_count: 0,
+    authority_state: 'legacy_authoritative',
+    authority_mutation: false,
+    rollback_minimum_days: 14,
+    rollback_minimum_successful_runs: 20,
+    certificate_digest: placeholderDigest,
+  };
+}
+
 afterEach(() => {
   for (const root of temporaryRoots.splice(0)) rmSync(root, { recursive: true, force: true });
 });
@@ -864,6 +889,17 @@ describe('agent improvement shadow parity', () => {
     expect(gate.baseSha).toBe(OTHER_BASE_SHA);
     expect(gate.exitStatus).toBe('blocked');
   });
+
+  it('rejects a malformed certificate identity registry', async () => {
+    const parityFixture = fixture();
+    const manifest = targetedManifest(parityFixture);
+    const { run } = await genericRun(parityFixture);
+    const outcome = await runAgentImprovementParityCase({ manifest, caseRun: run });
+    expect(() => parseAgentImprovementParityReceipt({
+      ...outcome.receipt,
+      parityCertificate: malformedIdentityRegistryCertificate('agent-improvement'),
+    }, manifest)).toThrow(/closed identity-registry shape/);
+  }, 30_000);
 
   it('proves the lifecycle map closes every shared and mode-specific event', () => {
     expect(() => verifyAgentImprovementLifecycleEventMap()).not.toThrow();

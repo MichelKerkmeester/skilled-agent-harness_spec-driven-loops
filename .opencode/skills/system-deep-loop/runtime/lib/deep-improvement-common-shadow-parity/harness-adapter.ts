@@ -55,6 +55,7 @@ import {
   replayFingerprintAttestationEventDefinition,
 } from '../replay-fingerprint/index.js';
 import { SEALED_ARTIFACT_REPLAY_INPUT_KEY } from '../sealed-reference-artifacts/index.js';
+import { parseParityInvalidationIdentityRegistry } from '../shadow-parity/parity-identity-registry.js';
 import {
   compileParityCaseManifest,
   issueParityCertificate,
@@ -3072,6 +3073,7 @@ function parseEmbeddedParityCertificate(
     'reference_set_digests',
     'attestation_final_digests',
     'bindings',
+    'identity_registry',
     'evidence_digest',
     'open_divergence_count',
     'authority_state',
@@ -3138,6 +3140,7 @@ function parseEmbeddedParityCertificate(
     'parityCertificate.bindings.policy_version',
     true,
   );
+  const identityRegistry = parseParityInvalidationIdentityRegistry(input.identity_registry);
   requireDigest(input.evidence_digest, 'parityCertificate.evidence_digest');
   requireCount(input.open_divergence_count, 'parityCertificate.open_divergence_count');
   if (typeof input.authority_mutation !== 'boolean') {
@@ -3149,9 +3152,10 @@ function parseEmbeddedParityCertificate(
     'parityCertificate.rollback_minimum_successful_runs',
   );
   requireDigest(input.certificate_digest, 'parityCertificate.certificate_digest');
-  return Object.freeze(input as unknown as NonNullable<
-    DeepImprovementCommonParityReceipt['parityCertificate']
-  >);
+  return Object.freeze({
+    ...input,
+    identity_registry: identityRegistry,
+  }) as unknown as NonNullable<DeepImprovementCommonParityReceipt['parityCertificate']>;
 }
 
 function parseModeCertificateBinding(
