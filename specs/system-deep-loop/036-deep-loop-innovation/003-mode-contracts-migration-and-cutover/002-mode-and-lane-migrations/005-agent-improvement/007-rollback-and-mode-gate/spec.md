@@ -12,13 +12,13 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate"
-    last_updated_at: "2026-07-15T21:20:00Z"
-    last_updated_by: "opencode"
-    recent_action: "Defined Agent Improvement rollback switch and independent gate boundary"
-    next_safe_action: "Freeze agent gate predicates and rollback-window evidence against shared contracts"
+    last_updated_at: "2026-08-15T14:36:34Z"
+    last_updated_by: "codex"
+    recent_action: "Verified rollback-gate closeout with focused suite 61/61 passed at exit 0"
+    next_safe_action: "Hand readiness evidence to phase 014 without changing authority"
     blockers: []
     key_files: []
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,12 +38,12 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/007-rollback-and-mode-gate |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (Agent Improvement mode) |
 | **Origin** | Final child concern in the phase-013 Agent Improvement migration |
 | **Depends on** | `001-typed-ledger-schema`, `002-reducers-and-projections`, and `003-sealed-artifacts` are LANDED as additive-dark, non-authoritative substrate; sibling adjacency remains navigation rather than authority |
-| **Consumes** | Planned certificate/receipt, resume-adapter, and required phase-009 shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
+| **Consumes** | Implemented certificate/receipt, resume-adapter, and phase-009 shadow-parity evidence from `004` through `006`, plus the real transition gateway and fencing coordinator |
 | **Outcome** | Plan the Agent Improvement rollback switch and independent mode gate for the typed event-ledger migration |
 | **Inputs** | Parent 036 spec, phase-tree manifest, 036/002 findings registries, and the shared transition/versioning/rollback policy |
 <!-- /ANCHOR:metadata -->
@@ -65,13 +65,13 @@ AgentIR lineage, failure-derived proposals, raw evaluator observations, canary a
 behavior, and rollback rehearsal are complete and digest-consistent.
 
 The schema, reducer/projection, and sealed-artifact leaves are already LANDED but remain additive-dark and
-non-authoritative. This Planned leaf consumes their contracts and the later receipt, resume, and parity evidence without
+non-authoritative. This implemented leaf consumes their contracts and the later receipt, resume, and parity evidence without
 allowing any predecessor output to become an authority decision.
 
 The phase builds on `004-deep-improvement-common`. Its evaluator, canary, promotion, receipt, certificate, sealing, and
 recovery services remain the single source of truth. Agent Improvement contributes only namespaced agent-loop evidence:
 AgentIR and mutation lineage, behavior-family and authority-conflict coverage, causal failure localization, profile-scoped
-transfer evidence, and the agent-specific gate predicates that consume those common results. This is planning only. A
+transfer evidence, and the agent-specific gate predicates that consume those common results. The implementation remains readiness-only. A
 green gate emits readiness for the phase-014 handoff; it does not move authority, close the rollback window, or retire a
 legacy writer.
 <!-- /ANCHOR:problem -->
@@ -226,20 +226,8 @@ typed evidence remains readable.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Which shared authority-record fields and transition token does the phase-014 consumer expose for the Agent Improvement
-  switch without creating a mode-local authority source?
-- What counts as a successful authoritative Agent Improvement execution for the five-run minimum when a candidate is
-  profile-scoped, routed to a specialist, or returns typed abstention or incomplete evidence?
-- Which agent-specific triggers require immediate rollback versus quarantine, evidence gathering, rollback-window extension,
-  or a new evaluator/canary epoch?
-- Which AgentIR, behavior-family, executor, and transfer references are mandatory in the mode certificate when a run is
-  valid but not promotable?
-- Which failure-derived evidence may be returned to the proposal generator as bounded redacted classes, and which remains
-  hidden until terminal verification to prevent evaluator-surface extraction?
-- What exact phase-014 acceptance endpoint consumes the Agent Improvement readiness certificate while preserving the later
-  phase-014 authority-cutover boundary?
-
-These questions are resolved against the frozen predecessor and common-service contracts before implementation. They do not
-authorize a local authority toggle, shortened rollback window, second evaluator/canary/promotion primitive, mutable evidence
-repair, variant-local gate semantics, or a claim that a Planned gate proves candidate quality.
+No implementation questions remain. The delivered gate extends the shared common gate, re-derives readiness through the
+real authorization gateway and deterministic replay, treats parity as required evidence rather than truth, cross-checks
+rollback anchors, and converts malformed input into typed fail-closed denials. It emits readiness only and cannot move
+authority, close the rollback window, or retire legacy writers.
 <!-- /ANCHOR:questions -->

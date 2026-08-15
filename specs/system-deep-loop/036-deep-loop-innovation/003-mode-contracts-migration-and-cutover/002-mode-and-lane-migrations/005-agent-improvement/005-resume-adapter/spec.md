@@ -12,10 +12,10 @@ parent: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter"
-    last_updated_at: "2026-07-28T03:24:46Z"
+    last_updated_at: "2026-08-15T14:36:34Z"
     last_updated_by: "codex"
-    recent_action: "Rebuilt the full resume decision layer"
-    next_safe_action: "Consume the closed decision surface in shadow parity"
+    recent_action: "Verified resume closeout with focused suite 34/34 passed at exit 0"
+    next_safe_action: "Treat this leaf as complete while preserving additive-dark authority"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/agent-improvement-resume-adapter/agent-improvement-resume-adapter.ts"
@@ -47,7 +47,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/002-mode-and-lane-migrations/005-agent-improvement/005-resume-adapter |
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Implemented |
+| **Status** | Complete |
 | **Created** | 2026-07-15 |
 | **Owner skill** | system-deep-loop (agent-improvement mode) |
 | **Origin** | Phase 005 of the Agent Improvement migration under phase 013 |
@@ -172,11 +172,7 @@ remains `UNKNOWN` and delegates to the common effect policy rather than treating
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-Deferred to execution against the frozen Agent Improvement and common-service contracts:
-
-- Which AgentIR component, inheritance, and behavior-family fields must be materialized in the resume projection versus retained as content-addressed references?
-- Which event frontier and checkpoint boundaries preserve partial candidate and behavior-experiment work without allowing a stale checkpoint to become authoritative?
-- Which evaluator, canary, and promotion operations are queryable by idempotency key, and which must always remain `UNKNOWN` until an external recovery decision exists?
-- Which changed-manifest cases are safe compatible reuse, which require a new score revision, and which require a new candidate lineage or quarantine?
-- Which redacted resume fields are safe for proposal generation while keeping hidden fixture contents, exact promotion evidence, and terminal-only rationale unavailable?
+No implementation questions remain. The delivered adapter materializes the continuity projection, authenticates checkpoint and
+frontier boundaries, delegates effect recovery to the shared service, classifies manifest drift explicitly, and keeps
+candidate-facing state redacted.
 <!-- /ANCHOR:questions -->

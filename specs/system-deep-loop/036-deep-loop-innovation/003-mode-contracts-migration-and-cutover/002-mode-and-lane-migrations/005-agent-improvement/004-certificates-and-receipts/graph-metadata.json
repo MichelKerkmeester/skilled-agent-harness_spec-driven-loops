@@ -91,12 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "Implemented Agent Improvement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Agent Improvement Certificates",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -115,6 +109,12 @@
         "source": "derived"
       },
       {
+        "name": "The Agent Improvement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -122,12 +122,6 @@
       },
       {
         "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Agent Improvement",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -157,7 +151,7 @@
         "source": "derived"
       },
       {
-        "name": "run",
+        "name": "focused",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -191,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Provide a typed `CERTIFICATE` plus transition `RECEIPTS` contract for Agent Improvement that consumes the phase-007 primitives, preserves deep-improvement-common evaluator/canary/promotion identities, and can be re-verified offline before the mode gate accepts shadow parity",
     "created_at": "2026-07-16T03:43:38.290Z",
-    "last_save_at": "2026-08-14T04:27:59.270Z",
+    "last_save_at": "2026-08-15T14:42:51.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:44f12d5cc6c2f96f331cbca9da265da0a0c57aed5470fef60e739145fba2520c",
+    "source_fingerprint": "sha256:62fb147f05afc26f388b38a025c5f3eb47b840f0a7482f4847598ac14949df8c",
     "source_doc_hashes": {
-      "spec.md": "edbcf425a37fd932c793d621e0f1b5d5e3f16d98a1e681012ec0711dbc6c3c7e",
+      "spec.md": "5a1cde3488af4d1659ab5eb8271106871e7d43971ff744c8819e1c1b6f4d201f",
       "plan.md": "84d431fb0cda498ca5ab0637ed4cf8a5917061e231b8226346b9b6d1022a0c42",
-      "tasks.md": "fe7b283a2981dbc93d16b111cd114bb92ee2eac965f210eeba4df777e66bd504",
-      "checklist.md": "e8d569cec0d6a06330eb8319fe63ec093adfc2d101e408823b1ee7213a8bd6a1",
-      "implementation-summary.md": "42d43bce7972cbfe2ff9235b96174da1aa96dae168edd9d566f9fd250766cab0"
+      "tasks.md": "67d216272e5314351bad495166ff8c3ef6d173082cfcf1dc77ba6e97a9b15442",
+      "checklist.md": "b7d57f6e215031476fd5405314d7a028a228f7fe2b659c5e09a318be711ab416",
+      "implementation-summary.md": "ced18341929ced049c692745e9bf3375fc37f99089a3cff239faed00ecb1dabe"
     },
     "last_active_child_id": null,
     "last_active_at": null
