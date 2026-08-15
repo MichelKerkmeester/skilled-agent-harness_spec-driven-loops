@@ -7,7 +7,6 @@
         "assets/format-guide-yaml.md",
         "assets/framework-registry.json",
         "references/depth-framework.md",
-        "references/design-generation-patterns.md",
         "references/patterns-evaluation.md"
       ],
       "packet": "sk-prompt-improve",
