@@ -1341,6 +1341,11 @@ describe('AuthorityFlipCoordinator', () => {
       rootDirectory: root,
       auditLedgerId: 'authority-flip-audit',
       authorityProvider: () => authority,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
     const policy = policies.resolve(
       AUTHORITY_FLIP_TEST_POLICY_DEFINITION.policyId,
@@ -1763,6 +1768,11 @@ describe('AuthorityFlipCoordinator manifest-order enforcement', () => {
       rootDirectory: root,
       auditLedgerId: 'authority-flip-order-audit',
       authorityProvider: () => authority,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
     const policy = policies.resolve(
       AUTHORITY_FLIP_TEST_POLICY_DEFINITION.policyId,

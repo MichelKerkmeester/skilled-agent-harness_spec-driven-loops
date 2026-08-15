@@ -183,6 +183,11 @@ function createHarness(
     rootDirectory,
     auditLedgerId: 'dark-evidence-authorization',
     authorityProvider: () => AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   const coordinator = new FencedLeaseCoordinator({
     rootDirectory,
@@ -232,6 +237,11 @@ function createIndependentWriter(harness: Harness): AuthorizedEvidenceWriter {
     rootDirectory: harness.rootDirectory,
     auditLedgerId: 'dark-evidence-authorization',
     authorityProvider: () => AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, harness.ledger, harness.policies);
   return new AuthorizedEvidenceWriter({
     ledger: harness.ledger,

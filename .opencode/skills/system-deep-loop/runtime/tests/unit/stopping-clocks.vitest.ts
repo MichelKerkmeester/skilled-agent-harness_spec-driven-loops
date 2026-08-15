@@ -1067,6 +1067,11 @@ describe('ledger event and additive-dark bridge', () => {
       rootDirectory,
       auditLedgerId: 'stopping-clock-audit',
       authorityProvider: () => authority,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
     const payload = eventFrom(arbitration(allClockTie()));
     const event = prepareLoopTerminationDeclaredEvent(payload, {

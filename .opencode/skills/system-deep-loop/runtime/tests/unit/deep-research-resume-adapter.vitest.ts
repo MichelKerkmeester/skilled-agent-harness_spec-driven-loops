@@ -176,6 +176,11 @@ function createHarness(label: string, enableDarkDispatch = false): Harness {
     rootDirectory,
     auditLedgerId: `resume-${label}-authorization`,
     authorityProvider: () => AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
 
   const effectRegistry = createEvidenceControlEventRegistry();
@@ -196,6 +201,11 @@ function createHarness(label: string, enableDarkDispatch = false): Harness {
     rootDirectory,
     auditLedgerId: `effects-${label}-authorization`,
     authorityProvider: () => AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, effectLedger, effectPolicies);
   const coordinator = new FencedLeaseCoordinator({ rootDirectory });
   const effectLease = coordinator.acquire({

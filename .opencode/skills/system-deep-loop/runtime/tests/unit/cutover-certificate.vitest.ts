@@ -692,6 +692,11 @@ describe('cutover certificate ledger event', () => {
       rootDirectory,
       auditLedgerId: 'cutover-audit',
       authorityProvider,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
 
     const buildResult = await buildCutoverCertificate(await fixtureRequest(), fixtureCertificateVerificationProviders());
@@ -759,6 +764,11 @@ describe('cutover certificate ledger event', () => {
       rootDirectory,
       auditLedgerId: 'cutover-audit',
       authorityProvider: () => authority,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
     const buildResult = await buildCutoverCertificate(await fixtureRequest(), fixtureCertificateVerificationProviders());
     if (buildResult.verdict !== 'issued') throw new Error('fixture certificate failed to issue');

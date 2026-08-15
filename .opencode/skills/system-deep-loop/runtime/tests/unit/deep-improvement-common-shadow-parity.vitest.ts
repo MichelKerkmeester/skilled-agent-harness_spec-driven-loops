@@ -460,6 +460,7 @@ async function authorizedLedger(events: readonly DeepImprovementCommonLedgerEven
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider: () => FIXTURE_AUTHORITY,
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   for (const [index, event] of events.entries()) {
     const prepared = prepareDeepImprovementCommonEvent({
@@ -700,7 +701,7 @@ async function sealedArtifacts(
       dependency('evaluator', evaluator.reference),
       dependency('incumbent', fixture(2)),
     ],
-    originEvent: origin(events, 'deep_improvement_common.candidate_generated'),
+    originEvent: origin(events, 'deep_improvement_common.run_started'),
     producerVersion: 'baseline-producer@1',
     locator: locator('baseline'),
   };
@@ -1105,6 +1106,17 @@ function evaluateParityArtifactPolicy(
     : { verdict: 'deny', reasonCode: 'policy_denied', matchedRuleIds: ['artifact-write'] };
 }
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 function createParityArtifactHarness(): ParityArtifactHarness {
   const rootDirectory = temporaryRoot('parity-sealed');
   const registry = new EventTypeRegistry(sealedArtifactEventDefinitions());
@@ -1127,6 +1139,7 @@ function createParityArtifactHarness(): ParityArtifactHarness {
     auditLedgerId: 'deep-improvement-common-parity-artifact-audit',
     authorityProvider: () => PARITY_AUTHORITY,
     now: () => new Date(TIMESTAMP),
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   const store = new SealedArtifactStore({
     rootDirectory: join(rootDirectory, 'store'),

@@ -92,6 +92,17 @@ function evaluateClaimRelationshipPolicy(
     };
 }
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 /** Create the closed allow policy used after all relationship-domain checks pass. */
 export function createClaimRelationshipPolicyRegistry(): TransitionPolicyRegistry {
   return new TransitionPolicyRegistry([{
@@ -145,6 +156,7 @@ export class ContradictionSupersessionService {
       auditLedgerId: this.#auditLedgerId,
       authorityProvider: options.authorityProvider,
       now: options.now,
+      identityResolver: pinRequestIdentity,
     }, this.ledger, this.#policies);
   }
 

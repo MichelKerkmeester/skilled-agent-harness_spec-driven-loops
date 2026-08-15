@@ -316,6 +316,11 @@ function createLedgerHarness(rootDirectory: string, now?: () => Date): LedgerHar
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider,
     now,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   return { ledger, gateway, policies };
 }
@@ -951,6 +956,11 @@ describe('lock lifecycle evidence', () => {
       rootDirectory: root,
       auditLedgerId: 'lock-evidence-audit',
       authorityProvider,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
     const occurredAt = clock.now().toISOString();
     const coordinatorStateBeforeEvidence = await coordinator.inspect(lineageResource('lineage-1'));
@@ -1017,6 +1027,11 @@ describe('lock lifecycle evidence', () => {
       rootDirectory: root,
       auditLedgerId: 'lock-evidence-audit',
       authorityProvider,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
     const timestamp = clock.now().toISOString();
     const event = prepareLockLifecycleEvidence(decision, registry, {

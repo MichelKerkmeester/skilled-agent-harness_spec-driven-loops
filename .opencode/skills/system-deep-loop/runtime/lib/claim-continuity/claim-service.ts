@@ -51,6 +51,7 @@ import {
 import type {
   AuthorizedLedgerOptions,
   DurableAppendReceipt,
+  PolicyEvaluationInput,
   PolicyReference,
   RebuiltProjection,
   TransitionAuthorizationRequest,
@@ -745,6 +746,17 @@ export class ClaimContinuityService {
   }
 }
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 /** Assemble an isolated dark runtime alongside, never inside, the identity runtime. */
 export function createClaimContinuityRuntime(
   options: ClaimContinuityRuntimeOptions,
@@ -765,6 +777,7 @@ export function createClaimContinuityRuntime(
     auditLedgerId: options.auditLedgerId ?? 'claim-continuity-authorization-audit',
     authorityProvider: options.authorityProvider,
     now: options.now,
+    identityResolver: pinRequestIdentity,
   }, ledger, policy.registry);
   return Object.freeze({
     eventRegistry,

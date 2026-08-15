@@ -46,6 +46,7 @@ import {
 import type {
   AuthoritySnapshot,
   LedgerRecordFrame,
+  PolicyEvaluationInput,
   TransitionAuthorizationRequest,
 } from '../../lib/authorized-ledger/index.js';
 import type {
@@ -100,6 +101,17 @@ function service(rootDirectory = temporaryRoot('case')): ContradictionSupersessi
     now: () => new Date(TIMESTAMP),
   };
   return new ContradictionSupersessionService(options);
+}
+
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
 }
 
 function evidence(
@@ -186,6 +198,7 @@ async function appendWithoutDomainValidation(
     auditLedgerId: AUDIT_LEDGER_ID,
     authorityProvider: () => AUTHORITY,
     now: () => new Date(TIMESTAMP),
+    identityResolver: pinRequestIdentity,
   }, target.ledger, policies);
   const head = await target.ledger.getVerifiedHead();
   const payload = relationshipPayload(candidate, 'assert');

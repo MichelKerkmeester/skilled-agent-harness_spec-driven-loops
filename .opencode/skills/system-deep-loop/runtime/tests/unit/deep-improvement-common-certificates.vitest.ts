@@ -415,6 +415,11 @@ async function authorizedLedger(events: readonly DeepImprovementCommonLedgerEven
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider: () => FIXTURE_AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   for (const [index, event] of events.entries()) {
     const prepared = prepareDeepImprovementCommonEvent({

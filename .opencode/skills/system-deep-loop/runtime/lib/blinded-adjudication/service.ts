@@ -59,6 +59,7 @@ import type {
   AppendOnlyLedger as AppendOnlyLedgerType,
   AuthoritySnapshot,
   DurableAppendReceipt,
+  PolicyEvaluationInput,
 } from '../authorized-ledger/index.js';
 import type {
   EventProducer,
@@ -126,6 +127,17 @@ interface AdjudicationSession {
   isInvalidated: boolean;
 }
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 2. SERVICE
 // ───────────────────────────────────────────────────────────────────
@@ -164,6 +176,7 @@ export class BlindedAdjudicationService {
       auditLedgerId: options.auditLedgerId ?? 'blinded-adjudication-authorization-audit',
       authorityProvider: options.authorityProvider,
       now: this.#now,
+      identityResolver: pinRequestIdentity,
     }, this.ledger, this.#policies);
   }
 

@@ -466,6 +466,11 @@ async function authorizedLedger(events: readonly DeepImprovementCommonLedgerEven
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider: () => FIXTURE_AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   for (const [index, event] of events.entries()) {
     const prepared = prepareDeepImprovementCommonEvent({
@@ -727,7 +732,7 @@ async function sealedArtifacts(
     dependencyReferences: [
       dependency('evaluator', evaluator.reference),
     ],
-    originEvent: origin(events, 'deep_improvement_common.candidate_generated'),
+    originEvent: origin(events, 'deep_improvement_common.run_started'),
     producerVersion: 'baseline-producer@1',
     locator: locator('baseline'),
   };
@@ -1770,6 +1775,11 @@ async function authorizedSkillLedger(events: readonly SkillBenchmarkLedgerEvent[
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider: () => FIXTURE_AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   for (const [index, event] of events.entries()) {
     const prepared = prepareSkillBenchmarkEvent({

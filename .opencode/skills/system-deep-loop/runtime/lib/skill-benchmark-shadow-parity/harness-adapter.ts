@@ -1555,6 +1555,17 @@ function evaluateParityPolicy(input: Readonly<PolicyEvaluationInput>): PolicyEva
     : { verdict: 'deny', reasonCode: 'policy_denied', matchedRuleIds: ['shadow-only-write'] };
 }
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 function createLedgerBoundary(rootDirectory: string) {
   const authority: AuthoritySnapshot = Object.freeze({ state: 'shadowing', epoch: 1 });
   const registry = new EventTypeRegistry([
@@ -1581,6 +1592,7 @@ function createLedgerBoundary(rootDirectory: string) {
     auditLedgerId: PARITY_AUDIT_LEDGER_ID,
     authorityProvider: () => authority,
     now: () => new Date(PARITY_TIMESTAMP),
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   return Object.freeze({ ledger, gateway, policies, registry });
 }

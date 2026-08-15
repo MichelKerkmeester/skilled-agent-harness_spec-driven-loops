@@ -315,6 +315,11 @@ function ledgerHarness(): LedgerHarness {
     rootDirectory: root,
     auditLedgerId: 'partial-failure-policy-authorization',
     authorityProvider: () => AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   const coordinator = new FencedLeaseCoordinator({ rootDirectory: root, operationTimeoutMs: 5_000 });
   const lease: Promise<FencedLease> = coordinator.acquire({

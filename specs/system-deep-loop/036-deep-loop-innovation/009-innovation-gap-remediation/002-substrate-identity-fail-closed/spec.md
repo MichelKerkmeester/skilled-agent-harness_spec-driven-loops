@@ -11,17 +11,19 @@ parent: "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediatio
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed"
-    last_updated_at: "2026-08-14T00:00:00.000Z"
-    last_updated_by: "opencode"
-    recent_action: "Authored the planned shared-gateway identity remediation contract"
-    next_safe_action: "Complete predecessor evidence, then implement negative identity controls"
-    blockers:
-      - "Predecessor 001-measurement-and-traceability must complete"
-    key_files: []
-    completion_pct: 0
-    open_questions:
-      - "Required resolver dependency or fail-closed default resolver?"
-    answered_questions: []
+    last_updated_at: "2026-08-14T23:16:21.000Z"
+    last_updated_by: "cursor"
+    recent_action: "Wired pin-from-request identityResolver at the 13 remaining production gateway sites"
+    next_safe_action: "Keep the gateway dark; successor 003-pilot-mode-cutover supplies live identity wiring"
+    blockers: []
+    key_files:
+      - "../../../../../.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts"
+      - "../../../../../.opencode/skills/system-deep-loop/runtime/lib/mode-contracts/strict-gate-validator.ts"
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "T005 selected fail-closed-default: identityResolver stays optional at the type level and denies at runtime."
+      - "Confirmed trust predicate is matchesPreparedAuthorizationDecision."
 ---
 
 <!-- SPECKIT_LEVEL: 2 -->
@@ -39,7 +41,7 @@ _memory:
 | **Packet** | system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/002-substrate-identity-fail-closed |
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-14 |
 | **Owner skill** | system-deep-loop |
 | **Origin** | Innovation-gap findings F2 and F7, recommendations rec2 and rec3, and the identity-hardening ADR overstatement |
@@ -172,8 +174,13 @@ This phase must not leave evidence-digest verification or certificate trust outs
 - After predecessor inventory, which implementation has the smaller verified blast radius: a required constructor
   dependency or an optional option with a shared deny-only default? Either choice must satisfy the same runtime denial
   tests and may not preserve fail-open behavior.
+  **Answer:** Fail-closed default. `identityResolver` stays optional at the type level; missing, throwing, null,
+  partial, or mismatched resolution denies at runtime. A required constructor would fail `tsc` on out-of-scope sites.
 - Which existing runtime predicate is the authoritative rollback-certificate trust boundary? Implementation must confirm
   the real symbol and all consumers before editing; this plan intentionally does not invent one from the gap summary.
+  **Answer:** `matchesPreparedAuthorizationDecision` in `strict-gate-validator.ts`, used by all four typed rollback
+  switches. `verifyRollbackDrillCertificate` is not the identity trust boundary.
 - Does any persisted pre-remediation authorization decision or rollback certificate require a versioned compatibility
   disposition? Confirm through the predecessor inventory; never treat absent verification fields as true.
+  **Answer:** No compatibility fallback. Absent or false verification flags remain untrusted (`=== true` only).
 <!-- /ANCHOR:questions -->

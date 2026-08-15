@@ -174,7 +174,7 @@ const REPOSITORY_ROOT = resolve(TEST_DIRECTORY, '../../../../../..');
 const CENSUS_BYTES = readFileSync(join(
   REPOSITORY_ROOT,
   '.opencode/specs/system-deep-loop/036-deep-loop-innovation',
-  '003-baseline-taxonomy-and-state-census/state-backend-census.json',
+  '001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/state-backend-census.json',
 ));
 const CENSUS = JSON.parse(CENSUS_BYTES.toString('utf8')) as StateBackendCensus;
 const BASE_SHA = '1'.repeat(40);
@@ -455,6 +455,7 @@ async function certificateLedger(events: readonly DeepResearchLedgerEvent[]) {
     rootDirectory,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID,
     authorityProvider: () => FIXTURE_AUTHORITY,
+    identityResolver: pinRequestIdentity,
   }, ledger, policies);
   for (const [index, event] of events.entries()) {
     const prepared = prepareDeepResearchEvent({
@@ -1238,9 +1239,20 @@ function emptyModeGateInput(): DeepResearchModeGateInput<JsonObject> {
   };
 }
 
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 async function gatewayHarness(
   authority: AuthoritySnapshot = { state: 'legacy_authoritative', epoch: 1 },
   authorityUnavailable = false,
+  omitIdentityResolver = false,
 ) {
   const rootDirectory = temporaryRoot('gateway');
   const registry = createFixtureEventRegistry();
@@ -1275,7 +1287,9 @@ async function gatewayHarness(
   const ledger = new AppendOnlyLedger({ rootDirectory, ledgerId: FIXTURE_LEDGER_ID,
     auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider }, registry);
   const gateway = new TransitionAuthorizationGateway({ rootDirectory,
-    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider }, ledger, policies);
+    auditLedgerId: FIXTURE_AUDIT_LEDGER_ID, authorityProvider,
+    identityResolver: omitIdentityResolver ? undefined : pinRequestIdentity,
+  }, ledger, policies);
   return { rootDirectory, registry, policies, ledger, gateway };
 }
 
@@ -2141,6 +2155,7 @@ describe('externally authorized non-destructive rollback', () => {
     readonly reportedStaleWriterFenceToken?: number;
     readonly reportedRollbackAnchorDigest?: string;
     readonly authorizedRollbackAnchorDigest?: string;
+    readonly omitIdentityResolver?: boolean;
     readonly transformReportedStaleWriterLease?: (
       lease: NonNullable<DeepResearchRollbackRequest['staleWriterLease']>,
     ) => unknown;
@@ -2163,7 +2178,7 @@ describe('externally authorized non-destructive rollback', () => {
       epoch: authority.epoch,
     };
     const configurationVersion = claims.reportedConfigurationVersion ?? 'rollback-policy@1';
-    const harness = await gatewayHarness(authority, gatewayUnavailable);
+    const harness = await gatewayHarness(authority, gatewayUnavailable, claims.omitIdentityResolver === true);
     const coordinator = new FencedLeaseCoordinator({ rootDirectory: temporaryRoot('fencing'), operationTimeoutMs: 1000 });
     const writerResource = claims.reportedWriterResource ?? {
       kind: ProtectedResourceKinds.WRITER,
@@ -2889,5 +2904,28 @@ describe('externally authorized non-destructive rollback', () => {
       verdict: 'deny',
       reasonCode: 'stale_authority_epoch',
     });
+  });
+
+  it('emits no rollback certificate and mutates no rollback state when identity is unverified', async () => {
+    const fixture = await rollbackRequestFixture(
+      'externally-authorized-recovery',
+      'none',
+      'rollback',
+      false,
+      'genuine',
+      undefined,
+      DEFAULT_RETAINED_COUNTS,
+      DEFAULT_RETAINED_COUNTS,
+      { omitIdentityResolver: true },
+    );
+    const result = await fixture.rollbackSwitch.requestRollback(fixture.input);
+    expect(result).toMatchObject({
+      disposition: 'denied',
+      reasonCode: 'AUTHORIZATION_DENIED',
+      authorityState: 'legacy_authoritative',
+      ledgerAuthority: 'denied',
+      certificate: null,
+    });
+    expect(result.certificate).toBeNull();
   });
 });

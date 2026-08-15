@@ -456,6 +456,11 @@ async function createScenario(
     rootDirectory,
     auditLedgerId: `review-${ledgerLabel}-authorization`,
     authorityProvider: () => AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   const effectRegistry = createEvidenceControlEventRegistry();
   const effectPolicies = new TransitionPolicyRegistry([{
@@ -475,6 +480,11 @@ async function createScenario(
     rootDirectory,
     auditLedgerId: `effects-${ledgerLabel}-authorization`,
     authorityProvider: () => AUTHORITY,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, effectLedger, effectPolicies);
   const shell = {
     rootDirectory,

@@ -133,6 +133,11 @@ function createHarness(): Harness {
     auditLedgerId: 'budget-authorization-audit',
     authorityProvider,
     now: () => new Date('2026-07-21T12:00:00.000Z'),
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   const policy = policies.resolve('budget-policy', 1);
   const replayFingerprint = sha256Bytes(canonicalBytes({ replay: 'budget-fixture' }));

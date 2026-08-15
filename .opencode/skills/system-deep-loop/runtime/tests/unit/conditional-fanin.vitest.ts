@@ -345,6 +345,11 @@ function createBudgetHarness(): BudgetHarness {
     auditLedgerId: 'budget-audit',
     authorityProvider: () => AUTHORITY,
     now: () => new Date('2026-07-21T12:00:00.000Z'),
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   const replayFingerprint = sha256Bytes(canonicalBytes({ fixture: 'fanin-budget' }));
   const pricingDigest = sha256Bytes(canonicalBytes({ pricing: 'fanin-v1' }));
@@ -901,6 +906,11 @@ function createFanInLedgerHarness(): FanInLedgerHarness {
     auditLedgerId: 'fanin-audit',
     authorityProvider: () => AUTHORITY,
     now: () => new Date('2026-07-21T12:00:00.000Z'),
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   return {
     ledger,

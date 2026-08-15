@@ -424,6 +424,11 @@ describe('MIGRATE ledger checkpoint import', () => {
       rootDirectory,
       auditLedgerId: 'inflight-migration-audit',
       authorityProvider: () => authority,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
 
     const checkpointFacts = buildInflightMigrationCheckpointFacts(envelope, proof, '2026-08-09T00:05:00Z');
@@ -648,6 +653,11 @@ describe('MigrationCoordinator.runRow', () => {
       rootDirectory: root,
       auditLedgerId: 'inflight-migration-crash-audit',
       authorityProvider: () => authority,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
     const checkpointFacts = buildInflightMigrationCheckpointFacts(envelope, evidence.proof, '2026-08-09T00:05:00Z');
     const event = prepareInflightMigrationCheckpointEventWrite(checkpointFacts, {

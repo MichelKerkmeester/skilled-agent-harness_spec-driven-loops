@@ -760,6 +760,11 @@ describe('typed append-only health events', () => {
       rootDirectory,
       auditLedgerId: 'cycle-health-audit',
       authorityProvider: () => authority,
+      identityResolver: ({ evaluationInput }) => ({
+        actorId: evaluationInput.actorId,
+        capabilityId: evaluationInput.capabilityId,
+        evidenceDigest: evaluationInput.evidenceDigest,
+      }),
     }, ledger, policies);
     const evaluation = evaluateCycleHistory(history(repeated(1, 3)));
     confirmedEvidence(evaluation);

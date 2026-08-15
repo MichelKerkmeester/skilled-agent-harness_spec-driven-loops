@@ -189,6 +189,11 @@ function ledgerHarness(): LedgerHarness {
     rootDirectory,
     auditLedgerId: 'next-focus-shadow-audit',
     authorityProvider,
+    identityResolver: ({ evaluationInput }) => ({
+      actorId: evaluationInput.actorId,
+      capabilityId: evaluationInput.capabilityId,
+      evidenceDigest: evaluationInput.evidenceDigest,
+    }),
   }, ledger, policies);
   return { rootDirectory, ledger, gateway, policies };
 }

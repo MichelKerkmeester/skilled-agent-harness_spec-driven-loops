@@ -51,6 +51,7 @@ import type {
   DarkLedgerTelemetryEvent,
   DurableAppendReceipt,
   LegacyDarkBoundaryId,
+  PolicyEvaluationInput,
   PolicyReference,
   RebuiltProjection,
   TransitionAuthorizationRequest,
@@ -703,6 +704,17 @@ export class DarkContinuityIdentityObserver {
 // 5. FACTORY
 // ───────────────────────────────────────────────────────────────────
 
+/** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
+function pinRequestIdentity(
+  context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
+): { actorId: string; capabilityId: string; evidenceDigest: string } {
+  return {
+    actorId: context.evaluationInput.actorId,
+    capabilityId: context.evaluationInput.capabilityId,
+    evidenceDigest: context.evaluationInput.evidenceDigest,
+  };
+}
+
 /** Assemble a standalone dark runtime without wiring any shipped legacy writer. */
 export function createContinuityIdentityRuntime(
   options: ContinuityIdentityRuntimeOptions,
@@ -722,6 +734,7 @@ export function createContinuityIdentityRuntime(
     auditLedgerId: options.auditLedgerId ?? 'continuity-identity-authorization-audit',
     authorityProvider: options.authorityProvider,
     now: options.now,
+    identityResolver: pinRequestIdentity,
   }, ledger, policy.registry);
   const darkAdapter = new DarkLedgerAdapter(gateway, ledger, { now: options.now });
   const service = new ContinuityIdentityService(
