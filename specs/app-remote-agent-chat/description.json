@@ -1,0 +1,26 @@
+{
+  "specFolder": "app-remote-agent-chat",
+  "description": "Track folder for app-remote-agent-chat packets — the Pi Remote mobile PWA that remote-controls the pi coding agent over a Tailscale tailnet (Claude-Code-style pairing). Covers the relay/protocol control plane, auth and tailnet boundary, approval-gated remote mutation, the installable PWA, desktop-parity chat UX (model/effort switching, typed commands, plan mode), the Claude design-system restyle, and platform hardening. Hosts spec folder 001-pi-remote-mobile-agent-like-cc.",
+  "keywords": [
+    "app",
+    "remote",
+    "agent",
+    "chat",
+    "pi",
+    "pi-remote",
+    "pwa",
+    "mobile",
+    "tailscale",
+    "chat-ux",
+    "desktop-parity",
+    "restyle",
+    "track"
+  ],
+  "lastUpdated": "2026-08-15T00:00:00.000Z",
+  "specId": "app-remote-agent-chat",
+  "folderSlug": "app-remote-agent-chat",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}
