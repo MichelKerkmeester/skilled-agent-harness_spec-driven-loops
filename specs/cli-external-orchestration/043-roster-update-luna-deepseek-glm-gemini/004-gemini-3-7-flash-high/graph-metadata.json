@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high",
+  "spec_folder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high",
+  "parent_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "gemini 3.7 flash high cursor devin",
+      "gemini flash high roster",
+      "gemini phase 004",
+      "gemini 3.7 flash high plan",
+      "gemini phase 004 plan",
+      "gemini 3.7 flash high tasks",
+      "gemini phase 004 tasks",
+      "gemini 3.7 flash high checklist",
+      "gemini phase 004 checklist",
+      "gemini 3.7 flash high summary",
+      "gemini phase 004 summary"
+    ],
+    "key_topics": [
+      "gemini",
+      "flash",
+      "high",
+      "cursor",
+      "devin",
+      "roster",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "live-available"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "evidence/live-listings.txt",
+      "evidence/cursor-dispatch.out",
+      "evidence/devin-dispatch.out",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "live-listings.txt",
+        "kind": "file",
+        "path": "evidence/live-listings.txt",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-dispatch.out",
+        "kind": "file",
+        "path": "evidence/cursor-dispatch.out",
+        "source": "derived"
+      },
+      {
+        "name": "devin-dispatch.out",
+        "kind": "file",
+        "path": "evidence/devin-dispatch.out",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flash High Dispatch Support",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Shipped Gemini",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flash High",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Gemini",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Gemini 3.7 Flash High is live-available on both external CLIs but neither enforced roster carries any Gemini id: cli-cursor's `CURSORSUPPORTEDMODELS` hard-rejects `gemini-3.7-flash-high`, and cli-devin's `DEVINSUPPORTEDMODELS` hard-rejects `gemini-3-7-flash-high`",
+    "created_at": "2026-08-15T09:11:19.337Z",
+    "last_save_at": "2026-08-15T10:20:36.707Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1705c9c968932b1535e3bd6e51997445f2a2fce54f3038f741a869f18342f8ae",
+    "source_doc_hashes": {
+      "spec.md": "108044ec1b737490555bd9024ffe12a3be4854b4c2ec1e78996a31d8afc4450c",
+      "plan.md": "ce1f5c5adcce98601acf5db9f3615cc98dc2e441cbdc0087760870479d2ed7f7",
+      "tasks.md": "3bc2b4b617f9adb22a1b8e84482f116f1696bd0e9a8ef42bfeaf1682157b9229",
+      "checklist.md": "4c54b9d301dc50822518745659e5e506c35702cfccf300e7fdc398f57a707cef",
+      "implementation-summary.md": "576bcf65679eed689e2c7c6443a76596009548ae0edf072ee6e0b045a0a5e4bf"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

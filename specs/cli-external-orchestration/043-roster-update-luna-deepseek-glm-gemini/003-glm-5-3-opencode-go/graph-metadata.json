@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
+  "spec_folder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
+  "parent_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "glm 5.3 opencode-go",
+      "glm 5.3 phase 003",
+      "glm 5.3 opencode-go plan",
+      "glm 5.3 phase 003 plan",
+      "glm 5.3 opencode-go tasks",
+      "glm 5.3 phase 003 tasks",
+      "glm 5.3 opencode-go checklist",
+      "glm 5.3 phase 003 checklist",
+      "glm 5.3 opencode-go summary",
+      "glm 5.3 phase 003 summary"
+    ],
+    "key_topics": [
+      "glm",
+      "opencode-go",
+      "phase",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "cli-opencode",
+      "already",
+      "serves",
+      "glm-5",
+      "live"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Document",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "phases",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-opencode already serves `opencode-go/glm-5.3` live, but its catalog documents only DeepSeek Flash and Qwen under that gateway — the model is dispatchable but invisible to anyone reading the roster",
+    "created_at": "2026-08-15T08:28:38.249Z",
+    "last_save_at": "2026-08-15T10:20:36.485Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:771177fd2bbf5e891e5d22605a808b552160850bfe002d86e82efe1490d8724a",
+    "source_doc_hashes": {
+      "spec.md": "0c3d8aa0662805a1ac4acb912c8d2260c852624d5e9c5d44d0995f1fcdd41ba5",
+      "plan.md": "2eb1200ec94461086f62c70f0b3da3512788b566e87edfb4657bef5da217de20",
+      "tasks.md": "19f8d640c3ddffc22c057a91f988e69f2fa3843b51269bee8785dfe5b7d5dce6",
+      "checklist.md": "146d02bd0a8315ac38ec232056c6a9ba9adf55926f6f65f2f1722701ab913691",
+      "implementation-summary.md": "d6de6db561925cc255c93cd9dfa0c24407afd3e0cb7939df45a4b4c62c2618dd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

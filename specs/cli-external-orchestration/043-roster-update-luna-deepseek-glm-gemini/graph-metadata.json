@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "spec_folder": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini",
+  "parent_id": null,
+  "children_ids": [
+    "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/001-gpt-5-6-luna-max",
+    "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/002-deepseek-v4-max",
+    "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
+    "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/004-gemini-3-7-flash-high"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "luna max roster",
+      "deepseek max devin",
+      "glm 5.3 opencode-go",
+      "gemini 3.7 flash high cursor devin",
+      "cli roster additions phase parent 043"
+    ],
+    "key_topics": [
+      "luna",
+      "max",
+      "roster",
+      "deepseek",
+      "devin",
+      "glm",
+      "opencode-go",
+      "gemini",
+      "flash",
+      "high",
+      "cursor",
+      "cli"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Model Roster Additions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Luna Max",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flash High",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The external-CLI orchestration modes enforce curated model rosters: cli-cursor and cli-devin hard-reject any `--model` id outside `CURSORSUPPORTEDMODELS` / `DEVINSUPPORTEDMODELS` (mirrored byte-identical in `fanout-run.cjs`), and cli-opencode's catalog documents the opencode-go gateway's curated scope",
+    "created_at": "2026-08-14T08:26:34.014Z",
+    "last_save_at": "2026-08-15T10:20:04.026Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:2575783964c1c420d644c5aa8ee6716e6e73a3cbecf3b80dc49abeef88c40c6e",
+    "source_doc_hashes": {
+      "spec.md": "67e6d2a56a659630b0f527c4c4eb8ee28e32216abcd4bff084f39bd5bb23062d"
+    },
+    "last_active_child_id": "cli-external-orchestration/043-roster-update-luna-deepseek-glm-gemini/003-glm-5-3-opencode-go",
+    "last_active_at": null
+  }
+}
