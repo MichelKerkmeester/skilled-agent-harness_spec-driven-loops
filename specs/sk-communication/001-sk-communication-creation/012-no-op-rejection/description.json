@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/001-sk-communication-creation/012-no-op-rejection",
+  "description": "Stop rewarding the unchanged echo by treating a verbatim or near-verbatim candidate as no improvement and falling back to deterministic formatting instead of accepting it as a projection",
+  "keywords": [
+    "no-op",
+    "rejection",
+    "unchanged",
+    "echo",
+    "edit-distance",
+    "deterministic",
+    "fallback",
+    "reason-code",
+    "projection",
+    "quality"
+  ],
+  "lastUpdated": "2026-08-13T00:00:00.000Z",
+  "specId": "012",
+  "folderSlug": "no-op-rejection",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,28 @@
+{
+  "level": "3",
+  "specFolder": "sk-communication/001-sk-communication-creation/018-projection-runtime-core",
+  "description": "The provider adapters only prepare and parse; there is no default transport implementation, so the executor cannot run out of the box",
+  "keywords": [
+    "provider",
+    "adapters",
+    "only",
+    "prepare",
+    "parse",
+    "default",
+    "transport",
+    "implementation",
+    "executor",
+    "cannot",
+    "run",
+    "box"
+  ],
+  "lastUpdated": "2026-08-14T07:23:44.939Z",
+  "specId": "018",
+  "folderSlug": "projection-runtime-core",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

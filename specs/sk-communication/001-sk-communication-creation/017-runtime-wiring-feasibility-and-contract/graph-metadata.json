@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/001-sk-communication-creation/017-runtime-wiring-feasibility-and-contract",
+  "spec_folder": "sk-communication/001-sk-communication-creation/017-runtime-wiring-feasibility-and-contract",
+  "parent_id": "sk-communication/001-sk-communication-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "runtime-wiring-feasibility-and-contract",
+      "runtime wiring feasibility",
+      "hook to projection integration contract",
+      "chat.message display validation",
+      "CLI output wrapper seam",
+      "implementation plan",
+      "tasks",
+      "verification checklist",
+      "quality gate",
+      "architecture decision",
+      "integration pattern and fail-open seam contract",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "runtime-wiring-feasibility-and-contract",
+      "runtime",
+      "wiring",
+      "feasibility",
+      "hook",
+      "projection",
+      "integration",
+      "contract",
+      "chat",
+      "message",
+      "display",
+      "validation"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wiring Feasibility",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Confirm",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The projection layer must be wired into runtime output, but the runtimes do not share a uniform hook surface",
+    "created_at": "2026-08-14T05:27:23.988Z",
+    "last_save_at": "2026-08-14T09:36:46.616Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c8d8999843d3bcb0e04dc93246b58b1a754dd92f8f5ef0e1cbfc895cdcbd9e3c",
+    "source_doc_hashes": {
+      "spec.md": "336edf302d18fbe45ffcdfea4021c7fade397df67cb60fab6b9065cc2c4d8d66",
+      "plan.md": "cb6ae57b9b35a3ba6373cf94519354af3d8420b2cf602499319ae9ecd4ab3c17",
+      "tasks.md": "a903e0120e3bdd1a6db3f03e543b26902be170d5cd73f28d28f93eeec269e8c7",
+      "checklist.md": "70633e71d5090df9f16d975dd27655e2c29943b382297f58b16feae81126f7b8",
+      "decision-record.md": "9e08a7bb56071d62d785cc3ea210d08a66b7abe778fe8ea923b90b226f1858c7",
+      "implementation-summary.md": "68cfb979319ae149c6fe1d3601fdcd159716527e9d25264c5e9d63e37d35f9df"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/001-sk-communication-creation/031-improvement-research",
+  "spec_folder": "sk-communication/001-sk-communication-creation/031-improvement-research",
+  "parent_id": "sk-communication/001-sk-communication-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "communication projection improvement research",
+      "sk-communication improvements",
+      "projection operator UX",
+      "communication package architecture",
+      "communication documentation review",
+      "research plan",
+      "deep-research communication improvements",
+      "sk-communication assessment",
+      "research tasks",
+      "5 iteration research loop",
+      "research verification checklist",
+      "communication improvement quality gate"
+    ],
+    "key_topics": [
+      "communication",
+      "projection",
+      "improvement",
+      "research",
+      "sk-communication",
+      "improvements",
+      "operator",
+      "package",
+      "architecture",
+      "documentation",
+      "review",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Communication Projection Improvement Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Question What",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Shipped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "threshold",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Produce a grounded and ranked recommendation set that identifies what to improve next, why each improvement matters, and the rough effort required",
+    "created_at": "2026-08-15T05:31:15.872Z",
+    "last_save_at": "2026-08-15T08:34:10.957Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:2f3ccdb117e81113d44e72dfe7b36b26f1d6082f183fb5ad3713a90235e80ece",
+    "source_doc_hashes": {
+      "spec.md": "117bbf95116ebe58e74bdb9056b884549c11fb9ac160e076059f02ce4fb6532e",
+      "plan.md": "7eee39e4767db938014ec551480b06fe0b84d377d3f2ab1108328cae2c3b5958",
+      "tasks.md": "5d2c5df6ac53000fd7976c181ddca3e188189b84df486af31c1096b8328a7e8d",
+      "checklist.md": "b2673077bb05f6cfeba7dbee32c60403a58127123e9e760280a92c830e6d6347",
+      "implementation-summary.md": "1ae2175c0ff79a2919279e0e9cf92b5894b658ef71c4a4f46e4d34ab6c7dd883",
+      "research/research.md": "1a2e6e8d78f42a18b62a2458636c1f045a8865752e4623aee01c2437d18a6e07"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

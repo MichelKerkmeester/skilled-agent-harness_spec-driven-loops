@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/001-sk-communication-creation/020-cli-output-wrapper-framework",
+  "spec_folder": "sk-communication/001-sk-communication-creation/020-cli-output-wrapper-framework",
+  "parent_id": "sk-communication/001-sk-communication-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-output-wrapper-framework",
+      "cli output wrapper",
+      "wrapper framework projection",
+      "headless stream print capture",
+      "shared output wrapper seam",
+      "implementation plan",
+      "wrapper framework plan",
+      "headless stream print capture plan",
+      "tasks",
+      "implementation",
+      "wrapper framework tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "cli-output-wrapper-framework",
+      "cli",
+      "output",
+      "wrapper",
+      "framework",
+      "projection",
+      "headless",
+      "stream",
+      "print",
+      "capture",
+      "shared",
+      "seam"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Output Wrapper Framework",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "observed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The wrapper-based runtimes have no native output-transform hook, so the Phase 019 plugin cannot be reused; each of Claude Code, Codex, Devin, Cursor, and Pi currently has no projection path at all",
+    "created_at": "2026-08-14T05:39:00.776Z",
+    "last_save_at": "2026-08-14T05:40:27.011Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9c3376615754713bba902c8a6009bbf464e8d26f34f6529d4e505fb5858afb04",
+    "source_doc_hashes": {
+      "spec.md": "5165caa8f2f3319541a5e966fc07367a8e680de6f5d9397a608bdac38d313c8b",
+      "plan.md": "bbcbb757cd6571beba85f528a431b95072289a1d78cf0b622d40545819d3b459",
+      "tasks.md": "bfd4fc08567ef37f2a8b8dd72637f292aa9d26468963558b084b24560c6bd5ee",
+      "checklist.md": "45f1d72c45d1187982b87a237b9e3468ca54454cfececd3df3bb68664e1b8120",
+      "decision-record.md": "af952c4e52a4f9d7e06694929ead1d5bbd259f56eb06cdbac37718de61e7e5aa",
+      "implementation-summary.md": "2a301f16119a5e04d545ab831d7ced12870e631434f36e9c2d407f33e0b07947"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

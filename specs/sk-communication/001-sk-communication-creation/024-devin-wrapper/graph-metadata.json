@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/001-sk-communication-creation/024-devin-wrapper",
+  "spec_folder": "sk-communication/001-sk-communication-creation/024-devin-wrapper",
+  "parent_id": "sk-communication/001-sk-communication-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "devin-wrapper",
+      "devin cli output wrapper",
+      "devin -p print projection",
+      "devin runtime adapter wiring",
+      "devin projectMessage routing",
+      "implementation plan",
+      "devin -p print projection plan",
+      "devin runtime adapter wiring plan",
+      "tasks",
+      "devin -p print projection tasks",
+      "devin runtime adapter wiring tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "devin-wrapper",
+      "devin",
+      "cli",
+      "output",
+      "wrapper",
+      "print",
+      "projection",
+      "runtime",
+      "adapter",
+      "wiring",
+      "projectmessage",
+      "routing"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Devin Wrapper",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wire Devin",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Wire Devin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Devin",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Devin exposes only input, tool, and session-lifecycle hooks, so no hook rewrites the rendered assistant answer; the CLI-output wrapper is the only integration path",
+    "created_at": "2026-08-14T05:42:48.044Z",
+    "last_save_at": "2026-08-14T08:40:45.068Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d471f0349e35218409ebb156bac0db6a52c6b313dd015f764c4f238b7c2cd402",
+    "source_doc_hashes": {
+      "spec.md": "a469eea5418b1d3d4154659ae8cbcac33c1fa345116289ca36a2ce7e6a78598f",
+      "plan.md": "36523c1775c9e5cebf000c62c1e0eac660335505648e7b11e59e894a44145567",
+      "tasks.md": "6fd038cd66732b2618b663ee5ad9361622f0530bde14d2174c5227d05026235b",
+      "checklist.md": "ecf61dc878b1cbc08c0ad775d10b3adf9353a7a47118d887e90f38f422a64937",
+      "implementation-summary.md": "929f62f70036ba407b04ef323557842fbdb6b55392bf8198097f86686a88586d"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

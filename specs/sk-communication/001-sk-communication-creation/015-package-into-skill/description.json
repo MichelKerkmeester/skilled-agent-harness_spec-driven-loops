@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/001-sk-communication-creation/015-package-into-skill",
+  "description": "The package lived under a generic `packages/` root even though it is owned and consumed exclusively by the sk-communication skill, unlike system",
+  "keywords": [
+    "package",
+    "lived",
+    "generic",
+    "packages",
+    "root",
+    "even",
+    "though",
+    "owned",
+    "consumed",
+    "exclusively",
+    "sk-communication",
+    "skill",
+    "unlike",
+    "system"
+  ],
+  "lastUpdated": "2026-08-13T19:03:35.704Z",
+  "specId": "015",
+  "folderSlug": "package-into-skill",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

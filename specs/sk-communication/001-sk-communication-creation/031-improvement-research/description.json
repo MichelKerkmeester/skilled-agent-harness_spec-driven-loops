@@ -1,0 +1,42 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/001-sk-communication-creation/031-improvement-research",
+  "description": "Produce a grounded and ranked recommendation set that identifies what to improve next, why each improvement matters, and the rough effort required",
+  "keywords": [
+    "produce",
+    "grounded",
+    "ranked",
+    "recommendation",
+    "set",
+    "identifies",
+    "improve",
+    "next",
+    "improvement",
+    "matters",
+    "rough",
+    "effort",
+    "required"
+  ],
+  "lastUpdated": "2026-08-15T08:34:10.957Z",
+  "specId": "031",
+  "folderSlug": "improvement-research",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 12,
+  "memoryNameHistory": [
+    "15-08-26_06-32__phase-031-is-planned-level-2-research-to-rank.md",
+    "15-08-26_08-18__deep-research-loop-completed-10-10-forced-depth.md",
+    "15-08-26_08-32__completed-phase-031-improvement-research-with-10.md",
+    "15-08-26_08-34__completed-phase-031-improvement-research-with-10.md",
+    "15-08-26_08-36__completed-phase-031-improvement-research-with-10.md",
+    "15-08-26_08-37__completed-phase-031-improvement-research-with-10.md",
+    "15-08-26_09-16__deep-research-complete-5-iterations.md",
+    "15-08-26_09-21__deep-research-complete-5-iterations.md",
+    "15-08-26_09-22__deep-research-complete-5-iterations.md",
+    "15-08-26_09-31__completed-the-accurate-phase-030-grounded.md",
+    "15-08-26_09-33__completed-the-accurate-phase-030-grounded.md",
+    "15-08-26_09-34__completed-the-accurate-phase-030-grounded.md"
+  ]
+}

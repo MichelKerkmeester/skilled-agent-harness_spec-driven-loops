@@ -1,0 +1,37 @@
+{
+  "level": "3",
+  "specFolder": "sk-communication/001-sk-communication-creation/004-protected-spans-fidelity-render",
+  "description": "Protect non-negotiable content, validate rewritten candidates deterministically, and choose a safe presentation mode",
+  "keywords": [
+    "protect",
+    "non-negotiable",
+    "content",
+    "validate",
+    "rewritten",
+    "candidates",
+    "deterministically",
+    "choose",
+    "safe",
+    "presentation",
+    "mode"
+  ],
+  "lastUpdated": "2026-08-11T19:31:50.870Z",
+  "specId": "004",
+  "folderSlug": "protected-spans-fidelity-render",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 9,
+  "memoryNameHistory": [
+    "11-08-26_18-01__phase-003-provides-immutable-completed-message.md",
+    "11-08-26_18-06__the-phase-003-handover-is-complete-and-strict.md",
+    "11-08-26_18-07__phase-004-remains-draft-and-is-next.md",
+    "11-08-26_18-08__phase-003-and-parent-recursive-strict-gates-pass.md",
+    "11-08-26_19-48__project-owner-approved-the-deterministic-first.md",
+    "11-08-26_20-23__phase-004-protected-span-fidelity-render-and.md",
+    "11-08-26_20-25__phase-004-implementation-and-code-gates-pass.md",
+    "11-08-26_20-30__verified-phase-004-fidelity-boundary.md",
+    "11-08-26_20-31__repaired-strict-evidence-citations.md"
+  ]
+}

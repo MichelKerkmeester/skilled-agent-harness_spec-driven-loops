@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/001-sk-communication-creation/016-default-off-and-advisor-exclusion",
+  "spec_folder": "sk-communication/001-sk-communication-creation/016-default-off-and-advisor-exclusion",
+  "parent_id": "sk-communication/001-sk-communication-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "default-off-and-advisor-exclusion",
+      "communication projection default off",
+      "advisor route exclusion",
+      "sk-communication routing exclusion",
+      "implementation plan",
+      "enablement gate and advisor exclusion plan",
+      "tasks",
+      "enablement gate and advisor exclusion tasks",
+      "verification checklist",
+      "quality gate",
+      "architecture decision",
+      "activation seam gate and adjustable advisor denylist"
+    ],
+    "key_topics": [
+      "default-off-and-advisor-exclusion",
+      "communication",
+      "projection",
+      "default",
+      "advisor",
+      "route",
+      "exclusion",
+      "sk-communication",
+      "routing",
+      "implementation",
+      "plan",
+      "enablement"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Exclusion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The projection layer was reachable by default, and the advisor could recommend `sk-communication` automatically",
+    "created_at": "2026-08-13T18:51:56.591Z",
+    "last_save_at": "2026-08-14T06:14:54.709Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1cd7bcaaea679bcc570614fabf9b03121c05059ec6aa1deb22cbd026245313c4",
+    "source_doc_hashes": {
+      "spec.md": "e6480d52e7de69b5e40c02b48b6478423a17fcd82b1260700591b752d6a55884",
+      "plan.md": "200fabe243c99e6e4a203335333b65ddb7869dcbf26d593987a153199cf6ffbf",
+      "tasks.md": "49dff3aa6dd30063a81ebc990cb794a7a87d8e62b73e99e9b29a097d07f80e8e",
+      "checklist.md": "669f89fd1d58987f1c432e9f9bcb9bcc76d1308b4059d0d326b19c2a61c5c198",
+      "decision-record.md": "e86f9eac90a9bf3053f3dca1df3350169f55bafab7e43bcf7c6b470def2cd5e0",
+      "implementation-summary.md": "0d0cfae95010dd605732615df0d7406df0a8151502e7a95a4135f247e1536715"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

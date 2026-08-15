@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "sk-communication/001-sk-communication-creation/005-provider-adapters-and-privacy",
+  "description": "Add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent",
+  "keywords": [
+    "model-scoped",
+    "hosted",
+    "local",
+    "provider",
+    "adapters",
+    "behind",
+    "privacy-first",
+    "routing",
+    "explicit",
+    "egress",
+    "consent"
+  ],
+  "lastUpdated": "2026-08-12T04:19:31.237Z",
+  "specId": "005",
+  "folderSlug": "provider-adapters-and-privacy",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "11-08-26_20-30__be-able-to-use-ideally-opencode-go-as-the.md"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/001-sk-communication-creation/025-cursor-wrapper",
+  "description": "Cursor exposes only input, tool, and lifecycle hooks, and none of them rewrite the rendered assistant answer, so projection cannot hook the rendered",
+  "keywords": [
+    "cursor",
+    "exposes",
+    "only",
+    "input",
+    "tool",
+    "lifecycle",
+    "hooks",
+    "none",
+    "them",
+    "rewrite",
+    "rendered",
+    "assistant",
+    "answer",
+    "projection",
+    "cannot",
+    "hook"
+  ],
+  "lastUpdated": "2026-08-14T08:41:07.370Z",
+  "specId": "025",
+  "folderSlug": "cursor-wrapper",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "sk-communication/001-sk-communication-creation/016-default-off-and-advisor-exclusion",
+  "description": "The projection layer was reachable by default, and the advisor could recommend `sk-communication` automatically",
+  "keywords": [
+    "projection",
+    "layer",
+    "reachable",
+    "default",
+    "advisor",
+    "recommend",
+    "sk-communication",
+    "automatically"
+  ],
+  "lastUpdated": "2026-08-14T06:14:54.709Z",
+  "specId": "016",
+  "folderSlug": "default-off-and-advisor-exclusion",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

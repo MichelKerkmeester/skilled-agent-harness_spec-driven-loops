@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/001-sk-communication-creation/003-core-normalization-and-assembly",
+  "spec_folder": "sk-communication/001-sk-communication-creation/003-core-normalization-and-assembly",
+  "parent_id": "sk-communication/001-sk-communication-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "core-normalization-and-assembly",
+      "core normalization and assembly",
+      "portable cli projection",
+      "implementation phase",
+      "implementation plan",
+      "tasks",
+      "implementation",
+      "verification checklist",
+      "quality gate",
+      "architecture decision",
+      "use a generation-keyed state machine with explicit ordering domains",
+      "implementation status"
+    ],
+    "key_topics": [
+      "core-normalization-and-assembly",
+      "core",
+      "normalization",
+      "assembly",
+      "portable",
+      "cli",
+      "projection",
+      "implementation",
+      "phase",
+      "plan",
+      "tasks",
+      "verification"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "handover.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Core Normalization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Gates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Passed Phase",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Build the runtime-neutral core that normalizes events, assembles one deterministic message, and selects the bounded conversational context that made the reference effective without changing canonical state",
+    "created_at": "2026-08-11T10:04:29Z",
+    "last_save_at": "2026-08-11T17:08:48.404Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:46fa6e178b70df4fea133565d4405460b70f81f5eab9f8288d409004c1f78759",
+    "source_doc_hashes": {
+      "spec.md": "78f1bbbc449acfc10034fbd7072d9f10455d40ce4e01eefa861913fe0df1e985",
+      "plan.md": "84fe979d44dd287d99984404d6be587c59791805c3252c9bb4f895b91bd3a11e",
+      "tasks.md": "1bcde3d427e1c91755fa7d875d6150341f6b8c83bdbcecd8c573068a955dc236",
+      "checklist.md": "9634f69982fd67873d5578a6681322a96ca6f8c2f9f4f51a17bc8278f47ae5f1",
+      "decision-record.md": "ca1aa964d888d5d3db995e52776e06c134bfd5c8ceb8c0879476200498e17b0e",
+      "implementation-summary.md": "84330b5f335b33b622bb31f5ab53b584acb1b6998bf1a9418ccf2d0937386b9a",
+      "handover.md": "a49b8522059bf985de791c519b40f2f41a6d8a1f2692de0f0053707857c16c38"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

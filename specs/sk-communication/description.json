@@ -1,0 +1,22 @@
+{
+  "specFolder": "sk-communication",
+  "description": "Track folder for sk-communication, a provider-neutral CLI-output rewrite layer that preserves canonical output while projecting clearer prose through a local-provider loader and six-runtime wiring, with activation defaulting off.",
+  "keywords": [
+    "sk-communication",
+    "communication",
+    "projection",
+    "cli-output",
+    "rewrite-layer",
+    "provider-neutral",
+    "local-provider",
+    "six-runtime",
+    "default-off"
+  ],
+  "lastUpdated": "2026-08-15T00:00:00.000Z",
+  "specId": "sk-communication",
+  "folderSlug": "sk-communication",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

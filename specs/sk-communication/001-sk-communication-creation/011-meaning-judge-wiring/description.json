@@ -1,0 +1,26 @@
+{
+  "level": "3",
+  "specFolder": "sk-communication/001-sk-communication-creation/011-meaning-judge-wiring",
+  "description": "Compose the missing production path so a local reject-only meaning judge runs after restoration with any failure staying exact-original and no hosted egress of restored values",
+  "keywords": [
+    "meaning",
+    "judge",
+    "wiring",
+    "reject-only",
+    "fidelity",
+    "production",
+    "composition",
+    "exact-original",
+    "projection",
+    "quality"
+  ],
+  "lastUpdated": "2026-08-13T00:00:00.000Z",
+  "specId": "011",
+  "folderSlug": "meaning-judge-wiring",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

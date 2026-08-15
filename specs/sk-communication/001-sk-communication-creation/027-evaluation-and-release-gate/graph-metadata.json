@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/001-sk-communication-creation/027-evaluation-and-release-gate",
+  "spec_folder": "sk-communication/001-sk-communication-creation/027-evaluation-and-release-gate",
+  "parent_id": "sk-communication/001-sk-communication-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "evaluation-and-release-gate",
+      "non-inferiority rollout gate",
+      "reject-only evaluation consult",
+      "rollout readiness evidence",
+      "implementation plan",
+      "non-inferiority consult and rollout gate plan",
+      "tasks",
+      "non-inferiority consult and rollout gate tasks",
+      "verification checklist",
+      "quality gate",
+      "architecture decision",
+      "reject-only consult and dated rollout gate"
+    ],
+    "key_topics": [
+      "evaluation-and-release-gate",
+      "non-inferiority",
+      "rollout",
+      "gate",
+      "reject-only",
+      "evaluation",
+      "consult",
+      "readiness",
+      "evidence",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Release Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Compose",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The evaluation harness can already produce a blind non-inferiority verdict and the release gate can already block on dated evidence, but the production projection path does not yet consult the verdict before offering projection for a runtime / prompt-profile combination, and rollout is not yet gated on that evidence",
+    "created_at": "2026-08-14T05:53:50.234Z",
+    "last_save_at": "2026-08-14T09:22:44.398Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a25c67354eaf1b665bc3b004678706619124c815f32659799c928b0423ddac25",
+    "source_doc_hashes": {
+      "spec.md": "17e1b511dc890cc92693631ff1d5389d12ce6b10eb1198b1d8c72b57b7b7b56c",
+      "plan.md": "3c6b4b9dd811f8d932deeb08c592a774abfe43cf03f38d272853c37239e1b82b",
+      "tasks.md": "2555979020f880c94968ad9d32ca6f507eaa2cc7ea83e99854abf456c8d16802",
+      "checklist.md": "21bf4fe377db4af2c82fc99879d00305053c34f3d1ec928f113b011d39ef7d08",
+      "decision-record.md": "03fad2f6997020e6a067bdf6e04fe31cc017ac9333c4817ad81e0861ef75debc",
+      "implementation-summary.md": "b2662561bce1d41b7b341ca0a86bf1006a9caaf2052aa5ea92bc8dea4c493be1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "level": "3",
+  "specFolder": "sk-communication/001-sk-communication-creation/007-evaluation-and-observability",
+  "description": "Measure whether output feels 1:1 with the reference while proving fidelity, latency, cost, privacy, and operational behavior",
+  "keywords": [
+    "measure",
+    "whether",
+    "output",
+    "feels",
+    "reference",
+    "while",
+    "proving",
+    "fidelity",
+    "latency",
+    "cost",
+    "privacy",
+    "operational",
+    "behavior"
+  ],
+  "lastUpdated": "2026-08-11T13:35:59.660Z",
+  "specId": "007",
+  "folderSlug": "evaluation-and-observability",
+  "parentChain": [
+    "sk-communication",
+    "001-sk-communication-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/001-sk-communication-creation/023-pi-wrapper",
+  "spec_folder": "sk-communication/001-sk-communication-creation/023-pi-wrapper",
+  "parent_id": "sk-communication/001-sk-communication-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi-wrapper",
+      "pi output projection",
+      "turn_end mutation validation",
+      "pi print mode wrapper",
+      "Pi runtime adapter projection",
+      "implementation plan",
+      "pi output projection plan",
+      "turn_end mutation validation plan",
+      "pi print mode wrapper plan",
+      "tasks",
+      "implementation",
+      "pi output projection tasks"
+    ],
+    "key_topics": [
+      "pi-wrapper",
+      "output",
+      "projection",
+      "mutation",
+      "validation",
+      "print",
+      "mode",
+      "wrapper",
+      "runtime",
+      "adapter",
+      "implementation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Wrapper",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Answer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pi exposes a `turnend` event that delivers the ending assistant message, but in-repo the event handler only reads that message and injects context with `display: false`; no handler ever mutates the rendered bubble",
+    "created_at": "2026-08-14T05:41:31.435Z",
+    "last_save_at": "2026-08-14T08:40:23.301Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a75a5117214b69cfd564267e18866f77294b64c7087b7e37a63ee68e8d720c27",
+    "source_doc_hashes": {
+      "spec.md": "27a56c6998ef8897daf74291b266bdc83b3c32d5eef476f85d9ef6d8fb28227c",
+      "plan.md": "03d2f34d1ff26ca130e1116c7e07d034c1186ca6c037e3b78eb9e257c555a4be",
+      "tasks.md": "eebc46bdbfad58f7b83864d0004c69ba00079dc299833b395534396443636a2c",
+      "checklist.md": "e132bb0883783f6af429ed9bcf71148013b2db148c07affc4dec157c193c6878",
+      "implementation-summary.md": "33e45d7fed71ce1300e82420ed930dccbea2738621a8b3adf1ac7c0a7aab074f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
