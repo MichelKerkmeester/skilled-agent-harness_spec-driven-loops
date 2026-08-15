@@ -1789,22 +1789,24 @@ INTENT_BOOSTERS = {
     "readiness": ("sk-code", 0.8),
 
     # ─────────────────────────────────────────────────────────────────
-    # MCP-CHROME-DEVTOOLS: Browser debugging
+    # MCP-TOOLING: Browser debugging
     # ─────────────────────────────────────────────────────────────────
-    "bdg": ("mcp-chrome-devtools", 1.0),
-    "breakpoint": ("mcp-chrome-devtools", 0.6),
-    "browser": ("mcp-chrome-devtools", 1.2),
-    "chrome": ("mcp-chrome-devtools", 1.0),
-    "console": ("mcp-chrome-devtools", 1.0),
-    "debug": ("mcp-chrome-devtools", 0.6),
-    "debugger": ("mcp-chrome-devtools", 1.0),
-    "devtools": ("mcp-chrome-devtools", 1.2),
-    "dom": ("mcp-chrome-devtools", 0.5),
-    "elements": ("mcp-chrome-devtools", 0.5),
-    "inspect": ("mcp-chrome-devtools", 1.0),
-    "network": ("mcp-chrome-devtools", 0.8),
-    "performance": ("mcp-chrome-devtools", 0.5),
-    "screenshot": ("mcp-chrome-devtools", 2.0),
+    "bdg": ("mcp-tooling", 1.0),
+    "breakpoint": ("mcp-tooling", 0.6),
+    "browser": ("mcp-tooling", 1.2),
+    "chrome": ("mcp-tooling", 1.0),
+    "console": ("mcp-tooling", 1.0),
+    "debug": ("mcp-tooling", 0.6),
+    "debugger": ("mcp-tooling", 1.0),
+    "devtools": ("mcp-tooling", 1.2),
+    "dom": ("mcp-tooling", 0.5),
+    "elements": ("mcp-tooling", 0.5),
+    # Keep the generic verb out of the MCP hub: inspection alone is not a
+    # tooling request. Browser/devtools-specific tokens below still route to
+    # the hub when the prompt identifies that surface.
+    "network": ("mcp-tooling", 0.8),
+    "performance": ("mcp-tooling", 0.5),
+    "screenshot": ("mcp-tooling", 2.0),
 
     # ─────────────────────────────────────────────────────────────────
     # WORKFLOWS-DOCUMENTATION: Documentation and diagrams
@@ -1905,17 +1907,17 @@ INTENT_BOOSTERS = {
 # Format: keyword -> list of (skill_name, boost_amount)
 MULTI_SKILL_BOOSTERS = {
     "api": [("mcp-code-mode", 0.2), ("sk-code", 0.5)],
-    "audit": [("sk-code", 0.6), ("system-spec-kit", 0.3), ("mcp-chrome-devtools", 0.3)],
+    "audit": [("sk-code", 0.6), ("system-spec-kit", 0.3), ("mcp-tooling", 0.3)],
     "chain": [("mcp-code-mode", 0.3)],
     "changes": [("sk-git", 0.4), ("system-spec-kit", 0.2)],
-    "css": [("sk-code", 0.6), ("mcp-chrome-devtools", 0.3)],
+    "css": [("sk-code", 0.6), ("mcp-tooling", 0.3)],
     "code": [("sk-code", 0.3)],
     "context": [("system-spec-kit", 0.4)],
     "deployment": [("sk-code", 0.4), ("sk-git", 0.3)],
-    "export": [("mcp-chrome-devtools", 0.2)],
+    "export": [("mcp-tooling", 0.2)],
     "handler": [("sk-code", 0.3), ("mcp-code-mode", 0.2)],
-    "layout": [("sk-code", 0.5), ("mcp-chrome-devtools", 0.2)],
-    "mobile": [("sk-code", 0.3), ("mcp-chrome-devtools", 0.2)],
+    "layout": [("sk-code", 0.5), ("mcp-tooling", 0.2)],
+    "mobile": [("sk-code", 0.3), ("mcp-tooling", 0.2)],
     "mcp": [("mcp-code-mode", 0.3), ("sk-code", 0.4)],
     "plan": [("system-spec-kit", 0.3), ("sk-code", 0.2)],
     "save": [("system-spec-kit", 0.4), ("sk-git", 0.2)],
@@ -1925,7 +1927,7 @@ MULTI_SKILL_BOOSTERS = {
     "standards": [("sk-code", 0.6)],
     "style": [("sk-code", 0.5)],
     "task": [("system-spec-kit", 0.3)],
-    "test": [("sk-code", 0.3), ("mcp-chrome-devtools", 0.2)],
+    "test": [("sk-code", 0.3), ("mcp-tooling", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("sk-git", 0.2), ("sk-code", 0.2)],
     "review": [("sk-code", 0.8)],
     "delegate": [("cli-claude-code", 0.5)],
@@ -1989,7 +1991,7 @@ PHRASE_INTENT_BOOSTERS = {
     "layout fix": [("sk-code", 1.0)],
     "browser verification checklist": [("sk-code", 1.6)],
     "css animation": [("sk-code", 0.8)],
-    "api network": [("sk-code", 0.7), ("mcp-chrome-devtools", 0.4)],
+    "api network": [("sk-code", 0.7), ("mcp-tooling", 0.4)],
     "frontend deployment guidance": [("sk-code", 1.8)],
     "external tool integration via code mode": [("mcp-code-mode", 2.0)],
     "template level validation": [("system-spec-kit", 0.8)],
@@ -2008,40 +2010,40 @@ PHRASE_INTENT_BOOSTERS = {
     "multi-round research": [("deep-research", 2.0)],
     "overnight research": [("deep-research", 2.0)],
     # --- Agent improvement loop ---
-    "agent improvement": [("deep-improvement", 2.8)],
-    "recursive agent": [("deep-improvement", 2.8)],
-    "improvement loop": [("deep-improvement", 2.8)],
-    "agent improvement loop": [("deep-improvement", 3.2)],
-    "proposal-only improvement": [("deep-improvement", 2.6)],
-    "proposal only improvement": [("deep-improvement", 2.6)],
-    "proposal only": [("deep-improvement", 1.4)],
-    "evaluator-first": [("deep-improvement", 2.4)],
-    "bounded mutator": [("deep-improvement", 2.2)],
-    "candidate scoring": [("deep-improvement", 2.3)],
-    "promotion gate": [("deep-improvement", 2.0)],
-    "handover target": [("deep-improvement", 2.0)],
-    "deep-agent-improvement": [("deep-improvement", 3.2)],
-    "/deep-agent-improvement": [("deep-improvement", 3.2)],
-    "sk-agent-improvement-loop": [("deep-improvement", 3.0)],
-    "/sk-agent-improvement-loop": [("deep-improvement", 3.0)],
-    "5-dimension": [("deep-improvement", 1.8)],
-    "5-dimension agent scoring": [("deep-improvement", 2.8)],
-    "5-dimension evaluation": [("deep-improvement", 2.8)],
-    "5d agent scoring": [("deep-improvement", 2.8)],
-    "5d scoring": [("deep-improvement", 1.8)],
-    "integration scanning": [("deep-improvement", 2.6)],
-    "integration scan": [("deep-improvement", 2.2)],
-    "dynamic profiling": [("deep-improvement", 2.6)],
-    "dynamic profile": [("deep-improvement", 1.6)],
-    "evaluate agent quality": [("deep-improvement", 2.8)],
-    "score agent dimensions": [("deep-improvement", 2.8)],
-    "agent integration surface": [("deep-improvement", 2.6)],
-    "/deep:agent-improvement": [("deep-improvement", 3.2)],
+    "agent improvement": [("system-deep-loop", 2.8)],
+    "recursive agent": [("system-deep-loop", 2.8)],
+    "improvement loop": [("system-deep-loop", 2.8)],
+    "agent improvement loop": [("system-deep-loop", 3.2)],
+    "proposal-only improvement": [("system-deep-loop", 2.6)],
+    "proposal only improvement": [("system-deep-loop", 2.6)],
+    "proposal only": [("system-deep-loop", 1.4)],
+    "evaluator-first": [("system-deep-loop", 2.4)],
+    "bounded mutator": [("system-deep-loop", 2.2)],
+    "candidate scoring": [("system-deep-loop", 2.3)],
+    "promotion gate": [("system-deep-loop", 2.0)],
+    "handover target": [("system-deep-loop", 2.0)],
+    "deep-agent-improvement": [("system-deep-loop", 3.2)],
+    "/deep-agent-improvement": [("system-deep-loop", 3.2)],
+    "sk-agent-improvement-loop": [("system-deep-loop", 3.0)],
+    "/sk-agent-improvement-loop": [("system-deep-loop", 3.0)],
+    "5-dimension": [("system-deep-loop", 1.8)],
+    "5-dimension agent scoring": [("system-deep-loop", 2.8)],
+    "5-dimension evaluation": [("system-deep-loop", 2.8)],
+    "5d agent scoring": [("system-deep-loop", 2.8)],
+    "5d scoring": [("system-deep-loop", 1.8)],
+    "integration scanning": [("system-deep-loop", 2.6)],
+    "integration scan": [("system-deep-loop", 2.2)],
+    "dynamic profiling": [("system-deep-loop", 2.6)],
+    "dynamic profile": [("system-deep-loop", 1.6)],
+    "evaluate agent quality": [("system-deep-loop", 2.8)],
+    "score agent dimensions": [("system-deep-loop", 2.8)],
+    "agent integration surface": [("system-deep-loop", 2.6)],
+    "/deep:agent-improvement": [("system-deep-loop", 3.2)],
     "/prompt": [("sk-prompt", 3.2)],
-    "improve agent": [("deep-improvement", 2.8)],
-    "score agent": [("deep-improvement", 2.6)],
-    "evaluate agent": [("deep-improvement", 2.6)],
-    "agent evaluation": [("deep-improvement", 2.6)],
+    "improve agent": [("system-deep-loop", 2.8)],
+    "score agent": [("system-deep-loop", 2.6)],
+    "evaluate agent": [("system-deep-loop", 2.6)],
+    "agent evaluation": [("system-deep-loop", 2.6)],
     # --- Code discovery and structural search ---
     "webflow cms": [("mcp-code-mode", 2.2)],
     "cms collection": [("mcp-code-mode", 2.0)],
@@ -2112,7 +2114,7 @@ PHRASE_INTENT_BOOSTERS = {
     # FOLLOW-UP: Hyphenated-token migrations from INTENT_BOOSTERS
     # (tokenizer splits on hyphen via \b\w+\b — same bug as whitespace keys)
     # ─────────────────────────────────────────────────────────────────
-    "proposal-only": [("deep-improvement", 1.4)],
+    "proposal-only": [("system-deep-loop", 1.4)],
     "claude-code": [("cli-claude-code", 2.0)],
     "claude-cli": [("cli-claude-code", 1.5)],
     "extended-thinking": [("cli-claude-code", 1.0)],
@@ -2612,7 +2614,7 @@ INTENT_NORMALIZATION_RULES = {
     "tooling": {
         "phrases": ["use mcp", "code mode", "chrome devtools", "use external tool"],
         "tokens": {"mcp", "devtools", "chrome", "notion", "toolchain"},
-        "boosts": [("mcp-code-mode", 0.3), ("mcp-chrome-devtools", 0.3)],
+        "boosts": [("mcp-code-mode", 0.3), ("mcp-tooling", 0.3)],
     },
 }
 
@@ -2723,23 +2725,6 @@ def get_skills(force_refresh: bool = False) -> Dict[str, Dict[str, Any]]:
         source="bridge",
         path=None,
         extra_variants={"/create:manual-testing-playbook", "create testing playbook", "create test playbook"},
-    )
-    skills["deep-improvement"] = _build_inline_record(
-        name="deep-improvement",
-        description=(
-            "Evaluator-first deep improvement workflow for 5d scoring, "
-            "5-dimension agent scoring, integration scan, dynamic profile, "
-            "agent improvement, candidate scoring, and proposal-only improvement."
-        ),
-        kind="skill",
-        source="bridge",
-        path=None,
-        extra_variants={
-            "/deep:agent-improvement",
-            "deep-agent-improvement",
-            "sk-deep-agent-improvement",
-            "sk-agent-improvement-loop",
-        },
     )
     for command_name, command_config in COMMAND_BRIDGES.items():
         if command_config.get("routing_enabled") is False:

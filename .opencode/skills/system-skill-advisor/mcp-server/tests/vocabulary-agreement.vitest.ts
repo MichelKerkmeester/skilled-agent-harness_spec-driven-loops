@@ -45,8 +45,22 @@ function quoted(region: string): Set<string> {
 function identKeys(region: string): Set<string> {
   return new Set([...region.matchAll(/(?:^|[\s{,])([a-z][a-z0-9_]*)\s*:/g)].map((m) => m[1]));
 }
-// Pipe-separated placeholder inside a `"[a|b|c]"` doctrine string.
+// Pipe-separated placeholder inside a `"[a|b|c]"` doctrine string. The
+// current parent-hub template also carries the legal family set in its
+// explanatory `_template` sentence while the concrete family field is
+// intentionally fixed to `sk-hub`; read that authoritative sentence when
+// present instead of treating the next unrelated `]` as a delimiter.
 function pipePlaceholder(src: string, anchor: string): Set<string> {
+  const legalValues = src.match(/Legal family values are\s+(.+?)[.;]\s+parent hubs use\s+sk-hub\b/i)?.[1];
+  if (legalValues) {
+    return new Set(
+      legalValues
+        .replace(/\band\s+/i, ', ')
+        .split(',')
+        .map((token) => token.trim())
+        .filter(Boolean),
+    );
+  }
   const region = sliceAfter(src, anchor, ']');
   return new Set(region.replace(/^\s*"?\[/, '').split('|').map((t) => t.trim()).filter(Boolean));
 }

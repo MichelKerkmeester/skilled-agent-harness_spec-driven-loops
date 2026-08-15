@@ -99,10 +99,10 @@ const EXPECTED_HANDLER_FRAGMENTS: Record<(typeof EXPECTED_HOOK_EVENTS)[number], 
   Stop: 'dist/hooks/claude/session-stop.js',
 };
 const EXPECTED_HOOK_COUNTS: Record<(typeof EXPECTED_HOOK_EVENTS)[number], number> = {
-  UserPromptSubmit: 1,
+  UserPromptSubmit: 2,
   PreCompact: 1,
-  SessionStart: 2,
-  Stop: 1,
+  SessionStart: 6,
+  Stop: 2,
 };
 
 interface HookCommand {

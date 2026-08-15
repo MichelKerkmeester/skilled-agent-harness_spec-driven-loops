@@ -162,11 +162,11 @@ describe('executor-delegation resolver (pure detector)', () => {
     )).toBeNull();
   });
 
-  it('abstains (no route, null executor) when a retired executor is named', () => {
+  it('routes a live codex executor from the current mode registry', () => {
     const decision = resolveExecutorDelegation('delegate to codex to generate this module', table);
     expect(decision).not.toBeNull();
-    expect(decision?.action).toBe('abstain');
-    expect(decision?.executorSkillId).toBeNull();
+    expect(decision?.action).toBe('route');
+    expect(decision?.executorSkillId).toBe('cli-codex');
   });
 
   it('does not fire on a bare opencode mention with no delegation cue', () => {
@@ -182,7 +182,7 @@ describe('executor-delegation shared fixture (TS native + Python parity)', () =>
     expect(fixture.version).toBe(1);
     expect(fixture.cases.length).toBeGreaterThanOrEqual(10);
     const branches = new Set(fixture.cases.map((entry) => entry.branch));
-    for (const branch of ['direct-alias', 'orchestrator-cue', 'negative-guard', 'suppressed-abstain']) {
+    for (const branch of ['direct-alias', 'orchestrator-cue', 'negative-guard']) {
       expect(branches.has(branch)).toBe(true);
     }
   });

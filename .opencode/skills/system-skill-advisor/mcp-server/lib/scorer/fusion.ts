@@ -513,13 +513,10 @@ function readOnlyRouteAllowed(promptLower: string, skillId: string): boolean {
   if (skillId === 'system-deep-loop' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
     return true;
   }
-  if (skillId === 'mcp-chrome-devtools' && /\b(\.opencode\/agents|state log|predictions schema|current labels|gate-3-classifier\.ts)\b/.test(promptLower)) {
-    return true;
-  }
   // Browser/devtools inspection is a genuine chrome-devtools task even though
   // its verb ("inspect") reads as a read-only explainer. Lift it off the
   // explainer floor when the prompt carries devtools-specific vocabulary.
-  if (skillId === 'mcp-chrome-devtools'
+  if (skillId === 'mcp-tooling'
     && /\b(network waterfall|network tab|network request|dev ?tools|browser console|page inspector|dom inspector|performance trace|inspect (the )?(network|dom|page|element|browser))\b/.test(promptLower)) {
     return true;
   }
@@ -554,7 +551,7 @@ function primaryIntentBonus(
   }
   if (/\b(corpus ids?|first-100 predictions|continuation prompts|routing study config|confusion matrix|source-mix note|prompt template|packet-local)\b/.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.corpusStudySpecKitBonus;
-    if (recommendation.skill === 'sk-prompt' || recommendation.skill === 'mcp-chrome-devtools' || recommendation.skill === 'sk-doc') return R.corpusStudyOtherSkillsPenalty;
+    if (recommendation.skill === 'sk-prompt' || recommendation.skill === 'mcp-tooling' || recommendation.skill === 'sk-doc') return R.corpusStudyOtherSkillsPenalty;
   }
   if (promptLower.includes('/speckit:resume')) {
     if (recommendation.skill === 'system-spec-kit') return R.speckitResumeSpecKitBonus;

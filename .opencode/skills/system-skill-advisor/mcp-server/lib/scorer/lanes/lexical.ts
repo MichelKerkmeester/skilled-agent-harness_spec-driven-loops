@@ -27,7 +27,7 @@ const CATEGORY_HINTS: Readonly<Record<string, readonly string[]>> = {
   'sk-doc': ['readme', 'feature catalog', 'playbook', 'taxonomy', 'documentation', 'docs', 'manual testing'],
   'system-spec-kit': ['spec folder', 'packet', 'plan', 'tasks', 'checklist', 'memory save', 'handover', 'implementation summary', 'corpus'],
   'system-deep-loop': ['deep research', 'research loop', 'overnight research', 'delta record', 'state log', 'lineage', 'deep review', 'review loop', 'release readiness', 'canonical jsonl', 'convergence tracked', 'iterative review', 'iterative review loop', 'spec folder audit', 'iterative audit', 'multi-pass review', 'review iteration', 'convergence detection', 'review packet', 'spec folder review', 'deep ai council', 'ai council', 'planning council', 'council deliberation', 'multi-seat planning', 'ai-council artifacts', 'persist council artifacts', 'multi-ai-council'],
-  'mcp-chrome-devtools': ['chrome devtools', 'har', 'console errors', 'staging'],
+  'mcp-tooling': ['chrome devtools', 'har', 'console errors', 'staging'],
   'sk-prompt': ['better prompt', 'cleaner prompt', 'prompt package', 'system prompt', 'prompt variant'],
   'sk-git': ['git worktree', 'experiment branch', 'clean branch'],
   'sk-code': ['css', 'html', 'javascript', 'browser', 'frontend', 'layout', 'viewport', 'responsive', 'mobile', 'cdn', 'opencode', 'classifier', 'helper', 'fixture', 'vitest', 'commonjs', 'typescript', 'python', 'script', 'mcp json', 'gate3 baseline'],

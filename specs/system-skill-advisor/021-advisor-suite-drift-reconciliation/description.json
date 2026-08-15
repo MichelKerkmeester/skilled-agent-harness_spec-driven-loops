@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "system-skill-advisor/021-advisor-suite-drift-reconciliation",
+  "description": "Concurrent work — retiring the code-graph skill, renaming skills, adding hubs (Figma, mcp-tooling, CLI-hub, sk-communication), and rewiring hooks —",
+  "keywords": [
+    "concurrent",
+    "work",
+    "retiring",
+    "code-graph",
+    "skill",
+    "renaming",
+    "skills",
+    "hubs",
+    "figma",
+    "mcp-tooling",
+    "cli-hub",
+    "sk-communication",
+    "rewiring",
+    "hooks"
+  ],
+  "lastUpdated": "2026-08-15T17:14:48.416Z",
+  "specId": "021",
+  "folderSlug": "advisor-suite-drift-reconciliation",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

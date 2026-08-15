@@ -131,7 +131,11 @@ describe('advisor packed BM25 lexical shadow lane', () => {
   });
 
   it('matches or beats the current lexical lane on exact-label advisor corpus prompts', () => {
-    const expectedSkills = [...new Set(INTENT_PROMPT_CORPUS.map((item) => item.expectedSkill))];
+    const expectedSkills = [...new Set(
+      INTENT_PROMPT_CORPUS
+        .map((item) => item.expectedSkill)
+        .filter((skillId): skillId is string => typeof skillId === 'string' && skillId !== 'none'),
+    )];
     const projection = createFixtureProjection(expectedSkills.map((id) => skill({
       id,
       name: id,

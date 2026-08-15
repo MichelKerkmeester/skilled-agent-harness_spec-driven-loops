@@ -45,8 +45,8 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
     category: 'today-correct',
   },
   {
-    prompt: 'Use mcp-chrome-devtools to inspect localhost in Chrome DevTools and capture console errors.',
-    expectedSkill: 'mcp-chrome-devtools',
+    prompt: 'Use mcp-tooling to inspect localhost in Chrome DevTools and capture console errors.',
+    expectedSkill: 'mcp-tooling',
     category: 'today-correct',
   },
   {
@@ -105,7 +105,7 @@ export const INTENT_PROMPT_CORPUS: ReadonlyArray<{
   },
   {
     prompt: 'Open the local page, click through the UI, and tell me what appears in the console.',
-    expectedSkill: 'mcp-chrome-devtools',
+    expectedSkill: 'mcp-tooling',
     category: 'intent-described',
   },
   {
