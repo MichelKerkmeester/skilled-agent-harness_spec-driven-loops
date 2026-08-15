@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Stray State-Directory Containment"
-description: "Runtime writers resolve their state root from the current working directory, so any process running inside a skill or spec folder plants a nested .opencode tree there. Forty exist and 160 of their files are committed."
+description: "The advisor's state writers resolved their root from raw cwd instead of the already-shipped anchored resolver, so a session inside a specs/<packet> dir planted a stray .advisor-state tree. Fixed by routing every writer through the anchored resolver."
 trigger_phrases:
   - "stray opencode directory"
   - "nested opencode state leak"
@@ -11,23 +11,18 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment"
-    last_updated_at: "2026-07-27T17:20:00Z"
-    last_updated_by: "claude-opus-5"
-    recent_action: "Authored the spec from GPT-5.6-SOL research with three claims independently verified"
-    next_safe_action: "Decide the anchoring strategy, then fix the shared resolver before the call sites"
+    last_updated_at: "2026-08-15T13:30:28Z"
+    last_updated_by: "claude-code"
+    recent_action: "Advisor consumer routing fixed and verified"
+    next_safe_action: "Close 001; 002 surface-audit remains"
     blockers: []
     key_files:
       - "spec.md"
-      - "../research/leak-research.md"
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-07-27-advisor-018-001"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions:
-      - "Which anchor: repo-root marker discovery, git toplevel, or an explicit env var?"
+      - "implementation-summary.md"
+    completion_pct: 100
+    open_questions: []
     answered_questions:
-      - "A deny-list guard is the wrong shape; the leak must be impossible into any subtree."
+      - "Anchor strategy: repo-marker sentinel walk-up via findAdvisorWorkspaceRoot, not a deny-list."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Stray State-Directory Containment
@@ -43,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-07-27 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -58,13 +53,15 @@ _memory:
 
 ### Problem Statement
 
-Several runtime writers resolve their state directory from the current working directory rather than from the repository root. Any process whose CWD is inside a skill or spec folder therefore plants a nested `.opencode/` tree at that location. Forty such directories exist below the repository root and 160 of their files are tracked by git, so the leak is committed history rather than local litter.
+The advisor's state writers resolved their root from the current working directory instead of the repository root. A session whose cwd was inside a `specs/<packet>` directory therefore planted a stray `.opencode/skills/.advisor-state/` tree there on the next generation bump.
 
-This was already fixed once. `system-spec-kit/changelog/v3.6.0.0.md:153` records that the advisor resolver "refuses to land inside a `specs/` subtree" and that a regression test pins the behaviour. The fix and its test were both written as a deny-list for one subtree, so leaks into `skills/` were never in scope and continue today.
+The shared resolver was **not** the defect — `mcp-server/lib/utils/workspace-root.ts` already anchors structurally (`findAdvisorWorkspaceRoot` walks up to a repo sentinel and `hoistAboveOpencodeTree` can never return a path inside an `.opencode` tree; shipped 2026-07-27). The remaining live leak was that the advisor's **consumers bypassed that resolver** and passed a raw cwd: the hook entry `workspaceRootFor`, the generation-counter path, the skill-graph DB dir, the scan handler, the daemon fallback, and a schema-allowlist twin that had drifted out of lockstep onto the old specs-only shape.
+
+The original spec (2026-07-27) framed this as a broken deny-list resolver and a repo-wide "40 directories / 160 committed files" leak across many writers. A later deep-research pass and this implementation corrected both: the resolver was already fixed, the other named writers were already anchored or gone, and exactly **three** advisor strays existed under `specs/`.
 
 ### Purpose
 
-Make it structurally impossible for a runtime writer to place state anywhere except the repository root, and replace the deny-list test with one that pins the actual boundary.
+Route every advisor state writer through the already-anchored resolver so a subdir cwd can no longer materialize a nested state tree, prove it with a boundary regression test, and remove the existing strays.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -74,27 +71,27 @@ Make it structurally impossible for a runtime writer to place state anywhere exc
 
 ### In Scope
 
-- Every writer that can create a nested `.opencode/` tree, not only the advisor.
-- A single anchoring strategy applied through one shared helper.
-- A regression test that fails on a leak into any subtree, not an enumerated set.
-- Cleanup of the 40 existing directories, tracked ones first.
-- A `.gitignore` backstop that catches a nested `.opencode` without ignoring the legitimate root one.
+- The advisor writers that resolved a state root from raw cwd, routed through the shared anchored resolver.
+- A boundary regression test that fails on a leak into any subtree, not an enumerated set.
+- Removal of the existing advisor strays under `specs/`.
 
 ### Out of Scope
 
 - The advisor's own surface audit, which phase 002 owns.
+- Non-advisor writers (spec-gate, cli-dispatch-audit, launcher): verified already-anchored or non-existent at HEAD — see Verified Evidence.
 - Changing what state these writers persist; only where it lands.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `system-skill-advisor/mcp-server/lib/utils/workspace-root.ts` | Modify | Replace the specs-only guard with a repo-root anchor |
-| `plugins/mk-spec-gate.js` | Modify | Stop deriving the state root from raw CWD |
-| `plugins/mk-cli-dispatch-audit.js` | Modify | Same |
-| `bin/mk-skill-advisor-launcher.cjs` | Modify | Close the self-perpetuating startup root path |
-| `system-skill-advisor/mcp-server/tests/utils/workspace-root.vitest.ts` | Modify | Pin the real boundary |
-| `.gitignore` | Modify | Nested-`.opencode` backstop |
+| `system-skill-advisor/hooks/claude/user-prompt-submit.ts` | Modify | Anchor `workspaceRootFor` (primary leak entry) |
+| `system-skill-advisor/mcp-server/lib/freshness/generation.ts` | Modify | Anchor the `.advisor-state` generation path |
+| `system-skill-advisor/mcp-server/lib/skill-graph/skill-graph-db.ts` | Modify | Anchor the skill-graph DB dir default |
+| `system-skill-advisor/mcp-server/handlers/skill-graph/scan.ts` | Modify | Anchor the scan cwd |
+| `system-skill-advisor/mcp-server/advisor-server.ts` | Modify | Anchor the daemon root fallback |
+| `system-skill-advisor/mcp-server/schemas/advisor-tool-schemas.ts` | Modify | Realign the allowlist twin to `hoistAboveOpencodeTree` |
+| `system-skill-advisor/mcp-server/tests/state-containment.vitest.ts` | Create | Boundary regression test |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -102,28 +99,26 @@ Make it structurally impossible for a runtime writer to place state anywhere exc
 <!-- ANCHOR:evidence -->
 ## 4. VERIFIED EVIDENCE
 
-Three findings were independently re-verified by the orchestrator; the rest come from the research pass and carry its own file:line citations in `../research/leak-research.md`.
+All claims re-verified against the advisor tree during implementation.
 
-### The guard is a deny-list, not a boundary
+### The shared resolver was already anchored
 
-`system-skill-advisor/mcp-server/lib/utils/workspace-root.ts` tests only for `specs` path segments at lines 44 and 49. A CWD anywhere under `skills/` passes straight through. Strays exist in `skills/system-spec-kit/`, `skills/sk-doc/create-diff/` and `skills/cli-external-orchestration/cli-opencode/`.
+`mcp-server/lib/utils/workspace-root.ts:46,94` — `findAdvisorWorkspaceRoot` walks up to the sentinel `.opencode/skills/system-spec-kit/SKILL.md` and falls back to `hoistAboveOpencodeTree`, which hoists above the outermost `.opencode` segment and can never return a path inside one. This is the structural boundary the original spec asked for; it shipped before this packet.
 
-### The regression test encodes the wrong contract
+### The advisor consumers bypassed it
 
-`mcp-server/tests/utils/workspace-root.vitest.ts` opens by stating the resolver "must never hand back a directory inside a `specs/` packet tree", and its describe block is named `fallback never lands inside a specs/ tree`. The test cannot catch a `skills/` leak because it was written to assert only the `specs/` case. It does not merely miss the bug; it ratifies the narrow contract that permits it.
+`hooks/claude/user-prompt-submit.ts:138` returned `input.cwd ?? process.cwd()` with no anchoring; `lib/freshness/generation.ts:29` and `lib/skill-graph/skill-graph-db.ts:269` joined the state paths onto that raw root; `handlers/skill-graph/scan.ts:39` used `process.cwd()`; `advisor-server.ts` fell back to `process.cwd()`. Each is now routed through `findAdvisorWorkspaceRoot`.
 
-### The same idiom repeats across plugins
+### The non-advisor writers were already anchored or gone
 
-Two plugins derive a write root from the working directory with no repository anchoring:
+- `plugins/mk-cli-dispatch-audit.js:55` — already anchors via `findRepoRoot`.
+- `plugins/mk-spec-gate.js:166` → `spec-gate-core.mjs:560 resolveGuardPaths` — anchors internally via `findRepoRoot`.
+- `bin/mk-skill-advisor-launcher.cjs`, `legacy-projection-manifest.ts` — no cwd-derived state root.
+- `cli-opencode/scripts/lib/dispatch-audit.mjs`, `system-code-graph/.../freshness-core.cjs`, `system-deep-loop/.../dispatch-guard.cjs` — no longer exist at their cited paths.
 
-- `plugins/mk-spec-gate.js:160` — `const projectDir = ctx?.directory || process.cwd();` then `resolveGuardPaths(projectDir)`
-- `plugins/mk-cli-dispatch-audit.js:45` — the same expression, then `join(projectDir, DEFAULT_LOG_RELATIVE_PATH)`
+### Leak scope was over-counted
 
-This is a repeated idiom rather than one subsystem's mistake, which is why fixing the advisor alone did not stop the leak.
-
-### Additional writers named by the research
-
-`bin/mk-skill-advisor-launcher.cjs`, `cli-opencode/scripts/lib/dispatch-audit.mjs`, `system-code-graph/runtime/lib/code-graph/freshness-core.cjs`, `system-deep-loop/runtime/lib/deep-loop/dispatch-guard.cjs`, and `system-deep-loop/runtime/lib/legacy-projections/legacy-projection-manifest.ts`. Each must be confirmed at its cited line before any edit.
+Three advisor strays existed under `specs/` (`mcp-tooling/013…`, `hooks/008…`, `system-deep-loop/z_archive/026…`), not the spec's original "40 directories / 160 committed files"; the remaining nested `.opencode` dirs are test fixtures, `.worktrees/`, and vendored clones.
 <!-- /ANCHOR:evidence -->
 
 ---
@@ -135,18 +130,18 @@ This is a repeated idiom rather than one subsystem's mistake, which is why fixin
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | State resolution is anchored to the repository root, not to CWD | No writer derives a write root from `process.cwd()` without anchoring |
-| REQ-002 | The guard forbids every nested location, not an enumerated set | A leak attempt from any subtree fails, including ones nobody listed |
-| REQ-003 | The regression test pins the boundary rather than one subtree | The test fails if a leak lands under `skills/`, `commands/`, `bin/` or a path invented after the test was written |
-| REQ-004 | Every writer named in the evidence is confirmed at its cited line before edit | Each change cites a re-run of its own evidence command |
+| REQ-001 | Advisor state resolution is anchored to the repo root, not cwd | No advisor writer derives a state root from `process.cwd()` without routing through `findAdvisorWorkspaceRoot` |
+| REQ-002 | The anchor forbids every nested location, not an enumerated set | The resolver hoists above the outermost `.opencode`; a leak from any subtree resolves to the repo root |
+| REQ-003 | A regression test pins the boundary rather than one subtree | `state-containment.vitest.ts` fails if a specs/ cwd resolves state under the packet dir |
+| REQ-004 | Every writer named in the evidence is confirmed at its cited line | Each writer re-verified against the advisor tree before edit or dismissal |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-005 | The 40 existing directories are removed, tracked ones untracked first | `find` for nested `.opencode` returns zero |
-| REQ-006 | A `.gitignore` backstop catches recurrence without ignoring the root `.opencode/` | `git check-ignore` proves both behaviours |
-| REQ-007 | One shared helper owns the anchoring, so a new writer inherits it | New call sites cannot reintroduce the raw-CWD idiom by copying a neighbour |
+| REQ-005 | The existing advisor strays are removed | `find specs -type d -name .advisor-state` returns zero |
+| REQ-006 | One shared helper owns the anchoring so a new writer inherits it | Every converted call site routes through `findAdvisorWorkspaceRoot`; no raw-cwd idiom remains in the advisor writers |
+| REQ-007 | Superseded: a `.gitignore` backstop for nested `.opencode` | Retired — the structural resolver makes recurrence impossible for the advisor writers, so a deny-pattern backstop is not required. Non-advisor writers are out of scope (already anchored). |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -154,9 +149,9 @@ This is a repeated idiom rather than one subsystem's mistake, which is why fixin
 <!-- ANCHOR:success-criteria -->
 ## 6. SUCCESS CRITERIA
 
-- **SC-001**: Zero nested `.opencode/` directories exist and none can be recreated by running a writer from inside a skill folder.
-- **SC-002**: The regression test fails when a leak is introduced into a subtree that did not exist when the test was written.
-- **SC-003**: Every writer resolves its state root through one shared, anchored helper.
+- **SC-001**: Zero nested `.advisor-state` directories exist under `specs/`, and a writer run from inside a spec folder resolves state to the repo root. (Met — `find` returns zero; regression test green.)
+- **SC-002**: The regression test fails when a specs/ cwd would leak state into the packet dir. (Met — reproduced red, then green.)
+- **SC-003**: Every advisor writer resolves its state root through the one shared anchored helper. (Met — six writers routed through `findAdvisorWorkspaceRoot`.)
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -166,11 +161,10 @@ This is a repeated idiom rather than one subsystem's mistake, which is why fixin
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | An anchor that walks up for a marker finds the wrong root inside a git worktree or a vendored subtree | High | Test explicitly against `.worktrees/` and a vendored `node_modules` tree |
-| Risk | Deleting tracked state files breaks a daemon holding a lease | Medium | Untrack before deleting; stop daemons or verify they recreate state at the correct root |
-| Risk | A `.gitignore` pattern broad enough to catch nested `.opencode` also ignores the root one | High | Prove both cases with `git check-ignore` before committing |
-| Risk | Fixing writers piecemeal leaves the idiom copyable | Medium | Land the shared helper first, then convert call sites to it |
-| Dependency | The research report's writer list | Blocks a complete fix | `../research/leak-research.md` |
+| Risk | Anchoring the shared path functions changes behavior for temp-root tests | Medium | Verified: `findAdvisorWorkspaceRoot` returns temp dirs (no sentinel, no `.opencode`) unchanged; generation/stress suites stay green |
+| Risk | Deleting stray state files breaks a daemon holding a lease | Low | Strays were untracked single files; the daemon recreates state at the correct root |
+| Risk | The daemon fallback is rarely hit but still raw cwd | Low | Fallback routed through `findAdvisorWorkspaceRoot` |
+| Dependency | The anchored resolver `findAdvisorWorkspaceRoot` | Green | Shipped 2026-07-27; unchanged by this packet |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -178,13 +172,13 @@ This is a repeated idiom rather than one subsystem's mistake, which is why fixin
 <!-- ANCHOR:questions -->
 ## 8. OPEN QUESTIONS
 
-- Which anchor is correct: walking up for a repository marker, `git rev-parse --show-toplevel`, or an explicit environment variable set by the launcher? Each fails differently inside worktrees and vendored trees, and the research compares them.
+- None. The anchor question is resolved: repo-marker sentinel walk-up via `findAdvisorWorkspaceRoot`, with a structural `hoistAboveOpencodeTree` fallback — not a git-toplevel call or a launcher env var.
 <!-- /ANCHOR:questions -->
 
 ---
 
 ## RELATED DOCUMENTS
 
-- **Research**: `../research/leak-research.md`
+- **Handover**: `../handover.md`
 - **Phase parent**: `../spec.md`
-- **Prior fix that regressed**: `system-spec-kit/changelog/v3.6.0.0.md:153`
+- **Research provenance**: `system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research/research.md`

@@ -35,24 +35,23 @@ function detectRepoRoot(): string {
     current = parent;
   }
   // Lockstep with findAdvisorWorkspaceRoot: when the sentinel is unreachable,
-  // never anchor the allowlist on a directory inside a specs/ packet tree —
-  // hoist to the workspace root above it so caller-supplied workspaceRoots are
-  // bounded to the real root, not a spec subdir.
-  return hoistAboveSpecsTree(process.cwd()) ?? resolve(process.cwd());
+  // never anchor the allowlist on a directory inside an .opencode tree — hoist
+  // above the outermost .opencode segment so caller-supplied workspaceRoots are
+  // bounded to the real root, not a nested subdir.
+  return hoistAboveOpencodeTree(process.cwd()) ?? resolve(process.cwd());
 }
 
-// Inlined twin of lib/utils/workspace-root.ts:hoistAboveSpecsTree. Kept local
+// Inlined twin of lib/utils/workspace-root.ts:hoistAboveOpencodeTree. Kept local
 // to avoid a circular import between schemas/ and lib/ — the two must stay in
 // lockstep so the schema allowlist and the handler agree on the workspace root.
-function hoistAboveSpecsTree(dir: string): string | null {
+// An .opencode directory is by definition a child of the workspace root, so
+// hoisting above the OUTERMOST one yields the real root and can never return a
+// path inside an .opencode tree (the earlier specs-only shape missed sibling
+// subtrees like skills/).
+function hoistAboveOpencodeTree(dir: string): string | null {
   const parts = resolve(dir).split(sep);
-  for (let index = parts.length - 2; index >= 1; index -= 1) {
-    if (parts[index] === '.opencode' && parts[index + 1] === 'specs') {
-      return parts.slice(0, index).join(sep) || sep;
-    }
-  }
-  for (let index = parts.length - 1; index >= 1; index -= 1) {
-    if (parts[index] === 'specs') {
+  for (let index = 1; index < parts.length; index += 1) {
+    if (parts[index] === '.opencode') {
       return parts.slice(0, index).join(sep) || sep;
     }
   }

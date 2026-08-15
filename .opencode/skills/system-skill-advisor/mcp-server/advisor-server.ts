@@ -23,6 +23,7 @@ import {
   resolveSkillGraphDbDir,
 } from './lib/skill-graph/skill-graph-db.js';
 import { ensureActiveEmbedder } from './lib/embedders/schema.js';
+import { findAdvisorWorkspaceRoot } from './lib/utils/workspace-root.js';
 import { computeAdvisorSourceSignature } from './lib/freshness.js';
 import { publishSkillGraphGeneration } from './lib/freshness/generation.js';
 import { startSkillGraphDaemon, type SkillGraphDaemon } from './lib/daemon/lifecycle.js';
@@ -87,7 +88,10 @@ function resolveWorkspaceRoot(): string {
     dir = parent;
   }
 
-  return process.cwd();
+  // Module walk-up failed (unusual). Fall back to the anchored resolver rather
+  // than a raw cwd, which could be a specs/<packet> subdir and would seed a
+  // stray state tree there.
+  return findAdvisorWorkspaceRoot(process.cwd());
 }
 
 async function loadSkillGraphWatchFactory(): Promise<(paths: string[], options: Record<string, unknown>) => SkillGraphFsWatcher> {

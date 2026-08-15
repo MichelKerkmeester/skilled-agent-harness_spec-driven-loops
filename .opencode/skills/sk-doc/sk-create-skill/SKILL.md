@@ -404,6 +404,7 @@ Use these only for overflow detail, exhaustive examples, or schema checks beyond
 - `references/README.md` - route map for the full reference set.
 - `references/shared/overview.md` - deeper anatomy, layered-doc structure, and resource placement guidance.
 - `references/skill/creation-workflow.md` - expanded examples for the six-step standalone workflow.
+- `references/skill/upgrading-a-skill-to-v4.md` - adopter guide for reconciling a customized skill to the v4 parent-hub format (convert-vs-keep-single decision, single→parent procedure, sk-code/sk-git cases).
 - `references/shared/validation-and-packaging.md` - detailed validation, packaging, and distribution notes.
 - `references/shared/common-pitfalls.md` - examples of recurring trigger, YAML, style, and context-budget defects.
 - `references/parent-skill/parent-skills-nested-packets.md` - detailed parent-hub and nested-packet model.

@@ -4,8 +4,9 @@
 
 import { randomBytes } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join } from 'node:path';
 import { GenerationMetadataSchema, type GenerationMetadata } from '../../schemas/generation-metadata.js';
+import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
 import { invalidateSkillGraphCaches, type CacheInvalidationEvent } from './cache-invalidation.js';
 import type { SkillGraphTrustState } from './trust-state.js';
 
@@ -27,7 +28,11 @@ export interface PublishGenerationResult {
 }
 
 export function getSkillGraphGenerationPath(workspaceRoot: string): string {
-  return join(resolve(workspaceRoot), GENERATION_RELATIVE_PATH);
+  // Anchor to the real repo root before joining the state-relative path. A
+  // caller passing a specs/<packet> cwd would otherwise write its counter into
+  // that packet, leaving a stray .advisor-state tree behind; the anchored
+  // resolver structurally can never return a directory inside an .opencode tree.
+  return join(findAdvisorWorkspaceRoot(workspaceRoot), GENERATION_RELATIVE_PATH);
 }
 
 function fsyncPath(filePath: string): void {

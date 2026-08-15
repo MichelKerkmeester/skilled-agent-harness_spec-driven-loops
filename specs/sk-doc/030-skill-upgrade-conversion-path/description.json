@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "_note": "Hand-written lean stub (spec-memory MCP disconnected at authoring). Regenerate with generate-description.js before relying on memory search.",
+  "specFolder": "sk-doc/030-skill-upgrade-conversion-path",
+  "description": "This repo is a framework others adopt and customize",
+  "keywords": [
+    "repo",
+    "framework",
+    "others",
+    "adopt",
+    "customize"
+  ],
+  "lastUpdated": "2026-08-15T11:59:46.425Z",
+  "specId": "030",
+  "folderSlug": "skill-upgrade-conversion-path",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

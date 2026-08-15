@@ -9,6 +9,7 @@ import type { MCPCallerContext } from '../../lib/context/caller-context.js';
 import { requireTrustedCaller } from '../../lib/auth/trusted-caller.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
 import { publishSkillGraphGeneration } from '../../lib/freshness/generation.js';
+import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 import { errorResponse, okResponse, redactDiagnosticText } from './response-envelope.js';
 
 // ───────────────────────────────────────────────────────────────
@@ -36,7 +37,10 @@ export async function handleSkillGraphScan(
       return errorResponse(trustedCaller.error, trustedCaller.code);
     }
 
-    const cwd = process.cwd();
+    // Anchor to the real repo root so a scan launched from a specs/<packet>
+    // subdir targets the workspace skills tree — and writes its generation
+    // counter there — instead of planting stray state under the subdir.
+    const cwd = findAdvisorWorkspaceRoot(process.cwd());
     const skillsRoot = resolve(cwd, args.skillsRoot ?? '.opencode/skills');
 
     // Workspace escape guard: resolved path must stay under cwd

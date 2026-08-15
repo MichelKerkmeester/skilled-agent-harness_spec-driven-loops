@@ -27,6 +27,7 @@ import {
 import { getAdapter } from '../embedders/registry.js';
 import { checkSqliteIntegrity } from '../freshness/sqlite-integrity.js';
 import { parseSkillFrontmatter } from '../utils/skill-markdown.js';
+import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
 import {
   isDocTriggerHarvestEnabled,
   listSkillDocFiles,
@@ -271,8 +272,12 @@ export function resolveSkillGraphDbDir(baseRoot: string = process.cwd()): string
   if (overrideDbDir) {
     return resolve(overrideDbDir);
   }
+  // Anchor to the real repo root. A default `process.cwd()` inside a
+  // specs/<packet> directory would otherwise plant the skill-graph database
+  // under that packet; the anchored resolver can never land inside an .opencode
+  // tree, so the DB always resolves to one file at the workspace root.
   return resolve(
-    baseRoot,
+    findAdvisorWorkspaceRoot(baseRoot),
     '.opencode',
     'skills',
     'system-skill-advisor',
